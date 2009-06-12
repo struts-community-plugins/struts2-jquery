@@ -27,12 +27,12 @@
 <#if parameters.compressed?default(true)>
   <#assign jqueryFile="jquery-1.3.2.min.js">
   <#assign jqueryCookieFile="jquery.cookie.min.js">
-  <#assign jqueryUIFile="jquery-ui-1.7.1.min.js">
+  <#assign jqueryUIFile="jquery-ui-1.7.2.min.js">
   <#assign jqueryBGIFile="jquery.bgiframe.min.js">
 <#else>
   <#assign jqueryFile="jquery-1.3.2.js">
   <#assign jqueryCookieFile="jquery.cookie.js">
-  <#assign jqueryUIFile="jquery-ui-1.7.1.js">
+  <#assign jqueryUIFile="jquery-ui-1.7.2.js">
   <#assign jqueryBGIFile="jquery.bgiframe.js">
 </#if>
 
