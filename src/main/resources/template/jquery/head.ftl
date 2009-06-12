@@ -50,7 +50,7 @@
     </#if>
     <#if parameters.locale?if_exists != "">
         <#if parameters.locale?if_exists != "en">
-            <script language="JavaScript" type="text/javascript" src="struts/i18n/ui.datepicker-${parameters.locale?string}.js"></script>
+            <script language="JavaScript" type="text/javascript" src="struts/i18n/ui.datepicker-${parameters.locale?string}.min.js"></script>
         </#if>
     </#if>
 </#if>
