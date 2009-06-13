@@ -56,10 +56,10 @@
       </#if>
       <#if parameters.effect?if_exists != "">
         var optionse${parameters.id?html} = { <#if parameters.effectOptions?if_exists != "">${parameters.effectOptions?html}</#if> };
-          <#if parameters.effectDuration?if_exists == "">
-            $("${target?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},2500);
-          <#else>
+          <#if parameters.effectDuration?exists>
             $("${target?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},${parameters.effectDuration?html});
+          <#else>
+            $("${target?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},2500);
           </#if>
       </#if>
       <#if parameters.complete?if_exists != "">

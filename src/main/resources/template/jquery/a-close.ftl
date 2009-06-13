@@ -109,10 +109,10 @@ $('#${parameters.id?html}').click(function() {
   </#if>
   <#if parameters.effect?if_exists != "">
     var options${parameters.id?html} = { <#if parameters.effectOptions?if_exists != "">${parameters.effectOptions?html}</#if> };
-      <#if parameters.effectDuration?if_exists == "">
-        $("#${target?trim}").effect("${parameters.effect?html}",options${parameters.id?html},2500);
-      <#else>
+      <#if parameters.effectDuration?exists>
         $("#${target?trim}").effect("${parameters.effect?html}",options${parameters.id?html},${parameters.effectDuration?html});
+      <#else>
+        $("#${target?trim}").effect("${parameters.effect?html}",options${parameters.id?html},2500);
       </#if>
   </#if>
         }
