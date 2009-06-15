@@ -30,14 +30,14 @@ $('#${parameters.id?html}').bind(
 	'${parameters.events?default('click')}', 
 	function(e){
       <#if parameters.effectOptions?if_exists == "">
-    	var options${parameters.id?html} = { };
+    	var optionse${parameters.id?html} = { };
       <#else>
-   	 	var options${parameters.id?html} = { ${parameters.effectOptions?html} };
+   	 	var optionse${parameters.id?html} = { ${parameters.effectOptions?html} };
       </#if>
-      <#if parameters.effectDuration?if_exists == "">
-        $("#${parameters.id?trim}").effect("${parameters.effect?html}",options${parameters.id?html},2500);
+      <#if parameters.effectDuration?if_exists != "">
+        $("#${parameters.id?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},${parameters.effectDuration?html});
       <#else>
-        $("#${parameters.id?trim}").effect("${parameters.effect?html}",options${parameters.id?html},${parameters.effectDuration?html});
+        $("#${parameters.id?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},2000);
       </#if>
 });
 </script>

@@ -75,7 +75,7 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
         if (effect != null)
             addParameter("effect", findString(effect));
         if (effectDuration != null)
-          addParameter("effectDuration", findValue(this.effectDuration, Integer.class));
+          addParameter("effectDuration", findString(effectDuration));
         if (effectOptions != null)
             addParameter("effectOptions", findString(effectOptions));
         if (timeout != null)
@@ -166,7 +166,7 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
         this.effect = effect;
     }
 
-    @StrutsTagAttribute(description = "Duration of effect in milliseconds. Only valid if 'effect' attribute is set", defaultValue = "2000", type="Integer")
+    @StrutsTagAttribute(description = "Duration of effect in milliseconds. Only valid if 'effect' attribute is set", defaultValue = "2000")
     public void setEffectDuration(String effectDuration) {
         this.effectDuration = effectDuration;
     }
