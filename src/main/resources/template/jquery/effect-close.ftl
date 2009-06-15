@@ -22,6 +22,7 @@
 -->
 </div>
 <script type="text/javascript">
+<#assign options="{ ${parameters.effectOptions?default('')} }">
 <#if parameters.bindOn?if_exists != "">
 $('#${parameters.bindOn?html}').bind(
 <#else>
@@ -29,15 +30,13 @@ $('#${parameters.id?html}').bind(
 </#if>
 	'${parameters.events?default('click')}', 
 	function(e){
-      <#if parameters.effectOptions?if_exists == "">
-    	var optionse${parameters.id?html} = { };
-      <#else>
-   	 	var optionse${parameters.id?html} = { ${parameters.effectOptions?html} };
-      </#if>
-      <#if parameters.effectDuration?if_exists != "">
-        $("#${parameters.id?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},${parameters.effectDuration?html});
-      <#else>
-        $("#${parameters.id?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},2000);
-      </#if>
+      <#if parameters.befor?if_exists != "">
+    	${parameters.befor?html};
+	  </#if>
+       $("#${parameters.id?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')}
+      <#if parameters.after?if_exists != "">
+    	, ${parameters.after?html}
+	  </#if>
+	  );
 });
 </script>

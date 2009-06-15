@@ -37,6 +37,8 @@ public class EffectDivTag extends DivTag {
     protected String effect;
     protected String effectDuration;
     protected String effectOptions;
+    protected String befor;
+    protected String after;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new EffectDiv(stack, req, res);
@@ -51,6 +53,8 @@ public class EffectDivTag extends DivTag {
         div.setEffectDuration(effectDuration);
         div.setEffectOptions(effectOptions);
         div.setEvents(events);
+        div.setBefor(befor);
+        div.setAfter(after);
     }
 
     public void setBindOn(String bindOn)
@@ -76,5 +80,15 @@ public class EffectDivTag extends DivTag {
     public void setEffectOptions(String effectOptions)
     {
       this.effectOptions = effectOptions;
+    }
+
+    public void setBefor(String befor)
+    {
+      this.befor = befor;
+    }
+
+    public void setAfter(String after)
+    {
+      this.after = after;
     }
 }

@@ -44,6 +44,8 @@ public class EffectDiv extends Div {
     protected String effect;
     protected String effectDuration;
     protected String effectOptions;
+    protected String befor;
+    protected String after;
 
     public EffectDiv(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
@@ -70,6 +72,10 @@ public class EffectDiv extends Div {
         addParameter("effectDuration", findString(effectDuration));
       if (effectOptions != null)
           addParameter("effectOptions", findString(effectOptions));
+      if (befor != null)
+        addParameter("befor", findString(befor));
+      if (after != null)
+        addParameter("after", findString(after));
 
       if ((this.id == null || this.id.length() == 0)) {
           // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs 
@@ -115,7 +121,19 @@ public class EffectDiv extends Div {
     }
     
     @StrutsTagAttribute(description = "jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects", defaultValue = "")
-        public void setEffectOptions(String effectOptions) {
-            this.effectOptions = effectOptions;
-        }
+    public void setEffectOptions(String effectOptions) {
+        this.effectOptions = effectOptions;
+    }
+
+    @StrutsTagAttribute(description="Executed javascript function befor effect.")
+    public void setBefor(String befor)
+    {
+      this.befor = befor;
+    }
+
+    @StrutsTagAttribute(description="Executed javascript function after effect.")
+    public void setAfter(String after)
+    {
+      this.after = after;
+    }
 }
