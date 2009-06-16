@@ -55,12 +55,8 @@ $('#${parameters.id?html}').click(function() {
         $('#${parameters.indicator?trim}').hide();
       </#if>
       <#if parameters.effect?if_exists != "">
-        var optionse${parameters.id?html} = { <#if parameters.effectOptions?if_exists != "">${parameters.effectOptions?html}</#if> };
-          <#if parameters.effectDuration?if_exists == "">
-            $("${target?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},2500);
-          <#else>
-            $("${target?trim}").effect("${parameters.effect?html}",optionse${parameters.id?html},${parameters.effectDuration?html});
-          </#if>
+		<#assign options="{ ${parameters.effectOptions?default('')} }">
+        $("${target?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
       </#if>
       <#if parameters.complete?if_exists != "">
         ${parameters.complete?html}();
@@ -108,12 +104,8 @@ $('#${parameters.id?html}').click(function() {
     $('#${parameters.indicator?trim}').hide();
   </#if>
   <#if parameters.effect?if_exists != "">
-    var options${parameters.id?html} = { <#if parameters.effectOptions?if_exists != "">${parameters.effectOptions?html}</#if> };
-      <#if parameters.effectDuration?if_exists != "">
-        $("#${target?trim}").effect("${parameters.effect?html}",options${parameters.id?html},${parameters.effectDuration?html});
-      <#else>
-        $("#${target?trim}").effect("${parameters.effect?html}",options${parameters.id?html},2000);
-      </#if>
+		<#assign options="{ ${parameters.effectOptions?default('')} }">
+        $("#${target?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
   </#if>
         }
         );
