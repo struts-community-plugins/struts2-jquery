@@ -112,6 +112,8 @@ $("#${parameters.id?trim}").accordion({
 </#if>
 <#if parameters.href?if_exists != "">
 			changestart: function(event, ui) {
+			if ( typeof $(ui.newHeader).find('a').attr('rel') != "undefined" )
+			{
 			    var keys = $(ui.newHeader).find('a').attr('rel').split(',');
 			    var values = $(ui.newHeader).find('a').attr('rev').split(',');
 				var params = {};
@@ -124,6 +126,7 @@ $("#${parameters.id?trim}").accordion({
 					,params,function() {}
 </#if>				
 				);
+			  }
 			},
 </#if>
 <#if parameters.active?if_exists != "">
@@ -132,9 +135,12 @@ $("#${parameters.id?trim}").accordion({
 			active: 0
 </#if>
 		});
-<#if parameters.href?if_exists != "">
-		var keys = $("#${parameters.id?trim} li ${parameters.header?default('h3')}").filter('.ui-accordion-header').filter('.ui-state-active').find('a').attr('rel').split(',');
-		var values = $("#${parameters.id?trim} li ${parameters.header?default('h3')}").filter('.ui-accordion-header').filter('.ui-state-active').find('a').attr('rev').split(',');
+<#if parameters.href?if_exists != "" && parameters.aktiv?if_exists != "false">
+	var aktiv = $("#${parameters.id?trim} li ${parameters.header?default('h3')}").filter('.ui-accordion-header').filter('.ui-state-active').find('a');
+	if ( typeof $(aktiv).attr('rel') != "undefined" )
+	{
+		var keys = $(aktiv).attr('rel').split(',');
+		var values = $(aktiv).attr('rev').split(',');
 		var params = {};
 		jQuery.each(keys, function(i, val) {
       		params[val] = values[i];
@@ -145,6 +151,7 @@ $("#${parameters.id?trim}").accordion({
 			,params,function() {}
 </#if>				
 		);
+	}
 </#if>
 
 </script>
