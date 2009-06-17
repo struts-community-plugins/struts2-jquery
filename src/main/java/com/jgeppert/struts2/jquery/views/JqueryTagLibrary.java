@@ -35,6 +35,7 @@ import com.jgeppert.struts2.jquery.views.velocity.components.DialogDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.DivDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.EffectDivDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.HeadDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.ProgressbarDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SubmitDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TabDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TabbedPanelDirective;
@@ -60,6 +61,7 @@ public class JqueryTagLibrary implements TagLibrary {
             DialogDirective.class,
             AccordionDirective.class,
             EffectDivDirective.class,
+            ProgressbarDirective.class,
         };
         return Arrays.asList(directives);
     }
