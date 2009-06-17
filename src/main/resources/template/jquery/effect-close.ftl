@@ -23,6 +23,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function () {
+<#if parameters.effect?if_exists != "">
 <#assign options="{ ${parameters.effectOptions?default('')} }">
 <#if parameters.bindOn?if_exists != "">
 	$('#${parameters.bindOn?html}').bind(
@@ -40,5 +41,7 @@ $(document).ready(function () {
 	  </#if>
 	  );
 	});
+</#if>
+<#include "resizeable.ftl" />
 });
 </script>

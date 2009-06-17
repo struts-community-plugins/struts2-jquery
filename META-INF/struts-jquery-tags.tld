@@ -264,6 +264,114 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.EffectDivTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[Enable this div element to be resizable. With the cursor grab the right or bottom border and drag to the desired width or height. Default: false]]></description>
+      <name>resizable</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Animates to the final size after resizing. Default: false]]></description>
+      <name>resizableAnimate</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Duration time for animating, in milliseconds.]]></description>
+      <name>resizableAnimateDuration</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Easing effect for animating. Default: swing]]></description>
+      <name>resizableAnimateEasing</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If set to true, resizing is constrained by the original aspect ratio. Default: false]]></description>
+      <name>resizableAspectRatio</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If set to true, automatically hides the handles except when the mouse hovers over the element. Default: false]]></description>
+      <name>resizableAutoHide</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Constrains resizing to within the bounds of the specified element. Possible values: 'parent', 'document' or an id]]></description>
+      <name>resizableContainment</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Tolerance, in milliseconds, for when resizing should start. If specified, resizing will not start until after mouse is moved beyond duration. This can help prevent unintended resizing when clicking on an element.]]></description>
+      <name>resizableDelay</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Tolerance, in pixels, for when resizing should start. If specified, resizing will not start until after mouse is moved beyond distance. This can help prevent unintended resizing when clicking on an element.]]></description>
+      <name>resizableDistance</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If set to true, a semi-transparent helper element is shown for resizing. Default: false]]></description>
+      <name>resizableGhost</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the css class that will be added to a proxy element to outline the resize during the drag of the resize handle. Once the resize is complete, the original element is sized. e.g. ui-state-highlight]]></description>
+      <name>resizableHelper</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the maximum height the resizable should be allowed to resize to.]]></description>
+      <name>resizableMaxHeight</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the maximum width the resizable should be allowed to resize to.]]></description>
+      <name>resizableMaxWidth</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[v]]></description>
+      <name>resizableMinHeight</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the minimum width the resizable should be allowed to resize to.]]></description>
+      <name>resizableMinWidth</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event javascript function is triggered during the resize, on the drag of the resize handler.]]></description>
+      <name>resizableResize</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event javascript function is triggered at the start of a resize operation.]]></description>
+      <name>resizableStart</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event javascript function is triggered at the end of a resize operation.]]></description>
+      <name>resizableStop</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Executed javascript function befor effect.]]></description>
       <name>befor</name>
       <required>false</required>
@@ -1882,6 +1990,114 @@
     <name>div</name>
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.DivTag</tag-class>
     <body-content>JSP</body-content>
+    <attribute>
+      <description><![CDATA[Enable this div element to be resizable. With the cursor grab the right or bottom border and drag to the desired width or height. Default: false]]></description>
+      <name>resizable</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Animates to the final size after resizing. Default: false]]></description>
+      <name>resizableAnimate</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Duration time for animating, in milliseconds.]]></description>
+      <name>resizableAnimateDuration</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Easing effect for animating. Default: swing]]></description>
+      <name>resizableAnimateEasing</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If set to true, resizing is constrained by the original aspect ratio. Default: false]]></description>
+      <name>resizableAspectRatio</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If set to true, automatically hides the handles except when the mouse hovers over the element. Default: false]]></description>
+      <name>resizableAutoHide</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Constrains resizing to within the bounds of the specified element. Possible values: 'parent', 'document' or an id]]></description>
+      <name>resizableContainment</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Tolerance, in milliseconds, for when resizing should start. If specified, resizing will not start until after mouse is moved beyond duration. This can help prevent unintended resizing when clicking on an element.]]></description>
+      <name>resizableDelay</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Tolerance, in pixels, for when resizing should start. If specified, resizing will not start until after mouse is moved beyond distance. This can help prevent unintended resizing when clicking on an element.]]></description>
+      <name>resizableDistance</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If set to true, a semi-transparent helper element is shown for resizing. Default: false]]></description>
+      <name>resizableGhost</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the css class that will be added to a proxy element to outline the resize during the drag of the resize handle. Once the resize is complete, the original element is sized. e.g. ui-state-highlight]]></description>
+      <name>resizableHelper</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the maximum height the resizable should be allowed to resize to.]]></description>
+      <name>resizableMaxHeight</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the maximum width the resizable should be allowed to resize to.]]></description>
+      <name>resizableMaxWidth</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[v]]></description>
+      <name>resizableMinHeight</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the minimum width the resizable should be allowed to resize to.]]></description>
+      <name>resizableMinWidth</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event javascript function is triggered during the resize, on the drag of the resize handler.]]></description>
+      <name>resizableResize</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event javascript function is triggered at the start of a resize operation.]]></description>
+      <name>resizableStart</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event javascript function is triggered at the end of a resize operation.]]></description>
+      <name>resizableStop</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
     <attribute>
       <description><![CDATA[Set the html accesskey attribute on rendered html element]]></description>
       <name>accesskey</name>

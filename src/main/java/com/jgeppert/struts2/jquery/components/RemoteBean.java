@@ -24,7 +24,7 @@ public interface RemoteBean {
 
     void setBeforeSend(String topics);
 
-    void setComplete(String topics);
+    void setComplete(String complete);
 
     void setHref(String href);
 
@@ -38,7 +38,7 @@ public interface RemoteBean {
     
     void setName(String name);
     
-    void setCssStyle(String style);
+    void setCssStyle(String cssStyle);
     
     void setCssClass(String cssClass);
     
