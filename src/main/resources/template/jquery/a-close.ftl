@@ -20,6 +20,7 @@
 -->
 </a>
 <script type="text/javascript">
+$(document).ready(function () {
 <#if parameters.formId?if_exists != "">
 $('#${parameters.id?html}').click(function() {
 <#if parameters.openDialog?if_exists != "">
@@ -114,4 +115,5 @@ $('#${parameters.id?html}').click(function() {
   });
 
 </#if>
+});
 </script>

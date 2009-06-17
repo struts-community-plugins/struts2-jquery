@@ -21,6 +21,7 @@
 </ul>
 </div>
 <script type="text/javascript">
+$(document).ready(function () {
     $('#${parameters.id?html} ul div').appendTo('#${parameters.id?html}');
     $('#${parameters.id?html}').tabs({
   <#if parameters.selectedTab?exists >
@@ -40,6 +41,7 @@
   </#if>
         ajaxOptions:{ dataType:'html'} 
     });
+});
 </script>
 
 

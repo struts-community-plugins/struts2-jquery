@@ -20,7 +20,8 @@
 -->
 </div>
 <script type="text/javascript">
-$("#${parameters.id?trim}").load(
+$(document).ready(function () {
+	$("#${parameters.id?trim}").load(
         "${parameters.href}", 
         {
   <#if parameters.beforeSend?if_exists != "">
@@ -50,5 +51,6 @@ $("#${parameters.id?trim}").load(
         $("#${parameters.id?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
   </#if>
         }
-        );
+	);
+});
 </script>

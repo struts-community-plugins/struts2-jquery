@@ -20,8 +20,9 @@
 -->
 </div>
 <script type="text/javascript">
-$.ui.dialog.defaults.bgiframe = true;
-$("#${parameters.id?trim}").dialog({
+$(document).ready(function () {
+	$.ui.dialog.defaults.bgiframe = true;
+	$("#${parameters.id?trim}").dialog({
 <#if parameters.height?if_exists != "">
 			height: ${parameters.height?html},
 </#if>
@@ -94,4 +95,5 @@ $("#${parameters.id?trim}").dialog({
 			modal: false
 </#if>
 		});
+});
 </script>

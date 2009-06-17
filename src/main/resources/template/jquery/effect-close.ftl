@@ -22,11 +22,12 @@
 -->
 </div>
 <script type="text/javascript">
+$(document).ready(function () {
 <#assign options="{ ${parameters.effectOptions?default('')} }">
 <#if parameters.bindOn?if_exists != "">
-$('#${parameters.bindOn?html}').bind(
+	$('#${parameters.bindOn?html}').bind(
 <#else>
-$('#${parameters.id?html}').bind(
+	$('#${parameters.id?html}').bind(
 </#if>
 	'${parameters.events?default('click')}', 
 	function(e){
@@ -38,5 +39,6 @@ $('#${parameters.id?html}').bind(
     	, ${parameters.after?html}
 	  </#if>
 	  );
+	});
 });
 </script>

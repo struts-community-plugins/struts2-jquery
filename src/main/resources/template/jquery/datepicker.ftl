@@ -45,6 +45,7 @@
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 />
 <script type="text/javascript">
+$(document).ready(function () {
     $('#${parameters.id?html}').datepicker({
   <#if parameters.buttonImage?if_exists != "">
             showOn: 'both', buttonImage: '${parameters.buttonImage?html}',
@@ -66,4 +67,5 @@
             dateFormat: 'yy-mm-dd'<#rt/>
   </#if>
     });
+});
 </script>

@@ -81,7 +81,8 @@
 </@s.iterator>
 </ul>
 <script type="text/javascript">
-$("#${parameters.id?trim}").accordion({
+$(document).ready(function () {
+	$("#${parameters.id?trim}").accordion({
 <#if parameters.fillSpace?default(false)>
 			fillSpace: true,
 </#if>
@@ -134,7 +135,7 @@ $("#${parameters.id?trim}").accordion({
 <#else>
 			active: 0
 </#if>
-		});
+	});
 <#if parameters.href?if_exists != "" && parameters.aktiv?if_exists != "false">
 	var aktiv = $("#${parameters.id?trim} li ${parameters.header?default('h3')}").filter('.ui-accordion-header').filter('.ui-state-active').find('a');
 	if ( typeof $(aktiv).attr('rel') != "undefined" )
@@ -153,5 +154,5 @@ $("#${parameters.id?trim}").accordion({
 		);
 	}
 </#if>
-
+});
 </script>

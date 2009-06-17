@@ -19,6 +19,7 @@
  */
 -->
 <script type="text/javascript">
+$(document).ready(function () {
 <#assign target>
     <#list parameters.targets?split(",") as tmp>#${tmp?trim}<#if tmp_has_next>,</#if></#list>
 </#assign>
@@ -63,4 +64,5 @@
       </#if>
       
     }
+});    
 </script>
