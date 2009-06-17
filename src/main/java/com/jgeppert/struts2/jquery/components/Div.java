@@ -86,6 +86,7 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
     protected String resizableResize;
     protected String resizableStart;
     protected String resizableStop;
+    protected String resizableHandles;
 
     public Div(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
@@ -138,6 +139,8 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
           addParameter("resizableStart", findString(resizableStart));
         if (resizableStop != null)
           addParameter("resizableStop", findString(resizableStop));
+        if (resizableHandles != null)
+          addParameter("resizableHandles", findString(resizableHandles));
 
         if ((this.id == null || this.id.length() == 0)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs 
@@ -266,5 +269,11 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
     public void setResizableStop(String stop)
     {
       this.resizableStop = stop;
+    }
+
+    @StrutsTagAttribute(description="If specified as a string, should be a comma-split list of any of the following: 'n, e, s, w, ne, se, sw, nw, all'. Default: e, s, se")
+    public void setResizableHandles(String handles)
+    {
+      this.resizableHandles = handles;
     }
 }

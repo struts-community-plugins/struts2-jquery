@@ -57,6 +57,7 @@ public class EffectDivTag extends DivTag implements ResizableTag {
     protected String resizableResize;
     protected String resizableStart;
     protected String resizableStop;
+    protected String resizableHandles;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new EffectDiv(stack, req, res);
@@ -91,6 +92,7 @@ public class EffectDivTag extends DivTag implements ResizableTag {
         div.setResizableResize(resizableResize);
         div.setResizableStart(resizableStart);
         div.setResizableStop(resizableStop);
+        div.setResizableHandles(resizableHandles);
     }
 
     public void setBindOn(String bindOn)
@@ -215,5 +217,10 @@ public class EffectDivTag extends DivTag implements ResizableTag {
     public void setResizable(String resizable)
     {
       this.resizable = resizable;
+    }
+
+    public void setResizableHandles(String resizableHandles)
+    {
+      this.resizableHandles = resizableHandles;
     }
 }

@@ -44,6 +44,9 @@
 <#if parameters.resizableGhost?if_exists != "">
 		ghost: ${parameters.resizableGhost?html},
 </#if>
+<#if parameters.resizableHandles?if_exists != "">
+		handles: '${parameters.resizableHandles?html}',
+</#if>
 <#if parameters.resizableHelper?if_exists != "">
 		helper: '${parameters.resizableHelper?html}',
 </#if>

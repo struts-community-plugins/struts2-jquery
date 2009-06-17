@@ -49,6 +49,7 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag {
     protected String resizableResize;
     protected String resizableStart;
     protected String resizableStop;
+    protected String resizableHandles;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Div(stack, req, res);
@@ -76,6 +77,7 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag {
         div.setResizableResize(resizableResize);
         div.setResizableStart(resizableStart);
         div.setResizableStop(resizableStop);
+        div.setResizableHandles(resizableHandles);
     }
     
     public void setResizableAnimate(String animate)
@@ -165,5 +167,10 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag {
     public void setResizable(String resizable)
     {
       this.resizable = resizable;
+    }
+
+    public void setResizableHandles(String resizableHandles)
+    {
+      this.resizableHandles = resizableHandles;
     }
 }

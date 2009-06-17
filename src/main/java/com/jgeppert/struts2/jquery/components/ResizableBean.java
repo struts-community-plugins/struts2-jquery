@@ -57,4 +57,6 @@ public interface ResizableBean {
     void setResizableResize(String resize);
     
     void setResizableStop(String stop);
+
+    void setResizableHandles(String handles);
 }
