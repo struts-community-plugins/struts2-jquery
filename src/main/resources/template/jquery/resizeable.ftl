@@ -20,11 +20,11 @@
 -->
 <#if parameters.resizable?default(false)>
 	$("#${parameters.id?trim}").resizable({
-<#if parameters.resizableAspectRatio?if_exists != "">
-		aspectRatio: ${parameters.resizableAspectRatio?html},
+<#if parameters.resizableAspectRatio?default(false)>
+		aspectRatio: true,
 </#if>
-<#if parameters.resizableAutoHide?if_exists != "">
-		autoHide: ${parameters.resizableAutoHide?html},
+<#if parameters.resizableAutoHide?default(false)>
+		autoHide: true,
 </#if>
 <#if parameters.resizableContainment?if_exists != "">
 	<#if parameters.resizableContainment?trim == "parent">
@@ -41,8 +41,8 @@
 <#if parameters.resizableDistance?if_exists != "">
 		distance: ${parameters.resizableDistance?html},
 </#if>
-<#if parameters.resizableGhost?if_exists != "">
-		ghost: ${parameters.resizableGhost?html},
+<#if parameters.resizableGhost?default(false)>
+		ghost: true,
 </#if>
 <#if parameters.resizableHandles?if_exists != "">
 		handles: '${parameters.resizableHandles?html}',

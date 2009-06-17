@@ -114,7 +114,7 @@ public class EffectDiv extends Div implements ResizableBean {
       if (resizableDistance != null)
         addParameter("resizableDistance", findString(resizableDistance));
       if (resizableGhost != null)
-        addParameter("resizableGhost", findString(resizableGhost));
+        addParameter("resizableGhost", findValue(resizableGhost, Boolean.class));
       if (resizableHelper != null)
         addParameter("resizableHelper", findString(resizableHelper));
       if (resizableMaxHeight != null)
