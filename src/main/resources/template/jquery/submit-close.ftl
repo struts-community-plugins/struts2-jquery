@@ -24,8 +24,15 @@ $(document).ready(function () {
     <#list parameters.targets?split(",") as tmp>#${tmp?trim}<#if tmp_has_next>,</#if></#list>
 </#assign>
        var options${parameters.id?html} = {
+   <#if parameters.href?if_exists != "">
+        url:       	   '${parameters.href?html}',
+   </#if>
+	<#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
         beforeSubmit:  before_${parameters.id?html},
+   </#if>
+	<#if parameters.complete?if_exists != "" || parameters.effect?if_exists != "" || parameters.indicator?if_exists != "">
         success:       complete_${parameters.id?html},
+   </#if>
    <#if parameters.dataType?if_exists != "">
         dataType:       '${parameters.dataType?html}',
    </#if>
@@ -34,15 +41,17 @@ $(document).ready(function () {
       };
 
 <#if parameters.formId?if_exists != "">
-   $('#${parameters.id?html}').click(function() {
-       $('#${parameters.formId?html}').ajaxForm(options${parameters.id?html});
-       $('#${parameters.formId?html}').submit();
-   });
+    $('#${parameters.id?html}').click(function() {
+	    $('#${parameters.formId?html}').ajaxSubmit(options${parameters.id?html});
+	    return false;
+	});
 <#else>
-   $('#${parameters.id?html}').parent("form").ajaxForm(options${parameters.id?html});
+   $('#${parameters.id?html}').closest("form").submit(function() {
+	    $(this).ajaxSubmit(options${parameters.id?html});
+	    return false;
+	});
 </#if>
-
-    
+<#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
     function before_${parameters.id?html}() {
   <#if parameters.indicator?if_exists != "">
     $('#${parameters.indicator?trim}').show();
@@ -51,6 +60,8 @@ $(document).ready(function () {
         ${parameters.beforeSend?html}();
     </#if>
     }
+</#if>
+<#if parameters.complete?if_exists != "" || parameters.effect?if_exists != "" || parameters.indicator?if_exists != "">
     function complete_${parameters.id?html}() {
       <#if parameters.indicator?if_exists != "">
         $('#${parameters.indicator?trim}').hide();
@@ -62,7 +73,7 @@ $(document).ready(function () {
       <#if parameters.complete?if_exists != "">
         ${parameters.complete?html}();
       </#if>
-      
     }
+</#if>
 });    
 </script>

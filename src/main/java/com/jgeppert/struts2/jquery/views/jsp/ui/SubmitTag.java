@@ -69,6 +69,7 @@ public class SubmitTag extends AbstractUITag {
         submit.setTargets(targets);
         submit.setSrc(src);
         submit.setType(type);
+        submit.setIndicator(indicator);
     }
 
     public void setHref(String href) {
