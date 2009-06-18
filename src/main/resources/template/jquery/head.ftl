@@ -37,20 +37,20 @@
 </#if>
 
 
-  <script language="JavaScript" type="text/javascript" src="struts/js/${jqueryFile}"></script>
-  <script language="JavaScript" type="text/javascript" src="struts/js/jquery.form.js"></script>
+  <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryFile}"></script>
+  <script language="JavaScript" type="text/javascript" src="${base}/struts/js/jquery.form.js"></script>
 <#if parameters.jqueryui?default(false)>
-    <script language="JavaScript" type="text/javascript" src="struts/js/${jqueryUIFile}"></script>
-    <script language="JavaScript" type="text/javascript" src="struts/js/${jqueryCookieFile}"></script>
-    <script language="JavaScript" type="text/javascript" src="struts/js/${jqueryBGIFile}"></script>
+    <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryUIFile}"></script>
+    <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
+    <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
     <#if parameters.jquerytheme?if_exists != "">
         <link rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/ui.theme.css" type="text/css"/>
     <#else>
-        <link rel="stylesheet" href="${basePath}/smoothness/ui.theme.css" type="text/css"/>
+        <link rel="stylesheet" href="${base}/${basePath}/smoothness/ui.theme.css" type="text/css"/>
     </#if>
     <#if parameters.locale?if_exists != "">
         <#if parameters.locale?if_exists != "en">
-            <script language="JavaScript" type="text/javascript" src="struts/i18n/ui.datepicker-${parameters.locale?string}.min.js"></script>
+            <script language="JavaScript" type="text/javascript" src="${base}/struts/i18n/ui.datepicker-${parameters.locale?string}.min.js"></script>
         </#if>
     </#if>
 </#if>
