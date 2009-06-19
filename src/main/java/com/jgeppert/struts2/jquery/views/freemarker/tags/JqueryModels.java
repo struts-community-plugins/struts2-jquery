@@ -25,94 +25,136 @@ import javax.servlet.http.HttpServletResponse;
 import com.opensymphony.xwork2.util.ValueStack;
 
 public class JqueryModels {
-    protected DatePickerModel datePicker;
-    protected TabbedPanelModel tabbedPanel;
-    protected DivModel div;
-    protected DialogModel dialog;
-    protected AccordionModel accordion;
-    protected TabModel tab;
-    protected AnchorModel a;
-    protected SubmitModel submit;
-    protected HeadModel head;
-    
-    private ValueStack stack;
-    private HttpServletRequest req;
-    private HttpServletResponse res;
-    
-    public JqueryModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        this.stack = stack;
-        this.req = req;
-        this.res = res;
-    }
-    
-    public HeadModel getHead() {
-        if (head == null) {
-            head = new HeadModel(stack, req, res);
-        }
+  protected DatePickerModel   datePicker;
+  protected TabbedPanelModel  tabbedPanel;
+  protected DivModel          div;
+  protected DialogModel       dialog;
+  protected AccordionModel    accordion;
+  protected TabModel          tab;
+  protected AnchorModel       a;
+  protected SubmitModel       submit;
+  protected HeadModel         head;
+  protected EffectDivModel    effectDiv;
+  protected ProgressbarModel  progessbar;
 
-        return head;
-    }
-    
-    public DatePickerModel getDatepicker() {
-        if (datePicker == null) {
-            datePicker = new DatePickerModel(stack, req, res);
-        }
+  private ValueStack          stack;
+  private HttpServletRequest  req;
+  private HttpServletResponse res;
 
-        return datePicker;
-    }
-    
-    public TabbedPanelModel getTabbedpanel() {
-        if (tabbedPanel == null) {
-            tabbedPanel = new TabbedPanelModel(stack, req, res);
-        }
-
-        return tabbedPanel;
-    }
-    
-    public TabModel getTab() {
-        if (tab == null) {
-        	tab = new TabModel(stack, req, res);
-        }
-
-        return tab;
-    }
-
-    public DivModel getDiv() {
-        if (div == null) {
-            div = new DivModel(stack, req, res);
-        }
-
-        return div;
-    }
-    
-    public AnchorModel getA() {
-        if (a == null) {
-            a = new AnchorModel(stack, req, res);
-        }
-
-        return a;
-    }
-    
-    public SubmitModel getSubmit() {
-        if (submit == null) {
-            submit = new SubmitModel(stack, req, res);
-        }
-
-        return submit;
-    }
-    public DialogModel getDialog() {
-      if (dialog == null) {
-        dialog = new DialogModel(stack, req, res);
-      }
-
-      return dialog;
+  public JqueryModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    this.stack = stack;
+    this.req = req;
+    this.res = res;
   }
-    public AccordionModel getAccordion() {
-      if (accordion == null) {
-        accordion = new AccordionModel(stack, req, res);
-      }
 
-      return accordion;
+  public HeadModel getHead()
+  {
+    if (head == null)
+    {
+      head = new HeadModel(stack, req, res);
+    }
+
+    return head;
+  }
+
+  public DatePickerModel getDatepicker()
+  {
+    if (datePicker == null)
+    {
+      datePicker = new DatePickerModel(stack, req, res);
+    }
+
+    return datePicker;
+  }
+
+  public TabbedPanelModel getTabbedpanel()
+  {
+    if (tabbedPanel == null)
+    {
+      tabbedPanel = new TabbedPanelModel(stack, req, res);
+    }
+
+    return tabbedPanel;
+  }
+
+  public TabModel getTab()
+  {
+    if (tab == null)
+    {
+      tab = new TabModel(stack, req, res);
+    }
+
+    return tab;
+  }
+
+  public DivModel getDiv()
+  {
+    if (div == null)
+    {
+      div = new DivModel(stack, req, res);
+    }
+
+    return div;
+  }
+
+  public AnchorModel getA()
+  {
+    if (a == null)
+    {
+      a = new AnchorModel(stack, req, res);
+    }
+
+    return a;
+  }
+
+  public SubmitModel getSubmit()
+  {
+    if (submit == null)
+    {
+      submit = new SubmitModel(stack, req, res);
+    }
+
+    return submit;
+  }
+
+  public DialogModel getDialog()
+  {
+    if (dialog == null)
+    {
+      dialog = new DialogModel(stack, req, res);
+    }
+
+    return dialog;
+  }
+
+  public AccordionModel getAccordion()
+  {
+    if (accordion == null)
+    {
+      accordion = new AccordionModel(stack, req, res);
+    }
+
+    return accordion;
+  }
+
+  public ProgressbarModel getProgressbar()
+  {
+    if (progessbar == null)
+    {
+      progessbar = new ProgressbarModel(stack, req, res);
+    }
+
+    return progessbar;
+  }
+
+  public EffectDivModel getEffectDiv()
+  {
+    if (effectDiv == null)
+    {
+      effectDiv = new EffectDivModel(stack, req, res);
+    }
+
+    return effectDiv;
   }
 
 }

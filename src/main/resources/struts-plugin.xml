@@ -24,5 +24,5 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
     
 <struts>
-    <bean type="org.apache.struts2.views.TagLibrary" name="sj" class="com.jgeppert.struts2.jquery.views.JQueryTagLibrary" />
+    <bean type="org.apache.struts2.views.TagLibrary" name="sj" class="com.jgeppert.struts2.jquery.views.JqueryTagLibrary" />
 </struts>
