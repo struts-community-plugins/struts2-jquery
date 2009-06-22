@@ -50,7 +50,7 @@ $(document).ready(function () {
   <#if parameters.buttonImage?if_exists != "">
             showOn: 'both', buttonImage: '${parameters.buttonImage?html}',
   <#else>
-            showOn: 'both', buttonImage: 'struts/js/calendar.gif',
+            showOn: 'both', buttonImage: '${base}/struts/js/calendar.gif',
   </#if>
   <#if parameters.showButtonPanel?default(false)>
             showButtonPanel: true,
