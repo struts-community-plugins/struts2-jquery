@@ -50,7 +50,9 @@ $(document).ready(function () {
  		<#assign options="{ ${parameters.effectOptions?default('')} }">
         $("#${parameters.id?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
   </#if>
-  <#include "resizeable.ftl" />
+<#include "resizeable.ftl" />
+<#include "draggable.ftl" />
+<#include "droppable.ftl" />
         }
 	);
 });

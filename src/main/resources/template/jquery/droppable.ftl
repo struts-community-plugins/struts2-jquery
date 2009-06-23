@@ -26,11 +26,6 @@
 <#if parameters.droppableActiveClass?if_exists != "">
 		activeClass: '${parameters.droppableActiveClass?html}',
 </#if>
-<#if parameters.droppableAddClasses?default(true)>
-		addClasses: true,
-<#else>
-		addClasses: false,
-</#if>
 <#if parameters.droppableHoverClass?if_exists != "">
 		hoverClass: '${parameters.droppableHoverClass?html}',
 </#if>
@@ -41,25 +36,27 @@
 		tolerance: '${parameters.droppableTolerance?html}',
 </#if>
 <#if parameters.droppableActivate?if_exists != "">
-		activate: function(event, ui) { ${parameters.droppableActivate?html}(event, ui); },
+		activate: function(event, ui) { ${parameters.droppableActivate?html}(event,  ui.draggable, $(this)); },
 </#if>
 <#if parameters.droppableDeactivate?if_exists != "">
-		deactivate: function(event, ui) { ${parameters.droppableDeactivate?html}(event, ui); },
+		deactivate: function(event, ui) { ${parameters.droppableDeactivate?html}(event,  ui.draggable, $(this)); },
 </#if>
 <#if parameters.droppableDrop?if_exists != "">
-		drop: function(event, ui) { ${parameters.droppableDrop?html}(event, ui); },
+		drop: function(event, ui) { ${parameters.droppableDrop?html}(event,  ui.draggable, $(this)); },
 </#if>
 <#if parameters.droppableOut?if_exists != "">
-		out: function(event, ui) { ${parameters.droppableOut?html}(event, ui); },
+		out: function(event, ui) { ${parameters.droppableOut?html}(event,  ui.draggable, $(this)); },
 </#if>
 <#if parameters.droppableOver?if_exists != "">
-		over: function(event, ui) { ${parameters.droppableOver?html}(event, ui); },
+		over: function(event, ui) { ${parameters.droppableOver?html}(event,  ui.draggable, $(this)); },
 </#if>
 <#if parameters.droppableGreedy?default(false)>
-		greedy: true
+		greedy: true,
+</#if>
+<#if parameters.droppableAddClasses?default(true)>
+		addClasses: true
 <#else>
-		greedy: false
+		addClasses: false
 </#if>
 	});
 </#if>
-Fh6jtZ

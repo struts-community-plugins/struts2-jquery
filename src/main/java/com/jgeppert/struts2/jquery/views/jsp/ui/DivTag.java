@@ -27,7 +27,7 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Div;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class DivTag extends AbstractRemoteTag implements ResizableTag {
+public class DivTag extends AbstractRemoteTag implements ResizableTag, DraggableTag, DroppableTag {
 
     private static final long serialVersionUID = 3769231035916461758L;
     
@@ -50,6 +50,45 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag {
     protected String resizableStart;
     protected String resizableStop;
     protected String resizableHandles;
+    protected String droppable;
+    protected String droppableAccept;
+    protected String droppableActiveClass;
+    protected String droppableAddClasses;
+    protected String droppableGreedy;
+    protected String droppableHoverClass;
+    protected String droppableScope;
+    protected String droppableTolerance;
+    protected String droppableActivate;
+    protected String droppableDeactivate;
+    protected String droppableDrop;
+    protected String droppableOut;
+    protected String droppableOver;
+    protected String draggable;
+    protected String draggableAppendTo;
+    protected String draggableAxis;
+    protected String draggableCancel;
+    protected String draggableContainment;
+    protected String draggableDelay;
+    protected String draggableDistance;
+    protected String draggableDrag;
+    protected String draggableHandle;
+    protected String draggableHelper;
+    protected String draggableIframeFix;
+    protected String draggableOpacity;
+    protected String draggableRefreshPositions;
+    protected String draggableRevert;
+    protected String draggableRevertDuration;
+    protected String draggableScope;
+    protected String draggableScroll;
+    protected String draggableScrollSensitivity;
+    protected String draggableScrollSpeed;
+    protected String draggableSnap;
+    protected String draggableSnapMode;
+    protected String draggableSnapTolerance;
+    protected String draggableStart;
+    protected String draggableStop;
+    protected String draggableZindex;
+    protected String draggableAddClasses;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Div(stack, req, res);
@@ -78,6 +117,45 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag {
         div.setResizableStart(resizableStart);
         div.setResizableStop(resizableStop);
         div.setResizableHandles(resizableHandles);
+        div.setDroppable(droppable);
+        div.setDroppableAccept(droppableAccept);
+        div.setDroppableActiveClass(droppableActiveClass);
+        div.setDroppableAddClasses(droppableAddClasses);
+        div.setDroppableGreedy(droppableGreedy);
+        div.setDroppableHoverClass(droppableHoverClass);
+        div.setDroppableScope(droppableScope);
+        div.setDroppable(droppableTolerance);
+        div.setDroppableTolerance(droppableActivate);
+        div.setDroppableDeactivate(droppableDeactivate);
+        div.setDroppableDrop(droppableDrop);
+        div.setDroppableOut(droppableOut);
+        div.setDroppableOver(droppableOver);
+        div.setDraggable(draggable);
+        div.setDraggableAppendTo(draggableAppendTo);
+        div.setDraggableAxis(draggableAxis);
+        div.setDraggableCancel(draggableCancel);
+        div.setDraggableContainment(draggableContainment);
+        div.setDraggableDelay(draggableDelay);
+        div.setDraggableDistance(draggableDistance);
+        div.setDraggableDrag(draggableDrag);
+        div.setDraggableHandle(draggableHandle);
+        div.setDraggableHelper(draggableHelper);
+        div.setDraggableIframeFix(draggableIframeFix);
+        div.setDraggableOpacity(draggableOpacity);
+        div.setDraggableRefreshPositions(draggableRefreshPositions);
+        div.setDraggableRevert(draggableRevert);
+        div.setDraggableRevertDuration(draggableRevertDuration);
+        div.setDraggableScope(draggableScope);
+        div.setDraggableScroll(draggableScroll);
+        div.setDraggableScrollSensitivity(draggableScrollSensitivity);
+        div.setDraggableScrollSpeed(draggableScrollSpeed);
+        div.setDraggableSnap(draggableSnap);
+        div.setDraggableSnapMode(draggableSnapMode);
+        div.setDraggableSnapTolerance(draggableSnapTolerance);
+        div.setDraggableStart(draggableStart);
+        div.setDraggableStop(draggableStop);
+        div.setDraggableZindex(draggableZindex);
+        div.setDraggableAddClasses(draggableAddClasses);
     }
     
     public void setResizableAnimate(String animate)
@@ -172,5 +250,200 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag {
     public void setResizableHandles(String resizableHandles)
     {
       this.resizableHandles = resizableHandles;
+    }
+
+    public void setDroppable(String droppable)
+    {
+      this.droppable = droppable;
+    }
+
+    public void setDroppableAccept(String droppableAccept)
+    {
+      this.droppableAccept = droppableAccept;
+    }
+
+    public void setDroppableActiveClass(String droppableActiveClass)
+    {
+      this.droppableActiveClass = droppableActiveClass;
+    }
+
+    public void setDroppableAddClasses(String droppableAddClasses)
+    {
+      this.droppableAddClasses = droppableAddClasses;
+    }
+
+    public void setDroppableGreedy(String droppableGreedy)
+    {
+      this.droppableGreedy = droppableGreedy;
+    }
+
+    public void setDroppableHoverClass(String droppableHoverClass)
+    {
+      this.droppableHoverClass = droppableHoverClass;
+    }
+
+    public void setDroppableScope(String droppableScope)
+    {
+      this.droppableScope = droppableScope;
+    }
+
+    public void setDroppableTolerance(String droppableTolerance)
+    {
+      this.droppableTolerance = droppableTolerance;
+    }
+
+    public void setDroppableActivate(String droppableActivate)
+    {
+      this.droppableActivate = droppableActivate;
+    }
+
+    public void setDroppableDeactivate(String droppableDeactivate)
+    {
+      this.droppableDeactivate = droppableDeactivate;
+    }
+
+    public void setDroppableDrop(String droppableDrop)
+    {
+      this.droppableDrop = droppableDrop;
+    }
+
+    public void setDroppableOut(String droppableOut)
+    {
+      this.droppableOut = droppableOut;
+    }
+
+    public void setDroppableOver(String droppableOver)
+    {
+      this.droppableOver = droppableOver;
+    }
+
+    public void setDraggable(String draggable)
+    {
+      this.draggable = draggable;
+    }
+
+    public void setDraggableAppendTo(String draggableAppendTo)
+    {
+      this.draggableAppendTo = draggableAppendTo;
+    }
+
+    public void setDraggableAxis(String draggableAxis)
+    {
+      this.draggableAxis = draggableAxis;
+    }
+
+    public void setDraggableCancel(String draggableCancel)
+    {
+      this.draggableCancel = draggableCancel;
+    }
+
+    public void setDraggableContainment(String draggableContainment)
+    {
+      this.draggableContainment = draggableContainment;
+    }
+
+    public void setDraggableDelay(String draggableDelay)
+    {
+      this.draggableDelay = draggableDelay;
+    }
+
+    public void setDraggableDistance(String draggableDistance)
+    {
+      this.draggableDistance = draggableDistance;
+    }
+
+    public void setDraggableDrag(String draggableDrag)
+    {
+      this.draggableDrag = draggableDrag;
+    }
+
+    public void setDraggableHandle(String draggableHandle)
+    {
+      this.draggableHandle = draggableHandle;
+    }
+
+    public void setDraggableHelper(String draggableHelper)
+    {
+      this.draggableHelper = draggableHelper;
+    }
+
+    public void setDraggableIframeFix(String draggableIframeFix)
+    {
+      this.draggableIframeFix = draggableIframeFix;
+    }
+
+    public void setDraggableOpacity(String draggableOpacity)
+    {
+      this.draggableOpacity = draggableOpacity;
+    }
+
+    public void setDraggableRefreshPositions(String draggableRefreshPositions)
+    {
+      this.draggableRefreshPositions = draggableRefreshPositions;
+    }
+
+    public void setDraggableRevert(String draggableRevert)
+    {
+      this.draggableRevert = draggableRevert;
+    }
+
+    public void setDraggableRevertDuration(String draggableRevertDuration)
+    {
+      this.draggableRevertDuration = draggableRevertDuration;
+    }
+
+    public void setDraggableScope(String draggableScope)
+    {
+      this.draggableScope = draggableScope;
+    }
+
+    public void setDraggableScroll(String draggableScroll)
+    {
+      this.draggableScroll = draggableScroll;
+    }
+
+    public void setDraggableScrollSensitivity(String draggableScrollSensitivity)
+    {
+      this.draggableScrollSensitivity = draggableScrollSensitivity;
+    }
+
+    public void setDraggableScrollSpeed(String draggableScrollSpeed)
+    {
+      this.draggableScrollSpeed = draggableScrollSpeed;
+    }
+
+    public void setDraggableSnap(String draggableSnap)
+    {
+      this.draggableSnap = draggableSnap;
+    }
+
+    public void setDraggableSnapMode(String draggableSnapMode)
+    {
+      this.draggableSnapMode = draggableSnapMode;
+    }
+
+    public void setDraggableSnapTolerance(String draggableSnapTolerance)
+    {
+      this.draggableSnapTolerance = draggableSnapTolerance;
+    }
+
+    public void setDraggableStart(String draggableStart)
+    {
+      this.draggableStart = draggableStart;
+    }
+
+    public void setDraggableStop(String draggableStop)
+    {
+      this.draggableStop = draggableStop;
+    }
+
+    public void setDraggableZindex(String draggableZindex)
+    {
+      this.draggableZindex = draggableZindex;
+    }
+
+    public void setDraggableAddClasses(String draggableAddClasses)
+    {
+      this.draggableAddClasses = draggableAddClasses;
     }
 }

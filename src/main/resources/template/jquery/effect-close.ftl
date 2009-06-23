@@ -43,5 +43,7 @@ $(document).ready(function () {
 	});
 </#if>
 <#include "resizeable.ftl" />
+<#include "draggable.ftl" />
+<#include "droppable.ftl" />
 });
 </script>
