@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
-import org.apache.struts2.views.jsp.ui.AbstractRequiredListTag;
 import org.apache.struts2.views.jsp.ui.AbstractUITag;
 
 import com.jgeppert.struts2.jquery.components.Progressbar;

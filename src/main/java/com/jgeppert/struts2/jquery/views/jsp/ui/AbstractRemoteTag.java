@@ -27,6 +27,8 @@ import com.jgeppert.struts2.jquery.components.RemoteBean;
 
 public abstract class AbstractRemoteTag extends AbstractClosingTag {
 
+    private static final long serialVersionUID = -704912163849377645L;
+    
     protected String href;
     protected String beforeSend;
     protected String complete;

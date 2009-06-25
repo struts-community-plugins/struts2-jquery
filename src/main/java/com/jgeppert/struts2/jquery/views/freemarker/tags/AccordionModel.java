@@ -26,7 +26,6 @@ import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
 import com.jgeppert.struts2.jquery.components.Accordion;
-import com.jgeppert.struts2.jquery.components.Div;
 import com.opensymphony.xwork2.util.ValueStack;
 
 
