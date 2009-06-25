@@ -36,11 +36,23 @@
   <#assign jqueryBGIFile="jquery.bgiframe.js">
 </#if>
 
-
+<#if parameters.loadFromGoogle?default(false)>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("jquery", "1.3.2");
+	<#if parameters.jqueryui?default(false)>
+  google.load("jqueryui", "1.7.2");
+	</#if>
+</script>
+<#else>
   <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryFile}"></script>
+	<#if parameters.jqueryui?default(false)>
+    <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryUIFile}"></script>
+	</#if>
+</#if>
+
   <script language="JavaScript" type="text/javascript" src="${base}/struts/js/jquery.form.js"></script>
 <#if parameters.jqueryui?default(false)>
-    <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryUIFile}"></script>
     <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
     <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
     <#if parameters.jquerytheme?if_exists != "">

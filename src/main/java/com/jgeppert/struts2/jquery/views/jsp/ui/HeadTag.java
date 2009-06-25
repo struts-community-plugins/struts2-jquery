@@ -33,47 +33,60 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class HeadTag extends AbstractUITag {
 
-    private static final long serialVersionUID = 6876765769175246030L;
+  private static final long serialVersionUID = 6876765769175246030L;
 
-    private String compressed;
-    private String locale;
-    private String jquerytheme;
-    private String jqueryui;
-    private String customBasepath;
-    
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Head(stack, req, res);
-    }
+  protected String          compressed;
+  protected String          locale;
+  protected String          jquerytheme;
+  protected String          jqueryui;
+  protected String          customBasepath;
+  protected String          loadFromGoogle;
 
-    protected void populateParams() {
-        super.populateParams();
-        
-        Head head = (Head) component;
-        head.setJquerytheme(jquerytheme);
-        head.setCompressed(compressed);
-        head.setJqueryui(jqueryui);
-        head.setLocale(locale);
-        head.setCustomBasepath(customBasepath);
-    }
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Head(stack, req, res);
+  }
 
+  protected void populateParams()
+  {
+    super.populateParams();
 
-    public void setCompressed(String compressed) {
-        this.compressed = compressed;
-    }
+    Head head = (Head) component;
+    head.setJquerytheme(jquerytheme);
+    head.setCompressed(compressed);
+    head.setJqueryui(jqueryui);
+    head.setLocale(locale);
+    head.setCustomBasepath(customBasepath);
+    head.setLoadFromGoogle(loadFromGoogle);
+  }
 
-    public void setLocale(String locale) {
-        this.locale = locale;
-    }
+  public void setCompressed(String compressed)
+  {
+    this.compressed = compressed;
+  }
 
-	public void setJquerytheme(String jquerytheme) {
-		this.jquerytheme = jquerytheme;
-	}
+  public void setLocale(String locale)
+  {
+    this.locale = locale;
+  }
 
-	public void setJqueryui(String jqueryui) {
-		this.jqueryui = jqueryui;
-	}
+  public void setJquerytheme(String jquerytheme)
+  {
+    this.jquerytheme = jquerytheme;
+  }
 
-	public void setCustomBasepath(String customBasepath) {
-		this.customBasepath = customBasepath;
-	}
+  public void setJqueryui(String jqueryui)
+  {
+    this.jqueryui = jqueryui;
+  }
+
+  public void setCustomBasepath(String customBasepath)
+  {
+    this.customBasepath = customBasepath;
+  }
+
+  public void setLoadFromGoogle(String loadFromGoogle)
+  {
+    this.loadFromGoogle = loadFromGoogle;
+  }
 }

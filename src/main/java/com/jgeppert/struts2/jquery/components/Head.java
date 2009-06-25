@@ -29,116 +29,135 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: notice -->
- * The "head" tag renders required JavaScript code to configure jQuery and is required in order to use
- * any of the tags included in the jQuery plugin.</p>
- * <!-- END SNIPPET: notice -->
+ * <!-- START SNIPPET: notice --> The "head" tag renders required JavaScript
+ * code to configure jQuery and is required in order to use any of the tags
+ * included in the jQuery plugin.</p> <!-- END SNIPPET: notice -->
  * 
  * <!-- START SNIPPET: javadoc -->
- * <p></p>
+ * <p>
+ * </p>
  * 
- * <p>Some tags like the "datepicker" can use different locales, to use a locale
- * that is different from the request locale.</p>
+ * <p>
+ * Some tags like the "datepicker" can use different locales, to use a locale
+ * that is different from the request locale.
+ * </p>
  * 
- * <p>The "locale" attribute configures jQuery locale for datepicker. Default is "en" you can use all locales that are bundled with jQuery. e.g. "de, "fr", "ja", ...</p>
+ * <p>
+ * The "locale" attribute configures jQuery locale for datepicker. Default is
+ * "en" you can use all locales that are bundled with jQuery. e.g.
+ * "de, "fr", "ja", ...
+ * </p>
  * 
  * <!-- END SNIPPET: javadoc -->
- *
- * <p/> <b>Examples</b>
- *
+ * 
+ * <p/>
+ * <b>Examples</b>
+ * 
  * <pre>
- * <!-- START SNIPPET: example1 -->
- * &lt;%@ taglib prefix="sj" uri="/struts-jquery-tags" %&gt;
+ * &lt;!-- START SNIPPET: example1 --&gt;
+ * &lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot; %&gt;
  * &lt;head&gt;
  *   &lt;title&gt;My page&lt;/title&gt;
  *   &lt;sj:head/&gt;
  * &lt;/head&gt;
- * <!-- END SNIPPET: example1 -->
+ * &lt;!-- END SNIPPET: example1 --&gt;
  * </pre>
- *
+ * 
  * <pre>
- * <!-- START SNIPPET: example2 -->
- * &lt;%@ taglib prefix="sj" uri="/struts-jquery-tags" %&gt;
+ * &lt;!-- START SNIPPET: example2 --&gt;
+ * &lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot; %&gt;
  * &lt;head&gt;
  *   &lt;title&gt;My page&lt;/title&gt;
- *   &lt;sj:head compressed="false" locale="de" jqueryui="true" jquerytheme="cupertino"/&gt;
+ *   &lt;sj:head compressed=&quot;false&quot; locale=&quot;de&quot; jqueryui=&quot;true&quot; jquerytheme=&quot;cupertino&quot;/&gt;
  * &lt;/head&gt;
- * <!-- END SNIPPET: example2 -->
+ * &lt;!-- END SNIPPET: example2 --&gt;
  * </pre>
- *
+ * 
  */
-@StrutsTag(name="head", tldBodyContent="empty", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag",
-    description="Render a chunk of HEAD for your HTML file")
+@StrutsTag(name = "head", tldBodyContent = "empty", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag", description = "Render a chunk of HEAD for your HTML file")
 @StrutsTagSkipInheritance
 public class Head extends org.apache.struts2.components.Head {
-    public static final String TEMPLATE = "head";
-    
-    private String compressed;
-    private String locale;
-    private String jquerytheme;
-    private String jqueryui;
-    private String customBasepath;
-    
-    public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-        super(stack, request, response);
-    }
+  public static final String TEMPLATE = "head";
 
-    protected String getDefaultTemplate() {
-        return TEMPLATE;
-    }
+  protected String             compressed;
+  protected String             locale;
+  protected String             jquerytheme;
+  protected String             jqueryui;
+  protected String             customBasepath;
+  protected String             loadFromGoogle;
 
-    public void evaluateParams() {
-        super.evaluateParams();
-        
-        if (this.jqueryui != null)
-            addParameter("jqueryui", findValue(this.jqueryui, Boolean.class));
-        if (this.compressed != null)
-            addParameter("compressed", findValue(this.compressed, Boolean.class));
-        if (this.jquerytheme != null)
-            addParameter("jquerytheme", findString(this.jquerytheme));
-        if (this.locale != null)
-            addParameter("locale", findString(this.locale));
-        if (this.customBasepath != null)
-            addParameter("customBasepath", findString(this.customBasepath));
-    }
+  public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+    super(stack, request, response);
+  }
 
-    @Override
-    @StrutsTagSkipInheritance
-    public void setTheme(String theme) {
-        super.setTheme(theme);
-    }
-    
-    @Override
-    public String getTheme() {
-        return "jquery";
-    }
-    
-    public boolean isJqueryui() {
-        return jqueryui != null && Boolean.parseBoolean(jqueryui);
-    }
+  protected String getDefaultTemplate()
+  {
+    return TEMPLATE;
+  }
 
-    @StrutsTagAttribute(description="enable jQuery UI Scripts", defaultValue="false", type="Boolean")
-    public void setJqueryui(String jqueryui) {
-        this.jqueryui = jqueryui;
-    }
+  public void evaluateParams()
+  {
+    super.evaluateParams();
 
-    @StrutsTagAttribute(description="use compressed version of jquery.js", defaultValue="true", type="Boolean")
-    public void setCompressed(String compressed) {
-        this.compressed = compressed;
-    }
+    if (this.jqueryui != null) addParameter("jqueryui", findValue(this.jqueryui, Boolean.class));
+    if (this.compressed != null) addParameter("compressed", findValue(this.compressed, Boolean.class));
+    if (this.jquerytheme != null) addParameter("jquerytheme", findString(this.jquerytheme));
+    if (this.locale != null) addParameter("locale", findString(this.locale));
+    if (this.customBasepath != null) addParameter("customBasepath", findString(this.customBasepath));
+    if (this.loadFromGoogle != null) addParameter("loadFromGoogle", findValue(this.loadFromGoogle, Boolean.class));
+  }
 
-    @StrutsTagAttribute(description="jQuery UI theme", defaultValue="base")
-    public void setJquerytheme(String jquerytheme) {
-        this.jquerytheme = jquerytheme;
-    }
+  @Override
+  @StrutsTagSkipInheritance
+  public void setTheme(String theme)
+  {
+    super.setTheme(theme);
+  }
 
-    @StrutsTagAttribute(description="import jQuery i18n scripts", defaultValue="en")
-    public void setLocale(String locale) {
-        this.locale = locale;
-    }
+  @Override
+  public String getTheme()
+  {
+    return "jquery";
+  }
 
-    @StrutsTagAttribute(description="base path for custom jQuery designs")
-	public void setCustomBasepath(String customBasepath) {
-		this.customBasepath = customBasepath;
-	}
+  public boolean isJqueryui()
+  {
+    return jqueryui != null && Boolean.parseBoolean(jqueryui);
+  }
+
+  @StrutsTagAttribute(description = "enable jQuery UI Scripts", defaultValue = "false", type = "Boolean")
+  public void setJqueryui(String jqueryui)
+  {
+    this.jqueryui = jqueryui;
+  }
+
+  @StrutsTagAttribute(description = "use compressed version of jquery.js", defaultValue = "true", type = "Boolean")
+  public void setCompressed(String compressed)
+  {
+    this.compressed = compressed;
+  }
+
+  @StrutsTagAttribute(description = "jQuery UI theme", defaultValue = "base")
+  public void setJquerytheme(String jquerytheme)
+  {
+    this.jquerytheme = jquerytheme;
+  }
+
+  @StrutsTagAttribute(description = "import jQuery i18n scripts", defaultValue = "en")
+  public void setLocale(String locale)
+  {
+    this.locale = locale;
+  }
+
+  @StrutsTagAttribute(description = "base path for custom jQuery designs")
+  public void setCustomBasepath(String customBasepath)
+  {
+    this.customBasepath = customBasepath;
+  }
+
+  @StrutsTagAttribute(description = "Load JavaScript from google content distribution network", defaultValue = "false", type = "Boolean")
+  public void setLoadFromGoogle(String loadFromGoogle)
+  {
+    this.loadFromGoogle = loadFromGoogle;
+  }
 }

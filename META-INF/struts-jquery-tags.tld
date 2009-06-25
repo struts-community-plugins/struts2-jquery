@@ -3199,6 +3199,12 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag</tag-class>
     <body-content>empty</body-content>
     <attribute>
+      <description><![CDATA[Load JavaScript from google content distribution network]]></description>
+      <name>loadFromGoogle</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[jQuery UI theme. base, smoothness, cupertino, redmond, darkness, lightness or a custom theme under the /templates/themes folder]]></description>
       <name>jquerytheme</name>
       <required>false</required>
