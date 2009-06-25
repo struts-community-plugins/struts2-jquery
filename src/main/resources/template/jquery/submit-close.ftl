@@ -36,33 +36,43 @@ $(document).ready(function () {
    <#if parameters.dataType?if_exists != "">
         dataType:       '${parameters.dataType?html}',
    </#if>
+   <#if parameters.clearForm?default(false)>
+        clearForm:       true,
+   </#if>
+   <#if parameters.resetForm?default(false)>
+        resetForm:       true,
+   </#if>
+   <#if parameters.iframe?default(false)>
+        iframe:       true,
+   </#if>
    		timeout:	   ${parameters.timeout?default("3000")},
         target:        '${target?trim}'
       };
 
 <#if parameters.formId?if_exists != "">
-    $('#${parameters.id?html}').click(function() {
-	    $('#${parameters.formId?html}').ajaxSubmit(options${parameters.id?html});
-	    return false;
+    $('#${parameters.formId?html}').ajaxForm(options${parameters.id?html}); 
+    $('#${parameters.id?html}').click(function(e) {
+	    $('#${parameters.formId?html}').submit(); 
+        return false; 
 	});
 <#else>
-   $('#${parameters.id?html}').closest("form").submit(function() {
-	    $(this).ajaxSubmit(options${parameters.id?html});
-	    return false;
+   $('#${parameters.id?html}').closest("form").submit(function(e) {
+        $(this).ajaxSubmit(options${parameters.id?html});
+        return false;
 	});
 </#if>
 <#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
-    function before_${parameters.id?html}() {
+    function before_${parameters.id?html}(formData, jqForm, options) {
   <#if parameters.indicator?if_exists != "">
     $('#${parameters.indicator?trim}').show();
   </#if>
     <#if parameters.beforeSend?if_exists != "">
-        ${parameters.beforeSend?html}();
+        ${parameters.beforeSend?html}(formData, jqForm, options);
     </#if>
     }
 </#if>
 <#if parameters.complete?if_exists != "" || parameters.effect?if_exists != "" || parameters.indicator?if_exists != "">
-    function complete_${parameters.id?html}() {
+    function complete_${parameters.id?html}(responseText, statusText) {
       <#if parameters.indicator?if_exists != "">
         $('#${parameters.indicator?trim}').hide();
       </#if>
@@ -71,7 +81,7 @@ $(document).ready(function () {
         $("${target?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
       </#if>
       <#if parameters.complete?if_exists != "">
-        ${parameters.complete?html}();
+        ${parameters.complete?html}(responseText, statusText);
       </#if>
     }
 </#if>

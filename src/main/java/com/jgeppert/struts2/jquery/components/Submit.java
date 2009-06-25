@@ -123,6 +123,9 @@ public class Submit extends FormButton implements RemoteBean {
     protected String src;
     protected String type;
     protected String timeout;
+    protected String clearForm;
+    protected String resetForm;
+    protected String iframe;
     
     public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
@@ -179,10 +182,19 @@ public class Submit extends FormButton implements RemoteBean {
             addParameter("src", findString(src));
         if (timeout != null)
           addParameter("timeout", findString(timeout));
+        if (clearForm != null) 
+          addParameter("clearForm", findValue(clearForm, Boolean.class));
+        if (resetForm != null) 
+          addParameter("resetForm", findValue(resetForm, Boolean.class));
+        if (iframe != null) 
+          addParameter("iframe", findValue(iframe, Boolean.class));
 
         Form form = (Form) findAncestor(Form.class);
         if (form != null)
             addParameter("parentTheme", form.getTheme());
+        if(form != null && (formId == null || formId.length()<= 0))
+            addParameter("formId", form.getId());
+          
 
         if ((this.id == null || this.id.length() == 0)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -344,4 +356,22 @@ public class Submit extends FormButton implements RemoteBean {
       this.timeout = timeout;
     }
 
+    @StrutsTagAttribute(description = "Clear all form fields after successful submit. Default: false", type = "Boolean")
+    public void setClearForm(String clearForm)
+    {
+      this.clearForm = clearForm;
+    }
+
+    @StrutsTagAttribute(description = "Reset the form after successful submit. Default: false", type = "Boolean")
+    public void setResetForm(String resetForm)
+    {
+      this.resetForm = resetForm;
+    }
+
+    @StrutsTagAttribute(description = "Boolean flag indicating whether the form should always target the server response to an iframe. This is useful in conjuction with file uploads. Default: false", type = "Boolean")
+    public void setIframe(String iframe)
+    {
+      this.iframe = iframe;
+    }
+    
 }

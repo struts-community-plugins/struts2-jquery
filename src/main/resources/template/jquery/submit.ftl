@@ -22,6 +22,12 @@
     <#if parameters.id?if_exists != "">
      id="${parameters.id?html}"<#rt/>
     </#if>
+	<#if parameters.cssClass?if_exists != "">
+	  class="${parameters.cssClass?html}"<#rt/>
+	</#if>
+	<#if parameters.cssStyle?if_exists != "">
+	  style="${parameters.cssStyle?html}"<#rt/>
+	</#if>
 <#if parameters.type?exists && parameters.type=="button">
     type="button" <#rt/>
     <#if parameters.id?if_exists != "">

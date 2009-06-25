@@ -3236,6 +3236,24 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[Boolean flag indicating whether the form should always target the server response to an iframe. This is useful in conjuction with file uploads. Default: false]]></description>
+      <name>iframe</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Clear all form fields after successful submit. Default: false]]></description>
+      <name>clearForm</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Reset the form after successful submit. Default: false]]></description>
+      <name>resetForm</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Timeout for request]]></description>
       <name>timeout</name>
       <required>false</required>

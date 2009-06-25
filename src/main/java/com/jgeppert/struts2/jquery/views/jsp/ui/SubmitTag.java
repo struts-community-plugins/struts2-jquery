@@ -48,7 +48,10 @@ public class SubmitTag extends AbstractUITag {
     protected String targets;
     protected String type;
     protected String src;
-    
+    protected String clearForm;
+    protected String resetForm;
+    protected String iframe;
+   
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Submit(stack, req, res);
     }
@@ -70,6 +73,9 @@ public class SubmitTag extends AbstractUITag {
         submit.setSrc(src);
         submit.setType(type);
         submit.setIndicator(indicator);
+        submit.setClearForm(clearForm);
+        submit.setResetForm(resetForm);
+        submit.setIframe(iframe);
     }
 
     public void setHref(String href) {
@@ -123,4 +129,19 @@ public class SubmitTag extends AbstractUITag {
 	public void setSrc(String src) {
 		this.src = src;
 	}
+
+  public void setClearForm(String clearForm)
+  {
+    this.clearForm = clearForm;
+  }
+
+  public void setResetForm(String resetForm)
+  {
+    this.resetForm = resetForm;
+  }
+
+  public void setIframe(String iframe)
+  {
+    this.iframe = iframe;
+  }
 }
