@@ -23,15 +23,39 @@ $(document).ready(function () {
 <#assign target>
     <#list parameters.targets?split(",") as tmp>#${tmp?trim}<#if tmp_has_next>,</#if></#list>
 </#assign>
-       var options${parameters.id?html} = {
+ <#if parameters.formId?if_exists != "">
+    $('#${parameters.id?html}').click(function(e) {
+        $('#${parameters.formId?html}').ajaxSubmit({
+<#else>
+   $('#${parameters.id?html}').closest("form").submit(function(e) {
+        $(this).ajaxSubmit({
+</#if>
    <#if parameters.href?if_exists != "">
         url:       	   '${parameters.href?html}',
    </#if>
 	<#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
-        beforeSubmit:  before_${parameters.id?html},
+        beforeSubmit:  function() {
+		  <#if parameters.indicator?if_exists != "">
+		    $('#${parameters.indicator?trim}').show();
+		  </#if>
+		  <#if parameters.beforeSend?if_exists != "">
+		    ${parameters.beforeSend?html}(formData, jqForm, options);
+		  </#if>
+        },
    </#if>
 	<#if parameters.complete?if_exists != "" || parameters.effect?if_exists != "" || parameters.indicator?if_exists != "">
-        success:       complete_${parameters.id?html},
+        success:       function() {
+	      <#if parameters.indicator?if_exists != "">
+	        $('#${parameters.indicator?trim}').hide();
+	      </#if>
+	      <#if parameters.effect?if_exists != "">
+			<#assign options="{ ${parameters.effectOptions?default('')} }">
+	        $("${target?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
+	      </#if>
+	      <#if parameters.complete?if_exists != "">
+	        ${parameters.complete?html}(responseText, statusText);
+	      </#if>
+        },
    </#if>
    <#if parameters.dataType?if_exists != "">
         dataType:       '${parameters.dataType?html}',
@@ -47,43 +71,9 @@ $(document).ready(function () {
    </#if>
    		timeout:	   ${parameters.timeout?default("3000")},
         target:        '${target?trim}'
-      };
 
-<#if parameters.formId?if_exists != "">
-    $('#${parameters.formId?html}').ajaxForm(options${parameters.id?html}); 
-    $('#${parameters.id?html}').click(function(e) {
-	    $('#${parameters.formId?html}').submit(); 
-        return false; 
-	});
-<#else>
-   $('#${parameters.id?html}').closest("form").submit(function(e) {
-        $(this).ajaxSubmit(options${parameters.id?html});
-        return false;
-	});
-</#if>
-<#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
-    function before_${parameters.id?html}(formData, jqForm, options) {
-  <#if parameters.indicator?if_exists != "">
-    $('#${parameters.indicator?trim}').show();
-  </#if>
-    <#if parameters.beforeSend?if_exists != "">
-        ${parameters.beforeSend?html}(formData, jqForm, options);
-    </#if>
-    }
-</#if>
-<#if parameters.complete?if_exists != "" || parameters.effect?if_exists != "" || parameters.indicator?if_exists != "">
-    function complete_${parameters.id?html}(responseText, statusText) {
-      <#if parameters.indicator?if_exists != "">
-        $('#${parameters.indicator?trim}').hide();
-      </#if>
-      <#if parameters.effect?if_exists != "">
-		<#assign options="{ ${parameters.effectOptions?default('')} }">
-        $("${target?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
-      </#if>
-      <#if parameters.complete?if_exists != "">
-        ${parameters.complete?html}(responseText, statusText);
-      </#if>
-    }
-</#if>
+		});
+    	return false; 
+    }); 
 });    
 </script>
