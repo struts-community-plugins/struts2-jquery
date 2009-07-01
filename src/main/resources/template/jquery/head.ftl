@@ -56,7 +56,7 @@
     <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
     <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
     <#if parameters.jquerytheme?if_exists != "">
-        <link rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/ui.theme.css" type="text/css"/>
+        <link rel="stylesheet" href="${base}/${basePath}/${parameters.jquerytheme?string}/ui.theme.css" type="text/css"/>
     <#else>
         <link rel="stylesheet" href="${base}/${basePath}/smoothness/ui.theme.css" type="text/css"/>
     </#if>
