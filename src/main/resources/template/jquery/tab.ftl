@@ -29,8 +29,10 @@
     <a
 <#if parameters.href?if_exists != "">
      href="${parameters.href}"
-<#else>
+<#elseif parameters.target?if_exists != "" >
      href="#${parameters.target}"
+<#else>
+     href="#"
 </#if>
      title="${parameters.label?html}">
         <span>
