@@ -3260,7 +3260,7 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Timeout for request]]></description>
+      <description><![CDATA[jQuery options for timeout. Default is 3000]]></description>
       <name>timeout</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>

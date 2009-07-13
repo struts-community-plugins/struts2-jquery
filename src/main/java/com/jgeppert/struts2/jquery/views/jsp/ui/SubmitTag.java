@@ -46,8 +46,9 @@ public class SubmitTag extends AbstractUITag {
     protected String effectDuration;
     protected String effectOptions;
     protected String targets;
-    protected String type;
     protected String src;
+    protected String type;
+    protected String timeout;
     protected String clearForm;
     protected String resetForm;
     protected String iframe;
@@ -76,6 +77,7 @@ public class SubmitTag extends AbstractUITag {
         submit.setClearForm(clearForm);
         submit.setResetForm(resetForm);
         submit.setIframe(iframe);
+        submit.setTimeout(timeout);
     }
 
     public void setHref(String href) {
@@ -143,5 +145,10 @@ public class SubmitTag extends AbstractUITag {
   public void setIframe(String iframe)
   {
     this.iframe = iframe;
+  }
+
+  public void setTimeout(String timeout)
+  {
+    this.timeout = timeout;
   }
 }
