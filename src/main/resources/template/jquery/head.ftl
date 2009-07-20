@@ -51,7 +51,7 @@
 	</#if>
 </#if>
 
-  <script language="JavaScript" type="text/javascript" src="${base}/struts/js/jquery.form.js"></script>
+  <script type="text/javascript" src="${base}/struts/js/jquery.form.js"></script>
 <#if parameters.jqueryui?default(false)>
     <script type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
     <script type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
