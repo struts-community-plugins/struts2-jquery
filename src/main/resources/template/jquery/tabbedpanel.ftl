@@ -18,5 +18,12 @@
  * under the License.
  */
 -->
-<div id="${parameters.id?html}">
+<div id="${parameters.id?html}" 
+	<#if parameters.cssClass?if_exists != "">
+	  class="${parameters.cssClass?html}"<#rt/>
+	</#if>
+	<#if parameters.cssStyle?if_exists != "">
+	  style="${parameters.cssStyle?html}"<#rt/>
+	</#if>
+>
 <ul>

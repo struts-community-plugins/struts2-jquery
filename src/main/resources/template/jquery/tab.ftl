@@ -19,6 +19,9 @@
  */
 -->
 <li
+  <#if parameters.id?if_exists != "">
+   id="${parameters.id?html}"<#rt/>
+  </#if>
   <#if parameters.cssStyle?if_exists != "">
     style="${parameters.cssStyle?html}"<#rt/>
   </#if>
