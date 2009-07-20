@@ -18,6 +18,17 @@
  * under the License.
  */
 -->
+<#if parameters.label?if_exists != "">
+	<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
+</#if>
+<#if parameters.form?exists && parameters.form.validate?default(false) == true>
+	<#-- can't mutate the data model in freemarker -->
+    <#if parameters.onblur?exists>
+        ${tag.addParameter('onblur', "validate(this);${parameters.onblur}")}
+    <#else>
+        ${tag.addParameter('onblur', "validate(this);")}
+    </#if>
+</#if>
 <input type="text"
   <#if parameters.id?if_exists != "">
     id="${parameters.id?html}"<#rt/>
@@ -44,6 +55,9 @@
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 />
+<#if parameters.label?if_exists != "">
+	<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+</#if>
 <script type="text/javascript">
 $(document).ready(function () {
     $('#${parameters.id?html}').datepicker({

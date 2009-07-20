@@ -18,7 +18,30 @@
  * under the License.
  */
 -->
-  <input
+<#if parameters.parentTheme?default('') == 'xhtml'>
+  <tr>
+      <td colspan="2"><div <#rt/>
+  <#if parameters.align?exists>
+      align="${parameters.align?html}"<#t/>
+  </#if>
+  ><#t/>
+<#elseif parameters.parentTheme?default('') == 'css_xhtml'>
+  <#if parameters.labelposition?default("top") == 'top'>
+    <div <#rt/>
+  <#else>
+    <span <#rt/>
+  </#if>
+  <#if parameters.align?exists>
+    align="${parameters.align?html}"<#t/>
+  </#if>
+  <#if parameters.id?exists>
+    id="wwctrl_${parameters.id}"<#rt/>
+  </#if>
+  ><#t/>
+</#if>
+
+<#if parameters.type?exists && parameters.type=="button">
+  <input type="button"<#rt/>
     <#if parameters.id?if_exists != "">
      id="${parameters.id?html}"<#rt/>
     </#if>
@@ -28,20 +51,16 @@
 	<#if parameters.cssStyle?if_exists != "">
 	  style="${parameters.cssStyle?html}"<#rt/>
 	</#if>
-<#if parameters.type?exists && parameters.type=="button">
-    type="button" <#rt/>
-    <#if parameters.id?if_exists != "">
-     id="${parameters.id?html}"<#rt/>
-    </#if>
-    <#if parameters.nameValue?if_exists != "">
-     value="${parameters.nameValue?html}"<#rt/>
-    </#if>
-    <#if parameters.value?if_exists != "">
-     value="${parameters.value?html}"<#rt/>
-    </#if>
+  <#include "/${parameters.templateDir}/simple/scripting-events.ftl"/>
+  <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
+  <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+  <#if parameters.label?if_exists != "">
+     value="${parameters.label?html}"<#rt/>
+  </#if>
+ />
 <#else>
   <#if parameters.type?exists && parameters.type=="image">
-    type="image"<#rt/>
+    <input type="image"<#rt/>
     <#if parameters.label?if_exists != "">
      alt="${parameters.label?html}"<#rt/>
     </#if>
@@ -49,16 +68,35 @@
      src="${parameters.src?html}"<#rt/>
     </#if>
   <#else>
-    type="submit"<#rt/>
+    <input type="submit"<#rt/>
   </#if>
+    <#if parameters.id?if_exists != "">
+     id="${parameters.id?html}"<#rt/>
+    </#if>
+	<#if parameters.cssClass?if_exists != "">
+	  class="${parameters.cssClass?html}"<#rt/>
+	</#if>
+	<#if parameters.cssStyle?if_exists != "">
+	  style="${parameters.cssStyle?html}"<#rt/>
+	</#if>
     <#if parameters.nameValue?if_exists != "">
      value="${parameters.nameValue?html}"<#rt/>
     </#if>
     <#if parameters.value?if_exists != "">
      value="${parameters.value?html}"<#rt/>
     </#if>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+    <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
+    <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
+	<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+  />
 </#if>
-/>
+<#if parameters.parentTheme?default('') == 'xhtml'>
+  </div><#t/>
+  <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+<#elseif parameters.parentTheme?default('') == 'css_xhtml'>
+  <#if parameters.labelposition?default("top") == 'top'>
+    </div> <#t/>
+  <#else>
+    </span> <#t/>
+  </#if>  
+</#if>
