@@ -45,16 +45,16 @@
 	</#if>
 </script>
 <#else>
-  <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/${jqueryFile}"></script>
 	<#if parameters.jqueryui?default(false)>
-    <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryUIFile}"></script>
+    <script type="text/javascript" src="${base}/struts/js/${jqueryUIFile}"></script>
 	</#if>
 </#if>
 
   <script language="JavaScript" type="text/javascript" src="${base}/struts/js/jquery.form.js"></script>
 <#if parameters.jqueryui?default(false)>
-    <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
-    <script language="JavaScript" type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
+    <script type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
+    <script type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
     <#if parameters.jquerytheme?if_exists != "">
         <link rel="stylesheet" href="${base}/${basePath}/${parameters.jquerytheme?string}/ui.theme.css" type="text/css"/>
     <#else>
@@ -62,7 +62,7 @@
     </#if>
     <#if parameters.locale?if_exists != "">
         <#if parameters.locale?if_exists != "en">
-            <script language="JavaScript" type="text/javascript" src="${base}/struts/i18n/ui.datepicker-${parameters.locale?string}.min.js"></script>
+            <script type="text/javascript" src="${base}/struts/i18n/ui.datepicker-${parameters.locale?string}.min.js"></script>
         </#if>
     </#if>
 </#if>
