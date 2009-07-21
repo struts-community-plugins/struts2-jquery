@@ -45,6 +45,10 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * &lt;sj:slider id="myslider" name="myslider"/&gt;
  * <!-- END SNIPPET: example1 -->
  * 
+ * <!-- START SNIPPET: example2 -->
+ * &lt;sj:slider id="myslider2" name="myslider2" value="40" displayValueElement="displayvaluespan" min="20" max="200" animate="true" step="5" cssStyle="margin: 10px;"/&gt;
+ * <!-- END SNIPPET: example1 -->
+ * 
  */
 @StrutsTag(name="slider", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.SliderTag", description="Render a Slider")
 public class Slider extends UIBean {
