@@ -27,7 +27,7 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Div;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class DivTag extends AbstractRemoteTag implements ResizableTag, DraggableTag, DroppableTag {
+public class DivTag extends AbstractRemoteTag implements ResizableTag, DraggableTag, DroppableTag, SelectableTag {
 
     private static final long serialVersionUID = 3769231035916461758L;
     
@@ -89,6 +89,19 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     protected String draggableStop;
     protected String draggableZindex;
     protected String draggableAddClasses;
+    protected String selectable;
+    protected String selectableAutoRefresh;
+    protected String selectableCancel;
+    protected String selectableDelay;
+    protected String selectableFilter;
+    protected String selectableSelected;
+    protected String selectableSelecting;
+    protected String selectableStart;
+    protected String selectableStop;
+    protected String selectableDistance;
+    protected String selectableTolerance;
+    protected String selectableUnselected;
+    protected String selectableUnselecting;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Div(stack, req, res);
@@ -156,6 +169,19 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setDraggableStop(draggableStop);
         div.setDraggableZindex(draggableZindex);
         div.setDraggableAddClasses(draggableAddClasses);
+        div.setSelectable(selectable);
+        div.setSelectableAutoRefresh(selectableAutoRefresh);
+        div.setSelectableCancel(selectableCancel);
+        div.setSelectableDelay(selectableDelay);
+        div.setSelectableDistance(selectableDistance);
+        div.setSelectableFilter(selectableFilter);
+        div.setSelectableSelected(selectableSelected);
+        div.setSelectableSelecting(selectableSelecting);
+        div.setSelectableStart(selectableStart);
+        div.setSelectableStop(selectableStop);
+        div.setSelectableTolerance(selectableTolerance);
+        div.setSelectableUnselected(selectableUnselected);
+        div.setSelectableUnselecting(selectableUnselecting);
     }
     
     public void setResizableAnimate(String animate)
@@ -445,5 +471,70 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     public void setDraggableAddClasses(String draggableAddClasses)
     {
       this.draggableAddClasses = draggableAddClasses;
+    }
+
+    public void setSelectable(String selectable)
+    {
+      this.selectable = selectable;
+    }
+
+    public void setSelectableAutoRefresh(String selectableAutoRefresh)
+    {
+      this.selectableAutoRefresh = selectableAutoRefresh;
+    }
+
+    public void setSelectableCancel(String selectableCancel)
+    {
+      this.selectableCancel = selectableCancel;
+    }
+
+    public void setSelectableDelay(String selectableDelay)
+    {
+      this.selectableDelay = selectableDelay;
+    }
+    
+    public void setSelectableDistance(String selectableDistance)
+    {
+      this.selectableDistance = selectableDistance;
+    }
+
+    public void setSelectableFilter(String selectableFilter)
+    {
+      this.selectableFilter = selectableFilter;
+    }
+
+    public void setSelectableSelected(String selectableSelected)
+    {
+      this.selectableSelected = selectableSelected;
+    }
+
+    public void setSelectableSelecting(String selectableSelecting)
+    {
+      this.selectableSelecting = selectableSelecting;
+    }
+
+    public void setSelectableStart(String selectableStart)
+    {
+      this.selectableStart = selectableStart;
+    }
+
+    public void setSelectableStop(String selectableStop)
+    {
+      this.selectableStop = selectableStop;
+    }
+
+    public void setSelectableTolerance(String selectableTolerance)
+    {
+      this.selectableTolerance = selectableTolerance;
+    }
+
+    public void setSelectableUnselected(String selectableUnselected)
+    {
+      this.selectableUnselected = selectableUnselected;
+    }
+
+    public void setSelectableUnselecting(String selectableUnselecting)
+    {
+      this.selectableUnselecting = selectableUnselecting;
     }
 }

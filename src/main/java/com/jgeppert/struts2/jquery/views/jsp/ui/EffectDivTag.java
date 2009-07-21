@@ -522,6 +522,7 @@ public class EffectDivTag extends DivTag implements ResizableTag, DraggableTag, 
     {
       this.draggableAddClasses = draggableAddClasses;
     }
+    
     public void setSelectable(String selectable)
     {
       this.selectable = selectable;
