@@ -32,7 +32,7 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 @StrutsTag(name = "effectDiv", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.EffectDivTag", description = "Render HTML div that execute an effect on speciefied event")
-public class EffectDiv extends Div implements ResizableBean, DroppableBean, DraggableBean {
+public class EffectDiv extends Div implements ResizableBean, DroppableBean, DraggableBean, SelectableBean {
 
   public static final String            TEMPLATE       = "effect";
   public static final String            TEMPLATE_CLOSE = "effect-close";
@@ -104,6 +104,19 @@ public class EffectDiv extends Div implements ResizableBean, DroppableBean, Drag
   protected String                      draggableStop;
   protected String                      draggableZindex;
   protected String                      draggableAddClasses;
+  protected String                      selectable;
+  protected String                      selectableAutoRefresh;
+  protected String                      selectableCancel;
+  protected String                      selectableDelay;
+  protected String                      selectableFilter;
+  protected String                      selectableSelected;
+  protected String                      selectableSelecting;
+  protected String                      selectableStart;
+  protected String                      selectableStop;
+  protected String                      selectableDistance;
+  protected String                      selectableTolerance;
+  protected String                      selectableUnselected;
+  protected String                      selectableUnselecting;
 
   public EffectDiv(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -190,6 +203,19 @@ public class EffectDiv extends Div implements ResizableBean, DroppableBean, Drag
     if (draggableStart != null) addParameter("draggableStart", findString(draggableStart));
     if (draggableStop != null) addParameter("draggableStop", findString(draggableStop));
     if (draggableZindex != null) addParameter("draggableZindex", findString(draggableZindex));
+
+    if (selectable != null) addParameter("selectable", findValue(selectable, Boolean.class));
+    if (selectableCancel != null) addParameter("selectableCancel", findString(selectableCancel));
+    if (selectableDelay != null) addParameter("selectableDelay", findString(selectableDelay));
+    if (selectableDistance != null) addParameter("selectableDistance", findString(selectableDistance));
+    if (selectableFilter != null) addParameter("selectableFilter", findString(selectableFilter));
+    if (selectableSelected != null) addParameter("selectableSelected", findString(selectableSelected));
+    if (selectableSelecting != null) addParameter("selectableSelecting", findString(selectableSelecting));
+    if (selectableStart != null) addParameter("selectableStart", findString(selectableStart));
+    if (selectableStop != null) addParameter("selectableStop", findString(selectableStop));
+    if (selectableTolerance != null) addParameter("selectableTolerance", findString(selectableTolerance));
+    if (selectableUnselected != null) addParameter("selectableUnselected", findString(selectableUnselected));
+    if (selectableUnselecting != null) addParameter("selectableUnselecting", findString(selectableUnselecting));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -605,4 +631,81 @@ public class EffectDiv extends Div implements ResizableBean, DroppableBean, Drag
     this.draggableZindex = draggableZindex;
   }
 
+  @StrutsTagAttribute(description = "Enable a element to be selectable. Draw a box with your cursor to select items. Hold down the Ctrl key to make multiple non-adjacent selections.", type = "Boolean")
+  public void setSelectable(String selectable)
+  {
+    this.selectable = selectable;
+  }
+
+  @StrutsTagAttribute(description = "This determines whether to refresh (recalculate) the position and size of each selectee at the beginning of each select operation. If you have many many items, you may want to set this to false and call the refresh method manually. Default: true")
+  public void setSelectableAutoRefresh(String selectableAutoRefresh)
+  {
+    this.selectableAutoRefresh = selectableAutoRefresh;
+  }
+
+  @StrutsTagAttribute(description = "Prevents selecting if you start on elements matching the selector. Default: ':input,option'")
+  public void setSelectableCancel(String selectableCancel)
+  {
+    this.selectableCancel = selectableCancel;
+  }
+
+  @StrutsTagAttribute(description = "Time in milliseconds to define when the selecting should start. It helps preventing unwanted selections when clicking on an element.")
+  public void setSelectableDelay(String selectableDelay)
+  {
+    this.selectableDelay = selectableDelay;
+  }
+  
+  @StrutsTagAttribute(description = "Tolerance, in pixels, for when selecting should start. If specified, selecting will not start until after mouse is dragged beyond distance.")
+  public void setSelectableDistance(String selectableDistance)
+  {
+    this.selectableDistance = selectableDistance;
+  }
+
+  @StrutsTagAttribute(description = "The matching child elements will be made selectees (able to be selected). Default: '*'")
+  public void setSelectableFilter(String selectableFilter)
+  {
+    this.selectableFilter = selectableFilter;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered at the end of the select operation, on each element added to the selection.")
+  public void setSelectableSelected(String selectableSelected)
+  {
+    this.selectableSelected = selectableSelected;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered during the select operation, on each element added to the selection.")
+  public void setSelectableSelecting(String selectableSelecting)
+  {
+    this.selectableSelecting = selectableSelecting;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered at the beginning of the select operation.")
+  public void setSelectableStart(String selectableStart)
+  {
+    this.selectableStart = selectableStart;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered at the end of the select operation.")
+  public void setSelectableStop(String selectableStop)
+  {
+    this.selectableStop = selectableStop;
+  }
+
+  @StrutsTagAttribute(description = "Possible values: 'touch', 'fit'. Default: 'touch'")
+  public void setSelectableTolerance(String selectableTolerance)
+  {
+    this.selectableTolerance = selectableTolerance;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered at the end of the select operation, on each element removed from the selection.")
+  public void setSelectableUnselected(String selectableUnselected)
+  {
+    this.selectableUnselected = selectableUnselected;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered during the select operation, on each element removed from the selection.")
+  public void setSelectableUnselecting(String selectableUnselecting)
+  {
+    this.selectableUnselecting = selectableUnselecting;
+  }
 }

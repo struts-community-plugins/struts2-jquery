@@ -577,6 +577,84 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.EffectDivTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[Enable a element to be selectable. Draw a box with your cursor to select items. Hold down the Ctrl key to make multiple non-adjacent selections.]]></description>
+      <name>selectable</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This determines whether to refresh (recalculate) the position and size of each selectee at the beginning of each select operation. If you have many many items, you may want to set this to false and call the refresh method manually. Default: true]]></description>
+      <name>selectableAutoRefresh</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Prevents selecting if you start on elements matching the selector. Default: ':input,option']]></description>
+      <name>selectableCancel</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Time in milliseconds to define when the selecting should start. It helps preventing unwanted selections when clicking on an element.]]></description>
+      <name>selectableDelay</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Tolerance, in pixels, for when selecting should start. If specified, selecting will not start until after mouse is dragged beyond distance.]]></description>
+      <name>selectableDistance</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The matching child elements will be made selectees (able to be selected). Default: '*']]></description>
+      <name>selectableFilter</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered at the end of the select operation, on each element added to the selection.]]></description>
+      <name>selectableSelected</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered during the select operation, on each element added to the selection.]]></description>
+      <name>selectableSelecting</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered at the beginning of the select operation.]]></description>
+      <name>selectableStart</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered at the end of the select operation.]]></description>
+      <name>selectableStop</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Possible values: 'touch', 'fit'. Default: 'touch']]></description>
+      <name>selectableTolerance</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered at the end of the select operation, on each element removed from the selection.]]></description>
+      <name>selectableUnselected</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered during the select operation, on each element removed from the selection.]]></description>
+      <name>selectableUnselecting</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Enable any DIV element to be droppable, a target for draggable elements.]]></description>
       <name>droppable</name>
       <required>false</required>

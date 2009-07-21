@@ -45,5 +45,6 @@ $(document).ready(function () {
 <#include "resizeable.ftl" />
 <#include "draggable.ftl" />
 <#include "droppable.ftl" />
+<#include "selectable.ftl" />
 });
 </script>
