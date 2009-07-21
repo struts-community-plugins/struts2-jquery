@@ -48,7 +48,7 @@ public class DatePickerTag extends AbstractUITag {
     protected void populateParams() {
         super.populateParams();
 
-        final DatePicker datePicker = (DatePicker) component;
+        DatePicker datePicker = (DatePicker) component;
         datePicker.setDisplayFormat(displayFormat);
         datePicker.setDisabled(disabled);
         datePicker.setShowButtonPanel(showButtonPanel);
