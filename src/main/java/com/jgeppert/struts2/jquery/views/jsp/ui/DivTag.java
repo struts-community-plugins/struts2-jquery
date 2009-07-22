@@ -102,6 +102,43 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     protected String selectableTolerance;
     protected String selectableUnselected;
     protected String selectableUnselecting;
+    protected String sortableZindex;
+    protected String sortableUpdate;
+    protected String sortableTolerance;
+    protected String sortableStop;
+    protected String sortableStart;
+    protected String sortableSort;
+    protected String sortableScrollSpeed;
+    protected String sortableScrollSensitivity;
+    protected String sortableScroll;
+    protected String sortableRevert;
+    protected String sortableRemove;
+    protected String sortableReceive;
+    protected String sortablePlaceholder;
+    protected String sortableOver;
+    protected String sortableOut;
+    protected String sortableOpacity;
+    protected String sortableItems;
+    protected String sortableHelper;
+    protected String sortableHandle;
+    protected String sortableGrid;
+    protected String sortableForcePlaceholderSize;
+    protected String sortableForceHelperSize;
+    protected String sortableDropOnEmpty;
+    protected String sortableDistance;
+    protected String sortableDelay;
+    protected String sortableDeactivate;
+    protected String sortableCursorAt;
+    protected String sortableCursor;
+    protected String sortableContainment;
+    protected String sortableConnectWith;
+    protected String sortableChange;
+    protected String sortableCancel;
+    protected String sortableBeforeStop;
+    protected String sortableAxis;
+    protected String sortableAppendTo;
+    protected String sortableActivate;
+    protected String sortable;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Div(stack, req, res);
@@ -182,6 +219,43 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setSelectableTolerance(selectableTolerance);
         div.setSelectableUnselected(selectableUnselected);
         div.setSelectableUnselecting(selectableUnselecting);
+
+        div.setSortable(sortable);
+        div.setSortableActivate(sortableActivate);
+        div.setSortableAppendTo(sortableAppendTo);
+        div.setSortableAxis(sortableAxis);
+        div.setSortableBeforeStop(sortableBeforeStop);
+        div.setSortableCancel(sortableCancel);
+        div.setSortableChange(sortableChange);
+        div.setSortableConnectWith(sortableConnectWith);
+        div.setSortableContainment(sortableContainment);
+        div.setSortableCursor(sortableCursor);
+        div.setSortableCursorAt(sortableCursorAt);
+        div.setSortableDeactivate(sortableDeactivate);
+        div.setSortableDelay(sortableDelay);
+        div.setSortableDistance(sortableDistance);
+        div.setSortableDropOnEmpty(sortableDropOnEmpty);
+        div.setSortableForceHelperSize(sortableForceHelperSize);
+        div.setSortableForcePlaceholderSize(sortableForcePlaceholderSize);
+        div.setSortableGrid(sortableGrid);
+        div.setSortableHandle(sortableHandle);
+        div.setSortableHelper(sortableHelper);
+        div.setSortableItems(sortableItems);
+        div.setSortableOpacity(sortableOpacity);
+        div.setSortableOut(sortableOut);
+        div.setSortableOver(sortableOver);
+        div.setSortablePlaceholder(sortablePlaceholder);
+        div.setSortableReceive(sortableReceive);
+        div.setSortableRevert(sortableRevert);
+        div.setSortableScroll(sortableScroll);
+        div.setSortableScrollSensitivity(sortableScrollSensitivity);
+        div.setSortableScrollSpeed(sortableScrollSpeed);
+        div.setSortableSort(sortableSort);
+        div.setSortableStart(sortableStart);
+        div.setSortableStop(sortableStop);
+        div.setSortableTolerance(sortableTolerance);
+        div.setSortableUpdate(sortableUpdate);
+        div.setSortableZindex(sortableZindex);
     }
     
     public void setResizableAnimate(String animate)
@@ -536,5 +610,190 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     public void setSelectableUnselecting(String selectableUnselecting)
     {
       this.selectableUnselecting = selectableUnselecting;
+    }
+
+    public void setSortableZindex(String sortableZindex)
+    {
+      this.sortableZindex = sortableZindex;
+    }
+
+    public void setSortableUpdate(String sortableUpdate)
+    {
+      this.sortableUpdate = sortableUpdate;
+    }
+
+    public void setSortableTolerance(String sortableTolerance)
+    {
+      this.sortableTolerance = sortableTolerance;
+    }
+
+    public void setSortableStop(String sortableStop)
+    {
+      this.sortableStop = sortableStop;
+    }
+
+    public void setSortableStart(String sortableStart)
+    {
+      this.sortableStart = sortableStart;
+    }
+
+    public void setSortableSort(String sortableSort)
+    {
+      this.sortableSort = sortableSort;
+    }
+
+    public void setSortableScrollSpeed(String sortableScrollSpeed)
+    {
+      this.sortableScrollSpeed = sortableScrollSpeed;
+    }
+
+    public void setSortableScrollSensitivity(String sortableScrollSensitivity)
+    {
+      this.sortableScrollSensitivity = sortableScrollSensitivity;
+    }
+
+    public void setSortableScroll(String sortableScroll)
+    {
+      this.sortableScroll = sortableScroll;
+    }
+
+    public void setSortableRevert(String sortableRevert)
+    {
+      this.sortableRevert = sortableRevert;
+    }
+
+    public void setSortableRemove(String sortableRemove)
+    {
+      this.sortableRemove = sortableRemove;
+    }
+
+    public void setSortableReceive(String sortableReceive)
+    {
+      this.sortableReceive = sortableReceive;
+    }
+
+    public void setSortablePlaceholder(String sortablePlaceholder)
+    {
+      this.sortablePlaceholder = sortablePlaceholder;
+    }
+
+    public void setSortableOver(String sortableOver)
+    {
+      this.sortableOver = sortableOver;
+    }
+
+    public void setSortableOut(String sortableOut)
+    {
+      this.sortableOut = sortableOut;
+    }
+
+    public void setSortableOpacity(String sortableOpacity)
+    {
+      this.sortableOpacity = sortableOpacity;
+    }
+
+    public void setSortableItems(String sortableItems)
+    {
+      this.sortableItems = sortableItems;
+    }
+
+    public void setSortableHelper(String sortableHelper)
+    {
+      this.sortableHelper = sortableHelper;
+    }
+
+    public void setSortableHandle(String sortableHandle)
+    {
+      this.sortableHandle = sortableHandle;
+    }
+
+    public void setSortableGrid(String sortableGrid)
+    {
+      this.sortableGrid = sortableGrid;
+    }
+
+    public void setSortableForcePlaceholderSize(String sortableForcePlaceholderSize)
+    {
+      this.sortableForcePlaceholderSize = sortableForcePlaceholderSize;
+    }
+
+    public void setSortableForceHelperSize(String sortableForceHelperSize)
+    {
+      this.sortableForceHelperSize = sortableForceHelperSize;
+    }
+
+    public void setSortableDropOnEmpty(String sortableDropOnEmpty)
+    {
+      this.sortableDropOnEmpty = sortableDropOnEmpty;
+    }
+
+    public void setSortableDistance(String sortableDistance)
+    {
+      this.sortableDistance = sortableDistance;
+    }
+
+    public void setSortableDelay(String sortableDelay)
+    {
+      this.sortableDelay = sortableDelay;
+    }
+
+    public void setSortableDeactivate(String sortableDeactivate)
+    {
+      this.sortableDeactivate = sortableDeactivate;
+    }
+
+    public void setSortableCursorAt(String sortableCursorAt)
+    {
+      this.sortableCursorAt = sortableCursorAt;
+    }
+
+    public void setSortableCursor(String sortableCursor)
+    {
+      this.sortableCursor = sortableCursor;
+    }
+
+    public void setSortableContainment(String sortableContainment)
+    {
+      this.sortableContainment = sortableContainment;
+    }
+
+    public void setSortableConnectWith(String sortableConnectWith)
+    {
+      this.sortableConnectWith = sortableConnectWith;
+    }
+
+    public void setSortableChange(String sortableChange)
+    {
+      this.sortableChange = sortableChange;
+    }
+
+    public void setSortableCancel(String sortableCancel)
+    {
+      this.sortableCancel = sortableCancel;
+    }
+
+    public void setSortableBeforeStop(String sortableBeforeStop)
+    {
+      this.sortableBeforeStop = sortableBeforeStop;
+    }
+
+    public void setSortableAxis(String sortableAxis)
+    {
+      this.sortableAxis = sortableAxis;
+    }
+
+    public void setSortableAppendTo(String sortableAppendTo)
+    {
+      this.sortableAppendTo = sortableAppendTo;
+    }
+
+    public void setSortableActivate(String sortableActivate)
+    {
+      this.sortableActivate = sortableActivate;
+    }
+
+    public void setSortable(String sortable)
+    {
+      this.sortable = sortable;
     }
 }

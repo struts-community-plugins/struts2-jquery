@@ -132,6 +132,43 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
   protected String                      selectableTolerance;
   protected String                      selectableUnselected;
   protected String                      selectableUnselecting;
+  protected String                      sortableZindex;
+  protected String                      sortableUpdate;
+  protected String                      sortableTolerance;
+  protected String                      sortableStop;
+  protected String                      sortableStart;
+  protected String                      sortableSort;
+  protected String                      sortableScrollSpeed;
+  protected String                      sortableScrollSensitivity;
+  protected String                      sortableScroll;
+  protected String                      sortableRevert;
+  protected String                      sortableRemove;
+  protected String                      sortableReceive;
+  protected String                      sortablePlaceholder;
+  protected String                      sortableOver;
+  protected String                      sortableOut;
+  protected String                      sortableOpacity;
+  protected String                      sortableItems;
+  protected String                      sortableHelper;
+  protected String                      sortableHandle;
+  protected String                      sortableGrid;
+  protected String                      sortableForcePlaceholderSize;
+  protected String                      sortableForceHelperSize;
+  protected String                      sortableDropOnEmpty;
+  protected String                      sortableDistance;
+  protected String                      sortableDelay;
+  protected String                      sortableDeactivate;
+  protected String                      sortableCursorAt;
+  protected String                      sortableCursor;
+  protected String                      sortableContainment;
+  protected String                      sortableConnectWith;
+  protected String                      sortableChange;
+  protected String                      sortableCancel;
+  protected String                      sortableBeforeStop;
+  protected String                      sortableAxis;
+  protected String                      sortableAppendTo;
+  protected String                      sortableActivate;
+  protected String                      sortable;
 
   public Div(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -224,6 +261,44 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
     if (selectableTolerance != null) addParameter("selectableTolerance", findString(selectableTolerance));
     if (selectableUnselected != null) addParameter("selectableUnselected", findString(selectableUnselected));
     if (selectableUnselecting != null) addParameter("selectableUnselecting", findString(selectableUnselecting));
+
+
+    if (sortable != null) addParameter("sortable", findValue(sortable, Boolean.class));
+    if (sortableActivate != null) addParameter("sortableActivate", findString(sortableActivate));
+    if (sortableAppendTo != null) addParameter("sortableAppendTo", findString(sortableAppendTo));
+    if (sortableAxis != null) addParameter("sortableAxis", findString(sortableAxis));
+    if (sortableBeforeStop != null) addParameter("sortableBeforeStop", findString(sortableBeforeStop));
+    if (sortableCancel != null) addParameter("sortableCancel", findString(sortableCancel));
+    if (sortableChange != null) addParameter("sortableChange", findString(sortableChange));
+    if (sortableConnectWith != null) addParameter("sortableConnectWith", findString(sortableConnectWith));
+    if (sortableContainment != null) addParameter("sortableContainment", findString(sortableContainment));
+    if (sortableCursor != null) addParameter("sortableCursor", findString(sortableCursor));
+    if (sortableCursorAt != null) addParameter("sortableCursorAt", findString(sortableCursorAt));
+    if (sortableDeactivate != null) addParameter("sortableDeactivate", findString(sortableDeactivate));
+    if (sortableDelay != null) addParameter("sortableDelay", findString(sortableDelay));
+    if (sortableDistance != null) addParameter("sortableDistance", findString(sortableDistance));
+    if (sortableDropOnEmpty != null) addParameter("sortableDropOnEmpty", findValue(sortableDropOnEmpty, Boolean.class));
+    if (sortableForceHelperSize != null) addParameter("sortableForceHelperSize", findValue(sortableForceHelperSize, Boolean.class));
+    if (sortableForcePlaceholderSize != null) addParameter("sortableForcePlaceholderSize", findValue(sortableForcePlaceholderSize, Boolean.class));
+    if (sortableGrid != null) addParameter("sortableGrid", findString(sortableGrid));
+    if (sortableHandle != null) addParameter("sortableHandle", findString(sortableHandle));
+    if (sortableItems != null) addParameter("sortableItems", findString(sortableItems));
+    if (sortableOpacity != null) addParameter("sortableOpacity", findString(sortableOpacity));
+    if (sortableOut != null) addParameter("sortableOut", findString(sortableOut));
+    if (sortableOver != null) addParameter("sortableOver", findString(sortableOver));
+    if (sortablePlaceholder != null) addParameter("sortablePlaceholder", findString(sortablePlaceholder));
+    if (sortableReceive != null) addParameter("sortableReceive", findString(sortableReceive));
+    if (sortableRemove != null) addParameter("sortableRemove", findString(sortableRemove));
+    if (sortableRevert != null) addParameter("sortableRevert", findValue(sortableRevert, Boolean.class));
+    if (sortableScroll != null) addParameter("sortableScroll", findValue(sortableScroll, Boolean.class));
+    if (sortableScrollSensitivity != null) addParameter("sortableScrollSensitivity", findString(sortableScrollSensitivity));
+    if (sortableScrollSpeed != null) addParameter("sortableScrollSpeed", findString(sortableScrollSpeed));
+    if (sortableSort != null) addParameter("sortableSort", findString(sortableSort));
+    if (sortableStart != null) addParameter("sortableStart", findString(sortableStart));
+    if (sortableStop != null) addParameter("sortableStop", findString(sortableStop));
+    if (sortableTolerance != null) addParameter("sortableTolerance", findString(sortableTolerance));
+    if (sortableUpdate != null) addParameter("sortableUpdate", findString(sortableUpdate));
+    if (sortableZindex != null) addParameter("sortableZindex", findString(sortableZindex));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -673,5 +748,227 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
   public void setSelectableUnselecting(String selectableUnselecting)
   {
     this.selectableUnselecting = selectableUnselecting;
+  }
+
+  @StrutsTagAttribute(description = "Enable a elements to be sortable", type = "Boolean")
+  public void setSortable(String sortable)
+  {
+    this.sortable = sortable;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when using connected lists, every connected list on drag start receives it.")
+  public void setSortableActivate(String sortableActivate)
+  {
+    this.sortableActivate = sortableActivate;
+  }
+
+  @StrutsTagAttribute(description = "Defines where the helper that moves with the mouse is being appended to during the drag. Default: 'parent'")
+  public void setSortableAppendTo(String sortableAppendTo)
+  {
+    this.sortableAppendTo = sortableAppendTo;
+  }
+
+  @StrutsTagAttribute(description = "If defined, the items can be dragged only horizontally or vertically. Possible values:'x', 'y'.")
+  public void setSortableAxis(String sortableAxis)
+  {
+    this.sortableAxis = sortableAxis;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when sorting stops, but when the placeholder/helper is still available.")
+  public void setSortableBeforeStop(String sortableBeforeStop)
+  {
+    this.sortableBeforeStop = sortableBeforeStop;
+  }
+
+  @StrutsTagAttribute(description = "Prevents sorting if you start on elements matching the selector. Default: ':input,button'")
+  public void setSortableCancel(String sortableCancel)
+  {
+    this.sortableCancel = sortableCancel;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered during sorting, but only when the DOM position has changed.")
+  public void setSortableChange(String sortableChange)
+  {
+    this.sortableChange = sortableChange;
+  }
+
+  @StrutsTagAttribute(description = "Takes a jQuery selector with items that also have sortables applied. If used, the sortable is now connected to the other one-way, so you can drag from this sortable to the other. e.g. #myothersortable or .myothersortables")
+  public void setSortableConnectWith(String sortableConnectWith)
+  {
+    this.sortableConnectWith = sortableConnectWith;
+  }
+
+  @StrutsTagAttribute(description = "Constrains dragging to within the bounds of the specified element - can be a DOM element, 'parent', 'document', 'window', or a jQuery selector.")
+  public void setSortableContainment(String sortableContainment)
+  {
+    this.sortableContainment = sortableContainment;
+  }
+
+  @StrutsTagAttribute(description = "Defines the cursor that is being shown while sorting.")
+  public void setSortableCursor(String sortableCursor)
+  {
+    this.sortableCursor = sortableCursor;
+  }
+
+  @StrutsTagAttribute(description = "Moves the sorting element or helper so the cursor always appears to drag from the same position. Coordinates can be given as a hash using a combination of one or two keys: top, left, right, bottom.")
+  public void setSortableCursorAt(String sortableCursorAt)
+  {
+    this.sortableCursorAt = sortableCursorAt;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when sorting was stopped, is propagated to all possible connected lists.")
+  public void setSortableDeactivate(String sortableDeactivate)
+  {
+    this.sortableDeactivate = sortableDeactivate;
+  }
+
+  @StrutsTagAttribute(description = "Time in milliseconds to define when the sorting should start. It helps preventing unwanted drags when clicking on an element.")
+  public void setSortableDelay(String sortableDelay)
+  {
+    this.sortableDelay = sortableDelay;
+  }
+
+  @StrutsTagAttribute(description = "Tolerance, in pixels, for when sorting should start. If specified, sorting will not start until after mouse is dragged beyond distance. Can be used to allow for clicks on elements within a handle.")
+  public void setSortableDistance(String sortableDistance)
+  {
+    this.sortableDistance = sortableDistance;
+  }
+
+  @StrutsTagAttribute(description = "If empty allows for an item to be dropped from a linked selectable. Default: true", type = "Boolean")
+  public void setSortableDropOnEmpty(String sortableDropOnEmpty)
+  {
+    this.sortableDropOnEmpty = sortableDropOnEmpty;
+  }
+
+  @StrutsTagAttribute(description = "If true, forces the helper to have a size. Default: false", type = "Boolean")
+  public void setSortableForceHelperSize(String sortableForceHelperSize)
+  {
+    this.sortableForceHelperSize = sortableForceHelperSize;
+  }
+
+  @StrutsTagAttribute(description = "If true, forces the placeholder to have a size. Default: false", type = "Boolean")
+  public void setSortableForcePlaceholderSize(String sortableForcePlaceholderSize)
+  {
+    this.sortableForcePlaceholderSize = sortableForcePlaceholderSize;
+  }
+
+  @StrutsTagAttribute(description = "Snaps the sorting element or helper to a grid, every x and y pixels. Array values: [x, y]")
+  public void setSortableGrid(String sortableGrid)
+  {
+    this.sortableGrid = sortableGrid;
+  }
+
+  @StrutsTagAttribute(description = "Restricts sort start click to the specified element.")
+  public void setSortableHandle(String sortableHandle)
+  {
+    this.sortableHandle = sortableHandle;
+  }
+
+  @StrutsTagAttribute(description = "Allows for a helper element to be used for dragging display. The supplied function receives the event and the element being sorted, and should return a DOMElement to be used as a custom proxy helper. Possible values: 'original', 'clone'. Default: 'original'")
+  public void setSortableHelper(String sortableHelper)
+  {
+    this.sortableHelper = sortableHelper;
+  }
+
+  @StrutsTagAttribute(description = "Specifies which items inside the element should be sortable. Default: '> *'")
+  public void setSortableItems(String sortableItems)
+  {
+    this.sortableItems = sortableItems;
+  }
+
+  @StrutsTagAttribute(description = "Defines the opacity of the helper while sorting. From 0.01 to 1")
+  public void setSortableOpacity(String sortableOpacity)
+  {
+    this.sortableOpacity = sortableOpacity;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when a sortable item is moved away from a connected list.")
+  public void setSortableOut(String sortableOut)
+  {
+    this.sortableOut = sortableOut;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when a sortable item is moved into a connected list.")
+  public void setSortableOver(String sortableOver)
+  {
+    this.sortableOver = sortableOver;
+  }
+
+  @StrutsTagAttribute(description = "Class that gets applied to the otherwise white space.")
+  public void setSortablePlaceholder(String sortablePlaceholder)
+  {
+    this.sortablePlaceholder = sortablePlaceholder;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when a connected sortable list has received an item from another list.")
+  public void setSortableReceive(String sortableReceive)
+  {
+    this.sortableReceive = sortableReceive;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when a sortable item has been dragged out from the list and into another.")
+  public void setSortableRemove(String sortableRemove)
+  {
+    this.sortableRemove = sortableRemove;
+  }
+
+  @StrutsTagAttribute(description = "If set to true, the item will be reverted to its new DOM position with a smooth animation. Default: false", type = "Boolean")
+  public void setSortableRevert(String sortableRevert)
+  {
+    this.sortableRevert = sortableRevert;
+  }
+
+  @StrutsTagAttribute(description = "If set to true, the page scrolls when coming to an edge. Default: true", type = "Boolean")
+  public void setSortableScroll(String sortableScroll)
+  {
+    this.sortableScroll = sortableScroll;
+  }
+
+  @StrutsTagAttribute(description = "Defines how near the mouse must be to an edge to start scrolling. Default: 20")
+  public void setSortableScrollSensitivity(String sortableScrollSensitivity)
+  {
+    this.sortableScrollSensitivity = sortableScrollSensitivity;
+  }
+
+  @StrutsTagAttribute(description = "The speed at which the window should scroll once the mouse pointer gets within the scrollSensitivity distance. Default: 20")
+  public void setSortableScrollSpeed(String sortableScrollSpeed)
+  {
+    this.sortableScrollSpeed = sortableScrollSpeed;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered during sorting.")
+  public void setSortableSort(String sortableSort)
+  {
+    this.sortableSort = sortableSort;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when sorting starts.")
+  public void setSortableStart(String sortableStart)
+  {
+    this.sortableStart = sortableStart;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when sorting has stopped.")
+  public void setSortableStop(String sortableStop)
+  {
+    this.sortableStop = sortableStop;
+  }
+
+  @StrutsTagAttribute(description = "This is the way the reordering behaves during drag. Possible values: 'intersect', 'pointer'. In some setups, 'pointer' is more natural. Default: 'intersect'")
+  public void setSortableTolerance(String sortableTolerance)
+  {
+    this.sortableTolerance = sortableTolerance;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when the user stopped sorting and the DOM position has changed.")
+  public void setSortableUpdate(String sortableUpdate)
+  {
+    this.sortableUpdate = sortableUpdate;
+  }
+
+  @StrutsTagAttribute(description = "Z-index for element/helper while being sorted. Default: 1000")
+  public void setSortableZindex(String sortableZindex)
+  {
+    this.sortableZindex = sortableZindex;
   }
 }

@@ -54,6 +54,7 @@ $(document).ready(function () {
 <#include "draggable.ftl" />
 <#include "droppable.ftl" />
 <#include "selectable.ftl" />
+<#include "sortable.ftl" />
         }
 	);
 });
