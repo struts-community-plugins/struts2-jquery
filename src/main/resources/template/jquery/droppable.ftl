@@ -36,19 +36,19 @@
 		tolerance: '${parameters.droppableTolerance?html}',
 </#if>
 <#if parameters.droppableActivate?if_exists != "">
-		activate: function(event, ui) { ${parameters.droppableActivate?html}(event,  ui.draggable, $(this)); },
+		activate: function(event, ui) { ${parameters.droppableActivate?html}(event,  ui, $(this)); },
 </#if>
 <#if parameters.droppableDeactivate?if_exists != "">
-		deactivate: function(event, ui) { ${parameters.droppableDeactivate?html}(event,  ui.draggable, $(this)); },
+		deactivate: function(event, ui) { ${parameters.droppableDeactivate?html}(event,  ui, $(this)); },
 </#if>
 <#if parameters.droppableDrop?if_exists != "">
-		drop: function(event, ui) { ${parameters.droppableDrop?html}(event,  ui.draggable, $(this)); },
+		drop: function(event, ui) { ${parameters.droppableDrop?html}(event,  ui, $(this)); },
 </#if>
 <#if parameters.droppableOut?if_exists != "">
-		out: function(event, ui) { ${parameters.droppableOut?html}(event,  ui.draggable, $(this)); },
+		out: function(event, ui) { ${parameters.droppableOut?html}(event,  ui, $(this)); },
 </#if>
 <#if parameters.droppableOver?if_exists != "">
-		over: function(event, ui) { ${parameters.droppableOver?html}(event,  ui.draggable, $(this)); },
+		over: function(event, ui) { ${parameters.droppableOver?html}(event,  ui, $(this)); },
 </#if>
 <#if parameters.droppableGreedy?default(false)>
 		greedy: true,
