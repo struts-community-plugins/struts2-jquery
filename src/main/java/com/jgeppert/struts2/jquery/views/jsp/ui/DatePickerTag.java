@@ -50,6 +50,12 @@ public class DatePickerTag extends AbstractUITag {
     protected String showOn;
     protected String showOptions;
     protected String yearRange;
+    protected String zindex;
+    protected String beforeShow;
+    protected String beforeShowDay;
+    protected String onChangeMonthYear;
+    protected String onClose;
+    protected String onSelect;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new DatePicker(stack, req, res);
@@ -75,7 +81,13 @@ public class DatePickerTag extends AbstractUITag {
         datePicker.setShowOn(showOn);
         datePicker.setShowOptions(showOptions);
         datePicker.setYearRange(yearRange);
-    }
+        datePicker.setZindex(zindex);
+        datePicker.setBeforeShow(beforeShow);
+        datePicker.setBeforeShowDay(beforeShowDay);
+        datePicker.setOnChangeMonthYear(onChangeMonthYear);
+        datePicker.setOnClose(onClose);
+        datePicker.setOnSelect(onSelect);
+  }
 
     
   public void setDisplayFormat(String displayFormat) {
@@ -146,5 +158,35 @@ public class DatePickerTag extends AbstractUITag {
   public void setYearRange(String yearRange)
   {
     this.yearRange = yearRange;
+  }
+
+  public void setZindex(String zindex)
+  {
+    this.zindex = zindex;
+  }
+
+  public void setBeforeShow(String beforeShow)
+  {
+    this.beforeShow = beforeShow;
+  }
+
+  public void setBeforeShowDay(String beforeShowDay)
+  {
+    this.beforeShowDay = beforeShowDay;
+  }
+
+  public void setOnChangeMonthYear(String onChangeMonthYear)
+  {
+    this.onChangeMonthYear = onChangeMonthYear;
+  }
+
+  public void setOnClose(String onClose)
+  {
+    this.onClose = onClose;
+  }
+
+  public void setOnSelect(String onSelect)
+  {
+    this.onSelect = onSelect;
   }
 }

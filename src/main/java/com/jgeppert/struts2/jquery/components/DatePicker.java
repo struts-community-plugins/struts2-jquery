@@ -90,6 +90,12 @@ public class DatePicker extends UIBean {
   protected String                      showOn;
   protected String                      showOptions;
   protected String                      yearRange;
+  protected String                      zindex;
+  protected String                      beforeShow;
+  protected String                      beforeShowDay;
+  protected String                      onChangeMonthYear;
+  protected String                      onClose;
+  protected String                      onSelect;
 
   public DatePicker(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -120,6 +126,12 @@ public class DatePicker extends UIBean {
     if (showOn != null) addParameter("showOn", findString(showOn));
     if (showOptions != null) addParameter("showOptions", findString(showOptions));
     if (yearRange != null) addParameter("yearRange", findString(yearRange));
+    if (zindex != null) addParameter("zindex", findString(zindex));
+    if (beforeShow != null) addParameter("beforeShow", findString(beforeShow));
+    if (beforeShowDay != null) addParameter("beforeShowDay", findString(beforeShowDay));
+    if (onChangeMonthYear != null) addParameter("onChangeMonthYear", findString(onChangeMonthYear));
+    if (onClose != null) addParameter("onClose", findString(onClose));
+    if (onSelect != null) addParameter("onSelect", findString(onSelect));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -266,6 +278,42 @@ public class DatePicker extends UIBean {
   public void setYearRange(String yearRange)
   {
     this.yearRange = yearRange;
+  }
+
+  @StrutsTagAttribute(description = "The z-index for the datepicker, usefull when run in a dialog e.g. 2006.")
+  public void setZindex(String zindex)
+  {
+    this.zindex = zindex;
+  }
+
+  @StrutsTagAttribute(description = "Can be a function that takes an input field and current datepicker instance and returns an options object to update the datepicker with. It is called just before the datepicker is displayed.")
+  public void setBeforeShow(String beforeShow)
+  {
+    this.beforeShow = beforeShow;
+  }
+
+  @StrutsTagAttribute(description = "The function takes a date as a parameter and must return an array with [0] equal to true/false indicating whether or not this date is selectable, [1] equal to a CSS class name(s) or '' for the default presentation and [2] an optional popup tooltip for this date. It is called for each day in the datepicker before is it displayed.")
+  public void setBeforeShowDay(String beforeShowDay)
+  {
+    this.beforeShowDay = beforeShowDay;
+  }
+
+  @StrutsTagAttribute(description = "Allows you to define your own event when the datepicker moves to a new month and/or year. The function receives the selected year, month (1-12), and the datepicker instance as parameters. this refers to the associated input field.")
+  public void setOnChangeMonthYear(String onChangeMonthYear)
+  {
+    this.onChangeMonthYear = onChangeMonthYear;
+  }
+
+  @StrutsTagAttribute(description = "Allows you to define your own event when the datepicker is closed, whether or not a date is selected. The function receives the selected date as text and the datepicker instance as parameters. this refers to the associated input field.")
+  public void setOnClose(String onClose)
+  {
+    this.onClose = onClose;
+  }
+
+  @StrutsTagAttribute(description = "Allows you to define your own event when the datepicker is selected. The function receives the selected date as text and the datepicker instance as parameters. this refers to the associated input field.")
+  public void setOnSelect(String onSelect)
+  {
+    this.onSelect = onSelect;
   }
 
   private String format(Object obj)

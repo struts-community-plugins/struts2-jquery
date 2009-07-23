@@ -109,7 +109,21 @@ $(document).ready(function () {
   <#if parameters.yearRange?if_exists != "">
             yearRange: '${parameters.yearRange?html}',
   </#if>
-
+  <#if parameters.beforeShow?if_exists != "">
+			beforeShow: function(input) { ${parameters.beforeShow?html}(input); },
+  </#if>
+  <#if parameters.beforeShowDay?if_exists != "">
+			beforeShowDay: function(date) { ${parameters.beforeShowDay?html}(date); },
+  </#if>
+  <#if parameters.onChangeMonthYear?if_exists != "">
+			onChangeMonthYear: function(year, month, inst) { ${parameters.onChangeMonthYear?html}(year, month, inst); },
+  </#if>
+  <#if parameters.onClose?if_exists != "">
+			onClose: function(dateText, inst) { ${parameters.onClose?html}(dateText, inst); },
+  </#if>
+  <#if parameters.onSelect?if_exists != "">
+			onSelect: function(dateText, inst)) { ${parameters.onSelect?html}(dateText, inst); },
+  </#if>
   <#if parameters.displayFormat?if_exists != "">
             dateFormat: '${parameters.displayFormat?html}'
   <#else>
@@ -122,6 +136,9 @@ $(document).ready(function () {
 	  <#else>
 	  	$('#${parameters.id?html}').val($.datepicker.formatDate('yy-mm-dd', new Date(${parameters.yearValue?html}, ${parameters.monthValue?html} - 1, ${parameters.dayValue?html})));
 	  </#if>
+  </#if>
+  <#if parameters.zindex?if_exists != "">
+  	$('#ui-datepicker-div').css("z-index", ${parameters.zindex?html}); 
   </#if>
 });
 </script>
