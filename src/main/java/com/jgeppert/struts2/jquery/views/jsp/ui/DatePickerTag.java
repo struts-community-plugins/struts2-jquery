@@ -40,6 +40,16 @@ public class DatePickerTag extends AbstractUITag {
     protected String changeMonth;
     protected String changeYear;
     protected String buttonImage;
+    protected String appendText;
+    protected String buttonImageOnly;
+    protected String buttonText;
+    protected String duration;
+    protected String firstDay;
+    protected String numberOfMonths;
+    protected String showAnim;
+    protected String showOn;
+    protected String showOptions;
+    protected String yearRange;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new DatePicker(stack, req, res);
@@ -50,18 +60,27 @@ public class DatePickerTag extends AbstractUITag {
 
         DatePicker datePicker = (DatePicker) component;
         datePicker.setDisplayFormat(displayFormat);
-        datePicker.setDisabled(disabled);
         datePicker.setShowButtonPanel(showButtonPanel);
-        datePicker.setAccesskey(accesskey);
         datePicker.setChangeMonth(changeMonth);
         datePicker.setChangeYear(changeYear);
         datePicker.setButtonImage(buttonImage);
+
+        datePicker.setButtonImageOnly(buttonImageOnly);
+        datePicker.setAppendText(appendText);
+        datePicker.setButtonText(buttonText);
+        datePicker.setDuration(duration);
+        datePicker.setFirstDay(firstDay);
+        datePicker.setNumberOfMonths(numberOfMonths);
+        datePicker.setShowAnim(showAnim);
+        datePicker.setShowOn(showOn);
+        datePicker.setShowOptions(showOptions);
+        datePicker.setYearRange(yearRange);
     }
 
     
-    public void setDisplayFormat(String displayFormat) {
-        this.displayFormat = displayFormat;
-    }
+  public void setDisplayFormat(String displayFormat) {
+      this.displayFormat = displayFormat;
+  }
 
 	public void setShowButtonPanel(String showButtonPanel) {
 		this.showButtonPanel = showButtonPanel;
@@ -78,4 +97,54 @@ public class DatePickerTag extends AbstractUITag {
 	public void setButtonImage(String buttonImage) {
 		this.buttonImage = buttonImage;
 	}
+
+  public void setAppendText(String appendText)
+  {
+    this.appendText = appendText;
+  }
+
+  public void setButtonImageOnly(String buttonImageOnly)
+  {
+    this.buttonImageOnly = buttonImageOnly;
+  }
+
+  public void setButtonText(String buttonText)
+  {
+    this.buttonText = buttonText;
+  }
+
+  public void setDuration(String duration)
+  {
+    this.duration = duration;
+  }
+
+  public void setFirstDay(String firstDay)
+  {
+    this.firstDay = firstDay;
+  }
+
+  public void setNumberOfMonths(String numberOfMonths)
+  {
+    this.numberOfMonths = numberOfMonths;
+  }
+
+  public void setShowAnim(String showAnim)
+  {
+    this.showAnim = showAnim;
+  }
+
+  public void setShowOn(String showOn)
+  {
+    this.showOn = showOn;
+  }
+
+  public void setShowOptions(String showOptions)
+  {
+    this.showOptions = showOptions;
+  }
+
+  public void setYearRange(String yearRange)
+  {
+    this.yearRange = yearRange;
+  }
 }

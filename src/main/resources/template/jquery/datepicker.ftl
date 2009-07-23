@@ -61,13 +61,23 @@
 <script type="text/javascript">
 $(document).ready(function () {
     $('#${parameters.id?html}').datepicker({
-  <#if parameters.buttonImage?if_exists != "">
-            showOn: 'both', buttonImage: '${parameters.buttonImage?html}',
+  <#if parameters.showOn?if_exists != "">
+            showOn: '${parameters.showOn?html}',
   <#else>
-            showOn: 'both', buttonImage: '${base}/struts/js/calendar.gif',
+            showOn: 'both',
+  </#if>
+  <#if parameters.buttonImage?if_exists != "">
+            buttonImage: '${parameters.buttonImage?html}',
+  <#else>
+  	<#if parameters.buttonText?if_exists == "">
+            buttonImage: '${base}/struts/js/calendar.gif',
+	  </#if>
   </#if>
   <#if parameters.showButtonPanel?default(false)>
             showButtonPanel: true,
+  </#if>
+  <#if parameters.buttonImageOnly?default(false)>
+            buttonImageOnly: true,
   </#if>
   <#if parameters.changeMonth?default(false)>
             changeMonth: true,
@@ -75,11 +85,43 @@ $(document).ready(function () {
   <#if parameters.changeYear?default(false)>
             changeYear: true,
   </#if>
+  <#if parameters.appendText?if_exists != "">
+            appendText: '${parameters.appendText?html}',
+  </#if>
+  <#if parameters.buttonText?if_exists != "">
+            buttonText: '${parameters.buttonText?html}',
+  </#if>
+  <#if parameters.duration?if_exists != "">
+            duration: '${parameters.duration?html}',
+  </#if>
+  <#if parameters.firstDay?if_exists != "">
+            firstDay: ${parameters.firstDay?html},
+  </#if>
+  <#if parameters.numberOfMonths?if_exists != "">
+            numberOfMonths: ${parameters.numberOfMonths?html},
+  </#if>
+  <#if parameters.showAnim?if_exists != "">
+            showAnim: '${parameters.showAnim?html}',
+  </#if>
+  <#if parameters.showOptions?if_exists != "">
+            showOptions: ${parameters.showOptions?html},
+  </#if>
+  <#if parameters.yearRange?if_exists != "">
+            yearRange: '${parameters.yearRange?html}',
+  </#if>
+
   <#if parameters.displayFormat?if_exists != "">
-            dateFormat: '${parameters.displayFormat?html}'<#rt/>
+            dateFormat: '${parameters.displayFormat?html}'
   <#else>
             dateFormat: 'yy-mm-dd'<#rt/>
   </#if>
     });
+  <#if parameters.yearValue?if_exists != "">
+	  <#if parameters.displayFormat?if_exists != "">
+	  	$('#${parameters.id?html}').val($.datepicker.formatDate('${parameters.displayFormat?html}', new Date(${parameters.yearValue?html}, ${parameters.monthValue?html} - 1, ${parameters.dayValue?html})));
+	  <#else>
+	  	$('#${parameters.id?html}').val($.datepicker.formatDate('yy-mm-dd', new Date(${parameters.yearValue?html}, ${parameters.monthValue?html} - 1, ${parameters.dayValue?html})));
+	  </#if>
+  </#if>
 });
 </script>

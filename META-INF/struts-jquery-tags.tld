@@ -2567,6 +2567,66 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.DatePickerTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[The text to display after each date field, e.g. to show the required format. Default: '']]></description>
+      <name>appendText</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Set to true to place an image after the field to use as the trigger without it appearing on a button. Default: false]]></description>
+      <name>buttonImageOnly</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The text to display on the trigger button. Use in conjunction with showOn equal to 'button' or 'both'. Default: '...']]></description>
+      <name>buttonText</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Control the speed at which the datepicker appears, it may be a time in milliseconds, a string representing one of the three predefined speeds ('slow', 'normal', 'fast'). Default: 'normal']]></description>
+      <name>duration</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Set the first day of the week: Sunday is 0, Monday is 1, ... . Default: 0]]></description>
+      <name>firstDay</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Set how many months to show at once. The value can be a straight integer, or can be a two-element array to define the number of rows and columns to display. e.g. 3 or an array like [2, 3]. Default: 1]]></description>
+      <name>numberOfMonths</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Set the name of the animation used to show/hide the datepicker. Use 'show' (the default), 'slideDown', 'fadeIn', or any of the show/hide jQuery UI effects. Default: 'show']]></description>
+      <name>showAnim</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Have the datepicker appear automatically when the field receives focus ('focus'), appear only when a button is clicked ('button'), or appear when either event takes place ('both'). Default: 'focus']]></description>
+      <name>showOn</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If using one of the jQuery UI effects for showAnim, you can provide additional settings for that animation via this option. e.g. {direction: 'up' }. Default: '-10:+10']]></description>
+      <name>showOptions</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Control the range of years displayed in the year drop-down: either relative to current year (-nn:+nn) or absolute (nnnn:nnnn). Default: '-10:+10']]></description>
+      <name>yearRange</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Set the html accesskey attribute on rendered html element]]></description>
       <name>accesskey</name>
       <required>false</required>
@@ -2635,7 +2695,7 @@
     <attribute>
       <description><![CDATA[HTML id attribute]]></description>
       <name>id</name>
-      <required>true</required>
+      <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
