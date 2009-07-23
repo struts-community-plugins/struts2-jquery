@@ -33,45 +33,59 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class TabbedPanelTag extends AbstractClosingTag {
 
-    private static final long serialVersionUID = -4719930205515386252L;
+  private static final long serialVersionUID = -4719930205515386252L;
 
-    private String selectedTab;
-    private String useSelectedTabCookie;
-    protected String openOnMouseover;
-    protected String collapsible;
-    protected String animate;
+  private String            selectedTab;
+  private String            useSelectedTabCookie;
+  protected String          openOnMouseover;
+  protected String          collapsible;
+  protected String          animate;
+  protected String          spinner;
 
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new TabbedPanel(stack, req, res);
-    }
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new TabbedPanel(stack, req, res);
+  }
 
-    protected void populateParams() {
-        super.populateParams();
-        TabbedPanel tabbedPanel = (TabbedPanel) component;
-        tabbedPanel.setSelectedTab(selectedTab);
-        tabbedPanel.setUseSelectedTabCookie(useSelectedTabCookie);
-        tabbedPanel.setAnimate(animate);
-        tabbedPanel.setCollapsible(collapsible);
-        tabbedPanel.setOpenOnMouseover(openOnMouseover);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
+    TabbedPanel tabbedPanel = (TabbedPanel) component;
+    tabbedPanel.setSelectedTab(selectedTab);
+    tabbedPanel.setUseSelectedTabCookie(useSelectedTabCookie);
+    tabbedPanel.setAnimate(animate);
+    tabbedPanel.setCollapsible(collapsible);
+    tabbedPanel.setOpenOnMouseover(openOnMouseover);
+    tabbedPanel.setSpinner(spinner);
+  }
 
-    public void setSelectedTab(String selectedTab) {
-        this.selectedTab = selectedTab;
-    }
+  public void setSelectedTab(String selectedTab)
+  {
+    this.selectedTab = selectedTab;
+  }
 
-    public void setUseSelectedTabCookie( String useSelectedTabCookie ) {
-        this.useSelectedTabCookie = useSelectedTabCookie;
-    }
+  public void setUseSelectedTabCookie(String useSelectedTabCookie)
+  {
+    this.useSelectedTabCookie = useSelectedTabCookie;
+  }
 
-	public void setOpenOnMouseover(String openOnMouseover) {
-		this.openOnMouseover = openOnMouseover;
-	}
+  public void setOpenOnMouseover(String openOnMouseover)
+  {
+    this.openOnMouseover = openOnMouseover;
+  }
 
-	public void setCollapsible(String collapsible) {
-		this.collapsible = collapsible;
-	}
+  public void setCollapsible(String collapsible)
+  {
+    this.collapsible = collapsible;
+  }
 
-	public void setAnimate(String animate) {
-		this.animate = animate;
-	}
+  public void setAnimate(String animate)
+  {
+    this.animate = animate;
+  }
+
+  public void setSpinner(String spinner)
+  {
+    this.spinner = spinner;
+  }
 }

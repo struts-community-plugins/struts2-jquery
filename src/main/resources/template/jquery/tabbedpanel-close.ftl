@@ -39,6 +39,9 @@ $(document).ready(function () {
   <#if parameters.animate?default(false)>
         fx: { opacity: 'toggle' }, 
   </#if>
+  <#if parameters.spinner?if_exists != "">
+            spinner: '${parameters.spinner}',
+  </#if>
         ajaxOptions:{ dataType:'html'} 
     });
 });
