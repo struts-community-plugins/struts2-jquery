@@ -62,20 +62,47 @@ $(document).ready(function () {
 <#else>
 			autoOpen: false,
 </#if>
-<#if parameters.beforeSend?if_exists != "" || parameters.href?if_exists != "">
-            open : function() {
-<#if parameters.beforeSend?if_exists != "">
-                            ${parameters.beforeSend?html};<#rt/>
+<#if parameters.open?if_exists != "" || parameters.href?if_exists != "">
+            open : function(event, ui) {
+<#if parameters.open?if_exists != "">
+			${parameters.open?html}(event, ui);
 </#if>
 <#if parameters.href?if_exists != "">
-                            $("#${parameters.id?trim}").load("${parameters.href}");<#rt/>
+  $.ajax({
+      url: "${parameters.hrefUrl}",
+   <#if parameters.hrefParameter?if_exists != "">
+      data : "${parameters.hrefParameter}",
+   </#if>
+      type: "GET",
+   <#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
+          beforeSend : function(request){ <#if parameters.beforeSend?if_exists != "">${parameters.beforeSend?html}(request);</#if> <#if parameters.indicator?if_exists != "">$('#${parameters.indicator?trim}').show();</#if> },
+   </#if>
+   <#if parameters.error?if_exists != "">
+          error : function(request, status, error){ ${parameters.error?html}(request, status, error); },
+   </#if>
+   <#if parameters.complete?if_exists != "">
+          complete : function(request, status){ ${parameters.complete?html}(request, status); },
+   </#if>
+      success : function(data){ <#if parameters.indicator?if_exists != "">$('#${parameters.indicator?trim}').hide();</#if> $("#${parameters.id?trim}").html(data);  
+  <#if parameters.effect?if_exists != "">
+ 		<#assign options="{ ${parameters.effectOptions?default('')} }">
+        $("#${parameters.id?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
+  </#if>
+      	},
+      	timeout:	   ${parameters.timeout?default("3000")},
+  <#if parameters.dataType?if_exists != "">
+      dataType:'${parameters.dataType?html}'
+  <#else>
+      dataType:'html' 
+  </#if>
+  });
 </#if>
                          },
 </#if>
-<#if parameters.complete?if_exists != "">
-            close : function() {
-                            ${parameters.complete?html};<#rt/>
-                         },
+<#if parameters.close?if_exists != "">
+      close : function(event, ui) {
+         ${parameters.close?html}(event, ui);<#rt/>
+      },
 </#if>
 <#if parameters.modal?default(false)>
  <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">

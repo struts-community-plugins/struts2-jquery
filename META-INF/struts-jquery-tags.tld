@@ -1857,6 +1857,18 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[This event is triggered when dialog is opened.]]></description>
+      <name>open</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when the dialog is closed.]]></description>
+      <name>close</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Set the html accesskey attribute on rendered html element]]></description>
       <name>accesskey</name>
       <required>false</required>

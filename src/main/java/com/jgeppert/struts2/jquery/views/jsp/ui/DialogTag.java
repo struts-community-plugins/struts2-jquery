@@ -49,6 +49,8 @@ public class DialogTag extends AbstractRemoteTag {
     protected String hideEffect;
     protected String overlayColor;
     protected String overlayOpacity;
+    protected String open;
+    protected String close;
     
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Dialog(stack, req, res);
@@ -73,6 +75,8 @@ public class DialogTag extends AbstractRemoteTag {
         dialog.setHideEffect(hideEffect);
         dialog.setOverlayColor(overlayColor);
         dialog.setOverlayOpacity(overlayOpacity);
+        dialog.setOpen(open);
+        dialog.setClose(close);
     }
 
     public void setButtons(String buttons)
@@ -148,6 +152,16 @@ public class DialogTag extends AbstractRemoteTag {
     public void setOverlayOpacity(String overlayOpacity)
     {
       this.overlayOpacity = overlayOpacity;
+    }
+
+    public void setOpen(String open)
+    {
+      this.open = open;
+    }
+
+    public void setClose(String close)
+    {
+      this.close = close;
     }
 
 }
