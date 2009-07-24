@@ -59,7 +59,19 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
         super.evaluateExtraParams();
 
         if (href != null)
-            addParameter("href", findString(href));
+        {
+            String hrefValue = findString(href);
+            addParameter("href", hrefValue);
+            if(hrefValue.indexOf("?") > 0)
+            {
+              addParameter("hrefUrl", hrefValue.substring(0, hrefValue.indexOf("?")));
+              addParameter("hrefParameter", hrefValue.substring(hrefValue.indexOf("?")+1));
+            }
+            else
+            {
+              addParameter("hrefUrl", hrefValue);
+            }
+        }
         if (beforeSend != null)
             addParameter("beforeSend", findString(beforeSend));
         if (complete != null)

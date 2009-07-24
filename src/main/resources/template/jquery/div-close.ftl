@@ -19,33 +19,25 @@
  */
 -->
 </div>
+<#if parameters.hrefUrl?if_exists != "">
 <script type="text/javascript">
 $(document).ready(function () {
-	$("#${parameters.id?trim}").load(
-        "${parameters.href}", 
-        {
-  <#if parameters.beforeSend?if_exists != "">
-            beforeSend : function() {
-                            ${parameters.beforeSend?html};<#rt/>
-                         },
-  </#if>
-  <#if parameters.complete?if_exists != "">
-            complete : function() {
-                            ${parameters.complete?html};<#rt/>
-                         },
-  </#if>
-  <#if parameters.error?if_exists != "">
-            error : function() {
-                            ${parameters.error?html};<#rt/>
-                         },
-  </#if>
-  <#if parameters.dataType?if_exists != "">
-            ajaxOptions:{ dataType:'${parameters.dataType?html}'<#rt/>
-  <#else>
-             ajaxOptions:{ dataType:'html' }
-  </#if>
-        },
-        function() {
+  $.ajax({
+      url: "${parameters.hrefUrl}",
+   <#if parameters.hrefParameter?if_exists != "">
+      data : "${parameters.hrefParameter}",
+   </#if>
+      type: "GET",
+   <#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
+          beforeSend : function(request){ <#if parameters.beforeSend?if_exists != "">${parameters.beforeSend?html}(request);</#if> <#if parameters.indicator?if_exists != "">$('#${parameters.indicator?trim}').show();</#if> },
+   </#if>
+   <#if parameters.error?if_exists != "">
+          error : function(request, status, error){ ${parameters.error?html}(request, status, error); },
+   </#if>
+   <#if parameters.complete?if_exists != "">
+          complete : function(request, status){ ${parameters.complete?html}(request, status); },
+   </#if>
+      success : function(data){ <#if parameters.indicator?if_exists != "">$('#${parameters.indicator?trim}').hide();</#if> $("#${parameters.id?trim}").html(data);  
   <#if parameters.effect?if_exists != "">
  		<#assign options="{ ${parameters.effectOptions?default('')} }">
         $("#${parameters.id?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
@@ -55,7 +47,14 @@ $(document).ready(function () {
 <#include "droppable.ftl" />
 <#include "selectable.ftl" />
 <#include "sortable.ftl" />
-        }
-	);
+      	},
+      	timeout:	   ${parameters.timeout?default("3000")},
+  <#if parameters.dataType?if_exists != "">
+      dataType:'${parameters.dataType?html}'
+  <#else>
+      dataType:'html' 
+  </#if>
+  });
 });
 </script>
+</#if>

@@ -34,17 +34,17 @@ $(document).ready(function () {
         url:       	   '${parameters.href?html}',
    </#if>
 	<#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
-        beforeSubmit:  function() {
+        beforeSubmit:  function(data, form, options) {
 		  <#if parameters.indicator?if_exists != "">
 		    $('#${parameters.indicator?trim}').show();
 		  </#if>
 		  <#if parameters.beforeSend?if_exists != "">
-		    ${parameters.beforeSend?html}(formData, jqForm, options);
+		    ${parameters.beforeSend?html}(data, form, options);
 		  </#if>
         },
    </#if>
 	<#if parameters.complete?if_exists != "" || parameters.effect?if_exists != "" || parameters.indicator?if_exists != "">
-        success:       function() {
+        success:       function(response, status) {
 	      <#if parameters.indicator?if_exists != "">
 	        $('#${parameters.indicator?trim}').hide();
 	      </#if>
@@ -53,7 +53,17 @@ $(document).ready(function () {
 	        $("${target?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
 	      </#if>
 	      <#if parameters.complete?if_exists != "">
-	        ${parameters.complete?html}(responseText, statusText);
+	        ${parameters.complete?html}(response, status);
+	      </#if>
+        },
+   </#if>
+	<#if parameters.error?if_exists != "">
+        error:       function(status, request) {
+	      <#if parameters.indicator?if_exists != "">
+	        $('#${parameters.indicator?trim}').hide();
+	      </#if>
+	      <#if parameters.error?if_exists != "">
+	        ${parameters.error?html}(status, request);
 	      </#if>
         },
    </#if>

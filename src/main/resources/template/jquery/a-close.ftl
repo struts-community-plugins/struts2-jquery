@@ -32,17 +32,17 @@ $('#${parameters.id?html}').click(function() {
 </#assign>
         $('#${parameters.formId?html}').ajaxSubmit({
 	<#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
-        beforeSubmit:  function() {
+        beforeSubmit:  function(data, form, options) {
 		  <#if parameters.indicator?if_exists != "">
 		    $('#${parameters.indicator?trim}').show();
 		  </#if>
 		  <#if parameters.beforeSend?if_exists != "">
-		    ${parameters.beforeSend?html}(formData, jqForm, options);
+		    ${parameters.beforeSend?html}(data, form, options);
 		  </#if>
         },
    </#if>
 	<#if parameters.complete?if_exists != "" || parameters.effect?if_exists != "" || parameters.indicator?if_exists != "">
-        success:       function() {
+        success:       function(response, status) {
 	      <#if parameters.indicator?if_exists != "">
 	        $('#${parameters.indicator?trim}').hide();
 	      </#if>
@@ -51,12 +51,22 @@ $('#${parameters.id?html}').click(function() {
 	        $("${target?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
 	      </#if>
 	      <#if parameters.complete?if_exists != "">
-	        ${parameters.complete?html}(responseText, statusText);
+	        ${parameters.complete?html}(response, status);
+	      </#if>
+        },
+   </#if>
+	<#if parameters.error?if_exists != "">
+        error:       function(status, request) {
+	      <#if parameters.indicator?if_exists != "">
+	        $('#${parameters.indicator?trim}').hide();
+	      </#if>
+	      <#if parameters.error?if_exists != "">
+	        ${parameters.error?html}(status, request);
 	      </#if>
         },
    </#if>
    <#if parameters.dataType?if_exists != "">
-        success:       '${parameters.dataType?html}',
+        dataType:       '${parameters.dataType?html}',
    </#if>
    		timeout:	   ${parameters.timeout?default("3000")},
         target:        '${target?trim}'
@@ -74,44 +84,37 @@ $('#${parameters.id?html}').click(function() {
     $('#${parameters.indicator?trim}').show();
   </#if>
 <#list parameters.targets?split(",") as target>
-    $("#${target?trim}").load(
-        "${parameters.href}", 
-        {
-  <#if parameters.beforeSend?if_exists != "">
-            beforeSend : function(xhr) {
-                            ${parameters.beforeSend?html}(xhr);<#rt/>
-                         },
-  </#if>
-  <#if parameters.complete?if_exists != "">
-            complete : function(xhr,status) {
-                            ${parameters.complete?html}(xhr, status);<#rt/>
-                         },
-  </#if>
-  <#if parameters.error?if_exists != "">
-            error : function(xhr,status,error) {
-                            ${parameters.error?html}(xhr, status, error);<#rt/>
-                         },
-  </#if>
-  <#if parameters.dataType?if_exists != "">
-            ajaxOptions:{ dataType:'${parameters.dataType?html}', timeout : ${parameters.timeout?default("3000")}<#rt/>
-  <#else>
-             ajaxOptions:{ dataType:'html', timeout : ${parameters.timeout?default("3000")} }
-  </#if>
-        },
-        function() {
-  <#if parameters.indicator?if_exists != "">
-    $('#${parameters.indicator?trim}').hide();
-  </#if>
+  $.ajax({
+      url: "${parameters.hrefUrl}",
+   <#if parameters.hrefParameter?if_exists != "">
+      data : "${parameters.hrefParameter}",
+   </#if>
+      type: "GET",
+   <#if parameters.beforeSend?if_exists != "" || parameters.indicator?if_exists != "">
+          beforeSend : function(request){ <#if parameters.beforeSend?if_exists != "">${parameters.beforeSend?html}(request);</#if> <#if parameters.indicator?if_exists != "">$('#${parameters.indicator?trim}').show();</#if> },
+   </#if>
+   <#if parameters.error?if_exists != "">
+          error : function(request, status, error){ <#if parameters.indicator?if_exists != "">$('#${parameters.indicator?trim}').hide();</#if> ${parameters.error?html}(request, status, error); },
+   </#if>
+   <#if parameters.complete?if_exists != "">
+          complete : function(request, status){ ${parameters.complete?html}(request, status); },
+   </#if>
+      success : function(data){ <#if parameters.indicator?if_exists != "">$('#${parameters.indicator?trim}').hide();</#if> $("#${target?trim}").html(data);  
   <#if parameters.effect?if_exists != "">
-		<#assign options="{ ${parameters.effectOptions?default('')} }">
+ 		<#assign options="{ ${parameters.effectOptions?default('')} }">
         $("#${target?trim}").effect("${parameters.effect?html}",${options?html},${parameters.effectDuration?default('2000')});
   </#if>
-        }
-        );
+      	},
+      	timeout:	   ${parameters.timeout?default("3000")},
+  <#if parameters.dataType?if_exists != "">
+      dataType:'${parameters.dataType?html}'
+  <#else>
+      dataType:'html' 
+  </#if>
+  });
 </#list>
   </#if>
   });
-
 </#if>
 });
 </script>
