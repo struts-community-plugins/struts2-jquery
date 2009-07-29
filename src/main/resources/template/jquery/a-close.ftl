@@ -114,6 +114,7 @@ $('#${parameters.id?html}').click(function() {
   });
 </#list>
   </#if>
+      return false;
   });
 </#if>
 });
