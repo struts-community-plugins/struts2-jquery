@@ -102,8 +102,17 @@ public class Slider extends UIBean {
           addParameter("stop", findString(stop));
         if(displayValueElement != null) 
           addParameter("displayValueElement", findString(displayValueElement));
-        if(value != null) 
+        if (value != null)
+        {
           addParameter("value", findValue(value));
+        }
+        else
+        {
+          if (name != null)
+          {
+            addParameter("value", findValue(name));
+          }
+        }
         
         if ((this.id == null || this.id.length() == 0)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs 

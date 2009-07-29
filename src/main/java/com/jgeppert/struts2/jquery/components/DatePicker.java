@@ -25,13 +25,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Date;
 import org.apache.struts2.components.UIBean;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
@@ -143,16 +143,37 @@ public class DatePicker extends UIBean {
       addParameter("id", this.id);
     }
 
-    Object findValue = null;
-    if (value != null)
+    Date findValue = null;
+    if (value != null || name != null)
     {
       try
       {
-        findValue = findValue(value, java.util.Date.class);
-
+        if (value != null)
+        {
+          findValue = (Date)findValue(value, Date.class);
+        }
+        else
+        {
+          if (name != null)
+          {
+            findValue = (Date)findValue(name, Date.class);
+          }
+        }
+        
         if (findValue == null)
         {
-          String formatValue = format(findString(value));
+          String formatValue = null;
+          if (value != null)
+          {
+            formatValue = format(findString(value));
+          }
+          else
+          {
+            if (name != null)
+            {
+              formatValue = format(findString(name));
+            }
+          }
           if (formatValue != null) findValue = new SimpleDateFormat(RFC3339_FORMAT).parse(formatValue);
         }
 
@@ -348,7 +369,7 @@ public class DatePicker extends UIBean {
         return MessageFormat.format(RFC3339_PATTERN, c.getTime());
       }
 
-      java.util.Date date = null;
+      Date date = null;
       // formats used to parse the date
       List<DateFormat> formats = new ArrayList<DateFormat>();
       formats.add(new SimpleDateFormat(RFC3339_FORMAT));

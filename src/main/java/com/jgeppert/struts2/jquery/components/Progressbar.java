@@ -66,8 +66,18 @@ public class Progressbar extends UIBean {
   {
     super.evaluateExtraParams();
 
-    if (value != null) addParameter("value", findString(value));
     if (change != null) addParameter("change", findString(change));
+    if (value != null)
+    {
+      addParameter("value", findString(value));
+    }
+    else
+    {
+      if (name != null)
+      {
+        addParameter("value", findString(name));
+      }
+    }
 
     if ((this.id == null || this.id.length() == 0))
     {
