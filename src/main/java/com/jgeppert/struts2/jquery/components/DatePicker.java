@@ -146,47 +146,49 @@ public class DatePicker extends UIBean {
     Date findValue = null;
     if (value != null || name != null)
     {
-      try
+      if (value != null)
       {
+        findValue = (Date) findValue(value, Date.class);
+      }
+      else
+      {
+        if (name != null)
+        {
+          findValue = (Date) findValue(name, Date.class);
+        }
+      }
+
+      if (findValue == null)
+      {
+        String formatValue = null;
         if (value != null)
         {
-          findValue = (Date)findValue(value, Date.class);
+          formatValue = format(findString(value));
         }
         else
         {
           if (name != null)
           {
-            findValue = (Date)findValue(name, Date.class);
+            formatValue = format(findString(name));
           }
         }
-        
-        if (findValue == null)
+        if (formatValue != null)
         {
-          String formatValue = null;
-          if (value != null)
+          try
           {
-            formatValue = format(findString(value));
+            findValue = new SimpleDateFormat(RFC3339_FORMAT).parse(formatValue);
           }
-          else
+          catch (ParseException pe)
           {
-            if (name != null)
-            {
-              formatValue = format(findString(name));
-            }
           }
-          if (formatValue != null) findValue = new SimpleDateFormat(RFC3339_FORMAT).parse(formatValue);
-        }
-
-        if (findValue != null)
-        {
-          addParameter("dayValue", new SimpleDateFormat("d").format(findValue));
-          addParameter("monthValue", new SimpleDateFormat("M").format(findValue));
-          addParameter("yearValue", new SimpleDateFormat("yyyy").format(findValue));
         }
       }
-      catch (ParseException e)
+
+      if (findValue != null)
       {
-        LOG.error("Cannot parse value : " + e.getMessage(), e);
+        addParameter("dayValue", new SimpleDateFormat("d").format(findValue));
+        addParameter("monthValue", new SimpleDateFormat("M").format(findValue));
+        addParameter("yearValue", new SimpleDateFormat("yyyy").format(findValue));
       }
     }
 
