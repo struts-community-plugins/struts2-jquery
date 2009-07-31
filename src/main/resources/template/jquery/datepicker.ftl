@@ -33,8 +33,8 @@
   <#if parameters.id?if_exists != "">
     id="${parameters.id?html}"<#rt/>
   </#if>
-  <#if parameters.value?if_exists != "">
-    value="${parameters.value?html}"<#rt/>
+  <#if parameters.nameValue?if_exists != "">
+    value="${parameters.nameValue?html}"<#rt/>
   </#if>
   <#if parameters.name?if_exists != "">
     name="${parameters.name?html}"<#rt/>

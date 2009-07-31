@@ -143,52 +143,58 @@ public class DatePicker extends UIBean {
       addParameter("id", this.id);
     }
 
-    Date findValue = null;
-    if (value != null || name != null)
+    Object nameValue = null;
+    if (value != null)
     {
-      if (value != null)
+      nameValue = findValue(value, Date.class);
+      if(nameValue == null)
+        nameValue = findString(value);
+    }
+    else
+    {
+      if (name != null)
       {
-        findValue = (Date) findValue(value, Date.class);
+        nameValue = findValue(name, Date.class);
+        if(nameValue == null)
+          nameValue = findString(name);
+      }
+    }
+    
+    
+    Date dateValue = null;
+    String formatValue = null;
+    if (nameValue != null)
+    {
+      if (nameValue instanceof Date)
+      {
+        dateValue = (Date) nameValue;
       }
       else
       {
-        if (name != null)
+        formatValue = format(nameValue);
+      }
+
+      if (formatValue != null)
+      {
+        try
         {
-          findValue = (Date) findValue(name, Date.class);
+          dateValue = new SimpleDateFormat(RFC3339_FORMAT).parse(formatValue);
+        }
+        catch (ParseException pe)
+        {
+          dateValue = null;
+          formatValue = null;
         }
       }
 
-      if (findValue == null)
+      if(formatValue != null)
+        addParameter("nameValue", formatValue);
+      
+      if (dateValue != null)
       {
-        String formatValue = null;
-        if (value != null)
-        {
-          formatValue = format(findString(value));
-        }
-        else
-        {
-          if (name != null)
-          {
-            formatValue = format(findString(name));
-          }
-        }
-        if (formatValue != null)
-        {
-          try
-          {
-            findValue = new SimpleDateFormat(RFC3339_FORMAT).parse(formatValue);
-          }
-          catch (ParseException pe)
-          {
-          }
-        }
-      }
-
-      if (findValue != null)
-      {
-        addParameter("dayValue", new SimpleDateFormat("d").format(findValue));
-        addParameter("monthValue", new SimpleDateFormat("M").format(findValue));
-        addParameter("yearValue", new SimpleDateFormat("yyyy").format(findValue));
+        addParameter("dayValue", new SimpleDateFormat("d").format(dateValue));
+        addParameter("monthValue", new SimpleDateFormat("M").format(dateValue));
+        addParameter("yearValue", new SimpleDateFormat("yyyy").format(dateValue));
       }
     }
 
@@ -386,6 +392,8 @@ public class DatePicker extends UIBean {
           String df = (String) getParameters().get("displayFormat");
           SimpleDateFormat displayFormat = new SimpleDateFormat(df);
           formats.add(displayFormat);
+          
+          // jQuery dateFormat is incompatiple with JavaFormat
           String dfr = df.replaceAll("([y]{2})", "yyyy");
           SimpleDateFormat displayFormatReplaced = new SimpleDateFormat(dfr);
           formats.add(displayFormatReplaced);
