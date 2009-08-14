@@ -34,7 +34,6 @@ public class AnchorTag extends AbstractRemoteTag {
 
     private static final long serialVersionUID = -1034616578492431113L;
 
-    protected String targets;
     protected String openDialog;
     
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
@@ -45,12 +44,7 @@ public class AnchorTag extends AbstractRemoteTag {
         super.populateParams();
 
         Anchor link = (Anchor) component;
-        link.setTargets(targets);
         link.setOpenDialog(openDialog);
-    }
-
-    public void setTargets(String targets) {
-        this.targets = targets;
     }
 
     public void setOpenDialog(String openDialog)

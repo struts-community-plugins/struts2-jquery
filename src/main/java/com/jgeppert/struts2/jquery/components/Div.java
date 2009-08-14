@@ -61,6 +61,8 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
   public static final String            COMPONENT_NAME = Div.class.getName();
   final private static transient Random RANDOM         = new Random();
 
+  protected String reloadTopics;      //topics that will cause container to reload
+
   protected String                      resizable;
   protected String                      resizableAnimate;
   protected String                      resizableAnimateDuration;
@@ -170,6 +172,7 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
   protected String                      sortableActivate;
   protected String                      sortable;
 
+
   public Div(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
@@ -188,117 +191,238 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
   {
     super.evaluateExtraParams();
 
-    if (resizable != null) addParameter("resizable", findValue(resizable, Boolean.class));
-    if (resizableAnimate != null) addParameter("resizableAnimate", findValue(resizableAnimate, Boolean.class));
-    if (resizableAnimateDuration != null) addParameter("resizableAnimateDuration", findString(resizableAnimateDuration));
-    if (resizableAnimateEasing != null) addParameter("resizableAnimateEasing", findString(resizableAnimateEasing));
-    if (resizableAspectRatio != null) addParameter("resizableAspectRatio", findValue(resizableAspectRatio, Boolean.class));
-    if (resizableAutoHide != null) addParameter("resizableAutoHide", findValue(resizableAutoHide, Boolean.class));
-    if (resizableContainment != null) addParameter("resizableContainment", findString(resizableContainment));
-    if (resizableDelay != null) addParameter("resizableDelay", findString(resizableDelay));
-    if (resizableDistance != null) addParameter("resizableDistance", findString(resizableDistance));
-    if (resizableGhost != null) addParameter("resizableGhost", findValue(resizableGhost, Boolean.class));
-    if (resizableHelper != null) addParameter("resizableHelper", findString(resizableHelper));
-    if (resizableMaxHeight != null) addParameter("resizableMaxHeight", findString(resizableMaxHeight));
-    if (resizableMaxWidth != null) addParameter("resizableMaxWidth", findString(resizableMaxWidth));
-    if (resizableMinHeight != null) addParameter("resizableMinHeight", findString(resizableMinHeight));
-    if (resizableMinWidth != null) addParameter("resizableMinWidth", findString(resizableMinWidth));
-    if (resizableResize != null) addParameter("resizableResize", findString(resizableResize));
-    if (resizableStart != null) addParameter("resizableStart", findString(resizableStart));
-    if (resizableStop != null) addParameter("resizableStop", findString(resizableStop));
-    if (resizableHandles != null) addParameter("resizableHandles", findString(resizableHandles));
+    if (reloadTopics != null) addParameter("reloadTopics", findString(reloadTopics));
+    
+    
+    if (resizable != null)
+    {
+      String resizableValue = findString(resizable);
+      if(resizableValue != null && resizableValue.equalsIgnoreCase("true"));
+      {
+        addParameter("resizable", Boolean.TRUE);
+        StringBuilder resizeableBuilder = new StringBuilder();
+        resizeableBuilder.append("{ dummy : false");
+        if (resizableAnimate != null) { resizeableBuilder.append(", animate: "); resizeableBuilder.append(findString(resizableAnimate)); };
+        if (resizableAspectRatio != null) { resizeableBuilder.append(", aspectRatio: "); resizeableBuilder.append(findString(resizableAspectRatio)); };
+        if (resizableAutoHide != null) { resizeableBuilder.append(", autoHide: "); resizeableBuilder.append(findString(resizableAutoHide)); };
+        if (resizableGhost != null) { resizeableBuilder.append(", ghost: "); resizeableBuilder.append(findString(resizableGhost)); };
 
-    if (droppable != null) addParameter("droppable", findValue(droppable, Boolean.class));
-    if (droppableAccept != null) addParameter("droppableAccept", findString(droppableAccept));
-    if (droppableActiveClass != null) addParameter("droppableActiveClass", findString(droppableActiveClass));
-    if (droppableAddClasses != null) addParameter("droppableAddClasses", findValue(droppableAddClasses, Boolean.class));
-    if (droppableGreedy != null) addParameter("droppableGreedy", findValue(droppableGreedy, Boolean.class));
-    if (droppableHoverClass != null) addParameter("droppableHoverClass", findString(droppableHoverClass));
-    if (droppableScope != null) addParameter("droppableScope", findString(droppableScope));
-    if (droppableTolerance != null) addParameter("droppableTolerance", findString(droppableTolerance));
-    if (droppableActivate != null) addParameter("droppableActivate", findString(droppableActivate));
-    if (droppableDeactivate != null) addParameter("droppableDeactivate", findString(droppableDeactivate));
-    if (droppableOver != null) addParameter("droppableOver", findString(droppableOver));
-    if (droppableOut != null) addParameter("droppableOut", findString(droppableOut));
-    if (droppableDrop != null) addParameter("droppableDrop", findString(droppableDrop));
+        if (resizableAnimateDuration != null) { resizeableBuilder.append(", animateDuration: "); resizeableBuilder.append(findString(resizableAnimateDuration)); };
+        if (resizableDelay != null) { resizeableBuilder.append(", delay: "); resizeableBuilder.append(findString(resizableDelay)); };
+        if (resizableDistance != null) { resizeableBuilder.append(", distance: "); resizeableBuilder.append(findString(resizableDistance)); };
+        if (resizableMaxHeight != null) { resizeableBuilder.append(", maxHeight: "); resizeableBuilder.append(findString(resizableMaxHeight)); };
+        if (resizableMaxWidth != null) { resizeableBuilder.append(", maxWidth: "); resizeableBuilder.append(findString(resizableMaxWidth)); };
+        if (resizableMinHeight != null) { resizeableBuilder.append(", minHeight: "); resizeableBuilder.append(findString(resizableMinHeight)); };
+        if (resizableMinWidth != null) { resizeableBuilder.append(", minWidth: "); resizeableBuilder.append(findString(resizableMinWidth)); };
 
-    if (draggable != null) addParameter("draggable", findValue(draggable, Boolean.class));
-    if (draggableAddClasses != null) addParameter("draggableAddClasses", findValue(draggableAddClasses, Boolean.class));
-    if (draggableAppendTo != null) addParameter("draggableAppendTo", findString(draggableAppendTo));
-    if (draggableAxis != null) addParameter("draggableAxis", findString(draggableAxis));
-    if (draggableCancel != null) addParameter("draggableCancel", findString(draggableCancel));
-    if (draggableContainment != null) addParameter("draggableContainment", findString(draggableContainment));
-    if (draggableDelay != null) addParameter("draggableDelay", findString(draggableDelay));
-    if (draggableDistance != null) addParameter("draggableDistance", findString(draggableDistance));
-    if (draggableDrag != null) addParameter("draggableDrag", findString(draggableDrag));
-    if (draggableHandle != null) addParameter("draggableHandle", findString(draggableHandle));
-    if (draggableHelper != null) addParameter("draggableHelper", findString(draggableHelper));
-    if (draggableIframeFix != null) addParameter("draggableIframeFix", findString(draggableIframeFix));
-    if (draggableOpacity != null) addParameter("draggableOpacity", findString(draggableOpacity));
-    if (draggableRefreshPositions != null) addParameter("draggableRefreshPositions", findValue(draggableRefreshPositions, Boolean.class));
-    if (draggableRevert != null) addParameter("draggableRevert", findString(draggableRevert));
-    if (draggableRevertDuration != null) addParameter("draggableRevertDuration", findString(draggableRevertDuration));
-    if (draggableScope != null) addParameter("draggableScope", findString(draggableScope));
-    if (draggableScroll != null) addParameter("draggableScroll", findValue(draggableScroll, Boolean.class));
-    if (draggableScrollSensitivity != null) addParameter("draggableScrollSensitivity", findString(draggableScrollSensitivity));
-    if (draggableScrollSpeed != null) addParameter("draggableScrollSpeed", findString(draggableScrollSpeed));
-    if (draggableSnap != null) addParameter("draggableSnap", findValue(draggableSnap, Boolean.class));
-    if (draggableSnapMode != null) addParameter("draggableSnapMode", findString(draggableSnapMode));
-    if (draggableSnapTolerance != null) addParameter("draggableSnapTolerance", findString(draggableSnapTolerance));
-    if (draggableStart != null) addParameter("draggableStart", findString(draggableStart));
-    if (draggableStop != null) addParameter("draggableStop", findString(draggableStop));
-    if (draggableZindex != null) addParameter("draggableZindex", findString(draggableZindex));
+        if (resizableAnimateEasing != null) { resizeableBuilder.append(", animateEasing: '"); resizeableBuilder.append(findString(resizableAnimateEasing)); resizeableBuilder.append("' "); }
+        if (resizableHelper != null) { resizeableBuilder.append(", helper: '"); resizeableBuilder.append(findString(resizableHelper)); resizeableBuilder.append("' "); }
+        if (resizableHandles != null) { resizeableBuilder.append(", handles: '"); resizeableBuilder.append(findString(resizableHandles)); resizeableBuilder.append("' "); }
 
-    if (selectable != null) addParameter("selectable", findValue(selectable, Boolean.class));
-    if (selectableCancel != null) addParameter("selectableCancel", findString(selectableCancel));
-    if (selectableDelay != null) addParameter("selectableDelay", findString(selectableDelay));
-    if (selectableDistance != null) addParameter("selectableDistance", findString(selectableDistance));
-    if (selectableFilter != null) addParameter("selectableFilter", findString(selectableFilter));
-    if (selectableSelected != null) addParameter("selectableSelected", findString(selectableSelected));
-    if (selectableSelecting != null) addParameter("selectableSelecting", findString(selectableSelecting));
-    if (selectableStart != null) addParameter("selectableStart", findString(selectableStart));
-    if (selectableStop != null) addParameter("selectableStop", findString(selectableStop));
-    if (selectableTolerance != null) addParameter("selectableTolerance", findString(selectableTolerance));
-    if (selectableUnselected != null) addParameter("selectableUnselected", findString(selectableUnselected));
-    if (selectableUnselecting != null) addParameter("selectableUnselecting", findString(selectableUnselecting));
+        if (resizableResize != null) { resizeableBuilder.append(", resize: function(event, ui) { "); resizeableBuilder.append(findString(resizableResize)); resizeableBuilder.append("(event, ui); } "); }
+        if (resizableStart != null) { resizeableBuilder.append(", start: function(event, ui) { "); resizeableBuilder.append(findString(resizableStart)); resizeableBuilder.append("(event, ui); } "); }
+        if (resizableStop != null) { resizeableBuilder.append(", stop: function(event, ui) { "); resizeableBuilder.append(findString(resizableStop)); resizeableBuilder.append("(event, ui); } "); }
 
+        if (resizableContainment != null) { 
+          resizeableBuilder.append(", containment: '"); 
+          String containmentValue = findString(resizableContainment);
+          
+          if(containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document")){
+            resizeableBuilder.append("'");
+            resizeableBuilder.append(containmentValue);
+          }
+          else{
+            resizeableBuilder.append("'#");
+            resizeableBuilder.append(containmentValue);
+          }
+          resizeableBuilder.append("'");
+        }
 
-    if (sortable != null) addParameter("sortable", findValue(sortable, Boolean.class));
-    if (sortableActivate != null) addParameter("sortableActivate", findString(sortableActivate));
-    if (sortableAppendTo != null) addParameter("sortableAppendTo", findString(sortableAppendTo));
-    if (sortableAxis != null) addParameter("sortableAxis", findString(sortableAxis));
-    if (sortableBeforeStop != null) addParameter("sortableBeforeStop", findString(sortableBeforeStop));
-    if (sortableCancel != null) addParameter("sortableCancel", findString(sortableCancel));
-    if (sortableChange != null) addParameter("sortableChange", findString(sortableChange));
-    if (sortableConnectWith != null) addParameter("sortableConnectWith", findString(sortableConnectWith));
-    if (sortableContainment != null) addParameter("sortableContainment", findString(sortableContainment));
-    if (sortableCursor != null) addParameter("sortableCursor", findString(sortableCursor));
-    if (sortableCursorAt != null) addParameter("sortableCursorAt", findString(sortableCursorAt));
-    if (sortableDeactivate != null) addParameter("sortableDeactivate", findString(sortableDeactivate));
-    if (sortableDelay != null) addParameter("sortableDelay", findString(sortableDelay));
-    if (sortableDistance != null) addParameter("sortableDistance", findString(sortableDistance));
-    if (sortableDropOnEmpty != null) addParameter("sortableDropOnEmpty", findValue(sortableDropOnEmpty, Boolean.class));
-    if (sortableForceHelperSize != null) addParameter("sortableForceHelperSize", findValue(sortableForceHelperSize, Boolean.class));
-    if (sortableForcePlaceholderSize != null) addParameter("sortableForcePlaceholderSize", findValue(sortableForcePlaceholderSize, Boolean.class));
-    if (sortableGrid != null) addParameter("sortableGrid", findString(sortableGrid));
-    if (sortableHandle != null) addParameter("sortableHandle", findString(sortableHandle));
-    if (sortableItems != null) addParameter("sortableItems", findString(sortableItems));
-    if (sortableOpacity != null) addParameter("sortableOpacity", findString(sortableOpacity));
-    if (sortableOut != null) addParameter("sortableOut", findString(sortableOut));
-    if (sortableOver != null) addParameter("sortableOver", findString(sortableOver));
-    if (sortablePlaceholder != null) addParameter("sortablePlaceholder", findString(sortablePlaceholder));
-    if (sortableReceive != null) addParameter("sortableReceive", findString(sortableReceive));
-    if (sortableRemove != null) addParameter("sortableRemove", findString(sortableRemove));
-    if (sortableRevert != null) addParameter("sortableRevert", findValue(sortableRevert, Boolean.class));
-    if (sortableScroll != null) addParameter("sortableScroll", findValue(sortableScroll, Boolean.class));
-    if (sortableScrollSensitivity != null) addParameter("sortableScrollSensitivity", findString(sortableScrollSensitivity));
-    if (sortableScrollSpeed != null) addParameter("sortableScrollSpeed", findString(sortableScrollSpeed));
-    if (sortableSort != null) addParameter("sortableSort", findString(sortableSort));
-    if (sortableStart != null) addParameter("sortableStart", findString(sortableStart));
-    if (sortableStop != null) addParameter("sortableStop", findString(sortableStop));
-    if (sortableTolerance != null) addParameter("sortableTolerance", findString(sortableTolerance));
-    if (sortableUpdate != null) addParameter("sortableUpdate", findString(sortableUpdate));
-    if (sortableZindex != null) addParameter("sortableZindex", findString(sortableZindex));
+        resizeableBuilder.append(" }");
+        addParameter("resizableOptions", resizeableBuilder.toString());
+      }
+    }
+
+    
+    if (droppable != null)
+    {
+      String droppableValue = findString(droppable);
+      if(droppableValue != null && droppableValue.equalsIgnoreCase("true"));
+      {
+        addParameter("droppable", Boolean.TRUE);
+        StringBuilder droppableBuilder = new StringBuilder();
+        droppableBuilder.append("{ dummy : false");
+        if (droppableAccept != null) { droppableBuilder.append(", accept: '"); droppableBuilder.append(findString(droppableAccept)); droppableBuilder.append("' "); }
+        if (droppableActiveClass != null) { droppableBuilder.append(", activeClass: '"); droppableBuilder.append(findString(droppableActiveClass)); droppableBuilder.append("' "); }
+        if (droppableAddClasses != null) { droppableBuilder.append(", addClasses: "); droppableBuilder.append(findString(droppableAddClasses)); };
+        if (droppableGreedy != null) { droppableBuilder.append(", cancel: "); droppableBuilder.append(findString(droppableGreedy)); }
+        if (droppableTolerance != null) { droppableBuilder.append(", tolerance: '"); droppableBuilder.append(findString(droppableTolerance)); droppableBuilder.append("' "); }
+        if (droppableScope != null) { droppableBuilder.append(", scope: '"); droppableBuilder.append(findString(droppableScope)); droppableBuilder.append("' "); }
+        if (droppableHoverClass != null) { droppableBuilder.append(", hoverClass: '"); droppableBuilder.append(findString(droppableHoverClass)); droppableBuilder.append("' "); }
+
+        if (droppableActivate != null) { droppableBuilder.append(", activate: function(event, ui) { "); droppableBuilder.append(findString(droppableActivate)); droppableBuilder.append("(event, ui, $(this)); } "); }
+        if (droppableDeactivate != null) { droppableBuilder.append(", deactivate: function(event, ui) { "); droppableBuilder.append(findString(droppableDeactivate)); droppableBuilder.append("(event, ui, $(this)); } "); }
+        if (droppableOver != null) { droppableBuilder.append(", over: function(event, ui) { "); droppableBuilder.append(findString(droppableOver)); droppableBuilder.append("(event, ui, $(this)); } "); }
+        if (droppableOut != null) { droppableBuilder.append(", out: function(event, ui) { "); droppableBuilder.append(findString(droppableOut)); droppableBuilder.append("(event, ui, $(this)); } "); }
+        if (droppableDrop != null) { droppableBuilder.append(", drop: function(event, ui) { "); droppableBuilder.append(findString(droppableDrop)); droppableBuilder.append("(event, ui, $(this)); } "); }
+        droppableBuilder.append(" }");
+        addParameter("droppableOptions", droppableBuilder.toString());
+      }
+    }
+
+    if (draggable != null)
+    {
+      String draggableValue = findString(draggable);
+      if(draggableValue != null && draggableValue.equalsIgnoreCase("true"));
+      {
+        addParameter("draggable", Boolean.TRUE);
+        StringBuilder draggableBuilder = new StringBuilder();
+        draggableBuilder.append("{ dummy : false");
+        if (draggableAddClasses != null) { draggableBuilder.append(", addClasses: "); draggableBuilder.append(findString(draggableAddClasses)); };
+        if (draggableAppendTo != null) { draggableBuilder.append(", appendTo: '"); draggableBuilder.append(findString(draggableAppendTo)); draggableBuilder.append("' "); }
+        if (draggableAxis != null) { draggableBuilder.append(", axis: '"); draggableBuilder.append(findString(draggableAxis)); draggableBuilder.append("' "); }
+        if (draggableCancel != null) { draggableBuilder.append(", cancel: '"); draggableBuilder.append(findString(draggableCancel)); draggableBuilder.append("' "); }
+        if (draggableDelay != null) { draggableBuilder.append(", delay: "); draggableBuilder.append(findString(draggableDelay)); }
+        if (draggableDistance != null) { draggableBuilder.append(", distance: "); draggableBuilder.append(findString(draggableDistance)); }
+        if (draggableHandle != null) { draggableBuilder.append(", handle: '"); draggableBuilder.append(findString(draggableHandle)); draggableBuilder.append("' "); }
+        if (draggableHelper != null) { draggableBuilder.append(", helper: '"); draggableBuilder.append(findString(draggableHelper)); draggableBuilder.append("' "); }
+        if (draggableIframeFix != null) { draggableBuilder.append(", iframeFix: "); draggableBuilder.append(findString(draggableIframeFix)); }
+        if (draggableOpacity != null) { draggableBuilder.append(", opacity: '"); draggableBuilder.append(findString(draggableOpacity)); draggableBuilder.append("' "); }
+        if (draggableRefreshPositions != null) { draggableBuilder.append(", refreshPositions: "); draggableBuilder.append(findString(draggableRefreshPositions)); }
+        if (draggableRevertDuration != null) { draggableBuilder.append(", revertDuration: "); draggableBuilder.append(findString(draggableRevertDuration)); }
+        if (draggableScope != null) { draggableBuilder.append(", scope: '"); draggableBuilder.append(findString(draggableScope)); draggableBuilder.append("' "); }
+        if (draggableScroll != null) { draggableBuilder.append(", scroll: "); draggableBuilder.append(findString(draggableScroll)); }
+        if (draggableScrollSensitivity != null) { draggableBuilder.append(", sensitivity: "); draggableBuilder.append(findString(draggableScrollSensitivity)); }
+        if (draggableScrollSpeed != null) { draggableBuilder.append(", scrollSpeed: true"); draggableBuilder.append(findString(draggableScrollSpeed)); }
+        if (draggableSnap != null) { draggableBuilder.append(", snap: "); draggableBuilder.append(findString(draggableSnap)); }
+        if (draggableSnapMode != null) { draggableBuilder.append(", snapMode: '"); draggableBuilder.append(findString(draggableSnapMode)); draggableBuilder.append("' "); }
+        if (draggableSnapTolerance != null) { draggableBuilder.append(", snapTolerance: "); draggableBuilder.append(findString(draggableSnapTolerance)); }
+        if (draggableZindex != null) { draggableBuilder.append(", zIndex: "); draggableBuilder.append(findString(draggableZindex)); }
+
+        if (draggableDrag != null) { draggableBuilder.append(", drag: function(event, ui) { "); draggableBuilder.append(findString(draggableDrag)); draggableBuilder.append("(event, ui); } "); }
+        if (draggableStart != null) { draggableBuilder.append(", start: function(event, ui) { "); draggableBuilder.append(findString(draggableStart)); draggableBuilder.append("(event, ui); } "); }
+        if (draggableStop != null) { draggableBuilder.append(", stop: function(event, ui) { "); draggableBuilder.append(findString(draggableStop)); draggableBuilder.append("(event, ui); } "); }
+
+        if (draggableRevert != null) { 
+          draggableBuilder.append(", revert: "); 
+          String revertValue = findString(draggableRevert);
+          
+          if(revertValue.equalsIgnoreCase("true") || revertValue.equalsIgnoreCase("false")){
+            draggableBuilder.append(revertValue);
+          }
+          else{
+            draggableBuilder.append("'");
+            draggableBuilder.append(revertValue);
+            draggableBuilder.append("'");
+          }
+        }
+        if (draggableContainment != null) { 
+          draggableBuilder.append(", containment: '"); 
+          String containmentValue = findString(draggableContainment);
+          
+          if(containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document") || containmentValue.equalsIgnoreCase("window")){
+            draggableBuilder.append("'");
+            draggableBuilder.append(containmentValue);
+          }
+          else{
+            draggableBuilder.append("'#");
+            draggableBuilder.append(containmentValue);
+          }
+          draggableBuilder.append("'");
+        }
+      
+        draggableBuilder.append(" }");
+        addParameter("draggableOptions", draggableBuilder.toString());
+      }
+    }
+
+    if (selectable != null)
+    {
+      String selectableValue = findString(selectable);
+      if(selectableValue != null && selectableValue.equalsIgnoreCase("true"));
+      {
+        addParameter("selectable", Boolean.TRUE);
+        StringBuilder selectableBuilder = new StringBuilder();
+        selectableBuilder.append("{ dummy : false");
+        if (selectableDelay != null) { selectableBuilder.append(", delay: "); selectableBuilder.append(findString(selectableDelay)); }
+        if (selectableDistance != null) { selectableBuilder.append(", distance: "); selectableBuilder.append(findString(selectableDistance)); }
+        if (selectableFilter != null) { selectableBuilder.append(", filter: '"); selectableBuilder.append(findString(selectableFilter)); selectableBuilder.append("' "); }
+        if (selectableCancel != null) { selectableBuilder.append(", cancel: '"); selectableBuilder.append(findString(selectableCancel)); selectableBuilder.append("' "); }
+        if (selectableTolerance != null) { selectableBuilder.append(", tolerance: '"); selectableBuilder.append(findString(selectableTolerance)); selectableBuilder.append("' "); }
+        if (selectableSelected != null) { selectableBuilder.append(", selected: function(event, ui) { "); selectableBuilder.append(findString(selectableSelected)); selectableBuilder.append("(event, ui); } "); }
+        if (selectableSelecting != null) { selectableBuilder.append(", selecting: function(event, ui) { "); selectableBuilder.append(findString(selectableSelecting)); selectableBuilder.append("(event, ui); } "); }
+        if (selectableStart != null) { selectableBuilder.append(", start: function(event, ui) { "); selectableBuilder.append(findString(selectableStart)); selectableBuilder.append("(event, ui); } "); }
+        if (selectableStop != null) { selectableBuilder.append(", stop: function(event, ui) { "); selectableBuilder.append(findString(selectableStop)); selectableBuilder.append("(event, ui); } "); }
+        if (selectableUnselected != null) { selectableBuilder.append(", unselected: function(event, ui) { "); selectableBuilder.append(findString(selectableUnselected)); selectableBuilder.append("(event, ui); } "); }
+        if (selectableUnselecting != null) { selectableBuilder.append(", unselecting: function(event, ui) { "); selectableBuilder.append(findString(selectableUnselecting)); selectableBuilder.append("(event, ui); } "); }
+        selectableBuilder.append(" }");
+        addParameter("selectableOptions", selectableBuilder.toString());
+      }
+    }
+
+    if (sortable != null)
+    {
+      String sortableValue = findString(sortable);
+      if(sortableValue != null && sortableValue.equalsIgnoreCase("true"));
+      {
+        addParameter("sortable", Boolean.TRUE);
+        StringBuilder sortableBuilder = new StringBuilder();
+        sortableBuilder.append("{ dummy : false");
+        if (sortableDropOnEmpty != null) { sortableBuilder.append(", dropOnEmpty: "); sortableBuilder.append(findString(sortableDropOnEmpty)); }
+        if (sortableForceHelperSize != null) { sortableBuilder.append(", forceHelperSize: "); sortableBuilder.append(findString(sortableForceHelperSize)); }
+        if (sortableForcePlaceholderSize != null) { sortableBuilder.append(", forcePlaceholderSize: "); sortableBuilder.append(findString(sortableForcePlaceholderSize)); }
+        if (sortableRevert != null) { sortableBuilder.append(", revert: "); sortableBuilder.append(findString(sortableRevert)); }
+        if (sortableScroll != null) { sortableBuilder.append(", scroll: "); sortableBuilder.append(findString(sortableScroll)); }
+        
+        if (sortableZindex != null) { sortableBuilder.append(", zIndex: "); sortableBuilder.append(findString(sortableZindex)); }
+        if (sortableDelay != null) { sortableBuilder.append(", delay: "); sortableBuilder.append(findString(sortableDelay)); }
+        if (sortableScrollSensitivity != null) { sortableBuilder.append(", scrollSensitivity: "); sortableBuilder.append(findString(sortableScrollSensitivity)); }
+        if (sortableScrollSpeed != null) { sortableBuilder.append(", scrollSpeed: "); sortableBuilder.append(findString(sortableScrollSpeed)); }
+        if (sortableDistance != null) { sortableBuilder.append(", distance: "); sortableBuilder.append(findString(sortableDistance)); }
+
+        if (sortableTolerance != null) { sortableBuilder.append(", sortableTolerance: '"); sortableBuilder.append(findString(sortableTolerance)); sortableBuilder.append("' "); }
+        if (sortablePlaceholder != null) { sortableBuilder.append(", sortablePlaceholder: '"); sortableBuilder.append(findString(sortablePlaceholder)); sortableBuilder.append("' "); }
+        if (sortableOpacity != null) { sortableBuilder.append(", sortableOpacity: '"); sortableBuilder.append(findString(sortableOpacity)); sortableBuilder.append("' "); }
+        if (sortableItems != null) { sortableBuilder.append(", sortableItems: '"); sortableBuilder.append(findString(sortableItems)); sortableBuilder.append("' "); }
+        if (sortableHandle != null) { sortableBuilder.append(", sortableHandle: '"); sortableBuilder.append(findString(sortableHandle)); sortableBuilder.append("' "); }
+        if (sortableGrid != null) { sortableBuilder.append(", sortableGrid: '"); sortableBuilder.append(findString(sortableGrid)); sortableBuilder.append("' "); }
+        if (sortableCursorAt != null) { sortableBuilder.append(", sortableCursorAt: '"); sortableBuilder.append(findString(sortableCursorAt)); sortableBuilder.append("' "); }
+        if (sortableCursor != null) { sortableBuilder.append(", sortableCursor: '"); sortableBuilder.append(findString(sortableCursor)); sortableBuilder.append("' "); }
+        if (sortableConnectWith != null) { sortableBuilder.append(", sortableConnectWith: '"); sortableBuilder.append(findString(sortableConnectWith)); sortableBuilder.append("' "); }
+        if (sortableAxis != null) { sortableBuilder.append(", sortableAxis: '"); sortableBuilder.append(findString(sortableAxis)); sortableBuilder.append("' "); }
+        if (sortableAppendTo != null) { sortableBuilder.append(", sortableAppendTo: '"); sortableBuilder.append(findString(sortableAppendTo)); sortableBuilder.append("' "); }
+        if (sortableActivate != null) { sortableBuilder.append(", sortableActivate: '"); sortableBuilder.append(findString(sortableActivate)); sortableBuilder.append("' "); }
+        
+        if (sortableUpdate != null) { sortableBuilder.append(", sortableUpdate: function(event, ui) { "); sortableBuilder.append(findString(sortableUpdate)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableStop != null) { sortableBuilder.append(", sortableStop: function(event, ui) { "); sortableBuilder.append(findString(sortableStop)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableStart != null) { sortableBuilder.append(", sortableStart: function(event, ui) { "); sortableBuilder.append(findString(sortableStart)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableSort != null) { sortableBuilder.append(", sortableSort: function(event, ui) { "); sortableBuilder.append(findString(sortableSort)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableRemove != null) { sortableBuilder.append(", sortableRemove: function(event, ui) { "); sortableBuilder.append(findString(sortableRemove)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableReceive != null) { sortableBuilder.append(", sortableReceive: function(event, ui) { "); sortableBuilder.append(findString(sortableReceive)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableOver != null) { sortableBuilder.append(", sortableOver: function(event, ui) { "); sortableBuilder.append(findString(sortableOver)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableOut != null) { sortableBuilder.append(", sortableOut: function(event, ui) { "); sortableBuilder.append(findString(sortableOut)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableDeactivate != null) { sortableBuilder.append(", sortableDeactivate: function(event, ui) { "); sortableBuilder.append(findString(sortableDeactivate)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableChange != null) { sortableBuilder.append(", sortableChange: function(event, ui) { "); sortableBuilder.append(findString(sortableChange)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableCancel != null) { sortableBuilder.append(", sortableCancel: function(event, ui) { "); sortableBuilder.append(findString(sortableCancel)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableBeforeStop != null) { sortableBuilder.append(", sortableBeforeStop: function(event, ui) { "); sortableBuilder.append(findString(sortableBeforeStop)); sortableBuilder.append("(event, ui); } "); }
+        sortableBuilder.append(" }");
+        addParameter("selectableOptions", sortableBuilder.toString());
+        if (sortableContainment != null) { 
+          sortableBuilder.append(", containment: '"); 
+          String containmentValue = findString(sortableContainment);
+          
+          if(containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document") || containmentValue.equalsIgnoreCase("window")){
+            sortableBuilder.append("'");
+            sortableBuilder.append(containmentValue);
+          }
+          else{
+            sortableBuilder.append("'#");
+            sortableBuilder.append(containmentValue);
+          }
+          sortableBuilder.append("'");
+        }
+      }
+    }
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -438,7 +562,7 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
     this.resizableHandles = handles;
   }
 
-  @StrutsTagAttribute(description = "Enable any DIV element to be droppable, a target for draggable elements.", type = "Boolean")
+  @StrutsTagAttribute(description = "Enable any DIV element to be droppable, a target for draggable elements.")
   public void setDroppable(String droppable)
   {
     this.droppable = droppable;
@@ -456,13 +580,13 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
     this.droppableActiveClass = droppableActiveClass;
   }
 
-  @StrutsTagAttribute(description = "If set to false, will prevent the ui-droppable class from being added. This may be desired as a performance optimization when calling droppable init on many hundreds of elements. Default: true", defaultValue = "true", type = "Boolean")
+  @StrutsTagAttribute(description = "If set to false, will prevent the ui-droppable class from being added. This may be desired as a performance optimization when calling droppable init on many hundreds of elements. Default: true", defaultValue = "true")
   public void setDroppableAddClasses(String droppableAddClasses)
   {
     this.droppableAddClasses = droppableAddClasses;
   }
 
-  @StrutsTagAttribute(description = "If true, will prevent event propagation on nested droppables. Default: false", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "If true, will prevent event propagation on nested droppables. Default: false", defaultValue = "false")
   public void setDroppableGreedy(String droppableGreedy)
   {
     this.droppableGreedy = droppableGreedy;
@@ -516,7 +640,7 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
     this.droppableOver = droppableOver;
   }
 
-  @StrutsTagAttribute(description = "Enable draggable functionality to the DIV element. Move the draggable object by clicking on it with the mouse and dragging it anywhere within the viewport. ", type = "Boolean")
+  @StrutsTagAttribute(description = "Enable draggable functionality to the DIV element. Move the draggable object by clicking on it with the mouse and dragging it anywhere within the viewport. ")
   public void setDraggable(String draggable)
   {
     this.draggable = draggable;
@@ -971,4 +1095,25 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
   {
     this.sortableZindex = sortableZindex;
   }
+
+  @StrutsTagAttribute(name="onCompleteTopics", description = "Topics that are published before after load is completed", type="String", defaultValue="")
+  public void setOnCompleteTopics(String onCompleteTopics) {
+    this.onCompleteTopics = onCompleteTopics;
+  }
+
+    @StrutsTagAttribute(name="onErrorTopics", description = "Topics that are published on a load error", type="String", defaultValue="")
+  public void setOnErrorTopics(String onErrorTopics) {
+    this.onErrorTopics = onErrorTopics;
+  }
+
+    @StrutsTagAttribute(name="onSuccessTopics", description = "Topics that are published after a succesful load", type="String", defaultValue="")
+  public void setOnSuccessTopics(String onSuccessTopics) {
+    this.onSuccessTopics = onSuccessTopics;
+  }
+    
+    @StrutsTagAttribute(name="reloadTopics", description="A comma delimited list of topics that will cause this element to reload", type="String", defaultValue="")
+    public void setReloadTopics(String reloadTopics) {
+      this.reloadTopics = reloadTopics;
+    }
+
 }

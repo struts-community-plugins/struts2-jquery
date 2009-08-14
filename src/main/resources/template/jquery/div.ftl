@@ -19,16 +19,23 @@
  */
 -->
 <div 
-  <#if parameters.id?if_exists != "">
-    id="${parameters.id?html}"<#rt/>
-  </#if>
-  <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?html}"<#rt/>
-  </#if>
-  <#if parameters.cssStyle?if_exists != "">
-    style="${parameters.cssStyle?html}"<#rt/>
-  </#if>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+  <#if parameters.name??> name="${parameters.name?html}"</#if>
+  <#if parameters.cssClass??> class="${parameters.cssClass?html}"</#if>
+  <#if parameters.cssStyle??> style="${parameters.cssStyle?html}"</#if>
+  <#if parameters.title??> title="${parameters.title?html}"<#rt/></#if>
+  <#if parameters.reloadTopics?exists> reloadTopics="${parameters.reloadTopics?html}"<#rt/></#if>
+  <#if parameters.draggable?default(false)> draggable="true"</#if>
+  <#if parameters.draggableOptions?if_exists != ""> draggableoptions="${parameters.draggableOptions?html}"</#if>
+  <#if parameters.droppable?default(false)> droppable="true"</#if>
+  <#if parameters.droppableOptions?if_exists != ""> droppableoptions="${parameters.droppableOptions?html}"</#if>
+  <#if parameters.resizable?default(false)> resizable="true"</#if>
+  <#if parameters.resizableOptions?if_exists != ""> resizableoptions="${parameters.resizableOptions?html}"</#if>
+  <#if parameters.selectable?default(false)> selectable="true"</#if>
+  <#if parameters.selectableOptions?if_exists != ""> selectableoptions="${parameters.selectableOptions?html}"</#if>
+  <#if parameters.sortable?default(false)> sortable="true"</#if>
+  <#if parameters.sortableOptions?if_exists != ""> sortableoptions="${parameters.sortableOptions?html}"</#if>
+  <#include "/${parameters.templateDir}/jquery/base.ftl" />
+  <#include "/${parameters.templateDir}/jquery/action.ftl" />
+  <#include "/${parameters.templateDir}/jquery/container.ftl" />
+  <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 >

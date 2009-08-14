@@ -29,11 +29,15 @@
   <#assign jqueryCookieFile="jquery.cookie.min.js">
   <#assign jqueryUIFile="jquery-ui-1.7.2.min.js">
   <#assign jqueryBGIFile="jquery.bgiframe.min.js">
+  <#assign jquerySubscribeFile="jquery.subscribe.1.1.min.js">
+  <#assign jqueryStrutsFile="jquery.struts2.min.js">
 <#else>
   <#assign jqueryFile="jquery-1.3.2.js">
   <#assign jqueryCookieFile="jquery.cookie.js">
   <#assign jqueryUIFile="jquery-ui-1.7.2.js">
   <#assign jqueryBGIFile="jquery.bgiframe.js">
+  <#assign jquerySubscribeFile="jquery.subscribe.1.1.js">
+  <#assign jqueryStrutsFile="jquery.struts2.js">
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
@@ -52,9 +56,9 @@
 </#if>
 
   <script type="text/javascript" src="${base}/struts/js/jquery.form.js"></script>
+  <script type="text/javascript" src="${base}/struts/js/${jquerySubscribeFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/${jqueryStrutsFile}"></script>
 <#if parameters.jqueryui?default(false)>
-    <script type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
-    <script type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
     <#if parameters.jquerytheme?if_exists != "">
         <link rel="stylesheet" href="${base}/${basePath}/${parameters.jquerytheme?string}/ui.theme.css" type="text/css"/>
     <#else>

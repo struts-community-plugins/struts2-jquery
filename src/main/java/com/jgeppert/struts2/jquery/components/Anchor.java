@@ -74,7 +74,6 @@ public class Anchor extends AbstractRemoteBean implements RemoteBean {
     public static final String TEMPLATE = "a-close";
     public static final String COMPONENT_NAME = Anchor.class.getName();
 
-    protected String targets;
     protected String openDialog;
 
     public Anchor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
@@ -92,8 +91,6 @@ public class Anchor extends AbstractRemoteBean implements RemoteBean {
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
 
-        if (targets != null)
-            addParameter("targets", findString(targets));
         if (openDialog != null)
           addParameter("openDialog", findString(openDialog));
     }
@@ -109,11 +106,6 @@ public class Anchor extends AbstractRemoteBean implements RemoteBean {
         return "jquery";
     }
     
-
-    @StrutsTagAttribute(description="Comma delimited list of ids of the elements whose content will be updated")
-    public void setTargets(String targets) {
-        this.targets = targets;
-    }
 
     @StrutsTagAttribute(description="id of dialog that will be opened when clicked.")
     public void setOpenDialog(String openDialog)

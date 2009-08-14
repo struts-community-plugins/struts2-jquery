@@ -2260,6 +2260,36 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[id of dialog that will be opened when clicked.]]></description>
+      <name>openDialog</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Perform a effect on this element. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects]]></description>
+      <name>effect</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Duration of effect in milliseconds. Only valid if 'effect' attribute is set. Default is 2000 millisecond]]></description>
+      <name>effectDuration</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects]]></description>
+      <name>effectOptions</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Type of the result. e.g. html, xml, text, json, ...]]></description>
+      <name>dataType</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Timeout for request]]></description>
       <name>timeout</name>
       <required>false</required>
@@ -2268,30 +2298,6 @@
     <attribute>
       <description><![CDATA[Set the html accesskey attribute on rendered html element]]></description>
       <name>accesskey</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Executed javascript function befor ajax request. e.g. befor()]]></description>
-      <name>beforeSend</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Executed javascript function after completed ajax request. e.g. after()]]></description>
-      <name>complete</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Executed javascript function on error. e.g. error()]]></description>
-      <name>error</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Type of the result. e.g. html, xml, text, json, ...]]></description>
-      <name>dataType</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -2314,8 +2320,14 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[The css style to use for element]]></description>
+      <description><![CDATA[The css style definitions for element to use]]></description>
       <name>cssStyle</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that will disable this element]]></description>
+      <name>disableTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -2326,44 +2338,62 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Form id whose fields will be serialized and passed as parameters]]></description>
-      <name>formId</name>
+      <description><![CDATA[A comma delimited list of form elements that should be individually serialized and sent with the input load request. Input element must have a 'name' attribute and will be serialized as <name>=<value>]]></description>
+      <name>elementIds</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Perform a effect on the elements specified in the 'targets' attribute. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects]]></description>
-      <name>effect</name>
+      <description><![CDATA[A comma delimited list of topics that will enable this element]]></description>
+      <name>enableTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Duration of effect in milliseconds. Only valid if 'effect' attribute is set. Default is 2000 millisecond]]></description>
-      <name>effectDuration</name>
+      <description><![CDATA[This should provide the id of the element into which the error text will be placed when an error ocurrs loading the container. If 'errorTest' is provided, that  wil be used, otherwise the ajax error message text wil be used.]]></description>
+      <name>errorElementId</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects]]></description>
-      <name>effectOptions</name>
+      <description><![CDATA[The text to be displayed on load error. If 'errorElement' is provided, this will display the error in the elemtn (if existing), if not, it will display the error as the contents of this container]]></description>
+      <name>errorText</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.]]></description>
+      <description><![CDATA[Comma delimited list of form ids for which to serialize all fields during submission when this element is clicked (if multiple forms have overlapping element names, it is indeterminate which will be used)]]></description>
+      <name>formIds</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that will hide (display: none) this element]]></description>
+      <name>hideTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The url to be use when this element is clicked]]></description>
       <name>href</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[The id to use for the element]]></description>
+      <description><![CDATA[HTML id attribute]]></description>
       <name>id</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Id of element that will be shown while making request]]></description>
+      <description><![CDATA[If loading content into a target, Id of element that will be displayed during loading and hidden afterwards (will override settings for the target container)]]></description>
       <name>indicator</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Use JavaScript to generate tooltips]]></description>
+      <name>javascriptTooltip</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -2392,8 +2422,38 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <description><![CDATA[If loading content into a target, The text to be displayed during load (will be shown if any provided, will override settings for the target container)]]></description>
+      <name>loadingText</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[The name to set for element]]></description>
       <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element is clicked]]></description>
+      <name>onClickTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)]]></description>
+      <name>onCompleteTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)]]></description>
+      <name>onErrorTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)]]></description>
+      <name>onSuccessTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -2488,6 +2548,12 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <description><![CDATA[A comma delimited list of topics that will remove this element from the dom]]></description>
+      <name>removeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[If set to true, the rendered element will indicate that input is required]]></description>
       <name>required</name>
       <required>false</required>
@@ -2500,20 +2566,20 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <description><![CDATA[A comma delimited list of topics that will show (display: block) this element]]></description>
+      <name>showTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Set the html tabindex attribute on rendered html element]]></description>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Comma delimited list of ids of the elements whose content will be updated]]></description>
+      <description><![CDATA[A comma separated list of ids of container elements to load with the contents from the result of this request]]></description>
       <name>targets</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[id of dialog that will be opened when clicked.]]></description>
-      <name>openDialog</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -2526,6 +2592,12 @@
     <attribute>
       <description><![CDATA[The template directory.]]></description>
       <name>templateDir</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The theme (other than default) to use for rendering the element]]></description>
+      <name>theme</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -2562,6 +2634,12 @@
     <attribute>
       <description><![CDATA[Icon path used for image that will have the tooltip]]></description>
       <name>tooltipIconPath</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Whether to execute validation on this elements of the form(s) provided in the formId attribute (valid values are 'true', 'false', and 'only'). Selecting 'only' will noly validate the form fiellds and not execute the result of this action implied by the href url]]></description>
+      <name>validate</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -2951,6 +3029,258 @@
     <name>div</name>
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.DivTag</tag-class>
     <body-content>JSP</body-content>
+    <attribute>
+      <description><![CDATA[Perform a effect on this element. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects]]></description>
+      <name>effect</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Duration of effect in milliseconds. Only valid if 'effect' attribute is set. Default is 2000 millisecond]]></description>
+      <name>effectDuration</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects]]></description>
+      <name>effectOptions</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Type of the result. e.g. html, xml, text, json, ...]]></description>
+      <name>dataType</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Timeout for request]]></description>
+      <name>timeout</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Enable a elements to be sortable]]></description>
+      <name>sortable</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when using connected lists, every connected list on drag start receives it.]]></description>
+      <name>sortableActivate</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Defines where the helper that moves with the mouse is being appended to during the drag. Default: 'parent']]></description>
+      <name>sortableAppendTo</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If defined, the items can be dragged only horizontally or vertically. Possible values:'x', 'y'.]]></description>
+      <name>sortableAxis</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when sorting stops, but when the placeholder/helper is still available.]]></description>
+      <name>sortableBeforeStop</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Prevents sorting if you start on elements matching the selector. Default: ':input,button']]></description>
+      <name>sortableCancel</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered during sorting, but only when the DOM position has changed.]]></description>
+      <name>sortableChange</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Takes a jQuery selector with items that also have sortables applied. If used, the sortable is now connected to the other one-way, so you can drag from this sortable to the other. e.g. #myothersortable or .myothersortables]]></description>
+      <name>sortableConnectWith</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Constrains dragging to within the bounds of the specified element - can be a DOM element, 'parent', 'document', 'window', or a jQuery selector.]]></description>
+      <name>sortableContainment</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Defines the cursor that is being shown while sorting.]]></description>
+      <name>sortableCursor</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Moves the sorting element or helper so the cursor always appears to drag from the same position. Coordinates can be given as a hash using a combination of one or two keys: top, left, right, bottom.]]></description>
+      <name>sortableCursorAt</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when sorting was stopped, is propagated to all possible connected lists.]]></description>
+      <name>sortableDeactivate</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Time in milliseconds to define when the sorting should start. It helps preventing unwanted drags when clicking on an element.]]></description>
+      <name>sortableDelay</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Tolerance, in pixels, for when sorting should start. If specified, sorting will not start until after mouse is dragged beyond distance. Can be used to allow for clicks on elements within a handle.]]></description>
+      <name>sortableDistance</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If empty allows for an item to be dropped from a linked selectable. Default: true]]></description>
+      <name>sortableDropOnEmpty</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If true, forces the helper to have a size. Default: false]]></description>
+      <name>sortableForceHelperSize</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If true, forces the placeholder to have a size. Default: false]]></description>
+      <name>sortableForcePlaceholderSize</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Snaps the sorting element or helper to a grid, every x and y pixels. Array values: [x, y]]]></description>
+      <name>sortableGrid</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Restricts sort start click to the specified element.]]></description>
+      <name>sortableHandle</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Allows for a helper element to be used for dragging display. The supplied function receives the event and the element being sorted, and should return a DOMElement to be used as a custom proxy helper. Possible values: 'original', 'clone'. Default: 'original']]></description>
+      <name>sortableHelper</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Specifies which items inside the element should be sortable. Default: '> *']]></description>
+      <name>sortableItems</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Defines the opacity of the helper while sorting. From 0.01 to 1]]></description>
+      <name>sortableOpacity</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when a sortable item is moved away from a connected list.]]></description>
+      <name>sortableOut</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when a sortable item is moved into a connected list.]]></description>
+      <name>sortableOver</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Class that gets applied to the otherwise white space.]]></description>
+      <name>sortablePlaceholder</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when a connected sortable list has received an item from another list.]]></description>
+      <name>sortableReceive</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when a sortable item has been dragged out from the list and into another.]]></description>
+      <name>sortableRemove</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If set to true, the item will be reverted to its new DOM position with a smooth animation. Default: false]]></description>
+      <name>sortableRevert</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If set to true, the page scrolls when coming to an edge. Default: true]]></description>
+      <name>sortableScroll</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Defines how near the mouse must be to an edge to start scrolling. Default: 20]]></description>
+      <name>sortableScrollSensitivity</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The speed at which the window should scroll once the mouse pointer gets within the scrollSensitivity distance. Default: 20]]></description>
+      <name>sortableScrollSpeed</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered during sorting.]]></description>
+      <name>sortableSort</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when sorting starts.]]></description>
+      <name>sortableStart</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when sorting has stopped.]]></description>
+      <name>sortableStop</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This is the way the reordering behaves during drag. Possible values: 'intersect', 'pointer'. In some setups, 'pointer' is more natural. Default: 'intersect']]></description>
+      <name>sortableTolerance</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[This event is triggered when the user stopped sorting and the DOM position has changed.]]></description>
+      <name>sortableUpdate</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Z-index for element/helper while being sorted. Default: 1000]]></description>
+      <name>sortableZindex</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
     <attribute>
       <description><![CDATA[Enable a element to be selectable. Draw a box with your cursor to select items. Hold down the Ctrl key to make multiple non-adjacent selections.]]></description>
       <name>selectable</name>
@@ -3384,30 +3714,6 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Executed javascript function befor ajax request. e.g. befor()]]></description>
-      <name>beforeSend</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Executed javascript function after completed ajax request. e.g. after()]]></description>
-      <name>complete</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Executed javascript function on error. e.g. error()]]></description>
-      <name>error</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Type of the result. e.g. html, xml, text, json, ...]]></description>
-      <name>dataType</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
       <description><![CDATA[The css class to use for element]]></description>
       <name>cssClass</name>
       <required>false</required>
@@ -3426,7 +3732,7 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[The css style to use for element]]></description>
+      <description><![CDATA[The css style definitions for element to use]]></description>
       <name>cssStyle</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -3438,44 +3744,44 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Form id whose fields will be serialized and passed as parameters]]></description>
-      <name>formId</name>
+      <description><![CDATA[A comma delimited list of form elements that should be individually serialized and sent with the container's load request. Input element must have a 'name' attribute and will be serialized as <name>=<value>]]></description>
+      <name>elementIds</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Perform a effect on the elements specified in the 'targets' attribute. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects]]></description>
-      <name>effect</name>
+      <description><![CDATA[The text to be displayed on load error. If 'errorElement' is provided, this will display the error in the elemtn (if existing), if not, it will display the error as the contents of this container]]></description>
+      <name>errorText</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Duration of effect in milliseconds. Only valid if 'effect' attribute is set. Default is 2000 millisecond]]></description>
-      <name>effectDuration</name>
+      <description><![CDATA[Comma delimited list of form ids for which to serialize all fields during contianer load (if multiple forms have overlapping element names, it is indeterminate which will be used)]]></description>
+      <name>formIds</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects]]></description>
-      <name>effectOptions</name>
+      <description><![CDATA[A comma delimited list of topics that will hide (display: none) this element]]></description>
+      <name>hideTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.]]></description>
-      <name>href</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The id to use for the element]]></description>
+      <description><![CDATA[HTML id attribute]]></description>
       <name>id</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Id of element that will be shown while making request]]></description>
+      <description><![CDATA[Id of element that will be displayed during execution of this element's action and hidden afterwards]]></description>
       <name>indicator</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Use JavaScript to generate tooltips]]></description>
+      <name>javascriptTooltip</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -3504,8 +3810,44 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <description><![CDATA[The text to be displayed during load (will be shown if any provided)]]></description>
+      <name>loadingText</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[The name to set for element]]></description>
       <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that are always published (before load, after load, on error and on success)]]></description>
+      <name>onAlwaysTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Topics that are published before a load]]></description>
+      <name>onBeforeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Topics that are published before after load is completed]]></description>
+      <name>onCompleteTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Topics that are published on a load error]]></description>
+      <name>onErrorTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Topics that are published after a succesful load]]></description>
+      <name>onSuccessTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -3600,6 +3942,18 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <description><![CDATA[A comma delimited list of topics that will cause this element to reload]]></description>
+      <name>reloadTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that will remove this element from the dom]]></description>
+      <name>removeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[If set to true, the rendered element will indicate that input is required]]></description>
       <name>required</name>
       <required>false</required>
@@ -3608,6 +3962,18 @@
     <attribute>
       <description><![CDATA[Define required position of required form element (left|right)]]></description>
       <name>requiredposition</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that will show (display: block) this element]]></description>
+      <name>showTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The url from which to load the container contents]]></description>
+      <name>href</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -3997,6 +4363,12 @@
     <name>head</name>
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag</tag-class>
     <body-content>empty</body-content>
+    <attribute>
+      <description><![CDATA[Collect Scripts for the footer element]]></description>
+      <name>useFooter</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
     <attribute>
       <description><![CDATA[Load JavaScript from google content distribution network]]></description>
       <name>loadFromGoogle</name>
@@ -4689,6 +5061,13 @@
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
+    <dynamic-attributes>false</dynamic-attributes>
+  </tag>
+  <tag>
+    <description><![CDATA[Render a chunk of JavaScript for your HTML file, if you use the useFooter Option in your head Tag]]></description>
+    <name>footer</name>
+    <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.FooterTag</tag-class>
+    <body-content>empty</body-content>
     <dynamic-attributes>false</dynamic-attributes>
   </tag>
 </taglib>

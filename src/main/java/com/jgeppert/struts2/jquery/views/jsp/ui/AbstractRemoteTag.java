@@ -29,13 +29,22 @@ public abstract class AbstractRemoteTag extends AbstractClosingTag {
 
     private static final long serialVersionUID = -704912163849377645L;
     
-    protected String href;
-    protected String beforeSend;
-    protected String complete;
-    protected String error;
+    protected String onClickTopics;   //topics that are published on click
+    
+    protected String targets;     //The targets into which to load content
+    protected String href;        //The url to execute
+    protected String formIds;     //the forms
+    protected String validate;      //text to be displayed on load error
+    protected String indicator;   //If loading content into a target, Id of element that will be displayed during loading and hidden afterwards
+    protected String loadingText;   //If loading content into a target, The text to be displayed during load
+    protected String onBeforeTopics;    //topics that are published before a load
+    protected String onCompleteTopics;
+    protected String onSuccessTopics;
+    protected String onErrorTopics;
+    protected String elementIds;    //Form elements that should be individually serialized and sent with the input's load request
+    protected String errorText;       //text to be displayed on load error
+    protected String errorElementId;    //the element into which to place error messages
     protected String dataType;
-    protected String formId;
-    protected String indicator;
     protected String effect;
     protected String effectDuration;
     protected String effectOptions;
@@ -46,61 +55,100 @@ public abstract class AbstractRemoteTag extends AbstractClosingTag {
 
         RemoteBean remote = (RemoteBean) component;
         remote.setHref(href);
-        remote.setBeforeSend(beforeSend);
-        remote.setComplete(complete);
-        remote.setError(error);
-        remote.setDataType(dataType);
-        remote.setFormId(formId);
+        remote.setOnClickTopics(onClickTopics);
+        remote.setTargets(targets);
+        remote.setFormIds(formIds);
+        remote.setValidate(validate);
         remote.setIndicator(indicator);
+        remote.setLoadingText(loadingText);
+        remote.setOnBeforeTopics(onBeforeTopics);
+        remote.setOnCompleteTopics(onCompleteTopics);
+        remote.setOnSuccessTopics(onSuccessTopics);
+        remote.setOnErrorTopics(onErrorTopics);
+        remote.setElementIds(elementIds);
+        remote.setErrorText(errorText);
+        remote.setErrorElementId(errorElementId);
+        remote.setDataType(dataType);
         remote.setEffect(effect);
         remote.setEffectDuration(effectDuration);
         remote.setEffectOptions(effectOptions);
         remote.setTimeout(timeout);
     }
 
+    public void setOnClickTopics(String onClickTopics) {
+      this.onClickTopics = onClickTopics;
+    }
+
+    public void setTargets(String targets) {
+      this.targets = targets;
+    }
+
     public void setHref(String href) {
-        this.href = href;
+      this.href = href;
     }
 
-    public void setBeforeSend(String beforeSend) {
-        this.beforeSend = beforeSend;
+    public void setFormIds(String formIds) {
+      this.formIds = formIds;
     }
 
-    public void setComplete(String complete) {
-        this.complete = complete;
+    public void setValidate(String validate) {
+      this.validate = validate;
+    }
+    
+    public void setIndicator(String indicator) {
+      this.indicator = indicator;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setLoadingText(String loadingText) {
+      this.loadingText = loadingText;
+    }
+
+    public void setOnCompleteTopics(String onCompleteTopics) {
+      this.onCompleteTopics = onCompleteTopics;
+    }
+
+    public void setOnSuccessTopics(String onSuccessTopics) {
+      this.onSuccessTopics = onSuccessTopics;
+    }
+
+    public void setOnErrorTopics(String onErrorTopics) {
+      this.onErrorTopics = onErrorTopics;
+    }
+
+    public void setElementIds(String elementIds){
+      this.elementIds = elementIds;
+    }
+
+    public void setErrorText(String errorText) {
+      this.errorText = errorText;
+    }
+
+    public void setErrorElementId(String errorElementId) {
+      this.errorElementId = errorElementId;
     }
 
     public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-
-    public void setFormId(String formId) {
-        this.formId = formId;
-    }
-
-    public void setIndicator(String indicator) {
-        this.indicator = indicator;
+      this.dataType = dataType;
     }
 
     public void setEffect(String effect) {
-        this.effect = effect;
+      this.effect = effect;
     }
 
     public void setEffectDuration(String effectDuration) {
-        this.effectDuration = effectDuration;
+      this.effectDuration = effectDuration;
     }
 
     public void setEffectOptions(String effectOptions) {
-        this.effectOptions = effectOptions;
+      this.effectOptions = effectOptions;
     }
 
-    public void setTimeout(String timeout)
-    {
+    public void setTimeout(String timeout) {
       this.timeout = timeout;
     }
 
+    public void setOnBeforeTopics(String onBeforeTopics)
+    {
+      this.onBeforeTopics = onBeforeTopics;
+    }
 }

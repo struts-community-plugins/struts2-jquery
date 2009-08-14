@@ -373,5 +373,71 @@ public class Submit extends FormButton implements RemoteBean {
     {
       this.iframe = iframe;
     }
+
+    public void setElementIds(String elementIds)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setErrorElementId(String errorElementId)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setErrorText(String errorText)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setFormIds(String formIds)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setLoadingText(String loadingText)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setOnClickTopics(String onClickTopics)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setValidate(String validate)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setOnBeforeTopics(String onBeforeTopics)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setOnCompleteTopics(String onCompleteTopics)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setOnErrorTopics(String onErrorTopics)
+    {
+      // TODO Auto-generated method stub
+      
+    }
+
+    public void setOnSuccessTopics(String onSuccessTopics)
+    {
+      // TODO Auto-generated method stub
+      
+    }
     
 }

@@ -38,13 +38,23 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
 
     final private static transient Random RANDOM = new Random();    
 
-    protected String href;
-    protected String beforeSend;
-    protected String complete;
-    protected String error;
+    protected String onClickTopics;   //topics that are published on click
+    
+    protected String targets;     //The targets into which to load content
+    protected String href;        //The url to execute
+    protected String formIds;     //the forms
+    protected String validate;      //text to be displayed on load error
+    protected String indicator;   //If loading content into a target, Id of element that will be displayed during loading and hidden afterwards
+    protected String loadingText;   //If loading content into a target, The text to be displayed during load
+    protected String onBeforeTopics;    //topics that are published before a load
+    protected String onCompleteTopics;
+    protected String onSuccessTopics;
+    protected String onErrorTopics;
+    protected String errorText;       //text to be displayed on load error
+    protected String errorElementId;    //the id of the element in to which to put the error text
+    
+    protected String elementIds;    //Form elements that should be individually serialized and sent with the input's load request
     protected String dataType;
-    protected String formId;
-    protected String indicator;
     protected String effect;
     protected String effectDuration;
     protected String effectOptions;
@@ -72,26 +82,44 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
               addParameter("hrefUrl", hrefValue);
             }
         }
-        if (beforeSend != null)
-            addParameter("beforeSend", findString(beforeSend));
-        if (complete != null)
-            addParameter("complete", findString(complete));
-        if (error != null)
-            addParameter("error", findString(error));
-        if (dataType != null)
-            addParameter("dataType", findString(dataType));
-        if (formId != null)
-            addParameter("formId", findString(formId));
-        if (indicator != null)
-            addParameter("indicator", findString(indicator));
-        if (effect != null)
-            addParameter("effect", findString(effect));
-        if (effectDuration != null)
-          addParameter("effectDuration", findString(effectDuration));
-        if (effectOptions != null)
-            addParameter("effectOptions", findString(effectOptions));
-        if (timeout != null)
-          addParameter("timeout", findString(timeout));
+        if (onClickTopics != null)
+          addParameter("onClickTopics", findString(onClickTopics));
+      if (targets != null)
+          addParameter("targets", findString(targets));
+//      if (href != null)
+//        addParameter("href", ensureAttributeSafelyNotEscaped(URLBuilder.buildRootURL(findString(href), request)));
+      if (formIds != null)
+          addParameter("formIds", findString(formIds));
+      if (validate != null)
+          addParameter("validate", findString(validate));
+      if (indicator != null)
+          addParameter("indicator", findString(indicator));
+      if (loadingText != null)
+          addParameter("loadingText", findString(loadingText));
+      if (onBeforeTopics != null)
+        addParameter("onBeforeTopics", findString(onBeforeTopics));
+      if (onCompleteTopics != null)
+          addParameter("onCompleteTopics", findString(onCompleteTopics));
+      if (onSuccessTopics != null)
+          addParameter("onSuccessTopics", findString(onSuccessTopics));
+      if (onErrorTopics != null)
+          addParameter("onErrorTopics", findString(onErrorTopics));   
+      if (elementIds != null)
+          addParameter("elementIds", findString(elementIds));
+      if (errorText != null)
+          addParameter("errorText", findString(errorText));
+      if (errorElementId != null)
+          addParameter("errorElementId", findString(errorElementId));
+      if (dataType != null)
+        addParameter("dataType", findString(dataType));
+      if (effect != null)
+        addParameter("effect", findString(effect));
+      if (effectDuration != null)
+        addParameter("effectDuration", findString(effectDuration));
+      if (effectOptions != null)
+        addParameter("effectOptions", findString(effectOptions));
+      if (timeout != null)
+        addParameter("timeout", findString(timeout));
 
         if ((this.id == null || this.id.length() == 0)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs 
@@ -114,62 +142,78 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
         return "jquery";
     }
 
-    @StrutsTagAttribute(description="Executed javascript function befor ajax request. e.g. befor()")
-    public void setBeforeSend(String beforeSend) {
-        this.beforeSend = beforeSend;
-    }
-
-    @StrutsTagAttribute(description="The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.")
+    @StrutsTagAttribute(name="href", description="The url to be use when this element is clicked", type="String", defaultValue="")
     public void setHref(String href) {
-        this.href = href;
+      this.href = href;
     }
 
-
-    @StrutsTagAttribute(description="Executed javascript function after completed ajax request. e.g. after()")
-    public void setComplete(String complete) {
-        this.complete = complete;
+      @StrutsTagAttribute(name="formIds", description="Comma delimited list of form ids for which to serialize all fields during submission when this element is clicked (if multiple forms have overlapping element names, it is indeterminate which will be used)", type="String", defaultValue="")
+    public void setFormIds(String formIds) {
+      this.formIds = formIds;
     }
 
-    @StrutsTagAttribute(description="Executed javascript function on error. e.g. error()")
-    public void setError(String error) {
-        this.error = error;
+    @StrutsTagAttribute(name="onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type="String", defaultValue="")
+    public void setOnClickTopics(String onClickTopics) {
+      this.onClickTopics = onClickTopics;
     }
 
-
-    @StrutsTagAttribute(description="Type of the result. e.g. html, xml, text, json, ...")
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    @StrutsTagAttribute(name="targets", description="A comma separated list of ids of container elements to load with the contents from the result of this request", type="String", defaultValue="")
+    public void setTargets(String targets) {
+      this.targets = targets;
     }
 
-    @StrutsTagAttribute(description="Form id whose fields will be serialized and passed as parameters")
-    public void setFormId(String formId) {
-        this.formId = formId;
+    @StrutsTagAttribute(name="validate", description="Whether to execute validation on this elements of the form(s) provided in the formId attribute (valid values are 'true', 'false', and 'only'). Selecting 'only' will noly validate the form fiellds and not execute the result of this action implied by the href url", type="String", defaultValue="false")
+    public void setValidate(String validate) {
+      this.validate = validate;
+    }
+    
+    @StrutsTagAttribute(name="indicator", description="If loading content into a target, Id of element that will be displayed during loading and hidden afterwards (will override settings for the target container)", type="String", defaultValue="")
+      public void setIndicator(String indicator){
+      this.indicator = indicator;
+    }
+    
+    @StrutsTagAttribute(name="loadingText", description="If loading content into a target, The text to be displayed during load (will be shown if any provided, will override settings for the target container)", type="String", defaultValue="")
+      public void setLoadingText(String loadingText){
+      this.loadingText = loadingText;
+      
     }
 
-     @StrutsTagAttribute(description="Id of element that will be shown while making request")
-    public void setIndicator(String indicator) {
-        this.indicator = indicator;
+      @StrutsTagAttribute(name="errorText", description="The text to be displayed on load error. If 'errorElement' is provided, " +
+        "this will display the error in the elemtn (if existing), if not, it will display the error as the contents of this container", type="String", defaultValue="false")
+    public void setErrorText(String errorText) {
+      this.errorText = errorText;
+    }
+    
+    @StrutsTagAttribute(name="errorElementId", description="This should provide the id of the element into which the error text will be placed when an error ocurrs loading the container. If 'errorTest' is provided, that  wil be used, otherwise the ajax error message text wil be used.", type="String", defaultValue="false")
+      public void setErrorElementId(String errorElementId){
+      this.errorElementId = errorElementId;
+    }
+    
+    @StrutsTagAttribute(name="onBeforeTopics", description = "Topics that are published before a load", type="String", defaultValue="")
+    public void setOnBeforeTopics(String onBeforeTopics)
+    {
+      this.onBeforeTopics = onBeforeTopics;
     }
 
-
-    @StrutsTagAttribute(description="The css class to use for element")
-    public void setCssClass(String cssClass) {
-        super.setCssClass(cssClass);
+    @StrutsTagAttribute(name="onCompleteTopics", description = "A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)", type="String", defaultValue="")
+    public void setOnCompleteTopics(String onCompleteTopics){
+      this.onCompleteTopics = onCompleteTopics;
     }
 
-    @StrutsTagAttribute(description="The css style to use for element")
-    public void setCssStyle(String cssStyle) {
-        super.setCssStyle(cssStyle);
+    @StrutsTagAttribute(name="onSuccessTopics", description = "A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)", type="String", defaultValue="")
+    public void setOnSuccessTopics(String onSuccessTopics){
+      this.onSuccessTopics = onSuccessTopics;
     }
 
-    @StrutsTagAttribute(description="The id to use for the element")
-    public void setId(String id) {
-        super.setId(id);
+    @StrutsTagAttribute(name="onErrorTopics", description = "A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)", type="String", defaultValue="")
+    public void setOnErrorTopics(String onErrorTopics){
+      this.onErrorTopics = onErrorTopics;
     }
 
-    @StrutsTagAttribute(description="The name to set for element")
-    public void setName(String name) {
-        super.setName(name);
+    @StrutsTagAttribute(name="elementIds", description="A comma delimited list of form elements that should be individually serialized and sent with the input load request. " +
+        "Input element must have a 'name' attribute and will be serialized as <name>=<value>", type="String", defaultValue="", required=false)
+    public void setElementIds(String elementIds){
+      this.elementIds = elementIds;
     }
 
     @StrutsTagAttribute(description = "Perform a effect on the elements specified in the 'targets' attribute. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects", 
@@ -194,4 +238,10 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
     {
       this.timeout = timeout;
     }
+   
+   @StrutsTagAttribute(description="Type of the result. e.g. html, xml, text, json, ...")
+   public void setDataType(String dataType) {
+       this.dataType = dataType;
+   }
+
 }

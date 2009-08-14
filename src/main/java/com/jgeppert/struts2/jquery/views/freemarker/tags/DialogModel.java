@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.components.Anchor;
+import com.jgeppert.struts2.jquery.components.Dialog;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -39,7 +39,7 @@ public class DialogModel extends TagModel {
 
     @Override
     protected Component getBean() {
-        return new Anchor(stack, req, res);
+        return new Dialog(stack, req, res);
     }
 
 }

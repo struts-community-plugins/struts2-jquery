@@ -18,26 +18,19 @@
  * under the License.
  */
 -->
-<a href="#"
-  <#if parameters.id?if_exists != "">
-    id="${parameters.id?html}"<#rt/>
-  </#if>
-  <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?html}"<#rt/>
-  </#if>
-  <#if parameters.cssStyle?if_exists != "">
-    style="${parameters.cssStyle?html}"<#rt/>
-  </#if>
-  <#if parameters.label?if_exists != "">
-    label="${parameters.label?html}"<#rt/>
-  </#if>
-  <#if parameters.title?if_exists != "">
-    title="${parameters.title?html}"<#rt/>
-  </#if>
-  <#if parameters.name?if_exists != "">
-    name="${parameters.name?html}"<#rt/>
-  </#if>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+<a
+  <#if parameters.targets?if_exists != ""> targets="${parameters.targets?html}"<#rt/></#if>
+  <#if parameters.name?if_exists != "">	 name="${parameters.name?html}"</#if>
+	<#if parameters.tabindex??>	 tabindex="${parameters.tabindex?html}"</#if>
+	<#if parameters.cssClass??> class="${parameters.cssClass?html}"</#if>
+	<#if parameters.cssStyle??> style="${parameters.cssStyle?html}"</#if>
+	<#if parameters.title??> title="${parameters.title?html}"</#if>
+	<#if parameters.tabindex??> tabindex="${parameters.tabindex?html}"</#if>
+	<#if parameters.openDialog??> openDialog="${parameters.openDialog?html}"</#if>
+  <#include "/${parameters.templateDir}/jquery/base.ftl" />
+  <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+  <#include "/${parameters.templateDir}/jquery/action.ftl" />
+  <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
+  <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
+  <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 >

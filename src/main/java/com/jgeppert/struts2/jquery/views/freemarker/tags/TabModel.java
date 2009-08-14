@@ -26,6 +26,7 @@ import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
 import com.jgeppert.struts2.jquery.components.Div;
+import com.jgeppert.struts2.jquery.components.Tab;
 import com.opensymphony.xwork2.util.ValueStack;
 
 
@@ -40,7 +41,7 @@ public class TabModel extends TagModel {
 
     @Override
     protected Component getBean() {
-        return new Div(stack, req, res);
+        return new Tab(stack, req, res);
     }
     
 }

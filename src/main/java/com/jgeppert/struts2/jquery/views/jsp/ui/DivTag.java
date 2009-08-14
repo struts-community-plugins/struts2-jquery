@@ -31,6 +31,8 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
 
     private static final long serialVersionUID = 3769231035916461758L;
     
+    protected String reloadTopics;      //topics that will cause container to reload
+
     protected String resizable;
     protected String resizableAnimate;
     protected String resizableAnimateDuration;
@@ -148,6 +150,9 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         super.populateParams();
 
         Div div = (Div) component;
+        
+        div.setReloadTopics(reloadTopics);
+        
         div.setResizable(resizable);
         div.setResizableAnimate(resizableAnimate);
         div.setResizableAnimateDuration(resizableAnimateDuration);
@@ -174,7 +179,7 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setDroppableGreedy(droppableGreedy);
         div.setDroppableHoverClass(droppableHoverClass);
         div.setDroppableScope(droppableScope);
-        div.setDroppable(droppableTolerance);
+        div.setDroppableTolerance(droppableTolerance);
         div.setDroppableTolerance(droppableActivate);
         div.setDroppableDeactivate(droppableDeactivate);
         div.setDroppableDrop(droppableDrop);
@@ -795,5 +800,10 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     public void setSortable(String sortable)
     {
       this.sortable = sortable;
+    }
+
+    public void setReloadTopics(String reloadTopics)
+    {
+      this.reloadTopics = reloadTopics;
     }
 }

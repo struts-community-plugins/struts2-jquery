@@ -22,31 +22,23 @@ package com.jgeppert.struts2.jquery.components;
 
 public interface RemoteBean {
 
-    void setBeforeSend(String topics);
-
-    void setComplete(String complete);
-
-    void setHref(String href);
-
-    void setError(String errorText);
-
-    void setDataType(String afterNotifyTopics);
-
-    void setFormId(String formId);
-
-    void setIndicator(String indicator);
-    
-    void setName(String name);
-    
-    void setCssStyle(String cssStyle);
-    
-    void setCssClass(String cssClass);
-    
+    void setDataType(String dataType);
     void setEffect(String effect);
-    
     void setEffectDuration(String duration);
-
     void setEffectOptions(String options);
-    
     void setTimeout(String timeout);
+    void setHref(String href);
+    void setIndicator(String indicator);
+    void setValidate(String validate);
+    void setFormIds(String formIds);
+    void setTargets(String targets);
+    void setOnClickTopics(String onClickTopics);
+    void setOnBeforeTopics(String onBeforeTopics);
+    void setOnCompleteTopics(String onCompleteTopics);
+    void setOnSuccessTopics(String onSuccessTopics);
+    void setOnErrorTopics(String onErrorTopics);
+    void setLoadingText(String loadingText);
+    void setElementIds(String elementIds);
+    void setErrorText(String errorText);
+    void setErrorElementId(String errorElementId);
 }
