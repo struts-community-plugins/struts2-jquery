@@ -23,16 +23,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
-import org.apache.struts2.views.jsp.ui.AbstractUITag;
 
 import com.jgeppert.struts2.jquery.components.Progressbar;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class ProgressbarTag extends AbstractUITag {
+public class ProgressbarTag extends AbstractTopicTag {
 
   private static final long serialVersionUID = -7636943419071750985L;
     protected String                      value;
-    protected String                      change;
     
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Progressbar(stack, req, res);
@@ -43,17 +41,10 @@ public class ProgressbarTag extends AbstractUITag {
 
         Progressbar bar = (Progressbar) component;
         bar.setValue(value);
-        bar.setChange(change);
     }
 
   public void setValue(String value)
   {
     this.value = value;
   }
-
-  public void setChange(String change)
-  {
-    this.change = change;
-  }
-
 }

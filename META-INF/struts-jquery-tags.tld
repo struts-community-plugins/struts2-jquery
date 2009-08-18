@@ -324,6 +324,18 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.ProgressbarTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[[A comma delimited list of topics they are always published.]]></description>
+      <name>onAlwaysTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[[A comma delimited list of topics that published when progressbar is changed.]]></description>
+      <name>onChangeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Set the html accesskey attribute on rendered html element]]></description>
       <name>accesskey</name>
       <required>false</required>
@@ -362,12 +374,6 @@
     <attribute>
       <description><![CDATA[The value of the progressbar. Integer value from 0 to 100.  Default: 0]]></description>
       <name>value</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[This event is triggered when the value of the progressbar changes.]]></description>
-      <name>change</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>

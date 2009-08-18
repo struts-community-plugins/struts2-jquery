@@ -24,7 +24,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.UIBean;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -44,48 +43,51 @@ import com.opensymphony.xwork2.util.ValueStack;
  * END SNIPPET: example1 -->
  */
 @StrutsTag(name = "progressbar", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.ProgressbarTag", description = "Render an progressbar.")
-public class Progressbar extends UIBean {
+public class Progressbar extends AbstractTopicsBean implements TopicBean {
 
   final private static transient Random RANDOM         = new Random();
+  public static final String            WIDGET       = "progressbar";
   public static final String            TEMPLATE       = "progressbar";
+  public static final String            TEMPLATE_CLOSE = "progressbar-close";
   public static final String            COMPONENT_NAME = Progressbar.class.getName();
 
   protected String                      value;
-  protected String                      change;
 
   public Progressbar(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
 
-  protected String getDefaultTemplate()
+  public String getDefaultOpenTemplate()
   {
     return TEMPLATE;
+  }
+
+  protected String getDefaultTemplate()
+  {
+    return TEMPLATE_CLOSE;
   }
 
   public void evaluateExtraParams()
   {
     super.evaluateExtraParams();
 
-    if (change != null) addParameter("change", findString(change));
-    if (value != null)
-    {
+    addParameter("widget", WIDGET);
+
+    if (value != null) {
       addParameter("value", findString(value));
     }
-    else
-    {
-      if (name != null)
-      {
+    else {
+      if (name != null) {
         addParameter("value", findString(name));
       }
     }
 
-    if ((this.id == null || this.id.length() == 0))
-    {
+    if ((this.id == null || this.id.length() == 0)) {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
       // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
       int nextInt = RANDOM.nextInt();
       nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "widget_" + String.valueOf(nextInt);
+      this.id = "progressbar_" + String.valueOf(nextInt);
       addParameter("id", this.id);
     }
   }
@@ -107,11 +109,5 @@ public class Progressbar extends UIBean {
   public void setValue(String value)
   {
     this.value = value;
-  }
-
-  @StrutsTagAttribute(description = "This event is triggered when the value of the progressbar changes.")
-  public void setChange(String change)
-  {
-    this.change = change;
   }
 }

@@ -893,8 +893,8 @@
 
 						if(onAlwaysTopics) {  
 							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < onBeforeTopics.length; i++) {
-								$input.publish(onBeforeTopics[i], $input, data);
+							for ( var i = 0; i < topics.length; i++) {
+								$input.publish(topics[i], $input, data);
 							}
 						}
 					};
@@ -913,8 +913,8 @@
 
 						if(onAlwaysTopics) {  
 							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < onChangeTopics.length; i++) {
-								$input.publish(onChangeTopics[i], $input, data);
+							for ( var i = 0; i < topics.length; i++) {
+								$input.publish(topics[i], $input, data);
 							}
 						}
 					};
@@ -933,8 +933,8 @@
 
 						if(onAlwaysTopics) {  
 							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < onCompleteTopics.length; i++) {
-								$input.publish(onCompleteTopics[i], $input, data);
+							for ( var i = 0; i < topics.length; i++) {
+								$input.publish(topics[i], $input, data);
 							}
 						}
 					};
@@ -967,6 +967,38 @@
 			}
 			
 			$elem.slider(parameter);
+		},
+		progressbar: function($elem, options) {
+			
+			var parameter = {};
+			if(options) {
+				
+				var onAlwaysTopics = options.onalwaystopics;
+				
+				if(options.onchangetopics) {  
+					var onChangeTopics = options.onchangetopics.split(',');
+					parameter.start = function(event, ui){
+							var data = {};
+							data.event = event;
+							data.ui = ui;
+						for ( var i = 0; i < onChangeTopics.length; i++) {
+							$elem.publish(onChangeTopics[i], $elem, data);
+						}
+
+						if(onAlwaysTopics) {  
+							var topics = onAlwaysTopics.split(',');
+							for ( var i = 0; i < topics.length; i++) {
+								$elem.publish(topics[i], $elem, data);
+							}
+						}
+					};
+				}
+				
+				var value = parseInt(options.value);
+				if(value > 0) parameter.value = value;
+				else parameter.value = 0;
+			}
+			$elem.progressbar(parameter);
 		}
 	};		
 		

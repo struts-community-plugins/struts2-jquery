@@ -29,8 +29,6 @@ import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -55,7 +53,6 @@ public class Slider extends AbstractTopicsBean implements TopicBean {
     public static final String WIDGET       = "slider";
     public static final String TEMPLATE       = "slider";
     public static final String TEMPLATE_CLOSE = "slider-close";
-    final protected static Logger LOG = LoggerFactory.getLogger(Slider.class);
     final private static transient Random RANDOM = new Random();    
     
     protected String animate;
