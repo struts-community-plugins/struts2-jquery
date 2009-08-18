@@ -20,8 +20,6 @@
 -->
 <div 
   <#if parameters.name??> name="${parameters.name?html}"</#if>
-  <#if parameters.cssClass??> class="${parameters.cssClass?html}"</#if>
-  <#if parameters.cssStyle??> style="${parameters.cssStyle?html}"</#if>
   <#if parameters.title??> title="${parameters.title?html}"<#rt/></#if>
   <#if parameters.reloadTopics?exists> reloadTopics="${parameters.reloadTopics?html}"<#rt/></#if>
   <#if parameters.draggable?default(false)> draggable="true"</#if>
@@ -36,6 +34,7 @@
   <#if parameters.sortableOptions?if_exists != ""> sortableoptions="${parameters.sortableOptions?html}"</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/action.ftl" />
+  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
   <#include "/${parameters.templateDir}/jquery/container.ftl" />
   <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 >

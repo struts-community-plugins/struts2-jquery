@@ -1,5 +1,7 @@
 <#--
 /*
+ * $Id: a.ftl,v 1.1 2009/02/09 08:34:16 echijioke Exp $
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -18,15 +20,22 @@
  * under the License.
  */
 -->
-</input>
-<#if parameters.parentTheme?default('') == 'xhtml'>
-  </div><#t/>
-  <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
-<#elseif parameters.parentTheme?default('') == 'css_xhtml'>
-  <#if parameters.labelposition?default("top") == 'top'>
-    </div> <#t/>
-  <#else>
-    </span> <#t/>
-  </#if>  
-</#if>
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+  <#if parameters.onCompleteTopics?exists>
+    onCompleteTopics="${parameters.onCompleteTopics?html}"<#rt/>
+  </#if>
+  <#if parameters.onSuccessTopics?exists>
+    onSuccessTopics="${parameters.onSuccessTopics?html}"<#rt/>
+  </#if>
+  <#if parameters.onErrorTopics?exists>
+    onErrorTopics="${parameters.onErrorTopics?html}"<#rt/>
+  </#if>
+  <#if parameters.onBeforeTopics?exists>
+    onBeforeTopics="${parameters.onBeforeTopics?html}"<#rt/>
+  </#if>
+  <#if parameters.onAlwaysTopics?exists>
+    onAlwaysTopics="${parameters.onAlwaysTopics?html}"<#rt/>
+  </#if>
+  <#if parameters.onChangeTopics?exists>
+    onChangeTopics="${parameters.onChangeTopics?html}"<#rt/>
+  </#if>
+  

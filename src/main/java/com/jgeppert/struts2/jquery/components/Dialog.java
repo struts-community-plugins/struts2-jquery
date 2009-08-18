@@ -19,6 +19,8 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -66,11 +68,13 @@ import com.opensymphony.xwork2.util.ValueStack;
  * example5 -->
  */
 @StrutsTag(name = "dialog", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag", description = "Render a Dialog")
-public class Dialog extends AbstractRemoteBean implements RemoteBean {
+public class Dialog extends AbstractRemoteBean implements RemoteBean, TopicBean {
 
+  public static final String WIDGET       = "dialog";
   public static final String TEMPLATE       = "dialog";
   public static final String TEMPLATE_CLOSE = "dialog-close";
   public static final String COMPONENT_NAME = Dialog.class.getName();
+  public static final transient Random RANDOM          = new Random();
 
   protected String           buttons;
   protected String           draggable;
@@ -87,8 +91,6 @@ public class Dialog extends AbstractRemoteBean implements RemoteBean {
   protected String           hideEffect;
   protected String           overlayColor;
   protected String           overlayOpacity;
-  protected String           open;
-  protected String           close;
 
   public Dialog(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -108,23 +110,32 @@ public class Dialog extends AbstractRemoteBean implements RemoteBean {
   {
     super.evaluateExtraParams();
 
+    addParameter("widget", WIDGET);
+
     if (buttons != null) addParameter("buttons", findString(buttons));
-    if (this.draggable != null) addParameter("draggable", findValue(this.draggable, Boolean.class));
+    if (draggable != null) addParameter("draggable", findString(draggable));
     if (dialogClass != null) addParameter("dialogClass", findString(dialogClass));
     if (height != null) addParameter("height", findString(height));
-    if (this.modal != null) addParameter("modal", findValue(this.modal, Boolean.class));
+    if (modal != null) addParameter("modal", findString(modal));
     if (position != null) addParameter("position", findString(position));
-    if (this.resizable != null) addParameter("resizable", findValue(this.resizable, Boolean.class));
+    if (resizable != null) addParameter("resizable", findString(resizable));
     if (title != null) addParameter("title", findString(title));
     if (width != null) addParameter("width", findString(width));
     if (zindex != null) addParameter("zindex", findString(zindex));
-    if (autoOpen != null) addParameter("autoOpen", findValue(this.autoOpen, Boolean.class));
+    if (autoOpen != null) addParameter("autoOpen", findString(autoOpen));
     if (showEffect != null) addParameter("showEffect", findString(showEffect));
     if (hideEffect != null) addParameter("hideEffect", findString(hideEffect));
     if (overlayColor != null) addParameter("overlayColor", findString(overlayColor));
     if (overlayOpacity != null) addParameter("overlayOpacity", findString(overlayOpacity));
-    if (open != null) addParameter("open", findString(open));
-    if (close != null) addParameter("close", findString(close));
+    if ((this.id == null || this.id.length() == 0))
+    {
+      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+      int nextInt = RANDOM.nextInt();
+      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+      this.id = "dialog_" + String.valueOf(nextInt);
+      addParameter("id", this.id);
+    }
   }
 
   @Override
@@ -146,7 +157,7 @@ public class Dialog extends AbstractRemoteBean implements RemoteBean {
     this.buttons = buttons;
   }
 
-  @StrutsTagAttribute(description = "If set to true, the dialog will be draggable will be draggable by the titlebar. Default: true", defaultValue = "true", type = "Boolean")
+  @StrutsTagAttribute(description = "If set to true, the dialog will be draggable will be draggable by the titlebar. Default: true")
   public void setDraggable(String draggable)
   {
     this.draggable = draggable;
@@ -164,7 +175,7 @@ public class Dialog extends AbstractRemoteBean implements RemoteBean {
     this.height = height;
   }
 
-  @StrutsTagAttribute(description = "If set to true, the dialog will have modal behavior; other items on the page will be disabled (i.e. cannot be interacted with). Modal dialogs create an overlay below the dialog but above other page elements. Default: false", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "If set to true, the dialog will have modal behavior; other items on the page will be disabled (i.e. cannot be interacted with). Modal dialogs create an overlay below the dialog but above other page elements. Default: false")
   public void setModal(String modal)
   {
     this.modal = modal;
@@ -176,7 +187,7 @@ public class Dialog extends AbstractRemoteBean implements RemoteBean {
     this.position = position;
   }
 
-  @StrutsTagAttribute(description = "If set to true, the dialog will be resizeable. Default: true", defaultValue = "true", type = "Boolean")
+  @StrutsTagAttribute(description = "If set to true, the dialog will be resizeable. Default: true")
   public void setResizable(String resizable)
   {
     this.resizable = resizable;
@@ -200,7 +211,7 @@ public class Dialog extends AbstractRemoteBean implements RemoteBean {
     this.zindex = zindex;
   }
 
-  @StrutsTagAttribute(description = "When autoOpen is true the dialog will open automatically when dialog is called. If false it will stay hidden until .dialog('open') is called on it. Default: true", defaultValue = "true", type = "Boolean")
+  @StrutsTagAttribute(description = "When autoOpen is true the dialog will open automatically when dialog is called. If false it will stay hidden until .dialog('open') is called on it. Default: true")
   public void setAutoOpen(String autoOpen)
   {
     this.autoOpen = autoOpen;
@@ -229,17 +240,4 @@ public class Dialog extends AbstractRemoteBean implements RemoteBean {
   {
     this.overlayOpacity = overlayOpacity;
   }
-
-  @StrutsTagAttribute(description = "This event is triggered when dialog is opened.")
-  public void setOpen(String open)
-  {
-    this.open = open;
-  }
-
-  @StrutsTagAttribute(description = "This event is triggered when the dialog is closed.")
-  public void setClose(String close)
-  {
-    this.close = close;
-  }
-
 }

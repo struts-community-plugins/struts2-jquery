@@ -20,6 +20,9 @@
  * under the License.
  */
 -->
+  <#if parameters.widget?exists>
+    widget="${parameters.widget?html}"<#rt/>
+  </#if>
   <#if parameters.id?exists>
     id="${parameters.id?html}"<#rt/>
   </#if>
@@ -35,7 +38,10 @@
   <#if parameters.disabled?default(false)>
 	 disabled="true"<#rt/>
   </#if>
-  <#if parameters.cssClass?exists>
+  <#if parameters.cssStyle?if_exists != "">
+	 style="${parameters.cssStyle?string?html}"<#rt/>
+  </#if>
+  <#if parameters.cssClass?if_exists != "">
     class="${parameters.cssClass?string?html} _struts2_jquery_bound"<#rt/>
   <#else>
   	 class="_struts2_jquery_bound"<#rt/>

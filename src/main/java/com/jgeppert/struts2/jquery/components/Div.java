@@ -54,7 +54,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * &lt;/sj:div&gt; <!-- END SNIPPET: example3 -->
  */
 @StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DivTag", description = "Render HTML div providing content from remote call via AJAX")
-public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean, DroppableBean, DraggableBean, SelectableBean {
+public class Div extends AbstractRemoteBean implements RemoteBean, TopicBean, ResizableBean, DroppableBean, DraggableBean, SelectableBean {
 
   public static final String            TEMPLATE       = "div";
   public static final String            TEMPLATE_CLOSE = "div-close";
@@ -430,7 +430,7 @@ public class Div extends AbstractRemoteBean implements RemoteBean, ResizableBean
       // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
       int nextInt = RANDOM.nextInt();
       nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "widget_" + String.valueOf(nextInt);
+      this.id = "div_" + String.valueOf(nextInt);
       addParameter("id", this.id);
     }
   }

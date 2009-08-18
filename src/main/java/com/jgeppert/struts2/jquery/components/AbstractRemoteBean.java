@@ -24,7 +24,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.ClosingUIBean;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
@@ -34,22 +33,14 @@ import com.opensymphony.xwork2.util.ValueStack;
  * AbstractRemoteCallUIBean is superclass for all components dealing with remote
  * calls.
  */
-public abstract class AbstractRemoteBean extends ClosingUIBean {
+public abstract class AbstractRemoteBean extends AbstractTopicsBean {
 
-    final private static transient Random RANDOM = new Random();    
-
-    protected String onClickTopics;   //topics that are published on click
-    
     protected String targets;     //The targets into which to load content
     protected String href;        //The url to execute
     protected String formIds;     //the forms
     protected String validate;      //text to be displayed on load error
     protected String indicator;   //If loading content into a target, Id of element that will be displayed during loading and hidden afterwards
     protected String loadingText;   //If loading content into a target, The text to be displayed during load
-    protected String onBeforeTopics;    //topics that are published before a load
-    protected String onCompleteTopics;
-    protected String onSuccessTopics;
-    protected String onErrorTopics;
     protected String errorText;       //text to be displayed on load error
     protected String errorElementId;    //the id of the element in to which to put the error text
     
@@ -82,8 +73,6 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
               addParameter("hrefUrl", hrefValue);
             }
         }
-        if (onClickTopics != null)
-          addParameter("onClickTopics", findString(onClickTopics));
       if (targets != null)
           addParameter("targets", findString(targets));
 //      if (href != null)
@@ -96,14 +85,6 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
           addParameter("indicator", findString(indicator));
       if (loadingText != null)
           addParameter("loadingText", findString(loadingText));
-      if (onBeforeTopics != null)
-        addParameter("onBeforeTopics", findString(onBeforeTopics));
-      if (onCompleteTopics != null)
-          addParameter("onCompleteTopics", findString(onCompleteTopics));
-      if (onSuccessTopics != null)
-          addParameter("onSuccessTopics", findString(onSuccessTopics));
-      if (onErrorTopics != null)
-          addParameter("onErrorTopics", findString(onErrorTopics));   
       if (elementIds != null)
           addParameter("elementIds", findString(elementIds));
       if (errorText != null)
@@ -121,14 +102,6 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
       if (timeout != null)
         addParameter("timeout", findString(timeout));
 
-        if ((this.id == null || this.id.length() == 0)) {
-            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs 
-            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-            int nextInt = RANDOM.nextInt();
-            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);  
-            this.id = "widget_" + String.valueOf(nextInt);
-            addParameter("id", this.id);
-        }
     }
 
     @Override
@@ -150,11 +123,6 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
       @StrutsTagAttribute(name="formIds", description="Comma delimited list of form ids for which to serialize all fields during submission when this element is clicked (if multiple forms have overlapping element names, it is indeterminate which will be used)", type="String", defaultValue="")
     public void setFormIds(String formIds) {
       this.formIds = formIds;
-    }
-
-    @StrutsTagAttribute(name="onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type="String", defaultValue="")
-    public void setOnClickTopics(String onClickTopics) {
-      this.onClickTopics = onClickTopics;
     }
 
     @StrutsTagAttribute(name="targets", description="A comma separated list of ids of container elements to load with the contents from the result of this request", type="String", defaultValue="")
@@ -189,27 +157,6 @@ public abstract class AbstractRemoteBean extends ClosingUIBean {
       this.errorElementId = errorElementId;
     }
     
-    @StrutsTagAttribute(name="onBeforeTopics", description = "Topics that are published before a load", type="String", defaultValue="")
-    public void setOnBeforeTopics(String onBeforeTopics)
-    {
-      this.onBeforeTopics = onBeforeTopics;
-    }
-
-    @StrutsTagAttribute(name="onCompleteTopics", description = "A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)", type="String", defaultValue="")
-    public void setOnCompleteTopics(String onCompleteTopics){
-      this.onCompleteTopics = onCompleteTopics;
-    }
-
-    @StrutsTagAttribute(name="onSuccessTopics", description = "A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)", type="String", defaultValue="")
-    public void setOnSuccessTopics(String onSuccessTopics){
-      this.onSuccessTopics = onSuccessTopics;
-    }
-
-    @StrutsTagAttribute(name="onErrorTopics", description = "A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)", type="String", defaultValue="")
-    public void setOnErrorTopics(String onErrorTopics){
-      this.onErrorTopics = onErrorTopics;
-    }
-
     @StrutsTagAttribute(name="elementIds", description="A comma delimited list of form elements that should be individually serialized and sent with the input load request. " +
         "Input element must have a 'name' attribute and will be serialized as <name>=<value>", type="String", defaultValue="", required=false)
     public void setElementIds(String elementIds){

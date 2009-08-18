@@ -42,7 +42,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <!-- END SNIPPET: example1 -->
  */
 @StrutsTag(name="tab", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.TabTag", description="Render Tab for Tabbed Pannel providing content from remote call via AJAX")
-public class Tab extends AbstractRemoteBean implements RemoteBean {
+public class Tab extends AbstractRemoteBean implements RemoteBean, TopicBean {
 
     public static final String TEMPLATE = "tab";
     public static final String TEMPLATE_CLOSE = "tab-close";

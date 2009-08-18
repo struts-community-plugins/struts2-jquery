@@ -18,5 +18,8 @@
  * under the License.
  */
 -->
-</div>
+</input>
+<#if parameters.label?if_exists != "">
+	<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+</#if>
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />

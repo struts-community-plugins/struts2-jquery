@@ -53,26 +53,26 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[This event is triggered when the user starts sliding.]]></description>
-      <name>start</name>
+      <description><![CDATA[A comma delimited list of topics that published after slide.]]></description>
+      <name>onCompleteTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[This event is triggered on every mouse move during slide.]]></description>
-      <name>slide</name>
+      <description><![CDATA[[A comma delimited list of topics that published before slide.]]></description>
+      <name>onBeforeTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[This event is triggered on slide stop, or if the value is changed programmatically.]]></description>
-      <name>change</name>
+      <description><![CDATA[[A comma delimited list of topics that published when slider is changed.]]></description>
+      <name>onChangeTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[This event is triggered when the user stops sliding.]]></description>
-      <name>stop</name>
+      <description><![CDATA[[A comma delimited list of topics they are always published.]]></description>
+      <name>onAlwaysTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -1857,14 +1857,14 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
-      <description><![CDATA[This event is triggered when dialog is opened.]]></description>
-      <name>open</name>
+      <description><![CDATA[A comma delimited list of topics that published after dialog is closed]]></description>
+      <name>onCompleteTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[This event is triggered when the dialog is closed.]]></description>
-      <name>close</name>
+      <description><![CDATA[[A comma delimited list of topics that published before dialog is displayed.]]></description>
+      <name>onBeforeTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -2657,32 +2657,50 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.DatePickerTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
-      <description><![CDATA[Can be a function that takes an input field and current datepicker instance and returns an options object to update the datepicker with. It is called just before the datepicker is displayed.]]></description>
-      <name>beforeShow</name>
+      <description><![CDATA[A comma delimited list of topics that published after datepicker is closed]]></description>
+      <name>onCompleteTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[The function takes a date as a parameter and must return an array with [0] equal to true/false indicating whether or not this date is selectable, [1] equal to a CSS class name(s) or '' for the default presentation and [2] an optional popup tooltip for this date. It is called for each day in the datepicker before is it displayed.]]></description>
-      <name>beforeShowDay</name>
+      <description><![CDATA[A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)]]></description>
+      <name>onErrorTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)]]></description>
+      <name>onSuccessTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[[A comma delimited list of topics that published for each day in the datepicker before is it displayed.]]></description>
+      <name>onBeforeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics takes a date as a parameter and must return an array with [0] equal to true/false indicating whether or not this date is selectable, [1] equal to a CSS class name(s) or '' for the default presentation and [2] an optional popup tooltip for this date. It is called for each day in the datepicker before is it displayed.]]></description>
+      <name>onBeforeShowDayTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
       <description><![CDATA[Allows you to define your own event when the datepicker moves to a new month and/or year. The function receives the selected year, month (1-12), and the datepicker instance as parameters. this refers to the associated input field.]]></description>
-      <name>onChangeMonthYear</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Allows you to define your own event when the datepicker is closed, whether or not a date is selected. The function receives the selected date as text and the datepicker instance as parameters. this refers to the associated input field.]]></description>
-      <name>onClose</name>
+      <name>onChangeMonthYearTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
       <description><![CDATA[Allows you to define your own event when the datepicker is selected. The function receives the selected date as text and the datepicker instance as parameters. this refers to the associated input field.]]></description>
-      <name>onSelect</name>
+      <name>onChangeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published always.]]></description>
+      <name>onAlwaysTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -4413,6 +4431,48 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[[A comma delimited list of topics that published for each day in the datepicker before is it displayed.]]></description>
+      <name>onBeforeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element is clicked]]></description>
+      <name>onClickTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)]]></description>
+      <name>onCompleteTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)]]></description>
+      <name>onErrorTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)]]></description>
+      <name>onSuccessTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Allows you to define your own event when the datepicker is selected. The function receives the selected date as text and the datepicker instance as parameters. this refers to the associated input field.]]></description>
+      <name>onChangeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A comma delimited list of topics that published always.]]></description>
+      <name>onAlwaysTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[Boolean flag indicating whether the form should always target the server response to an iframe. This is useful in conjuction with file uploads. Default: false]]></description>
       <name>iframe</name>
       <required>false</required>
@@ -4504,7 +4564,7 @@
     </attribute>
     <attribute>
       <description><![CDATA[Form id whose fields will be serialized and passed as parameters]]></description>
-      <name>formId</name>
+      <name>formIds</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>

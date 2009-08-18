@@ -32,7 +32,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.UIBean;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -62,9 +61,11 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * id="birthday" name="birthday"/&gt; <!-- END SNIPPET: example3 -->
  */
 @StrutsTag(name = "datepicker", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DatePickerTag", description = "Render datepicker")
-public class DatePicker extends UIBean {
+public class DatePicker extends AbstractTopicsBean implements TopicBean {
 
-  final public static String            TEMPLATE        = "datepicker";
+  public static final String            WIDGET          = "datepicker";
+  public static final String            TEMPLATE        = "datepicker-close";
+  public static final String            OPEN_TEMPLATE   = "datepicker";
   // SimpleDateFormat is not thread-safe see:
   // http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6231579
   // http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6178997
@@ -91,14 +92,18 @@ public class DatePicker extends UIBean {
   protected String                      showOptions;
   protected String                      yearRange;
   protected String                      zindex;
-  protected String                      beforeShow;
-  protected String                      beforeShowDay;
-  protected String                      onChangeMonthYear;
-  protected String                      onClose;
-  protected String                      onSelect;
+  protected String                      onBeforeShowDayTopics;
+  protected String                      onChangeMonthYearTopics;
 
   public DatePicker(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
+  }
+
+
+  @Override
+  public String getDefaultOpenTemplate()
+  {
+    return OPEN_TEMPLATE;
   }
 
   protected String getDefaultTemplate()
@@ -110,6 +115,8 @@ public class DatePicker extends UIBean {
   {
     super.evaluateParams();
 
+    addParameter("widget", WIDGET);
+    
     if (displayFormat != null) addParameter("displayFormat", findString(displayFormat));
     if (buttonImage != null) addParameter("buttonImage", findString(buttonImage));
     if (showButtonPanel != null) addParameter("showButtonPanel", findValue(showButtonPanel, Boolean.class));
@@ -127,11 +134,9 @@ public class DatePicker extends UIBean {
     if (showOptions != null) addParameter("showOptions", findString(showOptions));
     if (yearRange != null) addParameter("yearRange", findString(yearRange));
     if (zindex != null) addParameter("zindex", findString(zindex));
-    if (beforeShow != null) addParameter("beforeShow", findString(beforeShow));
-    if (beforeShowDay != null) addParameter("beforeShowDay", findString(beforeShowDay));
-    if (onChangeMonthYear != null) addParameter("onChangeMonthYear", findString(onChangeMonthYear));
-    if (onClose != null) addParameter("onClose", findString(onClose));
-    if (onSelect != null) addParameter("onSelect", findString(onSelect));
+
+    if (onBeforeShowDayTopics != null) addParameter("onBeforeShowDayTopics", findString(onBeforeShowDayTopics));
+    if (onChangeMonthYearTopics != null) addParameter("onChangeMonthYearTopics", findString(onChangeMonthYearTopics));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -315,34 +320,16 @@ public class DatePicker extends UIBean {
     this.zindex = zindex;
   }
 
-  @StrutsTagAttribute(description = "Can be a function that takes an input field and current datepicker instance and returns an options object to update the datepicker with. It is called just before the datepicker is displayed.")
-  public void setBeforeShow(String beforeShow)
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published for each day in the datepicker before is it displayed.")
+  public void setOnBeforeShowDayTopics(String onBeforeShowDayTopics)
   {
-    this.beforeShow = beforeShow;
+    this.onBeforeShowDayTopics = onBeforeShowDayTopics;
   }
 
-  @StrutsTagAttribute(description = "The function takes a date as a parameter and must return an array with [0] equal to true/false indicating whether or not this date is selectable, [1] equal to a CSS class name(s) or '' for the default presentation and [2] an optional popup tooltip for this date. It is called for each day in the datepicker before is it displayed.")
-  public void setBeforeShowDay(String beforeShowDay)
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the datepicker moves to a new month and/or year. The function receives the selected year, month (1-12), and the datepicker instance as parameters. this refers to the associated input field.")
+  public void setOnChangeMonthYearTopics(String onChangeMonthYearTopics)
   {
-    this.beforeShowDay = beforeShowDay;
-  }
-
-  @StrutsTagAttribute(description = "Allows you to define your own event when the datepicker moves to a new month and/or year. The function receives the selected year, month (1-12), and the datepicker instance as parameters. this refers to the associated input field.")
-  public void setOnChangeMonthYear(String onChangeMonthYear)
-  {
-    this.onChangeMonthYear = onChangeMonthYear;
-  }
-
-  @StrutsTagAttribute(description = "Allows you to define your own event when the datepicker is closed, whether or not a date is selected. The function receives the selected date as text and the datepicker instance as parameters. this refers to the associated input field.")
-  public void setOnClose(String onClose)
-  {
-    this.onClose = onClose;
-  }
-
-  @StrutsTagAttribute(description = "Allows you to define your own event when the datepicker is selected. The function receives the selected date as text and the datepicker instance as parameters. this refers to the associated input field.")
-  public void setOnSelect(String onSelect)
-  {
-    this.onSelect = onSelect;
+    this.onChangeMonthYearTopics = onChangeMonthYearTopics;
   }
 
   private String format(Object obj)

@@ -36,11 +36,8 @@ public class SubmitTag extends AbstractUITag {
     private static final long serialVersionUID = 2179281109958301343L;
 
     protected String href;
-    protected String beforeSend;
-    protected String complete;
-    protected String error;
     protected String dataType;
-    protected String formId;
+    protected String formIds;
     protected String indicator;
     protected String effect;
     protected String effectDuration;
@@ -52,6 +49,18 @@ public class SubmitTag extends AbstractUITag {
     protected String clearForm;
     protected String resetForm;
     protected String iframe;
+    protected String onBeforeTopics;
+    protected String onCompleteTopics;
+    protected String onSuccessTopics;
+    protected String onErrorTopics;
+    protected String onAlwaysTopics;
+    protected String onChangeTopics;
+    protected String onClickTopics;   //topics that are published on click
+    protected String loadingText;   //If loading content into a target, The text to be displayed during load
+    protected String errorText;       //text to be displayed on load error
+    protected String errorElementId;    //the id of the element in to which to put the error text
+    protected String elementIds;    //Form elements that should be individually serialized and sent with the input's load request
+    protected String validate;      //text to be displayed on load error
    
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Submit(stack, req, res);
@@ -61,12 +70,10 @@ public class SubmitTag extends AbstractUITag {
         super.populateParams();
 
         Submit submit = ((Submit) component);
+        submit.setOnClickTopics(onClickTopics);
         submit.setHref(href);
-        submit.setBeforeSend(beforeSend);
-        submit.setComplete(complete);
-        submit.setError(error);
         submit.setDataType(dataType);
-        submit.setFormId(formId);
+        submit.setFormIds(formIds);
         submit.setEffect(effect);
         submit.setEffectDuration(effectDuration);
         submit.setEffectOptions(effectOptions);
@@ -78,30 +85,32 @@ public class SubmitTag extends AbstractUITag {
         submit.setResetForm(resetForm);
         submit.setIframe(iframe);
         submit.setTimeout(timeout);
+        submit.setOnAlwaysTopics(onAlwaysTopics);
+        submit.setOnErrorTopics(onErrorTopics);
+        submit.setOnBeforeTopics(onBeforeTopics);
+        submit.setOnChangeTopics(onChangeTopics);
+        submit.setOnCompleteTopics(onCompleteTopics);
+        submit.setOnSuccessTopics(onSuccessTopics);
+        submit.setLoadingText(loadingText);
+        submit.setErrorText(errorText);
+        submit.setErrorElementId(errorElementId);
+        submit.setElementIds(elementIds);
+    }
+
+    public void setOnClickTopics(String onClickTopics) {
+      this.onClickTopics = onClickTopics;
     }
 
     public void setHref(String href) {
         this.href = href;
     }
 
-    public void setBeforeSend(String beforeSend) {
-        this.beforeSend = beforeSend;
-    }
-
-    public void setComplete(String complete) {
-        this.complete = complete;
-    }
-
-    public void setError(String error) {
-        this.error = error;
-    }
-
     public void setDataType(String dataType) {
         this.dataType = dataType;
     }
 
-    public void setFormId(String formId) {
-        this.formId = formId;
+    public void setFormIds(String formIds) {
+        this.formIds = formIds;
     }
 
     public void setIndicator(String indicator) {
@@ -150,5 +159,60 @@ public class SubmitTag extends AbstractUITag {
   public void setTimeout(String timeout)
   {
     this.timeout = timeout;
+  }
+
+  public void setOnBeforeTopics(String onBeforeTopics)
+  {
+    this.onBeforeTopics = onBeforeTopics;
+  }
+
+  public void setOnCompleteTopics(String onCompleteTopics)
+  {
+    this.onCompleteTopics = onCompleteTopics;
+  }
+
+  public void setOnSuccessTopics(String onSuccessTopics)
+  {
+    this.onSuccessTopics = onSuccessTopics;
+  }
+
+  public void setOnErrorTopics(String onErrorTopics)
+  {
+    this.onErrorTopics = onErrorTopics;
+  }
+
+  public void setOnAlwaysTopics(String onAlwaysTopics)
+  {
+    this.onAlwaysTopics = onAlwaysTopics;
+  }
+
+  public void setOnChangeTopics(String onChangeTopics)
+  {
+    this.onChangeTopics = onChangeTopics;
+  }
+
+  public void setLoadingText(String loadingText)
+  {
+    this.loadingText = loadingText;
+  }
+
+  public void setErrorText(String errorText)
+  {
+    this.errorText = errorText;
+  }
+
+  public void setErrorElementId(String errorElementId)
+  {
+    this.errorElementId = errorElementId;
+  }
+
+  public void setElementIds(String elementIds)
+  {
+    this.elementIds = elementIds;
+  }
+
+  public void setValidate(String validate)
+  {
+    this.validate = validate;
   }
 }

@@ -75,8 +75,6 @@ public class DialogTag extends AbstractRemoteTag {
         dialog.setHideEffect(hideEffect);
         dialog.setOverlayColor(overlayColor);
         dialog.setOverlayOpacity(overlayOpacity);
-        dialog.setOpen(open);
-        dialog.setClose(close);
     }
 
     public void setButtons(String buttons)
@@ -153,17 +151,6 @@ public class DialogTag extends AbstractRemoteTag {
     {
       this.overlayOpacity = overlayOpacity;
     }
-
-    public void setOpen(String open)
-    {
-      this.open = open;
-    }
-
-    public void setClose(String close)
-    {
-      this.close = close;
-    }
-
 }
 
 

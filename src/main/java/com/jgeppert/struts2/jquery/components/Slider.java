@@ -24,7 +24,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.UIBean;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -51,9 +50,11 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  */
 @StrutsTag(name="slider", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.SliderTag", description="Render a Slider")
-public class Slider extends UIBean {
+public class Slider extends AbstractTopicsBean implements TopicBean {
 
-    final public static String TEMPLATE = "slider";
+    public static final String WIDGET       = "slider";
+    public static final String TEMPLATE       = "slider";
+    public static final String TEMPLATE_CLOSE = "slider-close";
     final protected static Logger LOG = LoggerFactory.getLogger(Slider.class);
     final private static transient Random RANDOM = new Random();    
     
@@ -63,22 +64,26 @@ public class Slider extends UIBean {
     protected String orientation;
     protected String range;
     protected String step;
-    protected String start;
-    protected String slide;
-    protected String change;
-    protected String stop;
     protected String displayValueElement;
    
     public Slider(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
     }
 
-    protected String getDefaultTemplate() {
-        return TEMPLATE;
+    public String getDefaultOpenTemplate()
+    {
+      return TEMPLATE;
+    }
+
+    protected String getDefaultTemplate()
+    {
+      return TEMPLATE_CLOSE;
     }
 
     public void evaluateParams() {
         super.evaluateParams();
+
+        addParameter("widget", WIDGET);
 
         if(animate != null)
           addParameter("animate", findValue(animate, Boolean.class));
@@ -92,14 +97,6 @@ public class Slider extends UIBean {
             addParameter("range", findString(range));
         if(step != null)
           addParameter("step", findString(step));
-        if(start != null) 
-          addParameter("start", findString(start));
-        if(slide != null) 
-          addParameter("slide", findString(slide));
-        if(change != null) 
-          addParameter("change", findString(change));
-        if(stop != null) 
-          addParameter("stop", findString(stop));
         if(displayValueElement != null) 
           addParameter("displayValueElement", findString(displayValueElement));
         if (value != null)
@@ -122,6 +119,8 @@ public class Slider extends UIBean {
             this.id = "slider_" + String.valueOf(nextInt);
             addParameter("id", this.id);
         }
+        addParameter("id", this.id+"_widget");
+        addParameter("widgetid", this.id);
     }
     
     @Override
@@ -175,30 +174,6 @@ public class Slider extends UIBean {
     @StrutsTagAttribute(description="Determines the value of the slider. Default: 0")
     public void setValue(String value) {
       super.setValue(value);
-    }
-
-    @StrutsTagAttribute(description="This event is triggered when the user starts sliding.")
-    public void setStart(String start)
-    {
-      this.start = start;
-    }
-
-    @StrutsTagAttribute(description="This event is triggered on every mouse move during slide.")
-    public void setSlide(String slide)
-    {
-      this.slide = slide;
-    }
-
-    @StrutsTagAttribute(description="This event is triggered on slide stop, or if the value is changed programmatically.")
-    public void setChange(String change)
-    {
-      this.change = change;
-    }
-
-    @StrutsTagAttribute(description="This event is triggered when the user stops sliding.")
-    public void setStop(String stop)
-    {
-      this.stop = stop;
     }
 
     @StrutsTagAttribute(description="Element Id to display the value.")

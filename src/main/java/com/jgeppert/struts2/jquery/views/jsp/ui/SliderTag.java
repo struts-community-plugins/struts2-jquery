@@ -23,16 +23,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
-import org.apache.struts2.views.jsp.ui.AbstractUITag;
 
-import com.jgeppert.struts2.jquery.components.DatePicker;
 import com.jgeppert.struts2.jquery.components.Slider;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * @see DatePicker
+ * @see Slider
  */
-public class SliderTag extends AbstractUITag {
+public class SliderTag extends AbstractTopicTag {
 
     private static final long serialVersionUID = 2998110777278172006L;
     
@@ -62,10 +60,6 @@ public class SliderTag extends AbstractUITag {
         slider.setOrientation(orientation);
         slider.setRange(range);
         slider.setStep(step);
-        slider.setStart(start);
-        slider.setSlide(slide);
-        slider.setChange(change);
-        slider.setStop(stop);
         slider.setDisplayValueElement(displayValueElement);
     }
 
@@ -97,26 +91,6 @@ public class SliderTag extends AbstractUITag {
     public void setStep(String step)
     {
       this.step = step;
-    }
-
-    public void setStart(String start)
-    {
-      this.start = start;
-    }
-
-    public void setSlide(String slide)
-    {
-      this.slide = slide;
-    }
-
-    public void setChange(String change)
-    {
-      this.change = change;
-    }
-
-    public void setStop(String stop)
-    {
-      this.stop = stop;
     }
 
     public void setDisplayValueElement(String displayValueElement)

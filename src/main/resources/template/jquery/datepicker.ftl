@@ -29,7 +29,7 @@
         ${tag.addParameter('onblur', "validate(this);")}
     </#if>
 </#if>
-<input type="text" widget="datepicker"<#rt/>
+<input type="text"<#rt/>
   <#if parameters.id?if_exists != "">
     id="${parameters.id?html}"<#rt/>
   </#if>
@@ -101,32 +101,16 @@
   <#else>
     displayFormat="yy-mm-dd"<#rt/>
   </#if>
+  <#if parameters.onBeforeShowDayTopics?if_exists != "">
+    onBeforeShowDayTopics="${parameters.onBeforeShowDayTopics?html}"<#rt/>
+  </#if>
+  <#if parameters.onChangeMonthYearTopics?if_exists != "">
+    onChangeMonthYearTopics="${parameters.onChangeMonthYearTopics?html}"<#rt/>
+  </#if>
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
-/>
-<#if parameters.label?if_exists != "">
-	<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
-</#if>
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
-<script type="text/javascript">
-$(document).ready(function () {
-    $('#xyz${parameters.id?html}').datepicker({
-  <#if parameters.beforeShow?if_exists != "">
-			beforeShow: function(input) { ${parameters.beforeShow?html}(input); },
-  </#if>
-  <#if parameters.beforeShowDay?if_exists != "">
-			beforeShowDay: function(date) { ${parameters.beforeShowDay?html}(date); },
-  </#if>
-  <#if parameters.onChangeMonthYear?if_exists != "">
-			onChangeMonthYear: function(year, month, inst) { ${parameters.onChangeMonthYear?html}(year, month, inst); },
-  </#if>
-  <#if parameters.onClose?if_exists != "">
-			onClose: function(dateText, inst) { ${parameters.onClose?html}(dateText, inst); },
-  </#if>
-  <#if parameters.onSelect?if_exists != "">
-			onSelect: function(dateText, inst)) { ${parameters.onSelect?html}(dateText, inst); },
-  </#if>
-    });
-});
-</script>
+>

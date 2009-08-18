@@ -18,16 +18,66 @@
  * under the License.
  */
 -->
-<div 
-  <#if parameters.id?if_exists != "">
-    id="${parameters.id?html}"<#rt/>
+<!-- Dialog ${parameters.id?html}  <#if parameters.autoOpen?if_exists != "">autoopen="${parameters.autoOpen?html}"</#if>
+ -->
+<div
+  <#if parameters.height?if_exists != "">
+    height="${parameters.height?html}"<#rt/>
   </#if>
-  <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?html}"<#rt/>
+  <#if parameters.width?if_exists != "">
+    width="${parameters.width?html}"<#rt/>
   </#if>
-  <#if parameters.cssStyle?if_exists != "">
-    style="${parameters.cssStyle?html}"<#rt/>
+  <#if parameters.zindex?if_exists != "">
+    zindex="${parameters.zindex?html}"<#rt/>
   </#if>
+  <#if parameters.title?if_exists != "">
+    title="${parameters.title?html}"<#rt/>
+  </#if>
+  <#if parameters.showEffect?if_exists != "">
+    show="${parameters.showEffect?html}"<#rt/>
+  </#if>
+  <#if parameters.position?if_exists != "">
+    position="${parameters.position?html}"<#rt/>
+  </#if>
+  <#if parameters.buttons?if_exists != "">
+    buttons="${parameters.buttons?html}"<#rt/>
+  </#if>
+  <#if parameters.hideEffect?if_exists != "">
+    hide="${parameters.hideEffect?html}"<#rt/>
+  </#if>
+  <#if parameters.draggable?if_exists != "">
+    draggable="${parameters.draggable?html}"<#rt/>
+  <#else>
+	draggable="true"<#rt/>
+  </#if>
+  <#if parameters.resizable?if_exists != "">
+    resizable="${parameters.resizable?html}"<#rt/>
+  </#if>
+  <#if parameters.autoOpen?if_exists == "false">
+    autoOpen="false"<#rt/>
+  <#else>
+	autoOpen="true"<#rt/>
+  </#if>
+  <#if parameters.hideEffect?if_exists != "">
+    hide="${parameters.hideEffect?html}"<#rt/>
+  </#if>
+<#if parameters.modal?if_exists == "true" >
+ <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">
+	<#if parameters.overlayColor?if_exists != "">
+	backgroundColor="${parameters.overlayColor?html}"<#rt/>
+	</#if>
+	<#if parameters.overlayOpacity?if_exists != "">
+	opacity="${parameters.overlayOpacity?html}"<#rt/>
+	<#else>
+	opacity="0.7"<#rt/>
+	</#if>
+  </#if>
+	modal="true"<#rt/>
+</#if>
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+<#include "/${parameters.templateDir}/jquery/action.ftl" />
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />

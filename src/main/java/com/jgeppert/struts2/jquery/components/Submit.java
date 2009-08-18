@@ -100,8 +100,8 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * &lt;sj:submit value"AJAX Submit with effect" effect="highlight" effectOptions="color : '#222222'" effectDuration="3600"&gt; href="%{#ajaxTest}" /&gt;
  * <!-- END SNIPPET: example8 -->
  * */
-@StrutsTag(name="submit", tldTagClass="ocom.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description="Render a submit button")
-public class Submit extends FormButton implements RemoteBean {
+@StrutsTag(name="submit", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description="Render a submit button")
+public class Submit extends FormButton implements RemoteBean, TopicBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(Submit.class);
     private final static transient Random RANDOM = new Random();
@@ -110,11 +110,8 @@ public class Submit extends FormButton implements RemoteBean {
     final public static String TEMPLATE = "submit-close";
 
     protected String href;
-    protected String beforeSend;
-    protected String complete;
-    protected String error;
     protected String dataType;
-    protected String formId;
+    protected String formIds;
     protected String indicator;
     protected String effect;
     protected String effectDuration;
@@ -126,7 +123,19 @@ public class Submit extends FormButton implements RemoteBean {
     protected String clearForm;
     protected String resetForm;
     protected String iframe;
-    
+    protected String onBeforeTopics;
+    protected String onCompleteTopics;
+    protected String onSuccessTopics;
+    protected String onErrorTopics;
+    protected String onAlwaysTopics;
+    protected String onChangeTopics;
+    protected String onClickTopics;   //topics that are published on click
+    protected String loadingText;   //If loading content into a target, The text to be displayed during load
+    protected String errorText;       //text to be displayed on load error
+    protected String errorElementId;    //the id of the element in to which to put the error text
+    protected String elementIds;    //Form elements that should be individually serialized and sent with the input's load request
+    protected String validate;      //text to be displayed on load error
+   
     public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
     }
@@ -158,16 +167,10 @@ public class Submit extends FormButton implements RemoteBean {
 
         if (href != null)
             addParameter("href", findString(href));
-        if (beforeSend != null)
-            addParameter("beforeSend", findString(beforeSend));
-        if (complete != null)
-            addParameter("complete", findString(complete));
-        if (error != null)
-            addParameter("error", findString(error));
         if (dataType != null)
             addParameter("dataType", findString(dataType));
-        if (formId != null)
-            addParameter("formId", findString(formId));
+        if (formIds != null)
+            addParameter("formIds", findString(formIds));
         if (indicator != null)
             addParameter("indicator", findString(indicator));
         if (effect != null)
@@ -188,12 +191,36 @@ public class Submit extends FormButton implements RemoteBean {
           addParameter("resetForm", findValue(resetForm, Boolean.class));
         if (iframe != null) 
           addParameter("iframe", findValue(iframe, Boolean.class));
+        if (onBeforeTopics != null) 
+          addParameter("onBeforeTopics", findString(onBeforeTopics));
+        if (onCompleteTopics != null) 
+          addParameter("onCompleteTopics", findString(onCompleteTopics));
+        if (onSuccessTopics != null) 
+          addParameter("onSuccessTopics", findString(onSuccessTopics));
+        if (onAlwaysTopics != null) 
+          addParameter("onAlwaysTopics", findString(onAlwaysTopics));
+        if (onErrorTopics != null) 
+          addParameter("onErrorTopics", findString(onErrorTopics));
+        if (onChangeTopics != null) 
+          addParameter("onChangeTopics", findString(onChangeTopics));
+        if (onClickTopics != null)
+          addParameter("onClickTopics", findString(onClickTopics));
+        if (validate != null)
+          addParameter("validate", findString(validate));
+        if (loadingText != null)
+          addParameter("loadingText", findString(loadingText));
+      if (elementIds != null)
+          addParameter("elementIds", findString(elementIds));
+      if (errorText != null)
+          addParameter("errorText", findString(errorText));
+      if (errorElementId != null)
+          addParameter("errorElementId", findString(errorElementId));
 
         Form form = (Form) findAncestor(Form.class);
         if (form != null)
             addParameter("parentTheme", form.getTheme());
-        if(form != null && (formId == null || formId.length()<= 0))
-            addParameter("formId", form.getId());
+        if(form != null && (formIds == null || formIds.length()<= 0))
+            addParameter("formIds", form.getId());
           
 
         if ((this.id == null || this.id.length() == 0)) {
@@ -201,7 +228,7 @@ public class Submit extends FormButton implements RemoteBean {
             // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
             int nextInt = RANDOM.nextInt();
             nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-            this.id = "widget_" + String.valueOf(nextInt);
+            this.id = "submit_" + String.valueOf(nextInt);
             addParameter("id", this.id);
         }
     }
@@ -250,30 +277,14 @@ public class Submit extends FormButton implements RemoteBean {
         this.href = href;
     }
 
-    @StrutsTagAttribute(description="Executed javascript function befor ajax request. e.g. befor()")
-    public void setBeforeSend(String beforeSend) {
-        this.beforeSend = beforeSend;
-    }
-
-    @StrutsTagAttribute(description="Executed javascript function after completed ajax request. e.g. after()")
-    public void setComplete(String complete) {
-        this.complete = complete;
-    }
-
-    @StrutsTagAttribute(description="Executed javascript function on error. e.g. error()")
-    public void setError(String error) {
-        this.error = error;
-    }
-
-
     @StrutsTagAttribute(description="Type of the result. e.g. html, xml, text, json, ...")
     public void setDataType(String dataType) {
         this.dataType = dataType;
     }
 
     @StrutsTagAttribute(description="Form id whose fields will be serialized and passed as parameters")
-    public void setFormId(String formId) {
-        this.formId = formId;
+    public void setFormIds(String formIds) {
+        this.formIds = formIds;
     }
 
     @StrutsTagAttribute(description="Set indicator")
@@ -374,70 +385,70 @@ public class Submit extends FormButton implements RemoteBean {
       this.iframe = iframe;
     }
 
-    public void setElementIds(String elementIds)
-    {
-      // TODO Auto-generated method stub
-      
+    @StrutsTagAttribute(name="loadingText", description="If loading content into a target, The text to be displayed during load (will be shown if any provided, will override settings for the target container)", type="String", defaultValue="")
+    public void setLoadingText(String loadingText){
+    this.loadingText = loadingText;
+    
+  }
+
+    @StrutsTagAttribute(name="errorText", description="The text to be displayed on load error. If 'errorElement' is provided, " +
+      "this will display the error in the elemtn (if existing), if not, it will display the error as the contents of this container", type="String", defaultValue="false")
+  public void setErrorText(String errorText) {
+    this.errorText = errorText;
+  }
+  
+  @StrutsTagAttribute(name="errorElementId", description="This should provide the id of the element into which the error text will be placed when an error ocurrs loading the container. If 'errorTest' is provided, that  wil be used, otherwise the ajax error message text wil be used.", type="String", defaultValue="false")
+    public void setErrorElementId(String errorElementId){
+    this.errorElementId = errorElementId;
+  }
+  
+  @StrutsTagAttribute(name="elementIds", description="A comma delimited list of form elements that should be individually serialized and sent with the input load request. " +
+      "Input element must have a 'name' attribute and will be serialized as <name>=<value>", type="String", defaultValue="", required=false)
+  public void setElementIds(String elementIds){
+    this.elementIds = elementIds;
+  }
+
+    @StrutsTagAttribute(name="onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type="String", defaultValue="")
+    public void setOnClickTopics(String onClickTopics) {
+      this.onClickTopics = onClickTopics;
     }
 
-    public void setErrorElementId(String errorElementId)
-    {
-      // TODO Auto-generated method stub
-      
+
+    @StrutsTagAttribute(name="validate", description="Whether to execute validation on this elements of the form(s) provided in the formId attribute (valid values are 'true', 'false', and 'only'). Selecting 'only' will noly validate the form fiellds and not execute the result of this action implied by the href url", type="String", defaultValue="false")
+    public void setValidate(String validate) {
+      this.validate = validate;
     }
 
-    public void setErrorText(String errorText)
-    {
-      // TODO Auto-generated method stub
-      
-    }
-
-    public void setFormIds(String formIds)
-    {
-      // TODO Auto-generated method stub
-      
-    }
-
-    public void setLoadingText(String loadingText)
-    {
-      // TODO Auto-generated method stub
-      
-    }
-
-    public void setOnClickTopics(String onClickTopics)
-    {
-      // TODO Auto-generated method stub
-      
-    }
-
-    public void setValidate(String validate)
-    {
-      // TODO Auto-generated method stub
-      
-    }
-
+    @StrutsTagAttribute(name="onBeforeTopics", description = "Topics that are published before a load", type="String", defaultValue="")
     public void setOnBeforeTopics(String onBeforeTopics)
     {
-      // TODO Auto-generated method stub
-      
+      this.onBeforeTopics = onBeforeTopics;
     }
 
-    public void setOnCompleteTopics(String onCompleteTopics)
-    {
-      // TODO Auto-generated method stub
-      
+    @StrutsTagAttribute(name="onCompleteTopics", description = "A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)", type="String", defaultValue="")
+    public void setOnCompleteTopics(String onCompleteTopics){
+      this.onCompleteTopics = onCompleteTopics;
     }
 
-    public void setOnErrorTopics(String onErrorTopics)
-    {
-      // TODO Auto-generated method stub
-      
+    @StrutsTagAttribute(name="onSuccessTopics", description = "A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)", type="String", defaultValue="")
+    public void setOnSuccessTopics(String onSuccessTopics){
+      this.onSuccessTopics = onSuccessTopics;
     }
 
-    public void setOnSuccessTopics(String onSuccessTopics)
-    {
-      // TODO Auto-generated method stub
-      
+    @StrutsTagAttribute(name="onErrorTopics", description = "A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)", type="String", defaultValue="")
+    public void setOnErrorTopics(String onErrorTopics){
+      this.onErrorTopics = onErrorTopics;
     }
-    
+
+    @StrutsTagAttribute(name="onAlwaysTopics", description = "A comma delimited list of topics that published always", type="String", defaultValue="")
+    public void setOnAlwaysTopics(String onAlwaysTopics)
+    {
+      this.onAlwaysTopics = onAlwaysTopics;
+    }
+
+    @StrutsTagAttribute(name="onChangeTopics", description = "A comma delimited list of topics that published when the element changed", type="String", defaultValue="")
+    public void setOnChangeTopics(String onChangeTopics)
+    {
+      this.onChangeTopics = onChangeTopics;
+    }
 }

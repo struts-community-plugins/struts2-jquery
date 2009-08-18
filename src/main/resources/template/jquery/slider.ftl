@@ -30,84 +30,47 @@
     </#if>
 </#if>
 <input type="hidden"
-  <#if parameters.id?if_exists != "">
-    id="${parameters.id?html}"<#rt/>
+  <#if parameters.widgetid?if_exists != "">
+    id="${parameters.widgetid?html}"<#rt/>
   </#if>
     value="${parameters.value?default('0')}"<#rt/>
   <#if parameters.name?if_exists != "">
     name="${parameters.name?html}"<#rt/>
   </#if>
-  <#if parameters.tabindex?if_exists != "">
-    tabindex="${parameters.tabindex?html}"<#rt/>
-  </#if>
-  <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?html}"<#rt/>
-  </#if>
-  <#if parameters.cssStyle?if_exists != "">
-    style="${parameters.cssStyle?html}"<#rt/>
-  </#if>
   <#if parameters.disabled?default(false)>
     disabled="disabled"<#rt/>
   </#if>
+/>
+<div
+  <#if parameters.widgetid?if_exists != "">
+    hiddenid="${parameters.widgetid?html}"<#rt/>
+  </#if>
+  <#if parameters.animate?default(false)>
+    animate="true"<#rt/>
+  </#if>
+  <#if parameters.range?if_exists != "">
+    range="${parameters.range?html}"<#rt/>
+  </#if>
+    value="${parameters.value?default('0')}"<#rt/>
+  <#if parameters.max?if_exists != "">
+    max="${parameters.max?html}"<#rt/>
+  </#if>
+  <#if parameters.min?if_exists != "">
+    min="${parameters.min?html}"<#rt/>
+  </#if>
+  <#if parameters.orientation?if_exists != "">
+    orientation="${parameters.orientation?html}"<#rt/>
+  </#if>
+  <#if parameters.step?if_exists != "">
+    step="${parameters.step?html}"<#rt/>
+  </#if>
+  <#if parameters.displayValueElement?if_exists != "">
+    displayvalueelement="${parameters.displayValueElement?html}"<#rt/>
+  </#if>
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
-/>
-<div id="${parameters.id?html}_widget"
-  <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?html}"<#rt/>
-  </#if>
-  <#if parameters.cssStyle?if_exists != "">
-    style="${parameters.cssStyle?html}"<#rt/>
-  </#if>
-></div>
-<#if parameters.label?if_exists != "">
-	<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
-</#if>
-<script type="text/javascript">
-$(document).ready(function () {
-    $('#${parameters.id?html}_widget').slider({
-  <#if parameters.animate?default(false)>
-            animate: true,
-  </#if>
-            value: ${parameters.value?default('0')},
-  <#if parameters.max?if_exists != "">
-            max: ${parameters.max?html},
-  </#if>
-  <#if parameters.min?if_exists != "">
-            min: ${parameters.min?html},
-  </#if>
-  <#if parameters.orientation?if_exists != "">
-            orientation: '${parameters.orientation?html}',
-  </#if>
-  <#if parameters.range?if_exists != "">
-	  <#if parameters.range?html == "true">
-	        range: true,<#rt/>
-  	  <#else>
-            range: '${parameters.range?html}',
-	  </#if>
-  </#if>
-  <#if parameters.step?if_exists != "">
-            step: ${parameters.step?html},
-  </#if>
-<#if parameters.start?if_exists != "">
-			start: function(event, ui) { ${parameters.start?html}(event, ui); },
-</#if>
-<#if parameters.change?if_exists != "">
-			change: function(event, ui) { ${parameters.change?html}(event, ui); },
-</#if>
-<#if parameters.stop?if_exists != "">
-			stop: function(event, ui) { ${parameters.stop?html}(event, ui); },
-</#if>
-			slide: function(event, ui) {
-			 $('#${parameters.id?html}').val(ui.value);
-<#if parameters.displayValueElement?if_exists != "">
-			 $('#${parameters.displayValueElement?html}').html(ui.value);
-</#if>
-<#if parameters.slide?if_exists != "">
-			 ${parameters.slide?html}(event, ui); 
-</#if>
-			}
-    });
-});
-</script>
+>

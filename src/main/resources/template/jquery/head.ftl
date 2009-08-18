@@ -26,6 +26,7 @@
 </#if>
 <#if parameters.compressed?default(true)>
   <#assign jqueryFile="jquery-1.3.2.min.js">
+  <#assign jqueryForm="jquery.form.min.js">
   <#assign jqueryCookieFile="jquery.cookie.min.js">
   <#assign jqueryUIFile="jquery-ui-1.7.2.min.js">
   <#assign jqueryBGIFile="jquery.bgiframe.min.js">
@@ -33,6 +34,7 @@
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
 <#else>
   <#assign jqueryFile="jquery-1.3.2.js">
+  <#assign jqueryForm="jquery.form.js">
   <#assign jqueryCookieFile="jquery.cookie.js">
   <#assign jqueryUIFile="jquery-ui-1.7.2.js">
   <#assign jqueryBGIFile="jquery.bgiframe.js">
@@ -55,7 +57,7 @@
 	</#if>
 </#if>
 
-  <script type="text/javascript" src="${base}/struts/js/jquery.form.js"></script>
+  <script type="text/javascript" src="${base}/struts/js/${jqueryForm}"></script>
   <script type="text/javascript" src="${base}/struts/js/${jquerySubscribeFile}"></script>
   <script type="text/javascript" src="${base}/struts/js/${jqueryStrutsFile}"></script>
 <#if parameters.jqueryui?default(false)>

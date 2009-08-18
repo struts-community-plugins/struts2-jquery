@@ -32,11 +32,6 @@ public interface RemoteBean {
     void setValidate(String validate);
     void setFormIds(String formIds);
     void setTargets(String targets);
-    void setOnClickTopics(String onClickTopics);
-    void setOnBeforeTopics(String onBeforeTopics);
-    void setOnCompleteTopics(String onCompleteTopics);
-    void setOnSuccessTopics(String onSuccessTopics);
-    void setOnErrorTopics(String onErrorTopics);
     void setLoadingText(String loadingText);
     void setElementIds(String elementIds);
     void setErrorText(String errorText);

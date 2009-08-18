@@ -19,6 +19,8 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -69,12 +71,15 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 @StrutsTag(name="a", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description="Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates " +
                 "its targets content")
-public class Anchor extends AbstractRemoteBean implements RemoteBean {
+public class Anchor extends AbstractRemoteBean implements RemoteBean, TopicBean {
     public static final String OPEN_TEMPLATE = "a";
     public static final String TEMPLATE = "a-close";
     public static final String COMPONENT_NAME = Anchor.class.getName();
+    public static final transient Random RANDOM = new Random();    
 
     protected String openDialog;
+    protected String onClickTopics;   //topics that are published on click
+    
 
     public Anchor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
@@ -93,6 +98,17 @@ public class Anchor extends AbstractRemoteBean implements RemoteBean {
 
         if (openDialog != null)
           addParameter("openDialog", findString(openDialog));
+        if (onClickTopics != null)
+          addParameter("onClickTopics", findString(onClickTopics));
+
+        if ((this.id == null || this.id.length() == 0)) {
+          // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs 
+          // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+          int nextInt = RANDOM.nextInt();
+          nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);  
+          this.id = "anchor_" + String.valueOf(nextInt);
+          addParameter("id", this.id);
+      }
     }
     
     @Override
@@ -112,4 +128,10 @@ public class Anchor extends AbstractRemoteBean implements RemoteBean {
     {
       this.openDialog = openDialog;
     }
+    
+    @StrutsTagAttribute(name="onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type="String", defaultValue="")
+    public void setOnClickTopics(String onClickTopics) {
+      this.onClickTopics = onClickTopics;
+    }
+
 }

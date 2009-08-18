@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
-import org.apache.struts2.views.jsp.ui.AbstractUITag;
 
 import com.jgeppert.struts2.jquery.components.DatePicker;
 import com.opensymphony.xwork2.util.ValueStack;
@@ -31,7 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * @see DatePicker
  */
-public class DatePickerTag extends AbstractUITag {
+public class DatePickerTag extends AbstractTopicTag {
 
     private static final long serialVersionUID = 4054114507143447232L;
 
@@ -51,11 +50,8 @@ public class DatePickerTag extends AbstractUITag {
     protected String showOptions;
     protected String yearRange;
     protected String zindex;
-    protected String beforeShow;
-    protected String beforeShowDay;
-    protected String onChangeMonthYear;
-    protected String onClose;
-    protected String onSelect;
+    protected String onBeforeShowDayTopics;
+    protected String onChangeMonthYearTopics;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new DatePicker(stack, req, res);
@@ -82,11 +78,8 @@ public class DatePickerTag extends AbstractUITag {
         datePicker.setShowOptions(showOptions);
         datePicker.setYearRange(yearRange);
         datePicker.setZindex(zindex);
-        datePicker.setBeforeShow(beforeShow);
-        datePicker.setBeforeShowDay(beforeShowDay);
-        datePicker.setOnChangeMonthYear(onChangeMonthYear);
-        datePicker.setOnClose(onClose);
-        datePicker.setOnSelect(onSelect);
+        datePicker.setOnBeforeShowDayTopics(onBeforeShowDayTopics);
+        datePicker.setOnChangeMonthYearTopics(onChangeMonthYearTopics);
   }
 
     
@@ -165,28 +158,13 @@ public class DatePickerTag extends AbstractUITag {
     this.zindex = zindex;
   }
 
-  public void setBeforeShow(String beforeShow)
+  public void setOnBeforeShowDayTopics(String onBeforeShowDayTopics)
   {
-    this.beforeShow = beforeShow;
+    this.onBeforeShowDayTopics = onBeforeShowDayTopics;
   }
 
-  public void setBeforeShowDay(String beforeShowDay)
+  public void setOnChangeMonthYearTopics(String onChangeMonthYearTopics)
   {
-    this.beforeShowDay = beforeShowDay;
-  }
-
-  public void setOnChangeMonthYear(String onChangeMonthYear)
-  {
-    this.onChangeMonthYear = onChangeMonthYear;
-  }
-
-  public void setOnClose(String onClose)
-  {
-    this.onClose = onClose;
-  }
-
-  public void setOnSelect(String onSelect)
-  {
-    this.onSelect = onSelect;
+    this.onChangeMonthYearTopics = onChangeMonthYearTopics;
   }
 }

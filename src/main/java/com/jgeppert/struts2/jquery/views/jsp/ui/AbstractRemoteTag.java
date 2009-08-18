@@ -21,15 +21,12 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
-import org.apache.struts2.views.jsp.ui.AbstractClosingTag;
-
 import com.jgeppert.struts2.jquery.components.RemoteBean;
 
-public abstract class AbstractRemoteTag extends AbstractClosingTag {
+public abstract class AbstractRemoteTag extends AbstractTopicTag {
 
     private static final long serialVersionUID = -704912163849377645L;
     
-    protected String onClickTopics;   //topics that are published on click
     
     protected String targets;     //The targets into which to load content
     protected String href;        //The url to execute
@@ -37,10 +34,6 @@ public abstract class AbstractRemoteTag extends AbstractClosingTag {
     protected String validate;      //text to be displayed on load error
     protected String indicator;   //If loading content into a target, Id of element that will be displayed during loading and hidden afterwards
     protected String loadingText;   //If loading content into a target, The text to be displayed during load
-    protected String onBeforeTopics;    //topics that are published before a load
-    protected String onCompleteTopics;
-    protected String onSuccessTopics;
-    protected String onErrorTopics;
     protected String elementIds;    //Form elements that should be individually serialized and sent with the input's load request
     protected String errorText;       //text to be displayed on load error
     protected String errorElementId;    //the element into which to place error messages
@@ -55,16 +48,11 @@ public abstract class AbstractRemoteTag extends AbstractClosingTag {
 
         RemoteBean remote = (RemoteBean) component;
         remote.setHref(href);
-        remote.setOnClickTopics(onClickTopics);
         remote.setTargets(targets);
         remote.setFormIds(formIds);
         remote.setValidate(validate);
         remote.setIndicator(indicator);
         remote.setLoadingText(loadingText);
-        remote.setOnBeforeTopics(onBeforeTopics);
-        remote.setOnCompleteTopics(onCompleteTopics);
-        remote.setOnSuccessTopics(onSuccessTopics);
-        remote.setOnErrorTopics(onErrorTopics);
         remote.setElementIds(elementIds);
         remote.setErrorText(errorText);
         remote.setErrorElementId(errorElementId);
@@ -73,10 +61,6 @@ public abstract class AbstractRemoteTag extends AbstractClosingTag {
         remote.setEffectDuration(effectDuration);
         remote.setEffectOptions(effectOptions);
         remote.setTimeout(timeout);
-    }
-
-    public void setOnClickTopics(String onClickTopics) {
-      this.onClickTopics = onClickTopics;
     }
 
     public void setTargets(String targets) {
@@ -101,18 +85,6 @@ public abstract class AbstractRemoteTag extends AbstractClosingTag {
 
     public void setLoadingText(String loadingText) {
       this.loadingText = loadingText;
-    }
-
-    public void setOnCompleteTopics(String onCompleteTopics) {
-      this.onCompleteTopics = onCompleteTopics;
-    }
-
-    public void setOnSuccessTopics(String onSuccessTopics) {
-      this.onSuccessTopics = onSuccessTopics;
-    }
-
-    public void setOnErrorTopics(String onErrorTopics) {
-      this.onErrorTopics = onErrorTopics;
     }
 
     public void setElementIds(String elementIds){
@@ -145,10 +117,5 @@ public abstract class AbstractRemoteTag extends AbstractClosingTag {
 
     public void setTimeout(String timeout) {
       this.timeout = timeout;
-    }
-
-    public void setOnBeforeTopics(String onBeforeTopics)
-    {
-      this.onBeforeTopics = onBeforeTopics;
     }
 }
