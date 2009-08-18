@@ -29,23 +29,23 @@
      }
     </script>        
     <div class="draganddrop" style="width: 100%; height: 250px;">
-	    <sj:effectDiv id="draggablenonvalid" draggable="true" cssClass="noaccept ui-widget-content ui-corner-all" cssStyle="width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;">
+	    <sj:div id="draggablenonvalid" draggable="true" cssClass="noaccept ui-widget-content ui-corner-all" cssStyle="width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;">
 	        I'm draggable but can't be dropped
-	    </sj:effectDiv>
+	    </sj:div>
 	    
-	    <sj:effectDiv id="draggable"  draggable="true" draggableHandle="h3" draggableRevert="invalid" cssClass="accept ui-widget-content ui-corner-all" cssStyle="width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;">
+	    <sj:div id="draggable"  draggable="true" draggableHandle="h3" draggableRevert="invalid" cssClass="accept ui-widget-content ui-corner-all" cssStyle="width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;">
 	        <h3 class="ui-widget-header">Drag me to my target</h3>
 	        <p></p>
-	    </sj:effectDiv>
+	    </sj:div>
 	    
 	    <s:url id="urlecho" action="echo"><s:param name="echo">I'm a remote div, drag me!</s:param></s:url>
 	    <sj:div href="%{urlecho}" id="draggableremote"  draggable="true" indicator="indicator" cssClass="accept ui-widget-content ui-corner-all" cssStyle="width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;" >
             <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
         </sj:div>
 	    
-	    <sj:effectDiv droppableDrop="onDrop" droppableActiveClass="ui-state-hover" droppableHoverClass="ui-state-active" droppable="true" droppableAccept=".accept" cssClass="ui-widget-content ui-corner-all" cssStyle="width: 220px; height: 220px; padding: 0.5em; float: left; margin: 10px;">
+	    <sj:div id="droptarget" droppableDrop="onDrop" droppableActiveClass="ui-state-hover" droppableHoverClass="ui-state-active" droppable="true" droppableAccept=".accept" cssClass="ui-widget-content ui-corner-all" cssStyle="width: 220px; height: 220px; padding: 0.5em; float: left; margin: 10px;">
 	        <p>Drop here</p>
-	    </sj:effectDiv>
+	    </sj:div>
     </div>
         
 	<div class="code ui-widget-content ui-corner-all" style="clear: left;">
@@ -60,23 +60,25 @@
       </pre>
 	  <strong>Code:</strong>
 	  <pre>
-        &lt;sj:effectDiv id="draggablenonvalid" <strong>draggable="true"</strong> cssClass="<strong>noaccept</strong> ui-widget-content ui-corner-all" cssStyle="width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;"&gt;
-            I'm draggable but can't be dropped
-        &lt;/sj:effectDiv&gt;
-        
-        &lt;sj:effectDiv <strong>id="draggable"  draggable="true" draggableHandle="h3" draggableRevert="invalid"</strong> cssClass="<strong>accept</strong> ui-widget-content ui-corner-all" cssStyle="width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;"&gt;
-            &lt;h3 class="ui-widget-header"&gt;Drag me to my target&lt;/h3&gt;
-            &lt;p&gt;&lt;/p&gt;
-        &lt;/sj:effectDiv&gt;
-        
-        &lt;s:url id="urlecho" action="echo">&lt;s:param name="echo"&gt;I'm a remote div, drag me!&lt;/s:param&gt;&lt;/s:url&gt;
-        &lt;sj:div href="%{urlecho}" id="draggableremote"  <strong>draggable="true"</strong> indicator="indicator" cssClass="<strong>accept</strong> ui-widget-content ui-corner-all" &gt;
-            &lt;img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/&gt;
+    &lt;div class=&quot;draganddrop&quot; style=&quot;width: 100%; height: 250px;&quot;&gt;
+	    &lt;sj:div id=&quot;draggablenonvalid&quot; draggable=&quot;true&quot; cssClass=&quot;noaccept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot;&gt;
+	        I'm draggable but can't be dropped
+	    &lt;/sj:div&gt;
+	    
+	    &lt;sj:div id=&quot;draggable&quot;  draggable=&quot;true&quot; draggableHandle=&quot;h3&quot; draggableRevert=&quot;invalid&quot; cssClass=&quot;accept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot;&gt;
+	        &lt;h3 class=&quot;ui-widget-header&quot;&gt;Drag me to my target&lt;/h3&gt;
+	        &lt;p&gt;&lt;/p&gt;
+	    &lt;/sj:div&gt;
+	    
+	    &lt;s:url id=&quot;urlecho&quot; action=&quot;echo&quot;&gt;&lt;s:param name=&quot;echo&quot;&gt;I'm a remote div, drag me!&lt;/s:param&gt;&lt;/s:url&gt;
+	    &lt;sj:div href=&quot;%{urlecho}&quot; id=&quot;draggableremote&quot;  draggable=&quot;true&quot; indicator=&quot;indicator&quot; cssClass=&quot;accept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot; &gt;
+            &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
         &lt;/sj:div&gt;
-        
-        &lt;sj:effectDiv <strong>droppableDrop="onDrop" droppableActiveClass="ui-state-hover" droppableHoverClass="ui-state-active" droppable="true" droppableAccept=".accept"</strong> cssClass="ui-widget-content ui-corner-all"&gt;
-            &lt;p&gt;Drop here&lt;/p&gt;
-        &lt;/sj:effectDiv&gt;
+	    
+	    &lt;sj:div id=&quot;droptarget&quot; droppableDrop=&quot;onDrop&quot; droppableActiveClass=&quot;ui-state-hover&quot; droppableHoverClass=&quot;ui-state-active&quot; droppable=&quot;true&quot; droppableAccept=&quot;.accept&quot; cssClass=&quot;ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 220px; height: 220px; padding: 0.5em; float: left; margin: 10px;&quot;&gt;
+	        &lt;p&gt;Drop here&lt;/p&gt;
+	    &lt;/sj:div&gt;
+    &lt;/div&gt;
 	  </pre>
 	</div>
   </div>

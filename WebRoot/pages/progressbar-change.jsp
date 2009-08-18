@@ -12,19 +12,20 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <script type="text/javascript">
-     function change(event, ui){
-         alert('value changed');
-     }
+    $.subscribe('change', function(event,data) {
+        alert('value changed to : '+event.originalEvent.ui.value);
+    });
      function changeValue(){
-         $("#progressbarchange").progressbar( 'value' , parseInt( Math.random() * ( 90 ) ) )
+         $("#progressbarchange").progressbar( 'value' , parseInt( Math.random() * ( 90 ) ) );
      }
     </script>        
     <h2>Progressbar with change event</h2>
     <p>
         A Progressbar that raise an event when change value.
     </p>
-    <sj:progressbar id="progressbarchange" value="21" change="change"/>
-    <a href="#" onclick="changeValue()">change value</a>
+    <sj:progressbar id="progressbarchange" value="21" onChangeTopics="change"/>
+    <br />
+    <a href="#" onclick="changeValue()" class="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-refresh"></span>change value</a>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">
@@ -46,3 +47,11 @@
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.buttonlink').hover(
+            function() { $(this).addClass('ui-state-hover'); }, 
+            function() { $(this).removeClass('ui-state-hover'); }
+    );
+});
+</script>

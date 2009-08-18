@@ -25,7 +25,7 @@
      Echo: <s:textfield id="echo" name="echo" value="Hello World!!!"/><br/>
     </s:form>
 
-    <sj:a id="ajaxformlink" formId="form" targets="result" indicator="indicator" cssClass="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-refresh"></span>
+    <sj:a id="ajaxformlink" formIds="form" targets="result" indicator="indicator" cssClass="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-refresh"></span>
       Submit form here
     </sj:a>
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    

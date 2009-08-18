@@ -30,7 +30,7 @@
         </fieldset>
     </s:form>
 
-    <sj:submit formId="formOutside" targets="result" effect="pulsate" value="Submit outside the Form" indicator="indicator"/>
+    <sj:submit formIds="formOutside" targets="result" effect="pulsate" value="Submit outside the Form" indicator="indicator"/>
 
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
     
@@ -41,7 +41,7 @@
      Echo: &lt;s:textfield id="echo" name="echo" value="Hello World!!!"/>&lt;br/&gt;
     &lt;/s:form&gt;
 
-    &lt;sj:submit <strong>formId="form"</strong> targets="result" effect="pulsate" value="AJAX Submit" indicator="indicator"/&gt;
+    &lt;sj:submit <strong>formIds="form"</strong> targets="result" effect="pulsate" value="AJAX Submit" indicator="indicator"/&gt;
 	  </pre>
 	</div>
   </div>

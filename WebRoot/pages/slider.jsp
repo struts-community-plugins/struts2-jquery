@@ -15,13 +15,13 @@
     <p>
         A simple Slider
     </p>
-    <sj:slider id="slider"/>
+    <sj:slider id="simpleslider"/>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">
     <strong>Code:</strong>
     <pre>
-    &lt;sj:slider id="slider"/&gt;
+    &lt;sj:slider id="simpleslider"/&gt;
     </pre>
   </div>
   <!-- IE Column Clearing -->

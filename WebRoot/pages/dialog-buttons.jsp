@@ -27,7 +27,7 @@
       $('#mybuttondialog').dialog('close');
      };
     </script>        
-    <sj:dialog id="mybuttondialog" buttons="'OK':function() {okButton();},'Cancel':function() {cancelButton();}" autoOpen="false" modal="true" title="Dialog with Buttons">
+    <sj:dialog id="mybuttondialog" buttons="{ 'OK':function() {okButton();},'Cancel':function() {cancelButton();} }" autoOpen="false" modal="true" title="Dialog with Buttons">
      Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
     </sj:dialog>
     <sj:a openDialog="mybuttondialog" cssClass="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open modal dialog with Buttons</sj:a>
@@ -47,7 +47,7 @@
       </pre>
     <strong>Code:</strong>
     <pre>
-    &lt;sj:dialog id=&quot;mybuttondialog&quot; buttons=&quot;'OK':function() {okButton();},'Cancel':function() {cancelButton();}&quot; autoOpen=&quot;false&quot; modal=&quot;true&quot; title=&quot;Dialog with Buttons&quot;&gt;
+    &lt;sj:dialog id=&quot;mybuttondialog&quot; buttons=&quot;{ 'OK':function() {okButton();},'Cancel':function() {cancelButton();} }&quot; autoOpen=&quot;false&quot; modal=&quot;true&quot; title=&quot;Dialog with Buttons&quot;&gt;
      Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
     &lt;/sj:dialog&gt;
     &lt;sj:a openDialog=&quot;mybuttondialog&quot; cssClass=&quot;buttonlink ui-state-default ui-corner-all&quot;&gt;&lt;span class=&quot;ui-icon ui-icon-newwin&quot;&gt;&lt;/span&gt;Open modal dialog with Buttons&lt;/sj:a&gt;

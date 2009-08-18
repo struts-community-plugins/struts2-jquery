@@ -11,9 +11,12 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <script type="text/javascript">
-    function onClose(dateText, inst){
-        alert('Selected Date : '+dateText);
-    }
+    $.subscribe('onDpChangeMonthAndYear', function(event,data) {
+        alert('Change month to : '+event.originalEvent.month+' and year to '+event.originalEvent.year);
+    });
+    $.subscribe('onDpClose', function(event,data) {
+        alert('Selected Date : '+event.originalEvent.dateText);
+    });
     </script>
     <h2>Datepicker with more options</h2>
     <p>
@@ -21,7 +24,7 @@
     </p>
     <s:form id="form" theme="xhtml">
       <sj:datepicker id="date0" name="date0" label="With Button Panel" showButtonPanel="true"/>
-      <sj:datepicker id="date1" name="date1" label="Change Month and Year" changeMonth="true" changeYear="true"/>
+      <sj:datepicker id="date1" name="date1" label="Change Month and Year" changeMonth="true" changeYear="true" onChangeMonthYearTopics="onDpChangeMonthAndYear"/>
       <sj:datepicker id="date2" name="date2" label="Custom Button Text" showOn="both" buttonText="Select a Date"/>
       <sj:datepicker id="date3" name="date3" label="Show only on Button Click" showOn="button"/>
       <sj:datepicker id="date4" name="date4" label="Text after selection" appendText=" (dd.MM.yy)" displayFormat="dd.MM.yy"/>
@@ -32,7 +35,7 @@
       <sj:datepicker id="date9" name="date9" label="Show Years only from 2008 until 2012" yearRange="2008:2012" changeYear="true"/>
       <sj:datepicker id="date10" name="date10" label="Button Only" buttonImageOnly="true"/>
       <sj:datepicker id="date11" name="date11" label="Without Button" showOn="focus"/>
-      <sj:datepicker id="date12" name="date12" label="With Close Event" onClose="onClose"/>
+      <sj:datepicker id="date12" name="date12" label="With Close Event" onCompleteTopics="onDpClose"/>
     </s:form>
   </div>
   
@@ -40,16 +43,19 @@
       <strong>JavaScript:</strong>
       <pre>
     &lt;script type="text/javascript"&gt;
-    function onClose(dateText, inst){
-        alert('Selected Date : '+dateText);
-    }
+    $.subscribe('onDpChangeMonthAndYear', function(event,data) {
+        alert('Change month to : '+event.originalEvent.month+' and year to '+event.originalEvent.year);
+    });
+    $.subscribe('onDpClose', function(event,data) {
+        alert('Selected Date : '+event.originalEvent.dateText);
+    });
     &lt;/script&gt;  
       </pre>
     <strong>Code:</strong>
     <pre>
     &lt;s:form id=&quot;form&quot; theme=&quot;xhtml&quot;&gt;
       &lt;sj:datepicker id=&quot;date0&quot; name=&quot;date0&quot; label=&quot;With Button Panel&quot; showButtonPanel=&quot;true&quot;/&gt;
-      &lt;sj:datepicker id=&quot;date1&quot; name=&quot;date1&quot; label=&quot;Change Month and Year&quot; changeMonth=&quot;true&quot; changeYear=&quot;true&quot;/&gt;
+      &lt;sj:datepicker id=&quot;date1&quot; name=&quot;date1&quot; label=&quot;Change Month and Year&quot; changeMonth=&quot;true&quot; changeYear=&quot;true&quot; onChangeMonthYearTopics=&quot;onDpChangeMonthAndYear&quot;/&gt;
       &lt;sj:datepicker id=&quot;date2&quot; name=&quot;date2&quot; label=&quot;Custom Button Text&quot; showOn=&quot;both&quot; buttonText=&quot;Select a Date&quot;/&gt;
       &lt;sj:datepicker id=&quot;date3&quot; name=&quot;date3&quot; label=&quot;Show only on Button Click&quot; showOn=&quot;button&quot;/&gt;
       &lt;sj:datepicker id=&quot;date4&quot; name=&quot;date4&quot; label=&quot;Text after selection&quot; appendText=&quot; (dd.MM.yy)&quot; displayFormat=&quot;dd.MM.yy&quot;/&gt;
@@ -60,7 +66,7 @@
       &lt;sj:datepicker id=&quot;date9&quot; name=&quot;date9&quot; label=&quot;Show Years only from 2008 until 2012&quot; yearRange=&quot;2008:2012&quot; changeYear=&quot;true&quot;/&gt;
       &lt;sj:datepicker id=&quot;date10&quot; name=&quot;date10&quot; label=&quot;Button Only&quot; buttonImageOnly=&quot;true&quot;/&gt;
       &lt;sj:datepicker id=&quot;date11&quot; name=&quot;date11&quot; label=&quot;Without Button&quot; showOn=&quot;focus&quot;/&gt;
-      &lt;sj:datepicker id=&quot;date12&quot; name=&quot;date12&quot; label=&quot;With Close Event&quot; onClose=&quot;onClose&quot;/&gt;
+      &lt;sj:datepicker id=&quot;date12&quot; name=&quot;date12&quot; label=&quot;With Close Event&quot; onCompleteTopics=&quot;onDpClose&quot;/&gt;
     &lt;/s:form&gt;
     </pre>
   </div>

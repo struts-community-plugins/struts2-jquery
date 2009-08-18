@@ -14,17 +14,16 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <script type="text/javascript">
-     function before(data, form, options){
-    	 var queryString = $.param(data);
-    	 alert('About to submit: \n\n' + queryString);
-     }
-     function completed(response, status){
-    	 alert('status: ' + status + '\n\nresponseText: \n' + response + 
-         '\n\nThe output div should have already been updated with the responseText.');
-     }
-     function errorState(request, status){
-         alert('status: ' + status + '\n\nrequest status: ' + request.status);
-     }
+    $.subscribe('before', function(event,data) {
+	 alert('About to submit: \n\n' + event.originalEvent.formData[0].value + ' to target '+event.originalEvent.options.target+' with timeout '+event.originalEvent.options.timeout );
+    });
+    $.subscribe('complete', function(event,data) {
+   	 alert('status: ' + event.originalEvent.status + '\n\nresponseText: \n' + event.originalEvent.request.responseText + 
+     '\n\nThe output div should have already been updated with the responseText.');
+    });
+    $.subscribe('errorState', function(event,data) {
+        alert('status: ' + event.originalEvent.status + '\n\nrequest status: ' +event.originalEvent.request.status);
+    });
     </script>        
 	<h2>Form submission with AJAX</h2>
 	<p>
@@ -41,7 +40,7 @@
 	            <s:textfield id="echo" name="echo" value="Hello World!!!"/>
 	        </div>
 	        <div class="type-button">
-	            <sj:submit targets="result" value="AJAX Submit" indicator="indicator" beforeSend="before" complete="completed" error="errorState"/>
+	            <sj:submit targets="result" value="AJAX Submit" timeout="2500" indicator="indicator" onBeforeTopics="before" onCompleteTopics="complete" onErrorTopics="errorState"/>
 	        </div>
         </fieldset>
     </s:form>
@@ -56,7 +55,7 @@
                 <s:textfield id="echo" name="echo" value="Hello World!!!"/>
             </div>
             <div class="type-button">
-                <sj:submit targets="result" value="AJAX Submit with Error" indicator="indicator" beforeSend="before" complete="completed" error="errorState"/>
+                <sj:submit targets="result" value="AJAX Submit with Error" timeout="2500" indicator="indicator" onBeforeTopics="before" onCompleteTopics="complete" onErrorTopics="errorState"/>
             </div>
         </fieldset>
     </s:form>

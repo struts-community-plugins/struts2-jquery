@@ -15,9 +15,9 @@
     <p>
         A resizeable Progressbar.
     </p>
-    <sj:effectDiv id="progressbarWrapper" resizable="true" cssStyle="height:30px;" cssClass="ui-widget-default">
-        <sj:progressbar id="progressbarresize" value="21" change="change" cssStyle="height: 100%;"/>
-    </sj:effectDiv>
+    <sj:div id="progressbarWrapper" resizable="true" cssStyle="height:30px;" cssClass="ui-widget-default">
+        <sj:progressbar id="progressbarresize" value="21" cssStyle="height: 100%;"/>
+    </sj:div>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">

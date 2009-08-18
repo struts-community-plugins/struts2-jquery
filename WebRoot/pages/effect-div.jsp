@@ -22,7 +22,14 @@
 	    A Div with Highlight Effect on click.
 	</p>
     <strong>Div :</strong>
-    <sj:effectDiv events="click" effect="highlight" cssClass="result ui-widget-content ui-corner-all">
+    <sj:div id="withoutclick" effect="highlight" effectDuration="5000" effectOptions="{ color: '#000000' }" cssClass="result ui-widget-content ui-corner-all">
+        Click me!<br/>
+        Click me!<br/>
+        Click me!<br/>
+    </sj:div>
+
+    <strong>Div :</strong>
+    <sj:effectDiv id="withclick" events="click" effect="highlight" effectDuration="6000" effectOptions="color: '#000000', mode: 'hide'" cssClass="result ui-widget-content ui-corner-all">
         Click me!<br/>
         Click me!<br/>
         Click me!<br/>

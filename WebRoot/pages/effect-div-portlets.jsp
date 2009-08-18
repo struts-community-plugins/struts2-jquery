@@ -36,7 +36,7 @@
 	    How to make portlet styled divs with the sortable interaction.
 	</p>
     <strong>Message :</strong><span id="selectresult">Use the title from each portlet as handle.</span><br/>
-<sj:effectDiv id="column1" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
+<sj:div id="column1" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
 
     <div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
         <div class="ui-widget-header ui-corner-all"><span class="title">Feeds</span><span class="ui-icon ui-icon-plusthick"></span></div>
@@ -48,18 +48,18 @@
         <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
     </div>
 
-</sj:effectDiv>
+</sj:div>
 
-<sj:effectDiv id="column2" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
+<sj:div id="column2" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
 
     <div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
         <div class="ui-widget-header ui-corner-all"><span class="title">Shopping</span><span class="ui-icon ui-icon-plusthick"></span></div>
         <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
     </div>
 
-</sj:effectDiv>
+</sj:div>
 
-<sj:effectDiv id="column3" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
+<sj:div id="column3" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
 
     <div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
         <div class="ui-widget-header ui-corner-all"><span class="title">Links</span><span class="ui-icon ui-icon-plusthick"></span></div>
@@ -71,7 +71,7 @@
         <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
     </div>
 
-</sj:effectDiv>
+</sj:div>
         
 	<div class="code ui-widget-content ui-corner-all" style="clear: left;">
       <strong>Styles:</strong>
@@ -110,42 +110,42 @@
 	  <strong>Code:</strong>
 	  <pre>
     &lt;strong&gt;Message :&lt;/strong&gt;&lt;span id="selectresult"&gt;Use the title from each portlet as handle.&lt;/span&gt;&lt;br/&gt;
-	&lt;sj:effectDiv id="column1" cssClass="column" sortable="true" <strong>sortableConnectWith=".column"</strong> sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate"&gt;
-	
-	    &lt;div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"&gt;
-	        &lt;div class="ui-widget-header ui-corner-all"&gt;&lt;span class="title"&gt;Feeds&lt;/span&gt;&lt;span class="ui-icon ui-icon-plusthick"&gt;&lt;/span&gt;&lt;/div&gt;
-	        &lt;div class="portlet-content"&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
-	    &lt;/div&gt;
-	    
-	    &lt;div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"&gt;
-	        &lt;div class="ui-widget-header ui-corner-all"&gt;&lt;span class="title"&gt;News&lt;/span&gt;&lt;span class="ui-icon ui-icon-plusthick"&gt;&lt;/span&gt;&lt;/div&gt;
-	        &lt;div class="portlet-content"&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
-	    &lt;/div&gt;
-	
-	&lt;/sj:effectDiv&gt;
-	
-	&lt;sj:effectDiv id="column2" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate"&gt;
-	
-	    &lt;div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"&gt;
-	        &lt;div class="ui-widget-header ui-corner-all"&gt;&lt;span class="title"&gt;Shopping&lt;/span&gt;&lt;span class="ui-icon ui-icon-plusthick"&gt;&lt;/span&gt;&lt;/div&gt;
-	        &lt;div class="portlet-content"&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
-	    &lt;/div&gt;
-	
-	&lt;/sj:effectDiv&gt;
-	
-	&lt;sj:effectDiv id="column3" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate"&gt;
-	
-	    &lt;div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"&gt;
-	        &lt;div class="ui-widget-header ui-corner-all"&gt;&lt;span class="title"&gt;Links&lt;/span&gt;&lt;span class="ui-icon ui-icon-plusthick"&gt;&lt;/span&gt;&lt;/div&gt;
-	        &lt;div class="portlet-content"&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
-	    &lt;/div&gt;
-	    
-	    &lt;div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"&gt;
-	        &lt;div class="ui-widget-header ui-corner-all"&gt;&lt;span class="title"&gt;Images&lt;/span&gt;&lt;span class="ui-icon ui-icon-plusthick"&gt;&lt;/span&gt;&lt;/div&gt;
-	        &lt;div class="portlet-content"&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
-	    &lt;/div&gt;
-	
-	&lt;/sj:effectDiv&gt;
+&lt;sj:div id=&quot;column1&quot; cssClass=&quot;column&quot; sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableUpdate=&quot;onUpdate&quot;&gt;
+
+    &lt;div class=&quot;ui-widget ui-widget-content ui-helper-clearfix ui-corner-all&quot;&gt;
+        &lt;div class=&quot;ui-widget-header ui-corner-all&quot;&gt;&lt;span class=&quot;title&quot;&gt;Feeds&lt;/span&gt;&lt;span class=&quot;ui-icon ui-icon-plusthick&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;portlet-content&quot;&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class=&quot;ui-widget ui-widget-content ui-helper-clearfix ui-corner-all&quot;&gt;
+        &lt;div class=&quot;ui-widget-header ui-corner-all&quot;&gt;&lt;span class=&quot;title&quot;&gt;News&lt;/span&gt;&lt;span class=&quot;ui-icon ui-icon-plusthick&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;portlet-content&quot;&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/sj:div&gt;
+
+&lt;sj:div id=&quot;column2&quot; cssClass=&quot;column&quot; sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableUpdate=&quot;onUpdate&quot;&gt;
+
+    &lt;div class=&quot;ui-widget ui-widget-content ui-helper-clearfix ui-corner-all&quot;&gt;
+        &lt;div class=&quot;ui-widget-header ui-corner-all&quot;&gt;&lt;span class=&quot;title&quot;&gt;Shopping&lt;/span&gt;&lt;span class=&quot;ui-icon ui-icon-plusthick&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;portlet-content&quot;&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/sj:div&gt;
+
+&lt;sj:div id=&quot;column3&quot; cssClass=&quot;column&quot; sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableUpdate=&quot;onUpdate&quot;&gt;
+
+    &lt;div class=&quot;ui-widget ui-widget-content ui-helper-clearfix ui-corner-all&quot;&gt;
+        &lt;div class=&quot;ui-widget-header ui-corner-all&quot;&gt;&lt;span class=&quot;title&quot;&gt;Links&lt;/span&gt;&lt;span class=&quot;ui-icon ui-icon-plusthick&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;portlet-content&quot;&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class=&quot;ui-widget ui-widget-content ui-helper-clearfix ui-corner-all&quot;&gt;
+        &lt;div class=&quot;ui-widget-header ui-corner-all&quot;&gt;&lt;span class=&quot;title&quot;&gt;Images&lt;/span&gt;&lt;span class=&quot;ui-icon ui-icon-plusthick&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;portlet-content&quot;&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit&lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/sj:div&gt;
 	  </pre>
 	</div>
   </div>

@@ -18,7 +18,7 @@
 	    Submit a form with AJAX.
 	</p>
     <strong>Result Div :</strong>
-	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
+	<div id="formResult" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
     <s:form id="form" action="echo" theme="simple" cssClass="yform">
         <fieldset>
@@ -28,7 +28,7 @@
 	            <s:textfield id="echo" name="echo" value="Hello World!!!"/>
 	        </div>
 	        <div class="type-button">
-	            <sj:submit targets="result" value="AJAX Submit" indicator="indicator"/>
+	            <sj:submit targets="formResult" value="AJAX Submit" indicator="indicator"/>
 	        </div>
         </fieldset>
     </s:form>

@@ -18,10 +18,10 @@
 	<![endif]-->
 
   <s:if test="%{theme == 'showcase' || theme == null}">
-      <sj:head jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}"/>
+      <sj:head compressed="false" jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}"/>
   </s:if>
   <s:else>
-      <sj:head jqueryui="true" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}"/>
+      <sj:head compressed="false" jqueryui="true" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}"/>
   </s:else>
   <script type="text/javascript" src="js/showcase.js"></script>
 </head>
@@ -40,7 +40,7 @@
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.0.2</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.0.2 (Beta)</h4>
         </div>
       </div>
       <div id="nav">

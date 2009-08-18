@@ -31,15 +31,15 @@
     </script>  
     You've selected:  <span id="selectresult"></span>. <br/>     
      <strong>Selectable Divs :</strong><br/>
-    <sj:effectDiv id="selectabledivs" selectableStop="onStop" selectable="true" cssStyle="width: 400px; loat: left; border-right: 1px dotted #FECA40">
+    <sj:div id="selectabledivs" selectableStop="onStop" selectable="true" cssStyle="width: 400px; loat: left; border-right: 1px dotted #FECA40">
         <div id="one" class="selectable ui-corner-all">One</div>
         <div id="two" class="selectable ui-corner-all">Two</div>
         <div id="three" class="selectable ui-corner-all">Three</div>
         <div id="four" class="selectable ui-corner-all">Four</div>
         <div id="five" class="selectable ui-corner-all">Five</div>
         <div id="six" class="selectable ui-corner-all">Six</div>
-    </sj:effectDiv>
-     <sj:effectDiv id="selectablelist" selectableStop="onStop" selectable="true" selectableFilter="li" cssStyle="margin-left: 410px; width: 200px;">
+    </sj:div>
+     <sj:div id="selectablelist" selectableStop="onStop" selectable="true" selectableFilter="li" cssStyle="margin-left: 410px; width: 200px;">
         <strong>Selectable Listitems :</strong><br/>
         <ul>
         <li id="seven" class="selectablelist ui-corner-all">Seven</li>
@@ -49,7 +49,7 @@
         <li id="eleven" class="selectablelist ui-corner-all">Eleven</li>
         <li id="twelve" class="selectablelist ui-corner-all">Twelve</li>
         </ul>
-    </sj:effectDiv>
+    </sj:div>
         
 	<div class="code ui-widget-content ui-corner-all" style="clear: left;">
       <strong>Styles:</strong>
@@ -95,25 +95,25 @@ background:#FECA40;
 	  <pre>
     You've selected:  &lt;span id="selectresult"&gt;&lt;/span&gt;. &lt;br/&gt;     
      &lt;strong&gt;Selectable Divs :&lt;/strong&gt;&lt;br/&gt;
-    &lt;sj:effectDiv id="selectabledivs" selectableStop="onStop" selectable="true" cssStyle="width: 400px; loat: left; border-right: 1px dotted #FECA40"&gt;
-        &lt;div id="one" class="selectable ui-corner-all"&gt;One&lt;/div&gt;
-        &lt;div id="two" class="selectable ui-corner-all"&gt;Two&lt;/div&gt;
-        &lt;div id="three" class="selectable ui-corner-all"&gt;Three&lt;/div&gt;
-        &lt;div id="four" class="selectable ui-corner-all"&gt;Four&lt;/div&gt;
-        &lt;div id="five" class="selectable ui-corner-all"&gt;Five&lt;/div&gt;
-        &lt;div id="six" class="selectable ui-corner-all"&gt;Six&lt;/div&gt;
-    &lt;/sj:effectDiv&gt;
-     &lt;sj:effectDiv id="selectablelist" selectableStop="onStop" selectable="true" selectableFilter="li" cssStyle="margin-left: 410px; width: 200px;"&gt;
+    &lt;sj:div id=&quot;selectabledivs&quot; selectableStop=&quot;onStop&quot; selectable=&quot;true&quot; cssStyle=&quot;width: 400px; loat: left; border-right: 1px dotted #FECA40&quot;&gt;
+        &lt;div id=&quot;one&quot; class=&quot;selectable ui-corner-all&quot;&gt;One&lt;/div&gt;
+        &lt;div id=&quot;two&quot; class=&quot;selectable ui-corner-all&quot;&gt;Two&lt;/div&gt;
+        &lt;div id=&quot;three&quot; class=&quot;selectable ui-corner-all&quot;&gt;Three&lt;/div&gt;
+        &lt;div id=&quot;four&quot; class=&quot;selectable ui-corner-all&quot;&gt;Four&lt;/div&gt;
+        &lt;div id=&quot;five&quot; class=&quot;selectable ui-corner-all&quot;&gt;Five&lt;/div&gt;
+        &lt;div id=&quot;six&quot; class=&quot;selectable ui-corner-all&quot;&gt;Six&lt;/div&gt;
+    &lt;/sj:div&gt;
+     &lt;sj:div id=&quot;selectablelist&quot; selectableStop=&quot;onStop&quot; selectable=&quot;true&quot; selectableFilter=&quot;li&quot; cssStyle=&quot;margin-left: 410px; width: 200px;&quot;&gt;
         &lt;strong&gt;Selectable Listitems :&lt;/strong&gt;&lt;br/&gt;
         &lt;ul&gt;
-        &lt;li id="seven" class="selectablelist ui-corner-all"&gt;Seven&lt;/li&gt;
-        &lt;li id="eight" class="selectablelist ui-corner-all"&gt;Eight&lt;/li&gt;
-        &lt;li id="nine" class="selectablelist ui-corner-all"&gt;Nine&lt;/li&gt;
-        &lt;li id="ten" class="selectablelist ui-corner-all"&gt;Ten&lt;/li&gt;
-        &lt;li id="eleven" class="selectablelist ui-corner-all"&gt;Eleven&lt;/li&gt;
-        &lt;li id="twelve" class="selectablelist ui-corner-all"&gt;Twelve&lt;/li&gt;
+        &lt;li id=&quot;seven&quot; class=&quot;selectablelist ui-corner-all&quot;&gt;Seven&lt;/li&gt;
+        &lt;li id=&quot;eight&quot; class=&quot;selectablelist ui-corner-all&quot;&gt;Eight&lt;/li&gt;
+        &lt;li id=&quot;nine&quot; class=&quot;selectablelist ui-corner-all&quot;&gt;Nine&lt;/li&gt;
+        &lt;li id=&quot;ten&quot; class=&quot;selectablelist ui-corner-all&quot;&gt;Ten&lt;/li&gt;
+        &lt;li id=&quot;eleven&quot; class=&quot;selectablelist ui-corner-all&quot;&gt;Eleven&lt;/li&gt;
+        &lt;li id=&quot;twelve&quot; class=&quot;selectablelist ui-corner-all&quot;&gt;Twelve&lt;/li&gt;
         &lt;/ul&gt;
-    &lt;/sj:effectDiv&gt;
+    &lt;/sj:div&gt;
 	  </pre>
 	</div>
   </div>
