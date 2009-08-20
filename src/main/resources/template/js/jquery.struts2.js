@@ -1071,7 +1071,7 @@
 		        if (!resizableOptions) {
 		        	resizableOptions = eval ("( " + resizableOptionsStr + " )" );
 		        }
-				$elem.resizable(resizableOptions);
+		        container.resizable(resizableOptions);
 			}
 		};
 	}
