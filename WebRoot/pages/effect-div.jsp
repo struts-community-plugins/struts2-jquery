@@ -29,11 +29,11 @@
     </sj:div>
 
     <strong>Div :</strong>
-    <sj:effectDiv id="withclick" events="click" effect="highlight" effectDuration="6000" effectOptions="color: '#000000', mode: 'hide'" cssClass="result ui-widget-content ui-corner-all">
+    <sj:div id="withclick" events="click" effect="highlight" effectDuration="6000" effectOptions="{ color: '#000000', mode: 'show' }" cssClass="result ui-widget-content ui-corner-all">
         Click me!<br/>
         Click me!<br/>
         Click me!<br/>
-    </sj:effectDiv>
+    </sj:div>
         
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>

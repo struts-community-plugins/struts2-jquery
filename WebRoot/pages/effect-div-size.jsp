@@ -22,9 +22,9 @@
 	    A Div with Size Effect bind on a link.
 	</p>
     <strong>Div :</strong>
-    <sj:effectDiv bindOn="startlink" events="click" effect="size" effectOptions="to: {width: 400,height: 300}" effectDuration="1000" cssClass="result ui-widget-content ui-corner-all" cssStyle="width: 200px; height: 200px; background: blue; color: yellow;">
+    <sj:div bindOn="startlink" events="click" effect="size" effectOptions="{ to: {width: 400,height: 300} }" effectDuration="1000" cssClass="result ui-widget-content ui-corner-all" cssStyle="width: 200px; height: 200px; background: blue; color: yellow;">
         Do you love Struts2 with jQuery?
-    </sj:effectDiv>
+    </sj:div>
     <a id="startlink" href="#" class="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-arrow-4-diag"></span>Size Div</a>
     
 	<div class="code ui-widget-content ui-corner-all">

@@ -22,11 +22,11 @@
 	    A Div with Shake Effect on mouse over.
 	</p>
     <strong>Div :</strong>
-    <sj:effectDiv events="mouseover" effect="shake" effectDuration="600" cssClass="result ui-widget-content ui-corner-all">
+    <sj:div events="mouseover" effect="shake" effectDuration="600" cssClass="result ui-widget-content ui-corner-all">
         Hover me!<br/>
         Hover me!<br/>
         Hover me!<br/>
-    </sj:effectDiv>
+    </sj:div>
         
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>

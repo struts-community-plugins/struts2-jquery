@@ -16,15 +16,16 @@
 	<p>
 	    Submit a form with AJAX and run a slide effect.
 	</p>
-    <strong>Result Div :</strong>
-	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
-    
     <s:form id="formEffect" action="echo" theme="xhtml">
                 <s:textfield id="echo" name="echo" label="Echo" value="Hello World!!!"/><br/>
                 <sj:submit targets="result" effect="slide" value="AJAX Submit" indicator="indicator"/>
     </s:form>
-
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
+
+    <strong>Result Div :</strong>
+	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
+    
+
     
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
