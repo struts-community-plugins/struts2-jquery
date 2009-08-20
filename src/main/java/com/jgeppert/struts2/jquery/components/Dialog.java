@@ -68,7 +68,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * example5 -->
  */
 @StrutsTag(name = "dialog", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag", description = "Render a Dialog")
-public class Dialog extends AbstractRemoteBean implements RemoteBean, TopicBean {
+public class Dialog extends AbstractRemoteBean {
 
   public static final String WIDGET       = "dialog";
   public static final String TEMPLATE       = "dialog";

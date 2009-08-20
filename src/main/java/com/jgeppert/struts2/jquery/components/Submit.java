@@ -101,7 +101,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- END SNIPPET: example8 -->
  * */
 @StrutsTag(name="submit", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description="Render a submit button")
-public class Submit extends FormButton implements RemoteBean, TopicBean {
+public class Submit extends AbstractRemoteBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(Submit.class);
     private final static transient Random RANDOM = new Random();
@@ -165,6 +165,8 @@ public class Submit extends FormButton implements RemoteBean, TopicBean {
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
 
+        if (type != null)
+          addParameter("type", findString(type));
         if (href != null)
             addParameter("href", findString(href));
         if (dataType != null)
@@ -315,7 +317,7 @@ public class Submit extends FormButton implements RemoteBean, TopicBean {
     @StrutsTagAttribute(description="The type of submit to use. Valid values are <i>input</i>, " +
         "<i>button</i> and <i>image</i>.", defaultValue="input")
     public void setType(String type) {
-        super.setType(type);
+         this.type = type;
     }
 
     @StrutsTagAttribute(description="Preset the value of input element.")
@@ -349,11 +351,6 @@ public class Submit extends FormButton implements RemoteBean, TopicBean {
     @StrutsTagAttribute(description="Comma delimited list of ids of the elements whose content will be updated")
     public void setTargets(String targets) {
         this.targets = targets;
-    }
-
-    @StrutsTagSkipInheritance
-    public void setAction(String action) {
-        super.setAction(action);
     }
 
     @StrutsTagAttribute(description="Supply an image src for <i>image</i> type submit button. Will have no effect for types <i>input</i> and <i>button</i>.")

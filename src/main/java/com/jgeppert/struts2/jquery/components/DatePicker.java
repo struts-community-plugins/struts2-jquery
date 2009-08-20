@@ -61,7 +61,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * id="birthday" name="birthday"/&gt; <!-- END SNIPPET: example3 -->
  */
 @StrutsTag(name = "datepicker", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DatePickerTag", description = "Render datepicker")
-public class DatePicker extends AbstractTopicsBean implements TopicBean {
+public class DatePicker extends AbstractTopicsBean {
 
   public static final String            WIDGET          = "datepicker";
   public static final String            TEMPLATE        = "datepicker-close";

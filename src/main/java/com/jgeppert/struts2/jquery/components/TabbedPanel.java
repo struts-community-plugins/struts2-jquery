@@ -24,7 +24,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.ClosingUIBean;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -67,7 +66,8 @@ import com.opensymphony.xwork2.util.ValueStack;
  * label="Tab Three"/&gt; &lt;/sj:tabbedpanel&gt; <!-- END SNIPPET: example2 -->
  */
 @StrutsTag(name = "tabbedpanel", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabbedPanelTag", description = "Render a tabbedPanel widget.")
-public class TabbedPanel extends ClosingUIBean {
+public class TabbedPanel extends  AbstractTopicsBean {
+  public static final String            WIDGET         = "tabbedpanel";
   public static final String            TEMPLATE       = "tabbedpanel";
   public static final String            TEMPLATE_CLOSE = "tabbedpanel-close";
   final private static String           COMPONENT_NAME = TabbedPanel.class.getName();
@@ -79,14 +79,21 @@ public class TabbedPanel extends ClosingUIBean {
   protected String                      collapsible;
   protected String                      animate;
   protected String                      spinner;
+  protected String                      cache;
+  protected String                      disabled;
+
+  protected String                      onAddTopics;
+  protected String                      onRemoveTopics;
 
   public TabbedPanel(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
 
-  protected void evaluateExtraParams()
+  public void evaluateExtraParams()
   {
     super.evaluateExtraParams();
+
+    addParameter("widget", WIDGET);
 
     if (selectedTab != null) addParameter("selectedTab", findValue(selectedTab, Integer.class));
     if (useSelectedTabCookie != null) addParameter("useSelectedTabCookie", findValue(this.useSelectedTabCookie, Boolean.class));
@@ -94,6 +101,10 @@ public class TabbedPanel extends ClosingUIBean {
     if (this.collapsible != null) addParameter("collapsible", findValue(this.collapsible, Boolean.class));
     if (this.animate != null) addParameter("animate", findValue(this.animate, Boolean.class));
     if (this.spinner != null) addParameter("spinner", findString(this.spinner));
+    if (this.cache != null) addParameter("cache", findValue(this.cache, Boolean.class));
+    if (this.disabled != null) addParameter("disabled", findString(this.disabled));
+    if (this.onAddTopics != null) addParameter("onAddTopics", findString(this.onAddTopics));
+    if (this.onRemoveTopics != null) addParameter("onRemoveTopics", findString(this.onRemoveTopics));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -101,7 +112,7 @@ public class TabbedPanel extends ClosingUIBean {
       // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
       int nextInt = RANDOM.nextInt();
       nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "widget_" + String.valueOf(nextInt);
+      this.id = "tabbedpanel_" + String.valueOf(nextInt);
       addParameter("id", this.id);
     }
   }
@@ -175,5 +186,29 @@ public class TabbedPanel extends ClosingUIBean {
   public void setSpinner(String spinner)
   {
     this.spinner = spinner;
+  }
+
+  @StrutsTagAttribute(description = "Whether or not to cache remote tabs content, e.g. load only once or with every click. Cached content is being lazy loaded, e.g once and only once for the first click.", defaultValue = "false", type = "Boolean")
+  public void setCache(String cache)
+  {
+    this.cache = cache;
+  }
+
+  @StrutsTagAttribute(description = "An array containing the position of the tabs (zero-based index) that should be disabled on initialization. e.g. [1, 2]")
+  public void setDisabled(String disabled)
+  {
+    this.disabled = disabled;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is added", type="String", defaultValue="")
+  public void setOnAddTopics(String onAddTopics)
+  {
+    this.onAddTopics = onAddTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is removed", type="String", defaultValue="")
+  public void setOnRemoveTopics(String onRemoveTopics)
+  {
+    this.onRemoveTopics = onRemoveTopics;
   }
 }

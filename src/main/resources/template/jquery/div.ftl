@@ -32,6 +32,8 @@
   <#if parameters.selectableOptions?if_exists != ""> selectableoptions="${parameters.selectableOptions?html}"</#if>
   <#if parameters.sortable?default(false)> sortable="true"</#if>
   <#if parameters.sortableOptions?if_exists != ""> sortableoptions="${parameters.sortableOptions?html}"</#if>
+  <#if parameters.bindOn?if_exists != ""> bindon="${parameters.bindOn?html}"</#if>
+  <#if parameters.events?if_exists != ""> events="${parameters.events?html}"</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/action.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

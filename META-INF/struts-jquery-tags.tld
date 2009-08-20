@@ -1526,6 +1526,24 @@
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.AccordionTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
+      <description><![CDATA[[A comma delimited list of topics that published before accordion is changed.]]></description>
+      <name>onBeforeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[[A comma delimited list of topics that published when accordion is changed.]]></description>
+      <name>onChangeTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[[A comma delimited list of topics they are always published.]]></description>
+      <name>onAlwaysTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <description><![CDATA[The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.]]></description>
       <name>href</name>
       <required>false</required>
@@ -3053,6 +3071,18 @@
     <name>div</name>
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.DivTag</tag-class>
     <body-content>JSP</body-content>
+    <attribute>
+      <description><![CDATA[Bind the start of load or effect on element. e.g. button or link]]></description>
+      <name>bindOn</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Start load or effect on specified event. Possible values are click, dblclick, mouseover, mouseenter, mouseleave. Default: click]]></description>
+      <name>events</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
     <attribute>
       <description><![CDATA[Perform a effect on this element. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects]]></description>
       <name>effect</name>
@@ -4845,6 +4875,18 @@
     <name>tabbedpanel</name>
     <tag-class>com.jgeppert.struts2.jquery.views.jsp.ui.TabbedPanelTag</tag-class>
     <body-content>JSP</body-content>
+    <attribute>
+      <description><![CDATA[Whether or not to cache remote tabs content, e.g. load only once or with every click. Cached content is being lazy loaded, e.g once and only once for the first click. Default false]]></description>
+      <name>cache</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description><![CDATA[An array containing the position of the tabs (zero-based index) that should be disabled on initialization. e.g. [1, 2]]]></description>
+      <name>disabled</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
     <attribute>
       <description><![CDATA[The HTML content of this string is shown in a tab title while remote content is loading. Pass in empty string to deactivate that behavior.]]></description>
       <name>spinner</name>

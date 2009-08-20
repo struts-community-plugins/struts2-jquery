@@ -20,31 +20,4 @@
 -->
 </ul>
 </div>
-<script type="text/javascript">
-$(document).ready(function () {
-    $('#${parameters.id?html} ul div').appendTo('#${parameters.id?html}');
-    $('#${parameters.id?html}').tabs({
-  <#if parameters.selectedTab?exists >
-        selected: ${parameters.selectedTab?html},
-  </#if>
-  <#if parameters.openOnMouseover?default(false)>
-        event: 'mouseover', 
-  </#if>
-  <#if parameters.collapsible?default(false)>
-        collapsible: true, 
-  </#if>
-  <#if parameters.useSelectedTabCookie?default(false)>
-        cookie: { expires: 30 }, 
-  </#if>
-  <#if parameters.animate?default(false)>
-        fx: { opacity: 'toggle' }, 
-  </#if>
-  <#if parameters.spinner?if_exists != "">
-        spinner: '${parameters.spinner}',
-  </#if>
-        ajaxOptions:{ dataType:'html'} 
-    });
-});
-</script>
-
-
+<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />

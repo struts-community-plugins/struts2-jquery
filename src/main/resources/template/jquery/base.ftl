@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: a.ftl,v 1.1 2009/02/09 08:34:16 echijioke Exp $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -26,14 +24,14 @@
   <#if parameters.id?exists>
     id="${parameters.id?html}"<#rt/>
   </#if>
-  <#if parameters.hideTopics?exists>
-    hideTopics="${parameters.hideTopics?string?html}"<#rt/>
+  <#if parameters.onHideTopics?exists>
+    onhidetopics="${parameters.onHideTopics?string?html}"<#rt/>
   </#if>
-  <#if parameters.showTopics?exists>
-    showTopics="${parameters.showTopics?string?html}"<#rt/>
+  <#if parameters.onShowTopics?exists>
+    onshowtopics="${parameters.onShowTopics?string?html}"<#rt/>
   </#if>
-  <#if parameters.removeTopics?exists>
-    removeTopics="${parameters.removeTopics?string?html}"<#rt/>
+  <#if parameters.onRemoveTopics?exists>
+    onremovetopics="${parameters.onRemoveTopics?string?html}"<#rt/>
   </#if>
   <#if parameters.disabled?default(false)>
 	 disabled="true"<#rt/>

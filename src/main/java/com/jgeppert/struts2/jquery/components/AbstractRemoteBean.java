@@ -19,8 +19,6 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

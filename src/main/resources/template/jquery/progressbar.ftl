@@ -20,24 +20,11 @@
 -->
 
 <div
-    id="${parameters.id?html}"<#rt/>
-  <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?html}"<#rt/>
-  </#if>
-  <#if parameters.cssStyle?if_exists != "">
-    style="${parameters.cssStyle?html}"<#rt/>
-  </#if>
+    value="${parameters.value?default('0')}"<#rt/>
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
-></div>
-<script type="text/javascript">
-$(document).ready(function () {
-		$("#${parameters.id?html}").progressbar({
-<#if parameters.change?if_exists != "">
-			change: function(event, ui) { ${parameters.change?html}(event, ui); },
-</#if>
-			value: ${parameters.value?default('0')}
-		});
-});
-</script>
+>

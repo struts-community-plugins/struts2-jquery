@@ -20,15 +20,40 @@
 -->
 
 <ul
-  <#if parameters.id?if_exists != "">
-    id="${parameters.id?html}"<#rt/>
+  <#if parameters.fillSpace?default(false)>
+    fillSpace="true"<#rt/>
   </#if>
-  <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?html}"<#rt/>
+  <#if parameters.collapsible?default(false)>
+    collapsible="true"<#rt/>
   </#if>
-  <#if parameters.cssStyle?if_exists != "">
-    style="${parameters.cssStyle?html}"<#rt/>
+  <#if parameters.clearStyle?default(false)>
+    clearStyle="true"<#rt/>
   </#if>
+  <#if parameters.autoHeight?default(false)>
+    autoHeight="true"<#rt/>
+  </#if>
+  <#if parameters.openOnMouseover?default(false)>
+    event="mouseover"<#rt/>
+  </#if>
+  <#if parameters.active?if_exists != "">
+    active="${parameters.active?html}"<#rt/>
+  </#if>
+  <#if parameters.href?if_exists != "">
+    href="${parameters.href?html}"<#rt/>
+  </#if>
+  <#if parameters.header?if_exists != "">
+    header="${parameters.header?html}"<#rt/>
+  </#if>
+<#if parameters.animated?if_exists != "">
+<#if parameters.animated?if_exists == "false">
+    animated="false"<#rt/>
+<#else>
+    animated="${parameters.animated?html}"<#rt/>
+</#if>
+</#if>
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
@@ -63,10 +88,10 @@
     <li>
 	<${parameters.header?default('h3')}><a href="#"
 <#if parameters.paramKeys?if_exists != "">
-	 rel="${parameters.paramKeys?trim}"
+	 paramkeys="${parameters.paramKeys?trim}"
 </#if>	 
 <#if parameters.paramValues?if_exists != "">
-	 rev="${hrefValues?trim}"
+	 paramvalues="${hrefValues?trim}"
 </#if>	 
 	 >${itemKeyStr?html}</a></${parameters.header?default('h3')}>
 		<div>
@@ -80,79 +105,4 @@
 	<#lt/>
 </@s.iterator>
 </ul>
-<script type="text/javascript">
-$(document).ready(function () {
-	$("#${parameters.id?trim}").accordion({
-<#if parameters.fillSpace?default(false)>
-			fillSpace: true,
-</#if>
-<#if parameters.collapsible?default(false)>
-			collapsible: true,
-</#if>
-<#if parameters.clearStyle?default(false)>
-			clearStyle: true,
-</#if>
-<#if parameters.autoHeight?default(true)>
-			autoHeight: true,
-</#if>
-<#if parameters.fillSpace?default(false)>
-			fillSpace: true,
-</#if>
-<#if parameters.openOnMouseover?default(false)>
-			event: 'mouseover',
-</#if>
-<#if parameters.animated?if_exists != "">
-<#if parameters.animated?if_exists == "false">
-			animated: false,
-<#else>
-			animated: '${parameters.animated?html}',
-</#if>
-</#if>
-<#if parameters.header?if_exists != "">
-			header: '${parameters.header?html}',
-</#if>
-<#if parameters.href?if_exists != "">
-			changestart: function(event, ui) {
-			if ( typeof $(ui.newHeader).find('a').attr('rel') != "undefined" )
-			{
-			    var keys = $(ui.newHeader).find('a').attr('rel').split(',');
-			    var values = $(ui.newHeader).find('a').attr('rev').split(',');
-				var params = {};
-				jQuery.each(keys, function(i, val) {
-      				params[val] = values[i];
-    			});
-				ui.newContent.load(
-					'${parameters.href?html}'
-<#if parameters.paramKeys?if_exists != "">
-					,params,function() {}
-</#if>				
-				);
-			  }
-			},
-</#if>
-<#if parameters.active?if_exists != "">
-			active: ${parameters.active?html}
-<#else>
-			active: 0
-</#if>
-	});
-<#if parameters.href?if_exists != "" && parameters.aktiv?if_exists != "false">
-	var aktiv = $("#${parameters.id?trim} li ${parameters.header?default('h3')}").filter('.ui-accordion-header').filter('.ui-state-active').find('a');
-	if ( typeof $(aktiv).attr('rel') != "undefined" )
-	{
-		var keys = $(aktiv).attr('rel').split(',');
-		var values = $(aktiv).attr('rev').split(',');
-		var params = {};
-		jQuery.each(keys, function(i, val) {
-      		params[val] = values[i];
-    	});
-		$("#${parameters.id?trim} li div").filter('.ui-accordion-content-active').load(
-		   '${parameters.href?html}'
-<#if parameters.paramKeys?if_exists != "">
-			,params,function() {}
-</#if>				
-		);
-	}
-</#if>
-});
-</script>
+<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />

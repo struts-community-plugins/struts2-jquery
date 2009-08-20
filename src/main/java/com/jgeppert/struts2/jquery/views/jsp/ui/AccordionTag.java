@@ -43,6 +43,9 @@ public class AccordionTag extends AbstractRequiredListTag {
     protected String href;
     protected String paramKeys;
     protected String paramValues;
+    protected String onBeforeTopics;
+    protected String onAlwaysTopics;
+    protected String onChangeTopics;
     
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Accordion(stack, req, res);
@@ -63,6 +66,9 @@ public class AccordionTag extends AbstractRequiredListTag {
         accordion.setHref(href);
         accordion.setParamKeys(paramKeys);
         accordion.setParamValues(paramValues);
+        accordion.setOnBeforeTopics(onBeforeTopics);
+        accordion.setOnAlwaysTopics(onAlwaysTopics);
+        accordion.setOnChangeTopics(onChangeTopics);
     }
 
   public void setActive(String active)
@@ -118,6 +124,21 @@ public class AccordionTag extends AbstractRequiredListTag {
   public void setParamValues(String paramValues)
   {
     this.paramValues = paramValues;
+  }
+
+  public void setOnBeforeTopics(String onBeforeTopics)
+  {
+    this.onBeforeTopics = onBeforeTopics;
+  }
+
+  public void setOnAlwaysTopics(String onAlwaysTopics)
+  {
+    this.onAlwaysTopics = onAlwaysTopics;
+  }
+
+  public void setOnChangeTopics(String onChangeTopics)
+  {
+    this.onChangeTopics = onChangeTopics;
   }
 
 }

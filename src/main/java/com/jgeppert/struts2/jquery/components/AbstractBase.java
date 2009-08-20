@@ -10,21 +10,21 @@ import org.apache.struts2.views.annotations.StrutsTagAttribute;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
-public abstract class AbstractBase extends ClosingUIBean implements Base {
+public abstract class AbstractBase extends ClosingUIBean {
 
   public AbstractBase(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
 
-  protected String hideTopics;
-  protected String showTopics;
-  protected String removeTopics;
+  protected String onHideTopics;
+  protected String onShowTopics;
+  protected String onRemoveTopics;
 
   public void evaluateExtraParams()
   {
-    if (hideTopics != null) addParameter("hideTopics", findString(hideTopics));
-    if (showTopics != null) addParameter("showTopics", findString(showTopics));
-    if (removeTopics != null) addParameter("removeTopics", findString(removeTopics));
+    if (onHideTopics != null) addParameter("onHideTopics", findString(onHideTopics));
+    if (onShowTopics != null) addParameter("onShowTopics", findString(onShowTopics));
+    if (onRemoveTopics != null) addParameter("onRemoveTopics", findString(onRemoveTopics));
   }
 
   protected void setStack(ValueStack stack)
@@ -38,33 +38,21 @@ public abstract class AbstractBase extends ClosingUIBean implements Base {
     this.parameters = parameters;
   }
 
-  protected String ensureAttributeSafelyNotEscaped(String val)
+  @StrutsTagAttribute(description = "A comma delimited list of topics that will hide (display: none) this element", type = "String", defaultValue = "")
+  public void setOnHideTopics(String onHideTopics)
   {
-    if (val != null)
-    {
-      return val.replaceAll("\"", "&#34;");
-    }
-    else
-    {
-      return "";
-    }
+    this.onHideTopics = onHideTopics;
   }
 
-  @StrutsTagAttribute(name = "hideTopics", description = "A comma delimited list of topics that will hide (display: none) this element", type = "String", defaultValue = "")
-  public void setHideTopics(String hideTopics)
+  @StrutsTagAttribute(description = "A comma delimited list of topics that will remove this element from the dom", type = "String", defaultValue = "")
+  public void setOnRemoveTopics(String onRemoveTopics)
   {
-    this.hideTopics = hideTopics;
+    this.onRemoveTopics = onRemoveTopics;
   }
 
-  @StrutsTagAttribute(name = "removeTopics", description = "A comma delimited list of topics that will remove this element from the dom", type = "String", defaultValue = "")
-  public void setRemoveTopics(String removeTopics)
+  @StrutsTagAttribute(description = "A comma delimited list of topics that will show (display: block) this element", type = "String", defaultValue = "")
+  public void setOnShowTopics(String onShowTopics)
   {
-    this.removeTopics = removeTopics;
-  }
-
-  @StrutsTagAttribute(name = "showTopics", description = "A comma delimited list of topics that will show (display: block) this element", type = "String", defaultValue = "")
-  public void setShowTopics(String showTopics)
-  {
-    this.showTopics = showTopics;
+    this.onShowTopics = onShowTopics;
   }
 }

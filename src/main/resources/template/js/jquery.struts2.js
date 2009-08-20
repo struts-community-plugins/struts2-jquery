@@ -1,6 +1,3 @@
-
-
-
 (function($){
 	
 	/**
@@ -61,21 +58,21 @@
 		
 		base:  function($elem, options){
 		
-			if(options.hidetopics) {			  
+			if(options.onhidetopics) {			  
 				var topics = options.hidetopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
 					$elem.subscribe(topics[i],'_struts2_jquery_hide',options);
 				}
 			}
 
-			if(options.showtopics) {			  
+			if(options.onshowtopics) {			  
 				var topics = options.showtopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
 					$elem.subscribe(topics[i],'_struts2_jquery_show',options);
 				}
 			}
 
-			if(options.removetopics) {			  
+			if(options.onremovetopics) {			  
 				var topics = options.removetopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
 					$elem.subscribe(topics[i],'_struts2_jquery_remove',options);
@@ -106,68 +103,7 @@
 			}
 		},
 		
-		container:  function($elem, options, loadHandlerName){
-
-			if(options.reloadtopics) {			  
-				var topics = options.reloadtopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i], loadHandlerName, options);
-				}
-			}
-		},
-	
-		input:  function($elem, options, loadHandlerName){
-			
-			if(!options) { return; }
-			
-			if(options.reloadtopics) {			  
-				var topics = options.reloadtopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i], loadHandlerName, options);
-				}
-			}
-			
-			if(options.focustopics) {			  
-				var topics = options.focustopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i],'_struts2_jquery_focus',options);
-				}
-			}	
-			
-			if(options.blurtopics) {			  
-				var topics = options.blurtopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i],'_struts2_jquery_blur',options);
-				}
-			}	
-			
-			//bind change event to onChange topics
-			if(options.onchangetopics) {  
-				var topics = options.onchangetopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.publishOnEvent('change',topics[i]);
-				}
-			}	
-			
-			//bind focus event to onFocus topics
-			if(options.onfocustopics) {  
-				var topics = options.onfocustopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.publishOnEvent('focus',topics[i]);
-				}
-			}	
-			
-			//bind blur event to onBlur topics
-			if(options.onblurtopics) {  
-				var topics = options.onblurtopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.publishOnEvent('blur',topics[i]);
-				}
-			}
-		},
-				
-		
-		action: function($elem, options, containerLoadHandlerName, linkLoadHandlerName, type){
+		action: function($elem, options, containerLoadHandlerName, type){
 
 			if($elem.attr('href')) {options.src = $elem.attr('href')}
 	    	if($elem.attr('href') && type == 'a') { $elem.attr('href','#'); }
@@ -229,7 +165,7 @@
 					
 				//bind event topic listeners
 		    	if(options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
-			    		$elem.subscribe(actionTopic, linkLoadHandlerName, options);
+			    		$elem.subscribe(actionTopic, containerLoadHandlerName, options);
 		    	}
 			}
 
@@ -240,45 +176,52 @@
 			
 		},
 			
-		select: function($elem, options){
-
-			var loadHandlerName = '_struts2_jquery_select_load';
-			
-			this.base($elem, options);
-			this.interactive($elem, options);
-			//this.container($elem, options, loadHandlerName);  (reloadTopics already implemented by input)
-			this.input($elem, options, loadHandlerName);
-
-	    	//load select using ajax
-			if(options.src) {
-
-				//publishing not triggering to prevent event propagation issues
-		    	var selectTopic = '_struts2_jquery_topic_load_' + options.id;
-	    		$elem.subscribe(selectTopic, loadHandlerName);
-	    		$elem.publish(selectTopic,options);
-			}
-		},
-		
 		div: function($elem, options){
 
-			var linkLoadHandlerName = '_struts2_jquery_action_request';
 			var containerLoadHandlerName = '_struts2_jquery_container_load';
 			
 			this.base($elem, options);
-			this.container($elem, options, containerLoadHandlerName);
-			this.action($elem, options, containerLoadHandlerName, linkLoadHandlerName, 'div');
+			this.action($elem, options, containerLoadHandlerName, 'div');
 
 	    	//load div using ajax
 			if(options.src) {
 
 				//publishing not triggering to prevent event propagation issues
-		    	var divTopic = '_struts2_jquery_topic_load_' + options.id;
+		    	var divTopic = '_struts2_jquery_div_load_' + options.id;
 	    		$elem.subscribe(divTopic, containerLoadHandlerName);
-	    		$elem.publish(divTopic,options);				
+				if(options.bindon) {
+					var $bindElement = $('#'+options.bindon);
+					if(options.events) {
+						var events = options.events.split(',');
+						for ( var i = 0; i < events.length; i++) {
+							$bindElement.publishOnEvent(events[i], divTopic);
+						}
+					}
+					else {
+						$bindElement.publishOnEvent('click', divTopic);
+					}
+				}
+				else {
+					$elem.publish(divTopic,options);	
+				}
 			}
 			else {
 
-				effects($elem.attr('id'), options);
+				if(options.bindon) {
+					var $bindElement = $('#'+options.bindon);
+					if(options.events) {
+						var events = options.events.split(',');
+						for ( var i = 0; i < events.length; i++) {
+							$bindElement.bind(events[i], function(e){ effects($elem.attr('id'), options) });
+						}
+					}
+					else {
+						$bindElement.bind('click', function(e){ effects($elem.attr('id'), options) });
+					}
+				}
+				else {
+					effects($elem.attr('id'), options);
+				}
 				
 				if(options.resizable == 'true') {
 
@@ -333,67 +276,33 @@
 
 		},
 		
-		form: function($elem, options){
-
-			var submitHandlerName = '_struts2_jquery_form_submit';
-			var containerLoadHandlerName = '_struts2_jquery_container_load';
-			
-			this.base($elem, options);
-	    	
-			//bind submit event to onSubmit topics
-			if(options.onsubmittopics) {  
-				var topics = options.onsubmittopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.publishOnEvent('submit',topics[i]);
-				}
-			}	
-			
-			if(options.submittopics) {			  
-				var topics = options.submittopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					
-					var targetId = options.targetid;
-					if(targetId) {
-						options.src = options.action;
-						options.formids = options.id;
-						if('#tab' == targetId) {
-							$elem.closest('.ui-tabs-panel').subscribe(topics[i], containerLoadHandlerName, options);
-			    		} else {
-			    			$('#' + targetId).subscribe(topics[i], containerLoadHandlerName, options);
-			    		}
-					} else {
-
-						$elem.subscribe(topics[i], submitHandlerName, options);
-					}	
-				}
-
-			}
-		},
-		
 		a: function($elem, options){
 			
-			var linkLoadHandlerName = '_struts2_jquery_action_request';
 			var containerLoadHandlerName = '_struts2_jquery_container_load';
 
 			this.base($elem, options);
-			this.interactive($elem, options);
-			this.action($elem, options, containerLoadHandlerName, linkLoadHandlerName, 'a');
-		},
-		
-		button: function($elem, options){
-			var linkLoadHandlerName = '_struts2_jquery_action_request';
-			var containerLoadHandlerName = '_struts2_jquery_container_load';
-			
-			this.base($elem, options);
-			//	this.container($elem, options, containerLoadHandlerName);
 			this.interactive($elem, options);
 			if(options.formids) {
 				this.formsubmit($elem, options);
 			}
 			else {
-				this.action($elem, options, containerLoadHandlerName, linkLoadHandlerName, 'a');
+				this.action($elem, options, containerLoadHandlerName, 'a');
 			}
-			//$elem.attr('type','button');  (not permitted by ie - covered by renderer)
+		},
+		
+		button: function($elem, options){
+			var containerLoadHandlerName = '_struts2_jquery_container_load';
+			
+			this.base($elem, options);
+			this.interactive($elem, options);
+			if(options.formids) {
+				this.formsubmit($elem, options);
+			}
+			else {
+				this.action($elem, options, containerLoadHandlerName, 'a');
+			}
+			$elem.attr('type','button');  
+			//(not permitted by ie - covered by renderer)
 			$elem.removeAttr('name');
 		},
 		formsubmit: function($elem, options){
@@ -406,34 +315,6 @@
 		},
 		
 		dialog: function($elem, options){
-			
-//			if(options.hidetopics) {			  
-//				var topics = options.hidetopics.split(',');
-//				for ( var i = 0; i < topics.length; i++) {
-//					$elem.subscribe(topics[i],'_struts2_jquery_dialog_close',options);
-//				}
-//			}
-//
-//			if(options.removetopics) {			  
-//				var topics = options.removetopics.split(',');
-//				for ( var i = 0; i < topics.length; i++) {
-//					$elem.subscribe(topics[i],'_struts2_jquery_dialog_destroy',options);
-//				}
-//			}
-//			
-//			if(options.enabletopics) {			  
-//				var topics = options.enabletopics.split(',');
-//				for ( var i = 0; i < topics.length; i++) {
-//					$elem.subscribe(topics[i],'_struts2_jquery_dialog_enable',options);
-//				}
-//			}
-//
-//			if(options.disabletopics) {			  
-//				var topics = options.disabletopics.split(',');
-//				for ( var i = 0; i < topics.length; i++) {
-//					$elem.subscribe(topics[i],'_struts2_jquery_dialog_disable',options);
-//				}
-//			}
 			
 			var parameters = {};
 			parameters.autoOpen = eval(options.autoopen ? options.autoopen : false);
@@ -449,7 +330,6 @@
 			if(options.show) { parameters.show = options.show; }
 			
 			if(options.title) { parameters.title = options.title; }
-//			if(options.data) {  $elem.data = options.data; }	
 			
 			if(options.buttons) {
 		        var buttonsStr = options.buttons;
@@ -458,36 +338,6 @@
 		        	parameters.buttons = eval ("( " + buttonsStr + " )" );
 		        }
 			}
-//			if(options.buttons) {
-//				
-//				parameters.buttons = {};
-//				
-//				var buttontopics;
-//				if(options.buttontopics) {
-//					buttontopics = options.buttontopics.split(',');
-//				} else {
-//					buttontopics = [];
-//				}
-//				
-//				var $dialog = $elem;  //used for closure
-//				$dialog.data('buttonTopics',{});  //used for closure
-//								
-//				var buttons = options.buttons.split(',');
-//				for ( var i = 0; i < buttons.length; i++) {
-//					var button = buttons[i];
-//					var topic = buttontopics[i];
-//					if(buttontopics.length >= i+1) {
-//						$dialog.data('buttonTopics')[button] = topic;  
-//						parameters.buttons[button] = function(event) { 
-//							$elem.publish($dialog.data('buttonTopics')[event.target.innerHTML], $dialog) 
-//						};
-//					} else {
-//						parameters.buttons[button] = function(event) {};
-//					}
-//				}
-//			}
-//
-//			$elem.css("display", "none");
 			parameters.open = function() {
 				if(options.href) {
 					
@@ -495,17 +345,6 @@
 			    	var divTopic = '_struts2_jquery_topic_load_' + options.id;
 		    		$elem.subscribe(divTopic, containerLoadHandlerName);
 		    		$elem.publish(divTopic,options);				
-	//				$elem.bind('dialogopen', function(event, ui) {
-	
-//						var loadHandlerName = '_struts2_jquery_container_load';
-//						
-//						//var $dialogContent = $(".ui-dialog-content",$elem)  //the dialog element has been moved within the dialog frame ($elem not points to contents)
-//						$elem.unbind('struts2_jquery_topic_load');
-//						$elem.bind('struts2_jquery_topic_load', null, _subscribe_handlers[loadHandlerName]);
-//						$elem.trigger('struts2_jquery_topic_load', options);
-						
-						//$(".ui-dialog-content",$elem).load(options.src);
-	//				});
 				}			
 				if(options.showtopics) {			  
 					var topics = options.showtopics.split(',');
@@ -514,180 +353,175 @@
 					}
 				}
 			}
-//	        var userOptionsStr = options.options;
-//	        var userOptions = window[userOptionsStr];
-//	        if (!userOptions) {
-//	        	userOptions = eval ("( " + userOptionsStr + " )" );
-//	        }
-//	        $.extend(options, userOptions);
-	        
-			//note: id is set on dialog contents
 			$elem.dialog(parameters);
 		},
 		
-		tabbedpane: function($elem, options){
+		tabbedpanel: function($elem, options){
 			
 	    	//instantiate the tabbed pane
 			if(!options) { options = {}};
-			options.cache = options.iscache || false;
+			var parameter = {};
 			
-	        var userOptionsStr = options.options;
-	        var userOptions = window[userOptionsStr];
-	        if (!userOptions) {
-	        	userOptions = eval ("( " + userOptionsStr + " )" );
-	        }
-	        $.extend(options, userOptions);
-	        
-	        //fix for clash btwn ie & tabbedPane where ie automatically adds ALL possibel element properties as attributes
-	        options.disabled = [];
-	        
-	    	var $tabs = $elem.tabs(options);
-	    	
-	    	$("a",$tabs).each( function(tabIndex, el){
-	    			
-	    		$tab = $(el);
-	    		
-	    		if($tab.attr("isdisabled") == 'true'){
-					$tabs.tabs('disable', tabIndex);
-	    		}
-	    		
-	    		if($tab.attr("isselected")){
-					$tabs.tabs('select', tabIndex);
-	    		}
-	    		
-	    		var hideTopics = $tab.attr("hidetopics");
-				if(hideTopics) {			  
-					var topics = hideTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.subscribe(topics[i],'_struts2_jquery_hideTab',tabIndex);
-					}
-				}
-
-	    		var showTopics = $tab.attr("showtopics");
-				if(showTopics) {			  
-					var topics = showTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.subscribe(topics[i],'_struts2_jquery_showTab',tabIndex);
-					}
-				}
-
-	    		var removeTopics = $tab.attr("removetopics");
-				if(removeTopics) {			  
-					var topics = removeTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.subscribe(topics[i],'_struts2_jquery_removeTab',tabIndex);
-					}
-				}
-
-	    		var reloadTopics = $tab.attr("reloadtopics");
-				if(reloadTopics) {			  
-					var topics = reloadTopic.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.subscribe(topics[i],'_struts2_jquery_reloadTab',tabIndex);
-					}
-				}
-
-	    		var focusTopics = $tab.attr("focustopics");
-				if(focusTopics) {			  
-					var topics = focusTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.subscribe(topics[i],'_struts2_jquery_selectTab',tabIndex);
-					}
-				}	
-
-	    		var blurTopics = $tab.attr("blurtopics");
-				if(options.blurtopics) {			  
-					var topics = blurTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.subscribe(topics[i],'_struts2_jquery_blur',tabIndex);
-					}
-				}	
-
-	    		var enableTopics = $tab.attr("enabletopics");
-				if(enableTopics) {			  
-					var topics = enableTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.subscribe(topics[i],'_struts2_jquery_enableTab',tabIndex);
-					}
-				}
-
-	    		var disableTopics = $tab.attr("disabletopics");
-				if(disableTopics) {			  
-					var topics = disableTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.subscribe(topics[i],'_struts2_jquery_disableTab',tabIndex);
-					}
-				}
-
-	    		var onChangeTopics = $tab.attr("onchangetopics");
-				if(onChangeTopics) {  
-					var topics = onChangeTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.publishOnEvent('change',topics[i]);
-					}
-				}	
-
-	    		var onFocusTopics = $tab.attr("onfocustopics");
-				if(onFocusTopics) {  
-					var topics = onFocusTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.publishOnEvent('tabsshow',topics[i]);
-					}
-				}	
-
-	    		var onBlurTopics = $tab.attr("onblurtopics");
-				if(onBlurTopics) {  
-					var topics = onBlurTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$tab.publishOnEvent('blur',topics[i]);
-					}
-				}
-	    	});
-		},
-		
-		textfield: function($elem, options){
+			if(options.disabled) {
+		        var disabledStr = options.disabled;
+		        var disabled = window[disabledStr];
+		        if (!disabled) {
+		        	parameter.disabled = eval ("( " + disabledStr + " )" );
+		        }
+			}
+			if(options.cache && options.cache == 'true')	parameter.cache = true;
+			if(options.animate && options.animate == 'true')	parameter.fx = { opacity: 'toggle' };
+			if(options.cookie && options.cookie == 'true')	parameter.cookie = { expires: 30 };
+			if(options.collapsible && options.collapsible == 'true')	parameter.collapsible = true;
+			if(options.openonmouseover && options.openonmouseover == 'true')	parameter.event = 'mouseover';
+			if(options.orientation)	parameter.orientation = options.orientation;
+			if(options.spinner)	parameter.spinner = options.spinner;
+			if(options.selectedtab)	parameter.selected = parseInt(options.selectedtab);
+			parameter.ajaxOptions = { dataType:'html' };
 			
-			var loadHandlerName = '_struts2_jquery_textinput_load';
 			
-			this.base($elem, options);
-			this.interactive($elem, options);
-			this.input($elem, options, loadHandlerName);
+			var onAlwaysTopics = options.onalwaystopics;
+//			parameter.show = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
+			if(options.onbeforetopics) {  
+				var onBeforeTopics = options.onbeforetopics.split(',');
+				parameter.show = function(event, ui){
+					var data = {};
+					data.event = event;
+					data.ui = ui;
+					for ( var i = 0; i < onBeforeTopics.length; i++) {
+						$elem.publish(onBeforeTopics[i], $elem, data);
+					}
 
-	    	//load select using ajax
-			if(options.src) {
-
-				//publishing not triggering to prevent event propagation issues
-		    	var textfieldTopic = '_struts2_jquery_topic_load_' + options.id;
-	    		$elem.subscribe(textfieldTopic, loadHandlerName);
-	    		$elem.publish(textfieldTopic,options);
-			}				
-		},
-		
-		textarea: function($elem, options){
+					if(onAlwaysTopics) {  
+						var topics = onAlwaysTopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.publish(topics[i], $elem, data);
+						}
+					}
+				};
+			}
 			
-			var loadHandlerName = '_struts2_jquery_textinput_load';
+			if(options.onchangetopics) {  
+				var onChangeTopics = options.onchangetopics.split(',');
+				parameter.select = function(event, ui){
+					var data = {};
+					data.event = event;
+					data.ui = ui;
+					for ( var i = 0; i < onChangeTopics.length; i++) {
+						$elem.publish(onChangeTopics[i], $elem, data);
+					}
+
+					if(onAlwaysTopics) {  
+						var topics = onAlwaysTopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.publish(topics[i], $elem, data);
+						}
+					}
+				};
+			}
 			
-			this.base($elem, options);
-			this.interactive($elem, options);
-			this.input($elem, options, loadHandlerName);
+			if(options.oncompletetopics) {  
+				var onCompleteTopics = options.oncompletetopics.split(',');
+				parameter.ajaxOptions.complete = function (request, status) {
+					var data = {};
+					data.request = request;
+					data.status = status;
+					for ( var i = 0; i < onCompleteTopics.length; i++) {
+						$elem.publish(onCompleteTopics[i], $elem, data);
+					}
 
-	    	//load select using ajax
-			if(options.src) {
+					if(onAlwaysTopics) {  
+						var topics = onAlwaysTopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.publish(topics[i], $elem, data);
+						}
+					}
+				};
+			}
+			
+			if(options.onenabletopics) {  
+				var onEnableTopics = options.onenabletopics.split(',');
+				parameter.enable = function(event, ui){
+					var data = {};
+					data.event = event;
+					data.ui = ui;
+					for ( var i = 0; i < onEnableTopics.length; i++) {
+						$elem.publish(onEnableTopics[i], $elem, data);
+					}
 
-				//publishing not triggering to prevent event propagation issues
-		    	var textareaTopic = '_struts2_jquery_topic_load_' + options.id;
-	    		$elem.subscribe(textareaTopic, loadHandlerName);
-	    		$elem.publish(textareaTopic,options);
-			}				
+					if(onAlwaysTopics) {  
+						var topics = onAlwaysTopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.publish(topics[i], $elem, data);
+						}
+					}
+				};
+			}
+
+			if(options.ondisabletopics) {  
+				var onDisableTopics = options.ondisabletopics.split(',');
+				parameter.enable = function(event, ui){
+					var data = {};
+					data.event = event;
+					data.ui = ui;
+					for ( var i = 0; i < onDisableTopics.length; i++) {
+						$elem.publish(onDisableTopics[i], $elem, data);
+					}
+
+					if(onAlwaysTopics) {  
+						var topics = onAlwaysTopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.publish(topics[i], $elem, data);
+						}
+					}
+				};
+			}
+
+			if(options.onaddtopics) {  
+				var onAddTopics = options.onaddtopics.split(',');
+				parameter.enable = function(event, ui){
+					var data = {};
+					data.event = event;
+					data.ui = ui;
+					for ( var i = 0; i < onAddTopics.length; i++) {
+						$elem.publish(onAddTopics[i], $elem, data);
+					}
+
+					if(onAlwaysTopics) {  
+						var topics = onAlwaysTopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.publish(topics[i], $elem, data);
+						}
+					}
+				};
+			}
+
+			if(options.onremovetopics) {  
+				var onRemoveTopics = options.onremovetopics.split(',');
+				parameter.enable = function(event, ui){
+					var data = {};
+					data.event = event;
+					data.ui = ui;
+					for ( var i = 0; i < onRemoveTopics.length; i++) {
+						$elem.publish(onRemoveTopics[i], $elem, data);
+					}
+
+					if(onAlwaysTopics) {  
+						var topics = onAlwaysTopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.publish(topics[i], $elem, data);
+						}
+					}
+				};
+			}
+
+			$elem.find('ul div').appendTo($elem);
+	    	$elem.tabs(parameter);
 		},
 		
 		datepicker: function($elem, options) {
 			
 			var dpOptions = {};
-//			dpOptions.altField = "#" + $elem.attr("id") + "_hidden";
-//			dpOptions.altFormat = "yy-mm-dd'T'00:00:00";  			//set the alternate hidden submitted date format				
-//			dpOptions.buttonImageOnly = true;						//show the button as an image
-//			dpOptions.showOn = "focus";
 			
 			if(options) {
 				
@@ -738,8 +572,8 @@
 
 						if(onAlwaysTopics) {  
 							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < onBeforeTopics.length; i++) {
-								$input.publish(onBeforeTopics[i], $input);
+							for ( var i = 0; i < topics.length; i++) {
+								$input.publish(topics[i], $input);
 							}
 						}
 					};
@@ -755,8 +589,8 @@
 
 						if(onAlwaysTopics) {  
 							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < onBeforeShowDayTopics.length; i++) {
-								$elem.publish(onBeforeShowDayTopics[i], $date);
+							for ( var i = 0; i < topics.length; i++) {
+								$elem.publish(topics[i], $date);
 							}
 						}
 					};
@@ -776,8 +610,8 @@
 
 						if(onAlwaysTopics) {  
 							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < onChangeMonthYearTopics.length; i++) {
-								$inst.publish(onChangeMonthYearTopics[i],$inst, data);
+							for ( var i = 0; i < topics.length; i++) {
+								$inst.publish(topics[i],$inst, data);
 							}
 						}
 					};
@@ -795,8 +629,8 @@
 
 						if(onAlwaysTopics) {  
 							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < onChangeTopics.length; i++) {
-								$inst.publish(onChangeTopics[i], $inst, data);
+							for ( var i = 0; i < topics.length; i++) {
+								$inst.publish(topics[i], $inst, data);
 							}
 						}
 					};
@@ -814,20 +648,13 @@
 
 						if(onAlwaysTopics) {  
 							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < onCompleteTopics.length; i++) {
-								$inst.publish(onCompleteTopics[i], $inst, data);
+							for ( var i = 0; i < topics.length; i++) {
+								$inst.publish(topics[i], $inst, data);
 							}
 						}
 					};
 				}
 				
-//				dpOptions.buttonImage = options.imageurl;
-				
-//				if(options.showbutton) {
-//					dpOptions.showOn = "both";							//Have the datepicker appear automatically when the field receives focus and when the button is clicked		
-//				} 
-				
-//				dpOptions.buttonText = options.imagetooltip;
 				dpOptions.changeMonth = options.changemonth;
 				dpOptions.changeYear = options.changeyear;
 				dpOptions.dateFormat = options.displayformat;
@@ -854,7 +681,6 @@
 			        if (!userOptions) {
 			        	dpOptions.showOptions = eval ("( " + userOptionsStr + " )" );
 			        }
-//			        $.extend(dpOptions, userOptions);
 				}
 			}
 			
@@ -999,6 +825,102 @@
 				else parameter.value = 0;
 			}
 			$elem.progressbar(parameter);
+		},
+		accordion: function($elem, options) {
+			
+			var parameter = {};
+			if(options) {
+
+				if(options.fillspace && options.fillspace == 'true')	parameter.fillSpace = true;
+				if(options.collapsible && options.collapsible == 'true')	parameter.collapsible = true;
+				if(options.clearstyle && options.clearstyle == 'true')	parameter.clearStyle = true;
+				if(options.autoheight && options.autoheight == 'true')	parameter.autoHeight = true;
+				if(options.fillspace && options.fillspace == 'true')	parameter.fillSpace = true;
+				if(options.event)	parameter.event = options.event;
+				if(options.header)	parameter.header = options.header;
+				else				parameter.header = 'h3';
+				if(options.animated)
+				{
+					if(options.animated == 'true') parameter.animated = true;
+					else if(options.animated == 'false') parameter.animated = false;
+					else parameter.animated = options.animated;
+				}
+				
+				active = true;
+				if(options.active)
+				{
+					if(options.active == 'true') { parameter.active = true; }
+					else if(options.active == 'false') { parameter.active = false; active = false; }
+					else { parameter.active = parseInt(options.active); }
+				}
+				
+				var onAlwaysTopics = options.onalwaystopics;
+				parameter.changestart = function(event, ui) {
+					if(options.href)
+					{
+						if ( typeof $(ui.newHeader).find('a').attr('paramkeys') != "undefined" )
+						{
+						    var keys = $(ui.newHeader).find('a').attr('paramkeys').split(',');
+						    var values = $(ui.newHeader).find('a').attr('paramvalues').split(',');
+							var params = {};
+							jQuery.each(keys, function(i, val) {
+			      				params[val] = values[i];
+			    			});
+							ui.newContent.load(options.href,params,function() {});
+						 }
+					}			
+					if(options.onbeforetopics) {  
+						var onBeforeTopics = options.onbeforetopics.split(',');
+								var data = {};
+								data.event = event;
+								data.ui = ui;
+							for ( var i = 0; i < onBeforeTopics.length; i++) {
+								$elem.publish(onBeforeTopics[i], $elem, data);
+							}
+
+							if(onAlwaysTopics) {  
+								var topics = onAlwaysTopics.split(',');
+								for ( var i = 0; i < topics.length; i++) {
+									$elem.publish(topics[i], $elem, data);
+								}
+							}
+					}
+				};
+				
+				if(options.onchangetopics) {  
+					var onChangeTopics = options.onchangetopics.split(',');
+					parameter.change = function(event, ui){
+							var data = {};
+							data.event = event;
+							data.ui = ui;
+						for ( var i = 0; i < onChangeTopics.length; i++) {
+							$elem.publish(onChangeTopics[i], $elem, data);
+						}
+
+						if(onAlwaysTopics) {  
+							var topics = onAlwaysTopics.split(',');
+							for ( var i = 0; i < topics.length; i++) {
+								$elem.publish(topics[i], $elem, data);
+							}
+						}
+					};
+				}
+			}
+			$elem.accordion(parameter);
+			if(options.href && active == true)
+			{
+				var aktiv = $("#"+options.id+" li "+parameter.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
+				if ( typeof $(aktiv).attr('paramkeys') != "undefined" )
+				{
+					var keys = $(aktiv).attr('paramkeys').split(',');
+					var values = $(aktiv).attr('paramvalues').split(',');
+					var params = {};
+					jQuery.each(keys, function(i, val) {
+			      		params[val] = values[i];
+			    	});
+					$("#"+options.id+" li div").filter('.ui-accordion-content-active').load(options.href,params,function() {});
+				}
+			}
 		}
 	};		
 		
@@ -1380,415 +1302,6 @@
 		}
 	});
 			
-	/** Datepicker logic*/
-	//Register handler to open a datepicker
-	$.subscribeHandler('_struts2_jquery_datepicker_show', function(event, data) {
-		
-//		$(this).datepicker('show');
-	});
-	//Register handler to close a datepicker
-	$.subscribeHandler('_struts2_jquery_datpicker_hide', function(event, data) {
-		
-		$(this).datepicker('hide');
-	});
-	//Register handler to remove/destroy a datepicker
-	$.subscribeHandler('_struts2_jquery_datepicker_destroy', function(event, data) {
-		
-		$(this).datepicker('destroy');
-	});
-	//Register handler to enable a datepicker
-	$.subscribeHandler('_struts2_jquery_datepicker_enable', function(event, data) {
-		
-		$(this).datepicker('enable');
-	});
-	//Register handler to disable a datepicker
-	$.subscribeHandler('_struts2_jquery_datepicker_disable', function(event, data) {
-		
-		$(this).datepicker('disable');
-	});
-	
-	
-	/** Dialog logic*/
-	//Register handler to open a dialog
-	$.subscribeHandler('_struts2_jquery_dialog_open', function(event, data) {
-		//TODO: handle disabled (don;t open dialod if disabled == true)s
-//		$(this).dialog('open');
-	});
-	
-	//Register handler to close a dialog
-	$.subscribeHandler('_struts2_jquery_dialog_close', function(event, data) {
-		
-		$(this).dialog('close');
-	});
-	//Register handler to remove/destroy a dialog
-	$.subscribeHandler('_struts2_jquery_dialog_destroy', function(event, data) {
-		
-		$(this).dialog('destroy');
-	});
-	//Register handler to enable a dialog
-	$.subscribeHandler('_struts2_jquery_dialog_enable', function(event, data) {
-		
-		$(this).dialog('enable');
-	});
-	//Register handler to disable a dialog
-	$.subscribeHandler('_struts2_jquery_dialog_disable', function(event, data) {
-		
-		$(this).dialog('disable');
-	});
-		
-	
-	/** Tabbed Pane logic */
-	//Register handler to reload a tab
-	$.subscribeHandler('_struts2_jquery_reloadTab',  function(event, data) {
-		$(this).closest("._struts2_jquery_class_tabbedpane").tabs('load', event.data);
-	});
-	//Register handler to select a tab
-	$.subscribeHandler('_struts2_jquery_selectTab',  function(event, data) {
-		$(this).closest("._struts2_jquery_class_tabbedpane").tabs('select', event.data);
-	});
-	//Register handler to disable a tab
-	$.subscribeHandler('_struts2_jquery_disableTab',  function(event, data) {
-		$(this).closest("._struts2_jquery_class_tabbedpane").tabs('disable', event.data);
-	});
-	//Register handler to enable a tab
-	$.subscribeHandler('_struts2_jquery_enableTab',  function(event, data) {
-		$(this).closest("._struts2_jquery_class_tabbedpane").tabs('enable', event.data);
-	});
-	//Register handler to remove a tab
-	$.subscribeHandler('_struts2_jquery_removeTab',  function(event, data) {
-		$(this).closest("._struts2_jquery_class_tabbedpane").tabs('remove', event.data);
-	});
-	//Register handler to show a tab
-	$.subscribeHandler('_struts2_jquery_showTab',  function(event, data) {
-		$(this).closest("._struts2_jquery_class_tabbedpane").tabs('show', event.data);
-	});
-	//Register handler to hide a tab
-	$.subscribeHandler('_struts2_jquery_hideTab', function(event, data) {
-		$(this).closest("._struts2_jquery_class_tabbedpane").tabs('hide', event.data);
-	});
-
-	/** Select logic */	
-	//Register handler to load an input element
-	$.subscribeHandler('_struts2_jquery_select_load', function(event, data) {
-
-		var input = $(event.target);
-					
-		//need to also make use of original attributes registered with the input (such as elementIds)
-		var attributes = input[0].attributes;
-		var options = {};
-		for(var i = 0; i < attributes.length; i++) {
-			options[attributes[i].name.toLowerCase()] = attributes[i].value;
-		}
-		$.extend(options,data);
-
-		if(input.attr('disabled') != 'true' && options.disabled != 'true') {
-
-			//Show indicator element (if any)
-			var indicatorId = options.indicatorid;
-			if(indicatorId) { $('#' + indicatorId).show(); }
-
-	    	//Set pre-loading text (if any)
-			if(options.loadingtext) { input.txt(options.loadingtext); }
-				
-			var onAlwaysTopics = options.onalwaystopics;
-			
-	    	//publish all 'before' and 'always' topics
-			if(onAlwaysTopics) {  
-				var topics = onAlwaysTopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					input.publish(topics[i], input);
-				}
-			}
-			
-			if(options.onbeforetopics) {  
-				var topics = options.onbeforetopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					input.publish(topics[i], input);
-				}
-			}
-			    				
-			var onSuccessTopics = options.onsuccesstopics;
-			options.success = function (data, textStatus) {
-								
-				if(indicatorId) { $('#' + indicatorId).hide(); }
-				
-				input[0].length = 0;
-				                 
-				if(typeof(data) == "object" || $.isArray(data)) {
-					
-					var i = -1;
-					
-					if(options.headerkey && options.headervalue) {
-						var option = document.createElement("option");
-						option.value = options.headerkey;
-						option.text = options.headervalue;
-						
-						if(options.value == options.headervalue) {
-							option.selected = true;
-						}
-						
-						input[0].options[++i] = option;
-					}
-					
-					if(options.emptyoption) {
-						input[0].options[++i] = document.createElement("option");
-					}
-					
-					for (var key in data) {
-						
-						var option = document.createElement("option");
-						option.value = key;
-						option.text = data[key];
-
-						if(options.value == option.value) {
-							option.selected = true;
-						}
-						
-						input[0].options[++i] = option;
-					}		
-				}		        
-		        
-				if(onSuccessTopics) {			  
-					var topics = onSuccessTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-				if(onAlwaysTopics) {
-					var topics = onAlwaysTopics.split(',');  
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-			}
-				
-			var onCompleteTopics = options.oncompletetopics;
-			options.complete = function (xhr, textStatus, errorThrown) {
-	
-				if(indicatorId) { $('#' + indicatorId).hide(); }
-								
-				if(onCompleteTopics) {			  
-					var topics = onCompleteTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-				if(onAlwaysTopics) {  
-					var topics = onAlwaysTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-			}
-			
-			var onErrorTopics = options.onerrortopics;
-			options.error = function (XMLHttpRequest, textStatus, errorThrown) {
-
-				if(options.errortext) { container.html(options.errortext); }
-				
-				if(onErrorTopics) {			
-					var topics = onErrorTopics.split(',');  
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-				if(onAlwaysTopics) {  
-					var topics = onAlwaysTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-			}
-			
-		    //serialize forms & elements
-			var serializeData;
-			
-			var formIds = options.formids;
-			if(formIds) {
-						
-				var forms = formIds.split(',');  
-				for ( var i = 0; i < forms.length; i++) {
-					serializeData = (serializeData ? (serializeData + "&") : "") + $("#" + forms[i]).serialize();
-				}
-			}    		
-
-			var elementIds = options.elementids;
-			if(elementIds) {
-						
-				var elements = elementIds.split(',');
-				for ( var i = 0; i < elements.length; i++) {
-					var element = $('#' + elements[i])[0];
-					if(element && element.name){
-						serializeData = (serializeData ? (serializeData + "&") : "") + element.name + "=" + element.value;
-						//serializeData[element.name] = element.value;
-					}
-				}
-			}        
-			if(serializeData && options.validate) {
-				serializeData['struts.enableJSONValidation'] = true;
-			}
-			
-			$.extend(options,{data: serializeData});			
-			
-	    	//load input using ajax
-			if(options.src) {
-				
-				options.type = "GET";
-				options.url = options.src;
-				options.dataType = "json";
-			
-				$.ajax(options);
-			
-			}
-		}
-	});
-	
-
-	/** TextField logic */	
-	//Register handler to load an input element
-	$.subscribeHandler('_struts2_jquery_textinput_load', function(event, data) {
-
-		var input = $(event.target);
-		
-		//need to also make use of original attributes registered with the input (such as elementIds)
-		var attributes = input[0].attributes;
-		var options = {};
-		for(var i = 0; i < attributes.length; i++) {
-			options[attributes[i].name.toLowerCase()] = attributes[i].value;
-		}
-		$.extend(options,data);
-
-		if(input.attr('disabled') != 'true' && options.disabled != 'true') {
-
-			//Show indicator element (if any)
-			var indicatorId = options.indicatorid;
-			if(indicatorId) { $('#' + indicatorId).show(); }
-
-	    	//Set pre-loading text (if any)
-			if(options.loadingtext) { input.txt(options.loadingtext); }
-				
-			var onAlwaysTopics = options.onalwaystopics;
-			
-	    	//publish all 'before' and 'always' topics
-			if(onAlwaysTopics) {  
-				var topics = onAlwaysTopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					input.publish(topics[i], input);
-				}
-			}
-			
-			if(options.onbeforetopics) {  
-				var topics = options.onbeforetopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					input.publish(topics[i], input);
-				}
-			}
-			    				
-			var onSuccessTopics = options.onsuccesstopics;
-			options.success = function (data, textStatus) {
-								
-				if(indicatorId) { $('#' + indicatorId).hide(); }
-								                 
-				if(data) {
-					
-					$(input).val(data);
-				}		        
-		        
-				if(onSuccessTopics) {			  
-					var topics = onSuccessTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-				if(onAlwaysTopics) {
-					var topics = onAlwaysTopics.split(',');  
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-			}
-				
-			var onCompleteTopics = options.oncompletetopics;
-			options.complete = function (xhr, textStatus, errorThrown) {
-	
-				if(indicatorId) { $('#' + indicatorId).hide(); }
-								
-				if(onCompleteTopics) {			  
-					var topics = onCompleteTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-				if(onAlwaysTopics) {  
-					var topics = onAlwaysTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-			}
-			
-			var onErrorTopics = options.onerrortopics;
-			options.error = function (XMLHttpRequest, textStatus, errorThrown) {
-
-				if(options.errortext) { container.html(options.errortext); }
-				
-				if(onErrorTopics) {			
-					var topics = onErrorTopics.split(',');  
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-				if(onAlwaysTopics) {  
-					var topics = onAlwaysTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						input.publish(topics[i], input);
-					}
-				}
-			}
-			
-		    //serialize forms & elements
-			var serializeData;
-			
-			var formIds = options.formids;
-			if(formIds) {
-						
-				var forms = formIds.split(',');  
-				for ( var i = 0; i < forms.length; i++) {
-					serializeData = (serializeData ? (serializeData + "&") : "") + $("#" + forms[i]).serialize();
-				}
-			}    		
-
-			var elementIds = options.elementids;
-			if(elementIds) {
-						
-				var elements = elementIds.split(',');
-				for ( var i = 0; i < elements.length; i++) {
-					var element = $('#' + elements[i])[0];
-					if(element && element.name){
-						serializeData = (serializeData ? (serializeData + "&") : "") + element.name + "=" + element.value;
-						//serializeData[element.name] = element.value;
-					}
-				}
-			}        
-			if(serializeData && options.validate) {
-				serializeData['struts.enableJSONValidation'] = true;
-			}
-			
-			$.extend(options,{data: serializeData});			
-			
-	    	//load input using ajax
-			if(options.src) {
-				
-				options.type = "GET";
-				options.url = options.src;
-				options.dataType = "json";
-			
-				$.ajax(options);
-			
-			}
-		}
-	});
-		
 	/** Form logic */	
 	//Register handler to submit a form element
 	$.subscribeHandler('_struts2_jquery_form_submit', function(event, data) {
@@ -1960,4 +1473,30 @@
 		}
 	}
 	
+	/** Publch UI topics */	
+	function publishTopics($elem, always, topics) {
+
+		if(topics)	{
+			var onTopics = topics.split(',');
+			return function(event, ui){
+					var data = {};
+					data.event = event;
+					data.ui = ui;
+				for ( var i = 0; i < onTopics.length; i++) {
+					$elem.publish(onTopics[i], $elem, data);
+				}
+
+				if(always) {  
+					var alwaysTopics = always.split(',');
+					for ( var i = 0; i < alwaysTopics.length; i++) {
+						$elem.publish(alwaysTopics[i], $elem, data);
+					}
+				}
+			};
+		}
+		else { 
+			return null;
+		}
+	}
+
 })(jQuery);

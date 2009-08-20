@@ -45,6 +45,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class Accordion extends ListUIBean {
 
   final private static transient Random RANDOM         = new Random();
+  public static final String            WIDGET         = "accordion";
   public static final String            TEMPLATE       = "accordion";
   public static final String            COMPONENT_NAME = Accordion.class.getName();
 
@@ -59,6 +60,9 @@ public class Accordion extends ListUIBean {
   protected String                      href;
   protected String                      paramKeys;
   protected String                      paramValues;
+  protected String                      onBeforeTopics;
+  protected String                      onAlwaysTopics;
+  protected String                      onChangeTopics;
 
   public Accordion(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -73,6 +77,8 @@ public class Accordion extends ListUIBean {
   {
     super.evaluateExtraParams();
 
+    addParameter("widget", WIDGET);
+
     if (active != null) addParameter("active", findString(active));
     if (animated != null) addParameter("animated", findString(animated));
     if (autoHeight != null) addParameter("autoHeight", findValue(this.autoHeight, Boolean.class));
@@ -85,13 +91,20 @@ public class Accordion extends ListUIBean {
     if (paramKeys != null) addParameter("paramKeys", findString(paramKeys));
     if (paramValues != null) addParameter("paramValues", findString(paramValues));
 
+    if (onBeforeTopics != null)
+      addParameter("onBeforeTopics", findString(onBeforeTopics));
+    if (onChangeTopics != null)
+      addParameter("onChangeTopics", findString(onChangeTopics));   
+    if (onAlwaysTopics != null)
+      addParameter("onAlwaysTopics", findString(onAlwaysTopics));   
+
     if ((this.id == null || this.id.length() == 0))
     {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
       // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
       int nextInt = RANDOM.nextInt();
       nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "widget_" + String.valueOf(nextInt);
+      this.id = "accordion_" + String.valueOf(nextInt);
       addParameter("id", this.id);
     }
   }
@@ -191,5 +204,22 @@ public class Accordion extends ListUIBean {
   public void setParamValues(String paramValues)
   {
     this.paramValues = paramValues;
+  }
+  @StrutsTagAttribute(name="onBeforeTopics", description = "Topics that are published before a load", type="String", defaultValue="")
+  public void setOnBeforeTopics(String onBeforeTopics)
+  {
+    this.onBeforeTopics = onBeforeTopics;
+  }
+
+  @StrutsTagAttribute(name="onAlwaysTopics", description = "A comma delimited list of topics that published always", type="String", defaultValue="")
+  public void setOnAlwaysTopics(String onAlwaysTopics)
+  {
+    this.onAlwaysTopics = onAlwaysTopics;
+  }
+
+  @StrutsTagAttribute(name="onChangeTopics", description = "A comma delimited list of topics that published when the element changed", type="String", defaultValue="")
+  public void setOnChangeTopics(String onChangeTopics)
+  {
+    this.onChangeTopics = onChangeTopics;
   }
 }

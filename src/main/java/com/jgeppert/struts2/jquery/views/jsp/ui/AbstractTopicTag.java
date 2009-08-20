@@ -23,8 +23,7 @@ package com.jgeppert.struts2.jquery.views.jsp.ui;
 
 import org.apache.struts2.views.jsp.ui.AbstractClosingTag;
 
-import com.jgeppert.struts2.jquery.components.RemoteBean;
-import com.jgeppert.struts2.jquery.components.TopicBean;
+import com.jgeppert.struts2.jquery.components.AbstractTopicsBean;
 
 public abstract class AbstractTopicTag extends AbstractClosingTag {
 
@@ -40,7 +39,7 @@ public abstract class AbstractTopicTag extends AbstractClosingTag {
     protected void populateParams() {
         super.populateParams();
 
-        TopicBean topic = (TopicBean) component;
+        AbstractTopicsBean topic = (AbstractTopicsBean) component;
         topic.setOnBeforeTopics(onBeforeTopics);
         topic.setOnCompleteTopics(onCompleteTopics);
         topic.setOnSuccessTopics(onSuccessTopics);

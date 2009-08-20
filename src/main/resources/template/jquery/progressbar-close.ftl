@@ -1,3 +1,4 @@
+<#--
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,16 +17,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-package com.jgeppert.struts2.jquery.components;
-
-
-public interface TopicBean {
-
-    void setOnBeforeTopics(String onBeforeTopics);
-    void setOnCompleteTopics(String onCompleteTopics);
-    void setOnSuccessTopics(String onSuccessTopics);
-    void setOnErrorTopics(String onErrorTopics);
-    void setOnAlwaysTopics(String onAlwaysTopics);
-    void setOnChangeTopics(String onChangeTopics);
-}
+-->
+</div>
+<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />

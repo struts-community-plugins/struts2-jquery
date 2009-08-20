@@ -71,7 +71,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 @StrutsTag(name="a", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description="Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates " +
                 "its targets content")
-public class Anchor extends AbstractRemoteBean implements RemoteBean, TopicBean {
+public class Anchor extends AbstractRemoteBean {
     public static final String OPEN_TEMPLATE = "a";
     public static final String TEMPLATE = "a-close";
     public static final String COMPONENT_NAME = Anchor.class.getName();

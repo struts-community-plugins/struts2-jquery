@@ -43,7 +43,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * END SNIPPET: example1 -->
  */
 @StrutsTag(name = "progressbar", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.ProgressbarTag", description = "Render an progressbar.")
-public class Progressbar extends AbstractTopicsBean implements TopicBean {
+public class Progressbar extends AbstractTopicsBean {
 
   final private static transient Random RANDOM         = new Random();
   public static final String            WIDGET       = "progressbar";

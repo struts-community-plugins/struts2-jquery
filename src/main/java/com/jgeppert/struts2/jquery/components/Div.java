@@ -54,14 +54,17 @@ import com.opensymphony.xwork2.util.ValueStack;
  * &lt;/sj:div&gt; <!-- END SNIPPET: example3 -->
  */
 @StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DivTag", description = "Render HTML div providing content from remote call via AJAX")
-public class Div extends AbstractRemoteBean implements RemoteBean, TopicBean, ResizableBean, DroppableBean, DraggableBean, SelectableBean {
+public class Div extends AbstractRemoteBean implements ResizableBean, DroppableBean, DraggableBean, SelectableBean {
 
   public static final String            TEMPLATE       = "div";
   public static final String            TEMPLATE_CLOSE = "div-close";
   public static final String            COMPONENT_NAME = Div.class.getName();
   final private static transient Random RANDOM         = new Random();
 
-  protected String reloadTopics;      //topics that will cause container to reload
+  protected String                      reloadTopics;      //topics that will cause container to reload
+
+  protected String                      bindOn;
+  protected String                      events;
 
   protected String                      resizable;
   protected String                      resizableAnimate;
@@ -192,6 +195,8 @@ public class Div extends AbstractRemoteBean implements RemoteBean, TopicBean, Re
     super.evaluateExtraParams();
 
     if (reloadTopics != null) addParameter("reloadTopics", findString(reloadTopics));
+    if (bindOn != null) addParameter("bindOn", findString(bindOn));
+    if (events != null) addParameter("events", findString(events));
     
     
     if (resizable != null)
@@ -1116,4 +1121,15 @@ public class Div extends AbstractRemoteBean implements RemoteBean, TopicBean, Re
       this.reloadTopics = reloadTopics;
     }
 
+    @StrutsTagAttribute(description = "Bind the start of load or effect on element. e.g. button or link")
+    public void setBindOn(String bindOn)
+    {
+      this.bindOn = bindOn;
+    }
+
+    @StrutsTagAttribute(description = "Start load or effect on specified event. Possible values are click, dblclick, mouseover, mouseenter, mouseleave. Default: click", defaultValue = "click")
+    public void setEvents(String events)
+    {
+      this.events = events;
+    }
 }

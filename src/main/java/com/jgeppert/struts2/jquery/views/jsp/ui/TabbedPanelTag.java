@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
-import org.apache.struts2.views.jsp.ui.AbstractClosingTag;
 
 import com.jgeppert.struts2.jquery.components.TabbedPanel;
 import com.opensymphony.xwork2.util.ValueStack;
@@ -31,16 +30,20 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * @see TabbedPanel
  */
-public class TabbedPanelTag extends AbstractClosingTag {
+public class TabbedPanelTag extends AbstractTopicTag {
 
   private static final long serialVersionUID = -4719930205515386252L;
 
-  private String            selectedTab;
-  private String            useSelectedTabCookie;
+  protected String          selectedTab;
+  protected String          useSelectedTabCookie;
   protected String          openOnMouseover;
   protected String          collapsible;
   protected String          animate;
   protected String          spinner;
+  protected String          cache;
+  protected String          disabled;
+  protected String          onAddTopics;
+  protected String          onRemoveTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -57,6 +60,10 @@ public class TabbedPanelTag extends AbstractClosingTag {
     tabbedPanel.setCollapsible(collapsible);
     tabbedPanel.setOpenOnMouseover(openOnMouseover);
     tabbedPanel.setSpinner(spinner);
+    tabbedPanel.setCache(cache);
+    tabbedPanel.setDisabled(disabled);
+    tabbedPanel.setOnAddTopics(onAddTopics);
+    tabbedPanel.setOnRemoveTopics(onRemoveTopics);
   }
 
   public void setSelectedTab(String selectedTab)
@@ -87,5 +94,25 @@ public class TabbedPanelTag extends AbstractClosingTag {
   public void setSpinner(String spinner)
   {
     this.spinner = spinner;
+  }
+
+  public void setCache(String cache)
+  {
+    this.cache = cache;
+  }
+
+  public void setDisabled(String disabled)
+  {
+    this.disabled = disabled;
+  }
+
+  public void setOnAddTopics(String onAddTopics)
+  {
+    this.onAddTopics = onAddTopics;
+  }
+
+  public void setOnRemoveTopics(String onRemoveTopics)
+  {
+    this.onRemoveTopics = onRemoveTopics;
   }
 }

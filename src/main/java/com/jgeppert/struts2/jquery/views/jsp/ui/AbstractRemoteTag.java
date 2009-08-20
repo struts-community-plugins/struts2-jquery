@@ -21,7 +21,7 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
-import com.jgeppert.struts2.jquery.components.RemoteBean;
+import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
 
 public abstract class AbstractRemoteTag extends AbstractTopicTag {
 
@@ -46,7 +46,7 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
     protected void populateParams() {
         super.populateParams();
 
-        RemoteBean remote = (RemoteBean) component;
+        AbstractRemoteBean remote = (AbstractRemoteBean) component;
         remote.setHref(href);
         remote.setTargets(targets);
         remote.setFormIds(formIds);

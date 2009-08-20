@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: interactive.ftl,v 1.1 2009/02/09 08:34:16 echijioke Exp $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -21,8 +19,8 @@
  */
 -->
   <#if parameters.enableTopics?exists>
-    enableTopics="${parameters.enableTopics?string?html}"<#rt/>
+    onenabletopics="${parameters.onEnableTopics?string?html}"<#rt/>
   </#if>
   <#if parameters.disableTopics?exists>
-    disableTopics="${parameters.disableTopics?string?html}"<#rt/>
+    ondisabletopics="${parameters.onDisableTopics?string?html}"<#rt/>
   </#if>

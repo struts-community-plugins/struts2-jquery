@@ -32,6 +32,8 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     private static final long serialVersionUID = 3769231035916461758L;
     
     protected String reloadTopics;      //topics that will cause container to reload
+    protected String bindOn;
+    protected String events;
 
     protected String resizable;
     protected String resizableAnimate;
@@ -805,5 +807,15 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     public void setReloadTopics(String reloadTopics)
     {
       this.reloadTopics = reloadTopics;
+    }
+
+    public void setBindOn(String bindOn)
+    {
+      this.bindOn = bindOn;
+    }
+
+    public void setEvents(String events)
+    {
+      this.events = events;
     }
 }
