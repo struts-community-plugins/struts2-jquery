@@ -145,7 +145,13 @@
 	    		options.href = href;
 	    	}
 
-    		//subscribe all targets to this action's custom execute topic
+			var effectTopic = '_struts2_jquery_div_effect_';
+			var effect = {};
+			effect.effect = options.effect;
+			effect.effectoptions = options.effectoptions;
+			effect.effectduration = options.effectduration;
+
+			//subscribe all targets to this action's custom execute topic
 	    	if(options.targets) {  
 	    		
 	    		//target subscription needs to be done after document load in case element exists in the dom AFTER the current action object 
@@ -156,12 +162,17 @@
 						if('#tab' == target) {
 							$elem.closest('.ui-tabs-panel').subscribe(actionTopic, containerLoadHandlerName, options);
 			    		} else {
+							effect.targets = target;
 			    			$('#' + target).subscribe(actionTopic, containerLoadHandlerName, options);
+			    			$('#' + target).subscribe(effectTopic+target, '_struts2_jquery_effects', effect);
 			    		}
 					}
 	    		});
 	    		
 			} else {   // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
+
+				effect.targets = options.id;
+				$('#' + options.id).subscribe(effectTopic+options.id, '_struts2_jquery_effects', effect);
 					
 				//bind event topic listeners
 		    	if(options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
@@ -179,11 +190,13 @@
 		div: function($elem, options){
 
 			var containerLoadHandlerName = '_struts2_jquery_container_load';
+			var effectHandlerName = '_struts2_jquery_effects';
 			
 			this.base($elem, options);
 			this.action($elem, options, containerLoadHandlerName, 'div');
 
-	    	//load div using ajax
+
+			//load div using ajax
 			if(options.src) {
 
 				//publishing not triggering to prevent event propagation issues
@@ -206,21 +219,37 @@
 				}
 			}
 			else {
+				
+				var divEffectTopic = '_struts2_jquery_div_effect_';
+				if(options.id && options.effect) {
+					var effect = {};
+					effect.targets = options.id;
+					effect.effect = options.effect;
+					effect.effectoptions = options.effectoptions;
+					effect.effectduration = options.effectduration;
+		    		$elem.subscribe(divEffectTopic+options.id, effectHandlerName, effect);
+				}
 
-				if(options.bindon) {
-					var $bindElement = $('#'+options.bindon);
+
+				if(options.events || options.bindon) {
+
+					var $bindElement = $elem;
+					if(options.bindon)
+						$bindElement = $('#'+options.bindon);
+
 					if(options.events) {
+						
 						var events = options.events.split(',');
 						for ( var i = 0; i < events.length; i++) {
-							$bindElement.bind(events[i], function(e){ effects($elem.attr('id'), options) });
+							$bindElement.publishOnEvent(events[i], divEffectTopic+options.id);
 						}
 					}
 					else {
-						$bindElement.bind('click', function(e){ effects($elem.attr('id'), options) });
+							$bindElement.publishOnEvent('click', divEffectTopic+options.id);
 					}
 				}
 				else {
-					effects($elem.attr('id'), options);
+					$elem.publish(divEffectTopic+options.id, $elem);	
 				}
 				
 				if(options.resizable == 'true') {
@@ -267,6 +296,7 @@
 			if(options.sortable == 'true') {
 
 		        var sortableOptionsStr = options.sortableoptions;
+		        alert(sortableOptionsStr);
 		        var sortableOptions = window[sortableOptionsStr];
 		        if (!sortableOptions) {
 		        	sortableOptions = eval ("( " + sortableOptionsStr + " )" );
@@ -308,8 +338,13 @@
 		formsubmit: function($elem, options){
 			var submitHandlerName = '_struts2_jquery_form_submit';
 	    	var formsubmitTopic = '_struts2_jquery_formsubmit_topic_' + options.id;
+    		$elem.subscribe(formsubmitTopic, submitHandlerName, options);
 	    	if(options.targets) {  
-	    		$elem.subscribe(formsubmitTopic, submitHandlerName, options);
+				var targets = options.targets.split(',');
+				for ( var i = 0; i < targets.length; i++) {
+					var target = targets[i];
+	    			$('#' + target).subscribe(formsubmitTopic, '_struts2_jquery_effects', options);
+				}
 			}
 			$elem.publishOnEvent('click', formsubmitTopic);			//bind custom action topic to click event
 		},
@@ -378,143 +413,14 @@
 			if(options.spinner)	parameter.spinner = options.spinner;
 			if(options.selectedtab)	parameter.selected = parseInt(options.selectedtab);
 			parameter.ajaxOptions = { dataType:'html' };
+			parameter.ajaxOptions.complete = publishCompleteTopics(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {});
+			parameter.show = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
+			parameter.select = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
+			parameter.enable = publishTopics($elem, options.onalwaystopics, options.onenabletopics);
+			parameter.disable = publishTopics($elem, options.onalwaystopics, options.ondisabletopics);
+			parameter.add = publishTopics($elem, options.onalwaystopics, options.onaddtopics);
+			parameter.remove = publishTopics($elem, options.onalwaystopics, options.onremovetopics);
 			
-			
-			var onAlwaysTopics = options.onalwaystopics;
-//			parameter.show = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
-			if(options.onbeforetopics) {  
-				var onBeforeTopics = options.onbeforetopics.split(',');
-				parameter.show = function(event, ui){
-					var data = {};
-					data.event = event;
-					data.ui = ui;
-					for ( var i = 0; i < onBeforeTopics.length; i++) {
-						$elem.publish(onBeforeTopics[i], $elem, data);
-					}
-
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							$elem.publish(topics[i], $elem, data);
-						}
-					}
-				};
-			}
-			
-			if(options.onchangetopics) {  
-				var onChangeTopics = options.onchangetopics.split(',');
-				parameter.select = function(event, ui){
-					var data = {};
-					data.event = event;
-					data.ui = ui;
-					for ( var i = 0; i < onChangeTopics.length; i++) {
-						$elem.publish(onChangeTopics[i], $elem, data);
-					}
-
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							$elem.publish(topics[i], $elem, data);
-						}
-					}
-				};
-			}
-			
-			if(options.oncompletetopics) {  
-				var onCompleteTopics = options.oncompletetopics.split(',');
-				parameter.ajaxOptions.complete = function (request, status) {
-					var data = {};
-					data.request = request;
-					data.status = status;
-					for ( var i = 0; i < onCompleteTopics.length; i++) {
-						$elem.publish(onCompleteTopics[i], $elem, data);
-					}
-
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							$elem.publish(topics[i], $elem, data);
-						}
-					}
-				};
-			}
-			
-			if(options.onenabletopics) {  
-				var onEnableTopics = options.onenabletopics.split(',');
-				parameter.enable = function(event, ui){
-					var data = {};
-					data.event = event;
-					data.ui = ui;
-					for ( var i = 0; i < onEnableTopics.length; i++) {
-						$elem.publish(onEnableTopics[i], $elem, data);
-					}
-
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							$elem.publish(topics[i], $elem, data);
-						}
-					}
-				};
-			}
-
-			if(options.ondisabletopics) {  
-				var onDisableTopics = options.ondisabletopics.split(',');
-				parameter.enable = function(event, ui){
-					var data = {};
-					data.event = event;
-					data.ui = ui;
-					for ( var i = 0; i < onDisableTopics.length; i++) {
-						$elem.publish(onDisableTopics[i], $elem, data);
-					}
-
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							$elem.publish(topics[i], $elem, data);
-						}
-					}
-				};
-			}
-
-			if(options.onaddtopics) {  
-				var onAddTopics = options.onaddtopics.split(',');
-				parameter.enable = function(event, ui){
-					var data = {};
-					data.event = event;
-					data.ui = ui;
-					for ( var i = 0; i < onAddTopics.length; i++) {
-						$elem.publish(onAddTopics[i], $elem, data);
-					}
-
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							$elem.publish(topics[i], $elem, data);
-						}
-					}
-				};
-			}
-
-			if(options.onremovetopics) {  
-				var onRemoveTopics = options.onremovetopics.split(',');
-				parameter.enable = function(event, ui){
-					var data = {};
-					data.event = event;
-					data.ui = ui;
-					for ( var i = 0; i < onRemoveTopics.length; i++) {
-						$elem.publish(onRemoveTopics[i], $elem, data);
-					}
-
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							$elem.publish(topics[i], $elem, data);
-						}
-					}
-				};
-			}
-
 			$elem.find('ul div').appendTo($elem);
 	    	$elem.tabs(parameter);
 		},
@@ -704,67 +610,9 @@
 			var parameter = {};
 			if(options) {
 				
-				var onAlwaysTopics = options.onalwaystopics;
-				
-				if(options.onbeforetopics) {  
-					var onBeforeTopics = options.onbeforetopics.split(',');
-					parameter.start = function(event, ui){
-						var $input = $(ui.handle);
-						var data = {};
-						data.event = event;
-						data.ui = ui;
-						for ( var i = 0; i < onBeforeTopics.length; i++) {
-							$input.publish(onBeforeTopics[i], $input, data);
-						}
-
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$input.publish(topics[i], $input, data);
-							}
-						}
-					};
-				}
-				
-				if(options.onchangetopics) {  
-					var onChangeTopics = options.onchangetopics.split(',');
-					parameter.start = function(event, ui){
-							var $input = $(ui.handle);
-							var data = {};
-							data.event = event;
-							data.ui = ui;
-						for ( var i = 0; i < onChangeTopics.length; i++) {
-							$input.publish(onChangeTopics[i], $input, data);
-						}
-
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$input.publish(topics[i], $input, data);
-							}
-						}
-					};
-				}
-				
-				if(options.oncompletetopics) {  
-					var onCompleteTopics = options.oncompletetopics.split(',');
-					parameter.stop = function(event, ui){
-						var $input = $(ui.handle);
-						var data = {};
-						data.event = event;
-						data.ui = ui;
-						for ( var i = 0; i < onCompleteTopics.length; i++) {
-							$input.publish(onCompleteTopics[i], $input, data);
-						}
-
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$input.publish(topics[i], $input, data);
-							}
-						}
-					};
-				}
+				parameter.start = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
+				parameter.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
+				parameter.stop = publishTopics($elem, options.onalwaystopics, options.oncompletetopics);
 				
 				parameter.slide = function(event, ui){
 					 $('#'+options.hiddenid).val(ui.value);
@@ -799,26 +647,7 @@
 			var parameter = {};
 			if(options) {
 				
-				var onAlwaysTopics = options.onalwaystopics;
-				
-				if(options.onchangetopics) {  
-					var onChangeTopics = options.onchangetopics.split(',');
-					parameter.start = function(event, ui){
-							var data = {};
-							data.event = event;
-							data.ui = ui;
-						for ( var i = 0; i < onChangeTopics.length; i++) {
-							$elem.publish(onChangeTopics[i], $elem, data);
-						}
-
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$elem.publish(topics[i], $elem, data);
-							}
-						}
-					};
-				}
+				parameter.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
 				
 				var value = parseInt(options.value);
 				if(value > 0) parameter.value = value;
@@ -887,24 +716,7 @@
 					}
 				};
 				
-				if(options.onchangetopics) {  
-					var onChangeTopics = options.onchangetopics.split(',');
-					parameter.change = function(event, ui){
-							var data = {};
-							data.event = event;
-							data.ui = ui;
-						for ( var i = 0; i < onChangeTopics.length; i++) {
-							$elem.publish(onChangeTopics[i], $elem, data);
-						}
-
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$elem.publish(topics[i], $elem, data);
-							}
-						}
-					};
-				}
+				parameter.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
 			}
 			$elem.accordion(parameter);
 			if(options.href && active == true)
@@ -1029,119 +841,9 @@
 		    	//Set pre-loading text (if any)
 				if(options.loadingtext) { container.html(options.loadingtext); }
 				    				
-				var onSuccessTopics = options.onsuccesstopics;
-				
-				options.success = function (data, textStatus) {
-									
-					var orginal = {};
-					orginal.status = textStatus;
-					
-					if(indicatorId) { $('#' + indicatorId).hide(); }
-					
-					container.html(data);
-							
-					if(onSuccessTopics) {			  
-						var topics = onSuccessTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							container.publish(topics[i], container, orginal);
-						}
-					}
-					if(onAlwaysTopics) {
-						var topics = onAlwaysTopics.split(',');  
-						for ( var i = 0; i < topics.length; i++) {
-							container.publish(topics[i], container, orginal);
-						}
-					}
-				}
-					
-				var onCompleteTopics = options.oncompletetopics;
-				options.complete = function (request, status) {
-		
-					var orginal = {};
-					orginal.request = request;
-					orginal.status = status;
-
-					if(indicatorId) { $('#' + indicatorId).hide(); }
-					
-					if(onCompleteTopics) {			  
-						var topics = onCompleteTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							container.publish(topics[i], container, orginal);
-						}
-					}
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							container.publish(topics[i], container, orginal);
-						}
-					}
-					
-					effects(container.attr('id'), options);
-					
-					if(options.resizable == 'true') {
-
-				        var resizableOptionsStr = options.resizableoptions;
-				        var resizableOptions = window[resizableOptionsStr];
-				        if (!resizableOptions) {
-				        	resizableOptions = eval ("( " + resizableOptionsStr + " )" );
-				        }
-						$elem.resizable(resizableOptions);
-					}
-					
-				}
-				
-				var onErrorTopics = options.onerrortopics;
-				options.error = function (request, status, error) {
-					var orginal = {};
-					orginal.request = request;
-					orginal.status = status;
-					orginal.error = error;
-	
-					if(options.errortext) { container.html(options.errortext); }
-					
-					if(onErrorTopics) {			
-						var topics = onErrorTopics.split(',');  
-						for ( var i = 0; i < topics.length; i++) {
-							container.publish(topics[i], container, orginal);
-						}
-					}
-					if(onAlwaysTopics) {  
-						var topics = onAlwaysTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							container.publish(topics[i], container, orginal);
-						}
-					}
-				}
-				
-				//serialize forms & elements
-				var serializeData;
-				
-				var formIds = options.formids;
-				if(formIds) {
-							
-					var forms = formIds.split(',');  
-					for ( var i = 0; i < forms.length; i++) {
-						serializeData = (serializeData ? (serializeData + "&") : "") + $("#" + forms[i]).serialize();
-					}
-				}    		
-	
-				var elementIds = options.elementids;
-				if(elementIds) {
-							
-					var elements = elementIds.split(',');
-					for ( var i = 0; i < elements.length; i++) {
-						var element = $('#' + elements[i])[0];
-						if(element && element.name){
-							serializeData = (serializeData ? (serializeData + "&") : "") + element.name + "=" + element.value;
-							//serializeData[element.name] = element.value;
-						}
-					}
-				}    
-				if(serializeData && options.validate) {
-					serializeData['struts.enableJSONValidation'] = true;
-				}
-				
-				$.extend(options,{data: serializeData});	
+				options.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId);
+				options.complete = publishCompleteTopics(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
+				options.error = publishErrorTopics(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 				
 				//if reloadtopics exist, need to reset reload topics with new options
 				if(options.reloadtopics) {			  
@@ -1171,137 +873,6 @@
 		}
 	});
 
-	
-	/** Action logic */
-	//Register handler to execute action with no target
-	$.subscribeHandler('_struts2_jquery_action_request', function(event, data) {
-
-		var action = $(event.target);
-			
-		var options = event.data;
-		$.extend(options,data);
-
-		var isDisabled = false;
-		isDisabled = options.disabled == null ? isDisabled : options.disabled;
-		isDisabled = action.attr('disabled') == null ? isDisabled : action.attr('disabled');
-		if(event.originalEvent) {	//means that action is being triggered by other action (link button/link click) need to see if that button/link is disabled
-			isDisabled = $(event.originalEvent.currentTarget).attr("disabled") == null ? isDisabled : $(event.originalEvent.currentTarget).attr("disabled");
-		}
-							
-		if(isDisabled != true && isDisabled != 'true') {
-			
-			//Show indicator element (if any)
-			if(options) {
-					
-				if(options.indicatorid) { $('#' + options.indicatorid).show(); }
-					    				
-				var indicatorId = options.indicatorid;
-				var onSuccessTopics = options.onsuccesstopics;
-				
-				options.success = function (data, textStatus) {
-									
-					if(indicatorId) { $('#' + indicatorId).hide(); }
-	
-					if(options.errorelementid) { $("#" + options.errorelementid).hide(); }
-					
-					if(onSuccessTopics) {			  
-						var topics = onSuccessTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							action.publish(topics[i], action);
-						}
-					}
-				}
-					
-				var onCompleteTopics = options.oncompletetopics;
-				options.complete = function (xhr, textStatus, errorThrown) {
-		
-					if(indicatorId) { $('#' + indicatorId).hide(); }
-									
-					if(onCompleteTopics) {			  
-						var topics = onCompleteTopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							action.publish(topics[i], action);
-						}
-					}
-				}
-				
-				var onErrorTopics = options.onerrortopics;
-				options.error = function (XMLHttpRequest, textStatus, errorThrown) {
-					
-					if(options.errorelementid) {
-					
-						var errorElement = $("#" + options.errorelementid);
-						
-						if(errorElement) {
-							
-							var errors = options.errortext ? new Array(options.errortext) : new Array(xhr.statusText);
-						
-							if(errors[0]) {
-								
-								for(error in errors) {
-								
-									if(typeof errors[error] == "string") {
-									
-										errorElement.append($("<div/>").append(errors[error]));
-									}
-								}	
-							}
-							errorElement.show();
-						}
-					}
-					
-					if(onErrorTopics) {			
-						var topics = onErrorTopics.split(',');  
-						for ( var i = 0; i < topics.length; i++) {
-							action.publish(topics[i], action);
-						}
-					}
-				}
-				
-			    //serialize forms
-				var formIds = options.formids;
-				var serializeData;
-				if(formIds) {
-											
-					var forms = formIds.split(',');  
-					for ( var i = 0; i < forms.length; i++) {
-						serializeData = (serializeData ? "&" : "") + $("#" + forms[i]).serialize();
-					}
-				}    
-					
-				var elementIds = options.elementids;
-				if(elementIds) {
-							
-					var elements = elementIds.split(',');
-					for ( var i = 0; i < elements.length; i++) {
-						var element = $('#' + elements[i])[0];
-						if(element && element.name){
-							serializeData = (serializeData ? (serializeData + "&") : "") + element.name + "=" + element.value;
-							//serializeData[element.name] = element.value;
-						}
-					}
-				}     	    
-				if(serializeData && options.validate) {
-					serializeData['struts.enableJSONValidation'] = true;
-				}
-				
-				$.extend(options,{data: serializeData});	
-	
-				
-				//execute request using ajax
-				if(options.src) {
-					
-					options.type = "POST";
-					options.url = options.src;
-					if(!options.data) { options.data = {}; }	//fix 'issue' wherein IIS will reject post without data
-				
-					$.ajax(options);
-				
-				}
-			}
-		}
-	});
-			
 	/** Form logic */	
 	//Register handler to submit a form element
 	$.subscribeHandler('_struts2_jquery_form_submit', function(event, data) {
@@ -1370,83 +941,9 @@
 		}
    	
 		    				
-		var onSuccessTopics = options.onsuccesstopics;
-		
-		parameters.success = function (data, textStatus) {
-							
-			var orginal = {};
-			orginal.status = textStatus;
-			
-			if(indicatorId) { $('#' + indicatorId).hide(); }
-			
-			container.html(data);
-					
-			if(onSuccessTopics) {			  
-				var topics = onSuccessTopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
-			if(onAlwaysTopics) {
-				var topics = onAlwaysTopics.split(',');  
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
-		}
-			
-		var onCompleteTopics = options.oncompletetopics;
-		parameters.complete = function (request, status) {
-
-			var orginal = {};
-			orginal.request = request;
-			orginal.status = status;
-
-			if(indicatorId) { $('#' + indicatorId).hide(); }
-			
-			if(onCompleteTopics) {			  
-				var topics = onCompleteTopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
-			if(onAlwaysTopics) {  
-				var topics = onAlwaysTopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
-			
-			if(options.targets) {
-				var targets = options.targets.split(',');
-					for ( var i = 0; i < targets.length; i++) {
-						effects(targets[i], options);
-					}
-				}
-		}
-		
-		var onErrorTopics = options.onerrortopics;
-		parameters.error = function (request, status, error) {
-			var orginal = {};
-			orginal.request = request;
-			orginal.status = status;
-			orginal.error = error;
-
-			if(options.errortext) { container.html(options.errortext); }
-			
-			if(onErrorTopics) {			
-				var topics = onErrorTopics.split(',');  
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
-			if(onAlwaysTopics) {  
-				var topics = onAlwaysTopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
-		}
+		parameters.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId);
+		parameters.complete = publishCompleteTopics(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
+		parameters.error = publishErrorTopics(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 		
        $('#'+options.formids).ajaxSubmit(parameters);
         
@@ -1454,9 +951,11 @@
 	});
 	
 	/** Effects */	
-	function effects (id, options) {
-		
-		if(options.effect) {
+    //Register handler for effects
+    $.subscribeHandler('_struts2_jquery_effects', function(event, data) {
+		var options = {};
+		$.extend(options,event.data);
+		if(options.targets || options.effect) {
 			var effectOptions = {};
 			var duration = 2000;
 			if(options.effectoptions) {
@@ -1469,11 +968,11 @@
 			if(options.effectduration) {
 				duration = parseInt(options.effectduration);
 			}
-	        $("#"+id).effect(options.effect,effectOptions,duration);
+	        $("#"+options.targets).effect(options.effect,effectOptions,duration);
 		}
-	}
+    });
 	
-	/** Publch UI topics */	
+	/** Publish UI topics */	
 	function publishTopics($elem, always, topics) {
 
 		if(topics)	{
@@ -1498,5 +997,116 @@
 			return null;
 		}
 	}
+	
+	/** Publish Success topics */	
+	function publishSuccessTopics(containerid, always, successtopics, indicatorId) {
+		var container = $(containerid);
+			return function (data, textStatus) {
+			
+			var orginal = {};
+			orginal.status = textStatus;
+			
+			if(indicatorId) { $('#' + indicatorId).hide(); }
+			
+			container.html(data);
+					
+			if(successtopics) {			  
+				var topics = successtopics.split(',');
+				for ( var i = 0; i < topics.length; i++) {
+					container.publish(topics[i], container, orginal);
+				}
+			}
+			if(always) {
+				var topics = always.split(',');  
+				for ( var i = 0; i < topics.length; i++) {
+					container.publish(topics[i], container, orginal);
+				}
+			}
+		};
+	}
+
+	/** Publish Complete topics */	
+	function publishCompleteTopics(containerid, always, completetopics, targets, indicatorId, options) {
+		var container = $(containerid);
+		return function (request, status) {
+			var orginal = {};
+			orginal.request = request;
+			orginal.status = status;
+
+			var orginal = {};
+			orginal.request = request;
+			orginal.status = status;
+
+			if(indicatorId) { $('#' + indicatorId).hide(); }
+			
+			if(completetopics) {			  
+				var topics = completetopics.split(',');
+				for ( var i = 0; i < topics.length; i++) {
+					container.publish(topics[i], container, orginal);
+				}
+			}
+			if(always) {  
+				var topics = always.split(',');
+				for ( var i = 0; i < topics.length; i++) {
+					container.publish(topics[i], container, orginal);
+				}
+			}
+			
+			var effectcontainer = targets;
+			if(!effectcontainer)
+				effectcontainer = options.id;
+			if(effectcontainer) {
+				var targetArray = effectcontainer.split(',');
+				var divEffectTopic = '_struts2_jquery_div_effect_';
+				for ( var i = 0; i < targetArray.length; i++) {
+					$element = $('#'+targetArray[i]);
+					$element.publish(divEffectTopic+targetArray[i], $element);
+				}
+			}
+			
+			if(options.resizable == 'true') {
+
+		        var resizableOptionsStr = options.resizableoptions;
+		        var resizableOptions = window[resizableOptionsStr];
+		        if (!resizableOptions) {
+		        	resizableOptions = eval ("( " + resizableOptionsStr + " )" );
+		        }
+				$elem.resizable(resizableOptions);
+			}
+		};
+	}
+
+	/** Publish Error topics */	
+	function publishErrorTopics(containerid, always, errortopics, errortext) {
+		var container = $(containerid);
+		if(errortopics || errortext)	{
+			return function (request, status, error) {
+				var orginal = {};
+				orginal.request = request;
+				orginal.status = status;
+				orginal.error = error;
+
+				if(errortext) { container.html(errortext); }
+				
+				if(errortopics || errortext)	{
+					var onErrorTopics = errortopics.split(',');
+					for ( var i = 0; i < onErrorTopics.length; i++) {
+						container.publish(onErrorTopics[i], container, orginal);
+					}
+				}
+
+				if(always) {  
+					var topics = always.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						container.publish(topics[i], container, orginal);
+					}
+				}
+			};
+		}
+		else { 
+			return null;
+		}
+	}
+
 
 })(jQuery);

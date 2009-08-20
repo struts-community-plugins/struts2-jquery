@@ -385,33 +385,32 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
         if (sortableScrollSpeed != null) { sortableBuilder.append(", scrollSpeed: "); sortableBuilder.append(findString(sortableScrollSpeed)); }
         if (sortableDistance != null) { sortableBuilder.append(", distance: "); sortableBuilder.append(findString(sortableDistance)); }
 
-        if (sortableTolerance != null) { sortableBuilder.append(", sortableTolerance: '"); sortableBuilder.append(findString(sortableTolerance)); sortableBuilder.append("' "); }
-        if (sortablePlaceholder != null) { sortableBuilder.append(", sortablePlaceholder: '"); sortableBuilder.append(findString(sortablePlaceholder)); sortableBuilder.append("' "); }
-        if (sortableOpacity != null) { sortableBuilder.append(", sortableOpacity: '"); sortableBuilder.append(findString(sortableOpacity)); sortableBuilder.append("' "); }
-        if (sortableItems != null) { sortableBuilder.append(", sortableItems: '"); sortableBuilder.append(findString(sortableItems)); sortableBuilder.append("' "); }
-        if (sortableHandle != null) { sortableBuilder.append(", sortableHandle: '"); sortableBuilder.append(findString(sortableHandle)); sortableBuilder.append("' "); }
-        if (sortableGrid != null) { sortableBuilder.append(", sortableGrid: '"); sortableBuilder.append(findString(sortableGrid)); sortableBuilder.append("' "); }
-        if (sortableCursorAt != null) { sortableBuilder.append(", sortableCursorAt: '"); sortableBuilder.append(findString(sortableCursorAt)); sortableBuilder.append("' "); }
-        if (sortableCursor != null) { sortableBuilder.append(", sortableCursor: '"); sortableBuilder.append(findString(sortableCursor)); sortableBuilder.append("' "); }
-        if (sortableConnectWith != null) { sortableBuilder.append(", sortableConnectWith: '"); sortableBuilder.append(findString(sortableConnectWith)); sortableBuilder.append("' "); }
-        if (sortableAxis != null) { sortableBuilder.append(", sortableAxis: '"); sortableBuilder.append(findString(sortableAxis)); sortableBuilder.append("' "); }
-        if (sortableAppendTo != null) { sortableBuilder.append(", sortableAppendTo: '"); sortableBuilder.append(findString(sortableAppendTo)); sortableBuilder.append("' "); }
-        if (sortableActivate != null) { sortableBuilder.append(", sortableActivate: '"); sortableBuilder.append(findString(sortableActivate)); sortableBuilder.append("' "); }
+        if (sortableTolerance != null) { sortableBuilder.append(", tolerance: '"); sortableBuilder.append(findString(sortableTolerance)); sortableBuilder.append("' "); }
+        if (sortablePlaceholder != null) { sortableBuilder.append(", placeholder: '"); sortableBuilder.append(findString(sortablePlaceholder)); sortableBuilder.append("' "); }
+        if (sortableOpacity != null) { sortableBuilder.append(", opacity: '"); sortableBuilder.append(findString(sortableOpacity)); sortableBuilder.append("' "); }
+        if (sortableItems != null) { sortableBuilder.append(", items: '"); sortableBuilder.append(findString(sortableItems)); sortableBuilder.append("' "); }
+        if (sortableHandle != null) { sortableBuilder.append(", handle: '"); sortableBuilder.append(findString(sortableHandle)); sortableBuilder.append("' "); }
+        if (sortableGrid != null) { sortableBuilder.append(", grid: '"); sortableBuilder.append(findString(sortableGrid)); sortableBuilder.append("' "); }
+        if (sortableCursorAt != null) { sortableBuilder.append(", cursorAt: '"); sortableBuilder.append(findString(sortableCursorAt)); sortableBuilder.append("' "); }
+        if (sortableCursor != null) { sortableBuilder.append(", cursor: '"); sortableBuilder.append(findString(sortableCursor)); sortableBuilder.append("' "); }
+        if (sortableConnectWith != null) { sortableBuilder.append(", connectWith: '"); sortableBuilder.append(findString(sortableConnectWith)); sortableBuilder.append("' "); }
+        if (sortableAxis != null) { sortableBuilder.append(", axis: '"); sortableBuilder.append(findString(sortableAxis)); sortableBuilder.append("' "); }
+        if (sortableAppendTo != null) { sortableBuilder.append(", appendTo: '"); sortableBuilder.append(findString(sortableAppendTo)); sortableBuilder.append("' "); }
+        if (sortableActivate != null) { sortableBuilder.append(", activate: '"); sortableBuilder.append(findString(sortableActivate)); sortableBuilder.append("' "); }
         
-        if (sortableUpdate != null) { sortableBuilder.append(", sortableUpdate: function(event, ui) { "); sortableBuilder.append(findString(sortableUpdate)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableStop != null) { sortableBuilder.append(", sortableStop: function(event, ui) { "); sortableBuilder.append(findString(sortableStop)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableStart != null) { sortableBuilder.append(", sortableStart: function(event, ui) { "); sortableBuilder.append(findString(sortableStart)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableSort != null) { sortableBuilder.append(", sortableSort: function(event, ui) { "); sortableBuilder.append(findString(sortableSort)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableRemove != null) { sortableBuilder.append(", sortableRemove: function(event, ui) { "); sortableBuilder.append(findString(sortableRemove)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableReceive != null) { sortableBuilder.append(", sortableReceive: function(event, ui) { "); sortableBuilder.append(findString(sortableReceive)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableOver != null) { sortableBuilder.append(", sortableOver: function(event, ui) { "); sortableBuilder.append(findString(sortableOver)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableOut != null) { sortableBuilder.append(", sortableOut: function(event, ui) { "); sortableBuilder.append(findString(sortableOut)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableDeactivate != null) { sortableBuilder.append(", sortableDeactivate: function(event, ui) { "); sortableBuilder.append(findString(sortableDeactivate)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableChange != null) { sortableBuilder.append(", sortableChange: function(event, ui) { "); sortableBuilder.append(findString(sortableChange)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableCancel != null) { sortableBuilder.append(", sortableCancel: function(event, ui) { "); sortableBuilder.append(findString(sortableCancel)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableBeforeStop != null) { sortableBuilder.append(", sortableBeforeStop: function(event, ui) { "); sortableBuilder.append(findString(sortableBeforeStop)); sortableBuilder.append("(event, ui); } "); }
-        sortableBuilder.append(" }");
-        addParameter("selectableOptions", sortableBuilder.toString());
+        if (sortableUpdate != null) { sortableBuilder.append(", update: function(event, ui) { "); sortableBuilder.append(findString(sortableUpdate)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableStop != null) { sortableBuilder.append(", stop: function(event, ui) { "); sortableBuilder.append(findString(sortableStop)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableStart != null) { sortableBuilder.append(", start: function(event, ui) { "); sortableBuilder.append(findString(sortableStart)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableSort != null) { sortableBuilder.append(", sort: function(event, ui) { "); sortableBuilder.append(findString(sortableSort)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableRemove != null) { sortableBuilder.append(", remove: function(event, ui) { "); sortableBuilder.append(findString(sortableRemove)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableReceive != null) { sortableBuilder.append(", receive: function(event, ui) { "); sortableBuilder.append(findString(sortableReceive)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableOver != null) { sortableBuilder.append(", over: function(event, ui) { "); sortableBuilder.append(findString(sortableOver)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableOut != null) { sortableBuilder.append(", out: function(event, ui) { "); sortableBuilder.append(findString(sortableOut)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableDeactivate != null) { sortableBuilder.append(", deactivate: function(event, ui) { "); sortableBuilder.append(findString(sortableDeactivate)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableChange != null) { sortableBuilder.append(", change: function(event, ui) { "); sortableBuilder.append(findString(sortableChange)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableCancel != null) { sortableBuilder.append(", cancel: function(event, ui) { "); sortableBuilder.append(findString(sortableCancel)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableBeforeStop != null) { sortableBuilder.append(", beforeStop: function(event, ui) { "); sortableBuilder.append(findString(sortableBeforeStop)); sortableBuilder.append("(event, ui); } "); }
+
         if (sortableContainment != null) { 
           sortableBuilder.append(", containment: '"); 
           String containmentValue = findString(sortableContainment);
@@ -426,6 +425,9 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
           }
           sortableBuilder.append("'");
         }
+
+        sortableBuilder.append(" }");
+        addParameter("sortableOptions", sortableBuilder.toString());
       }
     }
 

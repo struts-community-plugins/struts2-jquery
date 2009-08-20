@@ -154,6 +154,8 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         Div div = (Div) component;
         
         div.setReloadTopics(reloadTopics);
+        div.setBindOn(bindOn);
+        div.setEvents(events);
         
         div.setResizable(resizable);
         div.setResizableAnimate(resizableAnimate);
