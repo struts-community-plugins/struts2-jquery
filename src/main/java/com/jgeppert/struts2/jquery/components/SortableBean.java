@@ -71,29 +71,30 @@ public interface SortableBean {
     void setSortableTolerance(String sortableTolerance);
 
     void setSortableZindex(String sortableZindex);
+    
 
-    void setSortableStart(String sortableStart);
+    void setSortableOnStartTopics(String sortableStart);
 
-    void setSortableSort(String sortableSort);
+    void setSortableOnSortTopics(String sortableSort);
 
-    void setSortableChange(String sortableChange);
+    void setSortableOnChangeTopics(String sortableChange);
 
-    void setSortableBeforeStop(String sortableBeforeStop);
+    void setSortableOnBeforeStopTopics(String sortableBeforeStop);
 
-    void setSortableStop(String sortableStop);
+    void setSortableOnStopTopics(String sortableStop);
 
-    void setSortableUpdate(String sortableUpdate);
+    void setSortableOnUpdateTopics(String sortableUpdate);
 
-    void setSortableReceive(String sortableReceive);
+    void setSortableOnReceiveTopics(String sortableReceive);
 
-    void setSortableRemove(String sortableRemove);
+    void setSortableOnRemoveTopics(String sortableRemove);
 
-    void setSortableOver(String sortableOver);
+    void setSortableOnOverTopics(String sortableOver);
 
-    void setSortableOut(String sortableOut);
+    void setSortableOnOutTopics(String sortableOut);
 
-    void setSortableActivate(String sortableActivate);
+    void setSortableOnActivateTopics(String sortableActivate);
 
-    void setSortableDeactivate(String sortableDeactivate);
+    void setSortableOnDeactivateTopics(String sortableDeactivate);
 
 }

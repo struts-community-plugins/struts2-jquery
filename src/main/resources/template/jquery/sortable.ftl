@@ -18,117 +18,18 @@
  * under the License.
  */
 -->
-<#if parameters.sortable?default(false)>
-	$("#${parameters.id?trim}").sortable({
-<#if parameters.sortableZindex?if_exists != "">
-		zIndex: ${parameters.sortableZindex?html},
-</#if>
-<#if parameters.sortableScroll?default(false)>
-		scroll: true,
-</#if>
-<#if parameters.sortableScrollSpeed?if_exists != "">
-		scrollSpeed: ${parameters.sortableScrollSpeed?html},
-</#if>
-<#if parameters.sortableScrollSensitivity?if_exists != "">
-		scrollSensitivity: '${parameters.sortableScrollSensitivity?html}',
-</#if>
-<#if parameters.sortablePlaceholder?if_exists != "">
-		placeholder: '${parameters.sortablePlaceholder?html}',
-</#if>
-<#if parameters.sortableOpacity?if_exists != "">
-		opacity: ${parameters.sortableOpacity?html},
-</#if>
-<#if parameters.sortableItems?if_exists != "">
-		items: '${parameters.sortableItems?html}',
-</#if>
-<#if parameters.sortableHelper?if_exists != "">
-		helper: '${parameters.sortableHelper?html}',
-</#if>
-<#if parameters.sortableHandle?if_exists != "">
-		handle: '${parameters.sortableHandle?html}',
-</#if>
-<#if parameters.sortableGrid?if_exists != "">
-		grid: '${parameters.sortableGrid?html}',
-</#if>
-<#if parameters.sortableForcePlaceholderSize?default(false)>
-		forcePlaceholderSize: true,
-</#if>
-<#if parameters.sortableForceHelperSize?default(false)>
-		forceHelperSize: true,
-</#if>
-<#if parameters.sortableDropOnEmpty?default(false)>
-		dropOnEmpty: true,
-</#if>
-<#if parameters.sortableCursorAt?if_exists != "">
-		cursorAt: '${parameters.sortableCursorAt?html}',
-</#if>
-<#if parameters.sortableCursor?if_exists != "">
-		cursor: '${parameters.sortableCursor?html}',
-</#if>
-<#if parameters.sortableContainment?if_exists != "">
-		containment: '${parameters.sortableContainment?html}',
-</#if>
-<#if parameters.sortableConnectWith?if_exists != "">
-		connectWith: '${parameters.sortableConnectWith?html}',
-</#if>
-<#if parameters.sortableCancel?if_exists != "">
-		cancel: '${parameters.selectableCancel?html}',
-</#if>
-<#if parameters.sortableAxis?if_exists != "">
-		axis: '${parameters.sortableAxis?html}',
-</#if>
-<#if parameters.sortableAppendTo?if_exists != "">
-		appendTo: '${parameters.sortableAppendTo?html}',
-</#if>
-<#if parameters.sortableDelay?if_exists != "">
-		delay : ${parameters.selectableDelay?html},
-</#if>
-<#if parameters.sortableTolerance?if_exists != "">
-		tolerance: '${parameters.sortableTolerance?html}',
-</#if>
-<#if parameters.sortableDistance?if_exists != "">
-		distance: '${parameters.sortableDistance?html}',
-</#if>
-<#if parameters.sortableStart?if_exists != "">
-		start: function(event, ui) { ${parameters.sortableStart?html}(event, ui); },
-</#if>
-<#if parameters.sortableStop?if_exists != "">
-		stop: function(event, ui) { ${parameters.sortableStop?html}(event, ui); },
-</#if>
-<#if parameters.sortableBeforeStop?if_exists != "">
-		beforeStop: function(event, ui) { ${parameters.sortableBeforeStop?html}(event, ui); },
-</#if>
-<#if parameters.sortableUpdate?if_exists != "">
-		update: function(event, ui) { ${parameters.sortableUpdate?html}(event, ui); },
-</#if>
-<#if parameters.sortableSort?if_exists != "">
-		sort: function(event, ui) { ${parameters.sortableSort?html}(event, ui); },
-</#if>
-<#if parameters.sortableReceive?if_exists != "">
-		receive: function(event, ui) { ${parameters.sortableReceive?html}(event, ui); },
-</#if>
-<#if parameters.sortableRemove?if_exists != "">
-		remove: function(event, ui) { ${parameters.sortableRemove?html}(event, ui); },
-</#if>
-<#if parameters.sortableOver?if_exists != "">
-		over: function(event, ui) { ${parameters.sortableOver?html}(event, ui); },
-</#if>
-<#if parameters.sortableOut?if_exists != "">
-		out: function(event, ui) { ${parameters.sortableOut?html}(event, ui); },
-</#if>
-<#if parameters.sortableDeactivate?if_exists != "">
-		deactivate: function(event, ui) { ${parameters.sortableDeactivate?html}(event, ui); },
-</#if>
-<#if parameters.sortableChange?if_exists != "">
-		change: function(event, ui) { ${parameters.sortableChange?html}(event, ui); },
-</#if>
-<#if parameters.sortableActivate?if_exists != "">
-		activate: function(event, ui) { ${parameters.sortableActivate?html}(event, ui); },
-</#if>
-<#if parameters.sortableRevert?default(false)>
-		revert: true
-<#else>
-		revert: false
-</#if>
-	});
-</#if>
+  <#if parameters.sortable?default(false)> sortable="true"</#if>
+  <#if parameters.sortableOptions?if_exists != ""> sortableoptions="${parameters.sortableOptions?html}"</#if>
+  <#if parameters.sortableOnBeforeStopTopics?if_exists != ""> sortableonbeforestoptopics="${parameters.sortableOnBeforeStopTopics?html}"</#if>
+  <#if parameters.sortableOnStopTopics?if_exists != ""> sortableonstoptopics="${parameters.sortableOnStopTopics?html}"</#if>
+  <#if parameters.sortableOnStartTopics?if_exists != ""> sortableonstarttopics="${parameters.sortableOnStartTopics?html}"</#if>
+  <#if parameters.sortableOnSortTopics?if_exists != ""> sortableonsorttopics="${parameters.sortableOnSortTopics?html}"</#if>
+  <#if parameters.sortableOnActivateTopics?if_exists != ""> sortableonactivatetopics="${parameters.sortableOnActivateTopics?html}"</#if>
+  <#if parameters.sortableOnDeactivateTopics?if_exists != ""> sortableondeactivatetopics="${parameters.sortableOnDeactivateTopics?html}"</#if>
+  <#if parameters.sortableOnOverTopics?if_exists != ""> sortableonovertopics="${parameters.sortableOnOverTopics?html}"</#if>
+  <#if parameters.sortableOnOutTopics?if_exists != ""> sortableonouttopics="${parameters.sortableOnOutTopics?html}"</#if>
+  <#if parameters.sortableOnRemoveTopics?if_exists != ""> sortableonremovetopics="${parameters.sortableOnRemoveTopics?html}"</#if>
+  <#if parameters.sortableOnReceiveTopics?if_exists != ""> sortableonreceivetopics="${parameters.sortableOnReceiveTopics?html}"</#if>
+  <#if parameters.sortableOnChangeTopics?if_exists != ""> sortableonchangetopics="${parameters.sortableOnChangeTopics?html}"</#if>
+  <#if parameters.sortableOnUpdateTopics?if_exists != ""> sortableonupdatetopics="${parameters.sortableOnUpdateTopics?html}"</#if>
+  

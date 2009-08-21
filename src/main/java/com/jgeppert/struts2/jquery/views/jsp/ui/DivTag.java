@@ -50,9 +50,9 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     protected String resizableMaxWidth;
     protected String resizableMinHeight;
     protected String resizableMinWidth;
-    protected String resizableResize;
-    protected String resizableStart;
-    protected String resizableStop;
+    protected String resizableOnResizeTopics;
+    protected String resizableOnStartTopics;
+    protected String resizableOnStopTopics;
     protected String resizableHandles;
     protected String droppable;
     protected String droppableAccept;
@@ -62,11 +62,11 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     protected String droppableHoverClass;
     protected String droppableScope;
     protected String droppableTolerance;
-    protected String droppableActivate;
-    protected String droppableDeactivate;
-    protected String droppableDrop;
-    protected String droppableOut;
-    protected String droppableOver;
+    protected String droppableOnActivateTopics;
+    protected String droppableOnDeactivateTopics;
+    protected String droppableOnDropTopics;
+    protected String droppableOnOutTopics;
+    protected String droppableOnOverTopics;
     protected String draggable;
     protected String draggableAppendTo;
     protected String draggableAxis;
@@ -74,7 +74,6 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     protected String draggableContainment;
     protected String draggableDelay;
     protected String draggableDistance;
-    protected String draggableDrag;
     protected String draggableHandle;
     protected String draggableHelper;
     protected String draggableIframeFix;
@@ -89,8 +88,9 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     protected String draggableSnap;
     protected String draggableSnapMode;
     protected String draggableSnapTolerance;
-    protected String draggableStart;
-    protected String draggableStop;
+    protected String draggableOnDragTopics;
+    protected String draggableOnStartTopics;
+    protected String draggableOnStopTopics;
     protected String draggableZindex;
     protected String draggableAddClasses;
     protected String selectable;
@@ -98,29 +98,21 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     protected String selectableCancel;
     protected String selectableDelay;
     protected String selectableFilter;
-    protected String selectableSelected;
-    protected String selectableSelecting;
-    protected String selectableStart;
-    protected String selectableStop;
+    protected String selectableOnSelectedTopics;
+    protected String selectableOnSelectingTopics;
+    protected String selectableOnStartTopics;
+    protected String selectableOnStopTopics;
     protected String selectableDistance;
     protected String selectableTolerance;
-    protected String selectableUnselected;
-    protected String selectableUnselecting;
+    protected String selectableOnUnselectedTopics;
+    protected String selectableOnUnselectingTopics;
     protected String sortableZindex;
-    protected String sortableUpdate;
     protected String sortableTolerance;
-    protected String sortableStop;
-    protected String sortableStart;
-    protected String sortableSort;
     protected String sortableScrollSpeed;
     protected String sortableScrollSensitivity;
     protected String sortableScroll;
     protected String sortableRevert;
-    protected String sortableRemove;
-    protected String sortableReceive;
     protected String sortablePlaceholder;
-    protected String sortableOver;
-    protected String sortableOut;
     protected String sortableOpacity;
     protected String sortableItems;
     protected String sortableHelper;
@@ -131,18 +123,27 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     protected String sortableDropOnEmpty;
     protected String sortableDistance;
     protected String sortableDelay;
-    protected String sortableDeactivate;
     protected String sortableCursorAt;
     protected String sortableCursor;
     protected String sortableContainment;
     protected String sortableConnectWith;
-    protected String sortableChange;
     protected String sortableCancel;
-    protected String sortableBeforeStop;
     protected String sortableAxis;
     protected String sortableAppendTo;
-    protected String sortableActivate;
     protected String sortable;
+    
+    protected String sortableOnOverTopics;
+    protected String sortableOnOutTopics;
+    protected String sortableOnUpdateTopics;
+    protected String sortableOnStopTopics;
+    protected String sortableOnStartTopics;
+    protected String sortableOnSortTopics;
+    protected String sortableOnChangeTopics;
+    protected String sortableOnBeforeStopTopics;
+    protected String sortableOnActivateTopics;
+    protected String sortableOnDeactivateTopics;
+    protected String sortableOnRemoveTopics;
+    protected String sortableOnReceiveTopics;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Div(stack, req, res);
@@ -172,9 +173,9 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setResizableMaxWidth(resizableMaxWidth);
         div.setResizableMinHeight(resizableMinHeight);
         div.setResizableMinWidth(resizableMinWidth);
-        div.setResizableResize(resizableResize);
-        div.setResizableStart(resizableStart);
-        div.setResizableStop(resizableStop);
+        div.setResizableOnResizeTopics(resizableOnResizeTopics);
+        div.setResizableOnStartTopics(resizableOnStartTopics);
+        div.setResizableOnStopTopics(resizableOnStopTopics);
         div.setResizableHandles(resizableHandles);
         div.setDroppable(droppable);
         div.setDroppableAccept(droppableAccept);
@@ -184,11 +185,11 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setDroppableHoverClass(droppableHoverClass);
         div.setDroppableScope(droppableScope);
         div.setDroppableTolerance(droppableTolerance);
-        div.setDroppableTolerance(droppableActivate);
-        div.setDroppableDeactivate(droppableDeactivate);
-        div.setDroppableDrop(droppableDrop);
-        div.setDroppableOut(droppableOut);
-        div.setDroppableOver(droppableOver);
+        div.setDroppableOnActivateTopics(droppableOnActivateTopics);
+        div.setDroppableOnDeactivateTopics(droppableOnDeactivateTopics);
+        div.setDroppableOnDropTopics(droppableOnDropTopics);
+        div.setDroppableOnOutTopics(droppableOnOutTopics);
+        div.setDroppableOnOverTopics(droppableOnOverTopics);
         div.setDraggable(draggable);
         div.setDraggableAppendTo(draggableAppendTo);
         div.setDraggableAxis(draggableAxis);
@@ -196,7 +197,7 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setDraggableContainment(draggableContainment);
         div.setDraggableDelay(draggableDelay);
         div.setDraggableDistance(draggableDistance);
-        div.setDraggableDrag(draggableDrag);
+        div.setDraggableOnDragTopics(draggableOnDragTopics);
         div.setDraggableHandle(draggableHandle);
         div.setDraggableHelper(draggableHelper);
         div.setDraggableIframeFix(draggableIframeFix);
@@ -211,8 +212,8 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setDraggableSnap(draggableSnap);
         div.setDraggableSnapMode(draggableSnapMode);
         div.setDraggableSnapTolerance(draggableSnapTolerance);
-        div.setDraggableStart(draggableStart);
-        div.setDraggableStop(draggableStop);
+        div.setDraggableOnStartTopics(draggableOnStartTopics);
+        div.setDraggableOnStopTopics(draggableOnStopTopics);
         div.setDraggableZindex(draggableZindex);
         div.setDraggableAddClasses(draggableAddClasses);
         div.setSelectable(selectable);
@@ -221,26 +222,22 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setSelectableDelay(selectableDelay);
         div.setSelectableDistance(selectableDistance);
         div.setSelectableFilter(selectableFilter);
-        div.setSelectableSelected(selectableSelected);
-        div.setSelectableSelecting(selectableSelecting);
-        div.setSelectableStart(selectableStart);
-        div.setSelectableStop(selectableStop);
         div.setSelectableTolerance(selectableTolerance);
-        div.setSelectableUnselected(selectableUnselected);
-        div.setSelectableUnselecting(selectableUnselecting);
+        div.setSelectableOnSelectedTopics(selectableOnSelectedTopics);
+        div.setSelectableOnSelectingTopics(selectableOnSelectingTopics);
+        div.setSelectableOnStartTopics(selectableOnStartTopics);
+        div.setSelectableOnStopTopics(selectableOnStopTopics);
+        div.setSelectableOnUnselectedTopics(selectableOnUnselectedTopics);
+        div.setSelectableOnUnselectingTopics(selectableOnUnselectingTopics);
 
         div.setSortable(sortable);
-        div.setSortableActivate(sortableActivate);
         div.setSortableAppendTo(sortableAppendTo);
         div.setSortableAxis(sortableAxis);
-        div.setSortableBeforeStop(sortableBeforeStop);
         div.setSortableCancel(sortableCancel);
-        div.setSortableChange(sortableChange);
         div.setSortableConnectWith(sortableConnectWith);
         div.setSortableContainment(sortableContainment);
         div.setSortableCursor(sortableCursor);
         div.setSortableCursorAt(sortableCursorAt);
-        div.setSortableDeactivate(sortableDeactivate);
         div.setSortableDelay(sortableDelay);
         div.setSortableDistance(sortableDistance);
         div.setSortableDropOnEmpty(sortableDropOnEmpty);
@@ -251,20 +248,24 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
         div.setSortableHelper(sortableHelper);
         div.setSortableItems(sortableItems);
         div.setSortableOpacity(sortableOpacity);
-        div.setSortableOut(sortableOut);
-        div.setSortableOver(sortableOver);
         div.setSortablePlaceholder(sortablePlaceholder);
-        div.setSortableReceive(sortableReceive);
         div.setSortableRevert(sortableRevert);
         div.setSortableScroll(sortableScroll);
         div.setSortableScrollSensitivity(sortableScrollSensitivity);
         div.setSortableScrollSpeed(sortableScrollSpeed);
-        div.setSortableSort(sortableSort);
-        div.setSortableStart(sortableStart);
-        div.setSortableStop(sortableStop);
         div.setSortableTolerance(sortableTolerance);
-        div.setSortableUpdate(sortableUpdate);
         div.setSortableZindex(sortableZindex);
+        div.setSortableOnActivateTopics(sortableOnActivateTopics);
+        div.setSortableOnBeforeStopTopics(sortableOnBeforeStopTopics);
+        div.setSortableOnChangeTopics(sortableOnChangeTopics);
+        div.setSortableOnDeactivateTopics(sortableOnDeactivateTopics);
+        div.setSortableOnOutTopics(sortableOnOutTopics);
+        div.setSortableOnOverTopics(sortableOnOverTopics);
+        div.setSortableOnReceiveTopics(sortableOnReceiveTopics);
+        div.setSortableOnSortTopics(sortableOnSortTopics);
+        div.setSortableOnStartTopics(sortableOnStartTopics);
+        div.setSortableOnStopTopics(sortableOnStopTopics);
+        div.setSortableOnUpdateTopics(sortableOnUpdateTopics);
     }
     
     public void setResizableAnimate(String animate)
@@ -336,19 +337,19 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.resizableMinWidth = minWidth;
     }
 
-    public void setResizableResize(String resize)
+    public void setResizableOnResizeTopics(String resize)
     {
-      this.resizableResize = resize;
+      this.resizableOnResizeTopics = resize;
     }
 
-    public void setResizableStart(String start)
+    public void setResizableOnStartTopics(String start)
     {
-      this.resizableStart = start;
+      this.resizableOnStartTopics = start;
     }
 
-    public void setResizableStop(String stop)
+    public void setResizableOnStopTopics(String stop)
     {
-      this.resizableStop = stop;
+      this.resizableOnStopTopics = stop;
     }
 
     public void setResizable(String resizable)
@@ -401,29 +402,29 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.droppableTolerance = droppableTolerance;
     }
 
-    public void setDroppableActivate(String droppableActivate)
+    public void setDroppableOnActivateTopics(String droppableOnActivateTopics)
     {
-      this.droppableActivate = droppableActivate;
+      this.droppableOnActivateTopics = droppableOnActivateTopics;
     }
 
-    public void setDroppableDeactivate(String droppableDeactivate)
+    public void setDroppableOnDeactivateTopics(String droppableOnDeactivateTopics)
     {
-      this.droppableDeactivate = droppableDeactivate;
+      this.droppableOnDeactivateTopics = droppableOnDeactivateTopics;
     }
 
-    public void setDroppableDrop(String droppableDrop)
+    public void setDroppableOnDropTopics(String droppableOnDropTopics)
     {
-      this.droppableDrop = droppableDrop;
+      this.droppableOnDropTopics = droppableOnDropTopics;
     }
 
-    public void setDroppableOut(String droppableOut)
+    public void setDroppableOnOutTopics(String droppableOnOutTopics)
     {
-      this.droppableOut = droppableOut;
+      this.droppableOnOutTopics = droppableOnOutTopics;
     }
 
-    public void setDroppableOver(String droppableOver)
+    public void setDroppableOnOverTopics(String droppableOnOverTopics)
     {
-      this.droppableOver = droppableOver;
+      this.droppableOnOverTopics = droppableOnOverTopics;
     }
 
     public void setDraggable(String draggable)
@@ -461,9 +462,9 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.draggableDistance = draggableDistance;
     }
 
-    public void setDraggableDrag(String draggableDrag)
+    public void setDraggableOnDragTopics(String draggableOnDragTopics)
     {
-      this.draggableDrag = draggableDrag;
+      this.draggableOnDragTopics = draggableOnDragTopics;
     }
 
     public void setDraggableHandle(String draggableHandle)
@@ -536,14 +537,14 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.draggableSnapTolerance = draggableSnapTolerance;
     }
 
-    public void setDraggableStart(String draggableStart)
+    public void setDraggableOnStartTopics(String draggableOnStartTopics)
     {
-      this.draggableStart = draggableStart;
+      this.draggableOnStartTopics = draggableOnStartTopics;
     }
 
-    public void setDraggableStop(String draggableStop)
+    public void setDraggableOnStopTopics(String draggableOnStopTopics)
     {
-      this.draggableStop = draggableStop;
+      this.draggableOnStopTopics = draggableOnStopTopics;
     }
 
     public void setDraggableZindex(String draggableZindex)
@@ -585,40 +586,41 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
     {
       this.selectableFilter = selectableFilter;
     }
-
-    public void setSelectableSelected(String selectableSelected)
-    {
-      this.selectableSelected = selectableSelected;
-    }
-
-    public void setSelectableSelecting(String selectableSelecting)
-    {
-      this.selectableSelecting = selectableSelecting;
-    }
-
-    public void setSelectableStart(String selectableStart)
-    {
-      this.selectableStart = selectableStart;
-    }
-
-    public void setSelectableStop(String selectableStop)
-    {
-      this.selectableStop = selectableStop;
-    }
-
+    
     public void setSelectableTolerance(String selectableTolerance)
     {
       this.selectableTolerance = selectableTolerance;
     }
 
-    public void setSelectableUnselected(String selectableUnselected)
+
+    public void setSelectableOnSelectedTopics(String selectableSelected)
     {
-      this.selectableUnselected = selectableUnselected;
+      this.selectableOnSelectedTopics = selectableSelected;
     }
 
-    public void setSelectableUnselecting(String selectableUnselecting)
+    public void setSelectableOnSelectingTopics(String selectableSelecting)
     {
-      this.selectableUnselecting = selectableUnselecting;
+      this.selectableOnSelectingTopics = selectableSelecting;
+    }
+
+    public void setSelectableOnStartTopics(String selectableStart)
+    {
+      this.selectableOnStartTopics = selectableStart;
+    }
+
+    public void setSelectableOnStopTopics(String selectableStop)
+    {
+      this.selectableOnStopTopics = selectableStop;
+    }
+
+    public void setSelectableOnUnselectedTopics(String selectableUnselected)
+    {
+      this.selectableOnUnselectedTopics = selectableUnselected;
+    }
+
+    public void setSelectableOnUnselectingTopics(String selectableUnselecting)
+    {
+      this.selectableOnUnselectingTopics = selectableUnselecting;
     }
 
     public void setSortableZindex(String sortableZindex)
@@ -626,29 +628,9 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.sortableZindex = sortableZindex;
     }
 
-    public void setSortableUpdate(String sortableUpdate)
-    {
-      this.sortableUpdate = sortableUpdate;
-    }
-
     public void setSortableTolerance(String sortableTolerance)
     {
       this.sortableTolerance = sortableTolerance;
-    }
-
-    public void setSortableStop(String sortableStop)
-    {
-      this.sortableStop = sortableStop;
-    }
-
-    public void setSortableStart(String sortableStart)
-    {
-      this.sortableStart = sortableStart;
-    }
-
-    public void setSortableSort(String sortableSort)
-    {
-      this.sortableSort = sortableSort;
     }
 
     public void setSortableScrollSpeed(String sortableScrollSpeed)
@@ -671,29 +653,9 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.sortableRevert = sortableRevert;
     }
 
-    public void setSortableRemove(String sortableRemove)
-    {
-      this.sortableRemove = sortableRemove;
-    }
-
-    public void setSortableReceive(String sortableReceive)
-    {
-      this.sortableReceive = sortableReceive;
-    }
-
     public void setSortablePlaceholder(String sortablePlaceholder)
     {
       this.sortablePlaceholder = sortablePlaceholder;
-    }
-
-    public void setSortableOver(String sortableOver)
-    {
-      this.sortableOver = sortableOver;
-    }
-
-    public void setSortableOut(String sortableOut)
-    {
-      this.sortableOut = sortableOut;
     }
 
     public void setSortableOpacity(String sortableOpacity)
@@ -746,11 +708,6 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.sortableDelay = sortableDelay;
     }
 
-    public void setSortableDeactivate(String sortableDeactivate)
-    {
-      this.sortableDeactivate = sortableDeactivate;
-    }
-
     public void setSortableCursorAt(String sortableCursorAt)
     {
       this.sortableCursorAt = sortableCursorAt;
@@ -771,19 +728,9 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.sortableConnectWith = sortableConnectWith;
     }
 
-    public void setSortableChange(String sortableChange)
-    {
-      this.sortableChange = sortableChange;
-    }
-
     public void setSortableCancel(String sortableCancel)
     {
       this.sortableCancel = sortableCancel;
-    }
-
-    public void setSortableBeforeStop(String sortableBeforeStop)
-    {
-      this.sortableBeforeStop = sortableBeforeStop;
     }
 
     public void setSortableAxis(String sortableAxis)
@@ -796,9 +743,64 @@ public class DivTag extends AbstractRemoteTag implements ResizableTag, Draggable
       this.sortableAppendTo = sortableAppendTo;
     }
 
-    public void setSortableActivate(String sortableActivate)
+    public void setSortableOnDeactivateTopics(String sortableDeactivate)
     {
-      this.sortableActivate = sortableActivate;
+      this.sortableOnDeactivateTopics = sortableDeactivate;
+    }
+
+    public void setSortableOnChangeTopics(String sortableChange)
+    {
+      this.sortableOnChangeTopics = sortableChange;
+    }
+
+    public void setSortableOnBeforeStopTopics(String sortableBeforeStop)
+    {
+      this.sortableOnBeforeStopTopics = sortableBeforeStop;
+    }
+
+    public void setSortableOnActivateTopics(String sortableActivate)
+    {
+      this.sortableOnActivateTopics = sortableActivate;
+    }
+
+    public void setSortableOnUpdateTopics(String sortableUpdate)
+    {
+      this.sortableOnUpdateTopics = sortableUpdate;
+    }
+
+    public void setSortableOnStopTopics(String sortableStop)
+    {
+      this.sortableOnStopTopics = sortableStop;
+    }
+
+    public void setSortableOnStartTopics(String sortableStart)
+    {
+      this.sortableOnStartTopics = sortableStart;
+    }
+
+    public void setSortableOnSortTopics(String sortableSort)
+    {
+      this.sortableOnSortTopics = sortableSort;
+    }
+
+    public void setSortableOnRemoveTopics(String sortableRemove)
+    {
+      this.sortableOnRemoveTopics = sortableRemove;
+    }
+
+    public void setSortableOnReceiveTopics(String sortableReceive)
+    {
+      this.sortableOnReceiveTopics = sortableReceive;
+    }
+
+    public void setSortableOnOverTopics(String sortableOver)
+    {
+      this.sortableOnOverTopics = sortableOver;
+    }
+
+    public void setSortableOnOutTopics(String sortableOut)
+    {
+      this.sortableOnOutTopics = sortableOut;
     }
 
     public void setSortable(String sortable)

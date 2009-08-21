@@ -18,45 +18,12 @@
  * under the License.
  */
 -->
-<#if parameters.selectable?default(false)>
-	$("#${parameters.id?trim}").selectable({
-<#if parameters.selectableCancel?if_exists != "">
-		cancel: '${parameters.selectableCancel?html}',
-</#if>
-<#if parameters.selectableDelay?if_exists != "">
-		delay : ${parameters.selectableDelay?html},
-</#if>
-<#if parameters.selectableFilter?if_exists != "">
-		filter: '${parameters.selectableFilter?html}',
-</#if>
-<#if parameters.selectableTolerance?if_exists != "">
-		tolerance: '${parameters.selectableTolerance?html}',
-</#if>
-<#if parameters.selectableDistance?if_exists != "">
-		distance: '${parameters.selectableDistance?html}',
-</#if>
-<#if parameters.selectableSelected?if_exists != "">
-		selected: function(event, ui) { ${parameters.selectableSelected?html}(event, ui); },
-</#if>
-<#if parameters.selectableSelecting?if_exists != "">
-		selecting: function(event, ui) { ${parameters.selectableSelecting?html}(event, ui); },
-</#if>
-<#if parameters.selectableStart?if_exists != "">
-		start: function(event, ui) { ${parameters.selectableStart?html}(event, ui); },
-</#if>
-<#if parameters.selectableStop?if_exists != "">
-		stop: function(event, ui) { ${parameters.selectableStop?html}(event, ui); },
-</#if>
-<#if parameters.selectableUnselected?if_exists != "">
-		unselected: function(event, ui) { ${parameters.selectableUnselected?html}(event, ui); },
-</#if>
-<#if parameters.selectableUnselecting?if_exists != "">
-		unselecting: function(event, ui) { ${parameters.selectableUnselecting?html}(event, ui); },
-</#if>
-<#if parameters.selectableAutoRefresh?default(true)>
-		autoRefresh: true
-<#else>
-		autoRefresh: false
-</#if>
-	});
-</#if>
+  <#if parameters.selectable?default(false)> selectable="true"</#if>
+  <#if parameters.selectableOptions?if_exists != ""> selectableoptions="${parameters.selectableOptions?html}"</#if>
+  <#if parameters.selectableOnSelectedTopics?if_exists != ""> selectableonselectedtopics="${parameters.selectableOnSelectedTopics?html}"</#if>
+  <#if parameters.selectableOnSelectingTopics?if_exists != ""> selectableonselectingtopics="${parameters.selectableOnSelectingTopics?html}"</#if>
+  <#if parameters.selectableOnStartTopics?if_exists != ""> selectableonstarttopics="${parameters.selectableOnStartTopics?html}"</#if>
+  <#if parameters.selectableOnStopTopics?if_exists != ""> selectableonstoptopics="${parameters.selectableOnStopTopics?html}"</#if>
+  <#if parameters.selectableOnUnselectedTopics?if_exists != ""> selectableonunselectedtopics="${parameters.selectableOnUnselectedTopics?html}"</#if>
+  <#if parameters.selectableOnUnselectingTopics?if_exists != ""> selectableonunselectingTtopics="${parameters.selectableOnUnselectingTopics?html}"</#if>
+  

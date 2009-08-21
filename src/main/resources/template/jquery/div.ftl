@@ -22,21 +22,16 @@
   <#if parameters.name??> name="${parameters.name?html}"</#if>
   <#if parameters.title??> title="${parameters.title?html}"<#rt/></#if>
   <#if parameters.reloadTopics?exists> reloadTopics="${parameters.reloadTopics?html}"<#rt/></#if>
-  <#if parameters.draggable?default(false)> draggable="true"</#if>
-  <#if parameters.draggableOptions?if_exists != ""> draggableoptions="${parameters.draggableOptions?html}"</#if>
-  <#if parameters.droppable?default(false)> droppable="true"</#if>
-  <#if parameters.droppableOptions?if_exists != ""> droppableoptions="${parameters.droppableOptions?html}"</#if>
-  <#if parameters.resizable?default(false)> resizable="true"</#if>
-  <#if parameters.resizableOptions?if_exists != ""> resizableoptions="${parameters.resizableOptions?html}"</#if>
-  <#if parameters.selectable?default(false)> selectable="true"</#if>
-  <#if parameters.selectableOptions?if_exists != ""> selectableoptions="${parameters.selectableOptions?html}"</#if>
-  <#if parameters.sortable?default(false)> sortable="true"</#if>
-  <#if parameters.sortableOptions?if_exists != ""> sortableoptions="${parameters.sortableOptions?html}"</#if>
   <#if parameters.bindOn?if_exists != ""> bindon="${parameters.bindOn?html}"</#if>
   <#if parameters.events?if_exists != ""> events="${parameters.events?html}"</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/action.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
   <#include "/${parameters.templateDir}/jquery/container.ftl" />
+  <#include "/${parameters.templateDir}/jquery/draggable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/droppable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/resizable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/selectable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
   <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 >

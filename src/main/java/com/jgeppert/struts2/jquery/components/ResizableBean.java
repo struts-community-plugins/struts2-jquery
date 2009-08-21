@@ -52,11 +52,11 @@ public interface ResizableBean {
     
     void setResizableMinWidth(String minWidth);
 
-    void setResizableStart(String start);
+    void setResizableOnStartTopics(String start);
     
-    void setResizableResize(String resize);
+    void setResizableOnResizeTopics(String resize);
     
-    void setResizableStop(String stop);
+    void setResizableOnStopTopics(String stop);
 
     void setResizableHandles(String handles);
 }

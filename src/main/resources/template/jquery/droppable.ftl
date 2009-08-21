@@ -18,45 +18,10 @@
  * under the License.
  */
 -->
-<#if parameters.droppable?default(false)>
-	$("#${parameters.id?trim}").droppable({
-<#if parameters.droppableAccept?if_exists != "">
-		accept: '${parameters.droppableAccept?html}',
-</#if>
-<#if parameters.droppableActiveClass?if_exists != "">
-		activeClass: '${parameters.droppableActiveClass?html}',
-</#if>
-<#if parameters.droppableHoverClass?if_exists != "">
-		hoverClass: '${parameters.droppableHoverClass?html}',
-</#if>
-<#if parameters.droppableScope?if_exists != "">
-		scope: '${parameters.droppableScope?html}',
-</#if>
-<#if parameters.droppableTolerance?if_exists != "">
-		tolerance: '${parameters.droppableTolerance?html}',
-</#if>
-<#if parameters.droppableActivate?if_exists != "">
-		activate: function(event, ui) { ${parameters.droppableActivate?html}(event,  ui, $(this)); },
-</#if>
-<#if parameters.droppableDeactivate?if_exists != "">
-		deactivate: function(event, ui) { ${parameters.droppableDeactivate?html}(event,  ui, $(this)); },
-</#if>
-<#if parameters.droppableDrop?if_exists != "">
-		drop: function(event, ui) { ${parameters.droppableDrop?html}(event,  ui, $(this)); },
-</#if>
-<#if parameters.droppableOut?if_exists != "">
-		out: function(event, ui) { ${parameters.droppableOut?html}(event,  ui, $(this)); },
-</#if>
-<#if parameters.droppableOver?if_exists != "">
-		over: function(event, ui) { ${parameters.droppableOver?html}(event,  ui, $(this)); },
-</#if>
-<#if parameters.droppableGreedy?default(false)>
-		greedy: true,
-</#if>
-<#if parameters.droppableAddClasses?default(true)>
-		addClasses: true
-<#else>
-		addClasses: false
-</#if>
-	});
-</#if>
+  <#if parameters.droppable?default(false)> droppable="true"</#if>
+  <#if parameters.droppableOptions?if_exists != ""> droppableoptions="${parameters.droppableOptions?html}"</#if>
+  <#if parameters.droppableOnActivateTopics?if_exists != ""> droppableOnActivateTopics="${parameters.droppableOnActivateTopics?html}"</#if>
+  <#if parameters.droppableOnDeactivateTopics?if_exists != ""> droppableOnDeactivateTopics="${parameters.droppableOnDeactivateTopics?html}"</#if>
+  <#if parameters.droppableOnDropTopics?if_exists != ""> droppableOnDropTopics="${parameters.droppableOnDropTopics?html}"</#if>
+  <#if parameters.droppableOnOutTopics?if_exists != ""> droppableOnOutTopics="${parameters.droppableOnOutTopics?html}"</#if>
+  <#if parameters.droppableOnOverTopics?if_exists != ""> droppableOnOverTopics="${parameters.droppableOnOverTopics?html}"</#if>

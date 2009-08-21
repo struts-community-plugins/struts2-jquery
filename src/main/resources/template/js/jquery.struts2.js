@@ -241,15 +241,51 @@
 						
 						var events = options.events.split(',');
 						for ( var i = 0; i < events.length; i++) {
+							if(options.onbeforetopics) {
+								var beforetopics = options.onbeforetopics.split(',');
+								for ( var i = 0; i < beforetopics.length; i++) {
+									$bindElement.publishOnEvent(events[i], beforetopics[i]);
+								}
+							}
 							$bindElement.publishOnEvent(events[i], divEffectTopic+options.id);
+							if(options.oncompletetopics) {
+								var complete = options.oncompletetopics.split(',');
+								for ( var i = 0; i < complete.length; i++) {
+									$bindElement.publishOnEvent(events[i], complete[i]);
+								}
+							}
 						}
 					}
 					else {
-							$bindElement.publishOnEvent('click', divEffectTopic+options.id);
+						if(options.onbeforetopics) {
+							var beforetopics = options.onbeforetopics.split(',');
+							for ( var i = 0; i < beforetopics.length; i++) {
+								$bindElement.publishOnEvent('click', beforetopics[i]);
+							}
+						}
+						$bindElement.publishOnEvent('click', divEffectTopic+options.id);
+						if(options.oncompletetopics) {
+							var complete = options.oncompletetopics.split(',');
+							for ( var i = 0; i < complete.length; i++) {
+								$bindElement.publishOnEvent('click', complete[i]);
+							}
+						}
 					}
 				}
 				else {
+					if(options.onbeforetopics) {
+						var beforetopics = options.onbeforetopics.split(',');
+						for ( var i = 0; i < beforetopics.length; i++) {
+							$bindElement.publish(beforetopics[i], $elem);
+						}
+					}
 					$elem.publish(divEffectTopic+options.id, $elem);	
+					if(options.oncompletetopics) {
+						var complete = options.oncompletetopics.split(',');
+						for ( var i = 0; i < complete.length; i++) {
+							$bindElement.publish(complete[i], $elem);
+						}
+					}
 				}
 				
 				if(options.resizable == 'true') {
@@ -259,6 +295,12 @@
 			        if (!resizableOptions) {
 			        	resizableOptions = eval ("( " + resizableOptionsStr + " )" );
 			        }
+			        else {
+			        	resizableOptions = {};
+			        }
+			        resizableOptions.start = publishTopics($elem, options.onalwaystopics, options.resizableonstarttopics);
+			        resizableOptions.stop = publishTopics($elem, options.onalwaystopics, options.resizableonstoptopics);
+			        resizableOptions.resize = publishTopics($elem, options.onalwaystopics, options.resizableonresizetopics);
 					$elem.resizable(resizableOptions);
 				}
 			}
@@ -270,6 +312,12 @@
 		        if (!draggableOptions) {
 		        	draggableOptions = eval ("( " + draggableOptionsStr + " )" );
 		        }
+		        else {
+		        	draggableOptions = {};
+		        }
+		        draggableOptions.start = publishTopics($elem, options.onalwaystopics, options.draggableonstarttopics);
+		        draggableOptions.stop = publishTopics($elem, options.onalwaystopics, options.draggableonstoptopics);
+		        draggableOptions.drap = publishTopics($elem, options.onalwaystopics, options.draggableondragtopics);
 				$elem.draggable(draggableOptions);
 			}
 			
@@ -280,6 +328,14 @@
 		        if (!droppableOptions) {
 		        	droppableOptions = eval ("( " + droppableOptionsStr + " )" );
 		        }
+		        else {
+		        	droppableOptions = {};
+		        }
+		        droppableOptions.activate = publishTopics($elem, options.onalwaystopics, options.droppableonactivatetopics);
+		        droppableOptions.deactivate = publishTopics($elem, options.onalwaystopics, options.droppableondeactivatetopics);
+		        droppableOptions.start = publishTopics($elem, options.onalwaystopics, options.droppableonstarttopics);
+		        droppableOptions.stop = publishTopics($elem, options.onalwaystopics, options.droppableonstoptopics);
+		        droppableOptions.drop = publishTopics($elem, options.onalwaystopics, options.droppableondroptopics);
 				$elem.droppable(droppableOptions);
 			}
 			
@@ -290,17 +346,40 @@
 		        if (!selectableOptions) {
 		        	selectableOptions = eval ("( " + selectableOptionsStr + " )" );
 		        }
+		        else {
+		        	selectableOptions = {};
+		        }
+		        selectableOptions.selected = publishTopics($elem, options.onalwaystopics, options.selectableonselectedtopics);
+		        selectableOptions.selecting = publishTopics($elem, options.onalwaystopics, options.selectableonselectingtopics);
+		        selectableOptions.start = publishTopics($elem, options.onalwaystopics, options.selectableonstarttopics);
+		        selectableOptions.stop = publishTopics($elem, options.onalwaystopics, options.selectableonstoptopics);
+		        selectableOptions.unselected = publishTopics($elem, options.onalwaystopics, options.selectableonunselectedtopics);
+		        selectableOptions.unselecting = publishTopics($elem, options.onalwaystopics, options.selectableonunselectingTtopics);
 				$elem.selectable(selectableOptions);
 			}
 
 			if(options.sortable == 'true') {
 
 		        var sortableOptionsStr = options.sortableoptions;
-		        alert(sortableOptionsStr);
 		        var sortableOptions = window[sortableOptionsStr];
 		        if (!sortableOptions) {
 		        	sortableOptions = eval ("( " + sortableOptionsStr + " )" );
 		        }
+		        else {
+		        	sortableOptions = {};
+		        }
+		        sortableOptions.beforeStop = publishTopics($elem, options.onalwaystopics, options.sortableonbeforestoptopics);
+		        sortableOptions.stop = publishTopics($elem, options.onalwaystopics, options.sortableonstoptopics);
+		        sortableOptions.start = publishTopics($elem, options.onalwaystopics, options.sortableonstarttopics);
+		        sortableOptions.sort = publishTopics($elem, options.onalwaystopics, options.sortableonsorttopics);
+		        sortableOptions.activate = publishTopics($elem, options.onalwaystopics, options.sortableonactivatetopics);
+		        sortableOptions.deactivate = publishTopics($elem, options.onalwaystopics, options.sortableondeactivatetopics);
+		        sortableOptions.over = publishTopics($elem, options.onalwaystopics, options.sortableonovertopics);
+		        sortableOptions.out = publishTopics($elem, options.onalwaystopics, options.sortableonouttopics);
+		        sortableOptions.remove = publishTopics($elem, options.onalwaystopics, options.sortableonremovetopics);
+		        sortableOptions.receive = publishTopics($elem, options.onalwaystopics, options.sortableonreceivetopics);
+		        sortableOptions.change = publishTopics($elem, options.onalwaystopics, options.sortableonchangetopics);
+		        sortableOptions.update = publishTopics($elem, options.onalwaystopics, options.sortableonupdatetopics);
 				$elem.sortable(sortableOptions);
 			}
 
@@ -388,6 +467,10 @@
 					}
 				}
 			}
+			parameters.show = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
+			parameters.select = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
+			parameters.enable = publishTopics($elem, options.onalwaystopics, options.onenabletopics);
+			parameters.disable = publishTopics($elem, options.onalwaystopics, options.ondisabletopics);
 			$elem.dialog(parameters);
 		},
 		
@@ -1071,6 +1154,12 @@
 		        if (!resizableOptions) {
 		        	resizableOptions = eval ("( " + resizableOptionsStr + " )" );
 		        }
+		        else {
+		        	resizableOptions = {};
+		        }
+		        resizableOptions.start = publishTopics(container, options.onalwaystopics, options.resizableonstarttopics);
+		        resizableOptions.stop = publishTopics(container, options.onalwaystopics, options.resizableonstoptopics);
+		        resizableOptions.resize = publishTopics(container, options.onalwaystopics, options.resizableonresizetopics);
 		        container.resizable(resizableOptions);
 			}
 		};

@@ -20,30 +20,12 @@
  * under the License.
  */
 -->
-  <#if parameters.onAlwaysTopics?exists>
-    onAlwaysTopics="${parameters.onAlwaysTopics?html}"<#rt/>
-  </#if>
-  <#if parameters.onBeforeTopics?exists>
-    onBeforeTopics="${parameters.onBeforeTopics?html}"<#rt/>
-  </#if>
   <#if parameters.loadingText?exists>
     loadingText="${parameters.loadingText?html}"<#rt/>
-  </#if>
-  <#if parameters.onSuccessTopics?exists>
-    onSuccessTopics="${parameters.onSuccessTopics?html}"<#rt/>
-  </#if>
-  <#if parameters.onErrorTopics?exists>
-    onErrorTopics="${parameters.onErrorTopics?html}"<#rt/>
-  </#if>
-  <#if parameters.onCompleteTopics?exists>
-    onCompleteTopics="${parameters.onCompleteTopics?html}"<#rt/>
   </#if>
   <#if parameters.errorText?exists>
     errorText="${parameters.errorText?html}"<#rt/>
   </#if>
   <#if parameters.reloadTopics?exists>
     reloadTopics="${parameters.reloadTopics?html}"<#rt/>
-  </#if>
-  <#if parameters.elementIds?exists>
-    elementIds="${parameters.elementIds?html}"<#rt/>
   </#if>

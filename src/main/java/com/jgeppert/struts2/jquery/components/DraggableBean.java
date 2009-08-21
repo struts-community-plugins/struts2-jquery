@@ -68,9 +68,9 @@ public interface DraggableBean {
 
     void setDraggableZindex(String draggableZindex);
 
-    void setDraggableStart(String draggableStart);
+    void setDraggableOnStartTopics(String draggableStart);
 
-    void setDraggableDrag(String draggableDrag);
+    void setDraggableOnDragTopics(String draggableDrag);
 
-    void setDraggableStop(String draggableStop);
+    void setDraggableOnStopTopics(String draggableStop);
 }

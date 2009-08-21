@@ -38,13 +38,13 @@ public interface DroppableTag {
 
     void setDroppableTolerance(String droppableTolerance);
 
-    void setDroppableActivate(String droppableActivate);
+    void setDroppableOnActivateTopics(String droppableActivate);
 
-    void setDroppableDeactivate(String droppableDeactivate);
+    void setDroppableOnDeactivateTopics(String droppableDeactivate);
 
-    void setDroppableOver(String droppableOver);
+    void setDroppableOnOverTopics(String droppableOver);
 
-    void setDroppableOut(String droppableOut);
+    void setDroppableOnOutTopics(String droppableOut);
 
-    void setDroppableDrop(String droppableDrop);
+    void setDroppableOnDropTopics(String droppableDrop);
 }

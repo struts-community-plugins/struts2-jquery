@@ -36,15 +36,15 @@ public interface SelectableBean {
 
     void setSelectableTolerance(String selectableTolerance);
 
-    void setSelectableSelected(String selectableSelected);
+    void setSelectableOnSelectedTopics(String selectableSelected);
 
-    void setSelectableSelecting(String selectableSelecting);
+    void setSelectableOnSelectingTopics(String selectableSelecting);
 
-    void setSelectableStart(String selectableStart);
+    void setSelectableOnStartTopics(String selectableStart);
 
-    void setSelectableStop(String selectableStop);
+    void setSelectableOnStopTopics(String selectableStop);
 
-    void setSelectableUnselected(String selectableUnselected);
+    void setSelectableOnUnselectedTopics(String selectableUnselected);
 
-    void setSelectableUnselecting(String selectableUnselecting);
+    void setSelectableOnUnselectingTopics(String selectableUnselecting);
 }

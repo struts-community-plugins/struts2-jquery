@@ -34,7 +34,6 @@ public class JqueryModels {
 	protected AnchorModel a;
 	protected SubmitModel submit;
 	protected HeadModel head;
-	protected EffectDivModel effectDiv;
 	protected ProgressbarModel progessbar;
 	protected SliderModel slider;
 
@@ -127,14 +126,6 @@ public class JqueryModels {
 		}
 
 		return progessbar;
-	}
-
-	public EffectDivModel getEffectDiv() {
-		if (effectDiv == null) {
-			effectDiv = new EffectDivModel(stack, req, res);
-		}
-
-		return effectDiv;
 	}
 
 	public SliderModel getSlider() {

@@ -1,3 +1,4 @@
+<#--
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,31 +17,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-package com.jgeppert.struts2.jquery.views.freemarker.tags;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.components.Component;
-import org.apache.struts2.views.freemarker.tags.TagModel;
-
-import com.jgeppert.struts2.jquery.components.EffectDiv;
-import com.opensymphony.xwork2.util.ValueStack;
-
-
-/**
- * @see EffectDiv
- */
-public class EffectDivModel extends TagModel {
-
-    public EffectDivModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
-
-    @Override
-    protected Component getBean() {
-        return new EffectDiv(stack, req, res);
-    }
-    
-}
+-->
+  <#if parameters.resizable?default(false)> resizable="true"</#if>
+  <#if parameters.resizableOptions?if_exists != ""> resizableoptions="${parameters.resizableOptions?html}"</#if>
+  <#if parameters.resizableOnResizeTopics?if_exists != ""> resizableonresizetopics="${parameters.resizableOnResizeTopics?html}"</#if>
+  <#if parameters.resizableOnStartTopics?if_exists != ""> resizableonstarttopics="${parameters.resizableOnStartTopics?html}"</#if>
+  <#if parameters.resizableOnStopTopics?if_exists != ""> resizableonstoptopics="${parameters.resizableOnStopTopics?html}"</#if>

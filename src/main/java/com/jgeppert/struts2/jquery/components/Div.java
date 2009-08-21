@@ -81,10 +81,11 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   protected String                      resizableMaxWidth;
   protected String                      resizableMinHeight;
   protected String                      resizableMinWidth;
-  protected String                      resizableResize;
-  protected String                      resizableStart;
-  protected String                      resizableStop;
   protected String                      resizableHandles;
+
+  protected String                      resizableOnResizeTopics;
+  protected String                      resizableOnStartTopics;
+  protected String                      resizableOnStopTopics;
   protected String                      droppable;
   protected String                      droppableAccept;
   protected String                      droppableActiveClass;
@@ -93,11 +94,13 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   protected String                      droppableHoverClass;
   protected String                      droppableScope;
   protected String                      droppableTolerance;
-  protected String                      droppableActivate;
-  protected String                      droppableDeactivate;
-  protected String                      droppableDrop;
-  protected String                      droppableOut;
-  protected String                      droppableOver;
+  
+  protected String                      droppableOnActivateTopics;
+  protected String                      droppableOnDeactivateTopics;
+  protected String                      droppableOnDropTopics;
+  protected String                      droppableOnOutTopics;
+  protected String                      droppableOnOverTopics;
+  
   protected String                      draggable;
   protected String                      draggableAppendTo;
   protected String                      draggableAxis;
@@ -105,7 +108,6 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   protected String                      draggableContainment;
   protected String                      draggableDelay;
   protected String                      draggableDistance;
-  protected String                      draggableDrag;
   protected String                      draggableHandle;
   protected String                      draggableHelper;
   protected String                      draggableIframeFix;
@@ -120,38 +122,33 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   protected String                      draggableSnap;
   protected String                      draggableSnapMode;
   protected String                      draggableSnapTolerance;
-  protected String                      draggableStart;
-  protected String                      draggableStop;
   protected String                      draggableZindex;
   protected String                      draggableAddClasses;
+  protected String                      draggableOnDragTopics;
+  protected String                      draggableOnStartTopics;
+  protected String                      draggableOnStopTopics;
   protected String                      selectable;
   protected String                      selectableAutoRefresh;
   protected String                      selectableCancel;
   protected String                      selectableDelay;
   protected String                      selectableFilter;
-  protected String                      selectableSelected;
-  protected String                      selectableSelecting;
-  protected String                      selectableStart;
-  protected String                      selectableStop;
   protected String                      selectableDistance;
   protected String                      selectableTolerance;
-  protected String                      selectableUnselected;
-  protected String                      selectableUnselecting;
+  
+  protected String                      selectableOnUnselectedTopics;
+  protected String                      selectableOnUnselectingTopics;
+  protected String                      selectableOnSelectedTopics;
+  protected String                      selectableOnSelectingTopics;
+  protected String                      selectableOnStartTopics;
+  protected String                      selectableOnStopTopics;
+  
   protected String                      sortableZindex;
-  protected String                      sortableUpdate;
   protected String                      sortableTolerance;
-  protected String                      sortableStop;
-  protected String                      sortableStart;
-  protected String                      sortableSort;
   protected String                      sortableScrollSpeed;
   protected String                      sortableScrollSensitivity;
   protected String                      sortableScroll;
   protected String                      sortableRevert;
-  protected String                      sortableRemove;
-  protected String                      sortableReceive;
   protected String                      sortablePlaceholder;
-  protected String                      sortableOver;
-  protected String                      sortableOut;
   protected String                      sortableOpacity;
   protected String                      sortableItems;
   protected String                      sortableHelper;
@@ -162,18 +159,26 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   protected String                      sortableDropOnEmpty;
   protected String                      sortableDistance;
   protected String                      sortableDelay;
-  protected String                      sortableDeactivate;
   protected String                      sortableCursorAt;
   protected String                      sortableCursor;
   protected String                      sortableContainment;
   protected String                      sortableConnectWith;
-  protected String                      sortableChange;
   protected String                      sortableCancel;
-  protected String                      sortableBeforeStop;
   protected String                      sortableAxis;
   protected String                      sortableAppendTo;
-  protected String                      sortableActivate;
   protected String                      sortable;
+  protected String                      sortableOnBeforeStopTopics;
+  protected String                      sortableOnStopTopics;
+  protected String                      sortableOnStartTopics;
+  protected String                      sortableOnSortTopics;
+  protected String                      sortableOnActivateTopics;
+  protected String                      sortableOnDeactivateTopics;
+  protected String                      sortableOnOverTopics;
+  protected String                      sortableOnOutTopics;
+  protected String                      sortableOnRemoveTopics;
+  protected String                      sortableOnReceiveTopics;
+  protected String                      sortableOnChangeTopics;
+  protected String                      sortableOnUpdateTopics;
 
 
   public Div(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
@@ -205,46 +210,45 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
       if(resizableValue != null && resizableValue.equalsIgnoreCase("true"));
       {
         addParameter("resizable", Boolean.TRUE);
-        StringBuilder resizeableBuilder = new StringBuilder();
-        resizeableBuilder.append("{ dummy : false");
-        if (resizableAnimate != null) { resizeableBuilder.append(", animate: "); resizeableBuilder.append(findString(resizableAnimate)); };
-        if (resizableAspectRatio != null) { resizeableBuilder.append(", aspectRatio: "); resizeableBuilder.append(findString(resizableAspectRatio)); };
-        if (resizableAutoHide != null) { resizeableBuilder.append(", autoHide: "); resizeableBuilder.append(findString(resizableAutoHide)); };
-        if (resizableGhost != null) { resizeableBuilder.append(", ghost: "); resizeableBuilder.append(findString(resizableGhost)); };
+        StringBuilder resizableBuilder = new StringBuilder();
+        resizableBuilder.append("{ dummy : false");
+        if (resizableAnimate != null) { resizableBuilder.append(", animate: "); resizableBuilder.append(findString(resizableAnimate)); };
+        if (resizableAspectRatio != null) { resizableBuilder.append(", aspectRatio: "); resizableBuilder.append(findString(resizableAspectRatio)); };
+        if (resizableAutoHide != null) { resizableBuilder.append(", autoHide: "); resizableBuilder.append(findString(resizableAutoHide)); };
+        if (resizableGhost != null) { resizableBuilder.append(", ghost: "); resizableBuilder.append(findString(resizableGhost)); };
 
-        if (resizableAnimateDuration != null) { resizeableBuilder.append(", animateDuration: "); resizeableBuilder.append(findString(resizableAnimateDuration)); };
-        if (resizableDelay != null) { resizeableBuilder.append(", delay: "); resizeableBuilder.append(findString(resizableDelay)); };
-        if (resizableDistance != null) { resizeableBuilder.append(", distance: "); resizeableBuilder.append(findString(resizableDistance)); };
-        if (resizableMaxHeight != null) { resizeableBuilder.append(", maxHeight: "); resizeableBuilder.append(findString(resizableMaxHeight)); };
-        if (resizableMaxWidth != null) { resizeableBuilder.append(", maxWidth: "); resizeableBuilder.append(findString(resizableMaxWidth)); };
-        if (resizableMinHeight != null) { resizeableBuilder.append(", minHeight: "); resizeableBuilder.append(findString(resizableMinHeight)); };
-        if (resizableMinWidth != null) { resizeableBuilder.append(", minWidth: "); resizeableBuilder.append(findString(resizableMinWidth)); };
+        if (resizableAnimateDuration != null) { resizableBuilder.append(", animateDuration: "); resizableBuilder.append(findString(resizableAnimateDuration)); };
+        if (resizableDelay != null) { resizableBuilder.append(", delay: "); resizableBuilder.append(findString(resizableDelay)); };
+        if (resizableDistance != null) { resizableBuilder.append(", distance: "); resizableBuilder.append(findString(resizableDistance)); };
+        if (resizableMaxHeight != null) { resizableBuilder.append(", maxHeight: "); resizableBuilder.append(findString(resizableMaxHeight)); };
+        if (resizableMaxWidth != null) { resizableBuilder.append(", maxWidth: "); resizableBuilder.append(findString(resizableMaxWidth)); };
+        if (resizableMinHeight != null) { resizableBuilder.append(", minHeight: "); resizableBuilder.append(findString(resizableMinHeight)); };
+        if (resizableMinWidth != null) { resizableBuilder.append(", minWidth: "); resizableBuilder.append(findString(resizableMinWidth)); };
 
-        if (resizableAnimateEasing != null) { resizeableBuilder.append(", animateEasing: '"); resizeableBuilder.append(findString(resizableAnimateEasing)); resizeableBuilder.append("' "); }
-        if (resizableHelper != null) { resizeableBuilder.append(", helper: '"); resizeableBuilder.append(findString(resizableHelper)); resizeableBuilder.append("' "); }
-        if (resizableHandles != null) { resizeableBuilder.append(", handles: '"); resizeableBuilder.append(findString(resizableHandles)); resizeableBuilder.append("' "); }
-
-        if (resizableResize != null) { resizeableBuilder.append(", resize: function(event, ui) { "); resizeableBuilder.append(findString(resizableResize)); resizeableBuilder.append("(event, ui); } "); }
-        if (resizableStart != null) { resizeableBuilder.append(", start: function(event, ui) { "); resizeableBuilder.append(findString(resizableStart)); resizeableBuilder.append("(event, ui); } "); }
-        if (resizableStop != null) { resizeableBuilder.append(", stop: function(event, ui) { "); resizeableBuilder.append(findString(resizableStop)); resizeableBuilder.append("(event, ui); } "); }
+        if (resizableAnimateEasing != null) { resizableBuilder.append(", animateEasing: '"); resizableBuilder.append(findString(resizableAnimateEasing)); resizableBuilder.append("' "); }
+        if (resizableHelper != null) { resizableBuilder.append(", helper: '"); resizableBuilder.append(findString(resizableHelper)); resizableBuilder.append("' "); }
+        if (resizableHandles != null) { resizableBuilder.append(", handles: '"); resizableBuilder.append(findString(resizableHandles)); resizableBuilder.append("' "); }
 
         if (resizableContainment != null) { 
-          resizeableBuilder.append(", containment: '"); 
+          resizableBuilder.append(", containment: '"); 
           String containmentValue = findString(resizableContainment);
           
           if(containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document")){
-            resizeableBuilder.append("'");
-            resizeableBuilder.append(containmentValue);
+            resizableBuilder.append("'");
+            resizableBuilder.append(containmentValue);
           }
           else{
-            resizeableBuilder.append("'#");
-            resizeableBuilder.append(containmentValue);
+            resizableBuilder.append("'#");
+            resizableBuilder.append(containmentValue);
           }
-          resizeableBuilder.append("'");
+          resizableBuilder.append("'");
         }
 
-        resizeableBuilder.append(" }");
-        addParameter("resizableOptions", resizeableBuilder.toString());
+        resizableBuilder.append(" }");
+        addParameter("resizableOptions", resizableBuilder.toString());
+        if (resizableOnResizeTopics != null) addParameter("resizableOnResizeTopics", findString(resizableOnResizeTopics));
+        if (resizableOnStartTopics != null) addParameter("resizableOnStartTopics", findString(resizableOnStartTopics));
+        if (resizableOnStopTopics != null) addParameter("resizableOnStopTopics", findString(resizableOnStopTopics));
       }
     }
 
@@ -265,13 +269,14 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
         if (droppableScope != null) { droppableBuilder.append(", scope: '"); droppableBuilder.append(findString(droppableScope)); droppableBuilder.append("' "); }
         if (droppableHoverClass != null) { droppableBuilder.append(", hoverClass: '"); droppableBuilder.append(findString(droppableHoverClass)); droppableBuilder.append("' "); }
 
-        if (droppableActivate != null) { droppableBuilder.append(", activate: function(event, ui) { "); droppableBuilder.append(findString(droppableActivate)); droppableBuilder.append("(event, ui, $(this)); } "); }
-        if (droppableDeactivate != null) { droppableBuilder.append(", deactivate: function(event, ui) { "); droppableBuilder.append(findString(droppableDeactivate)); droppableBuilder.append("(event, ui, $(this)); } "); }
-        if (droppableOver != null) { droppableBuilder.append(", over: function(event, ui) { "); droppableBuilder.append(findString(droppableOver)); droppableBuilder.append("(event, ui, $(this)); } "); }
-        if (droppableOut != null) { droppableBuilder.append(", out: function(event, ui) { "); droppableBuilder.append(findString(droppableOut)); droppableBuilder.append("(event, ui, $(this)); } "); }
-        if (droppableDrop != null) { droppableBuilder.append(", drop: function(event, ui) { "); droppableBuilder.append(findString(droppableDrop)); droppableBuilder.append("(event, ui, $(this)); } "); }
         droppableBuilder.append(" }");
         addParameter("droppableOptions", droppableBuilder.toString());
+        
+        if (droppableOnActivateTopics != null) addParameter("droppableOnActivateTopics", findString(droppableOnActivateTopics));
+        if (droppableOnDeactivateTopics != null) addParameter("droppableOnDeactivateTopics", findString(droppableOnDeactivateTopics));
+        if (droppableOnOverTopics != null) addParameter("droppableOnOverTopics", findString(droppableOnOverTopics));
+        if (droppableOnOutTopics != null) addParameter("droppableOnOutTopics", findString(droppableOnOutTopics));
+        if (droppableOnDropTopics != null) addParameter("droppableOnDropTopics", findString(droppableOnDropTopics));
       }
     }
 
@@ -304,10 +309,6 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
         if (draggableSnapTolerance != null) { draggableBuilder.append(", snapTolerance: "); draggableBuilder.append(findString(draggableSnapTolerance)); }
         if (draggableZindex != null) { draggableBuilder.append(", zIndex: "); draggableBuilder.append(findString(draggableZindex)); }
 
-        if (draggableDrag != null) { draggableBuilder.append(", drag: function(event, ui) { "); draggableBuilder.append(findString(draggableDrag)); draggableBuilder.append("(event, ui); } "); }
-        if (draggableStart != null) { draggableBuilder.append(", start: function(event, ui) { "); draggableBuilder.append(findString(draggableStart)); draggableBuilder.append("(event, ui); } "); }
-        if (draggableStop != null) { draggableBuilder.append(", stop: function(event, ui) { "); draggableBuilder.append(findString(draggableStop)); draggableBuilder.append("(event, ui); } "); }
-
         if (draggableRevert != null) { 
           draggableBuilder.append(", revert: "); 
           String revertValue = findString(draggableRevert);
@@ -338,6 +339,11 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
       
         draggableBuilder.append(" }");
         addParameter("draggableOptions", draggableBuilder.toString());
+
+        if (draggableOnDragTopics != null) addParameter("draggableOnDragTopics", findString(draggableOnDragTopics));
+        if (draggableOnStartTopics != null) addParameter("draggableOnStartTopics", findString(draggableOnStartTopics));
+        if (draggableOnStopTopics != null) addParameter("draggableOnStopTopics", findString(draggableOnStopTopics));
+
       }
     }
 
@@ -354,14 +360,16 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
         if (selectableFilter != null) { selectableBuilder.append(", filter: '"); selectableBuilder.append(findString(selectableFilter)); selectableBuilder.append("' "); }
         if (selectableCancel != null) { selectableBuilder.append(", cancel: '"); selectableBuilder.append(findString(selectableCancel)); selectableBuilder.append("' "); }
         if (selectableTolerance != null) { selectableBuilder.append(", tolerance: '"); selectableBuilder.append(findString(selectableTolerance)); selectableBuilder.append("' "); }
-        if (selectableSelected != null) { selectableBuilder.append(", selected: function(event, ui) { "); selectableBuilder.append(findString(selectableSelected)); selectableBuilder.append("(event, ui); } "); }
-        if (selectableSelecting != null) { selectableBuilder.append(", selecting: function(event, ui) { "); selectableBuilder.append(findString(selectableSelecting)); selectableBuilder.append("(event, ui); } "); }
-        if (selectableStart != null) { selectableBuilder.append(", start: function(event, ui) { "); selectableBuilder.append(findString(selectableStart)); selectableBuilder.append("(event, ui); } "); }
-        if (selectableStop != null) { selectableBuilder.append(", stop: function(event, ui) { "); selectableBuilder.append(findString(selectableStop)); selectableBuilder.append("(event, ui); } "); }
-        if (selectableUnselected != null) { selectableBuilder.append(", unselected: function(event, ui) { "); selectableBuilder.append(findString(selectableUnselected)); selectableBuilder.append("(event, ui); } "); }
-        if (selectableUnselecting != null) { selectableBuilder.append(", unselecting: function(event, ui) { "); selectableBuilder.append(findString(selectableUnselecting)); selectableBuilder.append("(event, ui); } "); }
+
         selectableBuilder.append(" }");
         addParameter("selectableOptions", selectableBuilder.toString());
+
+        if (selectableOnSelectedTopics != null) addParameter("selectableOnSelectedTopics", findString(selectableOnSelectedTopics));
+        if (selectableOnSelectingTopics != null) addParameter("selectableOnSelectingTopics", findString(selectableOnSelectingTopics));
+        if (selectableOnStartTopics != null) addParameter("selectableOnStartTopics", findString(selectableOnStartTopics));
+        if (selectableOnStopTopics != null) addParameter("selectableOnStopTopics", findString(selectableOnStopTopics));
+        if (selectableOnUnselectedTopics != null) addParameter("selectableOnUnselectedTopics", findString(selectableOnUnselectedTopics));
+        if (selectableOnUnselectingTopics != null) addParameter("selectableOnUnselectingTopics", findString(selectableOnUnselectingTopics));
       }
     }
 
@@ -396,20 +404,7 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
         if (sortableConnectWith != null) { sortableBuilder.append(", connectWith: '"); sortableBuilder.append(findString(sortableConnectWith)); sortableBuilder.append("' "); }
         if (sortableAxis != null) { sortableBuilder.append(", axis: '"); sortableBuilder.append(findString(sortableAxis)); sortableBuilder.append("' "); }
         if (sortableAppendTo != null) { sortableBuilder.append(", appendTo: '"); sortableBuilder.append(findString(sortableAppendTo)); sortableBuilder.append("' "); }
-        if (sortableActivate != null) { sortableBuilder.append(", activate: '"); sortableBuilder.append(findString(sortableActivate)); sortableBuilder.append("' "); }
-        
-        if (sortableUpdate != null) { sortableBuilder.append(", update: function(event, ui) { "); sortableBuilder.append(findString(sortableUpdate)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableStop != null) { sortableBuilder.append(", stop: function(event, ui) { "); sortableBuilder.append(findString(sortableStop)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableStart != null) { sortableBuilder.append(", start: function(event, ui) { "); sortableBuilder.append(findString(sortableStart)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableSort != null) { sortableBuilder.append(", sort: function(event, ui) { "); sortableBuilder.append(findString(sortableSort)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableRemove != null) { sortableBuilder.append(", remove: function(event, ui) { "); sortableBuilder.append(findString(sortableRemove)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableReceive != null) { sortableBuilder.append(", receive: function(event, ui) { "); sortableBuilder.append(findString(sortableReceive)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableOver != null) { sortableBuilder.append(", over: function(event, ui) { "); sortableBuilder.append(findString(sortableOver)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableOut != null) { sortableBuilder.append(", out: function(event, ui) { "); sortableBuilder.append(findString(sortableOut)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableDeactivate != null) { sortableBuilder.append(", deactivate: function(event, ui) { "); sortableBuilder.append(findString(sortableDeactivate)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableChange != null) { sortableBuilder.append(", change: function(event, ui) { "); sortableBuilder.append(findString(sortableChange)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableCancel != null) { sortableBuilder.append(", cancel: function(event, ui) { "); sortableBuilder.append(findString(sortableCancel)); sortableBuilder.append("(event, ui); } "); }
-        if (sortableBeforeStop != null) { sortableBuilder.append(", beforeStop: function(event, ui) { "); sortableBuilder.append(findString(sortableBeforeStop)); sortableBuilder.append("(event, ui); } "); }
+        if (sortableCancel != null) { sortableBuilder.append(", cancel: '"); sortableBuilder.append(findString(sortableCancel)); sortableBuilder.append("' "); }
 
         if (sortableContainment != null) { 
           sortableBuilder.append(", containment: '"); 
@@ -428,7 +423,20 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
 
         sortableBuilder.append(" }");
         addParameter("sortableOptions", sortableBuilder.toString());
-      }
+        
+        if (sortableOnActivateTopics != null) addParameter("sortableOnActivateTopics", findString(sortableOnActivateTopics));
+        if (sortableOnUpdateTopics != null) addParameter("sortableOnUpdateTopics", findString(sortableOnUpdateTopics));
+        if (sortableOnStopTopics != null) addParameter("sortableOnStopTopics", findString(sortableOnStopTopics));
+        if (sortableOnStartTopics != null) addParameter("sortableOnStartTopics", findString(sortableOnStartTopics));
+        if (sortableOnSortTopics != null) addParameter("sortableOnSortTopics", findString(sortableOnSortTopics));
+        if (sortableOnRemoveTopics != null) addParameter("sortableOnRemoveTopics", findString(sortableOnRemoveTopics));
+        if (sortableOnReceiveTopics != null) addParameter("sortableOnReceiveTopics", findString(sortableOnReceiveTopics));
+        if (sortableOnOverTopics != null) addParameter("sortableOnOverTopics", findString(sortableOnOverTopics));
+        if (sortableOnOutTopics != null) addParameter("sortableOnOutTopics", findString(sortableOnOutTopics));
+        if (sortableOnDeactivateTopics != null) addParameter("sortableOnDeactivateTopics", findString(sortableOnDeactivateTopics));
+        if (sortableOnChangeTopics != null) addParameter("sortableOnChangeTopics", findString(sortableOnChangeTopics));
+        if (sortableOnBeforeStopTopics != null) addParameter("sortableOnBeforeStopTopics", findString(sortableOnBeforeStopTopics));
+     }
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -546,21 +554,21 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered during the resize, on the drag of the resize handler.")
-  public void setResizableResize(String resize)
+  public void setResizableOnResizeTopics(String resizableOnResizeTopics)
   {
-    this.resizableResize = resize;
+    this.resizableOnResizeTopics = resizableOnResizeTopics;
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered at the start of a resize operation.")
-  public void setResizableStart(String start)
+  public void setResizableOnStartTopics(String resizableOnStartTopics)
   {
-    this.resizableStart = start;
+    this.resizableOnStartTopics = resizableOnStartTopics;
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered at the end of a resize operation.")
-  public void setResizableStop(String stop)
+  public void setResizableOnStopTopics(String resizableOnStopTopics)
   {
-    this.resizableStop = stop;
+    this.resizableOnStopTopics = resizableOnStopTopics;
   }
 
   @StrutsTagAttribute(description = "If specified as a string, should be a comma-split list of any of the following: 'n, e, s, w, ne, se, sw, nw, all'. Default: e, s, se")
@@ -618,33 +626,33 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered any time an accepted draggable starts dragging. This can be useful if you want to make the droppable 'light up' when it can be dropped on.")
-  public void setDroppableActivate(String droppableActivate)
+  public void setDroppableOnActivateTopics(String droppableOnActivateTopics)
   {
-    this.droppableActivate = droppableActivate;
+    this.droppableOnActivateTopics = droppableOnActivateTopics;
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered any time an accepted draggable stops dragging.")
-  public void setDroppableDeactivate(String droppableDeactivate)
+  public void setDroppableOnDeactivateTopics(String droppableOnDeactivateTopics)
   {
-    this.droppableDeactivate = droppableDeactivate;
+    this.droppableOnDeactivateTopics = droppableOnDeactivateTopics;
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered when an accepted draggable is dropped 'over' this droppable.")
-  public void setDroppableDrop(String droppableDrop)
+  public void setDroppableOnDropTopics(String droppableOnDropTopics)
   {
-    this.droppableDrop = droppableDrop;
+    this.droppableOnDropTopics = droppableOnDropTopics;
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered when an accepted draggable is dragged 'out' this droppable.")
-  public void setDroppableOut(String droppableOut)
+  public void setDroppableOnOutTopics(String droppableOnOutTopics)
   {
-    this.droppableOut = droppableOut;
+    this.droppableOnOutTopics = droppableOnOutTopics;
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered as an accepted draggable is dragged 'over' this droppable.")
-  public void setDroppableOver(String droppableOver)
+  public void setDroppableOnOverTopics(String droppableOnOverTopics)
   {
-    this.droppableOver = droppableOver;
+    this.droppableOnOverTopics = droppableOnOverTopics;
   }
 
   @StrutsTagAttribute(description = "Enable draggable functionality to the DIV element. Move the draggable object by clicking on it with the mouse and dragging it anywhere within the viewport. ")
@@ -696,9 +704,9 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered when the mouse is moved during the dragging.")
-  public void setDraggableDrag(String draggableDrag)
+  public void setDraggableOnDragTopics(String draggableOnDragTopics)
   {
-    this.draggableDrag = draggableDrag;
+    this.draggableOnDragTopics = draggableOnDragTopics;
   }
 
   @StrutsTagAttribute(description = "If specified, restricts drag start click to the specified element(s). e.g. h2")
@@ -786,15 +794,15 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered when dragging starts.")
-  public void setDraggableStart(String draggableStart)
+  public void setDraggableOnStartTopics(String draggableOnStartTopics)
   {
-    this.draggableStart = draggableStart;
+    this.draggableOnStartTopics = draggableOnStartTopics;
   }
 
   @StrutsTagAttribute(description = "This event javascript function is triggered when dragging stops.")
-  public void setDraggableStop(String draggableStop)
+  public void setDraggableOnStopTopics(String draggableOnStopTopics)
   {
-    this.draggableStop = draggableStop;
+    this.draggableOnStopTopics = draggableOnStopTopics;
   }
 
   @StrutsTagAttribute(description = "z-index for the helper while being dragged.")
@@ -840,27 +848,27 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   }
 
   @StrutsTagAttribute(description = "This event is triggered at the end of the select operation, on each element added to the selection.")
-  public void setSelectableSelected(String selectableSelected)
+  public void setSelectableOnSelectedTopics(String selectableSelected)
   {
-    this.selectableSelected = selectableSelected;
+    this.selectableOnSelectedTopics = selectableSelected;
   }
 
   @StrutsTagAttribute(description = "This event is triggered during the select operation, on each element added to the selection.")
-  public void setSelectableSelecting(String selectableSelecting)
+  public void setSelectableOnSelectingTopics(String selectableSelecting)
   {
-    this.selectableSelecting = selectableSelecting;
+    this.selectableOnSelectingTopics = selectableSelecting;
   }
 
   @StrutsTagAttribute(description = "This event is triggered at the beginning of the select operation.")
-  public void setSelectableStart(String selectableStart)
+  public void setSelectableOnStartTopics(String selectableStart)
   {
-    this.selectableStart = selectableStart;
+    this.selectableOnStartTopics = selectableStart;
   }
 
   @StrutsTagAttribute(description = "This event is triggered at the end of the select operation.")
-  public void setSelectableStop(String selectableStop)
+  public void setSelectableOnStopTopics(String selectableStop)
   {
-    this.selectableStop = selectableStop;
+    this.selectableOnStopTopics = selectableStop;
   }
 
   @StrutsTagAttribute(description = "Possible values: 'touch', 'fit'. Default: 'touch'")
@@ -870,15 +878,15 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   }
 
   @StrutsTagAttribute(description = "This event is triggered at the end of the select operation, on each element removed from the selection.")
-  public void setSelectableUnselected(String selectableUnselected)
+  public void setSelectableOnUnselectedTopics(String selectableUnselected)
   {
-    this.selectableUnselected = selectableUnselected;
+    this.selectableOnUnselectedTopics = selectableUnselected;
   }
 
   @StrutsTagAttribute(description = "This event is triggered during the select operation, on each element removed from the selection.")
-  public void setSelectableUnselecting(String selectableUnselecting)
+  public void setSelectableOnUnselectingTopics(String selectableUnselecting)
   {
-    this.selectableUnselecting = selectableUnselecting;
+    this.selectableOnUnselectingTopics = selectableUnselecting;
   }
 
   @StrutsTagAttribute(description = "Enable a elements to be sortable", type = "Boolean")
@@ -887,11 +895,6 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
     this.sortable = sortable;
   }
 
-  @StrutsTagAttribute(description = "This event is triggered when using connected lists, every connected list on drag start receives it.")
-  public void setSortableActivate(String sortableActivate)
-  {
-    this.sortableActivate = sortableActivate;
-  }
 
   @StrutsTagAttribute(description = "Defines where the helper that moves with the mouse is being appended to during the drag. Default: 'parent'")
   public void setSortableAppendTo(String sortableAppendTo)
@@ -905,23 +908,12 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
     this.sortableAxis = sortableAxis;
   }
 
-  @StrutsTagAttribute(description = "This event is triggered when sorting stops, but when the placeholder/helper is still available.")
-  public void setSortableBeforeStop(String sortableBeforeStop)
-  {
-    this.sortableBeforeStop = sortableBeforeStop;
-  }
-
   @StrutsTagAttribute(description = "Prevents sorting if you start on elements matching the selector. Default: ':input,button'")
   public void setSortableCancel(String sortableCancel)
   {
     this.sortableCancel = sortableCancel;
   }
 
-  @StrutsTagAttribute(description = "This event is triggered during sorting, but only when the DOM position has changed.")
-  public void setSortableChange(String sortableChange)
-  {
-    this.sortableChange = sortableChange;
-  }
 
   @StrutsTagAttribute(description = "Takes a jQuery selector with items that also have sortables applied. If used, the sortable is now connected to the other one-way, so you can drag from this sortable to the other. e.g. #myothersortable or .myothersortables")
   public void setSortableConnectWith(String sortableConnectWith)
@@ -945,12 +937,6 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   public void setSortableCursorAt(String sortableCursorAt)
   {
     this.sortableCursorAt = sortableCursorAt;
-  }
-
-  @StrutsTagAttribute(description = "This event is triggered when sorting was stopped, is propagated to all possible connected lists.")
-  public void setSortableDeactivate(String sortableDeactivate)
-  {
-    this.sortableDeactivate = sortableDeactivate;
   }
 
   @StrutsTagAttribute(description = "Time in milliseconds to define when the sorting should start. It helps preventing unwanted drags when clicking on an element.")
@@ -1013,34 +999,10 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
     this.sortableOpacity = sortableOpacity;
   }
 
-  @StrutsTagAttribute(description = "This event is triggered when a sortable item is moved away from a connected list.")
-  public void setSortableOut(String sortableOut)
-  {
-    this.sortableOut = sortableOut;
-  }
-
-  @StrutsTagAttribute(description = "This event is triggered when a sortable item is moved into a connected list.")
-  public void setSortableOver(String sortableOver)
-  {
-    this.sortableOver = sortableOver;
-  }
-
   @StrutsTagAttribute(description = "Class that gets applied to the otherwise white space.")
   public void setSortablePlaceholder(String sortablePlaceholder)
   {
     this.sortablePlaceholder = sortablePlaceholder;
-  }
-
-  @StrutsTagAttribute(description = "This event is triggered when a connected sortable list has received an item from another list.")
-  public void setSortableReceive(String sortableReceive)
-  {
-    this.sortableReceive = sortableReceive;
-  }
-
-  @StrutsTagAttribute(description = "This event is triggered when a sortable item has been dragged out from the list and into another.")
-  public void setSortableRemove(String sortableRemove)
-  {
-    this.sortableRemove = sortableRemove;
   }
 
   @StrutsTagAttribute(description = "If set to true, the item will be reverted to its new DOM position with a smooth animation. Default: false", type = "Boolean")
@@ -1067,23 +1029,6 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
     this.sortableScrollSpeed = sortableScrollSpeed;
   }
 
-  @StrutsTagAttribute(description = "This event is triggered during sorting.")
-  public void setSortableSort(String sortableSort)
-  {
-    this.sortableSort = sortableSort;
-  }
-
-  @StrutsTagAttribute(description = "This event is triggered when sorting starts.")
-  public void setSortableStart(String sortableStart)
-  {
-    this.sortableStart = sortableStart;
-  }
-
-  @StrutsTagAttribute(description = "This event is triggered when sorting has stopped.")
-  public void setSortableStop(String sortableStop)
-  {
-    this.sortableStop = sortableStop;
-  }
 
   @StrutsTagAttribute(description = "This is the way the reordering behaves during drag. Possible values: 'intersect', 'pointer'. In some setups, 'pointer' is more natural. Default: 'intersect'")
   public void setSortableTolerance(String sortableTolerance)
@@ -1091,16 +1036,82 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
     this.sortableTolerance = sortableTolerance;
   }
 
-  @StrutsTagAttribute(description = "This event is triggered when the user stopped sorting and the DOM position has changed.")
-  public void setSortableUpdate(String sortableUpdate)
-  {
-    this.sortableUpdate = sortableUpdate;
-  }
-
   @StrutsTagAttribute(description = "Z-index for element/helper while being sorted. Default: 1000")
   public void setSortableZindex(String sortableZindex)
   {
     this.sortableZindex = sortableZindex;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when using connected lists, every connected list on drag start receives it.")
+  public void setSortableOnActivateTopics(String sortableActivate)
+  {
+    this.sortableOnActivateTopics = sortableActivate;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when sorting stops, but when the placeholder/helper is still available.")
+  public void setSortableOnBeforeStopTopics(String sortableBeforeStop)
+  {
+    this.sortableOnBeforeStopTopics = sortableBeforeStop;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered during sorting, but only when the DOM position has changed.")
+  public void setSortableOnChangeTopics(String sortableChange)
+  {
+    this.sortableOnChangeTopics = sortableChange;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when sorting was stopped, is propagated to all possible connected lists.")
+  public void setSortableOnDeactivateTopics(String sortableDeactivate)
+  {
+    this.sortableOnDeactivateTopics = sortableDeactivate;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when a sortable item is moved away from a connected list.")
+  public void setSortableOnOutTopics(String sortableOut)
+  {
+    this.sortableOnOutTopics = sortableOut;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when a sortable item is moved into a connected list.")
+  public void setSortableOnOverTopics(String sortableOver)
+  {
+    this.sortableOnOverTopics = sortableOver;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when a connected sortable list has received an item from another list.")
+  public void setSortableOnReceiveTopics(String sortableReceive)
+  {
+    this.sortableOnReceiveTopics = sortableReceive;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when a sortable item has been dragged out from the list and into another.")
+  public void setSortableOnRemoveTopics(String sortableRemove)
+  {
+    this.sortableOnRemoveTopics = sortableRemove;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered during sorting.")
+  public void setSortableOnSortTopics(String sortableSort)
+  {
+    this.sortableOnSortTopics = sortableSort;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when sorting starts.")
+  public void setSortableOnStartTopics(String sortableStart)
+  {
+    this.sortableOnStartTopics = sortableStart;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when sorting has stopped.")
+  public void setSortableOnStopTopics(String sortableStop)
+  {
+    this.sortableOnStopTopics = sortableStop;
+  }
+
+  @StrutsTagAttribute(description = "This event is triggered when the user stopped sorting and the DOM position has changed.")
+  public void setSortableOnUpdateTopics(String sortableUpdate)
+  {
+    this.sortableOnUpdateTopics = sortableUpdate;
   }
 
   @StrutsTagAttribute(name="onCompleteTopics", description = "Topics that are published before after load is completed", type="String", defaultValue="")
