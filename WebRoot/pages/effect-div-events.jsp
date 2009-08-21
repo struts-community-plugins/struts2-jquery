@@ -18,38 +18,34 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <script type="text/javascript">
-     function befor(){
-         alert('befor effect');
-     }
-     function after(){
-    	 setTimeout(function(){
-             $("#foldeffect").fadeIn();
-         }, 2000);
-     }
+	$.subscribe('before', function(event,data) {
+        alert('before effect');
+	});
+	$.subscribe('after', function(event,data) {
+   	 setTimeout(function(){ $("#foldeffect").fadeIn(); }, 2000);
+	});
     </script>        
 	<h2>Fold Effect with Events</h2>
 	<p>
 	    A Div with Fold Effect on click with events befor and after effect..
 	</p>
     <strong>Div :</strong>
-    <sj:effectDiv id="foldeffect" events="click" befor="befor()" after="after()" effect="fold" effectDuration="1600"  cssClass="result ui-widget-content ui-corner-all">
+    <sj:div id="foldeffect" events="click" onBeforeTopics="before" onCompleteTopics="after" effect="fold" effectDuration="1600"  cssClass="result ui-widget-content ui-corner-all">
         Click me!<br/>
         Click me!<br/>
         Click me!<br/>
-    </sj:effectDiv>
+    </sj:div>
         
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
 	   &lt;script type="text/javascript"&gt;
-	    function before(){
-	        alert('before effect');
-	    }
-	    function after(){
-	        setTimeout(function(){
-             $("#foldeffect").fadeIn();
-         }, 2000);
-	    }
+	$.subscribe('before', function(event,data) {
+        alert('befor effect');
+	});
+	$.subscribe('after', function(event,data) {
+   	 setTimeout(function(){ $("#foldeffect").fadeIn(); }, 2000);
+	});
 	   &lt;/script&gt;        
 
 	    &lt;sj:effectDiv id="foldeffect" events="click" <strong>befor="befor()" after="after()"</strong> effect="fold" effectDuration="1600"  cssClass="result ui-widget-content ui-corner-all"&gt;

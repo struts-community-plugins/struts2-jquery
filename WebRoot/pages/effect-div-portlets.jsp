@@ -24,19 +24,19 @@
             $(this).parents(".column div").find(".portlet-content").toggle();
         });
     });
-    function onUpdate(event, ui){
-        var result = $("#selectresult").empty();
-        result.append("You move "+$(ui.item).find('.ui-widget-header > .title').html());
-        result.append(' from '+$(ui.sender).attr('id'));
-        result.append(' to '+$(ui.item).parent().attr('id'));
-    }
+	$.subscribe('onupdate', function(event,data) {
+        var result = $("#sortableresult").empty();
+        result.append("You move "+$(event.originalEvent.ui.item).find('.ui-widget-header > .title').html());
+        result.append(' from '+$(event.originalEvent.ui.sender).attr('id'));
+        result.append(' to '+$(event.originalEvent.ui.item).parent().attr('id'));
+	});
     </script>  
 	<h2>Portlets with sortable</h2>
 	<p>
 	    How to make portlet styled divs with the sortable interaction.
 	</p>
-    <strong>Message :</strong><span id="selectresult">Use the title from each portlet as handle.</span><br/>
-<sj:div id="column1" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
+    <strong>Message :</strong><span id="sortableresult">Use the title from each portlet as handle.</span><br/>
+<sj:div id="column1" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableOnUpdateTopics="onupdate">
 
     <div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
         <div class="ui-widget-header ui-corner-all"><span class="title">Feeds</span><span class="ui-icon ui-icon-plusthick"></span></div>
@@ -50,7 +50,7 @@
 
 </sj:div>
 
-<sj:div id="column2" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
+<sj:div id="column2" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableOnUpdateTopics="onupdate">
 
     <div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
         <div class="ui-widget-header ui-corner-all"><span class="title">Shopping</span><span class="ui-icon ui-icon-plusthick"></span></div>
@@ -59,7 +59,7 @@
 
 </sj:div>
 
-<sj:div id="column3" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableUpdate="onUpdate">
+<sj:div id="column3" cssClass="column" sortable="true" sortableConnectWith=".column" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableOnUpdateTopics="onupdate">
 
     <div class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
         <div class="ui-widget-header ui-corner-all"><span class="title">Links</span><span class="ui-icon ui-icon-plusthick"></span></div>
@@ -99,18 +99,17 @@
             $(this).parents(".column div").find(".portlet-content").toggle();
         });
     });
-    function onUpdate(event, ui){
-        var result = $("#selectresult").empty();
-        result.append("You move "+$(ui.item).find('.ui-widget-header &gt; .title').html());
-        result.append(' from '+$(ui.sender).attr('id'));
-        result.append(' to '+$(ui.item).parent().attr('id'));
-    }
+	$.subscribe('onupdate', function(event,data) {
+        var result = $("#sortableresult").empty();
+        result.append("You move "+$(event.originalEvent.ui.item).find('.ui-widget-header > .title').html());
+        result.append(' from '+$(event.originalEvent.ui.sender).attr('id'));
+        result.append(' to '+$(event.originalEvent.ui.item).parent().attr('id'));
+	});
     &lt;/script&gt;  
       </pre>
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;strong&gt;Message :&lt;/strong&gt;&lt;span id="selectresult"&gt;Use the title from each portlet as handle.&lt;/span&gt;&lt;br/&gt;
-&lt;sj:div id=&quot;column1&quot; cssClass=&quot;column&quot; sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableUpdate=&quot;onUpdate&quot;&gt;
+&lt;sj:div id=&quot;column1&quot; cssClass=&quot;column&quot; <strong>sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableOnUpdateTopics=&quot;onupdate&quot;</strong>&gt;
 
     &lt;div class=&quot;ui-widget ui-widget-content ui-helper-clearfix ui-corner-all&quot;&gt;
         &lt;div class=&quot;ui-widget-header ui-corner-all&quot;&gt;&lt;span class=&quot;title&quot;&gt;Feeds&lt;/span&gt;&lt;span class=&quot;ui-icon ui-icon-plusthick&quot;&gt;&lt;/span&gt;&lt;/div&gt;
@@ -124,7 +123,7 @@
 
 &lt;/sj:div&gt;
 
-&lt;sj:div id=&quot;column2&quot; cssClass=&quot;column&quot; sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableUpdate=&quot;onUpdate&quot;&gt;
+&lt;sj:div id=&quot;column2&quot; cssClass=&quot;column&quot; <strong>sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableOnUpdateTopics=&quot;onupdate&quot;</strong>&gt;
 
     &lt;div class=&quot;ui-widget ui-widget-content ui-helper-clearfix ui-corner-all&quot;&gt;
         &lt;div class=&quot;ui-widget-header ui-corner-all&quot;&gt;&lt;span class=&quot;title&quot;&gt;Shopping&lt;/span&gt;&lt;span class=&quot;ui-icon ui-icon-plusthick&quot;&gt;&lt;/span&gt;&lt;/div&gt;
@@ -133,7 +132,7 @@
 
 &lt;/sj:div&gt;
 
-&lt;sj:div id=&quot;column3&quot; cssClass=&quot;column&quot; sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableUpdate=&quot;onUpdate&quot;&gt;
+&lt;sj:div id=&quot;column3&quot; cssClass=&quot;column&quot; <strong>sortable=&quot;true&quot; sortableConnectWith=&quot;.column&quot; sortablePlaceholder=&quot;ui-state-highlight&quot; sortableForcePlaceholderSize=&quot;true&quot; sortableHandle=&quot;div.ui-widget-header&quot; sortableCursor=&quot;crosshair&quot; sortableOnUpdateTopics=&quot;onupdate&quot;</strong>&gt;
 
     &lt;div class=&quot;ui-widget ui-widget-content ui-helper-clearfix ui-corner-all&quot;&gt;
         &lt;div class=&quot;ui-widget-header ui-corner-all&quot;&gt;&lt;span class=&quot;title&quot;&gt;Links&lt;/span&gt;&lt;span class=&quot;ui-icon ui-icon-plusthick&quot;&gt;&lt;/span&gt;&lt;/div&gt;

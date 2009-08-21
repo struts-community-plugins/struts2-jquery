@@ -30,10 +30,10 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;sj:effectDiv bindOn="startlink" events="click" effect="size" effectOptions="to: {width: 400,height: 300}" effectDuration="1000" cssClass="result ui-widget-content ui-corner-all" cssStyle="width: 200px; height: 200px; background: blue; color: yellow;"&gt;
+    &lt;sj:div <strong>bindOn=&quot;startlink&quot; events=&quot;click&quot; effect=&quot;size&quot; effectOptions=&quot;{ to: {width: 400,height: 300} }&quot; effectDuration=&quot;1000&quot;</strong> cssClass=&quot;result ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 200px; height: 200px; background: blue; color: yellow;&quot;&gt;
         Do you love Struts2 with jQuery?
-    &lt;/sj:effectDiv&gt;
-    &lt;a id="startlink" href="#"&gt;Size Div&lt;/a&gt;
+    &lt;/sj:div&gt;
+    &lt;a id=&quot;startlink&quot; href=&quot;#&quot; class=&quot;buttonlink ui-state-default ui-corner-all&quot;&gt;&lt;span class=&quot;ui-icon ui-icon-arrow-4-diag&quot;&gt;&lt;/span&gt;Size Div&lt;/a&gt;
 	  </pre>
 	</div>
   </div>

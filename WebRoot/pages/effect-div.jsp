@@ -22,14 +22,7 @@
 	    A Div with Highlight Effect on click.
 	</p>
     <strong>Div :</strong>
-    <sj:div id="withoutclick" effect="highlight" effectDuration="5000" effectOptions="{ color: '#000000' }" cssClass="result ui-widget-content ui-corner-all">
-        Click me!<br/>
-        Click me!<br/>
-        Click me!<br/>
-    </sj:div>
-
-    <strong>Div :</strong>
-    <sj:div id="withclick" events="click" effect="highlight" effectDuration="6000" effectOptions="{ color: '#000000', mode: 'show' }" cssClass="result ui-widget-content ui-corner-all">
+    <sj:div id="withclick" events="click" effect="highlight" effectDuration="4000" effectOptions="{ color: '#000000', mode: 'show' }" cssClass="result ui-widget-content ui-corner-all">
         Click me!<br/>
         Click me!<br/>
         Click me!<br/>
@@ -38,11 +31,11 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;sj:effectDiv events="click" effect="highlight" cssClass="result ui-widget-content ui-corner-all"&gt;
+    &lt;sj:div id=&quot;withclick&quot; <strong>events=&quot;click&quot; effect=&quot;highlight&quot; effectDuration=&quot;4000&quot; effectOptions=&quot;{ color: '#000000', mode: 'show' }&quot;</strong> cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
         Click me!&lt;br/&gt;
         Click me!&lt;br/&gt;
         Click me!&lt;br/&gt;
-    &lt;/sj:effectDiv&gt;
+    &lt;/sj:div&gt;
 	  </pre>
 	</div>
   </div>

@@ -31,11 +31,11 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-	    &lt;sj:effectDiv events="mouseover" effect="shake" effectDuration="600" cssClass="result ui-widget-content ui-corner-all"&gt;
-	        Hover me!&lt;br/&gt;
-	        Hover me!&lt;br/&gt;
-	        Hover me!&lt;br/&gt;
-	    &lt;/sj:effectDiv&gt;
+    &lt;sj:div <strong>events=&quot;mouseover&quot; effect=&quot;shake&quot; effectDuration=&quot;600&quot;</strong> cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
+        Hover me!&lt;br/&gt;
+        Hover me!&lt;br/&gt;
+        Hover me!&lt;br/&gt;
+    &lt;/sj:div&gt;
 	  </pre>
 	</div>
   </div>

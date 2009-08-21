@@ -22,14 +22,6 @@
 	    A simple sortable div list
 	</p>
     <strong>Div :</strong><br/>
-    <script type="text/javascript">
-     function onStop(event, ui){
-         var result = $("#selectresult").empty();
-         $(".ui-selected").each(function(){
-             result.append($(this).html()+' ');
-         });
-     }
-    </script>  
     <sj:div id="sortable" sortable="true" sortableOpacity="0.8" sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true" cssStyle="width: 300px;">
         <div id="one" class="sortable ui-widget-content ui-corner-all">One</div>
         <div id="two" class="sortable ui-widget-content ui-corner-all">Two</div>
