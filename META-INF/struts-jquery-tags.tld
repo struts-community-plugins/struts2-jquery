@@ -956,24 +956,30 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Executed javascript function befor ajax request. e.g. befor()]]></description>
-      <name>beforeSend</name>
+      <description><![CDATA[A comma delimited list of topics that published when dialog is opened.]]></description>
+      <name>onBeforeTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Executed javascript function after completed ajax request. e.g. after()]]></description>
-      <name>complete</name>
+      <description><![CDATA[A comma delimited list of topics that published when dialog is closed.]]></description>
+      <name>onCompleteTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <description><![CDATA[Executed javascript function on error. e.g. error()]]></description>
-      <name>error</name>
+      <description><![CDATA[A comma delimited list of topics that published when dialog is dragged.]]></description>
+      <name>onChangeTopics</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <description><![CDATA[A comma delimited list of topics that always published.]]></description>
+      <name>onAlwaysTopics</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+   </attribute>
+   <attribute>
       <description><![CDATA[Type of the result. e.g. html, xml, text, json, ...]]></description>
       <name>dataType</name>
       <required>false</required>

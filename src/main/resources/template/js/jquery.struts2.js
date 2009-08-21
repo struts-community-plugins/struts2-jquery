@@ -452,7 +452,11 @@
 		        	parameters.buttons = eval ("( " + buttonsStr + " )" );
 		        }
 			}
-			parameters.open = function() {
+			parameters.open = function(event, ui) {
+				var data = {};
+				data.event = event;
+				data.ui = ui;
+
 				if(options.href) {
 					
 					var containerLoadHandlerName = '_struts2_jquery_container_load';
@@ -460,17 +464,21 @@
 		    		$elem.subscribe(divTopic, containerLoadHandlerName);
 		    		$elem.publish(divTopic,options);				
 				}			
-				if(options.showtopics) {			  
-					var topics = options.showtopics.split(',');
+				if(options.onalwaystopics) {			  
+					var topics = options.onalwaystopics.split(',');
 					for ( var i = 0; i < topics.length; i++) {
-						$elem.subscribe(topics[i],'_struts2_jquery_dialog_open',options);
+						$elem.publish(topics[i], $elem, data);
 					}
 				}
-			}
-			parameters.show = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
-			parameters.select = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
-			parameters.enable = publishTopics($elem, options.onalwaystopics, options.onenabletopics);
-			parameters.disable = publishTopics($elem, options.onalwaystopics, options.ondisabletopics);
+				if(options.onbeforetopics) {			  
+					var topics = options.onbeforetopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, data);
+					}
+				}
+			};
+			parameters.close = publishTopics($elem, options.onalwaystopics, options.oncompletetopics);
+			parameters.drag = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
 			$elem.dialog(parameters);
 		},
 		
