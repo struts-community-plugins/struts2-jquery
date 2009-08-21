@@ -518,50 +518,15 @@
 		
 		datepicker: function($elem, options) {
 			
-			var dpOptions = {};
+			var parameters = {};
 			
 			if(options) {
-				
-				if(options.hidetopics) {			  
-					var topics = options.hidetopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.subscribe(topics[i],'_struts2_jquery_datepicker_hide',options);
-					}
-				}
-
-				if(options.showtopics) {			  
-					var topics = options.showtopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.subscribe(topics[i],'_struts2_jquery_datepicker_show',options);
-					}
-				}
-
-				if(options.removetopics) {			  
-					var topics = options.removetopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.subscribe(topics[i],'_struts2_jquery_datepicker_destroy',options);
-					}
-				}
-				
-				if(options.enabletopics) {			  
-					var topics = options.enabletopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.subscribe(topics[i],'_struts2_jquery_datepicker_enable',options);
-					}
-				}
-
-				if(options.disabletopics) {			  
-					var topics = options.disabletopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.subscribe(topics[i],'_struts2_jquery_datepicker_disable',options);
-					}
-				}
 				
 				var onAlwaysTopics = options.onalwaystopics;
 				
 				if(options.onbeforetopics) {  
 					var onBeforeTopics = options.onbeforetopics.split(',');
-					dpOptions.beforeShow = function(input){
+					parameters.beforeShow = function(input){
 						var $input = $(input);
 						for ( var i = 0; i < onBeforeTopics.length; i++) {
 							$input.publish(onBeforeTopics[i], $input);
@@ -578,7 +543,7 @@
 				
 				if(options.onbeforeshowdaytopics) {  
 					var onBeforeShowDayTopics = options.onbeforeshowdaytopics.split(',');
-					dpOptions.beforeShowDay = function(date){
+					parameters.beforeShowDay = function(date){
 						var $date = $(date);
 						for ( var i = 0; i < onBeforeShowDayTopics.length; i++) {
 							$elem.publish(onBeforeShowDayTopics[i], $date);
@@ -595,7 +560,7 @@
 
 				if(options.onchangemonthyeartopics) {  
 					var onChangeMonthYearTopics = options.onchangemonthyeartopics.split(',');
-					dpOptions.onChangeMonthYear = function(year, month, inst){
+					parameters.onChangeMonthYear = function(year, month, inst){
 						var data = {};
 						data.year = year;
 						data.month = month;
@@ -616,7 +581,7 @@
 
 				if(options.onchangetopics) {  
 					var onChangeTopics = options.onchangetopics.split(',');
-					dpOptions.onSelect = function(dateText, inst){
+					parameters.onSelect = function(dateText, inst){
 						var $inst = $(inst);
 						var data = {};
 						data.dateText = dateText;
@@ -635,7 +600,7 @@
 				
 				if(options.oncompletetopics) {  
 					var onCompleteTopics = options.oncompletetopics.split(',');
-					dpOptions.onClose = function(dateText, inst){
+					parameters.onClose = function(dateText, inst){
 						var $inst = $(inst);
 						var data = {};
 						data.dateText = dateText;
@@ -652,23 +617,23 @@
 					};
 				}
 				
-				dpOptions.changeMonth = options.changemonth;
-				dpOptions.changeYear = options.changeyear;
-				dpOptions.dateFormat = options.displayformat;
-				dpOptions.showButtonPanel = options.showbuttonpanel;
-				dpOptions.buttonImageOnly = options.buttonimageonly;
-				dpOptions.buttonImage = options.buttonimage;
-				dpOptions.showOn = options.showon;
-				dpOptions.buttonText = options.buttontext;
-				dpOptions.showAnim = options.showanim;
-				dpOptions.firstDay = options.firstday;
-				dpOptions.yearRange = options.yearrange;
+				if(options.changemonth && options.changemonth == 'true')	parameters.changeMonth = true;
+				if(options.changeyear && options.changeyear == 'true')	parameters.changeYear = true;
+				if(options.showbuttonpanel && options.showbuttonpanel == 'true')	parameters.showButtonPanel = true;
+				parameters.dateFormat = options.displayformat;
+				parameters.buttonImageOnly = options.buttonimageonly;
+				parameters.buttonImage = options.buttonimage;
+				parameters.showOn = options.showon;
+				parameters.buttonText = options.buttontext;
+				parameters.showAnim = options.showanim;
+				parameters.firstDay = options.firstday;
+				parameters.yearRange = options.yearrange;
 		        
 				if(options.numberofmonths) {
 			        var numberofmonthsStr = options.numberofmonths;
 			        var numberofmonths = window[numberofmonthsStr];
 			        if (!numberofmonths) {
-			        	dpOptions.numberOfMonths = eval ("( " + numberofmonthsStr + " )" );
+			        	parameters.numberOfMonths = eval ("( " + numberofmonthsStr + " )" );
 			        }
 				}
 				
@@ -676,17 +641,17 @@
 			        var userOptionsStr = options.showoptions;
 			        var userOptions = window[userOptionsStr];
 			        if (!userOptions) {
-			        	dpOptions.showOptions = eval ("( " + userOptionsStr + " )" );
+			        	parameters.showOptions = eval ("( " + userOptionsStr + " )" );
 			        }
 				}
 			}
 			
-			$elem.datepicker(dpOptions);
+			$elem.datepicker(parameters);
 			
 		    if(options.year && options.month && options.day) {
 		    	$elem.val($.datepicker.formatDate(options.displayformat, new Date(options.year, options.month, options.day)));
 		    }
-		    if( options.zindex) {
+		    if(options.zindex) {
 		    	$('#ui-datepicker-div').css("z-index", options.zindex); 
 		    }
 		    
