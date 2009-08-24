@@ -8,6 +8,7 @@
       <li><s:url id="urlformout" action="form-out"/><sj:a href="%{urlformout}" targets="main">AJAX Forms with Outside Button</sj:a></li>
       <li><s:url id="urlformftl" action="form-ftl"/><sj:a href="%{urlformftl}" targets="main">AJAX Forms with Freemarker</sj:a></li>
       <li><s:url id="urlformevent" action="form-event"/><sj:a href="%{urlformevent}" targets="main">AJAX Forms with Events</sj:a></li>
+      <li><s:url id="urlformtextarea" action="form-textarea"/><sj:a href="%{urlformtextarea}" targets="main">AJAX Textarea</sj:a></li>
     </ul>
   </div>
 </div>

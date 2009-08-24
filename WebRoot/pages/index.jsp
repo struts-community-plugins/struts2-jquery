@@ -40,22 +40,22 @@
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.0.2 (Beta)</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.2 (Beta)</h4>
         </div>
       </div>
       <div id="nav">
         <div class="hlist ui-widget-header">
           <ul>
-            <li class="ui-widget-header ui-state-active"><s:url id="urltabs" action="tabs"/><sj:a href="%{urltabs}" targets="main">Tabs</sj:a></li>
+            <li class="ui-widget-header ui-state-active"><s:url id="urltabs" action="tabs-local"/><sj:a href="%{urltabs}" targets="main">Tabs</sj:a></li>
             <li class="ui-widget-header"><s:url id="urldatepicker" action="datepicker"/><sj:a href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
             <li class="ui-widget-header"><s:url id="urldialog" action="dialog"/><sj:a href="%{urldialog}" targets="main">Dialog</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlaccordion" action="accordion"/><sj:a href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlslider" action="slider"/><sj:a href="%{urlslider}" targets="main">Slider</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlprogressbar" action="progressbar"/><sj:a href="%{urlprogressbar}" targets="main">Progressbar</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlremotelink" action="remote-link"/><sj:a href="%{urlremotelink}" targets="main">Remote Link</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlform" action="form"/><sj:a href="%{urlform}" targets="main">Forms</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlremotediv" action="remote-div"/><sj:a href="%{urlremotediv}" targets="main">Remote Div</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urleffectdiv" action="effect-div"/><sj:a href="%{urleffectdiv}" targets="main">Effect Div</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlremotelink" action="remote-link"/><sj:a href="%{urlremotelink}" targets="main">Ajax Link</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlform" action="form"/><sj:a href="%{urlform}" targets="main">Ajax Forms</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlremotediv" action="remote-div"/><sj:a href="%{urlremotediv}" targets="main">Ajax Div</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urleffectdiv" action="effect-div"/><sj:a href="%{urleffectdiv}" targets="main">Effects/Interactions</sj:a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/downloads/list">Download</a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/w/list">Wiki</a></li>
           </ul>

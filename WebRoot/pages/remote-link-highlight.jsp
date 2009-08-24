@@ -23,7 +23,7 @@
     
 	<s:url id="ajax" value="/ajax1.action"/>
 	
-	<sj:a id="ajaxlink" href="%{ajax}" targets="result" effect="highlight" effectOptions="{ color : '#222222' }" effectDuration="3000">
+	<sj:a id="ajaxlink" href="%{ajax}" targets="result" effect="highlight" effectOptions="{ color : '#222222' }" effectDuration="3000" cssClass="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-refresh"></span>
 	  Run AJAX Action
 	</sj:a>
     
@@ -34,7 +34,7 @@
     
 	&lt;s:url id=&quot;ajax&quot; value=&quot;/ajax1.action&quot;/&gt;
 	
-	&lt;sj:a id=&quot;ajaxlink&quot; href=&quot;%{ajax}&quot; targets=&quot;result&quot; effect=&quot;highlight&quot; effectOptions=&quot;{ color : '#222222' }&quot; effectDuration=&quot;3000&quot;&gt;
+	&lt;sj:a id=&quot;ajaxlink&quot; href=&quot;%{ajax}&quot; targets=&quot;result&quot; <strong>effect=&quot;highlight&quot; effectOptions=&quot;{ color : '#222222' }&quot; effectDuration=&quot;3000&quot;</strong>&gt;
 	  Run AJAX Action
 	&lt;/sj:a&gt;
 	  </pre>
@@ -43,3 +43,11 @@
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.buttonlink').hover(
+            function() { $(this).addClass('ui-state-hover'); }, 
+            function() { $(this).removeClass('ui-state-hover'); }
+    );
+});
+</script>

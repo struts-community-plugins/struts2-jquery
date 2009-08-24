@@ -23,7 +23,7 @@
     
 	<s:url id="ajax" value="/ajax1.action"/>
 	
-	<sj:a id="ajaxlink" href="%{ajax}" indicator="indicator" targets="result" effect="bounce" effectDuration="2200">
+	<sj:a id="ajaxlink" href="%{ajax}" indicator="indicator" targets="result" effect="bounce" effectDuration="2200" cssClass="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-refresh"></span>
 	  Run AJAX Action
 	</sj:a>
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
@@ -33,7 +33,7 @@
 	  <pre>
     &lt;s:url id="ajax" value="ajax1.action"/&gt;
     
-    &lt;sj:a id="ajaxlink" href="%{ajax}" indicator="indicator" targets="result" <strong> effect="bounce" effectDuration="2200"</strong>&gt;
+    &lt;sj:a id="ajaxlink" href="%{ajax}" indicator="indicator" targets="result" <strong>effect="bounce" effectDuration="2200"</strong>&gt;
       Run AJAX Action
     &lt;/sj:a&gt;
 	  </pre>
@@ -42,3 +42,11 @@
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.buttonlink').hover(
+            function() { $(this).addClass('ui-state-hover'); }, 
+            function() { $(this).removeClass('ui-state-hover'); }
+    );
+});
+</script>

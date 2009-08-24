@@ -8,6 +8,7 @@
       <li><s:url id="urlformout" action="form-out"/><sj:a href="%{urlformout}" targets="main">AJAX Forms with Outside Button</sj:a></li>
       <li><s:url id="urlformftl" action="form-ftl"/><sj:a href="%{urlformftl}" targets="main">AJAX Forms with Freemarker</sj:a></li>
       <li><s:url id="urlformevent" action="form-event"/><sj:a href="%{urlformevent}" targets="main">AJAX Forms with Events</sj:a></li>
+      <li><s:url id="urlformtextarea" action="form-textarea"/><sj:a href="%{urlformtextarea}" targets="main">AJAX Textarea</sj:a></li>
     </ul>
   </div>
 </div>
@@ -61,11 +62,47 @@
     </s:form>
 
 	<div class="code ui-widget-content ui-corner-all">
+      <strong>JavaScript functions:</strong>
+      <pre>
+    $.subscribe('before', function(event,data) {
+	 alert('About to submit: \n\n' + event.originalEvent.formData[0].value + ' to target '+event.originalEvent.options.target+' with timeout '+event.originalEvent.options.timeout );
+    });
+    $.subscribe('complete', function(event,data) {
+   	 alert('status: ' + event.originalEvent.status + '\n\nresponseText: \n' + event.originalEvent.request.responseText + 
+     '\n\nThe output div should have already been updated with the responseText.');
+    });
+    $.subscribe('errorState', function(event,data) {
+        alert('status: ' + event.originalEvent.status + '\n\nrequest status: ' +event.originalEvent.request.status);
+    });
+      </pre>
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;s:form id="form" action="echo" theme="simple"&gt;
-     Echo: &lt;s:textfield id="echo" name="echo" value="Hello World!!!"/>
-     &lt;sj:submit targets="result" value="AJAX Submit" indicator="indicator"/&gt;
+    &lt;s:form id=&quot;formevent&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;AJAX Form&lt;/legend&gt;
+	        &lt;div class=&quot;type-text&quot;&gt;
+	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+	            &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
+	        &lt;/div&gt;
+	        &lt;div class=&quot;type-button&quot;&gt;
+	            &lt;sj:submit targets=&quot;result&quot; value=&quot;AJAX Submit&quot; timeout=&quot;2500&quot; indicator=&quot;indicator&quot; <strong>onBeforeTopics=&quot;before&quot; onCompleteTopics=&quot;complete&quot; onErrorTopics=&quot;errorState&quot;</strong>/&gt;
+	        &lt;/div&gt;
+        &lt;/fieldset&gt;
+    &lt;/s:form&gt;
+
+    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
+    
+    &lt;s:form id=&quot;formeventerror&quot; action=&quot;file-does-not-exist.html&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;AJAX Form with Error Result&lt;/legend&gt;
+            &lt;div class=&quot;type-text&quot;&gt;
+                &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+                &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;type-button&quot;&gt;
+                &lt;sj:submit targets=&quot;result&quot; value=&quot;AJAX Submit with Error&quot; timeout=&quot;2500&quot; indicator=&quot;indicator&quot; <strong>onBeforeTopics=&quot;before&quot; onCompleteTopics=&quot;complete&quot; onErrorTopics=&quot;errorState&quot;</strong>/&gt;
+            &lt;/div&gt;
+        &lt;/fieldset&gt;
     &lt;/s:form&gt;
 	  </pre>
 	</div>

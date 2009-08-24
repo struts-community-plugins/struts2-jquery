@@ -37,8 +37,8 @@
     </sj:div>
         
 	<div class="code ui-widget-content ui-corner-all">
-	  <strong>Code:</strong>
-	  <pre>
+      <strong>JavaScript functions:</strong>
+      <pre>
 	   &lt;script type="text/javascript"&gt;
 	$.subscribe('before', function(event,data) {
         alert('befor effect');
@@ -47,12 +47,14 @@
    	 setTimeout(function(){ $("#foldeffect").fadeIn(); }, 2000);
 	});
 	   &lt;/script&gt;        
-
-	    &lt;sj:effectDiv id="foldeffect" events="click" <strong>befor="befor()" after="after()"</strong> effect="fold" effectDuration="1600"  cssClass="result ui-widget-content ui-corner-all"&gt;
-	        Click me!&lt;br/&gt;
-	        Click me!&lt;br/&gt;
-	        Click me!&lt;br/&gt;
-	    &lt;/sj:effectDiv&gt;
+      </pre>
+	  <strong>Code:</strong>
+	  <pre>
+    &lt;sj:div id=&quot;foldeffect&quot; events=&quot;click&quot; onBeforeTopics=&quot;before&quot; onCompleteTopics=&quot;after&quot; effect=&quot;fold&quot; effectDuration=&quot;1600&quot;  cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
+        Click me!&lt;br/&gt;
+        Click me!&lt;br/&gt;
+        Click me!&lt;br/&gt;
+    &lt;/sj:div&gt;
 	  </pre>
 	</div>
   </div>

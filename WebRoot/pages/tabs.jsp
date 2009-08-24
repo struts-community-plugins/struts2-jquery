@@ -3,8 +3,8 @@
 <div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
-      <li><s:url id="urltabs" action="tabs"/><sj:a href="%{urltabs}" targets="main">Remote Tabs</sj:a></li>
       <li><s:url id="urltabslocal" action="tabs-local"/><sj:a href="%{urltabslocal}" targets="main">Local Tabs</sj:a></li>
+      <li><s:url id="urltabs" action="tabs"/><sj:a href="%{urltabs}" targets="main">Remote Tabs</sj:a></li>
       <li><s:url id="urltabspreselect" action="tabs-preselect"/><sj:a href="%{urltabspreselect}" targets="main">Preselectet Tabs with Animation</sj:a></li>
     </ul>
   </div>

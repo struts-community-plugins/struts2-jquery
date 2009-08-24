@@ -14,35 +14,31 @@
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-	<h2>Form submission with AJAX outside the Form</h2>
+	<h2>Form submission with AJAX with Effect</h2>
 	<p>
-	    Submit a form with AJAX from outside the Form.
+	    Submit a form with AJAX and run a slide effect.
 	</p>
+    <s:form id="formEffect" action="echo" theme="xhtml">
+		<s:url id="remoteurl" action="ajax1"/>
+		<sj:textarea href="%{remoteurl}" id="echo" name="echo" label="Echo" rows="10" cols="80" effect="highlight" effectDuration="1500" loadingText="Loading content of textarea ..."/>
+		<sj:submit targets="result" effect="slide" value="AJAX Submit" indicator="indicator"/>
+    </s:form>
+    <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
+
     <strong>Result Div :</strong>
 	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
-    <s:form id="formOutside" action="echo" theme="simple" cssClass="yform">
-        <fieldset>
-            <legend>AJAX Form with Button outside</legend>
-            <div class="type-text">
-                <label for="echo">Echo: </label>
-                <s:textfield id="echo" name="echo" value="Hello World!!!"/><br/>
-            </div>
-        </fieldset>
-    </s:form>
 
-    <sj:submit formIds="formOutside" targets="result" effect="pulsate" value="Submit outside the Form" indicator="indicator"/>
-
-    <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
     
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;s:form id="form" action="echo" theme="simple"&gt;
-     Echo: &lt;s:textfield id="echo" name="echo" value="Hello World!!!"/>&lt;br/&gt;
+    &lt;s:form id=&quot;formEffect&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+		&lt;s:url id=&quot;remoteurl&quot; action=&quot;ajax1&quot;/&gt;
+		&lt;sj:textarea href=&quot;%{remoteurl}&quot; id=&quot;echo&quot; name=&quot;echo&quot; label=&quot;Echo&quot; rows=&quot;10&quot; cols=&quot;80&quot; effect=&quot;highlight&quot; effectDuration=&quot;1500&quot; loadingText=&quot;Loading content of textarea ...&quot;/&gt;
+		&lt;sj:submit targets=&quot;result&quot; effect=&quot;slide&quot; value=&quot;AJAX Submit&quot; indicator=&quot;indicator&quot;/&gt;
     &lt;/s:form&gt;
-
-    &lt;sj:submit <strong>formIds="form"</strong> targets="result" effect="pulsate" value="AJAX Submit" indicator="indicator"/&gt;
+    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
 	  </pre>
 	</div>
   </div>
