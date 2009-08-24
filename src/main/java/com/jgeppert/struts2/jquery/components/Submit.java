@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Form;
-import org.apache.struts2.components.FormButton;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -106,8 +105,9 @@ public class Submit extends AbstractRemoteBean {
     private static final Logger LOG = LoggerFactory.getLogger(Submit.class);
     private final static transient Random RANDOM = new Random();
 
-    final public static String OPEN_TEMPLATE = "submit";
-    final public static String TEMPLATE = "submit-close";
+    public static final String OPEN_TEMPLATE = "submit";
+    public static final String TEMPLATE = "submit-close";
+    public static final String JQUERYACTION = "button";
 
     protected String href;
     protected String dataType;
@@ -151,7 +151,9 @@ public class Submit extends AbstractRemoteBean {
 
     public void evaluateParams() {
         super.evaluateExtraParams();
-       if ((key == null) && (value == null)) {
+        addParameter("jqueryaction", JQUERYACTION);
+
+        if ((key == null) && (value == null)) {
             value = "Submit";
         }
 

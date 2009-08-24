@@ -76,6 +76,7 @@ public class Anchor extends AbstractRemoteBean {
     public static final String TEMPLATE = "a-close";
     public static final String COMPONENT_NAME = Anchor.class.getName();
     public static final transient Random RANDOM = new Random();    
+    public static final String JQUERYACTION = "anchor";
 
     protected String openDialog;
     protected String onClickTopics;   //topics that are published on click
@@ -95,6 +96,8 @@ public class Anchor extends AbstractRemoteBean {
 
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
+
+        addParameter("jqueryaction", JQUERYACTION);
 
         if (openDialog != null)
           addParameter("openDialog", findString(openDialog));

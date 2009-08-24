@@ -22,6 +22,7 @@ package com.jgeppert.struts2.jquery.components;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.components.ClosingUIBean;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
@@ -31,7 +32,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * AbstractRemoteCallUIBean is superclass for all components dealing with remote
  * calls.
  */
-public abstract class AbstractTopicsBean extends AbstractInteractiveBean {
+public abstract class AbstractTopicsBean extends ClosingUIBean {
 
     protected String onBeforeTopics;
     protected String onCompleteTopics;
@@ -39,6 +40,8 @@ public abstract class AbstractTopicsBean extends AbstractInteractiveBean {
     protected String onErrorTopics;
     protected String onAlwaysTopics;
     protected String onChangeTopics;
+    protected String onEnableTopics;
+    protected String onDisableTopics;
     
     public AbstractTopicsBean(ValueStack stack, HttpServletRequest request,
             HttpServletResponse response) {
@@ -60,6 +63,10 @@ public abstract class AbstractTopicsBean extends AbstractInteractiveBean {
         addParameter("onChangeTopics", findString(onChangeTopics));   
       if (onAlwaysTopics != null)
         addParameter("onAlwaysTopics", findString(onAlwaysTopics));   
+      if (onEnableTopics != null) 
+        addParameter("onEnableTopics", findString(onEnableTopics));
+      if (onDisableTopics != null) 
+        addParameter("onDisableTopics", findString(onDisableTopics));
     }
 
     @Override
@@ -73,36 +80,48 @@ public abstract class AbstractTopicsBean extends AbstractInteractiveBean {
         return "jquery";
     }
 
-    @StrutsTagAttribute(name="onBeforeTopics", description = "Topics that are published before a load", type="String", defaultValue="")
+    @StrutsTagAttribute(description = "Topics that are published before a load", type="String", defaultValue="")
     public void setOnBeforeTopics(String onBeforeTopics)
     {
       this.onBeforeTopics = onBeforeTopics;
     }
 
-    @StrutsTagAttribute(name="onCompleteTopics", description = "A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)", type="String", defaultValue="")
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)", type="String", defaultValue="")
     public void setOnCompleteTopics(String onCompleteTopics){
       this.onCompleteTopics = onCompleteTopics;
     }
 
-    @StrutsTagAttribute(name="onSuccessTopics", description = "A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)", type="String", defaultValue="")
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)", type="String", defaultValue="")
     public void setOnSuccessTopics(String onSuccessTopics){
       this.onSuccessTopics = onSuccessTopics;
     }
 
-    @StrutsTagAttribute(name="onErrorTopics", description = "A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)", type="String", defaultValue="")
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)", type="String", defaultValue="")
     public void setOnErrorTopics(String onErrorTopics){
       this.onErrorTopics = onErrorTopics;
     }
 
-    @StrutsTagAttribute(name="onAlwaysTopics", description = "A comma delimited list of topics that published always", type="String", defaultValue="")
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published always", type="String", defaultValue="")
     public void setOnAlwaysTopics(String onAlwaysTopics)
     {
       this.onAlwaysTopics = onAlwaysTopics;
     }
 
-    @StrutsTagAttribute(name="onChangeTopics", description = "A comma delimited list of topics that published when the element changed", type="String", defaultValue="")
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element changed", type="String", defaultValue="")
     public void setOnChangeTopics(String onChangeTopics)
     {
       this.onChangeTopics = onChangeTopics;
+    }
+    
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is enabled", type = "String", defaultValue = "")
+    public void setOnEnableTopics(String onEnableTopics)
+    {
+      this.onEnableTopics = onEnableTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element disabled", type = "String", defaultValue = "")
+    public void setOnDisableTopics(String onDisableTopics)
+    {
+      this.onDisableTopics = onDisableTopics;
     }
 }

@@ -39,6 +39,7 @@ import com.jgeppert.struts2.jquery.views.velocity.components.SliderDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SubmitDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TabDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TabbedPanelDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.TextareaDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
 public class JqueryTagLibrary implements TagLibrary {
@@ -62,6 +63,7 @@ public class JqueryTagLibrary implements TagLibrary {
             AccordionDirective.class,
             ProgressbarDirective.class,
             SliderDirective.class,
+            TextareaDirective.class,
         };
         return Arrays.asList(directives);
     }

@@ -70,7 +70,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "dialog", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag", description = "Render a Dialog")
 public class Dialog extends AbstractRemoteBean {
 
-  public static final String WIDGET       = "dialog";
+  public static final String JQUERYACTION       = "dialog";
   public static final String TEMPLATE       = "dialog";
   public static final String TEMPLATE_CLOSE = "dialog-close";
   public static final String COMPONENT_NAME = Dialog.class.getName();
@@ -110,7 +110,7 @@ public class Dialog extends AbstractRemoteBean {
   {
     super.evaluateExtraParams();
 
-    addParameter("widget", WIDGET);
+    addParameter("jqueryaction", JQUERYACTION);
 
     if (buttons != null) addParameter("buttons", findString(buttons));
     if (draggable != null) addParameter("draggable", findString(draggable));

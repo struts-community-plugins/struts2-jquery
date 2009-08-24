@@ -30,7 +30,7 @@
 				//extension point to allow custom pre-binding processing
 				if(typeof(_struts2_jquery.preBind) != "function" || _struts2_jquery.preBind($el)) {
 					
-					var widget = $el.attr("widget");
+					var widget = $el.attr("jqueryaction");
 					if(!widget)
 						widget = tag;
 									
@@ -53,53 +53,6 @@
 			if(name && binder) {
 			
 				this[name] = binder;
-			}
-		},
-		
-		base:  function($elem, options){
-		
-			if(options.onhidetopics) {			  
-				var topics = options.hidetopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i],'_struts2_jquery_hide',options);
-				}
-			}
-
-			if(options.onshowtopics) {			  
-				var topics = options.showtopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i],'_struts2_jquery_show',options);
-				}
-			}
-
-			if(options.onremovetopics) {			  
-				var topics = options.removetopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i],'_struts2_jquery_remove',options);
-				}
-			}
-			
-			if(options.disabled == 'true') {
-
-				$elem.attr("disabled","disabled");
-				$elem.addClass("disabled");
-			}
-		},
-		
-		interactive:  function($elem, options){
-
-			if(options.enabletopics) {			  
-				var topics = options.enabletopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i],'_struts2_jquery_enable',options);
-				}
-			}
-
-			if(options.disabletopics) {			  
-				var topics = options.disabletopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i],'_struts2_jquery_disable',options);
-				}
 			}
 		},
 		
@@ -187,14 +140,13 @@
 			
 		},
 			
-		div: function($elem, options){
+		container: function($elem, options){
 
 			var containerLoadHandlerName = '_struts2_jquery_container_load';
 			var effectHandlerName = '_struts2_jquery_effects';
 			
-			this.base($elem, options);
-			this.action($elem, options, containerLoadHandlerName, 'div');
 
+			this.action($elem, options, containerLoadHandlerName, 'div');
 
 			//load div using ajax
 			if(options.src) {
@@ -220,177 +172,160 @@
 			}
 			else {
 				
-				var divEffectTopic = '_struts2_jquery_div_effect_';
+				var divEffectTopic = '_struts2_jquery_div_effect_' + options.id;
 				if(options.id && options.effect) {
 					var effect = {};
 					effect.targets = options.id;
 					effect.effect = options.effect;
 					effect.effectoptions = options.effectoptions;
 					effect.effectduration = options.effectduration;
-		    		$elem.subscribe(divEffectTopic+options.id, effectHandlerName, effect);
+		    		$elem.subscribe(divEffectTopic, effectHandlerName, effect);
 				}
 
 
 				if(options.events || options.bindon) {
 
 					var $bindElement = $elem;
+					var eventsStr = 'click';
 					if(options.bindon)
 						$bindElement = $('#'+options.bindon);
+					if(options.events) { eventsStr = options.events; }
 
-					if(options.events) {
-						
-						var events = options.events.split(',');
-						for ( var i = 0; i < events.length; i++) {
-							if(options.onbeforetopics) {
-								var beforetopics = options.onbeforetopics.split(',');
-								for ( var i = 0; i < beforetopics.length; i++) {
-									$bindElement.publishOnEvent(events[i], beforetopics[i]);
-								}
-							}
-							$bindElement.publishOnEvent(events[i], divEffectTopic+options.id);
-							if(options.oncompletetopics) {
-								var complete = options.oncompletetopics.split(',');
-								for ( var i = 0; i < complete.length; i++) {
-									$bindElement.publishOnEvent(events[i], complete[i]);
-								}
-							}
-						}
-					}
-					else {
+					var events = eventsStr.split(',');
+					for ( var i = 0; i < events.length; i++) {
+						var event = events[i];
 						if(options.onbeforetopics) {
-							var beforetopics = options.onbeforetopics.split(',');
-							for ( var i = 0; i < beforetopics.length; i++) {
-								$bindElement.publishOnEvent('click', beforetopics[i]);
+							var btopics = options.onbeforetopics.split(',');
+							for ( var i = 0; i < btopics.length; i++) {
+								$bindElement.publishOnEvent(event, btopics[i]);
 							}
 						}
-						$bindElement.publishOnEvent('click', divEffectTopic+options.id);
+						$bindElement.publishOnEvent(event, divEffectTopic);
 						if(options.oncompletetopics) {
-							var complete = options.oncompletetopics.split(',');
-							for ( var i = 0; i < complete.length; i++) {
-								$bindElement.publishOnEvent('click', complete[i]);
+							var ctopics = options.oncompletetopics.split(',');
+							for ( var i = 0; i < ctopics.length; i++) {
+								$bindElement.publishOnEvent(event, ctopics[i]);
 							}
 						}
 					}
 				}
 				else {
 					if(options.onbeforetopics) {
-						var beforetopics = options.onbeforetopics.split(',');
-						for ( var i = 0; i < beforetopics.length; i++) {
-							$bindElement.publish(beforetopics[i], $elem);
+						var btopics = options.onbeforetopics.split(',');
+						for ( var i = 0; i < btopics.length; i++) {
+							$bindElement.publish(btopics[i], $elem);
 						}
 					}
-					$elem.publish(divEffectTopic+options.id, $elem);	
+					$elem.publish(divEffectTopic, $elem);	
 					if(options.oncompletetopics) {
-						var complete = options.oncompletetopics.split(',');
-						for ( var i = 0; i < complete.length; i++) {
-							$bindElement.publish(complete[i], $elem);
+						var ctopics = options.oncompletetopics.split(',');
+						for ( var i = 0; i < ctopics.length; i++) {
+							$bindElement.publish(ctopics[i], $elem);
 						}
 					}
 				}
 				
 				if(options.resizable == 'true') {
 
-			        var resizableOptionsStr = options.resizableoptions;
-			        var resizableOptions = window[resizableOptionsStr];
-			        if (!resizableOptions) {
-			        	resizableOptions = eval ("( " + resizableOptionsStr + " )" );
+			        var ros = options.resizableoptions;
+			        var ro = window[ros];
+			        if (!ro) {
+			        	ro = eval ("( " + ros + " )" );
 			        }
 			        else {
-			        	resizableOptions = {};
+			        	ro = {};
 			        }
-			        resizableOptions.start = publishTopics($elem, options.onalwaystopics, options.resizableonstarttopics);
-			        resizableOptions.stop = publishTopics($elem, options.onalwaystopics, options.resizableonstoptopics);
-			        resizableOptions.resize = publishTopics($elem, options.onalwaystopics, options.resizableonresizetopics);
-					$elem.resizable(resizableOptions);
+			        ro.start = publishTopics($elem, options.onalwaystopics, options.resizableonstarttopics);
+			        ro.stop = publishTopics($elem, options.onalwaystopics, options.resizableonstoptopics);
+			        ro.resize = publishTopics($elem, options.onalwaystopics, options.resizableonresizetopics);
+					$elem.resizable(ro);
 				}
 			}
 
 			if(options.draggable == 'true') {
 				
-		        var draggableOptionsStr = options.draggableoptions;
-		        var draggableOptions = window[draggableOptionsStr];
-		        if (!draggableOptions) {
-		        	draggableOptions = eval ("( " + draggableOptionsStr + " )" );
+		        var daos = options.draggableoptions;
+		        var dao = window[daos];
+		        if (!dao) {
+		        	dao = eval ("( " + daos + " )" );
 		        }
 		        else {
-		        	draggableOptions = {};
+		        	dao = {};
 		        }
-		        draggableOptions.start = publishTopics($elem, options.onalwaystopics, options.draggableonstarttopics);
-		        draggableOptions.stop = publishTopics($elem, options.onalwaystopics, options.draggableonstoptopics);
-		        draggableOptions.drap = publishTopics($elem, options.onalwaystopics, options.draggableondragtopics);
-				$elem.draggable(draggableOptions);
+		        dao.start = publishTopics($elem, options.onalwaystopics, options.draggableonstarttopics);
+		        dao.stop = publishTopics($elem, options.onalwaystopics, options.draggableonstoptopics);
+		        dao.drap = publishTopics($elem, options.onalwaystopics, options.draggableondragtopics);
+				$elem.draggable(dao);
 			}
 			
 			if(options.droppable == 'true') {
 
-		        var droppableOptionsStr = options.droppableoptions;
-		        var droppableOptions = window[droppableOptionsStr];
-		        if (!droppableOptions) {
-		        	droppableOptions = eval ("( " + droppableOptionsStr + " )" );
+		        var doos = options.droppableoptions;
+		        var doo = window[doos];
+		        if (!doo) {
+		        	doo = eval ("( " + doos + " )" );
 		        }
 		        else {
-		        	droppableOptions = {};
+		        	doo = {};
 		        }
-		        droppableOptions.activate = publishTopics($elem, options.onalwaystopics, options.droppableonactivatetopics);
-		        droppableOptions.deactivate = publishTopics($elem, options.onalwaystopics, options.droppableondeactivatetopics);
-		        droppableOptions.start = publishTopics($elem, options.onalwaystopics, options.droppableonstarttopics);
-		        droppableOptions.stop = publishTopics($elem, options.onalwaystopics, options.droppableonstoptopics);
-		        droppableOptions.drop = publishTopics($elem, options.onalwaystopics, options.droppableondroptopics);
-				$elem.droppable(droppableOptions);
+		        doo.activate = publishTopics($elem, options.onalwaystopics, options.droppableonactivatetopics);
+		        doo.deactivate = publishTopics($elem, options.onalwaystopics, options.droppableondeactivatetopics);
+		        doo.start = publishTopics($elem, options.onalwaystopics, options.droppableonstarttopics);
+		        doo.stop = publishTopics($elem, options.onalwaystopics, options.droppableonstoptopics);
+		        doo.drop = publishTopics($elem, options.onalwaystopics, options.droppableondroptopics);
+				$elem.droppable(doo);
 			}
 			
 			if(options.selectable == 'true') {
 
-		        var selectableOptionsStr = options.selectableoptions;
-		        var selectableOptions = window[selectableOptionsStr];
-		        if (!selectableOptions) {
-		        	selectableOptions = eval ("( " + selectableOptionsStr + " )" );
+		        var seos = options.selectableoptions;
+		        var seo = window[seos];
+		        if (!seo) {
+		        	seo = eval ("( " + seos + " )" );
 		        }
 		        else {
-		        	selectableOptions = {};
+		        	seo = {};
 		        }
-		        selectableOptions.selected = publishTopics($elem, options.onalwaystopics, options.selectableonselectedtopics);
-		        selectableOptions.selecting = publishTopics($elem, options.onalwaystopics, options.selectableonselectingtopics);
-		        selectableOptions.start = publishTopics($elem, options.onalwaystopics, options.selectableonstarttopics);
-		        selectableOptions.stop = publishTopics($elem, options.onalwaystopics, options.selectableonstoptopics);
-		        selectableOptions.unselected = publishTopics($elem, options.onalwaystopics, options.selectableonunselectedtopics);
-		        selectableOptions.unselecting = publishTopics($elem, options.onalwaystopics, options.selectableonunselectingTtopics);
-				$elem.selectable(selectableOptions);
+		        seo.selected = publishTopics($elem, options.onalwaystopics, options.selectableonselectedtopics);
+		        seo.selecting = publishTopics($elem, options.onalwaystopics, options.selectableonselectingtopics);
+		        seo.start = publishTopics($elem, options.onalwaystopics, options.selectableonstarttopics);
+		        seo.stop = publishTopics($elem, options.onalwaystopics, options.selectableonstoptopics);
+		        seo.unselected = publishTopics($elem, options.onalwaystopics, options.selectableonunselectedtopics);
+		        seo.unselecting = publishTopics($elem, options.onalwaystopics, options.selectableonunselectingTtopics);
+				$elem.selectable(seo);
 			}
 
 			if(options.sortable == 'true') {
 
-		        var sortableOptionsStr = options.sortableoptions;
-		        var sortableOptions = window[sortableOptionsStr];
-		        if (!sortableOptions) {
-		        	sortableOptions = eval ("( " + sortableOptionsStr + " )" );
+		        var soos = options.sortableoptions;
+		        var soo = window[soos];
+		        if (!soo) {
+		        	soo = eval ("( " + soos + " )" );
 		        }
 		        else {
-		        	sortableOptions = {};
+		        	soo = {};
 		        }
-		        sortableOptions.beforeStop = publishTopics($elem, options.onalwaystopics, options.sortableonbeforestoptopics);
-		        sortableOptions.stop = publishTopics($elem, options.onalwaystopics, options.sortableonstoptopics);
-		        sortableOptions.start = publishTopics($elem, options.onalwaystopics, options.sortableonstarttopics);
-		        sortableOptions.sort = publishTopics($elem, options.onalwaystopics, options.sortableonsorttopics);
-		        sortableOptions.activate = publishTopics($elem, options.onalwaystopics, options.sortableonactivatetopics);
-		        sortableOptions.deactivate = publishTopics($elem, options.onalwaystopics, options.sortableondeactivatetopics);
-		        sortableOptions.over = publishTopics($elem, options.onalwaystopics, options.sortableonovertopics);
-		        sortableOptions.out = publishTopics($elem, options.onalwaystopics, options.sortableonouttopics);
-		        sortableOptions.remove = publishTopics($elem, options.onalwaystopics, options.sortableonremovetopics);
-		        sortableOptions.receive = publishTopics($elem, options.onalwaystopics, options.sortableonreceivetopics);
-		        sortableOptions.change = publishTopics($elem, options.onalwaystopics, options.sortableonchangetopics);
-		        sortableOptions.update = publishTopics($elem, options.onalwaystopics, options.sortableonupdatetopics);
-				$elem.sortable(sortableOptions);
+		        soo.beforeStop = publishTopics($elem, options.onalwaystopics, options.sortableonbeforestoptopics);
+		        soo.stop = publishTopics($elem, options.onalwaystopics, options.sortableonstoptopics);
+		        soo.start = publishTopics($elem, options.onalwaystopics, options.sortableonstarttopics);
+		        soo.sort = publishTopics($elem, options.onalwaystopics, options.sortableonsorttopics);
+		        soo.activate = publishTopics($elem, options.onalwaystopics, options.sortableonactivatetopics);
+		        soo.deactivate = publishTopics($elem, options.onalwaystopics, options.sortableondeactivatetopics);
+		        soo.over = publishTopics($elem, options.onalwaystopics, options.sortableonovertopics);
+		        soo.out = publishTopics($elem, options.onalwaystopics, options.sortableonouttopics);
+		        soo.remove = publishTopics($elem, options.onalwaystopics, options.sortableonremovetopics);
+		        soo.receive = publishTopics($elem, options.onalwaystopics, options.sortableonreceivetopics);
+		        soo.change = publishTopics($elem, options.onalwaystopics, options.sortableonchangetopics);
+		        soo.update = publishTopics($elem, options.onalwaystopics, options.sortableonupdatetopics);
+				$elem.sortable(soo);
 			}
 
 		},
 		
-		a: function($elem, options){
+		anchor: function($elem, options){
 			
 			var containerLoadHandlerName = '_struts2_jquery_container_load';
 
-			this.base($elem, options);
-			this.interactive($elem, options);
 			if(options.formids) {
 				this.formsubmit($elem, options);
 			}
@@ -402,8 +337,6 @@
 		button: function($elem, options){
 			var containerLoadHandlerName = '_struts2_jquery_container_load';
 			
-			this.base($elem, options);
-			this.interactive($elem, options);
 			if(options.formids) {
 				this.formsubmit($elem, options);
 			}
@@ -430,29 +363,29 @@
 		
 		dialog: function($elem, options){
 			
-			var parameters = {};
-			parameters.autoOpen = eval(options.autoopen ? options.autoopen : false);
-			parameters.modal = eval(options.modal ? options.modal : false);
-			parameters.resizable = eval(options.resizable ? options.resizable : true);
-			parameters.draggable = eval(options.draggable ? options.draggable : true);
-			if(options.height) { parameters.height = eval(options.height); }
-			if(options.width) { parameters.width = eval(options.width); }
-			if(options.position) { parameters.position = eval(options.position); }
-			if(options.zindex) { parameters.zIndex = parseInt(options.zindex); }
-			if(options.backgroundcolor) { parameters.backgroundColor = options.backgroundcolor; }
-			if(options.hide) { parameters.hide = options.hide; }
-			if(options.show) { parameters.show = options.show; }
+			var params = {};
+			params.autoOpen = eval(options.autoopen ? options.autoopen : false);
+			params.modal = eval(options.modal ? options.modal : false);
+			params.resizable = eval(options.resizable ? options.resizable : true);
+			params.draggable = eval(options.draggable ? options.draggable : true);
+			if(options.height) { params.height = eval(options.height); }
+			if(options.width) { params.width = eval(options.width); }
+			if(options.position) { params.position = eval(options.position); }
+			if(options.zindex) { params.zIndex = parseInt(options.zindex); }
+			if(options.backgroundcolor) { params.backgroundColor = options.backgroundcolor; }
+			if(options.hide) { params.hide = options.hide; }
+			if(options.show) { params.show = options.show; }
 			
-			if(options.title) { parameters.title = options.title; }
+			if(options.title) { params.title = options.title; }
 			
 			if(options.buttons) {
 		        var buttonsStr = options.buttons;
 		        var buttons = window[buttonsStr];
 		        if (!buttons) {
-		        	parameters.buttons = eval ("( " + buttonsStr + " )" );
+		        	params.buttons = eval ("( " + buttonsStr + " )" );
 		        }
 			}
-			parameters.open = function(event, ui) {
+			params.open = function(event, ui) {
 				var data = {};
 				data.event = event;
 				data.ui = ui;
@@ -477,63 +410,63 @@
 					}
 				}
 			};
-			parameters.close = publishTopics($elem, options.onalwaystopics, options.oncompletetopics);
-			parameters.drag = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
-			$elem.dialog(parameters);
+			params.close = publishTopics($elem, options.onalwaystopics, options.oncompletetopics);
+			params.drag = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
+			$elem.dialog(params);
 		},
 		
 		tabbedpanel: function($elem, options){
 			
 	    	//instantiate the tabbed pane
 			if(!options) { options = {}};
-			var parameter = {};
+			var params = {};
 			
 			if(options.disabled) {
 		        var disabledStr = options.disabled;
 		        var disabled = window[disabledStr];
 		        if (!disabled) {
-		        	parameter.disabled = eval ("( " + disabledStr + " )" );
+		        	params.disabled = eval ("( " + disabledStr + " )" );
 		        }
 			}
-			if(options.cache && options.cache == 'true')	parameter.cache = true;
-			if(options.animate && options.animate == 'true')	parameter.fx = { opacity: 'toggle' };
-			if(options.cookie && options.cookie == 'true')	parameter.cookie = { expires: 30 };
-			if(options.collapsible && options.collapsible == 'true')	parameter.collapsible = true;
-			if(options.openonmouseover && options.openonmouseover == 'true')	parameter.event = 'mouseover';
-			if(options.orientation)	parameter.orientation = options.orientation;
-			if(options.spinner)	parameter.spinner = options.spinner;
-			if(options.selectedtab)	parameter.selected = parseInt(options.selectedtab);
-			parameter.ajaxOptions = { dataType:'html' };
-			parameter.ajaxOptions.complete = publishCompleteTopics(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {});
-			parameter.show = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
-			parameter.select = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
-			parameter.enable = publishTopics($elem, options.onalwaystopics, options.onenabletopics);
-			parameter.disable = publishTopics($elem, options.onalwaystopics, options.ondisabletopics);
-			parameter.add = publishTopics($elem, options.onalwaystopics, options.onaddtopics);
-			parameter.remove = publishTopics($elem, options.onalwaystopics, options.onremovetopics);
+			if(options.cache && options.cache == 'true')	params.cache = true;
+			if(options.animate && options.animate == 'true')	params.fx = { opacity: 'toggle' };
+			if(options.cookie && options.cookie == 'true')	params.cookie = { expires: 30 };
+			if(options.collapsible && options.collapsible == 'true')	params.collapsible = true;
+			if(options.openonmouseover && options.openonmouseover == 'true')	params.event = 'mouseover';
+			if(options.orientation)	params.orientation = options.orientation;
+			if(options.spinner)	params.spinner = options.spinner;
+			if(options.selectedtab)	params.selected = parseInt(options.selectedtab);
+			params.ajaxOptions = { dataType:'html' };
+			params.ajaxOptions.complete = publishCompleteTopics(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {});
+			params.show = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
+			params.select = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
+			params.enable = publishTopics($elem, options.onalwaystopics, options.onenabletopics);
+			params.disable = publishTopics($elem, options.onalwaystopics, options.ondisabletopics);
+			params.add = publishTopics($elem, options.onalwaystopics, options.onaddtopics);
+			params.remove = publishTopics($elem, options.onalwaystopics, options.onremovetopics);
 			
 			$elem.find('ul div').appendTo($elem);
-	    	$elem.tabs(parameter);
+	    	$elem.tabs(params);
 		},
 		
 		datepicker: function($elem, options) {
 			
-			var parameters = {};
+			var params = {};
 			
 			if(options) {
 				
-				var onAlwaysTopics = options.onalwaystopics;
+				var oat = options.onalwaystopics;
 				
 				if(options.onbeforetopics) {  
-					var onBeforeTopics = options.onbeforetopics.split(',');
-					parameters.beforeShow = function(input){
+					var obt = options.onbeforetopics.split(',');
+					params.beforeShow = function(input){
 						var $input = $(input);
-						for ( var i = 0; i < onBeforeTopics.length; i++) {
-							$input.publish(onBeforeTopics[i], $input);
+						for ( var i = 0; i < obt.length; i++) {
+							$input.publish(obt[i], $input);
 						}
 
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
+						if(oat) {  
+							var topics = oat.split(',');
 							for ( var i = 0; i < topics.length; i++) {
 								$input.publish(topics[i], $input);
 							}
@@ -542,15 +475,15 @@
 				}
 				
 				if(options.onbeforeshowdaytopics) {  
-					var onBeforeShowDayTopics = options.onbeforeshowdaytopics.split(',');
-					parameters.beforeShowDay = function(date){
+					var obsdt = options.onbeforeshowdaytopics.split(',');
+					params.beforeShowDay = function(date){
 						var $date = $(date);
-						for ( var i = 0; i < onBeforeShowDayTopics.length; i++) {
-							$elem.publish(onBeforeShowDayTopics[i], $date);
+						for ( var i = 0; i < obsdt.length; i++) {
+							$elem.publish(obsdt[i], $date);
 						}
 
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
+						if(oat) {  
+							var topics = oat.split(',');
 							for ( var i = 0; i < topics.length; i++) {
 								$elem.publish(topics[i], $date);
 							}
@@ -559,19 +492,19 @@
 				}
 
 				if(options.onchangemonthyeartopics) {  
-					var onChangeMonthYearTopics = options.onchangemonthyeartopics.split(',');
-					parameters.onChangeMonthYear = function(year, month, inst){
+					var ocmyt = options.onchangemonthyeartopics.split(',');
+					params.onChangeMonthYear = function(year, month, inst){
 						var data = {};
 						data.year = year;
 						data.month = month;
 						data.inst = inst;
 						var $inst = $(inst);
-						for ( var i = 0; i < onChangeMonthYearTopics.length; i++) {
-							$inst.publish(onChangeMonthYearTopics[i],$inst, data);
+						for ( var i = 0; i < ocmyt.length; i++) {
+							$inst.publish(ocmyt[i],$inst, data);
 						}
 
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
+						if(oat) {  
+							var topics = oat.split(',');
 							for ( var i = 0; i < topics.length; i++) {
 								$inst.publish(topics[i],$inst, data);
 							}
@@ -580,17 +513,17 @@
 				}
 
 				if(options.onchangetopics) {  
-					var onChangeTopics = options.onchangetopics.split(',');
-					parameters.onSelect = function(dateText, inst){
+					var ocat = options.onchangetopics.split(',');
+					params.onSelect = function(dateText, inst){
 						var $inst = $(inst);
 						var data = {};
 						data.dateText = dateText;
-						for ( var i = 0; i < onChangeTopics.length; i++) {
-							$inst.publish(onChangeTopics[i], $inst, data);
+						for ( var i = 0; i < ocat.length; i++) {
+							$inst.publish(ocat[i], $inst, data);
 						}
 
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
+						if(oat) {  
+							var topics = oat.split(',');
 							for ( var i = 0; i < topics.length; i++) {
 								$inst.publish(topics[i], $inst, data);
 							}
@@ -599,17 +532,17 @@
 				}
 				
 				if(options.oncompletetopics) {  
-					var onCompleteTopics = options.oncompletetopics.split(',');
-					parameters.onClose = function(dateText, inst){
+					var ocot = options.oncompletetopics.split(',');
+					params.onClose = function(dateText, inst){
 						var $inst = $(inst);
 						var data = {};
 						data.dateText = dateText;
-						for ( var i = 0; i < onCompleteTopics.length; i++) {
-							$inst.publish(onCompleteTopics[i], $inst, data);
+						for ( var i = 0; i < ocot.length; i++) {
+							$inst.publish(ocot[i], $inst, data);
 						}
 
-						if(onAlwaysTopics) {  
-							var topics = onAlwaysTopics.split(',');
+						if(oat) {  
+							var topics = oat.split(',');
 							for ( var i = 0; i < topics.length; i++) {
 								$inst.publish(topics[i], $inst, data);
 							}
@@ -617,23 +550,23 @@
 					};
 				}
 				
-				if(options.changemonth && options.changemonth == 'true')	parameters.changeMonth = true;
-				if(options.changeyear && options.changeyear == 'true')	parameters.changeYear = true;
-				if(options.showbuttonpanel && options.showbuttonpanel == 'true')	parameters.showButtonPanel = true;
-				parameters.dateFormat = options.displayformat;
-				parameters.buttonImageOnly = options.buttonimageonly;
-				parameters.buttonImage = options.buttonimage;
-				parameters.showOn = options.showon;
-				parameters.buttonText = options.buttontext;
-				parameters.showAnim = options.showanim;
-				parameters.firstDay = options.firstday;
-				parameters.yearRange = options.yearrange;
+				if(options.changemonth && options.changemonth == 'true')	params.changeMonth = true;
+				if(options.changeyear && options.changeyear == 'true')	params.changeYear = true;
+				if(options.showbuttonpanel && options.showbuttonpanel == 'true')	params.showButtonPanel = true;
+				params.dateFormat = options.displayformat;
+				params.buttonImageOnly = options.buttonimageonly;
+				params.buttonImage = options.buttonimage;
+				params.showOn = options.showon;
+				params.buttonText = options.buttontext;
+				params.showAnim = options.showanim;
+				params.firstDay = options.firstday;
+				params.yearRange = options.yearrange;
 		        
 				if(options.numberofmonths) {
 			        var numberofmonthsStr = options.numberofmonths;
 			        var numberofmonths = window[numberofmonthsStr];
 			        if (!numberofmonths) {
-			        	parameters.numberOfMonths = eval ("( " + numberofmonthsStr + " )" );
+			        	params.numberOfMonths = eval ("( " + numberofmonthsStr + " )" );
 			        }
 				}
 				
@@ -641,12 +574,12 @@
 			        var userOptionsStr = options.showoptions;
 			        var userOptions = window[userOptionsStr];
 			        if (!userOptions) {
-			        	parameters.showOptions = eval ("( " + userOptionsStr + " )" );
+			        	params.showOptions = eval ("( " + userOptionsStr + " )" );
 			        }
 				}
 			}
 			
-			$elem.datepicker(parameters);
+			$elem.datepicker(params);
 			
 		    if(options.year && options.month && options.day) {
 		    	$elem.val($.datepicker.formatDate(options.displayformat, new Date(options.year, options.month, options.day)));
@@ -663,95 +596,95 @@
 		},
 		slider: function($elem, options) {
 			
-			var parameter = {};
+			var params = {};
 			if(options) {
 				
-				parameter.start = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
-				parameter.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
-				parameter.stop = publishTopics($elem, options.onalwaystopics, options.oncompletetopics);
+				params.start = publishTopics($elem, options.onalwaystopics, options.onbeforetopics);
+				params.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
+				params.stop = publishTopics($elem, options.onalwaystopics, options.oncompletetopics);
 				
-				parameter.slide = function(event, ui){
+				params.slide = function(event, ui){
 					 $('#'+options.hiddenid).val(ui.value);
 					 if (options.displayvalueelement) {
 					 	$('#'+options.displayvalueelement).html(ui.value);
 					 }
 				};
 				
-				if(options.animate && options.animate == 'true')	parameter.animate = true;
+				if(options.animate && options.animate == 'true')	params.animate = true;
 				var value = parseInt(options.value);
-				if(value > 0) parameter.value = value;
-				else parameter.value = 0;
-				if(options.max)	parameter.max = parseInt(options.max);
-				if(options.min)	parameter.min = parseInt(options.min);
-				if(options.orientation)	parameter.orientation = options.orientation;
-				if(options.step) parameter.step = parseInt(options.step);
+				if(value > 0) params.value = value;
+				else params.value = 0;
+				if(options.max)	params.max = parseInt(options.max);
+				if(options.min)	params.min = parseInt(options.min);
+				if(options.orientation)	params.orientation = options.orientation;
+				if(options.step) params.step = parseInt(options.step);
 
 				if(options.range) {
 					if(options.range == 'true')	{
-						parameter.range = true;
+						params.range = true;
 					}
 					else {
-						parameter.range = options.range;
+						params.range = options.range;
 					}
 				}
 			}
 			
-			$elem.slider(parameter);
+			$elem.slider(params);
 		},
 		progressbar: function($elem, options) {
 			
-			var parameter = {};
+			var params = {};
 			if(options) {
 				
-				parameter.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
+				params.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
 				
 				var value = parseInt(options.value);
-				if(value > 0) parameter.value = value;
-				else parameter.value = 0;
+				if(value > 0) params.value = value;
+				else params.value = 0;
 			}
-			$elem.progressbar(parameter);
+			$elem.progressbar(params);
 		},
 		accordion: function($elem, options) {
 			
-			var parameter = {};
+			var params = {};
 			if(options) {
 
-				if(options.fillspace && options.fillspace == 'true')	parameter.fillSpace = true;
-				if(options.collapsible && options.collapsible == 'true')	parameter.collapsible = true;
-				if(options.clearstyle && options.clearstyle == 'true')	parameter.clearStyle = true;
-				if(options.autoheight && options.autoheight == 'true')	parameter.autoHeight = true;
-				if(options.fillspace && options.fillspace == 'true')	parameter.fillSpace = true;
-				if(options.event)	parameter.event = options.event;
-				if(options.header)	parameter.header = options.header;
-				else				parameter.header = 'h3';
+				if(options.fillspace && options.fillspace == 'true')	params.fillSpace = true;
+				if(options.collapsible && options.collapsible == 'true')	params.collapsible = true;
+				if(options.clearstyle && options.clearstyle == 'true')	params.clearStyle = true;
+				if(options.autoheight && options.autoheight == 'true')	params.autoHeight = true;
+				if(options.fillspace && options.fillspace == 'true')	params.fillSpace = true;
+				if(options.event)	params.event = options.event;
+				if(options.header)	params.header = options.header;
+				else				params.header = 'h3';
 				if(options.animated)
 				{
-					if(options.animated == 'true') parameter.animated = true;
-					else if(options.animated == 'false') parameter.animated = false;
-					else parameter.animated = options.animated;
+					if(options.animated == 'true') params.animated = true;
+					else if(options.animated == 'false') params.animated = false;
+					else params.animated = options.animated;
 				}
 				
 				active = true;
 				if(options.active)
 				{
-					if(options.active == 'true') { parameter.active = true; }
-					else if(options.active == 'false') { parameter.active = false; active = false; }
-					else { parameter.active = parseInt(options.active); }
+					if(options.active == 'true') { params.active = true; }
+					else if(options.active == 'false') { params.active = false; active = false; }
+					else { params.active = parseInt(options.active); }
 				}
 				
 				var onAlwaysTopics = options.onalwaystopics;
-				parameter.changestart = function(event, ui) {
+				params.changestart = function(event, ui) {
 					if(options.href)
 					{
 						if ( typeof $(ui.newHeader).find('a').attr('paramkeys') != "undefined" )
 						{
 						    var keys = $(ui.newHeader).find('a').attr('paramkeys').split(',');
 						    var values = $(ui.newHeader).find('a').attr('paramvalues').split(',');
-							var params = {};
+							var valueparams = {};
 							jQuery.each(keys, function(i, val) {
-			      				params[val] = values[i];
+								valueparams[val] = values[i];
 			    			});
-							ui.newContent.load(options.href,params,function() {});
+							ui.newContent.load(options.href,valueparams,function() {});
 						 }
 					}			
 					if(options.onbeforetopics) {  
@@ -772,21 +705,21 @@
 					}
 				};
 				
-				parameter.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
+				params.change = publishTopics($elem, options.onalwaystopics, options.onchangetopics);
 			}
-			$elem.accordion(parameter);
+			$elem.accordion(params);
 			if(options.href && active == true)
 			{
-				var aktiv = $("#"+options.id+" li "+parameter.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
+				var aktiv = $("#"+options.id+" li "+params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
 				if ( typeof $(aktiv).attr('paramkeys') != "undefined" )
 				{
 					var keys = $(aktiv).attr('paramkeys').split(',');
 					var values = $(aktiv).attr('paramvalues').split(',');
-					var params = {};
+					var valueparams = {};
 					jQuery.each(keys, function(i, val) {
-			      		params[val] = values[i];
+						valueparams[val] = values[i];
 			    	});
-					$("#"+options.id+" li div").filter('.ui-accordion-content-active').load(options.href,params,function() {});
+					$("#"+options.id+" li div").filter('.ui-accordion-content-active').load(options.href,valueparams,function() {});
 				}
 			}
 		}
@@ -799,51 +732,6 @@
 	 * STRUTS2 JQUERY BUILT-IN ELEMENT HANDLERS 
 	 */
 		
-	
-	/** Base logic */
-	//Register handler to hide an element
-	$.subscribeHandler('_struts2_jquery_hide', function(event, data) {
-		
-		$(this).hide();
-	});
-	//Register handler to show an element
-	$.subscribeHandler('_struts2_jquery_show', function(event, data) {
-		
-		$(this).show();
-	});
-	//Register handler to remove an element
-	$.subscribeHandler('_struts2_jquery_remove', function(event, data) {
-		
-		$(this).remove();
-	});
-	
-	
-	/** Interactive logic */
-	//Register handler to hide an element
-	$.subscribeHandler('_struts2_jquery_enable', function(event, data) {
-		
-		$(this).attr("disabled","false");
-		$(this).removeClass("disabled");
-	});
-	//Register handler to show an element
-	$.subscribeHandler('_struts2_jquery_disable', function(event, data) {
-
-		$(this).attr("disabled","true");
-		$(this).addClass("disabled");
-	});
-	
-
-	/** Input logic */	
-	//Register handler to focus an input
-	$.subscribeHandler('_struts2_jquery_focus',  function(event, data) {
-		$(this).focus();
-	});
-	//Register handler to focus an input
-	$.subscribeHandler('_struts2_jquery_blur',  function(event, data) {
-		$(this).blur();
-	});
-	
-	
 	/** Container logic */
 	//Register handler to load a container
 	$.subscribeHandler('_struts2_jquery_container_load', function(event, data) {
@@ -897,7 +785,7 @@
 		    	//Set pre-loading text (if any)
 				if(options.loadingtext) { container.html(options.loadingtext); }
 				    				
-				options.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId);
+				options.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, true);
 				options.complete = publishCompleteTopics(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
 				options.error = publishErrorTopics(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 				
@@ -946,22 +834,22 @@
 			$.extend(options,data);
 		}
 		
-		var parameters = {};
-		if(options.clearform && options.clearform == 'true')	parameters.clearForm = true;
-		if(options.iframe && options.iframe == 'true')	parameters.iframe = true;
-		if(options.resetform && options.resetform == 'true')	parameters.resetForm = true;
-		if(options.timeout)	parameters.timeout = parseInt(options.timeout);
-		if(options.datatype)	parameters.dataType = options.datatype;
+		var params = {};
+		if(options.clearform && options.clearform == 'true')	params.clearForm = true;
+		if(options.iframe && options.iframe == 'true')	params.iframe = true;
+		if(options.resetform && options.resetform == 'true')	params.resetForm = true;
+		if(options.timeout)	params.timeout = parseInt(options.timeout);
+		if(options.datatype)	params.dataType = options.datatype;
 		
-		parameters.target = '';
+		params.target = '';
 		if(options.targets) {
 		var targets = options.targets.split(',');
 			for ( var i = 0; i < targets.length; i++) {
 				var target = targets[i];
-				if(parameters.target == '') {
-					parameters.target = '#' + target;
+				if(params.target == '') {
+					params.target = '#' + target;
 	    		} else {
-					parameters.target = parameters.target +',#' + target;
+	    			params.target = params.target +',#' + target;
 	    		}
 				
 		    	//Set pre-loading text (if any)
@@ -969,20 +857,17 @@
 			}
 		}
 		
-		var indicatorId = options.indicatorid;
-		if(indicatorId) { $('#' + indicatorId).show(); }
+		if(options.indicatorid) { $('#' + options.indicatorid).show(); }
 
-		var onAlwaysTopics = options.onalwaystopics;
-
-		parameters.beforeSubmit = function (formData, form, formoptions) {
+		params.beforeSubmit = function (formData, form, formoptions) {
 			
 			var orginal = {};
 			orginal.formData = formData;
 			orginal.form = form;
 			orginal.options = formoptions;
 
-			if(onAlwaysTopics) {  
-				var topics = onAlwaysTopics.split(',');
+			if(options.onalwaystopics) {  
+				var topics = options.onalwaystopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
 					container.publish(topics[i], container, orginal);
 				}
@@ -996,12 +881,15 @@
 			}
 		}
    	
-		    				
-		parameters.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId);
-		parameters.complete = publishCompleteTopics(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
-		parameters.error = publishErrorTopics(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
+	    				
+		params.success = publishSuccessTopics(event.target, options.onalwaystopics, options.onsuccesstopics, options.indicatorid, false);
+		params.complete = publishCompleteTopics(event.target, options.onalwaystopics, options.oncompletetopics, options.targets, options.indicatorid, options);
+		params.error = publishErrorTopics(event.target, options.onalwaystopics, options.onerrortopics, options.errortext);
 		
-       $('#'+options.formids).ajaxSubmit(parameters);
+		var forms = options.formids.split(',');
+		for ( var i = 0; i < forms.length; i++) {
+	       $('#'+forms).ajaxSubmit(params);
+		}
         
         return false;
 	});
@@ -1012,19 +900,19 @@
 		var options = {};
 		$.extend(options,event.data);
 		if(options.targets || options.effect) {
-			var effectOptions = {};
+			var eo = {};
 			var duration = 2000;
 			if(options.effectoptions) {
-		        var effectOptionsStr = options.effectoptions;
-		        effectOptions = window[effectOptionsStr];
-		        if (!effectOptions) {
-		        	effectOptions = eval ("( " + effectOptionsStr + " )" );
+		        var eos = options.effectoptions;
+		        eo = window[eos];
+		        if (!eo) {
+		        	eo = eval ("( " + eos + " )" );
 		        }
 			}
 			if(options.effectduration) {
 				duration = parseInt(options.effectduration);
 			}
-	        $("#"+options.targets).effect(options.effect,effectOptions,duration);
+	        $("#"+options.targets).effect(options.effect,eo,duration);
 		}
     });
 	
@@ -1055,19 +943,20 @@
 	}
 	
 	/** Publish Success topics */	
-	function publishSuccessTopics(containerid, always, successtopics, indicatorId) {
-		var container = $(containerid);
+	function publishSuccessTopics(cid, always, stopics, indi, sethtml) {
+		var container = $(cid);
 			return function (data, textStatus) {
 			
 			var orginal = {};
 			orginal.status = textStatus;
 			
-			if(indicatorId) { $('#' + indicatorId).hide(); }
+			if(indi) { $('#' + indi).hide(); }
 			
-			container.html(data);
+			if(sethtml == true)
+				container.html(data);
 					
-			if(successtopics) {			  
-				var topics = successtopics.split(',');
+			if(stopics) {			  
+				var topics = stopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
 					container.publish(topics[i], container, orginal);
 				}
@@ -1082,8 +971,8 @@
 	}
 
 	/** Publish Complete topics */	
-	function publishCompleteTopics(containerid, always, completetopics, targets, indicatorId, options) {
-		var container = $(containerid);
+	function publishCompleteTopics(cid, always, ctopics, targets, indi, options) {
+		var container = $(cid);
 		return function (request, status) {
 			var orginal = {};
 			orginal.request = request;
@@ -1093,10 +982,10 @@
 			orginal.request = request;
 			orginal.status = status;
 
-			if(indicatorId) { $('#' + indicatorId).hide(); }
+			if(indi) { $('#' + indi).hide(); }
 			
-			if(completetopics) {			  
-				var topics = completetopics.split(',');
+			if(ctopics) {			  
+				var topics = ctopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
 					container.publish(topics[i], container, orginal);
 				}
@@ -1108,11 +997,11 @@
 				}
 			}
 			
-			var effectcontainer = targets;
-			if(!effectcontainer)
-				effectcontainer = options.id;
-			if(effectcontainer) {
-				var targetArray = effectcontainer.split(',');
+			var ec = targets;
+			if(!ec)
+				ec = options.id;
+			if(ec) {
+				var targetArray = ec.split(',');
 				var divEffectTopic = '_struts2_jquery_div_effect_';
 				for ( var i = 0; i < targetArray.length; i++) {
 					$element = $('#'+targetArray[i]);
@@ -1122,38 +1011,38 @@
 			
 			if(options.resizable == 'true') {
 
-		        var resizableOptionsStr = options.resizableoptions;
-		        var resizableOptions = window[resizableOptionsStr];
-		        if (!resizableOptions) {
-		        	resizableOptions = eval ("( " + resizableOptionsStr + " )" );
+		        var ros = options.resizableoptions;
+		        var ro = window[ros];
+		        if (!ro) {
+		        	ro = eval ("( " + ros + " )" );
 		        }
 		        else {
-		        	resizableOptions = {};
+		        	ro = {};
 		        }
-		        resizableOptions.start = publishTopics(container, options.onalwaystopics, options.resizableonstarttopics);
-		        resizableOptions.stop = publishTopics(container, options.onalwaystopics, options.resizableonstoptopics);
-		        resizableOptions.resize = publishTopics(container, options.onalwaystopics, options.resizableonresizetopics);
-		        container.resizable(resizableOptions);
+		        ro.start = publishTopics(container, options.onalwaystopics, options.resizableonstarttopics);
+		        ro.stop = publishTopics(container, options.onalwaystopics, options.resizableonstoptopics);
+		        ro.resize = publishTopics(container, options.onalwaystopics, options.resizableonresizetopics);
+		        container.resizable(ro);
 			}
 		};
 	}
 
 	/** Publish Error topics */	
-	function publishErrorTopics(containerid, always, errortopics, errortext) {
-		var container = $(containerid);
-		if(errortopics || errortext)	{
+	function publishErrorTopics(cid, always, etopics, etext) {
+		var container = $(cid);
+		if(etopics || etext)	{
 			return function (request, status, error) {
 				var orginal = {};
 				orginal.request = request;
 				orginal.status = status;
 				orginal.error = error;
 
-				if(errortext) { container.html(errortext); }
+				if(etext) { container.html(etext); }
 				
-				if(errortopics || errortext)	{
-					var onErrorTopics = errortopics.split(',');
-					for ( var i = 0; i < onErrorTopics.length; i++) {
-						container.publish(onErrorTopics[i], container, orginal);
+				if(etopics || errortext)	{
+					var topics = etopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						container.publish(topics[i], container, orginal);
 					}
 				}
 
@@ -1169,6 +1058,4 @@
 			return null;
 		}
 	}
-
-
 })(jQuery);

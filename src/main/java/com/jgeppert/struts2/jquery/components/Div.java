@@ -60,6 +60,7 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   public static final String            TEMPLATE_CLOSE = "div-close";
   public static final String            COMPONENT_NAME = Div.class.getName();
   final private static transient Random RANDOM         = new Random();
+  public static final String            JQUERYACTION   = "container";
 
   protected String                      reloadTopics;      //topics that will cause container to reload
 
@@ -198,6 +199,8 @@ public class Div extends AbstractRemoteBean implements ResizableBean, DroppableB
   public void evaluateExtraParams()
   {
     super.evaluateExtraParams();
+
+    addParameter("jqueryaction", JQUERYACTION);
 
     if (reloadTopics != null) addParameter("reloadTopics", findString(reloadTopics));
     if (bindOn != null) addParameter("bindOn", findString(bindOn));

@@ -18,8 +18,8 @@
  * under the License.
  */
 -->
-  <#if parameters.widget?exists>
-    widget="${parameters.widget?html}"<#rt/>
+  <#if parameters.jqueryaction?exists>
+    jqueryaction="${parameters.jqueryaction?html}"<#rt/>
   </#if>
   <#if parameters.id?exists>
     id="${parameters.id?html}"<#rt/>

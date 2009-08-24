@@ -30,30 +30,21 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
-/**
- * <!-- START SNIPPET: javadoc --> 
- * Renders a progressbar
- * <!-- END SNIPPET: javadoc -->
- * 
- * <p>
- * Examples
- * </p>
- * <!-- START SNIPPET: example1 --> 
- * &lt;sj:progressbar value="40" /&gt; <!--
- * END SNIPPET: example1 -->
- */
-@StrutsTag(name = "progressbar", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.ProgressbarTag", description = "Render an progressbar.")
-public class Progressbar extends AbstractTopicsBean {
+@StrutsTag(name = "textarea", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TextareaTag", description = "Render HTML textarea providing content from remote call via AJAX")
+public class Textarea extends Div {
 
+  public static final String            TEMPLATE = "textarea";
+  public static final String            TEMPLATE_CLOSE = "textarea-close";
+  public static final String            COMPONENT_NAME = Textarea.class.getName();
   final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION       = "progressbar";
-  public static final String            TEMPLATE       = "progressbar";
-  public static final String            TEMPLATE_CLOSE = "progressbar-close";
-  public static final String            COMPONENT_NAME = Progressbar.class.getName();
+  public static final String            JQUERYACTION   = "container";
 
-  protected String                      value;
+  protected String cols;
+  protected String readonly;
+  protected String rows;
+  protected String wrap;
 
-  public Progressbar(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+  public Textarea(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
 
@@ -73,21 +64,29 @@ public class Progressbar extends AbstractTopicsBean {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (value != null) {
-      addParameter("value", findString(value));
+    if (readonly != null) {
+      addParameter("readonly", findValue(readonly, Boolean.class));
     }
-    else {
-      if (name != null) {
-        addParameter("value", findString(name));
-      }
+  
+    if (cols != null) {
+        addParameter("cols", findString(cols));
+    }
+  
+    if (rows != null) {
+        addParameter("rows", findString(rows));
+    }
+  
+    if (wrap != null) {
+        addParameter("wrap", findString(wrap));
     }
 
-    if ((this.id == null || this.id.length() == 0)) {
+    if ((this.id == null || this.id.length() == 0))
+    {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
       // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
       int nextInt = RANDOM.nextInt();
       nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "progressbar_" + String.valueOf(nextInt);
+      this.id = "textarea_" + String.valueOf(nextInt);
       addParameter("id", this.id);
     }
   }
@@ -105,9 +104,23 @@ public class Progressbar extends AbstractTopicsBean {
     return "jquery";
   }
 
-  @StrutsTagAttribute(description = "The value of the progressbar. Integer value from 0 to 100.  Default: 0")
-  public void setValue(String value)
-  {
-    this.value = value;
+  @StrutsTagAttribute(description="HTML cols attribute", type="Integer")
+  public void setCols(String cols) {
+      this.cols = cols;
+  }
+
+  @StrutsTagAttribute(description="Whether the textarea is readonly", type="Boolean", defaultValue="false")
+  public void setReadonly(String readonly) {
+      this.readonly = readonly;
+  }
+
+  @StrutsTagAttribute(description="HTML rows attribute", type="Integer")
+  public void setRows(String rows) {
+      this.rows = rows;
+  }
+
+  @StrutsTagAttribute(description="HTML wrap attribute")
+  public void setWrap(String wrap) {
+      this.wrap = wrap;
   }
 }

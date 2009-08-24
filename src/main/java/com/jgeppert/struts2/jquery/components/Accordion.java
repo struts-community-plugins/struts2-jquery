@@ -45,7 +45,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class Accordion extends ListUIBean {
 
   final private static transient Random RANDOM         = new Random();
-  public static final String            WIDGET         = "accordion";
+  public static final String            JQUERYACTION         = "accordion";
   public static final String            TEMPLATE       = "accordion";
   public static final String            COMPONENT_NAME = Accordion.class.getName();
 
@@ -77,7 +77,7 @@ public class Accordion extends ListUIBean {
   {
     super.evaluateExtraParams();
 
-    addParameter("widget", WIDGET);
+    addParameter("jqueryaction", JQUERYACTION);
 
     if (active != null) addParameter("active", findString(active));
     if (animated != null) addParameter("animated", findString(animated));

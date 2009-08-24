@@ -63,7 +63,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 @StrutsTag(name = "datepicker", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DatePickerTag", description = "Render datepicker")
 public class DatePicker extends AbstractTopicsBean {
 
-  public static final String            WIDGET          = "datepicker";
+  public static final String            JQUERYACTION          = "datepicker";
   public static final String            TEMPLATE        = "datepicker-close";
   public static final String            OPEN_TEMPLATE   = "datepicker";
   // SimpleDateFormat is not thread-safe see:
@@ -115,7 +115,7 @@ public class DatePicker extends AbstractTopicsBean {
   {
     super.evaluateParams();
 
-    addParameter("widget", WIDGET);
+    addParameter("jqueryaction", JQUERYACTION);
     
     if (displayFormat != null) addParameter("displayFormat", findString(displayFormat));
     if (buttonImage != null) addParameter("buttonImage", findString(buttonImage));

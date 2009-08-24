@@ -41,7 +41,7 @@
 </#if>
 
 <#if parameters.type?exists && parameters.type=="button">
-  <input type="button" widget="button"<#rt/>
+  <input type="button"<#rt/>
     <#if parameters.onClickTopics?if_exists != "">
      onClickTopics="${parameters.onClickTopics?html}"<#rt/>
     </#if>
@@ -67,7 +67,7 @@
 >
 <#else>
   <#if parameters.type?exists && parameters.type=="image">
-    <input type="image" widget="button"<#rt/>
+    <input type="image"<#rt/>
     <#if parameters.label?if_exists != "">
      alt="${parameters.label?html}"<#rt/>
     </#if>

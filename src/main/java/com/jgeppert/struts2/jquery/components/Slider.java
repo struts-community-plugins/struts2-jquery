@@ -50,7 +50,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name="slider", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.SliderTag", description="Render a Slider")
 public class Slider extends AbstractTopicsBean {
 
-    public static final String WIDGET       = "slider";
+    public static final String JQUERYACTION       = "slider";
     public static final String TEMPLATE       = "slider";
     public static final String TEMPLATE_CLOSE = "slider-close";
     final private static transient Random RANDOM = new Random();    
@@ -80,7 +80,7 @@ public class Slider extends AbstractTopicsBean {
     public void evaluateParams() {
         super.evaluateParams();
 
-        addParameter("widget", WIDGET);
+        addParameter("jqueryaction", JQUERYACTION);
 
         if(animate != null)
           addParameter("animate", findValue(animate, Boolean.class));

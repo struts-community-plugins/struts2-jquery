@@ -67,7 +67,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 @StrutsTag(name = "tabbedpanel", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabbedPanelTag", description = "Render a tabbedPanel widget.")
 public class TabbedPanel extends  AbstractTopicsBean {
-  public static final String            WIDGET         = "tabbedpanel";
+  public static final String            JQUERYACTION         = "tabbedpanel";
   public static final String            TEMPLATE       = "tabbedpanel";
   public static final String            TEMPLATE_CLOSE = "tabbedpanel-close";
   final private static String           COMPONENT_NAME = TabbedPanel.class.getName();
@@ -93,7 +93,7 @@ public class TabbedPanel extends  AbstractTopicsBean {
   {
     super.evaluateExtraParams();
 
-    addParameter("widget", WIDGET);
+    addParameter("jqueryaction", JQUERYACTION);
 
     if (selectedTab != null) addParameter("selectedTab", findValue(selectedTab, Integer.class));
     if (useSelectedTabCookie != null) addParameter("useSelectedTabCookie", findValue(this.useSelectedTabCookie, Boolean.class));

@@ -35,6 +35,8 @@ public abstract class AbstractTopicTag extends AbstractClosingTag {
     protected String onErrorTopics;
     protected String onAlwaysTopics;
     protected String onChangeTopics;
+    protected String onEnableTopics;
+    protected String onDisableTopics;
     
     protected void populateParams() {
         super.populateParams();
@@ -46,6 +48,8 @@ public abstract class AbstractTopicTag extends AbstractClosingTag {
         topic.setOnErrorTopics(onErrorTopics);
         topic.setOnAlwaysTopics(onAlwaysTopics);
         topic.setOnChangeTopics(onChangeTopics);
+        topic.setOnDisableTopics(onDisableTopics);
+        topic.setOnEnableTopics(onEnableTopics);
     }
 
     public void setOnCompleteTopics(String onCompleteTopics) {
@@ -73,5 +77,13 @@ public abstract class AbstractTopicTag extends AbstractClosingTag {
     public void setOnChangeTopics(String onChangeTopics)
     {
       this.onChangeTopics = onChangeTopics;
+    }
+    
+    public void setOnDisableTopics(String onEnableTopics) {
+      this.onEnableTopics = onEnableTopics;
+    }
+
+    public void setOnEnableTopics(String onDisableTopics) {
+      this.onDisableTopics = onDisableTopics;
     }
 }
