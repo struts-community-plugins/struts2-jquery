@@ -17,25 +17,30 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.views.jsp.ui;
+package com.jgeppert.struts2.jquery.views.freemarker.tags;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
+import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.components.Div;
+import com.jgeppert.struts2.jquery.components.Textfield;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class DivTag extends AbstractContainerTag {
 
-    private static final long serialVersionUID = 3769231035916461758L;
+/**
+ * @see Textfield
+ */
+public class TextfieldModel extends TagModel {
+
+    public TextfieldModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
+
+    @Override
+    protected Component getBean() {
+        return new Textfield(stack, req, res);
+    }
     
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Div(stack, req, res);
-    }
-
-    protected void populateParams() {
-        super.populateParams();
-    }
 }

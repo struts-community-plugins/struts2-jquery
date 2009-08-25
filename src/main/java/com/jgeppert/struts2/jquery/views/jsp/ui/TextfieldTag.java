@@ -24,36 +24,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
 
-import com.jgeppert.struts2.jquery.components.Textarea;
+import com.jgeppert.struts2.jquery.components.Textfield;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class TextareaTag extends AbstractContainerTag {
+public class TextfieldTag extends AbstractContainerTag {
 
-    private static final long serialVersionUID = 6782031035916461758L;
-    
-    protected String cols;
+    private static final long serialVersionUID = 8332089683341849748L;
+
+    protected String maxlength;
     protected String readonly;
-    protected String rows;
-    protected String wrap;
-    
+    protected String size;
+
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Textarea(stack, req, res);
+        return new Textfield(stack, req, res);
     }
 
     protected void populateParams() {
         super.populateParams();
-
-        Textarea textarea = (Textarea) component;
-        textarea.setCols(cols);
-        textarea.setRows(rows);
-        textarea.setReadonly(readonly);
-        textarea.setWrap(wrap);
         
+        Textfield text = (Textfield) component;
+        text.setMaxlength(maxlength);
+        text.setReadonly(readonly);
+        text.setSize(size);
     }
 
-    public void setCols(String cols)
+    public void setMaxlength(String maxlength)
     {
-      this.cols = cols;
+      this.maxlength = maxlength;
     }
 
     public void setReadonly(String readonly)
@@ -61,13 +58,8 @@ public class TextareaTag extends AbstractContainerTag {
       this.readonly = readonly;
     }
 
-    public void setRows(String rows)
+    public void setSize(String size)
     {
-      this.rows = rows;
-    }
-
-    public void setWrap(String wrap)
-    {
-      this.wrap = wrap;
+      this.size = size;
     }
 }

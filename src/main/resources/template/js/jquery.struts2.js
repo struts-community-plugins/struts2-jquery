@@ -784,8 +784,12 @@
 		    	
 		    	//Set pre-loading text (if any)
 				if(options.loadingtext) { container.html(options.loadingtext); }
-				    				
-				options.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, true);
+				
+				var setvalue = false;
+				if(options.type && options.type == 'text')
+					setvalue = true;
+				
+				options.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, true, setvalue);
 				options.complete = publishCompleteTopics(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
 				options.error = publishErrorTopics(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 				
@@ -882,7 +886,7 @@
 		}
    	
 	    				
-		params.success = publishSuccessTopics(event.target, options.onalwaystopics, options.onsuccesstopics, options.indicatorid, false);
+		params.success = publishSuccessTopics(event.target, options.onalwaystopics, options.onsuccesstopics, options.indicatorid, false, false);
 		params.complete = publishCompleteTopics(event.target, options.onalwaystopics, options.oncompletetopics, options.targets, options.indicatorid, options);
 		params.error = publishErrorTopics(event.target, options.onalwaystopics, options.onerrortopics, options.errortext);
 		
@@ -943,7 +947,7 @@
 	}
 	
 	/** Publish Success topics */	
-	function publishSuccessTopics(cid, always, stopics, indi, sethtml) {
+	function publishSuccessTopics(cid, always, stopics, indi, sethtml, setvalue) {
 		var container = $(cid);
 			return function (data, textStatus) {
 			
@@ -954,6 +958,8 @@
 			
 			if(sethtml == true)
 				container.html(data);
+			if(setvalue == true)
+				container.val(data);
 					
 			if(stopics) {			  
 				var topics = stopics.split(',');

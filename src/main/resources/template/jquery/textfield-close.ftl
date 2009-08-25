@@ -1,3 +1,4 @@
+<#--
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,26 +17,5 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-package com.jgeppert.struts2.jquery.views.jsp.ui;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Div;
-import com.opensymphony.xwork2.util.ValueStack;
-
-public class DivTag extends AbstractContainerTag {
-
-    private static final long serialVersionUID = 3769231035916461758L;
-    
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Div(stack, req, res);
-    }
-
-    protected void populateParams() {
-        super.populateParams();
-    }
-}
+-->
+<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />

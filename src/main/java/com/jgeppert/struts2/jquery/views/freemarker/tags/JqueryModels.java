@@ -37,6 +37,7 @@ public class JqueryModels {
 	protected ProgressbarModel progessbar;
 	protected SliderModel slider;
   protected TextareaModel textarea;
+  protected TextfieldModel textfield;
 
 	private ValueStack stack;
 	private HttpServletRequest req;
@@ -145,4 +146,11 @@ public class JqueryModels {
     return textarea;
   }
 
+  public TextfieldModel getTextfield() {
+    if (textfield == null) {
+      textfield = new TextfieldModel(stack, req, res);
+    }
+
+    return textfield;
+  }
 }
