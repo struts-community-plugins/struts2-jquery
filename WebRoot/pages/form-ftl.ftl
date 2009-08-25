@@ -8,6 +8,7 @@
       <li><@s.url id="urlformevent" action="form-event"/><@sj.a href="%{urlformevent}" targets="main">AJAX Forms with Events</@sj.a></li>
       <li><@s.url id="urlformtextarea" action="form-textarea"/><@sj.a href="%{urlformtextarea}" targets="main">AJAX Textarea</@sj.a></li>
       <li><@s.url id="urlformtextarearesize" action="form-textarea-resizeable"/><@sj.a href="%{urlformtextarearesize}" targets="main">AJAX Textarea / Resizable</@sj.a></li>
+      <li><@s.url id="urlformtextfieldresize" action="form-textfield-resizeable"/><@sj.a href="%{urlformtextfieldresize}" targets="main">AJAX Textfield / Resizable</@sj.a></li>
     </ul>
   </div>
 </div>

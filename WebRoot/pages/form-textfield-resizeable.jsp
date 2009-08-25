@@ -16,17 +16,17 @@
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-	<h2>Textarea with AJAX Content / Resizable</h2>
+	<h2>Textfield with AJAX Content / Resizable</h2>
 	<p>
-	    A resizable Textarea with remote content.
+	    A resizable Textfield with remote content.
 	</p>
-    <s:form id="formTextareaResize" action="echo" theme="simple" cssClass="yform">
+    <s:form id="formTextfieldResize" action="echo" theme="simple" cssClass="yform">
         <fieldset>
             <legend>AJAX Form</legend>
 	        <div class="type-text">
 	            <label for="echo">Echo: </label>
-				<s:url id="remoteurl" action="ajax2"/>
-				<sj:textarea href="%{remoteurl}" resizable="true" resizableGhost="true" resizableHelper="ui-state-highlight" effect="pulsate" effectDuration="1500" id="echo" name="echo" rows="10" cols="80" loadingText="Loading content of textarea ..."/>
+	    		<s:url id="urlecho" action="echo"><s:param name="echo">remote content for textfield!</s:param></s:url>
+				<sj:textfield href="%{urlecho}" resizable="true" resizableGhost="true" resizableHelper="ui-state-highlight" resizableMaxHeight="30" effect="pulsate" effectDuration="1500" id="echo" name="echo" loadingText="Loading content of textfield ..."/>
 	        </div>
 	        <div class="type-button">
 		<sj:submit targets="result" effect="highlight" effectDuration="1500" value="AJAX Submit" indicator="indicator"/><img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
