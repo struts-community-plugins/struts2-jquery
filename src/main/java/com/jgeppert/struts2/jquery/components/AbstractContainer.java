@@ -171,7 +171,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
       {
         addParameter("resizable", Boolean.TRUE);
         StringBuilder resizableBuilder = new StringBuilder();
-        resizableBuilder.append("{ dummy : false");
+        resizableBuilder.append("{");
         if (resizableAnimate != null) { resizableBuilder.append(", animate: "); resizableBuilder.append(findString(resizableAnimate)); };
         if (resizableAspectRatio != null) { resizableBuilder.append(", aspectRatio: "); resizableBuilder.append(findString(resizableAspectRatio)); };
         if (resizableAutoHide != null) { resizableBuilder.append(", autoHide: "); resizableBuilder.append(findString(resizableAutoHide)); };
@@ -205,6 +205,9 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         }
 
         resizableBuilder.append(" }");
+        if(resizableBuilder.charAt(1) == ',')
+          resizableBuilder.deleteCharAt(1);
+        
         addParameter("resizableOptions", resizableBuilder.toString());
         if (resizableOnResizeTopics != null) addParameter("resizableOnResizeTopics", findString(resizableOnResizeTopics));
         if (resizableOnStartTopics != null) addParameter("resizableOnStartTopics", findString(resizableOnStartTopics));
@@ -220,7 +223,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
       {
         addParameter("droppable", Boolean.TRUE);
         StringBuilder droppableBuilder = new StringBuilder();
-        droppableBuilder.append("{ dummy : false");
+        droppableBuilder.append("{");
         if (droppableAccept != null) { droppableBuilder.append(", accept: '"); droppableBuilder.append(findString(droppableAccept)); droppableBuilder.append("' "); }
         if (droppableActiveClass != null) { droppableBuilder.append(", activeClass: '"); droppableBuilder.append(findString(droppableActiveClass)); droppableBuilder.append("' "); }
         if (droppableAddClasses != null) { droppableBuilder.append(", addClasses: "); droppableBuilder.append(findString(droppableAddClasses)); };
@@ -230,6 +233,8 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (droppableHoverClass != null) { droppableBuilder.append(", hoverClass: '"); droppableBuilder.append(findString(droppableHoverClass)); droppableBuilder.append("' "); }
 
         droppableBuilder.append(" }");
+        if(droppableBuilder.charAt(1) == ',')
+          droppableBuilder.deleteCharAt(1);
         addParameter("droppableOptions", droppableBuilder.toString());
         
         if (droppableOnActivateTopics != null) addParameter("droppableOnActivateTopics", findString(droppableOnActivateTopics));
@@ -247,7 +252,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
       {
         addParameter("draggable", Boolean.TRUE);
         StringBuilder draggableBuilder = new StringBuilder();
-        draggableBuilder.append("{ dummy : false");
+        draggableBuilder.append("{");
         if (draggableAddClasses != null) { draggableBuilder.append(", addClasses: "); draggableBuilder.append(findString(draggableAddClasses)); };
         if (draggableAppendTo != null) { draggableBuilder.append(", appendTo: '"); draggableBuilder.append(findString(draggableAppendTo)); draggableBuilder.append("' "); }
         if (draggableAxis != null) { draggableBuilder.append(", axis: '"); draggableBuilder.append(findString(draggableAxis)); draggableBuilder.append("' "); }
@@ -298,6 +303,8 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         }
       
         draggableBuilder.append(" }");
+        if(draggableBuilder.charAt(1) == ',')
+          draggableBuilder.deleteCharAt(1);
         addParameter("draggableOptions", draggableBuilder.toString());
 
         if (draggableOnDragTopics != null) addParameter("draggableOnDragTopics", findString(draggableOnDragTopics));
@@ -314,7 +321,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
       {
         addParameter("selectable", Boolean.TRUE);
         StringBuilder selectableBuilder = new StringBuilder();
-        selectableBuilder.append("{ dummy : false");
+        selectableBuilder.append("{");
         if (selectableDelay != null) { selectableBuilder.append(", delay: "); selectableBuilder.append(findString(selectableDelay)); }
         if (selectableDistance != null) { selectableBuilder.append(", distance: "); selectableBuilder.append(findString(selectableDistance)); }
         if (selectableFilter != null) { selectableBuilder.append(", filter: '"); selectableBuilder.append(findString(selectableFilter)); selectableBuilder.append("' "); }
@@ -322,7 +329,9 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (selectableTolerance != null) { selectableBuilder.append(", tolerance: '"); selectableBuilder.append(findString(selectableTolerance)); selectableBuilder.append("' "); }
 
         selectableBuilder.append(" }");
-        addParameter("selectableOptions", selectableBuilder.toString());
+        if(selectableBuilder.charAt(1) == ',')
+          selectableBuilder.deleteCharAt(1);
+       addParameter("selectableOptions", selectableBuilder.toString());
 
         if (selectableOnSelectedTopics != null) addParameter("selectableOnSelectedTopics", findString(selectableOnSelectedTopics));
         if (selectableOnSelectingTopics != null) addParameter("selectableOnSelectingTopics", findString(selectableOnSelectingTopics));
@@ -340,7 +349,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
       {
         addParameter("sortable", Boolean.TRUE);
         StringBuilder sortableBuilder = new StringBuilder();
-        sortableBuilder.append("{ dummy : false");
+        sortableBuilder.append("{");
         if (sortableDropOnEmpty != null) { sortableBuilder.append(", dropOnEmpty: "); sortableBuilder.append(findString(sortableDropOnEmpty)); }
         if (sortableForceHelperSize != null) { sortableBuilder.append(", forceHelperSize: "); sortableBuilder.append(findString(sortableForceHelperSize)); }
         if (sortableForcePlaceholderSize != null) { sortableBuilder.append(", forcePlaceholderSize: "); sortableBuilder.append(findString(sortableForcePlaceholderSize)); }
@@ -382,6 +391,8 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         }
 
         sortableBuilder.append(" }");
+        if(sortableBuilder.charAt(1) == ',')
+          sortableBuilder.deleteCharAt(1);
         addParameter("sortableOptions", sortableBuilder.toString());
         
         if (sortableOnActivateTopics != null) addParameter("sortableOnActivateTopics", findString(sortableOnActivateTopics));
