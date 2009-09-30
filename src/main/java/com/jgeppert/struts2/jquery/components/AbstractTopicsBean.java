@@ -42,6 +42,8 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
     protected String onChangeTopics;
     protected String onEnableTopics;
     protected String onDisableTopics;
+    protected String onBlurTopics;
+    protected String onFocusTopics;
     
     public AbstractTopicsBean(ValueStack stack, HttpServletRequest request,
             HttpServletResponse response) {
@@ -67,6 +69,10 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
         addParameter("onEnableTopics", findString(onEnableTopics));
       if (onDisableTopics != null) 
         addParameter("onDisableTopics", findString(onDisableTopics));
+      if (onBlurTopics != null) 
+        addParameter("onBlurTopics", findString(onBlurTopics));
+      if (onDisableTopics != null) 
+        addParameter("onFocusTopics", findString(onFocusTopics));
     }
 
     @Override
@@ -124,4 +130,15 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
     {
       this.onDisableTopics = onDisableTopics;
     }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is blured", type="String", defaultValue="")
+    public void setOnBlurTopics(String onBlurTopics) {
+      this.onBlurTopics = onBlurTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is focused", type="String", defaultValue="")
+    public void setOnFocusTopics(String onFocusTopics) {
+      this.onFocusTopics = onFocusTopics;
+    }
+
 }

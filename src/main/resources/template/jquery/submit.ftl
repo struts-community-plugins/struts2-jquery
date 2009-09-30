@@ -75,7 +75,7 @@
      src="${parameters.src?html}"<#rt/>
     </#if>
   <#else>
-    <input type="submit" widget="button"<#rt/>
+    <input type="submit"<#rt/>
   </#if>
     <#if parameters.nameValue?if_exists != "">
      value="${parameters.nameValue?html}"<#rt/>

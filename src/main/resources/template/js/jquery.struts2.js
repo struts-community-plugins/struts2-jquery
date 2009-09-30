@@ -26,6 +26,7 @@
 				}
 				
 				var tag = el.tagName.toLowerCase();
+				options.tagname = tag;
 				
 				//extension point to allow custom pre-binding processing
 				if(typeof(_struts2_jquery.preBind) != "function" || _struts2_jquery.preBind($el)) {
@@ -334,18 +335,46 @@
 			}
 		},
 		
+		select: function($elem, options){
+
+			if(options.href) {
+				
+				var containerLoadHandlerName = '_struts2_jquery_container_load';
+		    	var selectTopic = '_struts2_jquery_topic_load_' + options.id;
+	    		$elem.subscribe(selectTopic, containerLoadHandlerName);
+	    		$elem.publish(selectTopic,options);				
+			}			
+		},
+
 		button: function($elem, options){
 			var containerLoadHandlerName = '_struts2_jquery_container_load';
 			
-			if(options.formids) {
+			if(options.formids != undefined) {
 				this.formsubmit($elem, options);
 			}
 			else {
-				this.action($elem, options, containerLoadHandlerName, 'a');
+				var $closestform = $elem.closest("form");
+				if($closestform != undefined) {
+					var formid = $closestform.attr("id");
+					if(formid != undefined) {
+						options.formids = formid;
+						this.formsubmit($elem, options);
+					}
+					else {
+						var randomid = s2jqform+Math.floor(Math.random()*10000);
+						$closestform.attr('id', randomid);
+						options.formids = randomid;
+						this.formsubmit($elem, options);
+					}
+				}
+				else {
+					this.action($elem, options, containerLoadHandlerName, 'a');
+				}
 			}
 			$elem.attr('type','button');  
 			//(not permitted by ie - covered by renderer)
 			$elem.removeAttr('name');
+			
 		},
 		formsubmit: function($elem, options){
 			var submitHandlerName = '_struts2_jquery_form_submit';
@@ -363,6 +392,7 @@
 		
 		dialog: function($elem, options){
 			
+
 			var params = {};
 			params.autoOpen = eval(options.autoopen ? options.autoopen : false);
 			params.modal = eval(options.modal ? options.modal : false);
@@ -385,18 +415,19 @@
 		        	params.buttons = eval ("( " + buttonsStr + " )" );
 		        }
 			}
+			
 			params.open = function(event, ui) {
 				var data = {};
 				data.event = event;
 				data.ui = ui;
 
 				if(options.href) {
-					
 					var containerLoadHandlerName = '_struts2_jquery_container_load';
 			    	var divTopic = '_struts2_jquery_topic_load_' + options.id;
 		    		$elem.subscribe(divTopic, containerLoadHandlerName);
 		    		$elem.publish(divTopic,options);				
 				}			
+
 				if(options.onalwaystopics) {			  
 					var topics = options.onalwaystopics.split(',');
 					for ( var i = 0; i < topics.length; i++) {
@@ -585,7 +616,7 @@
 		    	$elem.val($.datepicker.formatDate(options.displayformat, new Date(options.year, options.month, options.day)));
 		    }
 		    if(options.zindex) {
-		    	$('#ui-datepicker-div').css("z-index", options.zindex); 
+		    	$('#ui-datepicker-div').css("z-index", parseInt(options.zindex)); 
 		    }
 		    
 			if(options.disabled == 'true') {
@@ -737,6 +768,7 @@
 	$.subscribeHandler('_struts2_jquery_container_load', function(event, data) {
 
 		var container = $(event.target);
+		var tagname = $(event.target)[0].tagName.toLowerCase();
 		
 		//need to also make use of original attributes registered with the container (such as onCompleteTopics)
 		var attributes = container[0].attributes;
@@ -785,34 +817,36 @@
 		    	//Set pre-loading text (if any)
 				if(options.loadingtext) { container.html(options.loadingtext); }
 				
-				var setvalue = false;
-				if(options.type && options.type == 'text')
-					setvalue = true;
+				var modus = 'html';
+				if(tagname == 'textarea' || (options.type && options.type == 'text'))
+					modus = 'value';
+				else if(tagname == 'select')
+					modus = 'select';
 				
-				options.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, true, setvalue);
+				options.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, modus, options);
 				options.complete = publishCompleteTopics(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
 				options.error = publishErrorTopics(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 				
-				//if reloadtopics exist, need to reset reload topics with new options
-				if(options.reloadtopics) {			  
-					var topics = options.reloadtopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						container.unsubscribe(topics[i]);
-						container.subscribe(topics[i], '_struts2_jquery_container_load', options);
-					}
-				}
-	
 				//load container using ajax
 				if(options.href) {
 					
-					options.type = "POST";
+//					if(options.datatype)
+//						options.type = options.datatype
+//					else
+						options.type = "POST";
+					
 					options.url = options.href;
 					if(options.hrefparameter) {
 						options.data = options.hrefparameter;
 					}
+					
 					if(options.datatype) {
 						options.dataType = options.datatype;
 					}
+					else {
+						options.dataType = 'html';
+					}
+					
 					if(!options.data) { options.data = {}; }	//fix 'issue' wherein IIS will reject post without data
 					$.ajax(options);
 				
@@ -843,7 +877,7 @@
 		if(options.iframe && options.iframe == 'true')	params.iframe = true;
 		if(options.resetform && options.resetform == 'true')	params.resetForm = true;
 		if(options.timeout)	params.timeout = parseInt(options.timeout);
-		if(options.datatype)	params.dataType = options.datatype;
+		if(options.datatype)	params.dataType = options.datatype; else params.dataType = null;
 		
 		params.target = '';
 		if(options.targets) {
@@ -886,7 +920,7 @@
 		}
    	
 	    				
-		params.success = publishSuccessTopics(event.target, options.onalwaystopics, options.onsuccesstopics, options.indicatorid, false, false);
+		params.success = publishSuccessTopics(event.target, options.onalwaystopics, options.onsuccesstopics, options.indicatorid, 'form', options);
 		params.complete = publishCompleteTopics(event.target, options.onalwaystopics, options.oncompletetopics, options.targets, options.indicatorid, options);
 		params.error = publishErrorTopics(event.target, options.onalwaystopics, options.onerrortopics, options.errortext);
 		
@@ -947,19 +981,67 @@
 	}
 	
 	/** Publish Success topics */	
-	function publishSuccessTopics(cid, always, stopics, indi, sethtml, setvalue) {
+	function publishSuccessTopics(cid, always, stopics, indi, modus, options) {
 		var container = $(cid);
 			return function (data, textStatus) {
-			
 			var orginal = {};
 			orginal.status = textStatus;
 			
 			if(indi) { $('#' + indi).hide(); }
-			
-			if(sethtml == true)
+			if(modus == 'html')
 				container.html(data);
-			if(setvalue == true)
+			else if(modus == 'value')
 				container.val(data);
+			else if(modus == 'select')
+			{
+				container[0].length = 0;
+                
+				if(typeof(data) == "object" || $.isArray(data)) {
+					var i = -1;
+					var eopt = document.createElement("option");
+					if(options.headerkey && options.headervalue) {
+						var option = eopt.cloneNode(true);
+						option.value = options.headerkey;
+						option.text = options.headervalue;
+						
+						if(options.value == options.headervalue) {
+							option.selected = true;
+						}
+						
+						container[0].options[++i] = option;
+					}
+					
+					if(options.emptyoption) {
+						container[0].options[++i] = eopt.cloneNode(true);
+					}
+					
+					var o = 0;
+				    $.each(data[options.list], function(j, val) {
+						var option = eopt.cloneNode(true);
+						if(data[options.list][o] == undefined) {
+							option.value = j;
+							option.text = val;
+						}
+						else {
+							if(options.listkey != undefined && options.listvalue != undefined) {
+								option.value = val[options.listkey];
+								option.text = val[options.listvalue];
+							}
+							else {
+								option.value = data[options.list][o];
+								option.text = data[options.list][o];
+							}
+						}
+
+						if(options.value == option.value) {
+							option.selected = true;
+						}
+						
+						container[0].options[++i] = option;
+						o++;
+				    });
+				}
+			}
 					
 			if(stopics) {			  
 				var topics = stopics.split(',');

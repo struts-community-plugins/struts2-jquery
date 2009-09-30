@@ -107,6 +107,9 @@
   <#if parameters.onChangeMonthYearTopics?if_exists != "">
     onChangeMonthYearTopics="${parameters.onChangeMonthYearTopics?html}"<#rt/>
   </#if>
+  <#if parameters.zindex?if_exists != "">
+    zindex="${parameters.zindex?html}"<#rt/>
+  </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

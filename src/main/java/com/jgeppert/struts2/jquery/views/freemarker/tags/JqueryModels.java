@@ -38,6 +38,7 @@ public class JqueryModels {
 	protected SliderModel slider;
   protected TextareaModel textarea;
   protected TextfieldModel textfield;
+  protected SelectModel select;
 
 	private ValueStack stack;
 	private HttpServletRequest req;
@@ -152,5 +153,13 @@ public class JqueryModels {
     }
 
     return textfield;
+  }
+
+  public SelectModel getSelect() {
+    if (select == null) {
+      select = new SelectModel(stack, req, res);
+    }
+
+    return select;
   }
 }

@@ -56,6 +56,17 @@
     <script type="text/javascript" src="${base}/struts/js/${jqueryUIFile}"></script>
 	</#if>
 </#if>
+<script type="text/javascript">
+$(document).ready(function () {
+	$.ajaxSetup ({
+	<#if parameters.ajaxcache?default(false)>
+		cache: true
+	<#else>
+		cache: false
+	</#if>
+	});
+});
+</script>
 
   <script type="text/javascript" src="${base}/struts/js/${jqueryForm}"></script>
   <script type="text/javascript" src="${base}/struts/js/${jquerySubscribeFile}"></script>

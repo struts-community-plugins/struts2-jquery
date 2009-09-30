@@ -41,6 +41,7 @@ public class HeadTag extends AbstractUITag {
   protected String          jqueryui;
   protected String          customBasepath;
   protected String          loadFromGoogle;
+  protected String          ajaxcache;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -58,6 +59,7 @@ public class HeadTag extends AbstractUITag {
     head.setLocale(locale);
     head.setCustomBasepath(customBasepath);
     head.setLoadFromGoogle(loadFromGoogle);
+    head.setAjaxcache(ajaxcache);
   }
 
   public void setCompressed(String compressed)
@@ -88,5 +90,10 @@ public class HeadTag extends AbstractUITag {
   public void setLoadFromGoogle(String loadFromGoogle)
   {
     this.loadFromGoogle = loadFromGoogle;
+  }
+
+  public void setAjaxcache(String ajaxcache)
+  {
+    this.ajaxcache = ajaxcache;
   }
 }

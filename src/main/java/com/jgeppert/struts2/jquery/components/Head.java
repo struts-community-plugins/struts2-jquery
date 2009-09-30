@@ -85,6 +85,7 @@ public class Head extends org.apache.struts2.components.Head {
   protected String             jqueryui;
   protected String             customBasepath;
   protected String             loadFromGoogle;
+  protected String             ajaxcache;
 
   public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -105,6 +106,7 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.locale != null) addParameter("locale", findString(this.locale));
     if (this.customBasepath != null) addParameter("customBasepath", findString(this.customBasepath));
     if (this.loadFromGoogle != null) addParameter("loadFromGoogle", findValue(this.loadFromGoogle, Boolean.class));
+    if (this.ajaxcache != null) addParameter("ajaxcache", findValue(this.ajaxcache, Boolean.class));
   }
 
   @Override
@@ -159,5 +161,11 @@ public class Head extends org.apache.struts2.components.Head {
   public void setLoadFromGoogle(String loadFromGoogle)
   {
     this.loadFromGoogle = loadFromGoogle;
+  }
+
+  @StrutsTagAttribute(description = "If set to false it will force the pages that you request to not be cached by the browser.", defaultValue = "true", type = "Boolean")
+  public void setAjaxcache(String ajaxcache)
+  {
+    this.ajaxcache = ajaxcache;
   }
 }
