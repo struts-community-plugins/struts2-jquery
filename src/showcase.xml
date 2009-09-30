@@ -25,6 +25,6 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <package name="showcase" extends="struts-default" namespace="/">
+    <package name="showcase" extends="struts-default,json-default" namespace="/">
     </package>
 </struts>
