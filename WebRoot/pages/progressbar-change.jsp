@@ -12,36 +12,37 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <script type="text/javascript">
-    $.subscribe('change', function(event,data) {
-        alert('value changed to : '+event.originalEvent.ui.value);
+    $.subscribe('mychangetopic', function(event,data) {
+        alert('value changed to : '+$("#progressbarchange").progressbar('option', 'value'));
     });
-     function changeValue(){
+    $.subscribe('myclicktopic', function(event,data) {
          $("#progressbarchange").progressbar( 'value' , parseInt( Math.random() * ( 90 ) ) );
-     }
+    });
     </script>        
     <h2>Progressbar with change event</h2>
     <p>
         A Progressbar that raise an event when change value.
     </p>
-    <sj:progressbar id="progressbarchange" value="21" onChangeTopics="change"/>
+    <sj:progressbar id="progressbarchange" value="21" onChangeTopics="mychangetopic"/>
     <br />
-    <a href="#" onclick="changeValue()" class="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-refresh"></span>change value</a>
+    <sj:a href="#" onClickTopics="myclicktopic" cssClass="buttonlink ui-state-default ui-corner-all"><span class="ui-icon ui-icon-refresh"></span>change value</sj:a>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">
+    <strong>JavaScript functions:</strong>
+    <pre>
+    $.subscribe('mychangetopic', function(event,data) {
+        alert('value changed to : '+$(&quot;#progressbarchange&quot;).progressbar('option', 'value'));
+    });
+    $.subscribe('myclicktopic', function(event,data) {
+         $(&quot;#progressbarchange&quot;).progressbar( 'value' , parseInt( Math.random() * ( 90 ) ) );
+    });
+    </pre>
     <strong>Code:</strong>
     <pre>
-    &lt;script type="text/javascript"&gt;
-     function change(event, ui){
-         alert('value changed');
-     }
-     function changeValue(){
-         $("#progressbarchange").progressbar( 'value' , parseInt( Math.random() * ( 90 ) ) )
-     }
-    &lt;/script&gt;        
-
-    &lt;sj:progressbar id="progressbar" value="21" change="change"/&gt;
-    &lt;a href="#" onclick="changeValue()"&gt;change value&lt;/a&gt;        
+    &lt;sj:progressbar id=&quot;progressbarchange&quot; value=&quot;21&quot; onChangeTopics=&quot;mychangetopic&quot;/&gt;
+    &lt;br /&gt;
+    &lt;sj:a href=&quot;#&quot; onClickTopics=&quot;myclicktopic&quot; cssClass=&quot;buttonlink ui-state-default ui-corner-all&quot;&gt;&lt;span class=&quot;ui-icon ui-icon-refresh&quot;&gt;&lt;/span&gt;change value&lt;/sj:a&gt;
     </pre>
   </div>
   <!-- IE Column Clearing -->
