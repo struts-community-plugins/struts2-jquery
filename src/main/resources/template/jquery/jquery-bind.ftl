@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: jquery-bind.ftl,v 1.1 2009/02/09 08:34:16 echijioke Exp $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -21,5 +19,5 @@
  */
 -->
 <script type='text/javascript'>
-$(document).ready(function () {	_struts2_jquery.bind($('#${parameters.id?html}')); });
+_struts2_jquery.bind($('#${parameters.id?html}'));
 </script>
