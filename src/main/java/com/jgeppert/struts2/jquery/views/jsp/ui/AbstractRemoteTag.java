@@ -34,7 +34,6 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
     protected String validate;      //text to be displayed on load error
     protected String indicator;   //If loading content into a target, Id of element that will be displayed during loading and hidden afterwards
     protected String loadingText;   //If loading content into a target, The text to be displayed during load
-    protected String elementIds;    //Form elements that should be individually serialized and sent with the input's load request
     protected String errorText;       //text to be displayed on load error
     protected String errorElementId;    //the element into which to place error messages
     protected String dataType;
@@ -53,7 +52,6 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
         remote.setValidate(validate);
         remote.setIndicator(indicator);
         remote.setLoadingText(loadingText);
-        remote.setElementIds(elementIds);
         remote.setErrorText(errorText);
         remote.setErrorElementId(errorElementId);
         remote.setDataType(dataType);
@@ -85,10 +83,6 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
 
     public void setLoadingText(String loadingText) {
       this.loadingText = loadingText;
-    }
-
-    public void setElementIds(String elementIds){
-      this.elementIds = elementIds;
     }
 
     public void setErrorText(String errorText) {

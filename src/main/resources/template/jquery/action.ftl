@@ -54,9 +54,6 @@
   <#if parameters.onErrorTopics?exists>
     onErrorTopics="${parameters.onErrorTopics?html}"<#rt/>
   </#if>
-  <#if parameters.elementIds?exists>
-    elementIds="${parameters.elementIds?html}"<#rt/>
-  </#if>
   <#if parameters.dataType?exists>
     dataType="${parameters.dataType?html}"<#rt/>
   </#if>

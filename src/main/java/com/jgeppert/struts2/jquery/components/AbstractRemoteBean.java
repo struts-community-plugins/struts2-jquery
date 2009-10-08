@@ -42,7 +42,6 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
     protected String errorText;       //text to be displayed on load error
     protected String errorElementId;    //the id of the element in to which to put the error text
     
-    protected String elementIds;    //Form elements that should be individually serialized and sent with the input's load request
     protected String dataType;
     protected String effect;
     protected String effectDuration;
@@ -83,8 +82,6 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
           addParameter("indicator", findString(indicator));
       if (loadingText != null)
           addParameter("loadingText", findString(loadingText));
-      if (elementIds != null)
-          addParameter("elementIds", findString(elementIds));
       if (errorText != null)
           addParameter("errorText", findString(errorText));
       if (errorElementId != null)
@@ -155,12 +152,6 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
       this.errorElementId = errorElementId;
     }
     
-    @StrutsTagAttribute(name="elementIds", description="A comma delimited list of form elements that should be individually serialized and sent with the input load request. " +
-        "Input element must have a 'name' attribute and will be serialized as <name>=<value>", type="String", defaultValue="", required=false)
-    public void setElementIds(String elementIds){
-      this.elementIds = elementIds;
-    }
-
     @StrutsTagAttribute(description = "Perform a effect on the elements specified in the 'targets' attribute. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects", 
         defaultValue = "none")
     public void setEffect(String effect) {
