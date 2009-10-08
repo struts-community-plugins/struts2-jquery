@@ -139,7 +139,7 @@ public class Head extends org.apache.struts2.components.Head {
     this.compressed = compressed;
   }
 
-  @StrutsTagAttribute(description = "jQuery UI theme", defaultValue = "base")
+  @StrutsTagAttribute(description = "jQuery UI theme", defaultValue = "smoothness")
   public void setJquerytheme(String jquerytheme)
   {
     this.jquerytheme = jquerytheme;
@@ -163,7 +163,7 @@ public class Head extends org.apache.struts2.components.Head {
     this.loadFromGoogle = loadFromGoogle;
   }
 
-  @StrutsTagAttribute(description = "If set to false it will force the pages that you request to not be cached by the browser.", defaultValue = "true", type = "Boolean")
+  @StrutsTagAttribute(description = "If set to false it will force the pages that you request to not be cached by the browser.", defaultValue = "false", type = "Boolean")
   public void setAjaxcache(String ajaxcache)
   {
     this.ajaxcache = ajaxcache;
