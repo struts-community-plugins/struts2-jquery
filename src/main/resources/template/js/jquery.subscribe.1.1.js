@@ -28,13 +28,11 @@
 
 (function($){
 
-	_subscribe_topics = {};
-	_subscribe_handlers = {}; 
-	
-	_subscribe_getDocumentWindow = function(document){
-
-		return document.parentWindow || document.defaultView;
-	};
+	var _subscribe_topics = {},
+		_subscribe_handlers = {}, 
+		_subscribe_getDocumentWindow = function(document){
+			return document.parentWindow || document.defaultView;
+		};
 	
 	$.fn.extend({
 		
