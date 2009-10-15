@@ -86,6 +86,7 @@ public class Head extends org.apache.struts2.components.Head {
   protected String             customBasepath;
   protected String             loadFromGoogle;
   protected String             ajaxcache;
+  protected String             ajaxhistory;
 
   public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -107,6 +108,7 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.customBasepath != null) addParameter("customBasepath", findString(this.customBasepath));
     if (this.loadFromGoogle != null) addParameter("loadFromGoogle", findValue(this.loadFromGoogle, Boolean.class));
     if (this.ajaxcache != null) addParameter("ajaxcache", findValue(this.ajaxcache, Boolean.class));
+    if (this.ajaxhistory != null) addParameter("ajaxhistory", findValue(this.ajaxhistory, Boolean.class));
   }
 
   @Override
@@ -167,5 +169,11 @@ public class Head extends org.apache.struts2.components.Head {
   public void setAjaxcache(String ajaxcache)
   {
     this.ajaxcache = ajaxcache;
+  }
+
+  @StrutsTagAttribute(description = "If set to true it will enable history and bookmarking for AJAX content and jQuery UI Tabs.", defaultValue = "false", type = "Boolean")
+  public void setAjaxhistory(String ajaxhistory)
+  {
+    this.ajaxhistory = ajaxhistory;
   }
 }

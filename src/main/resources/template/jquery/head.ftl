@@ -31,6 +31,7 @@
   <#assign jqueryUIFile="jquery-ui-1.7.2.min.js">
   <#assign jqueryBGIFile="jquery.bgiframe.min.js">
   <#assign jquerySubscribeFile="jquery.subscribe.1.1.min.js">
+  <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
 <#else>
   <#assign jqueryFile="jquery-1.3.2.js">
@@ -39,6 +40,7 @@
   <#assign jqueryUIFile="jquery-ui-1.7.2.js">
   <#assign jqueryBGIFile="jquery.bgiframe.js">
   <#assign jquerySubscribeFile="jquery.subscribe.1.1.js">
+  <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
 </#if>
 
@@ -56,20 +58,12 @@
     <script type="text/javascript" src="${base}/struts/js/${jqueryUIFile}"></script>
 	</#if>
 </#if>
-<script type="text/javascript">
-$(document).ready(function () {
-	$.ajaxSetup ({
-	<#if parameters.ajaxcache?default(false)>
-		cache: true
-	<#else>
-		cache: false
-	</#if>
-	});
-});
-</script>
 
   <script type="text/javascript" src="${base}/struts/js/${jqueryForm}"></script>
   <script type="text/javascript" src="${base}/struts/js/${jquerySubscribeFile}"></script>
+<#if parameters.ajaxhistory?default(false)>
+  <script type="text/javascript" src="${base}/struts/js/${jqueryHistoryFile}"></script>
+</#if>
   <script type="text/javascript" src="${base}/struts/js/${jqueryStrutsFile}"></script>
 <#if parameters.jqueryui?default(false)>
     <#if parameters.jquerytheme?if_exists != "">
@@ -83,5 +77,24 @@ $(document).ready(function () {
         </#if>
     </#if>
 </#if>
+<script type="text/javascript">
+<#if parameters.ajaxhistory?default(false)>
+	var ajaxhistory=true;
+<#else>
+	var ajaxhistory=false;
+</#if>
+$(document).ready(function () {
+	$.ajaxSetup ({
+	<#if parameters.ajaxcache?default(false)>
+		cache: true
+	<#else>
+		cache: false
+	</#if>
+	});
+<#if parameters.ajaxhistory?default(false)>
+	$(window).trigger('hashchange');
+</#if>
+});
+</script>
 
   

@@ -5,6 +5,7 @@
 	 */
 	_struts2_jquery = {
 			
+		ajaxhistory: false,
 		//pre-binding function of the type function(element){}. called before binding the element
 		// returning false will prevent the binding of this element
 		preBind: null,
@@ -17,8 +18,8 @@
 			if(el) {
 				var $el = $(el);
 				el = $el[0];
-				var attributes = el.attributes;
-				var options = {};
+				var attributes = el.attributes,
+				options = {};
 				
 				//attributes names are sometimes returned all lower/upper case so we need to force to a case for uniformity
 				for(var i = 0; i < attributes.length; i++) {
@@ -57,7 +58,7 @@
 			}
 		},
 		
-		action: function($elem, options, containerLoadHandlerName, type){
+		action: function($elem, options, loadHandler, type){
 
 			if($elem.attr('href')) {options.src = $elem.attr('href')}
 	    	if($elem.attr('href') && type == 'a') { $elem.attr('href','#'); }
@@ -65,6 +66,7 @@
 			if(options.opendialog) {
 				$elem.bind('click', function(event) {
 					$('#'+options.opendialog).dialog('open');
+	    		    return false;
 				});
 			}
 			
@@ -86,11 +88,11 @@
 							
 							$target.publish(topic, publishOptions, event);
 						}
+    	    		    return false;
 					});
 				}
 			}
-			
-	    	var actionTopic = '_struts2_jquery_action_topic_' + options.id;
+	    	var actionTopic = '_sj_action_' + options.id;
 	    	
 	    	var href = options.href;
 	    	
@@ -99,7 +101,9 @@
 	    		options.href = href;
 	    	}
 
-			var effectTopic = '_struts2_jquery_div_effect_';
+
+
+			var effectTopic = '_sj_div_effect_';
 			var effect = {};
 			effect.effect = options.effect;
 			effect.effectoptions = options.effectoptions;
@@ -114,11 +118,39 @@
 					for ( var i = 0; i < targets.length; i++) {
 						var target = targets[i];
 						if('#tab' == target) {
-							$elem.closest('.ui-tabs-panel').subscribe(actionTopic, containerLoadHandlerName, options);
+							$elem.closest('.ui-tabs-panel').subscribe(actionTopic, loadHandler, options);
 			    		} else {
 							effect.targets = target;
-			    			$('#' + target).subscribe(actionTopic, containerLoadHandlerName, options);
-			    			$('#' + target).subscribe(effectTopic+target, '_struts2_jquery_effects', effect);
+							var tarelem = $('#' + target);
+							tarelem.subscribe(actionTopic, loadHandler, options);
+							tarelem.subscribe(effectTopic+target, '_sj_effects', effect);
+//			    	    	alert('History : '+ajaxhistory + ' for Element '+$elem);
+			    	    	if(ajaxhistory) {
+			    	    		tarelem.data( 'bbq', {});
+			    	    		
+			    				$elem.bind('click', function(event){
+			    	    		    var state = {};
+			    	    		    // Get the url from the link's href attribute, stripping any leading #.
+//			    	    		    alert('ID : '+target+ ' Topic : '+actionTopic);
+			    	    		    state[ target ] = actionTopic;
+			    	    		    $.bbq.pushState( state );
+			    	    		    return false;
+			    		    	});
+			    	    	
+			    		    	$(window).bind('hashchange', function(e) {
+			    		    		var data = tarelem.data( 'bbq' );
+			    		    		
+			    		    		var topic = $.bbq.getState(target) || '';
+
+			    		    		if ( data.topic === topic ) { return; }
+			    		    		
+			    		    		data.topic = topic;
+			    		    		
+			    		    		alert('Topic : '+topic);
+			    		    		
+			    		    		$.publish(topic,options);
+			    		    	});
+			    	    	}
 			    		}
 					}
 	    		});
@@ -126,11 +158,11 @@
 			} else {   // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 				effect.targets = options.id;
-				$('#' + options.id).subscribe(effectTopic+options.id, '_struts2_jquery_effects', effect);
+				$('#' + options.id).subscribe(effectTopic+options.id, '_sj_effects', effect);
 					
 				//bind event topic listeners
 		    	if(options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
-			    		$elem.subscribe(actionTopic, containerLoadHandlerName, options);
+			    		$elem.subscribe(actionTopic, loadHandler, options);
 		    	}
 			}
 
@@ -138,110 +170,127 @@
 		    	options.src = href;
 				$elem.publishOnEvent('click', actionTopic);			//bind custom action topic to click event
 	    	}
+	    	
 			
 		},
 			
 		container: function($elem, options){
 
-			var containerLoadHandlerName = '_struts2_jquery_container_load';
-			var effectHandlerName = '_struts2_jquery_effects';
+			var loadHandler = '_s2j_container_load',
+			effectHandlerName = '_sj_effects';
 			
 
-			this.action($elem, options, containerLoadHandlerName, 'div');
+			this.action($elem, options, loadHandler, 'div');
+
 
 			//load div using ajax
-			if(options.src) {
+			if(options.formids || options.src) {
+				if(options.src != '#') {
+	
+					if(options.reloadtopics) {			  
+						var topics = options.reloadtopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.subscribe(topics[i], loadHandler, options);
+						}
+					}
 
-				//publishing not triggering to prevent event propagation issues
-		    	var divTopic = '_struts2_jquery_div_load_' + options.id;
-	    		$elem.subscribe(divTopic, containerLoadHandlerName);
-				if(options.bindon) {
-					var $bindElement = $('#'+options.bindon);
-					if(options.events) {
-						var events = options.events.split(',');
-						for ( var i = 0; i < events.length; i++) {
-							$bindElement.publishOnEvent(events[i], divTopic);
+					//publishing not triggering to prevent event propagation issues
+			    	var divTopic = '_struts2_jquery_div_load_' + options.id;
+		    		$elem.subscribe(divTopic, loadHandler);
+					if(options.bindon) {
+						var $bindElement = $('#'+options.bindon);
+						if(options.events) {
+							var events = options.events.split(',');
+							for ( var i = 0; i < events.length; i++) {
+								$bindElement.publishOnEvent(events[i], divTopic);
+							}
+						}
+						else {
+							$bindElement.publishOnEvent('click', divTopic);
 						}
 					}
 					else {
-						$bindElement.publishOnEvent('click', divTopic);
+						$elem.publish(divTopic,options);	
 					}
 				}
-				else {
-					$elem.publish(divTopic,options);	
+				else if(options.formids) {
+					options.targets = options.id;
+			    	var formTopic = '_s2j_form_topic_' + options.id;
+					this.formsubmit($elem, options, formTopic);
+					$elem.publish(formTopic, options);
 				}
 			}
 			else {
-				
-				var divEffectTopic = '_struts2_jquery_div_effect_' + options.id;
-				if(options.id && options.effect) {
-					var effect = {};
-					effect.targets = options.id;
-					effect.effect = options.effect;
-					effect.effectoptions = options.effectoptions;
-					effect.effectduration = options.effectduration;
-		    		$elem.subscribe(divEffectTopic, effectHandlerName, effect);
-				}
-
-
-				if(options.events || options.bindon) {
-
-					var $bindElement = $elem;
-					var eventsStr = 'click';
-					if(options.bindon)
-						$bindElement = $('#'+options.bindon);
-					if(options.events) { eventsStr = options.events; }
-
-					var events = eventsStr.split(',');
-					for ( var i = 0; i < events.length; i++) {
-						var event = events[i];
+					
+					var divEffectTopic = '_sj_div_effect_' + options.id;
+					if(options.id && options.effect) {
+						var effect = {};
+						effect.targets = options.id;
+						effect.effect = options.effect;
+						effect.effectoptions = options.effectoptions;
+						effect.effectduration = options.effectduration;
+			    		$elem.subscribe(divEffectTopic, effectHandlerName, effect);
+					}
+	
+	
+					if(options.events || options.bindon) {
+	
+						var $bindElement = $elem;
+						var eventsStr = 'click';
+						if(options.bindon)
+							$bindElement = $('#'+options.bindon);
+						if(options.events) { eventsStr = options.events; }
+	
+						var events = eventsStr.split(',');
+						for ( var i = 0; i < events.length; i++) {
+							var event = events[i];
+							if(options.onbeforetopics) {
+								var btopics = options.onbeforetopics.split(',');
+								for ( var i = 0; i < btopics.length; i++) {
+									$bindElement.publishOnEvent(event, btopics[i]);
+								}
+							}
+							$bindElement.publishOnEvent(event, divEffectTopic);
+							if(options.oncompletetopics) {
+								var ctopics = options.oncompletetopics.split(',');
+								for ( var i = 0; i < ctopics.length; i++) {
+									$bindElement.publishOnEvent(event, ctopics[i]);
+								}
+							}
+						}
+					}
+					else {
 						if(options.onbeforetopics) {
 							var btopics = options.onbeforetopics.split(',');
 							for ( var i = 0; i < btopics.length; i++) {
-								$bindElement.publishOnEvent(event, btopics[i]);
+								$bindElement.publish(btopics[i], $elem);
 							}
 						}
-						$bindElement.publishOnEvent(event, divEffectTopic);
+						$elem.publish(divEffectTopic, $elem);	
 						if(options.oncompletetopics) {
 							var ctopics = options.oncompletetopics.split(',');
 							for ( var i = 0; i < ctopics.length; i++) {
-								$bindElement.publishOnEvent(event, ctopics[i]);
+								$bindElement.publish(ctopics[i], $elem);
 							}
 						}
 					}
-				}
-				else {
-					if(options.onbeforetopics) {
-						var btopics = options.onbeforetopics.split(',');
-						for ( var i = 0; i < btopics.length; i++) {
-							$bindElement.publish(btopics[i], $elem);
-						}
+					
+					if(options.resizable == 'true') {
+	
+				        var ros = options.resizableoptions;
+				        var ro = window[ros];
+				        if (!ro) {
+				        	ro = eval ("( " + ros + " )" );
+				        }
+				        else {
+				        	ro = {};
+				        }
+				        ro.start = publishTopics($elem, options.onalwaystopics, options.resizableonstarttopics);
+				        ro.stop = publishTopics($elem, options.onalwaystopics, options.resizableonstoptopics);
+				        ro.resize = publishTopics($elem, options.onalwaystopics, options.resizableonresizetopics);
+						$elem.resizable(ro);
 					}
-					$elem.publish(divEffectTopic, $elem);	
-					if(options.oncompletetopics) {
-						var ctopics = options.oncompletetopics.split(',');
-						for ( var i = 0; i < ctopics.length; i++) {
-							$bindElement.publish(ctopics[i], $elem);
-						}
-					}
 				}
-				
-				if(options.resizable == 'true') {
-
-			        var ros = options.resizableoptions;
-			        var ro = window[ros];
-			        if (!ro) {
-			        	ro = eval ("( " + ros + " )" );
-			        }
-			        else {
-			        	ro = {};
-			        }
-			        ro.start = publishTopics($elem, options.onalwaystopics, options.resizableonstarttopics);
-			        ro.stop = publishTopics($elem, options.onalwaystopics, options.resizableonstoptopics);
-			        ro.resize = publishTopics($elem, options.onalwaystopics, options.resizableonresizetopics);
-					$elem.resizable(ro);
-				}
-			}
 
 			if(options.draggable == 'true') {
 				
@@ -325,32 +374,43 @@
 		
 		anchor: function($elem, options){
 			
-			var containerLoadHandlerName = '_struts2_jquery_container_load';
+			var loadHandler = '_s2j_container_load';
 
 			if(options.formids) {
-				this.formsubmit($elem, options);
+		    	var formTopic = '_s2j_form_topic_' + options.id;
+				this.formsubmit($elem, options, formTopic);
+				$elem.publishOnEvent('click', formTopic);
 			}
 			else {
-				this.action($elem, options, containerLoadHandlerName, 'a');
+				this.action($elem, options, loadHandler, 'a');
 			}
 		},
 		
 		select: function($elem, options){
 
-			if(options.href) {
+			var loadHandler = '_s2j_container_load';
+	    	var selectTopic = '_struts2_jquery_topic_load_' + options.id;
+
+			if(options.href && options.href != '#') {
+
+				if(options.reloadtopics) {			  
+					var topics = options.reloadtopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.subscribe(topics[i], loadHandler, options);
+					}
+				}
 				
-				var containerLoadHandlerName = '_struts2_jquery_container_load';
-		    	var selectTopic = '_struts2_jquery_topic_load_' + options.id;
-	    		$elem.subscribe(selectTopic, containerLoadHandlerName);
+	    		$elem.subscribe(selectTopic, loadHandler);
 	    		$elem.publish(selectTopic,options);				
 			}			
 		},
 
 		button: function($elem, options){
-			var containerLoadHandlerName = '_struts2_jquery_container_load';
+			var loadHandler = '_s2j_container_load';
+	    	var formTopic = '_s2j_form_topic_' + options.id;
 			
 			if(options.formids != undefined) {
-				this.formsubmit($elem, options);
+				this.formsubmit($elem, options, formTopic);
 			}
 			else {
 				var $closestform = $elem.closest("form");
@@ -358,36 +418,42 @@
 					var formid = $closestform.attr("id");
 					if(formid != undefined) {
 						options.formids = formid;
-						this.formsubmit($elem, options);
+						this.formsubmit($elem, options, formTopic);
 					}
 					else {
 						var randomid = s2jqform+Math.floor(Math.random()*10000);
 						$closestform.attr('id', randomid);
 						options.formids = randomid;
-						this.formsubmit($elem, options);
+						this.formsubmit($elem, options, formTopic);
 					}
 				}
 				else {
-					this.action($elem, options, containerLoadHandlerName, 'a');
+					this.action($elem, options, loadHandler, 'a');
 				}
 			}
 			$elem.attr('type','button');  
 			//(not permitted by ie - covered by renderer)
 			$elem.removeAttr('name');
-			
+			$elem.publishOnEvent('click', formTopic);
 		},
-		formsubmit: function($elem, options){
-			var submitHandlerName = '_struts2_jquery_form_submit';
-	    	var formsubmitTopic = '_struts2_jquery_formsubmit_topic_' + options.id;
-    		$elem.subscribe(formsubmitTopic, submitHandlerName, options);
+		formsubmit: function($elem, options, topic){
+			var submitHandler = '_s2j_form_submit';
+	    	
+			if(options.reloadtopics) {			  
+				var topics = options.reloadtopics.split(',');
+				for ( var i = 0; i < topics.length; i++) {
+					$elem.subscribe(topics[i], submitHandler, options);
+				}
+			}
+
+			$elem.subscribe(topic, submitHandler, options);
 	    	if(options.targets) {  
 				var targets = options.targets.split(',');
 				for ( var i = 0; i < targets.length; i++) {
 					var target = targets[i];
-	    			$('#' + target).subscribe(formsubmitTopic, '_struts2_jquery_effects', options);
+	    			$('#' + target).subscribe(topic, '_sj_effects', options);
 				}
 			}
-			$elem.publishOnEvent('click', formsubmitTopic);			//bind custom action topic to click event
 		},
 		
 		dialog: function($elem, options){
@@ -421,10 +487,10 @@
 				data.event = event;
 				data.ui = ui;
 
-				if(options.href) {
-					var containerLoadHandlerName = '_struts2_jquery_container_load';
+				if(options.href && options.href != '#') {
+					var loadHandler = '_s2j_container_load';
 			    	var divTopic = '_struts2_jquery_topic_load_' + options.id;
-		    		$elem.subscribe(divTopic, containerLoadHandlerName);
+		    		$elem.subscribe(divTopic, loadHandler);
 		    		$elem.publish(divTopic,options);				
 				}			
 
@@ -478,6 +544,29 @@
 			
 			$elem.find('ul div').appendTo($elem);
 	    	$elem.tabs(params);
+	    	
+	    	if(this.ajaxhistory) {
+		    	$elem.find('ul.ui-tabs-nav a').click(function(){
+	    		    var state = {};
+	    		    // Get the index of this tab.
+	    		    var idx = $('#'+options.id).tabs('option', 'selected');
+	    		    state[ options.id ] = idx;
+	    		    $.bbq.pushState( state );
+	    		    return false;
+		    	});
+	    	
+		    	$(window).bind('hashchange', function(e) {
+		    		$elem.each(function(){
+						// Get the index for this tab widget from the hash, based on the
+						// appropriate id property. In jQuery 1.4, you should use e.getState()
+						// instead of $.bbq.getState(). The second, 'true' argument coerces the
+						// string value to a number.
+						var idx = $.bbq.getState( this.id, true ) || 0;
+						  
+						$(this).tabs( 'select', idx );
+		    		});
+	    	  });
+	    	}
 		},
 		
 		datepicker: function($elem, options) {
@@ -765,7 +854,7 @@
 		
 	/** Container logic */
 	//Register handler to load a container
-	$.subscribeHandler('_struts2_jquery_container_load', function(event, data) {
+	$.subscribeHandler('_s2j_container_load', function(event, data) {
 
 		var container = $(event.target);
 		var tagname = $(event.target)[0].tagName.toLowerCase();
@@ -857,7 +946,7 @@
 
 	/** Form logic */	
 	//Register handler to submit a form element
-	$.subscribeHandler('_struts2_jquery_form_submit', function(event, data) {
+	$.subscribeHandler('_s2j_form_submit', function(event, data) {
 		var container = $(event.target);
 		
 		//need to also make use of original attributes registered with the container (such as onCompleteTopics)
@@ -934,7 +1023,7 @@
 	
 	/** Effects */	
     //Register handler for effects
-    $.subscribeHandler('_struts2_jquery_effects', function(event, data) {
+    $.subscribeHandler('_sj_effects', function(event, data) {
 		var options = {};
 		$.extend(options,event.data);
 		if(options.targets || options.effect) {
@@ -1090,7 +1179,7 @@
 				ec = options.id;
 			if(ec) {
 				var targetArray = ec.split(',');
-				var divEffectTopic = '_struts2_jquery_div_effect_';
+				var divEffectTopic = '_sj_div_effect_';
 				for ( var i = 0; i < targetArray.length; i++) {
 					$element = $('#'+targetArray[i]);
 					$element.publish(divEffectTopic+targetArray[i], $element);

@@ -22,7 +22,11 @@
 -->
 
   <#if parameters.targets?if_exists != ""> targets="${parameters.targets?html}"<#rt/></#if>
-  <#if parameters.hrefUrl??> href="${parameters.hrefUrl?html}"<#rt/></#if>
+  <#if parameters.hrefUrl?if_exists != "">
+   href="${parameters.hrefUrl?html}"<#rt/>
+  <#else>
+   href="#"<#rt/>
+  </#if>
   <#if parameters.hrefParameter??> hrefParameter="${parameters.hrefParameter?html}"<#rt/></#if>
   <#if parameters.formIds?exists>
     formIds="${parameters.formIds?html}"<#rt/>

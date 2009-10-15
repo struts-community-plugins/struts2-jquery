@@ -42,6 +42,7 @@ public class HeadTag extends AbstractUITag {
   protected String          customBasepath;
   protected String          loadFromGoogle;
   protected String          ajaxcache;
+  protected String          ajaxhistory;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -60,6 +61,7 @@ public class HeadTag extends AbstractUITag {
     head.setCustomBasepath(customBasepath);
     head.setLoadFromGoogle(loadFromGoogle);
     head.setAjaxcache(ajaxcache);
+    head.setAjaxhistory(ajaxhistory);
   }
 
   public void setCompressed(String compressed)
@@ -95,5 +97,10 @@ public class HeadTag extends AbstractUITag {
   public void setAjaxcache(String ajaxcache)
   {
     this.ajaxcache = ajaxcache;
+  }
+
+  public void setAjaxhistory(String ajaxhistory)
+  {
+    this.ajaxhistory = ajaxhistory;
   }
 }
