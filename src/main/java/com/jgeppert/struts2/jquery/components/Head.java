@@ -171,7 +171,7 @@ public class Head extends org.apache.struts2.components.Head {
     this.ajaxcache = ajaxcache;
   }
 
-  @StrutsTagAttribute(description = "If set to true it will enable history and bookmarking for AJAX content and jQuery UI Tabs.", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "BETA!!! If set to true it will enable history and bookmarking for AJAX content and jQuery UI Tabs.", defaultValue = "false", type = "Boolean")
   public void setAjaxhistory(String ajaxhistory)
   {
     this.ajaxhistory = ajaxhistory;
