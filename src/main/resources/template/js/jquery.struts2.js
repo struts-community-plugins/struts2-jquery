@@ -1,3 +1,21 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 (function($){
 	/**
 	 * Bind Struts2 Components for jQuery AJAX and UI functions
@@ -112,37 +130,33 @@
 					var targets = options.targets.split(',');
 					for ( var i = 0; i < targets.length; i++) {
 						var target = targets[i];
-						if('#tab' == target) {
-							$elem.closest('.ui-tabs-panel').subscribe(actionTopic, loadHandler, options);
-			    		} else {
-							effect.targets = target;
-							var tarelem = $('#' + target);
-							tarelem.subscribe(actionTopic, loadHandler, options);
-							tarelem.subscribe(effectTopic+target, '_sj_effects', effect);
-			    	    	if(ajaxhistory) {
-			    	    		tarelem.data( 'bbq', {});
-			    	    		
-			    				$elem.bind('click', function(event){
-			    	    		    var state = {};
-			    	    		    // Get the url from the link's href attribute, stripping any leading #.
-			    	    		    state[ target ] = actionTopic;
-			    	    		    $.bbq.pushState( state );
-			    	    		    return false;
-			    		    	});
-			    	    	
-			    		    	$(window).bind('hashchange', function(e) {
-			    		    		var data = tarelem.data( 'bbq' );
-			    		    		
-			    		    		var topic = $.bbq.getState(target) || '';
+						effect.targets = target;
+						var tarelem = $('#' + target);
+						tarelem.subscribe(actionTopic, loadHandler, options);
+						tarelem.subscribe(effectTopic+target, '_sj_effects', effect);
+		    	    	if(ajaxhistory) {
+		    	    		tarelem.data( 'bbq', {});
+		    	    		
+		    				$elem.bind('click', function(event){
+		    	    		    var state = {};
+		    	    		    // Get the url from the link's href attribute, stripping any leading #.
+		    	    		    state[ target ] = actionTopic;
+		    	    		    $.bbq.pushState( state );
+		    	    		    return false;
+		    		    	});
+		    	    	
+		    		    	$(window).bind('hashchange', function(e) {
+		    		    		var data = tarelem.data( 'bbq' );
+		    		    		
+		    		    		var topic = $.bbq.getState(target) || '';
 
-			    		    		if ( data.topic === topic ) { return; }
-			    		    		
-			    		    		data.topic = topic;
-			    		    		
-			    		    		$.publish(topic,options);
-			    		    	});
-			    	    	}
-			    		}
+		    		    		if ( data.topic === topic ) { return; }
+		    		    		
+		    		    		data.topic = topic;
+		    		    		
+		    		    		$.publish(topic,options);
+		    		    	});
+		    	    	}
 					}
 	    		});
 	    		
@@ -521,7 +535,7 @@
 			if(options.spinner)	para.spinner = options.spinner;
 			if(options.selectedtab)	para.selected = parseInt(options.selectedtab);
 			para.ajaxOptions = { dataType:'html' };
-			para.ajaxOptions.complete = publishCompleteTopics(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {});
+			para.ajaxOptions.complete = pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {});
 			para.show = pubTops($elem, options.onalwaystopics, options.onbeforetopics);
 			para.select = pubTops($elem, options.onalwaystopics, options.onchangetopics);
 			para.enable = pubTops($elem, options.onalwaystopics, options.onenabletopics);
@@ -546,7 +560,8 @@
 //		    		$elem.each(function(){
 						// In jQuery 1.4, you should use e.getState() instead of $.bbq.getState().
 						var idx = $.bbq.getState( options.id, true ) || 0;
-						$('#'+options.id).tabs( 'select', idx );
+							$('#'+options.id).tabs( 'select', idx );
+//							$(window).trigger('hashchange');
 //		    		});
 	    	  });
 	    	}
@@ -895,18 +910,14 @@
 				else if(tagname == 'select')
 					modus = 'select';
 				
-				options.success = publishSuccessTopics(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, modus, options);
-				options.complete = publishCompleteTopics(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
-				options.error = publishErrorTopics(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
+				options.success = pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, modus, options);
+				options.complete = pubCom(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
+				options.error = pubErr(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 				
 				//load container using ajax
 				if(options.href) {
 					
-//					if(options.datatype)
-//						options.type = options.datatype
-//					else
-						options.type = "POST";
-					
+					options.type = "POST";
 					options.url = options.href;
 					if(options.hrefparameter) {
 						options.data = options.hrefparameter;
@@ -921,7 +932,6 @@
 					
 					if(!options.data) { options.data = {}; }	//fix 'issue' wherein IIS will reject post without data
 					$.ajax(options);
-				
 				}
 			}
 		}
@@ -992,9 +1002,9 @@
 		}
    	
 	    				
-		params.success = publishSuccessTopics(event.target, options.onalwaystopics, options.onsuccesstopics, options.indicatorid, 'form', options);
-		params.complete = publishCompleteTopics(event.target, options.onalwaystopics, options.oncompletetopics, options.targets, options.indicatorid, options);
-		params.error = publishErrorTopics(event.target, options.onalwaystopics, options.onerrortopics, options.errortext);
+		params.success = pubSuc(event.target, options.onalwaystopics, options.onsuccesstopics, options.indicatorid, 'form', options);
+		params.complete = pubCom(event.target, options.onalwaystopics, options.oncompletetopics, options.targets, options.indicatorid, options);
+		params.error = pubErr(event.target, options.onalwaystopics, options.onerrortopics, options.errortext);
 		
 		var forms = options.formids.split(',');
 		for ( var i = 0; i < forms.length; i++) {
@@ -1053,7 +1063,7 @@
 	}
 	
 	/** Publish Success topics */	
-	function publishSuccessTopics(cid, always, stopics, indi, modus, options) {
+	function pubSuc(cid, always, stopics, indi, modus, options) {
 		var container = $(cid);
 			return function (data, textStatus) {
 			var orginal = {};
@@ -1127,11 +1137,12 @@
 					container.publish(topics[i], container, orginal);
 				}
 			}
+	    	if(ajaxhistory) {$(window).trigger('hashchange');}
 		};
 	}
 
 	/** Publish Complete topics */	
-	function publishCompleteTopics(cid, always, ctopics, targets, indi, options) {
+	function pubCom(cid, always, ctopics, targets, indi, options) {
 		var container = $(cid);
 		return function (request, status) {
 			var orginal = {};
@@ -1188,7 +1199,7 @@
 	}
 
 	/** Publish Error topics */	
-	function publishErrorTopics(cid, always, etopics, etext) {
+	function pubErr(cid, always, etopics, etext) {
 		var container = $(cid);
 		if(etopics || etext)	{
 			return function (request, status, error) {
