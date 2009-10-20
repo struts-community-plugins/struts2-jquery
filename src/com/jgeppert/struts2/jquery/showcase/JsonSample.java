@@ -24,8 +24,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.convention.annotation.Actions;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
@@ -36,13 +38,16 @@ import com.opensymphony.xwork2.ActionSupport;
 public class JsonSample extends ActionSupport{
     
     private static final long serialVersionUID = -2223948287805083119L;
+    private static final Log    log               = LogFactory.getLog(JsonSample.class);
     private List<String> languageList;
     private List<ListValue> languageObjList;
     private Map<String, String> languageMap;
 
     @Actions({@Action(value="/jsonsample", results={@Result(name="success",type="json")}) })
     public String execute() {
-        
+      
+      log.info("build json lists");
+      
       languageList = new ArrayList<String>();
       languageObjList = new ArrayList<ListValue>();
       languageMap = new HashMap<String, String>();

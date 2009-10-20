@@ -58,11 +58,11 @@
         }
     });
     </script>        
-	<h2>Remote Div</h2>
+	<h2>Remote Divs with reloadable content</h2>
 	<p>
-	    A simple Remote Div that load AJAX content.
+	   Remote Divs and Select Boxes with AJAX content they reload content automatically or by events.
 	</p>
-    <strong>Div Refreshs : <span id="counter1"></span></strong>
+    <strong>Div reloads : <span id="counter1"></span></strong>
     <s:url id="ajax1" value="/ajax1.action"/>
     <sj:div id="div1" 
     		href="%{ajax1}" 
@@ -84,7 +84,7 @@
     
     <br/><br/>
     
-    <strong>Div refreshs every 10 seconds : <span id="counter2"></span></strong>
+    <strong>Div reloads every 10 seconds : <span id="counter2"></span></strong>
     <s:url id="ajax2" value="/ajax2.action"/>
     <sj:div id="div2" 
     		href="%{ajax2}" 
@@ -100,11 +100,11 @@
         
     <br/><br/>
 
-    <strong>List Refreshs : <span id="counter3"></span></strong>
+    <strong>List Reloads : <span id="counter3"></span></strong>
     <s:form id="formSelectOne" action="echo" theme="simple" cssClass="yform">
         <fieldset>
             <legend>AJAX Form</legend>
-	        <div class="type-text">
+	        <div class="type-select">
 	            <label for="echo">List: </label>
 				<s:url id="remoteurl" action="jsonsample"/> 
 				<sj:select 
@@ -124,7 +124,7 @@
 
     <br/><br/>
 
-    <strong>Div refreshs every 30 seconds with form values : <span id="counter4"></span></strong>
+    <strong>Div reloads every 30 seconds with form values : <span id="counter4"></span></strong>
     <sj:div id="div3" 
     		formIds="formSelectOne" 
     		indicator="indicator3" 
@@ -188,7 +188,7 @@
 	  </div>
       <div id="jsp">
 	  <pre>
-    &lt;strong&gt;Div Refreshs : &lt;span id=&quot;counter1&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+    &lt;strong&gt;Div Reloads : &lt;span id=&quot;counter1&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
     &lt;s:url id=&quot;ajax1&quot; value=&quot;/ajax1.action&quot;/&gt;
     &lt;sj:div id=&quot;div1&quot; 
     		href=&quot;%{ajax1}&quot; 
@@ -210,7 +210,7 @@
     
     &lt;br/&gt;&lt;br/&gt;
     
-    &lt;strong&gt;Div refreshs every 10 seconds : &lt;span id=&quot;counter2&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+    &lt;strong&gt;Div reloads every 10 seconds : &lt;span id=&quot;counter2&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
     &lt;s:url id=&quot;ajax2&quot; value=&quot;/ajax2.action&quot;/&gt;
     &lt;sj:div id=&quot;div2&quot; 
     		href=&quot;%{ajax2}&quot; 
@@ -226,7 +226,7 @@
         
     &lt;br/&gt;&lt;br/&gt;
 
-    &lt;strong&gt;List Refreshs : &lt;span id=&quot;counter3&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+    &lt;strong&gt;List Reloads : &lt;span id=&quot;counter3&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
     &lt;s:form id=&quot;formSelectOne&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
         &lt;fieldset&gt;
             &lt;legend&gt;AJAX Form&lt;/legend&gt;
@@ -250,7 +250,7 @@
 
     &lt;br/&gt;&lt;br/&gt;
 
-    &lt;strong&gt;Div refreshs every 30 seconds with form values : &lt;span id=&quot;counter4&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+    &lt;strong&gt;Div reloads every 30 seconds with form values : &lt;span id=&quot;counter4&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
     &lt;sj:div id=&quot;div3&quot; 
     		formIds=&quot;formSelectOne&quot; 
     		indicator=&quot;indicator3&quot; 

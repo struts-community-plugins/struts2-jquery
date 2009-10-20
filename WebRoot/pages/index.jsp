@@ -18,7 +18,7 @@
 	<![endif]-->
 
   <s:if test="%{theme == 'showcase' || theme == null}">
-      <sj:head ajaxhistory="false" compressed="false" jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}"/>
+      <sj:head compressed="false" jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}"/>
   </s:if>
   <s:else>
       <sj:head compressed="false" jqueryui="true" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}"/>
@@ -52,9 +52,9 @@
             <li class="ui-widget-header"><s:url id="urlaccordion" action="accordion"/><sj:a id="accordionlink" href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlslider" action="slider"/><sj:a id="sliderlink" href="%{urlslider}" targets="main">Slider</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlprogressbar" action="progressbar"/><sj:a id="pblink" href="%{urlprogressbar}" targets="main">Progressbar</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlremotelink" action="remote-link"/><sj:a id="ajaxlink" href="%{urlremotelink}" targets="main">Ajax Link</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlremotelink" action="remote-link"/><sj:a id="remotelink" href="%{urlremotelink}" targets="main">Ajax Link</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlform" action="form"/><sj:a id="formlink" href="%{urlform}" targets="main">Ajax Forms</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlremotediv" action="remote-div"/><sj:a id="divlink" href="%{urlremotediv}" targets="main">Ajax Div</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlremotediv" action="remote-div"/><sj:a id="remotedivlink" href="%{urlremotediv}" targets="main">Ajax Div</sj:a></li>
             <li class="ui-widget-header"><s:url id="urleffectdiv" action="effect-div"/><sj:a id="interactionlink" href="%{urleffectdiv}" targets="main">Effects/Interactions</sj:a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/downloads/list">Download</a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/w/list">Wiki</a></li>

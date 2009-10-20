@@ -19,32 +19,40 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class Echo extends ActionSupport {
 
+  private static final long serialVersionUID = 7968544374444173511L;
+  private static final Log  log              = LogFactory.getLog(Echo.class);
 
-	private static final long serialVersionUID = 7968544374444173511L;
-	
-	private String echo;
+  private String            echo;
 
-	@Action(value="/echo", 
-			   results={@Result( location = "echo.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-        return SUCCESS;
-    }
+  @Action(value = "/echo", results = {
+    @Result(location = "echo.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
 
-	public String getEcho() {
-		return echo;
-	}
+    log.info("Echo : " + echo);
 
-	public void setEcho(String echo) {
-		this.echo = echo;
-	}
+    return SUCCESS;
+  }
+
+  public String getEcho()
+  {
+    return echo;
+  }
+
+  public void setEcho(String echo)
+  {
+    this.echo = echo;
+  }
 }
