@@ -13,17 +13,18 @@
   <div id="col3_content" class="clearfix">
     <h2>Remote Tabs</h2>
     <p>
-        A simple Remote TabbedPanel
+        A simple TabbedPanel with AJAX Content with two disabled Tabs
     </p>
     <s:url id="remoteurl1" action="ajax1"/>
     <s:url id="remoteurl2" action="ajax2"/>
     <s:url id="remoteurl3" action="ajax3"/>
     <s:url id="remoteurl4" action="ajax4"/>
-    <sj:tabbedpanel id="remotetabs" spinner="Please wait ...">
-      <sj:tab id="tab1" href="%{remoteurl1}" label="Remote Tab One" />
-      <sj:tab id="tab2" href="%{remoteurl2}" label="Remote Tab Two"/>
-      <sj:tab id="tab3" href="%{remoteurl3}" label="Remote Tab Three"/>
-      <sj:tab id="tab4" href="%{remoteurl4}" label="Remote Tab Four"/>
+    <sj:tabbedpanel id="remotetabs" spinner="Please wait ..." disabledTabs="[3,4]">
+      <sj:tab id="tab1" href="%{remoteurl1}" label="Tab One" />
+      <sj:tab id="tab2" href="%{remoteurl2}" label="Tab Two"/>
+      <sj:tab id="tab3" href="%{remoteurl3}" label="Tab Three"/>
+      <sj:tab id="tab4" href="%{remoteurl4}" label="Tab Four"/>
+      <sj:tab id="tab5" href="%{remoteurl4}" label="Tab Five"/>
     </sj:tabbedpanel>
   </div>
   
@@ -34,7 +35,7 @@
     &lt;s:url id=&quot;remoteurl2&quot; action=&quot;ajax2&quot;/&gt;
     &lt;s:url id=&quot;remoteurl3&quot; action=&quot;ajax3&quot;/&gt;
     &lt;s:url id=&quot;remoteurl4&quot; action=&quot;ajax4&quot;/&gt;
-    &lt;sj:tabbedpanel id=&quot;remotetabs&quot; spinner=&quot;Please wait ...&quot;&gt;
+    &lt;sj:tabbedpanel id=&quot;remotetabs&quot; spinner=&quot;Please wait ...&quot; disabledTabs=&quot;[3,4]&quot;&gt;
       &lt;sj:tab id=&quot;tab1&quot; href=&quot;%{remoteurl1}&quot; label=&quot;Remote Tab One&quot; /&gt;
       &lt;sj:tab id=&quot;tab2&quot; href=&quot;%{remoteurl2}&quot; label=&quot;Remote Tab Two&quot;/&gt;
       &lt;sj:tab id=&quot;tab3&quot; href=&quot;%{remoteurl3}&quot; label=&quot;Remote Tab Three&quot;/&gt;
