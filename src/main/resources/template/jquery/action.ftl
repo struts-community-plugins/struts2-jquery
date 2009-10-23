@@ -27,7 +27,7 @@
   <#else>
    href="#"<#rt/>
   </#if>
-  <#if parameters.hrefParameter??> hrefParameter="${parameters.hrefParameter?html}"<#rt/></#if>
+  <#if parameters.hrefParameter??> hrefParameter="${parameters.hrefParameter}"<#rt/></#if>
   <#if parameters.formIds?exists>
     formIds="${parameters.formIds?html}"<#rt/>
   </#if>
