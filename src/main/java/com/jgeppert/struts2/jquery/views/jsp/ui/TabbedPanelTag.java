@@ -41,7 +41,7 @@ public class TabbedPanelTag extends AbstractTopicTag {
   protected String          animate;
   protected String          spinner;
   protected String          cache;
-  protected String          disabled;
+  protected String          disabledTabs;
   protected String          onAddTopics;
   protected String          onRemoveTopics;
 
@@ -61,7 +61,7 @@ public class TabbedPanelTag extends AbstractTopicTag {
     tabbedPanel.setOpenOnMouseover(openOnMouseover);
     tabbedPanel.setSpinner(spinner);
     tabbedPanel.setCache(cache);
-    tabbedPanel.setDisabled(disabled);
+    tabbedPanel.setDisabledTabs(disabledTabs);
     tabbedPanel.setOnAddTopics(onAddTopics);
     tabbedPanel.setOnRemoveTopics(onRemoveTopics);
   }
@@ -101,9 +101,9 @@ public class TabbedPanelTag extends AbstractTopicTag {
     this.cache = cache;
   }
 
-  public void setDisabled(String disabled)
+  public void setDisabledTabs(String disabledTabs)
   {
-    this.disabled = disabled;
+    this.disabledTabs = disabledTabs;
   }
 
   public void setOnAddTopics(String onAddTopics)

@@ -40,8 +40,8 @@
   <#if parameters.spinner?if_exists != "">
     spinner="${parameters.spinner?html}"<#rt/>
   </#if>
-  <#if parameters.disabled?if_exists != "">
-    disabled="${parameters.disabled?html}"<#rt/>
+  <#if parameters.disabledTabs?if_exists != "">
+    disabledtabs="${parameters.disabledTabs?html}"<#rt/>
   </#if>
   <#if parameters.onAddTopics?if_exists != "">
     onaddtopics="${parameters.onAddTopics?html}"<#rt/>

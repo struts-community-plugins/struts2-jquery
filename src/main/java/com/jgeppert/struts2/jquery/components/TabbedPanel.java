@@ -80,7 +80,7 @@ public class TabbedPanel extends  AbstractTopicsBean {
   protected String                      animate;
   protected String                      spinner;
   protected String                      cache;
-  protected String                      disabled;
+  protected String                      disabledTabs;
 
   protected String                      onAddTopics;
   protected String                      onRemoveTopics;
@@ -102,7 +102,7 @@ public class TabbedPanel extends  AbstractTopicsBean {
     if (this.animate != null) addParameter("animate", findValue(this.animate, Boolean.class));
     if (this.spinner != null) addParameter("spinner", findString(this.spinner));
     if (this.cache != null) addParameter("cache", findValue(this.cache, Boolean.class));
-    if (this.disabled != null) addParameter("disabled", findString(this.disabled));
+    if (this.disabledTabs != null) addParameter("disabledTabs", findString(this.disabledTabs));
     if (this.onAddTopics != null) addParameter("onAddTopics", findString(this.onAddTopics));
     if (this.onRemoveTopics != null) addParameter("onRemoveTopics", findString(this.onRemoveTopics));
 
@@ -195,9 +195,9 @@ public class TabbedPanel extends  AbstractTopicsBean {
   }
 
   @StrutsTagAttribute(description = "An array containing the position of the tabs (zero-based index) that should be disabled on initialization. e.g. [1, 2]")
-  public void setDisabled(String disabled)
+  public void setDisabledTabs(String disabledTabs)
   {
-    this.disabled = disabled;
+    this.disabledTabs = disabledTabs;
   }
 
   @StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is added", type="String", defaultValue="")

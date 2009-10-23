@@ -20,7 +20,7 @@
 	/**
 	 * Bind Struts2 Components for jQuery AJAX and UI functions
 	 */
-	_struts2_jquery = {
+	jQuery.struts2_jquery = {
 			
 		//pre-binding function of the type function(element){}. called before binding the element
 		// returning false will prevent the binding of this element
@@ -46,7 +46,7 @@
 				options.tagname = tag;
 				
 				//extension point to allow custom pre-binding processing
-				if(typeof(_struts2_jquery.preBind) != "function" || _struts2_jquery.preBind($el)) {
+				if(typeof($.struts2_jquery.preBind) != "function" || $.struts2_jquery.preBind($el)) {
 					
 					var jqueryaction = $el.attr("jqueryaction");
 					if(!jqueryaction)
@@ -55,8 +55,8 @@
 					this[jqueryaction]($el, options);
 				
 					//extension point to allow custom post-binding processing
-					if(_struts2_jquery.postBind && (typeof(_struts2_jquery.postBind) == "function")) {
-						return _struts2_jquery.postBind(el);
+					if($.struts2_jquery.postBind && (typeof($.struts2_jquery.postBind) == "function")) {
+						return $.struts2_jquery.postBind(el);
 					}
 				}
 				
@@ -147,13 +147,9 @@
 		    	    	
 		    		    	$(window).bind('hashchange', function(e) {
 		    		    		var data = tarelem.data( 'bbq' );
-		    		    		
 		    		    		var topic = $.bbq.getState(target) || '';
-
 		    		    		if ( data.topic === topic ) { return; }
-		    		    		
 		    		    		data.topic = topic;
-		    		    		
 		    		    		$.publish(topic,options);
 		    		    	});
 		    	    	}
@@ -200,7 +196,7 @@
 					}
 
 					//publishing not triggering to prevent event propagation issues
-			    	var divTopic = '_struts2_jquery_div_load_' + options.id;
+			    	var divTopic = '$.struts2_jquery_div_load_' + options.id;
 		    		$elem.subscribe(divTopic, loadHandler);
 					if(options.bindon) {
 						var $bindElement = $('#'+options.bindon);
@@ -394,7 +390,7 @@
 		select: function($elem, options){
 
 			var loadHandler = '_s2j_container_load';
-	    	var selectTopic = '_struts2_jquery_topic_load_' + options.id;
+	    	var selectTopic = '$.struts2_jquery_topic_load_' + options.id;
 
 			if(options.href && options.href != '#') {
 
@@ -436,6 +432,7 @@
 				}
 			}
 			$elem.publishOnEvent('click', formTopic);
+			$elem.removeAttr('name');
 		},
 		formsubmit: function($elem, options, topic){
 			var formHandler = '_s2j_form_submit';
@@ -490,7 +487,7 @@
 
 				if(options.href && options.href != '#') {
 					var loadHandler = '_s2j_container_load';
-			    	var divTopic = '_struts2_jquery_topic_load_' + options.id;
+			    	var divTopic = '$.struts2_jquery_topic_load_' + options.id;
 		    		$elem.subscribe(divTopic, loadHandler);
 		    		$elem.publish(divTopic,options);				
 				}			
@@ -519,11 +516,11 @@
 			if(!options) { options = {}};
 			var para = {};
 			
-			if(options.disabled) {
-		        var disabledStr = options.disabled;
-		        var disabled = window[disabledStr];
-		        if (!disabled) {
-		        	para.disabled = eval ("( " + disabledStr + " )" );
+			if(options.disabledtabs && options.disabledtabs != 'false') {
+		        var disabledtabsStr = options.disabledtabs;
+		        var disabledtabs = window[disabledtabsStr];
+		        if (!disabledtabs) {
+		        	para.disabled = eval("( " + disabledtabsStr + " )" );
 		        }
 			}
 			if(options.cache && options.cache == 'true')	para.cache = true;
@@ -534,20 +531,24 @@
 			if(options.orientation)	para.orientation = options.orientation;
 			if(options.spinner)	para.spinner = options.spinner;
 			if(options.selectedtab)	para.selected = parseInt(options.selectedtab);
-			para.ajaxOptions = { dataType:'html' };
-			para.ajaxOptions.complete = pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {});
-			para.show = pubTops($elem, options.onalwaystopics, options.onbeforetopics);
-			para.select = pubTops($elem, options.onalwaystopics, options.onchangetopics);
-			para.enable = pubTops($elem, options.onalwaystopics, options.onenabletopics);
-			para.disable = pubTops($elem, options.onalwaystopics, options.ondisabletopics);
-			para.add = pubTops($elem, options.onalwaystopics, options.onaddtopics);
-			para.remove = pubTops($elem, options.onalwaystopics, options.onremovetopics);
+			if(options.oncompletetopics) para.ajaxOptions = { dataType:'html', complete:pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {}) };
+			else para.ajaxOptions = { dataType:'html' };
+//			para.ajaxOptions.complete = pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {});
+			if(options.onbeforetopics) para.show = pubTops($elem, options.onalwaystopics, options.onbeforetopics);
+			if(options.onchangetopics) para.select = pubTops($elem, options.onalwaystopics, options.onchangetopics);
+			if(options.onenabletopics) para.enable = pubTops($elem, options.onalwaystopics, options.onenabletopics);
+			if(options.ondisabletopics) para.disable = pubTops($elem, options.onalwaystopics, options.ondisabletopics);
+			if(options.onaddtopics) para.add = pubTops($elem, options.onalwaystopics, options.onaddtopics);
+			if(options.onremovetopics) para.remove = pubTops($elem, options.onalwaystopics, options.onremovetopics);
 			
-			$elem.find('ul div').appendTo($elem);
+			$.each($('#'+options.id+' ul div'), function() {
+				$(this).appendTo($elem);
+			});
+
 	    	$elem.tabs(para);
 
 	    	// History and Bookmarking for Tabs
-	    	if(ajaxhistory) {
+    		if(ajaxhistory) {
 		    	$elem.find('ul.ui-tabs-nav a').click(function(){
 	    		    var state = {};
 	    		    var idx = $('#'+options.id).tabs('option', 'selected');
@@ -557,13 +558,10 @@
 		    	});
 	    	
 		    	$(window).bind('hashchange', function(e) {
-//		    		$elem.each(function(){
 						// In jQuery 1.4, you should use e.getState() instead of $.bbq.getState().
 						var idx = $.bbq.getState( options.id, true ) || 0;
 							$('#'+options.id).tabs( 'select', idx );
-//							$(window).trigger('hashchange');
-//		    		});
-	    	  });
+	    		});
 	    	}
 		},
 		
@@ -765,6 +763,7 @@
 		accordion: function($elem, options) {
 			
 			var params = {};
+			var active = true;
 			if(options) {
 
 				if(options.fillspace && options.fillspace == 'true')	params.fillSpace = true;
@@ -782,7 +781,6 @@
 					else params.animated = options.animated;
 				}
 				
-				active = true;
 				if(options.active)
 				{
 					if(options.active == 'true') { params.active = true; }
@@ -843,7 +841,7 @@
 		}
 	};		
 		
-	Struts2jQuery = _struts2_jquery;
+//	Struts2jQuery = $.struts2_jquery;
 	
 	
 	/**
@@ -1137,7 +1135,7 @@
 					container.publish(topics[i], container, orginal);
 				}
 			}
-	    	if(ajaxhistory) {$(window).trigger('hashchange');}
+//	    	if(ajaxhistory) {$(window).trigger('hashchange');}
 		};
 	}
 
@@ -1180,7 +1178,7 @@
 				}
 			}
 			
-			if(options.resizable == 'true') {
+			if(options.resizable && options.resizable == 'true') {
 
 		        var ros = options.resizableoptions;
 		        var ro = window[ros];
