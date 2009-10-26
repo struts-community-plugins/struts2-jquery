@@ -36,6 +36,15 @@
   <#if parameters.nameValue?if_exists != "">
     value="${parameters.nameValue?html}"<#rt/>
   </#if>
+  <#if parameters.dayValue?if_exists != "">
+    day="${parameters.dayValue?html}"<#rt/>
+  </#if>
+  <#if parameters.monthValue?if_exists != "">
+    month="${parameters.monthValue?html}"<#rt/>
+  </#if>
+  <#if parameters.yearValue?if_exists != "">
+    year="${parameters.yearValue?html}"<#rt/>
+  </#if>
   <#if parameters.name?if_exists != "">
     name="${parameters.name?html}"<#rt/>
   </#if>

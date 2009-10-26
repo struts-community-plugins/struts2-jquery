@@ -33,6 +33,8 @@
   <#assign jquerySubscribeFile="jquery.subscribe.1.1.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
+  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js">
 <#else>
   <#assign jqueryFile="jquery-1.3.2.js">
   <#assign jqueryForm="jquery.form.js">
@@ -42,16 +44,13 @@
   <#assign jquerySubscribeFile="jquery.subscribe.1.1.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
+  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js">
+  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js">
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript">
-  google.load("jquery", "1.3.2");
-	<#if parameters.jqueryui?default(false)>
-  google.load("jqueryui", "1.7.2");
-	</#if>
-</script>
+<script type="text/javascript" src="${jqueryGoogle}"></script>
+<script type="text/javascript" src="${jqueryUiGoogle}"></script>
 <#else>
   <script type="text/javascript" src="${base}/struts/js/${jqueryFile}"></script>
 	<#if parameters.jqueryui?default(false)>
@@ -66,6 +65,8 @@
 </#if>
   <script type="text/javascript" src="${base}/struts/js/${jqueryStrutsFile}"></script>
 <#if parameters.jqueryui?default(false)>
+  <script type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
     <#if parameters.jquerytheme?if_exists != "">
         <link rel="stylesheet" href="${base}/${basePath}/${parameters.jquerytheme?string}/ui.theme.css" type="text/css"/>
     <#else>

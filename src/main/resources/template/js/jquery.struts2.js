@@ -1,20 +1,17 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * jquery.struts2.js
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * Integration of jquery with struts 2 for first class support of Ajax in struts 2
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Requires use of jQuery. Tested with jQuery 1.3 and above
+ *
+ * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
+ *
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ *
  */
 (function($){
 	/**
@@ -133,7 +130,8 @@
 						effect.targets = target;
 						var tarelem = $('#' + target);
 						tarelem.subscribe(actionTopic, loadHandler, options);
-						tarelem.subscribe(effectTopic+target, '_sj_effects', effect);
+						tarelem.subscribe(effectTopic+target, '_s2j_effects', effect);
+						/*
 		    	    	if(ajaxhistory) {
 		    	    		tarelem.data( 'bbq', {});
 		    	    		
@@ -153,13 +151,14 @@
 		    		    		$.publish(topic,options);
 		    		    	});
 		    	    	}
+		    	    	*/
 					}
 	    		});
 	    		
 			} else {   // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 				effect.targets = options.id;
-				$('#' + options.id).subscribe(effectTopic+options.id, '_sj_effects', effect);
+				$('#' + options.id).subscribe(effectTopic+options.id, '_s2j_effects', effect);
 					
 				//bind event topic listeners
 		    	if(options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
@@ -178,14 +177,14 @@
 		container: function($elem, options){
 
 			var loadHandler = '_s2j_container_load',
-			effectHandler = '_sj_effects';
+			effectHandler = '_s2j_effects';
 			
 
 			this.action($elem, options, loadHandler, 'div');
 
 
 			//load div using ajax
-			if(options.formids || options.src) {
+			if(options.formids || (options.src && options.src != '#')) {
 				if(options.src != '#') {
 	
 					if(options.reloadtopics) {			  
@@ -196,7 +195,7 @@
 					}
 
 					//publishing not triggering to prevent event propagation issues
-			    	var divTopic = '$.struts2_jquery_div_load_' + options.id;
+			    	var divTopic = '_s2j_div_load_' + options.id;
 		    		$elem.subscribe(divTopic, loadHandler);
 					if(options.bindon) {
 						var $bindElement = $('#'+options.bindon);
@@ -223,7 +222,7 @@
 			}
 			else {
 					
-					var divEffectTopic = '_sj_div_effect_' + options.id;
+					var divEffectTopic = '_s2j_div_effect_' + options.id;
 					if(options.id && options.effect) {
 						var effect = {};
 						effect.targets = options.id;
@@ -390,7 +389,7 @@
 		select: function($elem, options){
 
 			var loadHandler = '_s2j_container_load';
-	    	var selectTopic = '$.struts2_jquery_topic_load_' + options.id;
+	    	var selectTopic = '_s2j_topic_load_' + options.id;
 
 			if(options.href && options.href != '#') {
 
@@ -449,7 +448,7 @@
 				var targets = options.targets.split(',');
 				for ( var i = 0; i < targets.length; i++) {
 					var target = targets[i];
-	    			$('#' + target).subscribe(topic, '_sj_effects', options);
+	    			$('#' + target).subscribe(topic, '_s2j_effects', options);
 				}
 			}
 		},
@@ -487,7 +486,7 @@
 
 				if(options.href && options.href != '#') {
 					var loadHandler = '_s2j_container_load';
-			    	var divTopic = '$.struts2_jquery_topic_load_' + options.id;
+			    	var divTopic = '_s2j_topic_load_' + options.id;
 		    		$elem.subscribe(divTopic, loadHandler);
 		    		$elem.publish(divTopic,options);				
 				}			
@@ -841,13 +840,6 @@
 		}
 	};		
 		
-//	Struts2jQuery = $.struts2_jquery;
-	
-	
-	/**
-	 * STRUTS2 JQUERY BUILT-IN ELEMENT HANDLERS 
-	 */
-		
 	/** Container logic */
 	//Register handler to load a container
 	$.subscribeHandler('_s2j_container_load', function(event, data) {
@@ -1014,7 +1006,7 @@
 	
 	/** Effects */	
     //Register handler for effects
-    $.subscribeHandler('_sj_effects', function(event, data) {
+    $.subscribeHandler('_s2j_effects', function(event, data) {
 		var options = {};
 		$.extend(options,event.data);
 		if(options.targets || options.effect) {
