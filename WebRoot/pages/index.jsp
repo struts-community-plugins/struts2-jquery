@@ -46,22 +46,22 @@
       <div id="nav">
         <div class="hlist ui-widget-header">
           <ul>
-            <li class="ui-widget-header ui-state-active"><s:url id="urltabs" action="tabs-local"/><sj:a id="tabslink" href="%{urltabs}" targets="main">Tabs</sj:a></li>
+            <li class="ui-widget-header ui-state-active"><s:url id="urlremotelink" action="remote-link"/><sj:a id="remotelink" href="%{urlremotelink}" targets="main">Ajax Link</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlform" action="form"/><sj:a id="formlink" href="%{urlform}" targets="main">Ajax Forms</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlremotediv" action="remote-div"/><sj:a id="remotedivlink" href="%{urlremotediv}" targets="main">Ajax Div</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urltabs" action="tabs-local"/><sj:a id="tabslink" href="%{urltabs}" targets="main">Tabs</sj:a></li>
             <li class="ui-widget-header"><s:url id="urldatepicker" action="datepicker"/><sj:a id="dplink" href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
             <li class="ui-widget-header"><s:url id="urldialog" action="dialog"/><sj:a id="dialink" href="%{urldialog}" targets="main">Dialog</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlaccordion" action="accordion"/><sj:a id="accordionlink" href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlslider" action="slider"/><sj:a id="sliderlink" href="%{urlslider}" targets="main">Slider</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlprogressbar" action="progressbar"/><sj:a id="pblink" href="%{urlprogressbar}" targets="main">Progressbar</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlremotelink" action="remote-link"/><sj:a id="remotelink" href="%{urlremotelink}" targets="main">Ajax Link</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlform" action="form"/><sj:a id="formlink" href="%{urlform}" targets="main">Ajax Forms</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlremotediv" action="remote-div"/><sj:a id="remotedivlink" href="%{urlremotediv}" targets="main">Ajax Div</sj:a></li>
             <li class="ui-widget-header"><s:url id="urleffectdiv" action="effect-div"/><sj:a id="interactionlink" href="%{urleffectdiv}" targets="main">Effects/Interactions</sj:a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/downloads/list">Download</a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/w/list">Wiki</a></li>
           </ul>
         </div>
       </div>
-      <sj:div id="main" href="%{urltabs}">
+      <sj:div id="main" href="%{urlremotelink}">
         <img id="indicator" src="images/indicator.gif" alt="Loading..."/>
       </sj:div>
       <!-- begin: #footer -->
