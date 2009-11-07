@@ -40,7 +40,7 @@
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.6.0</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.6.1</h4>
         </div>
       </div>
       <div id="nav">
