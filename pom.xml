@@ -4,7 +4,7 @@
         <modelVersion>4.0.0</modelVersion>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-plugin</artifactId>
-        <version>1.6.0</version>
+        <version>1.6.1</version>
         <name>Struts 2 jQuery Plugin</name>
         <url>http://code.google.com/p/struts2-jquery</url>
         <description>A Plugin for the popular java web framework struts2 to provide ajax functionality and UI Widgets based on the jQuery javascript framework. </description>
@@ -72,11 +72,6 @@
         <dependencies>
         
         <!-- Core -->
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-core</artifactId>
-            <version>2.1.8-SNAPSHOT</version>
-        </dependency>
         
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -90,18 +85,25 @@
             <version>1.0.4</version>
             <optional>true</optional>
         </dependency>
-        <dependency>
-        	<groupId>org.apache.velocity</groupId>
-        	<artifactId>velocity</artifactId>
-        	<version>1.5</version>
-        	<classifier>pom</classifier>
-        </dependency>
                         
         <!-- JSP API -->
                                 
                 <!-- struts-annotations must be in compile scope for maven-apt-plugin to
         function correctly. Marking it optional to exclude it from transitive dependency resolution --> 
                
+        <dependency>
+        	<groupId>org.apache.struts</groupId>
+        	<artifactId>struts2-core</artifactId>
+        	<version>2.1.8</version>
+        	<type>jar</type>
+        	<scope>compile</scope>
+        </dependency>
+        <dependency>
+        	<groupId>org.apache.velocity</groupId>
+        	<artifactId>velocity</artifactId>
+        	<version>1.5</version>
+        	<scope>compile</scope>
+        </dependency>
         </dependencies>
      
 </project>

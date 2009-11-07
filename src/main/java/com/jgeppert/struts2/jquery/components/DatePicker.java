@@ -26,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
@@ -197,9 +198,11 @@ public class DatePicker extends AbstractTopicsBean {
       
       if (dateValue != null)
       {
-        addParameter("dayValue", new SimpleDateFormat("d").format(dateValue));
-        addParameter("monthValue", new SimpleDateFormat("M").format(dateValue));
-        addParameter("yearValue", new SimpleDateFormat("yyyy").format(dateValue));
+    	Calendar calendar = new GregorianCalendar();
+    	calendar.setTime(dateValue);
+        addParameter("dayValue", ""+calendar.get(Calendar.DAY_OF_MONTH));
+        addParameter("monthValue", ""+calendar.get(Calendar.MONTH));
+        addParameter("yearValue", ""+calendar.get(Calendar.YEAR));
       }
     }
 
