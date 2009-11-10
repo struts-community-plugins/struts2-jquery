@@ -84,6 +84,9 @@
 <#else>
 	var ajaxhistory=false;
 </#if>
+<#if parameters.defaultIndicator?if_exists != "">
+	var defaultIndicator="${parameters.defaultIndicator?string}";
+</#if>
 $(document).ready(function () {
 	$.ajaxSetup ({
 	<#if parameters.ajaxcache?default(false)>

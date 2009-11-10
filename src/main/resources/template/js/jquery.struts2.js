@@ -873,6 +873,7 @@
 	
 				var indicatorId = options.indicatorid;
 				if(indicatorId) { $('#' + indicatorId).show(); }
+				if(defaultIndicator) { $('#' + defaultIndicator).show(); }
 		
 				var onAlwaysTopics = options.onalwaystopics;
 				
@@ -966,8 +967,9 @@
 				if(options.loadingtext) { $('#' + target).html(options.loadingtext); }
 			}
 		}
-		
+
 		if(options.indicatorid) { $('#' + options.indicatorid).show(); }
+		if(defaultIndicator) { $('#' + defaultIndicator).show(); }
 
 		params.beforeSubmit = function (formData, form, formoptions) {
 			
@@ -1144,6 +1146,7 @@
 			orginal.status = status;
 
 			if(indi) { $('#' + indi).hide(); }
+			if(defaultIndicator) { $('#' + defaultIndicator).hide(); }
 			
 			if(ctopics) {			  
 				var topics = ctopics.split(',');

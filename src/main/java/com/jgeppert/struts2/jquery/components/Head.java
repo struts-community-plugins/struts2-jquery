@@ -87,6 +87,7 @@ public class Head extends org.apache.struts2.components.Head {
   protected String             loadFromGoogle;
   protected String             ajaxcache;
   protected String             ajaxhistory;
+  protected String             defaultIndicator;
 
   public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -109,6 +110,7 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.loadFromGoogle != null) addParameter("loadFromGoogle", findValue(this.loadFromGoogle, Boolean.class));
     if (this.ajaxcache != null) addParameter("ajaxcache", findValue(this.ajaxcache, Boolean.class));
     if (this.ajaxhistory != null) addParameter("ajaxhistory", findValue(this.ajaxhistory, Boolean.class));
+    if (this.defaultIndicator != null) addParameter("defaultIndicator", findString(this.defaultIndicator));
   }
 
   @Override
@@ -175,5 +177,11 @@ public class Head extends org.apache.struts2.components.Head {
   public void setAjaxhistory(String ajaxhistory)
   {
     this.ajaxhistory = ajaxhistory;
+  }
+
+  @StrutsTagAttribute(description = "The default indicator for all AJAX actions")
+  public void setDefaultIndicator(String defaultIndicator)
+  {
+    this.defaultIndicator = defaultIndicator;
   }
 }
