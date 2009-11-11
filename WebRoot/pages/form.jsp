@@ -33,6 +33,8 @@
 	        </div>
 	        <div class="type-button">
 	            <sj:submit targets="formResult" value="AJAX Submit" indicator="indicator"/>
+				<s:url id="simpleecho" value="/simpleecho.action"/>
+	            <sj:submit href="%{simpleecho}" targets="formResult" value="AJAX Submit 2" indicator="indicator"/>
 	        </div>
         </fieldset>
     </s:form>
@@ -42,9 +44,19 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;s:form id="form" action="echo" theme="simple"&gt;
-     Echo: &lt;s:textfield id="echo" name="echo" value="Hello World!!!"/>
-     &lt;sj:submit targets="result" value="AJAX Submit" indicator="indicator"/&gt;
+    &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;AJAX Form&lt;/legend&gt;
+	        &lt;div class=&quot;type-text&quot;&gt;
+	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+	            &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
+	        &lt;/div&gt;
+	        &lt;div class=&quot;type-button&quot;&gt;
+	            &lt;sj:submit targets=&quot;formResult&quot; value=&quot;AJAX Submit&quot; indicator=&quot;indicator&quot;/&gt;
+				&lt;s:url id=&quot;simpleecho&quot; value=&quot;/simpleecho.action&quot;/&gt;
+	            &lt;sj:submit href="%{simpleecho}" targets=&quot;formResult&quot; value=&quot;AJAX Submit 2&quot; indicator=&quot;indicator&quot;/&gt;
+	        &lt;/div&gt;
+        &lt;/fieldset&gt;
     &lt;/s:form&gt;
 	  </pre>
 	</div>
