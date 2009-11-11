@@ -32,8 +32,9 @@ import com.opensymphony.xwork2.ActionSupport;
 public class ShowCase extends ActionSupport {
 
 	private static final long serialVersionUID = -7133848243722723891L;
-	private String theme;
+	private String theme = "showcase";
 	private boolean google = false;
+  private boolean ajaxhistory = false;
 	private Map<String, String> themes;
 
 	@Action(value="/index", 
@@ -71,4 +72,14 @@ public class ShowCase extends ActionSupport {
 	public void setGoogle(boolean google) {
 		this.google = google;
 	}
+
+  public boolean isAjaxhistory()
+  {
+    return ajaxhistory;
+  }
+
+  public void setAjaxhistory(boolean ajaxhistory)
+  {
+    this.ajaxhistory = ajaxhistory;
+  }
 }

@@ -18,10 +18,10 @@
 	<![endif]-->
 
   <s:if test="%{theme == 'showcase' || theme == null}">
-      <sj:head compressed="false" jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" defaultIndicator="myDefaultIndicator"/>
+      <sj:head compressed="false" jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
   </s:if>
   <s:else>
-      <sj:head compressed="false" jqueryui="true" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" defaultIndicator="myDefaultIndicator"/>
+      <sj:head compressed="false" jqueryui="true" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
   </s:else>
   <script type="text/javascript" src="js/showcase.js"></script>
 </head>
@@ -34,13 +34,14 @@
                 <div>
                 <s:select id="theme" name="theme" list="themes" emptyOption="true"/><br/>
                 <s:checkbox id="google" name="google"/><label for="google" style="padding: 3px;">Load jQuery from Google CDN</label><br/>
+                <s:checkbox id="ajaxhistory" name="ajaxhistory"/><label for="ajaxhistory" style="padding: 3px;">Use Ajaxhistory BETA (Only Tabs)</label><br/>
                 <s:submit value="Change Theme" cssClass="buttonlink ui-state-default ui-corner-all"/>
                 </div>
             </s:form>
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.6.1</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.7.0</h4>
         	<img id="myDefaultIndicator" src="images/ajax-loader.gif" alt="Loading..." style="display:none"/>
         </div>
       </div>
