@@ -79,7 +79,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">The css style to use for element</td>
+					<td align="left" valign="top">The css style definitions for element to use</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">dataType</td>
@@ -103,14 +103,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">none</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Perform a effect on the elements specified in the 'targets' attribute</td>
+					<td align="left" valign="top">Perform a effect on the elements specified in the 'targets' attribute. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">effectDuration</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">2000</td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Integer</td>
+					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Duration of effect in milliseconds. Only valid if 'effect' attribute is set</td>
 				</tr>
 				<tr>
@@ -119,15 +119,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">elementIds</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">A comma delimited list of form elements that should be individually serialized and sent with the input load request. Input element must have a 'name' attribute and will be serialized as <name>=<value></td>
+					<td align="left" valign="top">jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">errorElementId</td>
@@ -151,7 +143,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Form id whose fields will be serialized and passed as parameters</td>
+					<td align="left" valign="top">Comma delimited list of form ids for which to serialize all fields during submission when this element is clicked (if multiple forms have overlapping element names, it is indeterminate which will be used)</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">href</td>
@@ -159,7 +151,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.</td>
+					<td align="left" valign="top">The url to be use when this element is clicked</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">id</td>
@@ -167,7 +159,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">The id to use for the element</td>
+					<td align="left" valign="top">HTML id attribute</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">iframe</td>
@@ -183,7 +175,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Set indicator</td>
+					<td align="left" valign="top">If loading content into a target, Id of element that will be displayed during loading and hidden afterwards (will override settings for the target container)</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">javascriptTooltip</td>
@@ -207,7 +199,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Label expression used for rendering a element specific label</td>
+					<td align="left" valign="top">Label expression used for rendering an element specific label</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">labelSeparator</td>
@@ -495,7 +487,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Comma delimited list of ids of the elements whose content will be updated</td>
+					<td align="left" valign="top">A comma separated list of ids of container elements to load with the contents from the result of this request</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">template</td>
