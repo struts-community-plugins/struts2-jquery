@@ -18,6 +18,5 @@
  * under the License.
  */
 -->
-<script type='text/javascript'>
-$(document).ready(function () { $.struts2_jquery.bind($('#${parameters.id?html}')); });
-</script>
+$.struts2_jquery.bind($('#${parameters.id?html}'),options_${parameters.id?html});
+

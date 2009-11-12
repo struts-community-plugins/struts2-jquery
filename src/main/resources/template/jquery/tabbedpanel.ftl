@@ -18,40 +18,13 @@
  * under the License.
  */
 -->
-<div
-  <#if parameters.selectedTab?exists>
-    selectedTab="${parameters.selectedTab?html}"<#rt/>
-  </#if>
-  <#if parameters.openOnMouseover?default(false)>
-    event="mouseover"<#rt/>
-  </#if>
-  <#if parameters.collapsible?default(false)>
-    collapsible="true"<#rt/>
-  </#if>
-  <#if parameters.useSelectedTabCookie?default(false)>
-    cookie="true"<#rt/>
-  </#if>
-  <#if parameters.animate?default(false)>
-    animate="true"<#rt/>
-  </#if>
-  <#if parameters.cache?default(false)>
-    cache="true"<#rt/>
-  </#if>
-  <#if parameters.spinner?if_exists != "">
-    spinner="${parameters.spinner?html}"<#rt/>
-  </#if>
-  <#if parameters.disabledTabs?if_exists != "">
-    disabledtabs="${parameters.disabledTabs?html}"<#rt/>
-  </#if>
-  <#if parameters.onAddTopics?if_exists != "">
-    onaddtopics="${parameters.onAddTopics?html}"<#rt/>
-  </#if>
-  <#if parameters.onRemoveTopics?if_exists != "">
-    onremovetopics="${parameters.onRemoveTopics?html}"<#rt/>
-  </#if>
-<#include "/${parameters.templateDir}/jquery/base.ftl" />
-<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
-<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+<div id="${parameters.id?html}"
+<#if parameters.cssStyle?if_exists != "">
+ style="${parameters.cssStyle?html}"<#rt/>
+</#if>
+<#if parameters.cssClass?if_exists != "">
+ class="${parameters.cssClass?html}"<#rt/>
+</#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />

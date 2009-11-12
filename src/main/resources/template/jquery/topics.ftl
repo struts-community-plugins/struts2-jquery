@@ -19,21 +19,21 @@
  */
 -->
   <#if parameters.onCompleteTopics?exists>
-    onCompleteTopics="${parameters.onCompleteTopics?html}"<#rt/>
+	options_${parameters.id?html}.oncompletetopics = "${parameters.onCompleteTopics?html}";
   </#if>
   <#if parameters.onSuccessTopics?exists>
-    onSuccessTopics="${parameters.onSuccessTopics?html}"<#rt/>
+	options_${parameters.id?html}.onsuccesstopics = "${parameters.onsuccesstopics?html}";
   </#if>
   <#if parameters.onErrorTopics?exists>
-    onErrorTopics="${parameters.onErrorTopics?html}"<#rt/>
+	options_${parameters.id?html}.onerrortopics = "${parameters.onErrorTopics?html}";
   </#if>
   <#if parameters.onBeforeTopics?exists>
-    onBeforeTopics="${parameters.onBeforeTopics?html}"<#rt/>
+	options_${parameters.id?html}.onbeforetopics = "${parameters.onBeforeTopics?html}";
   </#if>
   <#if parameters.onAlwaysTopics?exists>
-    onAlwaysTopics="${parameters.onAlwaysTopics?html}"<#rt/>
+	options_${parameters.id?html}.onalwaystopics = "${parameters.onAlwaysTopics?html}";
   </#if>
   <#if parameters.onChangeTopics?exists>
-    onChangeTopics="${parameters.onChangeTopics?html}"<#rt/>
+	options_${parameters.id?html}.onchangetopics = "${parameters.onChangeTopics?html}";
   </#if>
   

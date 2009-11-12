@@ -6,6 +6,7 @@
  * Requires use of jQuery. Tested with jQuery 1.3 and above
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
+ * Copyright (c) 2009 Johannes Geppert http://www.jgeppert.com
  *
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -26,18 +27,11 @@
 		//post-binding function of the type function(element){}. called before binding the element
 		postBind: null,
 			
-		bind: function(el) {
+		bind: function(el, options) {
 			
 			if(el) {
 				var $el = $(el);
 				el = $el[0];
-				var attributes = el.attributes,
-				options = {};
-				
-				//attributes names are sometimes returned all lower/upper case so we need to force to a case for uniformity
-				for(var i = 0; i < attributes.length; i++) {
-					options[attributes[i].name.toLowerCase()] = attributes[i].value;
-				}
 				
 				var tag = el.tagName.toLowerCase();
 				options.tagname = tag;
@@ -45,11 +39,10 @@
 				//extension point to allow custom pre-binding processing
 				if(typeof($.struts2_jquery.preBind) != "function" || $.struts2_jquery.preBind($el)) {
 					
-					var jqueryaction = $el.attr("jqueryaction");
-					if(!jqueryaction)
-						jqueryaction = tag;
+					if(!options.jqueryaction)
+						options.jqueryaction = tag;
 									
-					this[jqueryaction]($el, options);
+					this[options.jqueryaction]($el, options);
 				
 					//extension point to allow custom post-binding processing
 					if($.struts2_jquery.postBind && (typeof($.struts2_jquery.postBind) == "function")) {
@@ -70,9 +63,6 @@
 		
 		action: function($elem, options, loadHandler, type){
 
-			if($elem.attr('href')) {options.src = $elem.attr('href')}
-	    	if($elem.attr('href') && type == 'a') { $elem.attr('href','#'); }
-	    				
 			if(options.opendialog) {
 				$elem.bind('click', function(event) {
 					$('#'+options.opendialog).dialog('open');
@@ -167,7 +157,6 @@
 			}
 
 	    	if(type == "a") {
-		    	options.src = href;
 				$elem.publishOnEvent('click', actionTopic);			//bind custom action topic to click event
 	    	}
 	    	
@@ -184,8 +173,8 @@
 
 
 			//load div using ajax
-			if(options.formids || (options.src && options.src != '#')) {
-				if(options.src != '#') {
+			if(options.formids || (options.href && options.href != '#')) {
+				if(options.href != '#') {
 	
 					if(options.reloadtopics) {			  
 						var topics = options.reloadtopics.split(',');
@@ -275,7 +264,7 @@
 						}
 					}
 					
-					if(options.resizable == 'true') {
+					if(options.resizable) {
 	
 				        var ros = options.resizableoptions;
 				        var ro = window[ros];
@@ -292,7 +281,7 @@
 					}
 				}
 
-			if(options.draggable == 'true') {
+			if(options.draggable) {
 				
 		        var daos = options.draggableoptions;
 		        var dao = window[daos];
@@ -308,7 +297,7 @@
 				$elem.draggable(dao);
 			}
 			
-			if(options.droppable == 'true') {
+			if(options.droppable) {
 
 		        var doos = options.droppableoptions;
 		        var doo = window[doos];
@@ -326,7 +315,7 @@
 				$elem.droppable(doo);
 			}
 			
-			if(options.selectable == 'true') {
+			if(options.selectable) {
 
 		        var seos = options.selectableoptions;
 		        var seo = window[seos];
@@ -345,7 +334,7 @@
 				$elem.selectable(seo);
 			}
 
-			if(options.sortable == 'true') {
+			if(options.sortable) {
 
 		        var soos = options.sortableoptions;
 		        var soo = window[soos];
@@ -455,21 +444,20 @@
 		
 		dialog: function($elem, options){
 			
-
 			var params = {};
-			params.autoOpen = eval(options.autoopen ? options.autoopen : false);
-			params.modal = eval(options.modal ? options.modal : false);
-			params.resizable = eval(options.resizable ? options.resizable : true);
-			params.draggable = eval(options.draggable ? options.draggable : true);
+			params.autoOpen = options.autoopen;
+			params.modal = options.modal;
+			params.resizable = options.resizable;
+			params.draggable = options.draggable;
+			params.width = options.width;
+			params.position = options.position;
+			params.zIndex = options.zindex;
+			params.backgroundColor = options.backgroundcolor;
+			params.hide = options.hide;
+			params.show = options.show;
 			if(options.height) { params.height = eval(options.height); }
-			if(options.width) { params.width = eval(options.width); }
-			if(options.position) { params.position = eval(options.position); }
-			if(options.zindex) { params.zIndex = parseInt(options.zindex); }
-			if(options.backgroundcolor) { params.backgroundColor = options.backgroundcolor; }
-			if(options.hide) { params.hide = options.hide; }
-			if(options.show) { params.show = options.show; }
 			
-			if(options.title) { params.title = options.title; }
+			params.title = options.title;
 			
 			if(options.buttons) {
 		        var buttonsStr = options.buttons;
@@ -522,11 +510,11 @@
 		        	para.disabled = eval("( " + disabledtabsStr + " )" );
 		        }
 			}
-			if(options.cache && options.cache == 'true')	para.cache = true;
-			if(options.animate && options.animate == 'true')	para.fx = { opacity: 'toggle' };
-			if(options.cookie && options.cookie == 'true')	para.cookie = { expires: 30 };
-			if(options.collapsible && options.collapsible == 'true')	para.collapsible = true;
-			if(options.openonmouseover && options.openonmouseover == 'true')	para.event = 'mouseover';
+			if(options.cache)	para.cache = true;
+			if(options.animate)	para.fx = { opacity: 'toggle' };
+			if(options.cookie)	para.cookie = { expires: 30 };
+			if(options.collapsible)	para.collapsible = true;
+			if(options.openonmouseover)	para.event = 'mouseover';
 			if(options.orientation)	para.orientation = options.orientation;
 			if(options.spinner)	para.spinner = options.spinner;
 			if(options.selectedtab)	para.selected = parseInt(options.selectedtab);
@@ -665,17 +653,19 @@
 					};
 				}
 				
-				if(options.changemonth && options.changemonth == 'true')	params.changeMonth = true;
-				if(options.changeyear && options.changeyear == 'true')	params.changeYear = true;
-				if(options.showbuttonpanel && options.showbuttonpanel == 'true')	params.showButtonPanel = true;
+				if(options.changemonth)	params.changeMonth = true;
+				if(options.changeyear)	params.changeYear = true;
+				if(options.showbuttonpanel)	params.showButtonPanel = true;
+				if(options.buttonimageonly)	params.buttonImageOnly = true;
 				params.dateFormat = options.displayformat;
-				params.buttonImageOnly = options.buttonimageonly;
 				params.buttonImage = options.buttonimage;
 				params.showOn = options.showon;
 				params.buttonText = options.buttontext;
 				params.showAnim = options.showanim;
 				params.firstDay = options.firstday;
 				params.yearRange = options.yearrange;
+				params.duration = options.duration;
+				params.appendText = options.appendtext;
 		        
 				if(options.numberofmonths) {
 			        var numberofmonthsStr = options.numberofmonths;
@@ -700,14 +690,8 @@
 		    	$elem.val($.datepicker.formatDate(options.displayformat, new Date(options.year, options.month, options.day)));
 		    }
 		    if(options.zindex) {
-		    	$('#ui-datepicker-div').css("z-index", parseInt(options.zindex)); 
+		    	$('#ui-datepicker-div').css("z-index", options.zindex); 
 		    }
-		    
-			if(options.disabled == 'true') {
-
-				$elem.attr("disabled","disabled");
-				$elem.addClass("disabled");
-			}
 		},
 		slider: function($elem, options) {
 			
@@ -725,14 +709,14 @@
 					 }
 				};
 				
-				if(options.animate && options.animate == 'true')	params.animate = true;
-				var value = parseInt(options.value);
+				if(options.animate)	params.animate = true;
+				var value = options.value;
 				if(value > 0) params.value = value;
 				else params.value = 0;
-				if(options.max)	params.max = parseInt(options.max);
-				if(options.min)	params.min = parseInt(options.min);
+				if(options.max)	params.max = options.max;
+				if(options.min)	params.min = options.min;
 				if(options.orientation)	params.orientation = options.orientation;
-				if(options.step) params.step = parseInt(options.step);
+				if(options.step) params.step = options.step;
 
 				if(options.range) {
 					if(options.range == 'true')	{
@@ -753,7 +737,7 @@
 				
 				params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
 				
-				var value = parseInt(options.value);
+				var value = options.value;
 				if(value > 0) params.value = value;
 				else params.value = 0;
 			}
@@ -765,18 +749,18 @@
 			var active = true;
 			if(options) {
 
-				if(options.fillspace && options.fillspace == 'true')	params.fillSpace = true;
-				if(options.collapsible && options.collapsible == 'true')	params.collapsible = true;
-				if(options.clearstyle && options.clearstyle == 'true')	params.clearStyle = true;
-				if(options.autoheight && options.autoheight == 'true')	params.autoHeight = true;
-				if(options.fillspace && options.fillspace == 'true')	params.fillSpace = true;
+				if(options.fillspace)	params.fillSpace = true;
+				if(options.collapsible)	params.collapsible = true;
+				if(options.clearstyle)	params.clearStyle = true;
+				if(options.autoheight)	params.autoHeight = true;
+				if(options.fillspace)	params.fillSpace = true;
 				if(options.event)	params.event = options.event;
 				if(options.header)	params.header = options.header;
 				else				params.header = 'h3';
 				if(options.animated)
 				{
 					if(options.animated == 'true') params.animated = true;
-					else if(options.animated == 'false') params.animated = false;
+					else if(options.animated == false) params.animated = false;
 					else params.animated = options.animated;
 				}
 				
@@ -846,18 +830,11 @@
 
 		var container = $(event.target);
 		var tagname = $(event.target)[0].tagName.toLowerCase();
-		
-		//need to also make use of original attributes registered with the container (such as onCompleteTopics)
-		var attributes = container[0].attributes;
 		var options = {};
-		for(var i = 0; i < attributes.length; i++) {
-			options[attributes[i].name.toLowerCase()] = attributes[i].value;
-		}
-		
-		$.extend(options,event.data);
-		if(data && !data.id) { //we don;t want to merge 'options; when passed an element as the data (such as when published from an onsuccesstopic)
-			$.extend(options,data);
-		}
+		if(data)
+			$.extend(options, data);
+		if(event.data)
+			$.extend(options, event.data);
 		
 		var isDisabled = false;
 		isDisabled = options.disabled == null ? isDisabled : options.disabled;
@@ -896,33 +873,37 @@
 				if(options.loadingtext) { container.html(options.loadingtext); }
 				
 				var modus = 'html';
-				if(tagname == 'textarea' || (options.type && options.type == 'text'))
-					modus = 'value';
-				else if(tagname == 'select')
-					modus = 'select';
+				if(options.type) {
+					if(options.type == 'text')
+						modus = 'value';
+					else if(options.type == 'select')
+						modus = 'select';
+				}
 				
-				options.success = pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, modus, options);
-				options.complete = pubCom(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
-				options.error = pubErr(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
+				var params = {};
+				
+				params.success = pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, modus, options);
+				params.complete = pubCom(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
+				params.error = pubErr(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 				
 				//load container using ajax
 				if(options.href) {
 					
-					options.type = "POST";
-					options.url = options.href;
+					params.type = "POST";
+					params.url = options.href;
 					if(options.hrefparameter) {
-						options.data = options.hrefparameter;
+						params.data = options.hrefparameter;
 					}
 					
 					if(options.datatype) {
-						options.dataType = options.datatype;
+						params.dataType = options.datatype;
 					}
 					else {
-						options.dataType = 'html';
+						params.dataType = 'html';
 					}
 					
-					if(!options.data) { options.data = {}; }	//fix 'issue' wherein IIS will reject post without data
-					$.ajax(options);
+					if(!params.data) { params.data = {}; }	//fix 'issue' wherein IIS will reject post without data
+					$.ajax(params);
 				}
 			}
 		}
@@ -934,16 +915,11 @@
 		var container = $(event.target);
 		
 		//need to also make use of original attributes registered with the container (such as onCompleteTopics)
-		var attributes = container[0].attributes;
 		var options = {};
-		for(var i = 0; i < attributes.length; i++) {
-			options[attributes[i].name.toLowerCase()] = attributes[i].value;
-		}
-		
-		$.extend(options,event.data);
-		if(data && !data.id) { //we don;t want to merge 'options; when passed an element as the data (such as when published from an onsuccesstopic)
-			$.extend(options,data);
-		}
+		if(data)
+			$.extend(options, data);
+		if(event.data)
+			$.extend(options, event.data);
 		
 		var params = {};
 		if(options.href && options.href != '#')	params.url = options.href;
@@ -1174,7 +1150,7 @@
 				}
 			}
 			
-			if(options.resizable && options.resizable == 'true') {
+			if(options.resizable) {
 
 		        var ros = options.resizableoptions;
 		        var ro = window[ros];

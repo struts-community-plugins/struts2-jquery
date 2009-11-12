@@ -18,18 +18,46 @@
  * under the License.
  */
 -->
-  <#if parameters.sortable?default(false)> sortable="true"</#if>
-  <#if parameters.sortableOptions?if_exists != ""> sortableoptions="${parameters.sortableOptions?html}"</#if>
-  <#if parameters.sortableOnBeforeStopTopics?if_exists != ""> sortableonbeforestoptopics="${parameters.sortableOnBeforeStopTopics?html}"</#if>
-  <#if parameters.sortableOnStopTopics?if_exists != ""> sortableonstoptopics="${parameters.sortableOnStopTopics?html}"</#if>
-  <#if parameters.sortableOnStartTopics?if_exists != ""> sortableonstarttopics="${parameters.sortableOnStartTopics?html}"</#if>
-  <#if parameters.sortableOnSortTopics?if_exists != ""> sortableonsorttopics="${parameters.sortableOnSortTopics?html}"</#if>
-  <#if parameters.sortableOnActivateTopics?if_exists != ""> sortableonactivatetopics="${parameters.sortableOnActivateTopics?html}"</#if>
-  <#if parameters.sortableOnDeactivateTopics?if_exists != ""> sortableondeactivatetopics="${parameters.sortableOnDeactivateTopics?html}"</#if>
-  <#if parameters.sortableOnOverTopics?if_exists != ""> sortableonovertopics="${parameters.sortableOnOverTopics?html}"</#if>
-  <#if parameters.sortableOnOutTopics?if_exists != ""> sortableonouttopics="${parameters.sortableOnOutTopics?html}"</#if>
-  <#if parameters.sortableOnRemoveTopics?if_exists != ""> sortableonremovetopics="${parameters.sortableOnRemoveTopics?html}"</#if>
-  <#if parameters.sortableOnReceiveTopics?if_exists != ""> sortableonreceivetopics="${parameters.sortableOnReceiveTopics?html}"</#if>
-  <#if parameters.sortableOnChangeTopics?if_exists != ""> sortableonchangetopics="${parameters.sortableOnChangeTopics?html}"</#if>
-  <#if parameters.sortableOnUpdateTopics?if_exists != ""> sortableonupdatetopics="${parameters.sortableOnUpdateTopics?html}"</#if>
+  <#if parameters.sortable?default(false)>
+	options_${parameters.id?html}.sortable = true;<#rt/>
+   </#if>
+  <#if parameters.sortableOptions?if_exists != "">
+ 	options_${parameters.id?html}.sortableoptions = "${parameters.sortableOptions?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnBeforeStopTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonbeforestoptopics = "${parameters.sortableOnBeforeStopTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnStopTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonstoptopics = "${parameters.sortableOnStopTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnStartTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonstarttopics = "${parameters.sortableOnStartTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnSortTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonsorttopics = "${parameters.sortableOnSortTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnActivateTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonactivatetopics = "${parameters.sortableOnActivateTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnDeactivateTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableondeactivatetopics = "${parameters.sortableOnDeactivateTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnOverTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonovertopics = "${parameters.sortableOnOverTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnOutTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonouttopics = "${parameters.sortableOnOutTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnRemoveTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonremovetopics = "${parameters.sortableOnRemoveTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnReceiveTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonreceivetopics = "${parameters.sortableOnReceiveTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnChangeTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonchangetopics = "${parameters.sortableOnChangeTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.sortableOnUpdateTopics?if_exists != "">
+ 	options_${parameters.id?html}.sortableonupdatetopics = "${parameters.sortableOnUpdateTopics?html}";<#rt/>
+   </#if>
   

@@ -19,11 +19,13 @@
  */
 -->
 
-<div
-    value="${parameters.value?default('0')}"<#rt/>
-<#include "/${parameters.templateDir}/jquery/base.ftl" />
-<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
-<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+<div id="${parameters.id?html}"
+<#if parameters.cssStyle?if_exists != "">
+ style="${parameters.cssStyle?html}"<#rt/>
+</#if>
+<#if parameters.cssClass?if_exists != "">
+ class="${parameters.cssClass?html}"<#rt/>
+</#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />

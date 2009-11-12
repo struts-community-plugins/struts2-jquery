@@ -18,8 +18,18 @@
  * under the License.
  */
 -->
-  <#if parameters.resizable?default(false)> resizable="true"</#if>
-  <#if parameters.resizableOptions?if_exists != ""> resizableoptions="${parameters.resizableOptions?html}"</#if>
-  <#if parameters.resizableOnResizeTopics?if_exists != ""> resizableonresizetopics="${parameters.resizableOnResizeTopics?html}"</#if>
-  <#if parameters.resizableOnStartTopics?if_exists != ""> resizableonstarttopics="${parameters.resizableOnStartTopics?html}"</#if>
-  <#if parameters.resizableOnStopTopics?if_exists != ""> resizableonstoptopics="${parameters.resizableOnStopTopics?html}"</#if>
+  <#if parameters.resizable?default(false)>
+	options_${parameters.id?html}.resizable = true;<#rt/>
+   </#if>
+  <#if parameters.resizableOptions?if_exists != "">
+ 	options_${parameters.id?html}.resizableoptions = "${parameters.resizableOptions?html}";<#rt/>
+   </#if>
+  <#if parameters.resizableOnResizeTopics?if_exists != "">
+	options_${parameters.id?html}.resizableonresizetopics = "${parameters.resizableOnResizeTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.resizableOnStartTopics?if_exists != "">
+	options_${parameters.id?html}.resizableonstarttopics = "${parameters.resizableOnStartTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.resizableOnStopTopics?if_exists != "">
+	options_${parameters.id?html}.resizableonstoptopics = "${parameters.resizableOnStopTopics?html}";<#rt/>
+   </#if>

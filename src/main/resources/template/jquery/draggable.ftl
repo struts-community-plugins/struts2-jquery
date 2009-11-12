@@ -18,8 +18,18 @@
  * under the License.
  */
 -->
-  <#if parameters.draggable?default(false)> draggable="true"</#if>
-  <#if parameters.draggableOptions?if_exists != ""> draggableoptions="${parameters.draggableOptions?html}"</#if>
-  <#if parameters.draggableOnStartTopics?if_exists != ""> draggableonstarttopics="${parameters.draggableOnStartTopics?html}"</#if>
-  <#if parameters.draggableOnStopTopics?if_exists != ""> draggableonstoptopics="${parameters.draggableOnStopTopics?html}"</#if>
-  <#if parameters.draggableOnDragTopics?if_exists != ""> draggableondragtopics="${parameters.draggableOnDragTopics?html}"</#if>
+  <#if parameters.draggable?default(false)> 
+	options_${parameters.id?html}.draggable = true;<#rt/>
+  </#if>
+  <#if parameters.draggableOptions?if_exists != ""> 
+	options_${parameters.id?html}.draggableoptions = "${parameters.draggableOptions?html}";<#rt/>
+  </#if>
+  <#if parameters.draggableOnStartTopics?if_exists != "">
+ 	options_${parameters.id?html}.draggableonstarttopics = "${parameters.draggableOnStartTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.draggableOnStopTopics?if_exists != "">
+	options_${parameters.id?html}.draggableonstoptopics = "${parameters.draggableOnStopTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.draggableOnDragTopics?if_exists != "">
+	options_${parameters.id?html}.draggableondragtopics = "${parameters.draggableOnDragTopics?html}";<#rt/>
+   </#if>

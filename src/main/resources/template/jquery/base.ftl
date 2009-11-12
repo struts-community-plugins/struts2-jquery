@@ -19,28 +19,17 @@
  */
 -->
   <#if parameters.jqueryaction?exists>
-    jqueryaction="${parameters.jqueryaction?html}"<#rt/>
+	options_${parameters.id?html}.jqueryaction = "${parameters.jqueryaction?html}";
   </#if>
   <#if parameters.id?exists>
-    id="${parameters.id?html}"<#rt/>
+	options_${parameters.id?html}.id = "${parameters.id?html}";
   </#if>
   <#if parameters.onHideTopics?exists>
-    onhidetopics="${parameters.onHideTopics?string?html}"<#rt/>
+	options_${parameters.id?html}.onhidetopics = "${parameters.onHideTopics?string?html}";
   </#if>
   <#if parameters.onShowTopics?exists>
-    onshowtopics="${parameters.onShowTopics?string?html}"<#rt/>
+	options_${parameters.id?html}.onshowtopics = "${parameters.onShowTopics?string?html}";
   </#if>
   <#if parameters.onRemoveTopics?exists>
-    onremovetopics="${parameters.onRemoveTopics?string?html}"<#rt/>
-  </#if>
-  <#if parameters.disabled?default(false)>
-	 disabled="true"<#rt/>
-  </#if>
-  <#if parameters.cssStyle?if_exists != "">
-	 style="${parameters.cssStyle?string?html}"<#rt/>
-  </#if>
-  <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?string?html} _struts2_jquery_bound"<#rt/>
-  <#else>
-  	 class="_struts2_jquery_bound"<#rt/>
+	options_${parameters.id?html}.onremovetopics = "${parameters.onRemoveTopics?string?html}";
   </#if>

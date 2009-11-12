@@ -19,4 +19,17 @@
  */
 -->
 </a>
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+	<#if parameters.openDialog?if_exists != ""> 
+	options_${parameters.id?html}.opendialog = "${parameters.openDialog?html}";
+	</#if>
+  <#include "/${parameters.templateDir}/jquery/base.ftl" />
+  <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
+  <#include "/${parameters.templateDir}/jquery/action.ftl" />
+
+  <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

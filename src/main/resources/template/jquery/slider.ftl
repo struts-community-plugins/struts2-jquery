@@ -41,35 +41,13 @@
     disabled="disabled"<#rt/>
   </#if>
 />
-<div
-  <#if parameters.widgetid?if_exists != "">
-    hiddenid="${parameters.widgetid?html}"<#rt/>
-  </#if>
-  <#if parameters.animate?default(false)>
-    animate="true"<#rt/>
-  </#if>
-  <#if parameters.range?if_exists != "">
-    range="${parameters.range?html}"<#rt/>
-  </#if>
-    value="${parameters.value?default('0')}"<#rt/>
-  <#if parameters.max?if_exists != "">
-    max="${parameters.max?html}"<#rt/>
-  </#if>
-  <#if parameters.min?if_exists != "">
-    min="${parameters.min?html}"<#rt/>
-  </#if>
-  <#if parameters.orientation?if_exists != "">
-    orientation="${parameters.orientation?html}"<#rt/>
-  </#if>
-  <#if parameters.step?if_exists != "">
-    step="${parameters.step?html}"<#rt/>
-  </#if>
-  <#if parameters.displayValueElement?if_exists != "">
-    displayvalueelement="${parameters.displayValueElement?html}"<#rt/>
-  </#if>
-<#include "/${parameters.templateDir}/jquery/base.ftl" />
-<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
-<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+<div id="${parameters.id?html}"
+<#if parameters.cssStyle?if_exists != "">
+ style="${parameters.cssStyle?html}"<#rt/>
+</#if>
+<#if parameters.cssClass?if_exists != "">
+ class="${parameters.cssClass?html}"<#rt/>
+</#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />

@@ -19,8 +19,8 @@
  */
 -->
   <#if parameters.enableTopics?exists>
-    onenabletopics="${parameters.onEnableTopics?string?html}"<#rt/>
+	options_${parameters.id?html}.onenabletopics = "${parameters.onEnableTopics?html}";<#rt/>
   </#if>
   <#if parameters.disableTopics?exists>
-    ondisabletopics="${parameters.onDisableTopics?string?html}"<#rt/>
+	options_${parameters.id?html}.ondisabletopics = "${parameters.onDisableTopics?html}";<#rt/>
   </#if>

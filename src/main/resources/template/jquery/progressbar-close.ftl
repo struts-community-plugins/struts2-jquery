@@ -19,4 +19,14 @@
  */
 -->
 </div>
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+	options_${parameters.id?html}.value = ${parameters.value?default('0')};
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

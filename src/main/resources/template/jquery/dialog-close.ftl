@@ -19,4 +19,65 @@
  */
 -->
 </div>
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+  <#if parameters.height?if_exists != "">
+	options_${parameters.id?html}.height = "${parameters.height?html}";
+  </#if>
+  <#if parameters.width?if_exists != "">
+	options_${parameters.id?html}.width = "${parameters.width?html}";
+  </#if>
+  <#if parameters.zindex?if_exists != "">
+	options_${parameters.id?html}.zindex = ${parameters.zindex?html};
+  </#if>
+  <#if parameters.title?if_exists != "">
+	options_${parameters.id?html}.title = "${parameters.title?html}";
+  </#if>
+  <#if parameters.showEffect?if_exists != "">
+	options_${parameters.id?html}.show = "${parameters.showEffect?html}";
+  </#if>
+  <#if parameters.hideEffect?if_exists != "">
+	options_${parameters.id?html}.hide = "${parameters.hideEffect?html}";
+  </#if>
+  <#if parameters.position?if_exists != "">
+	options_${parameters.id?html}.position = "${parameters.position?html}";
+  </#if>
+  <#if parameters.buttons?if_exists != "">
+	options_${parameters.id?html}.buttons = "${parameters.buttons?html}";
+  </#if>
+  <#if parameters.draggable?if_exists != "">
+	options_${parameters.id?html}.draggable = false;
+  <#else>
+	options_${parameters.id?html}.draggable = true;
+  </#if>
+  <#if parameters.resizable?if_exists != "">
+	options_${parameters.id?html}.resizable = "${parameters.resizable?html}";
+  </#if>
+  <#if parameters.autoOpen?if_exists == "false">
+	options_${parameters.id?html}.autoopen = false;
+  <#else>
+	options_${parameters.id?html}.autoopen = true;
+  </#if>
+<#if parameters.modal?if_exists == "true" >
+ <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">
+	<#if parameters.overlayColor?if_exists != "">
+	options_${parameters.id?html}.backgroundcolor = "${parameters.overlayColor?html}";
+	</#if>
+	<#if parameters.overlayOpacity?if_exists != "">
+	options_${parameters.id?html}.opacity = ${parameters.overlayOpacity?html};
+	<#else>
+	opacity="0.7"<#rt/>
+	options_${parameters.id?html}.opacity = 0.7;
+	</#if>
+  </#if>
+	options_${parameters.id?html}.modal = true;
+</#if>
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+<#include "/${parameters.templateDir}/jquery/action.ftl" />
+
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

@@ -19,41 +19,13 @@
  */
 -->
 
-<ul
-  <#if parameters.fillSpace?default(false)>
-    fillSpace="true"<#rt/>
-  </#if>
-  <#if parameters.collapsible?default(false)>
-    collapsible="true"<#rt/>
-  </#if>
-  <#if parameters.clearStyle?default(false)>
-    clearStyle="true"<#rt/>
-  </#if>
-  <#if parameters.autoHeight?default(false)>
-    autoHeight="true"<#rt/>
-  </#if>
-  <#if parameters.openOnMouseover?default(false)>
-    event="mouseover"<#rt/>
-  </#if>
-  <#if parameters.active?if_exists != "">
-    active="${parameters.active?html}"<#rt/>
-  </#if>
-  <#if parameters.href?if_exists != "">
-    href="${parameters.href?html}"<#rt/>
-  </#if>
-  <#if parameters.header?if_exists != "">
-    header="${parameters.header?html}"<#rt/>
-  </#if>
-<#if parameters.animated?if_exists != "">
-<#if parameters.animated?if_exists == "false">
-    animated="false"<#rt/>
-<#else>
-    animated="${parameters.animated?html}"<#rt/>
+<ul id="${parameters.id?html}" 
+<#if parameters.cssStyle?if_exists != "">
+ style="${parameters.cssStyle?html}"<#rt/>
 </#if>
+<#if parameters.cssClass?if_exists != "">
+ class="${parameters.cssClass?html}"<#rt/>
 </#if>
-<#include "/${parameters.templateDir}/jquery/base.ftl" />
-<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
-<#include "/${parameters.templateDir}/jquery/topics.ftl" />
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
@@ -105,4 +77,44 @@
 	<#lt/>
 </@s.iterator>
 </ul>
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+  <#if parameters.fillSpace?default(false)>
+	options_${parameters.id?html}.fillspace = true;
+  </#if>
+  <#if parameters.collapsible?default(false)>
+	options_${parameters.id?html}.collapsible = true;
+  </#if>
+  <#if parameters.clearStyle?default(false)>
+	options_${parameters.id?html}.clearStyle = true;
+  </#if>
+  <#if parameters.autoHeight?default(false)>
+	options_${parameters.id?html}.autoHeight = true;
+  </#if>
+  <#if parameters.openOnMouseover?default(false)>
+	options_${parameters.id?html}.event = "mouseover";
+  </#if>
+  <#if parameters.active?if_exists != "">
+	options_${parameters.id?html}.active = "${parameters.active?html}";
+  </#if>
+  <#if parameters.href?if_exists != "">
+	options_${parameters.id?html}.href = "${parameters.href?html}";
+  </#if>
+  <#if parameters.header?if_exists != "">
+	options_${parameters.id?html}.header = "${parameters.header?html}";
+  </#if>
+<#if parameters.animated?if_exists != "">
+<#if parameters.animated?if_exists == "false">
+	options_${parameters.id?html}.animated = false;
+<#else>
+	options_${parameters.id?html}.animated = "${parameters.animated?html}";
+</#if>
+</#if>
+  <#include "/${parameters.templateDir}/jquery/base.ftl" />
+  <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
+
+  <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

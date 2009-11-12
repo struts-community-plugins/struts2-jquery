@@ -19,56 +19,51 @@
  */
 -->
 
-  <#if parameters.targets?if_exists != ""> targets="${parameters.targets?html}"<#rt/></#if>
-  <#if parameters.hrefUrl?if_exists != "">
-   href="${parameters.hrefUrl?html}"<#rt/>
-  <#else>
-   href="#"<#rt/>
+  <#if parameters.targets?if_exists != "">
+	options_${parameters.id?html}.targets = "${parameters.targets?html}";
   </#if>
-  <#if parameters.hrefParameter??> hrefParameter="${parameters.hrefParameter}"<#rt/></#if>
+  <#if parameters.hrefUrl?if_exists != "">
+	options_${parameters.id?html}.href = "${parameters.hrefUrl?html}";
+  <#else>
+	options_${parameters.id?html}.href = "#";
+  </#if>
+  <#if parameters.hrefParameter?if_exists != ""> 
+	options_${parameters.id?html}.hrefparameter = "${parameters.hrefParameter?html}";
+  </#if>
   <#if parameters.formIds?exists>
-    formIds="${parameters.formIds?html}"<#rt/>
+	options_${parameters.id?html}.formids = "${parameters.formIds?html}";
   </#if>
   <#if parameters.validate?exists>
-    validate="${parameters.validate?string?html}"<#rt/>
+	options_${parameters.id?html}.validate = "${parameters.validate?html}";
   </#if>
   <#if parameters.onClickTopics?exists>
-    onClickTopics="${parameters.onClickTopics?html}"<#rt/>
+	options_${parameters.id?html}.onclicktopics = "${parameters.onClickTopics?html}";
   </#if>
   <#if parameters.indicator?exists>
-    indicatorId="${parameters.indicator?html}"<#rt/>
+	options_${parameters.id?html}.indicatorid = "${parameters.indicator?html}";
   </#if>
   <#if parameters.loadingText?exists>
-    loadingText="${parameters.loadingText?html}"<#rt/>
+	options_${parameters.id?html}.loadingtext = "${parameters.loadingText?html}";
   </#if>
   <#if parameters.errorText?exists>
-    errorText="${parameters.errorText?string?html}"<#rt/>
+	options_${parameters.id?html}.errortext = "${parameters.errorText?html}";
   </#if>
   <#if parameters.errorElementId?exists>
-    errorElementId="${parameters.errorElementId?string?html}"<#rt/>
-  </#if>
-  <#if parameters.onCompleteTopics?exists>
-    onCompleteTopics="${parameters.onCompleteTopics?html}"<#rt/>
-  </#if>
-  <#if parameters.onSuccessTopics?exists>
-    onSuccessTopics="${parameters.onSuccessTopics?html}"<#rt/>
-  </#if>
-  <#if parameters.onErrorTopics?exists>
-    onErrorTopics="${parameters.onErrorTopics?html}"<#rt/>
+	options_${parameters.id?html}.errorelementid = "${parameters.errorElementId?html}";
   </#if>
   <#if parameters.dataType?exists>
-    dataType="${parameters.dataType?html}"<#rt/>
+	options_${parameters.id?html}.datatype = "${parameters.dataType?html}";
   </#if>
    <#if parameters.effect?exists>
-    effect="${parameters.effect?html}"<#rt/>
+	options_${parameters.id?html}.effect = "${parameters.effect?html}";
   </#if>  
   <#if parameters.effectDuration?exists>
-    effectDuration="${parameters.effectDuration?html}"<#rt/>
+	options_${parameters.id?html}.effectduration = "${parameters.effectDuration?html}";
   </#if>  
   <#if parameters.effectOptions?exists>
-    effectOptions="${parameters.effectOptions?html}"<#rt/>
+	options_${parameters.id?html}.effectoptions = "${parameters.effectOptions?html}";
   </#if>  
   <#if parameters.timeout?exists>
-    timeout="${parameters.timeout?html}"<#rt/>
+	options_${parameters.id?html}.timeout = ${parameters.timeout?html};
   </#if>
   

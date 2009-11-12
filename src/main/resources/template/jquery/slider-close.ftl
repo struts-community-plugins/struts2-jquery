@@ -19,7 +19,38 @@
  */
 -->
 </div>
-<#if parameters.label?if_exists != "">
-	<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
-</#if>
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+	options_${parameters.id?html}.value = ${parameters.value?default('0')};
+  <#if parameters.widgetid?if_exists != "">
+	options_${parameters.id?html}.hiddenid = "${parameters.widgetid?html}";
+  </#if>
+  <#if parameters.animate?default(false)>
+	options_${parameters.id?html}.animate = true;
+  </#if>
+  <#if parameters.range?if_exists != "">
+	options_${parameters.id?html}.range = "${parameters.range?html}";
+  </#if>
+  <#if parameters.max?if_exists != "">
+	options_${parameters.id?html}.max = ${parameters.max?html};
+  </#if>
+  <#if parameters.min?if_exists != "">
+	options_${parameters.id?html}.min = ${parameters.min?html};
+  </#if>
+  <#if parameters.orientation?if_exists != "">
+	options_${parameters.id?html}.orientation = "${parameters.orientation?html}";
+  </#if>
+  <#if parameters.step?if_exists != "">
+	options_${parameters.id?html}.step = ${parameters.step?html};
+  </#if>
+  <#if parameters.displayValueElement?if_exists != "">
+	options_${parameters.id?html}.displayvalueelement = "${parameters.displayValueElement?html}";
+  </#if>
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

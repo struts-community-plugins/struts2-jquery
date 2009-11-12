@@ -18,5 +18,29 @@
  * under the License.
  */
 -->
-</div>
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+  <#include "/${parameters.templateDir}/simple/div-close.ftl" />
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+	<#if parameters.reloadTopics?if_exists != ""> 
+	options_${parameters.id?html}.reloadtopics = "${parameters.reloadTopics?html}";
+	</#if>
+	<#if parameters.bindOn?if_exists != ""> 
+	options_${parameters.id?html}.bindon = "${parameters.bindOn?html}";
+	</#if>
+	<#if parameters.events?if_exists != ""> 
+	options_${parameters.id?html}.events = "${parameters.events?html}";
+	</#if>
+  <#include "/${parameters.templateDir}/jquery/base.ftl" />
+  <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
+  <#include "/${parameters.templateDir}/jquery/action.ftl" />
+  <#include "/${parameters.templateDir}/jquery/draggable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/droppable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/resizable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/selectable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
+
+  <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

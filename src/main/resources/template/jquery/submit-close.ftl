@@ -18,15 +18,24 @@
  * under the License.
  */
 -->
-</input>
-<#if parameters.parentTheme?default('') == 'xhtml'>
-  </div><#t/>
-  <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
-<#elseif parameters.parentTheme?default('') == 'css_xhtml'>
-  <#if parameters.labelposition?default("top") == 'top'>
-    </div> <#t/>
-  <#else>
-    </span> <#t/>
-  </#if>  
-</#if>
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+  <#include "/${parameters.templateDir}/xhtml/submit-close.ftl" />
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+   <#if parameters.clearForm?default(false)>
+	options_${parameters.id?html}.clearform = true;
+    </#if>
+   <#if parameters.resetForm?default(false)>
+	options_${parameters.id?html}.resetform = true;
+    </#if>
+   <#if parameters.iframe?default(false)>
+	options_${parameters.id?html}.iframe = true;
+    </#if>
+  <#include "/${parameters.templateDir}/jquery/base.ftl" />
+  <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
+  <#include "/${parameters.templateDir}/jquery/action.ftl" />
+
+  <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

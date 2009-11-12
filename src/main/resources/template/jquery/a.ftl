@@ -18,20 +18,26 @@
  * under the License.
  */
 -->
-<a
-  <#if parameters.name?if_exists != "">	 name="${parameters.name?html}"</#if>
-	<#if parameters.tabindex??>	 tabindex="${parameters.tabindex?html}"</#if>
-	<#if parameters.title??> title="${parameters.title?html}"</#if>
-	<#if parameters.tabindex??> tabindex="${parameters.tabindex?html}"</#if>
-	<#if parameters.openDialog??> openDialog="${parameters.openDialog?html}"</#if>
-    <#if parameters.onClickTopics?if_exists != "">
-     onClickTopics="${parameters.onClickTopics?html}"<#rt/>
-    </#if>
-  <#include "/${parameters.templateDir}/jquery/base.ftl" />
-  <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
-  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
-  <#include "/${parameters.templateDir}/jquery/action.ftl" />
-  <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-  <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-  <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+<a<#rt/>
+<#if parameters.id?if_exists != "">
+ id="${parameters.id?html}"<#rt/>
+</#if>
+<#if parameters.href?if_exists != "">
+ href="#"<#rt/>
+</#if>
+<#if parameters.tabindex??>
+ tabindex="${parameters.tabindex?html}"<#rt/>
+</#if>
+<#if parameters.cssClass??>
+ class="${parameters.cssClass?html}"<#rt/>
+</#if>
+<#if parameters.cssStyle??>
+ style="${parameters.cssStyle?html}"<#rt/>
+</#if>
+<#if parameters.title??>
+ title="${parameters.title?html}"<#rt/>
+</#if>
+<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
+<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
+<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 >

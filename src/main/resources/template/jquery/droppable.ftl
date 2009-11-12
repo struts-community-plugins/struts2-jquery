@@ -18,10 +18,24 @@
  * under the License.
  */
 -->
-  <#if parameters.droppable?default(false)> droppable="true"</#if>
-  <#if parameters.droppableOptions?if_exists != ""> droppableoptions="${parameters.droppableOptions?html}"</#if>
-  <#if parameters.droppableOnActivateTopics?if_exists != ""> droppableOnActivateTopics="${parameters.droppableOnActivateTopics?html}"</#if>
-  <#if parameters.droppableOnDeactivateTopics?if_exists != ""> droppableOnDeactivateTopics="${parameters.droppableOnDeactivateTopics?html}"</#if>
-  <#if parameters.droppableOnDropTopics?if_exists != ""> droppableOnDropTopics="${parameters.droppableOnDropTopics?html}"</#if>
-  <#if parameters.droppableOnOutTopics?if_exists != ""> droppableOnOutTopics="${parameters.droppableOnOutTopics?html}"</#if>
-  <#if parameters.droppableOnOverTopics?if_exists != ""> droppableOnOverTopics="${parameters.droppableOnOverTopics?html}"</#if>
+  <#if parameters.droppable?default(false)>
+	options_${parameters.id?html}.droppable = true;<#rt/>
+   </#if>
+  <#if parameters.droppableOptions?if_exists != "">
+	options_${parameters.id?html}.droppableoptions = "${parameters.droppableOptions?html}";<#rt/>
+   </#if>
+  <#if parameters.droppableOnActivateTopics?if_exists != "">
+	options_${parameters.id?html}.droppableonactivatetopics = "${parameters.droppableOnActivateTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.droppableOnDeactivateTopics?if_exists != "">
+	options_${parameters.id?html}.droppableondeactivatetopics = "${parameters.droppableOnDeactivateTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.droppableOnDropTopics?if_exists != "">
+	options_${parameters.id?html}.droppableondroptopics = "${parameters.droppableOnDropTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.droppableOnOutTopics?if_exists != "">
+	options_${parameters.id?html}.droppableonouttopics = "${parameters.droppableOnOutTopics?html}";<#rt/>
+   </#if>
+  <#if parameters.droppableOnOverTopics?if_exists != "">
+	options_${parameters.id?html}.droppableonovertopics = "${parameters.droppableOnOverTopics?html}";<#rt/>
+   </#if>

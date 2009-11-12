@@ -18,4 +18,43 @@
  * under the License.
  */
 -->
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+	options_${parameters.id?html}.datatype = "json";
+	options_${parameters.id?html}.type = 'select';
+<#if parameters.emptyOption?default(false)>
+	options_${parameters.id?html}.emptyoption = true;
+</#if>
+<#if parameters.headerKey?? && parameters.headerValue??>
+	options_${parameters.id?html}.headerkey = "${parameters.headerKey?html}";
+	options_${parameters.id?html}.headervalue = "${parameters.headerValue?html}";
+</#if>
+<#if parameters.list??>
+	options_${parameters.id?html}.list = "${parameters.list?html}";
+</#if>
+<#if parameters.listKey??>
+	options_${parameters.id?html}.listkey = "${parameters.listKey?html}";
+</#if>
+<#if parameters.listValue??>
+	options_${parameters.id?html}.listvalue = "${parameters.listValue?html}";
+</#if>
+<#if parameters.bindOn?if_exists != ""> 
+	options_${parameters.id?html}.bindon = "${parameters.bindOn?html}";
+</#if>
+<#if parameters.events?if_exists != ""> 
+	options_${parameters.id?html}.events = "${parameters.events?html}";
+</#if>
+  <#include "/${parameters.templateDir}/jquery/base.ftl" />
+  <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
+  <#include "/${parameters.templateDir}/jquery/action.ftl" />
+  <#include "/${parameters.templateDir}/jquery/draggable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/droppable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/resizable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/selectable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
+
+  <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

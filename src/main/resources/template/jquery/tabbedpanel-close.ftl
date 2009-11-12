@@ -20,4 +20,43 @@
 -->
 </ul>
 </div>
+<script type='text/javascript'>
+$(document).ready(function () { 
+	var options_${parameters.id?html} = {};
+  <#if parameters.selectedTab?exists>
+	options_${parameters.id?html}.selectedtab = "${parameters.selectedTab?html}";
+  </#if>
+  <#if parameters.openOnMouseover?default(false)>
+	options_${parameters.id?html}.event = "mouseover";
+  </#if>
+  <#if parameters.collapsible?default(false)>
+	options_${parameters.id?html}.collapsible = true;
+  </#if>
+  <#if parameters.useSelectedTabCookie?default(false)>
+	options_${parameters.id?html}.cookie = true;
+  </#if>
+  <#if parameters.animate?default(false)>
+	options_${parameters.id?html}.animate = true;
+  </#if>
+  <#if parameters.cache?default(false)>
+	options_${parameters.id?html}.cache = true;
+  </#if>
+  <#if parameters.spinner?if_exists != "">
+	options_${parameters.id?html}.day = "${parameters.spinner?html}";
+  </#if>
+  <#if parameters.disabledTabs?if_exists != "">
+	options_${parameters.id?html}.disabledtabs = "${parameters.disabledTabs?html}";
+  </#if>
+  <#if parameters.onAddTopics?if_exists != "">
+	options_${parameters.id?html}.onaddtopics = "${parameters.onAddTopics?html}";
+  </#if>
+  <#if parameters.onRemoveTopics?if_exists != "">
+	options_${parameters.id?html}.onremovetopics = "${parameters.onRemoveTopics?html}";
+  </#if>
+<#include "/${parameters.templateDir}/jquery/base.ftl" />
+<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
+<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+ });  
+</script>

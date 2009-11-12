@@ -18,12 +18,6 @@
  * under the License.
  */
 -->
-  <#if parameters.loadingText?exists>
-    loadingText="${parameters.loadingText?html}"<#rt/>
-  </#if>
-  <#if parameters.errorText?exists>
-    errorText="${parameters.errorText?html}"<#rt/>
-  </#if>
   <#if parameters.reloadTopics?exists>
-    reloadTopics="${parameters.reloadTopics?html}"<#rt/>
+	options_${parameters.id?html}.reloadtopics = "${parameters.reloadTopics?html}";
   </#if>

@@ -22,7 +22,6 @@
 <#setting number_format="#.#####">
 <select<#rt/>
  name="${parameters.name?default("")?html}"<#rt/>
- datatype="json"
 <#if parameters.get("size")??>
  size="${parameters.get("size")?html}"<#rt/>
 </#if>
@@ -42,31 +41,6 @@
 <#if parameters.multiple?default(false)>
  multiple="multiple"<#rt/>
 </#if>
-<#if parameters.emptyOption?default(false)>
- emptyOption="true"<#rt/>
-</#if>
-<#if parameters.headerKey?? && parameters.headerValue??>
- headerKey="${parameters.headerKey?html}"<#rt/>
- headerValue="${parameters.headerValue?html}"<#rt/>
-</#if>
-<#if parameters.list??>
- list="${parameters.list?html}"<#rt/>
-</#if>
-<#if parameters.listKey??>
- listKey="${parameters.listKey?html}"<#rt/>
-</#if>
-<#if parameters.listValue??>
- listValue="${parameters.listValue?html}"<#rt/>
-</#if>
-  <#include "/${parameters.templateDir}/jquery/base.ftl" />
-  <#include "/${parameters.templateDir}/jquery/action.ftl" />
-  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
-  <#include "/${parameters.templateDir}/jquery/container.ftl" />
-  <#include "/${parameters.templateDir}/jquery/draggable.ftl" />
-  <#include "/${parameters.templateDir}/jquery/droppable.ftl" />
-  <#include "/${parameters.templateDir}/jquery/resizable.ftl" />
-  <#include "/${parameters.templateDir}/jquery/selectable.ftl" />
-  <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
