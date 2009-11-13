@@ -34,7 +34,7 @@
                 <div>
                 <s:select id="theme" name="theme" list="themes" emptyOption="true"/><br/>
                 <s:checkbox id="google" name="google"/><label for="google" style="padding: 3px;">Load jQuery from Google CDN</label><br/>
-                <s:checkbox id="ajaxhistory" name="ajaxhistory"/><label for="ajaxhistory" style="padding: 3px;">Use Ajaxhistory BETA (Only Tabs)</label><br/>
+                <s:checkbox id="ajaxhistory" name="ajaxhistory"/><label for="ajaxhistory" style="padding: 3px;">Use Ajaxhistory (BETA)</label><br/>
                 <s:submit value="Change Theme" cssClass="buttonlink ui-state-default ui-corner-all"/>
                 </div>
             </s:form>

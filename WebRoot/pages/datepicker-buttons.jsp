@@ -68,6 +68,7 @@
       &lt;sj:datepicker id=&quot;date10&quot; name=&quot;date10&quot; label=&quot;Button Only&quot; buttonImageOnly=&quot;true&quot;/&gt;
       &lt;sj:datepicker id=&quot;date11&quot; name=&quot;date11&quot; label=&quot;Without Button&quot; showOn=&quot;focus&quot;/&gt;
       &lt;sj:datepicker id=&quot;date12&quot; name=&quot;date12&quot; label=&quot;With Close Event&quot; onCompleteTopics=&quot;onDpClose&quot;/&gt;
+      &lt;sj:datepicker id=&quot;date13&quot; name=&quot;date13&quot; label=&quot;With Min and Max Date&quot; minDate=&quot;-2&quot; maxDate=&quot;+2m&quot;/&gt;
     &lt;/s:form&gt;
     </pre>
   </div>
