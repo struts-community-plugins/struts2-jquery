@@ -535,8 +535,8 @@
     		if(ajaxhistory) {
 		    	$elem.find('ul.ui-tabs-nav a').click(function(){
 	    		    var idx = $('#'+options.id).tabs('option', 'selected');
-	    		    historyelements[ options.id ] = idx;
-	    		    $.bbq.pushState( historyelements );
+	    		    $.struts2_jquery.historyelements[ options.id ] = idx;
+	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
 	    		    return false;
 		    	});
 	    	
