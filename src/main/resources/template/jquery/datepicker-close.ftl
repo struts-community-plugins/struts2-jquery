@@ -92,6 +92,12 @@ $(document).ready(function () {
   <#if parameters.appendText?if_exists != "">
 	options_${parameters.id?html}.appendtext = "${parameters.appendText?html}";
   </#if>
+  <#if parameters.maxDate?if_exists != "">
+	options_${parameters.id?html}.maxdate = "${parameters.maxDate?html}";
+  </#if>
+  <#if parameters.minDate?if_exists != "">
+	options_${parameters.id?html}.mindate = "${parameters.minDate?html}";
+  </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

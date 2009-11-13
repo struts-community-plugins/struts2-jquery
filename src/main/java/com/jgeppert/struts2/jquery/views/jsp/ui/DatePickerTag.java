@@ -52,6 +52,8 @@ public class DatePickerTag extends AbstractTopicTag {
     protected String zindex;
     protected String onBeforeShowDayTopics;
     protected String onChangeMonthYearTopics;
+    protected String minDate;
+    protected String maxDate;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new DatePicker(stack, req, res);
@@ -80,6 +82,8 @@ public class DatePickerTag extends AbstractTopicTag {
         datePicker.setZindex(zindex);
         datePicker.setOnBeforeShowDayTopics(onBeforeShowDayTopics);
         datePicker.setOnChangeMonthYearTopics(onChangeMonthYearTopics);
+        datePicker.setMinDate(minDate);
+        datePicker.setMaxDate(maxDate);
   }
 
     
@@ -166,5 +170,15 @@ public class DatePickerTag extends AbstractTopicTag {
   public void setOnChangeMonthYearTopics(String onChangeMonthYearTopics)
   {
     this.onChangeMonthYearTopics = onChangeMonthYearTopics;
+  }
+
+  public void setMinDate(String minDate)
+  {
+    this.minDate = minDate;
+  }
+
+  public void setMaxDate(String maxDate)
+  {
+    this.maxDate = maxDate;
   }
 }

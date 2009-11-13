@@ -121,10 +121,10 @@
 						var tarelem = $('#' + target);
 						tarelem.subscribe(actionTopic, loadHandler, options);
 						tarelem.subscribe(effectTopic+target, '_s2j_effects', effect);
-						/*
 		    	    	if(ajaxhistory) {
 		    	    		tarelem.data( 'bbq', {});
 		    	    		
+							/*
 		    				$elem.bind('click', function(event){
 		    	    		    var state = {};
 		    	    		    // Get the url from the link's href attribute, stripping any leading #.
@@ -132,6 +132,7 @@
 		    	    		    $.bbq.pushState( state );
 		    	    		    return false;
 		    		    	});
+		    	    	*/
 		    	    	
 		    		    	$(window).bind('hashchange', function(e) {
 		    		    		var data = tarelem.data( 'bbq' );
@@ -141,7 +142,6 @@
 		    		    		$.publish(topic,options);
 		    		    	});
 		    	    	}
-		    	    	*/
 					}
 	    		});
 	    		
@@ -537,10 +537,9 @@
 	    	// History and Bookmarking for Tabs
     		if(ajaxhistory) {
 		    	$elem.find('ul.ui-tabs-nav a').click(function(){
-	    		    var state = {};
 	    		    var idx = $('#'+options.id).tabs('option', 'selected');
-	    		    state[ options.id ] = idx;
-	    		    $.bbq.pushState( state );
+	    		    historyelements[ options.id ] = idx;
+	    		    $.bbq.pushState( historyelements );
 	    		    return false;
 		    	});
 	    	
@@ -666,6 +665,8 @@
 				params.yearRange = options.yearrange;
 				params.duration = options.duration;
 				params.appendText = options.appendtext;
+				params.maxDate = options.maxdate;
+				params.minDate = options.mindate;
 		        
 				if(options.numberofmonths) {
 			        var numberofmonthsStr = options.numberofmonths;
@@ -903,7 +904,17 @@
 					}
 					
 					if(!params.data) { params.data = {}; }	//fix 'issue' wherein IIS will reject post without data
+					
+					//Execute Ajax Request
 					$.ajax(params);
+					
+					//Use BBQ for Ajaxhistory
+	    	    	if(ajaxhistory) {
+	    	    		container.data( 'bbq', {});
+	    	    		
+	    	    		historyelements[ event.target.id ] = event.type;
+    	    		    $.bbq.pushState( historyelements );
+	    	    	}
 				}
 			}
 		}

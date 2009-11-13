@@ -95,6 +95,8 @@ public class DatePicker extends AbstractTopicsBean {
   protected String                      zindex;
   protected String                      onBeforeShowDayTopics;
   protected String                      onChangeMonthYearTopics;
+  protected String                      minDate;
+  protected String                      maxDate;
 
   public DatePicker(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -138,6 +140,9 @@ public class DatePicker extends AbstractTopicsBean {
 
     if (onBeforeShowDayTopics != null) addParameter("onBeforeShowDayTopics", findString(onBeforeShowDayTopics));
     if (onChangeMonthYearTopics != null) addParameter("onChangeMonthYearTopics", findString(onChangeMonthYearTopics));
+
+    if (minDate != null) addParameter("minDate", findString(minDate));
+    if (maxDate != null) addParameter("maxDate", findString(maxDate));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -335,6 +340,20 @@ public class DatePicker extends AbstractTopicsBean {
     this.onChangeMonthYearTopics = onChangeMonthYearTopics;
   }
 
+
+  @StrutsTagAttribute(description = "Set a minimum selectable date via a number of days from today (e.g. +7) or a string of values and periods ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '-1y -1m').")
+  public void setMinDate(String minDate)
+  {
+    this.minDate = minDate;
+  }
+
+
+  @StrutsTagAttribute(description = "Set a maximum selectable date via a number of days from today (e.g. +7) or a string of values and periods ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '+1m +1w').")
+  public void setMaxDate(String maxDate)
+  {
+    this.maxDate = maxDate;
+  }
+
   private String format(Object obj)
   {
     if (obj == null) return null;
@@ -412,4 +431,5 @@ public class DatePicker extends AbstractTopicsBean {
       return dateStr;
     }
   }
+
 }
