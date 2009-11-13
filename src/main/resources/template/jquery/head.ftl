@@ -81,7 +81,6 @@
 <script type="text/javascript">
 <#if parameters.ajaxhistory?default(false)>
 	var ajaxhistory=true;
-	var historyelements = {};
 <#else>
 	var ajaxhistory=false;
 </#if>

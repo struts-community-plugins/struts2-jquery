@@ -19,6 +19,10 @@
 	 * Bind Struts2 Components for jQuery AJAX and UI functions
 	 */
 	jQuery.struts2_jquery = {
+		
+		historyelements: {},
+		
+		lasttopic: '',
 			
 		//pre-binding function of the type function(element){}. called before binding the element
 		// returning false will prevent the binding of this element
@@ -122,17 +126,11 @@
 						tarelem.subscribe(actionTopic, loadHandler, options);
 						tarelem.subscribe(effectTopic+target, '_s2j_effects', effect);
 		    	    	if(ajaxhistory) {
-							/*
-		    	    		tarelem.data( 'bbq', {});
 		    				$elem.bind('click', function(event){
-		    	    		    var state = {};
-		    	    		    // Get the url from the link's href attribute, stripping any leading #.
-		    	    		    state[ target ] = actionTopic;
-		    	    		    $.bbq.pushState( state );
+		    					$.struts2_jquery.historyelements[ target ] = actionTopic;
+		    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
 		    	    		    return false;
 		    		    	});
-		    	    	*/
-		    	    	
 		    	    	}
 					}
 	    		});
@@ -430,6 +428,13 @@
 				for ( var i = 0; i < targets.length; i++) {
 					var target = targets[i];
 	    			$('#' + target).subscribe(topic, '_s2j_effects', options);
+	    	    	if(ajaxhistory) {
+	    				$elem.bind('click', function(event){
+	    					$.struts2_jquery.historyelements[ target ] = topic;
+	    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
+	    	    		    return false;
+	    		    	});
+	    	    	}
 				}
 			}
 		},
@@ -902,19 +907,13 @@
 					
 					//Use BBQ for Ajaxhistory
 	    	    	if(ajaxhistory) {
-	    	    		container.data( 'bbq', {});
-	    	    		
-	    	    		historyelements[ event.target.id ] = event.type;
-    	    		    $.bbq.pushState( historyelements );
-    	    		    
-	    		    	$(window).bind('hashchange', function(e) {
-	    		    		var data = container.data( 'bbq' );
-	    		    		var topic = $.bbq.getState(event.target.id) || '';
-	    		    		if ( data.topic === topic ) { return; }
-	    		    		data.topic = topic;
-	    		    		$.publish(topic,options);
-	    		    	});
-	    	    	}
+    	    			$(window).bind('hashchange', function(e) {
+    	    				var topic = $.bbq.getState(event.target.id) || '';
+    	    				if ( event.type === topic || topic == '' || topic == $.struts2_jquery.lasttopic ) { return; }
+    	    				$.struts2_jquery.lasttopic = topic;
+    	    				$.publish(topic,options);
+    	    			});
+    	    		}
 				}
 			}
 		}
@@ -989,6 +988,15 @@
 		var forms = options.formids.split(',');
 		for ( var i = 0; i < forms.length; i++) {
 	       $('#'+forms).ajaxSubmit(params);
+		}
+		//Use BBQ for Ajaxhistory
+    	if(ajaxhistory) {
+			$(window).bind('hashchange', function(e) {
+				var topic = $.bbq.getState(event.target.id) || '';
+				if ( event.type === topic || topic == '' || topic == $.struts2_jquery.lasttopic ) { return; }
+				$.struts2_jquery.lasttopic = topic;
+				$.publish(topic,options);
+			});
 		}
         
         return false;
