@@ -122,9 +122,8 @@
 						tarelem.subscribe(actionTopic, loadHandler, options);
 						tarelem.subscribe(effectTopic+target, '_s2j_effects', effect);
 		    	    	if(ajaxhistory) {
-		    	    		tarelem.data( 'bbq', {});
-		    	    		
 							/*
+		    	    		tarelem.data( 'bbq', {});
 		    				$elem.bind('click', function(event){
 		    	    		    var state = {};
 		    	    		    // Get the url from the link's href attribute, stripping any leading #.
@@ -134,13 +133,6 @@
 		    		    	});
 		    	    	*/
 		    	    	
-		    		    	$(window).bind('hashchange', function(e) {
-		    		    		var data = tarelem.data( 'bbq' );
-		    		    		var topic = $.bbq.getState(target) || '';
-		    		    		if ( data.topic === topic ) { return; }
-		    		    		data.topic = topic;
-		    		    		$.publish(topic,options);
-		    		    	});
 		    	    	}
 					}
 	    		});
@@ -914,6 +906,14 @@
 	    	    		
 	    	    		historyelements[ event.target.id ] = event.type;
     	    		    $.bbq.pushState( historyelements );
+    	    		    
+	    		    	$(window).bind('hashchange', function(e) {
+	    		    		var data = container.data( 'bbq' );
+	    		    		var topic = $.bbq.getState(event.target.id) || '';
+	    		    		if ( data.topic === topic ) { return; }
+	    		    		data.topic = topic;
+	    		    		$.publish(topic,options);
+	    		    	});
 	    	    	}
 				}
 			}

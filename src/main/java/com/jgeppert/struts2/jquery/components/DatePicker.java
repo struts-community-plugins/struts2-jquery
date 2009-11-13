@@ -98,10 +98,13 @@ public class DatePicker extends AbstractTopicsBean {
   protected String                      minDate;
   protected String                      maxDate;
 
+  protected String                      maxlength;
+  protected String                      readonly;
+  protected String                      size;
+
   public DatePicker(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
-
 
   @Override
   public String getDefaultOpenTemplate()
@@ -119,7 +122,7 @@ public class DatePicker extends AbstractTopicsBean {
     super.evaluateParams();
 
     addParameter("jqueryaction", JQUERYACTION);
-    
+
     if (displayFormat != null) addParameter("displayFormat", findString(displayFormat));
     if (buttonImage != null) addParameter("buttonImage", findString(buttonImage));
     if (showButtonPanel != null) addParameter("showButtonPanel", findValue(showButtonPanel, Boolean.class));
@@ -144,6 +147,21 @@ public class DatePicker extends AbstractTopicsBean {
     if (minDate != null) addParameter("minDate", findString(minDate));
     if (maxDate != null) addParameter("maxDate", findString(maxDate));
 
+    if (size != null)
+    {
+      addParameter("size", findString(size));
+    }
+
+    if (maxlength != null)
+    {
+      addParameter("maxlength", findString(maxlength));
+    }
+
+    if (readonly != null)
+    {
+      addParameter("readonly", findValue(readonly, Boolean.class));
+    }
+
     if ((this.id == null || this.id.length() == 0))
     {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -158,20 +176,17 @@ public class DatePicker extends AbstractTopicsBean {
     if (value != null)
     {
       nameValue = findValue(value, Date.class);
-      if(nameValue == null)
-        nameValue = findString(value);
+      if (nameValue == null) nameValue = findString(value);
     }
     else
     {
       if (name != null)
       {
         nameValue = findValue(name, Date.class);
-        if(nameValue == null)
-          nameValue = findString(name);
+        if (nameValue == null) nameValue = findString(name);
       }
     }
-    
-    
+
     Date dateValue = null;
     String formatValue = null;
     if (nameValue != null)
@@ -198,16 +213,15 @@ public class DatePicker extends AbstractTopicsBean {
         }
       }
 
-      if(formatValue != null)
-        addParameter("nameValue", formatValue);
-      
+      if (formatValue != null) addParameter("nameValue", formatValue);
+
       if (dateValue != null)
       {
-    	Calendar calendar = new GregorianCalendar();
-    	calendar.setTime(dateValue);
-        addParameter("dayValue", ""+calendar.get(Calendar.DAY_OF_MONTH));
-        addParameter("monthValue", ""+calendar.get(Calendar.MONTH));
-        addParameter("yearValue", ""+calendar.get(Calendar.YEAR));
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(dateValue);
+        addParameter("dayValue", "" + calendar.get(Calendar.DAY_OF_MONTH));
+        addParameter("monthValue", "" + calendar.get(Calendar.MONTH));
+        addParameter("yearValue", "" + calendar.get(Calendar.YEAR));
       }
     }
 
@@ -340,18 +354,34 @@ public class DatePicker extends AbstractTopicsBean {
     this.onChangeMonthYearTopics = onChangeMonthYearTopics;
   }
 
-
   @StrutsTagAttribute(description = "Set a minimum selectable date via a number of days from today (e.g. +7) or a string of values and periods ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '-1y -1m').")
   public void setMinDate(String minDate)
   {
     this.minDate = minDate;
   }
 
-
   @StrutsTagAttribute(description = "Set a maximum selectable date via a number of days from today (e.g. +7) or a string of values and periods ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '+1m +1w').")
   public void setMaxDate(String maxDate)
   {
     this.maxDate = maxDate;
+  }
+
+  @StrutsTagAttribute(description = "HTML maxlength attribute", type = "Integer")
+  public void setMaxlength(String maxlength)
+  {
+    this.maxlength = maxlength;
+  }
+
+  @StrutsTagAttribute(description = "Whether the input is readonly", type = "Boolean", defaultValue = "false")
+  public void setReadonly(String readonly)
+  {
+    this.readonly = readonly;
+  }
+
+  @StrutsTagAttribute(description = "HTML size attribute", type = "Integer")
+  public void setSize(String size)
+  {
+    this.size = size;
   }
 
   private String format(Object obj)
@@ -401,7 +431,7 @@ public class DatePicker extends AbstractTopicsBean {
           String df = (String) getParameters().get("displayFormat");
           SimpleDateFormat displayFormat = new SimpleDateFormat(df);
           formats.add(displayFormat);
-          
+
           // jQuery dateFormat is incompatiple with JavaFormat
           String dfr = df.replaceAll("([y]{2})", "yyyy");
           SimpleDateFormat displayFormatReplaced = new SimpleDateFormat(dfr);
