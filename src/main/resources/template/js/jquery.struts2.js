@@ -753,7 +753,6 @@
 				if(options.collapsible)	params.collapsible = true;
 				if(options.clearstyle)	params.clearStyle = true;
 				if(options.autoheight)	params.autoHeight = true;
-				if(options.fillspace)	params.fillSpace = true;
 				if(options.event)	params.event = options.event;
 				if(options.header)	params.header = options.header;
 				else				params.header = 'h3';

@@ -87,10 +87,10 @@ $(document).ready(function () {
 	options_${parameters.id?html}.collapsible = true;
   </#if>
   <#if parameters.clearStyle?default(false)>
-	options_${parameters.id?html}.clearStyle = true;
+	options_${parameters.id?html}.clearstyle = true;
   </#if>
   <#if parameters.autoHeight?default(false)>
-	options_${parameters.id?html}.autoHeight = true;
+	options_${parameters.id?html}.autoheight = true;
   </#if>
   <#if parameters.openOnMouseover?default(false)>
 	options_${parameters.id?html}.event = "mouseover";
