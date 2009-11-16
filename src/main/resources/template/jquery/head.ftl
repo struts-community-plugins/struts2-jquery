@@ -84,10 +84,11 @@
 <#else>
 	var ajaxhistory=false;
 </#if>
-<#if parameters.defaultIndicator?if_exists != "">
-	var defaultIndicator="${parameters.defaultIndicator?string}";
-</#if>
 $(document).ready(function () {
+	<#if parameters.defaultIndicator?if_exists != "">
+	$.struts2_jquery.defaultIndicator="${parameters.defaultIndicator?string}";
+	</#if>
+
 	$.ajaxSetup ({
 	<#if parameters.ajaxcache?default(false)>
 		cache: true
