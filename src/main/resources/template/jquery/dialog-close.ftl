@@ -28,6 +28,18 @@ $(document).ready(function () {
   <#if parameters.width?if_exists != "">
 	options_${parameters.id?html}.width = ${parameters.width?html};
   </#if>
+   <#if parameters.maxHeight?if_exists != "">
+	options_${parameters.id?html}.maxheight = ${parameters.maxHeight?html};
+  </#if>
+  <#if parameters.maxWidth?if_exists != "">
+	options_${parameters.id?html}.maxwidth = ${parameters.maxWidth?html};
+  </#if>
+   <#if parameters.minHeight?if_exists != "">
+	options_${parameters.id?html}.minheight = ${parameters.minHeight?html};
+  </#if>
+  <#if parameters.minWidth?if_exists != "">
+	options_${parameters.id?html}.minwidth = ${parameters.minWidth?html};
+  </#if>
   <#if parameters.zindex?if_exists != "">
 	options_${parameters.id?html}.zindex = ${parameters.zindex?html};
   </#if>

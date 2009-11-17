@@ -444,6 +444,7 @@
 		dialog: function($elem, options){
 			
 			var params = {};
+			params.bgiframe = true;
 			params.autoOpen = options.autoopen;
 			params.modal = options.modal;
 			params.resizable = options.resizable;
@@ -455,6 +456,10 @@
 			params.show = options.show;
 			if(options.height) { params.height = options.height; }
 			if(options.width) { params.width = options.width; }
+			if(options.maxheight) { params.maxHeight = options.maxheight; }
+			if(options.maxwidth) { params.maxWidth = options.maxwidth; }
+			if(options.minheight) { params.minHeight = options.minheight; }
+			if(options.minwidth) { params.minWidth = options.minwidth; }
 			
 			params.title = options.title;
 			

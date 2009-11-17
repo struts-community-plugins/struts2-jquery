@@ -91,6 +91,10 @@ public class Dialog extends AbstractRemoteBean {
   protected String           hideEffect;
   protected String           overlayColor;
   protected String           overlayOpacity;
+  protected String           maxHeight;
+  protected String           maxWidth;
+  protected String           minHeight;
+  protected String           minWidth;
 
   public Dialog(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -199,7 +203,7 @@ public class Dialog extends AbstractRemoteBean {
     this.title = title;
   }
 
-  @StrutsTagAttribute(description = "The width of the dialog, in pixels. Default: 300")
+  @StrutsTagAttribute(description = "The width of the dialog, in pixels.")
   public void setWidth(String width)
   {
     this.width = width;
@@ -239,5 +243,29 @@ public class Dialog extends AbstractRemoteBean {
   public void setOverlayOpacity(String overlayOpacity)
   {
     this.overlayOpacity = overlayOpacity;
+  }
+
+  @StrutsTagAttribute(description = "The maximum height to which the dialog can be resized, in pixels.")
+  public void setMaxHeight(String maxHeight)
+  {
+    this.maxHeight = maxHeight;
+  }
+
+  @StrutsTagAttribute(description = "The maximum width to which the dialog can be resized, in pixels.")
+  public void setMaxWidth(String maxWidth)
+  {
+    this.maxWidth = maxWidth;
+  }
+
+  @StrutsTagAttribute(description = "The minimum height to which the dialog can be resized, in pixels.")
+  public void setMinHeight(String minHeight)
+  {
+    this.minHeight = minHeight;
+  }
+
+  @StrutsTagAttribute(description = "The minimum width to which the dialog can be resized, in pixels.")
+  public void setMinWidth(String minWidth)
+  {
+    this.minWidth = minWidth;
   }
 }
