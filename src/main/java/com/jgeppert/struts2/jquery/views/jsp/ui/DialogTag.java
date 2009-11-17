@@ -49,9 +49,15 @@ public class DialogTag extends AbstractRemoteTag {
     protected String hideEffect;
     protected String overlayColor;
     protected String overlayOpacity;
-    protected String open;
-    protected String close;
-    
+    protected String onOpenTopics;
+    protected String onCloseTopics;
+    protected String onFocusTopics;
+    protected String onBeforeCloseTopics;
+    protected String maxHeight;
+    protected String maxWidth;
+    protected String minHeight;
+    protected String minWidth;
+   
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Dialog(stack, req, res);
     }
@@ -75,6 +81,14 @@ public class DialogTag extends AbstractRemoteTag {
         dialog.setHideEffect(hideEffect);
         dialog.setOverlayColor(overlayColor);
         dialog.setOverlayOpacity(overlayOpacity);
+        dialog.setMaxHeight(maxHeight);
+        dialog.setMaxWidth(maxWidth);
+        dialog.setMinHeight(minHeight);
+        dialog.setMinWidth(minWidth);
+        dialog.setOnBeforeCloseTopics(onBeforeCloseTopics);
+        dialog.setOnCloseTopics(onCloseTopics);
+        dialog.setOnOpenTopics(onOpenTopics);
+        dialog.setOnFocusTopics(onFocusTopics);
     }
 
     public void setButtons(String buttons)
@@ -150,6 +164,46 @@ public class DialogTag extends AbstractRemoteTag {
     public void setOverlayOpacity(String overlayOpacity)
     {
       this.overlayOpacity = overlayOpacity;
+    }
+
+    public void setMaxHeight(String maxHeight)
+    {
+      this.maxHeight = maxHeight;
+    }
+
+    public void setMaxWidth(String maxWidth)
+    {
+      this.maxWidth = maxWidth;
+    }
+
+    public void setMinHeight(String minHeight)
+    {
+      this.minHeight = minHeight;
+    }
+
+    public void setMinWidth(String minWidth)
+    {
+      this.minWidth = minWidth;
+    }
+
+    public void setOnOpenTopics(String onOpenTopics)
+    {
+      this.onOpenTopics = onOpenTopics;
+    }
+
+    public void setOnCloseTopics(String onCloseTopics)
+    {
+      this.onCloseTopics = onCloseTopics;
+    }
+
+    public void setOnFocusTopics(String onFocusTopics)
+    {
+      this.onFocusTopics = onFocusTopics;
+    }
+
+    public void setOnBeforeCloseTopics(String onBeforeCloseTopics)
+    {
+      this.onBeforeCloseTopics = onBeforeCloseTopics;
     }
 }
 

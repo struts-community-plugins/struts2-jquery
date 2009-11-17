@@ -85,6 +85,18 @@ $(document).ready(function () {
   </#if>
 	options_${parameters.id?html}.modal = true;
 </#if>
+  <#if parameters.onOpenTopics?if_exists != "">
+	options_${parameters.id?html}.onopentopics = "${parameters.onOpenTopics?html}";
+  </#if>
+  <#if parameters.onCloseTopics?if_exists != "">
+	options_${parameters.id?html}.onclosetopics = "${parameters.onCloseTopics?html}";
+  </#if>
+  <#if parameters.onFocusTopics?if_exists != "">
+	options_${parameters.id?html}.onfocustopics = "${parameters.onFocusTopics?html}";
+  </#if>
+  <#if parameters.onBeforeCloseTopics?if_exists != "">
+	options_${parameters.id?html}.onbeforeclosetopics = "${parameters.onBeforeCloseTopics?html}";
+  </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

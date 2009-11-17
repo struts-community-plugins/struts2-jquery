@@ -495,8 +495,16 @@
 						$elem.publish(topics[i], $elem, data);
 					}
 				}
+				if(options.onopentopics) {			  
+					var topics = options.onopentopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, data);
+					}
+				}
 			};
-			params.close = pubTops($elem, options.onalwaystopics, options.oncompletetopics);
+			params.close = pubTops($elem, options.onalwaystopics, options.onclosetopics);
+			params.focus = pubTops($elem, options.onalwaystopics, options.onfocustopics);
+			params.beforeclose = pubTops($elem, options.onalwaystopics, options.onbeforeclosetopics);
 			params.drag = pubTops($elem, options.onalwaystopics, options.onchangetopics);
 			$elem.dialog(params);
 		},

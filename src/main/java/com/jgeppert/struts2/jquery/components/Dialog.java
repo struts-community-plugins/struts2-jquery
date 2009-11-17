@@ -95,6 +95,10 @@ public class Dialog extends AbstractRemoteBean {
   protected String           maxWidth;
   protected String           minHeight;
   protected String           minWidth;
+  protected String           onOpenTopics;
+  protected String           onCloseTopics;
+  protected String           onFocusTopics;
+  protected String           onBeforeCloseTopics;
 
   public Dialog(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -131,6 +135,14 @@ public class Dialog extends AbstractRemoteBean {
     if (hideEffect != null) addParameter("hideEffect", findString(hideEffect));
     if (overlayColor != null) addParameter("overlayColor", findString(overlayColor));
     if (overlayOpacity != null) addParameter("overlayOpacity", findString(overlayOpacity));
+    if (maxHeight != null) addParameter("maxHeight", findString(maxHeight));
+    if (maxWidth != null) addParameter("maxWidth", findString(maxWidth));
+    if (minHeight != null) addParameter("minHeight", findString(minHeight));
+    if (minWidth != null) addParameter("minWidth", findString(minWidth));
+    if (onBeforeCloseTopics != null) addParameter("onBeforeCloseTopics", findString(onBeforeCloseTopics));
+    if (onCloseTopics != null) addParameter("onCloseTopics", findString(onCloseTopics));
+    if (onOpenTopics != null) addParameter("onOpenTopics", findString(onOpenTopics));
+    if (onFocusTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
     if ((this.id == null || this.id.length() == 0))
     {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -267,5 +279,29 @@ public class Dialog extends AbstractRemoteBean {
   public void setMinWidth(String minWidth)
   {
     this.minWidth = minWidth;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is opened.")
+  public void setOnOpenTopics(String onOpenTopics)
+  {
+    this.onOpenTopics = onOpenTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is closed.")
+  public void setOnCloseTopics(String onCloseTopics)
+  {
+    this.onCloseTopics = onCloseTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is focused.")
+  public void setOnFocusTopics(String onFocusTopics)
+  {
+    this.onFocusTopics = onFocusTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published befor dialog is closed.")
+  public void setOnBeforeCloseTopics(String onBeforeCloseTopics)
+  {
+    this.onBeforeCloseTopics = onBeforeCloseTopics;
   }
 }
