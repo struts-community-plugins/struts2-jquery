@@ -23,10 +23,10 @@
 $(document).ready(function () { 
 	var options_${parameters.id?html} = {};
   <#if parameters.height?if_exists != "">
-	options_${parameters.id?html}.height = "${parameters.height?html}";
+	options_${parameters.id?html}.height = ${parameters.height?html};
   </#if>
   <#if parameters.width?if_exists != "">
-	options_${parameters.id?html}.width = "${parameters.width?html}";
+	options_${parameters.id?html}.width = ${parameters.width?html};
   </#if>
   <#if parameters.zindex?if_exists != "">
 	options_${parameters.id?html}.zindex = ${parameters.zindex?html};

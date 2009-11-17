@@ -448,13 +448,13 @@
 			params.modal = options.modal;
 			params.resizable = options.resizable;
 			params.draggable = options.draggable;
-			params.width = options.width;
 			params.position = options.position;
 			params.zIndex = options.zindex;
 			params.backgroundColor = options.backgroundcolor;
 			params.hide = options.hide;
 			params.show = options.show;
-			if(options.height) { params.height = eval(options.height); }
+			if(options.height) { params.height = options.height; }
+			if(options.width) { params.width = options.width; }
 			
 			params.title = options.title;
 			
