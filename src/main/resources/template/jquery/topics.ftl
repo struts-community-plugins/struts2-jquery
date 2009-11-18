@@ -22,7 +22,7 @@
 	options_${parameters.id?html}.oncompletetopics = "${parameters.onCompleteTopics?html}";
   </#if>
   <#if parameters.onSuccessTopics?exists>
-	options_${parameters.id?html}.onsuccesstopics = "${parameters.onsuccesstopics?html}";
+	options_${parameters.id?html}.onsuccesstopics = "${parameters.onSuccessTopics?html}";
   </#if>
   <#if parameters.onErrorTopics?exists>
 	options_${parameters.id?html}.onerrortopics = "${parameters.onErrorTopics?html}";
