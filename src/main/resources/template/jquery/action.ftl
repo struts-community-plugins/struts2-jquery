@@ -28,7 +28,7 @@
 	options_${parameters.id?html}.href = "#";
   </#if>
   <#if parameters.hrefParameter?if_exists != ""> 
-	options_${parameters.id?html}.hrefparameter = "${parameters.hrefParameter?html}";
+	options_${parameters.id?html}.hrefparameter = "${parameters.hrefParameter?string}";
   </#if>
   <#if parameters.formIds?exists>
 	options_${parameters.id?html}.formids = "${parameters.formIds?html}";
