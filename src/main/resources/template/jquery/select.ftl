@@ -18,7 +18,6 @@
  * under the License.
  */
 -->
-<!-- Parent Theme: ${parameters.parentTheme} -->
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
 </#if>
