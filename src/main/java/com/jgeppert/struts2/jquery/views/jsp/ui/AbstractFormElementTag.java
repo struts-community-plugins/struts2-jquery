@@ -1,4 +1,3 @@
-<#--
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,12 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
--->
-<!-- Parent Theme: ${parameters.parentTheme} -->
-<#if parameters.parentTheme == 'xhtml'>
-<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
-</#if>
-<#include "/${parameters.templateDir}/simple/text.ftl" />
-<#if parameters.parentTheme == 'xhtml'>
-<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
-</#if>
+
+package com.jgeppert.struts2.jquery.views.jsp.ui;
+
+import com.jgeppert.struts2.jquery.components.AbstractFormElement;
+
+public abstract class AbstractFormElementTag extends AbstractRemoteTag {
+
+  private static final long serialVersionUID = -4125616438928920288L;
+
+  protected String          parentTheme;
+
+  protected void populateParams()
+  {
+    super.populateParams();
+
+    AbstractFormElement formElement = (AbstractFormElement) component;
+    formElement.setParentTheme(parentTheme);
+  }
+
+  public void setParentTheme(String parentTheme)
+  {
+    this.parentTheme = parentTheme;
+  }
+
+}

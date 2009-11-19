@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-  <#include "/${parameters.templateDir}/xhtml/submit-close.ftl" />
+  <#include "/${parameters.templateDir}/${parameters.parentTheme}/submit-close.ftl" />
 <script type='text/javascript'>
 $(document).ready(function () { 
 	var options_${parameters.id?html} = {};

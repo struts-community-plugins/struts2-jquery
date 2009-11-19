@@ -18,6 +18,11 @@
  * under the License.
  */
 -->
+<!-- Parent Theme: ${parameters.parentTheme} -->
+<#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
+</#if>
 <#include "/${parameters.templateDir}/simple/textarea.ftl" />
+<#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+</#if>

@@ -30,7 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * @see Submit
  */
-public class SubmitTag extends AbstractRemoteTag {
+public class SubmitTag extends AbstractFormElementTag {
 
   private static final long serialVersionUID = 2179281109958301343L;
 

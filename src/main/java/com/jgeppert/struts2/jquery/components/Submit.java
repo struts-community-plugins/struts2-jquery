@@ -25,7 +25,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Form;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -89,7 +88,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * example8 -->
  * */
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button")
-public class Submit extends AbstractRemoteBean {
+public class Submit extends AbstractFormElement {
 
   private static final Logger           LOG           = LoggerFactory.getLogger(Submit.class);
   private final static transient Random RANDOM        = new Random();
@@ -148,10 +147,6 @@ public class Submit extends AbstractRemoteBean {
     if (resetForm != null) addParameter("resetForm", findValue(resetForm, Boolean.class));
     if (iframe != null) addParameter("iframe", findValue(iframe, Boolean.class));
     if (onClickTopics != null) addParameter("onClickTopics", findString(onClickTopics));
-
-    Form form = (Form) findAncestor(Form.class);
-    if (form != null) addParameter("parentTheme", form.getTheme());
-    if (form != null && (formIds == null || formIds.length() <= 0)) addParameter("formIds", form.getId());
 
     if ((this.id == null || this.id.length() == 0))
     {

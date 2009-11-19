@@ -18,7 +18,10 @@
  * under the License.
  */
 -->
+<!-- Parent Theme: ${parameters.parentTheme} -->
+<#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
+</#if>
 <#setting number_format="#.#####">
 <select<#rt/>
  name="${parameters.name?default("")?html}"<#rt/>
@@ -46,4 +49,7 @@
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 >
 <option value=""></option>
-</select><#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+</select>
+<#if parameters.parentTheme == 'xhtml'>
+<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+</#if>
