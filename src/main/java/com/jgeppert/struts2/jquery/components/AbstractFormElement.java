@@ -55,7 +55,7 @@ public abstract class AbstractFormElement extends AbstractRemoteBean {
     if (form != null && (formIds == null || formIds.length() <= 0)) addParameter("formIds", form.getId());
   }
   
-  @StrutsTagAttribute(description = "The parent theme. Default: simple")
+  @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
   public void setParentTheme(String parentTheme)
   {
     this.parentTheme = parentTheme;
