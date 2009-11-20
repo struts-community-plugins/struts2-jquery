@@ -25,12 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.components.Div;
 import com.jgeppert.struts2.jquery.components.Tab;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * @see Div
+ * @see Tab
  */
 public class TabModel extends TagModel {
 
