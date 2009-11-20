@@ -136,8 +136,11 @@
 							}
 						}
 		    	    	if(ajaxhistory) {
-		    				$elem.bind('click', function(event){
-		    					$.struts2_jquery.historyelements[ target ] = actionTopic;
+							var params = {};
+							params.target = target;
+							params.topic = actionTopic;
+		    				$elem.bind('click', params, function(event){
+		    					$.struts2_jquery.historyelements[ event.data.target ] = event.data.topic;
 		    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
 		    	    		    return false;
 		    		    	});
@@ -458,8 +461,11 @@
 					var target = targets[i];
 	    			$('#' + target).subscribe(topic, '_s2j_effects', options);
 	    	    	if(ajaxhistory) {
-	    				$elem.bind('click', function(event){
-	    					$.struts2_jquery.historyelements[ target ] = topic;
+						var params = {};
+						params.target = target;
+						params.topic = topic;
+	    				$elem.bind('click', params, function(event){
+	    					$.struts2_jquery.historyelements[ event.data.target ] = event.data.topic;
 	    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
 	    	    		    return false;
 	    		    	});
@@ -575,17 +581,19 @@
 
 	    	// History and Bookmarking for Tabs
     		if(ajaxhistory) {
-		    	$elem.find('ul.ui-tabs-nav a').click(function(){
-	    		    var idx = $('#'+options.id).tabs('option', 'selected');
-	    		    $.struts2_jquery.historyelements[ options.id ] = idx;
+				var params = {};
+				params.id = options.id;
+		    	$elem.find('ul.ui-tabs-nav a').bind('click', params, function(event){
+	    		    var idx = $('#'+event.data.id).tabs('option', 'selected');
+	    		    $.struts2_jquery.historyelements[ event.data.id ] = idx;
 	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
 	    		    return false;
 		    	});
 	    	
-		    	$(window).bind('hashchange', function(e) {
+		    	$(window).bind('hashchange', params, function(event) {
 						// In jQuery 1.4, you should use e.getState() instead of $.bbq.getState().
-						var idx = $.bbq.getState( options.id, true ) || 0;
-							$('#'+options.id).tabs( 'select', idx );
+						var idx = $.bbq.getState( event.data.id, true ) || 0;
+							$('#'+event.data.id).tabs( 'select', idx );
 	    		});
 	    	}
 		},
@@ -945,16 +953,6 @@
 					
 					//Execute Ajax Request
 					$.ajax(params);
-					
-					//Use BBQ for Ajaxhistory
-	    	    	if(ajaxhistory) {
-    	    			$(window).bind('hashchange', function(e) {
-    	    				var topic = $.bbq.getState(event.target.id) || '';
-    	    				if ( event.type === topic || topic == '' || topic == $.struts2_jquery.lasttopic ) { return; }
-    	    				$.struts2_jquery.lasttopic = topic;
-    	    				$.publish(topic,options);
-    	    			});
-    	    		}
 				}
 			}
 		}
@@ -1029,15 +1027,6 @@
 		var forms = options.formids.split(',');
 		for ( var i = 0; i < forms.length; i++) {
 	       $('#'+forms).ajaxSubmit(params);
-		}
-		//Use BBQ for Ajaxhistory
-    	if(ajaxhistory) {
-			$(window).bind('hashchange', function(e) {
-				var topic = $.bbq.getState(event.target.id) || '';
-				if ( event.type === topic || topic == '' || topic == $.struts2_jquery.lasttopic ) { return; }
-				$.struts2_jquery.lasttopic = topic;
-				$.publish(topic,options);
-			});
 		}
         
         return false;
@@ -1166,7 +1155,19 @@
 					container.publish(topics[i], container, orginal);
 				}
 			}
-//	    	if(ajaxhistory) {$(window).trigger('hashchange');}
+			//Use BBQ for Ajaxhistory
+	    	if(ajaxhistory) {
+	    		var ahparams = {};
+	    		ahparams.cid = cid;
+	    		ahparams.options = options;
+	    		
+    			$(window).bind('hashchange', ahparams, function(event) {
+    				var topic = $.bbq.getState(event.data.cid.id) || '';
+    				if ( event.type === topic || topic == '' || topic == $.struts2_jquery.lasttopic ) { return; }
+    				$.struts2_jquery.lasttopic = topic;
+    				$.publish(topic,event.data.options);
+    			});
+    		}
 		};
 	}
 
