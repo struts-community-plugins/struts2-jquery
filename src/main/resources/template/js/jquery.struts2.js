@@ -139,7 +139,7 @@
 		    				$elem.bind('click', function(event){
 		    					$.struts2_jquery.historyelements[ target ] = actionTopic;
 		    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
-//		    	    		    return false;
+		    	    		    return false;
 		    		    	});
 		    	    	}
 					}
@@ -461,7 +461,7 @@
 	    				$elem.bind('click', function(event){
 	    					$.struts2_jquery.historyelements[ target ] = topic;
 	    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
-//	    	    		    return false;
+	    	    		    return false;
 	    		    	});
 	    	    	}
 				}
