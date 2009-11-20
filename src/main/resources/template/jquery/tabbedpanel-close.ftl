@@ -42,7 +42,7 @@ $(document).ready(function () {
 	options_${parameters.id?html}.cache = true;
   </#if>
   <#if parameters.spinner?if_exists != "">
-	options_${parameters.id?html}.day = "${parameters.spinner?html}";
+	options_${parameters.id?html}.spinner = "${parameters.spinner?html}";
   </#if>
   <#if parameters.disabledTabs?if_exists != "">
 	options_${parameters.id?html}.disabledtabs = "${parameters.disabledTabs?html}";
