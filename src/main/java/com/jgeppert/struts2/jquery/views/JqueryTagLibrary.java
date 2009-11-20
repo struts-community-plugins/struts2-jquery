@@ -33,6 +33,8 @@ import com.jgeppert.struts2.jquery.views.velocity.components.AnchorDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.DatePickerDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.DialogDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.DivDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.GridColumnDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.GridDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.HeadDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.ProgressbarDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SelectDirective;
@@ -69,6 +71,8 @@ public class JqueryTagLibrary implements TagLibrary {
         TextareaDirective.class,
         TextfieldDirective.class,
         SelectDirective.class,
+        GridDirective.class,
+        GridColumnDirective.class,
     };
     return Arrays.asList(directives);
   }
