@@ -31,22 +31,20 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: javadoc --> 
- * Renders a progressbar
- * <!-- END SNIPPET: javadoc -->
+ * <!-- START SNIPPET: javadoc --> Renders a progressbar <!-- END SNIPPET:
+ * javadoc -->
  * 
  * <p>
  * Examples
  * </p>
- * <!-- START SNIPPET: example1 --> 
- * &lt;sj:progressbar value="40" /&gt; <!--
- * END SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 --> &lt;sj:progressbar value="40" /&gt; <!-- END
+ * SNIPPET: example1 -->
  */
 @StrutsTag(name = "progressbar", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.ProgressbarTag", description = "Render an progressbar.")
 public class Progressbar extends AbstractTopicsBean {
 
   final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION       = "progressbar";
+  public static final String            JQUERYACTION   = "progressbar";
   public static final String            TEMPLATE       = "progressbar";
   public static final String            TEMPLATE_CLOSE = "progressbar-close";
   public static final String            COMPONENT_NAME = Progressbar.class.getName();
@@ -73,16 +71,20 @@ public class Progressbar extends AbstractTopicsBean {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (value != null) {
+    if (value != null)
+    {
       addParameter("value", findString(value));
     }
-    else {
-      if (name != null) {
+    else
+    {
+      if (name != null)
+      {
         addParameter("value", findString(name));
       }
     }
 
-    if ((this.id == null || this.id.length() == 0)) {
+    if ((this.id == null || this.id.length() == 0))
+    {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
       // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
       int nextInt = RANDOM.nextInt();

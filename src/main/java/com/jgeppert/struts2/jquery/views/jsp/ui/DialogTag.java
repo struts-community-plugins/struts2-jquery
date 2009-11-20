@@ -32,179 +32,179 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class DialogTag extends AbstractRemoteTag {
 
-    private static final long serialVersionUID = -2044616578492431113L;
+  private static final long serialVersionUID = -2044616578492431113L;
 
-    protected String buttons;
-    protected String draggable;
-    protected String dialogClass;
-    protected String height;
-    protected String modal;
-    protected String position;
-    protected String resizable;
-    protected String title;
-    protected String width;
-    protected String zindex;
-    protected String autoOpen;
-    protected String showEffect;
-    protected String hideEffect;
-    protected String overlayColor;
-    protected String overlayOpacity;
-    protected String onOpenTopics;
-    protected String onCloseTopics;
-    protected String onFocusTopics;
-    protected String onBeforeCloseTopics;
-    protected String maxHeight;
-    protected String maxWidth;
-    protected String minHeight;
-    protected String minWidth;
-   
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Dialog(stack, req, res);
-    }
+  protected String          buttons;
+  protected String          draggable;
+  protected String          dialogClass;
+  protected String          height;
+  protected String          modal;
+  protected String          position;
+  protected String          resizable;
+  protected String          title;
+  protected String          width;
+  protected String          zindex;
+  protected String          autoOpen;
+  protected String          showEffect;
+  protected String          hideEffect;
+  protected String          overlayColor;
+  protected String          overlayOpacity;
+  protected String          onOpenTopics;
+  protected String          onCloseTopics;
+  protected String          onFocusTopics;
+  protected String          onBeforeCloseTopics;
+  protected String          maxHeight;
+  protected String          maxWidth;
+  protected String          minHeight;
+  protected String          minWidth;
 
-    protected void populateParams() {
-        super.populateParams();
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Dialog(stack, req, res);
+  }
 
-        Dialog dialog = (Dialog) component;
-        dialog.setButtons(buttons);
-        dialog.setDraggable(draggable);
-        dialog.setDialogClass(dialogClass);
-        dialog.setHeight(height);
-        dialog.setModal(modal);
-        dialog.setPosition(position);
-        dialog.setResizable(resizable);
-        dialog.setTitle(title);
-        dialog.setWidth(width);
-        dialog.setHeight(height);
-        dialog.setAutoOpen(autoOpen);
-        dialog.setShowEffect(showEffect);
-        dialog.setHideEffect(hideEffect);
-        dialog.setOverlayColor(overlayColor);
-        dialog.setOverlayOpacity(overlayOpacity);
-        dialog.setMaxHeight(maxHeight);
-        dialog.setMaxWidth(maxWidth);
-        dialog.setMinHeight(minHeight);
-        dialog.setMinWidth(minWidth);
-        dialog.setOnBeforeCloseTopics(onBeforeCloseTopics);
-        dialog.setOnCloseTopics(onCloseTopics);
-        dialog.setOnOpenTopics(onOpenTopics);
-        dialog.setOnFocusTopics(onFocusTopics);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
 
-    public void setButtons(String buttons)
-    {
-      this.buttons = buttons;
-    }
+    Dialog dialog = (Dialog) component;
+    dialog.setButtons(buttons);
+    dialog.setDraggable(draggable);
+    dialog.setDialogClass(dialogClass);
+    dialog.setHeight(height);
+    dialog.setModal(modal);
+    dialog.setPosition(position);
+    dialog.setResizable(resizable);
+    dialog.setTitle(title);
+    dialog.setWidth(width);
+    dialog.setHeight(height);
+    dialog.setAutoOpen(autoOpen);
+    dialog.setShowEffect(showEffect);
+    dialog.setHideEffect(hideEffect);
+    dialog.setOverlayColor(overlayColor);
+    dialog.setOverlayOpacity(overlayOpacity);
+    dialog.setMaxHeight(maxHeight);
+    dialog.setMaxWidth(maxWidth);
+    dialog.setMinHeight(minHeight);
+    dialog.setMinWidth(minWidth);
+    dialog.setOnBeforeCloseTopics(onBeforeCloseTopics);
+    dialog.setOnCloseTopics(onCloseTopics);
+    dialog.setOnOpenTopics(onOpenTopics);
+    dialog.setOnFocusTopics(onFocusTopics);
+  }
 
-    public void setDraggable(String draggable)
-    {
-      this.draggable = draggable;
-    }
+  public void setButtons(String buttons)
+  {
+    this.buttons = buttons;
+  }
 
-    public void setDialogClass(String dialogClass)
-    {
-      this.dialogClass = dialogClass;
-    }
+  public void setDraggable(String draggable)
+  {
+    this.draggable = draggable;
+  }
 
-    public void setHeight(String height)
-    {
-      this.height = height;
-    }
+  public void setDialogClass(String dialogClass)
+  {
+    this.dialogClass = dialogClass;
+  }
 
-    public void setModal(String modal)
-    {
-      this.modal = modal;
-    }
+  public void setHeight(String height)
+  {
+    this.height = height;
+  }
 
-    public void setPosition(String position)
-    {
-      this.position = position;
-    }
+  public void setModal(String modal)
+  {
+    this.modal = modal;
+  }
 
-    public void setResizable(String resizable)
-    {
-      this.resizable = resizable;
-    }
+  public void setPosition(String position)
+  {
+    this.position = position;
+  }
 
-    public void setTitle(String title)
-    {
-      this.title = title;
-    }
+  public void setResizable(String resizable)
+  {
+    this.resizable = resizable;
+  }
 
-    public void setWidth(String width)
-    {
-      this.width = width;
-    }
+  public void setTitle(String title)
+  {
+    this.title = title;
+  }
 
-    public void setZindex(String zindex)
-    {
-      this.zindex = zindex;
-    }
+  public void setWidth(String width)
+  {
+    this.width = width;
+  }
 
-    public void setAutoOpen(String autoOpen)
-    {
-      this.autoOpen = autoOpen;
-    }
+  public void setZindex(String zindex)
+  {
+    this.zindex = zindex;
+  }
 
-    public void setShowEffect(String showEffect)
-    {
-      this.showEffect = showEffect;
-    }
+  public void setAutoOpen(String autoOpen)
+  {
+    this.autoOpen = autoOpen;
+  }
 
-    public void setHideEffect(String hideEffect)
-    {
-      this.hideEffect = hideEffect;
-    }
+  public void setShowEffect(String showEffect)
+  {
+    this.showEffect = showEffect;
+  }
 
-    public void setOverlayColor(String overlayColor)
-    {
-      this.overlayColor = overlayColor;
-    }
+  public void setHideEffect(String hideEffect)
+  {
+    this.hideEffect = hideEffect;
+  }
 
-    public void setOverlayOpacity(String overlayOpacity)
-    {
-      this.overlayOpacity = overlayOpacity;
-    }
+  public void setOverlayColor(String overlayColor)
+  {
+    this.overlayColor = overlayColor;
+  }
 
-    public void setMaxHeight(String maxHeight)
-    {
-      this.maxHeight = maxHeight;
-    }
+  public void setOverlayOpacity(String overlayOpacity)
+  {
+    this.overlayOpacity = overlayOpacity;
+  }
 
-    public void setMaxWidth(String maxWidth)
-    {
-      this.maxWidth = maxWidth;
-    }
+  public void setMaxHeight(String maxHeight)
+  {
+    this.maxHeight = maxHeight;
+  }
 
-    public void setMinHeight(String minHeight)
-    {
-      this.minHeight = minHeight;
-    }
+  public void setMaxWidth(String maxWidth)
+  {
+    this.maxWidth = maxWidth;
+  }
 
-    public void setMinWidth(String minWidth)
-    {
-      this.minWidth = minWidth;
-    }
+  public void setMinHeight(String minHeight)
+  {
+    this.minHeight = minHeight;
+  }
 
-    public void setOnOpenTopics(String onOpenTopics)
-    {
-      this.onOpenTopics = onOpenTopics;
-    }
+  public void setMinWidth(String minWidth)
+  {
+    this.minWidth = minWidth;
+  }
 
-    public void setOnCloseTopics(String onCloseTopics)
-    {
-      this.onCloseTopics = onCloseTopics;
-    }
+  public void setOnOpenTopics(String onOpenTopics)
+  {
+    this.onOpenTopics = onOpenTopics;
+  }
 
-    public void setOnFocusTopics(String onFocusTopics)
-    {
-      this.onFocusTopics = onFocusTopics;
-    }
+  public void setOnCloseTopics(String onCloseTopics)
+  {
+    this.onCloseTopics = onCloseTopics;
+  }
 
-    public void setOnBeforeCloseTopics(String onBeforeCloseTopics)
-    {
-      this.onBeforeCloseTopics = onBeforeCloseTopics;
-    }
+  public void setOnFocusTopics(String onFocusTopics)
+  {
+    this.onFocusTopics = onFocusTopics;
+  }
+
+  public void setOnBeforeCloseTopics(String onBeforeCloseTopics)
+  {
+    this.onBeforeCloseTopics = onBeforeCloseTopics;
+  }
 }
-
-

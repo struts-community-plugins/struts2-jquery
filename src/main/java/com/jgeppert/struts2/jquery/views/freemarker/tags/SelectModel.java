@@ -28,19 +28,19 @@ import org.apache.struts2.views.freemarker.tags.TagModel;
 import com.jgeppert.struts2.jquery.components.Select;
 import com.opensymphony.xwork2.util.ValueStack;
 
-
 /**
  * @see Select
  */
 public class SelectModel extends TagModel {
 
-    public SelectModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public SelectModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Select(stack, req, res);
-    }
-    
+  @Override
+  protected Component getBean()
+  {
+    return new Select(stack, req, res);
+  }
+
 }

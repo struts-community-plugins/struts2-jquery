@@ -46,30 +46,31 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class JqueryTagLibrary implements TagLibrary {
 
-    public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req,
-            HttpServletResponse res) {
-        
-        return new JqueryModels(stack, req, res);
-    }
+  public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
 
-    public List<Class> getVelocityDirectiveClasses() {
-        Class[] directives = new Class[] {
-            DatePickerDirective.class,
-            DivDirective.class,
-            AnchorDirective.class,
-            SubmitDirective.class,
-            TabDirective.class,
-            TabbedPanelDirective.class,
-            HeadDirective.class,
-            DialogDirective.class,
-            AccordionDirective.class,
-            ProgressbarDirective.class,
-            SliderDirective.class,
-            TextareaDirective.class,
-            TextfieldDirective.class,
-            SelectDirective.class,
-        };
-        return Arrays.asList(directives);
-    }
+    return new JqueryModels(stack, req, res);
+  }
+
+  public List<Class> getVelocityDirectiveClasses()
+  {
+    Class[] directives = new Class[] {
+        DatePickerDirective.class,
+        DivDirective.class,
+        AnchorDirective.class,
+        SubmitDirective.class,
+        TabDirective.class,
+        TabbedPanelDirective.class,
+        HeadDirective.class,
+        DialogDirective.class,
+        AccordionDirective.class,
+        ProgressbarDirective.class,
+        SliderDirective.class,
+        TextareaDirective.class,
+        TextfieldDirective.class,
+        SelectDirective.class,
+    };
+    return Arrays.asList(directives);
+  }
 
 }

@@ -29,23 +29,26 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class TabTag extends AbstractRemoteTag {
 
-    private static final long serialVersionUID = 5309231035916461758L;
+  private static final long serialVersionUID = 5309231035916461758L;
 
-    protected String target;
-    
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Tab(stack, req, res);
-    }
+  protected String          target;
 
-    protected void populateParams() {
-        super.populateParams();
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Tab(stack, req, res);
+  }
 
-        Tab tab = (Tab) component;
-        tab.setTarget(target);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
 
-	public void setTarget(String target) {
-		this.target = target;
-	}
+    Tab tab = (Tab) component;
+    tab.setTarget(target);
+  }
+
+  public void setTarget(String target)
+  {
+    this.target = target;
+  }
 
 }

@@ -31,15 +31,18 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see Accordion
  */
 public class AccordionDirective extends JqueryAbstractDirective {
-    public String getBeanName() {
-        return "accordion";
-    }
+  public String getBeanName()
+  {
+    return "accordion";
+  }
 
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Accordion(stack, req, res);
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Accordion(stack, req, res);
+  }
 
-    public int getType() {
-        return BLOCK;
-    }
+  public int getType()
+  {
+    return BLOCK;
+  }
 }

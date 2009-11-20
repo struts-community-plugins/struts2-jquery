@@ -83,8 +83,9 @@
 									
 					var topic = topics[i];
 					$elem.createTopic(topic);
-					$elem.bind('click', function(event){
-						
+					var params = {};
+					params.topic = topic;
+					$elem.bind('click', params, function(event){
 						$target = $(this);
 						
 						if(!$target.disabled || $target.disabled != true) {
@@ -92,7 +93,7 @@
 							var publishOptions = event.data || {};
 							publishOptions.disabled = false;
 							
-							$target.publish(topic, publishOptions, event);
+							$target.publish(event.data.topic, publishOptions, event);
 						}
     	    		    return false;
 					});
@@ -127,11 +128,18 @@
 						var tarelem = $('#' + target);
 						tarelem.subscribe(actionTopic, loadHandler, options);
 						tarelem.subscribe(effectTopic+target, '_s2j_effects', effect);
+						if(options.listentopics) {			  
+							var topics = options.listentopics.split(',');
+							for ( var i = 0; i < topics.length; i++) {
+								tarelem.subscribe(topics[i], loadHandler, options);
+								tarelem.subscribe(topics[i], '_s2j_effects', effect);
+							}
+						}
 		    	    	if(ajaxhistory) {
 		    				$elem.bind('click', function(event){
 		    					$.struts2_jquery.historyelements[ target ] = actionTopic;
 		    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
-		    	    		    return false;
+//		    	    		    return false;
 		    		    	});
 		    	    	}
 					}
@@ -174,6 +182,12 @@
 							$elem.subscribe(topics[i], loadHandler, options);
 						}
 					}
+					if(options.listentopics) {			  
+						var topics = options.listentopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.subscribe(topics[i], loadHandler, options);
+						}
+					}
 
 					//publishing not triggering to prevent event propagation issues
 			    	var divTopic = '_s2j_div_load_' + options.id;
@@ -193,6 +207,7 @@
 					else {
 						$elem.publish(divTopic,options);	
 					}
+					
 				}
 				else if(options.formids) {
 					options.targets = options.id;
@@ -380,6 +395,12 @@
 						$elem.subscribe(topics[i], loadHandler, options);
 					}
 				}
+				if(options.listentopics) {			  
+					var topics = options.listentopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.subscribe(topics[i], loadHandler, options);
+					}
+				}
 				
 	    		$elem.subscribe(selectTopic, loadHandler);
 	    		$elem.publish(selectTopic,options);				
@@ -423,6 +444,12 @@
 					$elem.subscribe(topics[i], formHandler, options);
 				}
 			}
+			if(options.listentopics) {			  
+				var topics = options.listentopics.split(',');
+				for ( var i = 0; i < topics.length; i++) {
+					$elem.subscribe(topics[i], formHandler, options);
+				}
+			}
 
 			$elem.subscribe(topic, formHandler, options);
 	    	if(options.targets) {  
@@ -434,7 +461,7 @@
 	    				$elem.bind('click', function(event){
 	    					$.struts2_jquery.historyelements[ target ] = topic;
 	    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
-	    	    		    return false;
+//	    	    		    return false;
 	    		    	});
 	    	    	}
 				}

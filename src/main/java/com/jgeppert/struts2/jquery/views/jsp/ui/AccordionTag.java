@@ -30,46 +30,48 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class AccordionTag extends AbstractRequiredListTag {
 
-    private static final long serialVersionUID = 5309231035916461134L;
+  private static final long serialVersionUID = 5309231035916461134L;
 
-    protected String active;
-    protected String animated;
-    protected String autoHeight;
-    protected String clearStyle;
-    protected String collapsible;
-    protected String fillSpace;
-    protected String header;
-    protected String openOnMouseover;
-    protected String href;
-    protected String paramKeys;
-    protected String paramValues;
-    protected String onBeforeTopics;
-    protected String onAlwaysTopics;
-    protected String onChangeTopics;
-    
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Accordion(stack, req, res);
-    }
+  protected String          active;
+  protected String          animated;
+  protected String          autoHeight;
+  protected String          clearStyle;
+  protected String          collapsible;
+  protected String          fillSpace;
+  protected String          header;
+  protected String          openOnMouseover;
+  protected String          href;
+  protected String          paramKeys;
+  protected String          paramValues;
+  protected String          onBeforeTopics;
+  protected String          onAlwaysTopics;
+  protected String          onChangeTopics;
 
-    protected void populateParams() {
-        super.populateParams();
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Accordion(stack, req, res);
+  }
 
-        Accordion accordion = (Accordion) component;
-        accordion.setActive(active);
-        accordion.setAnimated(animated);
-        accordion.setAutoHeight(autoHeight);
-        accordion.setClearStyle(clearStyle);
-        accordion.setCollapsible(collapsible);
-        accordion.setFillSpace(fillSpace);
-        accordion.setHeader(header);
-        accordion.setOpenOnMouseover(openOnMouseover);
-        accordion.setHref(href);
-        accordion.setParamKeys(paramKeys);
-        accordion.setParamValues(paramValues);
-        accordion.setOnBeforeTopics(onBeforeTopics);
-        accordion.setOnAlwaysTopics(onAlwaysTopics);
-        accordion.setOnChangeTopics(onChangeTopics);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
+
+    Accordion accordion = (Accordion) component;
+    accordion.setActive(active);
+    accordion.setAnimated(animated);
+    accordion.setAutoHeight(autoHeight);
+    accordion.setClearStyle(clearStyle);
+    accordion.setCollapsible(collapsible);
+    accordion.setFillSpace(fillSpace);
+    accordion.setHeader(header);
+    accordion.setOpenOnMouseover(openOnMouseover);
+    accordion.setHref(href);
+    accordion.setParamKeys(paramKeys);
+    accordion.setParamValues(paramValues);
+    accordion.setOnBeforeTopics(onBeforeTopics);
+    accordion.setOnAlwaysTopics(onAlwaysTopics);
+    accordion.setOnChangeTopics(onChangeTopics);
+  }
 
   public void setActive(String active)
   {

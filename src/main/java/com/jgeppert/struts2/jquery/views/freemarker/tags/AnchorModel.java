@@ -33,13 +33,14 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class AnchorModel extends TagModel {
 
-    public AnchorModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public AnchorModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Anchor(stack, req, res);
-    }
+  @Override
+  protected Component getBean()
+  {
+    return new Anchor(stack, req, res);
+  }
 
 }

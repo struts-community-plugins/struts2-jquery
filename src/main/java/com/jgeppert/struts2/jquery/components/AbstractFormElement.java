@@ -29,9 +29,9 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public abstract class AbstractFormElement extends AbstractRemoteBean {
 
-  public static final String            COMPONENT_NAME = AbstractFormElement.class.getName();
+  public static final String COMPONENT_NAME = AbstractFormElement.class.getName();
 
-  protected String                      parentTheme;
+  protected String           parentTheme;
 
   public AbstractFormElement(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -42,19 +42,22 @@ public abstract class AbstractFormElement extends AbstractRemoteBean {
     super.evaluateExtraParams();
 
     Form form = (Form) findAncestor(Form.class);
-    if (parentTheme != null) {
-      addParameter("parentTheme", findString(parentTheme));   
+    if (parentTheme != null)
+    {
+      addParameter("parentTheme", findString(parentTheme));
     }
-    else if (form != null){
+    else if (form != null)
+    {
       if (form != null) addParameter("parentTheme", form.getTheme());
     }
-    else {
+    else
+    {
       addParameter("parentTheme", "simple");
     }
 
     if (form != null && (formIds == null || formIds.length() <= 0)) addParameter("formIds", form.getId());
   }
-  
+
   @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
   public void setParentTheme(String parentTheme)
   {

@@ -31,15 +31,18 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see Select
  */
 public class SelectDirective extends JqueryAbstractDirective {
-    public String getBeanName() {
-        return "select";
-    }
+  public String getBeanName()
+  {
+    return "select";
+  }
 
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Select(stack, req, res);
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Select(stack, req, res);
+  }
 
-    public int getType() {
-        return BLOCK;
-    }
+  public int getType()
+  {
+    return BLOCK;
+  }
 }

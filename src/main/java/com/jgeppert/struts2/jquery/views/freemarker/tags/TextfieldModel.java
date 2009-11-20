@@ -28,19 +28,19 @@ import org.apache.struts2.views.freemarker.tags.TagModel;
 import com.jgeppert.struts2.jquery.components.Textfield;
 import com.opensymphony.xwork2.util.ValueStack;
 
-
 /**
  * @see Textfield
  */
 public class TextfieldModel extends TagModel {
 
-    public TextfieldModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public TextfieldModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Textfield(stack, req, res);
-    }
-    
+  @Override
+  protected Component getBean()
+  {
+    return new Textfield(stack, req, res);
+  }
+
 }

@@ -32,69 +32,71 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class SliderTag extends AbstractTopicTag {
 
-    private static final long serialVersionUID = 2998110777278172006L;
-    
-    protected String animate;
-    protected String max;
-    protected String min;
-    protected String orientation;
-    protected String range;
-    protected String step;
-    protected String start;
-    protected String slide;
-    protected String change;
-    protected String stop;
-    protected String displayValueElement;
+  private static final long serialVersionUID = 2998110777278172006L;
 
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Slider(stack, req, res);
-    }
+  protected String          animate;
+  protected String          max;
+  protected String          min;
+  protected String          orientation;
+  protected String          range;
+  protected String          step;
+  protected String          start;
+  protected String          slide;
+  protected String          change;
+  protected String          stop;
+  protected String          displayValueElement;
 
-    protected void populateParams() {
-        super.populateParams();
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Slider(stack, req, res);
+  }
 
-        Slider slider = (Slider) component;
-        slider.setAnimate(animate);
-        slider.setMax(max);
-        slider.setMin(min);
-        slider.setOrientation(orientation);
-        slider.setRange(range);
-        slider.setStep(step);
-        slider.setDisplayValueElement(displayValueElement);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
 
-    public void setAnimate(String animate)
-    {
-      this.animate = animate;
-    }
+    Slider slider = (Slider) component;
+    slider.setAnimate(animate);
+    slider.setMax(max);
+    slider.setMin(min);
+    slider.setOrientation(orientation);
+    slider.setRange(range);
+    slider.setStep(step);
+    slider.setDisplayValueElement(displayValueElement);
+  }
 
-    public void setMax(String max)
-    {
-      this.max = max;
-    }
+  public void setAnimate(String animate)
+  {
+    this.animate = animate;
+  }
 
-    public void setMin(String min)
-    {
-      this.min = min;
-    }
+  public void setMax(String max)
+  {
+    this.max = max;
+  }
 
-    public void setOrientation(String orientation)
-    {
-      this.orientation = orientation;
-    }
+  public void setMin(String min)
+  {
+    this.min = min;
+  }
 
-    public void setRange(String range)
-    {
-      this.range = range;
-    }
+  public void setOrientation(String orientation)
+  {
+    this.orientation = orientation;
+  }
 
-    public void setStep(String step)
-    {
-      this.step = step;
-    }
+  public void setRange(String range)
+  {
+    this.range = range;
+  }
 
-    public void setDisplayValueElement(String displayValueElement)
-    {
-      this.displayValueElement = displayValueElement;
-    }
+  public void setStep(String step)
+  {
+    this.step = step;
+  }
+
+  public void setDisplayValueElement(String displayValueElement)
+  {
+    this.displayValueElement = displayValueElement;
+  }
 }

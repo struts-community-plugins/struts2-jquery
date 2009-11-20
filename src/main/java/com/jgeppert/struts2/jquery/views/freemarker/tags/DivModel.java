@@ -28,19 +28,19 @@ import org.apache.struts2.views.freemarker.tags.TagModel;
 import com.jgeppert.struts2.jquery.components.Div;
 import com.opensymphony.xwork2.util.ValueStack;
 
-
 /**
  * @see Div
  */
 public class DivModel extends TagModel {
 
-    public DivModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public DivModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Div(stack, req, res);
-    }
-    
+  @Override
+  protected Component getBean()
+  {
+    return new Div(stack, req, res);
+  }
+
 }

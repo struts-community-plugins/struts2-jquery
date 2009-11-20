@@ -29,58 +29,60 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class SelectTag extends AbstractContainerTag {
 
-    private static final long serialVersionUID = 3974875529913867071L;
-    protected String                      emptyOption;
-    protected String                      headerKey;
-    protected String                      headerValue;
-    protected String                      list;
-    protected String                      listKey;
-    protected String                      listValue;
+  private static final long serialVersionUID = 3974875529913867071L;
+  protected String          emptyOption;
+  protected String          headerKey;
+  protected String          headerValue;
+  protected String          list;
+  protected String          listKey;
+  protected String          listValue;
 
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Select(stack, req, res);
-    }
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Select(stack, req, res);
+  }
 
-    protected void populateParams() {
-        super.populateParams();
-        
-        Select select = (Select) component;
-        select.setEmptyOption(emptyOption);
-        select.setHeaderKey(headerKey);
-        select.setHeaderValue(headerValue);
-        select.setList(list);
-        select.setListKey(listKey);
-        select.setListValue(listValue);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
 
-    public void setEmptyOption(String emptyOption)
-    {
-      this.emptyOption = emptyOption;
-    }
+    Select select = (Select) component;
+    select.setEmptyOption(emptyOption);
+    select.setHeaderKey(headerKey);
+    select.setHeaderValue(headerValue);
+    select.setList(list);
+    select.setListKey(listKey);
+    select.setListValue(listValue);
+  }
 
-    public void setHeaderKey(String headerKey)
-    {
-      this.headerKey = headerKey;
-    }
+  public void setEmptyOption(String emptyOption)
+  {
+    this.emptyOption = emptyOption;
+  }
 
-    public void setHeaderValue(String headerValue)
-    {
-      this.headerValue = headerValue;
-    }
+  public void setHeaderKey(String headerKey)
+  {
+    this.headerKey = headerKey;
+  }
 
-    public void setList(String list)
-    {
-      this.list = list;
-    }
+  public void setHeaderValue(String headerValue)
+  {
+    this.headerValue = headerValue;
+  }
 
-    public void setListKey(String listKey)
-    {
-      this.listKey = listKey;
-    }
+  public void setList(String list)
+  {
+    this.list = list;
+  }
 
-    public void setListValue(String listValue)
-    {
-      this.listValue = listValue;
-    }
+  public void setListKey(String listKey)
+  {
+    this.listKey = listKey;
+  }
+
+  public void setListValue(String listValue)
+  {
+    this.listValue = listValue;
+  }
 
 }

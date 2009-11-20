@@ -19,11 +19,10 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
-
 public interface SelectableTag {
 
   void setSelectable(String selectable);
-  
+
   void setSelectableAutoRefresh(String selectableAutoRefresh);
 
   void setSelectableCancel(String selectableCancel);

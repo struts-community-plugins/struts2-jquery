@@ -70,35 +70,35 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "dialog", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag", description = "Render a Dialog")
 public class Dialog extends AbstractRemoteBean {
 
-  public static final String JQUERYACTION       = "dialog";
-  public static final String TEMPLATE       = "dialog";
-  public static final String TEMPLATE_CLOSE = "dialog-close";
-  public static final String COMPONENT_NAME = Dialog.class.getName();
-  public static final transient Random RANDOM          = new Random();
+  public static final String           JQUERYACTION   = "dialog";
+  public static final String           TEMPLATE       = "dialog";
+  public static final String           TEMPLATE_CLOSE = "dialog-close";
+  public static final String           COMPONENT_NAME = Dialog.class.getName();
+  public static final transient Random RANDOM         = new Random();
 
-  protected String           buttons;
-  protected String           draggable;
-  protected String           dialogClass;
-  protected String           height;
-  protected String           modal;
-  protected String           position;
-  protected String           resizable;
-  protected String           title;
-  protected String           width;
-  protected String           zindex;
-  protected String           autoOpen;
-  protected String           showEffect;
-  protected String           hideEffect;
-  protected String           overlayColor;
-  protected String           overlayOpacity;
-  protected String           maxHeight;
-  protected String           maxWidth;
-  protected String           minHeight;
-  protected String           minWidth;
-  protected String           onOpenTopics;
-  protected String           onCloseTopics;
-  protected String           onFocusTopics;
-  protected String           onBeforeCloseTopics;
+  protected String                     buttons;
+  protected String                     draggable;
+  protected String                     dialogClass;
+  protected String                     height;
+  protected String                     modal;
+  protected String                     position;
+  protected String                     resizable;
+  protected String                     title;
+  protected String                     width;
+  protected String                     zindex;
+  protected String                     autoOpen;
+  protected String                     showEffect;
+  protected String                     hideEffect;
+  protected String                     overlayColor;
+  protected String                     overlayOpacity;
+  protected String                     maxHeight;
+  protected String                     maxWidth;
+  protected String                     minHeight;
+  protected String                     minWidth;
+  protected String                     onOpenTopics;
+  protected String                     onCloseTopics;
+  protected String                     onFocusTopics;
+  protected String                     onBeforeCloseTopics;
 
   public Dialog(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);

@@ -32,11 +32,13 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class SliderDirective extends JqueryAbstractDirective {
 
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Slider(stack, req, res);
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Slider(stack, req, res);
+  }
 
-    public String getBeanName() {
-        return "slider";
-    }
+  public String getBeanName()
+  {
+    return "slider";
+  }
 }

@@ -33,13 +33,14 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class DialogModel extends TagModel {
 
-    public DialogModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public DialogModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Dialog(stack, req, res);
-    }
+  @Override
+  protected Component getBean()
+  {
+    return new Dialog(stack, req, res);
+  }
 
 }

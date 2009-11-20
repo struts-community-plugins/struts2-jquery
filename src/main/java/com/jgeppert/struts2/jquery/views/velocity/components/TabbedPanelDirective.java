@@ -31,15 +31,18 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see TabbedPanel
  */
 public class TabbedPanelDirective extends JqueryAbstractDirective {
-    public String getBeanName() {
-        return "tabbedpanel";
-    }
+  public String getBeanName()
+  {
+    return "tabbedpanel";
+  }
 
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new TabbedPanel(stack, req, res);
-    }
-    
-    public int getType() {
-        return BLOCK;
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new TabbedPanel(stack, req, res);
+  }
+
+  public int getType()
+  {
+    return BLOCK;
+  }
 }

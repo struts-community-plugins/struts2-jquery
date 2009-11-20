@@ -19,82 +19,80 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-
 public interface SortableBean {
 
-    void setSortable(String sortable);
-    
-    void setSortableAppendTo(String sortableAppendTo);
+  void setSortable(String sortable);
 
-    void setSortableAxis(String sortableAxis);
+  void setSortableAppendTo(String sortableAppendTo);
 
-    void setSortableCancel(String sortableCancel);
+  void setSortableAxis(String sortableAxis);
 
-    void setSortableConnectWith(String sortableConnectWith);
+  void setSortableCancel(String sortableCancel);
 
-    void setSortableContainment(String sortableContainment);
+  void setSortableConnectWith(String sortableConnectWith);
 
-    void setSortableCursor(String sortableCursor);
+  void setSortableContainment(String sortableContainment);
 
-    void setSortableCursorAt(String sortableCursorAt);
+  void setSortableCursor(String sortableCursor);
 
-    void setSortableDelay(String sortableDelay);
+  void setSortableCursorAt(String sortableCursorAt);
 
-    void setSortableDistance(String sortableDistance);
+  void setSortableDelay(String sortableDelay);
 
-    void setSortableDropOnEmpty(String sortableDropOnEmpty);
+  void setSortableDistance(String sortableDistance);
 
-    void setSortableForceHelperSize(String sortableForceHelperSize);
+  void setSortableDropOnEmpty(String sortableDropOnEmpty);
 
-    void setSortableForcePlaceholderSize(String sortableForcePlaceholderSize);
+  void setSortableForceHelperSize(String sortableForceHelperSize);
 
-    void setSortableGrid (String sortableGrid );
+  void setSortableForcePlaceholderSize(String sortableForcePlaceholderSize);
 
-    void setSortableHandle(String sortableHandle);
+  void setSortableGrid(String sortableGrid);
 
-    void setSortableHelper(String sortableHelper);
+  void setSortableHandle(String sortableHandle);
 
-    void setSortableItems(String sortableItems);
+  void setSortableHelper(String sortableHelper);
 
-    void setSortableOpacity(String sortableOpacity);
+  void setSortableItems(String sortableItems);
 
-    void setSortablePlaceholder(String sortablePlaceholder);
+  void setSortableOpacity(String sortableOpacity);
 
-    void setSortableRevert(String sortableRevert);
+  void setSortablePlaceholder(String sortablePlaceholder);
 
-    void setSortableScroll(String sortableScroll);
+  void setSortableRevert(String sortableRevert);
 
-    void setSortableScrollSensitivity(String sortableScrollSensitivity);
+  void setSortableScroll(String sortableScroll);
 
-    void setSortableScrollSpeed(String sortableScrollSpeed);
+  void setSortableScrollSensitivity(String sortableScrollSensitivity);
 
-    void setSortableTolerance(String sortableTolerance);
+  void setSortableScrollSpeed(String sortableScrollSpeed);
 
-    void setSortableZindex(String sortableZindex);
-    
+  void setSortableTolerance(String sortableTolerance);
 
-    void setSortableOnStartTopics(String sortableStart);
+  void setSortableZindex(String sortableZindex);
 
-    void setSortableOnSortTopics(String sortableSort);
+  void setSortableOnStartTopics(String sortableStart);
 
-    void setSortableOnChangeTopics(String sortableChange);
+  void setSortableOnSortTopics(String sortableSort);
 
-    void setSortableOnBeforeStopTopics(String sortableBeforeStop);
+  void setSortableOnChangeTopics(String sortableChange);
 
-    void setSortableOnStopTopics(String sortableStop);
+  void setSortableOnBeforeStopTopics(String sortableBeforeStop);
 
-    void setSortableOnUpdateTopics(String sortableUpdate);
+  void setSortableOnStopTopics(String sortableStop);
 
-    void setSortableOnReceiveTopics(String sortableReceive);
+  void setSortableOnUpdateTopics(String sortableUpdate);
 
-    void setSortableOnRemoveTopics(String sortableRemove);
+  void setSortableOnReceiveTopics(String sortableReceive);
 
-    void setSortableOnOverTopics(String sortableOver);
+  void setSortableOnRemoveTopics(String sortableRemove);
 
-    void setSortableOnOutTopics(String sortableOut);
+  void setSortableOnOverTopics(String sortableOver);
 
-    void setSortableOnActivateTopics(String sortableActivate);
+  void setSortableOnOutTopics(String sortableOut);
 
-    void setSortableOnDeactivateTopics(String sortableDeactivate);
+  void setSortableOnActivateTopics(String sortableActivate);
+
+  void setSortableOnDeactivateTopics(String sortableDeactivate);
 
 }

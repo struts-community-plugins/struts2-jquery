@@ -31,15 +31,18 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see Dialog
  */
 public class DialogDirective extends JqueryAbstractDirective {
-    public String getBeanName() {
-        return "dialog";
-    }
+  public String getBeanName()
+  {
+    return "dialog";
+  }
 
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Dialog(stack, req, res);
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Dialog(stack, req, res);
+  }
 
-    public int getType() {
-        return BLOCK;
-    }
+  public int getType()
+  {
+    return BLOCK;
+  }
 }

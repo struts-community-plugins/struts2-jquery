@@ -32,11 +32,12 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see Head
  */
 public class HeadModel extends TagModel {
-    public HeadModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public HeadModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    protected Component getBean() {
-        return new Head(stack, req, res);
-    }
+  protected Component getBean()
+  {
+    return new Head(stack, req, res);
+  }
 }

@@ -31,15 +31,18 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see Anchor
  */
 public class AnchorDirective extends JqueryAbstractDirective {
-    public String getBeanName() {
-        return "a";
-    }
+  public String getBeanName()
+  {
+    return "a";
+  }
 
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Anchor(stack, req, res);
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Anchor(stack, req, res);
+  }
 
-    public int getType() {
-        return BLOCK;
-    }
+  public int getType()
+  {
+    return BLOCK;
+  }
 }

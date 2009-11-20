@@ -29,13 +29,15 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class DivTag extends AbstractContainerTag {
 
-    private static final long serialVersionUID = 3769231035916461758L;
-    
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Div(stack, req, res);
-    }
+  private static final long serialVersionUID = 3769231035916461758L;
 
-    protected void populateParams() {
-        super.populateParams();
-    }
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Div(stack, req, res);
+  }
+
+  protected void populateParams()
+  {
+    super.populateParams();
+  }
 }

@@ -79,15 +79,15 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class Head extends org.apache.struts2.components.Head {
   public static final String TEMPLATE = "head";
 
-  protected String             compressed;
-  protected String             locale;
-  protected String             jquerytheme;
-  protected String             jqueryui;
-  protected String             customBasepath;
-  protected String             loadFromGoogle;
-  protected String             ajaxcache;
-  protected String             ajaxhistory;
-  protected String             defaultIndicator;
+  protected String           compressed;
+  protected String           locale;
+  protected String           jquerytheme;
+  protected String           jqueryui;
+  protected String           customBasepath;
+  protected String           loadFromGoogle;
+  protected String           ajaxcache;
+  protected String           ajaxhistory;
+  protected String           defaultIndicator;
 
   public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);

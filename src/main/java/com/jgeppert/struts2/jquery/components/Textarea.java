@@ -33,16 +33,16 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "textarea", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TextareaTag", description = "Render HTML textarea providing content from remote call via AJAX")
 public class Textarea extends AbstractContainer {
 
-  public static final String            TEMPLATE = "textarea";
+  public static final String            TEMPLATE       = "textarea";
   public static final String            TEMPLATE_CLOSE = "textarea-close";
   public static final String            COMPONENT_NAME = Textarea.class.getName();
   final private static transient Random RANDOM         = new Random();
   public static final String            JQUERYACTION   = "container";
 
-  protected String cols;
-  protected String readonly;
-  protected String rows;
-  protected String wrap;
+  protected String                      cols;
+  protected String                      readonly;
+  protected String                      rows;
+  protected String                      wrap;
 
   public Textarea(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -64,20 +64,24 @@ public class Textarea extends AbstractContainer {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (readonly != null) {
+    if (readonly != null)
+    {
       addParameter("readonly", findValue(readonly, Boolean.class));
     }
-  
-    if (cols != null) {
-        addParameter("cols", findString(cols));
+
+    if (cols != null)
+    {
+      addParameter("cols", findString(cols));
     }
-  
-    if (rows != null) {
-        addParameter("rows", findString(rows));
+
+    if (rows != null)
+    {
+      addParameter("rows", findString(rows));
     }
-  
-    if (wrap != null) {
-        addParameter("wrap", findString(wrap));
+
+    if (wrap != null)
+    {
+      addParameter("wrap", findString(wrap));
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -104,23 +108,27 @@ public class Textarea extends AbstractContainer {
     return "jquery";
   }
 
-  @StrutsTagAttribute(description="HTML cols attribute", type="Integer")
-  public void setCols(String cols) {
-      this.cols = cols;
+  @StrutsTagAttribute(description = "HTML cols attribute", type = "Integer")
+  public void setCols(String cols)
+  {
+    this.cols = cols;
   }
 
-  @StrutsTagAttribute(description="Whether the textarea is readonly", type="Boolean", defaultValue="false")
-  public void setReadonly(String readonly) {
-      this.readonly = readonly;
+  @StrutsTagAttribute(description = "Whether the textarea is readonly", type = "Boolean", defaultValue = "false")
+  public void setReadonly(String readonly)
+  {
+    this.readonly = readonly;
   }
 
-  @StrutsTagAttribute(description="HTML rows attribute", type="Integer")
-  public void setRows(String rows) {
-      this.rows = rows;
+  @StrutsTagAttribute(description = "HTML rows attribute", type = "Integer")
+  public void setRows(String rows)
+  {
+    this.rows = rows;
   }
 
-  @StrutsTagAttribute(description="HTML wrap attribute")
-  public void setWrap(String wrap) {
-      this.wrap = wrap;
+  @StrutsTagAttribute(description = "HTML wrap attribute")
+  public void setWrap(String wrap)
+  {
+    this.wrap = wrap;
   }
 }

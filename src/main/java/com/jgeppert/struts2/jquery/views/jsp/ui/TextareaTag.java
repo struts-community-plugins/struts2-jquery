@@ -29,45 +29,47 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class TextareaTag extends AbstractContainerTag {
 
-    private static final long serialVersionUID = 6782031035916461758L;
-    
-    protected String cols;
-    protected String readonly;
-    protected String rows;
-    protected String wrap;
-    
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Textarea(stack, req, res);
-    }
+  private static final long serialVersionUID = 6782031035916461758L;
 
-    protected void populateParams() {
-        super.populateParams();
+  protected String          cols;
+  protected String          readonly;
+  protected String          rows;
+  protected String          wrap;
 
-        Textarea textarea = (Textarea) component;
-        textarea.setCols(cols);
-        textarea.setRows(rows);
-        textarea.setReadonly(readonly);
-        textarea.setWrap(wrap);
-        
-    }
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Textarea(stack, req, res);
+  }
 
-    public void setCols(String cols)
-    {
-      this.cols = cols;
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
 
-    public void setReadonly(String readonly)
-    {
-      this.readonly = readonly;
-    }
+    Textarea textarea = (Textarea) component;
+    textarea.setCols(cols);
+    textarea.setRows(rows);
+    textarea.setReadonly(readonly);
+    textarea.setWrap(wrap);
 
-    public void setRows(String rows)
-    {
-      this.rows = rows;
-    }
+  }
 
-    public void setWrap(String wrap)
-    {
-      this.wrap = wrap;
-    }
+  public void setCols(String cols)
+  {
+    this.cols = cols;
+  }
+
+  public void setReadonly(String readonly)
+  {
+    this.readonly = readonly;
+  }
+
+  public void setRows(String rows)
+  {
+    this.rows = rows;
+  }
+
+  public void setWrap(String wrap)
+  {
+    this.wrap = wrap;
+  }
 }

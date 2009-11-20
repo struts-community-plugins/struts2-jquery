@@ -28,19 +28,19 @@ import org.apache.struts2.views.freemarker.tags.TagModel;
 import com.jgeppert.struts2.jquery.components.Accordion;
 import com.opensymphony.xwork2.util.ValueStack;
 
-
 /**
  * @see Accordion
  */
 public class AccordionModel extends TagModel {
 
-    public AccordionModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public AccordionModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Accordion(stack, req, res);
-    }
-    
+  @Override
+  protected Component getBean()
+  {
+    return new Accordion(stack, req, res);
+  }
+
 }

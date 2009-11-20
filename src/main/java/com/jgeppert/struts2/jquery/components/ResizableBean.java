@@ -19,44 +19,43 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-
 public interface ResizableBean {
 
-    void setResizable(String resizable);
-    
-    void setResizableAnimate(String animate);
+  void setResizable(String resizable);
 
-    void setResizableAnimateDuration(String animateDuration);
+  void setResizableAnimate(String animate);
 
-    void setResizableAnimateEasing(String animateEasing);
+  void setResizableAnimateDuration(String animateDuration);
 
-    void setResizableAspectRatio(String aspectRatio);
+  void setResizableAnimateEasing(String animateEasing);
 
-    void setResizableAutoHide(String autoHide);
+  void setResizableAspectRatio(String aspectRatio);
 
-    void setResizableContainment(String containment);
+  void setResizableAutoHide(String autoHide);
 
-    void setResizableDelay(String delay);
-    
-    void setResizableDistance(String distance);
-    
-    void setResizableGhost(String ghost);
-    
-    void setResizableHelper(String helper);
-    
-    void setResizableMaxHeight(String maxHeight);
-    
-    void setResizableMaxWidth(String maxWidth);
+  void setResizableContainment(String containment);
 
-    void setResizableMinHeight(String minHeight);
-    
-    void setResizableMinWidth(String minWidth);
+  void setResizableDelay(String delay);
 
-    void setResizableOnStartTopics(String start);
-    
-    void setResizableOnResizeTopics(String resize);
-    
-    void setResizableOnStopTopics(String stop);
+  void setResizableDistance(String distance);
 
-    void setResizableHandles(String handles);
+  void setResizableGhost(String ghost);
+
+  void setResizableHelper(String helper);
+
+  void setResizableMaxHeight(String maxHeight);
+
+  void setResizableMaxWidth(String maxWidth);
+
+  void setResizableMinHeight(String minHeight);
+
+  void setResizableMinWidth(String minWidth);
+
+  void setResizableOnStartTopics(String start);
+
+  void setResizableOnResizeTopics(String resize);
+
+  void setResizableOnStopTopics(String stop);
+
+  void setResizableHandles(String handles);
 }

@@ -32,11 +32,12 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see TabbedPanel
  */
 public class TabbedPanelModel extends TagModel {
-    public TabbedPanelModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public TabbedPanelModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    protected Component getBean() {
-        return new TabbedPanel(stack, req, res);
-    }
+  protected Component getBean()
+  {
+    return new TabbedPanel(stack, req, res);
+  }
 }

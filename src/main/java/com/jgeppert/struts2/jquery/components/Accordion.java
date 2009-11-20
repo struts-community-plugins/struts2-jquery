@@ -45,7 +45,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class Accordion extends ListUIBean {
 
   final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION         = "accordion";
+  public static final String            JQUERYACTION   = "accordion";
   public static final String            TEMPLATE       = "accordion";
   public static final String            COMPONENT_NAME = Accordion.class.getName();
 
@@ -91,12 +91,9 @@ public class Accordion extends ListUIBean {
     if (paramKeys != null) addParameter("paramKeys", findString(paramKeys));
     if (paramValues != null) addParameter("paramValues", findString(paramValues));
 
-    if (onBeforeTopics != null)
-      addParameter("onBeforeTopics", findString(onBeforeTopics));
-    if (onChangeTopics != null)
-      addParameter("onChangeTopics", findString(onChangeTopics));   
-    if (onAlwaysTopics != null)
-      addParameter("onAlwaysTopics", findString(onAlwaysTopics));   
+    if (onBeforeTopics != null) addParameter("onBeforeTopics", findString(onBeforeTopics));
+    if (onChangeTopics != null) addParameter("onChangeTopics", findString(onChangeTopics));
+    if (onAlwaysTopics != null) addParameter("onAlwaysTopics", findString(onAlwaysTopics));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -194,30 +191,31 @@ public class Accordion extends ListUIBean {
     this.href = href;
   }
 
-  @StrutsTagAttribute(description="Comma seperated List of parameter names for the href url. e.g. queryParam1,queryParam2")
+  @StrutsTagAttribute(description = "Comma seperated List of parameter names for the href url. e.g. queryParam1,queryParam2")
   public void setParamKeys(String paramKeys)
   {
     this.paramKeys = paramKeys;
   }
 
-  @StrutsTagAttribute(description="Comma seperated List of List Keys for parameter values. e.g. queryValue1,queryValue2")
+  @StrutsTagAttribute(description = "Comma seperated List of List Keys for parameter values. e.g. queryValue1,queryValue2")
   public void setParamValues(String paramValues)
   {
     this.paramValues = paramValues;
   }
-  @StrutsTagAttribute(name="onBeforeTopics", description = "Topics that are published before a load", type="String", defaultValue="")
+
+  @StrutsTagAttribute(name = "onBeforeTopics", description = "Topics that are published before a load", type = "String", defaultValue = "")
   public void setOnBeforeTopics(String onBeforeTopics)
   {
     this.onBeforeTopics = onBeforeTopics;
   }
 
-  @StrutsTagAttribute(name="onAlwaysTopics", description = "A comma delimited list of topics that published always", type="String", defaultValue="")
+  @StrutsTagAttribute(name = "onAlwaysTopics", description = "A comma delimited list of topics that published always", type = "String", defaultValue = "")
   public void setOnAlwaysTopics(String onAlwaysTopics)
   {
     this.onAlwaysTopics = onAlwaysTopics;
   }
 
-  @StrutsTagAttribute(name="onChangeTopics", description = "A comma delimited list of topics that published when the element changed", type="String", defaultValue="")
+  @StrutsTagAttribute(name = "onChangeTopics", description = "A comma delimited list of topics that published when the element changed", type = "String", defaultValue = "")
   public void setOnChangeTopics(String onChangeTopics)
   {
     this.onChangeTopics = onChangeTopics;

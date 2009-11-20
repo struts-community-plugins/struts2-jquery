@@ -33,11 +33,12 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class DatePickerModel extends TextFieldModel {
 
-    public DatePickerModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public DatePickerModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    protected Component getBean() {
-        return new DatePicker(stack, req, res);
-    }
+  protected Component getBean()
+  {
+    return new DatePicker(stack, req, res);
+  }
 }

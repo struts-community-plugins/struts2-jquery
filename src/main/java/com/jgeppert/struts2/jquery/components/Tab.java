@@ -29,60 +29,65 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: javadoc -->
- * Renders a local or an remote tab for tabbedPanel
- * <!-- END SNIPPET: javadoc -->
- *
- * <p>Examples</p>
- * <!-- START SNIPPET: example1 -->
- * &lt;s:url id="remoteurl1" action="myremoteactionone"/&gt;
- * &lt;sj:tab id="tab1" target="tone" label="My Local Tab for div tone"/&gt;
- * &lt;sj:tab id="tab2" href="%{remoteurl1}" label="My Remote Tab"/&gt;
- * &lt;div id="tone"&gt; Test 1 &lt;/div&gt;
- * <!-- END SNIPPET: example1 -->
+ * <!-- START SNIPPET: javadoc --> Renders a local or an remote tab for
+ * tabbedPanel <!-- END SNIPPET: javadoc -->
+ * 
+ * <p>
+ * Examples
+ * </p>
+ * <!-- START SNIPPET: example1 --> &lt;s:url id="remoteurl1"
+ * action="myremoteactionone"/&gt; &lt;sj:tab id="tab1" target="tone"
+ * label="My Local Tab for div tone"/&gt; &lt;sj:tab id="tab2"
+ * href="%{remoteurl1}" label="My Remote Tab"/&gt; &lt;div id="tone"&gt; Test 1
+ * &lt;/div&gt; <!-- END SNIPPET: example1 -->
  */
-@StrutsTag(name="tab", tldTagClass="com.jgeppert.struts2.jquery.views.jsp.ui.TabTag", description="Render Tab for Tabbed Pannel providing content from remote call via AJAX")
+@StrutsTag(name = "tab", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabTag", description = "Render Tab for Tabbed Pannel providing content from remote call via AJAX")
 public class Tab extends AbstractRemoteBean {
 
-    public static final String TEMPLATE = "tab";
-    public static final String TEMPLATE_CLOSE = "tab-close";
-    public static final String COMPONENT_NAME = Tab.class.getName();
+  public static final String TEMPLATE       = "tab";
+  public static final String TEMPLATE_CLOSE = "tab-close";
+  public static final String COMPONENT_NAME = Tab.class.getName();
 
-    protected String target;
+  protected String           target;
 
-    public Tab(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-        super(stack, request, response);
-    }
+  public Tab(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+    super(stack, request, response);
+  }
 
-    public String getDefaultOpenTemplate() {
-        return TEMPLATE;
-    }
+  public String getDefaultOpenTemplate()
+  {
+    return TEMPLATE;
+  }
 
-    protected String getDefaultTemplate() {
-        return TEMPLATE_CLOSE;
-    }
+  protected String getDefaultTemplate()
+  {
+    return TEMPLATE_CLOSE;
+  }
 
-    public void evaluateExtraParams() {
-        super.evaluateExtraParams();
+  public void evaluateExtraParams()
+  {
+    super.evaluateExtraParams();
 
-        if (target != null)
-            addParameter("target", findString(target));
-    }
+    if (target != null) addParameter("target", findString(target));
+  }
 
-    @Override
-    @StrutsTagSkipInheritance
-    public void setTheme(String theme) {
-        super.setTheme(theme);
-    }
-    
-    @Override
-    public String getTheme() {
-        return "jquery";
-    }
+  @Override
+  @StrutsTagSkipInheritance
+  public void setTheme(String theme)
+  {
+    super.setTheme(theme);
+  }
 
-    @StrutsTagAttribute(description="id of target div for tab")
-	public void setTarget(String target) {
-		this.target = target;
-	}
+  @Override
+  public String getTheme()
+  {
+    return "jquery";
+  }
+
+  @StrutsTagAttribute(description = "id of target div for tab")
+  public void setTarget(String target)
+  {
+    this.target = target;
+  }
 
 }

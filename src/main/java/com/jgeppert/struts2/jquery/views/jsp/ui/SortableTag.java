@@ -19,11 +19,10 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
-
 public interface SortableTag {
 
   void setSortable(String sortable);
-  
+
   void setSortableAppendTo(String sortableAppendTo);
 
   void setSortableAxis(String sortableAxis);
@@ -48,7 +47,7 @@ public interface SortableTag {
 
   void setSortableForcePlaceholderSize(String sortableForcePlaceholderSize);
 
-  void setSortableGrid (String sortableGrid );
+  void setSortableGrid(String sortableGrid);
 
   void setSortableHandle(String sortableHandle);
 
@@ -71,7 +70,6 @@ public interface SortableTag {
   void setSortableTolerance(String sortableTolerance);
 
   void setSortableZindex(String sortableZindex);
-  
 
   void setSortableOnStartTopics(String sortableStart);
 

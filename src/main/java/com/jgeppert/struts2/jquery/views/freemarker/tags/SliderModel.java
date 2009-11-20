@@ -33,11 +33,12 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class SliderModel extends TextFieldModel {
 
-    public SliderModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public SliderModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    protected Component getBean() {
-        return new Slider(stack, req, res);
-    }
+  protected Component getBean()
+  {
+    return new Slider(stack, req, res);
+  }
 }

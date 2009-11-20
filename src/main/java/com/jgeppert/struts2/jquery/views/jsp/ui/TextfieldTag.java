@@ -29,37 +29,39 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class TextfieldTag extends AbstractContainerTag {
 
-    private static final long serialVersionUID = 8332089683341849748L;
+  private static final long serialVersionUID = 8332089683341849748L;
 
-    protected String maxlength;
-    protected String readonly;
-    protected String size;
+  protected String          maxlength;
+  protected String          readonly;
+  protected String          size;
 
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Textfield(stack, req, res);
-    }
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Textfield(stack, req, res);
+  }
 
-    protected void populateParams() {
-        super.populateParams();
-        
-        Textfield text = (Textfield) component;
-        text.setMaxlength(maxlength);
-        text.setReadonly(readonly);
-        text.setSize(size);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
 
-    public void setMaxlength(String maxlength)
-    {
-      this.maxlength = maxlength;
-    }
+    Textfield text = (Textfield) component;
+    text.setMaxlength(maxlength);
+    text.setReadonly(readonly);
+    text.setSize(size);
+  }
 
-    public void setReadonly(String readonly)
-    {
-      this.readonly = readonly;
-    }
+  public void setMaxlength(String maxlength)
+  {
+    this.maxlength = maxlength;
+  }
 
-    public void setSize(String size)
-    {
-      this.size = size;
-    }
+  public void setReadonly(String readonly)
+  {
+    this.readonly = readonly;
+  }
+
+  public void setSize(String size)
+  {
+    this.size = size;
+  }
 }

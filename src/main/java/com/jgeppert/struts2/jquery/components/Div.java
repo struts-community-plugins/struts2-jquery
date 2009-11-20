@@ -61,7 +61,6 @@ public class Div extends AbstractContainer implements ResizableBean, DroppableBe
   final private static transient Random RANDOM         = new Random();
   public static final String            JQUERYACTION   = "container";
 
-
   public Div(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }

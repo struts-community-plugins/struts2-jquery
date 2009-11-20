@@ -30,18 +30,20 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class ProgressbarTag extends AbstractTopicTag {
 
   private static final long serialVersionUID = -7636943419071750985L;
-    protected String                      value;
-    
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Progressbar(stack, req, res);
-    }
+  protected String          value;
 
-    protected void populateParams() {
-        super.populateParams();
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Progressbar(stack, req, res);
+  }
 
-        Progressbar bar = (Progressbar) component;
-        bar.setValue(value);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
+
+    Progressbar bar = (Progressbar) component;
+    bar.setValue(value);
+  }
 
   public void setValue(String value)
   {

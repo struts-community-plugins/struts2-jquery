@@ -23,91 +23,111 @@ import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
 
 public abstract class AbstractRemoteTag extends AbstractTopicTag {
 
-    private static final long serialVersionUID = -704912163849377645L;
-    
-    
-    protected String targets;     //The targets into which to load content
-    protected String href;        //The url to execute
-    protected String formIds;     //the forms
-    protected String validate;      //text to be displayed on load error
-    protected String indicator;   //If loading content into a target, Id of element that will be displayed during loading and hidden afterwards
-    protected String loadingText;   //If loading content into a target, The text to be displayed during load
-    protected String errorText;       //text to be displayed on load error
-    protected String errorElementId;    //the element into which to place error messages
-    protected String dataType;
-    protected String effect;
-    protected String effectDuration;
-    protected String effectOptions;
-    protected String timeout;
-    
-    protected void populateParams() {
-        super.populateParams();
+  private static final long serialVersionUID = -704912163849377645L;
 
-        AbstractRemoteBean remote = (AbstractRemoteBean) component;
-        remote.setHref(href);
-        remote.setTargets(targets);
-        remote.setFormIds(formIds);
-        remote.setValidate(validate);
-        remote.setIndicator(indicator);
-        remote.setLoadingText(loadingText);
-        remote.setErrorText(errorText);
-        remote.setErrorElementId(errorElementId);
-        remote.setDataType(dataType);
-        remote.setEffect(effect);
-        remote.setEffectDuration(effectDuration);
-        remote.setEffectOptions(effectOptions);
-        remote.setTimeout(timeout);
-    }
+  protected String          targets;
+  protected String          href;
+  protected String          formIds;
+  protected String          validate;
+  protected String          indicator;
+  protected String          loadingText;
+  protected String          errorText;
+  protected String          errorElementId;
+  protected String          dataType;
+  protected String          effect;
+  protected String          effectDuration;
+  protected String          effectOptions;
+  protected String          timeout;
+  protected String          listenTopics;
 
-    public void setTargets(String targets) {
-      this.targets = targets;
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
 
-    public void setHref(String href) {
-      this.href = href;
-    }
+    AbstractRemoteBean remote = (AbstractRemoteBean) component;
+    remote.setHref(href);
+    remote.setTargets(targets);
+    remote.setFormIds(formIds);
+    remote.setValidate(validate);
+    remote.setIndicator(indicator);
+    remote.setLoadingText(loadingText);
+    remote.setErrorText(errorText);
+    remote.setErrorElementId(errorElementId);
+    remote.setDataType(dataType);
+    remote.setEffect(effect);
+    remote.setEffectDuration(effectDuration);
+    remote.setEffectOptions(effectOptions);
+    remote.setTimeout(timeout);
+    remote.setListenTopics(listenTopics);
+  }
 
-    public void setFormIds(String formIds) {
-      this.formIds = formIds;
-    }
+  public void setTargets(String targets)
+  {
+    this.targets = targets;
+  }
 
-    public void setValidate(String validate) {
-      this.validate = validate;
-    }
-    
-    public void setIndicator(String indicator) {
-      this.indicator = indicator;
-    }
+  public void setHref(String href)
+  {
+    this.href = href;
+  }
 
-    public void setLoadingText(String loadingText) {
-      this.loadingText = loadingText;
-    }
+  public void setFormIds(String formIds)
+  {
+    this.formIds = formIds;
+  }
 
-    public void setErrorText(String errorText) {
-      this.errorText = errorText;
-    }
+  public void setValidate(String validate)
+  {
+    this.validate = validate;
+  }
 
-    public void setErrorElementId(String errorElementId) {
-      this.errorElementId = errorElementId;
-    }
+  public void setIndicator(String indicator)
+  {
+    this.indicator = indicator;
+  }
 
-    public void setDataType(String dataType) {
-      this.dataType = dataType;
-    }
+  public void setLoadingText(String loadingText)
+  {
+    this.loadingText = loadingText;
+  }
 
-    public void setEffect(String effect) {
-      this.effect = effect;
-    }
+  public void setErrorText(String errorText)
+  {
+    this.errorText = errorText;
+  }
 
-    public void setEffectDuration(String effectDuration) {
-      this.effectDuration = effectDuration;
-    }
+  public void setErrorElementId(String errorElementId)
+  {
+    this.errorElementId = errorElementId;
+  }
 
-    public void setEffectOptions(String effectOptions) {
-      this.effectOptions = effectOptions;
-    }
+  public void setDataType(String dataType)
+  {
+    this.dataType = dataType;
+  }
 
-    public void setTimeout(String timeout) {
-      this.timeout = timeout;
-    }
+  public void setEffect(String effect)
+  {
+    this.effect = effect;
+  }
+
+  public void setEffectDuration(String effectDuration)
+  {
+    this.effectDuration = effectDuration;
+  }
+
+  public void setEffectOptions(String effectOptions)
+  {
+    this.effectOptions = effectOptions;
+  }
+
+  public void setTimeout(String timeout)
+  {
+    this.timeout = timeout;
+  }
+
+  public void setListenTopics(String listenTopics)
+  {
+    this.listenTopics = listenTopics;
+  }
 }

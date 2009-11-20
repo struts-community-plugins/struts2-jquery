@@ -31,15 +31,18 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see Textarea
  */
 public class TextareaDirective extends JqueryAbstractDirective {
-    public String getBeanName() {
-        return "textarea";
-    }
+  public String getBeanName()
+  {
+    return "textarea";
+  }
 
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Textarea(stack, req, res);
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Textarea(stack, req, res);
+  }
 
-    public int getType() {
-        return BLOCK;
-    }
+  public int getType()
+  {
+    return BLOCK;
+  }
 }

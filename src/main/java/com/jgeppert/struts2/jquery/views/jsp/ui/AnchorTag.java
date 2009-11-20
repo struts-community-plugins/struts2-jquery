@@ -32,30 +32,37 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class AnchorTag extends AbstractRemoteTag {
 
-    private static final long serialVersionUID = -1034616578492431113L;
+  private static final long serialVersionUID = -1034616578492431113L;
 
-    protected String openDialog;
-    protected String onClickTopics;   //topics that are published on click
-    
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Anchor(stack, req, res);
-    }
+  protected String          openDialog;
+  protected String          onClickTopics;                           // topics
+                                                                      // that
+                                                                      // are
+                                                                      // published
+                                                                      // on
+                                                                      // click
 
-    protected void populateParams() {
-        super.populateParams();
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Anchor(stack, req, res);
+  }
 
-        Anchor link = (Anchor) component;
-        link.setOpenDialog(openDialog);
-        link.setOnClickTopics(onClickTopics);
-    }
+  protected void populateParams()
+  {
+    super.populateParams();
 
-    public void setOpenDialog(String openDialog)
-    {
-      this.openDialog = openDialog;
-    }
-    public void setOnClickTopics(String onClickTopics) {
-      this.onClickTopics = onClickTopics;
-    }
+    Anchor link = (Anchor) component;
+    link.setOpenDialog(openDialog);
+    link.setOnClickTopics(onClickTopics);
+  }
+
+  public void setOpenDialog(String openDialog)
+  {
+    this.openDialog = openDialog;
+  }
+
+  public void setOnClickTopics(String onClickTopics)
+  {
+    this.onClickTopics = onClickTopics;
+  }
 }
-
-

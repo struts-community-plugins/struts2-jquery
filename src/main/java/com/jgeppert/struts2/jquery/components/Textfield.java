@@ -33,15 +33,15 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "textfield", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TextfieldTag", description = "Render HTML textfield providing content from remote call via AJAX")
 public class Textfield extends AbstractContainer {
 
-  public static final String            TEMPLATE = "textfield";
+  public static final String            TEMPLATE       = "textfield";
   public static final String            TEMPLATE_CLOSE = "textfield-close";
   public static final String            COMPONENT_NAME = Textfield.class.getName();
   final private static transient Random RANDOM         = new Random();
   public static final String            JQUERYACTION   = "container";
 
-  protected String maxlength;
-  protected String readonly;
-  protected String size;
+  protected String                      maxlength;
+  protected String                      readonly;
+  protected String                      size;
 
   public Textfield(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -63,17 +63,20 @@ public class Textfield extends AbstractContainer {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (size != null) {
+    if (size != null)
+    {
       addParameter("size", findString(size));
-  }
+    }
 
-  if (maxlength != null) {
+    if (maxlength != null)
+    {
       addParameter("maxlength", findString(maxlength));
-  }
+    }
 
-  if (readonly != null) {
+    if (readonly != null)
+    {
       addParameter("readonly", findValue(readonly, Boolean.class));
-  }
+    }
     if ((this.id == null || this.id.length() == 0))
     {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -97,19 +100,22 @@ public class Textfield extends AbstractContainer {
   {
     return "jquery";
   }
-  
-  @StrutsTagAttribute(description="HTML maxlength attribute", type="Integer")
-  public void setMaxlength(String maxlength) {
-      this.maxlength = maxlength;
+
+  @StrutsTagAttribute(description = "HTML maxlength attribute", type = "Integer")
+  public void setMaxlength(String maxlength)
+  {
+    this.maxlength = maxlength;
   }
 
-  @StrutsTagAttribute(description="Whether the input is readonly", type="Boolean", defaultValue="false")
-  public void setReadonly(String readonly) {
-      this.readonly = readonly;
+  @StrutsTagAttribute(description = "Whether the input is readonly", type = "Boolean", defaultValue = "false")
+  public void setReadonly(String readonly)
+  {
+    this.readonly = readonly;
   }
 
-  @StrutsTagAttribute(description="HTML size attribute",  type="Integer")
-  public void setSize(String size) {
-      this.size = size;
+  @StrutsTagAttribute(description = "HTML size attribute", type = "Integer")
+  public void setSize(String size)
+  {
+    this.size = size;
   }
 }

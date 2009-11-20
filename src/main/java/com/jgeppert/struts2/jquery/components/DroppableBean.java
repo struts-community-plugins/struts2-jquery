@@ -19,32 +19,31 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-
 public interface DroppableBean {
 
-    void setDroppable(String droppable);
-    
-    void setDroppableAccept(String droppableAccept);
+  void setDroppable(String droppable);
 
-    void setDroppableActiveClass(String droppableActiveClass);
+  void setDroppableAccept(String droppableAccept);
 
-    void setDroppableAddClasses(String droppableAddClasses);
+  void setDroppableActiveClass(String droppableActiveClass);
 
-    void setDroppableGreedy(String droppableGreedy);
+  void setDroppableAddClasses(String droppableAddClasses);
 
-    void setDroppableHoverClass(String droppableHoverClass);
+  void setDroppableGreedy(String droppableGreedy);
 
-    void setDroppableScope(String droppableScope);
+  void setDroppableHoverClass(String droppableHoverClass);
 
-    void setDroppableTolerance(String droppableTolerance);
+  void setDroppableScope(String droppableScope);
 
-    void setDroppableOnActivateTopics(String droppableActivate);
+  void setDroppableTolerance(String droppableTolerance);
 
-    void setDroppableOnDeactivateTopics(String droppableDeactivate);
+  void setDroppableOnActivateTopics(String droppableActivate);
 
-    void setDroppableOnOverTopics(String droppableOver);
+  void setDroppableOnDeactivateTopics(String droppableDeactivate);
 
-    void setDroppableOnOutTopics(String droppableOut);
+  void setDroppableOnOverTopics(String droppableOver);
 
-    void setDroppableOnDropTopics(String droppableDrop);
+  void setDroppableOnOutTopics(String droppableOut);
+
+  void setDroppableOnDropTopics(String droppableDrop);
 }

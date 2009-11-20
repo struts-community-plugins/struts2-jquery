@@ -66,4 +66,7 @@
   <#if parameters.timeout?exists>
 	options_${parameters.id?html}.timeout = ${parameters.timeout?html};
   </#if>
+  <#if parameters.listenTopics?exists>
+	options_${parameters.id?html}.listentopics = "${parameters.listenTopics?html}";
+  </#if>
   

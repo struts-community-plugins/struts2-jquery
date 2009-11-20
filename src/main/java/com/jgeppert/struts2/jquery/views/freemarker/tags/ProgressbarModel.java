@@ -28,19 +28,19 @@ import org.apache.struts2.views.freemarker.tags.TagModel;
 import com.jgeppert.struts2.jquery.components.Progressbar;
 import com.opensymphony.xwork2.util.ValueStack;
 
-
 /**
  * @see Progressbar
  */
 public class ProgressbarModel extends TagModel {
 
-    public ProgressbarModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public ProgressbarModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Progressbar(stack, req, res);
-    }
-    
+  @Override
+  protected Component getBean()
+  {
+    return new Progressbar(stack, req, res);
+  }
+
 }

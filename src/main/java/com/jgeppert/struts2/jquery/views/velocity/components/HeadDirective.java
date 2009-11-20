@@ -31,11 +31,13 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see Head
  */
 public class HeadDirective extends JqueryAbstractDirective {
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new Head(stack, req, res);
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Head(stack, req, res);
+  }
 
-    public String getBeanName() {
-        return "head";
-    }
+  public String getBeanName()
+  {
+    return "head";
+  }
 }

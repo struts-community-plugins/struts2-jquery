@@ -34,111 +34,108 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public abstract class AbstractTopicsBean extends ClosingUIBean {
 
-    protected String onBeforeTopics;
-    protected String onCompleteTopics;
-    protected String onSuccessTopics;
-    protected String onErrorTopics;
-    protected String onAlwaysTopics;
-    protected String onChangeTopics;
-    protected String onEnableTopics;
-    protected String onDisableTopics;
-    protected String onBlurTopics;
-    protected String onFocusTopics;
-    
-    public AbstractTopicsBean(ValueStack stack, HttpServletRequest request,
-            HttpServletResponse response) {
-        super(stack, request, response);
-    }
+  protected String onBeforeTopics;
+  protected String onCompleteTopics;
+  protected String onSuccessTopics;
+  protected String onErrorTopics;
+  protected String onAlwaysTopics;
+  protected String onChangeTopics;
+  protected String onEnableTopics;
+  protected String onDisableTopics;
+  protected String onBlurTopics;
+  protected String onFocusTopics;
 
-    public void evaluateExtraParams() {
-        super.evaluateExtraParams();
+  public AbstractTopicsBean(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+    super(stack, request, response);
+  }
 
-      if (onBeforeTopics != null)
-        addParameter("onBeforeTopics", findString(onBeforeTopics));
-      if (onCompleteTopics != null)
-          addParameter("onCompleteTopics", findString(onCompleteTopics));
-      if (onSuccessTopics != null)
-          addParameter("onSuccessTopics", findString(onSuccessTopics));
-      if (onErrorTopics != null)
-          addParameter("onErrorTopics", findString(onErrorTopics));   
-      if (onChangeTopics != null)
-        addParameter("onChangeTopics", findString(onChangeTopics));   
-      if (onAlwaysTopics != null)
-        addParameter("onAlwaysTopics", findString(onAlwaysTopics));   
-      if (onEnableTopics != null) 
-        addParameter("onEnableTopics", findString(onEnableTopics));
-      if (onDisableTopics != null) 
-        addParameter("onDisableTopics", findString(onDisableTopics));
-      if (onBlurTopics != null) 
-        addParameter("onBlurTopics", findString(onBlurTopics));
-      if (onDisableTopics != null) 
-        addParameter("onFocusTopics", findString(onFocusTopics));
-    }
+  public void evaluateExtraParams()
+  {
+    super.evaluateExtraParams();
 
-    @Override
-    @StrutsTagSkipInheritance
-    public void setTheme(String theme) {
-        super.setTheme(theme);
-    }
-    
-    @Override
-    public String getTheme() {
-        return "jquery";
-    }
+    if (onBeforeTopics != null) addParameter("onBeforeTopics", findString(onBeforeTopics));
+    if (onCompleteTopics != null) addParameter("onCompleteTopics", findString(onCompleteTopics));
+    if (onSuccessTopics != null) addParameter("onSuccessTopics", findString(onSuccessTopics));
+    if (onErrorTopics != null) addParameter("onErrorTopics", findString(onErrorTopics));
+    if (onChangeTopics != null) addParameter("onChangeTopics", findString(onChangeTopics));
+    if (onAlwaysTopics != null) addParameter("onAlwaysTopics", findString(onAlwaysTopics));
+    if (onEnableTopics != null) addParameter("onEnableTopics", findString(onEnableTopics));
+    if (onDisableTopics != null) addParameter("onDisableTopics", findString(onDisableTopics));
+    if (onBlurTopics != null) addParameter("onBlurTopics", findString(onBlurTopics));
+    if (onDisableTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
+  }
 
-    @StrutsTagAttribute(description = "Topics that are published before a load", type="String", defaultValue="")
-    public void setOnBeforeTopics(String onBeforeTopics)
-    {
-      this.onBeforeTopics = onBeforeTopics;
-    }
+  @Override
+  @StrutsTagSkipInheritance
+  public void setTheme(String theme)
+  {
+    super.setTheme(theme);
+  }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)", type="String", defaultValue="")
-    public void setOnCompleteTopics(String onCompleteTopics){
-      this.onCompleteTopics = onCompleteTopics;
-    }
+  @Override
+  public String getTheme()
+  {
+    return "jquery";
+  }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)", type="String", defaultValue="")
-    public void setOnSuccessTopics(String onSuccessTopics){
-      this.onSuccessTopics = onSuccessTopics;
-    }
+  @StrutsTagAttribute(description = "Topics that are published before a load", type = "String", defaultValue = "")
+  public void setOnBeforeTopics(String onBeforeTopics)
+  {
+    this.onBeforeTopics = onBeforeTopics;
+  }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)", type="String", defaultValue="")
-    public void setOnErrorTopics(String onErrorTopics){
-      this.onErrorTopics = onErrorTopics;
-    }
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)", type = "String", defaultValue = "")
+  public void setOnCompleteTopics(String onCompleteTopics)
+  {
+    this.onCompleteTopics = onCompleteTopics;
+  }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published always", type="String", defaultValue="")
-    public void setOnAlwaysTopics(String onAlwaysTopics)
-    {
-      this.onAlwaysTopics = onAlwaysTopics;
-    }
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)", type = "String", defaultValue = "")
+  public void setOnSuccessTopics(String onSuccessTopics)
+  {
+    this.onSuccessTopics = onSuccessTopics;
+  }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element changed", type="String", defaultValue="")
-    public void setOnChangeTopics(String onChangeTopics)
-    {
-      this.onChangeTopics = onChangeTopics;
-    }
-    
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is enabled", type = "String", defaultValue = "")
-    public void setOnEnableTopics(String onEnableTopics)
-    {
-      this.onEnableTopics = onEnableTopics;
-    }
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)", type = "String", defaultValue = "")
+  public void setOnErrorTopics(String onErrorTopics)
+  {
+    this.onErrorTopics = onErrorTopics;
+  }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element disabled", type = "String", defaultValue = "")
-    public void setOnDisableTopics(String onDisableTopics)
-    {
-      this.onDisableTopics = onDisableTopics;
-    }
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published always", type = "String", defaultValue = "")
+  public void setOnAlwaysTopics(String onAlwaysTopics)
+  {
+    this.onAlwaysTopics = onAlwaysTopics;
+  }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is blured", type="String", defaultValue="")
-    public void setOnBlurTopics(String onBlurTopics) {
-      this.onBlurTopics = onBlurTopics;
-    }
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element changed", type = "String", defaultValue = "")
+  public void setOnChangeTopics(String onChangeTopics)
+  {
+    this.onChangeTopics = onChangeTopics;
+  }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is focused", type="String", defaultValue="")
-    public void setOnFocusTopics(String onFocusTopics) {
-      this.onFocusTopics = onFocusTopics;
-    }
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is enabled", type = "String", defaultValue = "")
+  public void setOnEnableTopics(String onEnableTopics)
+  {
+    this.onEnableTopics = onEnableTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element disabled", type = "String", defaultValue = "")
+  public void setOnDisableTopics(String onDisableTopics)
+  {
+    this.onDisableTopics = onDisableTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is blured", type = "String", defaultValue = "")
+  public void setOnBlurTopics(String onBlurTopics)
+  {
+    this.onBlurTopics = onBlurTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is focused", type = "String", defaultValue = "")
+  public void setOnFocusTopics(String onFocusTopics)
+  {
+    this.onFocusTopics = onFocusTopics;
+  }
 
 }

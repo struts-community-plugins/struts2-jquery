@@ -32,87 +32,93 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class DatePickerTag extends AbstractTopicTag {
 
-    private static final long serialVersionUID = 4054114507143447232L;
+  private static final long serialVersionUID = 4054114507143447232L;
 
-    protected String displayFormat;
-    protected String showButtonPanel;
-    protected String changeMonth;
-    protected String changeYear;
-    protected String buttonImage;
-    protected String appendText;
-    protected String buttonImageOnly;
-    protected String buttonText;
-    protected String duration;
-    protected String firstDay;
-    protected String numberOfMonths;
-    protected String showAnim;
-    protected String showOn;
-    protected String showOptions;
-    protected String yearRange;
-    protected String zindex;
-    protected String onBeforeShowDayTopics;
-    protected String onChangeMonthYearTopics;
-    protected String minDate;
-    protected String maxDate;
-    
-    protected String maxlength;
-    protected String readonly;
-    protected String size;
+  protected String          displayFormat;
+  protected String          showButtonPanel;
+  protected String          changeMonth;
+  protected String          changeYear;
+  protected String          buttonImage;
+  protected String          appendText;
+  protected String          buttonImageOnly;
+  protected String          buttonText;
+  protected String          duration;
+  protected String          firstDay;
+  protected String          numberOfMonths;
+  protected String          showAnim;
+  protected String          showOn;
+  protected String          showOptions;
+  protected String          yearRange;
+  protected String          zindex;
+  protected String          onBeforeShowDayTopics;
+  protected String          onChangeMonthYearTopics;
+  protected String          minDate;
+  protected String          maxDate;
 
-    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new DatePicker(stack, req, res);
-    }
+  protected String          maxlength;
+  protected String          readonly;
+  protected String          size;
 
-    protected void populateParams() {
-        super.populateParams();
-
-        DatePicker datePicker = (DatePicker) component;
-        datePicker.setDisplayFormat(displayFormat);
-        datePicker.setShowButtonPanel(showButtonPanel);
-        datePicker.setChangeMonth(changeMonth);
-        datePicker.setChangeYear(changeYear);
-        datePicker.setButtonImage(buttonImage);
-
-        datePicker.setButtonImageOnly(buttonImageOnly);
-        datePicker.setAppendText(appendText);
-        datePicker.setButtonText(buttonText);
-        datePicker.setDuration(duration);
-        datePicker.setFirstDay(firstDay);
-        datePicker.setNumberOfMonths(numberOfMonths);
-        datePicker.setShowAnim(showAnim);
-        datePicker.setShowOn(showOn);
-        datePicker.setShowOptions(showOptions);
-        datePicker.setYearRange(yearRange);
-        datePicker.setZindex(zindex);
-        datePicker.setOnBeforeShowDayTopics(onBeforeShowDayTopics);
-        datePicker.setOnChangeMonthYearTopics(onChangeMonthYearTopics);
-        datePicker.setMinDate(minDate);
-        datePicker.setMaxDate(maxDate);
-        datePicker.setMaxlength(maxlength);
-        datePicker.setSize(size);
-        datePicker.setReadonly(readonly);
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new DatePicker(stack, req, res);
   }
 
-    
-  public void setDisplayFormat(String displayFormat) {
-      this.displayFormat = displayFormat;
+  protected void populateParams()
+  {
+    super.populateParams();
+
+    DatePicker datePicker = (DatePicker) component;
+    datePicker.setDisplayFormat(displayFormat);
+    datePicker.setShowButtonPanel(showButtonPanel);
+    datePicker.setChangeMonth(changeMonth);
+    datePicker.setChangeYear(changeYear);
+    datePicker.setButtonImage(buttonImage);
+
+    datePicker.setButtonImageOnly(buttonImageOnly);
+    datePicker.setAppendText(appendText);
+    datePicker.setButtonText(buttonText);
+    datePicker.setDuration(duration);
+    datePicker.setFirstDay(firstDay);
+    datePicker.setNumberOfMonths(numberOfMonths);
+    datePicker.setShowAnim(showAnim);
+    datePicker.setShowOn(showOn);
+    datePicker.setShowOptions(showOptions);
+    datePicker.setYearRange(yearRange);
+    datePicker.setZindex(zindex);
+    datePicker.setOnBeforeShowDayTopics(onBeforeShowDayTopics);
+    datePicker.setOnChangeMonthYearTopics(onChangeMonthYearTopics);
+    datePicker.setMinDate(minDate);
+    datePicker.setMaxDate(maxDate);
+    datePicker.setMaxlength(maxlength);
+    datePicker.setSize(size);
+    datePicker.setReadonly(readonly);
   }
 
-	public void setShowButtonPanel(String showButtonPanel) {
-		this.showButtonPanel = showButtonPanel;
-	}
+  public void setDisplayFormat(String displayFormat)
+  {
+    this.displayFormat = displayFormat;
+  }
 
-	public void setChangeMonth(String changeMonth) {
-		this.changeMonth = changeMonth;
-	}
+  public void setShowButtonPanel(String showButtonPanel)
+  {
+    this.showButtonPanel = showButtonPanel;
+  }
 
-	public void setChangeYear(String changeYear) {
-		this.changeYear = changeYear;
-	}
+  public void setChangeMonth(String changeMonth)
+  {
+    this.changeMonth = changeMonth;
+  }
 
-	public void setButtonImage(String buttonImage) {
-		this.buttonImage = buttonImage;
-	}
+  public void setChangeYear(String changeYear)
+  {
+    this.changeYear = changeYear;
+  }
+
+  public void setButtonImage(String buttonImage)
+  {
+    this.buttonImage = buttonImage;
+  }
 
   public void setAppendText(String appendText)
   {

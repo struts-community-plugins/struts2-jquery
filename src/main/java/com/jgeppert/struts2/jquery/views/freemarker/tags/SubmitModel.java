@@ -33,13 +33,14 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class SubmitModel extends TagModel {
 
-    public SubmitModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public SubmitModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Submit(stack, req, res);
-    }
-    
+  @Override
+  protected Component getBean()
+  {
+    return new Submit(stack, req, res);
+  }
+
 }

@@ -19,58 +19,57 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
-
 public interface DraggableTag {
 
-    void setDraggable(String draggable);
-    
-    void setDraggableAddClasses(String draggableAddClasses);
+  void setDraggable(String draggable);
 
-    void setDraggableAppendTo(String draggableAppendTo);
+  void setDraggableAddClasses(String draggableAddClasses);
 
-    void setDraggableAxis(String draggableAxis);
+  void setDraggableAppendTo(String draggableAppendTo);
 
-    void setDraggableCancel(String draggableCancel);
+  void setDraggableAxis(String draggableAxis);
 
-    void setDraggableContainment(String draggableContainment);
+  void setDraggableCancel(String draggableCancel);
 
-    void setDraggableDelay(String draggableDelay);
+  void setDraggableContainment(String draggableContainment);
 
-    void setDraggableDistance(String draggableDistance);
+  void setDraggableDelay(String draggableDelay);
 
-    void setDraggableHandle(String draggableHandle);
+  void setDraggableDistance(String draggableDistance);
 
-    void setDraggableHelper(String draggableHelper);
+  void setDraggableHandle(String draggableHandle);
 
-    void setDraggableIframeFix(String draggableIframeFix);
+  void setDraggableHelper(String draggableHelper);
 
-    void setDraggableOpacity(String draggableOpacity);
+  void setDraggableIframeFix(String draggableIframeFix);
 
-    void setDraggableRefreshPositions(String draggableRefreshPositions);
+  void setDraggableOpacity(String draggableOpacity);
 
-    void setDraggableRevert(String draggableRevert);
+  void setDraggableRefreshPositions(String draggableRefreshPositions);
 
-    void setDraggableRevertDuration(String draggableRevertDuration);
+  void setDraggableRevert(String draggableRevert);
 
-    void setDraggableScope(String draggableScope);
+  void setDraggableRevertDuration(String draggableRevertDuration);
 
-    void setDraggableScroll(String draggableScroll);
+  void setDraggableScope(String draggableScope);
 
-    void setDraggableScrollSensitivity(String draggableScrollSensitivity);
+  void setDraggableScroll(String draggableScroll);
 
-    void setDraggableScrollSpeed(String draggableScrollSpeed);
+  void setDraggableScrollSensitivity(String draggableScrollSensitivity);
 
-    void setDraggableSnap(String draggableSnap);
+  void setDraggableScrollSpeed(String draggableScrollSpeed);
 
-    void setDraggableSnapMode(String draggableSnapMode);
+  void setDraggableSnap(String draggableSnap);
 
-    void setDraggableSnapTolerance(String draggableSnapTolerance);
+  void setDraggableSnapMode(String draggableSnapMode);
 
-    void setDraggableZindex(String draggableZindex);
+  void setDraggableSnapTolerance(String draggableSnapTolerance);
 
-    void setDraggableOnStartTopics(String draggableStart);
+  void setDraggableZindex(String draggableZindex);
 
-    void setDraggableOnDragTopics(String draggableDrag);
+  void setDraggableOnStartTopics(String draggableStart);
 
-    void setDraggableOnStopTopics(String draggableStop);
+  void setDraggableOnDragTopics(String draggableDrag);
+
+  void setDraggableOnStopTopics(String draggableStop);
 }

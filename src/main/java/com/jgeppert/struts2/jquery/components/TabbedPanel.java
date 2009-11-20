@@ -66,8 +66,8 @@ import com.opensymphony.xwork2.util.ValueStack;
  * label="Tab Three"/&gt; &lt;/sj:tabbedpanel&gt; <!-- END SNIPPET: example2 -->
  */
 @StrutsTag(name = "tabbedpanel", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabbedPanelTag", description = "Render a tabbedPanel widget.")
-public class TabbedPanel extends  AbstractTopicsBean {
-  public static final String            JQUERYACTION         = "tabbedpanel";
+public class TabbedPanel extends AbstractTopicsBean {
+  public static final String            JQUERYACTION   = "tabbedpanel";
   public static final String            TEMPLATE       = "tabbedpanel";
   public static final String            TEMPLATE_CLOSE = "tabbedpanel-close";
   final private static String           COMPONENT_NAME = TabbedPanel.class.getName();
@@ -200,13 +200,13 @@ public class TabbedPanel extends  AbstractTopicsBean {
     this.disabledTabs = disabledTabs;
   }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is added", type="String", defaultValue="")
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is added", type = "String", defaultValue = "")
   public void setOnAddTopics(String onAddTopics)
   {
     this.onAddTopics = onAddTopics;
   }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is removed", type="String", defaultValue="")
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is removed", type = "String", defaultValue = "")
   public void setOnRemoveTopics(String onRemoveTopics)
   {
     this.onRemoveTopics = onRemoveTopics;

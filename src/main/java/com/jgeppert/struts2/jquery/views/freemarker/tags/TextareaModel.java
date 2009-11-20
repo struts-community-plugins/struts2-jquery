@@ -28,19 +28,19 @@ import org.apache.struts2.views.freemarker.tags.TagModel;
 import com.jgeppert.struts2.jquery.components.Textarea;
 import com.opensymphony.xwork2.util.ValueStack;
 
-
 /**
  * @see Textarea
  */
 public class TextareaModel extends TagModel {
 
-    public TextareaModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public TextareaModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Textarea(stack, req, res);
-    }
-    
+  @Override
+  protected Component getBean()
+  {
+    return new Textarea(stack, req, res);
+  }
+
 }

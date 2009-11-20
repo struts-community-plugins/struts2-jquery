@@ -29,19 +29,19 @@ import com.jgeppert.struts2.jquery.components.Div;
 import com.jgeppert.struts2.jquery.components.Tab;
 import com.opensymphony.xwork2.util.ValueStack;
 
-
 /**
  * @see Div
  */
 public class TabModel extends TagModel {
 
-    public TabModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        super(stack, req, res);
-    }
+  public TabModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-    @Override
-    protected Component getBean() {
-        return new Tab(stack, req, res);
-    }
-    
+  @Override
+  protected Component getBean()
+  {
+    return new Tab(stack, req, res);
+  }
+
 }

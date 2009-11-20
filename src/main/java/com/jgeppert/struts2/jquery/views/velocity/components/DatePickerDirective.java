@@ -32,11 +32,13 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class DatePickerDirective extends JqueryAbstractDirective {
 
-    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-        return new DatePicker(stack, req, res);
-    }
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new DatePicker(stack, req, res);
+  }
 
-    public String getBeanName() {
-        return "datepicker";
-    }
+  public String getBeanName()
+  {
+    return "datepicker";
+  }
 }
