@@ -868,6 +868,9 @@
 					$("#"+options.id+" li div").filter('.ui-accordion-content-active').load(options.href,valueparams,function() {});
 				}
 			}
+		},
+		grid: function($elem, options) {
+			$elem.jqGrid(options);
 		}
 	};		
 		

@@ -75,11 +75,9 @@
         <#if parameters.locale?if_exists != "en">
             <script type="text/javascript" src="${base}/struts/i18n/ui.datepicker-${parameters.locale?string}.min.js"></script>
         </#if>
-		<#if parameters.useJqGridPlugin?default(false)>
-  			<script type="text/javascript" src="${base}/struts/i18n/grid.local-${parameters.locale?default('en')}.js"></script>
-		</#if>
     </#if>
 <#if parameters.useJqGridPlugin?default(false)>
+  <script type="text/javascript" src="${base}/struts/i18n/grid.locale-${parameters.locale?default('en')}.js"></script>
   <script type="text/javascript" src="${base}/struts/js/jquery.jqGrid.js"></script>
   <link rel="stylesheet" href="${base}/${basePath}/ui.jqgrid.css" type="text/css"/>
   <link rel="stylesheet" href="${base}/${basePath}/jquery.searchFilter.css" type="text/css"/>

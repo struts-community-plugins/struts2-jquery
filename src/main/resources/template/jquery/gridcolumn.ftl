@@ -35,5 +35,5 @@ options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = tru
 <#else>
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = false;
 </#if>
-options_${parameters.grid?html}_colnames.push(${parameters.title?html});
+options_${parameters.grid?html}_colnames.push("${parameters.title?html}");
 options_${parameters.grid?html}_colmodels.push(options_${parameters.grid?html}_colmodels_${parameters.name?html});

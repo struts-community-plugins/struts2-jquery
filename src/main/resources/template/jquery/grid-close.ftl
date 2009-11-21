@@ -30,7 +30,7 @@
 	options_${parameters.id?html}.pager = "${parameters.pager?html}";
   </#if>
   <#if parameters.rowNum?if_exists != "">
-	options_${parameters.id?html}.rownum = "${parameters.rowNum?html}";
+	options_${parameters.id?html}.rowNum = "${parameters.rowNum?html}";
   </#if>
   <#if parameters.sortname?if_exists != "">
 	options_${parameters.id?html}.sortname = "${parameters.sortname?html}";
@@ -52,6 +52,12 @@
   </#if>
   <#if parameters.caption?if_exists != "">
 	options_${parameters.id?html}.caption = "${parameters.caption?html}";
+  </#if>
+  <#if parameters.sortable?default(false)>
+	options_${parameters.id?html}.sortable = true;
+  </#if>
+  <#if parameters.shrinkToFit?default(true)>
+	options_${parameters.id?html}.shrinkToFit = true;
   </#if>
 	options_${parameters.id?html}.colNames = options_${parameters.id?html}_colnames;
 	options_${parameters.id?html}.colModel = options_${parameters.id?html}_colmodels;

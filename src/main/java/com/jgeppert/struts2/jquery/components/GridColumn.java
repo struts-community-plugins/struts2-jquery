@@ -94,37 +94,37 @@ public class GridColumn extends AbstractRemoteBean {
     return "jquery";
   }
 
-  @StrutsTagAttribute(description = "", required=true)
+  @StrutsTagAttribute(description = "Set the unique name in the grid for the column. This property is required. As well as other words used as property/event names, the reserved words (which cannot be used for names) include subgrid, cb and rn.", required=true)
   public void setName(String name)
   {
     this.name = name;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "Column title")
   public void setTitle(String title)
   {
     this.title = title;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "Set the index name when sorting. Passed as sidx parameter.")
   public void setIndex(String index)
   {
     this.index = index;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "Set the initial width of the column, in pixels.")
   public void setWidth(String width)
   {
     this.width = width;
   }
 
-  @StrutsTagAttribute(description = "", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "Defines if the field is editable.", defaultValue = "false", type = "Boolean")
   public void setEditable(String editable)
   {
     this.editable = editable;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "Array of allowed options (attributes) for edittype option")
   public void setEditoptions(String editoptions)
   {
     this.editoptions = editoptions;

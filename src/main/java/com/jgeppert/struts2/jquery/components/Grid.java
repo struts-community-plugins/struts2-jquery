@@ -53,11 +53,13 @@ public class Grid extends AbstractRemoteBean {
   protected String                      rowNum;
   protected String                      sortname;
   protected String                      viewrecords;
+  protected String                      sortable;
   protected String                      sortorder;
   protected String                      loadonce;
   protected String                      multiselect;
   protected String                      editurl;
   protected String                      caption;
+  protected String                      shrinkToFit;
 
   public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -83,6 +85,7 @@ public class Grid extends AbstractRemoteBean {
     if (height != null) addParameter("height", findString(height));
     if (pager != null) addParameter("pager", findString(pager));
     if (rowNum != null) addParameter("rowNum", findString(rowNum));
+    if (sortable != null) addParameter("sortable", findValue(this.sortable, Boolean.class));
     if (sortname != null) addParameter("sortname", findString(sortname));
     if (viewrecords != null) addParameter("viewrecords", findValue(this.viewrecords, Boolean.class));
     if (sortorder != null) addParameter("sortorder", findString(sortorder));
@@ -90,6 +93,7 @@ public class Grid extends AbstractRemoteBean {
     if (multiselect != null) addParameter("multiselect", findValue(this.multiselect, Boolean.class));
     if (editurl != null) addParameter("editurl", findString(editurl));
     if (caption != null) addParameter("caption", findString(caption));
+    if (shrinkToFit != null) addParameter("shrinkToFit", findValue(this.shrinkToFit, Boolean.class));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -115,87 +119,80 @@ public class Grid extends AbstractRemoteBean {
     return "jquery";
   }
 
-  @StrutsTagAttribute(name = "onBeforeTopics", description = "Topics that are published before a load", type = "String", defaultValue = "")
-  public void setOnBeforeTopics(String onBeforeTopics)
-  {
-    this.onBeforeTopics = onBeforeTopics;
-  }
-
-  @StrutsTagAttribute(name = "onAlwaysTopics", description = "A comma delimited list of topics that published always", type = "String", defaultValue = "")
-  public void setOnAlwaysTopics(String onAlwaysTopics)
-  {
-    this.onAlwaysTopics = onAlwaysTopics;
-  }
-
-  @StrutsTagAttribute(name = "onChangeTopics", description = "A comma delimited list of topics that published when the element changed", type = "String", defaultValue = "")
-  public void setOnChangeTopics(String onChangeTopics)
-  {
-    this.onChangeTopics = onChangeTopics;
-  }
-
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "If this option is not set, the width of the grid is a sum of the widths of the columns defined in the colModel (in pixels). If this option is set, the initial width of each column is set according to the value of shrinkToFit option.")
   public void setWidth(String width)
   {
     this.width = width;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "The height of the grid. Can be set as number e.g. 400. Default: auto")
   public void setHeight(String height)
   {
     this.height = height;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "Defines that we want to use a pager bar to navigate through the records. This must be a valid html element; in our example we gave the div the id of pager. Note that the Navigation layer (the pager div) can be positioned anywhere you want, determined by your html.")
   public void setPager(String pager)
   {
     this.pager = pager;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "Sets how many records we want to view in the grid. This parameter is passed to the url for use by the server routine retrieving the data. Note that if you set this parameter to 10 (i.e. retrieve 10 records) and your server return 15 then only 10 records will be loaded. Set this parameter to -1 (unlimited) to disable this checking. Default: 20")
   public void setRowNum(String rowNum)
   {
     this.rowNum = rowNum;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "The initial sorting name. This parameter is added to the url. If set and the index (name) match the name from colModel then to this column by default is added a image sorting icon, according to the parameter sortorder (below).")
   public void setSortname(String sortname)
   {
     this.sortname = sortname;
   }
 
-  @StrutsTagAttribute(description = "", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "Defines whether we want to display the number of total records from the query in the pager bar.", defaultValue = "false", type = "Boolean")
   public void setViewrecords(String viewrecords)
   {
     this.viewrecords = viewrecords;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "The initial sorting order.This parameter is added to the url - see prnNames. Two possible values - asc or desc. Default asc")
   public void setSortorder(String sortorder)
   {
     this.sortorder = sortorder;
   }
 
-  @StrutsTagAttribute(description = "", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "If this flag is set to true, the grid loads the data from the server only once. After the first request all further manipulations are done on the client side. The functions of the pager (if present) are disabled.", defaultValue = "false", type = "Boolean")
   public void setLoadonce(String loadonce)
   {
     this.loadonce = loadonce;
   }
 
-  @StrutsTagAttribute(description = "", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "If this flag is set to true a multi selection of rows is enabled. A new column at left side is added.", defaultValue = "false", type = "Boolean")
   public void setMultiselect(String multiselect)
   {
     this.multiselect = multiselect;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "Defines the url for inline and form editing.")
   public void setEditurl(String editurl)
   {
     this.editurl = editurl;
   }
 
-  @StrutsTagAttribute(description = "")
+  @StrutsTagAttribute(description = "Defines the Caption layer for the grid. This caption appear above the Header layer. If the string is empty the caption does not appear.")
   public void setCaption(String caption)
   {
     this.caption = caption;
+  }
+
+  @StrutsTagAttribute(description = "When enabled this option allow column reordering with mouse.", defaultValue = "false", type = "Boolean")
+  public void setSortable(String sortable) 
+  {
+	this.sortable = sortable;
+  }
+
+  @StrutsTagAttribute(description = "This option describes the type of calculation of the initial width of each column against with the width of the grid. If the value is true and the value in width option is set then: Every column width is scaled according to the defined option width.", defaultValue = "true", type = "Boolean")
+  public void setShrinkToFit(String shrinkToFit) {
+	this.shrinkToFit = shrinkToFit;
   }
 }
