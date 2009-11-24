@@ -18,10 +18,10 @@
 	<![endif]-->
 
   <s:if test="%{theme == 'showcase' || theme == null}">
-      <sj:head compressed="false" jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
+      <sj:head compressed="false" useJqGridPlugin="true" jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
   </s:if>
   <s:else>
-      <sj:head compressed="false" jqueryui="true" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
+      <sj:head compressed="false" useJqGridPlugin="true" jqueryui="true" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
   </s:else>
   <script type="text/javascript" src="js/showcase.js"></script>
 </head>
@@ -57,6 +57,7 @@
             <li class="ui-widget-header"><s:url id="urlaccordion" action="accordion"/><sj:a id="accordionlink" href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlslider" action="slider"/><sj:a id="sliderlink" href="%{urlslider}" targets="main">Slider</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlprogressbar" action="progressbar"/><sj:a id="pblink" href="%{urlprogressbar}" targets="main">Progressbar</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlgrid" action="grid"/><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid</sj:a></li>
             <li class="ui-widget-header"><s:url id="urleffectdiv" action="effect-div"/><sj:a id="interactionlink" href="%{urleffectdiv}" targets="main">Effects/Interactions</sj:a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/downloads/list">Download</a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/w/list">Wiki</a></li>
