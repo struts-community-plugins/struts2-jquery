@@ -21,6 +21,7 @@
 
 options_${parameters.grid?html}_colmodels_${parameters.name?html} = {};
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.name = "${parameters.name?html}";
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.jsonmap = "${parameters.name?html}";
 <#if parameters.index?if_exists != "">
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.index = "${parameters.index?html}";
 </#if>

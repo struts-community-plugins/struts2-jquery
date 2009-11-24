@@ -60,6 +60,7 @@ public class Grid extends AbstractRemoteBean {
   protected String                      editurl;
   protected String                      caption;
   protected String                      shrinkToFit;
+  protected String                      gridModel;
 
   public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -94,6 +95,7 @@ public class Grid extends AbstractRemoteBean {
     if (editurl != null) addParameter("editurl", findString(editurl));
     if (caption != null) addParameter("caption", findString(caption));
     if (shrinkToFit != null) addParameter("shrinkToFit", findValue(this.shrinkToFit, Boolean.class));
+    if (gridModel != null) addParameter("gridModel", findString(gridModel));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -194,5 +196,10 @@ public class Grid extends AbstractRemoteBean {
   @StrutsTagAttribute(description = "This option describes the type of calculation of the initial width of each column against with the width of the grid. If the value is true and the value in width option is set then: Every column width is scaled according to the defined option width.", defaultValue = "true", type = "Boolean")
   public void setShrinkToFit(String shrinkToFit) {
 	this.shrinkToFit = shrinkToFit;
+  }
+
+  @StrutsTagAttribute(description = "Name of you grid model. Must be a JqueryGridModel", required=true)
+  public void setGridModel(String gridModel) {
+	this.gridModel = gridModel;
   }
 }

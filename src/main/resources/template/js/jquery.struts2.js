@@ -870,7 +870,9 @@
 			}
 		},
 		grid: function($elem, options) {
-			$elem.jqGrid(options);
+			var params = {}; 
+			$.extend(params, options);
+			$elem.jqGrid(params);
 		}
 	};		
 		

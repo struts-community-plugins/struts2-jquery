@@ -18,6 +18,10 @@
  * under the License.
  */
 -->
+	options_${parameters.id?html}.datatype = "${parameters.dataType?default('json')}";
+  <#if parameters.href?exists>
+	options_${parameters.id?html}.url = "${parameters.href?html}";
+  </#if>
   <#if parameters.width?exists>
 	options_${parameters.id?html}.width = ${parameters.width?html};
   </#if>
@@ -61,6 +65,12 @@
   </#if>
 	options_${parameters.id?html}.colNames = options_${parameters.id?html}_colnames;
 	options_${parameters.id?html}.colModel = options_${parameters.id?html}_colmodels;
+	options_${parameters.id?html}.jsonReader = {};
+	options_${parameters.id?html}.jsonReader.root = "${parameters.gridModel?html}.rows";
+	options_${parameters.id?html}.jsonReader.page = "${parameters.gridModel?html}.page";
+	options_${parameters.id?html}.jsonReader.total = "${parameters.gridModel?html}.total";
+	options_${parameters.id?html}.jsonReader.records = "${parameters.gridModel?html}.records";
+	options_${parameters.id?html}.jsonReader.repeatitems = false;
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

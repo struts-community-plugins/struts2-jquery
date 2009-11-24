@@ -46,6 +46,8 @@ public class GridTag extends AbstractRemoteTag {
   protected String                      multiselect;
   protected String                      editurl;
   protected String                      caption;
+  protected String                      shrinkToFit;
+  protected String                      gridModel;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -68,6 +70,8 @@ public class GridTag extends AbstractRemoteTag {
     grid.setMultiselect(multiselect);
     grid.setEditurl(editurl);
     grid.setCaption(caption);
+    grid.setGridModel(gridModel);
+    grid.setShrinkToFit(shrinkToFit);
   }
 
   public void setWidth(String width)
@@ -123,6 +127,16 @@ public class GridTag extends AbstractRemoteTag {
   public void setCaption(String caption)
   {
     this.caption = caption;
+  }
+
+  public void setShrinkToFit(String shrinkToFit) 
+  {
+	this.shrinkToFit = shrinkToFit;
+  }
+
+  public void setGridModel(String gridModel) 
+  {
+	this.gridModel = gridModel;
   }
 
 }
