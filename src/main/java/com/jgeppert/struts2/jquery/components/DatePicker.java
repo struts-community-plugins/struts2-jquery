@@ -33,6 +33,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.components.Form;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -102,6 +103,9 @@ public class DatePicker extends AbstractTopicsBean {
   protected String                      readonly;
   protected String                      size;
 
+
+  protected String           			 parentTheme;
+
   public DatePicker(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
@@ -160,6 +164,20 @@ public class DatePicker extends AbstractTopicsBean {
     if (readonly != null)
     {
       addParameter("readonly", findValue(readonly, Boolean.class));
+    }
+
+    Form form = (Form) findAncestor(Form.class);
+    if (parentTheme != null)
+    {
+      addParameter("parentTheme", findString(parentTheme));
+    }
+    else if (form != null)
+    {
+      if (form != null) addParameter("parentTheme", form.getTheme());
+    }
+    else
+    {
+      addParameter("parentTheme", "simple");
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -382,6 +400,12 @@ public class DatePicker extends AbstractTopicsBean {
   public void setSize(String size)
   {
     this.size = size;
+  }
+
+  @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
+  public void setParentTheme(String parentTheme)
+  {
+    this.parentTheme = parentTheme;
   }
 
   private String format(Object obj)

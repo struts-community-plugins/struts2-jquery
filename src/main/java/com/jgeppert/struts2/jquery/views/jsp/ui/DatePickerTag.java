@@ -59,6 +59,8 @@ public class DatePickerTag extends AbstractTopicTag {
   protected String          readonly;
   protected String          size;
 
+  protected String          parentTheme;
+
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
     return new DatePicker(stack, req, res);
@@ -93,6 +95,8 @@ public class DatePickerTag extends AbstractTopicTag {
     datePicker.setMaxlength(maxlength);
     datePicker.setSize(size);
     datePicker.setReadonly(readonly);
+
+    datePicker.setParentTheme(parentTheme);
   }
 
   public void setDisplayFormat(String displayFormat)
@@ -208,5 +212,10 @@ public class DatePickerTag extends AbstractTopicTag {
   public void setSize(String size)
   {
     this.size = size;
+  }
+  
+  public void setParentTheme(String parentTheme)
+  {
+    this.parentTheme = parentTheme;
   }
 }
