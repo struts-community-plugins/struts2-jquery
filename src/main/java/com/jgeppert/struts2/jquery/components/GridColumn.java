@@ -48,6 +48,10 @@ public class GridColumn extends AbstractRemoteBean {
   protected String           width;
   protected String           editable;
   protected String           editoptions;
+  protected String           edittype;
+  protected String           formatter;
+  protected String           formatoptions;
+  
 
   public GridColumn(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -73,6 +77,9 @@ public class GridColumn extends AbstractRemoteBean {
     if (width != null) addParameter("width", findString(width));
     if (editable != null) addParameter("editable", findValue(this.editable, Boolean.class));
     if (editoptions != null) addParameter("editoptions", findString(editoptions));
+    if (edittype != null) addParameter("edittype", findString(edittype));
+    if (formatter != null) addParameter("formatter", findString(formatter));
+    if (formatoptions != null) addParameter("formatoptions", findString(formatoptions));
     
     Grid grid = (Grid) findAncestor(Grid.class);
     if (grid != null)
@@ -128,6 +135,21 @@ public class GridColumn extends AbstractRemoteBean {
   public void setEditoptions(String editoptions)
   {
     this.editoptions = editoptions;
+  }
+  
+  @StrutsTagAttribute(description = "Defines the edit type for inline and form editing Possible values: text, textarea, select, checkbox, password, button, image and file.")
+  public void setEdittype(String edittype) {
+	this.edittype = edittype;
+  }
+
+  @StrutsTagAttribute(description = "The predefined types (string) or custom function name that controls the format of this field. e.g.: integer, currency, date, checkbox")
+  public void setFormatter(String formatter) {
+	this.formatter = formatter;
+  }
+
+  @StrutsTagAttribute(description = "Format options can be defined for particular columns, overwriting the defaults from the language file.")
+  public void setFormatoptions(String formatoptions) {
+	this.formatoptions = formatoptions;
   }
 
 }

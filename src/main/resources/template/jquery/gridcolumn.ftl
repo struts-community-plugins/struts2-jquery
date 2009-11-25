@@ -31,6 +31,15 @@ options_${parameters.grid?html}_colmodels_${parameters.name?html}.width = ${para
 <#if parameters.editoptions?if_exists != "">
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.editoptions = "${parameters.editoptions?html}";
 </#if>
+<#if parameters.edittype?if_exists != "">
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.edittype = "${parameters.edittype?html}";
+</#if>
+<#if parameters.formatter?if_exists != "">
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.formatter = "${parameters.formatter?html}";
+</#if>
+<#if parameters.formatoptions?if_exists != "">
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.formatoptions = ${parameters.formatoptions?html};
+</#if>
 <#if parameters.loadonce?default(false)>
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = true;
 <#else>

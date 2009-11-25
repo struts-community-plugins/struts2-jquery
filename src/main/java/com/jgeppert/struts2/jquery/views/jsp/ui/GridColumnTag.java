@@ -36,6 +36,9 @@ public class GridColumnTag extends AbstractRemoteTag {
   protected String           width;
   protected String           editable;
   protected String           editoptions;
+  protected String           edittype;
+  protected String           formatter;
+  protected String           formatoptions;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -53,6 +56,9 @@ public class GridColumnTag extends AbstractRemoteTag {
     gc.setWidth(width);
     gc.setEditable(editable);
     gc.setEditoptions(editoptions);
+    gc.setEdittype(edittype);
+    gc.setFormatter(formatter);
+    gc.setFormatoptions(formatoptions);
   }
 
   public void setName(String name)
@@ -84,5 +90,17 @@ public class GridColumnTag extends AbstractRemoteTag {
   {
     this.editoptions = editoptions;
   }
+
+public void setEdittype(String edittype) {
+	this.edittype = edittype;
+}
+
+public void setFormatter(String formatter) {
+	this.formatter = formatter;
+}
+
+public void setFormatoptions(String formatoptions) {
+	this.formatoptions = formatoptions;
+}
 
 }
