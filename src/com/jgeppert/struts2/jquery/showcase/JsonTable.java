@@ -29,6 +29,8 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
+import com.jgeppert.struts2.jquery.showcase.model.Customer;
+import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -37,7 +39,7 @@ public class JsonTable extends ActionSupport{
     
 	private static final long serialVersionUID = 5078264277068533593L;
 	private static final Log    log               = LogFactory.getLog(JsonTable.class);
-    private List<TableValue> rows;
+    private List<Customer> rows;
 	private Integer page; //the number of the requested page
 	private Integer total; //the number of the requested page
 	private Integer record; //the number of the requested page
@@ -47,14 +49,11 @@ public class JsonTable extends ActionSupport{
       
       log.info("build json table");
       
-      rows = new ArrayList<TableValue>();
-      rows.add(new TableValue("J", "Java", new Integer(1), new Double(1.11)));
-      rows.add(new TableValue("P", "PHP", new Integer(2), new Double(2.22)));
-      rows.add(new TableValue("C", "C++", new Integer(3), new Double(3.33)));
+      rows = CustomerDAO.getCustomers();
       
       page = 2;
-      record = 4;
-      total = 5;
+      record = rows.size();
+      total = (record/10)+1;
       return SUCCESS;
     }
 
@@ -63,59 +62,11 @@ public class JsonTable extends ActionSupport{
     }
 
 
-    public class TableValue {
-    private String key;
-    private String value;
-    private Integer num;
-    private Double dub;
-
-    public TableValue(String key, String value, Integer num, Double dub) {
-      super();
-      this.key = key;
-      this.value = value;
-      this.num = num;
-      this.dub = dub;
-    }
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-	public Integer getNum() {
-		return num;
-	}
-
-	public void setNum(Integer num) {
-		this.num = num;
-	}
-
-	public Double getDub() {
-		return dub;
-	}
-
-	public void setDub(Double dub) {
-		this.dub = dub;
-	}
-
-  }
-
-	public Integer getPage() {
+ 	public Integer getPage() {
 		return page;
 	}
 
-	public List<TableValue> getRows() {
+	public List<Customer> getRows() {
 		return rows;
 	}
 

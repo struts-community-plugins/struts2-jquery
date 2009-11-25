@@ -14,11 +14,12 @@
         A simple Grid
     </p>
     <s:url id="remoteurl" action="jsontable"/> 
-    <sj:grid id="gridtable" caption="Grid Example" dataType="json" href="%{remoteurl}" pager="mypager" gridModel="table">
-    	<sj:gridColumn name="key" index="key" title="Column One"/>
-    	<sj:gridColumn name="value" index="value" title="Column Two"/>
-    	<sj:gridColumn name="num" index="num" title="Column Three"/>
-    	<sj:gridColumn name="dub" index="dub" title="Column Four"/>
+    <sj:grid id="gridtable" caption="Customer Examples" dataType="json" href="%{remoteurl}" pager="mypager" gridModel="table">
+    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer"/>
+    	<sj:gridColumn name="name" index="name" title="Name" editable="true"/>
+    	<sj:gridColumn name="country" index="country" title="Country"/>
+    	<sj:gridColumn name="city" index="city" title="City"/>
+    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency"/>
     </sj:grid>
     <div id="mypager"></div>
   </div>
