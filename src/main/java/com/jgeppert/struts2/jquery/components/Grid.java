@@ -61,6 +61,9 @@ public class Grid extends AbstractRemoteBean {
   protected String                      caption;
   protected String                      shrinkToFit;
   protected String                      gridModel;
+  protected String                      rowList;
+  protected String                      scroll;
+  protected String                      onSelectRow;
 
   public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -96,6 +99,9 @@ public class Grid extends AbstractRemoteBean {
     if (caption != null) addParameter("caption", findString(caption));
     if (shrinkToFit != null) addParameter("shrinkToFit", findValue(this.shrinkToFit, Boolean.class));
     if (gridModel != null) addParameter("gridModel", findString(gridModel));
+    if (scroll != null) addParameter("scroll", findValue(this.scroll, Boolean.class));
+    if (rowList != null) addParameter("rowList", findString(rowList));
+    if (onSelectRow != null) addParameter("onSelectRow", findString(onSelectRow));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -198,8 +204,23 @@ public class Grid extends AbstractRemoteBean {
 	this.shrinkToFit = shrinkToFit;
   }
 
-  @StrutsTagAttribute(description = "Name of you grid model. Must be a JqueryGridModel", required=true)
+  @StrutsTagAttribute(description = "Name of you grid model. Must be a Collection", required=true)
   public void setGridModel(String gridModel) {
 	this.gridModel = gridModel;
+  }
+
+  @StrutsTagAttribute(description = "An array to construct a select box element in the pager in which we can change the number of the visible rows. e.g. 10,15,20")
+  public void setRowList(String rowList) {
+	this.rowList = rowList;
+  }
+
+  @StrutsTagAttribute(description = "Creates dynamic scrolling grids. When enabled, the pager elements are disabled and we can use the vertical scrollbar to load data. When set to true the grid will always hold all the items from the start through to the latest point ever visited.", defaultValue = "false", type = "Boolean")
+  public void setScroll(String scroll) {
+	this.scroll = scroll;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")
+  public void setOnSelectRow(String onSelectRow) {
+	this.onSelectRow = onSelectRow;
   }
 }

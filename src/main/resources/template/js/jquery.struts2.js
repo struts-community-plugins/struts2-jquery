@@ -26,6 +26,8 @@
 		
 		lasttopic: '',
 			
+		lastselectedrow: '',
+
 		//pre-binding function of the type function(element){}. called before binding the element
 		// returning false will prevent the binding of this element
 		preBind: null,
@@ -872,6 +874,25 @@
 		grid: function($elem, options) {
 			var params = {}; 
 			$.extend(params, options);
+			if(options.onselectrow || options.editurl) {  
+				params.onSelectRow = function(id) {
+					if(options.editurl) {
+					    if(id && id!==$.struts2_jquery.lastselectedrow) {
+					    	$elem.restoreRow($.struts2_jquery.lastselectedrow);
+					    	$elem.editRow(id,true);
+					    	$.struts2_jquery.lastselectedrow=id;
+					    }
+					}
+					if(options.onselectrow) {
+						var data = {};
+						data.id = id;
+						var osr = options.onselectrow.split(',');
+						for ( var i = 0; i < osr.length; i++) {
+							$elem.publish(osr[i], $elem, data);
+						}
+					}
+				};
+			}
 			$elem.jqGrid(params);
 		}
 	};		

@@ -34,13 +34,19 @@
 	options_${parameters.id?html}.pager = "${parameters.pager?html}";
   </#if>
   <#if parameters.rowNum?if_exists != "">
-	options_${parameters.id?html}.rowNum = "${parameters.rowNum?html}";
+	options_${parameters.id?html}.rowNum = ${parameters.rowNum?html};
+  </#if>
+  <#if parameters.rowList?if_exists != "">
+	options_${parameters.id?html}.rowList = [${parameters.rowList?html}];
   </#if>
   <#if parameters.sortname?if_exists != "">
 	options_${parameters.id?html}.sortname = "${parameters.sortname?html}";
   </#if>
   <#if parameters.viewrecords?default(false)>
 	options_${parameters.id?html}.viewrecords = true;
+  </#if>
+  <#if parameters.scroll?default(false)>
+	options_${parameters.id?html}.scroll = true;
   </#if>
   <#if parameters.sortorder?if_exists != "">
 	options_${parameters.id?html}.sortorder = "${parameters.sortorder?html}";
@@ -63,10 +69,17 @@
   <#if parameters.shrinkToFit?default(true)>
 	options_${parameters.id?html}.shrinkToFit = true;
   </#if>
+  <#if parameters.onSelectRow?if_exists != "">
+	options_${parameters.id?html}.onselectrow = "${parameters.onSelectRow?html}";
+  </#if>
 	options_${parameters.id?html}.colNames = options_${parameters.id?html}_colnames;
 	options_${parameters.id?html}.colModel = options_${parameters.id?html}_colmodels;
 	options_${parameters.id?html}.jsonReader = {};
-	options_${parameters.id?html}.jsonReader.root = "rows";
+  <#if parameters.editurl?if_exists != "">
+	options_${parameters.id?html}.jsonReader.root = "${parameters.gridModel?html}";
+  <#else>
+	options_${parameters.id?html}.jsonReader.root = "gridModel";
+  </#if>
 	options_${parameters.id?html}.jsonReader.page = "page";
 	options_${parameters.id?html}.jsonReader.total = "total";
 	options_${parameters.id?html}.jsonReader.records = "records";

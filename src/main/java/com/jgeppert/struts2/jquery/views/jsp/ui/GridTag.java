@@ -48,6 +48,9 @@ public class GridTag extends AbstractRemoteTag {
   protected String                      caption;
   protected String                      shrinkToFit;
   protected String                      gridModel;
+  protected String                      rowList;
+  protected String                      scroll;
+  protected String                      onSelectRow;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -72,6 +75,9 @@ public class GridTag extends AbstractRemoteTag {
     grid.setCaption(caption);
     grid.setGridModel(gridModel);
     grid.setShrinkToFit(shrinkToFit);
+    grid.setRowList(rowList);
+    grid.setScroll(scroll);
+    grid.setOnSelectRow(onSelectRow);
   }
 
   public void setWidth(String width)
@@ -139,4 +145,17 @@ public class GridTag extends AbstractRemoteTag {
 	this.gridModel = gridModel;
   }
 
+  public void setRowList(String rowList) 
+  {
+	this.rowList = rowList;
+  }
+
+  public void setScroll(String scroll) 
+  {
+	this.scroll = scroll;
+  }
+
+public void setOnSelectRow(String onSelectRow) {
+	this.onSelectRow = onSelectRow;
+}
 }
