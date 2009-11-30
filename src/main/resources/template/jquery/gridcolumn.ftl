@@ -40,7 +40,7 @@ options_${parameters.grid?html}_colmodels_${parameters.name?html}.formatter = "$
 <#if parameters.formatoptions?if_exists != "">
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.formatoptions = ${parameters.formatoptions?html};
 </#if>
-<#if parameters.loadonce?default(false)>
+<#if parameters.editable?default(false)>
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = true;
 <#else>
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = false;

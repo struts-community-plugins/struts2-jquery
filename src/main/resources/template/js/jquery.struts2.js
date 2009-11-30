@@ -876,13 +876,6 @@
 			$.extend(params, options);
 			if(options.onselectrow || options.editurl) {  
 				params.onSelectRow = function(id) {
-					if(options.editurl) {
-					    if(id && id!==$.struts2_jquery.lastselectedrow) {
-					    	$elem.restoreRow($.struts2_jquery.lastselectedrow);
-					    	$elem.editRow(id,true);
-					    	$.struts2_jquery.lastselectedrow=id;
-					    }
-					}
 					if(options.onselectrow) {
 						var data = {};
 						data.id = id;
@@ -890,6 +883,13 @@
 						for ( var i = 0; i < osr.length; i++) {
 							$elem.publish(osr[i], $elem, data);
 						}
+					}
+					if(options.editurl) {
+					    if(id && id!==$.struts2_jquery.lastselectedrow) {
+					    	$elem.jqGrid('restoreRow',$.struts2_jquery.lastselectedrow);
+					    	$elem.jqGrid('editRow',id,true); 
+					    	$.struts2_jquery.lastselectedrow=id;
+					    }
 					}
 				};
 			}
