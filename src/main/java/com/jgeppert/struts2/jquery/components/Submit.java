@@ -103,6 +103,7 @@ public class Submit extends AbstractFormElement {
   protected String                      resetForm;
   protected String                      iframe;
   protected String                      onClickTopics;
+  protected String                      openDialog;
 
   public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -147,6 +148,7 @@ public class Submit extends AbstractFormElement {
     if (resetForm != null) addParameter("resetForm", findValue(resetForm, Boolean.class));
     if (iframe != null) addParameter("iframe", findValue(iframe, Boolean.class));
     if (onClickTopics != null) addParameter("onClickTopics", findString(onClickTopics));
+    if (openDialog != null) addParameter("openDialog", findString(openDialog));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -247,5 +249,11 @@ public class Submit extends AbstractFormElement {
   public void setValidate(String validate)
   {
     this.validate = validate;
+  }
+
+  @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
+  public void setOpenDialog(String openDialog)
+  {
+    this.openDialog = openDialog;
   }
 }

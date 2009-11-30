@@ -40,6 +40,7 @@ public class SubmitTag extends AbstractFormElementTag {
   protected String          resetForm;
   protected String          iframe;
   protected String          onClickTopics;
+  protected String          openDialog;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -57,6 +58,7 @@ public class SubmitTag extends AbstractFormElementTag {
     submit.setClearForm(clearForm);
     submit.setResetForm(resetForm);
     submit.setIframe(iframe);
+    submit.setOpenDialog(openDialog);
   }
 
   public void setOnClickTopics(String onClickTopics)
@@ -87,5 +89,10 @@ public class SubmitTag extends AbstractFormElementTag {
   public void setIframe(String iframe)
   {
     this.iframe = iframe;
+  }
+
+  public void setOpenDialog(String openDialog)
+  {
+    this.openDialog = openDialog;
   }
 }

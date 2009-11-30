@@ -419,7 +419,7 @@
 				this.formsubmit($elem, options, formTopic);
 			}
 			else {
-				var $closestform = $elem.closest("form");
+				var $closestform = $elem.parents('form:first')[0];
 				if($closestform != undefined) {
 					var formid = $closestform.attr("id");
 					if(formid != undefined) {

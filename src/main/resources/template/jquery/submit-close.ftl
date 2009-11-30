@@ -31,6 +31,9 @@ $(document).ready(function () {
    <#if parameters.iframe?default(false)>
 	options_${parameters.id?html}.iframe = true;
     </#if>
+	<#if parameters.openDialog?if_exists != ""> 
+	options_${parameters.id?html}.opendialog = "${parameters.openDialog?html}";
+	</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
