@@ -29,7 +29,7 @@ options_${parameters.grid?html}_colmodels_${parameters.name?html}.index = "${par
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.width = ${parameters.width?html};
 </#if>
 <#if parameters.editoptions?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.editoptions = "${parameters.editoptions?html}";
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.editoptions = ${parameters.editoptions?html};
 </#if>
 <#if parameters.edittype?if_exists != "">
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.edittype = "${parameters.edittype?html}";
