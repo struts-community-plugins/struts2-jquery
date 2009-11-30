@@ -7,12 +7,20 @@ public class CustomerDAO {
 
 	private static List<Customer> customers;
 
-	public static List<Customer> getCustomers() {
+	public static List<Customer> getCustomers(int from, int to) {
 		
 		if(customers == null)
 			buildList();
 		
-		return customers;
+		return customers.subList(from, to);
+	}
+
+	public static Integer getCustomersCount() {
+		
+		if(customers == null)
+			buildList();
+		
+		return customers.size();
 	}
 
 	private static void buildList() {
