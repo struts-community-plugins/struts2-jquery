@@ -17,6 +17,9 @@
     $.subscribe('rowadd', function(event,data) {
         $("#gridtable").jqGrid('editGridRow',"new",{height:280,reloadAfterSubmit:false}); 
   	});
+    $.subscribe('searchgrid', function(event,data) {
+        $("#gridtable").jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
+  	});
     </script>
     <h2>Grid</h2>
     <p>
@@ -29,7 +32,11 @@
     	caption="Customer Examples" 
     	dataType="json" 
     	href="%{remoteurl}" 
-    	pager="mypager" 
+    	pager="true" 
+    	navigator="true"
+    	navigatorSearchOptions="{sopt:['cn','eq','ne']}"
+    	navigatorAddOptions="{height:280,reloadAfterSubmit:false}"
+    	navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
@@ -42,9 +49,9 @@
     	<sj:gridColumn name="city" index="city" title="City" editable="true" edittype="text"/>
     	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" editable="true" edittype="text"/>
     </sj:grid>
-    <div id="mypager"></div>
 	<br/>
     <sj:submit id="addbutton" value="Add Row" onClickTopics="rowadd" cssClass="buttonlink ui-state-default ui-corner-all"/>
+    <sj:submit id="searchbutton" value="Search" onClickTopics="searchgrid" cssClass="buttonlink ui-state-default ui-corner-all"/>
 	<br/>
 	<br/>
     <div id="gridinfo" class="ui-widget-content ui-corner-all"><p>Edit Mode for Row :</p></div>

@@ -20,7 +20,7 @@
     	caption="Customer Examples" 
     	dataType="json" 
     	href="%{remoteurl}" 
-    	pager="mypager" 
+    	pager="true" 
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
@@ -31,7 +31,6 @@
     	<sj:gridColumn name="city" index="city" title="City"/>
     	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency"/>
     </sj:grid>
-    <div id="mypager"></div>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">
