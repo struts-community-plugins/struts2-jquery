@@ -64,6 +64,12 @@ public class Grid extends AbstractRemoteBean {
   protected String                      rowList;
   protected String                      scroll;
   protected String                      onSelectRow;
+  protected String                      navigator;
+  protected String                      navigatorEditOptions;
+  protected String                      navigatorAddOptions;
+  protected String                      navigatorDeleteOptions;
+  protected String                      navigatorSearchOptions;
+  protected String                      navigatorViewOptions;
 
   public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -87,7 +93,7 @@ public class Grid extends AbstractRemoteBean {
 
     if (width != null) addParameter("width", findString(width));
     if (height != null) addParameter("height", findString(height));
-    if (pager != null) addParameter("pager", findString(pager));
+    if (pager != null) addParameter("pager", findValue(this.pager, Boolean.class));
     if (rowNum != null) addParameter("rowNum", findString(rowNum));
     if (sortable != null) addParameter("sortable", findValue(this.sortable, Boolean.class));
     if (sortname != null) addParameter("sortname", findString(sortname));
@@ -102,6 +108,12 @@ public class Grid extends AbstractRemoteBean {
     if (scroll != null) addParameter("scroll", findValue(this.scroll, Boolean.class));
     if (rowList != null) addParameter("rowList", findString(rowList));
     if (onSelectRow != null) addParameter("onSelectRow", findString(onSelectRow));
+    if (navigator != null) addParameter("navigator", findValue(this.navigator, Boolean.class));
+    if (navigatorAddOptions != null) addParameter("navigatorAddOptions", findString(navigatorAddOptions));
+    if (navigatorEditOptions != null) addParameter("navigatorEditOptions", findString(navigatorEditOptions));
+    if (navigatorDeleteOptions != null) addParameter("navigatorDeleteOptions", findString(navigatorDeleteOptions));
+    if (navigatorViewOptions != null) addParameter("navigatorViewOptions", findString(navigatorViewOptions));
+    if (navigatorSearchOptions != null) addParameter("navigatorSearchOptions", findString(navigatorSearchOptions));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -139,7 +151,7 @@ public class Grid extends AbstractRemoteBean {
     this.height = height;
   }
 
-  @StrutsTagAttribute(description = "Defines that we want to use a pager bar to navigate through the records. This must be a valid html element; in our example we gave the div the id of pager. Note that the Navigation layer (the pager div) can be positioned anywhere you want, determined by your html.")
+  @StrutsTagAttribute(description = "Defines that we want to use a pager bar to navigate through the records. This must be a true or false.", defaultValue = "false", type = "Boolean")
   public void setPager(String pager)
   {
     this.pager = pager;
@@ -222,5 +234,41 @@ public class Grid extends AbstractRemoteBean {
   @StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")
   public void setOnSelectRow(String onSelectRow) {
 	this.onSelectRow = onSelectRow;
+  }
+
+  @StrutsTagAttribute(description = "Navigator is a method that can add predefined actions like editing, adding, deleting, and searching. This must be a true or false.", defaultValue = "false", type = "Boolean")
+  public void setNavigator(String navigator)
+  {
+    this.navigator = navigator;
+  }
+
+  @StrutsTagAttribute(description = "Edit Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},")
+  public void setNavigatorEditOptions(String navigatorEditOptions)
+  {
+    this.navigatorEditOptions = navigatorEditOptions;
+  }
+
+  @StrutsTagAttribute(description = "Add Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},")
+  public void setNavigatorAddOptions(String navigatorAddOptions)
+  {
+    this.navigatorAddOptions = navigatorAddOptions;
+  }
+
+  @StrutsTagAttribute(description = "Delete Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},")
+  public void setNavigatorDeleteOptions(String navigatorDeleteOptions)
+  {
+    this.navigatorDeleteOptions = navigatorDeleteOptions;
+  }
+
+  @StrutsTagAttribute(description = "Search Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},")
+  public void setNavigatorSearchOptions(String navigatorSearchOptions)
+  {
+    this.navigatorSearchOptions = navigatorSearchOptions;
+  }
+
+  @StrutsTagAttribute(description = "View Options for Navigator. e.g. {sopt:['cn','bw','eq','ne','lt','gt','ew']},")
+  public void setNavigatorViewOptions(String navigatorViewOptions)
+  {
+    this.navigatorViewOptions = navigatorViewOptions;
   }
 }

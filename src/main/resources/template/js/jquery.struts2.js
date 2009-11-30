@@ -894,6 +894,9 @@
 				};
 			}
 			$elem.jqGrid(params);
+			if(options.navigator) {
+				$elem.jqGrid('navGrid','#'+navigator,{},options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
+			}
 		}
 	};		
 		

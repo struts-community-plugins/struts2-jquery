@@ -51,6 +51,12 @@ public class GridTag extends AbstractRemoteTag {
   protected String                      rowList;
   protected String                      scroll;
   protected String                      onSelectRow;
+  protected String                      navigator;
+  protected String                      navigatorEditOptions;
+  protected String                      navigatorAddOptions;
+  protected String                      navigatorDeleteOptions;
+  protected String                      navigatorSearchOptions;
+  protected String                      navigatorViewOptions;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -78,6 +84,12 @@ public class GridTag extends AbstractRemoteTag {
     grid.setRowList(rowList);
     grid.setScroll(scroll);
     grid.setOnSelectRow(onSelectRow);
+    grid.setNavigator(navigator);
+    grid.setNavigatorAddOptions(navigatorAddOptions);
+    grid.setNavigatorEditOptions(navigatorEditOptions);
+    grid.setNavigatorDeleteOptions(navigatorDeleteOptions);
+    grid.setNavigatorViewOptions(navigatorViewOptions);
+    grid.setNavigatorSearchOptions(navigatorSearchOptions);
   }
 
   public void setWidth(String width)
@@ -157,5 +169,35 @@ public class GridTag extends AbstractRemoteTag {
 
 public void setOnSelectRow(String onSelectRow) {
 	this.onSelectRow = onSelectRow;
+}
+
+public void setNavigator(String navigator)
+{
+  this.navigator = navigator;
+}
+
+public void setNavigatorEditOptions(String navigatorEditOptions)
+{
+  this.navigatorEditOptions = navigatorEditOptions;
+}
+
+public void setNavigatorAddOptions(String navigatorAddOptions)
+{
+  this.navigatorAddOptions = navigatorAddOptions;
+}
+
+public void setNavigatorDeleteOptions(String navigatorDeleteOptions)
+{
+  this.navigatorDeleteOptions = navigatorDeleteOptions;
+}
+
+public void setNavigatorSearchOptions(String navigatorSearchOptions)
+{
+  this.navigatorSearchOptions = navigatorSearchOptions;
+}
+
+public void setNavigatorViewOptions(String navigatorViewOptions)
+{
+  this.navigatorViewOptions = navigatorViewOptions;
 }
 }

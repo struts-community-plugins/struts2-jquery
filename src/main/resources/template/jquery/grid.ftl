@@ -31,6 +31,13 @@
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 ></table>
+<#if parameters.pager?default(false)>
+<div id="${parameters.id?html}_pager"></div>
+</#if>
+<#if parameters.navigator?default(false)>
+<div id="${parameters.id?html}_navigator"></div>
+</#if>
+
 <script type='text/javascript'>
 $(document).ready(function () { 
 	var options_${parameters.id?html} = {};

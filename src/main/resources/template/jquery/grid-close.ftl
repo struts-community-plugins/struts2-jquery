@@ -30,8 +30,8 @@
   <#else>
 	options_${parameters.id?html}.height = 'auto';
   </#if>
-  <#if parameters.pager?if_exists != "">
-	options_${parameters.id?html}.pager = "${parameters.pager?html}";
+  <#if parameters.pager?default(false)>
+	options_${parameters.id?html}.pager = "${parameters.id?html}_pager";
   </#if>
   <#if parameters.rowNum?if_exists != "">
 	options_${parameters.id?html}.rowNum = ${parameters.rowNum?html};
@@ -50,6 +50,24 @@
   </#if>
   <#if parameters.sortorder?if_exists != "">
 	options_${parameters.id?html}.sortorder = "${parameters.sortorder?html}";
+  </#if>
+  <#if parameters.navigator?default(false)>
+	options_${parameters.id?html}.navigator = "${parameters.id?html}_navigator";
+	  <#if parameters.navigatorEditOptions?if_exists != "">
+		options_${parameters.id?html}.navigatoreditoptions = ${parameters.navigatorEditOptions?html};
+	  </#if>
+	  <#if parameters.navigatorAddOptions?if_exists != "">
+		options_${parameters.id?html}.navigatoraddoptions = ${parameters.navigatorAddOptions?html};
+	  </#if>
+	  <#if parameters.navigatorDeleteOptions?if_exists != "">
+		options_${parameters.id?html}.navigatordeleteoptions = ${parameters.navigatorDeleteOptions?html};
+	  </#if>
+	  <#if parameters.navigatorViewOptions?if_exists != "">
+		options_${parameters.id?html}.navigatorviewoptions = ${parameters.navigatorViewOptions?html};
+	  </#if>
+	  <#if parameters.navigatorSearchOptions?if_exists != "">
+		options_${parameters.id?html}.navigatorsearchoptions = ${parameters.navigatorSearchOptions?html};
+	  </#if>
   </#if>
   <#if parameters.loadonce?default(false)>
 	options_${parameters.id?html}.loadonce = true;
