@@ -893,9 +893,41 @@
 					}
 				};
 			}
+			
+			params.loadBeforeSend = function (xhr) {
+				
+				var orginal = {};
+				orginal.xhr = xhr;
+
+				if(options.onalwaystopics) {  
+					var topics = options.onalwaystopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+				
+				if(options.onbeforetopics) {  
+					var topics = options.onbeforetopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+			}
+	   	
+		    				
+			params.loadComplete = pubCom($elem, options.onalwaystopics, options.oncompletetopics, null, null, options);
+			params.loadError = pubErr($elem, options.onalwaystopics, options.onerrortopics, options.errortext);
+
 			$elem.jqGrid(params);
 			if(options.navigator) {
-				$elem.jqGrid('navGrid','#'+navigator,{},options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
+				var navparams = {};
+				if(options.navigatoradd) { navparams.add = options.navigatoradd; }
+				if(options.navigatordel) { navparams.del = options.navigatordel; }
+				if(options.navigatoredit) { navparams.edit = options.navigatoredit; }
+				if(options.navigatorrefresh) { navparams.refresh = options.navigatorrefresh; }
+				if(options.navigatorsearch) { navparams.search = options.navigatorsearch; }
+				if(options.navigatorview) { navparams.view = options.navigatorview; }
+				$elem.jqGrid('navGrid','#'+navigator,navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
 			}
 		}
 	};		

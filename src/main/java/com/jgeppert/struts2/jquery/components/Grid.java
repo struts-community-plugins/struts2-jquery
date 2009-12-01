@@ -31,7 +31,8 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: javadoc --> Renders a grid
+ * <!-- START SNIPPET: javadoc --> Renders a grid 
+ * 
  * <!-- END SNIPPET: javadoc -->
  * 
  * <p>
@@ -70,6 +71,23 @@ public class Grid extends AbstractRemoteBean {
   protected String                      navigatorDeleteOptions;
   protected String                      navigatorSearchOptions;
   protected String                      navigatorViewOptions;
+  protected String                      navigatorAdd;
+  protected String                      navigatorDel;
+  protected String                      navigatorEdit;
+  protected String                      navigatorRefresh;
+  protected String                      navigatorSearch;
+  protected String                      navigatorView;
+  protected String                      autoencode;
+  protected String                      cellEdit;
+  protected String                      cellurl;
+  protected String                      footerrow;
+  protected String                      hiddengrid;
+  protected String                      hidegrid;
+  protected String                      hoverrows;
+  protected String                      rownumbers;
+  protected String                      multiselectWidth;
+  protected String                      page;
+  protected String                      scrollrows;
 
   public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -114,6 +132,24 @@ public class Grid extends AbstractRemoteBean {
     if (navigatorDeleteOptions != null) addParameter("navigatorDeleteOptions", findString(navigatorDeleteOptions));
     if (navigatorViewOptions != null) addParameter("navigatorViewOptions", findString(navigatorViewOptions));
     if (navigatorSearchOptions != null) addParameter("navigatorSearchOptions", findString(navigatorSearchOptions));
+    if (navigatorAdd != null) addParameter("navigatorAdd", findValue(this.navigatorAdd, Boolean.class));
+    if (navigatorDel != null) addParameter("navigatorDel", findValue(this.navigatorDel, Boolean.class));
+    if (navigatorEdit != null) addParameter("navigatorEdit", findValue(this.navigatorEdit, Boolean.class));
+    if (navigatorRefresh != null) addParameter("navigatorRefresh", findValue(this.navigatorRefresh, Boolean.class));
+    if (navigatorView != null) addParameter("navigatorView", findValue(this.navigatorView, Boolean.class));
+    if (navigatorSearch != null) addParameter("navigatorSearch", findValue(this.navigatorSearch, Boolean.class));
+    
+    if (cellurl != null) addParameter("cellurl", findString(cellurl));
+    if (multiselectWidth != null) addParameter("multiselectWidth", findString(multiselectWidth));
+    if (page != null) addParameter("page", findString(page));
+    if (autoencode != null) addParameter("autoencode", findValue(this.autoencode, Boolean.class));
+    if (cellEdit != null) addParameter("cellEdit", findValue(this.cellEdit, Boolean.class));
+    if (footerrow != null) addParameter("footerrow", findValue(this.footerrow, Boolean.class));
+    if (hiddengrid != null) addParameter("hiddengrid", findValue(this.hiddengrid, Boolean.class));
+    if (hidegrid != null) addParameter("hidegrid", findValue(this.hidegrid, Boolean.class));
+    if (hoverrows != null) addParameter("hoverrows", findValue(this.hoverrows, Boolean.class));
+    if (rownumbers != null) addParameter("rownumbers", findValue(this.rownumbers, Boolean.class));
+    if (scrollrows != null) addParameter("scrollrows", findValue(this.scrollrows, Boolean.class));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -206,34 +242,39 @@ public class Grid extends AbstractRemoteBean {
   }
 
   @StrutsTagAttribute(description = "When enabled this option allow column reordering with mouse.", defaultValue = "false", type = "Boolean")
-  public void setSortable(String sortable) 
+  public void setSortable(String sortable)
   {
-	this.sortable = sortable;
+    this.sortable = sortable;
   }
 
   @StrutsTagAttribute(description = "This option describes the type of calculation of the initial width of each column against with the width of the grid. If the value is true and the value in width option is set then: Every column width is scaled according to the defined option width.", defaultValue = "true", type = "Boolean")
-  public void setShrinkToFit(String shrinkToFit) {
-	this.shrinkToFit = shrinkToFit;
+  public void setShrinkToFit(String shrinkToFit)
+  {
+    this.shrinkToFit = shrinkToFit;
   }
 
-  @StrutsTagAttribute(description = "Name of you grid model. Must be a Collection", required=true)
-  public void setGridModel(String gridModel) {
-	this.gridModel = gridModel;
+  @StrutsTagAttribute(description = "Name of you grid model. Must be a Collection", required = true)
+  public void setGridModel(String gridModel)
+  {
+    this.gridModel = gridModel;
   }
 
   @StrutsTagAttribute(description = "An array to construct a select box element in the pager in which we can change the number of the visible rows. e.g. 10,15,20")
-  public void setRowList(String rowList) {
-	this.rowList = rowList;
+  public void setRowList(String rowList)
+  {
+    this.rowList = rowList;
   }
 
   @StrutsTagAttribute(description = "Creates dynamic scrolling grids. When enabled, the pager elements are disabled and we can use the vertical scrollbar to load data. When set to true the grid will always hold all the items from the start through to the latest point ever visited.", defaultValue = "false", type = "Boolean")
-  public void setScroll(String scroll) {
-	this.scroll = scroll;
+  public void setScroll(String scroll)
+  {
+    this.scroll = scroll;
   }
 
   @StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")
-  public void setOnSelectRow(String onSelectRow) {
-	this.onSelectRow = onSelectRow;
+  public void setOnSelectRow(String onSelectRow)
+  {
+    this.onSelectRow = onSelectRow;
   }
 
   @StrutsTagAttribute(description = "Navigator is a method that can add predefined actions like editing, adding, deleting, and searching. This must be a true or false.", defaultValue = "false", type = "Boolean")
@@ -270,5 +311,107 @@ public class Grid extends AbstractRemoteBean {
   public void setNavigatorViewOptions(String navigatorViewOptions)
   {
     this.navigatorViewOptions = navigatorViewOptions;
+  }
+
+  @StrutsTagAttribute(description = "When set to true encodes (html encode) the incoming (from server) and posted data (from editing modules). By example < will be converted to &lt;", defaultValue = "true", type = "Boolean")
+  public void setAutoencode(String autoencode)
+  {
+    this.autoencode = autoencode;
+  }
+
+  @StrutsTagAttribute(description = "Enables (disables) cell editing. See Cell Editing for more details", defaultValue = "false", type = "Boolean")
+  public void setCellEdit(String cellEdit)
+  {
+    this.cellEdit = cellEdit;
+  }
+
+  @StrutsTagAttribute(description = "the url where the cell is to be saved.", defaultValue = "false", type = "Boolean")
+  public void setCellurl(String cellurl)
+  {
+    this.cellurl = cellurl;
+  }
+
+  @StrutsTagAttribute(description = "If set to true this will place a footer table with one row below the gird records and above the pager.", defaultValue = "false", type = "Boolean")
+  public void setFooterrow(String footerrow)
+  {
+    this.footerrow = footerrow;
+  }
+
+  @StrutsTagAttribute(description = "If set to true the grid initially is hidden. The data is not loaded (no request is sent) and only the caption layer is shown. When the show/hide button is clicked the first time to show grid, the request is sent to the server, the data is loaded, and grid is shown. From this point we have a regular grid.", defaultValue = "false", type = "Boolean")
+  public void setHiddengrid(String hiddengrid)
+  {
+    this.hiddengrid = hiddengrid;
+  }
+
+  @StrutsTagAttribute(description = "Enables or disables the show/hide grid button, which appears on the right side of the Caption layer. Takes effect only if the caption property is not an empty string.", defaultValue = "false", type = "Boolean")
+  public void setHidegrid(String hidegrid)
+  {
+    this.hidegrid = hidegrid;
+  }
+
+  @StrutsTagAttribute(description = "When set to false the mouse hovering is disabled in the grid data rows.", defaultValue = "false", type = "Boolean")
+  public void setHoverrows(String hoverrows)
+  {
+    this.hoverrows = hoverrows;
+  }
+
+  @StrutsTagAttribute(description = "If this option is set to true, a new column at left of the grid is added. The purpose of this column is to count the number of available rows, beginning from 1. In this case colModel is extended automatically with new element with name - 'rn'. Also, be careful not to use the name 'rn' in gridModel", defaultValue = "false", type = "Boolean")
+  public void setRownumbers(String rownumbers)
+  {
+    this.rownumbers = rownumbers;
+  }
+
+  @StrutsTagAttribute(description = "etermines the width of the multiselect column if multiselect is set to true.")
+  public void setMultiselectWidth(String multiselectWidth)
+  {
+    this.multiselectWidth = multiselectWidth;
+  }
+
+  @StrutsTagAttribute(description = "Set the initial number of page when we make the request.This parameter is passed to the url for use by the server routine retrieving the data", defaultValue = "1")
+  public void setPage(String page)
+  {
+    this.page = page;
+  }
+
+  @StrutsTagAttribute(description = "When enabled, selecting a row with setSelection scrolls the grid so that the selected row is visible.", defaultValue = "false", type = "Boolean")
+  public void setScrollrows(String scrollrows)
+  {
+    this.scrollrows = scrollrows;
+  }
+
+  @StrutsTagAttribute(description = "Enables or disables the add action in the navigator. When the button is clicked a editGridRow with parameter new method is executed", defaultValue = "true", type = "Boolean")
+  public void setNavigatorAdd(String navigatorAdd)
+  {
+    this.navigatorAdd = navigatorAdd;
+  }
+
+  @StrutsTagAttribute(description = "Enables or disables the delete action in the navigator. When the button is clicked a delGridRow method is executed.", defaultValue = "true", type = "Boolean")
+  public void setNavigatorDel(String navigatorDel)
+  {
+    this.navigatorDel = navigatorDel;
+  }
+
+  @StrutsTagAttribute(description = "Enables or disables the edit action in the navigator. When the button is clicked a editGridRow method is executed with parameter the - current selected row", defaultValue = "true", type = "Boolean")
+  public void setNavigatorEdit(String navigatorEdit)
+  {
+    this.navigatorEdit = navigatorEdit;
+  }
+
+  @StrutsTagAttribute(description = "Enables or disables the refresh button in the pager. When the button is clicked a trigger(reloadGrid) is executed and the search parameters are cleared", defaultValue = "true", type = "Boolean")
+  public void setNavigatorRefresh(String navigatorRefresh)
+  {
+    this.navigatorRefresh = navigatorRefresh;
+  }
+
+  @StrutsTagAttribute(description = "Enables or disables the search button in the pager.When the button is clicked a searchGrid method is executed", defaultValue = "true", type = "Boolean")
+  public void setNavigatorSearch(String navigatorSearch)
+  {
+    this.navigatorSearch = navigatorSearch;
+  }
+
+  @StrutsTagAttribute(description = "Enables or disables the view button in the pager. When the button is clicked a viewGridRow method is executed", defaultValue = "false", type = "Boolean")
+  public void setNavigatorView(String navigatorView)
+  {
+    this.navigatorView = navigatorView;
   }
 }

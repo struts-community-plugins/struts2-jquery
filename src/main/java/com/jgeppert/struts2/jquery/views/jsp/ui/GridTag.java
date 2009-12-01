@@ -34,29 +34,46 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class GridTag extends AbstractRemoteTag {
 
   private static final long serialVersionUID = 2134613468009192567L;
-  
-  protected String                      width;
-  protected String                      height;
-  protected String                      pager;
-  protected String                      rowNum;
-  protected String                      sortname;
-  protected String                      viewrecords;
-  protected String                      sortorder;
-  protected String                      loadonce;
-  protected String                      multiselect;
-  protected String                      editurl;
-  protected String                      caption;
-  protected String                      shrinkToFit;
-  protected String                      gridModel;
-  protected String                      rowList;
-  protected String                      scroll;
-  protected String                      onSelectRow;
-  protected String                      navigator;
-  protected String                      navigatorEditOptions;
-  protected String                      navigatorAddOptions;
-  protected String                      navigatorDeleteOptions;
-  protected String                      navigatorSearchOptions;
-  protected String                      navigatorViewOptions;
+
+  protected String          width;
+  protected String          height;
+  protected String          pager;
+  protected String          rowNum;
+  protected String          sortname;
+  protected String          viewrecords;
+  protected String          sortorder;
+  protected String          loadonce;
+  protected String          multiselect;
+  protected String          editurl;
+  protected String          caption;
+  protected String          shrinkToFit;
+  protected String          gridModel;
+  protected String          rowList;
+  protected String          scroll;
+  protected String          onSelectRow;
+  protected String          navigator;
+  protected String          navigatorEditOptions;
+  protected String          navigatorAddOptions;
+  protected String          navigatorDeleteOptions;
+  protected String          navigatorSearchOptions;
+  protected String          navigatorViewOptions;
+  protected String          navigatorAdd;
+  protected String          navigatorDel;
+  protected String          navigatorEdit;
+  protected String          navigatorRefresh;
+  protected String          navigatorSearch;
+  protected String          navigatorView;
+  protected String          autoencode;
+  protected String          cellEdit;
+  protected String          cellurl;
+  protected String          footerrow;
+  protected String          hiddengrid;
+  protected String          hidegrid;
+  protected String          hoverrows;
+  protected String          rownumbers;
+  protected String          multiselectWidth;
+  protected String          page;
+  protected String          scrollrows;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -90,6 +107,23 @@ public class GridTag extends AbstractRemoteTag {
     grid.setNavigatorDeleteOptions(navigatorDeleteOptions);
     grid.setNavigatorViewOptions(navigatorViewOptions);
     grid.setNavigatorSearchOptions(navigatorSearchOptions);
+    grid.setNavigatorAdd(navigatorAdd);
+    grid.setNavigatorEdit(navigatorEdit);
+    grid.setNavigatorDel(navigatorDel);
+    grid.setNavigatorView(navigatorView);
+    grid.setNavigatorSearch(navigatorSearch);
+    grid.setNavigatorRefresh(navigatorRefresh);
+    grid.setAutoencode(autoencode);
+    grid.setCellEdit(cellEdit);
+    grid.setCellurl(cellurl);
+    grid.setFooterrow(footerrow);
+    grid.setHiddengrid(hiddengrid);
+    grid.setHidegrid(hidegrid);
+    grid.setHoverrows(hoverrows);
+    grid.setRownumbers(rownumbers);
+    grid.setMultiselectWidth(multiselectWidth);
+    grid.setPage(page);
+    grid.setScrollrows(scrollrows);
   }
 
   public void setWidth(String width)
@@ -147,57 +181,143 @@ public class GridTag extends AbstractRemoteTag {
     this.caption = caption;
   }
 
-  public void setShrinkToFit(String shrinkToFit) 
+  public void setShrinkToFit(String shrinkToFit)
   {
-	this.shrinkToFit = shrinkToFit;
+    this.shrinkToFit = shrinkToFit;
   }
 
-  public void setGridModel(String gridModel) 
+  public void setGridModel(String gridModel)
   {
-	this.gridModel = gridModel;
+    this.gridModel = gridModel;
   }
 
-  public void setRowList(String rowList) 
+  public void setRowList(String rowList)
   {
-	this.rowList = rowList;
+    this.rowList = rowList;
   }
 
-  public void setScroll(String scroll) 
+  public void setScroll(String scroll)
   {
-	this.scroll = scroll;
+    this.scroll = scroll;
   }
 
-public void setOnSelectRow(String onSelectRow) {
-	this.onSelectRow = onSelectRow;
-}
+  public void setOnSelectRow(String onSelectRow)
+  {
+    this.onSelectRow = onSelectRow;
+  }
 
-public void setNavigator(String navigator)
-{
-  this.navigator = navigator;
-}
+  public void setNavigator(String navigator)
+  {
+    this.navigator = navigator;
+  }
 
-public void setNavigatorEditOptions(String navigatorEditOptions)
-{
-  this.navigatorEditOptions = navigatorEditOptions;
-}
+  public void setNavigatorEditOptions(String navigatorEditOptions)
+  {
+    this.navigatorEditOptions = navigatorEditOptions;
+  }
 
-public void setNavigatorAddOptions(String navigatorAddOptions)
-{
-  this.navigatorAddOptions = navigatorAddOptions;
-}
+  public void setNavigatorAddOptions(String navigatorAddOptions)
+  {
+    this.navigatorAddOptions = navigatorAddOptions;
+  }
 
-public void setNavigatorDeleteOptions(String navigatorDeleteOptions)
-{
-  this.navigatorDeleteOptions = navigatorDeleteOptions;
-}
+  public void setNavigatorDeleteOptions(String navigatorDeleteOptions)
+  {
+    this.navigatorDeleteOptions = navigatorDeleteOptions;
+  }
 
-public void setNavigatorSearchOptions(String navigatorSearchOptions)
-{
-  this.navigatorSearchOptions = navigatorSearchOptions;
-}
+  public void setNavigatorSearchOptions(String navigatorSearchOptions)
+  {
+    this.navigatorSearchOptions = navigatorSearchOptions;
+  }
 
-public void setNavigatorViewOptions(String navigatorViewOptions)
-{
-  this.navigatorViewOptions = navigatorViewOptions;
-}
+  public void setNavigatorViewOptions(String navigatorViewOptions)
+  {
+    this.navigatorViewOptions = navigatorViewOptions;
+  }
+
+  public void setAutoencode(String autoencode)
+  {
+    this.autoencode = autoencode;
+  }
+
+  public void setCellEdit(String cellEdit)
+  {
+    this.cellEdit = cellEdit;
+  }
+
+  public void setCellurl(String cellurl)
+  {
+    this.cellurl = cellurl;
+  }
+
+  public void setFooterrow(String footerrow)
+  {
+    this.footerrow = footerrow;
+  }
+
+  public void setHiddengrid(String hiddengrid)
+  {
+    this.hiddengrid = hiddengrid;
+  }
+
+  public void setHidegrid(String hidegrid)
+  {
+    this.hidegrid = hidegrid;
+  }
+
+  public void setHoverrows(String hoverrows)
+  {
+    this.hoverrows = hoverrows;
+  }
+
+  public void setRownumbers(String rownumbers)
+  {
+    this.rownumbers = rownumbers;
+  }
+
+  public void setMultiselectWidth(String multiselectWidth)
+  {
+    this.multiselectWidth = multiselectWidth;
+  }
+
+  public void setPage(String page)
+  {
+    this.page = page;
+  }
+
+  public void setScrollrows(String scrollrows)
+  {
+    this.scrollrows = scrollrows;
+  }
+
+  public void setNavigatorAdd(String navigatorAdd)
+  {
+    this.navigatorAdd = navigatorAdd;
+  }
+
+  public void setNavigatorDel(String navigatorDel)
+  {
+    this.navigatorDel = navigatorDel;
+  }
+
+  public void setNavigatorEdit(String navigatorEdit)
+  {
+    this.navigatorEdit = navigatorEdit;
+  }
+
+  public void setNavigatorRefresh(String navigatorRefresh)
+  {
+    this.navigatorRefresh = navigatorRefresh;
+  }
+
+  public void setNavigatorSearch(String navigatorSearch)
+  {
+    this.navigatorSearch = navigatorSearch;
+  }
+
+  public void setNavigatorView(String navigatorView)
+  {
+    this.navigatorView = navigatorView;
+  }
 }

@@ -51,7 +51,13 @@ public class GridColumn extends AbstractRemoteBean {
   protected String           edittype;
   protected String           formatter;
   protected String           formatoptions;
-  
+  protected String           sortable;
+  protected String           resizable;
+  protected String           key;
+  protected String           search;
+  protected String           searchoptions;
+  protected String           hidden;
+  protected String           hidedlg;
 
   public GridColumn(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -80,6 +86,13 @@ public class GridColumn extends AbstractRemoteBean {
     if (edittype != null) addParameter("edittype", findString(edittype));
     if (formatter != null) addParameter("formatter", findString(formatter));
     if (formatoptions != null) addParameter("formatoptions", findString(formatoptions));
+    if (sortable != null) addParameter("sortable", findValue(this.sortable, Boolean.class));
+    if (resizable != null) addParameter("resizable", findValue(this.resizable, Boolean.class));
+    if (key != null) addParameter("key", findValue(this.key, Boolean.class));
+    if (search != null) addParameter("search", findValue(this.search, Boolean.class));
+    if (searchoptions != null) addParameter("searchoptions", findString(searchoptions));
+    if (hidden != null) addParameter("hidden", findValue(this.hidden, Boolean.class));
+    if (hidedlg != null) addParameter("hidedlg", findValue(this.hidedlg, Boolean.class));
     
     Grid grid = (Grid) findAncestor(Grid.class);
     if (grid != null)
@@ -150,6 +163,48 @@ public class GridColumn extends AbstractRemoteBean {
   @StrutsTagAttribute(description = "Format options can be defined for particular columns, overwriting the defaults from the language file.")
   public void setFormatoptions(String formatoptions) {
 	this.formatoptions = formatoptions;
+  }
+
+  @StrutsTagAttribute(description = "Defines is this can be sorted.", defaultValue = "true", type = "Boolean")
+  public void setSortable(String sortable)
+  {
+    this.sortable = sortable;
+  }
+
+  @StrutsTagAttribute(description = "Defines if the column can be re sized", defaultValue = "true", type = "Boolean")
+  public void setResizable(String resizable)
+  {
+    this.resizable = resizable;
+  }
+
+  @StrutsTagAttribute(description = "In case if there is no id from server, this can be set as as id for the unique row id. Only one column can have this property. If there are more than one key the grid finds the first one and the second is ignored.", defaultValue = "false", type = "Boolean")
+  public void setKey(String key)
+  {
+    this.key = key;
+  }
+
+  @StrutsTagAttribute(description = "When used in search modules, disables or enables searching on that column.", defaultValue = "true", type = "Boolean")
+  public void setSearch(String search)
+  {
+    this.search = search;
+  }
+
+  @StrutsTagAttribute(description = "Defines the search options used searching. e.g. {sopt:['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc'], defaultValue:'John Doe'}")
+  public void setSearchoptions(String searchoptions)
+  {
+    this.searchoptions = searchoptions;
+  }
+
+  @StrutsTagAttribute(description = "Defines if this column is hidden at initialization.", defaultValue = "false", type = "Boolean")
+  public void setHidden(String hidden)
+  {
+    this.hidden = hidden;
+  }
+
+  @StrutsTagAttribute(description = "If set to true this column will not appear in the modal dialog where users can choose which columns to show or hide.", defaultValue = "false", type = "Boolean")
+  public void setHidedlg(String hidedlg)
+  {
+    this.hidedlg = hidedlg;
   }
 
 }

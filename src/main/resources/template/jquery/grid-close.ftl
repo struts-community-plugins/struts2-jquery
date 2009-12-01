@@ -22,6 +22,18 @@
   <#if parameters.href?exists>
 	options_${parameters.id?html}.url = "${parameters.href?html}";
   </#if>
+  <#if parameters.editurl?if_exists != "">
+	options_${parameters.id?html}.editurl = "${parameters.editurl?html}";
+  </#if>
+  <#if parameters.cellurl?if_exists != "">
+	options_${parameters.id?html}.cellurl = "${parameters.cellurl?html}";
+  </#if>
+  <#if parameters.multiselectWidth?exists>
+	options_${parameters.id?html}.multiselectWidth = ${parameters.multiselectWidth?html};
+  </#if>
+  <#if parameters.page?exists>
+	options_${parameters.id?html}.page = ${parameters.page?html};
+  </#if>
   <#if parameters.width?exists>
 	options_${parameters.id?html}.width = ${parameters.width?html};
   </#if>
@@ -68,15 +80,42 @@
 	  <#if parameters.navigatorSearchOptions?if_exists != "">
 		options_${parameters.id?html}.navigatorsearchoptions = ${parameters.navigatorSearchOptions?html};
 	  </#if>
+	  <#if parameters.navigatorAdd?default(true)>
+		options_${parameters.id?html}.navigatoradd = true;
+	  <#else>
+		options_${parameters.id?html}.navigatoradd = false;
+	  </#if>
+	  <#if parameters.navigatorDel?default(true)>
+		options_${parameters.id?html}.navigatordel = true;
+	  <#else>
+		options_${parameters.id?html}.navigatordel = false;
+	  </#if>
+	  <#if parameters.navigatorEdit?default(true)>
+		options_${parameters.id?html}.navigatoredit = true;
+	  <#else>
+		options_${parameters.id?html}.navigatoredit = false;
+	  </#if>
+	  <#if parameters.navigatorRefresh?default(true)>
+		options_${parameters.id?html}.navigatorrefresh = true;
+	  <#else>
+		options_${parameters.id?html}.navigatorrefresh = false;
+	  </#if>
+	  <#if parameters.navigatorSearch?default(true)>
+		options_${parameters.id?html}.navigatorsearch = true;
+	  <#else>
+		options_${parameters.id?html}.navigatorsearch = false;
+	  </#if>
+	  <#if parameters.navigatorView?default(false)>
+		options_${parameters.id?html}.navigatorview = true;
+	  <#else>
+		options_${parameters.id?html}.navigatorview = false;
+	  </#if>
   </#if>
   <#if parameters.loadonce?default(false)>
 	options_${parameters.id?html}.loadonce = true;
   </#if>
   <#if parameters.multiselect?default(false)>
 	options_${parameters.id?html}.multiselect = true;
-  </#if>
-  <#if parameters.editurl?if_exists != "">
-	options_${parameters.id?html}.editurl = "${parameters.editurl?html}";
   </#if>
   <#if parameters.caption?if_exists != "">
 	options_${parameters.id?html}.caption = "${parameters.caption?html}";
@@ -90,17 +129,47 @@
   <#if parameters.onSelectRow?if_exists != "">
 	options_${parameters.id?html}.onselectrow = "${parameters.onSelectRow?html}";
   </#if>
+  <#if parameters.autoencode?default(true)>
+	options_${parameters.id?html}.autoencode = true;
+  </#if>
+  <#if parameters.cellEdit?default(false)>
+	options_${parameters.id?html}.cellEdit = true;
+  </#if>
+  <#if parameters.footerrow?default(false)>
+	options_${parameters.id?html}.footerrow = true;
+  </#if>
+  <#if parameters.hiddengrid?default(false)>
+	options_${parameters.id?html}.hiddengrid = true;
+  </#if>
+  <#if parameters.hidegrid?default(false)>
+	options_${parameters.id?html}.hidegrid = true;
+  </#if>
+  <#if parameters.hoverrows?default(false)>
+	options_${parameters.id?html}.hoverrows = true;
+  </#if>
+  <#if parameters.rownumbers?default(false)>
+	options_${parameters.id?html}.rownumbers = true;
+  </#if>
+  <#if parameters.scrollrows?default(false)>
+	options_${parameters.id?html}.scrollrows = true;
+  </#if>
+
+
 	options_${parameters.id?html}.colNames = options_${parameters.id?html}_colnames;
 	options_${parameters.id?html}.colModel = options_${parameters.id?html}_colmodels;
+	options_${parameters.id?html}.gridview = true;
 	options_${parameters.id?html}.jsonReader = {};
   <#if parameters.editurl?if_exists != "">
 	options_${parameters.id?html}.jsonReader.root = "${parameters.gridModel?html}";
   <#else>
 	options_${parameters.id?html}.jsonReader.root = "gridModel";
   </#if>
+  <#if parameters.loadonce?default(false)>
+  <#else>
 	options_${parameters.id?html}.jsonReader.page = "page";
 	options_${parameters.id?html}.jsonReader.total = "total";
 	options_${parameters.id?html}.jsonReader.records = "records";
+  </#if>
 	options_${parameters.id?html}.jsonReader.repeatitems = false;
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

@@ -30,15 +30,22 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class GridColumnTag extends AbstractRemoteTag {
 
   private static final long serialVersionUID = 7618322146696075561L;
-  protected String           name;
-  protected String           title;
-  protected String           index;
-  protected String           width;
-  protected String           editable;
-  protected String           editoptions;
-  protected String           edittype;
-  protected String           formatter;
-  protected String           formatoptions;
+  protected String          name;
+  protected String          title;
+  protected String          index;
+  protected String          width;
+  protected String          editable;
+  protected String          editoptions;
+  protected String          edittype;
+  protected String          formatter;
+  protected String          formatoptions;
+  protected String          sortable;
+  protected String          resizable;
+  protected String          key;
+  protected String          search;
+  protected String          searchoptions;
+  protected String          hidden;
+  protected String          hidedlg;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -59,6 +66,13 @@ public class GridColumnTag extends AbstractRemoteTag {
     gc.setEdittype(edittype);
     gc.setFormatter(formatter);
     gc.setFormatoptions(formatoptions);
+    gc.setSortable(sortable);
+    gc.setResizable(resizable);
+    gc.setKey(key);
+    gc.setSearch(search);
+    gc.setSearchoptions(searchoptions);
+    gc.setHidden(hidden);
+    gc.setHidedlg(hidedlg);
   }
 
   public void setName(String name)
@@ -91,16 +105,54 @@ public class GridColumnTag extends AbstractRemoteTag {
     this.editoptions = editoptions;
   }
 
-public void setEdittype(String edittype) {
-	this.edittype = edittype;
-}
+  public void setEdittype(String edittype)
+  {
+    this.edittype = edittype;
+  }
 
-public void setFormatter(String formatter) {
-	this.formatter = formatter;
-}
+  public void setFormatter(String formatter)
+  {
+    this.formatter = formatter;
+  }
 
-public void setFormatoptions(String formatoptions) {
-	this.formatoptions = formatoptions;
-}
+  public void setFormatoptions(String formatoptions)
+  {
+    this.formatoptions = formatoptions;
+  }
+
+  public void setSortable(String sortable)
+  {
+    this.sortable = sortable;
+  }
+
+  public void setResizable(String resizable)
+  {
+    this.resizable = resizable;
+  }
+
+  public void setKey(String key)
+  {
+    this.key = key;
+  }
+
+  public void setSearch(String search)
+  {
+    this.search = search;
+  }
+
+  public void setSearchoptions(String searchoptions)
+  {
+    this.searchoptions = searchoptions;
+  }
+
+  public void setHidden(String hidden)
+  {
+    this.hidden = hidden;
+  }
+
+  public void setHidedlg(String hidedlg)
+  {
+    this.hidedlg = hidedlg;
+  }
 
 }

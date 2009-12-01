@@ -42,12 +42,36 @@ Please do not edit it directly.
 					<td align="left" valign="top">Set the html accesskey attribute on rendered html element</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">autoencode</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">When set to true encodes (html encode) the incoming (from server) and posted data (from editing modules). By example < will be converted to &lt;</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">caption</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Defines the Caption layer for the grid. This caption appear above the Header layer. If the string is empty the caption does not appear.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">cellEdit</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enables (disables) cell editing. See Cell Editing for more details</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">cellurl</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">the url where the cell is to be saved.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">cssClass</td>
@@ -146,6 +170,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">The text to be displayed on load error. If 'errorElement' is provided, this will display the error in the elemtn (if existing), if not, it will display the error as the contents of this container</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">footerrow</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">If set to true this will place a footer table with one row below the gird records and above the pager.</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">formIds</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -168,6 +200,30 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">The height of the grid. Can be set as number e.g. 400. Default: auto</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">hiddengrid</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">If set to true the grid initially is hidden. The data is not loaded (no request is sent) and only the caption layer is shown. When the show/hide button is clicked the first time to show grid, the request is sent to the server, the data is loaded, and grid is shown. From this point we have a regular grid.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">hidegrid</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enables or disables the show/hide grid button, which appears on the right side of the Caption layer. Takes effect only if the caption property is not an empty string.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">hoverrows</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">When set to false the mouse hovering is disabled in the grid data rows.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">href</td>
@@ -266,6 +322,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">If this flag is set to true a multi selection of rows is enabled. A new column at left side is added.</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">multiselectWidth</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">etermines the width of the multiselect column if multiselect is set to true.</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">name</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -282,12 +346,28 @@ Please do not edit it directly.
 					<td align="left" valign="top">Navigator is a method that can add predefined actions like editing, adding, deleting, and searching. This must be a true or false.</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">navigatorAdd</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enables or disables the add action in the navigator. When the button is clicked a editGridRow with parameter new method is executed</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">navigatorAddOptions</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Add Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">navigatorDel</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enables or disables the delete action in the navigator. When the button is clicked a delGridRow method is executed.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">navigatorDeleteOptions</td>
@@ -298,6 +378,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">Delete Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">navigatorEdit</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enables or disables the edit action in the navigator. When the button is clicked a editGridRow method is executed with parameter the - current selected row</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">navigatorEditOptions</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -306,12 +394,36 @@ Please do not edit it directly.
 					<td align="left" valign="top">Edit Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">navigatorRefresh</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enables or disables the refresh button in the pager. When the button is clicked a trigger(reloadGrid) is executed and the search parameters are cleared</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">navigatorSearch</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enables or disables the search button in the pager.When the button is clicked a searchGrid method is executed</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">navigatorSearchOptions</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Search Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">navigatorView</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enables or disables the view button in the pager. When the button is clicked a viewGridRow method is executed</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">navigatorViewOptions</td>
@@ -530,6 +642,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">Set template to use for opening the rendered html.</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">page</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">1</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">Set the initial number of page when we make the request.This parameter is passed to the url for use by the server routine retrieving the data</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">pager</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
@@ -570,12 +690,28 @@ Please do not edit it directly.
 					<td align="left" valign="top">Sets how many records we want to view in the grid. This parameter is passed to the url for use by the server routine retrieving the data. Note that if you set this parameter to 10 (i.e. retrieve 10 records) and your server return 15 then only 10 records will be loaded. Set this parameter to -1 (unlimited) to disable this checking. Default: 20</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">rownumbers</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">If this option is set to true, a new column at left of the grid is added. The purpose of this column is to count the number of available rows, beginning from 1. In this case colModel is extended automatically with new element with name - 'rn'. Also, be careful not to use the name 'rn' in gridModel</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">scroll</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">Boolean</td>
 					<td align="left" valign="top">Creates dynamic scrolling grids. When enabled, the pager elements are disabled and we can use the vertical scrollbar to load data. When set to true the grid will always hold all the items from the start through to the latest point ever visited.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">scrollrows</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">When enabled, selecting a row with setSelection scrolls the grid so that the selected row is visible.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">shrinkToFit</td>

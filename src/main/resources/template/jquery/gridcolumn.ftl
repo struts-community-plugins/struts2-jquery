@@ -45,5 +45,32 @@ options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = tru
 <#else>
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = false;
 </#if>
+<#if parameters.sortable?default(true)>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.sortable = true;
+<#else>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.sortable = false;
+</#if>
+<#if parameters.resizable?default(true)>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.resizable = true;
+<#else>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.resizable = false;
+</#if>
+<#if parameters.search?default(true)>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.search = true;
+<#else>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.search = false;
+</#if>
+<#if parameters.key?default(false)>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.key = true;
+</#if>
+<#if parameters.hidedlg?default(false)>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.hidedlg = true;
+</#if>
+<#if parameters.hidden?default(false)>
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.hidden = true;
+</#if>
+<#if parameters.searchoptions?if_exists != "">
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.searchoptions = ${parameters.searchoptions?html};
+</#if>
 options_${parameters.grid?html}_colnames.push("${parameters.title?html}");
 options_${parameters.grid?html}_colmodels.push(options_${parameters.grid?html}_colmodels_${parameters.name?html});

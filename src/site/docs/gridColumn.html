@@ -178,6 +178,22 @@ Please do not edit it directly.
 					<td align="left" valign="top">The predefined types (string) or custom function name that controls the format of this field. e.g.: integer, currency, date, checkbox</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">hidden</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Defines if this column is hidden at initialization.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">hidedlg</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">If set to true this column will not appear in the modal dialog where users can choose which columns to show or hide.</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">href</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -220,10 +236,10 @@ Please do not edit it directly.
 				<tr>
 					<td align="left" valign="top">key</td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Set the key (name, value, label) for this particular component</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">In case if there is no id from server, this can be set as as id for the unique row id. Only one column can have this property. If there are more than one key the grid finds the first one and the second is ignored.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">label</td>
@@ -488,6 +504,38 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Define required position of required form element (left|right)</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">resizable</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Defines if the column can be re sized</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">search</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">When used in search modules, disables or enables searching on that column.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">searchoptions</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">Defines the search options used searching. e.g. {sopt:['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc'], defaultValue:'John Doe'}</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">sortable</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">true</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Defines is this can be sorted.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">tabindex</td>
