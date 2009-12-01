@@ -5,6 +5,7 @@
     <ul>
       <li><s:url id="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
       <li><s:url id="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
+      <li><s:url id="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
     </ul>
   </div>
 </div>
@@ -15,10 +16,13 @@
         $("#gridinfo").html('<p>Edit Mode for Row : '+event.originalEvent.id+'</p>');
     });
     $.subscribe('rowadd', function(event,data) {
-        $("#gridtable").jqGrid('editGridRow',"new",{height:280,reloadAfterSubmit:false}); 
+        $("#gridedittable").jqGrid('editGridRow',"new",{height:280,reloadAfterSubmit:false}); 
   	});
     $.subscribe('searchgrid', function(event,data) {
-        $("#gridtable").jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
+        $("#gridedittable").jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
+  	});
+    $.subscribe('showcolumns', function(event,data) {
+        $("#gridedittable").jqGrid('setColumns',{});
   	});
     </script>
     <h2>Grid</h2>
@@ -26,10 +30,10 @@
         A editable Grid
     </p>
     <s:url id="remoteurl" action="jsontable"/> 
-    <s:url id="editurl" action="editGridEntry"/> 
+    <s:url id="editurl" action="edit-grid-entry"/> 
     <sj:grid 
-    	id="gridtable" 
-    	caption="Customer Examples" 
+    	id="gridedittable" 
+    	caption="Customer Examples (Editable)" 
     	dataType="json" 
     	href="%{remoteurl}" 
     	pager="true" 
@@ -37,21 +41,27 @@
     	navigatorSearchOptions="{sopt:['cn','eq','ne']}"
     	navigatorAddOptions="{height:280,reloadAfterSubmit:false}"
     	navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
+    	navigatorEdit="false"
+    	navigatorView="true"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
     	editurl="%{editurl}"
     	onSelectRow="rowselect"
     >
-    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" editable="false"/>
-    	<sj:gridColumn name="name" index="name" title="Name" editable="true" edittype="text"/>
-    	<sj:gridColumn name="country" index="country" title="Country" editable="true" edittype="select" editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}"/>
-    	<sj:gridColumn name="city" index="city" title="City" editable="true" edittype="text"/>
-    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" editable="true" edittype="text"/>
+    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne']}"/>
+    	<sj:gridColumn name="name" index="name" title="Name" editable="true" edittype="text" sortable="true" search="false"/>
+    	<sj:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" hidden="true"/>
+    	<sj:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" hidden="true"/>
+    	<sj:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" hidden="true"/>
+    	<sj:gridColumn name="country" index="country" title="Country" editable="true" edittype="select" editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}" sortable="false" search="false"/>
+    	<sj:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false" search="false"/>
+    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" editable="true" edittype="text" sortable="false" search="false"/>
     </sj:grid>
 	<br/>
     <sj:submit id="addbutton" value="Add Row" onClickTopics="rowadd" cssClass="buttonlink ui-state-default ui-corner-all"/>
     <sj:submit id="searchbutton" value="Search" onClickTopics="searchgrid" cssClass="buttonlink ui-state-default ui-corner-all"/>
+    <sj:submit id="colsbutton" value="Show/Hide Columns" onClickTopics="showcolumns" cssClass="buttonlink ui-state-default ui-corner-all"/>
 	<br/>
 	<br/>
     <div id="gridinfo" class="ui-widget-content ui-corner-all"><p>Edit Mode for Row :</p></div>

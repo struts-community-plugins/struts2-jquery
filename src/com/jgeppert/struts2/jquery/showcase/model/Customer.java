@@ -1,6 +1,6 @@
 package com.jgeppert.struts2.jquery.showcase.model;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
 	private int id;
 	private String name;
 	private String lastName;
@@ -119,4 +119,9 @@ public class Customer {
 		this.creditLimit = creditLimit;
 	}
 
+  @Override
+  public int compareTo(Customer o)
+  {
+    return this.name.toLowerCase().compareTo(o.getName().toLowerCase());
+  }
 }

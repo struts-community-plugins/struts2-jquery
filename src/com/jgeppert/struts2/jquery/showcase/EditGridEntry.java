@@ -19,16 +19,22 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.SessionAware;
 
+import com.jgeppert.struts2.jquery.showcase.model.Customer;
+import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage( value = "showcase")
-public class EditGridEntry extends ActionSupport {
+public class EditGridEntry extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = -3454448309088641394L;
 	private static final Log   log              = LogFactory.getLog(EditGridEntry.class);
@@ -38,9 +44,12 @@ public class EditGridEntry extends ActionSupport {
 	private String country;
 	private String city;
 	private double creditLimit;
+  private Map<String, Object> session;
+  private List<Customer> myCustomers;
 
-	@Action(value="/editGridEntry", 
-			   results={@Result( location = "echo.jsp", name="success")}
+	@Action(value="/edit-grid-entry", 
+			   results={@Result( location = "simpleecho.jsp", name="success"),
+	    @Result( location = "simpleecho.jsp", name="input")}
 	)
 	public String execute() throws Exception {
 	      log.debug("id :"+id);
@@ -49,6 +58,42 @@ public class EditGridEntry extends ActionSupport {
 	      log.debug("city :"+city);
 	      log.debug("creditLimit :"+creditLimit);
 
+	      Object list = session.get("mylist");
+	      if(list != null)
+	      {
+	        myCustomers = (List<Customer>) list; 
+	      }
+	      else
+	      {
+	        myCustomers = CustomerDAO.buildList();
+	      }
+
+	      Customer customer = CustomerDAO.findById(myCustomers, id);
+	      
+	      if(customer == null)
+	      {
+	        log.debug("Add Customer");
+	        customer = new Customer();
+	      
+	        customer.setId(id);
+	        customer.setName(name);
+	        customer.setCountry(country);
+	        customer.setCity(city);
+	        customer.setCreditLimit(creditLimit);
+	      
+	        myCustomers.add(customer);
+	      }
+	      else
+	      {
+	        log.debug("Edit Customer");
+	        customer.setName(name);
+          customer.setCountry(country);
+          customer.setCity(city);
+          customer.setCreditLimit(creditLimit);
+	      }
+	      
+	      session.put("mylist", myCustomers);
+	      
 	      return SUCCESS;
     }
 
@@ -91,4 +136,10 @@ public class EditGridEntry extends ActionSupport {
 	public void setCreditLimit(double creditLimit) {
 		this.creditLimit = creditLimit;
 	}
+
+  @Override
+  public void setSession(Map<String, Object> session)
+  {
+    this.session = session;    
+  }
 }

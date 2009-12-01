@@ -5,26 +5,28 @@ import java.util.List;
 
 public class CustomerDAO {
 
-	private static List<Customer> customers;
-
-	public static List<Customer> getCustomers(int from, int to) {
+	public static List<Customer> getCustomers(List<Customer> list, int from, int to) {
 		
-		if(customers == null)
-			buildList();
-		
-		return customers.subList(from, to);
+		return list.subList(from, to);
 	}
 
-	public static Integer getCustomersCount() {
+  public static Customer findById(List<Customer> list, int id) {
+    
+    for(Customer customer : list){
+      if(customer.getId() == id)
+        return customer;
+    }
+    
+    return null;
+  }
+
+	public static Integer getCustomersCount(List<Customer> list) {
 		
-		if(customers == null)
-			buildList();
-		
-		return customers.size();
+		return list.size();
 	}
 
-	private static void buildList() {
-		customers = new ArrayList<Customer>();
+	public static List<Customer> buildList() {
+	  List<Customer> customers = new ArrayList<Customer>();
 		customers.add(new Customer(103,"Atelier graphique","Schmitt","Carine ","40.32.2555","54, rue Royale","","Nantes","","44000","France",1370,21000.0));
 		customers.add(new Customer(112,"Signal Gift Stores","King","Jean","7025551838","8489 Strong St.","","Las Vegas","NV","83030","USA",1166,71800.0));
 		customers.add(new Customer(114,"Australian Collectors, Co.","Ferguson","Peter","03 9520 4555","636 St Kilda Road","Level 3","Melbourne","Victoria","3004","Australia",1611,117300.0));
@@ -147,5 +149,6 @@ public class CustomerDAO {
 		customers.add(new Customer(489,"Double Decker Gift Stores, Ltd","Smith","Thomas ","(171) 555-7555","120 Hanover Sq.","","London","","WA1 1DP","UK",1501,43300.0));
 		customers.add(new Customer(495,"Diecast Collectables","Franco","Valarie","6175552555","6251 Ingle Ln.","","Boston","MA","51003","USA",1188,85100.0));
 		customers.add(new Customer(496,"Kelly's Gift Shop","Snowden","Tony","+64 9 5555500","Arenales 1938 3'A'","","Auckland  ","","","New Zealand",1612,110000.0));
+		return customers;
 	}
 }

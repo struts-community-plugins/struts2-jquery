@@ -19,7 +19,10 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,6 +30,7 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
@@ -34,12 +38,13 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 @ParentPackage( value = "showcase")
-public class JsonTable extends ActionSupport {
+public class JsonTable extends ActionSupport implements SessionAware {
     
 	private static final long serialVersionUID = 5078264277068533593L;
 	private static final Log    log               = LogFactory.getLog(JsonTable.class);
 
 	private List<Customer> gridModel;
+  private List<Customer> myCustomers;
 	private Integer rows = 0;
 	private Integer page = 0;
 	private Integer total = 0;
@@ -49,6 +54,8 @@ public class JsonTable extends ActionSupport {
 	private String searchField;
 	private String searchString;
 	private String searchOper;
+	private boolean loadonce = false;
+	private Map<String, Object> session;
 
 	@Actions({@Action(value="/jsontable", results={@Result(name="success",type="json")}) })
     public String execute() {
@@ -60,7 +67,28 @@ public class JsonTable extends ActionSupport {
       log.debug("Index Row :"+getSidx());
       log.debug("Search :"+searchField+" "+searchOper+" "+searchString);
       
-      setRecord(CustomerDAO.getCustomersCount());
+      Object list = session.get("mylist");
+      if(list != null)
+      {
+        myCustomers = (List<Customer>) list; 
+      }
+      else
+      {
+        log.debug("Build new List");
+        myCustomers = CustomerDAO.buildList();
+      }
+      
+      if(getSord() != null && getSord().equalsIgnoreCase("asc"))
+      {
+        Collections.sort(myCustomers);
+      }
+      if(getSord() != null && getSord().equalsIgnoreCase("desc"))
+      {
+        Collections.sort(myCustomers);
+        Collections.reverse(myCustomers);
+      }
+      
+      setRecord(CustomerDAO.getCustomersCount(myCustomers));
 
       int to = (getRows() * getPage());
       int from = to - getRows();
@@ -68,11 +96,19 @@ public class JsonTable extends ActionSupport {
       if(to > getRecord())
     	  to = getRecord();
       
-      log.debug("Get Customers from "+from+" to "+to);
-      setGridModel(CustomerDAO.getCustomers(from,to));
+      if(loadonce)
+      {
+        setGridModel(myCustomers);
+      }
+      else
+      {
+        setGridModel(CustomerDAO.getCustomers(myCustomers,from,to));
+      }
       
       
       setTotal((int)Math.ceil((double)getRecord()/(double)getRows()));
+      
+      session.put("mylist", myCustomers);
       
       return SUCCESS;
     }
@@ -209,4 +245,15 @@ public class JsonTable extends ActionSupport {
 	public void setSearchOper(String searchOper) {
 		this.searchOper = searchOper;
 	}
+
+  @Override
+  public void setSession(Map<String, Object> session)
+  {
+    this.session = session;    
+  }
+
+  public void setLoadonce(boolean loadonce)
+  {
+    this.loadonce = loadonce;
+  }
 }

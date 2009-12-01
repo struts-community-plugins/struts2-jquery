@@ -5,6 +5,7 @@
     <ul>
       <li><s:url id="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
       <li><s:url id="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
+      <li><s:url id="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
     </ul>
   </div>
 </div>
@@ -24,12 +25,13 @@
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
+    	rownumbers="true"
     >
-    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer"/>
-    	<sj:gridColumn name="name" index="name" title="Name" editable="true"/>
-    	<sj:gridColumn name="country" index="country" title="Country"/>
-    	<sj:gridColumn name="city" index="city" title="City"/>
-    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency"/>
+    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" sortable="false"/>
+    	<sj:gridColumn name="name" index="name" title="Name" sortable="true"/>
+    	<sj:gridColumn name="country" index="country" title="Country" sortable="false"/>
+    	<sj:gridColumn name="city" index="city" title="City" sortable="false"/>
+    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" sortable="false"/>
     </sj:grid>
   </div>
   
