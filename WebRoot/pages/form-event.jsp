@@ -74,7 +74,13 @@
       <strong>JavaScript functions:</strong>
       <pre>
     $.subscribe('before', function(event,data) {
-	 alert('About to submit: \n\n' + event.originalEvent.formData[0].value + ' to target '+event.originalEvent.options.target+' with timeout '+event.originalEvent.options.timeout );
+     var fData = event.originalEvent.formData;
+	 alert('About to submit: \n\n' + fData[0].value + ' to target '+event.originalEvent.options.target+' with timeout '+event.originalEvent.options.timeout );
+     var form = event.originalEvent.form[0]; 
+     if (form.echo.value.length  &lt; 2) { 
+         alert('Please enter a value with min 2 characters'); 
+         event.originalEvent.options.submit = false; 
+     } 
     });
     $.subscribe('complete', function(event,data) {
    	 alert('status: ' + event.originalEvent.status + '\n\nresponseText: \n' + event.originalEvent.request.responseText + 
