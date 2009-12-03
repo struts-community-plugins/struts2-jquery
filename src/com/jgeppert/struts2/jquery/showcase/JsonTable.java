@@ -19,6 +19,7 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -102,7 +103,36 @@ public class JsonTable extends ActionSupport implements SessionAware {
       }
       else
       {
-        setGridModel(CustomerDAO.getCustomers(myCustomers,from,to));
+        if(searchString != null && searchOper != null)
+        {
+          int id = Integer.parseInt(searchString);
+          if(searchOper.equalsIgnoreCase("eq"))
+          {
+            log.debug("search id equals "+id);
+            List<Customer> cList = new ArrayList<Customer>();
+            cList.add(CustomerDAO.findById(myCustomers, id));
+            setGridModel(cList);
+          }
+          else if (searchOper.equalsIgnoreCase("ne"))
+          {
+            log.debug("search id not "+id);
+            setGridModel(CustomerDAO.findNotById(myCustomers, id, from,to));
+          }
+          else if (searchOper.equalsIgnoreCase("lt"))
+          {
+            log.debug("search id lesser then "+id);
+            setGridModel(CustomerDAO.findLesserAsId(myCustomers, id, from,to));
+          }
+          else if (searchOper.equalsIgnoreCase("gt"))
+          {
+            log.debug("search id greater then "+id);
+            setGridModel(CustomerDAO.findGreaterAsId(myCustomers, id, from,to));
+          }
+        }
+        else
+        {
+          setGridModel(CustomerDAO.getCustomers(myCustomers,from,to));
+        }
       }
       
       

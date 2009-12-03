@@ -38,7 +38,7 @@
     	href="%{remoteurl}" 
     	pager="true" 
     	navigator="true"
-    	navigatorSearchOptions="{sopt:['cn','eq','ne']}"
+    	navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
     	navigatorAddOptions="{height:280,reloadAfterSubmit:false}"
     	navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
     	navigatorEdit="false"
@@ -49,7 +49,7 @@
     	editurl="%{editurl}"
     	onSelectRow="rowselect"
     >
-    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne']}"/>
+    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
     	<sj:gridColumn name="name" index="name" title="Name" editable="true" edittype="text" sortable="true" search="false"/>
     	<sj:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" hidden="true"/>
     	<sj:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" hidden="true"/>

@@ -19,6 +19,39 @@ public class CustomerDAO {
     
     return null;
   }
+  
+  public static List<Customer> findNotById(List<Customer> list, int id, int from, int to) {
+    List<Customer> sResult = new ArrayList<Customer>();
+    
+    for(Customer customer : list){
+      if(customer.getId() != id)
+        sResult.add(customer);
+    }
+    
+    return sResult.subList(from, to);
+  }
+  
+  public static List<Customer> findGreaterAsId(List<Customer> list, int id, int from, int to) {
+    List<Customer> sResult = new ArrayList<Customer>();
+    
+    for(Customer customer : list){
+      if(customer.getId() > id)
+        sResult.add(customer);
+    }
+    
+    return sResult.subList(from, to);
+  }
+  
+  public static List<Customer> findLesserAsId(List<Customer> list, int id, int from, int to) {
+    List<Customer> sResult = new ArrayList<Customer>();
+    
+    for(Customer customer : list){
+      if(customer.getId() < id)
+        sResult.add(customer);
+    }
+    
+    return sResult.subList(from, to);
+  }
 
 	public static Integer getCustomersCount(List<Customer> list) {
 		
