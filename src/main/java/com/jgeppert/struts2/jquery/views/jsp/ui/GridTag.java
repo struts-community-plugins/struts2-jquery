@@ -74,6 +74,7 @@ public class GridTag extends AbstractRemoteTag {
   protected String          multiselectWidth;
   protected String          page;
   protected String          scrollrows;
+  protected String          filter;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -124,6 +125,7 @@ public class GridTag extends AbstractRemoteTag {
     grid.setMultiselectWidth(multiselectWidth);
     grid.setPage(page);
     grid.setScrollrows(scrollrows);
+    grid.setFilter(filter);
   }
 
   public void setWidth(String width)
@@ -319,5 +321,10 @@ public class GridTag extends AbstractRemoteTag {
   public void setNavigatorView(String navigatorView)
   {
     this.navigatorView = navigatorView;
+  }
+
+  public void setFilter(String filter)
+  {
+    this.filter = filter;
   }
 }

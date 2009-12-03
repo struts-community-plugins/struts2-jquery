@@ -88,6 +88,7 @@ public class Grid extends AbstractRemoteBean {
   protected String                      multiselectWidth;
   protected String                      page;
   protected String                      scrollrows;
+  protected String                      filter;
 
   public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -150,6 +151,7 @@ public class Grid extends AbstractRemoteBean {
     if (hoverrows != null) addParameter("hoverrows", findValue(this.hoverrows, Boolean.class));
     if (rownumbers != null) addParameter("rownumbers", findValue(this.rownumbers, Boolean.class));
     if (scrollrows != null) addParameter("scrollrows", findValue(this.scrollrows, Boolean.class));
+    if (filter != null) addParameter("filter", findValue(this.filter, Boolean.class));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -413,5 +415,11 @@ public class Grid extends AbstractRemoteBean {
   public void setNavigatorView(String navigatorView)
   {
     this.navigatorView = navigatorView;
+  }
+
+  @StrutsTagAttribute(description = "This method construct searching creating input elements just below the header elements of the grid.", defaultValue = "false", type = "Boolean")
+  public void setFilter(String filter)
+  {
+    this.filter = filter;
   }
 }

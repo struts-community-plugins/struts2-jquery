@@ -1,9 +1,10 @@
 /*
  * jquery.struts2.js
  *
- * Integration of jquery with struts 2 for first class support of Ajax in struts 2
+ * Integration of jquery with struts 2 for ajax, widget and interactions support in struts 2
  *
- * Requires use of jQuery. Tested with jQuery 1.3 and above
+ * Requires use of jQuery and jQuery UI optional. 
+ * Tested with jQuery 1.3.2 and jQuery UI 1.7.2
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2009 Johannes Geppert http://www.jgeppert.com
@@ -21,6 +22,8 @@
 	jQuery.struts2_jquery = {
 		
 		historyelements: {},
+		
+		forms: {},
 
 		defaultIndicator: '',
 		
@@ -929,6 +932,9 @@
 				if(options.navigatorview) { navparams.view = options.navigatorview; }
 				$elem.jqGrid('navGrid','#'+navigator,navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
 			}
+			if(options.filter) {
+				$elem.jqGrid('filterToolbar',{});
+			}
 		}
 	};		
 		
@@ -1064,6 +1070,7 @@
 			orginal.formData = formData;
 			orginal.form = form;
 			orginal.options = formoptions;
+			orginal.options.submit = true;
 
 			if(options.onalwaystopics) {  
 				var topics = options.onalwaystopics.split(',');
@@ -1076,6 +1083,15 @@
 				var topics = options.onbeforetopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
 					container.publish(topics[i], container, orginal);
+					var submitForm = orginal.options.submit;
+					// cancel form submission
+					if(!submitForm)
+					{
+						if(options.indicatorid) { $('#' + options.indicatorid).hide(); }
+						if($.struts2_jquery.defaultIndicator != '') { $('#' + $.struts2_jquery.defaultIndicator).hide(); }
+						if(options.loadingtext) { $('#' + target).html(''); }
+						return orginal.options.submit;
+					}
 				}
 			}
 		}

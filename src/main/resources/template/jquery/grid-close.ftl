@@ -114,6 +114,9 @@
   <#if parameters.loadonce?default(false)>
 	options_${parameters.id?html}.loadonce = true;
   </#if>
+  <#if parameters.filter?default(false)>
+	options_${parameters.id?html}.filter = true;
+  </#if>
   <#if parameters.multiselect?default(false)>
 	options_${parameters.id?html}.multiselect = true;
   </#if>
