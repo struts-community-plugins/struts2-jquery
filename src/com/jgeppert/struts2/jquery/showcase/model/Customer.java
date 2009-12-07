@@ -119,7 +119,6 @@ public class Customer implements Comparable<Customer> {
 		this.creditLimit = creditLimit;
 	}
 
-  @Override
   public int compareTo(Customer o)
   {
     return this.name.toLowerCase().compareTo(o.getName().toLowerCase());

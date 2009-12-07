@@ -21,7 +21,7 @@
     </script>
     <h2>Grid</h2>
     <p>
-        A simple Grid
+        A Grid that loads data only once on initialization. 
     </p>
     <s:url id="remoteurl" action="jsontable">
     	<s:param name="loadonce" value="%{true}"></s:param>

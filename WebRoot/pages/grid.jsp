@@ -13,7 +13,7 @@
   <div id="col3_content" class="clearfix">
     <h2>Grid</h2>
     <p>
-        A simple Grid
+        A simple grid with pager.
     </p>
     <s:url id="remoteurl" action="jsontable"/> 
     <sj:grid 

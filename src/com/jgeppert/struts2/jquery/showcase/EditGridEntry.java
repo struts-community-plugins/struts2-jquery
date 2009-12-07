@@ -137,9 +137,8 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
 		this.creditLimit = creditLimit;
 	}
 
-  @Override
-  public void setSession(Map<String, Object> session)
-  {
-    this.session = session;    
-  }
+	  public void setSession(Map<String, Object> session)
+	  {
+	    this.session = session;    
+	  }
 }

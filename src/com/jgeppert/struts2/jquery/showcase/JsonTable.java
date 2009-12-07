@@ -276,14 +276,14 @@ public class JsonTable extends ActionSupport implements SessionAware {
 		this.searchOper = searchOper;
 	}
 
-  @Override
-  public void setSession(Map<String, Object> session)
+	  public void setLoadonce(boolean loadonce)
+	  {
+	    this.loadonce = loadonce;
+	  }
+
+	  public void setSession(Map<String, Object> session)
   {
     this.session = session;    
   }
 
-  public void setLoadonce(boolean loadonce)
-  {
-    this.loadonce = loadonce;
-  }
 }
