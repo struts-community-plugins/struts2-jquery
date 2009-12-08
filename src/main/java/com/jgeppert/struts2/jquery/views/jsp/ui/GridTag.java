@@ -45,12 +45,12 @@ public class GridTag extends AbstractRemoteTag {
   protected String          loadonce;
   protected String          multiselect;
   protected String          editurl;
+  protected String          editinline;
   protected String          caption;
   protected String          shrinkToFit;
   protected String          gridModel;
   protected String          rowList;
   protected String          scroll;
-  protected String          onSelectRow;
   protected String          navigator;
   protected String          navigatorEditOptions;
   protected String          navigatorAddOptions;
@@ -58,7 +58,7 @@ public class GridTag extends AbstractRemoteTag {
   protected String          navigatorSearchOptions;
   protected String          navigatorViewOptions;
   protected String          navigatorAdd;
-  protected String          navigatorDel;
+  protected String          navigatorDelete;
   protected String          navigatorEdit;
   protected String          navigatorRefresh;
   protected String          navigatorSearch;
@@ -75,6 +75,12 @@ public class GridTag extends AbstractRemoteTag {
   protected String          page;
   protected String          scrollrows;
   protected String          filter;
+
+  protected String          onSelectRowTopics;
+  protected String          onPagingTopics;
+  protected String          onSortColTopics;
+  protected String          onCellSelectTopics;
+  protected String          onGridCompleteTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -96,12 +102,12 @@ public class GridTag extends AbstractRemoteTag {
     grid.setLoadonce(loadonce);
     grid.setMultiselect(multiselect);
     grid.setEditurl(editurl);
+    grid.setEditinline(editinline);
     grid.setCaption(caption);
     grid.setGridModel(gridModel);
     grid.setShrinkToFit(shrinkToFit);
     grid.setRowList(rowList);
     grid.setScroll(scroll);
-    grid.setOnSelectRow(onSelectRow);
     grid.setNavigator(navigator);
     grid.setNavigatorAddOptions(navigatorAddOptions);
     grid.setNavigatorEditOptions(navigatorEditOptions);
@@ -110,7 +116,7 @@ public class GridTag extends AbstractRemoteTag {
     grid.setNavigatorSearchOptions(navigatorSearchOptions);
     grid.setNavigatorAdd(navigatorAdd);
     grid.setNavigatorEdit(navigatorEdit);
-    grid.setNavigatorDel(navigatorDel);
+    grid.setNavigatorDelete(navigatorDelete);
     grid.setNavigatorView(navigatorView);
     grid.setNavigatorSearch(navigatorSearch);
     grid.setNavigatorRefresh(navigatorRefresh);
@@ -126,6 +132,11 @@ public class GridTag extends AbstractRemoteTag {
     grid.setPage(page);
     grid.setScrollrows(scrollrows);
     grid.setFilter(filter);
+    grid.setOnSelectRowTopics(onSelectRowTopics);
+    grid.setOnSortColTopics(onSortColTopics);
+    grid.setOnPagingTopics(onPagingTopics);
+    grid.setOnGridCompleteTopics(onGridCompleteTopics);
+    grid.setOnCellSelectTopics(onCellSelectTopics);
   }
 
   public void setWidth(String width)
@@ -201,11 +212,6 @@ public class GridTag extends AbstractRemoteTag {
   public void setScroll(String scroll)
   {
     this.scroll = scroll;
-  }
-
-  public void setOnSelectRow(String onSelectRow)
-  {
-    this.onSelectRow = onSelectRow;
   }
 
   public void setNavigator(String navigator)
@@ -298,9 +304,9 @@ public class GridTag extends AbstractRemoteTag {
     this.navigatorAdd = navigatorAdd;
   }
 
-  public void setNavigatorDel(String navigatorDel)
+  public void setNavigatorDelete(String navigatorDelete)
   {
-    this.navigatorDel = navigatorDel;
+    this.navigatorDelete = navigatorDelete;
   }
 
   public void setNavigatorEdit(String navigatorEdit)
@@ -326,5 +332,35 @@ public class GridTag extends AbstractRemoteTag {
   public void setFilter(String filter)
   {
     this.filter = filter;
+  }
+
+  public void setOnSelectRowTopics(String onSelectRowTopics)
+  {
+    this.onSelectRowTopics = onSelectRowTopics;
+  }
+
+  public void setOnPagingTopics(String onPagingTopics)
+  {
+    this.onPagingTopics = onPagingTopics;
+  }
+
+  public void setOnSortColTopics(String onSortColTopics)
+  {
+    this.onSortColTopics = onSortColTopics;
+  }
+
+  public void setOnCellSelectTopics(String onCellSelectTopics)
+  {
+    this.onCellSelectTopics = onCellSelectTopics;
+  }
+
+  public void setOnGridCompleteTopics(String onGridCompleteTopics)
+  {
+    this.onGridCompleteTopics = onGridCompleteTopics;
+  }
+
+  public void setEditinline(String editinline)
+  {
+    this.editinline = editinline;
   }
 }

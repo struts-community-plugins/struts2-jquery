@@ -83,7 +83,7 @@
 	$.jgrid.useJSON = true;
 </script>
   <script type="text/javascript" src="${base}/struts/js/jquery.jqGrid.js"></script>
-  <link rel="stylesheet" href="${base}/${basePath}/ui.jqgrid.css" type="text/css"/>
+  <link rel="stylesheet" href="${base}/struts/themes/ui.jqgrid.css" type="text/css"/>
 </#if>
 </#if>
   <script type="text/javascript" src="${base}/struts/js/${jqueryStrutsFile}"></script>

@@ -1,7 +1,8 @@
 /*
- * jquery.struts2.js
+ * jquery.struts2.min.js
  *
- * Integration of jquery with struts 2 for ajax, widget and interactions support in struts 2
+ * Integration of jquery and jquery ui with struts 2 
+ * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery and jQuery UI optional. 
  * Tested with jQuery 1.3.2 and jQuery UI 1.7.2
@@ -879,15 +880,22 @@
 			$.extend(params, options);
 			if(options.onselectrow || options.editurl) {  
 				params.onSelectRow = function(id) {
-					if(options.onselectrow) {
+					if(options.onalwaystopics) {  
+						var topics = options.onalwaystopics.split(',');
+						for ( var i = 0; i < topics.length; i++) {
+							$elem.publish(topics[i], $elem, orginal);
+						}
+					}
+					
+					if(options.onselectrowtopics) {
 						var data = {};
 						data.id = id;
-						var osr = options.onselectrow.split(',');
+						var osr = options.onselectrowtopics.split(',');
 						for ( var i = 0; i < osr.length; i++) {
 							$elem.publish(osr[i], $elem, data);
 						}
 					}
-					if(options.editurl) {
+					if(options.editurl && options.editinline == true) {
 					    if(id && id!==$.struts2_jquery.lastselectedrow) {
 					    	$elem.jqGrid('restoreRow',$.struts2_jquery.lastselectedrow);
 					    	$elem.jqGrid('editRow',id,true); 
@@ -917,6 +925,89 @@
 				}
 			}
 	   	
+			params.onPaging = function (pgButton) {
+				
+				var orginal = {};
+				orginal.pgButton = pgButton;
+
+				if(options.onalwaystopics) {  
+					var topics = options.onalwaystopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+				
+				if(options.onpagingtopics) {  
+					var topics = options.onpagingtopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+			}
+		    				
+			params.onSortCol = function (index, iCol, sortorder) {
+				
+				var orginal = {};
+				orginal.index = index;
+				orginal.iCol = iCol;
+				orginal.sortorder = sortorder;
+
+				if(options.onalwaystopics) {  
+					var topics = options.onalwaystopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+				
+				if(options.onsortcoltopics) {  
+					var topics = options.onsortcoltopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+			}
+			
+			params.onCellSelect = function (rowid, iCol, cellcontent, e) {
+				
+				var orginal = {};
+				orginal.rowid = rowid;
+				orginal.iCol = iCol;
+				orginal.cellcontent = cellcontent;
+				orginal.e = e;
+
+				if(options.onalwaystopics) {  
+					var topics = options.onalwaystopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+				
+				if(options.oncellselecttopics) {  
+					var topics = options.oncellselecttopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+			}
+			
+			params.gridComplete = function () {
+				
+				var orginal = {};
+
+				if(options.onalwaystopics) {  
+					var topics = options.onalwaystopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+				
+				if(options.ongridcompletetopics) {  
+					var topics = options.ongridcompletetopics.split(',');
+					for ( var i = 0; i < topics.length; i++) {
+						$elem.publish(topics[i], $elem, orginal);
+					}
+				}
+			}
 		    				
 			params.loadComplete = pubCom($elem, options.onalwaystopics, options.oncompletetopics, null, null, options);
 			params.loadError = pubErr($elem, options.onalwaystopics, options.onerrortopics, options.errortext);
@@ -924,13 +1015,13 @@
 			$elem.jqGrid(params);
 			if(options.navigator) {
 				var navparams = {};
-				if(options.navigatoradd) { navparams.add = options.navigatoradd; }
-				if(options.navigatordel) { navparams.del = options.navigatordel; }
-				if(options.navigatoredit) { navparams.edit = options.navigatoredit; }
-				if(options.navigatorrefresh) { navparams.refresh = options.navigatorrefresh; }
-				if(options.navigatorsearch) { navparams.search = options.navigatorsearch; }
-				if(options.navigatorview) { navparams.view = options.navigatorview; }
-				$elem.jqGrid('navGrid','#'+navigator,navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
+				navparams.add = options.navigatoradd;
+				navparams.del = options.navigatordel;
+				navparams.edit = options.navigatoredit;
+				navparams.refresh = options.navigatorrefresh;
+				navparams.search = options.navigatorsearch;
+				navparams.view = options.navigatorview;
+				$elem.jqGrid('navGrid','#'+options.navigator,navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
 			}
 			if(options.filter) {
 				$elem.jqGrid('filterToolbar',{});

@@ -59,12 +59,12 @@ public class Grid extends AbstractRemoteBean {
   protected String                      loadonce;
   protected String                      multiselect;
   protected String                      editurl;
+  protected String                      editinline;
   protected String                      caption;
   protected String                      shrinkToFit;
   protected String                      gridModel;
   protected String                      rowList;
   protected String                      scroll;
-  protected String                      onSelectRow;
   protected String                      navigator;
   protected String                      navigatorEditOptions;
   protected String                      navigatorAddOptions;
@@ -72,7 +72,7 @@ public class Grid extends AbstractRemoteBean {
   protected String                      navigatorSearchOptions;
   protected String                      navigatorViewOptions;
   protected String                      navigatorAdd;
-  protected String                      navigatorDel;
+  protected String                      navigatorDelete;
   protected String                      navigatorEdit;
   protected String                      navigatorRefresh;
   protected String                      navigatorSearch;
@@ -89,6 +89,12 @@ public class Grid extends AbstractRemoteBean {
   protected String                      page;
   protected String                      scrollrows;
   protected String                      filter;
+
+  protected String                      onSelectRowTopics;
+  protected String                      onPagingTopics;
+  protected String                      onSortColTopics;
+  protected String                      onCellSelectTopics;
+  protected String                      onGridCompleteTopics;
 
   public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -121,12 +127,12 @@ public class Grid extends AbstractRemoteBean {
     if (loadonce != null) addParameter("loadonce", findValue(this.loadonce, Boolean.class));
     if (multiselect != null) addParameter("multiselect", findValue(this.multiselect, Boolean.class));
     if (editurl != null) addParameter("editurl", findString(editurl));
+    if (editinline != null) addParameter("editinline", findValue(this.editinline, Boolean.class));
     if (caption != null) addParameter("caption", findString(caption));
     if (shrinkToFit != null) addParameter("shrinkToFit", findValue(this.shrinkToFit, Boolean.class));
     if (gridModel != null) addParameter("gridModel", findString(gridModel));
     if (scroll != null) addParameter("scroll", findValue(this.scroll, Boolean.class));
     if (rowList != null) addParameter("rowList", findString(rowList));
-    if (onSelectRow != null) addParameter("onSelectRow", findString(onSelectRow));
     if (navigator != null) addParameter("navigator", findValue(this.navigator, Boolean.class));
     if (navigatorAddOptions != null) addParameter("navigatorAddOptions", findString(navigatorAddOptions));
     if (navigatorEditOptions != null) addParameter("navigatorEditOptions", findString(navigatorEditOptions));
@@ -134,7 +140,7 @@ public class Grid extends AbstractRemoteBean {
     if (navigatorViewOptions != null) addParameter("navigatorViewOptions", findString(navigatorViewOptions));
     if (navigatorSearchOptions != null) addParameter("navigatorSearchOptions", findString(navigatorSearchOptions));
     if (navigatorAdd != null) addParameter("navigatorAdd", findValue(this.navigatorAdd, Boolean.class));
-    if (navigatorDel != null) addParameter("navigatorDel", findValue(this.navigatorDel, Boolean.class));
+    if (navigatorDelete != null) addParameter("navigatorDelete", findValue(this.navigatorDelete, Boolean.class));
     if (navigatorEdit != null) addParameter("navigatorEdit", findValue(this.navigatorEdit, Boolean.class));
     if (navigatorRefresh != null) addParameter("navigatorRefresh", findValue(this.navigatorRefresh, Boolean.class));
     if (navigatorView != null) addParameter("navigatorView", findValue(this.navigatorView, Boolean.class));
@@ -152,6 +158,12 @@ public class Grid extends AbstractRemoteBean {
     if (rownumbers != null) addParameter("rownumbers", findValue(this.rownumbers, Boolean.class));
     if (scrollrows != null) addParameter("scrollrows", findValue(this.scrollrows, Boolean.class));
     if (filter != null) addParameter("filter", findValue(this.filter, Boolean.class));
+
+    if (onSelectRowTopics != null) addParameter("onSelectRowTopics", findString(onSelectRowTopics));
+    if (onCellSelectTopics != null) addParameter("onCellSelectTopics", findString(onCellSelectTopics));
+    if (onPagingTopics != null) addParameter("onPagingTopics", findString(onPagingTopics));
+    if (onSortColTopics != null) addParameter("onSortColTopics", findString(onSortColTopics));
+    if (onGridCompleteTopics != null) addParameter("onGridCompleteTopics", findString(onGridCompleteTopics));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -237,6 +249,12 @@ public class Grid extends AbstractRemoteBean {
     this.editurl = editurl;
   }
 
+  @StrutsTagAttribute(description = "Enable editing inline. Default: false", defaultValue = "false", type = "Boolean")
+  public void setEditinline(String editinline)
+  {
+    this.editinline = editinline;
+  }
+
   @StrutsTagAttribute(description = "Defines the Caption layer for the grid. This caption appear above the Header layer. If the string is empty the caption does not appear.")
   public void setCaption(String caption)
   {
@@ -271,12 +289,6 @@ public class Grid extends AbstractRemoteBean {
   public void setScroll(String scroll)
   {
     this.scroll = scroll;
-  }
-
-  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")
-  public void setOnSelectRow(String onSelectRow)
-  {
-    this.onSelectRow = onSelectRow;
   }
 
   @StrutsTagAttribute(description = "Navigator is a method that can add predefined actions like editing, adding, deleting, and searching. This must be a true or false.", defaultValue = "false", type = "Boolean")
@@ -388,9 +400,9 @@ public class Grid extends AbstractRemoteBean {
   }
 
   @StrutsTagAttribute(description = "Enables or disables the delete action in the navigator. When the button is clicked a delGridRow method is executed.", defaultValue = "true", type = "Boolean")
-  public void setNavigatorDel(String navigatorDel)
+  public void setNavigatorDelete(String navigatorDelete)
   {
-    this.navigatorDel = navigatorDel;
+    this.navigatorDelete = navigatorDelete;
   }
 
   @StrutsTagAttribute(description = "Enables or disables the edit action in the navigator. When the button is clicked a editGridRow method is executed with parameter the - current selected row", defaultValue = "true", type = "Boolean")
@@ -421,5 +433,35 @@ public class Grid extends AbstractRemoteBean {
   public void setFilter(String filter)
   {
     this.filter = filter;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")
+  public void setOnSelectRowTopics(String onSelectRowTopics)
+  {
+    this.onSelectRowTopics = onSelectRowTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published after click on page button and before populating the data. Parameter: pgButton")
+  public void setOnPagingTopics(String onPagingTopics)
+  {
+    this.onPagingTopics = onPagingTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published immediately after sortable column was clicked and before sorting the data. Parameters: index is the index name from colModel, iCol is the index of column, sortorder is the new sorting order - can be 'asc' or 'desc'")
+  public void setOnSortColTopics(String onSortColTopics)
+  {
+    this.onSortColTopics = onSortColTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when we click on particular cell in the grid. Parameters: rowid is the id of the row, iCol is the index of the cell, cellcontent is the content of the cell, e is the event object element where we click.")
+  public void setOnCellSelectTopics(String onCellSelectTopics)
+  {
+    this.onCellSelectTopics = onCellSelectTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published after all the data is loaded into the grid and all other processes are complete.")
+  public void setOnGridCompleteTopics(String onGridCompleteTopics)
+  {
+    this.onGridCompleteTopics = onGridCompleteTopics;
   }
 }

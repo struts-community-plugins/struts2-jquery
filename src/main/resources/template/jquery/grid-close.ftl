@@ -85,7 +85,7 @@
 	  <#else>
 		options_${parameters.id?html}.navigatoradd = false;
 	  </#if>
-	  <#if parameters.navigatorDel?default(true)>
+	  <#if parameters.navigatorDelete?default(true)>
 		options_${parameters.id?html}.navigatordel = true;
 	  <#else>
 		options_${parameters.id?html}.navigatordel = false;
@@ -111,6 +111,9 @@
 		options_${parameters.id?html}.navigatorview = false;
 	  </#if>
   </#if>
+  <#if parameters.editinline?default(false)>
+	options_${parameters.id?html}.editinline = true;
+  </#if>
   <#if parameters.loadonce?default(false)>
 	options_${parameters.id?html}.loadonce = true;
   </#if>
@@ -128,9 +131,6 @@
   </#if>
   <#if parameters.shrinkToFit?default(true)>
 	options_${parameters.id?html}.shrinkToFit = true;
-  </#if>
-  <#if parameters.onSelectRow?if_exists != "">
-	options_${parameters.id?html}.onselectrow = "${parameters.onSelectRow?html}";
   </#if>
   <#if parameters.autoencode?default(true)>
 	options_${parameters.id?html}.autoencode = true;
@@ -155,6 +155,21 @@
   </#if>
   <#if parameters.scrollrows?default(false)>
 	options_${parameters.id?html}.scrollrows = true;
+  </#if>
+  <#if parameters.onSelectRowTopics?if_exists != "">
+	options_${parameters.id?html}.onselectrowtopics = "${parameters.onSelectRowTopics?html}";
+  </#if>
+  <#if parameters.onPagingTopics?if_exists != "">
+	options_${parameters.id?html}.onpagingtopics = "${parameters.onPagingTopics?html}";
+  </#if>
+  <#if parameters.onSortColTopics?if_exists != "">
+	options_${parameters.id?html}.onsortcoltopics = "${parameters.onSortColTopics?html}";
+  </#if>
+  <#if parameters.onCellSelectTopics?if_exists != "">
+	options_${parameters.id?html}.oncellselecttopics = "${parameters.onCellSelectTopics?html}";
+  </#if>
+  <#if parameters.onGridCompleteTopics?if_exists != "">
+	options_${parameters.id?html}.ongridcompletetopics = "${parameters.onGridCompleteTopics?html}";
   </#if>
 
 

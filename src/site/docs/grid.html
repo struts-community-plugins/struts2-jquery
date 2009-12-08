@@ -122,6 +122,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">Set the html disabled attribute on rendered html element</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">editinline</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Enable editing inline. Default: false</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">editurl</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -370,7 +378,7 @@ Please do not edit it directly.
 					<td align="left" valign="top">Add Options for Navigator. e.g. {height:280,reloadAfterSubmit:false},</td>
 				</tr>
 				<tr>
-					<td align="left" valign="top">navigatorDel</td>
+					<td align="left" valign="top">navigatorDelete</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">true</td>
 					<td align="left" valign="top">false</td>
@@ -466,6 +474,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">A comma delimited list of topics that published when the element is blured</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">onCellSelectTopics</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">A comma delimited list of topics that published when we click on particular cell in the grid. Parameters: rowid is the id of the row, iCol is the index of the cell, cellcontent is the content of the cell, e is the event object element where we click.</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">onChangeTopics</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -514,12 +530,36 @@ Please do not edit it directly.
 					<td align="left" valign="top">A comma delimited list of topics that published when the element is focused</td>
 				</tr>
 				<tr>
-					<td align="left" valign="top">onSelectRow</td>
+					<td align="left" valign="top">onGridCompleteTopics</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">A comma delimited list of topics that published after all the data is loaded into the grid and all other processes are complete.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">onPagingTopics</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">A comma delimited list of topics that published after click on page button and before populating the data. Parameter: pgButton</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">onSelectRowTopics</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">A comma delimited list of topics that published when a row is selected</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">onSortColTopics</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">A comma delimited list of topics that published immediately after sortable column was clicked and before sorting the data. Parameters: index is the index name from colModel, iCol is the index of column, sortorder is the new sorting order - can be 'asc' or 'desc'</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">onSuccessTopics</td>
