@@ -13,28 +13,21 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <script type="text/javascript">
-    $.subscribe('rowselect', function(event,data) {
-        $("#gridinfo").html('<p>Edit Mode for Row : '+event.originalEvent.id+'</p>');
-    });
-    $.subscribe('rowadd', function(event,data) {
-        $("#gridedittable").jqGrid('editGridRow',"new",{height:280,reloadAfterSubmit:false}); 
-  	});
-    $.subscribe('searchgrid', function(event,data) {
-        $("#gridedittable").jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
-  	});
-    $.subscribe('showcolumns', function(event,data) {
-        $("#gridedittable").jqGrid('setColumns',{});
+    $.subscribe('getselectedids', function(event,data) {
+    	var s; 
+    	s = $("#gridmultitable").jqGrid('getGridParam','selarrrow');
+    	alert('Selected Rows : '+s); 
   	});
     </script>
-    <h2>Grid (Editable)</h2>
+    <h2>Grid (Editable/Multiselect)</h2>
     <p>
-        A editable Grid with pager and navigator. Entries are editable when a cell is selected.  
+        A editable Grid with pager and navigator.  
     </p>
     <s:url id="remoteurl" action="jsontable"/> 
     <s:url id="editurl" action="edit-grid-entry"/> 
     <sj:grid 
-    	id="gridedittable" 
-    	caption="Customer Examples (Editable)" 
+    	id="gridmultitable" 
+    	caption="Customer Examples (Editable/Multiselect)" 
     	dataType="json" 
     	href="%{remoteurl}" 
     	pager="true" 
@@ -42,15 +35,15 @@
     	navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
     	navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
     	navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
-    	navigatorEdit="false"
-    	navigatorView="false"
+    	navigatorEdit="true"
+    	navigatorView="true"
     	navigatorDelete="true"
     	navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
     	editurl="%{editurl}"
-    	editinline="true"
+    	multiselect="true"
     	onSelectRowTopics="rowselect"
     >
     	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
@@ -63,12 +56,7 @@
     	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" editable="true" edittype="text" sortable="false" search="false"/>
     </sj:grid>
 	<br/>
-    <sj:submit id="grid_edit_addbutton" value="Add Row" onClickTopics="rowadd" cssClass="buttonlink ui-state-default ui-corner-all"/>
-    <sj:submit id="grid_edit_searchbutton" value="Search" onClickTopics="searchgrid" cssClass="buttonlink ui-state-default ui-corner-all"/>
-    <sj:submit id="grid_edit_colsbutton" value="Show/Hide Columns" onClickTopics="showcolumns" cssClass="buttonlink ui-state-default ui-corner-all"/>
-	<br/>
-	<br/>
-    <div id="gridinfo" class="ui-widget-content ui-corner-all"><p>Edit Mode for Row :</p></div>
+    <sj:submit id="grid_multi_getselectedbutton" value="Get Selected Rows" onClickTopics="getselectedids" cssClass="buttonlink ui-state-default ui-corner-all"/>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">

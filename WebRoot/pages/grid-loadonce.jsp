@@ -5,6 +5,7 @@
     <ul>
       <li><s:url id="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
       <li><s:url id="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
+      <li><s:url id="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
       <li><s:url id="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
     </ul>
   </div>
@@ -13,18 +14,20 @@
   <div id="col3_content" class="clearfix">
     <script type="text/javascript">
     $.subscribe('searchgrid', function(event,data) {
+        alert('Search');
         $("#gridloadtable").jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
   	});
     $.subscribe('showcolumns', function(event,data) {
+        alert('Show Columns');
         $("#gridloadtable").jqGrid('setColumns',{});
   	});
     </script>
-    <h2>Grid</h2>
+    <h2>Grid (Local Data)</h2>
     <p>
         A Grid that loads data only once on initialization. 
     </p>
     <s:url id="remoteurl" action="jsontable">
-    	<s:param name="loadonce" value="%{true}"></s:param>
+    	<s:param name="loadonce" value="%{true}" />
     </s:url> 
     <sj:grid 
     	id="gridloadtable" 
@@ -46,8 +49,8 @@
     	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" sortable="true"/>
     </sj:grid>
 	<br/>
-    <sj:submit id="searchbutton" value="Search" onClickTopics="searchgrid" cssClass="buttonlink ui-state-default ui-corner-all"/>
-    <sj:submit id="colsbutton" value="Show/Hide Columns" onClickTopics="showcolumns" cssClass="buttonlink ui-state-default ui-corner-all"/>
+    <sj:submit id="grid_load_searchbutton" value="Search" onClickTopics="searchgrid" cssClass="buttonlink ui-state-default ui-corner-all"/>
+    <sj:submit id="grid_load_colsbutton" value="Show/Hide Columns" onClickTopics="showcolumns" cssClass="buttonlink ui-state-default ui-corner-all"/>
 	<br/>
   </div>
   
@@ -62,3 +65,11 @@
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.buttonlink').hover(
+            function() { $(this).addClass('ui-state-hover'); }, 
+            function() { $(this).removeClass('ui-state-hover'); }
+    );
+});
+</script>

@@ -19,12 +19,16 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.StringTokenizer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
@@ -39,7 +43,8 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = -3454448309088641394L;
 	private static final Log   log              = LogFactory.getLog(EditGridEntry.class);
 	
-	private int id;
+	private String oper;
+	private String id;
 	private String name;
 	private String country;
 	private String city;
@@ -47,10 +52,12 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
   private Map<String, Object> session;
   private List<Customer> myCustomers;
 
-	@Action(value="/edit-grid-entry", 
-			   results={@Result( location = "simpleecho.jsp", name="success"),
-	    @Result( location = "simpleecho.jsp", name="input")}
-	)
+  @Actions({
+    @Action(value="/edit-grid-entry", results={
+	      @Result( location = "simpleecho.jsp", name="success"),
+	      @Result( location = "simpleecho.jsp", name="input")
+    })
+  })
 	public String execute() throws Exception {
 	      log.debug("id :"+id);
 	      log.debug("name :"+name);
@@ -68,40 +75,53 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
 	        myCustomers = CustomerDAO.buildList();
 	      }
 
-	      Customer customer = CustomerDAO.findById(myCustomers, id);
+	      Customer customer;
 	      
-	      if(customer == null)
+	      if(oper.equalsIgnoreCase("add"))
 	      {
-	        log.debug("Add Customer");
-	        customer = new Customer();
-	      
-	        customer.setId(id);
-	        customer.setName(name);
-	        customer.setCountry(country);
-	        customer.setCity(city);
-	        customer.setCreditLimit(creditLimit);
-	      
-	        myCustomers.add(customer);
+          log.debug("Add Customer");
+          customer = new Customer();
+        
+          customer.setId(new Random().nextInt());
+          customer.setName(name);
+          customer.setCountry(country);
+          customer.setCity(city);
+          customer.setCreditLimit(creditLimit);
+
+          myCustomers.add(customer);
 	      }
-	      else
+	      else if(oper.equalsIgnoreCase("edit"))
 	      {
-	        log.debug("Edit Customer");
-	        customer.setName(name);
+          log.debug("Edit Customer");
+
+          customer = CustomerDAO.findById(myCustomers, Integer.parseInt(id));
+          customer.setName(name);
           customer.setCountry(country);
           customer.setCity(city);
           customer.setCreditLimit(creditLimit);
 	      }
+        else if(oper.equalsIgnoreCase("del"))
+        {
+          StringTokenizer ids = new StringTokenizer(id, ",");
+          while(ids.hasMoreTokens())
+          {
+            int removeId = Integer.parseInt(ids.nextToken());
+            log.debug("Delete Customer "+removeId);
+            customer = CustomerDAO.findById(myCustomers, removeId);
+            myCustomers.remove(customer);
+          }
+        }
 	      
 	      session.put("mylist", myCustomers);
 	      
 	      return SUCCESS;
     }
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -141,4 +161,9 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
 	  {
 	    this.session = session;    
 	  }
+
+    public void setOper(String oper)
+    {
+      this.oper = oper;
+    }
 }
