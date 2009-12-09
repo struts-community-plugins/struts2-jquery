@@ -473,12 +473,11 @@ public abstract class AbstractContainer extends AbstractFormElement implements R
 
           if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document") || containmentValue.equalsIgnoreCase("window"))
           {
-            draggableBuilder.append("'");
             draggableBuilder.append(containmentValue);
           }
           else
           {
-            draggableBuilder.append("'#");
+            draggableBuilder.append("#");
             draggableBuilder.append(containmentValue);
           }
           draggableBuilder.append("'");
