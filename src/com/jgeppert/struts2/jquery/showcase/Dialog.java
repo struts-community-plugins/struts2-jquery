@@ -25,15 +25,16 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class Dialog extends ActionSupport {
 
-	private static final long serialVersionUID = 3482369686693624365L;
+  private static final long serialVersionUID = 3482369686693624365L;
 
-	@Action(value="/dialog", 
-			   results={@Result( location = "dialog.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-        return SUCCESS;
-    }
+  @Action(value = "/dialog", results = {
+    @Result(location = "dialog.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
+    return SUCCESS;
+  }
 }

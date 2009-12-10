@@ -25,15 +25,16 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class Form extends ActionSupport {
 
-	private static final long serialVersionUID = 3259158991814927569L;
+  private static final long serialVersionUID = 3259158991814927569L;
 
-	@Action(value="/form", 
-			   results={@Result( location = "form.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-        return SUCCESS;
-    }
+  @Action(value = "/form", results = {
+    @Result(location = "form.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
+    return SUCCESS;
+  }
 }

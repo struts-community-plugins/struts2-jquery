@@ -25,15 +25,16 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class Tabs extends ActionSupport {
 
-	private static final long serialVersionUID = 621496832249551748L;
+  private static final long serialVersionUID = 621496832249551748L;
 
-	@Action(value="/remote-link", 
-			   results={@Result( location = "remote-link.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-        return SUCCESS;
-    }
+  @Action(value = "/remote-link", results = {
+    @Result(location = "remote-link.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
+    return SUCCESS;
+  }
 }

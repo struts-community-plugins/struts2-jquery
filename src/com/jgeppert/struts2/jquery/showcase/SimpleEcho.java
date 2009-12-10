@@ -25,24 +25,27 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class SimpleEcho extends ActionSupport {
 
   private static final long serialVersionUID = 6999864671102333041L;
-  private String echo;
+  private String            echo;
 
-	@Action(value="/simpleecho", 
-			   results={@Result( location = "simpleecho.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-        return SUCCESS;
-    }
+  @Action(value = "/simpleecho", results = {
+    @Result(location = "simpleecho.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
+    return SUCCESS;
+  }
 
-	public String getEcho() {
-		return echo;
-	}
+  public String getEcho()
+  {
+    return echo;
+  }
 
-	public void setEcho(String echo) {
-		this.echo = echo;
-	}
+  public void setEcho(String echo)
+  {
+    this.echo = echo;
+  }
 }

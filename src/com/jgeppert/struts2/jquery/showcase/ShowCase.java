@@ -28,50 +28,56 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class ShowCase extends ActionSupport {
 
-	private static final long serialVersionUID = -7133848243722723891L;
-	private String theme = "showcase";
-	private boolean google = false;
-  private boolean ajaxhistory = false;
-	private Map<String, String> themes;
+  private static final long   serialVersionUID = -7133848243722723891L;
+  private String              theme            = "showcase";
+  private boolean             google           = false;
+  private boolean             ajaxhistory      = false;
+  private Map<String, String> themes;
 
-	@Action(value="/index", 
-			   results={@Result( location = "index.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-		
-		themes = new HashMap<String, String>();
-		themes.put("cupertino", "The cupertino Theme");
-		themes.put("darkness", "The darkness Theme");
-		themes.put("lightness", "The lightness Theme");
-		themes.put("redmond", "The redmond Theme");
-		themes.put("smoothness", "The smoothness Theme");
-		themes.put("showcase", "The custom Showcase Theme");
-		
-        return SUCCESS;
-    }
+  @Action(value = "/index", results = {
+    @Result(location = "index.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
 
-	public String getTheme() {
-		return theme;
-	}
+    themes = new HashMap<String, String>();
+    themes.put("cupertino", "The cupertino Theme");
+    themes.put("darkness", "The darkness Theme");
+    themes.put("lightness", "The lightness Theme");
+    themes.put("redmond", "The redmond Theme");
+    themes.put("smoothness", "The smoothness Theme");
+    themes.put("showcase", "The custom Showcase Theme");
 
-	public void setTheme(String theme) {
-		this.theme = theme;
-	}
+    return SUCCESS;
+  }
 
-	public Map<String, String> getThemes() {
-		return themes;
-	}
+  public String getTheme()
+  {
+    return theme;
+  }
 
-	public boolean isGoogle() {
-		return google;
-	}
+  public void setTheme(String theme)
+  {
+    this.theme = theme;
+  }
 
-	public void setGoogle(boolean google) {
-		this.google = google;
-	}
+  public Map<String, String> getThemes()
+  {
+    return themes;
+  }
+
+  public boolean isGoogle()
+  {
+    return google;
+  }
+
+  public void setGoogle(boolean google)
+  {
+    this.google = google;
+  }
 
   public boolean isAjaxhistory()
   {

@@ -28,38 +28,39 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class Datepicker extends ActionSupport {
 
-	private static final long serialVersionUID = 7641453994518254115L;
-	
-	private Date dateValue;
-	private Date nameValue;
+  private static final long serialVersionUID = 7641453994518254115L;
 
-	@Action(value="/datepicker", 
-			   results={@Result( location = "datepicker.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-	   
-         Calendar c = Calendar.getInstance();
-         c.roll(Calendar.WEEK_OF_YEAR, -1);
-	   
-	   dateValue = c.getTime();
+  private Date              dateValue;
+  private Date              nameValue;
 
-	   c.roll(Calendar.MONTH, -1);
-	   
-	   nameValue = c.getTime();
-	   
-        return SUCCESS;
-	}
+  @Action(value = "/datepicker", results = {
+    @Result(location = "datepicker.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
 
-	public Date getDateValue()
-	{
-	   return dateValue;
-	}
+    Calendar c = Calendar.getInstance();
+    c.roll(Calendar.WEEK_OF_YEAR, -1);
 
-	public Date getNameValue()
-	{
-	   return nameValue;
-	}
+    dateValue = c.getTime();
+
+    c.roll(Calendar.MONTH, -1);
+
+    nameValue = c.getTime();
+
+    return SUCCESS;
+  }
+
+  public Date getDateValue()
+  {
+    return dateValue;
+  }
+
+  public Date getNameValue()
+  {
+    return nameValue;
+  }
 }

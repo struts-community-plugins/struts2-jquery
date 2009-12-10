@@ -25,15 +25,16 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class EffectDiv extends ActionSupport {
 
-	private static final long serialVersionUID = -7935986080498338044L;
+  private static final long serialVersionUID = -7935986080498338044L;
 
-	@Action(value="/effect-div", 
-			   results={@Result( location = "effect-div.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-        return SUCCESS;
-    }
+  @Action(value = "/effect-div", results = {
+    @Result(location = "effect-div.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
+    return SUCCESS;
+  }
 }

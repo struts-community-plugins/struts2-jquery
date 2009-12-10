@@ -25,15 +25,16 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class Ajax4 extends ActionSupport {
 
-	private static final long serialVersionUID = -3405146826130407758L;
+  private static final long serialVersionUID = -3405146826130407758L;
 
-	@Action(value="/ajax4", 
-			   results={@Result( location = "ajax4.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-        return SUCCESS;
-    }
+  @Action(value = "/ajax4", results = {
+    @Result(location = "ajax4.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
+    return SUCCESS;
+  }
 }

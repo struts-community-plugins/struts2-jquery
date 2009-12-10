@@ -27,25 +27,26 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage( value = "showcase")
+@ParentPackage(value = "showcase")
 public class Progressbar extends ActionSupport {
 
+  private static final long serialVersionUID = 6033894810818881794L;
+  private int               random           = 0;
 
-	private static final long serialVersionUID = 6033894810818881794L;
-	private int random = 0;
+  @Action(value = "/progressbar", results = {
+    @Result(location = "progressbar.jsp", name = "success")
+  })
+  public String execute() throws Exception
+  {
 
-	@Action(value="/progressbar", 
-			   results={@Result( location = "progressbar.jsp", name="success")}
-			)
-	public String execute() throws Exception {
-		
-		while (random < 10)
-			random = new Random().nextInt(90);
-		
-        return SUCCESS;
-    }
+    while (random < 10)
+      random = new Random().nextInt(90);
 
-	public int getRandom() {
-		return random;
-	}
+    return SUCCESS;
+  }
+
+  public int getRandom()
+  {
+    return random;
+  }
 }
