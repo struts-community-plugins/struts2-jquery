@@ -49,6 +49,7 @@ $(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
   <#include "/${parameters.templateDir}/jquery/action.ftl" />
+  <#include "/${parameters.templateDir}/jquery/container.ftl" />
   <#include "/${parameters.templateDir}/jquery/draggable.ftl" />
   <#include "/${parameters.templateDir}/jquery/droppable.ftl" />
   <#include "/${parameters.templateDir}/jquery/resizable.ftl" />

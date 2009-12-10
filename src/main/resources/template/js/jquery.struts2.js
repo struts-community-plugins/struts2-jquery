@@ -393,7 +393,7 @@
 		
 		select: function($elem, options){
 
-			var loadHandler = '_s2j_container_load';
+			var handler = '_s2j_container_load';
 	    	var selectTopic = '_s2j_topic_load_' + options.id;
 
 			if(options.href && options.href != '#') {
@@ -401,19 +401,25 @@
 				if(options.reloadtopics) {			  
 					var topics = options.reloadtopics.split(',');
 					for ( var i = 0; i < topics.length; i++) {
-						$elem.subscribe(topics[i], loadHandler, options);
+						$elem.subscribe(topics[i], handler, options);
 					}
 				}
 				if(options.listentopics) {			  
 					var topics = options.listentopics.split(',');
 					for ( var i = 0; i < topics.length; i++) {
-						$elem.subscribe(topics[i], loadHandler, options);
+						$elem.subscribe(topics[i], handler, options);
 					}
 				}
 				
-	    		$elem.subscribe(selectTopic, loadHandler);
+	    		$elem.subscribe(selectTopic, handler);
 	    		$elem.publish(selectTopic,options);				
 			}			
+			if(options.onchangetopics) {			  
+				var topics = options.onchangetopics.split(',');
+				for ( var i = 0; i < topics.length; i++) {
+					$elem.publishOnEvent('change', topics[i]);
+				}
+			}
 		},
 
 		button: function($elem, options){
@@ -1093,11 +1099,22 @@
 				
 				//load container using ajax
 				if(options.href) {
-					
 					params.type = "POST";
 					params.url = options.href;
+					params.data = '';
 					if(options.hrefparameter) {
 						params.data = options.hrefparameter;
+					}
+					
+					if(options.formids) {
+						var forms = options.formids.split(',');
+						for ( var i = 0; i < forms.length; i++) {
+							var query = $('#'+forms[i]).formSerialize();
+							if(params.data != '')
+								params.data = params.data + '&amp;' + query;
+							else
+								params.data = query;
+						}
 					}
 					
 					if(options.datatype) {
