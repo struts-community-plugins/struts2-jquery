@@ -37,6 +37,7 @@ public class GridColumnTag extends AbstractRemoteTag {
   protected String          editable;
   protected String          editoptions;
   protected String          edittype;
+  protected String          editrules;
   protected String          formatter;
   protected String          formatoptions;
   protected String          sortable;
@@ -64,6 +65,7 @@ public class GridColumnTag extends AbstractRemoteTag {
     gc.setEditable(editable);
     gc.setEditoptions(editoptions);
     gc.setEdittype(edittype);
+    gc.setEditrules(editrules);
     gc.setFormatter(formatter);
     gc.setFormatoptions(formatoptions);
     gc.setSortable(sortable);
@@ -108,6 +110,11 @@ public class GridColumnTag extends AbstractRemoteTag {
   public void setEdittype(String edittype)
   {
     this.edittype = edittype;
+  }
+
+  public void setEditrules(String editrules)
+  {
+    this.editrules = editrules;
   }
 
   public void setFormatter(String formatter)

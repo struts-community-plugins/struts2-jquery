@@ -34,6 +34,9 @@ options_${parameters.grid?html}_colmodels_${parameters.name?html}.editoptions = 
 <#if parameters.edittype?if_exists != "">
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.edittype = "${parameters.edittype?html}";
 </#if>
+<#if parameters.editrules?if_exists != "">
+options_${parameters.grid?html}_colmodels_${parameters.name?html}.editrules = ${parameters.editrules?html};
+</#if>
 <#if parameters.formatter?if_exists != "">
 options_${parameters.grid?html}_colmodels_${parameters.name?html}.formatter = "${parameters.formatter?html}";
 </#if>

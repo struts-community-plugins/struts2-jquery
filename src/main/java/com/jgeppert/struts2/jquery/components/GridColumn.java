@@ -49,6 +49,7 @@ public class GridColumn extends AbstractRemoteBean {
   protected String           editable;
   protected String           editoptions;
   protected String           edittype;
+  protected String           editrules;
   protected String           formatter;
   protected String           formatoptions;
   protected String           sortable;
@@ -84,6 +85,7 @@ public class GridColumn extends AbstractRemoteBean {
     if (editable != null) addParameter("editable", findValue(this.editable, Boolean.class));
     if (editoptions != null) addParameter("editoptions", findString(editoptions));
     if (edittype != null) addParameter("edittype", findString(edittype));
+    if (editrules != null) addParameter("editrules", findString(editrules));
     if (formatter != null) addParameter("formatter", findString(formatter));
     if (formatoptions != null) addParameter("formatoptions", findString(formatoptions));
     if (sortable != null) addParameter("sortable", findValue(this.sortable, Boolean.class));
@@ -153,6 +155,12 @@ public class GridColumn extends AbstractRemoteBean {
   @StrutsTagAttribute(description = "Defines the edit type for inline and form editing Possible values: text, textarea, select, checkbox, password, button, image and file.")
   public void setEdittype(String edittype) {
 	this.edittype = edittype;
+  }
+
+  @StrutsTagAttribute(description = "sets additional rules for the editable field. e.g {number:true, required: true, minValue:10, maxValue:100}")
+  public void setEditrules(String editrules)
+  {
+    this.editrules = editrules;
   }
 
   @StrutsTagAttribute(description = "The predefined types (string) or custom function name that controls the format of this field. e.g.: integer, currency, date, checkbox")
