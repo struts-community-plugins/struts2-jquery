@@ -16,28 +16,49 @@
         A Accordion with remote content.
     </p>
     <s:url id="urlecho" action="echo"/>
-    <sj:accordion list="accordion" paramKeys="echo" paramValues="content" href="%{urlecho}" active="false" autoHeight="false" clearStyle="true" listKey="title" listValue="content"/>
+    <sj:accordion 
+    	list="accordion" 
+    	listKey="title" 
+    	listValue="content"
+    	paramKeys="echo" 
+    	paramValues="content" 
+    	href="%{urlecho}" 
+    	active="false" 
+    	autoHeight="false" 
+    	clearStyle="true" 
+    	/>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">
     <strong>Code in JSP:</strong>
     <pre>
-    &lt;sj:accordion list="accordion" <strong>paramKeys="echo" paramValues="content" href="%{urlecho}" active="false" autoHeight="false" clearStyle="true"</strong> listKey="title" listValue="content"&gt;
+    &lt;s:url id=&quot;urlecho&quot; action=&quot;echo&quot;/&gt;
+    &lt;sj:accordion 
+    	list=&quot;accordion&quot; 
+    	listKey=&quot;title&quot; 
+    	listValue=&quot;content&quot;
+    	paramKeys=&quot;echo&quot; 
+    	paramValues=&quot;content&quot; 
+    	href=&quot;%{urlecho}&quot; 
+    	active=&quot;false&quot; 
+    	autoHeight=&quot;false&quot; 
+    	clearStyle=&quot;true&quot; 
+    	/&gt;
     </pre>
     <strong>Code in Action:</strong>
     <pre>
     private List&lt;AccordionBean&gt; accordion;
 
-    @Action(value="/accordion-remote", 
-               results={@Result( location = "accordion-remote.jsp", name="success")}
+    @Action(value=&quot;/accordion-remote&quot;, 
+               results={@Result( location = &quot;accordion-remote.jsp&quot;, name=&quot;success&quot;)}
             )
     public String execute() throws Exception {
         accordion = new LinkedList&lt;AccordionBean&gt;();
-        accordion.add(new AccordionBean("My Title 1", "Content One"));
-        accordion.add(new AccordionBean("My Title 2", "Content Two"));
-        accordion.add(new AccordionBean("My Title 3", "Content Three"));
-        accordion.add(new AccordionBean("My Title 4", "Content Four"));
-        accordion.add(new AccordionBean("My Title 5", "Content Five"));
+        accordion.add(new AccordionBean(&quot;My Title 1&quot;, &quot;Content One&quot;));
+        accordion.add(new AccordionBean(&quot;My Title 2&quot;, &quot;Content Two&quot;));
+        accordion.add(new AccordionBean(&quot;My Title 3&quot;, &quot;Content Three&quot;));
+        accordion.add(new AccordionBean(&quot;My Title 4&quot;, &quot;Content Four&quot;));
+        accordion.add(new AccordionBean(&quot;My Title 5&quot;, &quot;Content Five&quot;));
         return SUCCESS;
     }
 
