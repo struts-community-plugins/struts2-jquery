@@ -19,11 +19,12 @@
     </script>
     <h2>Grid (Local Data)</h2>
     <p>
-        A Grid that loads data only once on initialization. 
+        A Grid that loads data only once on initialization. The column Credit Limit is editable.
     </p>
     <s:url id="remoteurl" action="jsontable">
     	<s:param name="loadonce" value="%{true}" />
     </s:url> 
+    <s:url id="editcellurl" action="edit-cell-entry"/> 
     <sj:grid 
     	id="gridloadtable" 
     	loadonce="true"
@@ -33,6 +34,8 @@
     	rowNum="-1"
     	hidegrid="true"
     	scroll="true"
+    	cellEdit="true"
+    	cellurl="%{editcellurl}"
     >
     	<sj:gridColumn name="id" index="id" key="true" title="ID" formatter="integer" sortable="true"/>
     	<sj:gridColumn name="name" index="name" title="Company" sortable="true"/>
@@ -41,7 +44,18 @@
     	<sj:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
     	<sj:gridColumn name="country" index="country" title="Country" sortable="true"/>
     	<sj:gridColumn name="city" index="city" title="City" sortable="true"/>
-    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" sortable="true"/>
+    	<sj:gridColumn 	name="creditLimit" 
+    					index="creditLimit" 
+    					title="Credit Limit" 
+    					editable="true" 
+    					editrules="{
+    									number: true, 
+    									required: true, 
+    									minValue : 100.0, 
+    									maxValue : 10000.0
+    								}" 
+    					formatter="currency" 
+    					sortable="true"/>
     </sj:grid>
 	<br/>
     <sj:submit id="grid_load_colsbutton" 
@@ -57,9 +71,10 @@
       <sj:tab id="tab2" target="java" label="Struts2 Action"/>
       <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;&gt;
+   &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;&gt;
     	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
     &lt;/s:url&gt; 
+    &lt;s:url id=&quot;editcellurl&quot; action=&quot;edit-cell-entry&quot;/&gt; 
     &lt;sj:grid 
     	id=&quot;gridloadtable&quot; 
     	loadonce=&quot;true&quot;
@@ -69,6 +84,8 @@
     	rowNum=&quot;-1&quot;
     	hidegrid=&quot;true&quot;
     	scroll=&quot;true&quot;
+    	cellEdit=&quot;true&quot;
+    	cellurl=&quot;%{editcellurl}&quot;
     &gt;
     	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; key=&quot;true&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; sortable=&quot;true&quot;/&gt;
     	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Company&quot; sortable=&quot;true&quot;/&gt;
@@ -77,7 +94,18 @@
     	&lt;sj:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
     	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;true&quot;/&gt;
     	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; formatter=&quot;currency&quot; sortable=&quot;true&quot;/&gt;
+    	&lt;sj:gridColumn 	name=&quot;creditLimit&quot; 
+    					index=&quot;creditLimit&quot; 
+    					title=&quot;Credit Limit&quot; 
+    					editable=&quot;true&quot; 
+    					editrules=&quot;{
+    									number: true, 
+    									required: true, 
+    									minValue : 100.0, 
+    									maxValue : 10000.0
+    								}&quot; 
+    					formatter=&quot;currency&quot; 
+    					sortable=&quot;true&quot;/&gt;
     &lt;/sj:grid&gt;
 	&lt;br/&gt;
     &lt;sj:submit id=&quot;grid_load_colsbutton&quot; 
