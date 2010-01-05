@@ -8,8 +8,7 @@
  * Tested with jQuery 1.3.2 and jQuery UI 1.7.2
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
- * Copyright (c) 2009 Johannes Geppert http://www.jgeppert.com
- *
+ * Copyright (c) 2010 Johannes Geppert http://www.jgeppert.com
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -715,7 +714,8 @@
 				if(options.changeyear)	params.changeYear = true;
 				if(options.showbuttonpanel)	params.showButtonPanel = true;
 				if(options.buttonimageonly)	params.buttonImageOnly = true;
-				params.dateFormat = options.displayformat;
+				if(options.displayformat)	params.dateFormat = options.displayformat;
+				else params.dateFormat = $.datepicker._defaults.dateFormat;
 				params.buttonImage = options.buttonimage;
 				params.showOn = options.showon;
 				params.buttonText = options.buttontext;
@@ -747,7 +747,7 @@
 			$elem.datepicker(params);
 			
 		    if(options.year && options.month && options.day) {
-		    	$elem.val($.datepicker.formatDate(options.displayformat, new Date(options.year, options.month, options.day)));
+		    		$elem.val($.datepicker.formatDate(params.dateFormat, new Date(options.year, options.month, options.day)));
 		    }
 		    if(options.zindex) {
 		    	$('#ui-datepicker-div').css("z-index", options.zindex); 

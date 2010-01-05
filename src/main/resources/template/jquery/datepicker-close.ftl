@@ -77,8 +77,6 @@ $(document).ready(function () {
   </#if>
   <#if parameters.displayFormat?if_exists != "">
 	options_${parameters.id?html}.displayformat = "${parameters.displayFormat?html}";
-  <#else>
-	options_${parameters.id?html}.displayformat = "yy-mm-dd";
   </#if>
   <#if parameters.onBeforeShowDayTopics?if_exists != "">
  	options_${parameters.id?html}.onbeforeshowdaytopics = "${parameters.onBeforeShowDayTopics?html}";
