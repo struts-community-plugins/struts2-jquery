@@ -18,62 +18,63 @@
  * under the License.
  */
 -->
+<#assign colName="${parameters.name?string?replace('.', '_')}">
 
-options_${parameters.grid?html}_colmodels_${parameters.name?html} = {};
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.name = "${parameters.name?html}";
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.jsonmap = "${parameters.name?html}";
+options_${parameters.grid?html}_colmodels_${colName} = {};
+options_${parameters.grid?html}_colmodels_${colName}.name = "${parameters.name?html}";
+options_${parameters.grid?html}_colmodels_${colName}.jsonmap = "${parameters.name?html}";
 <#if parameters.index?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.index = "${parameters.index?html}";
+options_${parameters.grid?html}_colmodels_${colName}.index = "${parameters.index?html}";
 </#if>
 <#if parameters.width?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.width = ${parameters.width?html};
+options_${parameters.grid?html}_colmodels_${colName}.width = ${parameters.width?html};
 </#if>
 <#if parameters.editoptions?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.editoptions = ${parameters.editoptions?html};
+options_${parameters.grid?html}_colmodels_${colName}.editoptions = ${parameters.editoptions?html};
 </#if>
 <#if parameters.edittype?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.edittype = "${parameters.edittype?html}";
+options_${parameters.grid?html}_colmodels_${colName}.edittype = "${parameters.edittype?html}";
 </#if>
 <#if parameters.editrules?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.editrules = ${parameters.editrules?html};
+options_${parameters.grid?html}_colmodels_${colName}.editrules = ${parameters.editrules?html};
 </#if>
 <#if parameters.formatter?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.formatter = "${parameters.formatter?html}";
+options_${parameters.grid?html}_colmodels_${colName}.formatter = "${parameters.formatter?html}";
 </#if>
 <#if parameters.formatoptions?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.formatoptions = ${parameters.formatoptions?html};
+options_${parameters.grid?html}_colmodels_${colName}.formatoptions = ${parameters.formatoptions?html};
 </#if>
 <#if parameters.editable?default(false)>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = true;
+options_${parameters.grid?html}_colmodels_${colName}.editable = true;
 <#else>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.editable = false;
+options_${parameters.grid?html}_colmodels_${colName}.editable = false;
 </#if>
 <#if parameters.sortable?default(true)>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.sortable = true;
+options_${parameters.grid?html}_colmodels_${colName}.sortable = true;
 <#else>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.sortable = false;
+options_${parameters.grid?html}_colmodels_${colName}.sortable = false;
 </#if>
 <#if parameters.resizable?default(true)>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.resizable = true;
+options_${parameters.grid?html}_colmodels_${colName}.resizable = true;
 <#else>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.resizable = false;
+options_${parameters.grid?html}_colmodels_${colName}.resizable = false;
 </#if>
 <#if parameters.search?default(true)>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.search = true;
+options_${parameters.grid?html}_colmodels_${colName}.search = true;
 <#else>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.search = false;
+options_${parameters.grid?html}_colmodels_${colName}.search = false;
 </#if>
 <#if parameters.key?default(false)>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.key = true;
+options_${parameters.grid?html}_colmodels_${colName}.key = true;
 </#if>
 <#if parameters.hidedlg?default(false)>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.hidedlg = true;
+options_${parameters.grid?html}_colmodels_${colName}.hidedlg = true;
 </#if>
 <#if parameters.hidden?default(false)>
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.hidden = true;
+options_${parameters.grid?html}_colmodels_${colName}.hidden = true;
 </#if>
 <#if parameters.searchoptions?if_exists != "">
-options_${parameters.grid?html}_colmodels_${parameters.name?html}.searchoptions = ${parameters.searchoptions?html};
+options_${parameters.grid?html}_colmodels_${colName}.searchoptions = ${parameters.searchoptions?html};
 </#if>
 options_${parameters.grid?html}_colnames.push("${parameters.title?html}");
-options_${parameters.grid?html}_colmodels.push(options_${parameters.grid?html}_colmodels_${parameters.name?html});
+options_${parameters.grid?html}_colmodels.push(options_${parameters.grid?html}_colmodels_${colName});
