@@ -18,10 +18,14 @@
  * under the License.
  */
 -->
+<#if parameters.parentTheme == 'xhtml' || parameters.parentTheme == 'simple'>
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
 </#if>
 <#include "/${parameters.templateDir}/simple/text.ftl" />
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+</#if>
+<#else>
+<#include "/${parameters.templateDir}/${parameters.parentTheme}/text.ftl" />
 </#if>

@@ -50,10 +50,10 @@ public class JqueryTagLibrary implements TagLibrary {
 
   public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
-
     return new JqueryModels(stack, req, res);
   }
 
+  @SuppressWarnings("unchecked")
   public List<Class> getVelocityDirectiveClasses()
   {
     Class[] directives = new Class[] {
