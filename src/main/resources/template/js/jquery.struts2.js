@@ -1301,30 +1301,32 @@
 					}
 					
 					var o = 0;
-				    $.each(data[options.list], function(j, val) {
-						var option = eopt.cloneNode(true);
-						if(data[options.list][o] == undefined) {
-							option.value = j;
-							option.text = val;
-						}
-						else {
-							if(options.listkey != undefined && options.listvalue != undefined) {
-								option.value = val[options.listkey];
-								option.text = val[options.listvalue];
+					if(data[options.list] != null) {
+					    $.each(data[options.list], function(j, val) {
+							var option = eopt.cloneNode(true);
+							if(data[options.list][o] == undefined) {
+								option.value = j;
+								option.text = val;
 							}
 							else {
-								option.value = data[options.list][o];
-								option.text = data[options.list][o];
+								if(options.listkey != undefined && options.listvalue != undefined) {
+									option.value = val[options.listkey];
+									option.text = val[options.listvalue];
+								}
+								else {
+									option.value = data[options.list][o];
+									option.text = data[options.list][o];
+								}
 							}
-						}
-
-						if(options.value == option.value) {
-							option.selected = true;
-						}
-						
-						container[0].options[++i] = option;
-						o++;
-				    });
+	
+							if(options.value == option.value) {
+								option.selected = true;
+							}
+							
+							container[0].options[++i] = option;
+							o++;
+					    });
+					}
 				}
 			}
 					
