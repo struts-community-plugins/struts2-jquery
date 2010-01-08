@@ -1146,7 +1146,12 @@
 			$.extend(options, event.data);
 		
 		var params = {};
-		if(options.href && options.href != '#')	params.url = options.href;
+		if(options.href && options.href != '#') {
+			params.url = options.href;
+			if(options.hrefparameter) {
+				params.url = params.url+'?'+options.hrefparameter;
+			}
+		}
 		if(options.clearform && options.clearform == 'true')	params.clearForm = true;
 		if(options.iframe && options.iframe == 'true')	params.iframe = true;
 		if(options.resetform && options.resetform == 'true')	params.resetForm = true;
