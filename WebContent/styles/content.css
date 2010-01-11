@@ -1,0 +1,118 @@
+#col1_content li {
+list-style-type:none;
+}
+
+#headline {
+color:#000;
+margin-left:70px;
+padding:15px 10px;
+width:450px;
+}
+
+#main {
+min-height:400px;
+}
+
+#themebox {
+float:right;
+padding:8px 10px;
+width:250px;
+}
+
+.buttonlink {
+padding:0.4em 1em 0.4em 30px;
+position:relative;
+text-decoration:none;
+}
+
+.buttonlink .ui-icon {
+left:0.2em;
+margin:-8px 5px 0 0;
+position:absolute;
+top:50%;
+}
+
+.code,.result {
+margin:30px 20px 20px 10px;
+overflow:auto;
+padding:10px;
+}
+
+.selectable {
+border:1px solid #000;
+float:left;
+height:80px;
+margin:5px;
+padding:20px;
+width:80px;
+}
+
+.selectablelist {
+border:1px solid #000;
+height:25px;
+margin:5px;
+padding:10px;
+list-style-type: none;
+}
+
+.ui-selected {
+background:#F39814;
+color:#FFF;
+}
+
+.ui-selecting {
+background:#FECA40;
+}
+
+.sortable {
+border:1px solid #000;
+height:20px;
+margin:5px;
+padding:10px;
+text-align: center;
+}
+
+.column { 
+width: 170px;
+float: left;
+padding-bottom: 100px;
+}
+
+.column div { 
+margin:5px;
+}
+
+.column div div .ui-icon { 
+float: right;
+}
+
+a {
+color:#000;
+text-decoration:none;
+}
+
+h1 {
+font-size:16pt;
+}
+
+h2 {
+display:inline;
+font-size:13pt;
+}
+
+h4 {
+font-size:12pt;
+}
+
+li a:hover {
+text-decoration:underline;
+}
+
+p {
+margin:20px;
+}
+
+pre {
+font-family:Courier;
+margin-top:10px;
+}
