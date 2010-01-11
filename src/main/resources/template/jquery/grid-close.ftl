@@ -20,13 +20,13 @@
 -->
 	options_${parameters.id?html}.datatype = "${parameters.dataType?default('json')}";
   <#if parameters.href?exists>
-	options_${parameters.id?html}.url = "${parameters.href?html}";
+	options_${parameters.id?html}.url = "${parameters.href?string}";
   </#if>
   <#if parameters.editurl?if_exists != "">
-	options_${parameters.id?html}.editurl = "${parameters.editurl?html}";
+	options_${parameters.id?html}.editurl = "${parameters.editurl?string}";
   </#if>
   <#if parameters.cellurl?if_exists != "">
-	options_${parameters.id?html}.cellurl = "${parameters.cellurl?html}";
+	options_${parameters.id?html}.cellurl = "${parameters.cellurl?string}";
   </#if>
   <#if parameters.multiselectWidth?exists>
 	options_${parameters.id?html}.multiselectWidth = ${parameters.multiselectWidth?html};
