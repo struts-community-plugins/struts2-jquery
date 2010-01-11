@@ -177,7 +177,7 @@
 	options_${parameters.id?html}.colModel = options_${parameters.id?html}_colmodels;
 	options_${parameters.id?html}.gridview = true;
 	options_${parameters.id?html}.jsonReader = {};
-  <#if parameters.editurl?if_exists != "">
+  <#if parameters.gridModel?if_exists != "">
 	options_${parameters.id?html}.jsonReader.root = "${parameters.gridModel?html}";
   <#else>
 	options_${parameters.id?html}.jsonReader.root = "gridModel";
