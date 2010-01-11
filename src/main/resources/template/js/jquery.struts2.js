@@ -1399,7 +1399,7 @@
 				var divEffectTopic = '_sj_div_effect_';
 				for ( var i = 0; i < targetArray.length; i++) {
 					var effect_elem = $('#'+targetArray[i]);
-					effect_elem.publish(divEffectTopic+targetArray[i], $element);
+					effect_elem.publish(divEffectTopic+targetArray[i], effect_elem);
 				}
 			}
 			
