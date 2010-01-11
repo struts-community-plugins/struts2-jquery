@@ -1398,8 +1398,8 @@
 				var targetArray = ec.split(',');
 				var divEffectTopic = '_sj_div_effect_';
 				for ( var i = 0; i < targetArray.length; i++) {
-					$element = $('#'+targetArray[i]);
-					$element.publish(divEffectTopic+targetArray[i], $element);
+					var effect_elem = $('#'+targetArray[i]);
+					effect_elem.publish(divEffectTopic+targetArray[i], $element);
 				}
 			}
 			
