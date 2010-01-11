@@ -69,8 +69,8 @@ public class JsonTable extends ActionSupport implements SessionAware {
   // Your Total Pages
   private Integer             total            = 0;
 
-  // All Record
-  private Integer             record           = 0;
+  // All Records
+  private Integer             records           = 0;
 
 
   private boolean             loadonce         = false;
@@ -109,7 +109,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
     }
 
     //Count all record (select count(*) from your_custumers)
-    record = CustomerDAO.getCustomersCount(myCustomers);
+    records = CustomerDAO.getCustomersCount(myCustomers);
 
     //Calucalate until rows ware selected
     int to = (rows * page);
@@ -118,7 +118,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
     int from = to - rows;
 
     // Set to = max rows
-    if (to > record) to = record;
+    if (to > records) to = records;
 
     if (loadonce)
     {
@@ -161,7 +161,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
     }
 
     //Calculate total Pages
-    total = (int) Math.ceil((double) record / (double)rows);
+    total = (int) Math.ceil((double) records / (double)rows);
 
     //only for showcase functionality, don't do this in production 
     session.put("mylist", myCustomers);
@@ -229,9 +229,9 @@ public class JsonTable extends ActionSupport implements SessionAware {
    * @return total number of records for the query. e.g. select count(*) from
    *         table
    */
-  public Integer getRecord()
+  public Integer getRecords()
   {
-    return record;
+    return records;
   }
 
   /**
@@ -239,14 +239,14 @@ public class JsonTable extends ActionSupport implements SessionAware {
    *          total number of records for the query. e.g. select count(*) from
    *          table
    */
-  public void setRecord(Integer record)
+  public void setRecords(Integer records)
   {
 
-    this.record = record;
+    this.records = records;
 
-    if (this.record > 0 && this.rows > 0)
+    if (this.records > 0 && this.rows > 0)
     {
-      this.total = (int) Math.ceil((double) this.record / (double) this.rows);
+      this.total = (int) Math.ceil((double) this.records / (double) this.rows);
     }
     else
     {

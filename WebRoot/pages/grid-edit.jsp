@@ -57,6 +57,7 @@
     	editurl="%{editurl}"
     	editinline="true"
     	onSelectRowTopics="rowselect"
+    	viewrecords="true"
     >
     	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
     	<sj:gridColumn name="name" index="name" title="Name" editable="true" edittype="text" sortable="true" search="false"/>
