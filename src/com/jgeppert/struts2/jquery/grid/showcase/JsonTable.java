@@ -69,7 +69,6 @@ public class JsonTable extends ActionSupport {
   private Integer             records           = 0;
 
 
-  private boolean             loadonce         = false;
   private CustomersDao customersDao = new CustomersDao();
 
   @Actions( {
@@ -92,7 +91,7 @@ public class JsonTable extends ActionSupport {
     int to = (rows * page);
     
     //Calculate the first row to read
-    int from = to - rows;
+    //int from = to - rows;
 
     // Set to = max rows
     if (to > records) to = records;
@@ -244,10 +243,5 @@ public class JsonTable extends ActionSupport {
   public void setSearchOper(String searchOper)
   {
     this.searchOper = searchOper;
-  }
-
-  public void setLoadonce(boolean loadonce)
-  {
-    this.loadonce = loadonce;
   }
 }
