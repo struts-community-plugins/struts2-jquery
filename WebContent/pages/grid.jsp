@@ -18,6 +18,37 @@
         <br/>
         &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
     </p>
+    <s:url id="remoteurl" action="jsontable" /> 
+    <sj:grid 
+    	id="gridloadtable" 
+    	loadonce="true"
+    	caption="Customers Examples (Local Data)" 
+    	href="%{remoteurl}" 
+    	gridModel="gridModel"
+    	rowNum="-1"
+    	hidegrid="true"
+    	scroll="true"
+    >
+    	<sj:gridColumn name="customernumber" index="customernumber" key="true" title="ID" formatter="integer" sortable="true"/>
+    	<sj:gridColumn name="customername" index="customername" title="Company" sortable="true"/>
+    	<sj:gridColumn name="contactlastname" index="contactlastname" title="Last Name" sortable="true" hidden="true"/>
+    	<sj:gridColumn name="contactfirstname" index="contactfirstname" title="First Name" sortable="true" hidden="true"/>
+    	<sj:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
+    	<sj:gridColumn name="country" index="country" title="Country" sortable="true"/>
+    	<sj:gridColumn name="city" index="city" title="City" sortable="true"/>
+    	<sj:gridColumn 	name="creditlimit" 
+    					index="creditlimit" 
+    					title="Credit Limit" 
+    					editable="true" 
+    					editrules="{
+    									number: true, 
+    									required: true, 
+    									minValue : 100.0, 
+    									maxValue : 10000.0
+    								}" 
+    					formatter="currency" 
+    					sortable="true"/>
+    </sj:grid>
   </div>
   
 	<br/>

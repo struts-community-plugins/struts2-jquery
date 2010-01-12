@@ -26,5 +26,13 @@
 
 <struts>
     <package name="showcase" extends="struts-default,json-default" namespace="/">
+        <interceptors>
+            <interceptor name="hibernate" class="com.googlecode.s2hibernate.struts2.plugin.interceptors.SessionTransactionInjectorInterceptor" />
+            <interceptor-stack name="showcaseStack"> <!-- with validantion -->
+                <interceptor-ref name="hibernate"></interceptor-ref> <!-- Hibernate Session injection -->
+                <interceptor-ref name="basicStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+    	<default-interceptor-ref name="showcaseStack"/>
     </package>
 </struts>
