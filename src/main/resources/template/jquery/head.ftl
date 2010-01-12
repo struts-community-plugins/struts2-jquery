@@ -52,20 +52,20 @@
 <script type="text/javascript" src="${jqueryGoogle}"></script>
 <script type="text/javascript" src="${jqueryUiGoogle}"></script>
 <#else>
-  <script type="text/javascript" src="${base}/struts/js/${jqueryFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/base/${jqueryFile}"></script>
 	<#if parameters.jqueryui?default(false)>
-    <script type="text/javascript" src="${base}/struts/js/${jqueryUIFile}"></script>
+    <script type="text/javascript" src="${base}/struts/js/base/${jqueryUIFile}"></script>
 	</#if>
 </#if>
 
-  <script type="text/javascript" src="${base}/struts/js/${jqueryForm}"></script>
-  <script type="text/javascript" src="${base}/struts/js/${jquerySubscribeFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/plugins/${jqueryForm}"></script>
+  <script type="text/javascript" src="${base}/struts/js/plugins/${jquerySubscribeFile}"></script>
 <#if parameters.ajaxhistory?default(false)>
-  <script type="text/javascript" src="${base}/struts/js/${jqueryHistoryFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/plugins/${jqueryHistoryFile}"></script>
 </#if>
 <#if parameters.jqueryui?default(false)>
-  <script type="text/javascript" src="${base}/struts/js/${jqueryCookieFile}"></script>
-  <script type="text/javascript" src="${base}/struts/js/${jqueryBGIFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/base/${jqueryCookieFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/base/${jqueryBGIFile}"></script>
     <#if parameters.jquerytheme?if_exists != "">
         <link rel="stylesheet" href="${base}/${basePath}/${parameters.jquerytheme?string}/ui.theme.css" type="text/css"/>
     <#else>
@@ -82,11 +82,11 @@
 	$.jgrid.no_legacy_api = true;
 	$.jgrid.useJSON = true;
 </script>
-  <script type="text/javascript" src="${base}/struts/js/jquery.jqGrid.js"></script>
+  <script type="text/javascript" src="${base}/struts/js/plugins/jquery.jqGrid.js"></script>
   <link rel="stylesheet" href="${base}/struts/themes/ui.jqgrid.css" type="text/css"/>
 </#if>
 </#if>
-  <script type="text/javascript" src="${base}/struts/js/${jqueryStrutsFile}"></script>
+  <script type="text/javascript" src="${base}/struts/js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 <#if parameters.ajaxhistory?default(false)>
 	var ajaxhistory=true;
