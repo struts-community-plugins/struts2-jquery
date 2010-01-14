@@ -25,18 +25,23 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 
+import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
 public class JsonTable extends ActionSupport {
 
   private static final long   serialVersionUID = 5078264277068533593L;
   private static final Log    log              = LogFactory.getLog(JsonTable.class);
+
+  @SessionTarget
+  protected Session hSession;
 
   //Your result List
   private List<Customers>      gridModel;
@@ -81,17 +86,18 @@ public class JsonTable extends ActionSupport {
     log.debug("Page " + getPage()+" Rows " + getRows() +" Sorting Order "+ getSord()+" Index Row :" + getSidx());
     log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
 
-
-    gridModel = customersDao.getAll();
-
-    //Count all record (select count(*) from your_custumers)
-    records = gridModel.size();
-
     //Calucalate until rows ware selected
     int to = (rows * page);
     
     //Calculate the first row to read
-    //int from = to - rows;
+    int from = to - rows;
+
+    DetachedCriteria criteria =DetachedCriteria.forClass(Customers.class);
+    
+    gridModel = customersDao.findByCriteria(criteria, from, rows);
+
+    //Count all record (select count(*) from your_custumers)
+    records = customersDao.count();
 
     // Set to = max rows
     if (to > records) to = records;

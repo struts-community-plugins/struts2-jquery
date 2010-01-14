@@ -4,6 +4,12 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+import org.hibernate.criterion.DetachedCriteria;
 
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 
@@ -11,11 +17,52 @@ public class CustomersDao extends AbstractSimpleGenericDao<Customers,Integer> {
 
 	private static final Log log = LogFactory.getLog(CustomersDao.class);
 	
-	public List<Customers> findFromTo(int from, int to)
+	@SuppressWarnings("unchecked")
+  public List<Customers> findByCriteria(DetachedCriteria dc, int from, int size)
 	{
 	  if(log.isDebugEnabled())
-	    log.debug("Return Customers from "+from+" to "+to);
+	    log.debug("Return Customers from "+from+" to "+size);
 	  
-	  return null;
+    try {
+      Criteria criteria = dc.getExecutableCriteria(hSession);
+      criteria.setFirstResult(from);
+      criteria.setMaxResults(size);
+      return criteria.list();
+    } catch (HibernateException e) {
+      log.error(e.getMessage(), e);
+      throw e;
+    }
 	}
+	
+  public int count()
+  {
+    if(log.isDebugEnabled())
+      log.debug("count Customers");
+    
+    try {
+      Query q = hSession.createQuery("SELECT count(*) from Customers");
+      return ((Number) q.uniqueResult()).intValue();
+    } catch (HibernateException e) {
+      log.error(e.getMessage(), e);
+      throw e;
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  public List<String> findCountrys()
+  {
+    if(log.isDebugEnabled())
+      log.debug("find all countrys");
+    
+    try {
+      String queryString = "SELECT DISTINCT c.country FROM CLASSICMODELS.CUSTOMERS c where c.country is not null";
+      SQLQuery q = hSession.createSQLQuery(queryString);
+      q.setCacheable(true);
+      q.addScalar("country", Hibernate.STRING);
+      return q.list();
+    } catch (HibernateException e) {
+      log.error(e.getMessage(), e);
+      throw e;
+    }
+  }
 }

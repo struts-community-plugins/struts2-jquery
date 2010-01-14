@@ -31,7 +31,7 @@ public class Customers implements java.io.Serializable {
   private String  state;
   private String  postalcode;
   private String  country;
-  private Employees salesrepemployee;
+  private Employees salesemployee;
   private Double  creditlimit;
   private Set<Orders> orders;
 
@@ -54,7 +54,7 @@ public class Customers implements java.io.Serializable {
       String state,
       String postalcode,
       String country,
-      Employees salesrepemployee,
+      Employees salesemployee,
       Double creditlimit) {
     this.customernumber = customernumber;
     this.customername = customername;
@@ -67,7 +67,7 @@ public class Customers implements java.io.Serializable {
     this.state = state;
     this.postalcode = postalcode;
     this.country = country;
-    this.salesrepemployee = salesrepemployee;
+    this.salesemployee = salesemployee;
     this.creditlimit = creditlimit;
   }
 
@@ -195,14 +195,14 @@ public class Customers implements java.io.Serializable {
 
   @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
   @JoinColumn(name = "SALESREPEMPLOYEENUMBER", unique = false, nullable = false, insertable = true, updatable = true)
-  public Employees getSalesrepemployee()
+  public Employees getSalesemployee()
   {
-    return salesrepemployee;
+    return salesemployee;
   }
 
-  public void setSalesrepemployee(Employees salesrepemployee)
+  public void setSalesemployee(Employees salesemployee)
   {
-    this.salesrepemployee = salesrepemployee;
+    this.salesemployee = salesemployee;
   }
 
   @Column(name = "CREDITLIMIT", precision = 52, scale = 0)

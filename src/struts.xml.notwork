@@ -25,14 +25,13 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <package name="showcase" extends="struts-default,json-default" namespace="/">
-        <interceptors>
-            <interceptor name="hibernate" class="com.googlecode.s2hibernate.struts2.plugin.interceptors.SessionTransactionInjectorInterceptor" />
-            <interceptor-stack name="showcaseStack"> <!-- with validantion -->
-                <interceptor-ref name="hibernate"></interceptor-ref> <!-- Hibernate Session injection -->
-                <interceptor-ref name="basicStack"></interceptor-ref>
-            </interceptor-stack>
-        </interceptors>
-    	<default-interceptor-ref name="showcaseStack"/>
-    </package>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.convention.default.parent.package" value="showcase"/>
+	<constant name="struts.convention.result.path" value="/pages"/>
+	<constant name="struts.convention.action.packages" value="com.jgeppert.struts2.jquery.grid.showcase"/>
+
+	<package name="showcase" extends="hibernate-default,json-default" namespace="/">
+	</package>
+
 </struts>

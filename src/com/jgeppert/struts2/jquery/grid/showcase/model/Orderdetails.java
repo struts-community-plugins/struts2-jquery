@@ -1,6 +1,9 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,8 +16,7 @@ import javax.persistence.UniqueConstraint;
 public class Orderdetails implements java.io.Serializable {
 
   private static final long serialVersionUID = 8579786902541290122L;
-  private Integer ordernumber;
-  private String  productcode;
+  private OrderdetailsId id;
   private Integer quantityordered;
   private Double  priceeach;
   private Short   orderlinenumber;
@@ -22,39 +24,30 @@ public class Orderdetails implements java.io.Serializable {
   public Orderdetails() {
   }
 
-  public Orderdetails(Integer ordernumber) {
-    this.ordernumber = ordernumber;
+  public Orderdetails(OrderdetailsId id) {
+    this.id = id;
   }
 
-  public Orderdetails(Integer ordernumber, String productcode, Integer quantityordered, Double priceeach, Short orderlinenumber) {
-    this.ordernumber = ordernumber;
-    this.productcode = productcode;
+  public Orderdetails(OrderdetailsId id, Integer quantityordered, Double priceeach, Short orderlinenumber) {
+    this.id = id;
     this.quantityordered = quantityordered;
     this.priceeach = priceeach;
     this.orderlinenumber = orderlinenumber;
   }
 
-  @Id
-  @Column(name = "ORDERNUMBER")
-  public Integer getOrdernumber()
+  @EmbeddedId
+  @AttributeOverrides( {
+      @AttributeOverride(name = "order", column = @Column(name = "ORDERNUMBER")), 
+      @AttributeOverride(name = "productcode", column = @Column(name = "PRODUCTCODE", length = 15))
+  })
+  public OrderdetailsId getId()
   {
-    return this.ordernumber;
+    return this.id;
   }
 
-  public void setOrdernumber(Integer ordernumber)
+  public void setId(OrderdetailsId id)
   {
-    this.ordernumber = ordernumber;
-  }
-
-  @Column(name = "PRODUCTCODE", length = 15)
-  public String getProductcode()
-  {
-    return this.productcode;
-  }
-
-  public void setProductcode(String productcode)
-  {
-    this.productcode = productcode;
+    this.id = id;
   }
 
   @Column(name = "QUANTITYORDERED")

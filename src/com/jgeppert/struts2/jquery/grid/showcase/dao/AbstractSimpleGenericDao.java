@@ -14,7 +14,7 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 
 @SuppressWarnings("unchecked")
-public class AbstractSimpleGenericDao<C,I extends Serializable> {
+public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
 
 	private static final Log log = LogFactory.getLog(AbstractSimpleGenericDao.class);
 	Class<C> entityClass;
@@ -82,4 +82,9 @@ public class AbstractSimpleGenericDao<C,I extends Serializable> {
 			throw e;
 		}
 	}
+
+  public static void main(String[] args)
+  {
+    
+  }
 }

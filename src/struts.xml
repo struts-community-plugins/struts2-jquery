@@ -30,5 +30,17 @@
     <constant name="struts.convention.default.parent.package" value="showcase"/>
     <constant name="struts.convention.result.path" value="/pages"/>
     <constant name="struts.convention.action.packages" value="com.jgeppert.struts2.jquery.grid.showcase"/>
-    <include file="showcase.xml" />
+    
+    <package name="showcase" extends="struts-default,json-default" namespace="/">
+        <interceptors>
+            <interceptor name="hibernate" class="com.googlecode.s2hibernate.struts2.plugin.interceptors.SessionTransactionInjectorInterceptor" />
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+            <interceptor-stack name="showcaseStack"> <!-- with validantion -->
+                <interceptor-ref name="json"></interceptor-ref>
+                <interceptor-ref name="hibernate"></interceptor-ref>
+                <interceptor-ref name="basicStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+    	<default-interceptor-ref name="showcaseStack"/>
+    </package>
 </struts>

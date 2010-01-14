@@ -19,21 +19,31 @@
 
 package com.jgeppert.struts2.jquery.grid.showcase;
 
+import java.util.List;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
+import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ShowCase extends ActionSupport {
+public class CustomerCountrys extends ActionSupport {
+  private List<String>      countrys;
+  private CustomersDao customersDao = new CustomersDao();
 
-  private static final long   serialVersionUID = -3713848243722723891L;
+  private static final long serialVersionUID = 6721064966173343669L;
 
-  @Action(value = "/index", results = {
-    @Result(location = "index.jsp", name = "success")
+  @Action(value = "/customer-countrys", results = {
+    @Result(location = "customer-countrys.jsp", name = "success")
   })
   public String execute() throws Exception
   {
-
+    countrys = customersDao.findCountrys();
     return SUCCESS;
+  }
+  
+  public List<String> getCountrys()
+  {
+    return countrys;
   }
 }
