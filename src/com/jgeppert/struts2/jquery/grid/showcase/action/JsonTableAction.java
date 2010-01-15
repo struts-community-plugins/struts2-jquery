@@ -24,75 +24,155 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Result;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Result(type="json")
+@Result(type = "json")
 public class JsonTableAction extends ActionSupport {
 
-  private static final long   serialVersionUID = 5078264277068533593L;
-  private static final Log    log              = LogFactory.getLog(JsonTableAction.class);
+  private static final long serialVersionUID = 5078264277068533593L;
+  private static final Log  log              = LogFactory.getLog(JsonTableAction.class);
 
-  //Your result List
-  private List<Customers>      gridModel;
-  
-  //get how many rows we want to have into the grid - rowNum attribute in the grid
-  private Integer             rows             = 0;
+  // Your result List
+  private List<Customers>   gridModel;
 
-  //Get the requested page. By default grid sets this to 1.
-  private Integer             page             = 0;
+  // get how many rows we want to have into the grid - rowNum attribute in the
+  // grid
+  private Integer           rows             = 0;
+
+  // Get the requested page. By default grid sets this to 1.
+  private Integer           page             = 0;
 
   // sorting order - asc or desc
-  private String              sord;
+  private String            sord             = "asc";
 
   // get index row - i.e. user click to sort.
-  private String              sidx;
+  private String            sidx;
 
   // Search Field
-  private String              searchField;
+  private String            searchField;
 
   // The Search String
-  private String              searchString;
+  private String            searchString;
 
-  // he Search Operation ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc'] 
-  private String              searchOper;
+  // he Search Operation
+  // ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']
+  private String            searchOper;
 
   // Your Total Pages
-  private Integer             total            = 0;
+  private Integer           total            = 0;
 
   // All Records
-  private Integer             records           = 0;
+  private Integer           records          = 0;
 
-
-  private CustomersDao customersDao = new CustomersDao();
+  private CustomersDao      customersDao     = new CustomersDao();
 
   public String execute()
   {
-    log.debug("Page " + getPage()+" Rows " + getRows() +" Sorting Order "+ getSord()+" Index Row :" + getSidx());
+    log.debug("Page " + getPage() + " Rows " + getRows() + " Sorting Order " + getSord() + " Index Row :" + getSidx());
     log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
 
-    //Calucalate until rows ware selected
+    // Calucalate until rows ware selected
     int to = (rows * page);
-    
-    //Calculate the first row to read
+
+    // Calculate the first row to read
     int from = to - rows;
 
-    DetachedCriteria criteria =DetachedCriteria.forClass(Customers.class);
-    
-    gridModel = customersDao.findByCriteria(criteria, from, rows);
+    // Criteria to Build SQL
+    DetachedCriteria criteria = DetachedCriteria.forClass(Customers.class);
 
-    //Count all record (select count(*) from your_custumers)
-    records = customersDao.count();
+    // Handle Search
+    if (searchField != null)
+    {
+      if (searchField.equals("customernumber"))
+      {
+        Integer searchValue = Integer.parseInt(searchString);
+        if (searchOper.equals("eq"))
+        {
+          criteria.add(Restrictions.eq("customernumber", searchValue));
+        }
+        else if (searchOper.equals("ne"))
+        {
+          criteria.add(Restrictions.ne("customernumber", searchValue));
+        }
+        else if (searchOper.equals("lt"))
+        {
+          criteria.add(Restrictions.lt("customernumber", searchValue));
+        }
+        else if (searchOper.equals("gt"))
+        {
+          criteria.add(Restrictions.gt("customernumber", searchValue));
+        }
+      }
+      else if (searchField.equals("country") || searchField.equals("city") || searchField.equals("addressLine1") || searchField.equals("contactfirstname") || searchField.equals("contactlastname") || searchField.equals("customername"))
+      {
+        if (searchOper.equals("eq"))
+        {
+          criteria.add(Restrictions.eq(searchField, searchString));
+        }
+        else if (searchOper.equals("ne"))
+        {
+          criteria.add(Restrictions.ne(searchField, searchString));
+        }
+        else if (searchOper.equals("bw"))
+        {
+          criteria.add(Restrictions.like(searchField, searchString + "%"));
+        }
+        else if (searchOper.equals("cn"))
+        {
+          criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
+        }
+      }
+      if (searchField.equals("creditlimit"))
+      {
+        Double searchValue = Double.parseDouble(searchString);
+        if (searchOper.equals("eq"))
+        {
+          criteria.add(Restrictions.eq("creditlimit", searchValue));
+        }
+        else if (searchOper.equals("ne"))
+        {
+          criteria.add(Restrictions.ne("creditlimit", searchValue));
+        }
+        else if (searchOper.equals("lt"))
+        {
+          criteria.add(Restrictions.lt("creditlimit", searchValue));
+        }
+        else if (searchOper.equals("gt"))
+        {
+          criteria.add(Restrictions.gt("creditlimit", searchValue));
+        }
+      }
+    }
+
+    // Count Customers
+    records = customersDao.countByCriteria(criteria);
+
+    // Reset count Projection
+    criteria.setProjection(null);
+    criteria.setResultTransformer(Criteria.ROOT_ENTITY);
+
+    // Handle Order By
+    if (sidx != null && !sidx.equals(""))
+    {
+      if (sord.equals("asc")) criteria.addOrder(Order.asc(sidx));
+      else criteria.addOrder(Order.desc(sidx));
+    }
+
+    // Get Customers by Criteria
+    gridModel = customersDao.findByCriteria(criteria, from, rows);
 
     // Set to = max rows
     if (to > records) to = records;
 
-
-    //Calculate total Pages
-    total = (int) Math.ceil((double) records / (double)rows);
+    // Calculate total Pages
+    total = (int) Math.ceil((double) records / (double) rows);
 
     return SUCCESS;
   }

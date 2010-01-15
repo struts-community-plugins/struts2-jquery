@@ -37,7 +37,7 @@ public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
 		try {
 			return hSession.createCriteria(entityClass).list();
 		} catch (HibernateException e) {
-			e.printStackTrace();
+		  log.error(e.getMessage(),e);
 			throw e;
 		}
 	}
@@ -46,7 +46,7 @@ public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
 		try {
 			return (C) hSession.get(entityClass, id);
 		} catch (HibernateException e) {
-			e.printStackTrace();
+      log.error(e.getMessage(),e);
 			throw e;
 		}
 	}
@@ -56,7 +56,7 @@ public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
 			hSession.save(object);
 		} catch (HibernateException e) {
 			hTransaction.rollback();
-			e.printStackTrace();
+      log.error(e.getMessage(),e);
 			throw e;
 		}
 	}
@@ -66,7 +66,7 @@ public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
 			hSession.update(object);
 		} catch (HibernateException e) {
 			hTransaction.rollback();
-			e.printStackTrace();
+      log.error(e.getMessage(),e);
 			throw e;
 		}
 	}
@@ -77,7 +77,7 @@ public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
 			hSession.delete(actual);
 		} catch (HibernateException e) {
 			hTransaction.rollback();
-			e.printStackTrace();
+      log.error(e.getMessage(),e);
 			throw e;
 		}
 	}
