@@ -36,15 +36,15 @@
       <div id="header" class="ui-widget-header">
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;width: 700px">Showcase for jQuery Plugin and Full Hibernate Struts2 Plugins</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Jquery Plugin - Version 1.8.2 / Full Hibernate Plugin - Version 2.1.3</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">jQuery Plugin - Version 1.8.2 / Full Hibernate Plugin - Version 2.1.3</h4>
         </div>
       </div>
       <div id="nav">
         <div class="hlist ui-widget-header">
           <ul>
             <li class="ui-widget-header ui-state-active"><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid</sj:a></li>
-            <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/downloads/list">Download</a></li>
-            <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/w/list">Wiki</a></li>
+            <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/">jQuery Plugin</a></li>
+            <li class="ui-widget-header"><a href="http://code.google.com/p/full-hibernate-plugin-for-struts2/">Full Hibernate Plugin</a></li>
           </ul>
         </div>
       </div>

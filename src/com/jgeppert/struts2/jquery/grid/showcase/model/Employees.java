@@ -13,14 +13,14 @@ import javax.persistence.Table;
 public class Employees implements java.io.Serializable {
 
   private static final long serialVersionUID = 6453568010319106998L;
-  private Integer employeenumber;
-  private String  lastname;
-  private String  firstname;
-  private String  extension;
-  private String  email;
-  private Offices office;
-  private Integer reportsto;
-  private String  jobtitle;
+  private Integer           employeenumber;
+  private String            lastname;
+  private String            firstname;
+  private String            extension;
+  private String            email;
+  private Offices           office;
+  private Integer           reportsto;
+  private String            jobtitle;
 
   public Employees() {
   }
@@ -130,4 +130,9 @@ public class Employees implements java.io.Serializable {
     this.jobtitle = jobtitle;
   }
 
+  @Override
+  public String toString()
+  {
+    return lastname + ", " + firstname;
+  }
 }

@@ -2,38 +2,35 @@ package com.jgeppert.struts2.jquery.grid.showcase.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
-
-import org.apache.struts2.json.annotations.JSON;
 
 @Entity
 @Table(name = "CUSTOMERS", schema = "CLASSICMODELS")
 public class Customers implements java.io.Serializable {
 
   private static final long serialVersionUID = 6222062494710896823L;
-  private Integer customernumber;
-  private String  customername;
-  private String  contactlastname;
-  private String  contactfirstname;
-  private String  phone;
-  private String  addressline1;
-  private String  addressline2;
-  private String  city;
-  private String  state;
-  private String  postalcode;
-  private String  country;
-  private Employees salesemployee;
-  private Double  creditlimit;
-  private Set<Orders> orders;
+  private Integer           customernumber;
+  private String            customername;
+  private String            contactlastname;
+  private String            contactfirstname;
+  private String            phone;
+  private String            addressline1;
+  private String            addressline2;
+  private String            city;
+  private String            state;
+  private String            postalcode;
+  private String            country;
+  private Employees         salesemployee;
+  private Double            creditlimit;
+  private Set<Orders>       orders;
 
   public Customers() {
   }
@@ -42,20 +39,7 @@ public class Customers implements java.io.Serializable {
     this.customernumber = customernumber;
   }
 
-  public Customers(
-      Integer customernumber,
-      String customername,
-      String contactlastname,
-      String contactfirstname,
-      String phone,
-      String addressline1,
-      String addressline2,
-      String city,
-      String state,
-      String postalcode,
-      String country,
-      Employees salesemployee,
-      Double creditlimit) {
+  public Customers(Integer customernumber, String customername, String contactlastname, String contactfirstname, String phone, String addressline1, String addressline2, String city, String state, String postalcode, String country, Employees salesemployee, Double creditlimit) {
     this.customernumber = customernumber;
     this.customername = customername;
     this.contactlastname = contactlastname;
@@ -71,7 +55,8 @@ public class Customers implements java.io.Serializable {
     this.creditlimit = creditlimit;
   }
 
-  @Id
+  @Id()
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "CUSTOMERNUMBER", unique = true)
   public Integer getCustomernumber()
   {
@@ -216,16 +201,15 @@ public class Customers implements java.io.Serializable {
     this.creditlimit = creditlimit;
   }
 
-/*  @JSON(serialize=false)
-  @OneToMany(cascade =
-  {
-    CascadeType.ALL
-  }, fetch = FetchType.EAGER, mappedBy = "customer")
-  @OrderBy(value = "orderdate")
-  public Set<Orders> getOrders()
-  {
-    return orders;
-  }*/
+  /*
+   * @JSON(serialize=false)
+   * 
+   * @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy
+   * = "customer")
+   * 
+   * @OrderBy(value = "orderdate") public Set<Orders> getOrders() { return
+   * orders; }
+   */
 
   public void setOrders(Set<Orders> orders)
   {

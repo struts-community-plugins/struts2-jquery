@@ -30,7 +30,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
-import com.jgeppert.struts2.jquery.grid.showcase.dao.EmployeeDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -73,7 +72,6 @@ public class JsonTableAction extends ActionSupport {
   private Integer           records          = 0;
 
   private CustomersDao      customersDao     = new CustomersDao();
-  private EmployeeDao       employeeDao      = new EmployeeDao();
 
   public String execute()
   {
@@ -115,7 +113,7 @@ public class JsonTableAction extends ActionSupport {
         else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("creditlimit", searchValue));
         else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("creditlimit", searchValue));
       }
-      if (searchField.equals("salesemployee.employeenumber"))
+      if (searchField.equals("employeenumber"))
       {
         Integer searchValue = Integer.parseInt(searchString);
         criteria.createAlias("salesemployee", "se");
@@ -137,8 +135,16 @@ public class JsonTableAction extends ActionSupport {
     // Handle Order By
     if (sidx != null && !sidx.equals(""))
     {
-      if (sord.equals("asc")) criteria.addOrder(Order.asc(sidx));
-      else criteria.addOrder(Order.desc(sidx));
+      if (!sidx.equals("employeenumber"))
+      {
+        if (sord.equals("asc")) criteria.addOrder(Order.asc(sidx));
+        else criteria.addOrder(Order.desc(sidx));
+      }
+      else
+      {
+        if (sord.equals("asc")) criteria.addOrder(Order.asc("salesemployee.employeenumber"));
+        else criteria.addOrder(Order.desc("salesemployee.employeenumber"));
+      }
     }
 
     // Get Customers by Criteria

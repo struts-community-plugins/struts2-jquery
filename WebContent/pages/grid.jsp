@@ -3,21 +3,28 @@
 
     <s:url id="remoteurl" action="json-table" />
     <s:url id="editurl" action="edit-customer" /> 
-    <s:url id="selecturl" action="customer-countrys" /> 
+    <s:url id="selectcountrysurl" action="customer-countrys" /> 
+    <s:url id="selectemployeesurl" action="employees" /> 
     <s:url id="empurl" action="grid">
     	<s:param name="id" value=""/>
     </s:url> 
 
     <h2>Grid</h2>
     <p>
-        A simple grid with pager. This Grid is sortable by name column.
-    </p>
-    <p>
         To enable jqGrid set useJqGridPlugin to true in the head tag.
         <br/>
         &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
     </p>
-    -${gridModel}-
+    <p>
+		<strong>The Databese in this Showcase is per default read-only!</strong><br/>
+		Make Samples editable with following Steps:
+		<ol>
+			<li>Copy BirtSample.jar from the WEB-INF/lib folder to your Harddrive (e.g. C:\)</li>
+			<li>Extract BirtSample.jar to C:\BirtSample)</li>
+			<li>Edit WEB-INF/classes/hibernate.cfg.xml</li>
+			<li>&lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:derby:directory:C:/BirtSample/BirtSample&lt;/property&gt;</li>
+		</ol>
+    </p>
     <sj:grid 
     	id="customerstable" 
     	caption="Customers (Editable/Multiselect)" 
@@ -27,7 +34,7 @@
     	navigator="true"
     	navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
     	navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
-    	navigatorEdit="false"
+    	navigatorEdit="true"
     	navigatorView="true"
     	navigatorDelete="true"
     	navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
@@ -35,7 +42,7 @@
     	rowList="10,15,20"
     	rowNum="15"
     	editurl="%{editurl}"
-    	editinline="true"
+    	editinline="false"
     	multiselect="true"
     	viewrecords="true"
     >
@@ -94,7 +101,7 @@
     		searchoptions="{sopt:['eq','ne','bw','cn']}"
     		editable="true" 
     		edittype="select" 
-    		editoptions="{ dataUrl : '%{selecturl}' }"
+    		editoptions="{ dataUrl : '%{selectcountrysurl}' }"
     		/>
     	<sj:gridColumn 
     		name="city" 
@@ -123,15 +130,18 @@
     		/>
     	<sj:gridColumn 
     		name="salesemployee.employeenumber" 
-    		index="salesemployee.employeenumber" 
+    		index="employeenumber" 
     		title="Employee" 
     		formatter="showlink"
-    		formatoptions="{ baseLinkUrl : '%{empurl}', showAction : '', addParam : '&action=show', target : '_new' }"
+    		formatoptions="{ baseLinkUrl : '%{empurl}', target : '_new' }"
     		sortable="false"
     		search="false"
     		cssStyle="text-decoration: underline;"
     		sortable="true" 
     		search="true"
     		searchoptions="{sopt:['eq','ne','lt','gt']}"
+    		editable="true"
+    		edittype="select" 
+    		editoptions="{ dataUrl : '%{selectemployeesurl}' }"
     		/>
     </sj:grid>
