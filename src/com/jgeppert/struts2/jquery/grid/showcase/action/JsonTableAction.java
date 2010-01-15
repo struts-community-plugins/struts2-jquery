@@ -30,6 +30,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
+import com.jgeppert.struts2.jquery.grid.showcase.dao.EmployeeDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -72,13 +73,14 @@ public class JsonTableAction extends ActionSupport {
   private Integer           records          = 0;
 
   private CustomersDao      customersDao     = new CustomersDao();
+  private EmployeeDao       employeeDao      = new EmployeeDao();
 
   public String execute()
   {
     log.debug("Page " + getPage() + " Rows " + getRows() + " Sorting Order " + getSord() + " Index Row :" + getSidx());
     log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
 
-    // Calucalate until rows ware selected
+    // Calcalate until rows ware selected
     int to = (rows * page);
 
     // Calculate the first row to read
@@ -93,61 +95,35 @@ public class JsonTableAction extends ActionSupport {
       if (searchField.equals("customernumber"))
       {
         Integer searchValue = Integer.parseInt(searchString);
-        if (searchOper.equals("eq"))
-        {
-          criteria.add(Restrictions.eq("customernumber", searchValue));
-        }
-        else if (searchOper.equals("ne"))
-        {
-          criteria.add(Restrictions.ne("customernumber", searchValue));
-        }
-        else if (searchOper.equals("lt"))
-        {
-          criteria.add(Restrictions.lt("customernumber", searchValue));
-        }
-        else if (searchOper.equals("gt"))
-        {
-          criteria.add(Restrictions.gt("customernumber", searchValue));
-        }
+        if (searchOper.equals("eq")) criteria.add(Restrictions.eq("customernumber", searchValue));
+        else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("customernumber", searchValue));
+        else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("customernumber", searchValue));
+        else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("customernumber", searchValue));
       }
       else if (searchField.equals("country") || searchField.equals("city") || searchField.equals("addressLine1") || searchField.equals("contactfirstname") || searchField.equals("contactlastname") || searchField.equals("customername"))
       {
-        if (searchOper.equals("eq"))
-        {
-          criteria.add(Restrictions.eq(searchField, searchString));
-        }
-        else if (searchOper.equals("ne"))
-        {
-          criteria.add(Restrictions.ne(searchField, searchString));
-        }
-        else if (searchOper.equals("bw"))
-        {
-          criteria.add(Restrictions.like(searchField, searchString + "%"));
-        }
-        else if (searchOper.equals("cn"))
-        {
-          criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
-        }
+        if (searchOper.equals("eq")) criteria.add(Restrictions.eq(searchField, searchString));
+        else if (searchOper.equals("ne")) criteria.add(Restrictions.ne(searchField, searchString));
+        else if (searchOper.equals("bw")) criteria.add(Restrictions.like(searchField, searchString + "%"));
+        else if (searchOper.equals("cn")) criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
       }
-      if (searchField.equals("creditlimit"))
+      else if (searchField.equals("creditlimit"))
       {
         Double searchValue = Double.parseDouble(searchString);
-        if (searchOper.equals("eq"))
-        {
-          criteria.add(Restrictions.eq("creditlimit", searchValue));
-        }
-        else if (searchOper.equals("ne"))
-        {
-          criteria.add(Restrictions.ne("creditlimit", searchValue));
-        }
-        else if (searchOper.equals("lt"))
-        {
-          criteria.add(Restrictions.lt("creditlimit", searchValue));
-        }
-        else if (searchOper.equals("gt"))
-        {
-          criteria.add(Restrictions.gt("creditlimit", searchValue));
-        }
+        if (searchOper.equals("eq")) criteria.add(Restrictions.eq("creditlimit", searchValue));
+        else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("creditlimit", searchValue));
+        else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("creditlimit", searchValue));
+        else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("creditlimit", searchValue));
+      }
+      if (searchField.equals("salesemployee.employeenumber"))
+      {
+        Integer searchValue = Integer.parseInt(searchString);
+        criteria.createAlias("salesemployee", "se");
+
+        if (searchOper.equals("eq")) criteria.add(Restrictions.eq("se.employeenumber", searchValue));
+        else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("se.employeenumber", searchValue));
+        else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("se.employeenumber", searchValue));
+        else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("se.employeenumber", searchValue));
       }
     }
 
