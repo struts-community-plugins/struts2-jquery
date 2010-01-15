@@ -12,6 +12,9 @@ import org.hibernate.Transaction;
 
 import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
+import com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory;
+import com.jgeppert.struts2.jquery.grid.showcase.model.Employees;
+import com.jgeppert.struts2.jquery.grid.showcase.model.Offices;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
@@ -60,11 +63,7 @@ public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
 
 	public void update(C object) {
 		try {
-			log.info("UPDATE : "+object);
-			hTransaction.begin();
 			hSession.update(object);
-			hTransaction.commit();
-
 		} catch (HibernateException e) {
 			hTransaction.rollback();
 			e.printStackTrace();
@@ -85,6 +84,23 @@ public abstract class AbstractSimpleGenericDao<C,I extends Serializable> {
 
   public static void main(String[] args)
   {
+    Session session = HibernateSessionFactory.getSession();
     
+    List<Employees> employees1 = session.createCriteria(Employees.class).list();
+    for (Employees employees2 : employees1) {
+		System.out.println(employees2.getFirstname()+" "+employees2.getLastname());
+	}
+    session.getTransaction().begin();
+    
+ /*   session.createSQLQuery("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY(" +
+    		"'derby.database.defaultConnectionMode'," +
+    		"'fullAccess')").executeUpdate();*/
+    
+    Offices offices = new Offices("codcod","Belem","91222333","addd1","asddd2","para","brazil","667676","norte");
+    session.save(offices);
+    
+    Employees employees = new Employees(1,"Ajisaka","Jose","ext1","email@google.com",offices,0,"none");
+    session.save(employees);
+    session.getTransaction().commit();
   }
 }

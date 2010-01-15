@@ -17,27 +17,21 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.grid.showcase;
+package com.jgeppert.struts2.jquery.grid.showcase.action;
 
 import java.util.StringTokenizer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
-import org.hibernate.Session;
 
-import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
-public class EditCustomer extends ActionSupport {
+public class EditCustomerAction extends ActionSupport {
 
   private static final long   serialVersionUID = -3454448309088641394L;
-  private static final Log    log              = LogFactory.getLog(EditCustomer.class);
+  private static final Log    log              = LogFactory.getLog(EditCustomerAction.class);
 
   private CustomersDao customersDao = new CustomersDao();
 
@@ -48,9 +42,6 @@ public class EditCustomer extends ActionSupport {
   private String              city;
   private double              creditlimit;
 
-    @Action(value = "/edit-customer", results = {
-      @Result(location = "empty.jsp", name = "success")
-    })
   public String execute() throws Exception
   {
     log.debug("oper :" + oper);
@@ -98,7 +89,7 @@ public class EditCustomer extends ActionSupport {
       }
     }
 
-    return SUCCESS;
+    return NONE;
   }
 
   public String getId()

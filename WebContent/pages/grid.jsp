@@ -1,5 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+
+    <s:url id="remoteurl" action="json-table" />
+    <s:url id="editurl" action="edit-customer" /> 
+    <s:url id="selecturl" action="customer-countrys" /> 
+    <s:url id="empurl" action="grid">
+    	<s:param name="id" value=""/>
+    </s:url> 
+
     <h2>Grid</h2>
     <p>
         A simple grid with pager. This Grid is sortable by name column.
@@ -9,12 +17,7 @@
         <br/>
         &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
     </p>
-    <s:url id="remoteurl" action="jsontable" />
-    <s:url id="editurl" action="edit-customer" /> 
-    <s:url id="selecturl" action="customer-countrys" /> 
-    <s:url id="empurl" action="grid">
-    	<s:param name="id" value=""/>
-    </s:url> 
+    -${gridModel}-
     <sj:grid 
     	id="customerstable" 
     	caption="Customers (Editable/Multiselect)" 

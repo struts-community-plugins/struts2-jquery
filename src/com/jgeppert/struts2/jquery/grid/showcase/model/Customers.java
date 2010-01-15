@@ -193,7 +193,7 @@ public class Customers implements java.io.Serializable {
     this.country = country;
   }
 
-  @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
+  @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
   @JoinColumn(name = "SALESREPEMPLOYEENUMBER", unique = false, nullable = false, insertable = true, updatable = true)
   public Employees getSalesemployee()
   {
@@ -216,16 +216,16 @@ public class Customers implements java.io.Serializable {
     this.creditlimit = creditlimit;
   }
 
-  @JSON(serialize=false)
+/*  @JSON(serialize=false)
   @OneToMany(cascade =
   {
     CascadeType.ALL
-  }, fetch = FetchType.LAZY, mappedBy = "customer")
+  }, fetch = FetchType.EAGER, mappedBy = "customer")
   @OrderBy(value = "orderdate")
   public Set<Orders> getOrders()
   {
     return orders;
-  }
+  }*/
 
   public void setOrders(Set<Orders> orders)
   {

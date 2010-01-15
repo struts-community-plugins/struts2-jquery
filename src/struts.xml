@@ -27,18 +27,16 @@
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="false" />
-    <constant name="struts.convention.default.parent.package" value="showcase"/>
     <constant name="struts.convention.result.path" value="/pages"/>
-    <constant name="struts.convention.action.packages" value="com.jgeppert.struts2.jquery.grid.showcase"/>
+    <constant name="struts.convention.action.packages" value="com.jgeppert.struts2.jquery.grid.showcase.action"/>
+    <constant name="struts.convention.default.parent.package" value="showcase"/>
     
-    <package name="showcase" extends="struts-default,json-default" namespace="/">
+    <package name="showcase" extends="hibernate-default,json-default">
         <interceptors>
-            <interceptor name="hibernate" class="com.googlecode.s2hibernate.struts2.plugin.interceptors.SessionTransactionInjectorInterceptor" />
-			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
-            <interceptor-stack name="showcaseStack"> <!-- with validantion -->
-                <interceptor-ref name="json"></interceptor-ref>
-                <interceptor-ref name="hibernate"></interceptor-ref>
-                <interceptor-ref name="basicStack"></interceptor-ref>
+			<!--<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+            --><interceptor-stack name="showcaseStack"><!-- 
+                <interceptor-ref name="json"/>
+                --><interceptor-ref name="defaultStackHibernate"/>
             </interceptor-stack>
         </interceptors>
     	<default-interceptor-ref name="showcaseStack"/>

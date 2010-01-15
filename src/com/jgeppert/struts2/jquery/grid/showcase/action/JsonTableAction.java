@@ -17,31 +17,24 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.grid.showcase;
+package com.jgeppert.struts2.jquery.grid.showcase.action;
 
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 
-import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class JsonTable extends ActionSupport {
+@Result(type="json")
+public class JsonTableAction extends ActionSupport {
 
   private static final long   serialVersionUID = 5078264277068533593L;
-  private static final Log    log              = LogFactory.getLog(JsonTable.class);
-
-  @SessionTarget
-  protected Session hSession;
+  private static final Log    log              = LogFactory.getLog(JsonTableAction.class);
 
   //Your result List
   private List<Customers>      gridModel;
@@ -76,11 +69,6 @@ public class JsonTable extends ActionSupport {
 
   private CustomersDao customersDao = new CustomersDao();
 
-  @Actions( {
-    @Action(value = "/jsontable", results = {
-      @Result(name = "success", type = "json")
-    })
-  })
   public String execute()
   {
     log.debug("Page " + getPage()+" Rows " + getRows() +" Sorting Order "+ getSord()+" Index Row :" + getSidx());

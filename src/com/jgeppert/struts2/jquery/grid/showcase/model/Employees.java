@@ -96,7 +96,7 @@ public class Employees implements java.io.Serializable {
     this.email = email;
   }
 
-  @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
+  @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
   @JoinColumn(name = "OFFICECODE", unique = false, nullable = false, insertable = true, updatable = true)
   public Offices getOffice()
   {
