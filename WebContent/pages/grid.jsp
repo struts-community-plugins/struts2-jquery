@@ -25,7 +25,6 @@
     	href="%{remoteurl}" 
     	pager="true" 
     	navigator="true"
-    	navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
     	navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
     	navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
     	navigatorEdit="false"
@@ -40,21 +39,72 @@
     	multiselect="true"
     	viewrecords="true"
     >
-    	<sj:gridColumn name="customernumber" index="customernumber" key="true" title="ID" formatter="integer" sortable="true"/>
-    	<sj:gridColumn name="customername" index="customername" title="Company" sortable="true" editable="true" edittype="text"/>
-    	<sj:gridColumn name="contactlastname" index="contactlastname" title="Last Name" sortable="true" hidden="true"/>
-    	<sj:gridColumn name="contactfirstname" index="contactfirstname" title="First Name" sortable="true" hidden="true"/>
-    	<sj:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
+    	<sj:gridColumn name="customernumber" 
+    		index="customernumber" 
+    		key="true" 
+    		title="ID" 
+    		formatter="integer" 
+    		sortable="true" 
+    		search="true" 
+    		searchoptions="{sopt:['eq','ne','lt','gt']}"
+    	/>
+    	<sj:gridColumn 
+    		name="customername" 
+    		index="customername" 
+    		title="Company" 
+    		sortable="true" 
+    		editable="true" 
+    		edittype="text" 
+    		search="true"
+    		searchoptions="{sopt:['eq','ne','bw','cn']}"
+    	/>
+    	<sj:gridColumn 
+    		name="contactlastname" 
+    		index="contactlastname" 
+    		title="Last Name" 
+    		sortable="true" 
+    		hidden="true" 
+    		search="true"
+    		searchoptions="{sopt:['eq','ne','bw','cn']}"
+    		/>
+    	<sj:gridColumn 
+    		name="contactfirstname" 
+    		index="contactfirstname" 
+    		title="First Name" 
+    		sortable="true" 
+    		hidden="true" 
+    		search="true"
+    		searchoptions="{sopt:['eq','ne','bw','cn']}"
+    		/>
+    	<sj:gridColumn 
+    		name="addressLine1" 
+    		index="addressLine1" 
+    		title="Adress" 
+    		sortable="true" 
+    		hidden="true" 
+    		search="true"
+    		searchoptions="{sopt:['eq','ne','bw','cn']}"
+    		/>
     	<sj:gridColumn 
     		name="country" 
     		index="country" 
     		title="Country" 
     		sortable="true" 
+    		search="true"
+    		searchoptions="{sopt:['eq','ne','bw','cn']}"
     		editable="true" 
     		edittype="select" 
     		editoptions="{ dataUrl : '%{selecturl}' }"
     		/>
-    	<sj:gridColumn name="city" index="city" title="City" sortable="true" editable="true" edittype="text"/>
+    	<sj:gridColumn 
+    		name="city" 
+    		index="city" 
+    		title="City" 
+    		sortable="true" 
+    		search="true"
+    		searchoptions="{sopt:['eq','ne','bw','cn']}"
+    		editable="true" 
+    		edittype="text"/>
     	<sj:gridColumn 	
     		name="creditlimit" 
     		index="creditlimit" 
@@ -64,19 +114,24 @@
     					number: true, 
     					required: true, 
     					minValue : 100.0, 
-    					maxValue : 10000.0
+    					maxValue : 1000000.0
     				}" 
     		formatter="currency" 
-    		sortable="true"
+    		sortable="true" 
+    		search="true"
+    		searchoptions="{sopt:['eq','ne','lt','gt']}"
     		/>
     	<sj:gridColumn 
     		name="salesemployee.employeenumber" 
     		index="salesemployee.employeenumber" 
     		title="Employee" 
     		formatter="showlink"
-    		formatoptions="{ baseLinkUrl : '', showAction : '%{empurl}', addParam : '&action=show', target : '_new' }"
+    		formatoptions="{ baseLinkUrl : '%{empurl}', showAction : '', addParam : '&action=show', target : '_new' }"
     		sortable="false"
     		search="false"
     		cssStyle="text-decoration: underline;"
+    		sortable="true" 
+    		search="true"
+    		searchoptions="{sopt:['eq','ne','lt','gt']}"
     		/>
     </sj:grid>
