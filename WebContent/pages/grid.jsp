@@ -134,8 +134,6 @@
     		title="Employee" 
     		formatter="showlink"
     		formatoptions="{ baseLinkUrl : '%{empurl}', target : '_new' }"
-    		sortable="false"
-    		search="false"
     		cssStyle="text-decoration: underline;"
     		sortable="true" 
     		search="true"

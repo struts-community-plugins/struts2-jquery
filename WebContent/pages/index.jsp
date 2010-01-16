@@ -42,7 +42,8 @@
       <div id="nav">
         <div class="hlist ui-widget-header">
           <ul>
-            <li class="ui-widget-header ui-state-active"><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid</sj:a></li>
+            <li class="ui-widget-header ui-state-active"><s:url id="urlgrid" action="grid" /><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid (Editable)</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlgridsubgrid" action="grid-subgrid" /><sj:a id="gridsubgridlink" href="%{urlgridsubgrid}" targets="main">Grid with Subgrid</sj:a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/">jQuery Plugin</a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/full-hibernate-plugin-for-struts2/">Full Hibernate Plugin</a></li>
           </ul>
