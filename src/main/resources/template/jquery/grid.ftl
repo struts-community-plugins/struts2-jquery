@@ -18,6 +18,7 @@
  * under the License.
  */
 -->
+<#if !parameters.subGrid?default(false)>
 <table id="${parameters.id?html}" class="scroll" cellpadding="0" cellspacing="0"
 <#if parameters.cssStyle?if_exists != "">
  style="${parameters.cssStyle?html}"<#rt/>
@@ -37,10 +38,23 @@
 <#if parameters.navigator?default(false)>
 <div id="${parameters.id?html}_navigator"></div>
 </#if>
+</#if>
 
+<#if parameters.subGrid?default(false)>
+	options_${parameters.parentGrid?html}.subGrid = true;
+	<#if parameters.subGridUrl?if_exists != "">
+	options_${parameters.parentGrid?html}.subGridUrl = "${parameters.subGridUrl?string}";
+	</#if>
+	<#if parameters.subGridWidth?if_exists != "">
+	options_${parameters.parentGrid?html}.subGridWidth = "${parameters.subGridWidth?html}";
+	</#if>
+	var options_${parameters.id?html}_colmapping = new Array();
+	var options_${parameters.id?html}_colwidth = new Array();
+	var options_${parameters.id?html}_colalign = new Array();
+<#else>
 <script type='text/javascript'>
 $(document).ready(function () { 
 	var options_${parameters.id?html} = {};
-	var options_${parameters.id?html}_colnames = new Array();
 	var options_${parameters.id?html}_colmodels = new Array();
-	
+</#if>
+	var options_${parameters.id?html}_colnames = new Array();

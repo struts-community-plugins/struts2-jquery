@@ -19,6 +19,15 @@
             <name>Johannes Geppert</name>
             <url>http://www.jgeppert.com</url>
         </developer>
+        <developer>
+            <id>jyoshiriro</id>
+            <name>Jose Yoshiriro</name>
+            <url>http://jyoshiriro.blogspot.com/</url>
+        </developer>
+        <developer>
+            <id>rene.gielen</id>
+            <name>Rene Gielen</name>
+        </developer>
     </developers>
     <licenses>
         <license>

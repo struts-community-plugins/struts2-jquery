@@ -18,6 +18,7 @@
  * under the License.
  */
 -->
+<#if !parameters.subGrid?default(false)>
 	options_${parameters.id?html}.datatype = "${parameters.dataType?default('json')}";
   <#if parameters.href?exists>
 	options_${parameters.id?html}.url = "${parameters.href?string}";
@@ -196,3 +197,10 @@
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
  });  
 </script>
+<#else>
+	options_${parameters.parentGrid?html}.subGridModel = new Array();
+	options_${parameters.parentGrid?html}.subGridModel.name = options_${parameters.id?html}_colnames;
+	options_${parameters.parentGrid?html}.subGridModel.align = options_${parameters.id?html}_colalign;
+	options_${parameters.parentGrid?html}.subGridModel.width = options_${parameters.id?html}_colwidth;
+	options_${parameters.parentGrid?html}.subGridModel.mapping = options_${parameters.id?html}_colmapping;
+</#if>
