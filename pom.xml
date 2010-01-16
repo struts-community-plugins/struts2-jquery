@@ -44,10 +44,6 @@
             <name>Struts 2 jQuery Plugin Snapshots and Test Builds Repository</name>
             <url>svn:https://struts2-jquery.googlecode.com/svn/maven/snapshots</url>
         </snapshotRepository>
-        <site>
-            <id>apache-site</id>
-            <url>scp://people.apache.org/www/struts.apache.org/2.x/</url>
-        </site>
     </distributionManagement>
     <build>
         <extensions>
