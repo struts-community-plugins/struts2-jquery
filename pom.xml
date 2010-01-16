@@ -7,8 +7,7 @@
     <version>1.8.2-SNAPSHOT</version>
     <name>Struts 2 jQuery Plugin</name>
     <url>http://code.google.com/p/struts2-jquery</url>
-    <description>A Plugin for the popular Java web framework Struts2 to provide AJAX functionality and UI Widgets based
-        on the jQuery Javascript framework.
+    <description>A Plugin for the popular Java web framework Struts2 to provide AJAX functionality and UI Widgets based on the jQuery Javascript framework.
     </description>
     <issueManagement>
         <system>Google Code</system>
@@ -152,8 +151,7 @@
         <!-- JSP API -->
 
         <!-- struts-annotations must be in compile scope for maven-apt-plugin to
-function correctly. Marking it optional to exclude it from transitive dependency resolution -->
-
+             function correctly. Marking it optional to exclude it from transitive dependency resolution -->
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-core</artifactId>
