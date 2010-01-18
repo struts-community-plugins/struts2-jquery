@@ -30,196 +30,188 @@ import com.jgeppert.struts2.jquery.grid.showcase.model.Orderdetails;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Result(type = "json")
-public class JsonOrderdetailsAction extends ActionSupport
-{
+public class JsonOrderdetailsAction extends ActionSupport {
 
-	private static final long	serialVersionUID	= 1547264277068533593L;
-	private static final Log	log					= LogFactory.getLog(JsonOrderdetailsAction.class);
+  private static final long  serialVersionUID = 1547264277068533593L;
+  private static final Log   log              = LogFactory.getLog(JsonOrderdetailsAction.class);
 
-	private Integer				id;
+  private Integer            id;
 
-	// Your result List
-	private List<Orderdetails>	gridModel;
+  // Your result List
+  private List<Orderdetails> gridModel;
 
-	// get how many rows we want to have into the grid - rowNum attribute in the
-	// grid
-	private Integer				rows				= 0;
+  // get how many rows we want to have into the grid - rowNum attribute in the
+  // grid
+  private Integer            rows             = 0;
 
-	// Get the requested page. By default grid sets this to 1.
-	private Integer				page				= 0;
+  // Get the requested page. By default grid sets this to 1.
+  private Integer            page             = 0;
 
-	// sorting order - asc or desc
-	private String				sord				= "asc";
+  // sorting order - asc or desc
+  private String             sord             = "asc";
 
-	// get index row - i.e. user click to sort.
-	private String				sidx;
+  // get index row - i.e. user click to sort.
+  private String             sidx;
 
-	// Search Field
-	private String				searchField;
+  // Your Total Pages
+  private Integer            total            = 0;
 
-	// The Search String
-	private String				searchString;
+  // All Records
+  private Integer            records          = 0;
 
-	// he Search Operation
-	// ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']
-	private String				searchOper;
+  private OrderdetailsDao    orderdetailsDao  = new OrderdetailsDao();
 
-	// Your Total Pages
-	private Integer				total				= 0;
+  public String execute()
+  {
+    log.debug("Details for Order : " + id);
 
-	// All Records
-	private Integer				records				= 0;
+    // Calcalate until rows ware selected
+    int to = (rows * page);
 
-	private OrderdetailsDao		orderdetailsDao		= new OrderdetailsDao();
+    // Criteria to Build SQL
 
-	public String execute() {
-		log.debug("Page " + getPage() + " Rows " + getRows() + " Sorting Order " + getSord() + " Index Row :" + getSidx());
-		log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
+    if (id != null) gridModel = orderdetailsDao.findByOrder(id);
 
-		// Calcalate until rows ware selected
-		int to = (rows * page);
+    records = gridModel.size();
 
-		// Criteria to Build SQL
+    // Set to = max rows
+    if (to > records) to = records;
 
-		if (id != null) gridModel = orderdetailsDao.findByOrder(id);
+    // Calculate total Pages
+    total = (int) Math.ceil((double) records / (double) rows);
 
-		records = gridModel.size();
+    return SUCCESS;
+  }
 
-		// Set to = max rows
-		if (to > records) to = records;
+  public String getJSON()
+  {
+    return execute();
+  }
 
-		// Calculate total Pages
-		total = (int) Math.ceil((double) records / (double) rows);
+  /**
+   * @return how many rows we want to have into the grid
+   */
+  public Integer getRows()
+  {
+    return rows;
+  }
 
-		return SUCCESS;
-	}
+  /**
+   * @param rows
+   *          how many rows we want to have into the grid
+   */
+  public void setRows(Integer rows)
+  {
+    this.rows = rows;
+  }
 
-	public String getJSON() {
-		return execute();
-	}
+  /**
+   * @return current page of the query
+   */
+  public Integer getPage()
+  {
+    return page;
+  }
 
-	/**
-	 * @return how many rows we want to have into the grid
-	 */
-	public Integer getRows() {
-		return rows;
-	}
+  /**
+   * @param page
+   *          current page of the query
+   */
+  public void setPage(Integer page)
+  {
+    this.page = page;
+  }
 
-	/**
-	 * @param rows
-	 *            how many rows we want to have into the grid
-	 */
-	public void setRows(Integer rows) {
-		this.rows = rows;
-	}
+  /**
+   * @return total pages for the query
+   */
+  public Integer getTotal()
+  {
+    return total;
+  }
 
-	/**
-	 * @return current page of the query
-	 */
-	public Integer getPage() {
-		return page;
-	}
+  /**
+   * @param total
+   *          total pages for the query
+   */
+  public void setTotal(Integer total)
+  {
+    this.total = total;
+  }
 
-	/**
-	 * @param page
-	 *            current page of the query
-	 */
-	public void setPage(Integer page) {
-		this.page = page;
-	}
+  /**
+   * @return total number of records for the query. e.g. select count(*) from
+   *         table
+   */
+  public Integer getRecords()
+  {
+    return records;
+  }
 
-	/**
-	 * @return total pages for the query
-	 */
-	public Integer getTotal() {
-		return total;
-	}
+  /**
+   * @param record
+   *          total number of records for the query. e.g. select count(*) from
+   *          table
+   */
+  public void setRecords(Integer records)
+  {
 
-	/**
-	 * @param total
-	 *            total pages for the query
-	 */
-	public void setTotal(Integer total) {
-		this.total = total;
-	}
+    this.records = records;
 
-	/**
-	 * @return total number of records for the query. e.g. select count(*) from
-	 *         table
-	 */
-	public Integer getRecords() {
-		return records;
-	}
+    if (this.records > 0 && this.rows > 0)
+    {
+      this.total = (int) Math.ceil((double) this.records / (double) this.rows);
+    }
+    else
+    {
+      this.total = 0;
+    }
+  }
 
-	/**
-	 * @param record
-	 *            total number of records for the query. e.g. select count(*)
-	 *            from table
-	 */
-	public void setRecords(Integer records) {
+  /**
+   * @return an collection that contains the actual data
+   */
+  public List<Orderdetails> getGridModel()
+  {
+    return gridModel;
+  }
 
-		this.records = records;
+  /**
+   * @return sorting order
+   */
+  public String getSord()
+  {
+    return sord;
+  }
 
-		if (this.records > 0 && this.rows > 0)
-		{
-			this.total = (int) Math.ceil((double) this.records / (double) this.rows);
-		}
-		else
-		{
-			this.total = 0;
-		}
-	}
+  /**
+   * @param sord
+   *          sorting order
+   */
+  public void setSord(String sord)
+  {
+    this.sord = sord;
+  }
 
-	/**
-	 * @return an collection that contains the actual data
-	 */
-	public List<Orderdetails> getGridModel() {
-		return gridModel;
-	}
+  /**
+   * @return get index row - i.e. user click to sort.
+   */
+  public String getSidx()
+  {
+    return sidx;
+  }
 
-	/**
-	 * @return sorting order
-	 */
-	public String getSord() {
-		return sord;
-	}
+  /**
+   * @param sidx
+   *          get index row - i.e. user click to sort.
+   */
+  public void setSidx(String sidx)
+  {
+    this.sidx = sidx;
+  }
 
-	/**
-	 * @param sord
-	 *            sorting order
-	 */
-	public void setSord(String sord) {
-		this.sord = sord;
-	}
-
-	/**
-	 * @return get index row - i.e. user click to sort.
-	 */
-	public String getSidx() {
-		return sidx;
-	}
-
-	/**
-	 * @param sidx
-	 *            get index row - i.e. user click to sort.
-	 */
-	public void setSidx(String sidx) {
-		this.sidx = sidx;
-	}
-
-	public void setSearchField(String searchField) {
-		this.searchField = searchField;
-	}
-
-	public void setSearchString(String searchString) {
-		this.searchString = searchString;
-	}
-
-	public void setSearchOper(String searchOper) {
-		this.searchOper = searchOper;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  public void setId(Integer id)
+  {
+    this.id = id;
+  }
 }

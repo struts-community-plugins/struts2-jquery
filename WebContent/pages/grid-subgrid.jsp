@@ -25,15 +25,15 @@
     	rowList="10,15,20"
     	rowNum="15"
     	viewrecords="true"
+    	
     >
 	    <sj:grid 
 	    	id="orderssubgridtable" 
-	    	caption="Orderdetails" 
-	    	subGrid="true"
 	    	subGridUrl="%{orderdetailsurl}"
 	    	gridModel="gridModel"
+	    	rowNum="-1"
 	    >
-	    	<sj:gridColumn name="id.productcode" title="Code" />
+	    	<sj:gridColumn name="productcode" title="Code" />
 	    	<sj:gridColumn name="quantityordered" title="Quantity" />
 	    	<sj:gridColumn name="priceeach" title="Price" />
 	    </sj:grid>

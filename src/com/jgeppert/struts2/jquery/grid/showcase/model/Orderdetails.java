@@ -6,7 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
+import org.apache.struts2.json.annotations.JSON;
 
 @Entity
 @Table(name = "ORDERDETAILS", schema = "CLASSICMODELS", uniqueConstraints = @UniqueConstraint(columnNames = {
@@ -15,10 +18,10 @@ import javax.persistence.UniqueConstraint;
 public class Orderdetails implements java.io.Serializable {
 
   private static final long serialVersionUID = 8579786902541290122L;
-  private OrderdetailsId id;
-  private Integer quantityordered;
-  private Double  priceeach;
-  private Short   orderlinenumber;
+  private OrderdetailsId    id;
+  private Integer           quantityordered;
+  private Double            priceeach;
+  private Short             orderlinenumber;
 
   public Orderdetails() {
   }
@@ -34,10 +37,10 @@ public class Orderdetails implements java.io.Serializable {
     this.orderlinenumber = orderlinenumber;
   }
 
+  @JSON(serialize = false)
   @EmbeddedId
   @AttributeOverrides( {
-      @AttributeOverride(name = "order", column = @Column(name = "ORDERNUMBER")), 
-      @AttributeOverride(name = "productcode", column = @Column(name = "PRODUCTCODE", length = 15))
+      @AttributeOverride(name = "order", column = @Column(name = "ORDERNUMBER")), @AttributeOverride(name = "productcode", column = @Column(name = "PRODUCTCODE", length = 15))
   })
   public OrderdetailsId getId()
   {
@@ -82,4 +85,10 @@ public class Orderdetails implements java.io.Serializable {
     this.orderlinenumber = orderlinenumber;
   }
 
+  @Transient
+  public String getProductcode()
+  {
+    if (this.id != null) return this.id.getProductcode();
+    else return "";
+  }
 }

@@ -16,14 +16,16 @@
         &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
     </p>
     <p>
-		<strong>The Databese in this Showcase is per default read-only!</strong><br/>
-		Make Samples editable with following Steps:
+		<strong>The Database in this Showcase is per default read-only!</strong><br/>
+		Make Samples editable with following <sj:a id="openStepsDialog" openDialog="readWriteSteps" cssStyle="font-weight: bold; text-decoration: underline;">Steps</sj:a>.
+		<sj:dialog id="readWriteSteps" modal="true" autoOpen="false" width="600">
 		<ol>
 			<li>Copy BirtSample.jar from the WEB-INF/lib folder to your Harddrive (e.g. C:\)</li>
 			<li>Extract BirtSample.jar to C:\BirtSample)</li>
 			<li>Edit WEB-INF/classes/hibernate.cfg.xml</li>
 			<li>&lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:derby:directory:C:/BirtSample/BirtSample&lt;/property&gt;</li>
 		</ol>
+		</sj:dialog>
     </p>
     <sj:grid 
     	id="customerstable" 
@@ -62,8 +64,7 @@
     		sortable="true" 
     		editable="true" 
     		edittype="text" 
-    		search="true"
-    		searchoptions="{sopt:['eq','ne','bw','cn']}"
+    		editrules="{ edithidden:false } "
     	/>
     	<sj:gridColumn 
     		name="contactlastname" 
@@ -71,8 +72,9 @@
     		title="Last Name" 
     		sortable="true" 
     		hidden="true" 
-    		search="true"
-    		searchoptions="{sopt:['eq','ne','bw','cn']}"
+    		editable="true" 
+    		edittype="text" 
+    		editrules="{ edithidden:false } "
     		/>
     	<sj:gridColumn 
     		name="contactfirstname" 
@@ -80,8 +82,9 @@
     		title="First Name" 
     		sortable="true" 
     		hidden="true" 
-    		search="true"
-    		searchoptions="{sopt:['eq','ne','bw','cn']}"
+    		editable="true" 
+    		edittype="text" 
+    		editrules="{ edithidden : false } "
     		/>
     	<sj:gridColumn 
     		name="addressLine1" 
