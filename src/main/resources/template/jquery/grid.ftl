@@ -41,20 +41,14 @@
 </#if>
 
 <#if parameters.subGrid?default(false)>
-	options_${parameters.parentGrid?html}.subGrid = true;
-	<#if parameters.subGridUrl?if_exists != "">
-	options_${parameters.parentGrid?html}.subGridUrl = "${parameters.subGridUrl?string}";
-	</#if>
+	options_${parameters.parentGrid?html}.subgrid = true;
 	<#if parameters.subGridWidth?if_exists != "">
 	options_${parameters.parentGrid?html}.subGridWidth = "${parameters.subGridWidth?html}";
 	</#if>
-	var options_${parameters.id?html}_colmapping = new Array();
-	var options_${parameters.id?html}_colwidth = new Array();
-	var options_${parameters.id?html}_colalign = new Array();
 <#else>
 <script type='text/javascript'>
 $(document).ready(function () { 
+</#if>
 	var options_${parameters.id?html} = {};
 	var options_${parameters.id?html}_colmodels = new Array();
-</#if>
 	var options_${parameters.id?html}_colnames = new Array();

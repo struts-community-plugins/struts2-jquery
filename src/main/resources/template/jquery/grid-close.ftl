@@ -18,7 +18,6 @@
  * under the License.
  */
 -->
-<#if !parameters.subGrid?default(false)>
 	options_${parameters.id?html}.datatype = "${parameters.dataType?default('json')}";
   <#if parameters.href?exists>
 	options_${parameters.id?html}.url = "${parameters.href?string}";
@@ -176,7 +175,6 @@
 
 	options_${parameters.id?html}.colNames = options_${parameters.id?html}_colnames;
 	options_${parameters.id?html}.colModel = options_${parameters.id?html}_colmodels;
-	options_${parameters.id?html}.gridview = true;
 	options_${parameters.id?html}.jsonReader = {};
   <#if parameters.gridModel?if_exists != "">
 	options_${parameters.id?html}.jsonReader.root = "${parameters.gridModel?html}";
@@ -194,13 +192,13 @@
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />
 
+<#if !parameters.subGrid?default(false)>
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
  });  
 </script>
 <#else>
-	options_${parameters.parentGrid?html}.subGridModel = new Array();
-	options_${parameters.parentGrid?html}.subGridModel.name = options_${parameters.id?html}_colnames;
-	options_${parameters.parentGrid?html}.subGridModel.align = options_${parameters.id?html}_colalign;
-	options_${parameters.parentGrid?html}.subGridModel.width = options_${parameters.id?html}_colwidth;
-	options_${parameters.parentGrid?html}.subGridModel.mapping = options_${parameters.id?html}_colmapping;
+	<#if parameters.subGridUrl?if_exists != "">
+	options_${parameters.id?html}.url = "${parameters.subGridUrl?string}";
+	</#if>
+	options_${parameters.parentGrid?html}.subgridoptions = options_${parameters.id?html};
 </#if>

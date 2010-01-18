@@ -1018,6 +1018,39 @@
 			params.loadComplete = pubCom($elem, options.onalwaystopics, options.oncompletetopics, null, null, options);
 			params.loadError = pubErr($elem, options.onalwaystopics, options.onerrortopics, options.errortext);
 
+			if(options.subgrid) {  
+				params.subGrid = true;
+				
+				// gridview can't be true when using the subgrid feature
+				params.gridview = false;
+				params.subGridRowExpanded = function(subgrid_id, row_id) {
+				       var subgrid_table_id = subgrid_id+"_table";
+				       var subgrid = $("#"+subgrid_id)
+				       var subgridhtml = "<table id='"+subgrid_table_id+"' class='scroll'></table>";
+					   if(options.subgridoptions.pager && options.subgridoptions.pager != "") {  
+						   subgridhtml = subgridhtml +"<div id='"+subgrid_id+"_pager'></div>";
+						   options.subgridoptions.pager = subgrid_id+"_pager";
+					   }
+					   if(options.subgridoptions.navigator && options.subgridoptions.navigator != "") {  
+						   	subgridhtml = subgridhtml +"<div id='"+subgrid_id+"_navigator'></div>";
+							options.subgridoptions.navigator = subgrid_id+"_navigator";
+					   }
+
+					   subgrid.html(subgridhtml);
+					   
+					   if(options.subgridoptions.url) {
+						   var to = options.subgridoptions.url.indexOf('?');
+						   if(to > 0)
+							   options.subgridoptions.url = options.subgridoptions.url.substring(0, to)
+						   options.subgridoptions.url = options.subgridoptions.url+"?id="+row_id;
+					   }
+					   $("#"+subgrid_table_id).jqGrid(options.subgridoptions);
+				};
+			}
+			else {
+				params.gridview = true;
+			}
+			
 			$elem.jqGrid(params);
 			if(options.navigator) {
 				var navparams = {};

@@ -20,7 +20,6 @@
 -->
 <#assign colName="${parameters.name?string?replace('.', '_')}">
 
-<#if !parameters.subGrid?default(false)>
 options_${parameters.grid?html}_colmodels_${colName} = {};
 options_${parameters.grid?html}_colmodels_${colName}.name = "${parameters.name?html}";
 options_${parameters.grid?html}_colmodels_${colName}.jsonmap = "${parameters.name?html}";
@@ -79,14 +78,3 @@ options_${parameters.grid?html}_colmodels_${colName}.searchoptions = ${parameter
 </#if>
 options_${parameters.grid?html}_colnames.push("${parameters.title?html}");
 options_${parameters.grid?html}_colmodels.push(options_${parameters.grid?html}_colmodels_${colName});
-<#else>
-<#-- Handle Subgrid Columns -->
-options_${parameters.grid?html}_colnames.push("${parameters.title?html}");
-options_${parameters.grid?html}_colmapping.push("${parameters.name?html}");
-<#if parameters.width?if_exists != "">
-options_${parameters.grid?html}_colwidth.push(${parameters.width?html});
-</#if>
-<#if parameters.align?if_exists != "">
-options_${parameters.grid?html}_colalign.push(${parameters.align?html});
-</#if>
-</#if>
