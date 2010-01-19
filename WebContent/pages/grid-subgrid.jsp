@@ -12,7 +12,7 @@
     </p>
     <sj:grid 
     	id="orderstable" 
-    	caption="Orders with Subgrid" 
+    	caption="Orders with Orderdetails Subgrid" 
     	dataType="json" 
     	href="%{ordersurl}" 
     	pager="true" 
@@ -32,10 +32,12 @@
 	    	subGridUrl="%{orderdetailsurl}"
 	    	gridModel="gridModel"
 	    	rowNum="-1"
+	    	footerrow="true"
+	    	userDataOnFooter="true"
 	    >
-	    	<sj:gridColumn name="productcode" title="Code" />
-	    	<sj:gridColumn name="quantityordered" title="Quantity" />
-	    	<sj:gridColumn name="priceeach" title="Price" />
+	    	<sj:gridColumn name="productname" title="Product" width="300"/>
+	    	<sj:gridColumn name="quantityordered" title="Quantity" formatter="integer" align="center"/>
+	    	<sj:gridColumn name="priceeach" title="Price" formatter="currency" align="right"/>
 	    </sj:grid>
     	<sj:gridColumn name="ordernumber" 
     		index="ordernumber" 

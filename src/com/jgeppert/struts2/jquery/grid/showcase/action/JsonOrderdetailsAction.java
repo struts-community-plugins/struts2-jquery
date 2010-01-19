@@ -19,7 +19,9 @@
 
 package com.jgeppert.struts2.jquery.grid.showcase.action;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -59,6 +61,9 @@ public class JsonOrderdetailsAction extends ActionSupport {
   // All Records
   private Integer            records          = 0;
 
+  // for Footerrow
+  Map<String, Object>        userdata         = new HashMap<String, Object>();
+
   private OrderdetailsDao    orderdetailsDao  = new OrderdetailsDao();
 
   public String execute()
@@ -71,6 +76,14 @@ public class JsonOrderdetailsAction extends ActionSupport {
     // Criteria to Build SQL
 
     if (id != null) gridModel = orderdetailsDao.findByOrder(id);
+
+    Double priceeach = 0.0;
+    for (Orderdetails od : gridModel)
+    {
+      priceeach += od.getPriceeach();
+    }
+    userdata.put("priceeach", priceeach);
+    userdata.put("productname", "Total :");
 
     records = gridModel.size();
 
@@ -213,5 +226,10 @@ public class JsonOrderdetailsAction extends ActionSupport {
   public void setId(Integer id)
   {
     this.id = id;
+  }
+
+  public Map<String, Object> getUserdata()
+  {
+    return userdata;
   }
 }

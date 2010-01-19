@@ -40,7 +40,7 @@ public class Orderdetails implements java.io.Serializable {
   @JSON(serialize = false)
   @EmbeddedId
   @AttributeOverrides( {
-      @AttributeOverride(name = "order", column = @Column(name = "ORDERNUMBER")), @AttributeOverride(name = "productcode", column = @Column(name = "PRODUCTCODE", length = 15))
+      @AttributeOverride(name = "order", column = @Column(name = "ORDERNUMBER")), @AttributeOverride(name = "product", column = @Column(name = "PRODUCTCODE", length = 15))
   })
   public OrderdetailsId getId()
   {
@@ -86,9 +86,9 @@ public class Orderdetails implements java.io.Serializable {
   }
 
   @Transient
-  public String getProductcode()
+  public String getProductname()
   {
-    if (this.id != null) return this.id.getProductcode();
+    if (this.id != null) return this.id.getProduct().getProductname();
     else return "";
   }
 }

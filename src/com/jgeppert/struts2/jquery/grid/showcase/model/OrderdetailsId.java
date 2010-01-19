@@ -1,6 +1,5 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -10,15 +9,15 @@ import javax.persistence.ManyToOne;
 public class OrderdetailsId implements java.io.Serializable {
 
   private static final long serialVersionUID = 4781499547402790067L;
-  private Orders order;
-  private String  productcode;
+  private Orders            order;
+  private Products          product;
 
   public OrderdetailsId() {
   }
 
-  public OrderdetailsId(Orders order, String productcode) {
+  public OrderdetailsId(Orders order, Products product) {
     this.order = order;
-    this.productcode = productcode;
+    this.product = product;
   }
 
   @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
@@ -33,15 +32,16 @@ public class OrderdetailsId implements java.io.Serializable {
     this.order = order;
   }
 
-  @Column(name = "PRODUCTCODE", length = 15)
-  public String getProductcode()
+  @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
+  @JoinColumn(name = "PRODUCTCODE", unique = false, nullable = false, insertable = true, updatable = true)
+  public Products getProduct()
   {
-    return this.productcode;
+    return product;
   }
 
-  public void setProductcode(String productcode)
+  public void setProduct(Products product)
   {
-    this.productcode = productcode;
+    this.product = product;
   }
 
   @Override
@@ -50,7 +50,7 @@ public class OrderdetailsId implements java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((order == null) ? 0 : order.hashCode());
-    result = prime * result + ((productcode == null) ? 0 : productcode.hashCode());
+    result = prime * result + ((product == null) ? 0 : product.hashCode());
     return result;
   }
 
@@ -66,11 +66,11 @@ public class OrderdetailsId implements java.io.Serializable {
       if (other.order != null) return false;
     }
     else if (!order.equals(other.order)) return false;
-    if (productcode == null)
+    if (product == null)
     {
-      if (other.productcode != null) return false;
+      if (other.product != null) return false;
     }
-    else if (!productcode.equals(other.productcode)) return false;
+    else if (!product.equals(other.product)) return false;
     return true;
   }
 
