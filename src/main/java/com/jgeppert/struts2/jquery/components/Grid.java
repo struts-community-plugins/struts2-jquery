@@ -91,6 +91,7 @@ public class Grid extends AbstractRemoteBean {
   protected String                      filter;
   protected String                      subGridWidth;
   protected String                      subGridUrl;
+  protected String                      userDataOnFooter;
 
   protected String                      onSelectRowTopics;
   protected String                      onPagingTopics;
@@ -169,6 +170,7 @@ public class Grid extends AbstractRemoteBean {
     if (rownumbers != null) addParameter("rownumbers", findValue(this.rownumbers, Boolean.class));
     if (scrollrows != null) addParameter("scrollrows", findValue(this.scrollrows, Boolean.class));
     if (filter != null) addParameter("filter", findValue(this.filter, Boolean.class));
+    if (userDataOnFooter != null) addParameter("userDataOnFooter", findValue(this.userDataOnFooter, Boolean.class));
 
     if (onSelectRowTopics != null) addParameter("onSelectRowTopics", findString(onSelectRowTopics));
     if (onCellSelectTopics != null) addParameter("onCellSelectTopics", findString(onCellSelectTopics));
@@ -457,6 +459,12 @@ public class Grid extends AbstractRemoteBean {
   public void setSubGridUrl(String subGridUrl)
   {
     this.subGridUrl = subGridUrl;
+  }
+
+  @StrutsTagAttribute(description = "When set to true we directly place the user data array userData at footer. The rules are as follow: If the userData array contain name which is equal to those of colModel then the value is placed in that column.If there are no such values nothing is palced. Note that if this option is used we use the current formatter options (if available) for that column.")
+  public void setUserDataOnFooter(String userDataOnFooter)
+  {
+    this.userDataOnFooter = userDataOnFooter;
   }
 
   @StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")

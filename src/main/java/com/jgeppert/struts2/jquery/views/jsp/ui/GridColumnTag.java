@@ -47,6 +47,7 @@ public class GridColumnTag extends AbstractRemoteTag {
   protected String          searchoptions;
   protected String          hidden;
   protected String          hidedlg;
+  protected String          align;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -75,6 +76,7 @@ public class GridColumnTag extends AbstractRemoteTag {
     gc.setSearchoptions(searchoptions);
     gc.setHidden(hidden);
     gc.setHidedlg(hidedlg);
+    gc.setAlign(align);
   }
 
   public void setName(String name)
@@ -160,6 +162,11 @@ public class GridColumnTag extends AbstractRemoteTag {
   public void setHidedlg(String hidedlg)
   {
     this.hidedlg = hidedlg;
+  }
+
+  public void setAlign(String align)
+  {
+    this.align = align;
   }
 
 }

@@ -77,6 +77,7 @@ public class GridTag extends AbstractRemoteTag {
   protected String          filter;
   protected String          subGridWidth;
   protected String          subGridUrl;
+  protected String          userDataOnFooter;
 
   protected String          onSelectRowTopics;
   protected String          onPagingTopics;
@@ -141,6 +142,7 @@ public class GridTag extends AbstractRemoteTag {
     grid.setOnCellSelectTopics(onCellSelectTopics);
     grid.setSubGridUrl(subGridUrl);
     grid.setSubGridWidth(subGridWidth);
+    grid.setUserDataOnFooter(userDataOnFooter);
   }
 
   public void setWidth(String width)
@@ -376,5 +378,10 @@ public class GridTag extends AbstractRemoteTag {
   public void setSubGridUrl(String subGridUrl)
   {
     this.subGridUrl = subGridUrl;
+  }
+
+  public void setUserDataOnFooter(String userDataOnFooter)
+  {
+    this.userDataOnFooter = userDataOnFooter;
   }
 }

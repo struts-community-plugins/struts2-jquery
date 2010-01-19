@@ -156,6 +156,9 @@
   <#if parameters.scrollrows?default(false)>
 	options_${parameters.id?html}.scrollrows = true;
   </#if>
+  <#if parameters.userDataOnFooter?default(false)>
+	options_${parameters.id?html}.userDataOnFooter = true;
+  </#if>
   <#if parameters.onSelectRowTopics?if_exists != "">
 	options_${parameters.id?html}.onselectrowtopics = "${parameters.onSelectRowTopics?html}";
   </#if>

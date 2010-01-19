@@ -44,6 +44,12 @@ options_${parameters.grid?html}_colmodels_${colName}.formatter = "${parameters.f
 <#if parameters.formatoptions?if_exists != "">
 options_${parameters.grid?html}_colmodels_${colName}.formatoptions = ${parameters.formatoptions?html};
 </#if>
+<#if parameters.align?if_exists != "">
+options_${parameters.grid?html}_colmodels_${colName}.align = "${parameters.align?html}";
+</#if>
+<#if parameters.cssClass?if_exists != "">
+options_${parameters.grid?html}_colmodels_${colName}.classes = "${parameters.cssClass?html}";
+</#if>
 <#if parameters.editable?default(false)>
 options_${parameters.grid?html}_colmodels_${colName}.editable = true;
 <#else>

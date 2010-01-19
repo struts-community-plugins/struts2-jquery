@@ -63,6 +63,7 @@ public class GridColumn extends AbstractRemoteBean {
   protected String              searchoptions;
   protected String              hidden;
   protected String              hidedlg;
+  protected String              align;
 
   public GridColumn(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -99,6 +100,7 @@ public class GridColumn extends AbstractRemoteBean {
     if (searchoptions != null) addParameter("searchoptions", findString(searchoptions));
     if (hidden != null) addParameter("hidden", findValue(this.hidden, Boolean.class));
     if (hidedlg != null) addParameter("hidedlg", findValue(this.hidedlg, Boolean.class));
+    if (align != null) addParameter("align", findString(align));
 
     Grid grid = (Grid) findAncestor(Grid.class);
     if (grid != null)
@@ -204,7 +206,7 @@ public class GridColumn extends AbstractRemoteBean {
     this.search = search;
   }
 
-  @StrutsTagAttribute(description = "Defines the search options used searching. e.g. {sopt:['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc'], defaultValue:'John Doe'}")
+  @StrutsTagAttribute(description = "Defines the search options used searching. e.g. {sopt:['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']}")
   public void setSearchoptions(String searchoptions)
   {
     this.searchoptions = searchoptions;
@@ -220,6 +222,12 @@ public class GridColumn extends AbstractRemoteBean {
   public void setHidedlg(String hidedlg)
   {
     this.hidedlg = hidedlg;
+  }
+
+  @StrutsTagAttribute(description = "Defines the alignment of the cell in the Body layer, not in header cell. Possible values: left, center, right., Default 'left'}")
+  public void setAlign(String align)
+  {
+    this.align = align;
   }
 
 }
