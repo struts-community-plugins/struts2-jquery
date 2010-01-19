@@ -91,6 +91,16 @@ color:#000;
 text-decoration:none;
 }
 
+td.link a {
+text-decoration: underline;
+}
+
+td.link a:hover {
+text-decoration: none;
+font-weight: bold;
+}
+
+
 h1 {
 font-size:16pt;
 }
