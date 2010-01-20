@@ -572,7 +572,7 @@
 			if(options.collapsible)	para.collapsible = true;
 			if(options.openonmouseover)	para.event = 'mouseover';
 			if(options.orientation)	para.orientation = options.orientation;
-			if(options.spinner)	para.spinner = options.spinner;
+			if(options.spinner !== 'undefined')	para.spinner = options.spinner;
 			if(options.selectedtab)	para.selected = parseInt(options.selectedtab);
 			if(options.oncompletetopics) para.ajaxOptions = { dataType:'html', complete:pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {}) };
 			else para.ajaxOptions = { dataType:'html' };

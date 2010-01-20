@@ -41,8 +41,12 @@ $(document).ready(function () {
   <#if parameters.cache?default(false)>
 	options_${parameters.id?html}.cache = true;
   </#if>
-  <#if parameters.spinner?if_exists != "">
+  <#if parameters.spinner?exists>
+	  <#if parameters.spinner?if_exists != "">
 	options_${parameters.id?html}.spinner = "${parameters.spinner?html}";
+	  <#else>
+	options_${parameters.id?html}.spinner = "";
+	  </#if>
   </#if>
   <#if parameters.disabledTabs?if_exists != "">
 	options_${parameters.id?html}.disabledtabs = "${parameters.disabledTabs?html}";
