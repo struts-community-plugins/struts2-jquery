@@ -38,8 +38,24 @@ options_${parameters.grid?html}_colmodels_${colName}.edittype = "${parameters.ed
 <#if parameters.editrules?if_exists != "">
 options_${parameters.grid?html}_colmodels_${colName}.editrules = ${parameters.editrules?html};
 </#if>
+<#if parameters.formoptions?if_exists != "">
+options_${parameters.grid?html}_colmodels_${colName}.formoptions = ${parameters.formoptions?html};
+</#if>
 <#if parameters.formatter?if_exists != "">
-options_${parameters.grid?html}_colmodels_${colName}.formatter = "${parameters.formatter?html}";
+	<#if parameters.formatter == "integer" 
+		|| parameters.formatter == "number" 
+		|| parameters.formatter == "currency" 
+		|| parameters.formatter == "date" 
+		|| parameters.formatter == "email" 
+		|| parameters.formatter == "link" 
+		|| parameters.formatter == "showlink" 
+		|| parameters.formatter == "checkbox" 
+		|| parameters.formatter == "select" 
+		>
+		options_${parameters.grid?html}_colmodels_${colName}.formatter = "${parameters.formatter?html}";
+	<#else>
+		options_${parameters.grid?html}_colmodels_${colName}.formatter = ${parameters.formatter?html};
+	</#if>
 </#if>
 <#if parameters.formatoptions?if_exists != "">
 options_${parameters.grid?html}_colmodels_${colName}.formatoptions = ${parameters.formatoptions?html};

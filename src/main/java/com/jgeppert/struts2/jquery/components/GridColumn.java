@@ -64,6 +64,7 @@ public class GridColumn extends AbstractRemoteBean {
   protected String              hidden;
   protected String              hidedlg;
   protected String              align;
+  protected String              formoptions;
 
   public GridColumn(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -101,6 +102,7 @@ public class GridColumn extends AbstractRemoteBean {
     if (hidden != null) addParameter("hidden", findValue(this.hidden, Boolean.class));
     if (hidedlg != null) addParameter("hidedlg", findValue(this.hidedlg, Boolean.class));
     if (align != null) addParameter("align", findString(align));
+    if (formoptions != null) addParameter("formoptions", findString(formoptions));
 
     Grid grid = (Grid) findAncestor(Grid.class);
     if (grid != null)
@@ -228,6 +230,12 @@ public class GridColumn extends AbstractRemoteBean {
   public void setAlign(String align)
   {
     this.align = align;
+  }
+
+  @StrutsTagAttribute(description = "Defines various options for form editing. e.g. { label:'My Label', elmprefix:'(*)', rowpos:1, colpos:2 }")
+  public void setFormoptions(String formoptions)
+  {
+    this.formoptions = formoptions;
   }
 
 }
