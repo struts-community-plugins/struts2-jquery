@@ -123,6 +123,7 @@
     		editable="true" 
     		edittype="select" 
     		editoptions="{ dataUrl : '%{selectcountrysurl}' }"
+    		formoptions="{label:'Select a Country'}"
     		/>
     	<sj:gridColumn 
     		name="city" 
@@ -163,5 +164,6 @@
     		editable="true"
     		edittype="select" 
     		editoptions="{ dataUrl : '%{selectemployeesurl}' }"
+    		formoptions="{label:'Select a Employee'}"
     		/>
     </sj:grid>
