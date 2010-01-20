@@ -576,7 +576,6 @@
 			if(options.selectedtab)	para.selected = parseInt(options.selectedtab);
 			if(options.oncompletetopics) para.ajaxOptions = { dataType:'html', complete:pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {}) };
 			else para.ajaxOptions = { dataType:'html' };
-//			para.ajaxOptions.complete = pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {});
 			if(options.onbeforetopics) para.show = pubTops($elem, options.onalwaystopics, options.onbeforetopics);
 			if(options.onchangetopics) para.select = pubTops($elem, options.onalwaystopics, options.onchangetopics);
 			if(options.onenabletopics) para.enable = pubTops($elem, options.onalwaystopics, options.onenabletopics);
@@ -584,7 +583,7 @@
 			if(options.onaddtopics) para.add = pubTops($elem, options.onalwaystopics, options.onaddtopics);
 			if(options.onremovetopics) para.remove = pubTops($elem, options.onalwaystopics, options.onremovetopics);
 			
-			$.each($('#'+options.id+' ul div'), function() {
+			$.each($('#'+options.id+' ul').children('div'), function() {
 				$(this).appendTo($elem);
 			});
 
