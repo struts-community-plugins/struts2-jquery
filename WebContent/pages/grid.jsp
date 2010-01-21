@@ -82,7 +82,6 @@
     		sortable="true" 
     		editable="true" 
     		edittype="text" 
-    		editrules="{ edithidden:false } "
     	/>
     	<sj:gridColumn 
     		name="contactlastname" 
@@ -92,7 +91,7 @@
     		hidden="true" 
     		editable="true" 
     		edittype="text" 
-    		editrules="{ edithidden:false } "
+    		editrules="{ edithidden : true } "
     		/>
     	<sj:gridColumn 
     		name="contactfirstname" 
@@ -102,7 +101,7 @@
     		hidden="true" 
     		editable="true" 
     		edittype="text" 
-    		editrules="{ edithidden : false } "
+    		editrules="{ edithidden : true } "
     		/>
     	<sj:gridColumn 
     		name="addressLine1" 

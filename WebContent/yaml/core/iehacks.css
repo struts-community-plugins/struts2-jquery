@@ -8,14 +8,14 @@
  * Don't make any changes in this file!
  * Your changes should be added to a separate patch-file.
  *
- * @copyright       Copyright 2005-2009, Dirk Jesse
+ * @copyright       Copyright 2005-2010, Dirk Jesse
  * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
  *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
  * @link            http://www.yaml.de
  * @package         yaml
- * @version         3.2
- * @revision        $Revision:426 $
- * @lastmodified    $Date:2009-10-21 21:12:11 +0200 (Mi, 21. Okt 2009) $
+ * @version         3.2.1
+ * @revision        $Revision: 454 $
+ * @lastmodified    $Date: 2010-01-01 17:31:10 +0100 (Fr, 01. Jan 2010) $
  * @appdef yaml
  */
 
@@ -75,26 +75,23 @@
    * @valid      yes
    */
 
-  body,
-  #main { position:relative; }
+  body, #main { position:relative; }
   * html body { position:static; }
 
   /*------------------------------------------------------------------------------------------------------*/
 
   /**
-   * (en) Clearfix Method for containing floats in IE
+   * (en) Clearfix adjustents for containing floats in IE
    * (de) Clearfix-Anpassung für diverse IE-Versionen
    *
    * @workaround
-   * @see        http://www.456bereastreet.com/archive/200603/new_clearing_method_needed_for_ie7/#comment28
+   * @see        http://perishablepress.com/press/2009/12/06/new-clearfix-hack/
    * @affected   IE 5.x/Win, IE6, IE7
    * @css-for    IE 5.x/Win, IE6, IE7
    * @valid      yes
    */
 
-  .clearfix { display:inline-block; }  /* ... especial for IE7 */
-  .clearfix { display:block; }      /* ... für IE5,IE6,IE7 */
-  * html .clearfix { height:1%; }   /* ... für IE5 + IE6/Win | hasLayout aktivieren */
+  .clearfix { height:1%; }  /* hasLayout aktivieren */
 
   /*------------------------------------------------------------------------------------------------------*/
 

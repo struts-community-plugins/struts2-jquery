@@ -5,12 +5,12 @@
  * (en) Uniform design of standard content elements
  * (de) Einheitliche Standardformatierungen für die wichtigten Inhalts-Elemente
  *
- * @copyright       Copyright 2005-2009, Dirk Jesse
+ * @copyright       Copyright 2005-2010, Dirk Jesse
  * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
  *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
  * @link            http://www.yaml.de
  * @package         yaml
- * @version         3.2
+ * @version         3.2.1
  * @revision        $Revision:392 $
  * @lastmodified    $Date:2009-07-05 12:18:40 +0200 (So, 05. Jul 2009) $
  * @appdef yaml
@@ -125,9 +125,11 @@
   a { color:#4D87C7; background:transparent; text-decoration:none; }
   a:visited  { color:#036; }
 
-  a:focus,
+  /* (en) maximum constrast for tab focus - change with great care */
+  /* (en) Maximaler Kontrast für Tab Focus - Ändern Sie diese Regel mit Bedacht */
+  a:focus { text-decoration:underline; color:#000; background: #fff; outline: 3px #f93 solid; }
   a:hover,
-  a:active { color:#182E7A; text-decoration:underline; }
+  a:active { color:#182E7A; text-decoration:underline; outline: 0 none; }
 
   /* --- images (with optional captions) | Bilder (mit optionaler Bildunterschrift) ------------------ */
 
