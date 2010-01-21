@@ -18,28 +18,28 @@
  * under the License.
  */
 -->
-<li
+<script type='text/javascript'>
+	var options_tab_${parameters.id?html} = {};
   <#if parameters.id?if_exists != "">
-   id="${parameters.id?html}"<#rt/>
+	options_tab_${parameters.id?html}.id = "${parameters.id?html}";
   </#if>
   <#if parameters.cssStyle?if_exists != "">
-    style="${parameters.cssStyle?html}"<#rt/>
+	options_tab_${parameters.id?html}.cssstyle = "${parameters.cssStyle?html}";
   </#if>
   <#if parameters.cssClass?if_exists != "">
-    class="${parameters.cssClass?html}"<#rt/>
+	options_tab_${parameters.id?html}.cssclass = "${parameters.cssClass?html}";
   </#if>
->
-    <a
-<#if parameters.href?if_exists != "">
-     href="${parameters.href}"
-<#elseif parameters.target?if_exists != "" >
-     href="#${parameters.target}"
-<#else>
-     href="#"
-</#if>
-     title="${parameters.label?html}">
-        <span>
-        ${parameters.label?html}
-        </span>
-    </a>
-</li>
+  <#if parameters.href?if_exists != "">
+	options_tab_${parameters.id?html}.href = "${parameters.href?html}";
+  <#elseif parameters.target?if_exists != "" >
+	options_tab_${parameters.id?html}.href = "#${parameters.target?html}";
+  <#else>
+	options_tab_${parameters.id?html}.href = "#";
+  </#if>
+  <#if parameters.label?if_exists != "">
+	options_tab_${parameters.id?html}.label = "${parameters.label?html}";
+  </#if>
+  <#if parameters.parentTabbedPanel?if_exists != "">
+  options_${parameters.parentTabbedPanel?html}_tabs.push(options_tab_${parameters.id?html});
+  </#if>
+</script>

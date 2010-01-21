@@ -67,6 +67,11 @@ public class Tab extends AbstractRemoteBean {
   public void evaluateExtraParams()
   {
     super.evaluateExtraParams();
+    TabbedPanel parentTabbedPanel = (TabbedPanel) findAncestor(TabbedPanel.class);
+    if (parentTabbedPanel != null)
+    {
+      addParameter("parentTabbedPanel", findString(parentTabbedPanel.getId()));
+    }
 
     if (target != null) addParameter("target", findString(target));
   }

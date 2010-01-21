@@ -18,11 +18,11 @@
  * under the License.
  */
 -->
-</ul>
 </div>
 <script type='text/javascript'>
 $(document).ready(function () { 
 	var options_${parameters.id?html} = {};
+	options_${parameters.id?html}.tabs = options_${parameters.id?html}_tabs;
   <#if parameters.selectedTab?exists>
 	options_${parameters.id?html}.selectedtab = "${parameters.selectedTab?html}";
   </#if>

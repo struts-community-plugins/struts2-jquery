@@ -30,3 +30,8 @@
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 >
 <ul>
+</ul>
+<script type='text/javascript'>
+	var options_${parameters.id?html}_tabs = new Array();
+</script>
+	

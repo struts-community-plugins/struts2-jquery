@@ -583,9 +583,23 @@
 			if(options.onaddtopics) para.add = pubTops($elem, options.onalwaystopics, options.onaddtopics);
 			if(options.onremovetopics) para.remove = pubTops($elem, options.onalwaystopics, options.onremovetopics);
 			
-			$.each($('#'+options.id+' ul').children('div'), function() {
-				$(this).appendTo($elem);
-			});
+	    	
+			if(options.tabs) {
+				var tabStr = "";
+				for ( var i = 0; i < options.tabs.length; i++) {
+					var tab = options.tabs[i];
+					tabStr += "<li ";
+					if(tab.id) tabStr += "id='"+tab.id+"' ";
+					if(tab.cssstyle) tabStr += "style='"+tab.cssstyle+"' ";
+					if(tab.cssclass) tabStr += "class='"+tab.cssclass+"' ";
+					tabStr += "><a href='"+tab.href+"' ";
+					if(tab.label) tabStr += "title='"+tab.label+"' ";
+					tabStr += "><span>";
+					if(tab.label) tabStr += tab.label;
+					tabStr += "</span></a></li>";
+				}
+				$('#'+options.id+' ul').html(tabStr);
+			}
 
 	    	$elem.tabs(para);
 
