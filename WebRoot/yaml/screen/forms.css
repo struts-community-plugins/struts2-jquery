@@ -7,14 +7,14 @@
  *
  * @note            Many thanks to Ansgar Hein (http://www.anatom5.de) for contribution
  *
- * @copyright       Copyright 2005-2009, Dirk Jesse
+ * @copyright       Copyright 2005-2010, Dirk Jesse
  * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
  *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
  * @link            http://www.yaml.de
  * @package         yaml
- * @version         3.2
- * @revision        $Revision:392 $
- * @lastmodified    $Date:2009-07-05 12:18:40 +0200 (So, 05. Jul 2009) $
+ * @version         3.2.1
+ * @revision        $Revision: 455 $
+ * @lastmodified    $Date: 2010-01-01 17:33:05 +0100 (Fr, 01. Jan 2010) $
  */
 
 @media screen, projection
@@ -30,18 +30,20 @@
     background:#f4f4f4;
     border:1px #ddd solid;
     margin:0 0 1em 0;
-    padding:3px;
+    padding:10px;
   }
 
   .yform fieldset {
     border:1px #ddd solid;
     background:#fafafa;
     margin:0 0 1em 0;
-    padding:3px;
+    padding: 0.5em;
   }
   
   .yform legend {
-    font-size:125%; font-weight:normal; color:#000;
+    font-size:125%; 
+    font-weight:normal; 
+    color:#000;
   }
 
   .yform label {
@@ -58,29 +60,24 @@
   .yform .type-text input,
   .yform .type-text textarea,
   .yform .type-select select {
-    border:2px solid #ddd;
+    border:1px solid #ddd;
   }
 
   /* :hover and :focus status on form fields | Effekt zur Hervorhebung von Formularfeldern bei :hover oder :focus */
-  .yform div input:focus,
+  .yform div.type-text input:focus,
   .yform div select:focus,
   .yform div textarea:focus,
-  .yform div input:hover,
+  .yform div.type-text input:hover,
   .yform div select:hover,
   .yform div textarea:hover,
-  .yform div input:active,
+  .yform div.type-text input:active,
   .yform div select:active,
   .yform div textarea:active {
-    border:2px #a66 solid;
+    border:1px #a66 solid;
     background:#fff;
   }
 
-  /* avoid jumping checkboxes & radiobuttons in IE8 */
-  .yform div.type-check input:focus,
-  .yform div.type-check input:hover,
-  .yform div.type-check input:active { border:0 none; }
-
-  /* Styling of buttons | Gestaltung von Buttons */
+  /* Styling of custom styled buttons | Gestaltung von individuell gestalteten Buttons */
   .yform .type-button input {
     border-top:1px #ddd solid;
     border-left:1px #ddd solid;
@@ -88,8 +85,15 @@
     border-bottom:1px #444 solid;
     color:#000;
     background:#454545 url(images/button_gray.png) top left repeat-x;
-    padding:0.5em;
+    padding:5px 1em;
   }
+
+  .yform .type-button input[type=reset] { color:#300; background:#661717 url(images/button_red.png) top left repeat-x; }
+  .yform .type-button input[type=submit] { color:#330; background:#5e5607 url(images/button_yellow.png) top left repeat-x; }
+
+  /* optional button styling for IE6 using classes */
+  .yform .type-button input.reset { color:#300; background:#661717 url(images/button_red.png) top left repeat-x; }
+  .yform .type-button input.submit { color:#330; background:#5e5607 url(images/button_yellow.png) top left repeat-x; }
 
   /* :hover and :focus status on buttons | Effekt zur Hervorhebung von Schaltern bei :hover oder :focus */
   .yform div.type-button input:focus,
@@ -162,7 +166,7 @@
   .yform div.type-button {
     padding:3px 0em;  
   }
-
+  
   /* styling standard form elements with 'almost' equal flexible width | Gestaltung der einzelnen Formularelemente mit annähend gleicher Breite */
   .yform .type-text input,
   .yform .type-text textarea {
@@ -189,8 +193,9 @@
 
   /* Styling of buttons | Gestaltung von Buttons */
   .yform .type-button input {
-    width:auto;
     cursor:pointer;
+    overflow:visible;  /* Fixes IE7 auto-padding bug */
+    width:auto;
   }
 
   /* Styling of error-messages | Fehlermeldungen */
@@ -203,13 +208,18 @@
   .yform div.error label { color:#000; font-weight:bold; }
   .yform div.error .message { color:#800; }
 
+  /* avoid jumping checkboxes & radiobuttons in IE8 */
+  .yform div.type-check input:focus,
+  .yform div.type-check input:hover,
+  .yform div.type-check input:active { border:0 none; }
+
  /*------------------------------------------------------------------------------------------------------*/
 
   /* Indent Checkbox fields to match label-width | Checkboxen um den gleichen Wert einrücken, wie die Breite der labels */
 
   .full div.type-text input,
-  .full div.type-text textarea { width:95.5%; }
-  .full div.type-select select { width:97.0%; }
+  .full div.type-text textarea { width:95.5%; margin-right: -3px; }
+  .full div.type-select select { width:97.0%; margin-right: -3px; }
   
   /* width adjustments for IE 5.x & IE6 | Breitenanpassung für Internet Explorer 5.x und 6.0 */
   * html .full div.type-text input,
@@ -248,14 +258,17 @@
   .columnar div.type-check input { margin-left:30%; }
   .columnar div.error .message { margin-left:30%; }
 
+  .columnar fieldset div.type-button,
+  fieldset.columnar div.type-button { padding-left:30%; }
+
   .columnar div.type-text input,
-  .columnar div.type-text textarea { float:left; width:67.8%; }
-  .columnar div.type-select select { float:left; width:69.4%; }
+  .columnar div.type-text textarea { float:left; width:67.8%; margin-right: -3px; }
+  .columnar div.type-select select { float:left; width:69.4%; margin-right: -3px; }
   
   /* width adjustments for IE 5.x & IE6 | Breitenanpassung für Internet Explorer 5.x und 6.0 */
   * html .columnar div.type-text input,
-  * html .columnar div.type-text textarea { float:left; width:67.2%; }
-  * html .columnar div.type-select select { float:left; width:68.8%; }
+  * html .columnar div.type-text textarea { width:67.2%; }
+  * html .columnar div.type-select select { width:68.8%; }
   
  /*------------------------------------------------------------------------------------------------------*/
 

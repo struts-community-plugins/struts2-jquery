@@ -8,14 +8,14 @@
  * Don't make any changes in this file!
  * Your changes should be placed in any css-file in your own stylesheet folder.
  *
- * @copyright       Copyright 2005-2009, Dirk Jesse
+ * @copyright       Copyright 2005-2010, Dirk Jesse
  * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
  *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
  * @link            http://www.yaml.de
  * @package         yaml
- * @version         3.2
- * @revision        $Revision:426 $
- * @lastmodified    $Date:2009-10-21 21:12:11 +0200 (Mi, 21. Okt 2009) $
+ * @version         3.2.1
+ * @revision        $Revision: 454 $
+ * @lastmodified    $Date: 2010-01-01 17:31:10 +0100 (Fr, 01. Jan 2010) $
  */
 
 @media all
@@ -105,8 +105,8 @@
   /* (de) Diese Angabe benötigt der Safari-Browser zwingend !! */
   .clearfix { display:block; }
 
-  /* (en) overflow method for clearing floats */
-  /* (de) Overflow-Methode zum Clearen der Float-Umgebungen */
+  /* (en) alternative solution to contain floats */
+  /* (de) Alternative Methode zum Einschließen von Float-Umgebungen */
   .floatbox { overflow:hidden; }
 
   /* (en) IE-Clearing:Only used in Internet Explorer, switched on in iehacks.css */
@@ -215,8 +215,8 @@
   /* (de) Alternative Klasse zur optionalen Unterstützung alter Mozilla/Netscape-Brower */
   .subcolumns_oldgecko { width:100%; float:left; }
 
-  .c20l, .c25l, .c33l, .c40l, .c38l, .c50l, .c60l, .c62l, .c66l, .c75l, .c80l {float:left; }
-  .c20r, .c25r, .c33r, .c40r, .c38r, .c50r, .c60r, .c66r, .c62r, .c75r, .c80r {float:right; margin-left:-5px; }
+  .c20l, .c25l, .c33l, .c40l, .c38l, .c50l, .c60l, .c62l, .c66l, .c75l, .c80l { float:left; }
+  .c20r, .c25r, .c33r, .c40r, .c38r, .c50r, .c60r, .c66r, .c62r, .c75r, .c80r { float:right; margin-left:-5px; }
 
   .c20l, .c20r { width:20%; }
   .c40l, .c40r { width:40%; }
@@ -260,8 +260,8 @@
 
   .subcolumns > div,
   .floatbox { 
-    display:table;
     overflow:visible; 
+    display:table;
   } 
 
   /* (en) make .print class visible */
