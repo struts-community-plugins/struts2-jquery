@@ -22,9 +22,9 @@ package com.jgeppert.struts2.jquery.views.velocity.components;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Anchor;
 import org.apache.struts2.components.Component;
 
+import com.jgeppert.struts2.jquery.components.Anchor;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**

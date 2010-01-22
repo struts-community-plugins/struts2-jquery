@@ -90,12 +90,13 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button")
 public class Submit extends AbstractFormElement {
 
-  private static final Logger           LOG           = LoggerFactory.getLogger(Submit.class);
-  private final static transient Random RANDOM        = new Random();
+  private static final Logger           LOG            = LoggerFactory.getLogger(Submit.class);
+  private final static transient Random RANDOM         = new Random();
 
-  public static final String            OPEN_TEMPLATE = "submit";
-  public static final String            TEMPLATE      = "submit-close";
-  public static final String            JQUERYACTION  = "button";
+  public static final String            TEMPLATE       = "submit";
+  public static final String            TEMPLATE_CLOSE = "submit-close";
+  public static final String            JQUERYACTION   = "button";
+  public static final String            COMPONENT_NAME = Submit.class.getName();
 
   protected String                      src;
   protected String                      type;
@@ -109,15 +110,19 @@ public class Submit extends AbstractFormElement {
     super(stack, request, response);
   }
 
-  protected String getDefaultTemplate()
+  public String getDefaultOpenTemplate()
   {
     return TEMPLATE;
   }
 
-  @Override
-  public String getDefaultOpenTemplate()
+  protected String getDefaultTemplate()
   {
-    return OPEN_TEMPLATE;
+    return TEMPLATE_CLOSE;
+  }
+
+  public String getComponentName()
+  {
+    return COMPONENT_NAME;
   }
 
   public void evaluateParams()

@@ -29,9 +29,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public abstract class AbstractFormElement extends AbstractRemoteBean {
 
-  public static final String COMPONENT_NAME = AbstractFormElement.class.getName();
-
-  protected String           parentTheme;
+  protected String parentTheme;
 
   public AbstractFormElement(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);

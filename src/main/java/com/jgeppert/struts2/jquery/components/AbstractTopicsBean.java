@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.ClosingUIBean;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
-import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
@@ -63,19 +62,6 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
     if (onDisableTopics != null) addParameter("onDisableTopics", findString(onDisableTopics));
     if (onBlurTopics != null) addParameter("onBlurTopics", findString(onBlurTopics));
     if (onDisableTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
-  }
-
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
-
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
   }
 
   @StrutsTagAttribute(description = "Topics that are published before a load", type = "String", defaultValue = "")

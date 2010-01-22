@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
-import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
@@ -37,10 +36,12 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
   protected String href;          // The url to execute
   protected String formIds;       // the forms
   protected String validate;      // text to be displayed on load error
-  protected String indicator;     // Id of element that will be displayed during ajax requests
+  protected String indicator;     // Id of element that will be displayed
+                                   // during ajax requests
   protected String loadingText;   // The text to be displayed during load
   protected String errorText;     // text to be displayed on load error
-  protected String errorElementId; // the id of the element in to which to put the error text
+  protected String errorElementId; // the id of the element in to which to put
+                                   // the error text
 
   protected String dataType;
   protected String effect;
@@ -85,19 +86,6 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
     if (timeout != null) addParameter("timeout", findString(timeout));
     if (listenTopics != null) addParameter("listenTopics", findString(listenTopics));
 
-  }
-
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
-
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
   }
 
   @StrutsTagAttribute(name = "href", description = "The url to be use when this element is clicked", type = "String", defaultValue = "")

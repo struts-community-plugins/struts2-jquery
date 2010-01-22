@@ -64,27 +64,32 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 @StrutsTag(name = "a", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description = "Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates " + "its targets content")
 public class Anchor extends AbstractRemoteBean {
-  public static final String           OPEN_TEMPLATE  = "a";
-  public static final String           TEMPLATE       = "a-close";
+  public static final String           TEMPLATE       = "a";
+  public static final String           TEMPLATE_CLOSE = "a-close";
   public static final String           COMPONENT_NAME = Anchor.class.getName();
   public static final transient Random RANDOM         = new Random();
   public static final String           JQUERYACTION   = "anchor";
 
   protected String                     openDialog;
   protected String                     onClickTopics;
-  
+
   public Anchor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
 
   public String getDefaultOpenTemplate()
   {
-    return OPEN_TEMPLATE;
+    return TEMPLATE;
   }
 
   protected String getDefaultTemplate()
   {
-    return TEMPLATE;
+    return TEMPLATE_CLOSE;
+  }
+
+  public String getComponentName()
+  {
+    return COMPONENT_NAME;
   }
 
   public void evaluateExtraParams()
