@@ -28,7 +28,7 @@
     <sj:grid 
     	id="gridloadtable" 
     	loadonce="true"
-    	caption="Customer Examples (Local Data)" 
+    	caption="Customers Examples (Local Data)" 
     	href="%{remoteurl}" 
     	gridModel="gridModel"
     	rowNum="-1"
@@ -37,8 +37,8 @@
     	cellEdit="true"
     	cellurl="%{editcellurl}"
     >
-    	<sj:gridColumn name="id" index="id" key="true" title="ID" formatter="integer" sortable="true"/>
-    	<sj:gridColumn name="name" index="name" title="Company" sortable="true"/>
+    	<sj:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true"/>
+    	<sj:gridColumn name="name" index="name" title="Company" width="250" sortable="true"/>
     	<sj:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true" hidden="true"/>
     	<sj:gridColumn name="firstName" index="firstName" title="First Name" sortable="true" hidden="true"/>
     	<sj:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
@@ -47,6 +47,7 @@
     	<sj:gridColumn 	name="creditLimit" 
     					index="creditLimit" 
     					title="Credit Limit" 
+    					align="right"
     					editable="true" 
     					editrules="{
     									number: true, 

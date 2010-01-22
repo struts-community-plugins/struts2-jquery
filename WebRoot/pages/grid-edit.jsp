@@ -39,7 +39,7 @@
     <s:url id="editurl" action="edit-grid-entry"/> 
     <sj:grid 
     	id="gridedittable" 
-    	caption="Customer Examples (Editable)" 
+    	caption="Customers Examples (Editable)" 
     	dataType="json" 
     	href="%{remoteurl}" 
     	pager="true" 
@@ -59,14 +59,14 @@
     	onSelectRowTopics="rowselect"
     	viewrecords="true"
     >
-    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
-    	<sj:gridColumn name="name" index="name" title="Name" editable="true" edittype="text" sortable="true" search="false"/>
+    	<sj:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
+    	<sj:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true" search="false"/>
     	<sj:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" hidden="true"/>
     	<sj:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" hidden="true"/>
     	<sj:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" hidden="true"/>
     	<sj:gridColumn name="country" index="country" title="Country" editable="true" edittype="select" editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}" sortable="false" search="false"/>
     	<sj:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false" search="false"/>
-    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" editable="true" edittype="text" sortable="false" search="false"/>
+    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" editable="true" edittype="text" sortable="false" search="false"/>
     </sj:grid>
 	<br/>
     <sj:submit id="grid_edit_addbutton" value="Add Row" onClickTopics="rowadd" cssClass="buttonlink ui-state-default ui-corner-all"/>

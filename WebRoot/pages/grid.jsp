@@ -24,7 +24,7 @@
     <s:url id="remoteurl" action="jsontable"/> 
     <sj:grid 
     	id="gridtable" 
-    	caption="Customer Examples" 
+    	caption="Customers Examples" 
     	dataType="json" 
     	href="%{remoteurl}" 
     	pager="true" 
@@ -33,11 +33,11 @@
     	rowNum="15"
     	rownumbers="true"
     >
-    	<sj:gridColumn name="id" index="id" title="ID" formatter="integer" sortable="false"/>
-    	<sj:gridColumn name="name" index="name" title="Name" sortable="true"/>
+    	<sj:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
+    	<sj:gridColumn name="name" index="name" title="Name" width="250" sortable="true"/>
     	<sj:gridColumn name="country" index="country" title="Country" sortable="false"/>
     	<sj:gridColumn name="city" index="city" title="City" sortable="false"/>
-    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" formatter="currency" sortable="false"/>
+    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
     </sj:grid>
   </div>
   
