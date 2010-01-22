@@ -31,13 +31,19 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @see Submit
  */
 public class SubmitDirective extends JqueryAbstractDirective {
+
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Submit(stack, req, res);
+  }
+
   public String getBeanName()
   {
     return "submit";
   }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  public int getType()
   {
-    return new Submit(stack, req, res);
+    return BLOCK;
   }
 }

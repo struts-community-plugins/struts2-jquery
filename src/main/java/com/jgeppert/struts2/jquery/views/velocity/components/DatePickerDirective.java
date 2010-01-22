@@ -41,4 +41,9 @@ public class DatePickerDirective extends JqueryAbstractDirective {
   {
     return "datepicker";
   }
+
+  public int getType()
+  {
+    return BLOCK;
+  }
 }

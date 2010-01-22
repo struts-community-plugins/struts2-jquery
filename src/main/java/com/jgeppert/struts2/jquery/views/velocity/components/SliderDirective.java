@@ -41,4 +41,9 @@ public class SliderDirective extends JqueryAbstractDirective {
   {
     return "slider";
   }
+
+  public int getType()
+  {
+    return BLOCK;
+  }
 }
