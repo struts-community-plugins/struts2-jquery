@@ -10,7 +10,7 @@
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />    
-	<meta http-equiv="keywords" content="struts2,jquery,plugin,showcase" />
+	<meta http-equiv="keywords" content="struts2, jquery, jquery-ui, plugin, showcase, jqgrid" />
 	<meta http-equiv="description" content="A Showcase for the Struts2 jQuery Plugin" />
 	<link href="styles/layout.css" rel="stylesheet" type="text/css" />
 	<!--[if lte IE 7]>
