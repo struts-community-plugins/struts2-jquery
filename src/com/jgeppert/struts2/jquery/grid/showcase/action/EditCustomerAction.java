@@ -48,12 +48,7 @@ public class EditCustomerAction extends ActionSupport {
 
   public String execute() throws Exception
   {
-    log.debug("oper :" + oper);
-    log.debug("id :" + id);
-    log.debug("name :" + customername);
-    log.debug("country :" + country);
-    log.debug("city :" + city);
-    log.debug("creditLimit :" + creditlimit);
+    log.debug("Edit Customer :" + id);
 
     Customers customer;
 
