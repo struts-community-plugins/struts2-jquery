@@ -56,7 +56,7 @@ $(document).ready(function () {
 	options_${parameters.id?html}.position = "${parameters.position?html}";
   </#if>
   <#if parameters.buttons?if_exists != "">
-	options_${parameters.id?html}.buttons = "${parameters.buttons?html}";
+	options_${parameters.id?html}.buttons = ${parameters.buttons?string};
   </#if>
   <#if parameters.draggable?if_exists != "">
 	options_${parameters.id?html}.draggable = false;

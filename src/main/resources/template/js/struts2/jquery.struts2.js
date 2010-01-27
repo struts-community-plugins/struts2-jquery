@@ -1,5 +1,5 @@
 /*
- * jquery.struts2.min.js
+ * jquery.struts2.js
  *
  * Integration of jquery and jquery ui with struts 2 
  * for ajax, widget and interactions support in struts 2
@@ -72,7 +72,7 @@
 			}
 		},
 		
-		action: function($elem, options, loadHandler, type){
+		opendialog: function($elem, options){
 
 			if(options.opendialog) {
 				$elem.bind('click', function(event) {
@@ -80,6 +80,8 @@
 	    		    return false;
 				});
 			}
+		},
+		action: function($elem, options, loadHandler, type){
 			
 	    	//bind event to onClick topics
 			if(options.onclicktopics) {  
@@ -380,6 +382,8 @@
 			
 			var loadHandler = '_s2j_container_load';
 
+			this.opendialog($elem, options);
+			
 			if(options.formids) {
 		    	var formTopic = '_s2j_form_topic_' + options.id;
 				this.formsubmit($elem, options, formTopic);
@@ -423,6 +427,8 @@
 
 		button: function($elem, options){
 	    	var formTopic = '_s2j_form_topic_' + options.id;
+			
+			this.opendialog($elem, options);
 			
 			if(options.formids != undefined) {
 				this.formsubmit($elem, options, formTopic);
@@ -504,16 +510,10 @@
 			if(options.maxwidth) { params.maxWidth = options.maxwidth; }
 			if(options.minheight) { params.minHeight = options.minheight; }
 			if(options.minwidth) { params.minWidth = options.minwidth; }
+			if(options.buttons) { params.buttons = options.buttons; }
 			
 			params.title = options.title;
 			
-			if(options.buttons) {
-		        var buttonsStr = options.buttons;
-		        var buttons = window[buttonsStr];
-		        if (!buttons) {
-		        	params.buttons = eval ("( " + buttonsStr + " )" );
-		        }
-			}
 			
 			params.open = function(event, ui) {
 				var data = {};
