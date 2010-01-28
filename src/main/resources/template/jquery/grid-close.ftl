@@ -120,6 +120,9 @@
   <#if parameters.filter?default(false)>
 	options_${parameters.id?html}.filter = true;
   </#if>
+  <#if parameters.filter?default(false) && parameters.filterOptions?if_exists != "">
+	options_${parameters.id?html}.filteroptions = ${parameters.filterOptions?html};
+  </#if>
   <#if parameters.multiselect?default(false)>
 	options_${parameters.id?html}.multiselect = true;
   </#if>

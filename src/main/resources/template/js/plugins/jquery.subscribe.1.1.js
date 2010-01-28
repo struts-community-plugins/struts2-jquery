@@ -28,11 +28,13 @@
 
 (function($){
 
-	var _subscribe_topics = {},
-		_subscribe_handlers = {}, 
-		_subscribe_getDocumentWindow = function(document){
-			return document.parentWindow || document.defaultView;
-		};
+	_subscribe_topics = {};
+	_subscribe_handlers = {}; 
+	
+	_subscribe_getDocumentWindow = function(document){
+
+		return document.parentWindow || document.defaultView;
+	};
 	
 	$.fn.extend({
 		
@@ -98,8 +100,8 @@
 		 *  -data- (optional) is additional data that is passed to the event handler as event.data when the topic is published
 		 *
 		 * Note: Unexpected behavior can occur when a script in a embedded page (page loaded in div,tab etc.) subscribes a handler for a topic using
-		 *  the global jQuery subscribe ($.subscribe) or a no-id element but this subscribe plugin .js is not reloaded within that embedded page (for example, when
-		 *  script is included in container page) . In this case, if the embedded page is reloaded without reloading the container page (and plugin), the
+		 *  the jQuery subscribe ($.subscribe) or a no-id element but this subscribe plugin is not reloaded within that embedded page (for example, when
+		 *  script is included in containing page) . In this case, if the embedded page is reloaded without reloading the entire page (and plugin), the
 		 *  subscription could be made multiple times for the topic, which will call the handler multiple times each time the topic is published. 
 		 *  Code has been added to prevent this when the subscription is made using the non-element subscribe ($.subscribe()), which assures that only one
 		 *  subscription is made for a topic for a given window/frame. To prevent this from happening for an element subscription ($elem.subscribe()), make
@@ -235,11 +237,8 @@
 					this.isImmediatePropagationStopped = function(){
 						return true;
 					};
-
-					this.isPropagationStopped  = function(){
-						return true;
-					};
-					//(new $.Event).stopPropagation();
+					
+					(new $.Event).stopPropagation();
 					
 					if(this.originalEvent) {
 						

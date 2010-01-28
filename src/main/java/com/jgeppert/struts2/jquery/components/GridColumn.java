@@ -65,6 +65,8 @@ public class GridColumn extends AbstractRemoteBean {
   protected String              hidedlg;
   protected String              align;
   protected String              formoptions;
+  protected String              defval;
+  protected String              surl;
 
   public GridColumn(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -103,6 +105,8 @@ public class GridColumn extends AbstractRemoteBean {
     if (hidedlg != null) addParameter("hidedlg", findValue(this.hidedlg, Boolean.class));
     if (align != null) addParameter("align", findString(align));
     if (formoptions != null) addParameter("formoptions", findString(formoptions));
+    if (defval != null) addParameter("defval", findString(defval));
+    if (surl != null) addParameter("surl", findString(surl));
 
     Grid grid = (Grid) findAncestor(Grid.class);
     if (grid != null)
@@ -236,6 +240,18 @@ public class GridColumn extends AbstractRemoteBean {
   public void setFormoptions(String formoptions)
   {
     this.formoptions = formoptions;
+  }
+
+  @StrutsTagAttribute(description = "The default value for the search field. This option is used only in Custom Searching and will be set as initial search.")
+  public void setDefval(String defval)
+  {
+    this.defval = defval;
+  }
+
+  @StrutsTagAttribute(description = "Valid only in Custom Searching and edittype : 'select' and describes the url from where we can get already-constructed select element")
+  public void setSurl(String surl)
+  {
+    this.surl = surl;
   }
 
 }

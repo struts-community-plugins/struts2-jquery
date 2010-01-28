@@ -95,6 +95,12 @@ options_${parameters.grid?html}_colmodels_${colName}.hidedlg = true;
 <#if parameters.hidden?default(false)>
 options_${parameters.grid?html}_colmodels_${colName}.hidden = true;
 </#if>
+<#if parameters.defval?if_exists != "">
+options_${parameters.grid?html}_colmodels_${colName}.defval = "${parameters.defval?html}";
+</#if>
+<#if parameters.surl?if_exists != "">
+options_${parameters.grid?html}_colmodels_${colName}.surl = "${parameters.surl?string}";
+</#if>
 <#if parameters.searchoptions?if_exists != "">
 options_${parameters.grid?html}_colmodels_${colName}.searchoptions = ${parameters.searchoptions?html};
 </#if>

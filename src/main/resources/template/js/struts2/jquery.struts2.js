@@ -1076,7 +1076,9 @@
 				$elem.jqGrid('navGrid','#'+options.navigator,navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
 			}
 			if(options.filter) {
-				$elem.jqGrid('filterToolbar',{});
+				var fpara = {};
+				if(options.filteroptions) fpara = options.filteroptions;
+				$elem.jqGrid('filterToolbar', fpara);
 			}
 		}
 	};		

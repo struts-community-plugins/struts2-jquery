@@ -92,6 +92,7 @@ public class Grid extends AbstractRemoteBean {
   protected String                      subGridWidth;
   protected String                      subGridUrl;
   protected String                      userDataOnFooter;
+  protected String                      filterOptions;
 
   protected String                      onSelectRowTopics;
   protected String                      onPagingTopics;
@@ -170,6 +171,7 @@ public class Grid extends AbstractRemoteBean {
     if (rownumbers != null) addParameter("rownumbers", findValue(this.rownumbers, Boolean.class));
     if (scrollrows != null) addParameter("scrollrows", findValue(this.scrollrows, Boolean.class));
     if (filter != null) addParameter("filter", findValue(this.filter, Boolean.class));
+    if (filterOptions != null) addParameter("filterOptions", findString(filterOptions));
     if (userDataOnFooter != null) addParameter("userDataOnFooter", findValue(this.userDataOnFooter, Boolean.class));
 
     if (onSelectRowTopics != null) addParameter("onSelectRowTopics", findString(onSelectRowTopics));
@@ -495,5 +497,11 @@ public class Grid extends AbstractRemoteBean {
   public void setOnGridCompleteTopics(String onGridCompleteTopics)
   {
     this.onGridCompleteTopics = onGridCompleteTopics;
+  }
+
+  @StrutsTagAttribute(description = "Options for Filter Settings as JavaScript Object. e.g. { autosearch : false, formtype : vertical }")
+  public void setFilterOptions(String filterOptions)
+  {
+    this.filterOptions = filterOptions;
   }
 }
