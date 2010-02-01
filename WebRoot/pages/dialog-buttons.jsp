@@ -20,13 +20,13 @@
         A modal Dialog Dialog with Buttons.
     </p>
     <script type="text/javascript">
-      function okButton(){
+      function okButton() {
        alert('OK Button pressed!');
-     };
-     function cancelButton(){
+      }
+     function cancelButton() {
       alert('Cancel Button pressed!');
       $('#mybuttondialog').dialog('close');
-     };
+     }
     </script>        
     <sj:dialog 
     	id="mybuttondialog" 
