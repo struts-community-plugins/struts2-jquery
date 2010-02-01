@@ -39,26 +39,6 @@
 
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
     
-	<div class="code ui-widget-content ui-corner-all">
-	  <strong>Code:</strong>
-	  <pre>
-    &lt;strong&gt;Result Div :&lt;/strong&gt;
-	&lt;div id=&quot;formVelocityResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
-    
-	#sform(&quot;id=formvelocity&quot;  &quot;theme=simple&quot; &quot;action=echo&quot; &quot;cssClass=yform&quot;)
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-	            #stextfield(&quot;id=echo&quot; &quot;name=echo&quot; &quot;value=Hello World!!!&quot;)
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-                #sjsubmit( &quot;id=formvelocity_submit&quot; &quot;targets=formVelocityResult&quot; &quot;value=AJAX Submit&quot; &quot;formIds=formvelocity&quot; &quot;indicator=indicator&quot;) #end
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    #end
-	  </pre>
-	</div>
   </div>
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
