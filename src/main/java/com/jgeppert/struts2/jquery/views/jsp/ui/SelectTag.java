@@ -27,7 +27,7 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Select;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class SelectTag extends AbstractContainerTag {
+public class SelectTag extends AbstractFormElementTag {
 
   private static final long serialVersionUID = 3974875529913867071L;
   protected String          emptyOption;

@@ -25,6 +25,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.components.Form;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -88,7 +89,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * example8 -->
  * */
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button")
-public class Submit extends AbstractFormElement {
+public class Submit extends AbstractRemoteBean {
 
   private static final Logger           LOG            = LoggerFactory.getLogger(Submit.class);
   private final static transient Random RANDOM         = new Random();
@@ -105,6 +106,7 @@ public class Submit extends AbstractFormElement {
   protected String                      iframe;
   protected String                      onClickTopics;
   protected String                      openDialog;
+  protected String                      parentTheme;
 
   public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -164,6 +166,22 @@ public class Submit extends AbstractFormElement {
       this.id = "submit_" + String.valueOf(nextInt);
       addParameter("id", this.id);
     }
+
+    Form form = (Form) findAncestor(Form.class);
+    if (parentTheme != null)
+    {
+      addParameter("parentTheme", findString(parentTheme));
+    }
+    else if (form != null)
+    {
+      if (form != null) addParameter("parentTheme", form.getTheme());
+    }
+    else
+    {
+      addParameter("parentTheme", "simple");
+    }
+
+    if (form != null && (formIds == null || formIds.length() <= 0)) addParameter("formIds", form.getId());
   }
 
   @Override
@@ -260,5 +278,11 @@ public class Submit extends AbstractFormElement {
   public void setOpenDialog(String openDialog)
   {
     this.openDialog = openDialog;
+  }
+
+  @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
+  public void setParentTheme(String parentTheme)
+  {
+    this.parentTheme = parentTheme;
   }
 }

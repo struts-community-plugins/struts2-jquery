@@ -30,7 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * @see Submit
  */
-public class SubmitTag extends AbstractFormElementTag {
+public class SubmitTag extends AbstractRemoteTag {
 
   private static final long serialVersionUID = 2179281109958301343L;
 
@@ -41,6 +41,7 @@ public class SubmitTag extends AbstractFormElementTag {
   protected String          iframe;
   protected String          onClickTopics;
   protected String          openDialog;
+  protected String          parentTheme;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -59,6 +60,7 @@ public class SubmitTag extends AbstractFormElementTag {
     submit.setResetForm(resetForm);
     submit.setIframe(iframe);
     submit.setOpenDialog(openDialog);
+    submit.setParentTheme(parentTheme);
   }
 
   public void setOnClickTopics(String onClickTopics)
@@ -94,5 +96,10 @@ public class SubmitTag extends AbstractFormElementTag {
   public void setOpenDialog(String openDialog)
   {
     this.openDialog = openDialog;
+  }
+
+  public void setParentTheme(String parentTheme)
+  {
+    this.parentTheme = parentTheme;
   }
 }

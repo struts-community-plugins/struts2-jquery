@@ -28,17 +28,11 @@ import com.jgeppert.struts2.jquery.components.AbstractContainer;
 import com.jgeppert.struts2.jquery.components.Div;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public abstract class AbstractContainerTag extends AbstractFormElementTag implements ResizableTag, DraggableTag, DroppableTag, SelectableTag {
+public abstract class AbstractContainerTag extends AbstractRemoteTag implements ResizableTag, DraggableTag, DroppableTag, SelectableTag {
 
   private static final long serialVersionUID = 3370394928132899529L;
 
-  protected String          reloadTopics;                           // topics
-                                                                     // that
-                                                                     // will
-                                                                     // cause
-                                                                     // container
-                                                                     // to
-                                                                     // reload
+  protected String          reloadTopics;
   protected String          bindOn;
   protected String          events;
 
