@@ -18,10 +18,11 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#include "/${parameters.templateDir}/simple/div-close.ftl" />
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
+	var options_${escapedOptionId?html} = {};
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

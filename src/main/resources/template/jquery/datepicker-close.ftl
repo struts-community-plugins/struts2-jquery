@@ -18,83 +18,84 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
+	var options_${escapedOptionId?html} = {};
   <#if parameters.dayValue?if_exists != "">
-	options_${parameters.id?html}.day = "${parameters.dayValue?html}";
+	options_${escapedOptionId?html}.day = "${parameters.dayValue?html}";
   </#if>
   <#if parameters.monthValue?if_exists != "">
-	options_${parameters.id?html}.month = "${parameters.monthValue?html}";
+	options_${escapedOptionId?html}.month = "${parameters.monthValue?html}";
   </#if>
   <#if parameters.yearValue?if_exists != "">
-	options_${parameters.id?html}.year = "${parameters.yearValue?html}";
+	options_${escapedOptionId?html}.year = "${parameters.yearValue?html}";
   </#if>
   <#if parameters.showButtonPanel?default(false)>
-	options_${parameters.id?html}.showbuttonpanel = true;
+	options_${escapedOptionId?html}.showbuttonpanel = true;
   </#if>
   <#if parameters.buttonImageOnly?default(false)>
-	options_${parameters.id?html}.buttonimageonly = true;
+	options_${escapedOptionId?html}.buttonimageonly = true;
   </#if>
   <#if parameters.changeMonth?default(false)>
-	options_${parameters.id?html}.changemonth = true;
+	options_${escapedOptionId?html}.changemonth = true;
   </#if>
   <#if parameters.changeYear?default(false)>
-	options_${parameters.id?html}.changeyear = true;
+	options_${escapedOptionId?html}.changeyear = true;
   </#if>
   <#if parameters.showOn?if_exists != "">
-	options_${parameters.id?html}.showon = "${parameters.showOn?html}";
+	options_${escapedOptionId?html}.showon = "${parameters.showOn?html}";
   <#else>
-	options_${parameters.id?html}.showon = "both";
+	options_${escapedOptionId?html}.showon = "both";
   </#if>
   <#if parameters.buttonImage?if_exists != "">
-	options_${parameters.id?html}.buttonimage = "${parameters.buttonImage?html}";
+	options_${escapedOptionId?html}.buttonimage = "${parameters.buttonImage?html}";
   <#else>
     <#if parameters.buttonText?if_exists == "">
-	options_${parameters.id?html}.buttonimage = "${base}/struts/js/calendar.gif";
+	options_${escapedOptionId?html}.buttonimage = "${base}/struts/js/calendar.gif";
     </#if>
   </#if>
   <#if parameters.buttonText?if_exists != "">
-	options_${parameters.id?html}.buttontext = "${parameters.buttonText?html}";
+	options_${escapedOptionId?html}.buttontext = "${parameters.buttonText?html}";
   </#if>
   <#if parameters.duration?if_exists != "">
-	options_${parameters.id?html}.duration = "${parameters.duration?html}";
+	options_${escapedOptionId?html}.duration = "${parameters.duration?html}";
   </#if>
   <#if parameters.showAnim?if_exists != "">
-	options_${parameters.id?html}.showanim = "${parameters.showAnim?html}";
+	options_${escapedOptionId?html}.showanim = "${parameters.showAnim?html}";
   </#if>
   <#if parameters.firstDay?if_exists != "">
-	options_${parameters.id?html}.firstday = "${parameters.firstDay?html}";
+	options_${escapedOptionId?html}.firstday = "${parameters.firstDay?html}";
   </#if>
   <#if parameters.numberOfMonths?if_exists != "">
-	options_${parameters.id?html}.numberofmonths = "${parameters.numberOfMonths?html}";
+	options_${escapedOptionId?html}.numberofmonths = "${parameters.numberOfMonths?html}";
   </#if>
   <#if parameters.showOptions?if_exists != "">
-	options_${parameters.id?html}.showoptions = "${parameters.showOptions?html}";
+	options_${escapedOptionId?html}.showoptions = "${parameters.showOptions?html}";
   </#if>
   <#if parameters.yearRange?if_exists != "">
-	options_${parameters.id?html}.yearrange = "${parameters.yearRange?html}";
+	options_${escapedOptionId?html}.yearrange = "${parameters.yearRange?html}";
   </#if>
   <#if parameters.displayFormat?if_exists != "">
-	options_${parameters.id?html}.displayformat = "${parameters.displayFormat?html}";
+	options_${escapedOptionId?html}.displayformat = "${parameters.displayFormat?html}";
   </#if>
   <#if parameters.onBeforeShowDayTopics?if_exists != "">
- 	options_${parameters.id?html}.onbeforeshowdaytopics = "${parameters.onBeforeShowDayTopics?html}";
+ 	options_${escapedOptionId?html}.onbeforeshowdaytopics = "${parameters.onBeforeShowDayTopics?html}";
   </#if>
   <#if parameters.onChangeMonthYearTopics?if_exists != "">
- 	options_${parameters.id?html}.onchangemonthyeartopics = "${parameters.onChangeMonthYearTopics?html}";
+ 	options_${escapedOptionId?html}.onchangemonthyeartopics = "${parameters.onChangeMonthYearTopics?html}";
   </#if>
   <#if parameters.zindex?if_exists != "">
- 	options_${parameters.id?html}.zindex = ${parameters.zindex?html};
+ 	options_${escapedOptionId?html}.zindex = ${parameters.zindex?html};
   </#if>
   <#if parameters.appendText?if_exists != "">
-	options_${parameters.id?html}.appendtext = "${parameters.appendText?html}";
+	options_${escapedOptionId?html}.appendtext = "${parameters.appendText?html}";
   </#if>
   <#if parameters.maxDate?if_exists != "">
-	options_${parameters.id?html}.maxdate = "${parameters.maxDate?html}";
+	options_${escapedOptionId?html}.maxdate = "${parameters.maxDate?html}";
   </#if>
   <#if parameters.minDate?if_exists != "">
-	options_${parameters.id?html}.mindate = "${parameters.minDate?html}";
+	options_${escapedOptionId?html}.mindate = "${parameters.minDate?html}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

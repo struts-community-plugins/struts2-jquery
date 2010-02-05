@@ -18,9 +18,10 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.enableTopics?exists>
-	options_${parameters.id?html}.onenabletopics = "${parameters.onEnableTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.onenabletopics = "${parameters.onEnableTopics?html}";<#rt/>
   </#if>
   <#if parameters.disableTopics?exists>
-	options_${parameters.id?html}.ondisabletopics = "${parameters.onDisableTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.ondisabletopics = "${parameters.onDisableTopics?html}";<#rt/>
   </#if>

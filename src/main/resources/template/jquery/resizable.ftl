@@ -18,18 +18,19 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.resizable?default(false)>
-	options_${parameters.id?html}.resizable = true;<#rt/>
+	options_${escapedOptionId?html}.resizable = true;<#rt/>
    </#if>
   <#if parameters.resizableOptions?if_exists != "">
- 	options_${parameters.id?html}.resizableoptions = "${parameters.resizableOptions?html}";<#rt/>
+ 	options_${escapedOptionId?html}.resizableoptions = "${parameters.resizableOptions?html}";<#rt/>
    </#if>
   <#if parameters.resizableOnResizeTopics?if_exists != "">
-	options_${parameters.id?html}.resizableonresizetopics = "${parameters.resizableOnResizeTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.resizableonresizetopics = "${parameters.resizableOnResizeTopics?html}";<#rt/>
    </#if>
   <#if parameters.resizableOnStartTopics?if_exists != "">
-	options_${parameters.id?html}.resizableonstarttopics = "${parameters.resizableOnStartTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.resizableonstarttopics = "${parameters.resizableOnStartTopics?html}";<#rt/>
    </#if>
   <#if parameters.resizableOnStopTopics?if_exists != "">
-	options_${parameters.id?html}.resizableonstoptopics = "${parameters.resizableOnStopTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.resizableonstoptopics = "${parameters.resizableOnStopTopics?html}";<#rt/>
    </#if>

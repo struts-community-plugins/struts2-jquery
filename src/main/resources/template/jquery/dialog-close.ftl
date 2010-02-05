@@ -18,84 +18,85 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 </div>
 <script type='text/javascript'>
 $(document).ready(function () { 
 	var options_${parameters.id?html} = {};
   <#if parameters.height?if_exists != "">
-	options_${parameters.id?html}.height = ${parameters.height?html};
+	options_${escapedOptionId?html}.height = ${parameters.height?html};
   </#if>
   <#if parameters.width?if_exists != "">
-	options_${parameters.id?html}.width = ${parameters.width?html};
+	options_${escapedOptionId?html}.width = ${parameters.width?html};
   </#if>
    <#if parameters.maxHeight?if_exists != "">
-	options_${parameters.id?html}.maxheight = ${parameters.maxHeight?html};
+	options_${escapedOptionId?html}.maxheight = ${parameters.maxHeight?html};
   </#if>
   <#if parameters.maxWidth?if_exists != "">
-	options_${parameters.id?html}.maxwidth = ${parameters.maxWidth?html};
+	options_${escapedOptionId?html}.maxwidth = ${parameters.maxWidth?html};
   </#if>
    <#if parameters.minHeight?if_exists != "">
-	options_${parameters.id?html}.minheight = ${parameters.minHeight?html};
+	options_${escapedOptionId?html}.minheight = ${parameters.minHeight?html};
   </#if>
   <#if parameters.minWidth?if_exists != "">
-	options_${parameters.id?html}.minwidth = ${parameters.minWidth?html};
+	options_${escapedOptionId?html}.minwidth = ${parameters.minWidth?html};
   </#if>
   <#if parameters.zindex?if_exists != "">
-	options_${parameters.id?html}.zindex = ${parameters.zindex?html};
+	options_${escapedOptionId?html}.zindex = ${parameters.zindex?html};
   </#if>
   <#if parameters.title?if_exists != "">
-	options_${parameters.id?html}.title = "${parameters.title?html}";
+	options_${escapedOptionId?html}.title = "${parameters.title?html}";
   </#if>
   <#if parameters.showEffect?if_exists != "">
-	options_${parameters.id?html}.show = "${parameters.showEffect?html}";
+	options_${escapedOptionId?html}.show = "${parameters.showEffect?html}";
   </#if>
   <#if parameters.hideEffect?if_exists != "">
-	options_${parameters.id?html}.hide = "${parameters.hideEffect?html}";
+	options_${escapedOptionId?html}.hide = "${parameters.hideEffect?html}";
   </#if>
   <#if parameters.position?if_exists != "">
-	options_${parameters.id?html}.position = "${parameters.position?html}";
+	options_${escapedOptionId?html}.position = "${parameters.position?html}";
   </#if>
   <#if parameters.buttons?if_exists != "">
-	options_${parameters.id?html}.buttons = ${parameters.buttons?string};
+	options_${escapedOptionId?html}.buttons = ${parameters.buttons?string};
   </#if>
   <#if parameters.draggable?if_exists != "">
-	options_${parameters.id?html}.draggable = false;
+	options_${escapedOptionId?html}.draggable = false;
   <#else>
-	options_${parameters.id?html}.draggable = true;
+	options_${escapedOptionId?html}.draggable = true;
   </#if>
   <#if parameters.resizable?if_exists != "">
-	options_${parameters.id?html}.resizable = "${parameters.resizable?html}";
+	options_${escapedOptionId?html}.resizable = "${parameters.resizable?html}";
   </#if>
   <#if parameters.autoOpen?if_exists == "false">
-	options_${parameters.id?html}.autoopen = false;
+	options_${escapedOptionId?html}.autoopen = false;
   <#else>
-	options_${parameters.id?html}.autoopen = true;
+	options_${escapedOptionId?html}.autoopen = true;
   </#if>
 <#if parameters.modal?if_exists == "true" >
  <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">
 	<#if parameters.overlayColor?if_exists != "">
-	options_${parameters.id?html}.backgroundcolor = "${parameters.overlayColor?html}";
+	options_${escapedOptionId?html}.backgroundcolor = "${parameters.overlayColor?html}";
 	</#if>
 	<#if parameters.overlayOpacity?if_exists != "">
-	options_${parameters.id?html}.opacity = ${parameters.overlayOpacity?html};
+	options_${escapedOptionId?html}.opacity = ${parameters.overlayOpacity?html};
 	<#else>
 	opacity="0.7"<#rt/>
-	options_${parameters.id?html}.opacity = 0.7;
+	options_${escapedOptionId?html}.opacity = 0.7;
 	</#if>
   </#if>
-	options_${parameters.id?html}.modal = true;
+	options_${escapedOptionId?html}.modal = true;
 </#if>
   <#if parameters.onOpenTopics?if_exists != "">
-	options_${parameters.id?html}.onopentopics = "${parameters.onOpenTopics?html}";
+	options_${escapedOptionId?html}.onopentopics = "${parameters.onOpenTopics?html}";
   </#if>
   <#if parameters.onCloseTopics?if_exists != "">
-	options_${parameters.id?html}.onclosetopics = "${parameters.onCloseTopics?html}";
+	options_${escapedOptionId?html}.onclosetopics = "${parameters.onCloseTopics?html}";
   </#if>
   <#if parameters.onFocusTopics?if_exists != "">
-	options_${parameters.id?html}.onfocustopics = "${parameters.onFocusTopics?html}";
+	options_${escapedOptionId?html}.onfocustopics = "${parameters.onFocusTopics?html}";
   </#if>
   <#if parameters.onBeforeCloseTopics?if_exists != "">
-	options_${parameters.id?html}.onbeforeclosetopics = "${parameters.onBeforeCloseTopics?html}";
+	options_${escapedOptionId?html}.onbeforeclosetopics = "${parameters.onBeforeCloseTopics?html}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

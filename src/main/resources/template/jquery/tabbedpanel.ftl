@@ -18,6 +18,7 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <div id="${parameters.id?html}"
 <#if parameters.cssStyle?if_exists != "">
  style="${parameters.cssStyle?html}"<#rt/>
@@ -32,6 +33,6 @@
 <ul>
 </ul>
 <script type='text/javascript'>
-	var options_${parameters.id?html}_tabs = new Array();
+	var options_${escapedOptionId?html}_tabs = new Array();
 </script>
 	

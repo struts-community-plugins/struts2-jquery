@@ -18,6 +18,7 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <#if !parameters.subGrid?default(false)>
 <table id="${parameters.id?html}" class="scroll" cellpadding="0" cellspacing="0"
 <#if parameters.cssStyle?if_exists != "">
@@ -41,14 +42,15 @@
 </#if>
 
 <#if parameters.subGrid?default(false)>
-	options_${parameters.parentGrid?html}.subgrid = true;
+	<#assign escapedParentOptionId="${parameters.parentGrid?string?replace('.', '_')}">
+	options_${escapedParentOptionId?html}.subgrid = true;
 	<#if parameters.subGridWidth?if_exists != "">
-	options_${parameters.parentGrid?html}.subGridWidth = "${parameters.subGridWidth?html}";
+	options_${escapedParentOptionId?html}.subGridWidth = "${parameters.subGridWidth?html}";
 	</#if>
 <#else>
 <script type='text/javascript'>
 $(document).ready(function () { 
 </#if>
-	var options_${parameters.id?html} = {};
-	var options_${parameters.id?html}_colmodels = new Array();
-	var options_${parameters.id?html}_colnames = new Array();
+	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId?html}_colmodels = new Array();
+	var options_${escapedOptionId?html}_colnames = new Array();

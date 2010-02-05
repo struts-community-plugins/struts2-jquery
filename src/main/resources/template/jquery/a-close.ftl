@@ -18,12 +18,13 @@
  * under the License.
  */
 -->
+  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 </a>
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
+	var options_${escapedOptionId?html} = {};
 	<#if parameters.openDialog?if_exists != ""> 
-	options_${parameters.id?html}.opendialog = "${parameters.openDialog?html}";
+	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
 	</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

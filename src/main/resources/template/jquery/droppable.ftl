@@ -18,24 +18,25 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.droppable?default(false)>
-	options_${parameters.id?html}.droppable = true;<#rt/>
+	options_${escapedOptionId?html}.droppable = true;<#rt/>
    </#if>
   <#if parameters.droppableOptions?if_exists != "">
-	options_${parameters.id?html}.droppableoptions = "${parameters.droppableOptions?html}";<#rt/>
+	options_${escapedOptionId?html}.droppableoptions = "${parameters.droppableOptions?html}";<#rt/>
    </#if>
   <#if parameters.droppableOnActivateTopics?if_exists != "">
-	options_${parameters.id?html}.droppableonactivatetopics = "${parameters.droppableOnActivateTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.droppableonactivatetopics = "${parameters.droppableOnActivateTopics?html}";<#rt/>
    </#if>
   <#if parameters.droppableOnDeactivateTopics?if_exists != "">
-	options_${parameters.id?html}.droppableondeactivatetopics = "${parameters.droppableOnDeactivateTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.droppableondeactivatetopics = "${parameters.droppableOnDeactivateTopics?html}";<#rt/>
    </#if>
   <#if parameters.droppableOnDropTopics?if_exists != "">
-	options_${parameters.id?html}.droppableondroptopics = "${parameters.droppableOnDropTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.droppableondroptopics = "${parameters.droppableOnDropTopics?html}";<#rt/>
    </#if>
   <#if parameters.droppableOnOutTopics?if_exists != "">
-	options_${parameters.id?html}.droppableonouttopics = "${parameters.droppableOnOutTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.droppableonouttopics = "${parameters.droppableOnOutTopics?html}";<#rt/>
    </#if>
   <#if parameters.droppableOnOverTopics?if_exists != "">
-	options_${parameters.id?html}.droppableonovertopics = "${parameters.droppableOnOverTopics?html}";<#rt/>
+	options_${escapedOptionId?html}.droppableonovertopics = "${parameters.droppableOnOverTopics?html}";<#rt/>
    </#if>

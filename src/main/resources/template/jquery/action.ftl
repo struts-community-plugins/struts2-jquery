@@ -18,55 +18,55 @@
  * under the License.
  */
 -->
-
+  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.targets?if_exists != "">
-	options_${parameters.id?html}.targets = "${parameters.targets?html}";
+	options_${escapedOptionId?html}.targets = "${parameters.targets?html}";
   </#if>
   <#if parameters.hrefUrl?if_exists != "">
-	options_${parameters.id?html}.href = "${parameters.hrefUrl?html}";
+	options_${escapedOptionId?html}.href = "${parameters.hrefUrl?html}";
   <#else>
-	options_${parameters.id?html}.href = "#";
+	options_${escapedOptionId?html}.href = "#";
   </#if>
   <#if parameters.hrefParameter?if_exists != ""> 
-	options_${parameters.id?html}.hrefparameter = "${parameters.hrefParameter?string}";
+	options_${escapedOptionId?html}.hrefparameter = "${parameters.hrefParameter?string}";
   </#if>
   <#if parameters.formIds?exists>
-	options_${parameters.id?html}.formids = "${parameters.formIds?html}";
+	options_${escapedOptionId?html}.formids = "${parameters.formIds?html}";
   </#if>
   <#if parameters.validate?exists>
-	options_${parameters.id?html}.validate = "${parameters.validate?html}";
+	options_${escapedOptionId?html}.validate = "${parameters.validate?html}";
   </#if>
   <#if parameters.onClickTopics?exists>
-	options_${parameters.id?html}.onclicktopics = "${parameters.onClickTopics?html}";
+	options_${escapedOptionId?html}.onclicktopics = "${parameters.onClickTopics?html}";
   </#if>
   <#if parameters.indicator?exists>
-	options_${parameters.id?html}.indicatorid = "${parameters.indicator?html}";
+	options_${escapedOptionId?html}.indicatorid = "${parameters.indicator?html}";
   </#if>
   <#if parameters.loadingText?exists>
-	options_${parameters.id?html}.loadingtext = "${parameters.loadingText?html}";
+	options_${escapedOptionId?html}.loadingtext = "${parameters.loadingText?html}";
   </#if>
   <#if parameters.errorText?exists>
-	options_${parameters.id?html}.errortext = "${parameters.errorText?html}";
+	options_${escapedOptionId?html}.errortext = "${parameters.errorText?html}";
   </#if>
   <#if parameters.errorElementId?exists>
-	options_${parameters.id?html}.errorelementid = "${parameters.errorElementId?html}";
+	options_${escapedOptionId?html}.errorelementid = "${parameters.errorElementId?html}";
   </#if>
   <#if parameters.dataType?exists>
-	options_${parameters.id?html}.datatype = "${parameters.dataType?html}";
+	options_${escapedOptionId?html}.datatype = "${parameters.dataType?html}";
   </#if>
    <#if parameters.effect?exists>
-	options_${parameters.id?html}.effect = "${parameters.effect?html}";
+	options_${escapedOptionId?html}.effect = "${parameters.effect?html}";
   </#if>  
   <#if parameters.effectDuration?exists>
-	options_${parameters.id?html}.effectduration = "${parameters.effectDuration?html}";
+	options_${escapedOptionId?html}.effectduration = "${parameters.effectDuration?html}";
   </#if>  
   <#if parameters.effectOptions?exists>
-	options_${parameters.id?html}.effectoptions = "${parameters.effectOptions?html}";
+	options_${escapedOptionId?html}.effectoptions = "${parameters.effectOptions?html}";
   </#if>  
   <#if parameters.timeout?exists>
-	options_${parameters.id?html}.timeout = ${parameters.timeout?html};
+	options_${escapedOptionId?html}.timeout = ${parameters.timeout?html};
   </#if>
   <#if parameters.listenTopics?exists>
-	options_${parameters.id?html}.listentopics = "${parameters.listenTopics?html}";
+	options_${escapedOptionId?html}.listentopics = "${parameters.listenTopics?html}";
   </#if>
   

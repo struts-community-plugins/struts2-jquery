@@ -18,21 +18,22 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#include "/${parameters.templateDir}/${parameters.parentTheme}/submit-close.ftl" />
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
+	var options_${escapedOptionId?html} = {};
    <#if parameters.clearForm?default(false)>
-	options_${parameters.id?html}.clearform = true;
+	options_${escapedOptionId?html}.clearform = true;
     </#if>
    <#if parameters.resetForm?default(false)>
-	options_${parameters.id?html}.resetform = true;
+	options_${escapedOptionId?html}.resetform = true;
     </#if>
    <#if parameters.iframe?default(false)>
-	options_${parameters.id?html}.iframe = true;
+	options_${escapedOptionId?html}.iframe = true;
     </#if>
 	<#if parameters.openDialog?if_exists != ""> 
-	options_${parameters.id?html}.opendialog = "${parameters.openDialog?html}";
+	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
 	</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

@@ -18,18 +18,10 @@
  * under the License.
  */
 -->
+  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.jqueryaction?exists>
-	options_${parameters.id?html}.jqueryaction = "${parameters.jqueryaction?html}";
+	options_${escapedOptionId?html}.jqueryaction = "${parameters.jqueryaction?html}";
   </#if>
   <#if parameters.id?exists>
-	options_${parameters.id?html}.id = "${parameters.id?html}";
-  </#if>
-  <#if parameters.onHideTopics?exists>
-	options_${parameters.id?html}.onhidetopics = "${parameters.onHideTopics?string?html}";
-  </#if>
-  <#if parameters.onShowTopics?exists>
-	options_${parameters.id?html}.onshowtopics = "${parameters.onShowTopics?string?html}";
-  </#if>
-  <#if parameters.onRemoveTopics?exists>
-	options_${parameters.id?html}.onremovetopics = "${parameters.onRemoveTopics?string?html}";
+	options_${escapedOptionId?html}.id = "${parameters.id?html}";
   </#if>

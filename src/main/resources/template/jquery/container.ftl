@@ -18,13 +18,14 @@
  * under the License.
  */
 -->
+  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.reloadTopics?exists>
-	options_${parameters.id?html}.reloadtopics = "${parameters.reloadTopics?html}";
+	options_${escapedOptionId?html}.reloadtopics = "${parameters.reloadTopics?html}";
   </#if>
   <#if parameters.bindOn?if_exists != ""> 
-	options_${parameters.id?html}.bindon = "${parameters.bindOn?html}";
+	options_${escapedOptionId?html}.bindon = "${parameters.bindOn?html}";
   </#if>
   <#if parameters.events?if_exists != ""> 
-	options_${parameters.id?html}.events = "${parameters.events?html}";
+	options_${escapedOptionId?html}.events = "${parameters.events?html}";
   </#if>
   

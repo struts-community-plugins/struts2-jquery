@@ -18,34 +18,35 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 </div>
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
-	options_${parameters.id?html}.value = ${parameters.value?default('0')};
+	var options_${escapedOptionId?html} = {};
+	options_${escapedOptionId?html}.value = ${parameters.value?default('0')};
   <#if parameters.widgetid?if_exists != "">
-	options_${parameters.id?html}.hiddenid = "${parameters.widgetid?html}";
+	options_${escapedOptionId?html}.hiddenid = "${parameters.widgetid?html}";
   </#if>
   <#if parameters.animate?default(false)>
-	options_${parameters.id?html}.animate = true;
+	options_${escapedOptionId?html}.animate = true;
   </#if>
   <#if parameters.range?if_exists != "">
-	options_${parameters.id?html}.range = "${parameters.range?html}";
+	options_${escapedOptionId?html}.range = "${parameters.range?html}";
   </#if>
   <#if parameters.max?if_exists != "">
-	options_${parameters.id?html}.max = ${parameters.max?html};
+	options_${escapedOptionId?html}.max = ${parameters.max?html};
   </#if>
   <#if parameters.min?if_exists != "">
-	options_${parameters.id?html}.min = ${parameters.min?html};
+	options_${escapedOptionId?html}.min = ${parameters.min?html};
   </#if>
   <#if parameters.orientation?if_exists != "">
-	options_${parameters.id?html}.orientation = "${parameters.orientation?html}";
+	options_${escapedOptionId?html}.orientation = "${parameters.orientation?html}";
   </#if>
   <#if parameters.step?if_exists != "">
-	options_${parameters.id?html}.step = ${parameters.step?html};
+	options_${escapedOptionId?html}.step = ${parameters.step?html};
   </#if>
   <#if parameters.displayValueElement?if_exists != "">
-	options_${parameters.id?html}.displayvalueelement = "${parameters.displayValueElement?html}";
+	options_${escapedOptionId?html}.displayvalueelement = "${parameters.displayValueElement?html}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

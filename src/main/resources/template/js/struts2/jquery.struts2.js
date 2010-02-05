@@ -76,7 +76,7 @@
 
 			if(options.opendialog) {
 				$elem.bind('click', function(event) {
-					$('#'+options.opendialog).dialog('open');
+					$('#'+escId(options.opendialog)).dialog('open');
 	    		    return false;
 				});
 			}
@@ -132,7 +132,7 @@
 					for ( var i = 0; i < targets.length; i++) {
 						var target = targets[i];
 						effect.targets = target;
-						var tarelem = $('#' + target);
+						var tarelem = $('#' + escId(target));
 						tarelem.subscribe(actionTopic, loadHandler, options);
 						tarelem.subscribe(effectTopic+target, '_s2j_effects', effect);
 						if(options.listentopics) {			  
@@ -158,7 +158,7 @@
 			} else {   // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 				effect.targets = options.id;
-				$('#' + options.id).subscribe(effectTopic+options.id, '_s2j_effects', effect);
+				$('#' + escId(options.id)).subscribe(effectTopic+options.id, '_s2j_effects', effect);
 					
 				//bind event topic listeners
 		    	if(options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
@@ -244,7 +244,7 @@
 						var $bindElement = $elem;
 						var eventsStr = 'click';
 						if(options.bindon)
-							$bindElement = $('#'+options.bindon);
+							$bindElement = $('#'+escId(options.bindon));
 						if(options.events) { eventsStr = options.events; }
 	
 						var events = eventsStr.split(',');
@@ -347,7 +347,7 @@
 		        seo.start = pubTops($elem, options.onalwaystopics, options.selectableonstarttopics);
 		        seo.stop = pubTops($elem, options.onalwaystopics, options.selectableonstoptopics);
 		        seo.unselected = pubTops($elem, options.onalwaystopics, options.selectableonunselectedtopics);
-		        seo.unselecting = pubTops($elem, options.onalwaystopics, options.selectableonunselectingTtopics);
+		        seo.unselecting = pubTops($elem, options.onalwaystopics, options.selectableonunselectingtopics);
 				$elem.selectable(seo);
 			}
 
@@ -476,7 +476,7 @@
 				var targets = options.targets.split(',');
 				for ( var i = 0; i < targets.length; i++) {
 					var target = targets[i];
-	    			$('#' + target).subscribe(topic, '_s2j_effects', options);
+	    			$('#' + escId(target)).subscribe(topic, '_s2j_effects', options);
 	    	    	if(ajaxhistory) {
 						var params = {};
 						params.target = target;
@@ -598,7 +598,7 @@
 					if(tab.label) tabStr += tab.label;
 					tabStr += "</span></a></li>";
 				}
-				$('#'+options.id+' ul').html(tabStr);
+				$('#'+escId(options.id)+' ul').html(tabStr);
 			}
 
 	    	$elem.tabs(para);
@@ -776,9 +776,9 @@
 				params.stop = pubTops($elem, options.onalwaystopics, options.oncompletetopics);
 				
 				params.slide = function(event, ui){
-					 $('#'+options.hiddenid).val(ui.value);
+					 $('#'+escId(options.hiddenid)).val(ui.value);
 					 if (options.displayvalueelement) {
-					 	$('#'+options.displayvalueelement).html(ui.value);
+					 	$('#'+escId(options.displayvalueelement)).html(ui.value);
 					 }
 				};
 				
@@ -881,7 +881,7 @@
 			$elem.accordion(params);
 			if(options.href && active == true)
 			{
-				var aktiv = $("#"+options.id+" li "+params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
+				var aktiv = $("#"+escId(options.id)+" li "+params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
 				if ( typeof $(aktiv).attr('paramkeys') != "undefined" )
 				{
 					var keys = $(aktiv).attr('paramkeys').split(',');
@@ -890,7 +890,7 @@
 					jQuery.each(keys, function(i, val) {
 						valueparams[val] = values[i];
 			    	});
-					$("#"+options.id+" li div").filter('.ui-accordion-content-active').load(options.href,valueparams,function() {});
+					$("#"+escId(options.id)+" li div").filter('.ui-accordion-content-active').load(options.href,valueparams,function() {});
 				}
 			}
 		},
@@ -1038,7 +1038,7 @@
 				params.gridview = false;
 				params.subGridRowExpanded = function(subgrid_id, row_id) {
 				       var subgrid_table_id = subgrid_id+"_table";
-				       var subgrid = $("#"+subgrid_id)
+				       var subgrid = $("#"+escId(subgrid_id))
 				       var subgridhtml = "<table id='"+subgrid_table_id+"' class='scroll'></table>";
 					   if(options.subgridoptions.pager && options.subgridoptions.pager != "") {  
 						   subgridhtml = subgridhtml +"<div id='"+subgrid_id+"_pager'></div>";
@@ -1057,7 +1057,7 @@
 							   options.subgridoptions.url = options.subgridoptions.url.substring(0, to)
 						   options.subgridoptions.url = options.subgridoptions.url+"?id="+row_id;
 					   }
-					   $("#"+subgrid_table_id).jqGrid(options.subgridoptions);
+					   $("#"+escId(subgrid_table_id)).jqGrid(options.subgridoptions);
 				};
 			}
 			else {
@@ -1073,7 +1073,7 @@
 				navparams.refresh = options.navigatorrefresh;
 				navparams.search = options.navigatorsearch;
 				navparams.view = options.navigatorview;
-				$elem.jqGrid('navGrid','#'+options.navigator,navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
+				$elem.jqGrid('navGrid','#'+escId(options.navigator),navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
 			}
 			if(options.filter) {
 				var fpara = {};
@@ -1108,8 +1108,8 @@
 			if(options) {
 	
 				var indicatorId = options.indicatorid;
-				if(indicatorId) { $('#' + indicatorId).show(); }
-				if($.struts2_jquery.defaultIndicator != '') { $('#' + $.struts2_jquery.defaultIndicator).show(); }
+				if(indicatorId) { $('#' + escId(indicatorId)).show(); }
+				if($.struts2_jquery.defaultIndicator != '') { $('#' + escId($.struts2_jquery.defaultIndicator)).show(); }
 		
 				var onAlwaysTopics = options.onalwaystopics;
 				
@@ -1157,7 +1157,7 @@
 					if(options.formids) {
 						var forms = options.formids.split(',');
 						for ( var i = 0; i < forms.length; i++) {
-							var query = $('#'+forms[i]).formSerialize();
+							var query = $('#'+escId(forms[i])).formSerialize();
 							if(params.data != '')
 								params.data = params.data + '&amp;' + query;
 							else
@@ -1212,18 +1212,18 @@
 			for ( var i = 0; i < targets.length; i++) {
 				var target = targets[i];
 				if(params.target == '') {
-					params.target = '#' + target;
+					params.target = '#'+escId(target);
 	    		} else {
-	    			params.target = params.target +',#' + target;
+	    			params.target = params.target +',#'+escId(target);
 	    		}
 				
 		    	//Set pre-loading text (if any)
-				if(options.loadingtext) { $('#' + target).html(options.loadingtext); }
+				if(options.loadingtext) { $('#'+escId(target)).html(options.loadingtext); }
 			}
 		}
 
-		if(options.indicatorid) { $('#' + options.indicatorid).show(); }
-		if($.struts2_jquery.defaultIndicator != '') { $('#' + $.struts2_jquery.defaultIndicator).show(); }
+		if(options.indicatorid) { $('#'+escId(options.indicatorid)).show(); }
+		if($.struts2_jquery.defaultIndicator != '') { $('#' + escId($.struts2_jquery.defaultIndicator)).show(); }
 
 		params.beforeSubmit = function (formData, form, formoptions) {
 			
@@ -1248,9 +1248,9 @@
 					// cancel form submission
 					if(!submitForm)
 					{
-						if(options.indicatorid) { $('#' + options.indicatorid).hide(); }
-						if($.struts2_jquery.defaultIndicator != '') { $('#' + $.struts2_jquery.defaultIndicator).hide(); }
-						if(options.loadingtext) { $('#' + target).html(''); }
+						if(options.indicatorid) { $('#' + escId(options.indicatorid)).hide(); }
+						if($.struts2_jquery.defaultIndicator != '') { $('#' + escId($.struts2_jquery.defaultIndicator)).hide(); }
+						if(options.loadingtext) { $('#' + escId(target)).html(''); }
 						return orginal.options.submit;
 					}
 				}
@@ -1264,7 +1264,7 @@
 		
 		var forms = options.formids.split(',');
 		for ( var i = 0; i < forms.length; i++) {
-	       $('#'+forms).ajaxSubmit(params);
+	       $('#'+escId(forms[i])).ajaxSubmit(params);
 		}
         
         return false;
@@ -1288,7 +1288,7 @@
 			if(options.effectduration) {
 				duration = parseInt(options.effectduration);
 			}
-	        $("#"+options.targets).effect(options.effect,eo,duration);
+	        $("#"+escId(options.targets)).effect(options.effect,eo,duration);
 		}
     });
 	
@@ -1325,7 +1325,7 @@
 			var orginal = {};
 			orginal.status = textStatus;
 			
-			if(indi) { $('#' + indi).hide(); }
+			if(indi) { $('#' + escId(indi)).hide(); }
 			if(modus == 'html')
 				container.html(data);
 			else if(modus == 'value')
@@ -1423,8 +1423,8 @@
 			orginal.request = request;
 			orginal.status = status;
 
-			if(indi) { $('#' + indi).hide(); }
-			if($.struts2_jquery.defaultIndicator != '') { $('#' + $.struts2_jquery.defaultIndicator).hide(); }
+			if(indi) { $("#"+escId(indi)).hide(); }
+			if($.struts2_jquery.defaultIndicator != '') { $("#"+escId($.struts2_jquery.defaultIndicator)).hide(); }
 			
 			if(ctopics) {			  
 				var topics = ctopics.split(',');
@@ -1446,7 +1446,7 @@
 				var targetArray = ec.split(',');
 				var divEffectTopic = '_sj_div_effect_';
 				for ( var i = 0; i < targetArray.length; i++) {
-					var effect_elem = $('#'+targetArray[i]);
+					var effect_elem = $("#"+escId(targetArray[i]));
 					effect_elem.publish(divEffectTopic+targetArray[i], effect_elem);
 				}
 			}
@@ -1500,4 +1500,9 @@
 			return null;
 		}
 	}
+	
+	function escId(id) { 
+		return id.replace(/(:|\.)/g,'\\$1');
+	}
+
 })(jQuery);

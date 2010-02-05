@@ -18,44 +18,45 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 </div>
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
-	options_${parameters.id?html}.tabs = options_${parameters.id?html}_tabs;
+	var options_${escapedOptionId?html} = {};
+	options_${escapedOptionId?html}.tabs = options_${escapedOptionId?html}_tabs;
   <#if parameters.selectedTab?exists>
-	options_${parameters.id?html}.selectedtab = "${parameters.selectedTab?html}";
+	options_${escapedOptionId?html}.selectedtab = "${parameters.selectedTab?html}";
   </#if>
   <#if parameters.openOnMouseover?default(false)>
-	options_${parameters.id?html}.event = "mouseover";
+	options_${escapedOptionId?html}.event = "mouseover";
   </#if>
   <#if parameters.collapsible?default(false)>
-	options_${parameters.id?html}.collapsible = true;
+	options_${escapedOptionId?html}.collapsible = true;
   </#if>
   <#if parameters.useSelectedTabCookie?default(false)>
-	options_${parameters.id?html}.cookie = true;
+	options_${escapedOptionId?html}.cookie = true;
   </#if>
   <#if parameters.animate?default(false)>
-	options_${parameters.id?html}.animate = true;
+	options_${escapedOptionId?html}.animate = true;
   </#if>
   <#if parameters.cache?default(false)>
-	options_${parameters.id?html}.cache = true;
+	options_${escapedOptionId?html}.cache = true;
   </#if>
   <#if parameters.spinner?exists>
 	  <#if parameters.spinner?if_exists != "">
-	options_${parameters.id?html}.spinner = "${parameters.spinner?html}";
+	options_${escapedOptionId?html}.spinner = "${parameters.spinner?html}";
 	  <#else>
-	options_${parameters.id?html}.spinner = "";
+	options_${escapedOptionId?html}.spinner = "";
 	  </#if>
   </#if>
   <#if parameters.disabledTabs?if_exists != "">
-	options_${parameters.id?html}.disabledtabs = "${parameters.disabledTabs?html}";
+	options_${escapedOptionId?html}.disabledtabs = "${parameters.disabledTabs?html}";
   </#if>
   <#if parameters.onAddTopics?if_exists != "">
-	options_${parameters.id?html}.onaddtopics = "${parameters.onAddTopics?html}";
+	options_${escapedOptionId?html}.onaddtopics = "${parameters.onAddTopics?html}";
   </#if>
   <#if parameters.onRemoveTopics?if_exists != "">
-	options_${parameters.id?html}.onremovetopics = "${parameters.onRemoveTopics?html}";
+	options_${escapedOptionId?html}.onremovetopics = "${parameters.onRemoveTopics?html}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

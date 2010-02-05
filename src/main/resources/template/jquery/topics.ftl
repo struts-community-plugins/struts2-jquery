@@ -18,22 +18,31 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.onCompleteTopics?exists>
-	options_${parameters.id?html}.oncompletetopics = "${parameters.onCompleteTopics?html}";
+	options_${escapedOptionId?html}.oncompletetopics = "${parameters.onCompleteTopics?html}";
   </#if>
   <#if parameters.onSuccessTopics?exists>
-	options_${parameters.id?html}.onsuccesstopics = "${parameters.onSuccessTopics?html}";
+	options_${escapedOptionId?html}.onsuccesstopics = "${parameters.onSuccessTopics?html}";
   </#if>
   <#if parameters.onErrorTopics?exists>
-	options_${parameters.id?html}.onerrortopics = "${parameters.onErrorTopics?html}";
+	options_${escapedOptionId?html}.onerrortopics = "${parameters.onErrorTopics?html}";
   </#if>
   <#if parameters.onBeforeTopics?exists>
-	options_${parameters.id?html}.onbeforetopics = "${parameters.onBeforeTopics?html}";
+	options_${escapedOptionId?html}.onbeforetopics = "${parameters.onBeforeTopics?html}";
   </#if>
   <#if parameters.onAlwaysTopics?exists>
-	options_${parameters.id?html}.onalwaystopics = "${parameters.onAlwaysTopics?html}";
+	options_${escapedOptionId?html}.onalwaystopics = "${parameters.onAlwaysTopics?html}";
   </#if>
   <#if parameters.onChangeTopics?exists>
-	options_${parameters.id?html}.onchangetopics = "${parameters.onChangeTopics?html}";
+	options_${escapedOptionId?html}.onchangetopics = "${parameters.onChangeTopics?html}";
   </#if>
-  
+  <#if parameters.onHideTopics?exists>
+	options_${escapedOptionId?html}.onhidetopics = "${parameters.onHideTopics?string?html}";
+  </#if>
+  <#if parameters.onShowTopics?exists>
+	options_${escapedOptionId?html}.onshowtopics = "${parameters.onShowTopics?string?html}";
+  </#if>
+  <#if parameters.onRemoveTopics?exists>
+	options_${escapedOptionId?html}.onremovetopics = "${parameters.onRemoveTopics?string?html}";
+  </#if>

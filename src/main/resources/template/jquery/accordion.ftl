@@ -18,6 +18,7 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 
 <ul id="${parameters.id?html}" 
 <#if parameters.cssStyle?if_exists != "">
@@ -79,36 +80,36 @@
 </ul>
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
+	var options_${escapedOptionId?html} = {};
   <#if parameters.fillSpace?default(false)>
-	options_${parameters.id?html}.fillspace = true;
+	options_${escapedOptionId?html}.fillspace = true;
   </#if>
   <#if parameters.collapsible?default(false)>
-	options_${parameters.id?html}.collapsible = true;
+	options_${escapedOptionId?html}.collapsible = true;
   </#if>
   <#if parameters.clearStyle?default(false)>
-	options_${parameters.id?html}.clearstyle = true;
+	options_${escapedOptionId?html}.clearstyle = true;
   </#if>
   <#if parameters.autoHeight?default(false)>
-	options_${parameters.id?html}.autoheight = true;
+	options_${escapedOptionId?html}.autoheight = true;
   </#if>
   <#if parameters.openOnMouseover?default(false)>
-	options_${parameters.id?html}.event = "mouseover";
+	options_${escapedOptionId?html}.event = "mouseover";
   </#if>
   <#if parameters.active?if_exists != "">
-	options_${parameters.id?html}.active = "${parameters.active?html}";
+	options_${escapedOptionId?html}.active = "${parameters.active?html}";
   </#if>
   <#if parameters.href?if_exists != "">
-	options_${parameters.id?html}.href = "${parameters.href?html}";
+	options_${escapedOptionId?html}.href = "${parameters.href?html}";
   </#if>
   <#if parameters.header?if_exists != "">
-	options_${parameters.id?html}.header = "${parameters.header?html}";
+	options_${escapedOptionId?html}.header = "${parameters.header?html}";
   </#if>
 <#if parameters.animated?if_exists != "">
 <#if parameters.animated?if_exists == "false">
-	options_${parameters.id?html}.animated = false;
+	options_${escapedOptionId?html}.animated = false;
 <#else>
-	options_${parameters.id?html}.animated = "${parameters.animated?html}";
+	options_${escapedOptionId?html}.animated = "${parameters.animated?html}";
 </#if>
 </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />

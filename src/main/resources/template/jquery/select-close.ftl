@@ -18,32 +18,33 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
-	options_${parameters.id?html}.datatype = "json";
-	options_${parameters.id?html}.type = 'select';
+	var options_${escapedOptionId?html} = {};
+	options_${escapedOptionId?html}.datatype = "json";
+	options_${escapedOptionId?html}.type = 'select';
 <#if parameters.emptyOption?default(false)>
-	options_${parameters.id?html}.emptyoption = true;
+	options_${escapedOptionId?html}.emptyoption = true;
 </#if>
 <#if parameters.headerKey?? && parameters.headerValue??>
-	options_${parameters.id?html}.headerkey = "${parameters.headerKey?html}";
-	options_${parameters.id?html}.headervalue = "${parameters.headerValue?html}";
+	options_${escapedOptionId?html}.headerkey = "${parameters.headerKey?html}";
+	options_${escapedOptionId?html}.headervalue = "${parameters.headerValue?html}";
 </#if>
 <#if parameters.list??>
-	options_${parameters.id?html}.list = "${parameters.list?html}";
+	options_${escapedOptionId?html}.list = "${parameters.list?html}";
 </#if>
 <#if parameters.listKey??>
-	options_${parameters.id?html}.listkey = "${parameters.listKey?html}";
+	options_${escapedOptionId?html}.listkey = "${parameters.listKey?html}";
 </#if>
 <#if parameters.listValue??>
-	options_${parameters.id?html}.listvalue = "${parameters.listValue?html}";
+	options_${escapedOptionId?html}.listvalue = "${parameters.listValue?html}";
 </#if>
 <#if parameters.bindOn?if_exists != ""> 
-	options_${parameters.id?html}.bindon = "${parameters.bindOn?html}";
+	options_${escapedOptionId?html}.bindon = "${parameters.bindOn?html}";
 </#if>
 <#if parameters.events?if_exists != ""> 
-	options_${parameters.id?html}.events = "${parameters.events?html}";
+	options_${escapedOptionId?html}.events = "${parameters.events?html}";
 </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
