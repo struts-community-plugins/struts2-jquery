@@ -26,7 +26,7 @@
  */
 
 
-(function($){
+(function(){
 
 	_subscribe_topics = {};
 	_subscribe_handlers = {}; 
@@ -36,7 +36,7 @@
 		return document.parentWindow || document.defaultView;
 	};
 	
-	$.fn.extend({
+	jQuery.fn.extend({
 		
 		/**
 		 * Creates a new topic without any subscribers. 
@@ -322,7 +322,7 @@
 		 */
 		subscribe :  function(topic, handler, data) {
 			
-			return $().subscribe(topic, handler, data);
+			return $(document).subscribe(topic, handler, data);
 			
 		},
 		
@@ -332,7 +332,7 @@
 		 */
 		unsubscribe :  function(topic, handler, data) {
 			
-			return $().unsubscribe(topic, handler, data);
+			return $(document).unsubscribe(topic, handler, data);
 			
 		},
 		
@@ -346,22 +346,22 @@
 				_subscribe_handlers[name] = handler;
 			}
 			
-			return $();
+			return $;
 		},
 		
 		publish: function(topic, data) { 
 			
-			return $().publish(topic,data);
+			return $(document).publish(topic,data);
 		},
 		
 		createTopic: function(topic) { 
 			
-			return $().createTopic(topic);
+			return $(document).createTopic(topic);
 		},
 		
 		destroyTopic: function(topic) { 
 			
-			return $().destroyTopic(topic);
+			return $(document).destroyTopic(topic);
 		}
 		
 	});

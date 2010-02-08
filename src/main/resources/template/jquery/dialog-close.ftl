@@ -22,7 +22,7 @@
 </div>
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
+	var options_${escapedOptionId?html} = {};
   <#if parameters.height?if_exists != "">
 	options_${escapedOptionId?html}.height = ${parameters.height?html};
   </#if>

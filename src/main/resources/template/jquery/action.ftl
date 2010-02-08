@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.targets?if_exists != "">
 	options_${escapedOptionId?html}.targets = "${parameters.targets?html}";
   </#if>
@@ -58,10 +58,10 @@
 	options_${escapedOptionId?html}.effect = "${parameters.effect?html}";
   </#if>  
   <#if parameters.effectDuration?exists>
-	options_${escapedOptionId?html}.effectduration = "${parameters.effectDuration?html}";
+	options_${escapedOptionId?html}.effectduration = ${parameters.effectDuration?html};
   </#if>  
   <#if parameters.effectOptions?exists>
-	options_${escapedOptionId?html}.effectoptions = "${parameters.effectOptions?html}";
+	options_${escapedOptionId?html}.effectoptions = ${parameters.effectOptions?html};
   </#if>  
   <#if parameters.timeout?exists>
 	options_${escapedOptionId?html}.timeout = ${parameters.timeout?html};

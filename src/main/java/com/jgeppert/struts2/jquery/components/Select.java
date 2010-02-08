@@ -45,6 +45,7 @@ public class Select extends AbstractFormElement {
   protected String                      list;
   protected String                      listKey;
   protected String                      listValue;
+  protected String                      size;
 
   public Select(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -88,6 +89,10 @@ public class Select extends AbstractFormElement {
     if (listValue != null)
     {
       addParameter("listValue", findString(listValue));
+    }
+    if (size != null)
+    {
+      addParameter("size", findString(size));
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -148,6 +153,12 @@ public class Select extends AbstractFormElement {
   public void setListValue(String listValue)
   {
     this.listValue = listValue;
+  }
+
+  @StrutsTagAttribute(description = "HTML size attribute", type = "Integer")
+  public void setSize(String size)
+  {
+    this.size = size;
   }
 
 }

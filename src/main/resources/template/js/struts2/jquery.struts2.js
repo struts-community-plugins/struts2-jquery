@@ -21,14 +21,11 @@
 	 */
 	jQuery.struts2_jquery = {
 		
+		ajaxhistory: false,
 		historyelements: {},
-		
 		forms: {},
-
 		defaultIndicator: '',
-		
 		lasttopic: '',
-			
 		lastselectedrow: '',
 
 		//pre-binding function of the type function(element){}. called before binding the element
@@ -76,7 +73,7 @@
 
 			if(options.opendialog) {
 				$elem.bind('click', function(event) {
-					$('#'+escId(options.opendialog)).dialog('open');
+					$(escId(options.opendialog)).dialog('open');
 	    		    return false;
 				});
 			}
@@ -93,14 +90,14 @@
 					var params = {};
 					params.topic = topic;
 					$elem.bind('click', params, function(event){
-						$target = $(this);
+						var target = $(this);
 						
-						if(!$target.disabled || $target.disabled != true) {
+						if(!target.disabled || target.disabled != true) {
 
 							var publishOptions = event.data || {};
 							publishOptions.disabled = false;
 							
-							$target.publish(event.data.topic, publishOptions, event);
+							target.publish(event.data.topic, publishOptions, event);
 						}
     	    		    return false;
 					});
@@ -132,7 +129,7 @@
 					for ( var i = 0; i < targets.length; i++) {
 						var target = targets[i];
 						effect.targets = target;
-						var tarelem = $('#' + escId(target));
+						var tarelem = $(escId(target));
 						tarelem.subscribe(actionTopic, loadHandler, options);
 						tarelem.subscribe(effectTopic+target, '_s2j_effects', effect);
 						if(options.listentopics) {			  
@@ -142,7 +139,7 @@
 								tarelem.subscribe(topics[i], '_s2j_effects', effect);
 							}
 						}
-		    	    	if(ajaxhistory) {
+		    	    	if($.struts2_jquery.ajaxhistory) {
 							var params = {};
 							params.target = target;
 							params.topic = actionTopic;
@@ -158,7 +155,7 @@
 			} else {   // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 				effect.targets = options.id;
-				$('#' + escId(options.id)).subscribe(effectTopic+options.id, '_s2j_effects', effect);
+				$(escId(options.id)).subscribe(effectTopic+options.id, '_s2j_effects', effect);
 					
 				//bind event topic listeners
 		    	if(options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
@@ -244,7 +241,7 @@
 						var $bindElement = $elem;
 						var eventsStr = 'click';
 						if(options.bindon)
-							$bindElement = $('#'+escId(options.bindon));
+							$bindElement = $(escId(options.bindon));
 						if(options.events) { eventsStr = options.events; }
 	
 						var events = eventsStr.split(',');
@@ -434,19 +431,19 @@
 				this.formsubmit($elem, options, formTopic);
 			}
 			else {
-				var $closestform = $elem.parents('form:first')[0];
-				if($closestform != undefined) {
-					var formid = $closestform.attr("id");
+				var cform = $elem.parents('form:first')[0];
+				if(cform != undefined) {
+					var cf = $(cform);
+					var formid = cf.attr("id");
 					if(formid != undefined) {
 						options.formids = formid;
-						this.formsubmit($elem, options, formTopic);
 					}
 					else {
 						var randomid = 's2jqform'+Math.floor(Math.random()*10000);
-						$closestform.attr('id', randomid);
+						cf.attr('id', randomid);
 						options.formids = randomid;
-						this.formsubmit($elem, options, formTopic);
 					}
+					this.formsubmit($elem, options, formTopic);
 				}
 				else {
 					this.action($elem, options, '_s2j_container_load', 'a');
@@ -476,8 +473,8 @@
 				var targets = options.targets.split(',');
 				for ( var i = 0; i < targets.length; i++) {
 					var target = targets[i];
-	    			$('#' + escId(target)).subscribe(topic, '_s2j_effects', options);
-	    	    	if(ajaxhistory) {
+	    			$(escId(target)).subscribe(topic, '_s2j_effects', options);
+	    	    	if($.struts2_jquery.ajaxhistory) {
 						var params = {};
 						params.target = target;
 						params.topic = topic;
@@ -598,13 +595,13 @@
 					if(tab.label) tabStr += tab.label;
 					tabStr += "</span></a></li>";
 				}
-				$('#'+escId(options.id)+' ul').html(tabStr);
+				$(escId(options.id)+' ul').html(tabStr);
 			}
 
 	    	$elem.tabs(para);
 
 	    	// History and Bookmarking for Tabs
-    		if(ajaxhistory) {
+    		if($.struts2_jquery.ajaxhistory) {
 				var params = {};
 				params.id = options.id;
 		    	$elem.find('ul.ui-tabs-nav a').bind('click', params, function(event){
@@ -776,9 +773,9 @@
 				params.stop = pubTops($elem, options.onalwaystopics, options.oncompletetopics);
 				
 				params.slide = function(event, ui){
-					 $('#'+escId(options.hiddenid)).val(ui.value);
+					 $(escId(options.hiddenid)).val(ui.value);
 					 if (options.displayvalueelement) {
-					 	$('#'+escId(options.displayvalueelement)).html(ui.value);
+					 	$(escId(options.displayvalueelement)).html(ui.value);
 					 }
 				};
 				
@@ -881,7 +878,7 @@
 			$elem.accordion(params);
 			if(options.href && active == true)
 			{
-				var aktiv = $("#"+escId(options.id)+" li "+params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
+				var aktiv = $(escId(options.id)+" li "+params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
 				if ( typeof $(aktiv).attr('paramkeys') != "undefined" )
 				{
 					var keys = $(aktiv).attr('paramkeys').split(',');
@@ -890,7 +887,7 @@
 					jQuery.each(keys, function(i, val) {
 						valueparams[val] = values[i];
 			    	});
-					$("#"+escId(options.id)+" li div").filter('.ui-accordion-content-active').load(options.href,valueparams,function() {});
+					$(escId(options.id)+" li div").filter('.ui-accordion-content-active').load(options.href,valueparams,function() {});
 				}
 			}
 		},
@@ -1038,7 +1035,7 @@
 				params.gridview = false;
 				params.subGridRowExpanded = function(subgrid_id, row_id) {
 				       var subgrid_table_id = subgrid_id+"_table";
-				       var subgrid = $("#"+escId(subgrid_id))
+				       var subgrid = $(escId(subgrid_id))
 				       var subgridhtml = "<table id='"+subgrid_table_id+"' class='scroll'></table>";
 					   if(options.subgridoptions.pager && options.subgridoptions.pager != "") {  
 						   subgridhtml = subgridhtml +"<div id='"+subgrid_id+"_pager'></div>";
@@ -1057,7 +1054,7 @@
 							   options.subgridoptions.url = options.subgridoptions.url.substring(0, to)
 						   options.subgridoptions.url = options.subgridoptions.url+"?id="+row_id;
 					   }
-					   $("#"+escId(subgrid_table_id)).jqGrid(options.subgridoptions);
+					   $(escId(subgrid_table_id)).jqGrid(options.subgridoptions);
 				};
 			}
 			else {
@@ -1073,13 +1070,33 @@
 				navparams.refresh = options.navigatorrefresh;
 				navparams.search = options.navigatorsearch;
 				navparams.view = options.navigatorview;
-				$elem.jqGrid('navGrid','#'+escId(options.navigator),navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
+				$elem.jqGrid('navGrid',escId(options.navigator),navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
 			}
 			if(options.filter) {
 				var fpara = {};
 				if(options.filteroptions) fpara = options.filteroptions;
 				$elem.jqGrid('filterToolbar', fpara);
 			}
+		},
+		autocompleter: function($elem, options) {
+			
+			var source;
+			if(options.href) {
+				source = options.href;
+				if(options.hrefparameter) {	source = source+'?'+options.hrefparameter; }
+			}
+			else if(options.list) {
+				source = options.list;
+			}
+			var params = {};
+			params.source = source;
+			if(options.delay) {	params.delay = options.delay; }
+			if(options.minimum) {	params.minLength = options.minimum; }
+			
+			if(options.oncompletetopics) params.open = pubTops($elem, options.onalwaystopics, options.oncompletetopics);
+			if(options.onchangetopics) params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
+
+			$elem.autocomplete(params);
 		}
 	};		
 		
@@ -1108,8 +1125,8 @@
 			if(options) {
 	
 				var indicatorId = options.indicatorid;
-				if(indicatorId) { $('#' + escId(indicatorId)).show(); }
-				if($.struts2_jquery.defaultIndicator != '') { $('#' + escId($.struts2_jquery.defaultIndicator)).show(); }
+				if(indicatorId) { $(escId(indicatorId)).show(); }
+				if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).show(); }
 		
 				var onAlwaysTopics = options.onalwaystopics;
 				
@@ -1157,7 +1174,7 @@
 					if(options.formids) {
 						var forms = options.formids.split(',');
 						for ( var i = 0; i < forms.length; i++) {
-							var query = $('#'+escId(forms[i])).formSerialize();
+							var query = $(escId(forms[i])).formSerialize();
 							if(params.data != '')
 								params.data = params.data + '&amp;' + query;
 							else
@@ -1212,18 +1229,18 @@
 			for ( var i = 0; i < targets.length; i++) {
 				var target = targets[i];
 				if(params.target == '') {
-					params.target = '#'+escId(target);
+					params.target = escId(target);
 	    		} else {
 	    			params.target = params.target +',#'+escId(target);
 	    		}
 				
 		    	//Set pre-loading text (if any)
-				if(options.loadingtext) { $('#'+escId(target)).html(options.loadingtext); }
+				if(options.loadingtext) { $(escId(target)).html(options.loadingtext); }
 			}
 		}
 
-		if(options.indicatorid) { $('#'+escId(options.indicatorid)).show(); }
-		if($.struts2_jquery.defaultIndicator != '') { $('#' + escId($.struts2_jquery.defaultIndicator)).show(); }
+		if(options.indicatorid) { $(escId(options.indicatorid)).show(); }
+		if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).show(); }
 
 		params.beforeSubmit = function (formData, form, formoptions) {
 			
@@ -1248,9 +1265,9 @@
 					// cancel form submission
 					if(!submitForm)
 					{
-						if(options.indicatorid) { $('#' + escId(options.indicatorid)).hide(); }
-						if($.struts2_jquery.defaultIndicator != '') { $('#' + escId($.struts2_jquery.defaultIndicator)).hide(); }
-						if(options.loadingtext) { $('#' + escId(target)).html(''); }
+						if(options.indicatorid) { $(escId(options.indicatorid)).hide(); }
+						if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).hide(); }
+						if(options.loadingtext) { $(escId(target)).html(''); }
 						return orginal.options.submit;
 					}
 				}
@@ -1264,7 +1281,7 @@
 		
 		var forms = options.formids.split(',');
 		for ( var i = 0; i < forms.length; i++) {
-	       $('#'+escId(forms[i])).ajaxSubmit(params);
+	       $(escId(forms[i])).ajaxSubmit(params);
 		}
         
         return false;
@@ -1288,7 +1305,7 @@
 			if(options.effectduration) {
 				duration = parseInt(options.effectduration);
 			}
-	        $("#"+escId(options.targets)).effect(options.effect,eo,duration);
+	        $(escId(options.targets)).effect(options.effect,eo,duration);
 		}
     });
 	
@@ -1325,7 +1342,7 @@
 			var orginal = {};
 			orginal.status = textStatus;
 			
-			if(indi) { $('#' + escId(indi)).hide(); }
+			if(indi) { $(escId(indi)).hide(); }
 			if(modus == 'html')
 				container.html(data);
 			else if(modus == 'value')
@@ -1396,7 +1413,7 @@
 				}
 			}
 			//Use BBQ for Ajaxhistory
-	    	if(ajaxhistory) {
+	    	if($.struts2_jquery.ajaxhistory) {
 	    		var ahparams = {};
 	    		ahparams.cid = cid;
 	    		ahparams.options = options;
@@ -1423,8 +1440,8 @@
 			orginal.request = request;
 			orginal.status = status;
 
-			if(indi) { $("#"+escId(indi)).hide(); }
-			if($.struts2_jquery.defaultIndicator != '') { $("#"+escId($.struts2_jquery.defaultIndicator)).hide(); }
+			if(indi) { $(escId(indi)).hide(); }
+			if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).hide(); }
 			
 			if(ctopics) {			  
 				var topics = ctopics.split(',');
@@ -1446,7 +1463,7 @@
 				var targetArray = ec.split(',');
 				var divEffectTopic = '_sj_div_effect_';
 				for ( var i = 0; i < targetArray.length; i++) {
-					var effect_elem = $("#"+escId(targetArray[i]));
+					var effect_elem = $(escId(targetArray[i]));
 					effect_elem.publish(divEffectTopic+targetArray[i], effect_elem);
 				}
 			}
@@ -1502,7 +1519,7 @@
 	}
 	
 	function escId(id) { 
-		return id.replace(/(:|\.)/g,'\\$1');
+		return '#'+id.replace(/(:|\.)/g,'\\$1');
 	}
 
 })(jQuery);

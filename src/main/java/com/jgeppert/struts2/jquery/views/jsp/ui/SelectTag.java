@@ -36,6 +36,7 @@ public class SelectTag extends AbstractFormElementTag {
   protected String          list;
   protected String          listKey;
   protected String          listValue;
+  protected String          size;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -53,6 +54,7 @@ public class SelectTag extends AbstractFormElementTag {
     select.setList(list);
     select.setListKey(listKey);
     select.setListValue(listValue);
+    select.setSize(size);
   }
 
   public void setEmptyOption(String emptyOption)
@@ -83,6 +85,11 @@ public class SelectTag extends AbstractFormElementTag {
   public void setListValue(String listValue)
   {
     this.listValue = listValue;
+  }
+
+  public void setSize(String size)
+  {
+    this.size = size;
   }
 
 }

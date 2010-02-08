@@ -25,27 +25,27 @@
   <#assign basePath="${parameters.customBasepath?string}">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryFile="jquery-1.3.2.min.js">
+  <#assign jqueryFile="jquery-1.4.1.min.js">
   <#assign jqueryForm="jquery.form.min.js">
   <#assign jqueryCookieFile="jquery.cookie.min.js">
-  <#assign jqueryUIFile="jquery-ui-1.7.2.min.js">
+  <#assign jqueryUIFile="jquery-ui-1.8.min.js">
   <#assign jqueryBGIFile="jquery.bgiframe.min.js">
   <#assign jquerySubscribeFile="jquery.subscribe.1.1.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
-  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
-  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js">
+  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js">
+  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js">
 <#else>
-  <#assign jqueryFile="jquery-1.3.2.js">
+  <#assign jqueryFile="jquery-1.4.1.js">
   <#assign jqueryForm="jquery.form.js">
   <#assign jqueryCookieFile="jquery.cookie.js">
-  <#assign jqueryUIFile="jquery-ui-1.7.2.js">
+  <#assign jqueryUIFile="jquery-ui-1.8.js">
   <#assign jqueryBGIFile="jquery.bgiframe.js">
   <#assign jquerySubscribeFile="jquery.subscribe.1.1.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
-  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js">
-  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js">
+  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.js">
+  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.js">
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
@@ -73,7 +73,7 @@
     </#if>
     <#if parameters.locale?if_exists != "">
         <#if parameters.locale?if_exists != "en">
-            <script type="text/javascript" src="${base}/struts/i18n/ui.datepicker-${parameters.locale?string}.min.js"></script>
+            <script type="text/javascript" src="${base}/struts/i18n/jquery.ui.datepicker-${parameters.locale?string}.min.js"></script>
         </#if>
     </#if>
 <#if parameters.useJqGridPlugin?default(false)>
@@ -89,14 +89,13 @@
   <script type="text/javascript" src="${base}/struts/js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 <#if parameters.ajaxhistory?default(false)>
-	var ajaxhistory=true;
-<#else>
-	var ajaxhistory=false;
+	$.struts2_jquery.ajaxhistory = true;
 </#if>
 $(document).ready(function () {
 	<#if parameters.defaultIndicator?if_exists != "">
 	$.struts2_jquery.defaultIndicator="${parameters.defaultIndicator?string}";
 	</#if>
+	$.ajaxSettings.traditional = true;
 
 	$.ajaxSetup ({
 	<#if parameters.ajaxcache?default(false)>
