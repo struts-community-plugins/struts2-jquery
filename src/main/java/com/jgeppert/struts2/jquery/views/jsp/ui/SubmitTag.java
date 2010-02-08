@@ -30,7 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * @see Submit
  */
-public class SubmitTag extends AbstractRemoteTag {
+public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
 
   private static final long serialVersionUID = 2179281109958301343L;
 
@@ -42,6 +42,9 @@ public class SubmitTag extends AbstractRemoteTag {
   protected String          onClickTopics;
   protected String          openDialog;
   protected String          parentTheme;
+  protected String          button;
+  protected String          buttonIcon;
+  protected String          buttonIconSecondary;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -61,6 +64,9 @@ public class SubmitTag extends AbstractRemoteTag {
     submit.setIframe(iframe);
     submit.setOpenDialog(openDialog);
     submit.setParentTheme(parentTheme);
+    submit.setButton(button);
+    submit.setButtonIcon(buttonIcon);
+    submit.setButtonIconSecondary(buttonIconSecondary);
   }
 
   public void setOnClickTopics(String onClickTopics)
@@ -101,5 +107,20 @@ public class SubmitTag extends AbstractRemoteTag {
   public void setParentTheme(String parentTheme)
   {
     this.parentTheme = parentTheme;
+  }
+
+  public void setButton(String button)
+  {
+    this.button = button;
+  }
+
+  public void setButtonIcon(String buttonIcon)
+  {
+    this.buttonIcon = buttonIcon;
+  }
+
+  public void setButtonIconSecondary(String buttonIconSecondary)
+  {
+    this.buttonIconSecondary = buttonIconSecondary;
   }
 }

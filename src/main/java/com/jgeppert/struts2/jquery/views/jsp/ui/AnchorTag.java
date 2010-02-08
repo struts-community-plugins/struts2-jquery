@@ -30,17 +30,15 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * @see Anchor
  */
-public class AnchorTag extends AbstractRemoteTag {
+public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
 
   private static final long serialVersionUID = -1034616578492431113L;
 
   protected String          openDialog;
-  protected String          onClickTopics;                           // topics
-                                                                      // that
-                                                                      // are
-                                                                      // published
-                                                                      // on
-                                                                      // click
+  protected String          onClickTopics;
+  protected String          button;
+  protected String          buttonIcon;
+  protected String          buttonIconSecondary;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -54,6 +52,9 @@ public class AnchorTag extends AbstractRemoteTag {
     Anchor link = (Anchor) component;
     link.setOpenDialog(openDialog);
     link.setOnClickTopics(onClickTopics);
+    link.setButton(button);
+    link.setButtonIcon(buttonIcon);
+    link.setButtonIconSecondary(buttonIconSecondary);
   }
 
   public void setOpenDialog(String openDialog)
@@ -64,5 +65,20 @@ public class AnchorTag extends AbstractRemoteTag {
   public void setOnClickTopics(String onClickTopics)
   {
     this.onClickTopics = onClickTopics;
+  }
+
+  public void setButton(String button)
+  {
+    this.button = button;
+  }
+
+  public void setButtonIcon(String buttonIcon)
+  {
+    this.buttonIcon = buttonIcon;
+  }
+
+  public void setButtonIconSecondary(String buttonIconSecondary)
+  {
+    this.buttonIconSecondary = buttonIconSecondary;
   }
 }

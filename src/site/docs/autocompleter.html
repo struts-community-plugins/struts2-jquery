@@ -4,15 +4,15 @@ Please do not edit it directly.
 -->
 <html>
     <head>
-		<title>select</title>
+		<title>autocompleter</title>
 	</head>
 
 	<body>
-		<h1>Tag Name: select</h1>
+		<h1>Tag Name: autocompleter</h1>
 		<h2>Description</h2>
 		<p>
 		<!-- START SNIPPET: tagdescription -->
-		Render HTML select box providing content from remote call via AJAX
+		Render a jQuery UI Autocompleter
 		<!-- END SNIPPET: tagdescription -->
 		</p>
 
@@ -88,6 +88,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Type of the result. e.g. html, xml, text, json, ...</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">delay</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">300</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Integer</td>
+					<td align="left" valign="top">Delay before making the search</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">disabled</td>
@@ -434,14 +442,6 @@ Please do not edit it directly.
 					<td align="left" valign="top">jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects</td>
 				</tr>
 				<tr>
-					<td align="left" valign="top">emptyOption</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Add an empty option after the header option</td>
-				</tr>
-				<tr>
 					<td align="left" valign="top">errorElementId</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
@@ -472,22 +472,6 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Comma delimited list of form ids for which to serialize all fields during submission when this element is clicked (if multiple forms have overlapping element names, it is indeterminate which will be used)</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">headerKey</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Key for list header option. Must not be empty</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">headerValue</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Value for list header option. Must not be empty</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">href</td>
@@ -559,23 +543,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Name of the JSON list</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">listKey</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top"> Property of list objects to get field value from</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">listValue</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Property of list objects to get field content from</td>
+					<td align="left" valign="top">List of values for autocomplete</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">listenTopics</td>
@@ -584,6 +552,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">The comma separated list 'listenTopics' is the list of topic names that is used to trigger a request.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">loadMinimumCount</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">1</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Integer</td>
+					<td align="left" valign="top">Minimum number of characters that will force the content to be loaded</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">loadingText</td>
@@ -1088,14 +1064,6 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Possible values: 'touch', 'fit'. Default: 'touch'</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">size</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Integer</td>
-					<td align="left" valign="top">HTML size attribute</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">sortable</td>

@@ -89,7 +89,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * example8 -->
  * */
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button")
-public class Submit extends AbstractRemoteBean {
+public class Submit extends AbstractRemoteBean implements ButtonBean {
 
   private static final Logger           LOG            = LoggerFactory.getLogger(Submit.class);
   private final static transient Random RANDOM         = new Random();
@@ -107,6 +107,9 @@ public class Submit extends AbstractRemoteBean {
   protected String                      onClickTopics;
   protected String                      openDialog;
   protected String                      parentTheme;
+  protected String                      button;
+  protected String                      buttonIcon;
+  protected String                      buttonIconSecondary;
 
   public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -156,6 +159,9 @@ public class Submit extends AbstractRemoteBean {
     if (iframe != null) addParameter("iframe", findValue(iframe, Boolean.class));
     if (onClickTopics != null) addParameter("onClickTopics", findString(onClickTopics));
     if (openDialog != null) addParameter("openDialog", findString(openDialog));
+    if (button != null) addParameter("button", findValue(this.button, Boolean.class));
+    if (buttonIcon != null) addParameter("buttonIcon", findString(buttonIcon));
+    if (buttonIconSecondary != null) addParameter("buttonIconSecondary", findString(buttonIconSecondary));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -284,5 +290,23 @@ public class Submit extends AbstractRemoteBean {
   public void setParentTheme(String parentTheme)
   {
     this.parentTheme = parentTheme;
+  }
+
+  @StrutsTagAttribute(description = "jQuery UI Button", defaultValue = "false", type = "Boolean")
+  public void setButton(String button)
+  {
+    this.button = button;
+  }
+
+  @StrutsTagAttribute(description = "Icons to display. The primary icon is displayed on the left of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+  public void setButtonIcon(String buttonIcon)
+  {
+    this.buttonIcon = buttonIcon;
+  }
+
+  @StrutsTagAttribute(description = "Icons to display. The secondary icon is displayed on the right of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+  public void setButtonIconSecondary(String buttonIconSecondary)
+  {
+    this.buttonIconSecondary = buttonIconSecondary;
   }
 }

@@ -1,4 +1,3 @@
-<#--
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,21 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
--->
-  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-</a>
-<script type='text/javascript'>
-$(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
-	<#if parameters.openDialog?if_exists != ""> 
-	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
-	</#if>
-  <#include "/${parameters.templateDir}/jquery/base.ftl" />
-  <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
-  <#include "/${parameters.templateDir}/jquery/topics.ftl" />
-  <#include "/${parameters.templateDir}/jquery/action.ftl" />
-  <#include "/${parameters.templateDir}/jquery/button.ftl" />
 
-  <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
- });  
-</script>
+package com.jgeppert.struts2.jquery.components;
+
+public interface ButtonBean {
+
+  void setButton(String button);
+
+  void setButtonIcon(String buttonIcon);
+
+  void setButtonIconSecondary(String buttonIconSecondary);
+}

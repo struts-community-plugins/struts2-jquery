@@ -63,7 +63,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * -->
  */
 @StrutsTag(name = "a", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description = "Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates " + "its targets content")
-public class Anchor extends AbstractRemoteBean {
+public class Anchor extends AbstractRemoteBean implements ButtonBean {
   public static final String           TEMPLATE       = "a";
   public static final String           TEMPLATE_CLOSE = "a-close";
   public static final String           COMPONENT_NAME = Anchor.class.getName();
@@ -72,6 +72,9 @@ public class Anchor extends AbstractRemoteBean {
 
   protected String                     openDialog;
   protected String                     onClickTopics;
+  protected String                     button;
+  protected String                     buttonIcon;
+  protected String                     buttonIconSecondary;
 
   public Anchor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -100,6 +103,9 @@ public class Anchor extends AbstractRemoteBean {
 
     if (openDialog != null) addParameter("openDialog", findString(openDialog));
     if (onClickTopics != null) addParameter("onClickTopics", findString(onClickTopics));
+    if (button != null) addParameter("button", findValue(this.button, Boolean.class));
+    if (buttonIcon != null) addParameter("buttonIcon", findString(buttonIcon));
+    if (buttonIconSecondary != null) addParameter("buttonIconSecondary", findString(buttonIconSecondary));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -137,4 +143,21 @@ public class Anchor extends AbstractRemoteBean {
     this.onClickTopics = onClickTopics;
   }
 
+  @StrutsTagAttribute(description = "jQuery UI Button", defaultValue = "false", type = "Boolean")
+  public void setButton(String button)
+  {
+    this.button = button;
+  }
+
+  @StrutsTagAttribute(description = "Icons to display. The primary icon is displayed on the left of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+  public void setButtonIcon(String buttonIcon)
+  {
+    this.buttonIcon = buttonIcon;
+  }
+
+  @StrutsTagAttribute(description = "Icons to display. The secondary icon is displayed on the right of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+  public void setButtonIconSecondary(String buttonIconSecondary)
+  {
+    this.buttonIconSecondary = buttonIconSecondary;
+  }
 }

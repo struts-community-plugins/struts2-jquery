@@ -380,6 +380,7 @@
 			var loadHandler = '_s2j_container_load';
 
 			this.opendialog($elem, options);
+			this.jquerybutton($elem, options);
 			
 			if(options.formids) {
 		    	var formTopic = '_s2j_form_topic_' + options.id;
@@ -426,6 +427,7 @@
 	    	var formTopic = '_s2j_form_topic_' + options.id;
 			
 			this.opendialog($elem, options);
+			this.jquerybutton($elem, options);
 			
 			if(options.formids != undefined) {
 				this.formsubmit($elem, options, formTopic);
@@ -1097,7 +1099,18 @@
 			if(options.onchangetopics) params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
 
 			$elem.autocomplete(params);
+		},
+		jquerybutton: function($elem, options) {
+			
+			if(options.button) {
+				var params = {};
+				params.icons = {};
+				if(options.buttonIcon) { params.icons.primary = options.buttonIcon };
+				if(options.buttonIconSecondary) { params.icons.secondary = options.buttonIconSecondary };
+				$elem.button(params);
+			}
 		}
+
 	};		
 		
 	/** Container logic */
