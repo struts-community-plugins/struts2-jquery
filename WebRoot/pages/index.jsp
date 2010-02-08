@@ -41,15 +41,15 @@
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.8.2</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 1.8.3</h4>
         	<img id="myDefaultIndicator" src="images/ajax-loader.gif" alt="Loading..." style="display:none"/>
         </div>
       </div>
       <div id="nav">
         <div class="hlist ui-widget-header">
           <ul>
-            <li class="ui-widget-header ui-state-active"><s:url id="urlremotelink" action="remote-link"/><sj:a id="remotelink" href="%{urlremotelink}" targets="main">Ajax Link</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlform" action="form"/><sj:a id="formlink" href="%{urlform}" targets="main">Ajax Forms</sj:a></li>
+            <li class="ui-widget-header ui-state-active"><s:url id="urlremotelink" action="remote-link"/><sj:a id="remote.link" href="%{urlremotelink}" targets="main">Ajax Link</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlform" action="form"/><sj:a id="form.link" href="%{urlform}" targets="main">Ajax Forms</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlremotediv" action="remote-div"/><sj:a id="ajaxdivlink" href="%{urlremotediv}" targets="main">Ajax Div</sj:a></li>
             <li class="ui-widget-header"><s:url id="urltabs" action="tabs-local"/><sj:a id="tabslink" href="%{urltabs}" targets="main">Tabs</sj:a></li>
             <li class="ui-widget-header"><s:url id="urldatepicker" action="datepicker"/><sj:a id="dplink" href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
