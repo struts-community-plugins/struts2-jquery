@@ -102,18 +102,20 @@ public class Autocompleter extends AbstractFormElement {
     {
       value = MakeIterator.convert(list);
     }
-    if (value == null)
+    if (value == null && list != null)
     {
       value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
     }
-
-    if (value instanceof Collection)
+    if (value != null)
     {
-      addParameter("list", value);
-    }
-    else
-    {
-      addParameter("list", MakeIterator.convert(value));
+      if (value instanceof Collection)
+      {
+        addParameter("list", value);
+      }
+      else
+      {
+        addParameter("list", MakeIterator.convert(value));
+      }
     }
 
     if ((this.id == null || this.id.length() == 0))
