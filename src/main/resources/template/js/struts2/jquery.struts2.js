@@ -896,7 +896,7 @@
 		grid: function($elem, options) {
 			var params = {}; 
 			$.extend(params, options);
-			if(options.onselectrow || options.editurl) {  
+			if(options.onselectrowtopics || options.editurl) {  
 				params.onSelectRow = function(id) {
 					if(options.onalwaystopics) {  
 						var topics = options.onalwaystopics.split(',');
