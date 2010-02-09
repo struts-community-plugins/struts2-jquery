@@ -1083,7 +1083,7 @@
 		autocompleter: function($elem, options) {
 			
 			var source;
-			if(options.href) {
+			if(options.href && options.href != '#') {
 				source = options.href;
 				if(options.hrefparameter) {	source = source+'?'+options.hrefparameter; }
 			}

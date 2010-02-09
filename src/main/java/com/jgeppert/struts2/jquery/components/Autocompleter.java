@@ -19,11 +19,13 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import java.util.Collection;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.util.MakeIterator;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -55,7 +57,7 @@ public class Autocompleter extends AbstractFormElement {
 
   protected String                      delay;
   protected String                      loadMinimumCount;
-  protected String                      list;
+  protected Object                      list;
 
   public Autocompleter(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -80,7 +82,39 @@ public class Autocompleter extends AbstractFormElement {
 
     if (delay != null) addParameter("delay", findValue(delay, Integer.class));
     if (loadMinimumCount != null) addParameter("loadMinimumCount", findValue(loadMinimumCount, Integer.class));
-    if (list != null) addParameter("list", findString(list));
+    // if (list != null) addParameter("list", findString(list));
+    Object value = null;
+
+    if (list == null)
+    {
+      list = parameters.get("list");
+    }
+
+    if (list instanceof String)
+    {
+      value = findValue((String) list);
+    }
+    else if (list instanceof Collection)
+    {
+      value = list;
+    }
+    else if (MakeIterator.isIterable(list))
+    {
+      value = MakeIterator.convert(list);
+    }
+    if (value == null)
+    {
+      value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
+    }
+
+    if (value instanceof Collection)
+    {
+      addParameter("list", value);
+    }
+    else
+    {
+      addParameter("list", MakeIterator.convert(value));
+    }
 
     if ((this.id == null || this.id.length() == 0))
     {
