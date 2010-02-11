@@ -72,6 +72,8 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
 
   protected String                     openDialog;
   protected String                     onClickTopics;
+  protected String                     validate;
+  protected String                     validateFunction;
   protected String                     button;
   protected String                     buttonIcon;
   protected String                     buttonIconSecondary;
@@ -106,6 +108,8 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
     if (button != null) addParameter("button", findValue(this.button, Boolean.class));
     if (buttonIcon != null) addParameter("buttonIcon", findString(buttonIcon));
     if (buttonIconSecondary != null) addParameter("buttonIconSecondary", findString(buttonIconSecondary));
+    if (validate != null) addParameter("validate", findValue(this.validate, Boolean.class));
+    if (validateFunction != null) addParameter("validateFunction", findString(validateFunction));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -159,5 +163,17 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
   public void setButtonIconSecondary(String buttonIconSecondary)
   {
     this.buttonIconSecondary = buttonIconSecondary;
+  }
+
+  @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, request)")
+  public void setValidateFunction(String validateFunction)
+  {
+    this.validateFunction = validateFunction;
+  }
+
+  @StrutsTagAttribute(description = "Enable client AJAX validation", defaultValue = "false", type = "Boolean")
+  public void setValidate(String validate)
+  {
+    this.validate = validate;
   }
 }

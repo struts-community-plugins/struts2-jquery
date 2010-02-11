@@ -33,9 +33,6 @@
   <#if parameters.formIds?exists>
 	options_${escapedOptionId?html}.formids = "${parameters.formIds?html}";
   </#if>
-  <#if parameters.validate?exists>
-	options_${escapedOptionId?html}.validate = "${parameters.validate?html}";
-  </#if>
   <#if parameters.onClickTopics?exists>
 	options_${escapedOptionId?html}.onclicktopics = "${parameters.onClickTopics?html}";
   </#if>

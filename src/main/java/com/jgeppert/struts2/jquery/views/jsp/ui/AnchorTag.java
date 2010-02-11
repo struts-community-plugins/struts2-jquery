@@ -39,6 +39,8 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
   protected String          button;
   protected String          buttonIcon;
   protected String          buttonIconSecondary;
+  protected String          validateFunction;
+  protected String          validate;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -55,6 +57,8 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
     link.setButton(button);
     link.setButtonIcon(buttonIcon);
     link.setButtonIconSecondary(buttonIconSecondary);
+    link.setValidateFunction(validateFunction);
+    link.setValidate(validate);
   }
 
   public void setOpenDialog(String openDialog)
@@ -80,5 +84,15 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
   public void setButtonIconSecondary(String buttonIconSecondary)
   {
     this.buttonIconSecondary = buttonIconSecondary;
+  }
+
+  public void setValidateFunction(String validateFunction)
+  {
+    this.validateFunction = validateFunction;
+  }
+
+  public void setValidate(String validate)
+  {
+    this.validate = validate;
   }
 }

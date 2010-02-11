@@ -28,7 +28,6 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
   protected String          targets;
   protected String          href;
   protected String          formIds;
-  protected String          validate;
   protected String          indicator;
   protected String          loadingText;
   protected String          errorText;
@@ -48,7 +47,6 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
     remote.setHref(href);
     remote.setTargets(targets);
     remote.setFormIds(formIds);
-    remote.setValidate(validate);
     remote.setIndicator(indicator);
     remote.setLoadingText(loadingText);
     remote.setErrorText(errorText);
@@ -74,11 +72,6 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
   public void setFormIds(String formIds)
   {
     this.formIds = formIds;
-  }
-
-  public void setValidate(String validate)
-  {
-    this.validate = validate;
   }
 
   public void setIndicator(String indicator)

@@ -110,6 +110,8 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
   protected String                      button;
   protected String                      buttonIcon;
   protected String                      buttonIconSecondary;
+  protected String                      validate;
+  protected String                      validateFunction;
 
   public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -162,6 +164,8 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
     if (button != null) addParameter("button", findValue(this.button, Boolean.class));
     if (buttonIcon != null) addParameter("buttonIcon", findString(buttonIcon));
     if (buttonIconSecondary != null) addParameter("buttonIconSecondary", findString(buttonIconSecondary));
+    if (validate != null) addParameter("validate", findValue(this.validate, Boolean.class));
+    if (validateFunction != null) addParameter("validateFunction", findString(validateFunction));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -274,12 +278,6 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
     this.onClickTopics = onClickTopics;
   }
 
-  @StrutsTagAttribute(name = "validate", description = "Whether to execute validation on this elements of the form(s) provided in the formId attribute (valid values are 'true', 'false', and 'only'). Selecting 'only' will noly validate the form fiellds and not execute the result of this action implied by the href url", type = "String", defaultValue = "false")
-  public void setValidate(String validate)
-  {
-    this.validate = validate;
-  }
-
   @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
   public void setOpenDialog(String openDialog)
   {
@@ -308,5 +306,17 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
   public void setButtonIconSecondary(String buttonIconSecondary)
   {
     this.buttonIconSecondary = buttonIconSecondary;
+  }
+
+  @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, request)")
+  public void setValidateFunction(String validateFunction)
+  {
+    this.validateFunction = validateFunction;
+  }
+
+  @StrutsTagAttribute(description = "Enable client AJAX validation", defaultValue = "false", type = "Boolean")
+  public void setValidate(String validate)
+  {
+    this.validate = validate;
   }
 }

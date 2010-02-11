@@ -32,16 +32,13 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public abstract class AbstractRemoteBean extends AbstractTopicsBean {
 
-  protected String targets;       // The targets into which to load content
-  protected String href;          // The url to execute
-  protected String formIds;       // the forms
-  protected String validate;      // text to be displayed on load error
-  protected String indicator;     // Id of element that will be displayed
-                                   // during ajax requests
-  protected String loadingText;   // The text to be displayed during load
-  protected String errorText;     // text to be displayed on load error
-  protected String errorElementId; // the id of the element in to which to put
-                                   // the error text
+  protected String targets;
+  protected String href;
+  protected String formIds;
+  protected String indicator;
+  protected String loadingText;
+  protected String errorText;
+  protected String errorElementId;
 
   protected String dataType;
   protected String effect;
@@ -74,7 +71,6 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
     }
     if (targets != null) addParameter("targets", findString(targets));
     if (formIds != null) addParameter("formIds", findString(formIds));
-    if (validate != null) addParameter("validate", findString(validate));
     if (indicator != null) addParameter("indicator", findString(indicator));
     if (loadingText != null) addParameter("loadingText", findString(loadingText));
     if (errorText != null) addParameter("errorText", findString(errorText));
@@ -104,12 +100,6 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
   public void setTargets(String targets)
   {
     this.targets = targets;
-  }
-
-  @StrutsTagAttribute(name = "validate", description = "Whether to execute validation on this elements of the form(s) provided in the formId attribute (valid values are 'true', 'false', and 'only'). Selecting 'only' will noly validate the form fiellds and not execute the result of this action implied by the href url", type = "String", defaultValue = "false")
-  public void setValidate(String validate)
-  {
-    this.validate = validate;
   }
 
   @StrutsTagAttribute(name = "indicator", description = "If loading content into a target, Id of element that will be displayed during loading and hidden afterwards (will override settings for the target container)", type = "String", defaultValue = "")

@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery and jQuery UI optional. 
- * Tested with jQuery 1.3.2 and jQuery UI 1.7.2
+ * Tested with jQuery 1.4.1 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2010 Johannes Geppert http://www.jgeppert.com
@@ -1137,10 +1137,8 @@
 			//Show indicator element (if any)
 			if(options) {
 	
-				var indicatorId = options.indicatorid;
-				if(indicatorId) { $(escId(indicatorId)).show(); }
-				if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).show(); }
-		
+				var indi = options.indicatorid;
+				showIndicator(options.indicatorid);
 				var onAlwaysTopics = options.onalwaystopics;
 				
 		    	//publish all 'before' and 'always' topics
@@ -1171,8 +1169,8 @@
 				
 				var params = {};
 				
-				params.success = pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indicatorId, modus, options);
-				params.complete = pubCom(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indicatorId, options);
+				params.success = pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indi, modus, options);
+				params.complete = pubCom(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indi, options);
 				params.error = pubErr(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 				
 				//load container using ajax
@@ -1252,8 +1250,8 @@
 			}
 		}
 
-		if(options.indicatorid) { $(escId(options.indicatorid)).show(); }
-		if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).show(); }
+		var indi = options.indicatorid;
+		showIndicator(indi);
 
 		params.beforeSubmit = function (formData, form, formoptions) {
 			
@@ -1278,18 +1276,66 @@
 					// cancel form submission
 					if(!submitForm)
 					{
-						if(options.indicatorid) { $(escId(options.indicatorid)).hide(); }
-						if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).hide(); }
+						hideIndicator(options.indicatorid);
 						if(options.loadingtext) { $(escId(target)).html(''); }
-						return orginal.options.submit;
 					}
 				}
 			}
+			
+			if(options.validate) 
+			{
+				var valParams = {};
+				valParams.type = "POST";
+				if(options.href && options.href != '#')
+					valParams.url = options.href;
+				else
+					valParams.url = form[0].action;
+
+					valParams.data = '';
+				if(options.hrefparameter) {
+					valParams.data = options.hrefparameter;
+				}
+
+				var query = $(escId(forms[0])).formSerialize()
+				query = query+'&struts.enableJSONValidation=true&struts.validateOnly=true';
+				if(valParams.data != '')
+					valParams.data = valParams.data + '&amp;' + query;
+				else
+					valParams.data = query;
+
+				valParams.complete = function (request, status) {
+					var f = $(form[0]);
+					if($.isFunction(options.validateFunction))
+					{
+					    orginal.options.submit = options.validateFunction(f, request);
+					}
+					else if(StrutsUtils != undefined)
+					{
+					     StrutsUtils.clearValidationErrors(form[0]);
+					     
+					     //get errors from response
+					     var text = request.responseText;
+					     var errorsObject = StrutsUtils.getValidationErrors(text);
+					     
+					     //show errors, if any
+					     if(errorsObject.fieldErrors) {
+					       StrutsUtils.showValidationErrors(form[0], errorsObject);
+					       orginal.options.submit = false;
+					     }
+					}
+				};
+				$.ajax(valParams);
+			}
+			if(!orginal.options.submit)
+			{
+				hideIndicator(options.indicatorid);
+			}
+			return orginal.options.submit;
 		}
    	
 	    				
-		params.success = pubSuc(event.target, options.onalwaystopics, options.onsuccesstopics, options.indicatorid, 'form', options);
-		params.complete = pubCom(event.target, options.onalwaystopics, options.oncompletetopics, options.targets, options.indicatorid, options);
+		params.success = pubSuc(event.target, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
+		params.complete = pubCom(event.target, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
 		params.error = pubErr(event.target, options.onalwaystopics, options.onerrortopics, options.errortext);
 		
 		var forms = options.formids.split(',');
@@ -1453,9 +1499,8 @@
 			orginal.request = request;
 			orginal.status = status;
 
-			if(indi) { $(escId(indi)).hide(); }
-			if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).hide(); }
-			
+			hideIndicator(indi);			
+
 			if(ctopics) {			  
 				var topics = ctopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
@@ -1533,6 +1578,16 @@
 	
 	function escId(id) { 
 		return '#'+id.replace(/(:|\.)/g,'\\$1');
+	}
+
+	function hideIndicator(indi) { 
+		if(indi) { $(escId(indi)).hide(); }
+		if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).hide(); }
+	}
+	
+	function showIndicator(indi) { 
+		if(indi) { $(escId(indi)).show(); }
+		if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).show(); }
 	}
 
 })(jQuery);

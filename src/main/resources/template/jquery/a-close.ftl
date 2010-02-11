@@ -31,6 +31,7 @@ $(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
   <#include "/${parameters.templateDir}/jquery/action.ftl" />
   <#include "/${parameters.templateDir}/jquery/button.ftl" />
+  <#include "/${parameters.templateDir}/jquery/validation.ftl" />
 
   <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
  });  
