@@ -165,7 +165,7 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
     this.buttonIconSecondary = buttonIconSecondary;
   }
 
-  @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, request)")
+  @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, errors)")
   public void setValidateFunction(String validateFunction)
   {
     this.validateFunction = validateFunction;

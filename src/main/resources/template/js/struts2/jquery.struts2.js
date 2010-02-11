@@ -1306,8 +1306,13 @@
 				valParams.complete = function (request, status) {
 					var f = $(form[0]);
 					if($.isFunction(options.validateFunction))
-					{
-					    orginal.options.submit = options.validateFunction(f, request);
+					{	
+						var et = request.responseText;
+						if(et && et.length > 10)
+						{
+							var errors = eval("( " + et.substring(2, et.length - 2) + " )");
+						    orginal.options.submit = options.validateFunction(f, errors);
+						}
 					}
 					else if(StrutsUtils != undefined)
 					{
