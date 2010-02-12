@@ -1044,7 +1044,7 @@
 						for ( var i = 0; i < forms.length; i++) {
 							var query = $(escId(forms[i])).formSerialize();
 							if(params.data != '')
-								params.data = params.data + '&amp;' + query;
+								params.data = params.data + '&' + query;
 							else
 								params.data = query;
 						}
