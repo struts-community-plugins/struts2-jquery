@@ -526,24 +526,9 @@
 		    		$elem.publish(divTopic,options);				
 				}			
 
-				if(options.onalwaystopics) {			  
-					var topics = options.onalwaystopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, data);
-					}
-				}
-				if(options.onbeforetopics) {			  
-					var topics = options.onbeforetopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, data);
-					}
-				}
-				if(options.onopentopics) {			  
-					var topics = options.onopentopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, data);
-					}
-				}
+				publishTopic($elem, options.onalwaystopics, data);
+				publishTopic($elem, options.onbeforetopics, data);
+				publishTopic($elem, options.onopentopics, data);
 			};
 			params.close = pubTops($elem, options.onalwaystopics, options.onclosetopics);
 			params.focus = pubTops($elem, options.onalwaystopics, options.onfocustopics);
@@ -630,19 +615,10 @@
 				var oat = options.onalwaystopics;
 				
 				if(options.onbeforetopics) {  
-					var obt = options.onbeforetopics.split(',');
 					params.beforeShow = function(input){
 						var $input = $(input);
-						for ( var i = 0; i < obt.length; i++) {
-							$input.publish(obt[i], $input);
-						}
-
-						if(oat) {  
-							var topics = oat.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$input.publish(topics[i], $input);
-							}
-						}
+						publishTopic($input, options.onbeforetopics, null);
+						publishTopic($input, oat, null);
 					};
 				}
 				
@@ -650,75 +626,40 @@
 					var obsdt = options.onbeforeshowdaytopics.split(',');
 					params.beforeShowDay = function(date){
 						var $date = $(date);
-						for ( var i = 0; i < obsdt.length; i++) {
-							$elem.publish(obsdt[i], $date);
-						}
-
-						if(oat) {  
-							var topics = oat.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$elem.publish(topics[i], $date);
-							}
-						}
+						publishTopic($date, options.onbeforeshowdaytopics, null);
+						publishTopic($date, oat, null);
 					};
 				}
 
 				if(options.onchangemonthyeartopics) {  
-					var ocmyt = options.onchangemonthyeartopics.split(',');
 					params.onChangeMonthYear = function(year, month, inst){
 						var data = {};
 						data.year = year;
 						data.month = month;
 						data.inst = inst;
 						var $inst = $(inst);
-						for ( var i = 0; i < ocmyt.length; i++) {
-							$inst.publish(ocmyt[i],$inst, data);
-						}
-
-						if(oat) {  
-							var topics = oat.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$inst.publish(topics[i],$inst, data);
-							}
-						}
+						publishTopic($inst, options.onchangemonthyeartopics, data);
+						publishTopic($inst, oat, data);
 					};
 				}
 
 				if(options.onchangetopics) {  
-					var ocat = options.onchangetopics.split(',');
 					params.onSelect = function(dateText, inst){
 						var $inst = $(inst);
 						var data = {};
 						data.dateText = dateText;
-						for ( var i = 0; i < ocat.length; i++) {
-							$inst.publish(ocat[i], $inst, data);
-						}
-
-						if(oat) {  
-							var topics = oat.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$inst.publish(topics[i], $inst, data);
-							}
-						}
+						publishTopic($inst, options.onchangetopics, data);
+						publishTopic($inst, oat, data);
 					};
 				}
 				
 				if(options.oncompletetopics) {  
-					var ocot = options.oncompletetopics.split(',');
 					params.onClose = function(dateText, inst){
 						var $inst = $(inst);
 						var data = {};
 						data.dateText = dateText;
-						for ( var i = 0; i < ocot.length; i++) {
-							$inst.publish(ocot[i], $inst, data);
-						}
-
-						if(oat) {  
-							var topics = oat.split(',');
-							for ( var i = 0; i < topics.length; i++) {
-								$inst.publish(topics[i], $inst, data);
-							}
-						}
+						publishTopic($inst, options.oncompletetopics, data);
+						publishTopic($inst, oat, data);
 					};
 				}
 				
@@ -858,20 +799,12 @@
 						 }
 					}			
 					if(options.onbeforetopics) {  
-						var onBeforeTopics = options.onbeforetopics.split(',');
-								var data = {};
-								data.event = event;
-								data.ui = ui;
-							for ( var i = 0; i < onBeforeTopics.length; i++) {
-								$elem.publish(onBeforeTopics[i], $elem, data);
-							}
+						var data = {};
+						data.event = event;
+						data.ui = ui;
 
-							if(onAlwaysTopics) {  
-								var topics = onAlwaysTopics.split(',');
-								for ( var i = 0; i < topics.length; i++) {
-									$elem.publish(topics[i], $elem, data);
-								}
-							}
+						publishTopic($elem, onAlwaysTopics, data);
+						publishTopic($elem, options.onbeforetopics, data);
 					}
 				};
 				
@@ -898,21 +831,11 @@
 			$.extend(params, options);
 			if(options.onselectrowtopics || options.editurl) {  
 				params.onSelectRow = function(id) {
-					if(options.onalwaystopics) {  
-						var topics = options.onalwaystopics.split(',');
-						for ( var i = 0; i < topics.length; i++) {
-							$elem.publish(topics[i], $elem, orginal);
-						}
-					}
-					
-					if(options.onselectrowtopics) {
-						var data = {};
-						data.id = id;
-						var osr = options.onselectrowtopics.split(',');
-						for ( var i = 0; i < osr.length; i++) {
-							$elem.publish(osr[i], $elem, data);
-						}
-					}
+					var data = {};
+					data.id = id;
+
+					publishTopic($elem, options.onalwaystopics, data);
+					publishTopic($elem, options.onselectrowtopics, data);
 					if(options.editurl && options.editinline == true) {
 					    if(id && id!==$.struts2_jquery.lastselectedrow) {
 					    	$elem.jqGrid('restoreRow',$.struts2_jquery.lastselectedrow);
@@ -928,19 +851,8 @@
 				var orginal = {};
 				orginal.xhr = xhr;
 
-				if(options.onalwaystopics) {  
-					var topics = options.onalwaystopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
-				
-				if(options.onbeforetopics) {  
-					var topics = options.onbeforetopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
+				publishTopic($elem, options.onalwaystopics, orginal);
+				publishTopic($elem, options.onbeforetopics, orginal);
 			}
 	   	
 			params.onPaging = function (pgButton) {
@@ -948,19 +860,8 @@
 				var orginal = {};
 				orginal.pgButton = pgButton;
 
-				if(options.onalwaystopics) {  
-					var topics = options.onalwaystopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
-				
-				if(options.onpagingtopics) {  
-					var topics = options.onpagingtopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
+				publishTopic($elem, options.onalwaystopics, orginal);
+				publishTopic($elem, options.onpagingtopics, orginal);
 			}
 		    				
 			params.onSortCol = function (index, iCol, sortorder) {
@@ -970,19 +871,8 @@
 				orginal.iCol = iCol;
 				orginal.sortorder = sortorder;
 
-				if(options.onalwaystopics) {  
-					var topics = options.onalwaystopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
-				
-				if(options.onsortcoltopics) {  
-					var topics = options.onsortcoltopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
+				publishTopic($elem, options.onalwaystopics, orginal);
+				publishTopic($elem, options.onsortcoltopics, orginal);
 			}
 			
 			params.onCellSelect = function (rowid, iCol, cellcontent, e) {
@@ -993,38 +883,16 @@
 				orginal.cellcontent = cellcontent;
 				orginal.e = e;
 
-				if(options.onalwaystopics) {  
-					var topics = options.onalwaystopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
-				
-				if(options.oncellselecttopics) {  
-					var topics = options.oncellselecttopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
+				publishTopic($elem, options.onalwaystopics, orginal);
+				publishTopic($elem, options.oncellselecttopics, orginal);
 			}
 			
 			params.gridComplete = function () {
 				
 				var orginal = {};
 
-				if(options.onalwaystopics) {  
-					var topics = options.onalwaystopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
-				
-				if(options.ongridcompletetopics) {  
-					var topics = options.ongridcompletetopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						$elem.publish(topics[i], $elem, orginal);
-					}
-				}
+				publishTopic($elem, options.onalwaystopics, orginal);
+				publishTopic($elem, options.ongridcompletetopics, orginal);
 			}
 		    				
 			params.loadComplete = pubCom($elem, options.onalwaystopics, options.oncompletetopics, null, null, options);
@@ -1142,19 +1010,8 @@
 				var onAlwaysTopics = options.onalwaystopics;
 				
 		    	//publish all 'before' and 'always' topics
-				if(onAlwaysTopics) {  
-					var topics = onAlwaysTopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						container.publish(topics[i], container);
-					}
-				}
-				
-				if(options.onbeforetopics) {  
-					var topics = options.onbeforetopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						container.publish(topics[i], container);
-					}
-				}
+				publishTopic(container, onAlwaysTopics, options);
+				publishTopic(container, options.onbeforetopics, options);
 		    	
 		    	//Set pre-loading text (if any)
 				if(options.loadingtext) { container.html(options.loadingtext); }
@@ -1261,12 +1118,7 @@
 			orginal.options = formoptions;
 			orginal.options.submit = true;
 
-			if(options.onalwaystopics) {  
-				var topics = options.onalwaystopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
+			publishTopic(container, options.onalwaystopics, orginal);
 			
 			if(options.onbeforetopics) {  
 				var topics = options.onbeforetopics.split(',');
@@ -1310,8 +1162,9 @@
 						var et = request.responseText;
 						if(et && et.length > 10)
 						{
+							orginal.options.submit = false;
 							var errors = eval("( " + et.substring(2, et.length - 2) + " )");
-						    orginal.options.submit = options.validateFunction(f, errors);
+						    options.validateFunction(f, errors);
 						}
 					}
 					else if(StrutsUtils != undefined)
@@ -1360,11 +1213,7 @@
 			var eo = {};
 			var duration = 2000;
 			if(options.effectoptions) {
-		        var eos = options.effectoptions;
-		        eo = window[eos];
-		        if (!eo) {
-		        	eo = eval ("( " + eos + " )" );
-		        }
+				eo = options.effectoptions;
 			}
 			if(options.effectduration) {
 				duration = parseInt(options.effectduration);
@@ -1377,21 +1226,13 @@
 	function pubTops($elem, always, topics) {
 
 		if(topics)	{
-			var onTopics = topics.split(',');
 			return function(event, ui){
 					var data = {};
 					data.event = event;
 					data.ui = ui;
-				for ( var i = 0; i < onTopics.length; i++) {
-					$elem.publish(onTopics[i], $elem, data);
-				}
 
-				if(always) {  
-					var alwaysTopics = always.split(',');
-					for ( var i = 0; i < alwaysTopics.length; i++) {
-						$elem.publish(alwaysTopics[i], $elem, data);
-					}
-				}
+				publishTopic($elem, topics, data);
+				publishTopic($elem, always, data);
 			};
 		}
 		else { 
@@ -1464,18 +1305,9 @@
 				}
 			}
 					
-			if(stopics) {			  
-				var topics = stopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
-			if(always) {
-				var topics = always.split(',');  
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
+			publishTopic(container, stopics, orginal);
+			publishTopic(container, always, orginal);
+
 			//Use BBQ for Ajaxhistory
 	    	if($.struts2_jquery.ajaxhistory) {
 	    		var ahparams = {};
@@ -1506,18 +1338,8 @@
 
 			hideIndicator(indi);			
 
-			if(ctopics) {			  
-				var topics = ctopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
-			if(always) {  
-				var topics = always.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
-				}
-			}
+			publishTopic(container, ctopics, orginal);
+			publishTopic(container, always, orginal);
 			
 			var ec = targets;
 			if(!ec)
@@ -1561,19 +1383,8 @@
 
 				if(etext) { container.html(etext); }
 				
-				if(etopics || errortext)	{
-					var topics = etopics.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						container.publish(topics[i], container, orginal);
-					}
-				}
-
-				if(always) {  
-					var topics = always.split(',');
-					for ( var i = 0; i < topics.length; i++) {
-						container.publish(topics[i], container, orginal);
-					}
-				}
+				publishTopic(container, etopics, orginal);
+				publishTopic(container, always, orginal);
 			};
 		}
 		else { 
@@ -1593,6 +1404,15 @@
 	function showIndicator(indi) { 
 		if(indi) { $(escId(indi)).show(); }
 		if($.struts2_jquery.defaultIndicator != '') { $(escId($.struts2_jquery.defaultIndicator)).show(); }
+	}
+	
+	function publishTopic(elem, topics, data) { 
+		if(topics) {  
+			var to = topics.split(',');
+			for ( var i = 0; i < to.length; i++) {
+				elem.publish(to[i], elem, data);
+			}
+		}
 	}
 
 })(jQuery);
