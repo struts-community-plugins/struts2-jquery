@@ -1,5 +1,5 @@
 /*
- * jquery.subscribe.1.1
+ * jquery.subscribe.1.2
  * 
  * Implementation of publish/subcription framework for jQuery
  * Requires use of jQuery. Tested with jQuery 1.3 and above
@@ -23,10 +23,14 @@
  *  Code has been added to prevent this when the subscription is made using the non-element subscribe ($.subscribe()), which assures that only one
  *  subscription is made for a topic for a given window/frame. To prevent this from happening for an element subscription ($elem.subscribe()), make
  *  sure that the element has an id attribute.
+ *  
+ *  version 1.2
+ *  Added the isSubscribed() method
+ *  
  */
 
 
-(function(){
+(function($){
 
 	_subscribe_topics = {};
 	_subscribe_handlers = {}; 
@@ -36,7 +40,7 @@
 		return document.parentWindow || document.defaultView;
 	};
 	
-	jQuery.fn.extend({
+	$.fn.extend({
 		
 		/**
 		 * Creates a new topic without any subscribers. 
@@ -71,7 +75,10 @@
 							
 							for(j in object) {
 								
-								object[j].unbind(topic);
+								//typeof(object) check in case someone has added methods to Array.protoype
+								if(typeof(object[j]) != "function") {
+									object[j].unbind(topic);
+								}
 							}
 						}
 							
@@ -100,8 +107,8 @@
 		 *  -data- (optional) is additional data that is passed to the event handler as event.data when the topic is published
 		 *
 		 * Note: Unexpected behavior can occur when a script in a embedded page (page loaded in div,tab etc.) subscribes a handler for a topic using
-		 *  the jQuery subscribe ($.subscribe) or a no-id element but this subscribe plugin is not reloaded within that embedded page (for example, when
-		 *  script is included in containing page) . In this case, if the embedded page is reloaded without reloading the entire page (and plugin), the
+		 *  the global jQuery subscribe ($.subscribe) or a no-id element but this subscribe plugin .js is not reloaded within that embedded page (for example, when
+		 *  script is included in container page) . In this case, if the embedded page is reloaded without reloading the container page (and plugin), the
 		 *  subscription could be made multiple times for the topic, which will call the handler multiple times each time the topic is published. 
 		 *  Code has been added to prevent this when the subscription is made using the non-element subscribe ($.subscribe()), which assures that only one
 		 *  subscription is made for a topic for a given window/frame. To prevent this from happening for an element subscription ($elem.subscribe()), make
@@ -124,11 +131,12 @@
 					
 					if(this[0].nodeType == 9) { //if document is being bound (the case for non-element jQuery subscribing ($.subscribe)
 					
-						for ( var index in noIdObjects) {
+						for (var index in noIdObjects) {
 							
 							var noIdObject = noIdObjects[index];
 														
-							if(noIdObject[0].nodeType == 9 && _subscribe_getDocumentWindow(this[0]).frameElement == _subscribe_getDocumentWindow(noIdObject[0]).frameElement ) {
+							//typeof(noIdObject) check in case someone has added methods to Array.protoype
+							if(typeof(noIdObject) != "function" && noIdObject[0].nodeType == 9 && _subscribe_getDocumentWindow(this[0]).frameElement == _subscribe_getDocumentWindow(noIdObject[0]).frameElement ) {
 								
 								return this;	
 							}
@@ -187,8 +195,9 @@
 						var noIdObjects = _subscribe_topics[topic].objects['__noId__'];
 						
 						for(var i = 0; i < noIdObjects.length; i++){
-							
-							if(noIdObjects[i] == this){
+
+							//typeof(noIdObject) check in case someone has added methods to Array.protoype
+							if(typeof(noIdObject) != "function" && noIdObjects[i] == this){
 								
 								subscribe_topics[topic].objects['__noId__'].splice(index,1);
 								break;
@@ -201,6 +210,44 @@
 			}
 			
 			return this;
+		},
+		
+		/**
+		 * Determine if an element has already subscribed to a topics
+		 * returns true if so, otherwise false
+		 */
+		isSubscribed :  function(topic) {	
+			
+			if(topic) {
+
+				if(_subscribe_topics[topic]) {
+					
+					if(this.attr('id')) {
+						
+						var object = _subscribe_topics[topic].objects[this.attr('id')];
+						
+						if(object) {
+							
+							return true;
+						}
+						
+					} else {
+	
+						var noIdObjects = _subscribe_topics[topic].objects['__noId__'];
+						
+						for(var i = 0; i < noIdObjects.length; i++){
+
+							//typeof(noIdObject) check in case someone has added methods to Array.protoype
+							if(typeof(noIdObject) != "function" && noIdObjects[i] == this){
+
+								return true;
+							}
+						}
+					}
+				}
+			}
+			
+			return false;
 		},
 		
 		/**
@@ -237,8 +284,11 @@
 					this.isImmediatePropagationStopped = function(){
 						return true;
 					};
-					
-					(new $.Event).stopPropagation();
+
+					this.isPropagationStopped  = function(){
+						return true;
+					};
+					//(new $.Event).stopPropagation();
 					
 					if(this.originalEvent) {
 						
@@ -263,7 +313,10 @@
 						
 							for(j in object) {
 								
-								object[j].trigger( event,data);
+								//typeof(object) check in case someone has added methods to Array.protoype
+								if(typeof(object[j]) != "function") {
+									object[j].trigger( event,data);
+								}
 							}
 						}
 						
@@ -346,7 +399,7 @@
 				_subscribe_handlers[name] = handler;
 			}
 			
-			return $;
+			return $(document);
 		},
 		
 		publish: function(topic, data) { 
