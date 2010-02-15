@@ -476,17 +476,17 @@
 				for ( var i = 0; i < targets.length; i++) {
 					var target = targets[i];
 	    			$(escId(target)).subscribe(topic, '_s2j_effects', options);
-	    	    	if($.struts2_jquery.ajaxhistory) {
-						var params = {};
-						params.target = target;
-						params.topic = topic;
-	    				$elem.bind('click', params, function(event){
-	    					$.struts2_jquery.historyelements[ event.data.target ] = event.data.topic;
-	    	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
-	    	    		    return false;
-	    		    	});
-	    	    	}
 				}
+		    	if($.struts2_jquery.ajaxhistory) {
+					var params = {};
+					params.target = options.target;
+					params.topic = topic;
+					$elem.bind('click', params, function(event){
+						$.struts2_jquery.historyelements[ event.data.target ] = event.data.topic;
+		    		    $.bbq.pushState( $.struts2_jquery.historyelements );
+		    		    return false;
+			    	});
+		    	}
 			}
 		},
 		
@@ -589,19 +589,18 @@
 
 	    	// History and Bookmarking for Tabs
     		if($.struts2_jquery.ajaxhistory) {
-				var params = {};
-				params.id = options.id;
-		    	$elem.find('ul.ui-tabs-nav a').bind('click', params, function(event){
-	    		    var idx = $('#'+event.data.id).tabs('option', 'selected');
-	    		    $.struts2_jquery.historyelements[ event.data.id ] = idx;
+				var ahp = {};
+				ahp.id = options.id;
+		    	$elem.find('ul.ui-tabs-nav a').bind('click', ahp, function(e){
+	    		    var idx = $(escId(event.data.id)).tabs('option', 'selected');
+	    		    $.struts2_jquery.historyelements[ e.data.id ] = idx;
 	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
 	    		    return false;
 		    	});
 	    	
-		    	$(window).bind('hashchange', params, function(event) {
-						// In jQuery 1.4, you should use e.getState() instead of $.bbq.getState().
-						var idx = $.bbq.getState( event.data.id, true ) || 0;
-							$('#'+event.data.id).tabs( 'select', idx );
+		    	$(window).bind('hashchange', ahp, function(e) {
+						var idx = e.getState( e.data.id, true ) || 0;
+							$(escId(e.data.id)).tabs( 'select', idx );
 	    		});
 	    	}
 		},
@@ -1109,7 +1108,12 @@
 
 		var indi = options.indicatorid;
 		showIndicator(indi);
-
+		
+		var elem = container;
+		
+		if(options.targets.length > 0)
+			elem = $(escId(options.targets[0]));
+		
 		params.beforeSubmit = function (formData, form, formoptions) {
 			
 			var orginal = {};
@@ -1123,7 +1127,7 @@
 			if(options.onbeforetopics) {  
 				var topics = options.onbeforetopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
+					elem.publish(topics[i], elem, orginal);
 					var submitForm = orginal.options.submit;
 					// cancel form submission
 					if(!submitForm)
@@ -1192,9 +1196,9 @@
 		}
    	
 	    				
-		params.success = pubSuc(event.target, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
-		params.complete = pubCom(event.target, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
-		params.error = pubErr(event.target, options.onalwaystopics, options.onerrortopics, options.errortext);
+		params.success = pubSuc(elem, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
+		params.complete = pubCom(elem, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
+		params.error = pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext);
 		
 		var forms = options.formids.split(',');
 		for ( var i = 0; i < forms.length; i++) {
@@ -1314,11 +1318,11 @@
 	    		ahparams.cid = cid;
 	    		ahparams.options = options;
 	    		
-    			$(window).bind('hashchange', ahparams, function(event) {
-    				var topic = $.bbq.getState(event.data.cid.id) || '';
-    				if ( event.type === topic || topic == '' || topic == $.struts2_jquery.lasttopic ) { return; }
+    			$(window).bind('hashchange', ahparams, function(e) {
+    				var topic = e.getState(e.data.cid.id) || '';
+    				if ( e.type === topic || topic == '' || topic == $.struts2_jquery.lasttopic ) { return; }
     				$.struts2_jquery.lasttopic = topic;
-    				$.publish(topic,event.data.options);
+    				$.publish(topic,e.data.options);
     			});
     		}
 		};
@@ -1414,5 +1418,4 @@
 			}
 		}
 	}
-
 })(jQuery);
