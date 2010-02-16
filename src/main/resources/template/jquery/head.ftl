@@ -30,7 +30,7 @@
   <#assign jqueryCookieFile="jquery.cookie.min.js">
   <#assign jqueryUIFile="jquery-ui-1.8.min.js">
   <#assign jqueryBGIFile="jquery.bgiframe.min.js">
-  <#assign jquerySubscribeFile="jquery.subscribe.1.1.min.js">
+  <#assign jquerySubscribeFile="jquery.subscribe.1.2.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js">
@@ -41,7 +41,7 @@
   <#assign jqueryCookieFile="jquery.cookie.js">
   <#assign jqueryUIFile="jquery-ui-1.8.js">
   <#assign jqueryBGIFile="jquery.bgiframe.js">
-  <#assign jquerySubscribeFile="jquery.subscribe.1.1.js">
+  <#assign jquerySubscribeFile="jquery.subscribe.1.2.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.js">
