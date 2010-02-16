@@ -1167,7 +1167,7 @@
 						if(et && et.length > 10)
 						{
 							orginal.options.submit = false;
-							var errors = eval("( " + et.substring(2, et.length - 2) + " )");
+							var errors = $.parseJSON(et.substring(2, et.length - 2));
 						    options.validateFunction(f, errors);
 						}
 					}
@@ -1247,12 +1247,13 @@
 	/** Publish Success topics */	
 	function pubSuc(cid, always, stopics, indi, modus, options) {
 		var container = $(cid);
-			return function (data, textStatus) {
+			return function (data, status, request) {
 			var orginal = {};
-			orginal.status = textStatus;
+			orginal.data = data;
+			orginal.status = status;
+			orginal.request = request;
 			
-			if(indi) { $(escId(indi)).hide(); }
-			if(modus == 'html')
+			if(modus == 'html' && !$.isArray(data) && !$.isPlainObject(data))
 				container.html(data);
 			else if(modus == 'value')
 				container.val(data);
