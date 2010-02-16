@@ -1337,10 +1337,6 @@
 			orginal.request = request;
 			orginal.status = status;
 
-			var orginal = {};
-			orginal.request = request;
-			orginal.status = status;
-
 			hideIndicator(indi);			
 
 			publishTopic(container, ctopics, orginal);
