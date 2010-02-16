@@ -476,17 +476,17 @@
 				for ( var i = 0; i < targets.length; i++) {
 					var target = targets[i];
 	    			$(escId(target)).subscribe(topic, '_s2j_effects', options);
+			    	if($.struts2_jquery.ajaxhistory) {
+						var params = {};
+						params.target = target;
+						params.topic = topic;
+						$elem.bind('click', params, function(event){
+							$.struts2_jquery.historyelements[ event.data.target ] = event.data.topic;
+			    		    $.bbq.pushState( $.struts2_jquery.historyelements );
+			    		    return false;
+				    	});
+			    	}
 				}
-		    	if($.struts2_jquery.ajaxhistory) {
-					var params = {};
-					params.target = options.target;
-					params.topic = topic;
-					$elem.bind('click', params, function(event){
-						$.struts2_jquery.historyelements[ event.data.target ] = event.data.topic;
-		    		    $.bbq.pushState( $.struts2_jquery.historyelements );
-		    		    return false;
-			    	});
-		    	}
 			}
 		},
 		
@@ -1109,11 +1109,13 @@
 		var indi = options.indicatorid;
 		showIndicator(indi);
 		
+		/*
+		has sideeffects  
 		var elem = container;
 		
 		if(options.targets.length > 0)
 			elem = $(escId(options.targets[0]));
-		
+		*/
 		params.beforeSubmit = function (formData, form, formoptions) {
 			
 			var orginal = {};
@@ -1127,7 +1129,7 @@
 			if(options.onbeforetopics) {  
 				var topics = options.onbeforetopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
-					elem.publish(topics[i], elem, orginal);
+					container.publish(topics[i], container, orginal);
 					var submitForm = orginal.options.submit;
 					// cancel form submission
 					if(!submitForm)
