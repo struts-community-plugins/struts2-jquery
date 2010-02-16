@@ -1198,9 +1198,9 @@
 		}
    	
 	    				
-		params.success = pubSuc(elem, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
-		params.complete = pubCom(elem, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
-		params.error = pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext);
+		params.success = pubSuc(container, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
+		params.complete = pubCom(container, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
+		params.error = pubErr(container, options.onalwaystopics, options.onerrortopics, options.errortext);
 		
 		var forms = options.formids.split(',');
 		for ( var i = 0; i < forms.length; i++) {
