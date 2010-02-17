@@ -47,116 +47,170 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example1 --><!-- END SNIPPET: example1 -->
  */
 @StrutsTag(name = "autocompleter", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AutocompleterTag", description = "Render a jQuery UI Autocompleter")
-public class Autocompleter extends AbstractFormElement {
+public class Autocompleter extends AbstractFormElement
+{
 
-  public static final String            JQUERYACTION  = "autocompleter";
-  public static final String            TEMPLATE      = "autocompleter-close";
-  public static final String            OPEN_TEMPLATE = "autocompleter";
-  final protected static Logger         LOG           = LoggerFactory.getLogger(Autocompleter.class);
-  final private static transient Random RANDOM        = new Random();
+	public static final String				JQUERYACTION	= "autocompleter";
+	public static final String				TEMPLATE		= "autocompleter-close";
+	public static final String				OPEN_TEMPLATE	= "autocompleter";
+	final protected static Logger			LOG				= LoggerFactory.getLogger(Autocompleter.class);
+	final private static transient Random	RANDOM			= new Random();
 
-  protected String                      delay;
-  protected String                      loadMinimumCount;
-  protected Object                      list;
+	protected String						delay;
+	protected String						loadMinimumCount;
+	protected Object						list;
+	protected String						listKey;
+	protected String						listValue;
+	protected String						selectBox;
+	protected String						emptyOption;
+	protected String						headerKey;
+	protected String						headerValue;
 
-  public Autocompleter(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
+	public Autocompleter(ValueStack stack, HttpServletRequest request, HttpServletResponse response)
+	{
+		super(stack, request, response);
+	}
 
-  @Override
-  public String getDefaultOpenTemplate()
-  {
-    return OPEN_TEMPLATE;
-  }
+	@Override
+	public String getDefaultOpenTemplate() {
+		return OPEN_TEMPLATE;
+	}
 
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE;
-  }
+	protected String getDefaultTemplate() {
+		return TEMPLATE;
+	}
 
-  public void evaluateParams()
-  {
-    super.evaluateParams();
+	public void evaluateParams() {
+		super.evaluateParams();
 
-    addParameter("jqueryaction", JQUERYACTION);
+		addParameter("jqueryaction", JQUERYACTION);
 
-    if (delay != null) addParameter("delay", findValue(delay, Integer.class));
-    if (loadMinimumCount != null) addParameter("loadMinimumCount", findValue(loadMinimumCount, Integer.class));
-    // if (list != null) addParameter("list", findString(list));
-    Object value = null;
+		if (delay != null) addParameter("delay", findValue(delay, Integer.class));
+		if (loadMinimumCount != null) addParameter("loadMinimumCount", findValue(loadMinimumCount, Integer.class));
+		// if (list != null) addParameter("list", findString(list));
+		Object value = null;
 
-    if (list == null)
-    {
-      list = parameters.get("list");
-    }
+		if ((headerKey != null) && (headerValue != null))
+		{
+			addParameter("headerKey", findString(headerKey));
+			addParameter("headerValue", findString(headerValue));
+		}
 
-    if (list instanceof String)
-    {
-      value = findValue((String) list);
-    }
-    else if (list instanceof Collection)
-    {
-      value = list;
-    }
-    else if (MakeIterator.isIterable(list))
-    {
-      value = MakeIterator.convert(list);
-    }
-    if (value == null && list != null)
-    {
-      value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
-    }
-    if (value != null)
-    {
-      if (value instanceof Collection)
-      {
-        addParameter("list", value);
-      }
-      else
-      {
-        addParameter("list", MakeIterator.convert(value));
-      }
-    }
+		if (emptyOption != null)
+		{
+			addParameter("emptyOption", findValue(emptyOption, Boolean.class));
+		}
 
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "autocompleter_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
-    }
-  }
+		if (list == null)
+		{
+			list = parameters.get("list");
+		}
+		if (listKey != null)
+		{
+			addParameter("listKey", findString(listKey));
+		}
+		if (listValue != null)
+		{
+			addParameter("listValue", findString(listValue));
+		}
+		if (selectBox != null)
+		{
+			addParameter("selectBox", findValue(selectBox, Boolean.class));
+		}
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+		if (list instanceof String)
+		{
+			value = findValue((String) list);
+		}
+		else if (list instanceof Collection)
+		{
+			value = list;
+		}
+		else if (MakeIterator.isIterable(list))
+		{
+			value = MakeIterator.convert(list);
+		}
+		if (value == null && list != null)
+		{
+			value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
+		}
+		if (value != null)
+		{
+			if (value instanceof Collection)
+			{
+				addParameter("list", value);
+			}
+			else
+			{
+				addParameter("list", MakeIterator.convert(value));
+			}
+		}
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+		if ((this.id == null || this.id.length() == 0))
+		{
+			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+			int nextInt = RANDOM.nextInt();
+			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+			this.id = "autocompleter_" + String.valueOf(nextInt);
+			addParameter("id", this.id);
+		}
+	}
 
-  @StrutsTagAttribute(description = "Delay before making the search", type = "Integer", defaultValue = "300")
-  public void setDelay(String delay)
-  {
-    this.delay = delay;
-  }
+	@Override
+	@StrutsTagSkipInheritance
+	public void setTheme(String theme) {
+		super.setTheme(theme);
+	}
 
-  @StrutsTagAttribute(description = "Minimum number of characters that will force the content to be loaded", type = "Integer", defaultValue = "1")
-  public void setLoadMinimumCount(String loadMinimumCount)
-  {
-    this.loadMinimumCount = loadMinimumCount;
-  }
+	@Override
+	public String getTheme() {
+		return "jquery";
+	}
 
-  @StrutsTagAttribute(description = "List of values for autocomplete", required = false)
-  public void setList(String list)
-  {
-    this.list = list;
-  }
+	@StrutsTagAttribute(description = "Delay before making the search", type = "Integer", defaultValue = "300")
+	public void setDelay(String delay) {
+		this.delay = delay;
+	}
+
+	@StrutsTagAttribute(description = "Minimum number of characters that will force the content to be loaded", type = "Integer", defaultValue = "1")
+	public void setLoadMinimumCount(String loadMinimumCount) {
+		this.loadMinimumCount = loadMinimumCount;
+	}
+
+	@StrutsTagAttribute(description = "List of values for autocomplete", required = false)
+	public void setList(String list) {
+		this.list = list;
+	}
+
+	@StrutsTagAttribute(description = "Property of list objects to get field value from", required = false)
+	public void setListKey(String listKey) {
+		this.listKey = listKey;
+	}
+
+	@StrutsTagAttribute(description = "Property of list objects to get field content from", required = false)
+	public void setListValue(String listValue) {
+		this.listValue = listValue;
+	}
+
+	@StrutsTagAttribute(description = "Use an Select Box as Autocompleter", defaultValue = "false", type = "Boolean", required = false)
+	public void setSelectBox(String selectBox) {
+		this.selectBox = selectBox;
+	}
+
+	@StrutsTagAttribute(description = "Whether or not to add an empty (--) option after the header option", type = "Boolean", defaultValue = "false")
+	public void setEmptyOption(String emptyOption) {
+		this.emptyOption = emptyOption;
+	}
+
+	@StrutsTagAttribute(description = " Key for first item in list. Must not be empty! '-1' and '' is correct, '' is bad.")
+	public void setHeaderKey(String headerKey) {
+		this.headerKey = headerKey;
+	}
+
+	@StrutsTagAttribute(description = "Value expression for first item in list")
+	public void setHeaderValue(String headerValue) {
+		this.headerValue = headerValue;
+	}
+
 }

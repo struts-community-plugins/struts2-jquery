@@ -18,22 +18,37 @@
  * under the License.
  */
 -->
+<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 $(document).ready(function () { 
-	var options_${parameters.id?html} = {};
+	var options_${escapedOptionId?html} = {};
   <#if parameters.delay??>
-	options_${parameters.id?html}.delay = ${parameters.delay?html};
+	options_${escapedOptionId?html}.delay = ${parameters.delay?html};
   </#if>
   <#if parameters.loadMinimumCount??>
-	options_${parameters.id?html}.minimum = ${parameters.loadMinimumCount?html};
+	options_${escapedOptionId?html}.minimum = ${parameters.loadMinimumCount?html};
   </#if>
-  <#if parameters.list??>
-	options_${parameters.id?html}.list = new Array();
+  <#if parameters.selectBox?default(false)>
+	options_${escapedOptionId?html}.selectBox = true;
+  <#else>
+	options_${escapedOptionId?html}.selectBox = false;
+  </#if>
+  <#if parameters.list?? && !parameters.listKey?? && !parameters.selectBox??>
+	options_${escapedOptionId?html}.list = new Array();
 <@s.iterator value="parameters.list">
-	<#assign itemValue = stack.findString('top')/>
-	options_${parameters.id?html}.list.push("${itemValue?html}");
+        <#if parameters.listValue??>
+            <#if stack.findString(parameters.listValue)??>
+              <#assign itemValue = stack.findString(parameters.listValue)/>
+            <#else>
+              <#assign itemValue = ''/>
+            </#if>
+        <#else>
+            <#assign itemValue = stack.findString('top')/>
+        </#if>
+	options_${escapedOptionId?html}.list.push("${itemValue?html}");
 </@s.iterator>
   </#if>
+  
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

@@ -949,23 +949,24 @@
 		},
 		autocompleter: function($elem, options) {
 			
-			var source;
+			var params = {};
 			if(options.href && options.href != '#') {
-				source = options.href;
+				params.source = options.href;
 				if(options.hrefparameter) {	source = source+'?'+options.hrefparameter; }
 			}
-			else if(options.list) {
-				source = options.list;
+			else if(options.list && options.selectBox == false) {
+				params.source = options.list;
 			}
-			var params = {};
-			params.source = source;
 			if(options.delay) {	params.delay = options.delay; }
 			if(options.minimum) {	params.minLength = options.minimum; }
 			
 			if(options.oncompletetopics) params.open = pubTops($elem, options.onalwaystopics, options.oncompletetopics);
 			if(options.onchangetopics) params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
 
-			$elem.autocomplete(params);
+			if(options.selectBox == false)
+				$elem.autocomplete(params);
+			else
+				$elem.combobox(params);
 		},
 		jquerybutton: function($elem, options) {
 			
@@ -1109,13 +1110,11 @@
 		var indi = options.indicatorid;
 		showIndicator(indi);
 		
-		/*
-		has sideeffects  
 		var elem = container;
 		
 		if(options.targets.length > 0)
 			elem = $(escId(options.targets[0]));
-		*/
+
 		params.beforeSubmit = function (formData, form, formoptions) {
 			
 			var orginal = {};
@@ -1129,7 +1128,7 @@
 			if(options.onbeforetopics) {  
 				var topics = options.onbeforetopics.split(',');
 				for ( var i = 0; i < topics.length; i++) {
-					container.publish(topics[i], container, orginal);
+					elem.publish(topics[i], elem, orginal);
 					var submitForm = orginal.options.submit;
 					// cancel form submission
 					if(!submitForm)
@@ -1198,9 +1197,9 @@
 		}
    	
 	    				
-		params.success = pubSuc(container, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
-		params.complete = pubCom(container, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
-		params.error = pubErr(container, options.onalwaystopics, options.onerrortopics, options.errortext);
+		params.success = pubSuc(elem, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
+		params.complete = pubCom(elem, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
+		params.error = pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext);
 		
 		var forms = options.formids.split(',');
 		for ( var i = 0; i < forms.length; i++) {
@@ -1417,4 +1416,72 @@
 			}
 		}
 	}
+})(jQuery);
+
+(function($) {
+	$.widget("ui.combobox", {
+		_create: function() {
+			var self = this;
+			var select = this.element.hide();
+			var input = $("<input>")
+				.insertAfter(select)
+				.autocomplete({
+					source: function(request, response) {
+						var matcher = new RegExp(request.term, "i");
+						response(select.children("option").map(function() {
+							var text = $(this).text();
+							if (!request.term || matcher.test(text))
+								return {
+									id: $(this).val(),
+									label: text.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1") + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>"),
+									value: text
+								};
+						}));
+					},
+					delay: 0,
+					select: function(e, ui) {
+						if (!ui.item) {
+							// remove invalid value, as it didn't match anything
+							$(this).val("");
+							return false;
+						}
+						$(this).focus();
+						select.val(ui.item.id);
+						self._trigger("selected", null, {
+							item: select.find("[value='" + ui.item.id + "']")
+						});
+						
+					},
+					minLength: 0
+				})
+				.removeClass("ui-corner-all")
+				.addClass("ui-corner-left");
+			$("<button>&nbsp;</button>")
+			.insertAfter(input)
+			.button({
+				icons: {
+					primary: "ui-icon-triangle-1-s"
+				},
+				text: false
+			}).removeClass("ui-corner-all")
+			.addClass("ui-corner-right ui-button-icon")
+			.position({
+				my: "left center",
+				at: "right center",
+				of: input,
+				offset: "-1 0"
+			}).css("top", "")
+			.click(function() {
+				// close if already visible
+				if (input.autocomplete("widget").is(":visible")) {
+					input.autocomplete("close");
+					return;
+				}
+				// pass empty string as value to search for, displaying all results
+				input.autocomplete("search", "");
+				input.focus();
+			});
+		}
+	});
+
 })(jQuery);
