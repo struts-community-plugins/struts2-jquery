@@ -939,7 +939,15 @@
 				navparams.refresh = options.navigatorrefresh;
 				navparams.search = options.navigatorsearch;
 				navparams.view = options.navigatorview;
-				$elem.jqGrid('navGrid',escId(options.navigator),navparams,options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
+				$elem.jqGrid('navGrid',
+							escId(options.pager),
+							navparams,
+							options.navigatoreditoptions,
+							options.navigatoraddoptions,
+							options.navigatordeleteoptions,
+							options.navigatorsearchoptions,
+							options.navigatorviewoptions
+							);
 			}
 			if(options.filter) {
 				var fpara = {};
@@ -1418,6 +1426,7 @@
 	}
 })(jQuery);
 
+// Taken from jquery UI Combobox Example  
 (function($) {
 	$.widget("ui.combobox", {
 		_create: function() {
@@ -1450,7 +1459,6 @@
 						self._trigger("selected", null, {
 							item: select.find("[value='" + ui.item.id + "']")
 						});
-						
 					},
 					minLength: 0
 				})
@@ -1458,26 +1466,16 @@
 				.addClass("ui-corner-left");
 			$("<button>&nbsp;</button>")
 			.insertAfter(input)
-			.button({
-				icons: {
-					primary: "ui-icon-triangle-1-s"
-				},
-				text: false
-			}).removeClass("ui-corner-all")
+			.button({icons: {primary: "ui-icon-triangle-1-s"},text: false})
+			.removeClass("ui-corner-all")
 			.addClass("ui-corner-right ui-button-icon")
-			.position({
-				my: "left center",
-				at: "right center",
-				of: input,
-				offset: "-1 0"
-			}).css("top", "")
+			.position({my: "left center", at: "right center", of: input, offset: "-1 0"})
+			.css("top", "")
 			.click(function() {
-				// close if already visible
 				if (input.autocomplete("widget").is(":visible")) {
 					input.autocomplete("close");
 					return;
 				}
-				// pass empty string as value to search for, displaying all results
 				input.autocomplete("search", "");
 				input.focus();
 			});

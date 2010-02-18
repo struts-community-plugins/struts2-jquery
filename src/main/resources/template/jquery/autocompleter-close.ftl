@@ -28,7 +28,7 @@ $(document).ready(function () {
   <#if parameters.loadMinimumCount??>
 	options_${escapedOptionId?html}.minimum = ${parameters.loadMinimumCount?html};
   </#if>
-  <#if parameters.selectBox?default(false)>
+  <#if parameters.selectBox?default(false) || parameters.list?? && parameters.listKey??>
 	options_${escapedOptionId?html}.selectBox = true;
   <#else>
 	options_${escapedOptionId?html}.selectBox = false;

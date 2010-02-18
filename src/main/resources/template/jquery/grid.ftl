@@ -33,11 +33,8 @@
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 ></table>
-<#if parameters.pager?default(false)>
+<#if parameters.pager?default(false) || parameters.navigator?default(false)>
 <div id="${parameters.id?html}_pager"></div>
-</#if>
-<#if parameters.navigator?default(false)>
-<div id="${parameters.id?html}_navigator"></div>
 </#if>
 </#if>
 

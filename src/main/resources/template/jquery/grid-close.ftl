@@ -65,7 +65,7 @@
 	options_${escapedOptionId?html}.sortorder = "${parameters.sortorder?html}";
   </#if>
   <#if parameters.navigator?default(false)>
-	options_${escapedOptionId?html}.navigator = "${escapedOptionId?html}_navigator";
+	options_${escapedOptionId?html}.navigator = true;
 	  <#if parameters.navigatorEditOptions?if_exists != "">
 		options_${escapedOptionId?html}.navigatoreditoptions = ${parameters.navigatorEditOptions?html};
 	  </#if>

@@ -42,12 +42,6 @@
 	<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 	<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 	>
-	<#if parameters.headerKey?? && parameters.headerValue??>
-	    <option value="${parameters.headerKey?html}">${parameters.headerValue?html}</option>
-	</#if>
-	<#if parameters.emptyOption?default(false)>
-	    <option value=""></option>
-	</#if>
 	<@s.iterator value="parameters.list">
 	        <#if parameters.listKey??>
 	            <#if stack.findValue(parameters.listKey)??>
@@ -72,9 +66,6 @@
 	        </#if>
 	    <option value="${itemKeyStr?html}">${itemValue?html}</option><#lt/>
 	</@s.iterator>
-	
-	<#include "/${parameters.templateDir}/simple/optgroup.ftl" />
-	
 	</select>
   <#else>
 <#include "/${parameters.templateDir}/simple/text.ftl" />
