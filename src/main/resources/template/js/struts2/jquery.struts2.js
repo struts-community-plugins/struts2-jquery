@@ -130,11 +130,21 @@
 						var target = targets[i];
 						effect.targets = target;
 						var tarelem = $(escId(target));
+						
+						if(tarelem.isSubscribed(actionTopic))
+							tarelem.unsubscribe(actionTopic);
+						if(tarelem.isSubscribed(effectTopic+target))
+							tarelem.unsubscribe(effectTopic+target);
+
 						tarelem.subscribe(actionTopic, loadHandler, options);
 						tarelem.subscribe(effectTopic+target, '_s2j_effects', effect);
+
 						if(options.listentopics) {			  
 							var topics = options.listentopics.split(',');
 							for ( var i = 0; i < topics.length; i++) {
+								if(tarelem.isSubscribed(topics[i]))
+									tarelem.unsubscribe(topics[i]);
+
 								tarelem.subscribe(topics[i], loadHandler, options);
 								tarelem.subscribe(topics[i], '_s2j_effects', effect);
 							}
@@ -159,7 +169,10 @@
 					
 				//bind event topic listeners
 		    	if(options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
-			    		$elem.subscribe(actionTopic, loadHandler, options);
+					if($elem.isSubscribed(actionTopic))
+			    		$elem.unsubscribe(actionTopic);
+
+					$elem.subscribe(actionTopic, loadHandler, options);
 		    	}
 			}
 
@@ -186,19 +199,29 @@
 					if(options.reloadtopics) {			  
 						var topics = options.reloadtopics.split(',');
 						for ( var i = 0; i < topics.length; i++) {
+							if($elem.isSubscribed(topics[i]))
+								$elem.unsubscribe(topics[i]);
+								
 							$elem.subscribe(topics[i], loadHandler, options);
 						}
 					}
 					if(options.listentopics) {			  
 						var topics = options.listentopics.split(',');
 						for ( var i = 0; i < topics.length; i++) {
+							if($elem.isSubscribed(topics[i]))
+								$elem.unsubscribe(topics[i]);
+
 							$elem.subscribe(topics[i], loadHandler, options);
 						}
 					}
 
 					//publishing not triggering to prevent event propagation issues
 			    	var divTopic = '_s2j_div_load_' + options.id;
-		    		$elem.subscribe(divTopic, loadHandler);
+					if($elem.isSubscribed(divTopic))
+						$elem.unsubscribe(divTopic);
+
+					$elem.subscribe(divTopic, loadHandler);
+					
 					if(options.bindon) {
 						var $bindElement = $('#'+options.bindon);
 						if(options.events) {
@@ -232,7 +255,8 @@
 						effect.effect = options.effect;
 						effect.effectoptions = options.effectoptions;
 						effect.effectduration = options.effectduration;
-			    		$elem.subscribe(divEffectTopic, effectHandler, effect);
+						if(!$elem.isSubscribed(divEffectTopic))
+							$elem.subscribe(divEffectTopic, effectHandler, effect);
 					}
 	
 	
