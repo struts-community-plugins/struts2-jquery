@@ -19,7 +19,7 @@
  */
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-<@s.iterator value="parameters.list">
+<@s.iterator value="parameters.list" status="rowstatus">
         <#if parameters.listKey??>
             <#if stack.findValue(parameters.listKey)??>
               <#assign itemKey = stack.findValue(parameters.listKey)/>
@@ -46,8 +46,8 @@
         	<#list parameters.paramValues?split(",") as tmp>${stack.findString(tmp)?default('')}<#if tmp_has_next>,</#if></#list>
 		</#assign>
         </#if>
-    <li>
-	<${parameters.header?default('h3')}><a href="#"
+    <li id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />">
+	<${parameters.header?default('h3')}><a id="${escapedOptionId}_a_<@s.property value="%{#rowstatus.count}" />" href="#"
 <#if parameters.paramKeys?if_exists != "">
 	 paramkeys="${parameters.paramKeys?trim}"
 </#if>	 
@@ -55,7 +55,7 @@
 	 paramvalues="${hrefValues?trim}"
 </#if>	 
 	 >${itemKeyStr?html}</a></${parameters.header?default('h3')}>
-		<div>
+		<div id="${escapedOptionId}_div_<@s.property value="%{#rowstatus.count}" />">
 <#if parameters.href?if_exists == "">
 			${itemValue?html}
 </#if>			
