@@ -33,7 +33,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class AccordionItemTag extends AbstractClosingTag {
 
-  private static final long serialVersionUID = -1034616578492431113L;
+  private static final long serialVersionUID = -270033824138017378L;
 
   protected String          title;
 
@@ -48,5 +48,10 @@ public class AccordionItemTag extends AbstractClosingTag {
 
     AccordionItem item = (AccordionItem) component;
     item.setTitle(title);
+  }
+
+  public void setTitle(String title)
+  {
+    this.title = title;
   }
 }

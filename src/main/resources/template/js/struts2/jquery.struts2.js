@@ -808,14 +808,6 @@
 				
 				var onAlwaysTopics = options.onalwaystopics;
 				params.changestart = function(event, ui) {
-					if(options.onbeforetopics) {  
-						var data = {};
-						data.event = event;
-						data.ui = ui;
-
-						publishTopic($elem, onAlwaysTopics, data);
-						publishTopic($elem, options.onbeforetopics, data);
-					}
 					if(options.href)
 					{
 						if ( typeof $(ui.newHeader).find('a').attr('paramkeys') != "undefined" )
@@ -826,11 +818,17 @@
 							jQuery.each(keys, function(i, val) {
 								valueparams[val] = values[i];
 			    			});
-//							ui.newContent.load(options.href,valueparams,function() {});
-							var activeContent = $($(escId(options.id)+" li div").filter('.ui-accordion-content-active')[0]);
-							activeContent.load(options.href,valueparams,function() {});
+							ui.newContent.load(options.href,valueparams,function() {});
 						 }
 					}			
+					if(options.onbeforetopics) {  
+						var data = {};
+						data.event = event;
+						data.ui = ui;
+
+						publishTopic($elem, onAlwaysTopics, data);
+						publishTopic($elem, options.onbeforetopics, data);
+					}
 				};
 				
 				params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
@@ -847,8 +845,7 @@
 					jQuery.each(keys, function(i, val) {
 						valueparams[val] = values[i];
 			    	});
-					var activeContent = $($(escId(options.id)+" li div").filter('.ui-accordion-content-active')[0]);
-					activeContent.load(options.href,valueparams, function() {});
+					$(escId(options.id)+" li div").filter('.ui-accordion-content-active').load(options.href,valueparams,function() {});
 				}
 			}
 		},

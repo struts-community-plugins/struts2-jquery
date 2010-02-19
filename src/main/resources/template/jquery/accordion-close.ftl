@@ -56,9 +56,11 @@
 </#if>	 
 	 >${itemKeyStr?html}</a></${parameters.header?default('h3')}>
 		<div id="${escapedOptionId}_div_<@s.property value="%{#rowstatus.count}" />">
+			<p>
 <#if parameters.href?if_exists == "">
 			${itemValue?html}
 </#if>			
+			</p>
 		</div>
 	</li>
 	<#lt/>

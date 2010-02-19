@@ -32,11 +32,11 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * Renders a accordion item
  */
-@StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionTag", description = "Render an accordion from a List.")
+@StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionItemTag", description = "Render an accordion item.")
 public class AccordionItem extends ClosingUIBean {
 
-  public static final String TEMPLATE       = "accordion-item";
-  public static final String TEMPLATE_CLOSE = "accordion-item-close";
+  public static final String TEMPLATE       = "accordionItem";
+  public static final String TEMPLATE_CLOSE = "accordionItem-close";
   public static final String COMPONENT_NAME = AccordionItem.class.getName();
 
   protected String           title;
