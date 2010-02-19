@@ -23,12 +23,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
-import org.apache.struts2.views.jsp.ui.AbstractRequiredListTag;
 
 import com.jgeppert.struts2.jquery.components.Accordion;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class AccordionTag extends AbstractRequiredListTag {
+public class AccordionTag extends AbstractTopicTag {
 
   private static final long serialVersionUID = 5309231035916461134L;
 
@@ -43,9 +42,9 @@ public class AccordionTag extends AbstractRequiredListTag {
   protected String          href;
   protected String          paramKeys;
   protected String          paramValues;
-  protected String          onBeforeTopics;
-  protected String          onAlwaysTopics;
-  protected String          onChangeTopics;
+  protected String          list;
+  protected String          listKey;
+  protected String          listValue;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -68,9 +67,9 @@ public class AccordionTag extends AbstractRequiredListTag {
     accordion.setHref(href);
     accordion.setParamKeys(paramKeys);
     accordion.setParamValues(paramValues);
-    accordion.setOnBeforeTopics(onBeforeTopics);
-    accordion.setOnAlwaysTopics(onAlwaysTopics);
-    accordion.setOnChangeTopics(onChangeTopics);
+    accordion.setList(list);
+    accordion.setListKey(listKey);
+    accordion.setListValue(listValue);
   }
 
   public void setActive(String active)
@@ -143,4 +142,18 @@ public class AccordionTag extends AbstractRequiredListTag {
     this.onChangeTopics = onChangeTopics;
   }
 
+  public void setList(String list)
+  {
+    this.list = list;
+  }
+
+  public void setListKey(String listKey)
+  {
+    this.listKey = listKey;
+  }
+
+  public void setListValue(String listValue)
+  {
+    this.listValue = listValue;
+  }
 }

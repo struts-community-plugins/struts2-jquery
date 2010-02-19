@@ -25,29 +25,73 @@ import javax.servlet.http.HttpServletResponse;
 import com.opensymphony.xwork2.util.ValueStack;
 
 public class JqueryModels {
-  protected DatePickerModel   datePicker;
-  protected TabbedPanelModel  tabbedPanel;
-  protected DivModel          div;
-  protected DialogModel       dialog;
-  protected AccordionModel    accordion;
-  protected TabModel          tab;
-  protected AnchorModel       a;
-  protected SubmitModel       submit;
-  protected HeadModel         head;
-  protected ProgressbarModel  progessbar;
-  protected SliderModel       slider;
-  protected TextareaModel     textarea;
-  protected TextfieldModel    textfield;
-  protected SelectModel       select;
+  protected DatePickerModel    datePicker;
+  protected TabbedPanelModel   tabbedPanel;
+  protected DivModel           div;
+  protected DialogModel        dialog;
+  protected AccordionModel     accordion;
+  protected AccordionItemModel accordionItem;
+  protected TabModel           tab;
+  protected AnchorModel        a;
+  protected SubmitModel        submit;
+  protected HeadModel          head;
+  protected ProgressbarModel   progessbar;
+  protected SliderModel        slider;
+  protected TextareaModel      textarea;
+  protected TextfieldModel     textfield;
+  protected SelectModel        select;
+  protected GridColumnModel    gridColumn;
+  protected GridModel          grid;
+  protected AutocompleterModel autocompleter;
 
-  private ValueStack          stack;
-  private HttpServletRequest  req;
-  private HttpServletResponse res;
+  private ValueStack           stack;
+  private HttpServletRequest   req;
+  private HttpServletResponse  res;
 
   public JqueryModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
     this.stack = stack;
     this.req = req;
     this.res = res;
+  }
+
+  public AccordionItemModel getAccordionItem()
+  {
+    if (accordionItem == null)
+    {
+      accordionItem = new AccordionItemModel(stack, req, res);
+    }
+
+    return accordionItem;
+  }
+
+  public GridColumnModel getGridColumn()
+  {
+    if (gridColumn == null)
+    {
+      gridColumn = new GridColumnModel(stack, req, res);
+    }
+
+    return gridColumn;
+  }
+
+  public GridModel getGrid()
+  {
+    if (grid == null)
+    {
+      grid = new GridModel(stack, req, res);
+    }
+
+    return grid;
+  }
+
+  public AutocompleterModel getAutocompleter()
+  {
+    if (autocompleter == null)
+    {
+      autocompleter = new AutocompleterModel(stack, req, res);
+    }
+
+    return autocompleter;
   }
 
   public HeadModel getHead()

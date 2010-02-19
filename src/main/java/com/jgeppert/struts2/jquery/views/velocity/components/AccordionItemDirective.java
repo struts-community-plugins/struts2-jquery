@@ -1,4 +1,3 @@
-<#--
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,15 +16,33 @@
  * specific language governing permissions and limitations
  * under the License.
  */
--->
-<ul id="${parameters.id?html}" 
-<#if parameters.cssStyle?if_exists != "">
- style="${parameters.cssStyle?html}"<#rt/>
-</#if>
-<#if parameters.cssClass?if_exists != "">
- class="${parameters.cssClass?html}"<#rt/>
-</#if>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
->
+
+package com.jgeppert.struts2.jquery.views.velocity.components;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.components.Component;
+
+import com.jgeppert.struts2.jquery.components.AccordionItem;
+import com.opensymphony.xwork2.util.ValueStack;
+
+/**
+ * @see AccordionItem
+ */
+public class AccordionItemDirective extends JqueryAbstractDirective {
+  public String getBeanName()
+  {
+    return "accordionItem";
+  }
+
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new AccordionItem(stack, req, res);
+  }
+
+  public int getType()
+  {
+    return BLOCK;
+  }
+}

@@ -29,6 +29,7 @@ import org.apache.struts2.views.TagLibrary;
 
 import com.jgeppert.struts2.jquery.views.freemarker.tags.JqueryModels;
 import com.jgeppert.struts2.jquery.views.velocity.components.AccordionDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.AccordionItemDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.AnchorDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.AutocompleterDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.DatePickerDirective;
@@ -47,20 +48,37 @@ import com.jgeppert.struts2.jquery.views.velocity.components.TextareaDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TextfieldDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class JqueryTagLibrary implements TagLibrary
-{
+public class JqueryTagLibrary implements TagLibrary {
 
-	public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		return new JqueryModels(stack, req, res);
-	}
+  public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new JqueryModels(stack, req, res);
+  }
 
-	@SuppressWarnings("unchecked")
-	public List<Class> getVelocityDirectiveClasses() {
-		Class[] directives = new Class[] {
-				DatePickerDirective.class, DivDirective.class, AnchorDirective.class, AutocompleterDirective.class, SubmitDirective.class, TabDirective.class, TabbedPanelDirective.class, HeadDirective.class, DialogDirective.class, AccordionDirective.class,
-				ProgressbarDirective.class, SliderDirective.class, TextareaDirective.class, TextfieldDirective.class, SelectDirective.class, GridDirective.class, GridColumnDirective.class,
-		};
-		return Arrays.asList(directives);
-	}
+  @SuppressWarnings("unchecked")
+  public List<Class> getVelocityDirectiveClasses()
+  {
+    Class[] directives = new Class[] {
+        DatePickerDirective.class,
+        DivDirective.class,
+        AnchorDirective.class,
+        AutocompleterDirective.class,
+        SubmitDirective.class,
+        TabDirective.class,
+        TabbedPanelDirective.class,
+        HeadDirective.class,
+        DialogDirective.class,
+        AccordionDirective.class,
+        AccordionItemDirective.class,
+        ProgressbarDirective.class,
+        SliderDirective.class,
+        TextareaDirective.class,
+        TextfieldDirective.class,
+        SelectDirective.class,
+        GridDirective.class,
+        GridColumnDirective.class,
+    };
+    return Arrays.asList(directives);
+  }
 
 }

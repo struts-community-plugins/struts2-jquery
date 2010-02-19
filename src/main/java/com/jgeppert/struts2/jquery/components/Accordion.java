@@ -19,12 +19,15 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.ListUIBean;
+import org.apache.struts2.util.MakeIterator;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -42,12 +45,15 @@ import com.opensymphony.xwork2.util.ValueStack;
  * END SNIPPET: example1 -->
  */
 @StrutsTag(name = "accordion", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionTag", description = "Render an accordion from a List.")
-public class Accordion extends ListUIBean {
+public class Accordion extends AbstractTopicsBean {
 
-  final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION   = "accordion";
-  public static final String            TEMPLATE       = "accordion";
-  public static final String            COMPONENT_NAME = Accordion.class.getName();
+  final private static transient Random RANDOM                             = new Random();
+  public static final String            JQUERYACTION                       = "accordion";
+  public static final String            TEMPLATE                           = "accordion";
+  public static final String            TEMPLATE_CLOSE                     = "accordion-close";
+  public static final String            COMPONENT_NAME                     = Accordion.class.getName();
+
+  protected boolean                     throwExceptionOnNullValueAttribute = false;
 
   protected String                      active;
   protected String                      animated;
@@ -60,17 +66,23 @@ public class Accordion extends ListUIBean {
   protected String                      href;
   protected String                      paramKeys;
   protected String                      paramValues;
-  protected String                      onBeforeTopics;
-  protected String                      onAlwaysTopics;
-  protected String                      onChangeTopics;
+  protected Object                      list;
+  protected String                      listKey;
+  protected String                      listValue;
 
   public Accordion(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
 
-  protected String getDefaultTemplate()
+  @Override
+  public String getDefaultOpenTemplate()
   {
     return TEMPLATE;
+  }
+
+  protected String getDefaultTemplate()
+  {
+    return TEMPLATE_CLOSE;
   }
 
   public void evaluateExtraParams()
@@ -91,9 +103,81 @@ public class Accordion extends ListUIBean {
     if (paramKeys != null) addParameter("paramKeys", findString(paramKeys));
     if (paramValues != null) addParameter("paramValues", findString(paramValues));
 
-    if (onBeforeTopics != null) addParameter("onBeforeTopics", findString(onBeforeTopics));
-    if (onChangeTopics != null) addParameter("onChangeTopics", findString(onChangeTopics));
-    if (onAlwaysTopics != null) addParameter("onAlwaysTopics", findString(onAlwaysTopics));
+    Object value = null;
+
+    if (list == null)
+    {
+      list = parameters.get("list");
+    }
+
+    if (list instanceof String)
+    {
+      value = findValue((String) list);
+    }
+    else if (list instanceof Collection)
+    {
+      value = list;
+    }
+    else if (MakeIterator.isIterable(list))
+    {
+      value = MakeIterator.convert(list);
+    }
+    if (value == null)
+    {
+      if (throwExceptionOnNullValueAttribute)
+      {
+        // will throw an exception if not found
+        value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
+      }
+      else
+      {
+        // ww-1010, allows value with null value to be compatible with ww
+        // 2.1.7 behaviour
+        value = findValue((list == null) ? (String) list : list.toString());
+      }
+    }
+
+    if (value instanceof Collection)
+    {
+      addParameter("list", value);
+    }
+    else
+    {
+      addParameter("list", MakeIterator.convert(value));
+    }
+
+    if (value instanceof Collection)
+    {
+      addParameter("listSize", Integer.valueOf(((Collection) value).size()));
+    }
+    else if (value instanceof Map)
+    {
+      addParameter("listSize", Integer.valueOf(((Map) value).size()));
+    }
+    else if (value != null && value.getClass().isArray())
+    {
+      addParameter("listSize", Integer.valueOf(Array.getLength(value)));
+    }
+
+    if (listKey != null)
+    {
+      listKey = stripExpressionIfAltSyntax(listKey);
+      addParameter("listKey", listKey);
+    }
+    else if (value instanceof Map)
+    {
+      addParameter("listKey", "key");
+    }
+
+    if (listValue != null)
+    {
+      listValue = stripExpressionIfAltSyntax(listValue);
+      addParameter("listValue", listValue);
+    }
+    else if (value instanceof Map)
+    {
+      addParameter("listValue", "value");
+    }
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -161,6 +245,11 @@ public class Accordion extends ListUIBean {
     this.header = header;
   }
 
+  public String getHeader()
+  {
+    return header;
+  }
+
   @StrutsTagAttribute(description = "open accordion on mouse over event. Default: false", defaultValue = "false", type = "Boolean")
   public void setOpenOnMouseover(String openOnMouseover)
   {
@@ -170,19 +259,19 @@ public class Accordion extends ListUIBean {
   @StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value' parameter and the Map value will become the option body.", required = true)
   public void setList(Object list)
   {
-    super.list = list;
+    this.list = list;
   }
 
   @StrutsTagAttribute(description = "Property of list objects to get field value from")
   public void setListKey(String listKey)
   {
-    super.listKey = listKey;
+    this.listKey = listKey;
   }
 
   @StrutsTagAttribute(description = "Property of list objects to get field content from")
   public void setListValue(String listValue)
   {
-    super.listValue = listValue;
+    this.listValue = listValue;
   }
 
   @StrutsTagAttribute(description = "The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.")
@@ -201,23 +290,5 @@ public class Accordion extends ListUIBean {
   public void setParamValues(String paramValues)
   {
     this.paramValues = paramValues;
-  }
-
-  @StrutsTagAttribute(name = "onBeforeTopics", description = "Topics that are published before a load", type = "String", defaultValue = "")
-  public void setOnBeforeTopics(String onBeforeTopics)
-  {
-    this.onBeforeTopics = onBeforeTopics;
-  }
-
-  @StrutsTagAttribute(name = "onAlwaysTopics", description = "A comma delimited list of topics that published always", type = "String", defaultValue = "")
-  public void setOnAlwaysTopics(String onAlwaysTopics)
-  {
-    this.onAlwaysTopics = onAlwaysTopics;
-  }
-
-  @StrutsTagAttribute(name = "onChangeTopics", description = "A comma delimited list of topics that published when the element changed", type = "String", defaultValue = "")
-  public void setOnChangeTopics(String onChangeTopics)
-  {
-    this.onChangeTopics = onChangeTopics;
   }
 }
