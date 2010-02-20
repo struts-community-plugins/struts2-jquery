@@ -25,7 +25,7 @@
   <#assign basePath="${parameters.customBasepath?string}">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryFile="jquery-1.4.1.min.js">
+  <#assign jqueryFile="jquery-1.4.2.min.js">
   <#assign jqueryForm="jquery.form.min.js">
   <#assign jqueryCookieFile="jquery.cookie.min.js">
   <#assign jqueryUIFile="jquery-ui-1.8.min.js">
@@ -33,10 +33,10 @@
   <#assign jquerySubscribeFile="jquery.subscribe.1.2.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
-  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js">
+  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
   <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js">
 <#else>
-  <#assign jqueryFile="jquery-1.4.1.js">
+  <#assign jqueryFile="jquery-1.4.2.js">
   <#assign jqueryForm="jquery.form.js">
   <#assign jqueryCookieFile="jquery.cookie.js">
   <#assign jqueryUIFile="jquery-ui-1.8.js">
@@ -44,7 +44,7 @@
   <#assign jquerySubscribeFile="jquery.subscribe.1.2.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
-  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.js">
+  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js">
   <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.js">
 </#if>
 
