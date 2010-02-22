@@ -616,7 +616,7 @@
 				var ahp = {};
 				ahp.id = options.id;
 		    	$elem.find('ul.ui-tabs-nav a').bind('click', ahp, function(e){
-	    		    var idx = $(escId(event.data.id)).tabs('option', 'selected');
+	    		    var idx = $(escId(e.data.id)).tabs('option', 'selected');
 	    		    $.struts2_jquery.historyelements[ e.data.id ] = idx;
 	    		    $.bbq.pushState( $.struts2_jquery.historyelements );
 	    		    return false;
