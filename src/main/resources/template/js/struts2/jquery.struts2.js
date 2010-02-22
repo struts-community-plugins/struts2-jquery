@@ -638,19 +638,23 @@
 				var oat = options.onalwaystopics;
 				
 				if(options.onbeforetopics) {  
-					params.beforeShow = function(input){
+					params.beforeShow = function(input, inst){
 						var $input = $(input);
-						publishTopic($input, options.onbeforetopics, null);
-						publishTopic($input, oat, null);
+						var data = {};
+						data.input = input;
+						data.inst = inst;
+						publishTopic($input, options.onbeforetopics, data);
+						publishTopic($input, oat, data);
 					};
 				}
 				
 				if(options.onbeforeshowdaytopics) {  
 					var obsdt = options.onbeforeshowdaytopics.split(',');
 					params.beforeShowDay = function(date){
-						var $date = $(date);
-						publishTopic($date, options.onbeforeshowdaytopics, null);
-						publishTopic($date, oat, null);
+						var data = {};
+						data.date = date;
+						publishTopic($elem, options.onbeforeshowdaytopics, data);
+						publishTopic($elem, oat, data);
 					};
 				}
 
