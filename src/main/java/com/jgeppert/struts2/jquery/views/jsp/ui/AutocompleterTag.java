@@ -37,6 +37,9 @@ public class AutocompleterTag extends AbstractFormElementTag {
   protected String          listKey;
   protected String          listValue;
   protected String          selectBox;
+  protected String          onSelectTopics;
+  protected String          onFocusTopics;
+  protected String          onSearchTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -54,6 +57,9 @@ public class AutocompleterTag extends AbstractFormElementTag {
     completer.setListKey(listKey);
     completer.setListValue(listValue);
     completer.setSelectBox(selectBox);
+    completer.setOnSelectTopics(onSelectTopics);
+    completer.setOnFocusTopics(onFocusTopics);
+    completer.setOnSearchTopics(onSearchTopics);
   }
 
   public void setDelay(String delay)
@@ -84,5 +90,20 @@ public class AutocompleterTag extends AbstractFormElementTag {
   public void setSelectBox(String selectBox)
   {
     this.selectBox = selectBox;
+  }
+
+  public void setOnSelectTopics(String onSelectTopics)
+  {
+    this.onSelectTopics = onSelectTopics;
+  }
+
+  public void setOnFocusTopics(String onFocusTopics)
+  {
+    this.onFocusTopics = onFocusTopics;
+  }
+
+  public void setOnSearchTopics(String onSearchTopics)
+  {
+    this.onSearchTopics = onSearchTopics;
   }
 }

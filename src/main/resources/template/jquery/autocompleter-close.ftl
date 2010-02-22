@@ -33,6 +33,15 @@ $(document).ready(function () {
   <#else>
 	options_${escapedOptionId?html}.selectBox = false;
   </#if>
+  <#if parameters.onSearchTopics?exists>
+	options_${escapedOptionId?html}.onsearchtopics = "${parameters.onSearchTopics?html}";
+  </#if>
+  <#if parameters.onFocusTopics?exists>
+	options_${escapedOptionId?html}.onfocustopics = "${parameters.onFocusTopics?html}";
+  </#if>
+  <#if parameters.onSelectTopics?exists>
+	options_${escapedOptionId?html}.onselecttopics = "${parameters.onSelectTopics?html}";
+  </#if>
   <#if parameters.list?? && !parameters.listKey?? && !parameters.selectBox??>
 	options_${escapedOptionId?html}.list = new Array();
 <@s.iterator value="parameters.list">

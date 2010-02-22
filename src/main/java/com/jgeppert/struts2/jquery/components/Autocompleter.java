@@ -61,6 +61,9 @@ public class Autocompleter extends AbstractFormElement {
   protected String                      listKey;
   protected String                      listValue;
   protected String                      selectBox;
+  protected String                      onSelectTopics;
+  protected String                      onFocusTopics;
+  protected String                      onSearchTopics;
 
   public Autocompleter(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -191,5 +194,23 @@ public class Autocompleter extends AbstractFormElement {
   public void setSelectBox(String selectBox)
   {
     this.selectBox = selectBox;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when item is selected")
+  public void setOnSelectTopics(String onSelectTopics)
+  {
+    this.onSelectTopics = onSelectTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published before focus is moved to an item")
+  public void setOnFocusTopics(String onFocusTopics)
+  {
+    this.onFocusTopics = onFocusTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published before a request is started, after loadMinimumCount and delay are met.")
+  public void setOnSearchTopics(String onSearchTopics)
+  {
+    this.onSearchTopics = onSearchTopics;
   }
 }

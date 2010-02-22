@@ -992,8 +992,12 @@
 			if(options.delay) {	params.delay = options.delay; }
 			if(options.minimum) {	params.minLength = options.minimum; }
 			
-			if(options.oncompletetopics) params.open = pubTops($elem, options.onalwaystopics, options.oncompletetopics);
+			if(options.onsuccesstopics) params.open = pubTops($elem, options.onalwaystopics, options.onsuccesstopics);
 			if(options.onchangetopics) params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
+			if(options.oncompletetopics) params.close = pubTops($elem, options.onalwaystopics, options.oncompletetopics);
+			if(options.onsearchtopics) params.search = pubTops($elem, options.onalwaystopics, options.onsearchtopics);
+			if(options.onfocustopics) params.focus = pubTops($elem, options.onalwaystopics, options.onfocustopics);
+			if(options.onselecttopics) params.select = pubTops($elem, options.onalwaystopics, options.onselecttopics);
 
 			if(options.selectBox == false)
 				$elem.autocomplete(params);
