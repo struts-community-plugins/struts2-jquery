@@ -22,10 +22,13 @@ package com.jgeppert.struts2.jquery.components;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.xwork.StringUtils;
+import org.apache.struts2.StrutsConstants;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
+import com.opensymphony.xwork2.inject.Inject;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -90,6 +93,8 @@ public class Head extends org.apache.struts2.components.Head {
   protected String           defaultIndicator;
   protected String           useJqGridPlugin;
 
+  private String             defaultLocale;
+
   public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
@@ -106,13 +111,28 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.jqueryui != null) addParameter("jqueryui", findValue(this.jqueryui, Boolean.class));
     if (this.compressed != null) addParameter("compressed", findValue(this.compressed, Boolean.class));
     if (this.jquerytheme != null) addParameter("jquerytheme", findString(this.jquerytheme));
-    if (this.locale != null) addParameter("locale", findString(this.locale));
     if (this.customBasepath != null) addParameter("customBasepath", findString(this.customBasepath));
     if (this.loadFromGoogle != null) addParameter("loadFromGoogle", findValue(this.loadFromGoogle, Boolean.class));
     if (this.ajaxcache != null) addParameter("ajaxcache", findValue(this.ajaxcache, Boolean.class));
     if (this.ajaxhistory != null) addParameter("ajaxhistory", findValue(this.ajaxhistory, Boolean.class));
     if (this.defaultIndicator != null) addParameter("defaultIndicator", findString(this.defaultIndicator));
     if (this.useJqGridPlugin != null) addParameter("useJqGridPlugin", findValue(this.useJqGridPlugin, Boolean.class));
+
+    if (this.locale != null)
+    {
+      addParameter("locale", findString(this.locale));
+    }
+    else if (defaultLocale != null)
+    {
+      addParameter("locale", StringUtils.replace(defaultLocale, "_", "-"));
+    }
+
+  }
+
+  @Inject(value = StrutsConstants.STRUTS_LOCALE, required = false)
+  public void setDefaultLocale(String val)
+  {
+    defaultLocale = val;
   }
 
   @Override
@@ -151,7 +171,7 @@ public class Head extends org.apache.struts2.components.Head {
     this.jquerytheme = jquerytheme;
   }
 
-  @StrutsTagAttribute(description = "import jQuery i18n scripts", defaultValue = "en")
+  @StrutsTagAttribute(description = "import jQuery i18n scripts.", defaultValue = "en or struts.local value")
   public void setLocale(String locale)
   {
     this.locale = locale;
