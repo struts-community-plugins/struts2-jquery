@@ -75,13 +75,11 @@
     <#else>
         <link rel="stylesheet" href="${base}/${basePath}/smoothness/jquery-ui.css" type="text/css"/>
     </#if>
-    <#if parameters.locale?if_exists != "">
-        <#if parameters.locale?if_exists != "en">
-            <script type="text/javascript" src="${base}/struts/i18n/jquery.ui.datepicker-${parameters.locale?string}.min.js"></script>
-        </#if>
+    <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
+            <script type="text/javascript" src="${base}/struts/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
     </#if>
 <#if parameters.useJqGridPlugin?default(false)>
-  <script type="text/javascript" src="${base}/struts/i18n/grid.locale-${parameters.locale?default('en')}.js"></script>
+  <script type="text/javascript" src="${base}/struts/i18n/grid.locale-${parameters.gridLocale?default('en')}.js"></script>
 <script type="text/javascript">
 	$.jgrid.no_legacy_api = true;
 	$.jgrid.useJSON = true;

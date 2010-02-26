@@ -19,10 +19,12 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.xwork.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.StrutsConstants;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
@@ -80,20 +82,76 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "head", tldBodyContent = "empty", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag", description = "Render a chunk of HEAD for your HTML file")
 @StrutsTagSkipInheritance
 public class Head extends org.apache.struts2.components.Head {
-  public static final String TEMPLATE = "head";
+  public static final String    TEMPLATE     = "head";
 
-  protected String           compressed;
-  protected String           locale;
-  protected String           jquerytheme;
-  protected String           jqueryui;
-  protected String           customBasepath;
-  protected String           loadFromGoogle;
-  protected String           ajaxcache;
-  protected String           ajaxhistory;
-  protected String           defaultIndicator;
-  protected String           useJqGridPlugin;
+  private static final String[] gridLocals   = {
+      "bg", "cat", "cn", "cs", "de", "dk", "el", "en-GB", "en", "fa", "fi", "fr-CH", "fr", "he", "is", "it", "ja", "nl", "no", "pl", "pt-BR", "pt", "ro", "ru", "sp", "sv", "tr", "ua", "zh", "zh-CN"
+                                             };
+  private static final String[] jqueryLocals = {
+      "af",
+      "ar",
+      "az",
+      "bg",
+      "bs",
+      "ca",
+      "cs",
+      "da",
+      "de",
+      "el",
+      "en",
+      "en-GB",
+      "eo",
+      "es",
+      "et",
+      "eu",
+      "fa",
+      "fi",
+      "fr-CH",
+      "fr",
+      "he",
+      "hr",
+      "hu",
+      "hy",
+      "id",
+      "is",
+      "it",
+      "ja",
+      "ko",
+      "lt",
+      "lv",
+      "ms",
+      "nl",
+      "no",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ro",
+      "ru",
+      "sk",
+      "sl",
+      "sq",
+      "sr-SR",
+      "sv",
+      "th",
+      "tr",
+      "uk",
+      "vi",
+      "zh-CN",
+      "zh-TW"
+                                             };
 
-  private String             defaultLocale;
+  protected String              compressed;
+  protected String              locale;
+  protected String              jquerytheme;
+  protected String              jqueryui;
+  protected String              customBasepath;
+  protected String              loadFromGoogle;
+  protected String              ajaxcache;
+  protected String              ajaxhistory;
+  protected String              defaultIndicator;
+  protected String              useJqGridPlugin;
+
+  private String                defaultLocale;
 
   public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -118,15 +176,15 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.defaultIndicator != null) addParameter("defaultIndicator", findString(this.defaultIndicator));
     if (this.useJqGridPlugin != null) addParameter("useJqGridPlugin", findValue(this.useJqGridPlugin, Boolean.class));
 
-    if (this.locale != null)
-    {
-      addParameter("locale", findString(this.locale));
-    }
-    else if (defaultLocale != null)
-    {
-      addParameter("locale", StringUtils.replace(defaultLocale, "_", "-"));
-    }
+    String loc = null;
+    if (this.locale != null) loc = StringUtils.replace(findString(this.locale), "_", "-");
+    else if (defaultLocale != null) loc = StringUtils.replace(defaultLocale, "_", "-");
 
+    if (loc != null)
+    {
+      addParameter("gridLocale", validateLocal(gridLocals, loc));
+      addParameter("jqueryLocale", validateLocal(jqueryLocals, loc));
+    }
   }
 
   @Inject(value = StrutsConstants.STRUTS_LOCALE, required = false)
@@ -211,5 +269,20 @@ public class Head extends org.apache.struts2.components.Head {
   public void setUseJqGridPlugin(String useJqGridPlugin)
   {
     this.useJqGridPlugin = useJqGridPlugin;
+  }
+
+  private static String validateLocal(String[] locals, String local)
+  {
+    String retString = "en";
+    if (Arrays.binarySearch(jqueryLocals, local) > 0)
+    {
+      retString = local;
+    }
+    else if (local.length() > 2 && Arrays.binarySearch(jqueryLocals, local.substring(0, 2)) > 0)
+    {
+      retString = local.substring(0, 2);
+    }
+
+    return retString;
   }
 }
