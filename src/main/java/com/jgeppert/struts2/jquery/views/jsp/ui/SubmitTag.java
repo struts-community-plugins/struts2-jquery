@@ -47,6 +47,7 @@ public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
   protected String          buttonIconSecondary;
   protected String          validateFunction;
   protected String          validate;
+  protected String          formFilter;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -71,6 +72,7 @@ public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
     submit.setButtonIconSecondary(buttonIconSecondary);
     submit.setValidateFunction(validateFunction);
     submit.setValidate(validate);
+    submit.setFormFilter(formFilter);
   }
 
   public void setOnClickTopics(String onClickTopics)
@@ -136,5 +138,10 @@ public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
   public void setValidate(String validate)
   {
     this.validate = validate;
+  }
+
+  public void setFormFilter(String formFilter)
+  {
+    this.formFilter = formFilter;
   }
 }

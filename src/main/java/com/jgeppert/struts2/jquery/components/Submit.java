@@ -112,6 +112,7 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
   protected String                      buttonIconSecondary;
   protected String                      validate;
   protected String                      validateFunction;
+  protected String                      formFilter;
 
   public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -166,6 +167,7 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
     if (buttonIconSecondary != null) addParameter("buttonIconSecondary", findString(buttonIconSecondary));
     if (validate != null) addParameter("validate", findValue(this.validate, Boolean.class));
     if (validateFunction != null) addParameter("validateFunction", findString(validateFunction));
+    if (formFilter != null) addParameter("formFilter", findString(formFilter));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -318,5 +320,11 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
   public void setValidate(String validate)
   {
     this.validate = validate;
+  }
+
+  @StrutsTagAttribute(description = "Function name used to filter the fields of the form.")
+  public void setFormFilter(String formFilter)
+  {
+    this.formFilter = formFilter;
   }
 }
