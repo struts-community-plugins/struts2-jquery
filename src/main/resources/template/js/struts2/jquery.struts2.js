@@ -1461,7 +1461,7 @@
 // Taken from jquery UI Combobox Example  
 (function($) {
 	$.widget("ui.combobox", {
-		_create: function() {
+			_create: function() {
 			var self = this;
 			var select = this.element.hide();
 			var input = $("<input>")
@@ -1491,27 +1491,11 @@
 						self._trigger("selected", null, {
 							item: select.find("[value='" + ui.item.id + "']")
 						});
+						
 					},
 					minLength: 0
 				})
-				.removeClass("ui-corner-all")
-				.addClass("ui-corner-left");
-			$("<button>&nbsp;</button>")
-			.insertAfter(input)
-			.button({icons: {primary: "ui-icon-triangle-1-s"},text: false})
-			.removeClass("ui-corner-all")
-			.addClass("ui-corner-right ui-button-icon")
-			.position({my: "left center", at: "right center", of: input, offset: "-1 0"})
-			.css("top", "")
-			.click(function() {
-				if (input.autocomplete("widget").is(":visible")) {
-					input.autocomplete("close");
-					return;
-				}
-				input.autocomplete("search", "");
-				input.focus();
-			});
+				.addClass("ui-widget ui-widget-content ui-corner-left");
 		}
 	});
-
 })(jQuery);
