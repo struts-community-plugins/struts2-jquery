@@ -88,7 +88,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * effectDuration="3600"&gt; href="%{#ajaxTest}" /&gt; <!-- END SNIPPET:
  * example8 -->
  * */
-@StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button")
+@StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button", allowDynamicAttributes = true)
 public class Submit extends AbstractRemoteBean implements ButtonBean {
 
   private static final Logger           LOG            = LoggerFactory.getLogger(Submit.class);

@@ -46,7 +46,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  * <!-- START SNIPPET: example1 --><!-- END SNIPPET: example1 -->
  */
-@StrutsTag(name = "autocompleter", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AutocompleterTag", description = "Render a jQuery UI Autocompleter")
+@StrutsTag(name = "autocompleter", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AutocompleterTag", description = "Render a jQuery UI Autocompleter", allowDynamicAttributes = true)
 public class Autocompleter extends AbstractFormElement {
 
   public static final String            JQUERYACTION  = "autocompleter";

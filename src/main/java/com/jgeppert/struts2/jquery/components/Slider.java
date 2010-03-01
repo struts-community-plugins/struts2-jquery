@@ -49,7 +49,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * SNIPPET: example1 -->
  * 
  */
-@StrutsTag(name = "slider", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SliderTag", description = "Render a Slider")
+@StrutsTag(name = "slider", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SliderTag", description = "Render a Slider", allowDynamicAttributes = true)
 public class Slider extends AbstractTopicsBean {
 
   public static final String            JQUERYACTION   = "slider";

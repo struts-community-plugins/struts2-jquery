@@ -52,7 +52,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * effectOptions="color : '#222222'" effectDuration="3600"&gt; Initial Content
  * &lt;/sj:div&gt; <!-- END SNIPPET: example3 -->
  */
-@StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DivTag", description = "Render HTML div providing content from remote call via AJAX")
+@StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DivTag", description = "Render HTML div providing content from remote call via AJAX", allowDynamicAttributes = true)
 public class Div extends AbstractContainer implements ResizableBean, DroppableBean, DraggableBean, SelectableBean {
 
   public static final String            TEMPLATE       = "div";

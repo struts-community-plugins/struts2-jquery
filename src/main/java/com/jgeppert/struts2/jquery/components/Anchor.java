@@ -62,7 +62,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * complete="complete()"&gt;Raise events&lt;/sj:a&gt; <!-- END SNIPPET: example3
  * -->
  */
-@StrutsTag(name = "a", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description = "Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates " + "its targets content")
+@StrutsTag(name = "a", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description = "Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates its targets content", allowDynamicAttributes = true)
 public class Anchor extends AbstractRemoteBean implements ButtonBean {
   public static final String           TEMPLATE       = "a";
   public static final String           TEMPLATE_CLOSE = "a-close";
