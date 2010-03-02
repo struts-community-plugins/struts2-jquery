@@ -27,6 +27,7 @@
         <developer>
             <id>rene.gielen</id>
             <name>Rene Gielen</name>
+            <url>http://twitter.com/rgielen</url>
         </developer>
     </developers>
     <licenses>
@@ -45,23 +46,16 @@
         <repository>
             <id>struts2-jquery.staging</id>
             <name>Struts 2 jQuery Plugin Staging Repository</name>
-            <url>svn:https://struts2-jquery.googlecode.com/svn/maven/staging</url>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
         <snapshotRepository>
             <id>struts2-jquery.snapshots</id>
             <uniqueVersion>false</uniqueVersion>
             <name>Struts 2 jQuery Plugin Snapshots and Test Builds Repository</name>
-            <url>svn:https://struts2-jquery.googlecode.com/svn/maven/snapshots</url>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
     <build>
-        <extensions>
-            <extension>
-                <groupId>org.jvnet.wagon-svn</groupId>
-                <artifactId>wagon-svn</artifactId>
-                <version>1.9</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -135,6 +129,36 @@
         </plugins>
         <defaultGoal>install</defaultGoal>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>release</name>
+                </property>
+            </activation>
+            <build>
+                <defaultGoal>deploy</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.0</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
 
