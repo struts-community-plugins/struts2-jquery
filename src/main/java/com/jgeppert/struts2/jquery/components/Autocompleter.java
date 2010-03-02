@@ -44,7 +44,51 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * Examples
  * </p>
  * 
- * <!-- START SNIPPET: example1 --><!-- END SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 -->
+ * <p>
+ * Autocompleter handle a String Array
+ * </p>
+ * 
+ * <pre>
+ * &lt;sj:autocompleter id=&quot;languages&quot; list=&quot;%{languages}&quot;/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * <!-- START SNIPPET: example2 -->
+ * <p>
+ * Autocompleter that handle a JSON Result
+ * </p>
+ * 
+ * <pre>
+ *  &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonlanguages&quot;/&gt; 
+ *  &lt;sj:autocompleter 
+ *     id=&quot;languages&quot; 
+ *     href=&quot;%{remoteurl}&quot; 
+ *     delay=&quot;50&quot; 
+ *     loadMinimumCount=&quot;2&quot;
+ *   /&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
+ * 
+ * <!-- START SNIPPET: example3 -->
+ * <p>
+ * Autocompleter as Select Box
+ * </p>
+ * 
+ * <pre>
+ *          &lt;sj:autocompleter 
+ *           id=&quot;customers&quot; 
+ *           name=&quot;echo&quot; 
+ *           list=&quot;%{customers}&quot; 
+ *           listValue=&quot;name&quot; 
+ *           listKey=&quot;id&quot; 
+ *           selectBox=&quot;true&quot;
+ *         /&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example3 -->
  */
 @StrutsTag(name = "autocompleter", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AutocompleterTag", description = "Render a jQuery UI Autocompleter", allowDynamicAttributes = true)
 public class Autocompleter extends AbstractFormElement {
