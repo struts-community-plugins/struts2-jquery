@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.jgeppert.struts2.jquery</groupId>
+    <artifactId>struts2-jquery-plugin</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+    <name>Struts 2 jQuery Plugin</name>
+    <packaging>jar</packaging>
+    <url>http://code.google.com/p/struts2-jquery</url>
+    <description>A Plugin for the popular Java web framework Struts2 to provide AJAX functionality and UI Widgets based on the jQuery Javascript framework.
+    </description>
+    <issueManagement>
+        <system>Google Code</system>
+        <url>http://code.google.com/p/struts2-jquery/issues/list</url>
+    </issueManagement>
+    <developers>
+        <developer>
+            <id>johgep</id>
+            <name>Johannes Geppert</name>
+            <url>http://www.jgeppert.com</url>
+        </developer>
+        <developer>
+            <id>jyoshiriro</id>
+            <name>Jose Yoshiriro</name>
+            <url>http://jyoshiriro.blogspot.com/</url>
+        </developer>
+        <developer>
+            <id>rene.gielen</id>
+            <name>Rene Gielen</name>
+            <url>http://twitter.com/rgielen</url>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:svn:http://struts2-jquery.googlecode.com/svn/trunk/</connection>
+        <developerConnection>scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/</developerConnection>
+        <url>http://code.google.com/p/struts2-jquery/source/browse/</url>
+    </scm>
+    <distributionManagement>
+        <repository>
+            <id>struts2-jquery.staging</id>
+            <name>Struts 2 jQuery Plugin Staging Repository</name>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>struts2-jquery.snapshots</id>
+            <uniqueVersion>false</uniqueVersion>
+            <name>Struts 2 jQuery Plugin Snapshots and Test Builds Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.myfaces.tobago</groupId>
+                <artifactId>maven-apt-plugin</artifactId>
+                <version>1.0.15</version>
+                <configuration>
+                    <A>
+                        uri=/struts-jquery-tags,tlibVersion=2.2.3,jspVersion=2.0,shortName=sj,displayName="Struts
+                        jQuery Tags",
+                        outFile=${basedir}/target/classes/META-INF/struts-jquery-tags.tld,
+                        description="Struts AJAX tags based on jQuery.",
+                        outTemplatesDir=${basedir}/src/site/docs
+                    </A>
+                    <resourceTargetPath>target</resourceTargetPath>
+                    <fork>false</fork>
+                    <force>true</force>
+                    <nocompile>true</nocompile>
+                    <showWarnings>true</showWarnings>
+                    <factory>
+                        org.apache.struts.annotations.taglib.apt.TLDAnnotationProcessorFactory
+                    </factory>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Attach javadoc jar to builds -->
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-source</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Attach source jar to builds -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-source</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <defaultGoal>install</defaultGoal>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>release</name>
+                </property>
+            </activation>
+            <build>
+                <defaultGoal>deploy</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.0</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+
+        <!-- Core -->
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-annotations</artifactId>
+            <version>1.0.4</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- JSP API -->
+
+        <!-- struts-annotations must be in compile scope for maven-apt-plugin to
+             function correctly. Marking it optional to exclude it from transitive dependency resolution -->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-core</artifactId>
+            <version>2.1.8.1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.5</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>
