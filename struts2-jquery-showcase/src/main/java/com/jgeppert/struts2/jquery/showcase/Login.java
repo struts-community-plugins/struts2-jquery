@@ -37,7 +37,7 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 @Validations(requiredStrings = {
     @RequiredStringValidator(fieldName = "loginuser", type = ValidatorType.FIELD, message = "Login User is required"), @RequiredStringValidator(fieldName = "loginpassword", type = ValidatorType.FIELD, message = "Password is required")
 }, expressions = {
-  @ExpressionValidator(expression = "loginpassword.trim().equals('test') == true", message = "Password must be test."),
+  @ExpressionValidator(expression = "loginpassword.trim().equals('test') == true", message = "Password must be test.")
 
 })
 public class Login extends ActionSupport {
