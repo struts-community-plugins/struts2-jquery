@@ -18,6 +18,7 @@
  * under the License.
  */
 -->
+
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 $(document).ready(function () { 
@@ -39,6 +40,9 @@ $(document).ready(function () {
 </#if>
 <#if parameters.listValue??>
 	options_${escapedOptionId?html}.listvalue = "${parameters.listValue?html}";
+</#if>
+<#if parameters.nameValue?if_exists != "">
+	options_${escapedOptionId?html}.value = "${parameters.nameValue?html}";
 </#if>
 <#if parameters.bindOn?if_exists != ""> 
 	options_${escapedOptionId?html}.bindon = "${parameters.bindOn?html}";
