@@ -32,7 +32,7 @@
                         outTemplatesDir=${basedir}/src/site/docs
                     </A>
                     <resourceTargetPath>target</resourceTargetPath>
-                    <fork>false</fork>
+                    <fork>true</fork>
                     <force>true</force>
                     <nocompile>true</nocompile>
                     <showWarnings>true</showWarnings>
