@@ -31,134 +31,135 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 @StrutsTag(name = "select", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SelectTag", description = "Render HTML select box providing content from remote call via AJAX", allowDynamicAttributes = true)
-public class Select extends AbstractFormElement {
+public class Select extends AbstractFormElement
+{
 
-  public static final String            TEMPLATE       = "select";
-  public static final String            TEMPLATE_CLOSE = "select-close";
-  public static final String            COMPONENT_NAME = Select.class.getName();
-  final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION   = "select";
+	public static final String				TEMPLATE		= "select";
+	public static final String				TEMPLATE_CLOSE	= "select-close";
+	public static final String				COMPONENT_NAME	= Select.class.getName();
+	final private static transient Random	RANDOM			= new Random();
+	public static final String				JQUERYACTION	= "select";
 
-  protected String                      emptyOption;
-  protected String                      headerKey;
-  protected String                      headerValue;
-  protected String                      list;
-  protected String                      listKey;
-  protected String                      listValue;
-  protected String                      size;
+	protected String						emptyOption;
+	protected String						headerKey;
+	protected String						headerValue;
+	protected String						list;
+	protected String						listKey;
+	protected String						listValue;
+	protected String						size;
+	protected String						multiple;
 
-  public Select(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
+	public Select(ValueStack stack, HttpServletRequest request, HttpServletResponse response)
+	{
+		super(stack, request, response);
+	}
 
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
+	public String getDefaultOpenTemplate() {
+		return TEMPLATE;
+	}
 
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
+	protected String getDefaultTemplate() {
+		return TEMPLATE_CLOSE;
+	}
 
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
+	public void evaluateExtraParams() {
+		super.evaluateExtraParams();
 
-    addParameter("jqueryaction", JQUERYACTION);
+		addParameter("jqueryaction", JQUERYACTION);
 
-    if (emptyOption != null)
-    {
-      addParameter("emptyOption", findValue(emptyOption, Boolean.class));
-    }
+		if (emptyOption != null)
+		{
+			addParameter("emptyOption", findValue(emptyOption, Boolean.class));
+		}
 
-    if ((headerKey != null) && (headerValue != null))
-    {
-      addParameter("headerKey", findString(headerKey));
-      addParameter("headerValue", findString(headerValue));
-    }
+		if ((headerKey != null) && (headerValue != null))
+		{
+			addParameter("headerKey", findString(headerKey));
+			addParameter("headerValue", findString(headerValue));
+		}
 
-    if (list != null)
-    {
-      addParameter("list", findString(list));
-    }
-    if (listKey != null)
-    {
-      addParameter("listKey", findString(listKey));
-    }
-    if (listValue != null)
-    {
-      addParameter("listValue", findString(listValue));
-    }
-    if (size != null)
-    {
-      addParameter("size", findString(size));
-    }
+		if (list != null)
+		{
+			addParameter("list", findString(list));
+		}
+		if (listKey != null)
+		{
+			addParameter("listKey", findString(listKey));
+		}
+		if (listValue != null)
+		{
+			addParameter("listValue", findString(listValue));
+		}
+		if (size != null)
+		{
+			addParameter("size", findString(size));
+		}
+		if (multiple != null)
+		{
+			addParameter("multiple", findValue(multiple, Boolean.class));
+		}
 
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "select_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
-    }
-  }
+		if ((this.id == null || this.id.length() == 0))
+		{
+			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+			int nextInt = RANDOM.nextInt();
+			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+			this.id = "select_" + String.valueOf(nextInt);
+			addParameter("id", this.id);
+		}
+	}
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+	@Override
+	@StrutsTagSkipInheritance
+	public void setTheme(String theme) {
+		super.setTheme(theme);
+	}
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+	@Override
+	public String getTheme() {
+		return "jquery";
+	}
 
-  @StrutsTagAttribute(name = "emptyOption", description = "Add an empty option after the header option", defaultValue = "false", type = "Boolean")
-  public void setEmptyOption(String emptyOption)
-  {
-    this.emptyOption = emptyOption;
-  }
+	@StrutsTagAttribute(name = "emptyOption", description = "Add an empty option after the header option", defaultValue = "false", type = "Boolean")
+	public void setEmptyOption(String emptyOption) {
+		this.emptyOption = emptyOption;
+	}
 
-  @StrutsTagAttribute(name = "headerKey", description = "Key for list header option. Must not be empty", type = "String", defaultValue = "")
-  public void setHeaderKey(String headerKey)
-  {
-    this.headerKey = headerKey;
-  }
+	@StrutsTagAttribute(name = "headerKey", description = "Key for list header option. Must not be empty", type = "String", defaultValue = "")
+	public void setHeaderKey(String headerKey) {
+		this.headerKey = headerKey;
+	}
 
-  @StrutsTagAttribute(name = "headerValue", description = "Value for list header option. Must not be empty", type = "String", defaultValue = "")
-  public void setHeaderValue(String headerValue)
-  {
-    this.headerValue = headerValue;
-  }
+	@StrutsTagAttribute(name = "headerValue", description = "Value for list header option. Must not be empty", type = "String", defaultValue = "")
+	public void setHeaderValue(String headerValue) {
+		this.headerValue = headerValue;
+	}
 
-  @StrutsTagAttribute(description = "Name of the JSON list", required = false)
-  public void setList(String list)
-  {
-    this.list = list;
-  }
+	@StrutsTagAttribute(description = "Name of the JSON list", required = false)
+	public void setList(String list) {
+		this.list = list;
+	}
 
-  @StrutsTagAttribute(description = "Property of list objects to get field value from", required = false)
-  public void setListKey(String listKey)
-  {
-    this.listKey = listKey;
-  }
+	@StrutsTagAttribute(description = "Property of list objects to get field value from", required = false)
+	public void setListKey(String listKey) {
+		this.listKey = listKey;
+	}
 
-  @StrutsTagAttribute(description = "Property of list objects to get field content from", required = false)
-  public void setListValue(String listValue)
-  {
-    this.listValue = listValue;
-  }
+	@StrutsTagAttribute(description = "Property of list objects to get field content from", required = false)
+	public void setListValue(String listValue) {
+		this.listValue = listValue;
+	}
 
-  @StrutsTagAttribute(description = "HTML size attribute", type = "Integer")
-  public void setSize(String size)
-  {
-    this.size = size;
-  }
+	@StrutsTagAttribute(description = "HTML size attribute", type = "Integer")
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	@StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals"
+			+ " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
+	public void setMultiple(String multiple) {
+		this.multiple = multiple;
+	}
 
 }

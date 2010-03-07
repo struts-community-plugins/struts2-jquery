@@ -28,6 +28,9 @@
 <#if parameters.get("size")??>
  size="${parameters.get("size")?html}"<#rt/>
 </#if>
+<#if parameters.multiple?default(false)>
+ multiple="multiple"<#rt/>
+</#if>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>
