@@ -12,6 +12,8 @@
       <li>#surl("id=urlformtextarea" "action=form-textarea") #sja ("id=remoteformtextarealink" "href=%{urlformtextarea}" "targets=main")AJAX Textarea #end</li>
       <li>#surl("id=urlformtextarearesize" "action=form-textarea-resizeable") #sja ("id=remoteformtextarearesizelink" "href=%{urlformtextarearesize}" "targets=main")AJAX Textarea / Resizable #end</li>
       <li>#surl("id=urlformtextfieldresize" "action=form-textfield-resizeable") #sja ("id=remoteformtextfieldresizelink" "href=%{urlformtextfieldresize}" "targets=main")AJAX Textfield / Resizable #end</li>
+      <li>#surl("id=urlformbuttonsetcheckbox" "action=form-buttonset-checkbox") #sja ("id=remoteformbuttonsetcheckboxes" "href=%{urlformbuttonsetcheckbox}" "targets=main">Buttonset / Checkboxes #end</li>
+      <li>#surl("id=urlformbuttonsetradio" "action=form-buttonset-radio") #sja ("id=remoteformbuttonsetradio" "href=%{urlformbuttonsetradio}" "targets=main">Buttonset / Radio Buttons #end</li>
       <li>#surl("id=urlformselect" "action=form-select") #sja ("id=remoteformselectlink" "href=%{urlformselect}" "targets=main")AJAX Select #end</li>
       <li>#surl("id=urlformdoubleselect" "action=form-doubleselect") #sja ("id=remoteformdoubleselectlink" "href=%{urlformdoubleselect}" "targets=main")AJAX Select (Doubleselect) #end</li>
 	    </ul>

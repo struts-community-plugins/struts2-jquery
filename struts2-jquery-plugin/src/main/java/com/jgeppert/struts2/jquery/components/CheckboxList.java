@@ -29,7 +29,7 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
-@StrutsTag(name = "checkboxList", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.CheckboxListTag", description = "Render a Button Set from a given checkbox list", allowDynamicAttributes = true)
+@StrutsTag(name = "checkboxlist", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.CheckboxListTag", description = "Render a Button Set from a given checkbox list", allowDynamicAttributes = true)
 public class CheckboxList extends AbstractFormListElement {
 
   public static final String            TEMPLATE       = "checkboxlist";

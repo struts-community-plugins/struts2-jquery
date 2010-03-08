@@ -18,14 +18,21 @@
  * under the License.
  */
 -->
+
+<!-- tag : ${tag.toString()} -->
 <#if parameters.parentTheme == 'xhtml' || parameters.parentTheme == 'simple'>
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
 </#if>
-<#include "/${parameters.templateDir}/simple/radiomap.ftl" />
+<div id="${parameters.id?html}">
+<#-- include "/${parameters.templateDir}/simple/radiomap.ftl" / -->
+<#include "simpleradiomap.ftl" />
+</div>
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
 </#if>
 <#else>
+<div id="${parameters.id?html}">
 <#include "/${parameters.templateDir}/${parameters.parentTheme}/radiomap.ftl" />
+</div>
 </#if>

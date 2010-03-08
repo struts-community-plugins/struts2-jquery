@@ -125,7 +125,7 @@ public abstract class AbstractFormListElement extends AbstractFormElement {
     }
   }
 
-  @StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value'" + " parameter and the Map value will become the option body.", required = true)
+  @StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value'" + " parameter and the Map value will become the option body.", required = false)
   public void setList(Object list)
   {
     this.list = list;

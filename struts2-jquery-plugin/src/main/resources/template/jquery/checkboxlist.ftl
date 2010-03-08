@@ -22,10 +22,15 @@
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
 </#if>
-<#include "/${parameters.templateDir}/simple/checkboxlist.ftl" />
+<div id="${parameters.id?html}">
+<#-- include "/${parameters.templateDir}/simple/checkboxlist.ftl" / -->
+<#include "simplecheckboxlist.ftl" />
+</div>
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
 </#if>
 <#else>
+<div id="${parameters.id?html}">
 <#include "/${parameters.templateDir}/${parameters.parentTheme}/checkboxlist.ftl" />
+</div>
 </#if>

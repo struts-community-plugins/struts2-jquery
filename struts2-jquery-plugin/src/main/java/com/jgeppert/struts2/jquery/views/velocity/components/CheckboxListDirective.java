@@ -33,7 +33,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class CheckboxListDirective extends JqueryAbstractDirective {
   public String getBeanName()
   {
-    return "checkboxList";
+    return "checkboxlist";
   }
 
   protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
