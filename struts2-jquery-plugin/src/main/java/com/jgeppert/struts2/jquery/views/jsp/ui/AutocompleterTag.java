@@ -27,15 +27,12 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Autocompleter;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class AutocompleterTag extends AbstractFormElementTag {
+public class AutocompleterTag extends AbstractFormListElementTag {
 
   private static final long serialVersionUID = 4675729906623010236L;
 
   protected String          delay;
   protected String          loadMinimumCount;
-  protected String          list;
-  protected String          listKey;
-  protected String          listValue;
   protected String          selectBox;
   protected String          onSelectTopics;
   protected String          onFocusTopics;
@@ -53,9 +50,6 @@ public class AutocompleterTag extends AbstractFormElementTag {
     Autocompleter completer = (Autocompleter) component;
     completer.setDelay(delay);
     completer.setLoadMinimumCount(loadMinimumCount);
-    completer.setList(list);
-    completer.setListKey(listKey);
-    completer.setListValue(listValue);
     completer.setSelectBox(selectBox);
     completer.setOnSelectTopics(onSelectTopics);
     completer.setOnFocusTopics(onFocusTopics);
@@ -70,21 +64,6 @@ public class AutocompleterTag extends AbstractFormElementTag {
   public void setLoadMinimumCount(String loadMinimumCount)
   {
     this.loadMinimumCount = loadMinimumCount;
-  }
-
-  public void setList(String list)
-  {
-    this.list = list;
-  }
-
-  public void setListKey(String listKey)
-  {
-    this.listKey = listKey;
-  }
-
-  public void setListValue(String listValue)
-  {
-    this.listValue = listValue;
   }
 
   public void setSelectBox(String selectBox)

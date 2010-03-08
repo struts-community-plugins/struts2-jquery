@@ -32,6 +32,7 @@ import com.jgeppert.struts2.jquery.views.velocity.components.AccordionDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.AccordionItemDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.AnchorDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.AutocompleterDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.CheckboxListDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.DatePickerDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.DialogDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.DivDirective;
@@ -39,6 +40,7 @@ import com.jgeppert.struts2.jquery.views.velocity.components.GridColumnDirective
 import com.jgeppert.struts2.jquery.views.velocity.components.GridDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.HeadDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.ProgressbarDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.RadioDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SelectDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SliderDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SubmitDirective;
@@ -77,6 +79,8 @@ public class JqueryTagLibrary implements TagLibrary {
         SelectDirective.class,
         GridDirective.class,
         GridColumnDirective.class,
+        RadioDirective.class,
+        CheckboxListDirective.class,
     };
     return Arrays.asList(directives);
   }

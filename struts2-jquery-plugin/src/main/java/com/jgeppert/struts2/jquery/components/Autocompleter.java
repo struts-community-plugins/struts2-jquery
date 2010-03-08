@@ -19,13 +19,11 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Collection;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.util.MakeIterator;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -91,7 +89,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- END SNIPPET: example3 -->
  */
 @StrutsTag(name = "autocompleter", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AutocompleterTag", description = "Render a jQuery UI Autocompleter", allowDynamicAttributes = true)
-public class Autocompleter extends AbstractFormElement {
+public class Autocompleter extends AbstractFormListElement {
 
   public static final String            JQUERYACTION  = "autocompleter";
   public static final String            TEMPLATE      = "autocompleter-close";
@@ -101,9 +99,6 @@ public class Autocompleter extends AbstractFormElement {
 
   protected String                      delay;
   protected String                      loadMinimumCount;
-  protected Object                      list;
-  protected String                      listKey;
-  protected String                      listValue;
   protected String                      selectBox;
   protected String                      onSelectTopics;
   protected String                      onFocusTopics;
@@ -133,52 +128,6 @@ public class Autocompleter extends AbstractFormElement {
     if (delay != null) addParameter("delay", findValue(delay, Integer.class));
     if (loadMinimumCount != null) addParameter("loadMinimumCount", findValue(loadMinimumCount, Integer.class));
     // if (list != null) addParameter("list", findString(list));
-    Object value = null;
-
-    if (list == null)
-    {
-      list = parameters.get("list");
-    }
-    if (listKey != null)
-    {
-      addParameter("listKey", findString(listKey));
-    }
-    if (listValue != null)
-    {
-      addParameter("listValue", findString(listValue));
-    }
-    if (selectBox != null)
-    {
-      addParameter("selectBox", findValue(selectBox, Boolean.class));
-    }
-
-    if (list instanceof String)
-    {
-      value = findValue((String) list);
-    }
-    else if (list instanceof Collection)
-    {
-      value = list;
-    }
-    else if (MakeIterator.isIterable(list))
-    {
-      value = MakeIterator.convert(list);
-    }
-    if (value == null && list != null)
-    {
-      value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
-    }
-    if (value != null)
-    {
-      if (value instanceof Collection)
-      {
-        addParameter("list", value);
-      }
-      else
-      {
-        addParameter("list", MakeIterator.convert(value));
-      }
-    }
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -214,24 +163,6 @@ public class Autocompleter extends AbstractFormElement {
   public void setLoadMinimumCount(String loadMinimumCount)
   {
     this.loadMinimumCount = loadMinimumCount;
-  }
-
-  @StrutsTagAttribute(description = "List of values for autocomplete", required = false)
-  public void setList(String list)
-  {
-    this.list = list;
-  }
-
-  @StrutsTagAttribute(description = "Property of list objects to get field value from", required = false)
-  public void setListKey(String listKey)
-  {
-    this.listKey = listKey;
-  }
-
-  @StrutsTagAttribute(description = "Property of list objects to get field content from", required = false)
-  public void setListValue(String listValue)
-  {
-    this.listValue = listValue;
   }
 
   @StrutsTagAttribute(description = "Use an Select Box as Autocompleter", defaultValue = "false", type = "Boolean", required = false)

@@ -1017,8 +1017,10 @@
 				if(options.buttonIconSecondary) { params.icons.secondary = options.buttonIconSecondary };
 				$elem.button(params);
 			}
+		},
+		buttonset: function($elem, options) {
+			$elem.buttonset(options);
 		}
-
 	};		
 		
 	/** Container logic */

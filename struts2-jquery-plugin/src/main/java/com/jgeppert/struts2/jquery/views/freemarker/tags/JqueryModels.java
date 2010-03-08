@@ -43,6 +43,8 @@ public class JqueryModels {
   protected GridColumnModel    gridColumn;
   protected GridModel          grid;
   protected AutocompleterModel autocompleter;
+  protected RadioModel         radio;
+  protected CheckboxListModel  checkboxList;
 
   private ValueStack           stack;
   private HttpServletRequest   req;
@@ -232,5 +234,25 @@ public class JqueryModels {
     }
 
     return select;
+  }
+
+  public RadioModel getRadio()
+  {
+    if (radio == null)
+    {
+      radio = new RadioModel(stack, req, res);
+    }
+
+    return radio;
+  }
+
+  public CheckboxListModel getCheckboxList()
+  {
+    if (checkboxList == null)
+    {
+      checkboxList = new CheckboxListModel(stack, req, res);
+    }
+
+    return checkboxList;
   }
 }
