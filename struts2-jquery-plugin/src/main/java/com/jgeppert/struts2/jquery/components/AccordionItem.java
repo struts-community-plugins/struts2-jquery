@@ -31,6 +31,19 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * Renders a accordion item
+ * 
+ * <p>
+ * Examples
+ * </p>
+ * <!-- START SNIPPET: example1 -->
+ * 
+ * <pre>
+ *       &lt;sj:accordionItem title=&quot;Sed non urna&quot;&gt;
+ *         Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
+ *       &lt;/sj:accordionItem&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
  */
 @StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionItemTag", description = "Render an accordion item.")
 public class AccordionItem extends ClosingUIBean {
