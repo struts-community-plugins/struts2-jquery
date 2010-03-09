@@ -29,6 +29,44 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * A tag that creates an Button Set from a Checkbox List.
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
+ * <p>
+ * Examples
+ * </p>
+ * 
+ * <!-- START SNIPPET: example1 -->
+ * <p>
+ * Create a Buttonset from Checkbox List.
+ * </p>
+ * 
+ * <pre>
+ * &lt;div id=&quot;formResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
+ *   
+ *   &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+ *         &lt;sj:checkboxlist
+ *             id=&quot;checkboxbuttonset&quot;
+ *                 tooltip=&quot;Choose your Friends&quot;
+ *                 label=&quot;Friends&quot;
+ *                 list=&quot;{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}&quot;
+ *                 name=&quot;echo&quot;/&gt;
+ *             &lt;sj:submit 
+ *               targets=&quot;formResult&quot; 
+ *               value=&quot;AJAX Submit&quot; 
+ *               indicator=&quot;indicator&quot;
+ *               button=&quot;true&quot;
+ *               /&gt;
+ *   &lt;/s:form&gt;
+ *   &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ */
+
 @StrutsTag(name = "checkboxlist", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.CheckboxListTag", description = "Render a Button Set from a given checkbox list", allowDynamicAttributes = true)
 public class CheckboxList extends AbstractFormListElement {
 

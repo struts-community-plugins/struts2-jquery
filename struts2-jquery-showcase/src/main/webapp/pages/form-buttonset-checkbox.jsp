@@ -50,20 +50,24 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-	            &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-	            &lt;sj:submit targets=&quot;formResult&quot; value=&quot;AJAX Submit&quot; indicator=&quot;indicator&quot;/&gt;
-				&lt;s:url id=&quot;simpleecho&quot; value=&quot;/simpleecho.action&quot;/&gt;
-	            &lt;sj:submit href="%{simpleecho}" targets=&quot;formResult&quot; value=&quot;AJAX Submit 2&quot; indicator=&quot;indicator&quot;/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
+	&lt;div id=&quot;formResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
+    
+    &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+			    &lt;sj:checkboxlist
+			    		id=&quot;checkboxbuttonset&quot;
+			            tooltip=&quot;Choose your Friends&quot;
+			            label=&quot;Friends&quot;
+			            list=&quot;{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}&quot;
+			            name=&quot;echo&quot;/&gt;
+	            &lt;sj:submit 
+	            	targets=&quot;formResult&quot; 
+	            	value=&quot;AJAX Submit&quot; 
+	            	indicator=&quot;indicator&quot;
+	            	button=&quot;true&quot;
+	            	/&gt;
     &lt;/s:form&gt;
+
+    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
 	  </pre>
 	</div>
   </div>

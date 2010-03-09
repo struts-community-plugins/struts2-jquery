@@ -29,6 +29,42 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * A tag that creates an Button Set from a Radio Button Map.
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
+ * <p>
+ * Examples
+ * </p>
+ * 
+ * <!-- START SNIPPET: example1 -->
+ * <p>
+ * Create a Buttonset from Radio Buttons Map.
+ * </p>
+ * 
+ * <pre>
+ * &lt;div id=&quot;formResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
+ *   
+ *   &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;simple&quot;&gt;
+ *           &lt;label for=&quot;echo&quot;&gt;Choose your Friend: &lt;/label&gt;
+ *       &lt;sj:radio
+ *           id=&quot;radiobuttonset&quot;
+ *               list=&quot;{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}&quot;
+ *               name=&quot;echo&quot;/&gt;
+ *       &lt;br/&gt;
+ *           &lt;sj:submit 
+ *             targets=&quot;formResult&quot; 
+ *             value=&quot;AJAX Submit&quot; 
+ *             indicator=&quot;indicator&quot;
+ *             button=&quot;true&quot;
+ *           /&gt;
+ *   &lt;/s:form&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ */
 @StrutsTag(name = "radio", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.RadioTag", description = "Render a Button Set from a given radio button list", allowDynamicAttributes = true)
 public class Radio extends AbstractFormListElement {
 
