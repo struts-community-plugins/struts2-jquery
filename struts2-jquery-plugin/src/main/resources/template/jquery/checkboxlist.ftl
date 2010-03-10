@@ -23,8 +23,7 @@
 <#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
 </#if>
 <div id="${parameters.id?html}">
-<#-- include "/${parameters.templateDir}/simple/checkboxlist.ftl" / -->
-<#include "simplecheckboxlist.ftl" />
+<#include "/${parameters.templateDir}/simple/checkboxlist.ftl" />
 </div>
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />

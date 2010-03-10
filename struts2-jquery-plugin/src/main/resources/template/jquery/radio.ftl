@@ -25,8 +25,7 @@
 <#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
 </#if>
 <div id="${parameters.id?html}">
-<#-- include "/${parameters.templateDir}/simple/radiomap.ftl" / -->
-<#include "simpleradiomap.ftl" />
+<#include "/${parameters.templateDir}/simple/radiomap.ftl" />
 </div>
 <#if parameters.parentTheme == 'xhtml'>
 <#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
