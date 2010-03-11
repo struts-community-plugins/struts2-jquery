@@ -72,8 +72,17 @@
 		opendialog: function($elem, options){
 
 			if(options.opendialog) {
+				var dialog = $(escId(options.opendialog));
 				$elem.bind('click', function(event) {
-					$(escId(options.opendialog)).dialog('open');
+					if(options.href && options.href != '#') {
+						options.targets = options.opendialog;
+						var loadHandler = '_s2j_container_load';
+				    	var divTopic = '_s2j_dialog_load_' + options.id;
+				    	dialog.subscribe(divTopic, loadHandler);
+				    	dialog.publish(divTopic,options);				
+					}			
+
+					dialog.dialog('open');
 	    		    return false;
 				});
 			}

@@ -12,9 +12,9 @@
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-    <h2>Accordion from List</h2>
+    <h2>Accordion from Map</h2>
     <p>
-        A Accordion build from a List.
+        A Accordion build from a Map.
     </p>
     <sj:accordion id="accordionlist" list="accordion"/>
   </div>
