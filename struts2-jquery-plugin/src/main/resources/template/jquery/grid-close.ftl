@@ -64,6 +64,12 @@
   <#if parameters.sortorder?if_exists != "">
 	options_${escapedOptionId?html}.sortorder = "${parameters.sortorder?html}";
   </#if>
+  <#if parameters.altRows?default(false)>
+	options_${escapedOptionId?html}.altRows = true;
+  </#if>
+  <#if parameters.altClass?if_exists != "">
+	options_${escapedOptionId?html}.altclass = "${parameters.altClass?html}";
+  </#if>
   <#if parameters.navigator?default(false)>
 	options_${escapedOptionId?html}.navigator = true;
 	  <#if parameters.navigatorEditOptions?if_exists != "">
