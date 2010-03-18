@@ -106,6 +106,7 @@ public class Head extends org.apache.struts2.components.Head {
       "eu",
       "fa",
       "fi",
+      "fo",
       "fr-CH",
       "fr",
       "he",
@@ -132,11 +133,13 @@ public class Head extends org.apache.struts2.components.Head {
       "sq",
       "sr-SR",
       "sv",
+      "ta",
       "th",
       "tr",
       "uk",
       "vi",
       "zh-CN",
+      "zh-HK",
       "zh-TW"
                                              };
 

@@ -28,7 +28,7 @@
   <#assign jqueryFile="jquery-1.4.2.min.js">
   <#assign jqueryForm="jquery.form.min.js">
   <#assign jqueryCookieFile="jquery.cookie.min.js">
-  <#assign jqueryUIFile="jquery-ui-1.8.min.js">
+  <#assign jqueryUIFile="jquery-ui.min.js">
   <#assign jqueryBGIFile="jquery.bgiframe.min.js">
   <#assign jquerySubscribeFile="jquery.subscribe.1.2.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
@@ -39,7 +39,7 @@
   <#assign jqueryFile="jquery-1.4.2.js">
   <#assign jqueryForm="jquery.form.js">
   <#assign jqueryCookieFile="jquery.cookie.js">
-  <#assign jqueryUIFile="jquery-ui-1.8.js">
+  <#assign jqueryUIFile="jquery-ui.js">
   <#assign jqueryBGIFile="jquery.bgiframe.js">
   <#assign jquerySubscribeFile="jquery.subscribe.1.2.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
