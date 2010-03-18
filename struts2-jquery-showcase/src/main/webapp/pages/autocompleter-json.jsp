@@ -32,7 +32,6 @@
     		id="submitFormAutocompleteJson" 
     		targets="result" 
     		button="true" 
-    		validate="true" 
     		value="Submit" 
     		indicator="indicator"
     		/>
