@@ -68,7 +68,7 @@
   <script type="text/javascript" src="${base}/struts/js/base/${jqueryBGIFile}"></script>
     <#if parameters.jquerytheme?if_exists != "">
 		<#if parameters.loadFromGoogle?default(false) && basePath == "struts/themes">
-        	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+        	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		<#else>
         	<link rel="stylesheet" href="${base}/${basePath}/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		</#if>
