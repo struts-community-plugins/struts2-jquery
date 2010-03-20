@@ -1312,6 +1312,7 @@ function pubErr(cid, always, etopics, etext) {
 	// Handler to submit a form with jquery.form.js plugin
 	$.subscribeHandler('_s2j_form_submit', function(event, data) {
 		var container = $(event.target);
+		var elem = container;
 
 		// need to also make use of original attributes registered with the container (such as onCompleteTopics)
 		var options = {};
@@ -1334,9 +1335,8 @@ function pubErr(cid, always, etopics, etext) {
 
 		params.target = '';
 		if (options.targets) {
-			var targets = options.targets.split(',');
-			for ( var i = 0; i < targets.length; i++) {
-				var target = targets[i];
+			$.each(options.targets.split(','), function(i, target) { 
+				elem = $(escId(target));
 				if (params.target == '') {
 					params.target = escId(target);
 				}
@@ -1348,15 +1348,12 @@ function pubErr(cid, always, etopics, etext) {
 				if (options.loadingtext) {
 					$(escId(target)).html(options.loadingtext);
 				}
-			}
+			});
 		}
 
 		var indi = options.indicatorid;
 		showIndicator(indi);
 
-		var elem = container;
-
-		if (options.targets.length > 0) { elem = $(escId(options.targets[0])); }
 
 		params.beforeSubmit = function(formData, form, formoptions) {
 
@@ -1436,10 +1433,9 @@ function pubErr(cid, always, etopics, etext) {
 		params.complete = pubCom(elem, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
 		params.error = pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext);
 
-		var forms = options.formids.split(',');
-		for ( var j = 0; j < forms.length; j++) {
-			$(escId(forms[j])).ajaxSubmit(params);
-		}
+		$.each(options.formids.split(','), function(i, fid) { 
+			$(escId(fid)).ajaxSubmit(params);
+		});
 
 		return false;
 	});

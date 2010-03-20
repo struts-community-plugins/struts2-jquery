@@ -39,7 +39,7 @@
     	Open modal dialog
     </sj:a>
   </div>
-  
+  <br/>
     <sj:tabbedpanel id="localtabs" cssClass="list">
       <sj:tab id="tab1" target="jsp" label="JSP Code"/>
       <sj:tab id="tab2" target="javascript" label="JavaScript Code"/>
