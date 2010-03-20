@@ -165,12 +165,11 @@ function pubCom(cid, always, ctopics, targets, indi, options) {
 		var ec = targets;
 		if (!ec) { ec = options.id; }
 		if (ec) {
-			var targetArray = ec.split(',');
 			var divEffectTopic = '_sj_div_effect_';
-			for ( var i = 0; i < targetArray.length; i++) {
-				var effect_elem = $(escId(targetArray[i]));
-				effect_elem.publish(divEffectTopic + targetArray[i], effect_elem);
-			}
+			$.each(ec.split(','), function(i, target) { 
+				var effect_elem = $(escId(target));
+				effect_elem.publish(divEffectTopic + target, effect_elem);
+			});
 		}
 
 		if (options.resizable) {
@@ -336,13 +335,12 @@ function pubErr(cid, always, etopics, etext) {
 					tarelem.subscribe(effectTopic + target, '_s2j_effects', effect);
 
 					if (options.listentopics) {
-						var topics = options.listentopics.split(',');
-						for ( var j = 0; j < topics.length; j++) {
-							if (tarelem.isSubscribed(topics[j])) { tarelem.unsubscribe(topics[j]); }
+						$.each(options.listentopics.split(','), function(i, lt) { 
+							if (tarelem.isSubscribed(lt)) { tarelem.unsubscribe(lt); }
 
-							tarelem.subscribe(topics[j], loadHandler, options);
-							tarelem.subscribe(topics[j], '_s2j_effects', effect);
-						}
+							tarelem.subscribe(lt, loadHandler, options);
+							tarelem.subscribe(lt, '_s2j_effects', effect);
+						});
 					}
 					if ($.struts2_jquery.ajaxhistory) {
 						var params = {};
@@ -388,20 +386,18 @@ function pubErr(cid, always, etopics, etext) {
 			if (options.href != '#') {
 
 				if (options.reloadtopics) {
-					var rt = options.reloadtopics.split(',');
-					for ( var l = 0; l < rt.length; l++) {
-						if ($elem.isSubscribed(rt[l])) { $elem.unsubscribe(rt[l]); }
+					$.each(options.reloadtopics.split(','), function(i, rt) { 
+						if ($elem.isSubscribed(rt)) { $elem.unsubscribe(rt); }
 
-						$elem.subscribe(rt[l], loadHandler, options);
-					}
+						$elem.subscribe(rt, loadHandler, options);
+					});
 				}
 				if (options.listentopics) {
-					var lt = options.listentopics.split(',');
-					for ( var k = 0; k < lt.length; k++) {
-						if ($elem.isSubscribed(lt[k])) { $elem.unsubscribe(lt[k]); }
+					$.each(options.listentopics.split(','), function(i, lt) { 
+						if ($elem.isSubscribed(lt)) { $elem.unsubscribe(lt); }
 
-						$elem.subscribe(lt[k], loadHandler, options);
-					}
+						$elem.subscribe(lt, loadHandler, options);
+					});
 				}
 
 				// publishing not triggering to prevent event propagation issues
@@ -413,10 +409,9 @@ function pubErr(cid, always, etopics, etext) {
 				if (options.bindon) {
 					var $bindElement = $('#' + options.bindon);
 					if (options.events) {
-						var events = options.events.split(',');
-						for ( var j = 0; j < events.length; j++) {
-							$bindElement.publishOnEvent(events[j], divTopic);
-						}
+						$.each(options.events.split(','), function(i, event) { 
+							$bindElement.publishOnEvent(event, divTopic);
+						});
 					}
 					else {
 						$bindElement.publishOnEvent('click', divTopic);
@@ -455,37 +450,31 @@ function pubErr(cid, always, etopics, etext) {
 					eventsStr = options.events;
 				}
 
-				var evs = eventsStr.split(',');
-				for ( var i = 0; i < evs.length; i++) {
-					var event = evs[i];
+				$.each(eventsStr.split(','), function(i, event) { 
 					if (options.onbeforetopics) {
-						var btopics = options.onbeforetopics.split(',');
-						for ( var m = 0; m < btopics.length; m++) {
-							bindel.publishOnEvent(event, btopics[m]);
-						}
+						$.each(options.onbeforetopics.split(','), function(i, btopic) { 
+							bindel.publishOnEvent(event, btopic);
+						});
 					}
 					bindel.publishOnEvent(event, divEffectTopic);
 					if (options.oncompletetopics) {
-						var ctopics = options.oncompletetopics.split(',');
-						for ( var n = 0; n < ctopics.length; n++) {
-							bindel.publishOnEvent(event, ctopics[n]);
-						}
+						$.each(options.oncompletetopics.split(','), function(i, ctopic) { 
+							bindel.publishOnEvent(event, ctopic);
+						});
 					}
-				}
+				});
 			}
 			else {
 				if (options.onbeforetopics) {
-					var bts = options.onbeforetopics.split(',');
-					for ( var o = 0; o < bts.length; o++) {
-						$elem.publish(bts[o], $elem);
-					}
+					$.each(options.onbeforetopics.split(','), function(i, bts) { 
+						$elem.publish(bts, $elem);
+					});
 				}
 				$elem.publish(divEffectTopic, $elem);
 				if (options.oncompletetopics) {
-					var cts = options.oncompletetopics.split(',');
-					for ( var p = 0; p < cts.length; p++) {
-						$elem.publish(cts[p], $elem);
-					}
+					$.each(options.oncompletetopics.split(','), function(i, cts) { 
+						$elem.publish(cts, $elem);
+					});
 				}
 			}
 
@@ -611,26 +600,23 @@ function pubErr(cid, always, etopics, etext) {
 		if (options.href && options.href != '#') {
 
 			if (options.reloadtopics) {
-				var topics = options.reloadtopics.split(',');
-				for ( var i = 0; i < topics.length; i++) {
-					$elem.subscribe(topics[i], handler, options);
-				}
+				$.each(options.reloadtopics.split(','), function(i, rts) { 
+					$elem.subscribe(rts, handler, options);
+				});
 			}
 			if (options.listentopics) {
-				var lts = options.listentopics.split(',');
-				for ( var j = 0; j < lts.length; j++) {
-					$elem.subscribe(lts[j], handler, options);
-				}
+				$.each(options.listentopics.split(','), function(i, lts) { 
+					$elem.subscribe(lts, handler, options);
+				});
 			}
 
 			$elem.subscribe(selectTopic, handler);
 			$elem.publish(selectTopic, options);
 		}
 		if (options.onchangetopics) {
-			var cts = options.onchangetopics.split(',');
-			for ( var k = 0; k < cts.length; k++) {
-				$elem.publishOnEvent('change', cts[k]);
-			}
+			$.each(options.onchangetopics.split(','), function(i, cts) { 
+				$elem.publishOnEvent('change', cts);
+			});
 		}
 	},
 
@@ -669,16 +655,14 @@ function pubErr(cid, always, etopics, etext) {
 		var formHandler = '_s2j_form_submit';
 
 		if (options.reloadtopics) {
-			var topics = options.reloadtopics.split(',');
-			for ( var i = 0; i < topics.length; i++) {
-				$elem.subscribe(topics[i], formHandler, options);
-			}
+			$.each(options.reloadtopics.split(','), function(i, rts) { 
+				$elem.subscribe(rts, formHandler, options);
+			});
 		}
 		if (options.listentopics) {
-			var lts = options.listentopics.split(',');
-			for ( var j = 0; j < lts.length; j++) {
-				$elem.subscribe(lts[j], formHandler, options);
-			}
+			$.each(options.listentopics.split(','), function(i, lt) { 
+				$elem.subscribe(lt, formHandler, options);
+			});
 		}
 
 		$elem.subscribe(topic, formHandler, options);
