@@ -24,7 +24,7 @@
     	id="myremotelinkdialog" 
     	autoOpen="false" 
     	modal="true" 
-    	title="Dialog wuth different Content"
+    	title="Dialog with different Content"
     />
     
 	<s:url id="remoteurl1" action="ajax1"/>
@@ -73,7 +73,7 @@
     	id=&quot;myremotelinkdialog&quot; 
     	autoOpen=&quot;false&quot; 
     	modal=&quot;true&quot; 
-    	title=&quot;Dialog wuth different Content&quot;
+    	title=&quot;Dialog with different Content&quot;
     /&gt;
     
 	&lt;s:url id=&quot;remoteurl1&quot; action=&quot;ajax1&quot;/&gt;
