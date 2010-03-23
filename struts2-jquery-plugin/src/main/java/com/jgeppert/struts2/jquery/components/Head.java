@@ -277,11 +277,11 @@ public class Head extends org.apache.struts2.components.Head {
   private static String validateLocal(String[] locals, String local)
   {
     String retString = "en";
-    if (Arrays.binarySearch(jqueryLocals, local) > 0)
+    if (Arrays.binarySearch(locals, local) > 0)
     {
       retString = local;
     }
-    else if (local.length() > 2 && Arrays.binarySearch(jqueryLocals, local.substring(0, 2)) > 0)
+    else if (local.length() > 2 && Arrays.binarySearch(locals, local.substring(0, 2)) > 0)
     {
       retString = local.substring(0, 2);
     }
