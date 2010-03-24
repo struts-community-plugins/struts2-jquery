@@ -58,7 +58,7 @@
 <#if parameters.ajaxhistory?default(false)>
   <script type="text/javascript" src="${base}/struts/js/plugins/${jqueryHistoryFile}"></script>
 </#if>
-<#if parameters.jqueryui?default(false)>
+<#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
 		<#if parameters.loadFromGoogle?default(false) && basePath == "struts/themes">
         	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>

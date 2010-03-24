@@ -22,10 +22,10 @@
 	<script language="JavaScript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js" type="text/javascript"></script>
 	
   <s:if test="%{theme == 'showcase' || theme == null}">
-      <sj:head compressed="false" useJqGridPlugin="true" jqueryui="true" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
+      <sj:head compressed="false" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
   </s:if>
   <s:else>
-      <sj:head compressed="false" useJqGridPlugin="true" jqueryui="true" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
+      <sj:head compressed="false" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
   </s:else>
   <script type="text/javascript" src="js/showcase.js"></script>
 </head>
