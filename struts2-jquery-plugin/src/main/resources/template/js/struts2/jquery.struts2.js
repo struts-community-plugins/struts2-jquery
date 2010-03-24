@@ -260,14 +260,13 @@ function pubErr(cid, always, etopics, etext) {
 			$.scriptPath = '';
 		}
 		var head = $('head')[0];
-		$(document.createElement('link'))
-		    .attr({
-		    		type: 'text/css', 
-		    		href: ($.scriptPath + cssFile), rel: 'stylesheet', 
-		    		media: 'screen'
-		    })
-		    .appendTo(head); 
-		return $;
+		var cssref=document.createElement("link");
+	  cssref.setAttribute("rel", "stylesheet");
+	  cssref.setAttribute("type", "text/css");
+	  cssref.setAttribute("href", ($.scriptPath + cssFile));
+	  document.getElementsByTagName("head")[0].appendChild(cssref)
+
+	  return $;
 	};
 	
 	/**
