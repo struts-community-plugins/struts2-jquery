@@ -32,6 +32,9 @@ $(document).ready(function () {
    <#if parameters.iframe?default(false)>
 	options_${escapedOptionId?html}.iframe = true;
     </#if>
+   <#if parameters.replaceTarget?default(false)>
+	options_${escapedOptionId?html}.replaceTarget = true;
+    </#if>
 	<#if parameters.openDialog?if_exists != ""> 
 	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
 	</#if>

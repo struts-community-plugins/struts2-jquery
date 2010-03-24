@@ -50,44 +50,86 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <p>
  * Examples
  * </p>
- * <!-- START SNIPPET: example1 --> &lt;sj:submit value="%{'Submit'}" /&gt; <!--
- * END SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 -->
  * 
- * <!-- START SNIPPET: example2 --> &lt;sj:submit type="image"
- * value="%{'Submit'}" label="Submit the form" src="submit.gif"/&gt; <!-- END
- * SNIPPET: example2 -->
+ * <pre>
+ * &lt;sj:submit value="%{'Submit'}" /&gt;
+ * </pre>
  * 
- * <!-- START SNIPPET: example3 --> &lt;sj:submit type="button"
- * value="%{'Submit'}" label="Submit the form"/&gt; <!-- END SNIPPET: example3
- * -->
+ * <!-- END SNIPPET: example1 -->
  * 
- * <!-- START SNIPPET: example4 --> &lt;div id="div1"&gt;Div 1&lt;/div&gt;
+ * <!-- START SNIPPET: example2 -->
+ * 
+ * <pre>
+ * &lt;sj:submit type="image" value="%{'Submit'}" label="Submit the form" src="submit.gif"/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
+ * 
+ * <!-- START SNIPPET: example3 -->
+ * 
+ * <pre>
+ * &lt;sj:submit type="button" value="%{'Submit'}" label="Submit the form"/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example3 -->
+ * 
+ * <!-- START SNIPPET: example4 -->
+ * 
+ * <pre>
+ * &lt;div id="div1"&gt;Div 1&lt;/div&gt; 
  * &lt;s:url id="ajaxTest" value="/AjaxTest.action"/&gt;
+ * &lt;sj:submit id="link1" href="%{ajaxTest}" target="div1" /&gt;
+ * </pre>
  * 
- * &lt;sj:submit id="link1" href="%{ajaxTest}" target="div1" /&gt; <!-- END
- * SNIPPET: example4 -->
+ * <!-- END SNIPPET: example4 -->
  * 
- * <!-- START SNIPPET: example5 --> &lt;s:form id="form" action="AjaxTest"&gt;
- * &lt;input type="textbox" name="data"&gt; &lt;sj:submit /&gt; &lt;/s:form&gt;
+ * <!-- START SNIPPET: example5 -->
+ * 
+ * <pre>
+ * &lt;s:form id="form" action="AjaxTest"&gt;
+ * &lt;input type="textbox" name="data"&gt; &lt;sj:submit /&gt; 
+ * &lt;/s:form&gt;
+ * </pre>
+ * 
  * <!-- END SNIPPET: example5 -->
  * 
- * <!-- START SNIPPET: example6 --> &lt;s:form id="form" action="AjaxTest"&gt;
- * &lt;input type="textbox" name="data"&gt; &lt;/s:form&gt;
+ * <!-- START SNIPPET: example6 -->
  * 
- * &lt;sj:submit formId="form" /&gt; <!-- END SNIPPET: example6 -->
+ * <pre>
+ * &lt;s:form id="form" action="AjaxTest"&gt;
+ * &lt;input type="textbox" name="data"&gt; 
+ * &lt;/s:form&gt;
  * 
- * <!-- START SNIPPET: example7 --> &lt;script type="text/javascript"&gt;
- * function before(event){ alert('before request'); }; function complete(event){
- * alert('after request'); }; &lt;/script&gt;
+ * &lt;sj:submit formId="form" /&gt;
+ * </pre>
  * 
- * &lt;sj:submit beforeSend="before()" complete="complete()" /&gt; <!-- END
- * SNIPPET: example7 -->
+ * <!-- END SNIPPET: example6 -->
  * 
- * <!-- START SNIPPET: example8 --> &lt;sj:submit value"AJAX Submit with effect"
+ * <!-- START SNIPPET: example7 -->
+ * 
+ * <pre>
+ * &lt;script type="text/javascript"&gt;
+ * function before(event){ alert('before request'); }; 
+ * function complete(event){ alert('after request'); }; 
+ * &lt;/script&gt;
+ * 
+ * &lt;sj:submit beforeSend="before()" complete="complete()" /&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example7 -->
+ * 
+ * <!-- START SNIPPET: example8 -->
+ * 
+ * <pre>
+ * &lt;sj:submit value"AJAX Submit with effect"
  * effect="highlight" effectOptions="color : '#222222'"
- * effectDuration="3600"&gt; href="%{#ajaxTest}" /&gt; <!-- END SNIPPET:
- * example8 -->
- * */
+ * effectDuration="3600"&gt; href="%{#ajaxTest}" /&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example8 -->
+ * 
+ */
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button", allowDynamicAttributes = true)
 public class Submit extends AbstractRemoteBean implements ButtonBean {
 
@@ -113,6 +155,7 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
   protected String                      validate;
   protected String                      validateFunction;
   protected String                      formFilter;
+  protected String                      replaceTarget;
 
   public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -168,6 +211,7 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
     if (validate != null) addParameter("validate", findValue(this.validate, Boolean.class));
     if (validateFunction != null) addParameter("validateFunction", findString(validateFunction));
     if (formFilter != null) addParameter("formFilter", findString(formFilter));
+    if (replaceTarget != null) addParameter("replaceTarget", findValue(this.replaceTarget, Boolean.class));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -326,5 +370,11 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
   public void setFormFilter(String formFilter)
   {
     this.formFilter = formFilter;
+  }
+
+  @StrutsTagAttribute(description = "Set to true if the target should be replaced or false if only the target contents should be replaced.", defaultValue = "false", type = "Boolean")
+  public void setReplaceTarget(String replaceTarget)
+  {
+    this.replaceTarget = replaceTarget;
   }
 }

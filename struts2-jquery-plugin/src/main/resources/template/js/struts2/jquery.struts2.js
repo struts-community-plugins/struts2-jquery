@@ -1464,9 +1464,10 @@ function pubErr(cid, always, etopics, etext) {
 				params.url = params.url + '?' + options.hrefparameter;
 			}
 		}
-		if (options.clearform && options.clearform == 'true') { params.clearForm = true; }
-		if (options.iframe && options.iframe == 'true') { params.iframe = true; }
-		if (options.resetform && options.resetform == 'true') { params.resetForm = true; }
+		if (options.clearform) { params.clearForm = true; }
+		if (options.iframe) { params.iframe = true; }
+		if (options.resetform) { params.resetForm = true; }
+		if (options.replaceTarget) { params.replaceTarget = true; }
 		if (options.timeout) { params.timeout = parseInt(options.timeout, 10); }
 		if (options.datatype) { params.dataType = options.datatype; }
 		else { params.dataType = null; }
