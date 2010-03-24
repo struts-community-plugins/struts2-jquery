@@ -152,7 +152,6 @@ public class Head extends org.apache.struts2.components.Head {
   protected String              ajaxcache;
   protected String              ajaxhistory;
   protected String              defaultIndicator;
-  protected String              useJqGridPlugin;
 
   private String                defaultLocale;
 
@@ -177,7 +176,6 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.ajaxcache != null) addParameter("ajaxcache", findValue(this.ajaxcache, Boolean.class));
     if (this.ajaxhistory != null) addParameter("ajaxhistory", findValue(this.ajaxhistory, Boolean.class));
     if (this.defaultIndicator != null) addParameter("defaultIndicator", findString(this.defaultIndicator));
-    if (this.useJqGridPlugin != null) addParameter("useJqGridPlugin", findValue(this.useJqGridPlugin, Boolean.class));
 
     String loc = null;
     if (this.locale != null) loc = StringUtils.replace(findString(this.locale), "_", "-");
@@ -214,13 +212,13 @@ public class Head extends org.apache.struts2.components.Head {
     return jqueryui != null && Boolean.parseBoolean(jqueryui);
   }
 
-  @StrutsTagAttribute(description = "enable jQuery UI Scripts", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "enable jQuery UI Scripts", defaultValue = "true", type = "Boolean")
   public void setJqueryui(String jqueryui)
   {
     this.jqueryui = jqueryui;
   }
 
-  @StrutsTagAttribute(description = "use compressed version of jquery.js", defaultValue = "true", type = "Boolean")
+  @StrutsTagAttribute(description = "use compressed version of jquery and jquery-ui", defaultValue = "true", type = "Boolean")
   public void setCompressed(String compressed)
   {
     this.compressed = compressed;
@@ -266,12 +264,6 @@ public class Head extends org.apache.struts2.components.Head {
   public void setDefaultIndicator(String defaultIndicator)
   {
     this.defaultIndicator = defaultIndicator;
-  }
-
-  @StrutsTagAttribute(description = "If set to true it will enable jqgrids.", defaultValue = "false", type = "Boolean")
-  public void setUseJqGridPlugin(String useJqGridPlugin)
-  {
-    this.useJqGridPlugin = useJqGridPlugin;
   }
 
   private static String validateLocal(String[] locals, String local)
