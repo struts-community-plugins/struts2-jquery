@@ -173,6 +173,12 @@ function pubCom(cid, always, ctopics, targets, indi, options) {
 		}
 
 		if (options.resizable) {
+			$.require(
+					[
+					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js"
+					 ]);
 
 			var ros = options.resizableoptions;
 			var ro = window[ros];
@@ -214,12 +220,65 @@ function pubErr(cid, always, etopics, etext) {
 }
 
 ( function($) {
+	
+	/**
+	 * Load required JavaScript Resourcess
+	 */
+	$.require = function(files, callBack) {
+
+		var successFunction = callBack || function() {};
+		if (!$.require.libCache) $.require.libCache = {};
+
+		if ( !$.scriptPath ) {
+			$.scriptPath = '';
+		}
+		
+		if (typeof files === "string") {
+			files = new Array(files);
+		}
+		$.each(files, function(i, file) { 
+			if (!$.require.libCache[file]) {
+				$.ajax( {
+				type : "GET",
+				url : $.scriptPath + file,
+				success : successFunction,
+				dataType : "script",
+				cache : true,
+				async : false
+				});
+				$.require.libCache[file] = true;
+			}
+		});
+		return $;
+	};
+	
+	/**
+	 * Load required CSS Files
+	 */
+	$.requireCss = function(cssFile) {
+		if (!$.scriptPath) {
+			$.scriptPath = '';
+		}
+		var head = $('head')[0];
+		$(document.createElement('link'))
+		    .attr({
+		    		type: 'text/css', 
+		    		href: ($.scriptPath + cssFile), rel: 'stylesheet', 
+		    		media: 'screen'
+		    })
+		    .appendTo(head); 
+		return $;
+	};
+	
 	/**
 	 * Bind Struts2 Components for jQuery AJAX and UI functions
 	 */
 	$.struts2_jquery = {
 
 	ajaxhistory :false,
+	local : "en",
+	gridLocal : "en",
+	minSuffix : ".min",
 	historyelements : {},
 	forms : {},
 	defaultIndicator :'',
@@ -479,7 +538,12 @@ function pubErr(cid, always, etopics, etext) {
 			}
 
 			if (options.resizable) {
-
+				$.require(
+						[
+						 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js"
+						 ]);
 				var ros = options.resizableoptions;
 				var ro = window[ros];
 				if (!ro) {
@@ -496,7 +560,12 @@ function pubErr(cid, always, etopics, etext) {
 		}
 
 		if (options.draggable) {
-
+			$.require(
+					[
+					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js"
+					 ]);
 			var daos = options.draggableoptions;
 			var dao = window[daos];
 			if (!dao) {
@@ -512,7 +581,13 @@ function pubErr(cid, always, etopics, etext) {
 		}
 
 		if (options.droppable) {
-
+			$.require(
+					[
+					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.droppable"+$.struts2_jquery.minSuffix+".js"
+					 ]);
 			var doos = options.droppableoptions;
 			var doo = window[doos];
 			if (!doo) {
@@ -530,7 +605,12 @@ function pubErr(cid, always, etopics, etext) {
 		}
 
 		if (options.selectable) {
-
+			$.require(
+					[
+					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.selectable"+$.struts2_jquery.minSuffix+".js"
+					 ]);
 			var seos = options.selectableoptions;
 			var seo = window[seos];
 			if (!seo) {
@@ -549,7 +629,12 @@ function pubErr(cid, always, etopics, etext) {
 		}
 
 		if (options.sortable) {
-
+			$.require(
+					[
+					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.sortable"+$.struts2_jquery.minSuffix+".js"
+					 ]);
 			var soos = options.sortableoptions;
 			var soo = window[soos];
 			if (!soo) {
@@ -572,7 +657,6 @@ function pubErr(cid, always, etopics, etext) {
 			soo.update = pubTops($elem, options.onalwaystopics, options.sortableonupdatetopics);
 			$elem.sortable(soo);
 		}
-
 	},
 
 	anchor : function($elem, options) {
@@ -652,6 +736,7 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.removeAttr('name');
 	},
 	formsubmit : function($elem, options, topic) {
+		$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
 		var formHandler = '_s2j_form_submit';
 
 		if (options.reloadtopics) {
@@ -684,7 +769,17 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	dialog : function($elem, options) {
-
+		$.require(
+				[
+				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.position"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.bgiframe"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.dialog"+$.struts2_jquery.minSuffix+".js"
+				 ]);
 		var params = {};
 		params.bgiframe = true;
 		params.autoOpen = options.autoopen;
@@ -694,8 +789,14 @@ function pubErr(cid, always, etopics, etext) {
 		params.position = options.position;
 		params.zIndex = options.zindex;
 		params.backgroundColor = options.backgroundcolor;
-		params.hide = options.hide;
-		params.show = options.show;
+		if (options.hide) {
+			$.require(["js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js","js/base/jquery.effects."+options.hide+""+$.struts2_jquery.minSuffix+".js"]);
+			params.hide = options.hide;
+		}
+		if (options.show) {
+			$.require(["js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js","js/base/jquery.effects."+options.show+""+$.struts2_jquery.minSuffix+".js"]);
+			params.show = options.show;
+		}
 		if (options.height) {
 			params.height = options.height;
 		}
@@ -745,7 +846,12 @@ function pubErr(cid, always, etopics, etext) {
 
 	tabbedpanel : function($elem, options) {
 
-		// instantiate the tabbed pane
+		$.require(
+				[
+				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.tabs"+$.struts2_jquery.minSuffix+".js"
+				 ]);
+
 		if (!options) {
 			options = {};
 		}
@@ -759,10 +865,13 @@ function pubErr(cid, always, etopics, etext) {
 			}
 		}
 		if (options.cache) { para.cache = true; }
-		if (options.animate) { para.fx = {
-			opacity :'toggle'
-		};}
-		if (options.cookie) { para.cookie = {
+		if (options.animate) { 
+			$.require("js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js");
+			para.fx = {	opacity :'toggle'	};
+		}
+		if (options.cookie) { 
+			$.require("js/plugins/jquery.cookie"+$.struts2_jquery.minSuffix+".js");
+			para.cookie = {
 			expires :30
 		};}
 		if (options.collapsible) { para.collapsible = true; }
@@ -823,6 +932,14 @@ function pubErr(cid, always, etopics, etext) {
 
 	datepicker : function($elem, options) {
 
+		$.require(
+				[
+				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.datepicker"+$.struts2_jquery.minSuffix+".js"
+				 ]);
+		if ($.struts2_jquery.local != "en") {
+			$.require("i18n/jquery.ui.datepicker-"+$.struts2_jquery.local+".min.js");
+		}
 		var params = {};
 
 		if (options) {
@@ -890,7 +1007,12 @@ function pubErr(cid, always, etopics, etext) {
 			params.buttonImage = options.buttonimage;
 			params.showOn = options.showon;
 			params.buttonText = options.buttontext;
-			params.showAnim = options.showanim;
+			
+			if (options.showanim){
+				$.require("js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js");
+				params.showAnim = options.showanim;
+			}
+			
 			params.firstDay = options.firstday;
 			params.yearRange = options.yearrange;
 			params.duration = options.duration;
@@ -925,6 +1047,12 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	slider : function($elem, options) {
+		$.require(
+				[
+				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.slider"+$.struts2_jquery.minSuffix+".js"
+				 ]);
 
 		var params = {};
 		if (options) {
@@ -963,6 +1091,11 @@ function pubErr(cid, always, etopics, etext) {
 	},
 	progressbar : function($elem, options) {
 
+		$.require(
+				[
+				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.progressbar"+$.struts2_jquery.minSuffix+".js"
+				 ]);
 		var params = {};
 		if (options) {
 
@@ -975,6 +1108,11 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.progressbar(params);
 	},
 	accordion : function($elem, options) {
+		$.require(
+				[
+				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.accordion"+$.struts2_jquery.minSuffix+".js"
+				 ]);
 
 		var params = {};
 		var active = true;
@@ -1048,6 +1186,12 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	grid : function($elem, options) {
+		$.require("i18n/grid.locale-"+$.struts2_jquery.gridLocal+".js", function() {
+			$.jgrid.no_legacy_api = true;
+			$.jgrid.useJSON = true;
+		});
+		$.require(["js/base/jquery-ui"+$.struts2_jquery.minSuffix+".js","js/plugins/jquery.jqGrid.js"]);
+		$.requireCss("themes/ui.jqgrid.css");
 		var params = {};
 		$.extend(params, options);
 		if (options.onselectrowtopics || options.editurl) {
@@ -1170,6 +1314,12 @@ function pubErr(cid, always, etopics, etext) {
 	},
 	autocompleter : function($elem, options) {
 
+		$.require(
+				[
+				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.position"+$.struts2_jquery.minSuffix+".js",
+				 "js/base/jquery.ui.autocomplete"+$.struts2_jquery.minSuffix+".js"
+				 ]);
 		var params = {};
 		if (options.href && options.href != '#') {
 			params.source = options.href;
@@ -1195,10 +1345,13 @@ function pubErr(cid, always, etopics, etext) {
 		if (options.onselecttopics) { params.select = pubTops($elem, options.onalwaystopics, options.onselecttopics); }
 
 		if (options.selectBox === false) { $elem.autocomplete(params); }
-		else { $elem.combobox(params); }
+		else { 
+			$.require("js/plugins/jquery.combobox"+$.struts2_jquery.minSuffix+".js");
+			$elem.combobox(params); 
+		}
 	},
 	jquerybutton : function($elem, options) {
-
+		$.require(["js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js","js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js"]);
 		if (options.button) {
 			var params = {};
 			params.icons = {};
@@ -1212,6 +1365,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	buttonset : function($elem, options) {
+		$.require(["js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js","js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js"]);
 		$elem.buttonset(options);
 	}
 	};
@@ -1429,7 +1583,7 @@ function pubErr(cid, always, etopics, etext) {
 	$.subscribeHandler('_s2j_effects', function(event, data) {
 		var options = {};
 		$.extend(options, event.data);
-		if (options.targets || options.effect) {
+		if (options.targets && options.effect) {
 			var eo = {};
 			var duration = 2000;
 			if (options.effectoptions) {
@@ -1438,47 +1592,9 @@ function pubErr(cid, always, etopics, etext) {
 			if (options.effectduration) {
 				duration = options.effectduration;
 			}
+			$.require(["js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js","js/base/jquery.effects."+options.effect+""+$.struts2_jquery.minSuffix+".js"]);
 			$(escId(options.targets)).effect(options.effect, eo, duration);
 		}
 	});
 
-})(jQuery);
-
-
-// Taken from jquery UI Combobox Example
-( function($) {
-	$.widget("ui.combobox", {
-		_create : function() {
-			var self = this;
-			var select = this.element.hide();
-			$("<input>").insertAfter(select).autocomplete( {
-			source : function(request, response) {
-				var matcher = new RegExp(request.term, "i");
-				response(select.children("option").map( function() {
-					var text = $(this).text();
-					if (!request.term || matcher.test(text)) { return {
-					id :$(this).val(),
-					label :text.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1") + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>"),
-					value :text
-					}; }
-				}));
-			},
-			delay :0,
-			select : function(e, ui) {
-				if (!ui.item) {
-					// remove invalid value, as it didn't match anything
-					$(this).val("");
-					return false;
-				}
-				$(this).focus();
-				select.val(ui.item.id);
-				self._trigger("selected", null, {
-					item :select.find("[value='" + ui.item.id + "']")
-				});
-
-			},
-			minLength :0
-			}).addClass("ui-widget ui-widget-content ui-corner-left");
-		}
-	});
 })(jQuery);
