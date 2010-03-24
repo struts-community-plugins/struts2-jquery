@@ -26,6 +26,8 @@
 </#if>
 <#if parameters.compressed?default(true)>
   <#assign jqueryFile="jquery-1.4.2.min.js">
+  <#assign jqueryForm="jquery.form.min.js">
+  <#assign jqueryUIFile="jquery-ui.min.js">
   <#assign jqueryUICoreFile="jquery.ui.core.min.js">
   <#assign jqueryRequireFile="jquery.require.min.js">
   <#assign jquerySubscribeFile="jquery.subscribe.1.2.min.js">
@@ -35,6 +37,8 @@
   <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js">
 <#else>
   <#assign jqueryFile="jquery-1.4.2.js">
+  <#assign jqueryForm="jquery.form.js">
+  <#assign jqueryUIFile="jquery-ui.js">
   <#assign jqueryUICoreFile="jquery.ui.core.js">
   <#assign jqueryRequireFile="jquery.require.js">
   <#assign jquerySubscribeFile="jquery.subscribe.1.2.js">
@@ -45,15 +49,21 @@
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
-<script type="text/javascript" src="${jqueryGoogle}"></script>
-<script type="text/javascript" src="${jqueryUiGoogle}"></script>
+	<script type="text/javascript" src="${jqueryGoogle}"></script>
+	<script type="text/javascript" src="${jqueryUiGoogle}"></script>
 <#else>
-  <script type="text/javascript" src="${base}/struts/js/base/${jqueryFile}"></script>
+	<script type="text/javascript" src="${base}/struts/js/base/${jqueryFile}"></script>
 	<#if parameters.jqueryui?default(true)>
-    <script type="text/javascript" src="${base}/struts/js/base/${jqueryUICoreFile}"></script>
+ 		<#if parameters.loadAtOnce?default(false)>
+	<script type="text/javascript" src="${base}/struts/js/base/${jqueryUIFile}"></script>
+		<#else>
+	<script type="text/javascript" src="${base}/struts/js/base/${jqueryUICoreFile}"></script>
+		</#if>
 	</#if>
 </#if>
-
+<#if parameters.loadAtOnce?default(false)>
+	<script type="text/javascript" src="${base}/struts/js/plugins/${jqueryForm}"></script>
+</#if>
   <script type="text/javascript" src="${base}/struts/js/plugins/${jquerySubscribeFile}"></script>
 <#if parameters.ajaxhistory?default(false)>
   <script type="text/javascript" src="${base}/struts/js/plugins/${jqueryHistoryFile}"></script>
@@ -72,6 +82,9 @@
   <script type="text/javascript" src="${base}/struts/js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+<#if parameters.loadAtOnce?default(false) || parameters.loadFromGoogle?default(false)>
+	$.struts2_jquery.loadAtOnce = true;
+</#if>
   	$.scriptPath = "${base}/struts/";
 <#if !parameters.compressed?default(true)>
 	$.struts2_jquery.minSuffix = "";

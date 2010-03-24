@@ -152,6 +152,7 @@ public class Head extends org.apache.struts2.components.Head {
   protected String              ajaxcache;
   protected String              ajaxhistory;
   protected String              defaultIndicator;
+  protected String              loadAtOnce;
 
   private String                defaultLocale;
 
@@ -176,6 +177,7 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.ajaxcache != null) addParameter("ajaxcache", findValue(this.ajaxcache, Boolean.class));
     if (this.ajaxhistory != null) addParameter("ajaxhistory", findValue(this.ajaxhistory, Boolean.class));
     if (this.defaultIndicator != null) addParameter("defaultIndicator", findString(this.defaultIndicator));
+    if (this.loadAtOnce != null) addParameter("loadAtOnce", findValue(this.loadAtOnce, Boolean.class));
 
     String loc = null;
     if (this.locale != null) loc = StringUtils.replace(findString(this.locale), "_", "-");
@@ -254,7 +256,7 @@ public class Head extends org.apache.struts2.components.Head {
     this.ajaxcache = ajaxcache;
   }
 
-  @StrutsTagAttribute(description = "BETA!!! If set to true it will enable history and bookmarking for AJAX content and jQuery UI Tabs.", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "If set to true it will enable history and bookmarking for AJAX content and jQuery UI Tabs.", defaultValue = "false", type = "Boolean")
   public void setAjaxhistory(String ajaxhistory)
   {
     this.ajaxhistory = ajaxhistory;
@@ -264,6 +266,12 @@ public class Head extends org.apache.struts2.components.Head {
   public void setDefaultIndicator(String defaultIndicator)
   {
     this.defaultIndicator = defaultIndicator;
+  }
+
+  @StrutsTagAttribute(description = "do not use the on demand load for jquery ui resources", defaultValue = "false", type = "Boolean")
+  public void setLoadAtOnce(String loadAtOnce)
+  {
+    this.loadAtOnce = loadAtOnce;
   }
 
   private static String validateLocal(String[] locals, String local)
