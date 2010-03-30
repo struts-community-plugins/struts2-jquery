@@ -24,12 +24,14 @@
 function s2jlog() {
 	if ($.struts2_jquery.debug) {
 		var msg = '[struts2_jquery] ' + Array.prototype.join.call(arguments,'');
-		if (window.console && window.console.log)
+		if (window.console && window.console.log) {
 			window.console.log(msg);
-		else if (window.opera && window.opera.postError)
+		}
+		else if (window.opera && window.opera.postError) {
 			window.opera.postError(msg);
+		}
 	}
-};
+}
 
 function escId(id) {
 	return '#' + id.replace(/(:|\.)/g, '\\$1');
@@ -240,7 +242,7 @@ function pubErr(cid, always, etopics, etext) {
 	$.require = function(files, callBack) {
 
 		var successFunction = callBack || function() {};
-		if (!$.require.libCache) $.require.libCache = {};
+		if (!$.require.libCache) { $.require.libCache = {}; }
 
 		if ( !$.scriptPath ) {
 			$.scriptPath = '';
@@ -273,15 +275,13 @@ function pubErr(cid, always, etopics, etext) {
 		if (!$.scriptPath) {
 			$.scriptPath = '';
 		}
-		var head = $('head')[0];
-		
 		s2jlog('load require css '+($.scriptPath + cssFile));
 
 		var cssref=document.createElement("link");
 	  cssref.setAttribute("rel", "stylesheet");
 	  cssref.setAttribute("type", "text/css");
 	  cssref.setAttribute("href", ($.scriptPath + cssFile));
-	  document.getElementsByTagName("head")[0].appendChild(cssref)
+	  document.getElementsByTagName("head")[0].appendChild(cssref);
 
 	  return $;
 	};
@@ -697,8 +697,8 @@ function pubErr(cid, always, etopics, etext) {
 		s2jlog('anchor : '+options.id);
 		var loadHandler = '_s2j_container_load';
 
-		this.opendialog($elem, options);
-		this.jquerybutton($elem, options);
+		if(options.opendialog) { this.opendialog($elem, options); }
+		if(options.button) { this.jquerybutton($elem, options); }
 
 		if (options.formids) {
 			var formTopic = '_s2j_form_topic_' + options.id;
@@ -741,8 +741,8 @@ function pubErr(cid, always, etopics, etext) {
 	button : function($elem, options) {
 		var formTopic = '_s2j_form_topic_' + options.id;
 
-		this.opendialog($elem, options);
-		this.jquerybutton($elem, options);
+		if(options.opendialog) { this.opendialog($elem, options); }
+		if(options.button) { this.jquerybutton($elem, options); }
 
 		if (options.formids !== undefined) {
 			this.formsubmit($elem, options, formTopic);
@@ -1633,13 +1633,13 @@ function pubErr(cid, always, etopics, etext) {
 							orginal.options.submit = false;
 						}
 					}
+					s2jlog('form validation : '+orginal.options.submit);
 				};
 				$.ajax(valParams);
 			}
 			if (!orginal.options.submit) {
 				hideIndicator(options.indicatorid);
 			}
-			s2jlog('form validation : '+orginal.options.submit);
 			return orginal.options.submit;
 		};
 
