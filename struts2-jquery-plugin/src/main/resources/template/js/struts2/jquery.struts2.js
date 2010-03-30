@@ -239,13 +239,16 @@ function pubErr(cid, always, etopics, etext) {
 	/**
 	 * Load required JavaScript Resourcess
 	 */
-	$.require = function(files, callBack) {
+	$.require = function(files, callBack, basePath) {
 
 		var successFunction = callBack || function() {};
 		if (!$.require.libCache) { $.require.libCache = {}; }
-
-		if ( !$.scriptPath ) {
-			$.scriptPath = '';
+		var path = basePath || null;
+		if ( path === null && !$.scriptPath ) {
+			path = '';
+		}
+		else if( path === null && $.scriptPath ) {
+			path = $.scriptPath;
 		}
 		
 		if (typeof files === "string") {
@@ -253,10 +256,10 @@ function pubErr(cid, always, etopics, etext) {
 		}
 		$.each(files, function(i, file) { 
 			if (!$.require.libCache[file]) {
-				s2jlog('load require javascript '+($.scriptPath + file));
+				s2jlog('load require javascript '+(path + file));
 				$.ajax( {
 				type : "GET",
-				url : $.scriptPath + file,
+				url : path + file,
 				success : successFunction,
 				dataType : "script",
 				cache : true,
@@ -271,18 +274,26 @@ function pubErr(cid, always, etopics, etext) {
 	/**
 	 * Load required CSS Files
 	 */
-	$.requireCss = function(cssFile) {
-		if (!$.scriptPath) {
-			$.scriptPath = '';
+	$.requireCss = function(cssFile, basePath) {
+		if (!$.requireCss.styleCache) { $.requireCss.styleCache = {}; }
+
+		if (!$.requireCss.styleCache[cssFile]) {
+			var path = basePath || null;
+			if ( path === null && !$.scriptPath ) {
+				path = '';
+			}
+			else if( path === null && $.scriptPath ) {
+				path = $.scriptPath;
+			}
+			s2jlog('load require css '+(path + cssFile));
+	
+			var cssref=document.createElement("link");
+		  cssref.setAttribute("rel", "stylesheet");
+		  cssref.setAttribute("type", "text/css");
+		  cssref.setAttribute("href", (path + cssFile));
+		  document.getElementsByTagName("head")[0].appendChild(cssref);
+			$.requireCss.styleCache[cssFile] = true;
 		}
-		s2jlog('load require css '+($.scriptPath + cssFile));
-
-		var cssref=document.createElement("link");
-	  cssref.setAttribute("rel", "stylesheet");
-	  cssref.setAttribute("type", "text/css");
-	  cssref.setAttribute("href", ($.scriptPath + cssFile));
-	  document.getElementsByTagName("head")[0].appendChild(cssref);
-
 	  return $;
 	};
 	
