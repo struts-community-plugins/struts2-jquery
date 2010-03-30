@@ -251,6 +251,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 		$.each(files, function(i, file) { 
 			if (!$.require.libCache[file]) {
+				s2jlog('load require javascript '+($.scriptPath + file));
 				$.ajax( {
 				type : "GET",
 				url : $.scriptPath + file,
@@ -273,6 +274,9 @@ function pubErr(cid, always, etopics, etext) {
 			$.scriptPath = '';
 		}
 		var head = $('head')[0];
+		
+		s2jlog('load require css '+($.scriptPath + cssFile));
+
 		var cssref=document.createElement("link");
 	  cssref.setAttribute("rel", "stylesheet");
 	  cssref.setAttribute("type", "text/css");
@@ -320,6 +324,7 @@ function pubErr(cid, always, etopics, etext) {
 
 				if (!options.jqueryaction) { options.jqueryaction = tag; }
 
+				s2jlog('bind '+options.jqueryaction+' on '+options.id);
 				this[options.jqueryaction]($el, options);
 
 				// extension point to allow custom post-binding processing
@@ -338,6 +343,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	opendialog : function($elem, options) {
+		s2jlog('open dialog : '+options.opendialog);
 
 		if (options.opendialog) {
 			var dialog = $(escId(options.opendialog));
@@ -449,7 +455,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	container : function($elem, options) {
-
+		s2jlog('container : '+options.id);
 		var loadHandler = '_s2j_container_load', effectHandler = '_s2j_effects';
 
 		this.action($elem, options, loadHandler, 'div');
@@ -576,6 +582,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 
 		if (options.draggable) {
+			s2jlog('draggable : '+options.id);
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(
 					[
@@ -599,6 +606,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 
 		if (options.droppable) {
+			s2jlog('droppable : '+options.id);
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(
 					[
@@ -625,6 +633,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 
 		if (options.selectable) {
+			s2jlog('selectable : '+options.id);
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(
 					[
@@ -651,6 +660,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 
 		if (options.sortable) {
+			s2jlog('sortable : '+options.id);
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(
 					[
@@ -684,7 +694,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	anchor : function($elem, options) {
-
+		s2jlog('anchor : '+options.id);
 		var loadHandler = '_s2j_container_load';
 
 		this.opendialog($elem, options);
@@ -701,7 +711,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	select : function($elem, options) {
-
+		s2jlog('select : '+options.id);
 		var handler = '_s2j_container_load';
 		var selectTopic = '_s2j_topic_load_' + options.id;
 
@@ -760,6 +770,7 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.removeAttr('name');
 	},
 	formsubmit : function($elem, options, topic) {
+		s2jlog('formsubmit : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
 		}
@@ -795,6 +806,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	dialog : function($elem, options) {
+		s2jlog('dialog : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(
 				[
@@ -877,6 +889,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	tabbedpanel : function($elem, options) {
+		s2jlog('tabbedpanel : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(
 				[
@@ -967,6 +980,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	datepicker : function($elem, options) {
+		s2jlog('datepicker : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 		$.require(
 				[
@@ -1086,6 +1100,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	slider : function($elem, options) {
+		s2jlog('slider : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(
 				[
@@ -1131,6 +1146,7 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.slider(params);
 	},
 	progressbar : function($elem, options) {
+		s2jlog('progressbar : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(
 				[
@@ -1150,6 +1166,7 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.progressbar(params);
 	},
 	accordion : function($elem, options) {
+		s2jlog('accordion : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(
 				[
@@ -1229,6 +1246,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	grid : function($elem, options) {
+		s2jlog('grid for : '+options.id);
 		$.require("i18n/grid.locale-"+$.struts2_jquery.gridLocal+".js", function() {
 			$.jgrid.no_legacy_api = true;
 			$.jgrid.useJSON = true;
@@ -1361,6 +1379,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	autocompleter : function($elem, options) {
+		s2jlog('autocompleter for : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(
 				[
@@ -1400,6 +1419,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	jquerybutton : function($elem, options) {
+		s2jlog('button for : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(["js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js","js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js"]);
 		}
@@ -1416,6 +1436,7 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	buttonset : function($elem, options) {
+		s2jlog('buttonset for : '+options.id);
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(["js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js","js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js"]);
 		}
@@ -1618,6 +1639,7 @@ function pubErr(cid, always, etopics, etext) {
 			if (!orginal.options.submit) {
 				hideIndicator(options.indicatorid);
 			}
+			s2jlog('form validation : '+orginal.options.submit);
 			return orginal.options.submit;
 		};
 
@@ -1626,6 +1648,7 @@ function pubErr(cid, always, etopics, etext) {
 		params.error = pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext);
 
 		$.each(options.formids.split(','), function(i, fid) { 
+			s2jlog('submit form : '+fid);
 			$(escId(fid)).ajaxSubmit(params);
 		});
 
@@ -1649,6 +1672,7 @@ function pubErr(cid, always, etopics, etext) {
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(["js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js","js/base/jquery.effects."+options.effect+""+$.struts2_jquery.minSuffix+".js"]);
 			}
+			s2jlog('effect '+options.effect+' for '+options.targets);
 			$(escId(options.targets)).effect(options.effect, eo, duration);
 		}
 	});
