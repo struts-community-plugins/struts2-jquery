@@ -19,6 +19,18 @@
 /*global $, jQuery,  document, window, StrutsUtils  */
 /*jslint evil: true */
 
+// helper fn for console logging
+// set $.fn.ajaxSubmit.debug to true to enable debug logging
+function s2jlog() {
+	if ($.struts2_jquery.debug) {
+		var msg = '[struts2_jquery] ' + Array.prototype.join.call(arguments,'');
+		if (window.console && window.console.log)
+			window.console.log(msg);
+		else if (window.opera && window.opera.postError)
+			window.opera.postError(msg);
+	}
+};
+
 function escId(id) {
 	return '#' + id.replace(/(:|\.)/g, '\\$1');
 }
@@ -44,6 +56,7 @@ function showIndicator(indi) {
 function publishTopic(elem, topics, data) {
 	if (topics) {
 		$.each(topics.split(','), function(i, to) { 
+			s2jlog('publish topic : '+to);
 			elem.publish(to, elem, data);
 		});
 	}
@@ -274,6 +287,7 @@ function pubErr(cid, always, etopics, etext) {
 	 */
 	$.struts2_jquery = {
 
+	debug :false,
 	ajaxhistory :false,
 	loadAtOnce :false,
 	local : "en",

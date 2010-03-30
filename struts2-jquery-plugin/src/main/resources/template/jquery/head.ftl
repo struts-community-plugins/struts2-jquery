@@ -82,6 +82,9 @@
   <script type="text/javascript" src="${base}/struts/js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+<#if parameters.debug?default(false)>
+	$.struts2_jquery.debug = true;
+</#if>
 <#if parameters.loadAtOnce?default(false) || parameters.loadFromGoogle?default(false)>
 	$.struts2_jquery.loadAtOnce = true;
 </#if>

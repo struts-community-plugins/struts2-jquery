@@ -45,6 +45,7 @@ public class HeadTag extends AbstractUITag {
   protected String          ajaxhistory;
   protected String          defaultIndicator;
   protected String          loadAtOnce;
+  protected String          debug;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -66,6 +67,7 @@ public class HeadTag extends AbstractUITag {
     head.setAjaxhistory(ajaxhistory);
     head.setDefaultIndicator(defaultIndicator);
     head.setLoadAtOnce(loadAtOnce);
+    head.setDebug(debug);
   }
 
   public void setCompressed(String compressed)
@@ -116,5 +118,10 @@ public class HeadTag extends AbstractUITag {
   public void setLoadAtOnce(String loadAtOnce)
   {
     this.loadAtOnce = loadAtOnce;
+  }
+
+  public void setDebug(String debug)
+  {
+    this.debug = debug;
   }
 }
