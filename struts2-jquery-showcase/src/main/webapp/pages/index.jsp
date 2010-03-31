@@ -27,7 +27,10 @@
   <s:else>
       <sj:head debug="true" compressed="false" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"/>
   </s:else>
-  <script type="text/javascript" src="js/showcase.js"></script>
+	<!-- This file includes necessary functions/topics for validation and all topic examples -->
+	<script type="text/javascript" src="js/showcase.js"></script>
+	<!-- Extend the Struts2 jQuery Plugin with an richtext editor -->
+	<script type="text/javascript" src="js/extendplugin.js"></script>
 </head>
 <body>
   <div class="page_margins">
