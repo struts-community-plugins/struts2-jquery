@@ -21,7 +21,15 @@
         A modal Dialog with remote content.
     </p>
     <s:url id="ajax" value="/ajax2.action"/>
-    <sj:dialog id="mymodaldialog" href="%{ajax}" modal="true" overlayColor="#903" overlayOpacity="0.8" title="Modal Dialog">
+    <sj:dialog 
+    	id="mymodaldialog" 
+    	href="%{ajax}" 
+    	modal="true" 
+    	overlayColor="#903" 
+    	overlayOpacity="0.8" 
+    	title="Modal Dialog"
+    	position="['right','top']"
+    >
         <img id="indicator" src="images/indicator.gif" alt="Loading..."/>
     </sj:dialog>
     

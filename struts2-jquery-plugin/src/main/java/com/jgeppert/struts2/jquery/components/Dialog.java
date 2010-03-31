@@ -31,41 +31,55 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: javadoc --> Renders a Dialog with local or remote content
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Renders a Dialog with local or remote content
+ * </p>
  * <!-- END SNIPPET: javadoc -->
  * 
  * <p>
  * Examples
  * </p>
- * <!-- START SNIPPET: example1 --> &lt;sj:dialog id="mydialog1"
- * title="Local Dialog"&gt; Mauris mauris ante, blandit et, ultrices a, suscipit
+ * <!-- START SNIPPET: example1 -->
+ * 
+ * <pre>
+ * &lt;sj:dialog id="mydialog1" title="Local Dialog"&gt; 
+ * Mauris mauris ante, blandit et, ultrices a, suscipit
  * eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
  * condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin
  * viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante
- * scelerisque vulputate. &lt;/sj:dialog&gt; <!-- END SNIPPET: example1 -->
+ * scelerisque vulputate. 
+ * &lt;/sj:dialog&gt;
+ * </pre>
  * 
- * <!-- START SNIPPET: example2 --> &lt;s:url id="remoteurl"
- * action="myremoteaction"/&gt; &lt;sj:dialog id="mydialog2" href="%{remoteurl}"
- * title="Remote Dialog"/&gt; <!-- END SNIPPET: example2 -->
+ * <!-- END SNIPPET: example1 -->
  * 
- * <!-- START SNIPPET: example3 --> &lt;s:url id="remoteurl"
- * action="myremoteaction"/&gt; &lt;sj:dialog id="mydialog3" href="%{remoteurl}"
- * title="Modal Remote Dialog with Effects" modal="true" showEffect="slide"
- * hideEffect="explode"/&gt; <!-- END SNIPPET: example3 -->
+ * <!-- START SNIPPET: example2 -->
  * 
- * <!-- START SNIPPET: example4 --> &lt;script type="text/javascript"&gt;
- * function okButton(event){ alert('OK Button pressed!'); }; function
- * cancelButton(event){ alert('Cancel Button pressed!'); }; &lt;/script&gt;
- * &lt;s:url id="remoteurl" action="myremoteaction"/&gt; &lt;sj:dialog
- * id="mydialog4" href="%{remoteurl}" title="Dialog with Buttons" buttons=
- * "'OK':function() {okButton();},'Cancel':function() {cancelButton();}"/&gt;
+ * <pre>
+ * &lt;s:url id="remoteurl" action="myremoteaction"/&gt; 
+ * &lt;sj:dialog id="mydialog2" href="%{remoteurl}" title="Remote Dialog"/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
+ * 
+ * <!-- START SNIPPET: example3 -->
+ * 
+ * <pre>
+ * &lt;s:url id="remoteurl" action="myremoteaction"/&gt;
+ * &lt;sj:dialog id="mydialog3" href="%{remoteurl}" title="Modal Remote Dialog with Effects" modal="true" showEffect="slide" hideEffect="explode"/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example3 -->
+ * 
+ * <!-- START SNIPPET: example4 -->
+ * 
+ * <pre>
+ * &lt;s:url id="remoteurl" action="myremoteaction"/&gt; &lt;sj:dialog id="mydialog5" href="%{remoteurl}" title="Remote Dialog open on Click" autoOpen="false" modal="true"/&gt;
+ * &lt;sj:a openDialog="mydialog5"&gt;Open Dialog&lt;/sj:a&gt;
+ * </pre>
+ * 
  * <!-- END SNIPPET: example4 -->
- * 
- * <!-- START SNIPPET: example5 --> &lt;s:url id="remoteurl"
- * action="myremoteaction"/&gt; &lt;sj:dialog id="mydialog5" href="%{remoteurl}"
- * title="Remote Dialog open on Click" autoOpen="false" modal="true"/&gt;
- * &lt;sj:a openDialog="mydialog5"&gt;Open Dialog&lt;/sj:a&gt; <!-- END SNIPPET:
- * example5 -->
  */
 @StrutsTag(name = "dialog", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag", description = "Render a Dialog")
 public class Dialog extends AbstractRemoteBean {
@@ -197,7 +211,7 @@ public class Dialog extends AbstractRemoteBean {
     this.modal = modal;
   }
 
-  @StrutsTagAttribute(description = "Specifies where the dialog should be displayed. Possible values: 'center', 'left', 'right', 'top', 'bottom', or an array containing a coordinate pair (in pixel offset from top left of viewport) or the possible string values (e.g. ['right','top'] for top right corner). Default: 'center'")
+  @StrutsTagAttribute(description = "Specifies where the dialog should be displayed. Possible values: 'center', 'left', 'right', 'top', 'bottom', or an array containing a coordinate pair (in pixel offset from top left of viewport) or the possible string values (e.g. ['right','top'] for top right corner). Default: 'center'", defaultValue = "center")
   public void setPosition(String position)
   {
     this.position = position;

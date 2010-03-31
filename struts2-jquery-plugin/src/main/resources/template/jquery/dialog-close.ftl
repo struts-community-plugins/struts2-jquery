@@ -30,19 +30,19 @@ $(document).ready(function () {
 	options_${escapedOptionId?html}.width = ${parameters.width?html};
   </#if>
    <#if parameters.maxHeight?if_exists != "">
-	options_${escapedOptionId?html}.maxheight = ${parameters.maxHeight?html};
+	options_${escapedOptionId?html}.maxHeight = ${parameters.maxHeight?html};
   </#if>
   <#if parameters.maxWidth?if_exists != "">
-	options_${escapedOptionId?html}.maxwidth = ${parameters.maxWidth?html};
+	options_${escapedOptionId?html}.maxWidth = ${parameters.maxWidth?html};
   </#if>
    <#if parameters.minHeight?if_exists != "">
-	options_${escapedOptionId?html}.minheight = ${parameters.minHeight?html};
+	options_${escapedOptionId?html}.minHeight = ${parameters.minHeight?html};
   </#if>
   <#if parameters.minWidth?if_exists != "">
-	options_${escapedOptionId?html}.minwidth = ${parameters.minWidth?html};
+	options_${escapedOptionId?html}.minWidth = ${parameters.minWidth?html};
   </#if>
   <#if parameters.zindex?if_exists != "">
-	options_${escapedOptionId?html}.zindex = ${parameters.zindex?html};
+	options_${escapedOptionId?html}.zIndex = ${parameters.zindex?html};
   </#if>
   <#if parameters.title?if_exists != "">
 	options_${escapedOptionId?html}.title = "${parameters.title?html}";
@@ -54,7 +54,12 @@ $(document).ready(function () {
 	options_${escapedOptionId?html}.hide = "${parameters.hideEffect?html}";
   </#if>
   <#if parameters.position?if_exists != "">
+  	  <#-- Is position an Array? -->
+	  <#if parameters.position?substring(0, 1) == "[">
+	options_${escapedOptionId?html}.position = ${parameters.position?html};
+	  <#else>
 	options_${escapedOptionId?html}.position = "${parameters.position?html}";
+	  </#if>
   </#if>
   <#if parameters.buttons?if_exists != "">
 	options_${escapedOptionId?html}.buttons = ${parameters.buttons?string};
@@ -68,14 +73,14 @@ $(document).ready(function () {
 	options_${escapedOptionId?html}.resizable = "${parameters.resizable?html}";
   </#if>
   <#if parameters.autoOpen?if_exists == "false">
-	options_${escapedOptionId?html}.autoopen = false;
+	options_${escapedOptionId?html}.autoOpen = false;
   <#else>
-	options_${escapedOptionId?html}.autoopen = true;
+	options_${escapedOptionId?html}.autoOpen = true;
   </#if>
 <#if parameters.modal?if_exists == "true" >
  <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">
 	<#if parameters.overlayColor?if_exists != "">
-	options_${escapedOptionId?html}.backgroundcolor = "${parameters.overlayColor?html}";
+	options_${escapedOptionId?html}.backgroundColor = "${parameters.overlayColor?html}";
 	</#if>
 	<#if parameters.overlayOpacity?if_exists != "">
 	options_${escapedOptionId?html}.opacity = ${parameters.overlayOpacity?html};

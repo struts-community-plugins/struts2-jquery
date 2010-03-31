@@ -832,14 +832,8 @@ function pubErr(cid, always, etopics, etext) {
 				 ]);
 		}
 		var params = {};
+		$.extend(params, options);
 		params.bgiframe = true;
-		params.autoOpen = options.autoopen;
-		params.modal = options.modal;
-		params.resizable = options.resizable;
-		params.draggable = options.draggable;
-		params.position = options.position;
-		params.zIndex = options.zindex;
-		params.backgroundColor = options.backgroundcolor;
 		if (options.hide) {
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(["js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js","js/base/jquery.effects."+options.hide+""+$.struts2_jquery.minSuffix+".js"]);
@@ -852,30 +846,6 @@ function pubErr(cid, always, etopics, etext) {
 			}
 			params.show = options.show;
 		}
-		if (options.height) {
-			params.height = options.height;
-		}
-		if (options.width) {
-			params.width = options.width;
-		}
-		if (options.maxheight) {
-			params.maxHeight = options.maxheight;
-		}
-		if (options.maxwidth) {
-			params.maxWidth = options.maxwidth;
-		}
-		if (options.minheight) {
-			params.minHeight = options.minheight;
-		}
-		if (options.minwidth) {
-			params.minWidth = options.minwidth;
-		}
-		if (options.buttons) {
-			params.buttons = options.buttons;
-		}
-
-		params.title = options.title;
-
 		params.open = function(event, ui) {
 			var data = {};
 			data.event = event;
