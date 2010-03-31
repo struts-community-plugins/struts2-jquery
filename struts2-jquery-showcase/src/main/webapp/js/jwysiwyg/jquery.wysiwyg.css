@@ -1,3 +1,4 @@
+
 div.wysiwyg { border: 1px solid #ccc; padding: 5px; background-color: #fff; }
 div.wysiwyg * { margin: 0; padding: 0; }
 
@@ -41,6 +42,7 @@ div.wysiwyg ul.panel li a.h6 { background-position: -80px -32px; }
 div.wysiwyg ul.panel li a.cut { background-position: -32px -64px; }
 div.wysiwyg ul.panel li a.copy { background-position: -48px -64px; }
 div.wysiwyg ul.panel li a.paste { background-position: -64px -64px; }
+div.wysiwyg ul.panel li a.insertTable { background-position: -64px -48px; }
 
 div.wysiwyg ul.panel li a.increaseFontSize { background-position: -16px -80px; }
 div.wysiwyg ul.panel li a.decreaseFontSize { background-position: -32px -80px; }
