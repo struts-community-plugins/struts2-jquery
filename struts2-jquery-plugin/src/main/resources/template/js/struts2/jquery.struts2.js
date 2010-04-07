@@ -702,6 +702,21 @@ function pubErr(cid, always, etopics, etext) {
 			soo.update = pubTops($elem, options.onalwaystopics, options.sortableonupdatetopics);
 			$elem.sortable(soo);
 		}
+		
+		if (options.onchangetopics) {
+			if (options.type) {
+				if(options.type == 'text') {
+					$elem.keyup(function() {
+						publishTopic($elem, options.onchangetopics, {});
+					});
+				}
+				else if (options.type == 'select') {
+					$elem.change(function() {
+						publishTopic($elem, options.onchangetopics, {});
+					});
+				}
+			}
+		}
 	},
 
 	anchor : function($elem, options) {
