@@ -79,7 +79,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * </pre>
  * 
  */
-@StrutsTag(name = "head", tldBodyContent = "empty", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag", description = "Render a chunk of HEAD for your HTML file")
+@StrutsTag(name = "head", tldBodyContent = "empty", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag", description = "Render a chunk of HEAD for your HTML file", allowDynamicAttributes = true)
 @StrutsTagSkipInheritance
 public class Head extends org.apache.struts2.components.Head {
   public static final String    TEMPLATE     = "head";
