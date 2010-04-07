@@ -32,8 +32,6 @@
 					name="echo" 
 					rows="10" 
 					cols="80" 
-					effect="highlight" 
-					effectDuration="1500" 
 					loadingText="Loading content of textarea ..."
 					width="700"
 				/>
@@ -41,7 +39,6 @@
 	        <div class="type-button">
 				<sj:submit 
 					targets="result" 
-					effect="slide" 
 					value="AJAX Submit" 
 					indicator="indicator" 
 					button="true"

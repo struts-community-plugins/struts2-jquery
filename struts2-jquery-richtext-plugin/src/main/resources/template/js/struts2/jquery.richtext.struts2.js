@@ -13,13 +13,42 @@
  *
  */
 
-	var struts2richtext = {
+/*global $, jQuery, s2jlog  */
+( function($) {
+	
+	/**
+	 * Bind a Richtext Editor to Struts2 Component
+	 */
+	$.struts2_jquery_richtext = {
+			
+			// Handle CKEditor
 			ckeditor : function($elem, options) {
 				s2jlog('ckeditor for : '+options.id);
 				$.require("js/plugins/jquery.MetaData"+$.struts2_jquery.minSuffix+".js");
 				$.require("js/plugins/jquery.CKEditor"+$.struts2_jquery.minSuffix+".js");
-				$elem.ckeditor(options);
+				
+
+				if(options.href && options.href != '#')
+				{
+					var ckeditorTopic = 's2j_ckeditor_'+options.id;
+					
+					// If Topic already subscribed, then remove it and subscribe it again
+					if ($elem.isSubscribed(ckeditorTopic)) { $elem.unsubscribe(ckeditorTopic); }
+					
+					// Init CKEditor after AJAX Content is loaded.
+					$elem.subscribe(ckeditorTopic, function(event,data) {
+							$elem.ckeditor(options);
+						});
+					options.oncompletetopics = ckeditorTopic;
+					this.container($elem, options);
+				}
+				else {
+					this.container($elem, options);
+					$elem.ckeditor(options);
+				}
 			}
 	};
 
-	$.extend(struts2richtext, $.struts2_jquery);
+	$.extend($.struts2_jquery_richtext, $.struts2_jquery);
+
+})(jQuery);

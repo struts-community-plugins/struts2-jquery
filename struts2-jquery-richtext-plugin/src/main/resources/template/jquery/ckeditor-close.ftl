@@ -56,6 +56,6 @@ $(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-	struts2richtext.bind($('#${escapedId?html}'),options_${escapedOptionId?html});
+	$.struts2_jquery_richtext.bind($('#${escapedId?html}'),options_${escapedOptionId?html});
  });  
 </script>
