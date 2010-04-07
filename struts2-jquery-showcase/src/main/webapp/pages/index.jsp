@@ -48,7 +48,7 @@
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 2.0.0</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 2.1.0</h4>
         	<img id="myDefaultIndicator" src="images/ajax-loader.gif" alt="Loading..." style="display:none"/>
         </div>
       </div>
@@ -63,8 +63,7 @@
             <li class="ui-widget-header"><s:url id="urldialog" action="dialog"/><sj:a id="dialink" href="%{urldialog}" targets="main">Dialog</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlaccordion" action="accordion"/><sj:a id="accordionlink" href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlautocompleter" action="autocompleter"/><sj:a id="autocompleterlink" href="%{urlautocompleter}" targets="main">Autocompleter</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlslider" action="slider"/><sj:a id="sliderlink" href="%{urlslider}" targets="main">Slider</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlprogressbar" action="progressbar"/><sj:a id="pblink" href="%{urlprogressbar}" targets="main">Progressbar</sj:a></li>
+            <li class="ui-widget-header"><s:url id="urlslider" action="slider"/><sj:a id="sliderlink" href="%{urlslider}" targets="main">More Widgets</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlgrid" action="grid"/><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid</sj:a></li>
             <li class="ui-widget-header"><s:url id="urleffectdiv" action="effect-div"/><sj:a id="interactionlink" href="%{urleffectdiv}" targets="main">Effects/Interactions</sj:a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/downloads/list">Download</a></li>

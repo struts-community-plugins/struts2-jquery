@@ -1,4 +1,3 @@
-
 div.wysiwyg { border: 1px solid #ccc; padding: 5px; background-color: #fff; }
 div.wysiwyg * { margin: 0; padding: 0; }
 
@@ -56,3 +55,4 @@ div.wysiwyg ul.panel li a.removeFormat { background-position: -80px -63px; }
 div.wysiwyg ul.panel li a.empty { background-position: -64px -80px; }
 
 div.wysiwyg iframe { border: 0;  clear: left; margin: 4px 0 0 1px; }
+

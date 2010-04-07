@@ -4,6 +4,7 @@
 				$.requireCss("jquery.wysiwyg.css", "js/jwysiwyg/");
 				$.require("jquery.wysiwyg.js", null, "js/jwysiwyg/");
 				$elem.wysiwyg(options.wysiwygoptions);
+				$(document).wysiwyg();
 			}
 	};
 

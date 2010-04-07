@@ -69,6 +69,7 @@
 				$.requireCss(&quot;jquery.wysiwyg.css&quot;, &quot;js/jwysiwyg/&quot;);
 				$.require(&quot;jquery.wysiwyg.js&quot;, null, &quot;js/jwysiwyg/&quot;);
 				$elem.wysiwyg(options.wysiwygoptions);
+				$(document).wysiwyg();
 			}
 	};
 
