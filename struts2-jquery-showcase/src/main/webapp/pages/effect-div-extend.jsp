@@ -23,7 +23,7 @@
 	    An example to show how you can easy extend the plugin with new functionality.
 	</p>
     
-    <textarea name="richtextarea" id="richtextarea" rows="15" cols="70">
+    <textarea name="richtextarea" id="richtextarea" rows="15" cols="80">
     Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
     </textarea>
  <script type='text/javascript'>
@@ -34,7 +34,7 @@
 		myrichtextoptions.jqueryaction = "myrichtextextend";
 		myrichtextoptions.id = "richtextarea";
 		myrichtextoptions.wysiwygoptions = {};
-		myextend.bind($('#richtextarea'),myrichtextoptions);
+		$.mys2jextend.bind($('#richtextarea'),myrichtextoptions);
 	 });  
 </script>	
 
@@ -45,7 +45,7 @@
       <sj:tab id="tab2" target="javascript" label="JavaScript Code"/>
       <div id="jsp">
 	  <pre>
-    &lt;textarea name=&quot;richtextarea&quot; id=&quot;richtextarea&quot; rows=&quot;15&quot; cols=&quot;70&quot;&gt;
+    &lt;textarea name=&quot;richtextarea&quot; id=&quot;richtextarea&quot; rows=&quot;15&quot; cols=&quot;80&quot;&gt;
     Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
     &lt;/textarea&gt;
  &lt;script type='text/javascript'&gt;
@@ -56,7 +56,7 @@
 		myrichtextoptions.jqueryaction = &quot;myrichtextextend&quot;;
 		myrichtextoptions.id = &quot;richtextarea&quot;;
 		myrichtextoptions.wysiwygoptions = {};
-		myextend.bind($('#richtextarea'),myrichtextoptions);
+		$.mys2jextend.bind($('#richtextarea'),myrichtextoptions);
 	 });  
 &lt;/script&gt;	
 	  </pre>
