@@ -22,9 +22,8 @@
 <script type='text/javascript'>
 var CKEDITOR_BASEPATH = "${base}/struts/js/ckeditor/";
 $(document).ready(function () { 
-
-
 	$.require("js/struts2/jquery.richtext.struts2"+$.struts2_jquery.minSuffix+".js");
+	
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.type = 'text';
 

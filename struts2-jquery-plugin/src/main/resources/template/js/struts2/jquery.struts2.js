@@ -513,6 +513,9 @@ function pubErr(cid, always, etopics, etext) {
 
 			}
 			else if (options.formids) {
+				if (!$.struts2_jquery.loadAtOnce) {
+					$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+				}
 				options.targets = options.id;
 				var formTopic = '_s2j_form_topic_' + options.id;
 				this.formsubmit($elem, options, formTopic);
@@ -1499,6 +1502,9 @@ function pubErr(cid, always, etopics, etext) {
 					}
 
 					if (options.formids) {
+						if (!$.struts2_jquery.loadAtOnce) {
+							$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+						}
 						$.each(options.formids.split(','), function(i, fid) {
 							var query = $(escId(fid)).formSerialize();
 							if (params.data != '') { params.data = params.data + '&' + query; }
