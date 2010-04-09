@@ -17,11 +17,11 @@
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-	<h2>Richtext</h2>
+	<h2>Richtext - Custome Toolbar</h2>
 	<p>
 	    A Textarea with remote content.
 	</p>
-    <s:form id="form-richtext" action="echo" theme="simple" cssClass="yform">
+    <s:form id="form-richtext-custome" action="echo" theme="simple" cssClass="yform">
         <fieldset>
             <legend>AJAX Form</legend>
 	        <div class="type-text">
@@ -35,6 +35,9 @@
 					cols="80" 
 					loadingText="Loading content of textarea ..."
 					width="700"
+					toolbar="Basic"
+					skin="v2"
+					customConfig="js/ckeditor.config.js"
 				/>
 	        </div>
 	        <div class="type-button">

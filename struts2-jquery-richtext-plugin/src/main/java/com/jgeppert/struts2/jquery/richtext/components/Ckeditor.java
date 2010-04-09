@@ -49,6 +49,7 @@ public class Ckeditor extends Textarea {
   protected String                      width;
   protected String                      height;
   protected String                      editorLocal;
+  protected String                      customConfig;
 
   public Ckeditor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -115,6 +116,10 @@ public class Ckeditor extends Textarea {
       addParameter("editorLocal", findString(editorLocal));
     }
 
+    if (customConfig != null)
+    {
+      addParameter("customConfig", findString(customConfig));
+    }
     if ((this.id == null || this.id.length() == 0))
     {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -191,5 +196,11 @@ public class Ckeditor extends Textarea {
   public void setEditorLocal(String editorLocal)
   {
     this.editorLocal = editorLocal;
+  }
+
+  @StrutsTagAttribute(description = "path to custom config file")
+  public void setCustomConfig(String customConfig)
+  {
+    this.customConfig = customConfig;
   }
 }

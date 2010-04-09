@@ -16,6 +16,7 @@
 /*global $, jQuery, s2jlog  */
 ( function($) {
 	
+
 	/**
 	 * Bind a Richtext Editor to Struts2 Component
 	 */
@@ -27,7 +28,6 @@
 				$.require("js/plugins/jquery.MetaData"+$.struts2_jquery.minSuffix+".js");
 				$.require("js/plugins/jquery.CKEditor"+$.struts2_jquery.minSuffix+".js");
 				
-
 				if(options.href && options.href != '#')
 				{
 					var ckeditorTopic = 's2j_ckeditor_'+options.id;
@@ -49,6 +49,7 @@
 			}
 	};
 
+	// Extend it from orginal plugin
 	$.extend($.struts2_jquery_richtext, $.struts2_jquery);
 
 })(jQuery);

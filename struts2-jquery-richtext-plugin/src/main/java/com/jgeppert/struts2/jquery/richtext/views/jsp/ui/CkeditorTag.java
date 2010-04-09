@@ -30,7 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class CkeditorTag extends TextareaTag {
 
-  private static final long serialVersionUID = 6782031035916461758L;
+  private static final long serialVersionUID = 3335538405812517654L;
 
   protected String          cols;
   protected String          readonly;
@@ -41,6 +41,7 @@ public class CkeditorTag extends TextareaTag {
   protected String          width;
   protected String          height;
   protected String          editorLocal;
+  protected String          customConfig;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -61,6 +62,7 @@ public class CkeditorTag extends TextareaTag {
     editor.setWidth(width);
     editor.setHeight(height);
     editor.setEditorLocal(editorLocal);
+    editor.setCustomConfig(customConfig);
   }
 
   public void setCols(String cols)
@@ -106,5 +108,10 @@ public class CkeditorTag extends TextareaTag {
   public void setEditorLocal(String editorLocal)
   {
     this.editorLocal = editorLocal;
+  }
+
+  public void setCustomConfig(String customConfig)
+  {
+    this.customConfig = customConfig;
   }
 }
