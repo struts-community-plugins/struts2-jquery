@@ -738,6 +738,9 @@ function pubErr(cid, always, etopics, etext) {
 
 	select : function($elem, options) {
 		s2jlog('select : '+options.id);
+		if (!$.struts2_jquery.loadAtOnce) {
+			$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+		}
 		var handler = '_s2j_container_load';
 		var selectTopic = '_s2j_topic_load_' + options.id;
 
@@ -1496,8 +1499,8 @@ function pubErr(cid, always, etopics, etext) {
 					}
 
 					if (options.formids) {
-						$.each(options.formids.split(','), function(i, form) {
-							var query = $(escId(form)).formSerialize();
+						$.each(options.formids.split(','), function(i, fid) {
+							var query = $(escId(fid)).formSerialize();
 							if (params.data != '') { params.data = params.data + '&' + query; }
 							else { params.data = query; }
 						});
