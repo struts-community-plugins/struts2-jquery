@@ -58,8 +58,8 @@
   <#if parameters.viewrecords?default(false)>
 	options_${escapedOptionId?html}.viewrecords = true;
   </#if>
-  <#if parameters.scroll?default(false)>
-	options_${escapedOptionId?html}.scroll = true;
+  <#if parameters.scroll?if_exists != "">
+	options_${escapedOptionId?html}.scroll = ${parameters.scroll?html};
   </#if>
   <#if parameters.sortorder?if_exists != "">
 	options_${escapedOptionId?html}.sortorder = "${parameters.sortorder?html}";

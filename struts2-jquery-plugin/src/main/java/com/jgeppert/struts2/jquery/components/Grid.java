@@ -145,7 +145,7 @@ public class Grid extends AbstractRemoteBean
 		if (caption != null) addParameter("caption", findString(caption));
 		if (shrinkToFit != null) addParameter("shrinkToFit", findValue(this.shrinkToFit, Boolean.class));
 		if (gridModel != null) addParameter("gridModel", findString(gridModel));
-		if (scroll != null) addParameter("scroll", findValue(this.scroll, Boolean.class));
+		if (scroll != null) addParameter("scroll", findString(scroll));
 		if (rowList != null) addParameter("rowList", findString(rowList));
 		if (navigator != null) addParameter("navigator", findValue(this.navigator, Boolean.class));
 		if (navigatorAddOptions != null) addParameter("navigatorAddOptions", findString(navigatorAddOptions));
@@ -286,7 +286,7 @@ public class Grid extends AbstractRemoteBean
 		this.rowList = rowList;
 	}
 
-	@StrutsTagAttribute(description = "Creates dynamic scrolling grids. When enabled, the pager elements are disabled and we can use the vertical scrollbar to load data. When set to true the grid will always hold all the items from the start through to the latest point ever visited.", defaultValue = "false", type = "Boolean")
+	@StrutsTagAttribute(description = "Creates dynamic scrolling grids. When enabled, the pager elements are disabled and we can use the vertical scrollbar to load data. When set to true the grid will always hold all the items from the start through to the latest point ever visited.", defaultValue = "false")
 	public void setScroll(String scroll) {
 		this.scroll = scroll;
 	}
