@@ -136,7 +136,8 @@
                         nonSelection: 'select the text you wish to link'
                 },
                 events: { },
-                controls: { }
+                controls: { },
+                resizeOptions: false
         };
         $.fn.wysiwyg.controls = {
                 bold: {
@@ -659,6 +660,13 @@
                          */
                         this.initialContent = $(element).val();
                         this.initFrame();
+
+                        if(this.options.resizeOptions && $.fn.resizable)
+                        {
+                                this.element.resizable($.extend(true, {
+                                        alsoResize: this.editor
+                                }, this.options.resizeOptions));
+                        }
 
                         /**
                          * http://code.google.com/p/jwysiwyg/issues/detail?id=100

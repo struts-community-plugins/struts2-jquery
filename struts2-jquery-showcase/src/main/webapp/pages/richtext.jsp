@@ -26,16 +26,17 @@
             <legend>AJAX Form</legend>
 	        <div class="type-text">
 	            <label for="echo">Echo: </label>
-				<s:url id="remoteurl" action="ajax1"/>
 				<sjr:ckeditor 
-					href="%{remoteurl}" 
-					id="echo" 
+					id="richtextEditor" 
 					name="echo" 
 					rows="10" 
 					cols="80" 
-					loadingText="Loading content of textarea ..."
 					width="700"
-				/>
+					value="
+				Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+					"
+				>
+				</sjr:ckeditor>
 	        </div>
 	        <div class="type-button">
 				<sj:submit 

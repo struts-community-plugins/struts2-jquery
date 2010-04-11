@@ -30,8 +30,7 @@ $(document).ready(function () {
 	options_${escapedOptionId?html}.path = "${base}/struts/js/ckeditor/";
 	
 	<#if parameters.customConfig?if_exists != ""> 
-	options_${escapedOptionId?html}.config = { }
-	options_${escapedOptionId?html}.config.customConfig = "${parameters.customConfig?html}";
+	options_${escapedOptionId?html}.customConfig = "${parameters.customConfig?html}";
 	</#if>
 	<#if parameters.skin?if_exists != ""> 
 	options_${escapedOptionId?html}.skin = "${parameters.skin?html}";

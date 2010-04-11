@@ -27,17 +27,18 @@
 	        <div class="type-text">
 	            <label for="echo">Echo: </label>
 				<s:url id="remoteurl" action="ajax1"/>
+				<s:set id="contextPath"  value="#request.get('javax.servlet.forward.context_path')" />
 				<sjr:ckeditor 
 					href="%{remoteurl}" 
-					id="echo" 
+					id="richtextCustomeEditor" 
 					name="echo" 
 					rows="10" 
 					cols="80" 
 					loadingText="Loading content of textarea ..."
 					width="700"
-					toolbar="Basic"
+					toolbar="MyToolbar"
 					skin="v2"
-					customConfig="js/ckeditor.config.js"
+					customConfig="%{contextPath}/js/ckeditor.config.js"
 				/>
 	        </div>
 	        <div class="type-button">
