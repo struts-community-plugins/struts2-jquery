@@ -30,7 +30,7 @@
   <#assign jqueryUIFile="jquery-ui.min.js">
   <#assign jqueryUICoreFile="jquery.ui.core.min.js">
   <#assign jqueryRequireFile="jquery.require.min.js">
-  <#assign jquerySubscribeFile="jquery.subscribe.1.2.min.js">
+  <#assign jquerySubscribeFile="jquery.subscribe.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
@@ -41,7 +41,7 @@
   <#assign jqueryUIFile="jquery-ui.js">
   <#assign jqueryUICoreFile="jquery.ui.core.js">
   <#assign jqueryRequireFile="jquery.require.js">
-  <#assign jquerySubscribeFile="jquery.subscribe.1.2.js">
+  <#assign jquerySubscribeFile="jquery.subscribe.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js">

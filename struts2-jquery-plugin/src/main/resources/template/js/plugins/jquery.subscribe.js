@@ -1,5 +1,5 @@
 /*
- * jquery.subscribe.1.2
+ * jquery.subscribe.1.1
  * 
  * Implementation of publish/subcription framework for jQuery
  * Requires use of jQuery. Tested with jQuery 1.3 and above
@@ -27,6 +27,9 @@
  *  version 1.2
  *  Added the isSubscribed() method
  *  
+ *  version 1.2.1
+ *  Fixed to work with jQuery 1.4 changes 
+ *     - changed $() syntax to $(document)
  */
 
 
@@ -298,7 +301,7 @@
 						
 						this.originalEvent.stopPropagation = subscriberStopPropagation;
 					}
-				}
+				};
 				
 				var event = jQuery.Event(topic);
 				$.extend(event,{originalEvent: originalEvent, stopPropagation: subscriberStopPropagation});
