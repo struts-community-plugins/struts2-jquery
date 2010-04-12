@@ -24,7 +24,7 @@
 	<p>
 	    To enable the Richtext Editor in your Project you need to copy the separate <strong>struts2-jquery-richtext-plugin.jar</strong> into your WEB-INF/lib path.
 	</p>
-    <s:form id="formRichtext" action="echo" theme="simple" cssClass="yform">
+    <s:form id="formRichtext" action="simpleecho" theme="simple" cssClass="yform">
     <s:hidden name="escape" value="false"/>
         <fieldset>
             <legend>AJAX Form</legend>
@@ -68,7 +68,7 @@
 	&lt;%@ taglib prefix=&quot;sjr&quot; uri=&quot;/struts-jquery-richtext-tags&quot;%&gt;
 	</strong>
 
-    &lt;s:form id=&quot;formRichtext&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+    &lt;s:form id=&quot;formRichtext&quot; action=&quot;simpleecho&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
     &lt;s:hidden name=&quot;escape&quot; value=&quot;false&quot;/&gt;
         &lt;fieldset&gt;
             &lt;legend&gt;AJAX Form&lt;/legend&gt;

@@ -30,6 +30,7 @@ public class SimpleEcho extends ActionSupport {
 
   private static final long serialVersionUID = 6999864671102333041L;
   private String            echo;
+  private boolean           escape           = true;
 
   @Action(value = "/simpleecho", results = {
     @Result(location = "simpleecho.jsp", name = "success")
@@ -47,5 +48,15 @@ public class SimpleEcho extends ActionSupport {
   public void setEcho(String echo)
   {
     this.echo = echo;
+  }
+
+  public boolean isEscape()
+  {
+    return escape;
+  }
+
+  public void setEscape(boolean escape)
+  {
+    this.escape = escape;
   }
 }
