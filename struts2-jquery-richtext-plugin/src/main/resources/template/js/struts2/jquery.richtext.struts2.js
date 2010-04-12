@@ -50,7 +50,7 @@
 				this.clean($elem);
 				
 				var callbackFunction = function() {
-					$.struts2_jquery_richtext.editors.editors[$.struts2_jquery_richtext.editors.length] = options.id;
+					$.struts2_jquery_richtext.editors[$.struts2_jquery_richtext.editors.length] = options.id;
 					if (options.onEditorReadyTopics) {
 						var data = {};
 						publishTopic($elem, options.onEditorReadyTopics, data);
