@@ -27,21 +27,25 @@
 			// clear orphan instances from memory
 		  clean: function($elem){
 				if(!window.CKEDITOR) { return; }
-				for(var i=0;i<$.struts2_jquery_richtext.editors.length;i++){
-					var name = $.struts2_jquery_richtext.editors.editors[i];
-					var inst = CKEDITOR.instances[name];
+				$.each($.struts2_jquery_richtext.editors, function(i, editor) { 
+					var inst = CKEDITOR.instances[editor];
 					if($elem.length === 0 || !inst || inst.textarea!=$elem[0]){
-						$.struts2_jquery_richtext.editors.editors.splice(i);
-						delete CKEDITOR.instances[name];
+						$.struts2_jquery_richtext.editors.splice(i);
+						delete CKEDITOR.instances[editor];
 					}
-				}
-			}, // clean
+				});
+			},
 
 			// Handle CKEditor
 			ckeditor : function($elem, options) {
 				s2jlog('ckeditor for : '+options.id);
 				$.require("js/ckeditor/ckeditor.js");
 				$.require("js/ckeditor/adapters/jquery.js");
+				
+				var inst = CKEDITOR.instances[options.id];
+				if(inst) {
+				   CKEDITOR.remove(inst);
+				}
 				
 				this.clean($elem);
 				

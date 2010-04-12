@@ -471,8 +471,8 @@ function pubErr(cid, always, etopics, etext) {
 
 		this.action($elem, options, loadHandler, 'div');
 
-		// load div using ajax
-		if (options.formids || (options.href && options.href != '#')) {
+		// load div using ajax only when href is specified or form is defined
+		if ((options.formids && !options.type) || (options.href && options.href != '#')) {
 			if (options.href != '#') {
 
 				if (options.reloadtopics) {
