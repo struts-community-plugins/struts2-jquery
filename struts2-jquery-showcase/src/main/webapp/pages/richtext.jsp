@@ -19,9 +19,13 @@
   <div id="col3_content" class="clearfix">
 	<h2>Richtext</h2>
 	<p>
-	    A Textarea with remote content.
+	    A simple Richtext Editor with default values. The Richtext Editor is based on <a href="http://ckeditor.com/">CKEditor</a>.
 	</p>
-    <s:form id="form-richtext" action="echo" theme="simple" cssClass="yform">
+	<p>
+	    To enable the Richtext Editor in your Project you need to copy the separate <strong>struts2-jquery-richtext-plugin.jar</strong> into your WEB-INF/lib path.
+	</p>
+    <s:form id="formRichtext" action="echo" theme="simple" cssClass="yform">
+    <s:hidden name="escape" value="false"/>
         <fieldset>
             <legend>AJAX Form</legend>
 	        <div class="type-text">
@@ -31,10 +35,8 @@
 					name="echo" 
 					rows="10" 
 					cols="80" 
-					width="700"
-					value="
-				Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-					"
+					width="800"
+					value="Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
 				>
 				</sjr:ckeditor>
 	        </div>
@@ -61,27 +63,32 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;s:form id=&quot;formTextarea&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot;%&gt;
+	<strong>
+	&lt;%@ taglib prefix=&quot;sjr&quot; uri=&quot;/struts-jquery-richtext-tags&quot;%&gt;
+	</strong>
+
+    &lt;s:form id=&quot;formRichtext&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+    &lt;s:hidden name=&quot;escape&quot; value=&quot;false&quot;/&gt;
         &lt;fieldset&gt;
             &lt;legend&gt;AJAX Form&lt;/legend&gt;
 	        &lt;div class=&quot;type-text&quot;&gt;
 	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;ajax1&quot;/&gt;
-				&lt;sj:textarea 
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;echo&quot; 
+	            <strong>
+				&lt;sjr:ckeditor 
+					id=&quot;richtextEditor&quot; 
 					name=&quot;echo&quot; 
 					rows=&quot;10&quot; 
 					cols=&quot;80&quot; 
-					effect=&quot;highlight&quot; 
-					effectDuration=&quot;1500&quot; 
-					loadingText=&quot;Loading content of textarea ...&quot;
-				/&gt;
+					width=&quot;800&quot;
+					value=&quot;Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&quot;
+				&gt;
+				&lt;/sjr:ckeditor&gt;
+				</strong>
 	        &lt;/div&gt;
 	        &lt;div class=&quot;type-button&quot;&gt;
 				&lt;sj:submit 
 					targets=&quot;result&quot; 
-					effect=&quot;slide&quot; 
 					value=&quot;AJAX Submit&quot; 
 					indicator=&quot;indicator&quot; 
 					button=&quot;true&quot;
@@ -93,6 +100,9 @@
 	        &lt;/div&gt;
         &lt;/fieldset&gt;
     &lt;/s:form&gt;
+
+    &lt;strong&gt;Result Div :&lt;/strong&gt;
+	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
 	  </pre>
 	</div>
   </div>

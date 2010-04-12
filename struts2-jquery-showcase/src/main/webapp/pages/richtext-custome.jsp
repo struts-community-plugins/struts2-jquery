@@ -19,82 +19,74 @@
   <div id="col3_content" class="clearfix">
 	<h2>Richtext - Custome Toolbar</h2>
 	<p>
-	    A Textarea with remote content.
+	    This Richtext Editor use a custome config file to define a custome toolbar. 
+	    Also it loads the initial Content via an AJAX request.
 	</p>
-    <s:form id="form-richtext-custome" action="echo" theme="simple" cssClass="yform">
-        <fieldset>
-            <legend>AJAX Form</legend>
-	        <div class="type-text">
-	            <label for="echo">Echo: </label>
-				<s:url id="remoteurl" action="ajax1"/>
-				<s:set id="contextPath"  value="#request.get('javax.servlet.forward.context_path')" />
-				<sjr:ckeditor 
-					href="%{remoteurl}" 
-					id="richtextCustomeEditor" 
-					name="echo" 
-					rows="10" 
-					cols="80" 
-					loadingText="Loading content of textarea ..."
-					width="700"
-					toolbar="MyToolbar"
-					skin="v2"
-					customConfig="%{contextPath}/js/ckeditor.config.js"
-				/>
-	        </div>
-	        <div class="type-button">
-				<sj:submit 
-					targets="result" 
-					value="AJAX Submit" 
-					indicator="indicator" 
-					button="true"
-				/>
-				<img id="indicator" 
-					src="images/indicator.gif" 
-					alt="Loading..." 
-					style="display:none"/>
-	        </div>
-        </fieldset>
+	<s:url id="remoteurl" action="ajax1"/>
+	<s:set id="contextPath"  value="#request.get('javax.servlet.forward.context_path')" />
+    <s:form id="formRichtextCustome" action="echo" theme="xhtml">
+	    <s:hidden name="escape" value="false"/>
+		<sjr:ckeditor 
+			label="Your Text"
+			href="%{remoteurl}" 
+			id="richtextCustomeEditor" 
+			name="echo" 
+			rows="10" 
+			cols="80" 
+			loadingText="Loading content of textarea ..."
+			width="600"
+			toolbar="MyToolbar"
+			skin="v2"
+			customConfig="%{contextPath}/js/ckeditor.config.js"
+		/>
+		<sj:submit 
+			targets="result" 
+			value="AJAX Submit" 
+			indicator="indicator" 
+			button="true"
+		/>
+		<img id="indicator" 
+			src="images/indicator.gif" 
+			alt="Loading..." 
+			style="display:none"/>
     </s:form>
-
+<br/>
     <strong>Result Div :</strong>
 	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
-
-    
+<br/>
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    &lt;s:form id=&quot;formTextarea&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;ajax1&quot;/&gt;
-				&lt;sj:textarea 
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;echo&quot; 
-					name=&quot;echo&quot; 
-					rows=&quot;10&quot; 
-					cols=&quot;80&quot; 
-					effect=&quot;highlight&quot; 
-					effectDuration=&quot;1500&quot; 
-					loadingText=&quot;Loading content of textarea ...&quot;
-				/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-				&lt;sj:submit 
-					targets=&quot;result&quot; 
-					effect=&quot;slide&quot; 
-					value=&quot;AJAX Submit&quot; 
-					indicator=&quot;indicator&quot; 
-					button=&quot;true&quot;
-				/&gt;
-				&lt;img id=&quot;indicator&quot; 
-					src=&quot;images/indicator.gif&quot; 
-					alt=&quot;Loading...&quot; 
-					style=&quot;display:none&quot;/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
+	&lt;s:url id=&quot;remoteurl&quot; action=&quot;ajax1&quot;/&gt;
+	&lt;s:set id=&quot;contextPath&quot;  value=&quot;#request.get('javax.servlet.forward.context_path')&quot; /&gt;
+    &lt;s:form id=&quot;formRichtextCustome&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+	    &lt;s:hidden name=&quot;escape&quot; value=&quot;false&quot;/&gt;
+	    <strong>
+		&lt;sjr:ckeditor 
+			label=&quot;Your Text&quot;
+			href=&quot;%{remoteurl}&quot; 
+			id=&quot;richtextCustomeEditor&quot; 
+			name=&quot;echo&quot; 
+			rows=&quot;10&quot; 
+			cols=&quot;80&quot; 
+			loadingText=&quot;Loading content of textarea ...&quot;
+			width=&quot;600&quot;
+			toolbar=&quot;MyToolbar&quot;
+			skin=&quot;v2&quot;
+			customConfig=&quot;%{contextPath}/js/ckeditor.config.js&quot;
+		/&gt;
+	    </strong>
+		&lt;sj:submit 
+			targets=&quot;result&quot; 
+			value=&quot;AJAX Submit&quot; 
+			indicator=&quot;indicator&quot; 
+			button=&quot;true&quot;
+		/&gt;
+		&lt;img id=&quot;indicator&quot; 
+			src=&quot;images/indicator.gif&quot; 
+			alt=&quot;Loading...&quot; 
+			style=&quot;display:none&quot;/&gt;
     &lt;/s:form&gt;
 	  </pre>
 	</div>

@@ -63,7 +63,8 @@
 	  </div>
       <div id="javascript">
 	  <pre>
-	var myextend = {
+( function($) {
+	$.mys2jextend = {
 			myrichtextextend : function($elem, options) {
 				s2jlog('richtext for : '+options.id);
 				$.requireCss(&quot;jquery.wysiwyg.css&quot;, &quot;js/jwysiwyg/&quot;);
@@ -73,8 +74,9 @@
 			}
 	};
 
-	$.extend(myextend, $.struts2_jquery);
-	  </pre>
+	$.extend($.mys2jextend, $.struts2_jquery);
+
+})(jQuery);	  </pre>
 	  </div>
     </sj:tabbedpanel>
   </div>

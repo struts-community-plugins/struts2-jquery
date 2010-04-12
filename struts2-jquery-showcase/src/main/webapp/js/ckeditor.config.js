@@ -12,8 +12,7 @@
       ['Styles','Format'],
       ['Bold','Italic','Strike'],
       ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
-      ['Link','Unlink','Anchor'],
-      ['Maximize','-','About']
+      ['Link','Unlink','Anchor']
   ];
 
 };

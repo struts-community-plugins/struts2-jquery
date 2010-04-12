@@ -34,6 +34,7 @@ public class Echo extends ActionSupport {
   private static final Log  log              = LogFactory.getLog(Echo.class);
 
   private String            echo;
+  private boolean           escape           = true;
 
   @Action(value = "/echo", results = {
     @Result(location = "echo.jsp", name = "success")
@@ -54,5 +55,15 @@ public class Echo extends ActionSupport {
   public void setEcho(String echo)
   {
     this.echo = echo;
+  }
+
+  public boolean isEscape()
+  {
+    return escape;
+  }
+
+  public void setEscape(boolean escape)
+  {
+    this.escape = escape;
   }
 }
