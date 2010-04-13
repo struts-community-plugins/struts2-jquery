@@ -62,7 +62,7 @@
     </distributionManagement>
 
     <properties>
-        <currentVersion>${pom.version}</currentVersion>
+        <currentVersion>${project.version}</currentVersion>
         <struts2.version>2.1.8.1</struts2.version>
     </properties>
 
