@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.components;
+package com.jgeppert.struts2.jquery.grid.components;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +26,7 @@ import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
+import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
 import com.opensymphony.xwork2.util.ValueStack;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
@@ -38,7 +39,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * Examples
  * </p>
  */
-@StrutsTag(name = "gridColumn", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.GridColumnTag", description = "Renders a column for the grid")
+@StrutsTag(name = "gridColumn", tldTagClass = "com.jgeppert.struts2.jquery.grid.views.jsp.ui.GridColumnTag", description = "Renders a column for the grid")
 public class GridColumn extends AbstractRemoteBean {
 
   public static final String    TEMPLATE       = "gridcolumn";

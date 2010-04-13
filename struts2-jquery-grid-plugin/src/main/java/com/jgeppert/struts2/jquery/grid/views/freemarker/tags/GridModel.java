@@ -17,32 +17,30 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.views.velocity.components;
+package com.jgeppert.struts2.jquery.grid.views.freemarker.tags;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
+import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.components.GridColumn;
+import com.jgeppert.struts2.jquery.grid.components.Grid;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * @see GridColumn
+ * @see Grid
  */
-public class GridColumnDirective extends JqueryAbstractDirective {
-  public String getBeanName()
-  {
-    return "gridColumn";
+public class GridModel extends TagModel {
+
+  public GridModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
   }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  @Override
+  protected Component getBean()
   {
-    return new GridColumn(stack, req, res);
+    return new Grid(stack, req, res);
   }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
 }

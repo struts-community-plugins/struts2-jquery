@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 <div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
@@ -20,7 +21,7 @@
     	<s:param name="loadonce" value="%{true}" />
     </s:url> 
     <s:url id="editcellurl" action="edit-cell-entry"/> 
-    <sj:grid 
+    <sjg:grid 
     	id="gridloadtable" 
     	loadonce="true"
     	caption="Customers Examples (Local Data)" 
@@ -33,14 +34,14 @@
     	cellurl="%{editcellurl}"
     	altRows="true"
     >
-    	<sj:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true"/>
-    	<sj:gridColumn name="name" index="name" title="Company" width="250" sortable="true"/>
-    	<sj:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true" hidden="true"/>
-    	<sj:gridColumn name="firstName" index="firstName" title="First Name" sortable="true" hidden="true"/>
-    	<sj:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
-    	<sj:gridColumn name="country" index="country" title="Country" sortable="true"/>
-    	<sj:gridColumn name="city" index="city" title="City" sortable="true"/>
-    	<sj:gridColumn 	name="creditLimit" 
+    	<sjg:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true"/>
+    	<sjg:gridColumn name="name" index="name" title="Company" width="250" sortable="true"/>
+    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true" hidden="true"/>
+    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="true" hidden="true"/>
+    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
+    	<sjg:gridColumn name="country" index="country" title="Country" sortable="true"/>
+    	<sjg:gridColumn name="city" index="city" title="City" sortable="true"/>
+    	<sjg:gridColumn 	name="creditLimit" 
     					index="creditLimit" 
     					title="Credit Limit" 
     					align="right"
@@ -53,7 +54,7 @@
     								}" 
     					formatter="currency" 
     					sortable="true"/>
-    </sj:grid>
+    </sjg:grid>
 	<br/>
     <sj:submit id="grid_load_colsbutton" 
     		value="Show/Hide Columns" 

@@ -40,8 +40,6 @@ public class JqueryModels {
   protected TextareaModel      textarea;
   protected TextfieldModel     textfield;
   protected SelectModel        select;
-  protected GridColumnModel    gridColumn;
-  protected GridModel          grid;
   protected AutocompleterModel autocompleter;
   protected RadioModel         radio;
   protected CheckboxListModel  checkboxlist;
@@ -64,26 +62,6 @@ public class JqueryModels {
     }
 
     return accordionItem;
-  }
-
-  public GridColumnModel getGridColumn()
-  {
-    if (gridColumn == null)
-    {
-      gridColumn = new GridColumnModel(stack, req, res);
-    }
-
-    return gridColumn;
-  }
-
-  public GridModel getGrid()
-  {
-    if (grid == null)
-    {
-      grid = new GridModel(stack, req, res);
-    }
-
-    return grid;
   }
 
   public AutocompleterModel getAutocompleter()

@@ -206,7 +206,8 @@
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />
 
 <#if !parameters.subGrid?default(false)>
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
+	$.struts2_jquery_grid.bind($('#${escapedId?html}'),options_${escapedOptionId?html});
  });  
 </script>
 <#else>

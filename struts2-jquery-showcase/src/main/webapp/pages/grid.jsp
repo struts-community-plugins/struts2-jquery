@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 <div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
@@ -22,7 +23,7 @@
         &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
     </p>
     <s:url id="remoteurl" action="jsontable"/> 
-    <sj:grid 
+    <sjg:grid 
     	id="gridtable" 
     	caption="Customers Examples" 
     	dataType="json" 
@@ -33,12 +34,12 @@
     	rowNum="15"
     	rownumbers="true"
     >
-    	<sj:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
-    	<sj:gridColumn name="name" index="name" title="Name" width="250" sortable="true"/>
-    	<sj:gridColumn name="country" index="country" title="Country" sortable="false"/>
-    	<sj:gridColumn name="city" index="city" title="City" sortable="false"/>
-    	<sj:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
-    </sj:grid>
+    	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
+    	<sjg:gridColumn name="name" index="name" title="Name" width="250" sortable="true"/>
+    	<sjg:gridColumn name="country" index="country" title="Country" sortable="false"/>
+    	<sjg:gridColumn name="city" index="city" title="City" sortable="false"/>
+    	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
+    </sjg:grid>
   </div>
   
 	<br/>

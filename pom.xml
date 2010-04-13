@@ -68,6 +68,7 @@
 
     <modules>
         <module>struts2-jquery-plugin</module>
+        <module>struts2-jquery-grid-plugin</module>
         <module>struts2-jquery-richtext-plugin</module>
         <module>struts2-jquery-showcase</module>
     </modules>

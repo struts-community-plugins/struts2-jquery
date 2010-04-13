@@ -17,14 +17,15 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.views.jsp.ui;
+package com.jgeppert.struts2.jquery.grid.views.jsp.ui;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
 
-import com.jgeppert.struts2.jquery.components.GridColumn;
+import com.jgeppert.struts2.jquery.grid.components.GridColumn;
+import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractRemoteTag;
 import com.opensymphony.xwork2.util.ValueStack;
 
 public class GridColumnTag extends AbstractRemoteTag {
@@ -54,7 +55,7 @@ public class GridColumnTag extends AbstractRemoteTag {
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
-    return new GridColumn(stack, req, res);
+    return new com.jgeppert.struts2.jquery.grid.components.GridColumn(stack, req, res);
   }
 
   protected void populateParams()
