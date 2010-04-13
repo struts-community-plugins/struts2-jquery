@@ -13,7 +13,7 @@
  *
  */
 
-/*global $, jQuery, s2jlog, publishTopic, pubCom, pubErr, escId  */
+/*global $, jQuery, window,  s2jlog, publishTopic, pubTops, pubCom, pubErr, escId  */
 /*jslint evil: true */
 
 ( function($) {
@@ -138,8 +138,110 @@
 		else {
 			params.gridview = true;
 		}
-
+		
 		$elem.jqGrid(params);
+		
+
+		if (options.resizable) {
+			if (!$.struts2_jquery.loadAtOnce) {
+				$.require(
+					[
+					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js"
+					 ]);
+			}
+			var ros = options.resizableoptions;
+			var ro = window[ros];
+			if (!ro) {
+				ro = eval("( " + ros + " )");
+			}
+			else {
+				ro = {};
+			}
+			ro.start = pubTops($elem, options.onalwaystopics, options.resizableonstarttopics);
+			ro.stop = pubTops($elem, options.onalwaystopics, options.resizableonstoptopics);
+			ro.resize = pubTops($elem, options.onalwaystopics, options.resizableonresizetopics);
+			$elem.jqGrid('gridResize', ro);
+		}
+
+		if (options.draggable && options.droppable) {
+			s2jlog('drag and drop for grid : '+options.id);
+			if (!$.struts2_jquery.loadAtOnce) {
+				$.require(
+						[
+						 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/jquery.ui.droppable"+$.struts2_jquery.minSuffix+".js"
+						 ]);
+			}
+			var daos = options.draggableoptions;
+			var dao = window[daos];
+			if (!dao) {
+				dao = eval("( " + daos + " )");
+			}
+			else {
+				dao = {};
+			}
+			dao.drap = pubTops($elem, options.onalwaystopics, options.draggableondragtopics);
+
+			var doos = options.droppableoptions;
+			var doo = window[doos];
+			if (!doo) {
+				doo = eval("( " + doos + " )");
+			}
+			else {
+				doo = {};
+			}
+			doo.activate = pubTops($elem, options.onalwaystopics, options.droppableonactivatetopics);
+			doo.deactivate = pubTops($elem, options.onalwaystopics, options.droppableondeactivatetopics);
+			doo.start = pubTops($elem, options.onalwaystopics, options.droppableonstarttopics);
+			doo.stop = pubTops($elem, options.onalwaystopics, options.droppableonstoptopics);
+
+			var ddo = {};
+			ddo.drag_opts = dao;
+			ddo.drop_opts = doo;
+			ddo.connectWith = options.connectWith;
+			ddo.onstart = pubTops($elem, options.onalwaystopics, options.draggableonstarttopics);
+			ddo.onstop = pubTops($elem, options.onalwaystopics, options.draggableonstoptopics);
+			doo.ondrop = pubTops($elem, options.onalwaystopics, options.droppableondroptopics);
+			$elem.jqGrid('gridDnD', ddo);
+		}
+
+		if (options.sortable) {
+			s2jlog('sortable : '+options.id);
+			if (!$.struts2_jquery.loadAtOnce) {
+				$.require(
+					[
+					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.sortable"+$.struts2_jquery.minSuffix+".js"
+					 ]);
+			}
+			var soos = options.sortableoptions;
+			var soo = window[soos];
+			if (!soo) {
+				soo = eval("( " + soos + " )");
+			}
+			else {
+				soo = {};
+			}
+			soo.beforeStop = pubTops($elem, options.onalwaystopics, options.sortableonbeforestoptopics);
+			soo.stop = pubTops($elem, options.onalwaystopics, options.sortableonstoptopics);
+			soo.start = pubTops($elem, options.onalwaystopics, options.sortableonstarttopics);
+			soo.sort = pubTops($elem, options.onalwaystopics, options.sortableonsorttopics);
+			soo.activate = pubTops($elem, options.onalwaystopics, options.sortableonactivatetopics);
+			soo.deactivate = pubTops($elem, options.onalwaystopics, options.sortableondeactivatetopics);
+			soo.over = pubTops($elem, options.onalwaystopics, options.sortableonovertopics);
+			soo.out = pubTops($elem, options.onalwaystopics, options.sortableonouttopics);
+			soo.remove = pubTops($elem, options.onalwaystopics, options.sortableonremovetopics);
+			soo.receive = pubTops($elem, options.onalwaystopics, options.sortableonreceivetopics);
+			soo.change = pubTops($elem, options.onalwaystopics, options.sortableonchangetopics);
+			soo.update = pubTops($elem, options.onalwaystopics, options.sortableonupdatetopics);
+			$elem.jqGrid('sortableRows', soo);
+		}
+
 		if (options.navigator) {
 			var navparams = {};
 			navparams.add = options.navigatoradd;

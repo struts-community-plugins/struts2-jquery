@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.components.Component;
 
 import com.jgeppert.struts2.jquery.grid.components.Grid;
+import com.jgeppert.struts2.jquery.grid.views.velocity.components.JqueryGridAbstractDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**

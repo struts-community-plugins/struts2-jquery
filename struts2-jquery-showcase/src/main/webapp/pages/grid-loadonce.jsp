@@ -33,6 +33,10 @@
     	cellEdit="true"
     	cellurl="%{editcellurl}"
     	altRows="true"
+    	sortable="true" 
+    	sortableOpacity="0.8" 
+    	sortablePlaceholder="ui-state-highlight" 
+    	sortableForcePlaceholderSize="true"
     >
     	<sjg:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true"/>
     	<sjg:gridColumn name="name" index="name" title="Company" width="250" sortable="true"/>

@@ -184,6 +184,9 @@
   <#if parameters.onGridCompleteTopics?if_exists != "">
 	options_${escapedOptionId?html}.ongridcompletetopics = "${parameters.onGridCompleteTopics?html}";
   </#if>
+  <#if parameters.connectWith?if_exists != "">
+	options_${escapedOptionId?html}.connectWith = "${parameters.connectWith?html}";
+  </#if>
 
 
 	options_${escapedOptionId?html}.colNames = options_${escapedOptionId?html}_colnames;
@@ -201,6 +204,12 @@
 	options_${escapedOptionId?html}.jsonReader.records = "records";
   </#if>
 	options_${escapedOptionId?html}.jsonReader.repeatitems = false;
+	
+  <#include "/${parameters.templateDir}/jquery/draggable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/droppable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/resizable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/selectable.ftl" />
+  <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />
