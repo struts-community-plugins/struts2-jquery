@@ -33,6 +33,10 @@
     	rowList="10,15,20"
     	rowNum="15"
     	rownumbers="true"
+    	resizable="true" 
+    	resizableAnimate="true" 
+    	resizableGhost="true" 
+    	resizableHandles="all"
     >
     	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
     	<sjg:gridColumn name="name" index="name" title="Name" width="250" sortable="true"/>

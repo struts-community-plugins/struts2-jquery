@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="BirtSample">
+        <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
+        <property name="hibernate.connection.url">jdbc:derby:classpath:BirtSample</property>
+        <!-- property name="hibernate.connection.url">jdbc:derby:directory:C:/BirtSample/BirtSample</property -->
+        <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">sa</property>
+        <mapping class="com.jgeppert.struts2.jquery.grid.showcase.model.Customers" />
+        <mapping class="com.jgeppert.struts2.jquery.grid.showcase.model.Employees" />
+        <mapping class="com.jgeppert.struts2.jquery.grid.showcase.model.Offices" />
+        <mapping class="com.jgeppert.struts2.jquery.grid.showcase.model.Orderdetails" />
+        <mapping class="com.jgeppert.struts2.jquery.grid.showcase.model.Orders" />
+        <mapping class="com.jgeppert.struts2.jquery.grid.showcase.model.Payments" />
+        <mapping class="com.jgeppert.struts2.jquery.grid.showcase.model.Productlines" />
+        <mapping class="com.jgeppert.struts2.jquery.grid.showcase.model.Products" />
+    </session-factory>
+</hibernate-configuration>
