@@ -14,13 +14,13 @@
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />    
 	<meta http-equiv="keywords" content="struts2,jquery, hibernate, plugin,showcase, grid" />
-	<meta http-equiv="description" content="Showcase for jQuery Plugin and Full Hibernate Struts2 Plugins" />
+	<meta http-equiv="description" content="Showcase for Struts2 jQuery Plugin and Full Hibernate Struts2 Plugins" />
 	<link href="styles/layout.css" rel="stylesheet" type="text/css" />
 	<!--[if lte IE 7]>
 	<link href="styles/patch_layout.css" rel="stylesheet" type="text/css" />
 	<![endif]-->
 
-    <sj:head 
+    <sj:head
     	compressed="false" 
     	jquerytheme="showcase" 
     	customBasepath="themes" 
@@ -42,7 +42,8 @@
           <ul>
             <li class="ui-widget-header ui-state-active"><s:url id="urlgrid" action="grid" /><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid (Editable)</sj:a></li>
             <li class="ui-widget-header"><s:url id="urlgridsubgrid" action="grid-subgrid" /><sj:a id="gridsubgridlink" href="%{urlgridsubgrid}" targets="main">Grid with Subgrid</sj:a></li>
-            <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/">jQuery Plugin</a></li>
+            <li class="ui-widget-header"><s:url id="urlgriddnd" action="grid-dnd" /><sj:a id="griddndlink" href="%{urlgriddnd}" targets="main">Grid with Drag and Drop</sj:a></li>
+            <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/">Struts2 jQuery Plugin</a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/full-hibernate-plugin-for-struts2/">Full Hibernate Plugin</a></li>
           </ul>
         </div>

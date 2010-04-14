@@ -6,11 +6,6 @@
     <s:url id="orderdetailsurl" action="json-orderdetails" />
 
     <h2>Grid with Subgrid</h2>
-    <p>
-        To enable jqGrid set useJqGridPlugin to true in the head tag.
-        <br/>
-        &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
-    </p>
     <sjg:grid 
     	id="orderstable" 
     	caption="Orders with Orderdetails Subgrid" 

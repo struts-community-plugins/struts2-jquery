@@ -28,11 +28,6 @@
 	</sj:dialog>
     <h2>Grid</h2>
     <p>
-        To enable jqGrid set useJqGridPlugin to true in the head tag.
-        <br/>
-        &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
-    </p>
-    <p>
 		<strong>The Database in this Showcase is per default read-only!</strong><br/>
 		Make Samples editable with following <sj:a id="openStepsDialog" openDialog="readWriteSteps" cssStyle="font-weight: bold; text-decoration: underline;">Steps</sj:a>.
 		<sj:dialog id="readWriteSteps" modal="true" autoOpen="false" width="600">
