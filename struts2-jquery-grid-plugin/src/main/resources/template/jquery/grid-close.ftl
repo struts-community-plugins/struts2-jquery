@@ -21,13 +21,13 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 	options_${escapedOptionId?html}.datatype = "${parameters.dataType?default('json')}";
   <#if parameters.href?exists>
-	options_${escapedOptionId?html}.url = "${parameters.href?string}";
+	options_${escapedOptionId?html}.url = "${parameters.href?string?replace('&amp;', '&')}";
   </#if>
   <#if parameters.editurl?if_exists != "">
-	options_${escapedOptionId?html}.editurl = "${parameters.editurl?string}";
+	options_${escapedOptionId?html}.editurl = "${parameters.editurl?string?replace('&amp;', '&')}";
   </#if>
   <#if parameters.cellurl?if_exists != "">
-	options_${escapedOptionId?html}.cellurl = "${parameters.cellurl?string}";
+	options_${escapedOptionId?html}.cellurl = "${parameters.cellurl?string?replace('&amp;', '&')}";
   </#if>
   <#if parameters.multiselectWidth?exists>
 	options_${escapedOptionId?html}.multiselectWidth = ${parameters.multiselectWidth?html};
