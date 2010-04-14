@@ -30,7 +30,12 @@
 			$.jgrid.useJSON = true;
 		});
 		if (!$.struts2_jquery.loadAtOnce) {
-			$.require(["js/base/jquery-ui"+$.struts2_jquery.minSuffix+".js","js/plugins/jquery.jqGrid.js"]);
+			$.require(
+					[
+					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/plugins/jquery.jqGrid.js"
+					 ]);
+//			$.require(["js/base/jquery-ui"+$.struts2_jquery.minSuffix+".js","js/plugins/jquery.jqGrid.js"]);
 		}
 		else {
 			$.require("js/plugins/jquery.jqGrid.js");
@@ -146,7 +151,6 @@
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(
 					[
-					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
 					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
 					 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js"
 					 ]);
@@ -170,7 +174,6 @@
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(
 						[
-						 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
 						 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
 						 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js",
 						 "js/base/jquery.ui.droppable"+$.struts2_jquery.minSuffix+".js"
@@ -214,7 +217,6 @@
 			if (!$.struts2_jquery.loadAtOnce) {
 				$.require(
 					[
-					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
 					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
 					 "js/base/jquery.ui.sortable"+$.struts2_jquery.minSuffix+".js"
 					 ]);
