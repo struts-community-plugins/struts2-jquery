@@ -22,8 +22,6 @@
 
     <sj:head 
     	compressed="false" 
-    	useJqGridPlugin="true" 
-    	jqueryui="true" 
     	jquerytheme="showcase" 
     	customBasepath="themes" 
     	loadFromGoogle="false"
@@ -36,7 +34,7 @@
       <div id="header" class="ui-widget-header">
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;width: 700px">Showcase for jQuery Plugin and Full Hibernate Struts2 Plugins</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">jQuery Plugin - Version 2.0.0 / Full Hibernate Plugin - Version 2.1.3</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">jQuery Plugin - Version 2.1.0 / Full Hibernate Plugin - Version 2.2 GA</h4>
         </div>
       </div>
       <div id="nav">
