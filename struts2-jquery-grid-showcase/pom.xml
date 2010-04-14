@@ -71,6 +71,13 @@
 			<version>1.5</version>
 		</dependency>
 
+		<!-- Derby JDBC Driver  -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.4.2.0</version>
+		</dependency>
+
 		<!-- Hibernate  -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -91,6 +98,34 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>3.1.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.4.2</version>
+		</dependency>
+		
+		<!-- Hibernate Plugin -->
+		<dependency>
+			<groupId>com.googlecode</groupId>
+			<artifactId>s2hibernate</artifactId>
+			<version>2.2.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/struts2-fullhibernatecore-plugin-2.2-GA.jar</systemPath>
+		</dependency>
+
+		<!-- Sample Database -->
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>birt</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BirtSample.jar</systemPath>
 		</dependency>
 
 		<dependency>
