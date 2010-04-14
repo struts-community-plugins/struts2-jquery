@@ -35,7 +35,7 @@
         <dependency>
             <groupId>com.jgeppert.struts2.jquery</groupId>
             <artifactId>struts2-jquery-richtext-plugin</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
