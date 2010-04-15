@@ -121,8 +121,8 @@
 
 		<!-- Sample Database -->
 		<dependency>
-			<groupId>org.apache</groupId>
-			<artifactId>birt</artifactId>
+			<groupId>org.eclipse</groupId>
+			<artifactId>birt-sample</artifactId>
 			<version>1.0.0</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/BirtSample.jar</systemPath>

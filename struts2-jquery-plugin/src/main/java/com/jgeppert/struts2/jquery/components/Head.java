@@ -58,25 +58,29 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <p/>
  * <b>Examples</b>
  * 
+ * <!-- START SNIPPET: example1 -->
+ * 
  * <pre>
- * &lt;!-- START SNIPPET: example1 --&gt;
  * &lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot; %&gt;
  * &lt;head&gt;
  *   &lt;title&gt;My page&lt;/title&gt;
  *   &lt;sj:head/&gt;
  * &lt;/head&gt;
- * &lt;!-- END SNIPPET: example1 --&gt;
  * </pre>
  * 
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * <!-- START SNIPPET: example2 -->
+ * 
  * <pre>
- * &lt;!-- START SNIPPET: example2 --&gt;
  * &lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot; %&gt;
  * &lt;head&gt;
  *   &lt;title&gt;My page&lt;/title&gt;
- *   &lt;sj:head compressed=&quot;false&quot; locale=&quot;de&quot; jqueryui=&quot;true&quot; jquerytheme=&quot;cupertino&quot;/&gt;
+ *   &lt;sj:head compressed=&quot;false&quot; locale=&quot;de&quot; jquerytheme=&quot;cupertino&quot;/&gt;
  * &lt;/head&gt;
- * &lt;!-- END SNIPPET: example2 --&gt;
  * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
  * 
  */
 @StrutsTag(name = "head", tldBodyContent = "empty", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag", description = "Render a chunk of HEAD for your HTML file", allowDynamicAttributes = true)
@@ -154,6 +158,7 @@ public class Head extends org.apache.struts2.components.Head {
   protected String              defaultIndicator;
   protected String              loadAtOnce;
   protected String              debug;
+  protected String              scriptPath;
 
   private String                defaultLocale;
 
@@ -180,6 +185,7 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.defaultIndicator != null) addParameter("defaultIndicator", findString(this.defaultIndicator));
     if (this.loadAtOnce != null) addParameter("loadAtOnce", findValue(this.loadAtOnce, Boolean.class));
     if (this.debug != null) addParameter("debug", findValue(this.debug, Boolean.class));
+    if (this.scriptPath != null) addParameter("scriptPath", findString(this.scriptPath));
 
     String loc = null;
     if (this.locale != null) loc = StringUtils.replace(findString(this.locale), "_", "-");
@@ -295,5 +301,11 @@ public class Head extends org.apache.struts2.components.Head {
   public void setDebug(String debug)
   {
     this.debug = debug;
+  }
+
+  @StrutsTagAttribute(description = "path to the JavaScript ressources", defaultValue = "#your context root#/struts/")
+  public void setScriptPath(String scriptPath)
+  {
+    this.scriptPath = scriptPath;
   }
 }

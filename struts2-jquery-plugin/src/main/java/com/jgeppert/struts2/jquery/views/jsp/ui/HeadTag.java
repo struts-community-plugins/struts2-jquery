@@ -46,6 +46,7 @@ public class HeadTag extends AbstractUITag {
   protected String          defaultIndicator;
   protected String          loadAtOnce;
   protected String          debug;
+  protected String          scriptPath;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -68,6 +69,7 @@ public class HeadTag extends AbstractUITag {
     head.setDefaultIndicator(defaultIndicator);
     head.setLoadAtOnce(loadAtOnce);
     head.setDebug(debug);
+    head.setScriptPath(scriptPath);
   }
 
   public void setCompressed(String compressed)
@@ -123,5 +125,10 @@ public class HeadTag extends AbstractUITag {
   public void setDebug(String debug)
   {
     this.debug = debug;
+  }
+
+  public void setScriptPath(String scriptPath)
+  {
+    this.scriptPath = scriptPath;
   }
 }

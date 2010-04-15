@@ -19,6 +19,12 @@
  */
 -->
 
+<#if parameters.scriptPath?if_exists != "">
+  <#assign javaScriptBasePath="${parameters.scriptPath?string}">
+<#else>
+  <#assign javaScriptBasePath="${base}/struts/">
+</#if>
+
 <#if parameters.customBasepath?if_exists == "">
   <#assign basePath="struts/themes">
 <#else>
@@ -52,21 +58,21 @@
 	<script type="text/javascript" src="${jqueryGoogle}"></script>
 	<script type="text/javascript" src="${jqueryUiGoogle}"></script>
 <#else>
-	<script type="text/javascript" src="${base}/struts/js/base/${jqueryFile}"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryFile}"></script>
 	<#if parameters.jqueryui?default(true)>
  		<#if parameters.loadAtOnce?default(false)>
-	<script type="text/javascript" src="${base}/struts/js/base/${jqueryUIFile}"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"></script>
 		<#else>
-	<script type="text/javascript" src="${base}/struts/js/base/${jqueryUICoreFile}"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script>
 		</#if>
 	</#if>
 </#if>
 <#if parameters.loadAtOnce?default(false)>
-	<script type="text/javascript" src="${base}/struts/js/plugins/${jqueryForm}"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryForm}"></script>
 </#if>
-  <script type="text/javascript" src="${base}/struts/js/plugins/${jquerySubscribeFile}"></script>
+  <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}"></script>
 <#if parameters.ajaxhistory?default(false)>
-  <script type="text/javascript" src="${base}/struts/js/plugins/${jqueryHistoryFile}"></script>
+  <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryHistoryFile}"></script>
 </#if>
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
@@ -79,7 +85,7 @@
         <link rel="stylesheet" href="${base}/${basePath}/smoothness/jquery-ui.css" type="text/css"/>
     </#if>
 </#if>
-  <script type="text/javascript" src="${base}/struts/js/struts2/${jqueryStrutsFile}"></script>
+  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 <#if parameters.debug?default(false)>
@@ -88,7 +94,11 @@ $(document).ready(function () {
 <#if parameters.loadAtOnce?default(false) || parameters.loadFromGoogle?default(false)>
 	$.struts2_jquery.loadAtOnce = true;
 </#if>
-  	$.scriptPath = "${base}/struts/";
+<#if parameters.scriptPath?if_exists != "">
+  	$.scriptPath = "${parameters.scriptPath?string}";
+<#else>  	
+  	$.scriptPath = "${javaScriptBasePath}";
+</#if>
 <#if !parameters.compressed?default(true)>
 	$.struts2_jquery.minSuffix = "";
 </#if>
