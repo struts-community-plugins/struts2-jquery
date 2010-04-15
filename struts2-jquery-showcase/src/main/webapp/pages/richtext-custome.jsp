@@ -20,7 +20,7 @@
 	<h2>Richtext - Custome Toolbar</h2>
 	<p>
 	    This Richtext Editor use a custome config file to define a custome toolbar. 
-	    Also it loads the initial Content via an AJAX request.
+	    Also it loads the initial content via an AJAX request and the editor local is that to french.
 	</p>
 	<s:url id="remoteurl" action="ajax1"/>
 	<s:set id="contextPath"  value="#request.get('javax.servlet.forward.context_path')" />
@@ -37,6 +37,7 @@
 			width="600"
 			toolbar="MyToolbar"
 			skin="v2"
+			editorLocal="fr"
 			customConfig="%{contextPath}/js/ckeditor.config.js"
 		/>
 		<sj:submit 
@@ -73,7 +74,8 @@
 			loadingText=&quot;Loading content of textarea ...&quot;
 			width=&quot;600&quot;
 			toolbar=&quot;MyToolbar&quot;
-			skin=&quot;v2&quot;
+			skin=&quot;fr&quot;
+			editorLocal=&quot;v2&quot;
 			customConfig=&quot;%{contextPath}/js/ckeditor.config.js&quot;
 		/&gt;
 	    </strong>

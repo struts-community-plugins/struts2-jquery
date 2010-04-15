@@ -37,8 +37,7 @@
 					cols="80" 
 					width="800"
 					value="Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
-				>
-				</sjr:ckeditor>
+				/>
 	        </div>
 	        <div class="type-button">
 				<sj:submit 
