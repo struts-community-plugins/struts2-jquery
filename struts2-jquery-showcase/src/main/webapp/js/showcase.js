@@ -179,6 +179,15 @@ $(document).ready(function() {
 			list.append('<li>' + value + '</li>\n');
 		});
 	});
+	
+	/*
+	 * Topic for Drag and Drop Example.
+	 */
+	$.subscribe('ondrop', function(event,data) {
+    $(event.originalEvent.ui.droppable).addClass('ui-state-highlight').find('p').html($(event.originalEvent.ui.draggable).attr('id')+' dropped!');
+    $(event.originalEvent.ui.draggable).find('p').html('I was dragged!');
+	});
+
 
 	/*
 	 * Menu Highlight

@@ -23,12 +23,6 @@
 	    Drag and Drop with Remote and Effect Div's.
 	</p>
     <strong>Div :</strong>
-    <script type="text/javascript">
-		$.subscribe('ondrop', function(event,data) {
-	        $(event.originalEvent.ui.droppable).addClass('ui-state-highlight').find('p').html($(event.originalEvent.ui.draggable).attr('id')+' dropped!');
-	        $(event.originalEvent.ui.draggable).find('p').html('I was dragged!');
-		});
-    </script>
     <div class="draganddrop" style="width: 100%; height: 250px;">
 	    <sj:div id="draggablenonvalid" draggable="true" cssClass="noaccept ui-widget-content ui-corner-all" cssStyle="width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;">
 	        I'm draggable but can't be dropped
