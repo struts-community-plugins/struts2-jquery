@@ -312,7 +312,6 @@ function pubErr(cid, always, etopics, etext) {
 	forms : {},
 	defaultIndicator :'',
 	lasttopic :'',
-	lastselectedrow :'',
 
 	// pre-binding function of the type function(element){}. called before binding the element
 	// returning false will prevent the binding of this element
@@ -331,7 +330,7 @@ function pubErr(cid, always, etopics, etext) {
 			options.tagname = tag;
 
 			// extension point to allow custom pre-binding processing
-			if (typeof ($.struts2_jquery.preBind) != "function" || $.struts2_jquery.preBind($el)) {
+			if (typeof (this.preBind) != "function" || this.preBind($el)) {
 
 				if (!options.jqueryaction) { options.jqueryaction = tag; }
 
@@ -339,7 +338,7 @@ function pubErr(cid, always, etopics, etext) {
 				this[options.jqueryaction]($el, options);
 
 				// extension point to allow custom post-binding processing
-				if ($.struts2_jquery.postBind && (typeof ($.struts2_jquery.postBind) == "function")) { return $.struts2_jquery.postBind(el); }
+				if (this.postBind && (typeof (this.postBind) == "function")) { return this.postBind(el); }
 			}
 
 		}
@@ -411,9 +410,6 @@ function pubErr(cid, always, etopics, etext) {
 
 		// subscribe all targets to this action's custom execute topic
 		if (options.targets) {
-
-			// target subscription needs to be done after document load in case element exists in the dom AFTER the current action object
-			$( function() {
 				$.each(options.targets.split(','), function(i, target) { 
 					effect.targets = target;
 					var tarelem = $(escId(target));
@@ -432,7 +428,7 @@ function pubErr(cid, always, etopics, etext) {
 							tarelem.subscribe(lt, '_s2j_effects', effect);
 						});
 					}
-					if ($.struts2_jquery.ajaxhistory) {
+					if (this.ajaxhistory) {
 						var params = {};
 						params.target = target;
 						params.topic = actionTopic;
@@ -443,8 +439,6 @@ function pubErr(cid, always, etopics, etext) {
 						});
 					}
 				});
-			});
-
 		}
 		else { // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
@@ -513,8 +507,8 @@ function pubErr(cid, always, etopics, etext) {
 
 			}
 			else if (options.formids) {
-				if (!$.struts2_jquery.loadAtOnce) {
-					$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+				if (!this.loadAtOnce) {
+					$.require("js/plugins/jquery.form"+this.minSuffix+".js");
 				}
 				options.targets = options.id;
 				var formTopic = '_s2j_form_topic_' + options.id;
@@ -572,12 +566,12 @@ function pubErr(cid, always, etopics, etext) {
 			}
 
 			if (options.resizable) {
-				if (!$.struts2_jquery.loadAtOnce) {
+				if (!this.loadAtOnce) {
 					$.require(
 						[
-						 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js"
+						 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+						 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
+						 "js/base/jquery.ui.resizable"+this.minSuffix+".js"
 						 ]);
 				}
 				var ros = options.resizableoptions;
@@ -597,12 +591,12 @@ function pubErr(cid, always, etopics, etext) {
 
 		if (options.draggable) {
 			s2jlog('draggable : '+options.id);
-			if (!$.struts2_jquery.loadAtOnce) {
+			if (!this.loadAtOnce) {
 				$.require(
 					[
-					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js"
+					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
+					 "js/base/jquery.ui.draggable"+this.minSuffix+".js"
 					 ]);
 			}
 			var daos = options.draggableoptions;
@@ -621,13 +615,13 @@ function pubErr(cid, always, etopics, etext) {
 
 		if (options.droppable) {
 			s2jlog('droppable : '+options.id);
-			if (!$.struts2_jquery.loadAtOnce) {
+			if (!this.loadAtOnce) {
 				$.require(
 					[
-					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.droppable"+$.struts2_jquery.minSuffix+".js"
+					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
+					 "js/base/jquery.ui.draggable"+this.minSuffix+".js",
+					 "js/base/jquery.ui.droppable"+this.minSuffix+".js"
 					 ]);
 			}
 			var doos = options.droppableoptions;
@@ -648,12 +642,12 @@ function pubErr(cid, always, etopics, etext) {
 
 		if (options.selectable) {
 			s2jlog('selectable : '+options.id);
-			if (!$.struts2_jquery.loadAtOnce) {
+			if (!this.loadAtOnce) {
 				$.require(
 					[
-					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.selectable"+$.struts2_jquery.minSuffix+".js"
+					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
+					 "js/base/jquery.ui.selectable"+this.minSuffix+".js"
 					 ]);
 			}
 			var seos = options.selectableoptions;
@@ -675,12 +669,12 @@ function pubErr(cid, always, etopics, etext) {
 
 		if (options.sortable) {
 			s2jlog('sortable : '+options.id);
-			if (!$.struts2_jquery.loadAtOnce) {
+			if (!this.loadAtOnce) {
 				$.require(
 					[
-					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.sortable"+$.struts2_jquery.minSuffix+".js"
+					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
+					 "js/base/jquery.ui.sortable"+this.minSuffix+".js"
 					 ]);
 			}
 			var soos = options.sortableoptions;
@@ -741,8 +735,8 @@ function pubErr(cid, always, etopics, etext) {
 
 	select : function($elem, options) {
 		s2jlog('select : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
-			$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+		if (!this.loadAtOnce) {
+			$.require("js/plugins/jquery.form"+this.minSuffix+".js");
 		}
 		var handler = '_s2j_container_load';
 		var selectTopic = '_s2j_topic_load_' + options.id;
@@ -803,8 +797,8 @@ function pubErr(cid, always, etopics, etext) {
 	},
 	formsubmit : function($elem, options, topic) {
 		s2jlog('formsubmit : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
-			$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+		if (!this.loadAtOnce) {
+			$.require("js/plugins/jquery.form"+this.minSuffix+".js");
 		}
 		var formHandler = '_s2j_form_submit';
 
@@ -839,31 +833,31 @@ function pubErr(cid, always, etopics, etext) {
 
 	dialog : function($elem, options) {
 		s2jlog('dialog : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
+		if (!this.loadAtOnce) {
 			$.require(
 				[
-				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.position"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.bgiframe"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.dialog"+$.struts2_jquery.minSuffix+".js"
+				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+				 "js/base/jquery.ui.button"+this.minSuffix+".js",
+				 "js/base/jquery.ui.draggable"+this.minSuffix+".js",
+				 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
+				 "js/base/jquery.ui.position"+this.minSuffix+".js",
+				 "js/base/jquery.ui.resizable"+this.minSuffix+".js",
+				 "js/base/jquery.bgiframe"+this.minSuffix+".js",
+				 "js/base/jquery.ui.dialog"+this.minSuffix+".js"
 				 ]);
 		}
 		var params = {};
 		$.extend(params, options);
 		params.bgiframe = true;
 		if (options.hide) {
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require(["js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js","js/base/jquery.effects."+options.hide+""+$.struts2_jquery.minSuffix+".js"]);
+			if (!this.loadAtOnce) {
+				$.require(["js/base/jquery.effects.core"+this.minSuffix+".js","js/base/jquery.effects."+options.hide+""+this.minSuffix+".js"]);
 			}
 			params.hide = options.hide;
 		}
 		if (options.show) {
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require(["js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js","js/base/jquery.effects."+options.show+""+$.struts2_jquery.minSuffix+".js"]);
+			if (!this.loadAtOnce) {
+				$.require(["js/base/jquery.effects.core"+this.minSuffix+".js","js/base/jquery.effects."+options.show+""+this.minSuffix+".js"]);
 			}
 			params.show = options.show;
 		}
@@ -892,11 +886,11 @@ function pubErr(cid, always, etopics, etext) {
 
 	tabbedpanel : function($elem, options) {
 		s2jlog('tabbedpanel : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
+		if (!this.loadAtOnce) {
 			$.require(
 				[
-				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.tabs"+$.struts2_jquery.minSuffix+".js"
+				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+				 "js/base/jquery.ui.tabs"+this.minSuffix+".js"
 				 ]);
 		}
 		if (!options) {
@@ -913,14 +907,14 @@ function pubErr(cid, always, etopics, etext) {
 		}
 		if (options.cache) { para.cache = true; }
 		if (options.animate) { 
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require("js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js");
+			if (!this.loadAtOnce) {
+				$.require("js/base/jquery.effects.core"+this.minSuffix+".js");
 			}
 			para.fx = {	opacity :'toggle'	};
 		}
 		if (options.cookie) { 
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require("js/plugins/jquery.cookie"+$.struts2_jquery.minSuffix+".js");
+			if (!this.loadAtOnce) {
+				$.require("js/plugins/jquery.cookie"+this.minSuffix+".js");
 			}
 			para.cookie = {
 			expires :30
@@ -964,7 +958,7 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.tabs(para);
 
 		// History and Bookmarking for Tabs
-		if ($.struts2_jquery.ajaxhistory) {
+		if (this.ajaxhistory) {
 			var ahp = {};
 			ahp.id = options.id;
 			$elem.find('ul.ui-tabs-nav a').bind('click', ahp, function(e) {
@@ -983,15 +977,15 @@ function pubErr(cid, always, etopics, etext) {
 
 	datepicker : function($elem, options) {
 		s2jlog('datepicker : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
+		if (!this.loadAtOnce) {
 		$.require(
 				[
-				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.datepicker"+$.struts2_jquery.minSuffix+".js"
+				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+				 "js/base/jquery.ui.datepicker"+this.minSuffix+".js"
 				 ]);
 		}
-		if ($.struts2_jquery.local != "en") {
-			$.require("i18n/jquery.ui.datepicker-"+$.struts2_jquery.local+".min.js");
+		if (this.local != "en") {
+			$.require("i18n/jquery.ui.datepicker-"+this.local+".min.js");
 		}
 		var params = {};
 
@@ -1062,8 +1056,8 @@ function pubErr(cid, always, etopics, etext) {
 			params.buttonText = options.buttontext;
 			
 			if (options.showanim){
-				if (!$.struts2_jquery.loadAtOnce) {
-					$.require("js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js");
+				if (!this.loadAtOnce) {
+					$.require("js/base/jquery.effects.core"+this.minSuffix+".js");
 				}
 				params.showAnim = options.showanim;
 			}
@@ -1103,12 +1097,12 @@ function pubErr(cid, always, etopics, etext) {
 	},
 	slider : function($elem, options) {
 		s2jlog('slider : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
+		if (!this.loadAtOnce) {
 			$.require(
 				[
-				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.slider"+$.struts2_jquery.minSuffix+".js"
+				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+				 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
+				 "js/base/jquery.ui.slider"+this.minSuffix+".js"
 				 ]);
 		}
 
@@ -1149,11 +1143,11 @@ function pubErr(cid, always, etopics, etext) {
 	},
 	progressbar : function($elem, options) {
 		s2jlog('progressbar : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
+		if (!this.loadAtOnce) {
 			$.require(
 				[
-				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.progressbar"+$.struts2_jquery.minSuffix+".js"
+				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+				 "js/base/jquery.ui.progressbar"+this.minSuffix+".js"
 				 ]);
 		}
 		var params = {};
@@ -1169,11 +1163,11 @@ function pubErr(cid, always, etopics, etext) {
 	},
 	accordion : function($elem, options) {
 		s2jlog('accordion : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
+		if (!this.loadAtOnce) {
 			$.require(
 				[
-				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.accordion"+$.struts2_jquery.minSuffix+".js"
+				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+				 "js/base/jquery.ui.accordion"+this.minSuffix+".js"
 				 ]);
 		}
 		var params = {};
@@ -1249,12 +1243,12 @@ function pubErr(cid, always, etopics, etext) {
 	},
 	autocompleter : function($elem, options) {
 		s2jlog('autocompleter for : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
+		if (!this.loadAtOnce) {
 			$.require(
 				[
-				 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.position"+$.struts2_jquery.minSuffix+".js",
-				 "js/base/jquery.ui.autocomplete"+$.struts2_jquery.minSuffix+".js"
+				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+				 "js/base/jquery.ui.position"+this.minSuffix+".js",
+				 "js/base/jquery.ui.autocomplete"+this.minSuffix+".js"
 				 ]);
 		}
 		var params = {};
@@ -1283,14 +1277,14 @@ function pubErr(cid, always, etopics, etext) {
 
 		if (options.selectBox === false) { $elem.autocomplete(params); }
 		else { 
-			$.require("js/plugins/jquery.combobox"+$.struts2_jquery.minSuffix+".js");
+			$.require("js/plugins/jquery.combobox"+this.minSuffix+".js");
 			$elem.combobox(params); 
 		}
 	},
 	jquerybutton : function($elem, options) {
 		s2jlog('button for : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
-			$.require(["js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js","js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js"]);
+		if (!this.loadAtOnce) {
+			$.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
 		}
 		if (options.button) {
 			var params = {};
@@ -1306,8 +1300,8 @@ function pubErr(cid, always, etopics, etext) {
 	},
 	buttonset : function($elem, options) {
 		s2jlog('buttonset for : '+options.id);
-		if (!$.struts2_jquery.loadAtOnce) {
-			$.require(["js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js","js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js"]);
+		if (!this.loadAtOnce) {
+			$.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
 		}
 		$elem.buttonset(options);
 	}
