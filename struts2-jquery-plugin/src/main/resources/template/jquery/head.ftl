@@ -25,10 +25,10 @@
   <#assign javaScriptBasePath="${base}/struts/">
 </#if>
 
-<#if parameters.customBasepath?if_exists == "">
-  <#assign basePath="struts/themes">
-<#else>
+<#if parameters.customBasepath?if_exists != "">
   <#assign basePath="${parameters.customBasepath?string}">
+<#else>
+  <#assign basePath="${javaScriptBasePath}themes">
 </#if>
 <#if parameters.compressed?default(true)>
   <#assign jqueryFile="jquery-1.4.2.min.js">
@@ -79,10 +79,10 @@
 		<#if parameters.loadFromGoogle?default(false) && basePath == "struts/themes">
         	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		<#else>
-        	<link rel="stylesheet" href="${base}/${basePath}/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+        	<link rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		</#if>
     <#else>
-        <link rel="stylesheet" href="${base}/${basePath}/smoothness/jquery-ui.css" type="text/css"/>
+        <link rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css" type="text/css"/>
     </#if>
 </#if>
   <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
