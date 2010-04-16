@@ -21,11 +21,13 @@
 	<![endif]-->
 
     <sj:head
-    	compressed="false" 
+    	loadAtOnce="false"
+    	compressed="true" 
     	jquerytheme="showcase" 
     	customBasepath="themes" 
     	loadFromGoogle="false"
-    	/>
+    	debug="true"
+    />
   <script type="text/javascript" src="js/showcase.js"></script>
 </head>
 <body>

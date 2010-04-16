@@ -28,6 +28,7 @@
     	connectWith="#customerstableb"
     	draggable="true"
     	droppable="true"
+    	droppableOnDropTopics="ondrop"
     >
     	<sjg:gridColumn name="customernumber" 
     		index="customernumber" 
@@ -66,6 +67,8 @@
    		/>
     </sjg:grid>
 	<br/>
+	<div id="dndmessages"></div>
+	<br/>
 	<sjg:grid 
     	id="customerstableb" 
     	caption="Customers (Editable/Multiselect)" 
@@ -80,6 +83,7 @@
     	connectWith="#customerstablea"
     	draggable="true"
     	droppable="true"
+    	droppableOnDropTopics="ondrop"
     >
     	<sjg:gridColumn name="customernumber" 
     		index="customernumber" 

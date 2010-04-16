@@ -23,19 +23,33 @@
 	 */
 	$.struts2_jquery_grid = {
 
+	lastselectedrow :'',
+
 	grid : function($elem, options) {
 		s2jlog('grid for : '+options.id);
-		$.require("i18n/grid.locale-"+$.struts2_jquery.gridLocal+".js", function() {
+		$.require("i18n/grid.locale-"+this.gridLocal+".js", function() {
 			$.jgrid.no_legacy_api = true;
 			$.jgrid.useJSON = true;
 		});
 		if (!$.struts2_jquery.loadAtOnce) {
 			$.require(
 					[
-					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
+					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
+					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
+					 "js/base/jquery.ui.position"+this.minSuffix+".js",
+					 "js/base/jquery.ui.button"+this.minSuffix+".js",
+					 "js/base/jquery.ui.draggable"+this.minSuffix+".js",
+					 "js/base/jquery.ui.droppable"+this.minSuffix+".js",
+					 "js/base/jquery.ui.sortable"+this.minSuffix+".js",
+					 "js/base/jquery.ui.selectable"+this.minSuffix+".js",
+					 "js/base/jquery.ui.resizable"+this.minSuffix+".js",
+					 "js/base/jquery.bgiframe"+this.minSuffix+".js",
+					 "js/base/jquery.effects.core"+this.minSuffix+".js",
+					 "js/base/jquery.effects.scale"+this.minSuffix+".js",
+					 "js/base/jquery.effects.drop"+this.minSuffix+".js",
+					 "js/base/jquery.ui.dialog"+this.minSuffix+".js",
 					 "js/plugins/jquery.jqGrid.js"
 					 ]);
-//			$.require(["js/base/jquery-ui"+$.struts2_jquery.minSuffix+".js","js/plugins/jquery.jqGrid.js"]);
 		}
 		else {
 			$.require("js/plugins/jquery.jqGrid.js");
@@ -51,10 +65,10 @@
 				publishTopic($elem, options.onalwaystopics, data);
 				publishTopic($elem, options.onselectrowtopics, data);
 				if (options.editurl && options.editinline === true) {
-					if (id && id !== $.struts2_jquery.lastselectedrow) {
-						$elem.jqGrid('restoreRow', $.struts2_jquery.lastselectedrow);
+					if (id && id !== this.lastselectedrow) {
+						$elem.jqGrid('restoreRow', this.lastselectedrow);
 						$elem.jqGrid('editRow', id, true);
-						$.struts2_jquery.lastselectedrow = id;
+						this.lastselectedrow = id;
 					}
 				}
 			};
@@ -148,13 +162,6 @@
 		
 
 		if (options.resizable) {
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require(
-					[
-					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js"
-					 ]);
-			}
 			var ros = options.resizableoptions;
 			var ro = window[ros];
 			if (!ro) {
@@ -171,14 +178,6 @@
 
 		if (options.draggable && options.droppable) {
 			s2jlog('drag and drop for grid : '+options.id);
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require(
-						[
-						 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.droppable"+$.struts2_jquery.minSuffix+".js"
-						 ]);
-			}
 			var daos = options.draggableoptions;
 			var dao = window[daos];
 			if (!dao) {
@@ -208,19 +207,12 @@
 			ddo.connectWith = options.connectWith;
 			ddo.onstart = pubTops($elem, options.onalwaystopics, options.draggableonstarttopics);
 			ddo.onstop = pubTops($elem, options.onalwaystopics, options.draggableonstoptopics);
-			doo.ondrop = pubTops($elem, options.onalwaystopics, options.droppableondroptopics);
+			ddo.ondrop = pubTops($elem, options.onalwaystopics, options.droppableondroptopics);
 			$elem.jqGrid('gridDnD', ddo);
 		}
 
 		if (options.sortable) {
 			s2jlog('sortable : '+options.id);
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require(
-					[
-					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.sortable"+$.struts2_jquery.minSuffix+".js"
-					 ]);
-			}
 			var soos = options.sortableoptions;
 			var soo = window[soos];
 			if (!soo) {
