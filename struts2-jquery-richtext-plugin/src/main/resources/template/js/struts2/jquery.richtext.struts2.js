@@ -27,7 +27,7 @@
 			// clear orphan instances from memory
 		  clean: function($elem){
 				if(!window.CKEDITOR) { return; }
-				$.each($.struts2_jquery_richtext.editors, function(i, editor) { 
+				$.each(this.editors, function(i, editor) { 
 					var inst = CKEDITOR.instances[editor];
 					if($elem.length === 0 || !inst || inst.textarea!=$elem[0]){
 						$.struts2_jquery_richtext.editors.splice(i);
@@ -58,6 +58,13 @@
 					}
 				};
 				
+				if (options.editorLocal) {
+					options.language = options.editorLocal;
+				}
+				else{
+					options.language = this.local;
+				}
+
 				if(options.href && options.href != '#')
 				{
 					var ckeditorTopic = 's2j_ckeditor_'+options.id;

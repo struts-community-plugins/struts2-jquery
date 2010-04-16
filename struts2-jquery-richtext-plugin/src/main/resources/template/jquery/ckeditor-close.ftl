@@ -44,7 +44,9 @@ $(document).ready(function () {
 	<#if parameters.height??> 
 	options_${escapedOptionId?html}.height = ${parameters.height?html};
 	</#if>
-	options_${escapedOptionId?html}.language = "${parameters.editorLocal?default("en")}";
+	<#if parameters.editorLocal?if_exists != ""> 
+	options_${escapedOptionId?html}.editorLocal = "${parameters.editorLocal?html}";
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
