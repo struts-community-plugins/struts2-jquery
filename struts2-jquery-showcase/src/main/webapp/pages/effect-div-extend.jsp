@@ -34,6 +34,7 @@
 		myrichtextoptions.jqueryaction = "myrichtextextend";
 		myrichtextoptions.id = "richtextarea";
 		myrichtextoptions.wysiwygoptions = {};
+		myrichtextoptions.wysiwygoptions.resizeOptions = {};
 		$.mys2jextend.bind($('#richtextarea'),myrichtextoptions);
 	 });  
 </script>	
@@ -56,6 +57,7 @@
 		myrichtextoptions.jqueryaction = &quot;myrichtextextend&quot;;
 		myrichtextoptions.id = &quot;richtextarea&quot;;
 		myrichtextoptions.wysiwygoptions = {};
+		myrichtextoptions.wysiwygoptions.resizeOptions = {};
 		$.mys2jextend.bind($('#richtextarea'),myrichtextoptions);
 	 });  
 &lt;/script&gt;	

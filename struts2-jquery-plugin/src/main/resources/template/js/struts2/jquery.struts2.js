@@ -838,10 +838,10 @@ function pubErr(cid, always, etopics, etext) {
 				[
 				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 				 "js/base/jquery.ui.button"+this.minSuffix+".js",
-				 "js/base/jquery.ui.draggable"+this.minSuffix+".js",
 				 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
 				 "js/base/jquery.ui.position"+this.minSuffix+".js",
 				 "js/base/jquery.ui.resizable"+this.minSuffix+".js",
+				 "js/base/jquery.ui.draggable"+this.minSuffix+".js",
 				 "js/base/jquery.bgiframe"+this.minSuffix+".js",
 				 "js/base/jquery.ui.dialog"+this.minSuffix+".js"
 				 ]);
