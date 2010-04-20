@@ -16,310 +16,10 @@
  *
  */
 
-/*global $, jQuery,  document, window, StrutsUtils  */
+/*global $, jQuery,  document, window, StrutsUtils, s2j  */
 /*jslint evil: true */
 
-// helper fn for console logging
-// set $.fn.ajaxSubmit.debug to true to enable debug logging
-function s2jlog() {
-	if ($.struts2_jquery.debug) {
-		var msg = '[struts2_jquery] ' + Array.prototype.join.call(arguments,'');
-		if (window.console && window.console.log) {
-			window.console.log(msg);
-		}
-		else if (window.opera && window.opera.postError) {
-			window.opera.postError(msg);
-		}
-	}
-}
-
-function escId(id) {
-	return '#' + id.replace(/(:|\.)/g, '\\$1');
-}
-
-function hideIndicator(indi) {
-	if (indi) {
-		$(escId(indi)).hide();
-	}
-	if ($.struts2_jquery.defaultIndicator != '') {
-		$(escId($.struts2_jquery.defaultIndicator)).hide();
-	}
-}
-
-function showIndicator(indi) {
-	if (indi) {
-		$(escId(indi)).show();
-	}
-	if ($.struts2_jquery.defaultIndicator != '') {
-		$(escId($.struts2_jquery.defaultIndicator)).show();
-	}
-}
-
-function publishTopic(elem, topics, data) {
-	if (topics) {
-		$.each(topics.split(','), function(i, to) { 
-			s2jlog('publish topic : '+to);
-			elem.publish(to, elem, data);
-		});
-	}
-}
-
-/** Publish UI topics */
-function pubTops($elem, always, topics) {
-
-	if (topics) {
-		return function(event, ui) {
-			var data = {};
-			data.event = event;
-			data.ui = ui;
-
-			publishTopic($elem, topics, data);
-			publishTopic($elem, always, data);
-		};
-	}
-	else {
-		return null;
-	}
-}
-
-/** Publish Success topics */
-function pubSuc(cid, always, stopics, indi, modus, options) {
-	var container = $(cid);
-	return function(data, status, request) {
-		var orginal = {};
-		orginal.data = data;
-		orginal.status = status;
-		orginal.request = request;
-
-		if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) { container.html(data); }
-		else if (modus == 'value') { container.val(data); }
-		else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
-			//container[0].length = 0;
-			container.children().remove();
-			
-			if (typeof (data) == "object" || $.isArray(data)) {
-				var i = -1;
-				var eopt;
-				if (modus == 'radio') {
-					eopt = document.createElement("input");
-					eopt.name=options.name;
-					eopt.type='radio';
-				}
-				else if (modus == 'checkbox') {
-					eopt = document.createElement("input");
-					eopt.name=options.name;
-					eopt.type='checkbox';
-				}
-				else{
-					eopt = document.createElement("option");
-				}
-				if (options.headerkey && options.headervalue) {
-					var option = eopt.cloneNode(true);
-					option.value = options.headerkey;
-					option.text = options.headervalue;
-
-					if (options.value == options.headervalue) {
-						option.selected = true;
-					}
-
-					container[0].options[++i] = option;
-				}
-
-				if (options.emptyoption) {
-					container[0].options[++i] = eopt.cloneNode(true);
-				}
-
-				var o = 0;
-				if (data[options.list] !== null) {
-					$.each(data[options.list], function(j, val) {
-						var option = eopt.cloneNode(true);
-						if (data[options.list][o] === undefined) {
-							option.value = j;
-							option.text = val;
-						}
-						else {
-							if (options.listkey !== undefined && options.listvalue !== undefined) {
-								option.value = val[options.listkey];
-								option.text = val[options.listvalue];
-							}
-							else {
-								option.value = data[options.list][o];
-								option.text = data[options.list][o];
-							}
-						}
-
-						if (options.value == option.value) {
-							option.selected = true;
-						}
-
-						if (modus == 'select') {
-							container[0].options[++i] = option;
-						}
-						else {
-							
-							option.id=options.name+(++i);
-							container.append($(option));
-							container.append(
-									$('<label id="'+option.id+'label" for="'+option.id+'">'+option.text+'</label>')
-							);
-						}
-						o++;
-					});
-				}
-			}
-		}
-
-		publishTopic(container, stopics, orginal);
-		publishTopic(container, always, orginal);
-
-		// Use BBQ for Ajaxhistory
-		if ($.struts2_jquery.ajaxhistory) {
-			var ahparams = {};
-			ahparams.cid = cid;
-			ahparams.options = options;
-
-			$(window).bind('hashchange', ahparams, function(e) {
-				var topic = e.getState(e.data.cid.id) || '';
-				if (e.type === topic || topic == '' || topic == $.struts2_jquery.lasttopic) { return; }
-				$.struts2_jquery.lasttopic = topic;
-				$.publish(topic, e.data.options);
-			});
-		}
-	};
-}
-
-/** Publish Complete topics */
-function pubCom(cid, always, ctopics, targets, indi, options) {
-	var container = $(cid);
-	return function(request, status) {
-		var orginal = {};
-		orginal.request = request;
-		orginal.status = status;
-
-		hideIndicator(indi);
-
-		publishTopic(container, ctopics, orginal);
-		publishTopic(container, always, orginal);
-
-		var ec = targets;
-		if (!ec) { ec = options.id; }
-		if (ec) {
-			var divEffectTopic = '_sj_div_effect_';
-			$.each(ec.split(','), function(i, target) { 
-				var effect_elem = $(escId(target));
-				effect_elem.publish(divEffectTopic + target, effect_elem);
-			});
-		}
-		if (options.resizable) {
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require(
-					[
-					 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-					 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js"
-					 ]);
-			}
-			var ros = options.resizableoptions;
-			var ro = window[ros];
-			if (!ro) {
-				ro = eval("( " + ros + " )");
-			}
-			else {
-				ro = {};
-			}
-			ro.start = pubTops(container, options.onalwaystopics, options.resizableonstarttopics);
-			ro.stop = pubTops(container, options.onalwaystopics, options.resizableonstoptopics);
-			ro.resize = pubTops(container, options.onalwaystopics, options.resizableonresizetopics);
-			container.resizable(ro);
-		}
-	};
-}
-
-/** Publish Error topics */
-function pubErr(cid, always, etopics, etext) {
-	var container = $(cid);
-	if (etopics || etext) {
-		return function(request, status, error) {
-			var orginal = {};
-			orginal.request = request;
-			orginal.status = status;
-			orginal.error = error;
-
-			if (etext) {
-				container.html(etext);
-			}
-
-			publishTopic(container, etopics, orginal);
-			publishTopic(container, always, orginal);
-		};
-	}
-	else {
-		return null;
-	}
-}
-
 ( function($) {
-	
-	/**
-	 * Load required JavaScript Resourcess
-	 */
-	$.require = function(files, callBack, basePath) {
-
-		var successFunction = callBack || function() {};
-		if (!$.require.scriptCache) { $.require.scriptCache = {}; }
-		var path = basePath || null;
-		if ( path === null && !$.scriptPath ) {
-			path = '';
-		}
-		else if( path === null && $.scriptPath ) {
-			path = $.scriptPath;
-		}
-		
-		if (typeof files === "string") {
-			files = new Array(files);
-		}
-		$.each(files, function(i, file) { 
-			if (!$.require.scriptCache[file]) {
-				s2jlog('load require script '+(path + file));
-				$.ajax( {
-				type : "GET",
-				url : path + file,
-				success : successFunction,
-				dataType : "script",
-				cache : true,
-				async : false
-				});
-				$.require.scriptCache[file] = true;
-			}
-		});
-		return $;
-	};
-	
-	/**
-	 * Load required CSS Files
-	 */
-	$.requireCss = function(cssFile, basePath) {
-		if (!$.requireCss.styleCache) { $.requireCss.styleCache = {}; }
-
-		if (!$.requireCss.styleCache[cssFile]) {
-			var path = basePath || null;
-			if ( path === null && !$.scriptPath ) {
-				path = '';
-			}
-			else if( path === null && $.scriptPath ) {
-				path = $.scriptPath;
-			}
-			s2jlog('load require css '+(path + cssFile));
-	
-			var cssref=document.createElement("link");
-		  cssref.setAttribute("rel", "stylesheet");
-		  cssref.setAttribute("type", "text/css");
-		  cssref.setAttribute("href", (path + cssFile));
-		  document.getElementsByTagName("head")[0].appendChild(cssref);
-			$.requireCss.styleCache[cssFile] = true;
-		}
-	  return $;
-	};
 	
 	/**
 	 * Bind Struts2 Components for jQuery AJAX and UI functions
@@ -336,6 +36,309 @@ function pubErr(cid, always, etopics, etext) {
 	forms : {},
 	defaultIndicator :'',
 	lasttopic :'',
+	scriptCache : {},
+	styleCache : {},
+
+	//helper function for debug logging
+	//set debug to true in the head tag to enable debug logging
+	log : function(message) {
+		if (this.debug) {
+			var msg = '[struts2_jquery] '+message;
+			if (window.console && window.console.log) {
+				window.console.log(msg);
+			}
+			else if (window.opera && window.opera.postError) {
+				window.opera.postError(msg);
+			}
+		}
+	},
+	
+	/*
+	 * Escape Ids
+	 */
+	escId : function (id) {
+		return '#' + id.replace(/(:|\.)/g, '\\$1');
+	},
+	
+	/*
+	 * Load required JavaScript Resourcess
+	 */
+	require : function(files, callBack, basePath) {
+
+		var successFunction = callBack || function() {};
+		var path = basePath || null;
+		if ( path === null && !$.scriptPath ) {
+			path = '';
+		}
+		else if( path === null && $.scriptPath ) {
+			path = $.scriptPath;
+		}
+		
+		if (typeof files === "string") {
+			files = new Array(files);
+		}
+		$.each(files, function(i, file) { 
+			if (!_s2j.scriptCache[file]) {
+				_s2j.log('load require script '+(path + file));
+				$.ajax( {
+				type : "GET",
+				url : path + file,
+				success : successFunction,
+				dataType : "script",
+				cache : true,
+				async : false
+				});
+				_s2j.scriptCache[file] = true;
+			}
+		});
+	},
+
+	/*
+	 * Load required CSS Files
+	 */
+	requireCss : function(cssFile, basePath) {
+		if (!this.styleCache[cssFile]) {
+			var path = basePath || null;
+			if ( path === null && !$.scriptPath ) {
+				path = '';
+			}
+			else if( path === null && $.scriptPath ) {
+				path = $.scriptPath;
+			}
+			this.log('load require css '+(path + cssFile));
+	
+			var cssref=document.createElement("link");
+		  cssref.setAttribute("rel", "stylesheet");
+		  cssref.setAttribute("type", "text/css");
+		  cssref.setAttribute("href", (path + cssFile));
+		  document.getElementsByTagName("head")[0].appendChild(cssref);
+			this.styleCache[cssFile] = true;
+		}
+	},
+	
+	// helper function to hide indicator
+	hideIndicator : function (indi) {
+		if (indi) {
+			$(this.escId(indi)).hide();
+		}
+		if (this.defaultIndicator != '') {
+			$(this.escId(this.defaultIndicator)).hide();
+		}
+	},
+
+	// helper function to show indicator
+	showIndicator : function (indi) {
+		if (indi) {
+			$(this.escId(indi)).show();
+		}
+		if (this.defaultIndicator != '') {
+			$(this.escId(this.defaultIndicator)).show();
+		}
+	},
+	
+	// Helper function to publish UI topics
+	pubTops : function ($elem, always, topics) {
+
+		if (topics) {
+			return function(event, ui) {
+				var data = {};
+				data.event = event;
+				data.ui = ui;
+
+				_s2j.publishTopic($elem, topics, data);
+				_s2j.publishTopic($elem, always, data);
+			};
+		}
+		else {
+			return null;
+		}
+	},
+
+	// Helper function to publish topics
+	publishTopic : function (elem, topics, data) {
+		if (topics) {
+			$.each(topics.split(','), function(i, to) { 
+				_s2j.log('publish topic : '+to);
+				elem.publish(to, elem, data);
+			});
+		}
+	},
+
+	/** Publish Success topics */
+	pubSuc : function (cid, always, stopics, indi, modus, options) {
+		var container = $(cid);
+		return function(data, status, request) {
+			var orginal = {};
+			orginal.data = data;
+			orginal.status = status;
+			orginal.request = request;
+
+			if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) { container.html(data); }
+			else if (modus == 'value') { container.val(data); }
+			else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
+				//container[0].length = 0;
+				container.children().remove();
+				
+				if (typeof (data) == "object" || $.isArray(data)) {
+					var i = -1;
+					var eopt;
+					if (modus == 'radio') {
+						eopt = document.createElement("input");
+						eopt.name=options.name;
+						eopt.type='radio';
+					}
+					else if (modus == 'checkbox') {
+						eopt = document.createElement("input");
+						eopt.name=options.name;
+						eopt.type='checkbox';
+					}
+					else{
+						eopt = document.createElement("option");
+					}
+					if (options.headerkey && options.headervalue) {
+						var option = eopt.cloneNode(true);
+						option.value = options.headerkey;
+						option.text = options.headervalue;
+
+						if (options.value == options.headervalue) {
+							option.selected = true;
+						}
+
+						container[0].options[++i] = option;
+					}
+
+					if (options.emptyoption) {
+						container[0].options[++i] = eopt.cloneNode(true);
+					}
+
+					var o = 0;
+					if (data[options.list] !== null) {
+						$.each(data[options.list], function(j, val) {
+							var option = eopt.cloneNode(true);
+							if (data[options.list][o] === undefined) {
+								option.value = j;
+								option.text = val;
+							}
+							else {
+								if (options.listkey !== undefined && options.listvalue !== undefined) {
+									option.value = val[options.listkey];
+									option.text = val[options.listvalue];
+								}
+								else {
+									option.value = data[options.list][o];
+									option.text = data[options.list][o];
+								}
+							}
+
+							if (options.value == option.value) {
+								option.selected = true;
+							}
+
+							if (modus == 'select') {
+								container[0].options[++i] = option;
+							}
+							else {
+								
+								option.id=options.name+(++i);
+								container.append($(option));
+								container.append(
+										$('<label id="'+option.id+'label" for="'+option.id+'">'+option.text+'</label>')
+								);
+							}
+							o++;
+						});
+					}
+				}
+			}
+
+			_s2j.publishTopic(container, stopics, orginal);
+			_s2j.publishTopic(container, always, orginal);
+
+			// Use BBQ for Ajaxhistory
+			if (_s2j.ajaxhistory) {
+				var ahparams = {};
+				ahparams.cid = cid;
+				ahparams.options = options;
+
+				$(window).bind('hashchange', ahparams, function(e) {
+					var topic = e.getState(e.data.cid.id) || '';
+					if (e.type === topic || topic == '' || topic == _s2j.lasttopic) { return; }
+					_s2j.lasttopic = topic;
+					$.publish(topic, e.data.options);
+				});
+			}
+		};
+	},
+
+	/** Publish Complete topics */
+	pubCom : function (cid, always, ctopics, targets, indi, options) {
+		var container = $(cid);
+		return function(request, status) {
+			var orginal = {};
+			orginal.request = request;
+			orginal.status = status;
+
+			_s2j.hideIndicator(indi);
+
+			_s2j.publishTopic(container, ctopics, orginal);
+			_s2j.publishTopic(container, always, orginal);
+
+			var ec = targets;
+			if (!ec) { ec = options.id; }
+			if (ec) {
+				var divEffectTopic = '_sj_div_effect_';
+				$.each(ec.split(','), function(i, target) { 
+					var effect_elem = $(_s2j.escId(target));
+					effect_elem.publish(divEffectTopic + target, effect_elem);
+				});
+			}
+			if (options.resizable) {
+				if (!_s2j.loadAtOnce) {
+					_s2j.require(
+						[
+						 "js/base/jquery.ui.widget"+_s2j.minSuffix+".js",
+						 "js/base/jquery.ui.mouse"+_s2j.minSuffix+".js",
+						 "js/base/jquery.ui.resizable"+_s2j.minSuffix+".js"
+						 ]);
+				}
+				var ros = options.resizableoptions;
+				var ro = window[ros];
+				if (!ro) {
+					ro = eval("( " + ros + " )");
+				}
+				else {
+					ro = {};
+				}
+				ro.start = _s2j.pubTops(container, options.onalwaystopics, options.resizableonstarttopics);
+				ro.stop = _s2j.pubTops(container, options.onalwaystopics, options.resizableonstoptopics);
+				ro.resize = _s2j.pubTops(container, options.onalwaystopics, options.resizableonresizetopics);
+				container.resizable(ro);
+			}
+		};
+	},
+
+	// publish error topics
+	pubErr : function (cid, always, etopics, etext) {
+		var container = $(cid);
+		if (etopics || etext) {
+			return function(request, status, error) {
+				var orginal = {};
+				orginal.request = request;
+				orginal.status = status;
+				orginal.error = error;
+
+				if (etext) {
+					container.html(etext);
+				}
+
+				_s2j.publishTopic(container, etopics, orginal);
+				_s2j.publishTopic(container, always, orginal);
+			};
+		}
+		else {
+			return null;
+		}
+	},
 
 	// pre-binding function of the type function(element){}. called before binding the element
 	// returning false will prevent the binding of this element
@@ -358,7 +361,7 @@ function pubErr(cid, always, etopics, etext) {
 
 				if (!options.jqueryaction) { options.jqueryaction = tag; }
 
-				s2jlog('bind '+options.jqueryaction+' on '+options.id);
+				this.log('bind '+options.jqueryaction+' on '+options.id);
 				this[options.jqueryaction]($el, options);
 
 				// extension point to allow custom post-binding processing
@@ -377,10 +380,10 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	opendialog : function($elem, options) {
-		s2jlog('open dialog : '+options.opendialog);
+		this.log('open dialog : '+options.opendialog);
 
 		if (options.opendialog) {
-			var dialog = $(escId(options.opendialog));
+			var dialog = $(this.escId(options.opendialog));
 			$elem.bind('click', function(event) {
 				if (options.href && options.href != '#') {
 					options.targets = options.opendialog;
@@ -436,7 +439,7 @@ function pubErr(cid, always, etopics, etext) {
 		if (options.targets) {
 				$.each(options.targets.split(','), function(i, target) { 
 					effect.targets = target;
-					var tarelem = $(escId(target));
+					var tarelem = $(_s2j.escId(target));
 
 					if (tarelem.isSubscribed(actionTopic)) { tarelem.unsubscribe(actionTopic); }
 					if (tarelem.isSubscribed(effectTopic + target)) { tarelem.unsubscribe(effectTopic + target); }
@@ -457,8 +460,8 @@ function pubErr(cid, always, etopics, etext) {
 						params.target = target;
 						params.topic = actionTopic;
 						$elem.bind('click', params, function(event) {
-							$.struts2_jquery.historyelements[event.data.target] = event.data.topic;
-							$.bbq.pushState($.struts2_jquery.historyelements);
+							_s2j.historyelements[event.data.target] = event.data.topic;
+							$.bbq.pushState(_s2j.historyelements);
 							return false;
 						});
 					}
@@ -467,7 +470,7 @@ function pubErr(cid, always, etopics, etext) {
 		else { // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 			effect.targets = options.id;
-			$(escId(options.id)).subscribe(effectTopic + options.id, '_s2j_effects', effect);
+			$(this.escId(options.id)).subscribe(effectTopic + options.id, '_s2j_effects', effect);
 
 			// bind event topic listeners
 			if (options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
@@ -484,7 +487,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	container : function($elem, options) {
-		s2jlog('container : '+options.id);
+		this.log('container : '+options.id);
 		var loadHandler = '_s2j_container_load', effectHandler = '_s2j_effects';
 
 		this.action($elem, options, loadHandler, 'div');
@@ -532,7 +535,7 @@ function pubErr(cid, always, etopics, etext) {
 			}
 			else if (options.formids) {
 				if (!this.loadAtOnce) {
-					$.require("js/plugins/jquery.form"+this.minSuffix+".js");
+					this.require("js/plugins/jquery.form"+this.minSuffix+".js");
 				}
 				options.targets = options.id;
 				var formTopic = '_s2j_form_topic_' + options.id;
@@ -556,7 +559,7 @@ function pubErr(cid, always, etopics, etext) {
 
 				var bindel = $elem;
 				var eventsStr = 'click';
-				if (options.bindon) { bindel = $(escId(options.bindon)); }
+				if (options.bindon) { bindel = $(this.escId(options.bindon)); }
 				if (options.events) {
 					eventsStr = options.events;
 				}
@@ -591,7 +594,7 @@ function pubErr(cid, always, etopics, etext) {
 
 			if (options.resizable) {
 				if (!this.loadAtOnce) {
-					$.require(
+					this.require(
 						[
 						 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 						 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
@@ -606,17 +609,17 @@ function pubErr(cid, always, etopics, etext) {
 				else {
 					ro = {};
 				}
-				ro.start = pubTops($elem, options.onalwaystopics, options.resizableonstarttopics);
-				ro.stop = pubTops($elem, options.onalwaystopics, options.resizableonstoptopics);
-				ro.resize = pubTops($elem, options.onalwaystopics, options.resizableonresizetopics);
+				ro.start = this.pubTops($elem, options.onalwaystopics, options.resizableonstarttopics);
+				ro.stop = this.pubTops($elem, options.onalwaystopics, options.resizableonstoptopics);
+				ro.resize = this.pubTops($elem, options.onalwaystopics, options.resizableonresizetopics);
 				$elem.resizable(ro);
 			}
 		}
 
 		if (options.draggable) {
-			s2jlog('draggable : '+options.id);
+			this.log('draggable : '+options.id);
 			if (!this.loadAtOnce) {
-				$.require(
+				this.require(
 					[
 					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
@@ -631,16 +634,16 @@ function pubErr(cid, always, etopics, etext) {
 			else {
 				dao = {};
 			}
-			dao.start = pubTops($elem, options.onalwaystopics, options.draggableonstarttopics);
-			dao.stop = pubTops($elem, options.onalwaystopics, options.draggableonstoptopics);
-			dao.drap = pubTops($elem, options.onalwaystopics, options.draggableondragtopics);
+			dao.start = this.pubTops($elem, options.onalwaystopics, options.draggableonstarttopics);
+			dao.stop = this.pubTops($elem, options.onalwaystopics, options.draggableonstoptopics);
+			dao.drap = this.pubTops($elem, options.onalwaystopics, options.draggableondragtopics);
 			$elem.draggable(dao);
 		}
 
 		if (options.droppable) {
-			s2jlog('droppable : '+options.id);
+			this.log('droppable : '+options.id);
 			if (!this.loadAtOnce) {
-				$.require(
+				this.require(
 					[
 					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
@@ -656,18 +659,18 @@ function pubErr(cid, always, etopics, etext) {
 			else {
 				doo = {};
 			}
-			doo.activate = pubTops($elem, options.onalwaystopics, options.droppableonactivatetopics);
-			doo.deactivate = pubTops($elem, options.onalwaystopics, options.droppableondeactivatetopics);
-			doo.start = pubTops($elem, options.onalwaystopics, options.droppableonstarttopics);
-			doo.stop = pubTops($elem, options.onalwaystopics, options.droppableonstoptopics);
-			doo.drop = pubTops($elem, options.onalwaystopics, options.droppableondroptopics);
+			doo.activate = this.pubTops($elem, options.onalwaystopics, options.droppableonactivatetopics);
+			doo.deactivate = this.pubTops($elem, options.onalwaystopics, options.droppableondeactivatetopics);
+			doo.start = this.pubTops($elem, options.onalwaystopics, options.droppableonstarttopics);
+			doo.stop = this.pubTops($elem, options.onalwaystopics, options.droppableonstoptopics);
+			doo.drop = this.pubTops($elem, options.onalwaystopics, options.droppableondroptopics);
 			$elem.droppable(doo);
 		}
 
 		if (options.selectable) {
-			s2jlog('selectable : '+options.id);
+			this.log('selectable : '+options.id);
 			if (!this.loadAtOnce) {
-				$.require(
+				this.require(
 					[
 					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
@@ -682,19 +685,19 @@ function pubErr(cid, always, etopics, etext) {
 			else {
 				seo = {};
 			}
-			seo.selected = pubTops($elem, options.onalwaystopics, options.selectableonselectedtopics);
-			seo.selecting = pubTops($elem, options.onalwaystopics, options.selectableonselectingtopics);
-			seo.start = pubTops($elem, options.onalwaystopics, options.selectableonstarttopics);
-			seo.stop = pubTops($elem, options.onalwaystopics, options.selectableonstoptopics);
-			seo.unselected = pubTops($elem, options.onalwaystopics, options.selectableonunselectedtopics);
-			seo.unselecting = pubTops($elem, options.onalwaystopics, options.selectableonunselectingtopics);
+			seo.selected = this.pubTops($elem, options.onalwaystopics, options.selectableonselectedtopics);
+			seo.selecting = this.pubTops($elem, options.onalwaystopics, options.selectableonselectingtopics);
+			seo.start = this.pubTops($elem, options.onalwaystopics, options.selectableonstarttopics);
+			seo.stop = this.pubTops($elem, options.onalwaystopics, options.selectableonstoptopics);
+			seo.unselected = this.pubTops($elem, options.onalwaystopics, options.selectableonunselectedtopics);
+			seo.unselecting = this.pubTops($elem, options.onalwaystopics, options.selectableonunselectingtopics);
 			$elem.selectable(seo);
 		}
 
 		if (options.sortable) {
-			s2jlog('sortable : '+options.id);
+			this.log('sortable : '+options.id);
 			if (!this.loadAtOnce) {
-				$.require(
+				this.require(
 					[
 					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
@@ -709,18 +712,18 @@ function pubErr(cid, always, etopics, etext) {
 			else {
 				soo = {};
 			}
-			soo.beforeStop = pubTops($elem, options.onalwaystopics, options.sortableonbeforestoptopics);
-			soo.stop = pubTops($elem, options.onalwaystopics, options.sortableonstoptopics);
-			soo.start = pubTops($elem, options.onalwaystopics, options.sortableonstarttopics);
-			soo.sort = pubTops($elem, options.onalwaystopics, options.sortableonsorttopics);
-			soo.activate = pubTops($elem, options.onalwaystopics, options.sortableonactivatetopics);
-			soo.deactivate = pubTops($elem, options.onalwaystopics, options.sortableondeactivatetopics);
-			soo.over = pubTops($elem, options.onalwaystopics, options.sortableonovertopics);
-			soo.out = pubTops($elem, options.onalwaystopics, options.sortableonouttopics);
-			soo.remove = pubTops($elem, options.onalwaystopics, options.sortableonremovetopics);
-			soo.receive = pubTops($elem, options.onalwaystopics, options.sortableonreceivetopics);
-			soo.change = pubTops($elem, options.onalwaystopics, options.sortableonchangetopics);
-			soo.update = pubTops($elem, options.onalwaystopics, options.sortableonupdatetopics);
+			soo.beforeStop = this.pubTops($elem, options.onalwaystopics, options.sortableonbeforestoptopics);
+			soo.stop = this.pubTops($elem, options.onalwaystopics, options.sortableonstoptopics);
+			soo.start = this.pubTops($elem, options.onalwaystopics, options.sortableonstarttopics);
+			soo.sort = this.pubTops($elem, options.onalwaystopics, options.sortableonsorttopics);
+			soo.activate = this.pubTops($elem, options.onalwaystopics, options.sortableonactivatetopics);
+			soo.deactivate = this.pubTops($elem, options.onalwaystopics, options.sortableondeactivatetopics);
+			soo.over = this.pubTops($elem, options.onalwaystopics, options.sortableonovertopics);
+			soo.out = this.pubTops($elem, options.onalwaystopics, options.sortableonouttopics);
+			soo.remove = this.pubTops($elem, options.onalwaystopics, options.sortableonremovetopics);
+			soo.receive = this.pubTops($elem, options.onalwaystopics, options.sortableonreceivetopics);
+			soo.change = this.pubTops($elem, options.onalwaystopics, options.sortableonchangetopics);
+			soo.update = this.pubTops($elem, options.onalwaystopics, options.sortableonupdatetopics);
 			$elem.sortable(soo);
 		}
 		
@@ -728,12 +731,12 @@ function pubErr(cid, always, etopics, etext) {
 			if (options.type) {
 				if(options.type == 'text') {
 					$elem.keyup(function() {
-						publishTopic($elem, options.onchangetopics, {});
+						_s2j.publishTopic($elem, options.onchangetopics, {});
 					});
 				}
 				else if (options.type == 'select') {
 					$elem.change(function() {
-						publishTopic($elem, options.onchangetopics, {});
+						_s2j.publishTopic($elem, options.onchangetopics, {});
 					});
 				}
 			}
@@ -741,7 +744,7 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	anchor : function($elem, options) {
-		s2jlog('anchor : '+options.id);
+		this.log('anchor : '+options.id);
 		var loadHandler = '_s2j_container_load';
 
 		if(options.opendialog) { this.opendialog($elem, options); }
@@ -758,9 +761,9 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	select : function($elem, options) {
-		s2jlog('select : '+options.id);
+		this.log('select : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require("js/plugins/jquery.form"+this.minSuffix+".js");
+			this.require("js/plugins/jquery.form"+this.minSuffix+".js");
 		}
 		var handler = '_s2j_container_load';
 		var selectTopic = '_s2j_topic_load_' + options.id;
@@ -820,9 +823,9 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.removeAttr('name');
 	},
 	formsubmit : function($elem, options, topic) {
-		s2jlog('formsubmit : '+options.id);
+		this.log('formsubmit : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require("js/plugins/jquery.form"+this.minSuffix+".js");
+			this.require("js/plugins/jquery.form"+this.minSuffix+".js");
 		}
 		var formHandler = '_s2j_form_submit';
 
@@ -840,14 +843,14 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.subscribe(topic, formHandler, options);
 		if (options.targets) {
 			$.each(options.targets.split(','), function(i, target) { 
-				$(escId(target)).subscribe(topic, '_s2j_effects', options);
-				if ($.struts2_jquery.ajaxhistory) {
+				$(_s2j.escId(target)).subscribe(topic, '_s2j_effects', options);
+				if (_s2j.ajaxhistory) {
 					var params = {};
 					params.target = target;
 					params.topic = topic;
 					$elem.bind('click', params, function(event) {
-						$.struts2_jquery.historyelements[event.data.target] = event.data.topic;
-						$.bbq.pushState($.struts2_jquery.historyelements);
+						_s2j.historyelements[event.data.target] = event.data.topic;
+						$.bbq.pushState(_s2j.historyelements);
 						return false;
 					});
 				}
@@ -856,9 +859,9 @@ function pubErr(cid, always, etopics, etext) {
 	},
 
 	dialog : function($elem, options) {
-		s2jlog('dialog : '+options.id);
+		this.log('dialog : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require(
+			this.require(
 				[
 				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 				 "js/base/jquery.ui.button"+this.minSuffix+".js",
@@ -875,13 +878,13 @@ function pubErr(cid, always, etopics, etext) {
 		params.bgiframe = true;
 		if (options.hide) {
 			if (!this.loadAtOnce) {
-				$.require(["js/base/jquery.effects.core"+this.minSuffix+".js","js/base/jquery.effects."+options.hide+""+this.minSuffix+".js"]);
+				this.require(["js/base/jquery.effects.core"+this.minSuffix+".js","js/base/jquery.effects."+options.hide+""+this.minSuffix+".js"]);
 			}
 			params.hide = options.hide;
 		}
 		if (options.show) {
 			if (!this.loadAtOnce) {
-				$.require(["js/base/jquery.effects.core"+this.minSuffix+".js","js/base/jquery.effects."+options.show+""+this.minSuffix+".js"]);
+				this.require(["js/base/jquery.effects.core"+this.minSuffix+".js","js/base/jquery.effects."+options.show+""+this.minSuffix+".js"]);
 			}
 			params.show = options.show;
 		}
@@ -897,21 +900,21 @@ function pubErr(cid, always, etopics, etext) {
 				$elem.publish(divTopic, options);
 			}
 
-			publishTopic($elem, options.onalwaystopics, data);
-			publishTopic($elem, options.onbeforetopics, data);
-			publishTopic($elem, options.onopentopics, data);
+			_s2j.publishTopic($elem, options.onalwaystopics, data);
+			_s2j.publishTopic($elem, options.onbeforetopics, data);
+			_s2j.publishTopic($elem, options.onopentopics, data);
 		};
-		params.close = pubTops($elem, options.onalwaystopics, options.onclosetopics);
-		params.focus = pubTops($elem, options.onalwaystopics, options.onfocustopics);
-		params.beforeclose = pubTops($elem, options.onalwaystopics, options.onbeforeclosetopics);
-		params.drag = pubTops($elem, options.onalwaystopics, options.onchangetopics);
+		params.close = this.pubTops($elem, options.onalwaystopics, options.onclosetopics);
+		params.focus = this.pubTops($elem, options.onalwaystopics, options.onfocustopics);
+		params.beforeclose = this.pubTops($elem, options.onalwaystopics, options.onbeforeclosetopics);
+		params.drag = this.pubTops($elem, options.onalwaystopics, options.onchangetopics);
 		$elem.dialog(params);
 	},
 
 	tabbedpanel : function($elem, options) {
-		s2jlog('tabbedpanel : '+options.id);
+		this.log('tabbedpanel : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require(
+			this.require(
 				[
 				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 				 "js/base/jquery.ui.tabs"+this.minSuffix+".js"
@@ -932,13 +935,13 @@ function pubErr(cid, always, etopics, etext) {
 		if (options.cache) { para.cache = true; }
 		if (options.animate) { 
 			if (!this.loadAtOnce) {
-				$.require("js/base/jquery.effects.core"+this.minSuffix+".js");
+				this.require("js/base/jquery.effects.core"+this.minSuffix+".js");
 			}
 			para.fx = {	opacity :'toggle'	};
 		}
 		if (options.cookie) { 
 			if (!this.loadAtOnce) {
-				$.require("js/plugins/jquery.cookie"+this.minSuffix+".js");
+				this.require("js/plugins/jquery.cookie"+this.minSuffix+".js");
 			}
 			para.cookie = {
 			expires :30
@@ -950,17 +953,17 @@ function pubErr(cid, always, etopics, etext) {
 		if (options.selectedtab) { para.selected = options.selectedtab; }
 		if (options.oncompletetopics) { para.ajaxOptions = {
 		dataType :'html',
-		complete :pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {})
+		complete :this.pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {})
 		};}
 		else { para.ajaxOptions = {
 			dataType :'html'
 		};}
-		if (options.onbeforetopics) { para.show = pubTops($elem, options.onalwaystopics, options.onbeforetopics); }
-		if (options.onchangetopics) { para.select = pubTops($elem, options.onalwaystopics, options.onchangetopics); }
-		if (options.onenabletopics) { para.enable = pubTops($elem, options.onalwaystopics, options.onenabletopics); }
-		if (options.ondisabletopics) { para.disable = pubTops($elem, options.onalwaystopics, options.ondisabletopics); }
-		if (options.onaddtopics) { para.add = pubTops($elem, options.onalwaystopics, options.onaddtopics); }
-		if (options.onremovetopics) { para.remove = pubTops($elem, options.onalwaystopics, options.onremovetopics); }
+		if (options.onbeforetopics) { para.show = this.pubTops($elem, options.onalwaystopics, options.onbeforetopics); }
+		if (options.onchangetopics) { para.select = this.pubTops($elem, options.onalwaystopics, options.onchangetopics); }
+		if (options.onenabletopics) { para.enable = this.pubTops($elem, options.onalwaystopics, options.onenabletopics); }
+		if (options.ondisabletopics) { para.disable = this.pubTops($elem, options.onalwaystopics, options.ondisabletopics); }
+		if (options.onaddtopics) { para.add = this.pubTops($elem, options.onalwaystopics, options.onaddtopics); }
+		if (options.onremovetopics) { para.remove = this.pubTops($elem, options.onalwaystopics, options.onremovetopics); }
 
 		if (options.tabs) {
 			var tabStr = "";
@@ -976,7 +979,7 @@ function pubErr(cid, always, etopics, etext) {
 				if (tab.label) { tabStr += tab.label; }
 				tabStr += "</span></a></li>";
 			}
-			$(escId(options.id) + ' ul').html(tabStr);
+			$(this.escId(options.id) + ' ul').html(tabStr);
 		}
 
 		$elem.tabs(para);
@@ -986,30 +989,30 @@ function pubErr(cid, always, etopics, etext) {
 			var ahp = {};
 			ahp.id = options.id;
 			$elem.find('ul.ui-tabs-nav a').bind('click', ahp, function(e) {
-				var idx = $(escId(e.data.id)).tabs('option', 'selected');
-				$.struts2_jquery.historyelements[e.data.id] = idx;
-				$.bbq.pushState($.struts2_jquery.historyelements);
+				var idx = $(this.escId(e.data.id)).tabs('option', 'selected');
+				_s2j.historyelements[e.data.id] = idx;
+				$.bbq.pushState(_s2j.historyelements);
 				return false;
 			});
 
 			$(window).bind('hashchange', ahp, function(e) {
 				var idx = e.getState(e.data.id, true) || 0;
-				$(escId(e.data.id)).tabs('select', idx);
+				$(this.escId(e.data.id)).tabs('select', idx);
 			});
 		}
 	},
 
 	datepicker : function($elem, options) {
-		s2jlog('datepicker : '+options.id);
+		this.log('datepicker : '+options.id);
 		if (!this.loadAtOnce) {
-		$.require(
+		this.require(
 				[
 				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 				 "js/base/jquery.ui.datepicker"+this.minSuffix+".js"
 				 ]);
 		}
 		if (this.local != "en") {
-			$.require("i18n/jquery.ui.datepicker-"+this.local+".min.js");
+			this.require("i18n/jquery.ui.datepicker-"+this.local+".min.js");
 		}
 		var params = {};
 
@@ -1023,8 +1026,8 @@ function pubErr(cid, always, etopics, etext) {
 					var data = {};
 					data.input = input;
 					data.inst = inst;
-					publishTopic($input, options.onbeforetopics, data);
-					publishTopic($input, oat, data);
+					this.publishTopic($input, options.onbeforetopics, data);
+					this.publishTopic($input, oat, data);
 				};
 			}
 
@@ -1032,8 +1035,8 @@ function pubErr(cid, always, etopics, etext) {
 				params.beforeShowDay = function(date) {
 					var data = {};
 					data.date = date;
-					publishTopic($elem, options.onbeforeshowdaytopics, data);
-					publishTopic($elem, oat, data);
+					this.publishTopic($elem, options.onbeforeshowdaytopics, data);
+					this.publishTopic($elem, oat, data);
 				};
 			}
 
@@ -1044,8 +1047,8 @@ function pubErr(cid, always, etopics, etext) {
 					data.month = month;
 					data.inst = inst;
 					var $inst = $(inst);
-					publishTopic($inst, options.onchangemonthyeartopics, data);
-					publishTopic($inst, oat, data);
+					this.publishTopic($inst, options.onchangemonthyeartopics, data);
+					this.publishTopic($inst, oat, data);
 				};
 			}
 
@@ -1054,8 +1057,8 @@ function pubErr(cid, always, etopics, etext) {
 					var $inst = $(inst);
 					var data = {};
 					data.dateText = dateText;
-					publishTopic($inst, options.onchangetopics, data);
-					publishTopic($inst, oat, data);
+					this.publishTopic($inst, options.onchangetopics, data);
+					this.publishTopic($inst, oat, data);
 				};
 			}
 
@@ -1064,8 +1067,8 @@ function pubErr(cid, always, etopics, etext) {
 					var $inst = $(inst);
 					var data = {};
 					data.dateText = dateText;
-					publishTopic($inst, options.oncompletetopics, data);
-					publishTopic($inst, oat, data);
+					_s2j.publishTopic($inst, options.oncompletetopics, data);
+					_s2j.publishTopic($inst, oat, data);
 				};
 			}
 
@@ -1081,7 +1084,7 @@ function pubErr(cid, always, etopics, etext) {
 			
 			if (options.showanim){
 				if (!this.loadAtOnce) {
-					$.require("js/base/jquery.effects.core"+this.minSuffix+".js");
+					this.require("js/base/jquery.effects.core"+this.minSuffix+".js");
 				}
 				params.showAnim = options.showanim;
 			}
@@ -1120,9 +1123,9 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	slider : function($elem, options) {
-		s2jlog('slider : '+options.id);
+		this.log('slider : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require(
+			this.require(
 				[
 				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 				 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
@@ -1133,14 +1136,14 @@ function pubErr(cid, always, etopics, etext) {
 		var params = {};
 		if (options) {
 
-			params.start = pubTops($elem, options.onalwaystopics, options.onbeforetopics);
-			params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
-			params.stop = pubTops($elem, options.onalwaystopics, options.oncompletetopics);
+			params.start = this.pubTops($elem, options.onalwaystopics, options.onbeforetopics);
+			params.change = this.pubTops($elem, options.onalwaystopics, options.onchangetopics);
+			params.stop = this.pubTops($elem, options.onalwaystopics, options.oncompletetopics);
 
 			params.slide = function(event, ui) {
-				$(escId(options.hiddenid)).val(ui.value);
+				$(_s2j.escId(options.hiddenid)).val(ui.value);
 				if (options.displayvalueelement) {
-					$(escId(options.displayvalueelement)).html(ui.value);
+					$(_s2j.escId(options.displayvalueelement)).html(ui.value);
 				}
 			};
 
@@ -1166,9 +1169,9 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.slider(params);
 	},
 	progressbar : function($elem, options) {
-		s2jlog('progressbar : '+options.id);
+		this.log('progressbar : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require(
+			this.require(
 				[
 				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 				 "js/base/jquery.ui.progressbar"+this.minSuffix+".js"
@@ -1177,7 +1180,7 @@ function pubErr(cid, always, etopics, etext) {
 		var params = {};
 		if (options) {
 
-			params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
+			params.change = this.pubTops($elem, options.onalwaystopics, options.onchangetopics);
 
 			var value = options.value;
 			if (value > 0) { params.value = value; }
@@ -1186,9 +1189,9 @@ function pubErr(cid, always, etopics, etext) {
 		$elem.progressbar(params);
 	},
 	accordion : function($elem, options) {
-		s2jlog('accordion : '+options.id);
+		this.log('accordion : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require(
+			this.require(
 				[
 				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 				 "js/base/jquery.ui.accordion"+this.minSuffix+".js"
@@ -1243,16 +1246,16 @@ function pubErr(cid, always, etopics, etext) {
 					data.event = event;
 					data.ui = ui;
 
-					publishTopic($elem, onAlwaysTopics, data);
-					publishTopic($elem, options.onbeforetopics, data);
+					this.publishTopic($elem, onAlwaysTopics, data);
+					this.publishTopic($elem, options.onbeforetopics, data);
 				}
 			};
 
-			params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics);
+			params.change = this.pubTops($elem, options.onalwaystopics, options.onchangetopics);
 		}
 		$elem.accordion(params);
 		if (options.href && active === true) {
-			var aktiv = $(escId(options.id) + " li " + params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
+			var aktiv = $(this.escId(options.id) + " li " + params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
 			if (typeof $(aktiv).attr('paramkeys') != "undefined") {
 				var keys = $(aktiv).attr('paramkeys').split(',');
 				var values = $(aktiv).attr('paramvalues').split(',');
@@ -1260,15 +1263,15 @@ function pubErr(cid, always, etopics, etext) {
 				$.each(keys, function(i, val) {
 					valueparams[val] = values[i];
 				});
-				$(escId(options.id) + " li div").filter('.ui-accordion-content-active').load(options.href, valueparams, function() {
+				$(this.escId(options.id) + " li div").filter('.ui-accordion-content-active').load(options.href, valueparams, function() {
 				});
 			}
 		}
 	},
 	autocompleter : function($elem, options) {
-		s2jlog('autocompleter for : '+options.id);
+		this.log('autocompleter for : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require(
+			this.require(
 				[
 				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
 				 "js/base/jquery.ui.position"+this.minSuffix+".js",
@@ -1292,23 +1295,23 @@ function pubErr(cid, always, etopics, etext) {
 			params.minLength = options.minimum;
 		}
 
-		if (options.onsuccesstopics) { params.open = pubTops($elem, options.onalwaystopics, options.onsuccesstopics); }
-		if (options.onchangetopics) { params.change = pubTops($elem, options.onalwaystopics, options.onchangetopics); }
-		if (options.oncompletetopics) { params.close = pubTops($elem, options.onalwaystopics, options.oncompletetopics); }
-		if (options.onsearchtopics) { params.search = pubTops($elem, options.onalwaystopics, options.onsearchtopics); }
-		if (options.onfocustopics) { params.focus = pubTops($elem, options.onalwaystopics, options.onfocustopics); }
-		if (options.onselecttopics) { params.select = pubTops($elem, options.onalwaystopics, options.onselecttopics); }
+		if (options.onsuccesstopics) { params.open = this.pubTops($elem, options.onalwaystopics, options.onsuccesstopics); }
+		if (options.onchangetopics) { params.change = this.pubTops($elem, options.onalwaystopics, options.onchangetopics); }
+		if (options.oncompletetopics) { params.close = this.pubTops($elem, options.onalwaystopics, options.oncompletetopics); }
+		if (options.onsearchtopics) { params.search = this.pubTops($elem, options.onalwaystopics, options.onsearchtopics); }
+		if (options.onfocustopics) { params.focus = this.pubTops($elem, options.onalwaystopics, options.onfocustopics); }
+		if (options.onselecttopics) { params.select = this.pubTops($elem, options.onalwaystopics, options.onselecttopics); }
 
 		if (options.selectBox === false) { $elem.autocomplete(params); }
 		else { 
-			$.require("js/plugins/jquery.combobox"+this.minSuffix+".js");
+			this.require("js/plugins/jquery.combobox"+this.minSuffix+".js");
 			$elem.combobox(params); 
 		}
 	},
 	jquerybutton : function($elem, options) {
-		s2jlog('button for : '+options.id);
+		this.log('button for : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
+			this.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
 		}
 		if (options.button) {
 			var params = {};
@@ -1323,9 +1326,9 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	},
 	buttonset : function($elem, options) {
-		s2jlog('buttonset for : '+options.id);
+		this.log('buttonset for : '+options.id);
 		if (!this.loadAtOnce) {
-			$.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
+			this.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
 		}
 		var handler = '_s2j_container_load';
 		var buttonsetLoadTopic = '_s2j_topic_load_' + options.id;
@@ -1401,12 +1404,12 @@ function pubErr(cid, always, etopics, etext) {
 			if (options) {
 
 				var indi = options.indicatorid;
-				showIndicator(options.indicatorid);
+				_s2j.showIndicator(options.indicatorid);
 				var onAlwaysTopics = options.onalwaystopics;
 
 				// publish all 'before' and 'always' topics
-				publishTopic(container, onAlwaysTopics, options);
-				publishTopic(container, options.onbeforetopics, options);
+				_s2j.publishTopic(container, onAlwaysTopics, options);
+				_s2j.publishTopic(container, options.onbeforetopics, options);
 
 				// Set pre-loading text (if any)
 				if (options.loadingtext) {
@@ -1423,9 +1426,9 @@ function pubErr(cid, always, etopics, etext) {
 
 				var params = {};
 
-				params.success = pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indi, modus, options);
-				params.complete = pubCom(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indi, options);
-				params.error = pubErr(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
+				params.success = _s2j.pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indi, modus, options);
+				params.complete = _s2j.pubCom(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indi, options);
+				params.error = _s2j.pubErr(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
 
 				// load container using ajax
 				if (options.href) {
@@ -1437,11 +1440,11 @@ function pubErr(cid, always, etopics, etext) {
 					}
 
 					if (options.formids) {
-						if (!$.struts2_jquery.loadAtOnce) {
-							$.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+						if (!_s2j.loadAtOnce) {
+							_s2j.require("js/plugins/jquery.form"+_s2j.minSuffix+".js");
 						}
 						$.each(options.formids.split(','), function(i, fid) {
-							var query = $(escId(fid)).formSerialize();
+							var query = $(_s2j.escId(fid)).formSerialize();
 							if (params.data != '') { params.data = params.data + '&' + query; }
 							else { params.data = query; }
 						});
@@ -1460,6 +1463,9 @@ function pubErr(cid, always, etopics, etext) {
 		}
 	});
 
+	/** Create a shorthand to reduce code */
+	var _s2j = $.struts2_jquery;
+	
 	/** Form logic */
 	// Handler to submit a form with jquery.form.js plugin
 	$.subscribeHandler('_s2j_form_submit', function(event, data) {
@@ -1489,23 +1495,23 @@ function pubErr(cid, always, etopics, etext) {
 		params.target = '';
 		if (options.targets) {
 			$.each(options.targets.split(','), function(i, target) { 
-				elem = $(escId(target));
+				elem = $(_s2j.escId(target));
 				if (params.target == '') {
-					params.target = escId(target);
+					params.target = _s2j.escId(target);
 				}
 				else {
-					params.target = params.target + ',#' + escId(target);
+					params.target = params.target + ',#' + _s2j.escId(target);
 				}
 
 				// Set pre-loading text (if any)
 				if (options.loadingtext) {
-					$(escId(target)).html(options.loadingtext);
+					$(_s2j.escId(target)).html(options.loadingtext);
 				}
 			});
 		}
 
 		var indi = options.indicatorid;
-		showIndicator(indi);
+		_s2j.showIndicator(indi);
 
 
 		params.beforeSubmit = function(formData, form, formoptions) {
@@ -1516,7 +1522,7 @@ function pubErr(cid, always, etopics, etext) {
 			orginal.options = formoptions;
 			orginal.options.submit = true;
 
-			publishTopic(container, options.onalwaystopics, orginal);
+			_s2j.publishTopic(container, options.onalwaystopics, orginal);
 
 			if (options.onbeforetopics) {
 				$.each(options.onbeforetopics.split(','), function(i, topic) { 
@@ -1524,10 +1530,10 @@ function pubErr(cid, always, etopics, etext) {
 					var submitForm = orginal.options.submit;
 					// cancel form submission
 					if (!submitForm) {
-						hideIndicator(options.indicatorid);
+						_s2j.hideIndicator(options.indicatorid);
 						if (options.loadingtext) {
 							$.each(options.targets.split(','), function(i, target) { 
-								$(escId(target)).html(options.loadingtext);
+								$(_s2j.escId(target)).html(options.loadingtext);
 							});
 						}
 					}
@@ -1573,23 +1579,23 @@ function pubErr(cid, always, etopics, etext) {
 							orginal.options.submit = false;
 						}
 					}
-					s2jlog('form validation : '+orginal.options.submit);
+					_s2j.log('form validation : '+orginal.options.submit);
 				};
 				$.ajax(valParams);
 			}
 			if (!orginal.options.submit) {
-				hideIndicator(options.indicatorid);
+				_s2j.hideIndicator(options.indicatorid);
 			}
 			return orginal.options.submit;
 		};
 
-		params.success = pubSuc(elem, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
-		params.complete = pubCom(elem, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
-		params.error = pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext);
+		params.success = _s2j.pubSuc(elem, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
+		params.complete = _s2j.pubCom(elem, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
+		params.error = _s2j.pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext);
 
 		$.each(options.formids.split(','), function(i, fid) { 
-			s2jlog('submit form : '+fid);
-			$(escId(fid)).ajaxSubmit(params);
+			_s2j.log('submit form : '+fid);
+			$(_s2j.escId(fid)).ajaxSubmit(params);
 		});
 
 		return false;
@@ -1609,12 +1615,13 @@ function pubErr(cid, always, etopics, etext) {
 			if (options.effectduration) {
 				duration = options.effectduration;
 			}
-			if (!$.struts2_jquery.loadAtOnce) {
-				$.require(["js/base/jquery.effects.core"+$.struts2_jquery.minSuffix+".js","js/base/jquery.effects."+options.effect+""+$.struts2_jquery.minSuffix+".js"]);
+			if (!_s2j.loadAtOnce) {
+				_s2j.require(["js/base/jquery.effects.core"+_s2j.minSuffix+".js","js/base/jquery.effects."+options.effect+""+_s2j.minSuffix+".js"]);
 			}
-			s2jlog('effect '+options.effect+' for '+options.targets);
-			$(escId(options.targets)).effect(options.effect, eo, duration);
+			_s2j.log('effect '+options.effect+' for '+options.targets);
+			$(_s2j.escId(options.targets)).effect(options.effect, eo, duration);
 		}
 	});
 
+	
 })(jQuery);

@@ -13,7 +13,7 @@
  *
  */
 
-/*global $, jQuery, s2jlog, window, CKEDITOR, publishTopic  */
+/*global $, jQuery, window, CKEDITOR */
 ( function($) {
 	
 
@@ -21,8 +21,8 @@
 	 * Bind a Richtext Editor to Struts2 Component
 	 */
 	$.struts2_jquery_richtext = {
-			
-			editors : new Array(),
+
+			editors : [],
 			
 			// clear orphan instances from memory
 		  clean: function($elem){
@@ -38,9 +38,9 @@
 
 			// Handle CKEditor
 			ckeditor : function($elem, options) {
-				s2jlog('ckeditor for : '+options.id);
-				$.require("js/ckeditor/ckeditor.js");
-				$.require("js/ckeditor/adapters/jquery.js");
+				this.log('ckeditor for : '+options.id);
+				this.require("js/ckeditor/ckeditor.js");
+				this.require("js/ckeditor/adapters/jquery.js");
 				
 				var inst = CKEDITOR.instances[options.id];
 				if(inst) {
@@ -53,8 +53,8 @@
 					$.struts2_jquery_richtext.editors[$.struts2_jquery_richtext.editors.length] = options.id;
 					if (options.onEditorReadyTopics) {
 						var data = {};
-						publishTopic($elem, options.onEditorReadyTopics, data);
-						publishTopic($elem, options.options.onalwaystopics, data);
+						$.struts2_jquery.publishTopic($elem, options.onEditorReadyTopics, data);
+						$.struts2_jquery.publishTopic($elem, options.options.onalwaystopics, data);
 					}
 				};
 				

@@ -11,18 +11,17 @@
  *
  */
 
-/*global $, jQuery, s2jlog  */
-
+/*global $, jQuery  */
 
 ( function($) {
 	$.mys2jextend = {
 			myrichtextextend : function($elem, options) {
-				s2jlog('richtext for : '+options.id);
-				$.requireCss("jquery.wysiwyg.css", "js/jwysiwyg/");
-				$.requireCss("jquery.wysiwyg.modal.css", "js/jwysiwyg/");
-				$.require("jquery.wysiwyg.js", null, "js/jwysiwyg/");
-				if (!$.struts2_jquery.loadAtOnce) {
-					$.require(
+				this.log('jwysiwyg for : '+options.id);
+				this.requireCss("jquery.wysiwyg.css", "js/jwysiwyg/");
+				this.requireCss("jquery.wysiwyg.modal.css", "js/jwysiwyg/");
+				this.require("jquery.wysiwyg.js", null, "js/jwysiwyg/");
+				if (!this.loadAtOnce) {
+					this.require(
 						[
 						 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
 						 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
@@ -35,7 +34,6 @@
 						 ]);
 				}
 				$elem.wysiwyg(options.wysiwygoptions);
-				$(document).wysiwyg();
 			}
 	};
 
