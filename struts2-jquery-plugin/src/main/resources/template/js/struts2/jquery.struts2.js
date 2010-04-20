@@ -93,12 +93,26 @@ function pubSuc(cid, always, stopics, indi, modus, options) {
 
 		if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) { container.html(data); }
 		else if (modus == 'value') { container.val(data); }
-		else if (modus == 'select') {
-			container[0].length = 0;
-
+		else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
+			//container[0].length = 0;
+			container.children().remove();
+			
 			if (typeof (data) == "object" || $.isArray(data)) {
 				var i = -1;
-				var eopt = document.createElement("option");
+				var eopt;
+				if (modus == 'radio') {
+					eopt = document.createElement("input");
+					eopt.name=options.name;
+					eopt.type='radio';
+				}
+				else if (modus == 'checkbox') {
+					eopt = document.createElement("input");
+					eopt.name=options.name;
+					eopt.type='checkbox';
+				}
+				else{
+					eopt = document.createElement("option");
+				}
 				if (options.headerkey && options.headervalue) {
 					var option = eopt.cloneNode(true);
 					option.value = options.headerkey;
@@ -138,7 +152,17 @@ function pubSuc(cid, always, stopics, indi, modus, options) {
 							option.selected = true;
 						}
 
-						container[0].options[++i] = option;
+						if (modus == 'select') {
+							container[0].options[++i] = option;
+						}
+						else {
+							
+							option.id=options.name+(++i);
+							container.append($(option));
+							container.append(
+									$('<label id="'+option.id+'label" for="'+option.id+'">'+option.text+'</label>')
+							);
+						}
 						o++;
 					});
 				}
@@ -242,7 +266,7 @@ function pubErr(cid, always, etopics, etext) {
 	$.require = function(files, callBack, basePath) {
 
 		var successFunction = callBack || function() {};
-		if (!$.require.libCache) { $.require.libCache = {}; }
+		if (!$.require.scriptCache) { $.require.scriptCache = {}; }
 		var path = basePath || null;
 		if ( path === null && !$.scriptPath ) {
 			path = '';
@@ -255,8 +279,8 @@ function pubErr(cid, always, etopics, etext) {
 			files = new Array(files);
 		}
 		$.each(files, function(i, file) { 
-			if (!$.require.libCache[file]) {
-				s2jlog('load require javascript '+(path + file));
+			if (!$.require.scriptCache[file]) {
+				s2jlog('load require script '+(path + file));
 				$.ajax( {
 				type : "GET",
 				url : path + file,
@@ -265,7 +289,7 @@ function pubErr(cid, always, etopics, etext) {
 				cache : true,
 				async : false
 				});
-				$.require.libCache[file] = true;
+				$.require.scriptCache[file] = true;
 			}
 		});
 		return $;
@@ -1303,7 +1327,55 @@ function pubErr(cid, always, etopics, etext) {
 		if (!this.loadAtOnce) {
 			$.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
 		}
-		$elem.buttonset(options);
+		var handler = '_s2j_container_load';
+		var buttonsetLoadTopic = '_s2j_topic_load_' + options.id;
+
+		if (options.href && options.href != '#') {
+
+			var buttonsetTopic = 's2j_butonset_'+options.id;
+			
+			if ($elem.isSubscribed(buttonsetTopic)) { $elem.unsubscribe(buttonsetTopic); }
+			
+			// Init Buttonset after elements loaded via AJAX.
+			$elem.subscribe(buttonsetTopic, function(event,data) {
+				if (options.onchangetopics) {
+					$.each(options.onchangetopics.split(','), function(i, cts) { 
+						$elem.publishOnEvent('change', cts);
+					});
+				}
+
+				$elem.buttonset(options);
+			});
+			if(options.oncompletetopics && options.oncompletetopics != '') {
+				options.oncompletetopics = buttonsetTopic;
+			}
+			else {
+				options.oncompletetopics = buttonsetTopic;
+			}
+
+			if (options.reloadtopics) {
+				$.each(options.reloadtopics.split(','), function(i, rts) { 
+					$elem.subscribe(rts, handler, options);
+				});
+			}
+			if (options.listentopics) {
+				$.each(options.listentopics.split(','), function(i, lts) { 
+					$elem.subscribe(lts, handler, options);
+				});
+			}
+
+			$elem.subscribe(buttonsetLoadTopic, handler);
+			$elem.publish(buttonsetLoadTopic, options);
+		}
+		else {
+			if (options.onchangetopics) {
+				$.each(options.onchangetopics.split(','), function(i, cts) { 
+					$elem.publishOnEvent('change', cts);
+				});
+			}
+
+			$elem.buttonset(options);
+		}
 	}
 	};
 
@@ -1345,6 +1417,8 @@ function pubErr(cid, always, etopics, etext) {
 				if (options.type) {
 					if (options.type == 'text') { modus = 'value'; }
 					else if (options.type == 'select') { modus = 'select'; }
+					else if (options.type == 'checkbox') { modus = 'checkbox'; }
+					else if (options.type == 'radio') { modus = 'radio'; }
 				}
 
 				var params = {};

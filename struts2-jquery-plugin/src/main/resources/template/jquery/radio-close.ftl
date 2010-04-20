@@ -22,6 +22,17 @@
 <script type='text/javascript'>
 $(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
+<#if parameters.remoteList??>
+	options_${escapedOptionId?html}.datatype = "json";
+	options_${escapedOptionId?html}.type = 'radio';
+	options_${escapedOptionId?html}.list = "${parameters.remoteList?html}";
+</#if>
+<#if parameters.remoteListKey??>
+	options_${escapedOptionId?html}.listkey = "${parameters.remoteListKey?html}";
+</#if>
+<#if parameters.remoteListValue??>
+	options_${escapedOptionId?html}.listvalue = "${parameters.remoteListValue?html}";
+</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

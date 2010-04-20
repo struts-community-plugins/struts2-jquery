@@ -30,6 +30,7 @@
     <strong>Result Div :</strong>
 	<div id="formResult" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
+    <strong>Buttonset that was populated from a List with String values.</strong>
     <s:form id="form" action="echo" theme="xhtml">
 			    <sj:checkboxlist
 			    		id="checkboxbuttonset"
@@ -44,6 +45,24 @@
 	            	button="true"
 	            	/>
     </s:form>
+    <br/>
+    <strong>Buttonset that was populated from AJAX JSON Result.</strong>
+    <s:form id="form2" action="echo" theme="xhtml">
+				<s:url id="remoteurl" action="jsonsample"/> 
+				<sj:checkboxlist
+					href="%{remoteurl}" 
+					id="remoteCheckboxlist" 
+					name="echo" 
+					list="languageList" 
+					label="Language"
+				/>
+	            <sj:submit 
+	            	targets="formResult" 
+	            	value="AJAX Submit" 
+	            	indicator="indicator"
+	            	button="true"
+	            	/>
+   </s:form>
 
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
     

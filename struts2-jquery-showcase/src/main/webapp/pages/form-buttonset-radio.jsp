@@ -30,6 +30,7 @@
     <strong>Result Div :</strong>
 	<div id="formResult" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
+    <strong>Buttonset that was populated from a List with String values.</strong>
     <s:form id="form" action="echo" theme="simple">
             <label for="echo">Choose your Friend: </label>
 		    <sj:radio
@@ -44,8 +45,28 @@
 	           	button="true"
            	/>
     </s:form>
+	<br/>
+    <strong>Buttonset that was populated from AJAX JSON Result with onChangeTopic.</strong>
+    <s:form id="form2" action="echo" theme="xhtml">
+				<s:url id="remoteurl" action="jsonsample"/> 
+				<sj:radio
+					href="%{remoteurl}" 
+					id="remoteRadiobuttons" 
+					name="echo" 
+					list="languageMap" 
+					label="Language"
+					onChangeTopics="submitForm2"
+				/>
+	            <sj:submit 
+	            	targets="formResult" 
+	            	value="AJAX Submit" 
+	            	indicator="indicator"
+	            	button="true"
+	            	listenTopics="submitForm2"
+	            	/>
+   </s:form>
 
-    <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
+   <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
     
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>

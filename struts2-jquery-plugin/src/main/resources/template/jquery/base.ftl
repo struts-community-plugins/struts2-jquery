@@ -25,3 +25,7 @@
   <#if parameters.id?exists>
 	options_${escapedOptionId?html}.id = "${parameters.id?html}";
   </#if>
+  <#if parameters.name?exists>
+	options_${escapedOptionId?html}.name = "${parameters.name?html}";
+  </#if>
+  
