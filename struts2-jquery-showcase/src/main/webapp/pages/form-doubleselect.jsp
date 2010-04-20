@@ -27,6 +27,7 @@
 	<p>
 	    Two select boxes with remote json content. The second select box content is dependent from the first one.
 	</p>
+	<strong>Reload example with two select boxes.</strong>
      <s:form id="formSelectReload" action="echo" theme="simple" cssClass="yform">
         <fieldset>
             <legend>AJAX Form</legend>
@@ -63,6 +64,7 @@
 	        </div>
 	        <div class="type-button">
 				<sj:submit 
+					id="submitFormSelectReload"
 					targets="result" 
 					value="AJAX Submit" 
 					indicator="indicator" 
@@ -76,6 +78,50 @@
 	        </div>
         </fieldset>
     </s:form>
+	<br/>
+	<strong>Reload example with one select box and an buttonset.</strong>
+     <s:form id="formSelectCheckBox" action="echo" theme="xhtml">
+		<s:url id="remoteurl" action="jsonsample"/> 
+		<sj:select 
+			href="%{remoteurl}" 
+			id="languageSelect" 
+			onChangeTopics="reloadcheckboxes" 
+			name="language" 
+			list="languageObjList" 
+			listKey="myKey" 
+			listValue="myValue" 
+			emptyOption="true" 
+			headerKey="-1" 
+			headerValue="Please Select a Language"
+			label="Language"
+			required="true"
+		/>
+		<s:url id="remoteurl" action="jsonsample"/> 
+		<sj:checkboxlist 
+			href="%{remoteurl}" 
+			id="frameworkCheckboxes" 
+			formIds="formSelectCheckBox" 
+			reloadTopics="reloadcheckboxes" 
+			name="echo" 
+			list="reloadList" 
+			label="Framework"
+			required="true"
+			onChangeTopics="submitCheckboxForm"
+		/>
+		<sj:submit 
+			id="submitFormSelectCheckBox"
+			listenTopics="submitCheckboxForm"
+			targets="result" 
+			value="AJAX Submit" 
+			indicator="indicator2" 
+			cssStyle="display : none;"
+		/>
+    </s:form>
+	<img id="indicator2" 
+		src="images/indicator.gif" 
+		alt="Loading..." 
+		style="display:none"
+	/>
 
     <strong>Result Div :</strong>
 	<div id="result" class="result ui-widget-content ui-corner-all">Submit a form.</div>
@@ -87,6 +133,7 @@
       <sj:tab id="tab2" target="config" label="Configuration"/>
       <div id="jsp">
 	  <pre>
+	<strong>Reload example with two select boxes.</strong>
      &lt;s:form id=&quot;formSelectReload&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
         &lt;fieldset&gt;
             &lt;legend&gt;AJAX Form&lt;/legend&gt;
@@ -123,6 +170,7 @@
 	        &lt;/div&gt;
 	        &lt;div class=&quot;type-button&quot;&gt;
 				&lt;sj:submit 
+					id=&quot;submitFormSelectReload&quot;
 					targets=&quot;result&quot; 
 					value=&quot;AJAX Submit&quot; 
 					indicator=&quot;indicator&quot; 
@@ -136,6 +184,53 @@
 	        &lt;/div&gt;
         &lt;/fieldset&gt;
     &lt;/s:form&gt;
+	&lt;br/&gt;
+	<strong>Reload example with one select box and an buttonset.</strong>
+     &lt;s:form id=&quot;formSelectCheckBox&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+		&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
+		&lt;sj:select 
+			href=&quot;%{remoteurl}&quot; 
+			id=&quot;languageSelect&quot; 
+			onChangeTopics=&quot;reloadcheckboxes&quot; 
+			name=&quot;language&quot; 
+			list=&quot;languageObjList&quot; 
+			listKey=&quot;myKey&quot; 
+			listValue=&quot;myValue&quot; 
+			emptyOption=&quot;true&quot; 
+			headerKey=&quot;-1&quot; 
+			headerValue=&quot;Please Select a Language&quot;
+			label=&quot;Language&quot;
+			required=&quot;true&quot;
+		/&gt;
+		&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
+		&lt;sj:checkboxlist 
+			href=&quot;%{remoteurl}&quot; 
+			id=&quot;frameworkCheckboxes&quot; 
+			formIds=&quot;formSelectCheckBox&quot; 
+			reloadTopics=&quot;reloadcheckboxes&quot; 
+			name=&quot;echo&quot; 
+			list=&quot;reloadList&quot; 
+			label=&quot;Framework&quot;
+			required=&quot;true&quot;
+			onChangeTopics=&quot;submitCheckboxForm&quot;
+		/&gt;
+		&lt;sj:submit 
+			id=&quot;submitFormSelectCheckBox&quot;
+			listenTopics=&quot;submitCheckboxForm&quot;
+			targets=&quot;result&quot; 
+			value=&quot;AJAX Submit&quot; 
+			indicator=&quot;indicator2&quot; 
+			cssStyle=&quot;display : none;&quot;
+		/&gt;
+    &lt;/s:form&gt;
+	&lt;img id=&quot;indicator2&quot; 
+		src=&quot;images/indicator.gif&quot; 
+		alt=&quot;Loading...&quot; 
+		style=&quot;display:none&quot;
+	/&gt;
+
+    &lt;strong&gt;Result Div :&lt;/strong&gt;
+	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit a form.&lt;/div&gt;
 	  </pre>
 	  </div>
       <div id="java">

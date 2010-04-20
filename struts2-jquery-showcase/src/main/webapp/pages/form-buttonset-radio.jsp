@@ -71,8 +71,7 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-	&lt;div id=&quot;formResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
-    
+    <strong>Buttonset that was populated from a List with String values.</strong>
     &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;simple&quot;&gt;
             &lt;label for=&quot;echo&quot;&gt;Choose your Friend: &lt;/label&gt;
 		    &lt;sj:radio
@@ -87,6 +86,28 @@
 	           	button=&quot;true&quot;
            	/&gt;
     &lt;/s:form&gt;
+	&lt;br/&gt;
+    <strong>Buttonset that was populated from AJAX JSON Result with onChangeTopic.</strong>
+    &lt;s:form id=&quot;form2&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
+				&lt;sj:radio
+					href=&quot;%{remoteurl}&quot; 
+					id=&quot;remoteRadiobuttons&quot; 
+					name=&quot;echo&quot; 
+					list=&quot;languageMap&quot; 
+					label=&quot;Language&quot;
+					onChangeTopics=&quot;submitForm2&quot;
+				/&gt;
+	            &lt;sj:submit 
+	            	targets=&quot;formResult&quot; 
+	            	value=&quot;AJAX Submit&quot; 
+	            	indicator=&quot;indicator&quot;
+	            	button=&quot;true&quot;
+	            	listenTopics=&quot;submitForm2&quot;
+	            	/&gt;
+   &lt;/s:form&gt;
+
+   &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
 	  </pre>
 	</div>
   </div>
