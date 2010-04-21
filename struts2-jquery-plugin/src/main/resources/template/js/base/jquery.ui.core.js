@@ -1,5 +1,5 @@
 /*!
- * jQuery UI 1.8
+ * jQuery UI 1.8.1
  *
  * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -11,7 +11,7 @@
 
 //Helper functions and ui object
 $.ui = {
-	version: "1.8",
+	version: "1.8.1",
 
 	// $.ui.plugin is deprecated.  Use the proxy pattern instead.
 	plugin: {
@@ -70,6 +70,7 @@ $.ui = {
 	},
 
 	keyCode: {
+		ALT: 18,
 		BACKSPACE: 8,
 		CAPS_LOCK: 20,
 		COMMA: 188,
@@ -117,15 +118,13 @@ $.fn.extend({
 	enableSelection: function() {
 		return this
 			.attr('unselectable', 'off')
-			.css('MozUserSelect', '')
-			.unbind('selectstart.ui');
+			.css('MozUserSelect', '');
 	},
 
 	disableSelection: function() {
 		return this
 			.attr('unselectable', 'on')
-			.css('MozUserSelect', 'none')
-			.bind('selectstart.ui', function() { return false; });
+			.css('MozUserSelect', 'none');
 	},
 
 	scrollParent: function() {

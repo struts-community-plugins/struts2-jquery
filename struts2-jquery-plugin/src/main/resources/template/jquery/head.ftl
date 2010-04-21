@@ -40,7 +40,7 @@
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
-  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js">
+  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js">
 <#else>
   <#assign jqueryFile="jquery-1.4.2.js">
   <#assign jqueryForm="jquery.form.js">
@@ -51,7 +51,7 @@
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js">
-  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.js">
+  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.js">
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
