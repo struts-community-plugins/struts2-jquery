@@ -856,6 +856,12 @@
 				}
 			});
 		}
+		else {
+			//Submit Forms without AJAX 
+			$elem.click( function(){
+				$(_s2j.escId(options.formids)).submit();
+			});
+		}
 	},
 
 	dialog : function($elem, options) {

@@ -133,7 +133,7 @@
 			params.gridview = false;
 			params.subGridRowExpanded = function(subgrid_id, row_id) {
 				var subgrid_table_id = subgrid_id + "_table";
-				var subgrid = $(this.escId(subgrid_id));
+				var subgrid = $($.struts2_jquery.escId(subgrid_id));
 				var subgridhtml = "<table id='" + subgrid_table_id + "' class='scroll'></table>";
 				if (options.subgridoptions.pager && options.subgridoptions.pager != "") {
 					subgridhtml = subgridhtml + "<div id='" + subgrid_id + "_pager'></div>";
