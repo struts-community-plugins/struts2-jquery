@@ -57,72 +57,83 @@
 		this.requireCss("themes/ui.jqgrid.css");
 		var params = {};
 		$.extend(params, options);
-		if (options.onselectrowtopics || options.editurl) {
-			params.onSelectRow = function(id) {
+		if (options.onselectrowtopics || (options.editurl && options.editinline === true)) {
+			params.onSelectRow = function(id, status) {
 				var data = {};
 				data.id = id;
+				data.status = status;
+				data.grid = $(this);
 
 				$.struts2_jquery.publishTopic($elem, options.onalwaystopics, data);
 				$.struts2_jquery.publishTopic($elem, options.onselectrowtopics, data);
 				if (options.editurl && options.editinline === true) {
 					if (id && id !== $.struts2_jquery_grid.lastselectedrow) {
-						$elem.jqGrid('restoreRow', $.struts2_jquery_grid.lastselectedrow);
-						$elem.jqGrid('editRow', id, true);
+						$(this).jqGrid('restoreRow', $.struts2_jquery_grid.lastselectedrow);
 						$.struts2_jquery_grid.lastselectedrow = id;
 					}
+					$(this).jqGrid('editRow', id, true);
 				}
 			};
 		}
 
-		params.loadBeforeSend = function(xhr) {
+		if(options.onbeforetopics) {
+			params.loadBeforeSend = function(xhr) {
+	
+				var orginal = {};
+				orginal.xhr = xhr;
+	
+				$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
+				$.struts2_jquery.publishTopic($elem, options.onbeforetopics, orginal);
+			};
+		}
+		
+		if(options.onpagingtopics) {
+			params.onPaging = function(pgButton) {
+	
+				var orginal = {};
+				orginal.pgButton = pgButton;
+	
+				$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
+				$.struts2_jquery.publishTopic($elem, options.onpagingtopics, orginal);
+			};
+		}
+		
+		if(options.onsortcoltopics) {
+			params.onSortCol = function(index, iCol, sortorder) {
+	
+				var orginal = {};
+				orginal.index = index;
+				orginal.iCol = iCol;
+				orginal.sortorder = sortorder;
+	
+				$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
+				$.struts2_jquery.publishTopic($elem, options.onsortcoltopics, orginal);
+			};
+		}
 
-			var orginal = {};
-			orginal.xhr = xhr;
-
-			$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
-			$.struts2_jquery.publishTopic($elem, options.onbeforetopics, orginal);
-		};
-
-		params.onPaging = function(pgButton) {
-
-			var orginal = {};
-			orginal.pgButton = pgButton;
-
-			$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
-			$.struts2_jquery.publishTopic($elem, options.onpagingtopics, orginal);
-		};
-
-		params.onSortCol = function(index, iCol, sortorder) {
-
-			var orginal = {};
-			orginal.index = index;
-			orginal.iCol = iCol;
-			orginal.sortorder = sortorder;
-
-			$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
-			$.struts2_jquery.publishTopic($elem, options.onsortcoltopics, orginal);
-		};
-
-		params.onCellSelect = function(rowid, iCol, cellcontent, e) {
-
-			var orginal = {};
-			orginal.rowid = rowid;
-			orginal.iCol = iCol;
-			orginal.cellcontent = cellcontent;
-			orginal.e = e;
-
-			$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
-			$.struts2_jquery.publishTopic($elem, options.oncellselecttopics, orginal);
-		};
-
-		params.gridComplete = function() {
-
-			var orginal = {};
-
-			$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
-			$.struts2_jquery.publishTopic($elem, options.ongridcompletetopics, orginal);
-		};
-
+		if(options.oncellselecttopics) {
+			params.onCellSelect = function(rowid, iCol, cellcontent, e) {
+	
+				var orginal = {};
+				orginal.rowid = rowid;
+				orginal.iCol = iCol;
+				orginal.cellcontent = cellcontent;
+				orginal.e = e;
+	
+				$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
+				$.struts2_jquery.publishTopic($elem, options.oncellselecttopics, orginal);
+			};
+		}
+		
+		if(options.ongridcompletetopics) {
+			params.gridComplete = function() {
+	
+				var orginal = {};
+	
+				$.struts2_jquery.publishTopic($elem, options.onalwaystopics, orginal);
+				$.struts2_jquery.publishTopic($elem, options.ongridcompletetopics, orginal);
+			};
+		}
 		params.loadComplete = this.pubCom($elem, options.onalwaystopics, options.oncompletetopics, null, null, options);
 		params.loadError = this.pubErr($elem, options.onalwaystopics, options.onerrortopics, options.errortext);
 
