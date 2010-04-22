@@ -18,18 +18,24 @@
  * under the License.
  */
 -->
-<#if parameters.parentTheme == 'xhtml' || parameters.parentTheme == 'simple'>
-<#if parameters.parentTheme == 'xhtml'>
-<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
-</#if>
+<#if parameters.parentTheme == 'xhtml' || parameters.parentTheme == 'css_xhtml' || parameters.parentTheme == 'simple'>
+	<#if parameters.parentTheme == 'xhtml'>
+		<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
+	</#if>
+	<#if parameters.parentTheme == 'css_xhtml'>
+		<#include "/${parameters.templateDir}/css_xhtml/controlheader.ftl" />
+	</#if>
 <div id="${parameters.id?html}">
 <#include "/${parameters.templateDir}/simple/checkboxlist.ftl" />
 </div>
-<#if parameters.parentTheme == 'xhtml'>
-<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
-</#if>
+	<#if parameters.parentTheme == 'xhtml'>
+		<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+	</#if>
+	<#if parameters.parentTheme == 'css_xhtml'>
+		<#include "/${parameters.templateDir}/css_xhtml/controlfooter.ftl" />
+	</#if>
 <#else>
 <div id="${parameters.id?html}">
-<#include "/${parameters.templateDir}/${parameters.parentTheme}/checkboxlist.ftl" />
+	<#include "/${parameters.templateDir}/${parameters.parentTheme}/checkboxlist.ftl" />
 </div>
 </#if>

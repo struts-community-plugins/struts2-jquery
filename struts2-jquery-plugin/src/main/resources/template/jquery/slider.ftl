@@ -18,8 +18,13 @@
  * under the License.
  */
 -->
-<#if parameters.label?if_exists != "">
-	<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
+<#if parameters.parentTheme?if_exists == 'xhtml' || parameters.parentTheme?if_exists == 'css_xhtml'>
+	<#if parameters.parentTheme == 'xhtml'>
+		<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
+	</#if>
+	<#if parameters.parentTheme == 'css_xhtml'>
+		<#include "/${parameters.templateDir}/css_xhtml/controlheader.ftl" />
+	</#if>
 </#if>
 <input type="hidden"
   <#if parameters.widgetid?if_exists != "">
@@ -44,3 +49,11 @@
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 >
+<#if parameters.parentTheme?if_exists == 'xhtml' || parameters.parentTheme?if_exists == 'css_xhtml'>
+	<#if parameters.parentTheme == 'xhtml'>
+		<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+	</#if>
+	<#if parameters.parentTheme == 'css_xhtml'>
+		<#include "/${parameters.templateDir}/css_xhtml/controlfooter.ftl" />
+	</#if>
+</#if>

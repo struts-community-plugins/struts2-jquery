@@ -18,14 +18,20 @@
  * under the License.
  */
 -->
-<#if parameters.parentTheme == 'xhtml' || parameters.parentTheme == 'simple'>
-<#if parameters.parentTheme == 'xhtml'>
-<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
-</#if>
-<#include "/${parameters.templateDir}/simple/textarea.ftl" />
-<#if parameters.parentTheme == 'xhtml'>
-<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
-</#if>
+<#if parameters.parentTheme == 'xhtml' || parameters.parentTheme == 'css_xhtml' || parameters.parentTheme == 'simple'>
+	<#if parameters.parentTheme == 'xhtml'>
+		<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
+	</#if>
+	<#if parameters.parentTheme == 'css_xhtml'>
+		<#include "/${parameters.templateDir}/css_xhtml/controlheader.ftl" />
+	</#if>
+	<#include "/${parameters.templateDir}/simple/textarea.ftl" />
+	<#if parameters.parentTheme == 'xhtml'>
+		<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+	</#if>
+	<#if parameters.parentTheme == 'css_xhtml'>
+		<#include "/${parameters.templateDir}/css_xhtml/controlfooter.ftl" />
+	</#if>
 <#else>
-<#include "/${parameters.templateDir}/${parameters.parentTheme}/textarea.ftl" />
+	<#include "/${parameters.templateDir}/${parameters.parentTheme}/textarea.ftl" />
 </#if>

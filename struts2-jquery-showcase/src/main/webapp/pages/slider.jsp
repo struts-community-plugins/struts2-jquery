@@ -26,7 +26,7 @@
   <div class="code ui-widget-content ui-corner-all">
     <strong>Code:</strong>
     <pre>
-    &lt;sj:slider id="simpleslider"/&gt;
+    &lt;sj:slider id=&quot;simpleslider&quot;/&gt;
     </pre>
   </div>
   <!-- IE Column Clearing -->
