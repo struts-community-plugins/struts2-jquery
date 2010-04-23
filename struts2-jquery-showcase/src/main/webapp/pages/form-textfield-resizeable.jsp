@@ -90,8 +90,11 @@
 					resizableGhost=&quot;true&quot; 
 					resizableHelper=&quot;ui-state-highlight&quot; 
 					resizableMaxHeight=&quot;30&quot; 
-					effect=&quot;pulsate&quot; 
-					effectDuration=&quot;1500&quot; 
+					effect=&quot;blind&quot; 
+					effectDuration=&quot;1500&quot;
+					effectOptions=&quot;{
+						mode: 'show'
+					}&quot;
 					id=&quot;echo&quot; 
 					name=&quot;echo&quot;
 					loadingText=&quot;Loading content of textfield ...&quot;
