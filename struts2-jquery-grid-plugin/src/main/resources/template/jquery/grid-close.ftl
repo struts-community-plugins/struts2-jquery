@@ -70,6 +70,9 @@
   <#if parameters.altClass?if_exists != "">
 	options_${escapedOptionId?html}.altclass = "${parameters.altClass?html}";
   </#if>
+  <#if parameters.prmNames?if_exists != "">
+	options_${escapedOptionId?html}.prmNames = ${parameters.prmNames?html};
+  </#if>
   <#if parameters.navigator?default(false)>
 	options_${escapedOptionId?html}.navigator = true;
 	  <#if parameters.navigatorEditOptions?if_exists != "">
