@@ -17,11 +17,6 @@
     <p>
         A simple grid with pager. This Grid is sortable by name column.
     </p>
-    <p>
-        To enable jqGrid set useJqGridPlugin to true in the head tag.
-        <br/>
-        &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
-    </p>
     <s:url id="remoteurl" action="jsontable"/> 
     <sjg:grid 
     	id="gridtable" 

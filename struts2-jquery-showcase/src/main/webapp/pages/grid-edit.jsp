@@ -17,11 +17,6 @@
     <p>
         A editable Grid with pager and navigator. Entries are editable when a cell is selected. This Grid is sortable by name column and searchable by id.
     </p>
-     <p>
-        To enable jqGrid set useJqGridPlugin to true in the head tag.
-        <br/>
-        &lt;sj:head <strong>useJqGridPlugin=&quot;true&quot;</strong> jqueryui=&quot;true&quot; jquerytheme=&quot;redmond&quot;/&gt;
-    </p>
     <s:url id="remoteurl" action="jsontable"/> 
     <s:url id="editurl" action="edit-grid-entry"/> 
     <sjg:grid 
