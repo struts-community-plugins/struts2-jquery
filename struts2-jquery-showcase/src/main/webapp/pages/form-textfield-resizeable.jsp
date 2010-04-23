@@ -41,8 +41,11 @@
 					resizableGhost="true" 
 					resizableHelper="ui-state-highlight" 
 					resizableMaxHeight="30" 
-					effect="pulsate" 
+					effect="blind" 
 					effectDuration="1500" 
+					effectOptions="{
+						mode: 'show'
+					}"
 					id="echo" 
 					name="echo"
 					loadingText="Loading content of textfield ..."
