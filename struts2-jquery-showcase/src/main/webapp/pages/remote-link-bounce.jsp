@@ -30,7 +30,8 @@
 		indicator="indicator" 
 		targets="result" 
 		effect="bounce" 
-		effectDuration="2200" 
+		effectDuration="2200"
+		effectOptions="{}"
     	button="true" 
 		buttonIcon="ui-icon-gear"
 	>

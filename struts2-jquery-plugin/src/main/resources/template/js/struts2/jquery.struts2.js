@@ -38,6 +38,11 @@
 	lasttopic :'',
 	scriptCache : {},
 	styleCache : {},
+	handler : {
+		load : '_s2j_container_load',
+		form : '_s2j_form_submit',
+		effect : '_s2j_effects'
+	},
 	loadHandler : '_s2j_container_load',
 	formHandler : '_s2j_form_submit',
 	effectHandler : '_s2j_effects',
@@ -392,7 +397,7 @@
 				if (options.href && options.href != '#') {
 					options.targets = options.opendialog;
 					var divTopic = '_s2j_dialog_load_' + options.id;
-					if (!dialog.isSubscribed(divTopic)) { dialog.subscribe(divTopic, _s2j.loadHandler); }
+					if (!dialog.isSubscribed(divTopic)) { dialog.subscribe(divTopic, _s2j.handler.load); }
 					dialog.publish(divTopic, options);
 				}
 
@@ -448,14 +453,14 @@
 					if (tarelem.isSubscribed(effectTopic + target)) { tarelem.unsubscribe(effectTopic + target); }
 
 					tarelem.subscribe(actionTopic, loadHandler, options);
-					tarelem.subscribe(effectTopic + target, _s2j.effectHandler, effect);
+					tarelem.subscribe(effectTopic + target, _s2j.handler.effect, effect);
 
 					if (options.listentopics) {
 						$.each(options.listentopics.split(','), function(i, lt) { 
 							if (tarelem.isSubscribed(lt)) { tarelem.unsubscribe(lt); }
 
 							tarelem.subscribe(lt, loadHandler, options);
-							tarelem.subscribe(lt, _s2j.effectHandler, effect);
+							tarelem.subscribe(lt, _s2j.handler.effect, effect);
 						});
 					}
 					if (this.ajaxhistory) {
@@ -473,7 +478,7 @@
 		else { // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 			effect.targets = options.id;
-			$(this.escId(options.id)).subscribe(effectTopic + options.id, this.effectHandler, effect);
+			$(this.escId(options.id)).subscribe(effectTopic + options.id, this.handler.effect, effect);
 
 			// bind event topic listeners
 			if (options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
@@ -491,7 +496,7 @@
 
 	container : function($elem, options) {
 		this.log('container : '+options.id);
-		this.action($elem, options, this.loadHandler, 'div');
+		this.action($elem, options, this.handler.load, 'div');
 
 		// load div using ajax only when href is specified or form is defined
 		if ((options.formids && !options.type) || (options.href && options.href != '#')) {
@@ -501,14 +506,14 @@
 					$.each(options.reloadtopics.split(','), function(i, rt) { 
 						if ($elem.isSubscribed(rt)) { $elem.unsubscribe(rt); }
 
-						$elem.subscribe(rt, _s2j.loadHandler, options);
+						$elem.subscribe(rt, _s2j.handler.load, options);
 					});
 				}
 				if (options.listentopics) {
 					$.each(options.listentopics.split(','), function(i, lt) { 
 						if ($elem.isSubscribed(lt)) { $elem.unsubscribe(lt); }
 
-						$elem.subscribe(lt, _s2j.loadHandler, options);
+						$elem.subscribe(lt, _s2j.handler.load, options);
 					});
 				}
 
@@ -516,7 +521,7 @@
 				var divTopic = '_s2j_div_load_' + options.id;
 				if ($elem.isSubscribed(divTopic)) { $elem.unsubscribe(divTopic); }
 
-				$elem.subscribe(divTopic, _s2j.loadHandler);
+				$elem.subscribe(divTopic, _s2j.handler.load);
 
 				if (options.bindon) {
 					var $bindElement = $('#' + options.bindon);
@@ -553,7 +558,7 @@
 				effect.effect = options.effect;
 				effect.effectoptions = options.effectoptions;
 				effect.effectduration = options.effectduration;
-				if (!$elem.isSubscribed(divEffectTopic)) { $elem.subscribe(divEffectTopic, this.effectHandler, effect); }
+				if (!$elem.isSubscribed(divEffectTopic)) { $elem.subscribe(divEffectTopic, this.handler.effect, effect); }
 			}
 
 			if (options.events || options.bindon) {
@@ -756,7 +761,7 @@
 			$elem.publishOnEvent('click', formTopic);
 		}
 		else {
-			this.action($elem, options, this.loadHandler, 'a');
+			this.action($elem, options, this.handler.load, 'a');
 		}
 	},
 
@@ -771,16 +776,16 @@
 
 			if (options.reloadtopics) {
 				$.each(options.reloadtopics.split(','), function(i, rts) { 
-					if (!$elem.isSubscribed(rts)) { $elem.subscribe(rts, _s2j.loadHandler, options); }
+					if (!$elem.isSubscribed(rts)) { $elem.subscribe(rts, _s2j.handler.load, options); }
 				});
 			}
 			if (options.listentopics) {
 				$.each(options.listentopics.split(','), function(i, lts) { 
-					if (!$elem.isSubscribed(lts)) { $elem.subscribe(lts, _s2j.loadHandler, options); }
+					if (!$elem.isSubscribed(lts)) { $elem.subscribe(lts, _s2j.handler.load, options); }
 				});
 			}
 
-			if (!$elem.isSubscribed(selectTopic)) { $elem.subscribe(selectTopic, _s2j.loadHandler); }
+			if (!$elem.isSubscribed(selectTopic)) { $elem.subscribe(selectTopic, _s2j.handler.load); }
 			$elem.publish(selectTopic, options);
 		}
 		if (options.onchangetopics) {
@@ -815,7 +820,7 @@
 				this.formsubmit($elem, options, formTopic);
 			}
 			else {
-				this.action($elem, options, this.loadHandler, 'a');
+				this.action($elem, options, this.handler.load, 'a');
 			}
 		}
 		$elem.publishOnEvent('click', formTopic);
@@ -829,19 +834,19 @@
 
 		if (options.reloadtopics) {
 			$.each(options.reloadtopics.split(','), function(i, rts) { 
-				$elem.subscribe(rts, _s2j.formHandler, options);
+				$elem.subscribe(rts, _s2j.handler.form, options);
 			});
 		}
 		if (options.listentopics) {
 			$.each(options.listentopics.split(','), function(i, lt) { 
-				$elem.subscribe(lt, _s2j.formHandler, options);
+				$elem.subscribe(lt, _s2j.handler.form, options);
 			});
 		}
 
-		$elem.subscribe(topic, _s2j.formHandler, options);
+		$elem.subscribe(topic, _s2j.handler.form, options);
 		if (options.targets) {
 			$.each(options.targets.split(','), function(i, target) { 
-				$(_s2j.escId(target)).subscribe(topic, _s2j.effectHandler, options);
+				$(_s2j.escId(target)).subscribe(topic, _s2j.handler.effect, options);
 				if (_s2j.ajaxhistory) {
 					var params = {};
 					params.target = target;
@@ -899,7 +904,7 @@
 
 			if (options.href && options.href != '#') {
 				var divTopic = '_s2j_topic_load_' + options.id;
-				if (!$elem.isSubscribed(divTopic)) { $elem.subscribe(divTopic, _s2j.loadHandler); }
+				if (!$elem.isSubscribed(divTopic)) { $elem.subscribe(divTopic, _s2j.handler.load); }
 				$elem.publish(divTopic, options);
 			}
 
@@ -1360,16 +1365,16 @@
 
 			if (options.reloadtopics) {
 				$.each(options.reloadtopics.split(','), function(i, rts) { 
-					$elem.subscribe(rts, _s2j.loadHandler, options);
+					$elem.subscribe(rts, _s2j.handler.load, options);
 				});
 			}
 			if (options.listentopics) {
 				$.each(options.listentopics.split(','), function(i, lts) { 
-					$elem.subscribe(lts, _s2j.loadHandler, options);
+					$elem.subscribe(lts, _s2j.handler.load, options);
 				});
 			}
 
-			$elem.subscribe(buttonsetLoadTopic, _s2j.loadHandler);
+			$elem.subscribe(buttonsetLoadTopic, _s2j.handler.load);
 			$elem.publish(buttonsetLoadTopic, options);
 		}
 		else {
@@ -1389,7 +1394,7 @@
 	
 	/** Container logic */
 	// Register handler to load a container
-	$.subscribeHandler(_s2j.loadHandler, function(event, data) {
+	$.subscribeHandler(_s2j.handler.load, function(event, data) {
 
 		var container = $(event.target);
 		var options = {};
@@ -1470,7 +1475,7 @@
 
 	/** Form logic */
 	// Handler to submit a form with jquery.form.js plugin
-	$.subscribeHandler(_s2j.formHandler, function(event, data) {
+	$.subscribeHandler(_s2j.handler.form, function(event, data) {
 		var container = $(event.target);
 		var elem = container;
 
@@ -1605,7 +1610,7 @@
 
 	/** Effects */
 	// Register handler for effects
-	$.subscribeHandler(_s2j.effectHandler, function(event, data) {
+	$.subscribeHandler(_s2j.handler.effect, function(event, data) {
 		var options = {};
 		$.extend(options, event.data);
 		if (options.targets && options.effect) {

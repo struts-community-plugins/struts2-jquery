@@ -51,14 +51,16 @@
   <#if parameters.dataType?exists>
 	options_${escapedOptionId?html}.datatype = "${parameters.dataType?html}";
   </#if>
-   <#if parameters.effect?exists>
+  <#if parameters.effect?exists>
 	options_${escapedOptionId?html}.effect = "${parameters.effect?html}";
-  </#if>  
-  <#if parameters.effectDuration?exists>
+	<#if parameters.effectDuration?exists>
 	options_${escapedOptionId?html}.effectduration = ${parameters.effectDuration?html};
-  </#if>  
-  <#if parameters.effectOptions?exists>
+	</#if>  
+	<#if parameters.effectOptions?exists>
 	options_${escapedOptionId?html}.effectoptions = ${parameters.effectOptions?html};
+	<#else>
+	options_${escapedOptionId?html}.effectoptions = {};
+	</#if>  
   </#if>  
   <#if parameters.timeout?exists>
 	options_${escapedOptionId?html}.timeout = ${parameters.timeout?html};
