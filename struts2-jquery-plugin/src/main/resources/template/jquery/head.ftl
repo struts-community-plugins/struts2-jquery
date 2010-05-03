@@ -76,7 +76,7 @@
 </#if>
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
-		<#if parameters.loadFromGoogle?default(false) && basePath == "struts/themes">
+		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
         	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		<#else>
         	<link rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
