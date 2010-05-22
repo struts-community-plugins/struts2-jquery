@@ -29,9 +29,9 @@
                         tlibVersion=2.2.3,
                         jspVersion=2.0,
                         shortName=sjr,
-                        displayName='Struts2 jQuery Richtext Tags',
+                        displayName=Struts2 jQuery Richtext Tags,
                         outFile=${basedir}/target/classes/META-INF/struts-jquery-richtext-tags.tld,
-                        description='Struts2 Richtext Tags based on jQuery.',
+                        description=Struts2 Richtext Tags based on jQuery.,
                         outTemplatesDir=${basedir}/src/site/docs
                     </A>
                     <resourceTargetPath>target</resourceTargetPath>
