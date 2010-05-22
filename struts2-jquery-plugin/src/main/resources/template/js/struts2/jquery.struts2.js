@@ -949,7 +949,7 @@
 		}
 		if (options.cookie) { 
 			if (!this.loadAtOnce) {
-				this.require("js/plugins/jquery.cookie"+this.minSuffix+".js");
+				this.require("js/base/jquery.cookie"+this.minSuffix+".js");
 			}
 			para.cookie = {
 			expires :30
