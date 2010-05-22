@@ -78,8 +78,10 @@ $(document).ready(function () {
   <#if parameters.clearStyle?default(false)>
 	options_${escapedOptionId?html}.clearstyle = true;
   </#if>
-  <#if parameters.autoHeight?default(false)>
+  <#if parameters.autoHeight?default(true)>
 	options_${escapedOptionId?html}.autoheight = true;
+  <#else>
+	options_${escapedOptionId?html}.autoheight = false;
   </#if>
   <#if parameters.openOnMouseover?default(false)>
 	options_${escapedOptionId?html}.event = "mouseover";
