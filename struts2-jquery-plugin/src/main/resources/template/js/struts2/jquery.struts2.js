@@ -785,7 +785,8 @@
 				});
 			}
 
-			if (!$elem.isSubscribed(selectTopic)) { $elem.subscribe(selectTopic, _s2j.handler.load); }
+			if ($elem.isSubscribed(selectTopic)) { $elem.unsubscribe(selectTopic); }
+			$elem.subscribe(selectTopic, _s2j.handler.load);
 			$elem.publish(selectTopic, options);
 		}
 		if (options.onchangetopics) {
