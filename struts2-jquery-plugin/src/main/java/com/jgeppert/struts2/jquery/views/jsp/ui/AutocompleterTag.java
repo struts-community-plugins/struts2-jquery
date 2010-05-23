@@ -27,62 +27,79 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Autocompleter;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class AutocompleterTag extends AbstractFormListElementTag {
+public class AutocompleterTag extends AbstractFormListElementTag
+{
 
-  private static final long serialVersionUID = 4675729906623010236L;
+	private static final long	serialVersionUID	= 4675729906623010236L;
 
-  protected String          delay;
-  protected String          loadMinimumCount;
-  protected String          selectBox;
-  protected String          onSelectTopics;
-  protected String          onFocusTopics;
-  protected String          onSearchTopics;
+	protected String			delay;
+	protected String			loadMinimumCount;
+	protected String			selectBox;
+	protected String			onSelectTopics;
+	protected String			onFocusTopics;
+	protected String			onSearchTopics;
+	protected String			maxlength;
+	protected String			readonly;
+	protected String			size;
+	protected String			multiple;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Autocompleter(stack, req, res);
-  }
+	public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+		return new Autocompleter(stack, req, res);
+	}
 
-  protected void populateParams()
-  {
-    super.populateParams();
+	protected void populateParams() {
+		super.populateParams();
 
-    Autocompleter completer = (Autocompleter) component;
-    completer.setDelay(delay);
-    completer.setLoadMinimumCount(loadMinimumCount);
-    completer.setSelectBox(selectBox);
-    completer.setOnSelectTopics(onSelectTopics);
-    completer.setOnFocusTopics(onFocusTopics);
-    completer.setOnSearchTopics(onSearchTopics);
-  }
+		Autocompleter completer = (Autocompleter) component;
+		completer.setDelay(delay);
+		completer.setLoadMinimumCount(loadMinimumCount);
+		completer.setSelectBox(selectBox);
+		completer.setOnSelectTopics(onSelectTopics);
+		completer.setOnFocusTopics(onFocusTopics);
+		completer.setOnSearchTopics(onSearchTopics);
+		completer.setMaxlength(maxlength);
+		completer.setReadonly(readonly);
+		completer.setSize(size);
+		completer.setMultiple(multiple);
+	}
 
-  public void setDelay(String delay)
-  {
-    this.delay = delay;
-  }
+	public void setMaxlength(String maxlength) {
+		this.maxlength = maxlength;
+	}
 
-  public void setLoadMinimumCount(String loadMinimumCount)
-  {
-    this.loadMinimumCount = loadMinimumCount;
-  }
+	public void setReadonly(String readonly) {
+		this.readonly = readonly;
+	}
 
-  public void setSelectBox(String selectBox)
-  {
-    this.selectBox = selectBox;
-  }
+	public void setSize(String size) {
+		this.size = size;
+	}
 
-  public void setOnSelectTopics(String onSelectTopics)
-  {
-    this.onSelectTopics = onSelectTopics;
-  }
+	public void setDelay(String delay) {
+		this.delay = delay;
+	}
 
-  public void setOnFocusTopics(String onFocusTopics)
-  {
-    this.onFocusTopics = onFocusTopics;
-  }
+	public void setLoadMinimumCount(String loadMinimumCount) {
+		this.loadMinimumCount = loadMinimumCount;
+	}
 
-  public void setOnSearchTopics(String onSearchTopics)
-  {
-    this.onSearchTopics = onSearchTopics;
-  }
+	public void setSelectBox(String selectBox) {
+		this.selectBox = selectBox;
+	}
+
+	public void setOnSelectTopics(String onSelectTopics) {
+		this.onSelectTopics = onSelectTopics;
+	}
+
+	public void setOnFocusTopics(String onFocusTopics) {
+		this.onFocusTopics = onFocusTopics;
+	}
+
+	public void setOnSearchTopics(String onSearchTopics) {
+		this.onSearchTopics = onSearchTopics;
+	}
+
+	public void setMultiple(String multiple) {
+		this.multiple = multiple;
+	}
 }
