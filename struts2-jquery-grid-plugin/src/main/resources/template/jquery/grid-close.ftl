@@ -175,6 +175,9 @@
   <#if parameters.onSelectRowTopics?if_exists != "">
 	options_${escapedOptionId?html}.onselectrowtopics = "${parameters.onSelectRowTopics?html}";
   </#if>
+  <#if parameters.onSelectAllTopics?if_exists != "">
+	options_${escapedOptionId?html}.onselectalltopics = "${parameters.onSelectAllTopics?html}";
+  </#if>
   <#if parameters.onPagingTopics?if_exists != "">
 	options_${escapedOptionId?html}.onpagingtopics = "${parameters.onPagingTopics?html}";
   </#if>

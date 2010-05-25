@@ -87,6 +87,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   protected String          altRows;
 
   protected String          onSelectRowTopics;
+  protected String          onSelectAllTopics;
   protected String          onPagingTopics;
   protected String          onSortColTopics;
   protected String          onCellSelectTopics;
@@ -244,6 +245,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setScrollrows(scrollrows);
     grid.setFilter(filter);
     grid.setOnSelectRowTopics(onSelectRowTopics);
+    grid.setOnSelectAllTopics(onSelectAllTopics);
     grid.setOnSortColTopics(onSortColTopics);
     grid.setOnPagingTopics(onPagingTopics);
     grid.setOnGridCompleteTopics(onGridCompleteTopics);
@@ -553,6 +555,11 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setOnSelectRowTopics(String onSelectRowTopics)
   {
     this.onSelectRowTopics = onSelectRowTopics;
+  }
+
+  public void setOnSelectAllTopics(String onSelectAllTopics)
+  {
+    this.onSelectAllTopics = onSelectAllTopics;
   }
 
   public void setOnPagingTopics(String onPagingTopics)

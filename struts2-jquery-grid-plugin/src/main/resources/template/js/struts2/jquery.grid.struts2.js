@@ -76,6 +76,18 @@
 			};
 		}
 
+		if (options.onselectalltopics) {
+			params.onSelectAll = function(ids, status) {
+				var data = {};
+				data.ids = ids;
+				data.status = status;
+				data.grid = $(this);
+
+				$.struts2_jquery.publishTopic($elem, options.onalwaystopics, data);
+				$.struts2_jquery.publishTopic($elem, options.onselectalltopics, data);
+			};
+		}
+
 		if(options.onbeforetopics) {
 			params.loadBeforeSend = function(xhr) {
 	
