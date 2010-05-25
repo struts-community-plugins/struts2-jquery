@@ -114,6 +114,9 @@ $(document).ready(function () {
 	<#if parameters.defaultIndicator?if_exists != "">
 	$.struts2_jquery.defaultIndicator="${parameters.defaultIndicator?string}";
 	</#if>
+	<#if parameters.defaultLoadingText?if_exists != "">
+	$.struts2_jquery.defaultLoadingText="${parameters.defaultLoadingText?string}";
+	</#if>
 	$.ajaxSettings.traditional = true;
 
 	$.ajaxSetup ({

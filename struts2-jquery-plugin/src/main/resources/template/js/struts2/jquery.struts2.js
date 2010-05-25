@@ -16,7 +16,7 @@
  *
  */
 
-/*global $, jQuery,  document, window, StrutsUtils  */
+/*global $, jQuery, _s2j, document, window, StrutsUtils  */
 /*jslint evil: true */
 
 ( function($) {
@@ -35,6 +35,7 @@
 	historyelements : {},
 	forms : {},
 	defaultIndicator :'',
+	defaultLoadingText :'Loading ...',
 	lasttopic :'',
 	scriptCache : {},
 	styleCache : {},
@@ -958,7 +959,10 @@
 		if (options.collapsible) { para.collapsible = true; }
 		if (options.openonmouseover) { para.event = 'mouseover'; }
 		if (options.orientation) { para.orientation = options.orientation; }
-		if (options.spinner !== 'undefined') { para.spinner = options.spinner; }
+		
+		if (options.spinner !== undefined) { para.spinner = options.spinner; }
+		else { para.spinner = this.defaultLoadingText; }
+		
 		if (options.selectedtab) { para.selected = options.selectedtab; }
 		if (options.oncompletetopics) { para.ajaxOptions = {
 		dataType :'html',
@@ -1433,6 +1437,9 @@
 				if (options.loadingtext) {
 					container.html(options.loadingtext);
 				}
+				else {
+					container.html(_s2j.defaultLoadingText);
+				}
 
 				var modus = 'html';
 				if (options.type) {
@@ -1549,6 +1556,11 @@
 						if (options.loadingtext) {
 							$.each(options.targets.split(','), function(i, target) { 
 								$(_s2j.escId(target)).html(options.loadingtext);
+							});
+						}
+						else {
+							$.each(options.targets.split(','), function(i, target) { 
+								$(_s2j.escId(target)).html(_s2j.defaultLoadingText);
 							});
 						}
 					}
