@@ -145,8 +145,8 @@
   <#if parameters.sortable?default(false)>
 	options_${escapedOptionId?html}.sortable = true;
   </#if>
-  <#if parameters.shrinkToFit?default(true)>
-	options_${escapedOptionId?html}.shrinkToFit = true;
+  <#if parameters.shrinkToFit?exists>
+	options_${escapedOptionId?html}.shrinkToFit = ${parameters.shrinkToFit?string};
   </#if>
   <#if parameters.autoencode?default(true)>
 	options_${escapedOptionId?html}.autoencode = true;
@@ -160,11 +160,11 @@
   <#if parameters.hiddengrid?default(false)>
 	options_${escapedOptionId?html}.hiddengrid = true;
   </#if>
-  <#if parameters.hidegrid?default(false)>
-	options_${escapedOptionId?html}.hidegrid = true;
+  <#if parameters.hidegrid?exists>
+	options_${escapedOptionId?html}.hidegrid = ${parameters.hidegrid?string};
   </#if>
-  <#if parameters.hoverrows?default(false)>
-	options_${escapedOptionId?html}.hoverrows = true;
+  <#if parameters.hoverrows?exists>
+	options_${escapedOptionId?html}.hoverrows = ${parameters.hoverrows?string};
   </#if>
   <#if parameters.rownumbers?default(false)>
 	options_${escapedOptionId?html}.rownumbers = true;
