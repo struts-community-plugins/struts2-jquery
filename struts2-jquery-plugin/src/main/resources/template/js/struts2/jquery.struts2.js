@@ -35,7 +35,7 @@
 	historyelements : {},
 	forms : {},
 	defaultIndicator :'',
-	defaultLoadingText :'Loading ...',
+	defaultLoadingText : null,
 	lasttopic :'',
 	scriptCache : {},
 	styleCache : {},
@@ -961,7 +961,7 @@
 		if (options.orientation) { para.orientation = options.orientation; }
 		
 		if (options.spinner !== undefined) { para.spinner = options.spinner; }
-		else { para.spinner = this.defaultLoadingText; }
+		else if (this.defaultLoadingText !== null) { para.spinner = this.defaultLoadingText; }
 		
 		if (options.selectedtab) { para.selected = options.selectedtab; }
 		if (options.oncompletetopics) { para.ajaxOptions = {
@@ -1429,15 +1429,11 @@
 				_s2j.showIndicator(options.indicatorid);
 				var onAlwaysTopics = options.onalwaystopics;
 
-				// publish all 'before' and 'always' topics
-				_s2j.publishTopic(container, onAlwaysTopics, options);
-				_s2j.publishTopic(container, options.onbeforetopics, options);
-
 				// Set pre-loading text (if any)
 				if (options.loadingtext) {
 					container.html(options.loadingtext);
 				}
-				else {
+				else if (this.defaultLoadingText !== null) {
 					container.html(_s2j.defaultLoadingText);
 				}
 
@@ -1480,6 +1476,11 @@
 
 					// fix 'issue' wherein IIS will reject post without data
 					if (!params.data) { params.data = {};	} 
+
+					options.options = params;
+					// publish all 'before' and 'always' topics
+					_s2j.publishTopic(container, onAlwaysTopics, options);
+					_s2j.publishTopic(container, options.onbeforetopics, options);
 
 					// Execute Ajax Request
 					$.ajax(params);
@@ -1524,11 +1525,6 @@
 				else {
 					params.target = params.target + ',#' + _s2j.escId(target);
 				}
-
-				// Set pre-loading text (if any)
-				if (options.loadingtext) {
-					$(_s2j.escId(target)).html(options.loadingtext);
-				}
 			});
 		}
 
@@ -1558,7 +1554,7 @@
 								$(_s2j.escId(target)).html(options.loadingtext);
 							});
 						}
-						else {
+						else if (this.defaultLoadingText !== null) {
 							$.each(options.targets.split(','), function(i, target) { 
 								$(_s2j.escId(target)).html(_s2j.defaultLoadingText);
 							});

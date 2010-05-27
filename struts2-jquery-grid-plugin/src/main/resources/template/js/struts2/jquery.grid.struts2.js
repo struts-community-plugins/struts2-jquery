@@ -146,6 +146,12 @@
 				$.struts2_jquery.publishTopic($elem, options.ongridcompletetopics, orginal);
 			};
 		}
+		
+		
+		if (!params.loadtext && this.defaultLoadingText !== null) {
+			params.loadtext = this.defaultLoadingText;
+		}
+		
 		params.loadComplete = this.pubCom($elem, options.onalwaystopics, options.oncompletetopics, null, null, options);
 		params.loadError = this.pubErr($elem, options.onalwaystopics, options.onerrortopics, options.errortext);
 
