@@ -1,5 +1,5 @@
 /*
- * jQuery UI Slider 1.8.1
+ * jQuery UI Slider 1.8.2
  *
  * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -181,24 +181,24 @@ $.widget( "ui.slider", $.ui.mouse, {
 						newVal = self._valueMax();
 						break;
 					case $.ui.keyCode.PAGE_UP:
-						newVal = curVal + ( (self._valueMax() - self._valueMin()) / numPages );
+						newVal = self._trimAlignValue( curVal + ( (self._valueMax() - self._valueMin()) / numPages ) );
 						break;
 					case $.ui.keyCode.PAGE_DOWN:
-						newVal = curVal - ( (self._valueMax() - self._valueMin()) / numPages );
+						newVal = self._trimAlignValue( curVal - ( (self._valueMax() - self._valueMin()) / numPages ) );
 						break;
 					case $.ui.keyCode.UP:
 					case $.ui.keyCode.RIGHT:
 						if ( curVal === self._valueMax() ) {
 							return;
 						}
-						newVal = curVal + step;
+						newVal = self._trimAlignValue( curVal + step );
 						break;
 					case $.ui.keyCode.DOWN:
 					case $.ui.keyCode.LEFT:
 						if ( curVal === self._valueMin() ) {
 							return;
 						}
-						newVal = curVal - step;
+						newVal = self._trimAlignValue( curVal - step );
 						break;
 				}
 	
@@ -591,12 +591,12 @@ $.widget( "ui.slider", $.ui.mouse, {
 		if ( val > this._valueMax() ) {
 			return this._valueMax();
 		}
-		var step = this.options.step,
+		var step = ( this.options.step > 0 ) ? this.options.step : 1,
 			valModStep = val % step,
 			alignValue = val - valModStep;
 
-		if ( valModStep >= ( step / 2 ) ) {
-			alignValue += step;
+		if ( Math.abs(valModStep) * 2 >= step ) {
+			alignValue += ( valModStep > 0 ) ? step : ( -step );
 		}
 
 		// Since JavaScript has problems with large floats, round
@@ -676,7 +676,7 @@ $.widget( "ui.slider", $.ui.mouse, {
 });
 
 $.extend( $.ui.slider, {
-	version: "1.8.1"
+	version: "1.8.2"
 });
 
 }(jQuery));

@@ -1,5 +1,5 @@
 /*
- * jQuery UI Sortable 1.8.1
+ * jQuery UI Sortable 1.8.2
  *
  * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -81,7 +81,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 				[ value ? "addClass" : "removeClass"]( "ui-sortable-disabled" );
 		} else {
 			// Don't call widget base _setOption for disable as it adds ui-state-disabled class
-			$.Widget.prototype._setOption.apply(self, arguments);
+			$.Widget.prototype._setOption.apply(this, arguments);
 		}
 	},
 
@@ -1061,7 +1061,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 });
 
 $.extend($.ui.sortable, {
-	version: "1.8.1"
+	version: "1.8.2"
 });
 
 })(jQuery);

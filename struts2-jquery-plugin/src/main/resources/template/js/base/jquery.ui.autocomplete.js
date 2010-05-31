@@ -1,5 +1,5 @@
 /*
- * jQuery UI Autocomplete 1.8.1
+ * jQuery UI Autocomplete 1.8.2
  *
  * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -51,6 +51,7 @@ $.widget( "ui.autocomplete", {
 					event.preventDefault();
 					break;
 				case keyCode.ENTER:
+				case keyCode.NUMPAD_ENTER:
 					// when menu is open or has focus
 					if ( self.menu.active ) {
 						event.preventDefault();
@@ -71,6 +72,12 @@ $.widget( "ui.autocomplete", {
 				case keyCode.SHIFT:
 				case keyCode.CONTROL:
 				case keyCode.ALT:
+				case keyCode.COMMAND:
+				case keyCode.COMMAND_RIGHT:
+				case keyCode.INSERT:
+				case keyCode.CAPS_LOCK:
+				case keyCode.END:
+				case keyCode.HOME:
 					// ignore metakeys (shift, ctrl, alt)
 					break;
 				default:
@@ -89,7 +96,6 @@ $.widget( "ui.autocomplete", {
 			.bind( "blur.autocomplete", function( event ) {
 				clearTimeout( self.searching );
 				// clicks on the menu (or a button to trigger a search) will cause a blur event
-				// TODO try to implement this without a timeout, see clearTimeout in search()
 				self.closing = setTimeout(function() {
 					self.close( event );
 					self._change( event );
@@ -102,6 +108,13 @@ $.widget( "ui.autocomplete", {
 		this.menu = $( "<ul></ul>" )
 			.addClass( "ui-autocomplete" )
 			.appendTo( "body", doc )
+			// prevent the close-on-blur in case of a "slow" click on the menu (long mousedown)
+			.mousedown(function() {
+				// use another timeout to make sure the blur-event-handler on the input was already triggered
+				setTimeout(function() {
+					clearTimeout( self.closing );
+				}, 13);
+			})
 			.menu({
 				focus: function( event, ui ) {
 					var item = ui.item.data( "item.autocomplete" );

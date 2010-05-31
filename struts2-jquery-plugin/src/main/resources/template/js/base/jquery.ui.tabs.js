@@ -1,5 +1,5 @@
 /*
- * jQuery UI Tabs 1.8.1
+ * jQuery UI Tabs 1.8.2
  *
  * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -15,6 +15,14 @@
 
 var tabId = 0,
 	listId = 0;
+
+function getNextTabId() {
+	return ++tabId;
+}
+
+function getNextListId() {
+	return ++listId;
+}
 
 $.widget("ui.tabs", {
 	options: {
@@ -56,7 +64,7 @@ $.widget("ui.tabs", {
 
 	_tabId: function(a) {
 		return a.title && a.title.replace(/\s/g, '_').replace(/[^A-Za-z0-9\-_:\.]/g, '') ||
-			this.options.idPrefix + (++tabId);
+			this.options.idPrefix + getNextTabId();
 	},
 
 	_sanitizeSelector: function(hash) {
@@ -64,7 +72,7 @@ $.widget("ui.tabs", {
 	},
 
 	_cookie: function() {
-		var cookie = this.cookie || (this.cookie = this.options.cookie.name || 'ui-tabs-' + (++listId));
+		var cookie = this.cookie || (this.cookie = this.options.cookie.name || 'ui-tabs-' + getNextListId());
 		return $.cookie.apply(null, [cookie].concat($.makeArray(arguments)));
 	},
 
@@ -660,7 +668,7 @@ $.widget("ui.tabs", {
 });
 
 $.extend($.ui.tabs, {
-	version: '1.8.1'
+	version: '1.8.2'
 });
 
 /*
