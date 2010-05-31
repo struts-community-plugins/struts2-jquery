@@ -193,6 +193,9 @@
   <#if parameters.onGridCompleteTopics?if_exists != "">
 	options_${escapedOptionId?html}.ongridcompletetopics = "${parameters.onGridCompleteTopics?html}";
   </#if>
+  <#if parameters.reloadTopics?if_exists != "">
+	options_${escapedOptionId?html}.reloadtopics = "${parameters.reloadTopics?html}";
+  </#if>
   <#if parameters.connectWith?if_exists != "">
 	options_${escapedOptionId?html}.connectWith = "${parameters.connectWith?html}";
   </#if>

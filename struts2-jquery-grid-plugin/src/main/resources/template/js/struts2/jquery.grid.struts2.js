@@ -170,7 +170,7 @@
 		
 		if (options.reloadtopics) {
 			$.each(options.reloadtopics.split(','), function(i, rts) { 
-				$elem.subscribe(rts, 'reloadgrid', options);
+				$elem.subscribe(rts, '_s2j_reloadgrid', options);
 			});
 		}
 
@@ -313,7 +313,7 @@
 	$.extend($.struts2_jquery_grid, $.struts2_jquery);
 	
 	// Register handler for reloading grid
-	$.subscribeHandler('reloadgrid', function(event, data) {
+	$.subscribeHandler('_s2j_reloadgrid', function(event, data) {
 		var options = {};
 		$.extend(options, event.data);
 		if (options.id) {
