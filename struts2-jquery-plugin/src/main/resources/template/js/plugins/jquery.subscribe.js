@@ -1,5 +1,5 @@
 /*
- * jquery.subscribe.1.1
+ * jquery.subscribe.1.2.2
  * 
  * Implementation of publish/subcription framework for jQuery
  * Requires use of jQuery. Tested with jQuery 1.3 and above
@@ -30,13 +30,23 @@
  *  version 1.2.1
  *  Fixed to work with jQuery 1.4 changes 
  *     - changed $() syntax to $(document)
+ *     
+ *  version 1.2.2
+ *  Added subscribe overwrite property (default = false) to handle 1.4.2 changes and
+ *  allow for multiple subscriptions by the same element to the same topic
+ *     - changed $() syntax to $(document)
+ *     
+ *  Added protection to variables when file is loaded multiple times
  */
 
 
 (function($){
 
-	_subscribe_topics = {};
-	_subscribe_handlers = {}; 
+
+	if(!window._subscribe_topics) {	
+		_subscribe_topics = {};
+		_subscribe_handlers = {}; 
+	}
 	
 	_subscribe_getDocumentWindow = function(document){
 
@@ -117,7 +127,7 @@
 		 *  subscription is made for a topic for a given window/frame. To prevent this from happening for an element subscription ($elem.subscribe()), make
 		 *  sure that the element has an id attribute. 
 		 */
-		subscribe :  function(topic, handler, data) {	
+		subscribe :  function(topic, handler, data, multiple) {	
 				
 			if(this[0] && topic && handler) {
 				
@@ -160,13 +170,38 @@
 					}
 				}
 				
-				if(typeof(handler) == 'function') {
-				
-					this.bind(topic, data, handler);
-				
-				} else if(typeof(handler) == 'string' && typeof(_subscribe_handlers[handler]) == 'function') {
+
+				if(true == multiple) {		//allow multiple topic handlers to be bound to topic for same object
+									
+					if(typeof(handler) == 'function') {
 					
-					this.bind(topic, data, _subscribe_handlers[handler]);
+						this.bind(topic, data, handler);
+					
+					} else if(typeof(handler) == 'string' && typeof(_subscribe_handlers[handler]) == 'function') {
+						
+						this.bind(topic, data, _subscribe_handlers[handler]);
+					}
+					
+				} else {
+				
+					var events = this.data('events');
+					if(events) {
+						var eventsTopic = events[topic];
+						if(eventsTopic && eventsTopic.length > 0) {  //already bound to this topic
+							
+							//replace with new one
+							this.unbind(topic);
+						}
+					}
+
+					if(typeof(handler) == 'function') {
+						
+						this.bind(topic, data, handler);
+					
+					} else if(typeof(handler) == 'string' && typeof(_subscribe_handlers[handler]) == 'function') {
+						
+						this.bind(topic, data, _subscribe_handlers[handler]);
+					}					
 				}
 			}
 			
