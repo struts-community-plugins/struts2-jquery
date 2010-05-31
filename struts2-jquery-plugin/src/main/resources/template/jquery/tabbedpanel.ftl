@@ -32,7 +32,4 @@
 >
 <ul>
 </ul>
-<script type='text/javascript'>
-	var options_${escapedOptionId?html}_tabs = new Array();
-</script>
 	

@@ -978,10 +978,11 @@
 		if (options.onaddtopics) { para.add = this.pubTops($elem, options.onalwaystopics, options.onaddtopics); }
 		if (options.onremovetopics) { para.remove = this.pubTops($elem, options.onalwaystopics, options.onremovetopics); }
 
-		if (options.tabs) {
+		var tabs = $elem.data('taboptions');
+		if (tabs) {
 			var tabStr = "";
-			for ( var l = 0; l < options.tabs.length; l++) {
-				var tab = options.tabs[l];
+			for ( var l = 0; l < tabs.length; l++) {
+				var tab = tabs[l];
 				tabStr += "<li ";
 				if (tab.id) { tabStr += "id='" + tab.id + "' "; }
 				if (tab.cssstyle) { tabStr += "style='" + tab.cssstyle + "' "; }
@@ -992,7 +993,7 @@
 				if (tab.label) { tabStr += tab.label; }
 				tabStr += "</span></a></li>";
 			}
-			$(this.escId(options.id) + ' ul').html(tabStr);
+			$(this.escId(options.id) + ' > ul').html(tabStr);
 		}
 
 		$elem.tabs(para);

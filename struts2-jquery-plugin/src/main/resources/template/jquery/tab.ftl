@@ -20,6 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
+$(document).ready(function () { 
 	var options_tab_${escapedOptionId?html} = {};
   <#if parameters.id?if_exists != "">
 	options_tab_${escapedOptionId?html}.id = "${parameters.id?html}";
@@ -42,6 +43,12 @@
   </#if>
   <#if parameters.parentTabbedPanel?if_exists != "">
   	<#assign escapedParentOptionId="${parameters.parentTabbedPanel?string?replace('.', '_')}">
-  options_${escapedParentOptionId?html}_tabs.push(options_tab_${escapedOptionId?html});
+  	var tabs = $('#${parameters.parentTabbedPanel?string?replace('.', '\\\\\\\\.')}').data('taboptions');
+  	if(!tabs) {
+  		tabs = [];
+  	}
+  	tabs.push(options_tab_${escapedOptionId?html});
+  	$('#${parameters.parentTabbedPanel?string?replace('.', '\\\\\\\\.')}').data('taboptions', tabs);
   </#if>
+ });  
 </script>

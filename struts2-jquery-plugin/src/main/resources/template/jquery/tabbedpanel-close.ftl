@@ -23,7 +23,6 @@
 <script type='text/javascript'>
 $(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.tabs = options_${escapedOptionId?html}_tabs;
   <#if parameters.selectedTab?exists>
 	options_${escapedOptionId?html}.selectedtab = ${parameters.selectedTab?html};
   </#if>
