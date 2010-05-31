@@ -57,6 +57,27 @@
 		this.requireCss("themes/ui.jqgrid.css");
 		var params = {};
 		$.extend(params, options);
+		
+		if(options.url && options.formids) {
+			var data = '';
+			if (options.formids) {
+				if (!this.loadAtOnce) {
+					this.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+				}
+				$.each(options.formids.split(','), function(i, fid) {
+					var query = $($.struts2_jquery.escId(fid)).formSerialize();
+					if (data != '') { data = data + '&' + query; }
+					else { data = query; }
+				});
+			}
+			if (options.url.lastIndexOf('?') > 0) {
+				options.url = options.url + '&amp;' + data;
+			}
+			else {
+				options.url = options.url + '?' + data;
+			}
+		}
+		
 		if (options.onselectrowtopics || (options.editurl && options.editinline === true)) {
 			params.onSelectRow = function(id, status) {
 				var data = {};
@@ -147,7 +168,12 @@
 			};
 		}
 		
-		
+		if (options.reloadtopics) {
+			$.each(options.reloadtopics.split(','), function(i, rts) { 
+				$elem.subscribe(rts, 'reloadgrid', options);
+			});
+		}
+
 		if (!params.loadtext && this.defaultLoadingText !== null) {
 			params.loadtext = this.defaultLoadingText;
 		}
@@ -285,4 +311,37 @@
 	
 	// Extend it from orginal plugin
 	$.extend($.struts2_jquery_grid, $.struts2_jquery);
+	
+	// Register handler for reloading grid
+	$.subscribeHandler('reloadgrid', function(event, data) {
+		var options = {};
+		$.extend(options, event.data);
+		if (options.id) {
+
+			if(options.url && options.formids) {
+				var data = '';
+				if (options.formids) {
+					if (!$.struts2_jquery.loadAtOnce) {
+						$.struts2_jquery.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+					}
+					$.each(options.formids.split(','), function(i, fid) {
+						var query = $($.struts2_jquery.escId(fid)).formSerialize();
+						if (data != '') { data = data + '&' + query; }
+						else { data = query; }
+					});
+				}
+				if (options.url.lastIndexOf('?') > 0) {
+					options.url = options.url + '&amp;' + data;
+				}
+				else {
+					options.url = options.url + '?' + data;
+				}
+			}
+			$($.struts2_jquery.escId(options.id)).setGridParam({url:options.url}); 
+
+			$.struts2_jquery.log('reload grid '+options.id);
+			$($.struts2_jquery.escId(options.id)).trigger("reloadGrid");  
+		}
+	});
+
 })(jQuery);
