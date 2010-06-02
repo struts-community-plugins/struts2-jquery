@@ -38,6 +38,7 @@
   <#assign jqueryRequireFile="jquery.require.min.js">
   <#assign jquerySubscribeFile="jquery.subscribe.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
+  <#assign jqueryCompat13File="jquery.compat-1.3.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
   <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js">
@@ -49,6 +50,7 @@
   <#assign jqueryRequireFile="jquery.require.js">
   <#assign jquerySubscribeFile="jquery.subscribe.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
+  <#assign jqueryCompat13File="jquery.compat-1.3.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js">
   <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.js">
@@ -66,6 +68,9 @@
 	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script>
 		</#if>
 	</#if>
+</#if>
+<#if parameters.compatibility?if_exists == "1.3">
+	<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryCompat13File}"></script>
 </#if>
 <#if parameters.loadAtOnce?default(false)>
 	<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryForm}"></script>
