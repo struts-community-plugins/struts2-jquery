@@ -49,7 +49,7 @@
         	$('#counter4').html(++refreshDiv3);
         	setTimeout( function() {
 				$.publish('reloaddiv3');	
-			}, 30000 );
+			}, 15000 );
         }
     });
     $.subscribe('completelist', function(event,data) {
@@ -130,14 +130,14 @@
     </sj:a>
     <sj:submit 	
     	id="refreshsubmit2" 
-    	onClickTopics="refreshlist" 
+    	onClickTopics="reloaddiv3" 
 		button="true" 
 		buttonIcon="ui-icon-refresh"
     />
 
     <br/><br/>
 
-    <strong>Div reloads every 30 seconds with form values : <span id="counter4"></span></strong>
+    <strong>Div reloads every 15 seconds with form values : <span id="counter4"></span></strong>
     <sj:div id="div3" 
     		formIds="formSelectOne" 
     		indicator="indicator3" 
@@ -188,7 +188,7 @@
         	$('#counter4').html(++refreshDiv3);
         	setTimeout( function() {
 				$.publish('reloaddiv3');	
-			}, 30000 );
+			}, 15000 );
         }
     });
     $.subscribe('completelist', function(event,data) {
@@ -201,6 +201,7 @@
 	  </div>
       <div id="jsp">
 	  <pre>
+    &lt;strong&gt;Div reloads : &lt;span id=&quot;counter1&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
     &lt;s:url id=&quot;ajax1&quot; value=&quot;/ajax1.action&quot;/&gt;
     &lt;sj:div id=&quot;div1&quot; 
     		href=&quot;%{ajax1}&quot; 
@@ -265,10 +266,16 @@
     &gt;
     	Refresh List
     &lt;/sj:a&gt;
+    &lt;sj:submit 	
+    	id=&quot;refreshsubmit2&quot; 
+    	onClickTopics=&quot;reloaddiv3&quot; 
+		button=&quot;true&quot; 
+		buttonIcon=&quot;ui-icon-refresh&quot;
+    /&gt;
 
     &lt;br/&gt;&lt;br/&gt;
 
-    &lt;strong&gt;Div reloads every 30 seconds with form values : &lt;span id=&quot;counter4&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+    &lt;strong&gt;Div reloads every 15 seconds with form values : &lt;span id=&quot;counter4&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
     &lt;sj:div id=&quot;div3&quot; 
     		formIds=&quot;formSelectOne&quot; 
     		indicator=&quot;indicator3&quot; 

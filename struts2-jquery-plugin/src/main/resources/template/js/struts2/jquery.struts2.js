@@ -1430,14 +1430,6 @@
 				_s2j.showIndicator(options.indicatorid);
 				var onAlwaysTopics = options.onalwaystopics;
 
-				// Set pre-loading text (if any)
-				if (options.loadingtext) {
-					container.html(options.loadingtext);
-				}
-				else if (this.defaultLoadingText !== null) {
-					container.html(_s2j.defaultLoadingText);
-				}
-
 				var modus = 'html';
 				if (options.type) {
 					if (options.type == 'text') { modus = 'value'; }
@@ -1446,6 +1438,15 @@
 					else if (options.type == 'radio') { modus = 'radio'; }
 				}
 
+				if (modus == 'html' || modus == 'value') {
+					// Set pre-loading text (if any)
+					if (options.loadingtext && options.loadingtext != "false") {
+						container.html(options.loadingtext);
+					}
+					else if (this.defaultLoadingText !== null) {
+						container.html(_s2j.defaultLoadingText);
+					}
+				}
 				var params = {};
 
 				params.success = _s2j.pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indi, modus, options);
@@ -1550,7 +1551,7 @@
 					// cancel form submission
 					if (!submitForm) {
 						_s2j.hideIndicator(options.indicatorid);
-						if (options.loadingtext) {
+						if (options.loadingtext && options.loadingtext != "false") {
 							$.each(options.targets.split(','), function(i, target) { 
 								$(_s2j.escId(target)).html(options.loadingtext);
 							});
