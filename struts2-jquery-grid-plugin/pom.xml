@@ -26,12 +26,12 @@
                 <configuration>
                     <A>
                         uri=/struts-jquery-grid-tags,
-                        tlibVersion=2.2.3,
+                        tlibVersion=2.2,
                         jspVersion=2.0,
                         shortName=sjg,
-                        displayName=Struts2 jQuery Grid Tags,
+                        displayName="Struts2 jQuery Grid Tags",
                         outFile=${basedir}/target/classes/META-INF/struts-jquery-grid-tags.tld,
-                        description=Struts2 tags based on jQuery and jqGrid.,
+                        description="Struts2 tags based on jQuery and jqGrid.",
                         outTemplatesDir=${basedir}/src/site/docs
                     </A>
                     <resourceTargetPath>target</resourceTargetPath>

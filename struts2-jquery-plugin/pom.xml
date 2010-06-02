@@ -26,12 +26,12 @@
                 <configuration>
                     <A>
                         uri=/struts-jquery-tags,
-                        tlibVersion=2.2.3,
+                        tlibVersion=2.2,
                         jspVersion=2.0,
                         shortName=sj,
-                        displayName=Struts2 jQuery Tags,
+                        displayName="Struts2 jQuery Tags",
                         outFile=${basedir}/target/classes/META-INF/struts-jquery-tags.tld,
-                        description=Struts2 AJAX tags based on jQuery.,
+                        description="Struts2 AJAX tags based on jQuery.",
                         outTemplatesDir=${basedir}/src/site/docs
                     </A>
                     <resourceTargetPath>target</resourceTargetPath>
