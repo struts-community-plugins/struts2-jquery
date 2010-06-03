@@ -23,7 +23,7 @@
  id="${parameters.id?html}"<#rt/>
 </#if>
 <#if parameters.href?if_exists != "">
- href="#"<#rt/>
+ href="javascript:void(0)"<#rt/>
 </#if>
 <#if parameters.tabindex??>
  tabindex="${parameters.tabindex?html}"<#rt/>
