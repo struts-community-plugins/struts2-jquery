@@ -35,6 +35,7 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
   protected String          reloadTopics;
   protected String          bindOn;
   protected String          events;
+  protected String          deferredLoading;
 
   protected String          resizable;
   protected String          resizableAnimate;
@@ -160,6 +161,7 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
     container.setReloadTopics(reloadTopics);
     container.setBindOn(bindOn);
     container.setEvents(events);
+    container.setDeferredLoading(deferredLoading);
 
     container.setResizable(resizable);
     container.setResizableAnimate(resizableAnimate);
@@ -824,5 +826,10 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
   public void setEvents(String events)
   {
     this.events = events;
+  }
+
+  public void setDeferredLoading(String deferredLoading)
+  {
+    this.deferredLoading = deferredLoading;
   }
 }

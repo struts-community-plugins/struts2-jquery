@@ -31,6 +31,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
   protected String reloadTopics;
   protected String bindOn;
   protected String events;
+  protected String deferredLoading;
 
   protected String resizable;
   protected String resizableAnimate;
@@ -157,6 +158,8 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     if (reloadTopics != null) addParameter("reloadTopics", findString(reloadTopics));
     if (bindOn != null) addParameter("bindOn", findString(bindOn));
     if (events != null) addParameter("events", findString(events));
+
+    if (deferredLoading != null) addParameter("deferredLoading", findValue(this.deferredLoading, Boolean.class));
 
     if (resizable != null)
     {
@@ -1395,5 +1398,11 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
   public void setEvents(String events)
   {
     this.events = events;
+  }
+
+  @StrutsTagAttribute(description = "Defers the initial loading of this element.  The element will not be loaded until one of the reloadTopics is published.", type = "Boolean", defaultValue = "false")
+  public void setDeferredLoading(String deferredLoading)
+  {
+    this.deferredLoading = deferredLoading;
   }
 }

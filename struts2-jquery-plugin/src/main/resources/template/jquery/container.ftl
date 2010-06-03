@@ -28,4 +28,7 @@
   <#if parameters.events?if_exists != ""> 
 	options_${escapedOptionId?html}.events = "${parameters.events?html}";
   </#if>
+  <#if parameters.deferredLoading?default(false)>
+	options_${escapedOptionId?html}.deferredloading = true;
+  </#if>
   

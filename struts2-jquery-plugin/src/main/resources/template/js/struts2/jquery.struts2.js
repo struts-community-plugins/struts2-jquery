@@ -535,7 +535,7 @@
 						$bindElement.publishOnEvent('click', divTopic);
 					}
 				}
-				else {
+                else if (! options.deferredloading) {
 					$elem.publish(divTopic, options);
 				}
 
@@ -788,7 +788,9 @@
 
 			if ($elem.isSubscribed(selectTopic)) { $elem.unsubscribe(selectTopic); }
 			$elem.subscribe(selectTopic, _s2j.handler.load);
-			$elem.publish(selectTopic, options);
+            if (! options.deferredloading) {
+			    $elem.publish(selectTopic, options);
+			}
 		}
 		if (options.onchangetopics) {
 			$.each(options.onchangetopics.split(','), function(i, cts) { 
@@ -961,7 +963,7 @@
 		if (options.orientation) { para.orientation = options.orientation; }
 		
 		if (options.spinner !== undefined) { para.spinner = options.spinner; }
-		else if (this.defaultLoadingText !== null) { para.spinner = this.defaultLoadingText; }
+		else if (_s2j.defaultLoadingText !== null) { para.spinner = _s2j.defaultLoadingText; }
 		
 		if (options.selectedtab) { para.selected = options.selectedtab; }
 		if (options.oncompletetopics) { para.ajaxOptions = {
@@ -1443,7 +1445,7 @@
 					if (options.loadingtext && options.loadingtext != "false") {
 						container.html(options.loadingtext);
 					}
-					else if (this.defaultLoadingText !== null) {
+					else if (_s2j.defaultLoadingText !== null) {
 						container.html(_s2j.defaultLoadingText);
 					}
 				}
@@ -1556,7 +1558,7 @@
 								$(_s2j.escId(target)).html(options.loadingtext);
 							});
 						}
-						else if (this.defaultLoadingText !== null) {
+						else if (_s2j.defaultLoadingText !== null) {
 							$.each(options.targets.split(','), function(i, target) { 
 								$(_s2j.escId(target)).html(_s2j.defaultLoadingText);
 							});
