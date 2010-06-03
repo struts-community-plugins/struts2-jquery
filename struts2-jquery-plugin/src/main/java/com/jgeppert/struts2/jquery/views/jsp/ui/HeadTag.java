@@ -45,6 +45,7 @@ public class HeadTag extends AbstractUITag {
   protected String          ajaxhistory;
   protected String          defaultIndicator;
   protected String          defaultLoadingText;
+  protected String          defaultErrorText;
   protected String          loadAtOnce;
   protected String          debug;
   protected String          scriptPath;
@@ -70,6 +71,7 @@ public class HeadTag extends AbstractUITag {
     head.setAjaxhistory(ajaxhistory);
     head.setDefaultIndicator(defaultIndicator);
     head.setDefaultLoadingText(defaultLoadingText);
+    head.setDefaultErrorText(defaultErrorText);
     head.setLoadAtOnce(loadAtOnce);
     head.setDebug(debug);
     head.setScriptPath(scriptPath);
@@ -121,6 +123,16 @@ public class HeadTag extends AbstractUITag {
     this.defaultIndicator = defaultIndicator;
   }
 
+  public void setDefaultLoadingText(String defaultLoadingText)
+  {
+    this.defaultLoadingText = defaultLoadingText;
+  }
+
+  public void setDefaultErrorText(String defaultErrorText)
+  {
+    this.defaultErrorText = defaultErrorText;
+  }
+
   public void setLoadAtOnce(String loadAtOnce)
   {
     this.loadAtOnce = loadAtOnce;
@@ -134,11 +146,6 @@ public class HeadTag extends AbstractUITag {
   public void setScriptPath(String scriptPath)
   {
     this.scriptPath = scriptPath;
-  }
-
-  public void setDefaultLoadingText(String defaultLoadingText)
-  {
-    this.defaultLoadingText = defaultLoadingText;
   }
 
   public void setCompatibility(String compatibility)

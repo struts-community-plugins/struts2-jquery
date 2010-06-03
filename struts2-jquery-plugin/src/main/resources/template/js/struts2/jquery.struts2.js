@@ -36,6 +36,7 @@
 	forms : {},
 	defaultIndicator :'',
 	defaultLoadingText : null,
+	defaultErrorText : null,
 	lasttopic :'',
 	scriptCache : {},
 	styleCache : {},
@@ -328,7 +329,7 @@
 	},
 
 	// publish error topics
-	pubErr : function (cid, always, etopics, etext) {
+	pubErr : function (cid, always, etopics, etext, modus) {
 		var container = $(cid);
 		if (etopics || etext) {
 			return function(request, status, error) {
@@ -337,8 +338,13 @@
 				orginal.status = status;
 				orginal.error = error;
 
-				if (etext) {
-					container.html(etext);
+				if (modus == 'html' || modus == 'value') {
+					if (etext && etext != "false") {
+						container.html(etext);
+					}
+					else if (_s2j.defaultErrorText !== null) {
+						container.html(_s2j.defaultErrorText);
+					}
 				}
 
 				_s2j.publishTopic(container, etopics, orginal);
@@ -1453,7 +1459,7 @@
 
 				params.success = _s2j.pubSuc(event.target, onAlwaysTopics, options.onsuccesstopics, indi, modus, options);
 				params.complete = _s2j.pubCom(event.target, onAlwaysTopics, options.oncompletetopics, options.targets, indi, options);
-				params.error = _s2j.pubErr(event.target, onAlwaysTopics, options.onerrortopics, options.errortext);
+				params.error = _s2j.pubErr(event.target, onAlwaysTopics, options.onerrortopics, options.errortext, modus);
 
 				// load container using ajax
 				if (options.href) {
@@ -1618,7 +1624,7 @@
 
 		params.success = _s2j.pubSuc(elem, options.onalwaystopics, options.onsuccesstopics, indi, 'form', options);
 		params.complete = _s2j.pubCom(elem, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
-		params.error = _s2j.pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext);
+		params.error = _s2j.pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext, 'html');
 
 		$.each(options.formids.split(','), function(i, fid) { 
 			_s2j.log('submit form : '+fid);

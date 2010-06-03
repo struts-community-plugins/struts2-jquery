@@ -157,6 +157,7 @@ public class Head extends org.apache.struts2.components.Head {
   protected String              ajaxhistory;
   protected String              defaultIndicator;
   protected String              defaultLoadingText;
+  protected String              defaultErrorText;
   protected String              loadAtOnce;
   protected String              debug;
   protected String              scriptPath;
@@ -186,6 +187,7 @@ public class Head extends org.apache.struts2.components.Head {
     if (this.ajaxhistory != null) addParameter("ajaxhistory", findValue(this.ajaxhistory, Boolean.class));
     if (this.defaultIndicator != null) addParameter("defaultIndicator", findString(this.defaultIndicator));
     if (this.defaultLoadingText != null) addParameter("defaultLoadingText", findString(this.defaultLoadingText));
+    if (this.defaultErrorText != null) addParameter("defaultErrorText", findString(this.defaultErrorText));
     if (this.loadAtOnce != null) addParameter("loadAtOnce", findValue(this.loadAtOnce, Boolean.class));
     if (this.debug != null) addParameter("debug", findValue(this.debug, Boolean.class));
     if (this.scriptPath != null) addParameter("scriptPath", findString(this.scriptPath));
@@ -280,6 +282,18 @@ public class Head extends org.apache.struts2.components.Head {
     this.defaultIndicator = defaultIndicator;
   }
 
+  @StrutsTagAttribute(description = "The default loading text for all AJAX actions")
+  public void setDefaultLoadingText(String defaultLoadingText)
+  {
+    this.defaultLoadingText = defaultLoadingText;
+  }
+
+  @StrutsTagAttribute(description = "The default error text for all AJAX actions")
+  public void setDefaultErrorText(String defaultErrorText)
+  {
+    this.defaultErrorText = defaultErrorText;
+  }
+
   @StrutsTagAttribute(description = "do not use the on demand load for jquery ui resources", defaultValue = "false", type = "Boolean")
   public void setLoadAtOnce(String loadAtOnce)
   {
@@ -311,12 +325,6 @@ public class Head extends org.apache.struts2.components.Head {
   public void setScriptPath(String scriptPath)
   {
     this.scriptPath = scriptPath;
-  }
-
-  @StrutsTagAttribute(description = "The default loading text for all AJAX actions", defaultValue = "Loading ...")
-  public void setDefaultLoadingText(String defaultLoadingText)
-  {
-    this.defaultLoadingText = defaultLoadingText;
   }
 
   @StrutsTagAttribute(description = "Enable Compatibility for older jQuery Versions. e.g. 1.3", defaultValue = "")
