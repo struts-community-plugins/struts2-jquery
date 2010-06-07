@@ -319,22 +319,22 @@
 		if (options.id) {
 
 			if(options.url && options.formids) {
-				var data = '';
+				var formdata = '';
 				if (options.formids) {
 					if (!$.struts2_jquery.loadAtOnce) {
 						$.struts2_jquery.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
 					}
 					$.each(options.formids.split(','), function(i, fid) {
 						var query = $($.struts2_jquery.escId(fid)).formSerialize();
-						if (data != '') { data = data + '&' + query; }
-						else { data = query; }
+						if (formdata != '') { formdata = formdata + '&' + query; }
+						else { formdata = query; }
 					});
 				}
 				if (options.url.lastIndexOf('?') > 0) {
-					options.url = options.url + '&amp;' + data;
+					options.url = options.url + '&amp;' + formdata;
 				}
 				else {
-					options.url = options.url + '?' + data;
+					options.url = options.url + '?' + formdata;
 				}
 			}
 			$($.struts2_jquery.escId(options.id)).setGridParam({url:options.url}); 
