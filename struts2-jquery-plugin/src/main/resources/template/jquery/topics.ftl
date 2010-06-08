@@ -46,3 +46,10 @@
   <#if parameters.onRemoveTopics?exists>
 	options_${escapedOptionId?html}.onremovetopics = "${parameters.onRemoveTopics?string?html}";
   </#if>
+  <#if parameters.onFocusTopics?exists>
+	options_${escapedOptionId?html}.onfocustopics = "${parameters.onFocusTopics?string?html}";
+  </#if>
+  <#if parameters.onBlurTopics?exists>
+	options_${escapedOptionId?html}.onblurtopics = "${parameters.onBlurTopics?string?html}";
+  </#if>
+  
