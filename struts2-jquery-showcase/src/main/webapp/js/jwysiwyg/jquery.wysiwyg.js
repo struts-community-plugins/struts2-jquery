@@ -1,5 +1,5 @@
 /**
- * WYSIWYG - jQuery plugin 0.7
+ * WYSIWYG - jQuery plugin 0.8
  *
  * Copyright (c) 2008-2009 Juan M Martinez
  * http://plugins.jquery.com/project/jWYSIWYG
@@ -40,7 +40,7 @@
                 return element;
         };
 
-        $.fn.documentSelection = function ()
+        var documentSelection = function ()
         {
                 var element = this.get(0);
 
@@ -119,8 +119,8 @@
 
         $.fn.wysiwyg.defaults = {
                 html: '<' + '?xml version="1.0" encoding="UTF-8"?' + '><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">STYLE_SHEET</head><body style="margin: 0px;">INITIAL_CONTENT</body></html>',
-                formTableHtml: '<form class="wysiwyg"><fieldset><legend>Insert table</legend><label>Count of columns: <input type="text" name="colCount" value="3" /></label><label>Count of rows: <input type="text" name="rowCount" value="3" /></label><input type="submit" class="button" value="Insert table" /> <input type="reset" value="Cancel" /></fieldset></form>',
-                formImageHtml:'<form class="wysiwyg"><fieldset><legend>Insert Image</legend><label>Image URL: <input type="text" name="url" value="http://" /></label><label>Image Title: <input type="text" name="title" value="" /></label><label>Image Description: <input type="text" name="description" value="" /></label><input type="submit" class="button" value="Insert Image" /> <input type="reset" value="Cancel" /></fieldset></form>',
+                formTableHtml: '<form class="wysiwyg"><fieldset><legend>Insert table</legend><label>Count of columns: <input type="text" name="colCount" value="3" /></label><label><br />Count of rows: <input type="text" name="rowCount" value="3" /></label><input type="submit" class="button" value="Insert table" /> <input type="reset" value="Cancel" /></fieldset></form>',
+                formImageHtml:'<form class="wysiwyg"><fieldset><legend>Insert Image</legend><label>Image URL: <input type="text" name="url" value="http://" /></label><label>Image Title: <input type="text" name="imagetitle" value="" /></label><label>Image Description: <input type="text" name="description" value="" /></label><input type="submit" class="button" value="Insert Image" /> <input type="reset" value="Cancel" /></fieldset></form>',
                 formWidth: 440,
                 formHeight: 270,
                 tableFiller: 'Lorem ipsum',
@@ -131,7 +131,7 @@
                 rmUnwantedBr: true,
                 // http://code.google.com/p/jwysiwyg/issues/detail?id=15
                 brIE: true,
-                messages: 
+                messages:
                 {
                         nonSelection: 'select the text you wish to link'
                 },
@@ -252,7 +252,7 @@
                         visible: true,
                         exec: function ()
                         {
-                                var selection = $(this.editor).documentSelection();
+                                var selection = documentSelection.call($(this.editor));
 
                                 if (selection.length > 0)
                                 {
@@ -293,7 +293,7 @@
                                                         {
                                                                 e.preventDefault();
                                                                 var szURL = $('input[name="url"]', dialog.data).val();
-                                                                var title = $('input[name="title"]', dialog.data).val();
+                                                                var title = $('input[name="imagetitle"]', dialog.data).val();
                                                                 var description = $('input[name="description"]', dialog.data).val();
                                                                 var img="<img src='" + szURL + "' title='" + title + "' alt='" + description + "' />";
                                                                 self.insertHtml(img);
@@ -312,21 +312,57 @@
                                 }
                                 else
                                 {
+                                     if ($.fn.dialog){
+                                        var self = this;
+                                        var dialog = $($.fn.wysiwyg.defaults.formImageHtml).appendTo('body');
+                                        dialog.dialog({
+                                            modal: true,
+                                            width: $.fn.wysiwyg.defaults.formWidth,
+                                            height: $.fn.wysiwyg.defaults.formHeight,
+                                            open: function(ev, ui)
+                                            {
+                                                 $('input:submit', $(this)).click(function(e)
+                                                 {
+                                                       e.preventDefault();
+                                                       var szURL = $('input[name="url"]', dialog).val();
+                                                       var title = $('input[name="imagetitle"]', dialog).val();
+                                                       var description = $('input[name="description"]', dialog).val();
+                                                       var img="<img src='" + szURL + "' title='" + title + "' alt='" + description + "' />";
+                                                       self.insertHtml(img);
+                                                       $(dialog).dialog("close");
+                                                 });
+                                                 $('input:reset', $(this)).click(function(e)
+                                                        {
+                                                                e.preventDefault();
+                                                                $(dialog).dialog("close");
+                                                        });
+                                            },
+                                            close: function(ev, ui){
+        		                                  $(this).dialog("destroy");
+
+                                            }
+                                        });
+                                    }
+                                    else
+                                    {
                                         if ($.browser.msie)
-	                                {
-	                                        this.focus();
-	                                        this.editorDoc.execCommand('insertImage', true, null);
-	                                }
-	                                else
-	                                {
-	                                        var szURL = prompt('URL', 'http://');
-	                                        if (szURL && szURL.length > 0)
-	                                        {
-	                                                this.editorDoc.execCommand('insertImage', false, szURL);
-	                                        }
-	                                }
+    	                                {
+    	                                        this.focus();
+    	                                        this.editorDoc.execCommand('insertImage', true, null);
+    	                                }
+    	                                else
+    	                                {
+    	                                        var szURL = prompt('URL', 'http://');
+    	                                        if (szURL && szURL.length > 0)
+    	                                        {
+    	                                                this.editorDoc.execCommand('insertImage', false, szURL);
+    	                                        }
+    	                                }
+                                    }
+
+
                                 }
-                                
+
                         },
                         tags: ['img'],
                         tooltip: 'Insert image'
@@ -335,7 +371,8 @@
                         visible: true,
                         exec: function ()
                         {
-                                if ($.modal)
+
+                                if ($.fn.modal)
                                 {
                                         var self = this;
                                         $.modal($.fn.wysiwyg.defaults.formTableHtml, {
@@ -362,9 +399,40 @@
                                 }
                                 else
                                 {
-                                        var colCount = prompt('Count of columns', '3');
-                                        var rowCount = prompt('Count of rows', '3');
-                                        this.insertTable(colCount, rowCount, $.fn.wysiwyg.defaults.tableFiller);
+                                    if ($.fn.dialog){
+                                        var self = this;
+                                        var dialog = $($.fn.wysiwyg.defaults.formTableHtml).appendTo('body');
+                                        dialog.dialog({
+                                            modal: true,
+                                            width: $.fn.wysiwyg.defaults.formWidth,
+                                            height: $.fn.wysiwyg.defaults.formHeight,
+                                            open: function(event, ui){
+                                                 $('input:submit', $(this)).click(function(e)
+                                                 {
+                                                        e.preventDefault();
+                                                        var rowCount = $('input[name="rowCount"]', dialog).val();
+                                                        var colCount = $('input[name="colCount"]', dialog).val();
+                                                        self.insertTable(colCount, rowCount, $.fn.wysiwyg.defaults.tableFiller);
+                                                        $(dialog).dialog("close");
+                                                 });
+                                                 $('input:reset', $(this)).click(function(e)
+                                                        {
+                                                                e.preventDefault();
+                                                                $(dialog).dialog("close");
+                                                        });
+                                            },
+                                            close: function(event, ui){
+        		                                  $(this).dialog("destroy");
+
+                                            }
+                                        });
+                                    }
+                                    else
+                                    {
+                                            var colCount = prompt('Count of columns', '3');
+                                            var rowCount = prompt('Count of rows', '3');
+                                            this.insertTable(colCount, rowCount, $.fn.wysiwyg.defaults.tableFiller);
+                                    }
                                 }
                         },
                         tags: ['table'],
@@ -492,7 +560,7 @@
 
                         if (self.constructor == Wysiwyg && szURL && szURL.length > 0)
                         {
-                                var selection = $(self.editor).documentSelection();
+                                var selection = documentSelection.call($(self.editor));
 
                                 if (selection.length > 0)
                                 {
@@ -560,6 +628,15 @@
                 }
         });
 
+        var addHoverClass = function()
+        {
+                $(this).addClass('wysiwyg-button-hover');
+        };
+        var removeHoverClass = function()
+        {
+                $(this).removeClass('wysiwyg-button-hover');
+        };
+
         $.extend(Wysiwyg.prototype, {
                 original: null,
                 options: {
@@ -585,7 +662,7 @@
                 },
                 focus: function ()
                 {
-                        $(this.editorDoc.body).focus();
+                        this.editor.get(0).contentWindow.focus();
                 },
 
                 init: function (element, options)
@@ -633,7 +710,7 @@
                                          width	 : ( newX - 6 ).toString() + 'px',
                                          height	: ( newY - 8 ).toString() + 'px'
                                          }).attr('id', $(element).attr('id') + 'IFrame');
-                                         
+
                                          editor.outerHTML = this.editor.outerHTML;
                                          */
                                 }
@@ -742,10 +819,8 @@
                          */
                         $(this.original).focus(function ()
                         {
-                                if (!$.browser.msie)
-                                {
-                                        self.focus();
-                                }
+						        if ($(this).filter(':visible')) return;
+                                self.focus();
                         });
 
                         if (!$.browser.msie)
@@ -917,7 +992,7 @@
                 },
                 insertTable: function(colCount, rowCount, filler)
                 {
-                        if (isNaN(rowCount) || isNaN(colCount))
+                        if (isNaN(rowCount) || isNaN(colCount) || rowCount == null || colCount==null)
                         {
                                 return;
                         }
@@ -982,8 +1057,7 @@
                         var self = this;
                         args = args || [];
 
-                        $('<li></li>').append(
-                        $('<a role="menuitem" tabindex="-1" href="javascript:;">' + (className || cmd) + '</a>').addClass(className || cmd).attr('title', tooltip)).click(function ()
+                        $('<li role="menuitem" UNSELECTABLE="on">' + (className || cmd) + '</li>').addClass(className || cmd).attr('title', tooltip).hover(addHoverClass, removeHoverClass).click(function ()
                         {
                                 if (fn)
                                 {
@@ -1010,7 +1084,7 @@
 
                 appendControls: function ()
                 {
-                        
+
                         var currentGroupIndex  = 0;
                         var hasVisibleControls = true; // to prevent separator before first item
                         for (var name in this.options.controls)
