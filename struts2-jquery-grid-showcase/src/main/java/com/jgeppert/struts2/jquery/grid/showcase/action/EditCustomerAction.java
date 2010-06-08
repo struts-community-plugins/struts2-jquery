@@ -57,6 +57,9 @@ public class EditCustomerAction extends ActionSupport {
       log.debug("Add Customer");
       customer = new Customers();
 
+      int nextid = customersDao.nextCustomerNumber();
+      log.debug("Id for ne Customer is " + nextid);
+      customer.setCustomernumber(nextid);
       customer.setCustomername(customername);
       customer.setCountry(country);
       customer.setCity(city);
