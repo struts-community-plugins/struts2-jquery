@@ -30,13 +30,20 @@
     <p>
 		<strong>The Database in this Showcase is per default read-only!</strong><br/>
 		Make Samples editable with following <sj:a id="openStepsDialog" openDialog="readWriteSteps" cssStyle="font-weight: bold; text-decoration: underline;">Steps</sj:a>.
-		<sj:dialog id="readWriteSteps" modal="true" autoOpen="false" width="600">
-		<ol>
-			<li>Copy BirtSample.jar from the WEB-INF/lib folder to your Harddrive (e.g. C:\)</li>
-			<li>Extract BirtSample.jar to C:\BirtSample)</li>
-			<li>Edit WEB-INF/classes/hibernate.cfg.xml</li>
-			<li>&lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:derby:directory:C:/BirtSample/BirtSample&lt;/property&gt;</li>
-		</ol>
+		<sj:dialog 
+			id="readWriteSteps" 
+			modal="true" 
+			autoOpen="false" 
+			width="600"
+			resizable="false"
+			draggable="false"
+		>
+			<ol>
+				<li>Copy BirtSample.jar from the WEB-INF/lib folder to your Harddrive (e.g. C:\)</li>
+				<li>Extract BirtSample.jar to C:\BirtSample)</li>
+				<li>Edit WEB-INF/classes/hibernate.cfg.xml</li>
+				<li>&lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:derby:directory:C:/BirtSample/BirtSample&lt;/property&gt;</li>
+			</ol>
 		</sj:dialog>
     </p>
     <sjg:grid 

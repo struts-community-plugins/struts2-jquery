@@ -43,7 +43,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <!-- START SNIPPET: example1 -->
  * 
  * <pre>
- * &lt;sj:dialog id="mydialog1" title="Local Dialog"&gt; 
+ * &lt;sj:dialog id=&quot;mydialog1&quot; title=&quot;Local Dialog&quot;&gt; 
  * Mauris mauris ante, blandit et, ultrices a, suscipit
  * eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
  * condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin
@@ -57,8 +57,8 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <!-- START SNIPPET: example2 -->
  * 
  * <pre>
- * &lt;s:url id="remoteurl" action="myremoteaction"/&gt; 
- * &lt;sj:dialog id="mydialog2" href="%{remoteurl}" title="Remote Dialog"/&gt;
+ * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt; 
+ * &lt;sj:dialog id=&quot;mydialog2&quot; href=&quot;%{remoteurl}&quot; title=&quot;Remote Dialog&quot;/&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example2 -->
@@ -66,8 +66,8 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <!-- START SNIPPET: example3 -->
  * 
  * <pre>
- * &lt;s:url id="remoteurl" action="myremoteaction"/&gt;
- * &lt;sj:dialog id="mydialog3" href="%{remoteurl}" title="Modal Remote Dialog with Effects" modal="true" showEffect="slide" hideEffect="explode"/&gt;
+ * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt;
+ * &lt;sj:dialog id=&quot;mydialog3&quot; href=&quot;%{remoteurl}&quot; title=&quot;Modal Remote Dialog with Effects&quot; modal=&quot;true&quot; showEffect=&quot;slide&quot; hideEffect=&quot;explode&quot;/&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example3 -->
@@ -75,8 +75,8 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <!-- START SNIPPET: example4 -->
  * 
  * <pre>
- * &lt;s:url id="remoteurl" action="myremoteaction"/&gt; &lt;sj:dialog id="mydialog5" href="%{remoteurl}" title="Remote Dialog open on Click" autoOpen="false" modal="true"/&gt;
- * &lt;sj:a openDialog="mydialog5"&gt;Open Dialog&lt;/sj:a&gt;
+ * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt; &lt;sj:dialog id=&quot;mydialog5&quot; href=&quot;%{remoteurl}&quot; title=&quot;Remote Dialog open on Click&quot; autoOpen=&quot;false&quot; modal=&quot;true&quot;/&gt;
+ * &lt;sj:a openDialog=&quot;mydialog5&quot;&gt;Open Dialog&lt;/sj:a&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example4 -->
@@ -135,16 +135,16 @@ public class Dialog extends AbstractRemoteBean {
     addParameter("jqueryaction", JQUERYACTION);
 
     if (buttons != null) addParameter("buttons", findString(buttons));
-    if (draggable != null) addParameter("draggable", findString(draggable));
+    if (draggable != null) addParameter("draggable", findValue(draggable, Boolean.class));
     if (dialogClass != null) addParameter("dialogClass", findString(dialogClass));
     if (height != null) addParameter("height", findString(height));
     if (modal != null) addParameter("modal", findString(modal));
     if (position != null) addParameter("position", findString(position));
-    if (resizable != null) addParameter("resizable", findString(resizable));
+    if (resizable != null) addParameter("resizable", findValue(resizable, Boolean.class));
     if (title != null) addParameter("title", findString(title));
     if (width != null) addParameter("width", findString(width));
     if (zindex != null) addParameter("zindex", findString(zindex));
-    if (autoOpen != null) addParameter("autoOpen", findString(autoOpen));
+    if (autoOpen != null) addParameter("autoOpen", findValue(autoOpen, Boolean.class));
     if (showEffect != null) addParameter("showEffect", findString(showEffect));
     if (hideEffect != null) addParameter("hideEffect", findString(hideEffect));
     if (overlayColor != null) addParameter("overlayColor", findString(overlayColor));
@@ -187,7 +187,7 @@ public class Dialog extends AbstractRemoteBean {
     this.buttons = buttons;
   }
 
-  @StrutsTagAttribute(description = "If set to true, the dialog will be draggable will be draggable by the titlebar. Default: true")
+  @StrutsTagAttribute(description = "If set to true, the dialog will be draggable will be draggable by the titlebar.", defaultValue = "true", type = "Boolean")
   public void setDraggable(String draggable)
   {
     this.draggable = draggable;
@@ -217,7 +217,7 @@ public class Dialog extends AbstractRemoteBean {
     this.position = position;
   }
 
-  @StrutsTagAttribute(description = "If set to true, the dialog will be resizeable. Default: true")
+  @StrutsTagAttribute(description = "If set to true, the dialog will be resizeable.", defaultValue = "true", type = "Boolean")
   public void setResizable(String resizable)
   {
     this.resizable = resizable;
@@ -241,7 +241,7 @@ public class Dialog extends AbstractRemoteBean {
     this.zindex = zindex;
   }
 
-  @StrutsTagAttribute(description = "When autoOpen is true the dialog will open automatically when dialog is called. If false it will stay hidden until .dialog('open') is called on it. Default: true")
+  @StrutsTagAttribute(description = "When autoOpen is true the dialog will open automatically when dialog is called. If false it will stay hidden until .dialog('open') is called on it.", defaultValue = "true", type = "Boolean")
   public void setAutoOpen(String autoOpen)
   {
     this.autoOpen = autoOpen;

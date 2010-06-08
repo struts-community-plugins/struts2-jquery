@@ -64,18 +64,14 @@ $(document).ready(function () {
   <#if parameters.buttons?if_exists != "">
 	options_${escapedOptionId?html}.buttons = ${parameters.buttons?string};
   </#if>
-  <#if parameters.draggable?if_exists != "">
-	options_${escapedOptionId?html}.draggable = false;
-  <#else>
-	options_${escapedOptionId?html}.draggable = true;
+  <#if parameters.draggable?exists>
+	options_${escapedOptionId?html}.draggable = ${parameters.draggable?string};
   </#if>
-  <#if parameters.resizable?if_exists != "">
-	options_${escapedOptionId?html}.resizable = "${parameters.resizable?html}";
+  <#if parameters.resizable?exists>
+	options_${escapedOptionId?html}.resizable = ${parameters.resizable?string};
   </#if>
-  <#if parameters.autoOpen?if_exists == "false">
-	options_${escapedOptionId?html}.autoOpen = false;
-  <#else>
-	options_${escapedOptionId?html}.autoOpen = true;
+  <#if parameters.autoOpen?exists>
+	options_${escapedOptionId?html}.autoOpen = ${parameters.autoOpen?string};
   </#if>
 <#if parameters.modal?if_exists == "true" >
  <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">
