@@ -185,7 +185,10 @@
 			orginal.request = request;
 
 			if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) { container.html(data); }
-			else if (modus == 'value') { container.val(data); }
+			else if (modus == 'value') { 
+				var tData = $.trim(data); 
+				container.val(tData); 
+			}
 			else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
 				//container[0].length = 0;
 				container.children().remove();
@@ -1370,8 +1373,10 @@
 			// Init Buttonset after elements loaded via AJAX.
 			$elem.subscribe(buttonsetTopic, function(event,data) {
 				if (options.onchangetopics) {
-					$.each(options.onchangetopics.split(','), function(i, cts) { 
-						$elem.publishOnEvent('change', cts);
+					$(_s2j.escId(options.id)+" > input").change(function() {
+						$.each(options.onchangetopics.split(','), function(i, cts) { 
+							$elem.publish(cts);
+						});
 					});
 				}
 
@@ -1400,8 +1405,10 @@
 		}
 		else {
 			if (options.onchangetopics) {
-				$.each(options.onchangetopics.split(','), function(i, cts) { 
-					$elem.publishOnEvent('change', cts);
+				$(_s2j.escId(options.id)+" > input").change(function() {
+					$.each(options.onchangetopics.split(','), function(i, cts) { 
+						$elem.publish(cts);
+					});
 				});
 			}
 
@@ -1449,10 +1456,20 @@
 				if (modus == 'html' || modus == 'value') {
 					// Set pre-loading text (if any)
 					if (options.loadingtext && options.loadingtext != "false") {
-						container.html(options.loadingtext);
+						if(modus == 'html') {
+							container.html(options.loadingtext);
+						}
+						else{
+							container.val(options.loadingtext);
+						}
 					}
 					else if (_s2j.defaultLoadingText !== null) {
-						container.html(_s2j.defaultLoadingText);
+						if(modus == 'html') {
+							container.html(_s2j.defaultLoadingText);
+						}
+						else{
+							container.val(_s2j.defaultLoadingText);
+						}
 					}
 				}
 				var params = {};
@@ -1470,14 +1487,18 @@
 						params.data = options.hrefparameter;
 					}
 
-					if (options.formids) {
+					if (options.formids && params.data == '') {
 						if (!_s2j.loadAtOnce) {
 							_s2j.require("js/plugins/jquery.form"+_s2j.minSuffix+".js");
 						}
 						$.each(options.formids.split(','), function(i, fid) {
 							var query = $(_s2j.escId(fid)).formSerialize();
-							if (params.data != '') { params.data = params.data + '&' + query; }
-							else { params.data = query; }
+							if (params.data != '') {
+									params.data = params.data + '&' + query;
+							}
+							else { 
+								params.data = query; 
+							}
 						});
 					}
 

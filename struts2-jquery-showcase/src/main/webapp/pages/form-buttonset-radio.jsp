@@ -36,13 +36,16 @@
 		    <sj:radio
 		    		id="radiobuttonset"
 		            list="{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}"
-		            name="echo"/>
+		            name="echo"
+					onChangeTopics="submitForm1"
+		    />
 		    <br/>
             <sj:submit 
 	           	targets="formResult" 
 	           	value="AJAX Submit" 
 	           	indicator="indicator"
 	           	button="true"
+	            listenTopics="submitForm1"
            	/>
     </s:form>
 	<br/>
@@ -58,6 +61,7 @@
 					onChangeTopics="submitForm2"
 				/>
 	            <sj:submit 
+	            	id="form2button"
 	            	targets="formResult" 
 	            	value="AJAX Submit" 
 	            	indicator="indicator"
