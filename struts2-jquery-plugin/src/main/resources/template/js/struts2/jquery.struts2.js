@@ -34,20 +34,18 @@
 	minSuffix : ".min",
 	historyelements : {},
 	forms : {},
-	defaultIndicator :'',
-	defaultLoadingText : null,
-	defaultErrorText : null,
-	lasttopic :'',
 	scriptCache : {},
 	styleCache : {},
+	defaults : {
+		indicator :'',
+		loadingText : null,
+		errorText : null
+	},
 	handler : {
 		load : '_s2j_container_load',
 		form : '_s2j_form_submit',
 		effect : '_s2j_effects'
 	},
-	loadHandler : '_s2j_container_load',
-	formHandler : '_s2j_form_submit',
-	effectHandler : '_s2j_effects',
 
 
 	//helper function for debug logging
@@ -132,8 +130,8 @@
 		if (indi) {
 			$(this.escId(indi)).hide();
 		}
-		if (this.defaultIndicator != '') {
-			$(this.escId(this.defaultIndicator)).hide();
+		if (this.defaults.indicator != '') {
+			$(this.escId(this.defaults.indicator)).hide();
 		}
 	},
 
@@ -142,8 +140,8 @@
 		if (indi) {
 			$(this.escId(indi)).show();
 		}
-		if (this.defaultIndicator != '') {
-			$(this.escId(this.defaultIndicator)).show();
+		if (this.defaults.indicator != '') {
+			$(this.escId(this.defaults.indicator)).show();
 		}
 	},
 	
@@ -344,8 +342,8 @@
 					if (etext && etext != "false") {
 						container.html(etext);
 					}
-					else if (_s2j.defaultErrorText !== null) {
-						container.html(_s2j.defaultErrorText);
+					else if (_s2j.defaults.errorText !== null) {
+						container.html(_s2j.defaults.errorText);
 					}
 				}
 
@@ -971,7 +969,7 @@
 		if (options.orientation) { para.orientation = options.orientation; }
 		
 		if (options.spinner !== undefined) { para.spinner = options.spinner; }
-		else if (_s2j.defaultLoadingText !== null) { para.spinner = _s2j.defaultLoadingText; }
+		else if (_s2j.defaults.loadingText !== null) { para.spinner = _s2j.defaults.loadingText; }
 		
 		if (options.selectedtab) { para.selected = options.selectedtab; }
 		if (options.oncompletetopics) { para.ajaxOptions = {
@@ -1462,12 +1460,12 @@
 							container.val(options.loadingtext);
 						}
 					}
-					else if (_s2j.defaultLoadingText !== null) {
+					else if (_s2j.defaults.loadingText !== null) {
 						if(modus == 'html') {
-							container.html(_s2j.defaultLoadingText);
+							container.html(_s2j.defaults.loadingText);
 						}
 						else{
-							container.val(_s2j.defaultLoadingText);
+							container.val(_s2j.defaults.loadingText);
 						}
 					}
 				}
@@ -1584,9 +1582,9 @@
 								$(_s2j.escId(target)).html(options.loadingtext);
 							});
 						}
-						else if (_s2j.defaultLoadingText !== null) {
+						else if (_s2j.defaults.loadingText !== null) {
 							$.each(options.targets.split(','), function(i, target) { 
-								$(_s2j.escId(target)).html(_s2j.defaultLoadingText);
+								$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
 							});
 						}
 					}

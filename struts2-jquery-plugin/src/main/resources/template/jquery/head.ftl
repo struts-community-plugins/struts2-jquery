@@ -117,13 +117,13 @@ $(document).ready(function () {
 	$.struts2_jquery.ajaxhistory = true;
 </#if>
 	<#if parameters.defaultIndicator?if_exists != "">
-	$.struts2_jquery.defaultIndicator="${parameters.defaultIndicator?string}";
+	$.struts2_jquery.defaults.indicator="${parameters.defaultIndicator?string}";
 	</#if>
 	<#if parameters.defaultLoadingText?if_exists != "">
-	$.struts2_jquery.defaultLoadingText="${parameters.defaultLoadingText?string}";
+	$.struts2_jquery.defaults.loadingText="${parameters.defaultLoadingText?string}";
 	</#if>
 	<#if parameters.defaultErrorText?if_exists != "">
-	$.struts2_jquery.defaultErrorText="${parameters.defaultErrorText?string}";
+	$.struts2_jquery.defaults.errorText="${parameters.defaultErrorText?string}";
 	</#if>
 	$.ajaxSettings.traditional = true;
 
