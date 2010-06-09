@@ -190,8 +190,7 @@
 				container.val(tData); 
 			}
 			else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
-				//container[0].length = 0;
-				container.children().remove();
+				container[0].length = 0;
 				
 				if (typeof (data) == "object" || $.isArray(data)) {
 					var i = -1;
