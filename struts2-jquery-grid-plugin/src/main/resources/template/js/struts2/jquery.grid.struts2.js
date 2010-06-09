@@ -188,8 +188,8 @@
 			});
 		}
 
-		if (!params.loadtext && self.defaultLoadingText !== null) {
-			params.loadtext = self.defaultLoadingText;
+		if (!params.loadtext && self.defaults.loadingText !== null) {
+			params.loadtext = self.defaults.loadingText;
 		}
 		
 		params.loadComplete = self.pubCom($elem, options.onalwaystopics, options.oncompletetopics, null, null, options);
