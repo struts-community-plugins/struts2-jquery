@@ -985,6 +985,7 @@
 		if (options.ondisabletopics) { para.disable = this.pubTops($elem, options.onalwaystopics, options.ondisabletopics); }
 		if (options.onaddtopics) { para.add = this.pubTops($elem, options.onalwaystopics, options.onaddtopics); }
 		if (options.onremovetopics) { para.remove = this.pubTops($elem, options.onalwaystopics, options.onremovetopics); }
+		if (options.oncompletetopics) { para.load = this.pubTops($elem, options.onalwaystopics, options.onremovetopics); }
 
 		var tabs = $elem.data('taboptions');
 		if (tabs) {
