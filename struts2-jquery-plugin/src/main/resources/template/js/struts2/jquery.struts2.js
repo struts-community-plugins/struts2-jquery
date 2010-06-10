@@ -1068,7 +1068,6 @@
 					data.year = year;
 					data.month = month;
 					data.inst = inst;
-					var $inst = $(inst);
 					this.publishTopic($inst, options.onchangemonthyeartopics, data);
 					this.publishTopic($inst, oat, data);
 				};
@@ -1076,9 +1075,9 @@
 
 			if (options.onchangetopics) {
 				params.onSelect = function(dateText, inst) {
-					var $inst = $(inst);
 					var data = {};
 					data.dateText = dateText;
+					data.inst = inst;
 					this.publishTopic($inst, options.onchangetopics, data);
 					this.publishTopic($inst, oat, data);
 				};
@@ -1086,9 +1085,9 @@
 
 			if (options.oncompletetopics) {
 				params.onClose = function(dateText, inst) {
-					var $inst = $(inst);
 					var data = {};
 					data.dateText = dateText;
+					data.inst = inst;
 					_s2j.publishTopic($inst, options.oncompletetopics, data);
 					_s2j.publishTopic($inst, oat, data);
 				};
