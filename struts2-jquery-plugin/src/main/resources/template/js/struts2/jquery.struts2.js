@@ -74,8 +74,10 @@
 	 */
 	require : function(files, callBack, basePath) {
 
-		var successFunction = callBack || function() {};
-		var path = basePath || null;
+		var successFunction, path;
+		successFunction = callBack || function() {};
+		path = basePath || null;
+		
 		if ( path === null && !$.scriptPath ) {
 			path = '';
 		}
@@ -107,7 +109,9 @@
 	 */
 	requireCss : function(cssFile, basePath) {
 		if (!this.styleCache[cssFile]) {
-			var path = basePath || null;
+			var path, cssref;
+			
+			path = basePath || null;
 			if ( path === null && !$.scriptPath ) {
 				path = '';
 			}
@@ -116,7 +120,7 @@
 			}
 			this.log('load require css '+(path + cssFile));
 	
-			var cssref=document.createElement("link");
+			cssref=document.createElement("link");
 		  cssref.setAttribute("rel", "stylesheet");
 		  cssref.setAttribute("type", "text/css");
 		  cssref.setAttribute("href", (path + cssFile));
@@ -184,8 +188,7 @@
 
 			if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) { container.html(data); }
 			else if (modus == 'value') { 
-				var tData = $.trim(data); 
-				container.val(tData); 
+				container.val($.trim(data)); 
 			}
 			else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
 				container[0].length = 0;
@@ -1069,8 +1072,8 @@
 					data.year = year;
 					data.month = month;
 					data.inst = inst;
-					this.publishTopic($inst, options.onchangemonthyeartopics, data);
-					this.publishTopic($inst, oat, data);
+					this.publishTopic($elem, options.onchangemonthyeartopics, data);
+					this.publishTopic($elem, oat, data);
 				};
 			}
 
@@ -1079,8 +1082,8 @@
 					var data = {};
 					data.dateText = dateText;
 					data.inst = inst;
-					this.publishTopic($inst, options.onchangetopics, data);
-					this.publishTopic($inst, oat, data);
+					this.publishTopic($elem, options.onchangetopics, data);
+					this.publishTopic($elem, oat, data);
 				};
 			}
 
@@ -1089,8 +1092,8 @@
 					var data = {};
 					data.dateText = dateText;
 					data.inst = inst;
-					_s2j.publishTopic($inst, options.oncompletetopics, data);
-					_s2j.publishTopic($inst, oat, data);
+					_s2j.publishTopic($elem, options.oncompletetopics, data);
+					_s2j.publishTopic($elem, oat, data);
 				};
 			}
 
