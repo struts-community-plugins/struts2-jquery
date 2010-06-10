@@ -45,6 +45,7 @@ public class SliderTag extends AbstractTopicTag {
   protected String          change;
   protected String          stop;
   protected String          displayValueElement;
+  protected String          onSlideTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -63,6 +64,7 @@ public class SliderTag extends AbstractTopicTag {
     slider.setRange(range);
     slider.setStep(step);
     slider.setDisplayValueElement(displayValueElement);
+    slider.setOnSlideTopics(onSlideTopics);
   }
 
   public void setAnimate(String animate)
@@ -98,5 +100,10 @@ public class SliderTag extends AbstractTopicTag {
   public void setDisplayValueElement(String displayValueElement)
   {
     this.displayValueElement = displayValueElement;
+  }
+
+  public void setOnSlideTopics(String onSlideTopics)
+  {
+    this.onSlideTopics = onSlideTopics;
   }
 }

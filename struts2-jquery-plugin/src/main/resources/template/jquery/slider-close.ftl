@@ -48,6 +48,9 @@ $(document).ready(function () {
   <#if parameters.displayValueElement?if_exists != "">
 	options_${escapedOptionId?html}.displayvalueelement = "${parameters.displayValueElement?html}";
   </#if>
+  <#if parameters.onSlideTopics?exists>
+	options_${escapedOptionId?html}.onslidetopics = "${parameters.onSlideTopics?html}";
+  </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

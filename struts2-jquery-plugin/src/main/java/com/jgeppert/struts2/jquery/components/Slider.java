@@ -64,6 +64,7 @@ public class Slider extends AbstractTopicsBean {
   protected String                      range;
   protected String                      step;
   protected String                      displayValueElement;
+  protected String                      onSlideTopics;
 
   public Slider(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -92,6 +93,7 @@ public class Slider extends AbstractTopicsBean {
     if (range != null) addParameter("range", findString(range));
     if (step != null) addParameter("step", findString(step));
     if (displayValueElement != null) addParameter("displayValueElement", findString(displayValueElement));
+    if (onSlideTopics != null) addParameter("onSlideTopics", findString(onSlideTopics));
     if (value != null)
     {
       addParameter("value", findValue(value));
@@ -177,6 +179,12 @@ public class Slider extends AbstractTopicsBean {
   public void setDisplayValueElement(String displayValueElement)
   {
     this.displayValueElement = displayValueElement;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when slide", type = "String", defaultValue = "")
+  public void setOnSlideTopics(String onSlideTopics)
+  {
+    this.onSlideTopics = onSlideTopics;
   }
 
 }

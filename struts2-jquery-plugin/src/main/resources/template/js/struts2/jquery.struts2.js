@@ -1163,9 +1163,19 @@
 			params.stop = this.pubTops($elem, options.onalwaystopics, options.oncompletetopics);
 
 			params.slide = function(event, ui) {
-				$(_s2j.escId(options.hiddenid)).val(ui.value);
+				if (options.hiddenid) {
+					$(_s2j.escId(options.hiddenid)).val(ui.value);
+				}
 				if (options.displayvalueelement) {
 					$(_s2j.escId(options.displayvalueelement)).html(ui.value);
+				}
+				if (options.onslidetopics) {
+					var data = {};
+					data.event = event;
+					data.ui = ui;
+
+					this.publishTopic($elem, options.onalwaystopics, data);
+					this.publishTopic($elem, options.onslidetopics, data);
 				}
 			};
 
