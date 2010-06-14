@@ -89,10 +89,10 @@
 				self.publishTopic($elem, options.onalwaystopics, data);
 				$.struts2_jquery.publishTopic($elem, options.onselectrowtopics, data);
 				if (options.editurl && options.editinline === true) {
-					if ($.sruts2_jquery_grid.lastselectedrow) {
+					if ($.struts2_jquery_grid.lastselectedrow != '') {
 						$(self).jqGrid('restoreRow', $.struts2_jquery_grid.lastselectedrow);
-						$.struts2_jquery_grid.lastselectedrow = id;
 					}
+					$.struts2_jquery_grid.lastselectedrow = id;
 					$(self).jqGrid('editRow', id, true);
 				}
 			};
