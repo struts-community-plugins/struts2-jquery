@@ -20,7 +20,7 @@
 /*jslint evil: true */
 
 ( function($) {
-	
+
 	/**
 	 * Bind Struts2 Components for jQuery AJAX and UI functions
 	 */
@@ -29,30 +29,29 @@
 	debug :false,
 	ajaxhistory :false,
 	loadAtOnce :false,
-	local : "en",
-	gridLocal : "en",
-	minSuffix : ".min",
+	local :"en",
+	gridLocal :"en",
+	minSuffix :".min",
 	historyelements : {},
 	forms : {},
 	scriptCache : {},
 	styleCache : {},
 	defaults : {
-		indicator :'',
-		loadingText : null,
-		errorText : null
+	indicator :'',
+	loadingText :null,
+	errorText :null
 	},
 	handler : {
-		load : '_s2j_container_load',
-		form : '_s2j_form_submit',
-		effect : '_s2j_effects'
+	load :'_s2j_container_load',
+	form :'_s2j_form_submit',
+	effect :'_s2j_effects'
 	},
 
-
-	//helper function for debug logging
-	//set debug to true in the head tag to enable debug logging
+	// helper function for debug logging
+	// set debug to true in the head tag to enable debug logging
 	log : function(message) {
 		if (this.debug) {
-			var msg = '[struts2_jquery] '+message;
+			var msg = '[struts2_jquery] ' + message;
 			if (window.console && window.console.log) {
 				window.console.log(msg);
 			}
@@ -61,43 +60,44 @@
 			}
 		}
 	},
-	
+
 	/*
 	 * Escape Ids
 	 */
-	escId : function (id) {
+	escId : function(id) {
 		return '#' + id.replace(/(:|\.)/g, '\\$1');
 	},
-	
+
 	/*
 	 * Load required JavaScript Resourcess
 	 */
 	require : function(files, callBack, basePath) {
 
 		var successFunction, path;
-		successFunction = callBack || function() {};
+		successFunction = callBack || function() {
+		};
 		path = basePath || null;
-		
-		if ( path === null && !$.scriptPath ) {
+
+		if (path === null && !$.scriptPath) {
 			path = '';
 		}
-		else if( path === null && $.scriptPath ) {
+		else if (path === null && $.scriptPath) {
 			path = $.scriptPath;
 		}
-		
+
 		if (typeof files === "string") {
 			files = new Array(files);
 		}
-		$.each(files, function(i, file) { 
+		$.each(files, function(i, file) {
 			if (!_s2j.scriptCache[file]) {
-				_s2j.log('load require script '+(path + file));
+				_s2j.log('load require script ' + (path + file));
 				$.ajax( {
-				type : "GET",
-				url : path + file,
-				success : successFunction,
-				dataType : "script",
-				cache : true,
-				async : false
+				type :"GET",
+				url :path + file,
+				success :successFunction,
+				dataType :"script",
+				cache :true,
+				async :false
 				});
 				_s2j.scriptCache[file] = true;
 			}
@@ -110,27 +110,27 @@
 	requireCss : function(cssFile, basePath) {
 		if (!this.styleCache[cssFile]) {
 			var path, cssref;
-			
+
 			path = basePath || null;
-			if ( path === null && !$.scriptPath ) {
+			if (path === null && !$.scriptPath) {
 				path = '';
 			}
-			else if( path === null && $.scriptPath ) {
+			else if (path === null && $.scriptPath) {
 				path = $.scriptPath;
 			}
-			this.log('load require css '+(path + cssFile));
-	
-			cssref=document.createElement("link");
-		  cssref.setAttribute("rel", "stylesheet");
-		  cssref.setAttribute("type", "text/css");
-		  cssref.setAttribute("href", (path + cssFile));
-		  document.getElementsByTagName("head")[0].appendChild(cssref);
+			this.log('load require css ' + (path + cssFile));
+
+			cssref = document.createElement("link");
+			cssref.setAttribute("rel", "stylesheet");
+			cssref.setAttribute("type", "text/css");
+			cssref.setAttribute("href", (path + cssFile));
+			document.getElementsByTagName("head")[0].appendChild(cssref);
 			this.styleCache[cssFile] = true;
 		}
 	},
-	
+
 	// helper function to hide indicator
-	hideIndicator : function (indi) {
+	hideIndicator : function(indi) {
 		if (indi) {
 			$(this.escId(indi)).hide();
 		}
@@ -140,7 +140,7 @@
 	},
 
 	// helper function to show indicator
-	showIndicator : function (indi) {
+	showIndicator : function(indi) {
 		if (indi) {
 			$(this.escId(indi)).show();
 		}
@@ -148,9 +148,9 @@
 			$(this.escId(this.defaults.indicator)).show();
 		}
 	},
-	
+
 	// Helper function to publish UI topics
-	pubTops : function ($elem, always, topics) {
+	pubTops : function($elem, always, topics) {
 
 		if (topics) {
 			return function(event, ui) {
@@ -168,17 +168,17 @@
 	},
 
 	// Helper function to publish topics
-	publishTopic : function (elem, topics, data) {
+	publishTopic : function(elem, topics, data) {
 		if (topics) {
-			$.each(topics.split(','), function(i, to) { 
-				_s2j.log('publish topic : '+to);
+			$.each(topics.split(','), function(i, to) {
+				_s2j.log('publish topic : ' + to);
 				elem.publish(to, elem, data);
 			});
 		}
 	},
 
 	/** Publish Success topics */
-	pubSuc : function (cid, always, stopics, indi, modus, options) {
+	pubSuc : function(cid, always, stopics, indi, modus, options) {
 		var container = $(cid);
 		return function(data, status, request) {
 			var orginal = {};
@@ -186,78 +186,87 @@
 			orginal.status = status;
 			orginal.request = request;
 
-			if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) { container.html(data); }
-			else if (modus == 'value') { 
-				container.val($.trim(data)); 
+			if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) {
+				container.html(data);
+			}
+			else if (modus == 'value') {
+				container.val($.trim(data));
 			}
 			else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
-				container[0].length = 0;
-				
+				if (modus == 'select') {
+					container[0].length = 0;
+				}
+				else {
+					container.children().remove();
+				}
+
 				if (typeof (data) == "object" || $.isArray(data)) {
 					var i = -1;
-					var eopt;
-					if (modus == 'radio') {
-						eopt = document.createElement("input");
-						eopt.name=options.name;
-						eopt.type='radio';
-					}
-					else if (modus == 'checkbox') {
-						eopt = document.createElement("input");
-						eopt.name=options.name;
-						eopt.type='checkbox';
-					}
-					else{
-						eopt = document.createElement("option");
-					}
-					if (options.headerkey && options.headervalue) {
-						var option = eopt.cloneNode(true);
-						option.value = options.headerkey;
-						option.text = options.headervalue;
 
-						if (options.value == options.headervalue) {
-							option.selected = true;
+					if (modus == 'select') {
+						if (options.headerkey && options.headervalue) {
+							var headerElement = $('<option value="' + options.headerkey + '">' + options.headervalue + '</option>');
+							if (options.value == options.headervalue) {
+								headerElement.attr("selected", "selected");
+							}
+							headerElement.appendTo(container);
 						}
 
-						container[0].options[++i] = option;
-					}
-
-					if (options.emptyoption) {
-						container[0].options[++i] = eopt.cloneNode(true);
+						if (options.emptyoption) {
+							$('<option></option>').appendTo(container);
+						}
 					}
 
 					var o = 0;
 					if (data[options.list] !== null) {
 						$.each(data[options.list], function(j, val) {
-							var option = eopt.cloneNode(true);
+							var option = {};
+							if (modus == 'radio' || modus == 'checkbox') {
+								option.name = options.name;
+							}
+
 							if (data[options.list][o] === undefined) {
-								option.value = j;
 								option.text = val;
+								option.value = j;
 							}
 							else {
 								if (options.listkey !== undefined && options.listvalue !== undefined) {
-									option.value = val[options.listkey];
 									option.text = val[options.listvalue];
+									option.value = val[options.listkey];
 								}
 								else {
-									option.value = data[options.list][o];
 									option.text = data[options.list][o];
+									option.value = data[options.list][o];
 								}
 							}
 
-							if (options.value == option.value) {
+							if (options.value !== undefined && options.value == option.value) {
 								option.selected = true;
 							}
 
 							if (modus == 'select') {
-								container[0].options[++i] = option;
+								var optionElement = $('<option value="' + option.value + '">' + option.text + '</option>');
+								if (option.selected) {
+									optionElement.attr("selected", "selected");
+								}
+								optionElement.appendTo(container);
 							}
 							else {
-								
-								option.id=options.name+(++i);
-								container.append($(option));
-								container.append(
-										$('<label id="'+option.id+'label" for="'+option.id+'">'+option.text+'</label>')
-								);
+								var rocElement;
+								var idValue = ++i;
+								if (modus == 'radio') {
+									rocElement = $('<input name="' + option.name + '" type="radio" id="' + option.name + (idValue) + '" value="' + option.value + '"></input>');
+								}
+								else if (modus == 'checkbox') {
+									rocElement = $('<input name="' + option.name + '" type="checkbox" id="' + option.name + (idValue) + '" value="' + option.value + '"></input>');
+								}
+
+								if (option.selected) {
+									rocElement.attr("checked", "checked");
+								}
+
+								container.append(rocElement);
+								container.append($('<label id="' + option.name + (idValue) + 'label" for="' + option.name + (idValue) + '">' + option.text + '</label>'));
 							}
 							o++;
 						});
@@ -265,8 +274,10 @@
 				}
 			}
 
-			_s2j.publishTopic(container, stopics, orginal);
-			_s2j.publishTopic(container, always, orginal);
+			if (stopics) {
+				_s2j.publishTopic(container, stopics, orginal);
+				_s2j.publishTopic(container, always, orginal);
+			}
 
 			// Use BBQ for Ajaxhistory
 			if (_s2j.ajaxhistory) {
@@ -285,7 +296,7 @@
 	},
 
 	/** Publish Complete topics */
-	pubCom : function (cid, always, ctopics, targets, indi, options) {
+	pubCom : function(cid, always, ctopics, targets, indi, options) {
 		var container = $(cid);
 		return function(request, status) {
 			var orginal = {};
@@ -298,22 +309,19 @@
 			_s2j.publishTopic(container, always, orginal);
 
 			var ec = targets;
-			if (!ec) { ec = options.id; }
+			if (!ec) {
+				ec = options.id;
+			}
 			if (ec) {
 				var divEffectTopic = '_sj_div_effect_';
-				$.each(ec.split(','), function(i, target) { 
+				$.each(ec.split(','), function(i, target) {
 					var effect_elem = $(_s2j.escId(target));
 					effect_elem.publish(divEffectTopic + target, effect_elem);
 				});
 			}
 			if (options.resizable) {
 				if (!_s2j.loadAtOnce) {
-					_s2j.require(
-						[
-						 "js/base/jquery.ui.widget"+_s2j.minSuffix+".js",
-						 "js/base/jquery.ui.mouse"+_s2j.minSuffix+".js",
-						 "js/base/jquery.ui.resizable"+_s2j.minSuffix+".js"
-						 ]);
+					_s2j.require( [ "js/base/jquery.ui.widget" + _s2j.minSuffix + ".js", "js/base/jquery.ui.mouse" + _s2j.minSuffix + ".js", "js/base/jquery.ui.resizable" + _s2j.minSuffix + ".js" ]);
 				}
 				var ros = options.resizableoptions;
 				var ro = window[ros];
@@ -332,7 +340,7 @@
 	},
 
 	// publish error topics
-	pubErr : function (cid, always, etopics, etext, modus) {
+	pubErr : function(cid, always, etopics, etext, modus) {
 		var container = $(cid);
 		if (etopics || etext) {
 			return function(request, status, error) {
@@ -378,9 +386,11 @@
 			// extension point to allow custom pre-binding processing
 			if (typeof (this.preBind) != "function" || this.preBind($el)) {
 
-				if (!options.jqueryaction) { options.jqueryaction = tag; }
+				if (!options.jqueryaction) {
+					options.jqueryaction = tag;
+				}
 
-				this.log('bind '+options.jqueryaction+' on '+options.id);
+				this.log('bind ' + options.jqueryaction + ' on ' + options.id);
 				this[options.jqueryaction]($el, options);
 
 				// extension point to allow custom post-binding processing
@@ -399,7 +409,7 @@
 	},
 
 	opendialog : function($elem, options) {
-		this.log('open dialog : '+options.opendialog);
+		this.log('open dialog : ' + options.opendialog);
 
 		if (options.opendialog) {
 			var dialog = $(this.escId(options.opendialog));
@@ -407,7 +417,9 @@
 				if (options.href && options.href != '#') {
 					options.targets = options.opendialog;
 					var divTopic = '_s2j_dialog_load_' + options.id;
-					if (!dialog.isSubscribed(divTopic)) { dialog.subscribe(divTopic, _s2j.handler.load); }
+					if (!dialog.isSubscribed(divTopic)) {
+						dialog.subscribe(divTopic, _s2j.handler.load);
+					}
 					dialog.publish(divTopic, options);
 				}
 
@@ -420,7 +432,7 @@
 
 		// bind event to onClick topics
 		if (options.onclicktopics) {
-			$.each(options.onclicktopics.split(','), function(i, topic) { 
+			$.each(options.onclicktopics.split(','), function(i, topic) {
 				$elem.createTopic(topic);
 				var params = {};
 				params.topic = topic;
@@ -455,35 +467,41 @@
 
 		// subscribe all targets to this action's custom execute topic
 		if (options.targets) {
-				$.each(options.targets.split(','), function(i, target) { 
-					effect.targets = target;
-					var tarelem = $(_s2j.escId(target));
+			$.each(options.targets.split(','), function(i, target) {
+				effect.targets = target;
+				var tarelem = $(_s2j.escId(target));
 
-					if (tarelem.isSubscribed(actionTopic)) { tarelem.unsubscribe(actionTopic); }
-					if (tarelem.isSubscribed(effectTopic + target)) { tarelem.unsubscribe(effectTopic + target); }
+				if (tarelem.isSubscribed(actionTopic)) {
+					tarelem.unsubscribe(actionTopic);
+				}
+				if (tarelem.isSubscribed(effectTopic + target)) {
+					tarelem.unsubscribe(effectTopic + target);
+				}
 
-					tarelem.subscribe(actionTopic, loadHandler, options);
-					tarelem.subscribe(effectTopic + target, _s2j.handler.effect, effect);
+				tarelem.subscribe(actionTopic, loadHandler, options);
+				tarelem.subscribe(effectTopic + target, _s2j.handler.effect, effect);
 
-					if (options.listentopics) {
-						$.each(options.listentopics.split(','), function(i, lt) { 
-							if (tarelem.isSubscribed(lt)) { tarelem.unsubscribe(lt); }
+				if (options.listentopics) {
+					$.each(options.listentopics.split(','), function(i, lt) {
+						if (tarelem.isSubscribed(lt)) {
+							tarelem.unsubscribe(lt);
+						}
 
-							tarelem.subscribe(lt, loadHandler, options);
-							tarelem.subscribe(lt, _s2j.handler.effect, effect);
-						});
-					}
-					if (this.ajaxhistory) {
-						var params = {};
-						params.target = target;
-						params.topic = actionTopic;
-						$elem.bind('click', params, function(event) {
-							_s2j.historyelements[event.data.target] = event.data.topic;
-							$.bbq.pushState(_s2j.historyelements);
-							return false;
-						});
-					}
-				});
+						tarelem.subscribe(lt, loadHandler, options);
+						tarelem.subscribe(lt, _s2j.handler.effect, effect);
+					});
+				}
+				if (this.ajaxhistory) {
+					var params = {};
+					params.target = target;
+					params.topic = actionTopic;
+					$elem.bind('click', params, function(event) {
+						_s2j.historyelements[event.data.target] = event.data.topic;
+						$.bbq.pushState(_s2j.historyelements);
+						return false;
+					});
+				}
+			});
 		}
 		else { // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
@@ -492,7 +510,9 @@
 
 			// bind event topic listeners
 			if (options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
-				if ($elem.isSubscribed(actionTopic)) { $elem.unsubscribe(actionTopic); }
+				if ($elem.isSubscribed(actionTopic)) {
+					$elem.unsubscribe(actionTopic);
+				}
 
 				$elem.subscribe(actionTopic, loadHandler, options);
 			}
@@ -505,7 +525,7 @@
 	},
 
 	container : function($elem, options) {
-		this.log('container : '+options.id);
+		this.log('container : ' + options.id);
 		this.action($elem, options, this.handler.load, 'div');
 
 		// load div using ajax only when href is specified or form is defined
@@ -513,15 +533,19 @@
 			if (options.href != '#') {
 
 				if (options.reloadtopics) {
-					$.each(options.reloadtopics.split(','), function(i, rt) { 
-						if ($elem.isSubscribed(rt)) { $elem.unsubscribe(rt); }
+					$.each(options.reloadtopics.split(','), function(i, rt) {
+						if ($elem.isSubscribed(rt)) {
+							$elem.unsubscribe(rt);
+						}
 
 						$elem.subscribe(rt, _s2j.handler.load, options);
 					});
 				}
 				if (options.listentopics) {
-					$.each(options.listentopics.split(','), function(i, lt) { 
-						if ($elem.isSubscribed(lt)) { $elem.unsubscribe(lt); }
+					$.each(options.listentopics.split(','), function(i, lt) {
+						if ($elem.isSubscribed(lt)) {
+							$elem.unsubscribe(lt);
+						}
 
 						$elem.subscribe(lt, _s2j.handler.load, options);
 					});
@@ -529,14 +553,16 @@
 
 				// publishing not triggering to prevent event propagation issues
 				var divTopic = '_s2j_div_load_' + options.id;
-				if ($elem.isSubscribed(divTopic)) { $elem.unsubscribe(divTopic); }
+				if ($elem.isSubscribed(divTopic)) {
+					$elem.unsubscribe(divTopic);
+				}
 
 				$elem.subscribe(divTopic, _s2j.handler.load);
 
 				if (options.bindon) {
 					var $bindElement = $('#' + options.bindon);
 					if (options.events) {
-						$.each(options.events.split(','), function(i, event) { 
+						$.each(options.events.split(','), function(i, event) {
 							$bindElement.publishOnEvent(event, divTopic);
 						});
 					}
@@ -544,14 +570,14 @@
 						$bindElement.publishOnEvent('click', divTopic);
 					}
 				}
-                else if (! options.deferredloading) {
+				else if (!options.deferredloading) {
 					$elem.publish(divTopic, options);
 				}
 
 			}
 			else if (options.formids) {
 				if (!this.loadAtOnce) {
-					this.require("js/plugins/jquery.form"+this.minSuffix+".js");
+					this.require("js/plugins/jquery.form" + this.minSuffix + ".js");
 				}
 				options.targets = options.id;
 				var formTopic = '_s2j_form_topic_' + options.id;
@@ -568,27 +594,31 @@
 				effect.effect = options.effect;
 				effect.effectoptions = options.effectoptions;
 				effect.effectduration = options.effectduration;
-				if (!$elem.isSubscribed(divEffectTopic)) { $elem.subscribe(divEffectTopic, this.handler.effect, effect); }
+				if (!$elem.isSubscribed(divEffectTopic)) {
+					$elem.subscribe(divEffectTopic, this.handler.effect, effect);
+				}
 			}
 
 			if (options.events || options.bindon) {
 
 				var bindel = $elem;
 				var eventsStr = 'click';
-				if (options.bindon) { bindel = $(this.escId(options.bindon)); }
+				if (options.bindon) {
+					bindel = $(this.escId(options.bindon));
+				}
 				if (options.events) {
 					eventsStr = options.events;
 				}
 
-				$.each(eventsStr.split(','), function(i, event) { 
+				$.each(eventsStr.split(','), function(i, event) {
 					if (options.onbeforetopics) {
-						$.each(options.onbeforetopics.split(','), function(i, btopic) { 
+						$.each(options.onbeforetopics.split(','), function(i, btopic) {
 							bindel.publishOnEvent(event, btopic);
 						});
 					}
 					bindel.publishOnEvent(event, divEffectTopic);
 					if (options.oncompletetopics) {
-						$.each(options.oncompletetopics.split(','), function(i, ctopic) { 
+						$.each(options.oncompletetopics.split(','), function(i, ctopic) {
 							bindel.publishOnEvent(event, ctopic);
 						});
 					}
@@ -596,13 +626,13 @@
 			}
 			else {
 				if (options.onbeforetopics) {
-					$.each(options.onbeforetopics.split(','), function(i, bts) { 
+					$.each(options.onbeforetopics.split(','), function(i, bts) {
 						$elem.publish(bts, $elem);
 					});
 				}
 				$elem.publish(divEffectTopic, $elem);
 				if (options.oncompletetopics) {
-					$.each(options.oncompletetopics.split(','), function(i, cts) { 
+					$.each(options.oncompletetopics.split(','), function(i, cts) {
 						$elem.publish(cts, $elem);
 					});
 				}
@@ -610,12 +640,7 @@
 
 			if (options.resizable) {
 				if (!this.loadAtOnce) {
-					this.require(
-						[
-						 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-						 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
-						 "js/base/jquery.ui.resizable"+this.minSuffix+".js"
-						 ]);
+					this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.resizable" + this.minSuffix + ".js" ]);
 				}
 				var ros = options.resizableoptions;
 				var ro = window[ros];
@@ -633,14 +658,9 @@
 		}
 
 		if (options.draggable) {
-			this.log('draggable : '+options.id);
+			this.log('draggable : ' + options.id);
 			if (!this.loadAtOnce) {
-				this.require(
-					[
-					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
-					 "js/base/jquery.ui.draggable"+this.minSuffix+".js"
-					 ]);
+				this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.draggable" + this.minSuffix + ".js" ]);
 			}
 			var daos = options.draggableoptions;
 			var dao = window[daos];
@@ -657,15 +677,9 @@
 		}
 
 		if (options.droppable) {
-			this.log('droppable : '+options.id);
+			this.log('droppable : ' + options.id);
 			if (!this.loadAtOnce) {
-				this.require(
-					[
-					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
-					 "js/base/jquery.ui.draggable"+this.minSuffix+".js",
-					 "js/base/jquery.ui.droppable"+this.minSuffix+".js"
-					 ]);
+				this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.draggable" + this.minSuffix + ".js", "js/base/jquery.ui.droppable" + this.minSuffix + ".js" ]);
 			}
 			var doos = options.droppableoptions;
 			var doo = window[doos];
@@ -684,14 +698,9 @@
 		}
 
 		if (options.selectable) {
-			this.log('selectable : '+options.id);
+			this.log('selectable : ' + options.id);
 			if (!this.loadAtOnce) {
-				this.require(
-					[
-					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
-					 "js/base/jquery.ui.selectable"+this.minSuffix+".js"
-					 ]);
+				this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.selectable" + this.minSuffix + ".js" ]);
 			}
 			var seos = options.selectableoptions;
 			var seo = window[seos];
@@ -711,14 +720,9 @@
 		}
 
 		if (options.sortable) {
-			this.log('sortable : '+options.id);
+			this.log('sortable : ' + options.id);
 			if (!this.loadAtOnce) {
-				this.require(
-					[
-					 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
-					 "js/base/jquery.ui.sortable"+this.minSuffix+".js"
-					 ]);
+				this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.sortable" + this.minSuffix + ".js" ]);
 			}
 			var soos = options.sortableoptions;
 			var soo = window[soos];
@@ -742,16 +746,16 @@
 			soo.update = this.pubTops($elem, options.onalwaystopics, options.sortableonupdatetopics);
 			$elem.sortable(soo);
 		}
-		
+
 		if (options.onchangetopics) {
 			if (options.type) {
-				if(options.type == 'text') {
-					$elem.keyup(function() {
+				if (options.type == 'text') {
+					$elem.keyup( function() {
 						_s2j.publishTopic($elem, options.onchangetopics, {});
 					});
 				}
 				else if (options.type == 'select') {
-					$elem.change(function() {
+					$elem.change( function() {
 						_s2j.publishTopic($elem, options.onchangetopics, {});
 					});
 				}
@@ -760,10 +764,14 @@
 	},
 
 	anchor : function($elem, options) {
-		this.log('anchor : '+options.id);
+		this.log('anchor : ' + options.id);
 
-		if(options.opendialog) { this.opendialog($elem, options); }
-		if(options.button) { this.jquerybutton($elem, options); }
+		if (options.opendialog) {
+			this.opendialog($elem, options);
+		}
+		if (options.button) {
+			this.jquerybutton($elem, options);
+		}
 
 		if (options.formids) {
 			var formTopic = '_s2j_form_topic_' + options.id;
@@ -776,33 +784,39 @@
 	},
 
 	select : function($elem, options) {
-		this.log('select : '+options.id);
+		this.log('select : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require("js/plugins/jquery.form"+this.minSuffix+".js");
+			this.require("js/plugins/jquery.form" + this.minSuffix + ".js");
 		}
 		var selectTopic = '_s2j_topic_load_' + options.id;
 
 		if (options.href && options.href != '#') {
 
 			if (options.reloadtopics) {
-				$.each(options.reloadtopics.split(','), function(i, rts) { 
-					if (!$elem.isSubscribed(rts)) { $elem.subscribe(rts, _s2j.handler.load, options); }
+				$.each(options.reloadtopics.split(','), function(i, rts) {
+					if (!$elem.isSubscribed(rts)) {
+						$elem.subscribe(rts, _s2j.handler.load, options);
+					}
 				});
 			}
 			if (options.listentopics) {
-				$.each(options.listentopics.split(','), function(i, lts) { 
-					if (!$elem.isSubscribed(lts)) { $elem.subscribe(lts, _s2j.handler.load, options); }
+				$.each(options.listentopics.split(','), function(i, lts) {
+					if (!$elem.isSubscribed(lts)) {
+						$elem.subscribe(lts, _s2j.handler.load, options);
+					}
 				});
 			}
 
-			if ($elem.isSubscribed(selectTopic)) { $elem.unsubscribe(selectTopic); }
+			if ($elem.isSubscribed(selectTopic)) {
+				$elem.unsubscribe(selectTopic);
+			}
 			$elem.subscribe(selectTopic, _s2j.handler.load);
-            if (! options.deferredloading) {
-			    $elem.publish(selectTopic, options);
+			if (!options.deferredloading) {
+				$elem.publish(selectTopic, options);
 			}
 		}
 		if (options.onchangetopics) {
-			$.each(options.onchangetopics.split(','), function(i, cts) { 
+			$.each(options.onchangetopics.split(','), function(i, cts) {
 				$elem.publishOnEvent('change', cts);
 			});
 		}
@@ -811,8 +825,12 @@
 	button : function($elem, options) {
 		var formTopic = '_s2j_form_topic_' + options.id;
 
-		if(options.opendialog) { this.opendialog($elem, options); }
-		if(options.button) { this.jquerybutton($elem, options); }
+		if (options.opendialog) {
+			this.opendialog($elem, options);
+		}
+		if (options.button) {
+			this.jquerybutton($elem, options);
+		}
 
 		if (options.formids !== undefined) {
 			this.formsubmit($elem, options, formTopic);
@@ -840,25 +858,25 @@
 		$elem.removeAttr('name');
 	},
 	formsubmit : function($elem, options, topic) {
-		this.log('formsubmit : '+options.id);
+		this.log('formsubmit : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require("js/plugins/jquery.form"+this.minSuffix+".js");
+			this.require("js/plugins/jquery.form" + this.minSuffix + ".js");
 		}
 
 		if (options.reloadtopics) {
-			$.each(options.reloadtopics.split(','), function(i, rts) { 
+			$.each(options.reloadtopics.split(','), function(i, rts) {
 				$elem.subscribe(rts, _s2j.handler.form, options);
 			});
 		}
 		if (options.listentopics) {
-			$.each(options.listentopics.split(','), function(i, lt) { 
+			$.each(options.listentopics.split(','), function(i, lt) {
 				$elem.subscribe(lt, _s2j.handler.form, options);
 			});
 		}
 
 		$elem.subscribe(topic, _s2j.handler.form, options);
 		if (options.targets) {
-			$.each(options.targets.split(','), function(i, target) { 
+			$.each(options.targets.split(','), function(i, target) {
 				$(_s2j.escId(target)).subscribe(topic, _s2j.handler.effect, options);
 				if (_s2j.ajaxhistory) {
 					var params = {};
@@ -873,40 +891,30 @@
 			});
 		}
 		else {
-			//Submit Forms without AJAX 
-			$elem.click( function(){
+			// Submit Forms without AJAX
+			$elem.click( function() {
 				$(_s2j.escId(options.formids)).submit();
 			});
 		}
 	},
 
 	dialog : function($elem, options) {
-		this.log('dialog : '+options.id);
+		this.log('dialog : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require(
-				[
-				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-				 "js/base/jquery.ui.button"+this.minSuffix+".js",
-				 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
-				 "js/base/jquery.ui.position"+this.minSuffix+".js",
-				 "js/base/jquery.ui.resizable"+this.minSuffix+".js",
-				 "js/base/jquery.ui.draggable"+this.minSuffix+".js",
-				 "js/base/jquery.bgiframe"+this.minSuffix+".js",
-				 "js/base/jquery.ui.dialog"+this.minSuffix+".js"
-				 ]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.button" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.position" + this.minSuffix + ".js", "js/base/jquery.ui.resizable" + this.minSuffix + ".js", "js/base/jquery.ui.draggable" + this.minSuffix + ".js", "js/base/jquery.bgiframe" + this.minSuffix + ".js", "js/base/jquery.ui.dialog" + this.minSuffix + ".js" ]);
 		}
 		var params = {};
 		$.extend(params, options);
 		params.bgiframe = true;
 		if (options.hide) {
 			if (!this.loadAtOnce) {
-				this.require(["js/base/jquery.effects.core"+this.minSuffix+".js","js/base/jquery.effects."+options.hide+""+this.minSuffix+".js"]);
+				this.require( [ "js/base/jquery.effects.core" + this.minSuffix + ".js", "js/base/jquery.effects." + options.hide + "" + this.minSuffix + ".js" ]);
 			}
 			params.hide = options.hide;
 		}
 		if (options.show) {
 			if (!this.loadAtOnce) {
-				this.require(["js/base/jquery.effects.core"+this.minSuffix+".js","js/base/jquery.effects."+options.show+""+this.minSuffix+".js"]);
+				this.require( [ "js/base/jquery.effects.core" + this.minSuffix + ".js", "js/base/jquery.effects." + options.show + "" + this.minSuffix + ".js" ]);
 			}
 			params.show = options.show;
 		}
@@ -917,7 +925,9 @@
 
 			if (options.href && options.href != '#') {
 				var divTopic = '_s2j_topic_load_' + options.id;
-				if (!$elem.isSubscribed(divTopic)) { $elem.subscribe(divTopic, _s2j.handler.load); }
+				if (!$elem.isSubscribed(divTopic)) {
+					$elem.subscribe(divTopic, _s2j.handler.load);
+				}
 				$elem.publish(divTopic, options);
 			}
 
@@ -933,13 +943,9 @@
 	},
 
 	tabbedpanel : function($elem, options) {
-		this.log('tabbedpanel : '+options.id);
+		this.log('tabbedpanel : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require(
-				[
-				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-				 "js/base/jquery.ui.tabs"+this.minSuffix+".js"
-				 ]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.tabs" + this.minSuffix + ".js" ]);
 		}
 		if (!options) {
 			options = {};
@@ -953,42 +959,77 @@
 				para.disabled = eval("( " + disabledtabsStr + " )");
 			}
 		}
-		if (options.cache) { para.cache = true; }
-		if (options.animate) { 
-			if (!this.loadAtOnce) {
-				this.require("js/base/jquery.effects.core"+this.minSuffix+".js");
-			}
-			para.fx = {	opacity :'toggle'	};
+		if (options.cache) {
+			para.cache = true;
 		}
-		if (options.cookie) { 
+		if (options.animate) {
 			if (!this.loadAtOnce) {
-				this.require("js/base/jquery.cookie"+this.minSuffix+".js");
+				this.require("js/base/jquery.effects.core" + this.minSuffix + ".js");
+			}
+			para.fx = {
+				opacity :'toggle'
+			};
+		}
+		if (options.cookie) {
+			if (!this.loadAtOnce) {
+				this.require("js/base/jquery.cookie" + this.minSuffix + ".js");
 			}
 			para.cookie = {
-			expires :30
-		};}
-		if (options.collapsible) { para.collapsible = true; }
-		if (options.openonmouseover) { para.event = 'mouseover'; }
-		if (options.orientation) { para.orientation = options.orientation; }
-		
-		if (options.spinner !== undefined) { para.spinner = options.spinner; }
-		else if (_s2j.defaults.loadingText !== null) { para.spinner = _s2j.defaults.loadingText; }
-		
-		if (options.selectedtab) { para.selected = options.selectedtab; }
-		if (options.oncompletetopics) { para.ajaxOptions = {
-		dataType :'html',
-		complete :this.pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {})
-		};}
-		else { para.ajaxOptions = {
-			dataType :'html'
-		};}
-		if (options.onbeforetopics) { para.show = this.pubTops($elem, options.onalwaystopics, options.onbeforetopics); }
-		if (options.onchangetopics) { para.select = this.pubTops($elem, options.onalwaystopics, options.onchangetopics); }
-		if (options.onenabletopics) { para.enable = this.pubTops($elem, options.onalwaystopics, options.onenabletopics); }
-		if (options.ondisabletopics) { para.disable = this.pubTops($elem, options.onalwaystopics, options.ondisabletopics); }
-		if (options.onaddtopics) { para.add = this.pubTops($elem, options.onalwaystopics, options.onaddtopics); }
-		if (options.onremovetopics) { para.remove = this.pubTops($elem, options.onalwaystopics, options.onremovetopics); }
-		if (options.oncompletetopics) { para.load = this.pubTops($elem, options.onalwaystopics, options.onremovetopics); }
+				expires :30
+			};
+		}
+		if (options.collapsible) {
+			para.collapsible = true;
+		}
+		if (options.openonmouseover) {
+			para.event = 'mouseover';
+		}
+		if (options.orientation) {
+			para.orientation = options.orientation;
+		}
+
+		if (options.spinner !== undefined) {
+			para.spinner = options.spinner;
+		}
+		else if (_s2j.defaults.loadingText !== null) {
+			para.spinner = _s2j.defaults.loadingText;
+		}
+
+		if (options.selectedtab) {
+			para.selected = options.selectedtab;
+		}
+		if (options.oncompletetopics) {
+			para.ajaxOptions = {
+			dataType :'html',
+			complete :this.pubCom(options.id, options.onalwaystopics, options.oncompletetopics, null, null, {})
+			};
+		}
+		else {
+			para.ajaxOptions = {
+				dataType :'html'
+			};
+		}
+		if (options.onbeforetopics) {
+			para.show = this.pubTops($elem, options.onalwaystopics, options.onbeforetopics);
+		}
+		if (options.onchangetopics) {
+			para.select = this.pubTops($elem, options.onalwaystopics, options.onchangetopics);
+		}
+		if (options.onenabletopics) {
+			para.enable = this.pubTops($elem, options.onalwaystopics, options.onenabletopics);
+		}
+		if (options.ondisabletopics) {
+			para.disable = this.pubTops($elem, options.onalwaystopics, options.ondisabletopics);
+		}
+		if (options.onaddtopics) {
+			para.add = this.pubTops($elem, options.onalwaystopics, options.onaddtopics);
+		}
+		if (options.onremovetopics) {
+			para.remove = this.pubTops($elem, options.onalwaystopics, options.onremovetopics);
+		}
+		if (options.oncompletetopics) {
+			para.load = this.pubTops($elem, options.onalwaystopics, options.onremovetopics);
+		}
 
 		var tabs = $elem.data('taboptions');
 		if (tabs) {
@@ -996,13 +1037,23 @@
 			for ( var l = 0; l < tabs.length; l++) {
 				var tab = tabs[l];
 				tabStr += "<li ";
-				if (tab.id) { tabStr += "id='" + tab.id + "' "; }
-				if (tab.cssstyle) { tabStr += "style='" + tab.cssstyle + "' "; }
-				if (tab.cssclass) { tabStr += "class='" + tab.cssclass + "' "; }
+				if (tab.id) {
+					tabStr += "id='" + tab.id + "' ";
+				}
+				if (tab.cssstyle) {
+					tabStr += "style='" + tab.cssstyle + "' ";
+				}
+				if (tab.cssclass) {
+					tabStr += "class='" + tab.cssclass + "' ";
+				}
 				tabStr += "><a href='" + tab.href + "' ";
-				if (tab.label) { tabStr += "title='" + tab.label + "' "; }
+				if (tab.label) {
+					tabStr += "title='" + tab.label + "' ";
+				}
 				tabStr += "><span>";
-				if (tab.label) { tabStr += tab.label; }
+				if (tab.label) {
+					tabStr += tab.label;
+				}
 				tabStr += "</span></a></li>";
 			}
 			$(this.escId(options.id) + ' > ul').html(tabStr);
@@ -1029,16 +1080,12 @@
 	},
 
 	datepicker : function($elem, options) {
-		this.log('datepicker : '+options.id);
+		this.log('datepicker : ' + options.id);
 		if (!this.loadAtOnce) {
-		this.require(
-				[
-				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-				 "js/base/jquery.ui.datepicker"+this.minSuffix+".js"
-				 ]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.datepicker" + this.minSuffix + ".js" ]);
 		}
 		if (this.local != "en") {
-			this.require("i18n/jquery.ui.datepicker-"+this.local+".min.js");
+			this.require("i18n/jquery.ui.datepicker-" + this.local + ".min.js");
 		}
 		var params = {};
 
@@ -1097,23 +1144,35 @@
 				};
 			}
 
-			if (options.changemonth) { params.changeMonth = true; }
-			if (options.changeyear) { params.changeYear = true; }
-			if (options.showbuttonpanel) { params.showButtonPanel = true; }
-			if (options.buttonimageonly) { params.buttonImageOnly = true; }
-			if (options.displayformat){  params.dateFormat = options.displayformat; }
-			else { params.dateFormat = $.datepicker._defaults.dateFormat; }
+			if (options.changemonth) {
+				params.changeMonth = true;
+			}
+			if (options.changeyear) {
+				params.changeYear = true;
+			}
+			if (options.showbuttonpanel) {
+				params.showButtonPanel = true;
+			}
+			if (options.buttonimageonly) {
+				params.buttonImageOnly = true;
+			}
+			if (options.displayformat) {
+				params.dateFormat = options.displayformat;
+			}
+			else {
+				params.dateFormat = $.datepicker._defaults.dateFormat;
+			}
 			params.buttonImage = options.buttonimage;
 			params.showOn = options.showon;
 			params.buttonText = options.buttontext;
-			
-			if (options.showanim){
+
+			if (options.showanim) {
 				if (!this.loadAtOnce) {
-					this.require("js/base/jquery.effects.core"+this.minSuffix+".js");
+					this.require("js/base/jquery.effects.core" + this.minSuffix + ".js");
 				}
 				params.showAnim = options.showanim;
 			}
-			
+
 			params.firstDay = options.firstday;
 			params.yearRange = options.yearrange;
 			params.duration = options.duration;
@@ -1148,14 +1207,9 @@
 		}
 	},
 	slider : function($elem, options) {
-		this.log('slider : '+options.id);
+		this.log('slider : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require(
-				[
-				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-				 "js/base/jquery.ui.mouse"+this.minSuffix+".js",
-				 "js/base/jquery.ui.slider"+this.minSuffix+".js"
-				 ]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.slider" + this.minSuffix + ".js" ]);
 		}
 
 		var params = {};
@@ -1182,14 +1236,28 @@
 				}
 			};
 
-			if (options.animate) { params.animate = true; }
+			if (options.animate) {
+				params.animate = true;
+			}
 			var value = options.value;
-			if (value > 0) { params.value = value; }
-			else { params.value = 0; }
-			if (options.max) { params.max = options.max; }
-			if (options.min) { params.min = options.min; }
-			if (options.orientation) { params.orientation = options.orientation; }
-			if (options.step) { params.step = options.step; }
+			if (value > 0) {
+				params.value = value;
+			}
+			else {
+				params.value = 0;
+			}
+			if (options.max) {
+				params.max = options.max;
+			}
+			if (options.min) {
+				params.min = options.min;
+			}
+			if (options.orientation) {
+				params.orientation = options.orientation;
+			}
+			if (options.step) {
+				params.step = options.step;
+			}
 
 			if (options.range) {
 				if (options.range == 'true') {
@@ -1204,13 +1272,9 @@
 		$elem.slider(params);
 	},
 	progressbar : function($elem, options) {
-		this.log('progressbar : '+options.id);
+		this.log('progressbar : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require(
-				[
-				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-				 "js/base/jquery.ui.progressbar"+this.minSuffix+".js"
-				 ]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.progressbar" + this.minSuffix + ".js" ]);
 		}
 		var params = {};
 		if (options) {
@@ -1218,27 +1282,33 @@
 			params.change = this.pubTops($elem, options.onalwaystopics, options.onchangetopics);
 
 			var value = options.value;
-			if (value > 0) { params.value = value; }
-			else { params.value = 0; }
+			if (value > 0) {
+				params.value = value;
+			}
+			else {
+				params.value = 0;
+			}
 		}
 		$elem.progressbar(params);
 	},
 	accordion : function($elem, options) {
-		this.log('accordion : '+options.id);
+		this.log('accordion : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require(
-				[
-				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-				 "js/base/jquery.ui.accordion"+this.minSuffix+".js"
-				 ]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.accordion" + this.minSuffix + ".js" ]);
 		}
 		var params = {};
 		var active = true;
 		if (options) {
 
-			if (options.fillspace) { params.fillSpace = true; }
-			if (options.collapsible) { params.collapsible = true; }
-			if (options.clearstyle) { params.clearStyle = true; }
+			if (options.fillspace) {
+				params.fillSpace = true;
+			}
+			if (options.collapsible) {
+				params.collapsible = true;
+			}
+			if (options.clearstyle) {
+				params.clearStyle = true;
+			}
 			if (options.autoheight !== undefined) {
 				if (options.autoheight) {
 					params.autoHeight = true;
@@ -1247,13 +1317,25 @@
 					params.autoHeight = false;
 				}
 			}
-			if (options.event) { params.event = options.event; }
-			if (options.header) { params.header = options.header; }
-			else { params.header = 'h3'; }
+			if (options.event) {
+				params.event = options.event;
+			}
+			if (options.header) {
+				params.header = options.header;
+			}
+			else {
+				params.header = 'h3';
+			}
 			if (options.animated) {
-				if (options.animated == 'true') { params.animated = true; }
-				else if (options.animated === false) { params.animated = false; }
-				else { params.animated = options.animated; }
+				if (options.animated == 'true') {
+					params.animated = true;
+				}
+				else if (options.animated === false) {
+					params.animated = false;
+				}
+				else {
+					params.animated = options.animated;
+				}
 			}
 
 			if (options.active) {
@@ -1311,14 +1393,9 @@
 		}
 	},
 	autocompleter : function($elem, options) {
-		this.log('autocompleter for : '+options.id);
+		this.log('autocompleter for : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require(
-				[
-				 "js/base/jquery.ui.widget"+this.minSuffix+".js",
-				 "js/base/jquery.ui.position"+this.minSuffix+".js",
-				 "js/base/jquery.ui.autocomplete"+this.minSuffix+".js"
-				 ]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.position" + this.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + this.minSuffix + ".js" ]);
 		}
 		var params = {};
 		if (options.href && options.href != '#') {
@@ -1337,23 +1414,37 @@
 			params.minLength = options.minimum;
 		}
 
-		if (options.onsuccesstopics) { params.open = this.pubTops($elem, options.onalwaystopics, options.onsuccesstopics); }
-		if (options.onchangetopics) { params.change = this.pubTops($elem, options.onalwaystopics, options.onchangetopics); }
-		if (options.oncompletetopics) { params.close = this.pubTops($elem, options.onalwaystopics, options.oncompletetopics); }
-		if (options.onsearchtopics) { params.search = this.pubTops($elem, options.onalwaystopics, options.onsearchtopics); }
-		if (options.onfocustopics) { params.focus = this.pubTops($elem, options.onalwaystopics, options.onfocustopics); }
-		if (options.onselecttopics) { params.select = this.pubTops($elem, options.onalwaystopics, options.onselecttopics); }
+		if (options.onsuccesstopics) {
+			params.open = this.pubTops($elem, options.onalwaystopics, options.onsuccesstopics);
+		}
+		if (options.onchangetopics) {
+			params.change = this.pubTops($elem, options.onalwaystopics, options.onchangetopics);
+		}
+		if (options.oncompletetopics) {
+			params.close = this.pubTops($elem, options.onalwaystopics, options.oncompletetopics);
+		}
+		if (options.onsearchtopics) {
+			params.search = this.pubTops($elem, options.onalwaystopics, options.onsearchtopics);
+		}
+		if (options.onfocustopics) {
+			params.focus = this.pubTops($elem, options.onalwaystopics, options.onfocustopics);
+		}
+		if (options.onselecttopics) {
+			params.select = this.pubTops($elem, options.onalwaystopics, options.onselecttopics);
+		}
 
-		if (options.selectBox === false) { $elem.autocomplete(params); }
-		else { 
-			this.require("js/plugins/jquery.combobox"+this.minSuffix+".js");
-			$elem.combobox(params); 
+		if (options.selectBox === false) {
+			$elem.autocomplete(params);
+		}
+		else {
+			this.require("js/plugins/jquery.combobox" + this.minSuffix + ".js");
+			$elem.combobox(params);
 		}
 	},
 	jquerybutton : function($elem, options) {
-		this.log('button for : '+options.id);
+		this.log('button for : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.button" + this.minSuffix + ".js" ]);
 		}
 		if (options.button) {
 			var params = {};
@@ -1368,44 +1459,60 @@
 		}
 	},
 	buttonset : function($elem, options) {
-		this.log('buttonset for : '+options.id);
+		this.log('buttonset for : ' + options.id);
 		if (!this.loadAtOnce) {
-			this.require(["js/base/jquery.ui.widget"+this.minSuffix+".js","js/base/jquery.ui.button"+this.minSuffix+".js"]);
+			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.button" + this.minSuffix + ".js" ]);
 		}
 		var buttonsetLoadTopic = '_s2j_topic_load_' + options.id;
 
 		if (options.href && options.href != '#') {
 
-			var buttonsetTopic = 's2j_butonset_'+options.id;
-			
-			if ($elem.isSubscribed(buttonsetTopic)) { $elem.unsubscribe(buttonsetTopic); }
-			
+			var buttonsetTopic = 's2j_butonset_' + options.id;
+
+			if ($elem.isSubscribed(buttonsetTopic)) {
+				$elem.unsubscribe(buttonsetTopic);
+			}
+
 			// Init Buttonset after elements loaded via AJAX.
-			$elem.subscribe(buttonsetTopic, function(event,data) {
+			$elem.subscribe(buttonsetTopic, function(event, data) {
 				if (options.onchangetopics) {
-					$(_s2j.escId(options.id)+" > input").change(function() {
-						$.each(options.onchangetopics.split(','), function(i, cts) { 
-							$elem.publish(cts);
+					var selectString = _s2j.escId(options.id) + " > input";
+					var elements = $(selectString);
+
+					if ($.browser.msie && options.type == 'radio') {
+						elements.click( function() {
+							this.blur();
+							this.focus();
+							$.each(options.onchangetopics.split(','), function(i, cts) {
+								$elem.publish(cts);
+							});
 						});
-					});
+					}
+					else {
+						elements.change( function() {
+							$.each(options.onchangetopics.split(','), function(i, cts) {
+								$elem.publish(cts);
+							});
+						});
+					}
 				}
 
 				$elem.buttonset(options);
 			});
-			if(options.oncompletetopics && options.oncompletetopics != '') {
-				options.oncompletetopics = buttonsetTopic;
+			if (options.onsuccesstopics && options.onsuccesstopics != '') {
+				options.onsuccesstopics = buttonsetTopic;
 			}
 			else {
-				options.oncompletetopics = buttonsetTopic;
+				options.onsuccesstopics = buttonsetTopic;
 			}
 
 			if (options.reloadtopics) {
-				$.each(options.reloadtopics.split(','), function(i, rts) { 
+				$.each(options.reloadtopics.split(','), function(i, rts) {
 					$elem.subscribe(rts, _s2j.handler.load, options);
 				});
 			}
 			if (options.listentopics) {
-				$.each(options.listentopics.split(','), function(i, lts) { 
+				$.each(options.listentopics.split(','), function(i, lts) {
 					$elem.subscribe(lts, _s2j.handler.load, options);
 				});
 			}
@@ -1415,8 +1522,8 @@
 		}
 		else {
 			if (options.onchangetopics) {
-				$(_s2j.escId(options.id)+" > input").change(function() {
-					$.each(options.onchangetopics.split(','), function(i, cts) { 
+				$(_s2j.escId(options.id) + " > input").change( function() {
+					$.each(options.onchangetopics.split(','), function(i, cts) {
 						$elem.publish(cts);
 					});
 				});
@@ -1429,15 +1536,19 @@
 
 	/** Create a shorthand to reduce code */
 	var _s2j = $.struts2_jquery;
-	
+
 	/** Container logic */
 	// Register handler to load a container
 	$.subscribeHandler(_s2j.handler.load, function(event, data) {
 
 		var container = $(event.target);
 		var options = {};
-		if (data) { $.extend(options, data); }
-		if (event.data) { $.extend(options, event.data); }
+		if (data) {
+			$.extend(options, data);
+		}
+		if (event.data) {
+			$.extend(options, event.data);
+		}
 
 		var isDisabled = false;
 		isDisabled = options.disabled === null ? isDisabled : options.disabled;
@@ -1457,27 +1568,35 @@
 
 				var modus = 'html';
 				if (options.type) {
-					if (options.type == 'text') { modus = 'value'; }
-					else if (options.type == 'select') { modus = 'select'; }
-					else if (options.type == 'checkbox') { modus = 'checkbox'; }
-					else if (options.type == 'radio') { modus = 'radio'; }
+					if (options.type == 'text') {
+						modus = 'value';
+					}
+					else if (options.type == 'select') {
+						modus = 'select';
+					}
+					else if (options.type == 'checkbox') {
+						modus = 'checkbox';
+					}
+					else if (options.type == 'radio') {
+						modus = 'radio';
+					}
 				}
 
 				if (modus == 'html' || modus == 'value') {
 					// Set pre-loading text (if any)
 					if (options.loadingtext && options.loadingtext != "false") {
-						if(modus == 'html') {
+						if (modus == 'html') {
 							container.html(options.loadingtext);
 						}
-						else{
+						else {
 							container.val(options.loadingtext);
 						}
 					}
 					else if (_s2j.defaults.loadingText !== null) {
-						if(modus == 'html') {
+						if (modus == 'html') {
 							container.html(_s2j.defaults.loadingText);
 						}
-						else{
+						else {
 							container.val(_s2j.defaults.loadingText);
 						}
 					}
@@ -1499,24 +1618,30 @@
 
 					if (options.formids && params.data == '') {
 						if (!_s2j.loadAtOnce) {
-							_s2j.require("js/plugins/jquery.form"+_s2j.minSuffix+".js");
+							_s2j.require("js/plugins/jquery.form" + _s2j.minSuffix + ".js");
 						}
 						$.each(options.formids.split(','), function(i, fid) {
 							var query = $(_s2j.escId(fid)).formSerialize();
 							if (params.data != '') {
-									params.data = params.data + '&' + query;
+								params.data = params.data + '&' + query;
 							}
-							else { 
-								params.data = query; 
+							else {
+								params.data = query;
 							}
 						});
 					}
 
-					if (options.datatype) {params.dataType = options.datatype; }
-					else { params.dataType = 'html'; }
+					if (options.datatype) {
+						params.dataType = options.datatype;
+					}
+					else {
+						params.dataType = 'html';
+					}
 
 					// fix 'issue' wherein IIS will reject post without data
-					if (!params.data) { params.data = {};	} 
+					if (!params.data) {
+						params.data = {};
+					}
 
 					options.options = params;
 					// publish all 'before' and 'always' topics
@@ -1538,8 +1663,12 @@
 
 		// need to also make use of original attributes registered with the container (such as onCompleteTopics)
 		var options = {};
-		if (data) { $.extend(options, data); }
-		if (event.data) { $.extend(options, event.data); }
+		if (data) {
+			$.extend(options, data);
+		}
+		if (event.data) {
+			$.extend(options, event.data);
+		}
 
 		var params = {};
 		if (options.href && options.href != '#') {
@@ -1548,17 +1677,31 @@
 				params.url = params.url + '?' + options.hrefparameter;
 			}
 		}
-		if (options.clearform) { params.clearForm = true; }
-		if (options.iframe) { params.iframe = true; }
-		if (options.resetform) { params.resetForm = true; }
-		if (options.replaceTarget) { params.replaceTarget = true; }
-		if (options.timeout) { params.timeout = parseInt(options.timeout, 10); }
-		if (options.datatype) { params.dataType = options.datatype; }
-		else { params.dataType = null; }
+		if (options.clearform) {
+			params.clearForm = true;
+		}
+		if (options.iframe) {
+			params.iframe = true;
+		}
+		if (options.resetform) {
+			params.resetForm = true;
+		}
+		if (options.replaceTarget) {
+			params.replaceTarget = true;
+		}
+		if (options.timeout) {
+			params.timeout = parseInt(options.timeout, 10);
+		}
+		if (options.datatype) {
+			params.dataType = options.datatype;
+		}
+		else {
+			params.dataType = null;
+		}
 
 		params.target = '';
 		if (options.targets) {
-			$.each(options.targets.split(','), function(i, target) { 
+			$.each(options.targets.split(','), function(i, target) {
 				elem = $(_s2j.escId(target));
 				if (params.target == '') {
 					params.target = _s2j.escId(target);
@@ -1572,7 +1715,6 @@
 		var indi = options.indicatorid;
 		_s2j.showIndicator(indi);
 
-
 		params.beforeSubmit = function(formData, form, formoptions) {
 
 			var orginal = {};
@@ -1584,19 +1726,19 @@
 			_s2j.publishTopic(container, options.onalwaystopics, orginal);
 
 			if (options.onbeforetopics) {
-				$.each(options.onbeforetopics.split(','), function(i, topic) { 
+				$.each(options.onbeforetopics.split(','), function(i, topic) {
 					elem.publish(topic, elem, orginal);
 					var submitForm = orginal.options.submit;
 					// cancel form submission
 					if (!submitForm) {
 						_s2j.hideIndicator(options.indicatorid);
 						if (options.loadingtext && options.loadingtext != "false") {
-							$.each(options.targets.split(','), function(i, target) { 
+							$.each(options.targets.split(','), function(i, target) {
 								$(_s2j.escId(target)).html(options.loadingtext);
 							});
 						}
 						else if (_s2j.defaults.loadingText !== null) {
-							$.each(options.targets.split(','), function(i, target) { 
+							$.each(options.targets.split(','), function(i, target) {
 								$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
 							});
 						}
@@ -1607,8 +1749,12 @@
 			if (options.validate) {
 				var valParams = {};
 				valParams.type = "POST";
-				if (options.href && options.href != '#') { valParams.url = options.href; }
-				else { valParams.url = form[0].action; }
+				if (options.href && options.href != '#') {
+					valParams.url = options.href;
+				}
+				else {
+					valParams.url = form[0].action;
+				}
 
 				valParams.data = '';
 				if (options.hrefparameter) {
@@ -1617,8 +1763,12 @@
 
 				var query = form.formSerialize();
 				query = query + '&struts.enableJSONValidation=true&struts.validateOnly=true';
-				if (valParams.data != '') { valParams.data = valParams.data + '&amp;' + query; }
-				else { valParams.data = query; }
+				if (valParams.data != '') {
+					valParams.data = valParams.data + '&amp;' + query;
+				}
+				else {
+					valParams.data = query;
+				}
 
 				valParams.complete = function(request, status) {
 					var f = $(form[0]);
@@ -1643,7 +1793,7 @@
 							orginal.options.submit = false;
 						}
 					}
-					_s2j.log('form validation : '+orginal.options.submit);
+					_s2j.log('form validation : ' + orginal.options.submit);
 				};
 				$.ajax(valParams);
 			}
@@ -1657,8 +1807,8 @@
 		params.complete = _s2j.pubCom(elem, options.onalwaystopics, options.oncompletetopics, options.targets, indi, options);
 		params.error = _s2j.pubErr(elem, options.onalwaystopics, options.onerrortopics, options.errortext, 'html');
 
-		$.each(options.formids.split(','), function(i, fid) { 
-			_s2j.log('submit form : '+fid);
+		$.each(options.formids.split(','), function(i, fid) {
+			_s2j.log('submit form : ' + fid);
 			$(_s2j.escId(fid)).ajaxSubmit(params);
 		});
 
@@ -1680,12 +1830,11 @@
 				duration = options.effectduration;
 			}
 			if (!_s2j.loadAtOnce) {
-				_s2j.require(["js/base/jquery.effects.core"+_s2j.minSuffix+".js","js/base/jquery.effects."+options.effect+""+_s2j.minSuffix+".js"]);
+				_s2j.require( [ "js/base/jquery.effects.core" + _s2j.minSuffix + ".js", "js/base/jquery.effects." + options.effect + "" + _s2j.minSuffix + ".js" ]);
 			}
-			_s2j.log('effect '+options.effect+' for '+options.targets);
+			_s2j.log('effect ' + options.effect + ' for ' + options.targets);
 			$(_s2j.escId(options.targets)).effect(options.effect, eo, duration);
 		}
 	});
 
-	
 })(jQuery);
