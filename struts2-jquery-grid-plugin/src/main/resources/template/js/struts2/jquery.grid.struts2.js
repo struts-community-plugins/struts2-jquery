@@ -90,10 +90,10 @@
 				$.struts2_jquery.publishTopic($elem, options.onselectrowtopics, data);
 				if (options.editurl && options.editinline === true) {
 					if ($.struts2_jquery_grid.lastselectedrow != '') {
-						$(self).jqGrid('restoreRow', $.struts2_jquery_grid.lastselectedrow);
+						$elem.jqGrid('restoreRow', $.struts2_jquery_grid.lastselectedrow);
 					}
 					$.struts2_jquery_grid.lastselectedrow = id;
-					$(self).jqGrid('editRow', id, true);
+					$elem.jqGrid('editRow', id, true);
 				}
 			};
 		}
