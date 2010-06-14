@@ -29,7 +29,7 @@
 	</p>
     <s:form id="formSelectOne" action="echo" theme="simple" cssClass="yform">
         <fieldset>
-            <legend>AJAX Form</legend>
+            <legend>AJAX Form populated by a String List</legend>
 	        <div class="type-text">
 	            <label for="echo">Echo: </label>
 				<s:url id="remoteurl" action="jsonsample"/> 
@@ -45,7 +45,7 @@
 	        </div>
 	        <div class="type-button">
 				<sj:submit 
-					targets="result" 
+					targets="result1" 
 					value="AJAX Submit" 
 					indicator="indicator" 
 					button="true"
@@ -54,9 +54,13 @@
 	        </div>
         </fieldset>
     </s:form>
+ 
+    <strong>Result Div 1 :</strong>
+	<div id="result1" class="result ui-widget-content ui-corner-all">Submit form above.</div>
+	
     <s:form id="formSelectTwo" action="echo" theme="simple" cssClass="yform">
         <fieldset>
-            <legend>AJAX Form</legend>
+            <legend>AJAX Form populated by a Map</legend>
 	        <div class="type-text">
 	            <label for="echo">Echo: </label>
 				<s:url id="remoteurl" action="jsonsample"/> 
@@ -72,7 +76,7 @@
 	        </div>
 	        <div class="type-button">
 				<sj:submit 
-					targets="result" 
+					targets="result2" 
 					value="AJAX Submit" 
 					indicator="indicator"
 					button="true"
@@ -84,9 +88,13 @@
 	        </div>
         </fieldset>
     </s:form>
+
+    <strong>Result Div 2 :</strong>
+	<div id="result2" class="result ui-widget-content ui-corner-all">Submit form above.</div>
+	
     <s:form id="formSelectThree" action="echo" theme="simple" cssClass="yform">
         <fieldset>
-            <legend>AJAX Form</legend>
+            <legend>AJAX Form populated by a List with Objects</legend>
 	        <div class="type-text">
 	            <label for="echo">Echo: </label>
 				<s:url id="remoteurl" action="jsonsample"/> 
@@ -104,7 +112,7 @@
 	        </div>
 	        <div class="type-button">
 				<sj:submit 
-					targets="result" 
+					targets="result3" 
 					value="AJAX Submit" 
 					indicator="indicator"
 					button="true"
@@ -117,8 +125,8 @@
         </fieldset>
     </s:form>
 
-    <strong>Result Div :</strong>
-	<div id="result" class="result ui-widget-content ui-corner-all">Submit a form.</div>
+    <strong>Result Div 3 :</strong>
+	<div id="result3" class="result ui-widget-content ui-corner-all">Submit form above.</div>
     
 
     <sj:tabbedpanel id="localtabs" cssClass="list">
@@ -129,7 +137,7 @@
 	  <pre>
     &lt;s:form id=&quot;formSelectOne&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
         &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
+            &lt;legend&gt;AJAX Form populated by a String List&lt;/legend&gt;
 	        &lt;div class=&quot;type-text&quot;&gt;
 	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
 				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
@@ -145,7 +153,7 @@
 	        &lt;/div&gt;
 	        &lt;div class=&quot;type-button&quot;&gt;
 				&lt;sj:submit 
-					targets=&quot;result&quot; 
+					targets=&quot;result1&quot; 
 					value=&quot;AJAX Submit&quot; 
 					indicator=&quot;indicator&quot; 
 					button=&quot;true&quot;
@@ -154,9 +162,13 @@
 	        &lt;/div&gt;
         &lt;/fieldset&gt;
     &lt;/s:form&gt;
+ 
+    &lt;strong&gt;Result Div 1 :&lt;/strong&gt;
+	&lt;div id=&quot;result1&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
+	
     &lt;s:form id=&quot;formSelectTwo&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
         &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
+            &lt;legend&gt;AJAX Form populated by a Map&lt;/legend&gt;
 	        &lt;div class=&quot;type-text&quot;&gt;
 	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
 				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
@@ -172,7 +184,7 @@
 	        &lt;/div&gt;
 	        &lt;div class=&quot;type-button&quot;&gt;
 				&lt;sj:submit 
-					targets=&quot;result&quot; 
+					targets=&quot;result2&quot; 
 					value=&quot;AJAX Submit&quot; 
 					indicator=&quot;indicator&quot;
 					button=&quot;true&quot;
@@ -184,9 +196,13 @@
 	        &lt;/div&gt;
         &lt;/fieldset&gt;
     &lt;/s:form&gt;
+
+    &lt;strong&gt;Result Div 2 :&lt;/strong&gt;
+	&lt;div id=&quot;result2&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
+	
     &lt;s:form id=&quot;formSelectThree&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
         &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
+            &lt;legend&gt;AJAX Form populated by a List with Objects&lt;/legend&gt;
 	        &lt;div class=&quot;type-text&quot;&gt;
 	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
 				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
@@ -204,7 +220,7 @@
 	        &lt;/div&gt;
 	        &lt;div class=&quot;type-button&quot;&gt;
 				&lt;sj:submit 
-					targets=&quot;result&quot; 
+					targets=&quot;result3&quot; 
 					value=&quot;AJAX Submit&quot; 
 					indicator=&quot;indicator&quot;
 					button=&quot;true&quot;
@@ -217,11 +233,9 @@
         &lt;/fieldset&gt;
     &lt;/s:form&gt;
 
-	&lt;strong&gt;Result Div :&lt;/strong&gt;
-	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;
-		Submit a form.
-	&lt;/div&gt;
-	  </pre>
+    &lt;strong&gt;Result Div 3 :&lt;/strong&gt;
+	&lt;div id=&quot;result3&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
+ 	  </pre>
 	  </div>
       <div id="java">
 	  <pre>

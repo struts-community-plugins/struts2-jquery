@@ -46,6 +46,7 @@
 	           	indicator="indicator"
 	           	button="true"
 	            listenTopics="submitForm1"
+            	cssStyle="display:none;"
            	/>
     </s:form>
 	<br/>
@@ -67,6 +68,7 @@
 	            	indicator="indicator"
 	            	button="true"
 	            	listenTopics="submitForm2"
+	            	cssStyle="display:none;"
 	            	/>
    </s:form>
 
@@ -75,23 +77,30 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    <strong>Buttonset that was populated from a List with String values.</strong>
+    &lt;strong&gt;Result Div :&lt;/strong&gt;
+	&lt;div id=&quot;formResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
+    
+    &lt;strong&gt;Buttonset that was populated from a List with String values.&lt;/strong&gt;
     &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;simple&quot;&gt;
             &lt;label for=&quot;echo&quot;&gt;Choose your Friend: &lt;/label&gt;
 		    &lt;sj:radio
 		    		id=&quot;radiobuttonset&quot;
 		            list=&quot;{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}&quot;
-		            name=&quot;echo&quot;/&gt;
+		            name=&quot;echo&quot;
+					onChangeTopics=&quot;submitForm1&quot;
+		    /&gt;
 		    &lt;br/&gt;
             &lt;sj:submit 
 	           	targets=&quot;formResult&quot; 
 	           	value=&quot;AJAX Submit&quot; 
 	           	indicator=&quot;indicator&quot;
 	           	button=&quot;true&quot;
+	            listenTopics=&quot;submitForm1&quot;
+            	cssStyle=&quot;display:none;&quot;
            	/&gt;
     &lt;/s:form&gt;
 	&lt;br/&gt;
-    <strong>Buttonset that was populated from AJAX JSON Result with onChangeTopic.</strong>
+    &lt;strong&gt;Buttonset that was populated from AJAX JSON Result with onChangeTopic.&lt;/strong&gt;
     &lt;s:form id=&quot;form2&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
 				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
 				&lt;sj:radio
@@ -103,11 +112,13 @@
 					onChangeTopics=&quot;submitForm2&quot;
 				/&gt;
 	            &lt;sj:submit 
+	            	id=&quot;form2button&quot;
 	            	targets=&quot;formResult&quot; 
 	            	value=&quot;AJAX Submit&quot; 
 	            	indicator=&quot;indicator&quot;
 	            	button=&quot;true&quot;
 	            	listenTopics=&quot;submitForm2&quot;
+	            	cssStyle=&quot;display:none;&quot;
 	            	/&gt;
    &lt;/s:form&gt;
 
