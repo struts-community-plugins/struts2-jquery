@@ -167,6 +167,19 @@
 		}
 	},
 
+	// Helper function to subscribe topics
+	subscribeTopics : function(elem, topics, handler, options) {
+		if (topics && elem) {
+			$.each(topics.split(','), function(i, t) {
+				_s2j.log('subscribe topic : ' + t);
+				if (elem.isSubscribed(t)) {
+					elem.unsubscribe(t);
+				}
+				elem.subscribe(t, handler, options);
+			});
+		}
+	},
+
 	// Helper function to publish topics
 	publishTopic : function(elem, topics, data) {
 		if (topics) {
@@ -471,15 +484,8 @@
 				effect.targets = target;
 				var tarelem = $(_s2j.escId(target));
 
-				if (tarelem.isSubscribed(actionTopic)) {
-					tarelem.unsubscribe(actionTopic);
-				}
-				if (tarelem.isSubscribed(effectTopic + target)) {
-					tarelem.unsubscribe(effectTopic + target);
-				}
-
-				tarelem.subscribe(actionTopic, loadHandler, options);
-				tarelem.subscribe(effectTopic + target, _s2j.handler.effect, effect);
+				_s2j.subscribeTopics(tarelem, actionTopic, loadHandler, options);
+				_s2j.subscribeTopics(tarelem, effectTopic + target, _s2j.handler.effect, effect);
 
 				if (options.listentopics) {
 					$.each(options.listentopics.split(','), function(i, lt) {
@@ -510,11 +516,7 @@
 
 			// bind event topic listeners
 			if (options.onbeforetopics || options.oncompletetopics || options.onsuccesstopics || options.onerrortopics) {
-				if ($elem.isSubscribed(actionTopic)) {
-					$elem.unsubscribe(actionTopic);
-				}
-
-				$elem.subscribe(actionTopic, loadHandler, options);
+				_s2j.subscribeTopics($elem, actionTopic, loadHandler, options);
 			}
 		}
 
@@ -531,33 +533,12 @@
 		// load div using ajax only when href is specified or form is defined
 		if ((options.formids && !options.type) || (options.href && options.href != '#')) {
 			if (options.href != '#') {
-
-				if (options.reloadtopics) {
-					$.each(options.reloadtopics.split(','), function(i, rt) {
-						if ($elem.isSubscribed(rt)) {
-							$elem.unsubscribe(rt);
-						}
-
-						$elem.subscribe(rt, _s2j.handler.load, options);
-					});
-				}
-				if (options.listentopics) {
-					$.each(options.listentopics.split(','), function(i, lt) {
-						if ($elem.isSubscribed(lt)) {
-							$elem.unsubscribe(lt);
-						}
-
-						$elem.subscribe(lt, _s2j.handler.load, options);
-					});
-				}
+					_s2j.subscribeTopics($elem, options.reloadtopics, _s2j.handler.load, options);
+					_s2j.subscribeTopics($elem, options.listentopics, _s2j.handler.load, options);
 
 				// publishing not triggering to prevent event propagation issues
 				var divTopic = '_s2j_div_load_' + options.id;
-				if ($elem.isSubscribed(divTopic)) {
-					$elem.unsubscribe(divTopic);
-				}
-
-				$elem.subscribe(divTopic, _s2j.handler.load);
+				_s2j.subscribeTopics($elem, divTopic, _s2j.handler.load, options);
 
 				if (options.bindon) {
 					var $bindElement = $('#' + options.bindon);
@@ -594,9 +575,7 @@
 				effect.effect = options.effect;
 				effect.effectoptions = options.effectoptions;
 				effect.effectduration = options.effectduration;
-				if (!$elem.isSubscribed(divEffectTopic)) {
-					$elem.subscribe(divEffectTopic, this.handler.effect, effect);
-				}
+				_s2j.subscribeTopics($elem, divEffectTopic, _s2j.handler.effect, effect);
 			}
 
 			if (options.events || options.bindon) {
@@ -792,25 +771,9 @@
 
 		if (options.href && options.href != '#') {
 
-			if (options.reloadtopics) {
-				$.each(options.reloadtopics.split(','), function(i, rts) {
-					if (!$elem.isSubscribed(rts)) {
-						$elem.subscribe(rts, _s2j.handler.load, options);
-					}
-				});
-			}
-			if (options.listentopics) {
-				$.each(options.listentopics.split(','), function(i, lts) {
-					if (!$elem.isSubscribed(lts)) {
-						$elem.subscribe(lts, _s2j.handler.load, options);
-					}
-				});
-			}
-
-			if ($elem.isSubscribed(selectTopic)) {
-				$elem.unsubscribe(selectTopic);
-			}
-			$elem.subscribe(selectTopic, _s2j.handler.load);
+			_s2j.subscribeTopics($elem, options.reloadtopics, _s2j.handler.load, options);
+			_s2j.subscribeTopics($elem, options.listentopics, _s2j.handler.load, options);
+			_s2j.subscribeTopics($elem, selectTopic, _s2j.handler.load, options);
 			if (!options.deferredloading) {
 				$elem.publish(selectTopic, options);
 			}
@@ -863,18 +826,10 @@
 			this.require("js/plugins/jquery.form" + this.minSuffix + ".js");
 		}
 
-		if (options.reloadtopics) {
-			$.each(options.reloadtopics.split(','), function(i, rts) {
-				$elem.subscribe(rts, _s2j.handler.form, options);
-			});
-		}
-		if (options.listentopics) {
-			$.each(options.listentopics.split(','), function(i, lt) {
-				$elem.subscribe(lt, _s2j.handler.form, options);
-			});
-		}
+		_s2j.subscribeTopics($elem, options.reloadtopics, _s2j.handler.form, options);
+		_s2j.subscribeTopics($elem, options.listentopics, _s2j.handler.form, options);
+		_s2j.subscribeTopics($elem, topic, _s2j.handler.form, options);
 
-		$elem.subscribe(topic, _s2j.handler.form, options);
 		if (options.targets) {
 			$.each(options.targets.split(','), function(i, target) {
 				$(_s2j.escId(target)).subscribe(topic, _s2j.handler.effect, options);
@@ -925,10 +880,7 @@
 
 			if (options.href && options.href != '#') {
 				var divTopic = '_s2j_topic_load_' + options.id;
-				if (!$elem.isSubscribed(divTopic)) {
-					$elem.subscribe(divTopic, _s2j.handler.load);
-				}
-				$elem.publish(divTopic, options);
+				_s2j.subscribeTopics($elem, divTopic, _s2j.handler.load, options);
 			}
 
 			_s2j.publishTopic($elem, options.onalwaystopics, data);
