@@ -15,55 +15,15 @@
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-    <script type="text/javascript">
-
-    var refreshDiv1 = 0;
-    var refreshDiv2 = 0;
-    var refreshDiv3 = 0;
-    var refreshList = 0;
-	    
-    $.subscribe('refreshlist', function(event,data) {
-		$.publish('reloadlist');	
-    });
-    $.subscribe('refreshdiv', function(event,data) {
-		$.publish('reloaddiv1');	
-    });
-    $.subscribe('completediv1', function(event,data) {
-        if(event.originalEvent.status == "success")
-        {
-        	$('#counter1').html(++refreshDiv1);
-        }
-    });
-    $.subscribe('completediv2', function(event,data) {
-        if(event.originalEvent.status == "success")
-        {
-        	$('#counter2').html(++refreshDiv2);
-        	setTimeout( function() {
-				$.publish('reloaddiv2');	
-			}, 10000 );
-        }
-    });
-    $.subscribe('completediv3', function(event,data) {
-        if(event.originalEvent.status == "success")
-        {
-        	$('#counter4').html(++refreshDiv3);
-        	setTimeout( function() {
-				$.publish('reloaddiv3');	
-			}, 15000 );
-        }
-    });
-    $.subscribe('completelist', function(event,data) {
-        if(event.originalEvent.status == "success")
-        {
-        	$('#counter3').html(++refreshList);
-        }
-    });
-    </script>        
 	<h2>Remote Divs with reloadable content</h2>
 	<p>
 	   Remote Divs and Select Boxes with AJAX content they reload content automatically or by events.
 	</p>
     <strong>Div reloads : <span id="counter1"></span></strong>
+    <img id="indicator1" 
+       	src="images/indicator.gif" 
+       	alt="Loading..." 
+       	style="display:none"/>
     <s:url id="ajax1" value="/ajax1.action"/>
     <sj:div id="div1" 
     		href="%{ajax1}" 
@@ -72,10 +32,6 @@
     		onCompleteTopics="completediv1" 
     		effect="highlight" 
     		cssClass="result ui-widget-content ui-corner-all">
-        <img id="indicator1" 
-        	src="images/indicator.gif" 
-        	alt="Loading..." 
-        	style="display:none"/>
     </sj:div>
     <sj:a 	
     	id="refreshlink" 
@@ -89,6 +45,10 @@
     <br/><br/>
     
     <strong>Div reloads every 10 seconds : <span id="counter2"></span></strong>
+    <img id="indicator2" 
+       	src="images/indicator.gif" 
+       	alt="Loading..." 
+       	style="display:none"/>
     <s:url id="ajax2" value="/ajax2.action"/>
     <sj:div id="div2" 
     		href="%{ajax2}" 
@@ -97,9 +57,6 @@
     		onCompleteTopics="completediv2" 
     		effect="highlight" 
     		cssClass="result ui-widget-content ui-corner-all">
-        <img id="indicator2" 
-        	src="images/indicator.gif" 
-        	alt="Loading..." style="display:none"/>
     </sj:div>
         
     <br/><br/>
@@ -114,7 +71,8 @@
 				<sj:select 
 					reloadTopics="reloadlist" 
 					onCompleteTopics="completelist" 
-					href="%{remoteurl}" id="echo"
+					href="%{remoteurl}" 
+					id="echo"
 					name="echo" 
 					list="languageList"/>
 	        </div>
@@ -138,6 +96,10 @@
     <br/><br/>
 
     <strong>Div reloads every 15 seconds with form values : <span id="counter4"></span></strong>
+    <img id="indicator3" 
+    		src="images/indicator.gif" 
+    		alt="Loading..." 
+    		style="display:none"/>
     <sj:div id="div3" 
     		formIds="formSelectOne" 
     		indicator="indicator3" 
@@ -145,10 +107,6 @@
     		onCompleteTopics="completediv3" 
     		effect="highlight" 
     		cssClass="result ui-widget-content ui-corner-all">
-        <img id="indicator3" 
-        		src="images/indicator.gif" 
-        		alt="Loading..." 
-        		style="display:none"/>
     </sj:div>
 
     <sj:tabbedpanel id="localtabs" cssClass="list">

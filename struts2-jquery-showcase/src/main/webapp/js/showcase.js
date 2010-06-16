@@ -188,6 +188,47 @@ $(document).ready(function() {
     $(event.originalEvent.ui.draggable).find('p').html('I was dragged!');
 	});
 
+	/*
+	 * Topic for Reload Div Examples.
+	 */
+  var refreshDiv1 = 0;
+	var refreshDiv2 = 0;
+	var refreshDiv3 = 0;
+	var refreshList = 0;
+
+	$.subscribe('refreshlist', function(event, data) {
+		$.publish('reloadlist');
+	});
+	$.subscribe('refreshdiv', function(event, data) {
+		$.publish('reloaddiv1');
+	});
+	$.subscribe('completediv1', function(event, data) {
+		if (event.originalEvent.status == "success") {
+			$('#counter1').html(++refreshDiv1);
+		}
+	});
+	$.subscribe('completediv2', function(event, data) {
+		if (event.originalEvent.status == "success") {
+			$('#counter2').html(++refreshDiv2);
+			setTimeout( function() {
+				$.publish('reloaddiv2');
+			}, 10000);
+		}
+	});
+	$.subscribe('completediv3', function(event, data) {
+		if (event.originalEvent.status == "success") {
+			$('#counter4').html(++refreshDiv3);
+			setTimeout( function() {
+				$.publish('reloaddiv3');
+			}, 15000);
+		}
+	});
+	$.subscribe('completelist', function(event, data) {
+		if (event.originalEvent.status == "success") {
+			$('#counter3').html(++refreshList);
+		}
+	});
+
 
 	/*
 	 * Menu Highlight

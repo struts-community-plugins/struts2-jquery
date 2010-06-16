@@ -47,8 +47,10 @@
 	effect :'_s2j_effects'
 	},
 
-	// helper function for debug logging
-	// set debug to true in the head tag to enable debug logging
+	/** 
+	 * helper function for debug logging
+	 * set debug to true in the head tag to enable debug logging
+	 *  */
 	log : function(message) {
 		if (this.debug) {
 			var msg = '[struts2_jquery] ' + message;
@@ -61,16 +63,12 @@
 		}
 	},
 
-	/*
-	 * Escape Ids
-	 */
+	/** Escape Ids */
 	escId : function(id) {
 		return '#' + id.replace(/(:|\.)/g, '\\$1');
 	},
 
-	/*
-	 * Load required JavaScript Resourcess
-	 */
+	/** Load required JavaScript Resourcess */
 	require : function(files, callBack, basePath) {
 
 		var successFunction, path;
@@ -104,9 +102,7 @@
 		});
 	},
 
-	/*
-	 * Load required CSS Files
-	 */
+	/** Load required CSS Files */
 	requireCss : function(cssFile, basePath) {
 		if (!this.styleCache[cssFile]) {
 			var path, cssref;
@@ -129,7 +125,7 @@
 		}
 	},
 
-	// helper function to hide indicator
+	/** Helper function to hide indicator */
 	hideIndicator : function(indi) {
 		if (indi) {
 			$(this.escId(indi)).hide();
@@ -139,7 +135,7 @@
 		}
 	},
 
-	// helper function to show indicator
+	/** Helper function to show indicator */
 	showIndicator : function(indi) {
 		if (indi) {
 			$(this.escId(indi)).show();
@@ -149,7 +145,7 @@
 		}
 	},
 
-	// Helper function to publish UI topics
+	/** Helper function to publish UI topics */
 	pubTops : function($elem, always, topics) {
 
 		if (topics) {
@@ -167,7 +163,7 @@
 		}
 	},
 
-	// Helper function to subscribe topics
+	/** Helper function to subscribe topics */
 	subscribeTopics : function(elem, topics, handler, options) {
 		if (topics && elem) {
 			$.each(topics.split(','), function(i, t) {
@@ -180,7 +176,7 @@
 		}
 	},
 
-	// Helper function to publish topics
+	/** Helper function to publish topics */
 	publishTopic : function(elem, topics, data) {
 		if (topics) {
 			$.each(topics.split(','), function(i, to) {
@@ -190,46 +186,56 @@
 		}
 	},
 
-	/** Publish Success topics */
+	/** publish Success topics 
+	 * handle AJAX result, insert it into container or build select box, radiobutton, checkboxes etc.
+	 * */
 	pubSuc : function(cid, always, stopics, indi, modus, options) {
-		var container = $(cid);
+		var c = $(cid);
 		return function(data, status, request) {
 			var orginal = {};
 			orginal.data = data;
 			orginal.status = status;
 			orginal.request = request;
 
+			// Handle HTML Result for Divs, Submit and Anchor
 			if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) {
-				container.html(data);
+				c.html(data);
 			}
+			
+			// Handle Text Result for Textarea or Textfield
 			else if (modus == 'value') {
-				container.val($.trim(data));
+				c.val($.trim(data));
 			}
+			
+			// Hanlde Result for Select, Radiobuttons and Checkboxes
 			else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
 				if (modus == 'select') {
-					container[0].length = 0;
+					c[0].length = 0;
 				}
 				else {
-					container.children().remove();
+					c.children().remove();
 				}
 
 				if (typeof (data) == "object" || $.isArray(data)) {
 					var i = -1;
 
 					if (modus == 'select') {
+						// Header Option 
 						if (options.headerkey && options.headervalue) {
 							var headerElement = $('<option value="' + options.headerkey + '">' + options.headervalue + '</option>');
 							if (options.value == options.headervalue) {
 								headerElement.attr("selected", "selected");
 							}
-							headerElement.appendTo(container);
+							headerElement.appendTo(c);
 						}
 
+						// Is Empty Option set to true
 						if (options.emptyoption) {
-							$('<option></option>').appendTo(container);
+							$('<option></option>').appendTo(c);
 						}
 					}
 
+					// Loop over Elements
 					var o = 0;
 					if (data[options.list] !== null) {
 						$.each(data[options.list], function(j, val) {
@@ -262,24 +268,26 @@
 								if (option.selected) {
 									optionElement.attr("selected", "selected");
 								}
-								optionElement.appendTo(container);
+								optionElement.appendTo(c);
 							}
 							else {
-								var rocElement;
-								var idValue = ++i;
+								var re;
+								var idv = ++i;
+								
+								// This way is needed to avoid Bug in IE6/IE7
 								if (modus == 'radio') {
-									rocElement = $('<input name="' + option.name + '" type="radio" id="' + option.name + (idValue) + '" value="' + option.value + '"></input>');
+									re = $('<input name="' + option.name + '" type="radio" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
 								}
 								else if (modus == 'checkbox') {
-									rocElement = $('<input name="' + option.name + '" type="checkbox" id="' + option.name + (idValue) + '" value="' + option.value + '"></input>');
+									re = $('<input name="' + option.name + '" type="checkbox" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
 								}
 
 								if (option.selected) {
-									rocElement.attr("checked", "checked");
+									re.attr("checked", "checked");
 								}
 
-								container.append(rocElement);
-								container.append($('<label id="' + option.name + (idValue) + 'label" for="' + option.name + (idValue) + '">' + option.text + '</label>'));
+								c.append(re);
+								c.append($('<label id="' + option.name + (idv) + 'label" for="' + option.name + (idv) + '">' + option.text + '</label>'));
 							}
 							o++;
 						});
@@ -288,8 +296,8 @@
 			}
 
 			if (stopics) {
-				_s2j.publishTopic(container, stopics, orginal);
-				_s2j.publishTopic(container, always, orginal);
+				_s2j.publishTopic(c, stopics, orginal);
+				_s2j.publishTopic(c, always, orginal);
 			}
 
 			// Use BBQ for Ajaxhistory
@@ -308,9 +316,9 @@
 		};
 	},
 
-	/** Publish Complete topics */
+	/** publish complete topics */
 	pubCom : function(cid, always, ctopics, targets, indi, options) {
-		var container = $(cid);
+		var c = $(cid);
 		return function(request, status) {
 			var orginal = {};
 			orginal.request = request;
@@ -318,8 +326,8 @@
 
 			_s2j.hideIndicator(indi);
 
-			_s2j.publishTopic(container, ctopics, orginal);
-			_s2j.publishTopic(container, always, orginal);
+			_s2j.publishTopic(c, ctopics, orginal);
+			_s2j.publishTopic(c, always, orginal);
 
 			var ec = targets;
 			if (!ec) {
@@ -344,17 +352,17 @@
 				else {
 					ro = {};
 				}
-				ro.start = _s2j.pubTops(container, options.onalwaystopics, options.resizableonstarttopics);
-				ro.stop = _s2j.pubTops(container, options.onalwaystopics, options.resizableonstoptopics);
-				ro.resize = _s2j.pubTops(container, options.onalwaystopics, options.resizableonresizetopics);
-				container.resizable(ro);
+				ro.start = _s2j.pubTops(c, options.onalwaystopics, options.resizableonstarttopics);
+				ro.stop = _s2j.pubTops(c, options.onalwaystopics, options.resizableonstoptopics);
+				ro.resize = _s2j.pubTops(c, options.onalwaystopics, options.resizableonresizetopics);
+				c.resizable(ro);
 			}
 		};
 	},
 
-	// publish error topics
+	/** publish error topics */
 	pubErr : function(cid, always, etopics, etext, modus) {
-		var container = $(cid);
+		var c = $(cid);
 		if (etopics || etext) {
 			return function(request, status, error) {
 				var orginal = {};
@@ -364,15 +372,15 @@
 
 				if (modus == 'html' || modus == 'value') {
 					if (etext && etext != "false") {
-						container.html(etext);
+						c.html(etext);
 					}
 					else if (_s2j.defaults.errorText !== null) {
-						container.html(_s2j.defaults.errorText);
+						c.html(_s2j.defaults.errorText);
 					}
 				}
 
-				_s2j.publishTopic(container, etopics, orginal);
-				_s2j.publishTopic(container, always, orginal);
+				_s2j.publishTopic(c, etopics, orginal);
+				_s2j.publishTopic(c, always, orginal);
 			};
 		}
 		else {
@@ -380,13 +388,16 @@
 		}
 	},
 
-	// pre-binding function of the type function(element){}. called before binding the element
-	// returning false will prevent the binding of this element
+	/** 
+	 * pre-binding function of the type function(element){}. called before binding the element
+	 * returning false will prevent the binding of this element
+	 */
 	preBind :null,
 
-	// post-binding function of the type function(element){}. called before binding the element
+	/** post-binding function of the type function(element){}. called before binding the element */
 	postBind :null,
 
+	/** bind a html element to an struts2 jquery action */
 	bind : function(el, options) {
 
 		if (el) {
@@ -413,7 +424,7 @@
 		}
 	},
 
-	// register a jquery action
+	/** register a specific struts2 jquery action */
 	jqueryaction : function(name, binder) {
 
 		if (name && binder) {
@@ -421,6 +432,7 @@
 		}
 	},
 
+	/** opens a dialog if attribute openDialog in Anchor or Submit Tag is set to true */
 	opendialog : function($elem, options) {
 		this.log('open dialog : ' + options.opendialog);
 
@@ -441,30 +453,11 @@
 			});
 		}
 	},
+	
+	/** Handles remote and effect actions */
 	action : function($elem, options, loadHandler, type) {
 
-		// bind event to onClick topics
-		if (options.onclicktopics) {
-			$.each(options.onclicktopics.split(','), function(i, topic) {
-				$elem.createTopic(topic);
-				var params = {};
-				params.topic = topic;
-				$elem.bind('click', params, function(event) {
-					var target = $(this);
-
-					if (!target.disabled || target.disabled !== true) {
-
-						var publishOptions = event.data || {};
-						publishOptions.disabled = false;
-
-						target.publish(event.data.topic, publishOptions, event);
-					}
-					return false;
-				});
-			});
-		}
 		var actionTopic = '_sj_action_' + options.id;
-
 		var href = options.href;
 
 		if (href === null || href == "") {
@@ -526,6 +519,7 @@
 
 	},
 
+	/** Handle all Container Elements Divs, Textarea, Textfield */
 	container : function($elem, options) {
 		this.log('container : ' + options.id);
 		this.action($elem, options, this.handler.load, 'div');
@@ -742,8 +736,15 @@
 		}
 	},
 
+	/** Handle the Anchor Element */
 	anchor : function($elem, options) {
 		this.log('anchor : ' + options.id);
+
+		if (options.onclicktopics) {
+			$.each(options.onclicktopics.split(','), function(i, topic) {
+				$elem.publishOnEvent('click', topic);
+			});
+		}
 
 		if (options.opendialog) {
 			this.opendialog($elem, options);
@@ -762,6 +763,7 @@
 		}
 	},
 
+	/** Handle dynamic Select Boxes */
 	select : function($elem, options) {
 		this.log('select : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -785,6 +787,7 @@
 		}
 	},
 
+	/** Handle the Submit Button */
 	button : function($elem, options) {
 		var formTopic = '_s2j_form_topic_' + options.id;
 
@@ -817,9 +820,16 @@
 				this.action($elem, options, this.handler.load, 'a');
 			}
 		}
+		if (options.onclicktopics) {
+			$.each(options.onclicktopics.split(','), function(i, topic) {
+				$elem.publishOnEvent('click', topic);
+			});
+		}
 		$elem.publishOnEvent('click', formTopic);
 		$elem.removeAttr('name');
 	},
+	
+	/** Handle all AJAX Forms submitted from Anchor or Submit Button */
 	formsubmit : function($elem, options, topic) {
 		this.log('formsubmit : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -853,6 +863,7 @@
 		}
 	},
 
+	/** Handle the Dialog Widget */
 	dialog : function($elem, options) {
 		this.log('dialog : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -894,6 +905,7 @@
 		$elem.dialog(params);
 	},
 
+	/** Handle the TabbedPanel Widget */
 	tabbedpanel : function($elem, options) {
 		this.log('tabbedpanel : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -1031,6 +1043,7 @@
 		}
 	},
 
+	/** Handle the Datepicker Widget */
 	datepicker : function($elem, options) {
 		this.log('datepicker : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -1158,6 +1171,8 @@
 			$('#ui-datepicker-div').css("z-index", options.zindex);
 		}
 	},
+	
+	/** Handle the Slider Widget */
 	slider : function($elem, options) {
 		this.log('slider : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -1223,6 +1238,8 @@
 
 		$elem.slider(params);
 	},
+	
+	/** Handle the Progressbar Widget */
 	progressbar : function($elem, options) {
 		this.log('progressbar : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -1243,6 +1260,8 @@
 		}
 		$elem.progressbar(params);
 	},
+
+	/** Handle the Accordion Widget */
 	accordion : function($elem, options) {
 		this.log('accordion : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -1344,6 +1363,8 @@
 			}
 		}
 	},
+	
+	/** Handle the Autocompleter Widget */
 	autocompleter : function($elem, options) {
 		this.log('autocompleter for : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -1393,6 +1414,8 @@
 			$elem.combobox(params);
 		}
 	},
+	
+	/** Handle the Button Widget for Anchor or Submit Tag*/
 	jquerybutton : function($elem, options) {
 		this.log('button for : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -1410,6 +1433,8 @@
 			$elem.button(params);
 		}
 	},
+	
+	/** Handle the Buttonset Widget for Radiobuttons or Checkboxes */
 	buttonset : function($elem, options) {
 		this.log('buttonset for : ' + options.id);
 		if (!this.loadAtOnce) {
@@ -1489,8 +1514,10 @@
 	/** Create a shorthand to reduce code */
 	var _s2j = $.struts2_jquery;
 
-	/** Container logic */
-	// Register handler to load a container
+	/** 
+	 * Container logic 
+	 * Register handler to load a container
+	 * */
 	$.subscribeHandler(_s2j.handler.load, function(event, data) {
 
 		var container = $(event.target);
@@ -1607,8 +1634,10 @@
 		}
 	});
 
-	/** Form logic */
-	// Handler to submit a form with jquery.form.js plugin
+	/** 
+	 * Form logic 
+	 * Handler to submit a form with jquery.form.js plugin
+	 * */
 	$.subscribeHandler(_s2j.handler.form, function(event, data) {
 		var container = $(event.target);
 		var elem = container;
@@ -1767,8 +1796,10 @@
 		return false;
 	});
 
-	/** Effects */
-	// Register handler for effects
+	/** 
+	 * Effects 
+	 * Register handler for effects
+	 * */
 	$.subscribeHandler(_s2j.handler.effect, function(event, data) {
 		var options = {};
 		$.extend(options, event.data);
