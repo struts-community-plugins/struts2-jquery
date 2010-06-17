@@ -477,9 +477,11 @@
 				effect.targets = target;
 				var tarelem = $(_s2j.escId(target));
 
+
 				_s2j.subscribeTopics(tarelem, actionTopic, loadHandler, options);
 				_s2j.subscribeTopics(tarelem, effectTopic + target, _s2j.handler.effect, effect);
 
+/*
 				if (options.listentopics) {
 					$.each(options.listentopics.split(','), function(i, lt) {
 						if (tarelem.isSubscribed(lt)) {
@@ -490,6 +492,7 @@
 						tarelem.subscribe(lt, _s2j.handler.effect, effect);
 					});
 				}
+				*/
 				if (this.ajaxhistory) {
 					var params = {};
 					params.target = target;
@@ -523,15 +526,15 @@
 	container : function($elem, options) {
 		this.log('container : ' + options.id);
 		this.action($elem, options, this.handler.load, 'div');
+		var divTopic = '_s2j_div_load_' + options.id;
+		var divEffectTopic = '_s2j_div_effect_' + options.id;
 
 		// load div using ajax only when href is specified or form is defined
 		if ((options.formids && !options.type) || (options.href && options.href != '#')) {
 			if (options.href != '#') {
-					_s2j.subscribeTopics($elem, options.reloadtopics, _s2j.handler.load, options);
-					_s2j.subscribeTopics($elem, options.listentopics, _s2j.handler.load, options);
-
+				_s2j.subscribeTopics($elem, options.reloadtopics, _s2j.handler.load, options);
+				_s2j.subscribeTopics($elem, options.listentopics, _s2j.handler.load, options);
 				// publishing not triggering to prevent event propagation issues
-				var divTopic = '_s2j_div_load_' + options.id;
 				_s2j.subscribeTopics($elem, divTopic, _s2j.handler.load, options);
 
 				if (options.bindon) {
@@ -555,14 +558,13 @@
 					this.require("js/plugins/jquery.form" + this.minSuffix + ".js");
 				}
 				options.targets = options.id;
-				var formTopic = '_s2j_form_topic_' + options.id;
-				this.formsubmit($elem, options, formTopic);
-				$elem.publish(formTopic, options);
+				this.formsubmit($elem, options, divTopic);
+				if (!options.deferredloading) {
+					$elem.publish(divTopic, options);
+				}
 			}
 		}
 		else {
-
-			var divEffectTopic = '_s2j_div_effect_' + options.id;
 			if (options.id && options.effect) {
 				var effect = {};
 				effect.targets = options.id;
@@ -760,6 +762,13 @@
 		}
 		else {
 			this.action($elem, options, this.handler.load, 'a');
+			if(options.targets && (options.reloadtopic || options.listentopics)) {
+				$.each(options.targets.split(','), function(i, t) {
+					var te = $(_s2j.escId(t));
+					_s2j.subscribeTopics(te, options.reloadtopics, _s2j.handler.load, options);
+					_s2j.subscribeTopics(te, options.listentopics, _s2j.handler.load, options);
+				});
+			}
 		}
 	},
 
@@ -1483,16 +1492,8 @@
 				options.onsuccesstopics = buttonsetTopic;
 			}
 
-			if (options.reloadtopics) {
-				$.each(options.reloadtopics.split(','), function(i, rts) {
-					$elem.subscribe(rts, _s2j.handler.load, options);
-				});
-			}
-			if (options.listentopics) {
-				$.each(options.listentopics.split(','), function(i, lts) {
-					$elem.subscribe(lts, _s2j.handler.load, options);
-				});
-			}
+			_s2j.subscribeTopics($elem, options.reloadtopics, _s2j.handler.load, options);
+			_s2j.subscribeTopics($elem, options.listentopics, _s2j.handler.load, options);
 
 			$elem.subscribe(buttonsetLoadTopic, _s2j.handler.load);
 			$elem.publish(buttonsetLoadTopic, options);

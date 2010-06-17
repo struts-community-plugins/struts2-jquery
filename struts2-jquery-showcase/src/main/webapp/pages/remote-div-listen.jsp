@@ -24,7 +24,8 @@
     <strong>Div with listen Topics:</strong>
     <sj:div 
     	id="resultdiv1" 
-    	href="%{ajax2}" 
+    	href="%{ajax1}" 
+    	deferredLoading="true"
     	indicator="indicator1" 
     	listenTopics="loaddiv1" 
     	effect="highlight" 
@@ -35,7 +36,7 @@
 
     <sj:a id="listenanchor" 
 	    indicator="indicator2" 
-	    href="%{ajax1}" 
+	    href="%{ajax2}" 
 	    targets="resultdiv2" 
 	    listenTopics="loaddiv2" 
 	    effect="highlight" 
@@ -45,24 +46,29 @@
 	>
     	Ajax Link
     </sj:a>
+    <img id="indicator2" src="images/indicator.gif" alt="Loading..." style="display:none"/>
+    <div id="resultdiv2" class="result ui-widget-content ui-corner-all">
+    	Result of Ajax Link.
+    </div>
+    <s:form id="listenTopicForm" action="ajax3">
     <sj:submit id="listensubmit" 
-	    indicator="indicator2" 
-	    href="%{ajax1}" 
-	    targets="resultdiv2" 
-	    listenTopics="loaddiv2" 
+	    indicator="indicator3" 
+	    targets="resultdiv3" 
+	    listenTopics="loaddiv3" 
 	    effect="highlight" 
 	    effectDuration="1000" 
     	button="true" 
 	/>
-    <div id="resultdiv2" class="result ui-widget-content ui-corner-all">
-    	Result of Ajax Link.
-        <img id="indicator2" src="images/indicator.gif" alt="Loading..." style="display:none"/>
+	</s:form>
+    <img id="indicator3" src="images/indicator.gif" alt="Loading..." style="display:none"/>
+    <div id="resultdiv3" class="result ui-widget-content ui-corner-all">
+    	Result of Ajax Submit.
     </div>
     
     <sj:a 
     	id="publishanchor" 
     	href="#" 
-    	onClickTopics="loaddiv1,loaddiv2" 
+    	onClickTopics="loaddiv1,loaddiv2,loaddiv3" 
     	button="true" 
 		buttonIcon="ui-icon-gear"
     	>
