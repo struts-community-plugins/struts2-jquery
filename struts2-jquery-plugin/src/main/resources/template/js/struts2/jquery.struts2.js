@@ -479,7 +479,7 @@
 				_s2j.subscribeTopics(tarelem, actionTopic, loadHandler, options);
 				_s2j.subscribeTopics(tarelem, effectTopic + target, _s2j.handler.effect, effect);
 
-				if (this.ajaxhistory) {
+				if (_s2j.ajaxhistory) {
 					var params = {};
 					params.target = target;
 					params.topic = actionTopic;
@@ -1026,7 +1026,7 @@
 			var ahp = {};
 			ahp.id = options.id;
 			$elem.find('ul.ui-tabs-nav a').bind('click', ahp, function(e) {
-				var idx = $(this.escId(e.data.id)).tabs('option', 'selected');
+				var idx = $(_s2j.escId(e.data.id)).tabs('option', 'selected');
 				_s2j.historyelements[e.data.id] = idx;
 				$.bbq.pushState(_s2j.historyelements);
 				return false;
@@ -1034,7 +1034,7 @@
 
 			$(window).bind('hashchange', ahp, function(e) {
 				var idx = e.getState(e.data.id, true) || 0;
-				$(this.escId(e.data.id)).tabs('select', idx);
+				$(_s2j.escId(e.data.id)).tabs('select', idx);
 			});
 		}
 	},
