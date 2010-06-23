@@ -72,7 +72,7 @@
 <#if parameters.compatibility?if_exists == "1.3">
 	<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryCompat13File}"></script>
 </#if>
-<#if parameters.loadAtOnce?default(false)>
+<#if parameters.loadAtOnce?default(false) ||  parameters.loadFromGoogle?default(false)>
 	<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryForm}"></script>
 </#if>
   <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}"></script>
