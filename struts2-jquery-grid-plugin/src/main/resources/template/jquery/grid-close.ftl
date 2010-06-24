@@ -139,6 +139,9 @@
   <#if parameters.multiselect?default(false)>
 	options_${escapedOptionId?html}.multiselect = true;
   </#if>
+  <#if parameters.multiboxonly?default(false)>
+	options_${escapedOptionId?html}.multiboxonly = true;
+  </#if>
   <#if parameters.caption?if_exists != "">
 	options_${escapedOptionId?html}.caption = "${parameters.caption?html}";
   </#if>
