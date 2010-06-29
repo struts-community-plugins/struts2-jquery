@@ -61,7 +61,7 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
     if (onEnableTopics != null) addParameter("onEnableTopics", findString(onEnableTopics));
     if (onDisableTopics != null) addParameter("onDisableTopics", findString(onDisableTopics));
     if (onBlurTopics != null) addParameter("onBlurTopics", findString(onBlurTopics));
-    if (onDisableTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
+    if (onFocusTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
   }
 
   @StrutsTagAttribute(description = "Topics that are published before a load", type = "String", defaultValue = "")

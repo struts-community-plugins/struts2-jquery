@@ -37,12 +37,12 @@
 			},
 
 			// Handle CKEditor
-			ckeditor : function($elem, options) {
-				this.log('ckeditor for : '+options.id);
+			ckeditor : function($elem, o) {
+				this.log('ckeditor for : '+o.id);
 				this.require("js/ckeditor/ckeditor.js");
 				this.require("js/ckeditor/adapters/jquery.js");
 				
-				var inst = CKEDITOR.instances[options.id];
+				var inst = CKEDITOR.instances[o.id];
 				if(inst) {
 				   CKEDITOR.remove(inst);
 				}
@@ -50,44 +50,57 @@
 				this.clean($elem);
 				
 				var callbackFunction = function() {
-					$.struts2_jquery_richtext.editors[$.struts2_jquery_richtext.editors.length] = options.id;
-					if (options.onEditorReadyTopics) {
+					$.struts2_jquery_richtext.editors[$.struts2_jquery_richtext.editors.length] = o.id;
+					if (o.onEditorReadyTopics) {
 						var data = {};
-						$.struts2_jquery.publishTopic($elem, options.onEditorReadyTopics, data);
-						$.struts2_jquery.publishTopic($elem, options.options.onalwaystopics, data);
+						$.struts2_jquery.publishTopic($elem, o.onEditorReadyTopics, data);
+						$.struts2_jquery.publishTopic($elem, o.onalwaystopics, data);
 					}
 				};
 				
-				if (options.editorLocal) {
-					options.language = options.editorLocal;
+				if (o.editorLocal) {
+					o.language = o.editorLocal;
 				}
 				else{
-					options.language = this.local;
+					o.language = this.local;
 				}
 
-				if(options.href && options.href != '#')
+				if(o.href && o.href != '#')
 				{
-					var ckeditorTopic = 's2j_ckeditor_'+options.id;
+					var ckeditorTopic = 's2j_ckeditor_'+o.id;
 					
 					// If Topic already subscribed, then remove it and subscribe it again
 					if ($elem.isSubscribed(ckeditorTopic)) { $elem.unsubscribe(ckeditorTopic); }
 					
 					// Init CKEditor after AJAX Content is loaded.
 					$elem.subscribe(ckeditorTopic, function(event,data) {
-							$elem.ckeditor(callbackFunction, options);
+							$elem.ckeditor(callbackFunction, o);
 					});
-					if(options.oncompletetopics && options.oncompletetopics != '') {
-						options.oncompletetopics = ckeditorTopic;
+					if(o.oncompletetopics && o.oncompletetopics != '') {
+						o.oncompletetopics = ckeditorTopic;
 					}
 					else {
-						options.oncompletetopics = ckeditorTopic;
+						o.oncompletetopics = ckeditorTopic;
 					}
 					
-					this.container($elem, options);
+					this.container($elem, o);
 				}
 				else {
-					this.container($elem, options);
-					$elem.ckeditor(callbackFunction, options);
+					this.container($elem, o);
+					$elem.ckeditor(callbackFunction, o);
+				}
+				if (o.onblurtopics) {
+					CKEDITOR.instances[o.id].on('blur', function() {
+						$.struts2_jquery.publishTopic($elem, o.onblurtopics, {});
+						$.struts2_jquery.publishTopic($elem, o.onalwaystopics, {});
+		      });
+				}
+				
+				if (o.onfocustopics) {
+					CKEDITOR.instances[o.id].on('focus', function() {
+						$.struts2_jquery.publishTopic($elem, o.onfocustopics, {});
+						$.struts2_jquery.publishTopic($elem, o.onalwaystopics, {});
+		      });
 				}
 			}
 	};

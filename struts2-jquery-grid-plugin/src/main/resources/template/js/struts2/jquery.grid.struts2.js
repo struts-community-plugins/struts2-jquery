@@ -25,9 +25,9 @@
 
 	lastselectedrow :'',
 
-	grid : function($elem, options) {
+	grid : function($elem, o) {
 		var self = this;
-		self.log('grid for : '+options.id);
+		self.log('grid for : '+o.id);
 		self.require("i18n/grid.locale-"+self.gridLocal+".js", function() {
 			$.jgrid.no_legacy_api = true;
 			$.jgrid.useJSON = true;
@@ -57,38 +57,38 @@
 		}
 		self.requireCss("themes/ui.jqgrid.css");
 		var params = {};
-		$.extend(params, options);
+		$.extend(params, o);
 		
-		if(options.url && options.formids) {
+		if(o.url && o.formids) {
 			var data = '';
-			if (options.formids) {
+			if (o.formids) {
 				if (!self.loadAtOnce) {
 					self.require("js/plugins/jquery.form"+self.minSuffix+".js");
 				}
-				$.each(options.formids.split(','), function(i, fid) {
+				$.each(o.formids.split(','), function(i, fid) {
 					var query = $(self.escId(fid)).formSerialize();
 					if (data != '') { data = data + '&' + query; }
 					else { data = query; }
 				});
 			}
-			if (options.url.lastIndexOf('?') > 0) {
-				options.url = options.url + '&amp;' + data;
+			if (o.url.lastIndexOf('?') > 0) {
+				o.url = o.url + '&amp;' + data;
 			}
 			else {
-				options.url = options.url + '?' + data;
+				o.url = o.url + '?' + data;
 			}
 		}
 		
-		if (options.onselectrowtopics || (options.editurl && options.editinline === true)) {
+		if (o.onselectrowtopics || (o.editurl && o.editinline === true)) {
 			params.onSelectRow = function(id, status) {
 				var data = {};
 				data.id = id;
 				data.status = status;
 				data.grid = $elem;
 
-				self.publishTopic($elem, options.onalwaystopics, data);
-				$.struts2_jquery.publishTopic($elem, options.onselectrowtopics, data);
-				if (options.editurl && options.editinline === true) {
+				self.publishTopic($elem, o.onalwaystopics, data);
+				$.struts2_jquery.publishTopic($elem, o.onselectrowtopics, data);
+				if (o.editurl && o.editinline === true) {
 					if ($.struts2_jquery_grid.lastselectedrow != '') {
 						$elem.jqGrid('restoreRow', $.struts2_jquery_grid.lastselectedrow);
 					}
@@ -98,41 +98,41 @@
 			};
 		}
 
-		if (options.onselectalltopics) {
+		if (o.onselectalltopics) {
 			params.onSelectAll = function(ids, status) {
 				var data = {};
 				data.ids = ids;
 				data.status = status;
 				data.grid = $elem;
 
-				self.publishTopic($elem, options.onalwaystopics, data);
-				self.publishTopic($elem, options.onselectalltopics, data);
+				self.publishTopic($elem, o.onalwaystopics, data);
+				self.publishTopic($elem, o.onselectalltopics, data);
 			};
 		}
 
-		if(options.onbeforetopics) {
+		if(o.onbeforetopics) {
 			params.loadBeforeSend = function(xhr) {
 	
 				var orginal = {};
 				orginal.xhr = xhr;
 	
-				self.publishTopic($elem, options.onalwaystopics, orginal);
-				self.publishTopic($elem, options.onbeforetopics, orginal);
+				self.publishTopic($elem, o.onalwaystopics, orginal);
+				self.publishTopic($elem, o.onbeforetopics, orginal);
 			};
 		}
 		
-		if(options.onpagingtopics) {
+		if(o.onpagingtopics) {
 			params.onPaging = function(pgButton) {
 	
 				var orginal = {};
 				orginal.pgButton = pgButton;
 	
-				self.publishTopic($elem, options.onalwaystopics, orginal);
-				self.publishTopic($elem, options.onpagingtopics, orginal);
+				self.publishTopic($elem, o.onalwaystopics, orginal);
+				self.publishTopic($elem, o.onpagingtopics, orginal);
 			};
 		}
 		
-		if(options.onsortcoltopics) {
+		if(o.onsortcoltopics) {
 			params.onSortCol = function(index, iCol, sortorder) {
 	
 				var orginal = {};
@@ -140,12 +140,12 @@
 				orginal.iCol = iCol;
 				orginal.sortorder = sortorder;
 	
-				self.publishTopic($elem, options.onalwaystopics, orginal);
-				self.publishTopic($elem, options.onsortcoltopics, orginal);
+				self.publishTopic($elem, o.onalwaystopics, orginal);
+				self.publishTopic($elem, o.onsortcoltopics, orginal);
 			};
 		}
 
-		if(options.oncellselecttopics) {
+		if(o.oncellselecttopics) {
 			params.onCellSelect = function(rowid, iCol, cellcontent, e) {
 	
 				var orginal = {};
@@ -154,37 +154,37 @@
 				orginal.cellcontent = cellcontent;
 				orginal.e = e;
 	
-				self.publishTopic($elem, options.onalwaystopics, orginal);
-				self.publishTopic($elem, options.oncellselecttopics, orginal);
+				self.publishTopic($elem, o.onalwaystopics, orginal);
+				self.publishTopic($elem, o.oncellselecttopics, orginal);
 			};
 		}
 		
-		if(options.ongridcompletetopics) {
+		if(o.ongridcompletetopics) {
 			params.gridComplete = function() {
 	
 				var orginal = {};
 	
-				self.publishTopic($elem, options.onalwaystopics, orginal);
-				self.publishTopic($elem, options.ongridcompletetopics, orginal);
+				self.publishTopic($elem, o.onalwaystopics, orginal);
+				self.publishTopic($elem, o.ongridcompletetopics, orginal);
 			};
 		}
 		
-		if(options.onfocustopics) {
+		if(o.onfocustopics) {
 			params.beforeSelectRow = function(rowid, e) {
 	
 				var orginal = {};
 				orginal.rowid = rowid;
 				orginal.e = e;
 	
-				self.publishTopic($elem, options.onalwaystopics, orginal);
-				self.publishTopic($elem, options.onfocustopics, orginal);
+				self.publishTopic($elem, o.onalwaystopics, orginal);
+				self.publishTopic($elem, o.onfocustopics, orginal);
 			};
 		}
 		
 		
-		if (options.reloadtopics) {
-			$.each(options.reloadtopics.split(','), function(i, rts) { 
-				$elem.subscribe(rts, '_s2j_reloadgrid', options);
+		if (o.reloadtopics) {
+			$.each(o.reloadtopics.split(','), function(i, rts) { 
+				$elem.subscribe(rts, '_s2j_reloadgrid', o);
 			});
 		}
 
@@ -192,10 +192,10 @@
 			params.loadtext = self.defaults.loadingText;
 		}
 		
-		params.loadComplete = self.pubCom($elem, options.onalwaystopics, options.oncompletetopics, null, null, options);
-		params.loadError = self.pubErr($elem, options.onalwaystopics, options.onerrortopics, options.errortext);
+		params.loadComplete = self.pubCom($elem, o.onalwaystopics, o.oncompletetopics, null, null, o);
+		params.loadError = self.pubErr($elem, o.onalwaystopics, o.onerrortopics, o.errortext);
 
-		if (options.subgrid) {
+		if (o.subgrid) {
 			params.subGrid = true;
 
 			// gridview can't be true when using the subgrid feature
@@ -204,23 +204,23 @@
 				var subgrid_table_id = subgrid_id + "_table";
 				var subgrid = $(self.escId(subgrid_id));
 				var subgridhtml = "<table id='" + subgrid_table_id + "' class='scroll'></table>";
-				if (options.subgridoptions.pager && options.subgridoptions.pager != "") {
+				if (o.subgridoptions.pager && o.subgridoptions.pager != "") {
 					subgridhtml = subgridhtml + "<div id='" + subgrid_id + "_pager'></div>";
-					options.subgridoptions.pager = subgrid_id + "_pager";
+					o.subgridoptions.pager = subgrid_id + "_pager";
 				}
-				if (options.subgridoptions.navigator && options.subgridoptions.navigator != "") {
+				if (o.subgridoptions.navigator && o.subgridoptions.navigator != "") {
 					subgridhtml = subgridhtml + "<div id='" + subgrid_id + "_navigator'></div>";
-					options.subgridoptions.navigator = subgrid_id + "_navigator";
+					o.subgridoptions.navigator = subgrid_id + "_navigator";
 				}
 
 				subgrid.html(subgridhtml);
 
-				if (options.subgridoptions.url) {
-					var to = options.subgridoptions.url.indexOf('?');
-					if (to > 0) { options.subgridoptions.url = options.subgridoptions.url.substring(0, to); }
-					options.subgridoptions.url = options.subgridoptions.url + "?id=" + row_id;
+				if (o.subgridoptions.url) {
+					var to = o.subgridoptions.url.indexOf('?');
+					if (to > 0) { o.subgridoptions.url = o.subgridoptions.url.substring(0, to); }
+					o.subgridoptions.url = o.subgridoptions.url + "?id=" + row_id;
 				}
-				$(self.escId(subgrid_table_id)).jqGrid(options.subgridoptions);
+				$(self.escId(subgrid_table_id)).jqGrid(o.subgridoptions);
 			};
 		}
 		else {
@@ -230,8 +230,8 @@
 		$elem.jqGrid(params);
 		
 
-		if (options.resizable) {
-			var ros = options.resizableoptions;
+		if (o.resizable) {
+			var ros = o.resizableoptions;
 			var ro = window[ros];
 			if (!ro) {
 				ro = eval("( " + ros + " )");
@@ -239,15 +239,15 @@
 			else {
 				ro = {};
 			}
-			ro.start = self.pubTops($elem, options.onalwaystopics, options.resizableonstarttopics);
-			ro.stop = self.pubTops($elem, options.onalwaystopics, options.resizableonstoptopics);
-			ro.resize = self.pubTops($elem, options.onalwaystopics, options.resizableonresizetopics);
+			ro.start = self.pubTops($elem, o.onalwaystopics, o.resizableonstarttopics);
+			ro.stop = self.pubTops($elem, o.onalwaystopics, o.resizableonstoptopics);
+			ro.resize = self.pubTops($elem, o.onalwaystopics, o.resizableonresizetopics);
 			$elem.jqGrid('gridResize', ro);
 		}
 
-		if (options.draggable && options.droppable) {
-			self.log('drag and drop for grid : '+options.id);
-			var daos = options.draggableoptions;
+		if (o.draggable && o.droppable) {
+			self.log('drag and drop for grid : '+o.id);
+			var daos = o.draggableoptions;
 			var dao = window[daos];
 			if (!dao) {
 				dao = eval("( " + daos + " )");
@@ -255,9 +255,9 @@
 			else {
 				dao = {};
 			}
-			dao.drap = self.pubTops($elem, options.onalwaystopics, options.draggableondragtopics);
+			dao.drap = self.pubTops($elem, o.onalwaystopics, o.draggableondragtopics);
 
-			var doos = options.droppableoptions;
+			var doos = o.droppableoptions;
 			var doo = window[doos];
 			if (!doo) {
 				doo = eval("( " + doos + " )");
@@ -265,24 +265,24 @@
 			else {
 				doo = {};
 			}
-			doo.activate = self.pubTops($elem, options.onalwaystopics, options.droppableonactivatetopics);
-			doo.deactivate = self.pubTops($elem, options.onalwaystopics, options.droppableondeactivatetopics);
-			doo.start = self.pubTops($elem, options.onalwaystopics, options.droppableonstarttopics);
-			doo.stop = self.pubTops($elem, options.onalwaystopics, options.droppableonstoptopics);
+			doo.activate = self.pubTops($elem, o.onalwaystopics, o.droppableonactivatetopics);
+			doo.deactivate = self.pubTops($elem, o.onalwaystopics, o.droppableondeactivatetopics);
+			doo.start = self.pubTops($elem, o.onalwaystopics, o.droppableonstarttopics);
+			doo.stop = self.pubTops($elem, o.onalwaystopics, o.droppableonstoptopics);
 
 			var ddo = {};
 			ddo.drag_opts = dao;
 			ddo.drop_opts = doo;
-			ddo.connectWith = options.connectWith;
-			ddo.onstart = self.pubTops($elem, options.onalwaystopics, options.draggableonstarttopics);
-			ddo.onstop = self.pubTops($elem, options.onalwaystopics, options.draggableonstoptopics);
-			ddo.ondrop = self.pubTops($elem, options.onalwaystopics, options.droppableondroptopics);
+			ddo.connectWith = o.connectWith;
+			ddo.onstart = self.pubTops($elem, o.onalwaystopics, o.draggableonstarttopics);
+			ddo.onstop = self.pubTops($elem, o.onalwaystopics, o.draggableonstoptopics);
+			ddo.ondrop = self.pubTops($elem, o.onalwaystopics, o.droppableondroptopics);
 			$elem.jqGrid('gridDnD', ddo);
 		}
 
-		if (options.sortable) {
-			self.log('sortable : '+options.id);
-			var soos = options.sortableoptions;
+		if (o.sortable) {
+			self.log('sortable : '+o.id);
+			var soos = o.sortableoptions;
 			var soo = window[soos];
 			if (!soo) {
 				soo = eval("( " + soos + " )");
@@ -290,34 +290,34 @@
 			else {
 				soo = {};
 			}
-			soo.beforeStop = self.pubTops($elem, options.onalwaystopics, options.sortableonbeforestoptopics);
-			soo.stop = self.pubTops($elem, options.onalwaystopics, options.sortableonstoptopics);
-			soo.start = self.pubTops($elem, options.onalwaystopics, options.sortableonstarttopics);
-			soo.sort = self.pubTops($elem, options.onalwaystopics, options.sortableonsorttopics);
-			soo.activate = self.pubTops($elem, options.onalwaystopics, options.sortableonactivatetopics);
-			soo.deactivate = self.pubTops($elem, options.onalwaystopics, options.sortableondeactivatetopics);
-			soo.over = self.pubTops($elem, options.onalwaystopics, options.sortableonovertopics);
-			soo.out = self.pubTops($elem, options.onalwaystopics, options.sortableonouttopics);
-			soo.remove = self.pubTops($elem, options.onalwaystopics, options.sortableonremovetopics);
-			soo.receive = self.pubTops($elem, options.onalwaystopics, options.sortableonreceivetopics);
-			soo.change = self.pubTops($elem, options.onalwaystopics, options.sortableonchangetopics);
-			soo.update = self.pubTops($elem, options.onalwaystopics, options.sortableonupdatetopics);
+			soo.beforeStop = self.pubTops($elem, o.onalwaystopics, o.sortableonbeforestoptopics);
+			soo.stop = self.pubTops($elem, o.onalwaystopics, o.sortableonstoptopics);
+			soo.start = self.pubTops($elem, o.onalwaystopics, o.sortableonstarttopics);
+			soo.sort = self.pubTops($elem, o.onalwaystopics, o.sortableonsorttopics);
+			soo.activate = self.pubTops($elem, o.onalwaystopics, o.sortableonactivatetopics);
+			soo.deactivate = self.pubTops($elem, o.onalwaystopics, o.sortableondeactivatetopics);
+			soo.over = self.pubTops($elem, o.onalwaystopics, o.sortableonovertopics);
+			soo.out = self.pubTops($elem, o.onalwaystopics, o.sortableonouttopics);
+			soo.remove = self.pubTops($elem, o.onalwaystopics, o.sortableonremovetopics);
+			soo.receive = self.pubTops($elem, o.onalwaystopics, o.sortableonreceivetopics);
+			soo.change = self.pubTops($elem, o.onalwaystopics, o.sortableonchangetopics);
+			soo.update = self.pubTops($elem, o.onalwaystopics, o.sortableonupdatetopics);
 			$elem.jqGrid('sortableRows', soo);
 		}
 
-		if (options.navigator) {
+		if (o.navigator) {
 			var navparams = {};
-			navparams.add = options.navigatoradd;
-			navparams.del = options.navigatordel;
-			navparams.edit = options.navigatoredit;
-			navparams.refresh = options.navigatorrefresh;
-			navparams.search = options.navigatorsearch;
-			navparams.view = options.navigatorview;
-			$elem.jqGrid('navGrid', self.escId(options.pager), navparams, options.navigatoreditoptions, options.navigatoraddoptions, options.navigatordeleteoptions, options.navigatorsearchoptions, options.navigatorviewoptions);
+			navparams.add = o.navigatoradd;
+			navparams.del = o.navigatordel;
+			navparams.edit = o.navigatoredit;
+			navparams.refresh = o.navigatorrefresh;
+			navparams.search = o.navigatorsearch;
+			navparams.view = o.navigatorview;
+			$elem.jqGrid('navGrid', self.escId(o.pager), navparams, o.navigatoreditoptions, o.navigatoraddoptions, o.navigatordeleteoptions, o.navigatorsearchoptions, o.navigatorviewoptions);
 		}
-		if (options.filter) {
+		if (o.filter) {
 			var fpara = {};
-			if (options.filteroptions) { fpara = options.filteroptions; }
+			if (o.filteroptions) { fpara = o.filteroptions; }
 			$elem.jqGrid('filterToolbar', fpara);
 		}
 	}
@@ -328,33 +328,33 @@
 	
 	// Register handler for reloading grid
 	$.subscribeHandler('_s2j_reloadgrid', function(event, data) {
-		var options = {};
-		$.extend(options, event.data);
-		if (options.id) {
+		var o = {};
+		$.extend(o, event.data);
+		if (o.id) {
 
-			if(options.url && options.formids) {
+			if(o.url && o.formids) {
 				var formdata = '';
-				if (options.formids) {
+				if (o.formids) {
 					if (!$.struts2_jquery.loadAtOnce) {
 						$.struts2_jquery.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
 					}
-					$.each(options.formids.split(','), function(i, fid) {
+					$.each(o.formids.split(','), function(i, fid) {
 						var query = $($.struts2_jquery.escId(fid)).formSerialize();
 						if (formdata != '') { formdata = formdata + '&' + query; }
 						else { formdata = query; }
 					});
 				}
-				if (options.url.lastIndexOf('?') > 0) {
-					options.url = options.url + '&amp;' + formdata;
+				if (o.url.lastIndexOf('?') > 0) {
+					o.url = o.url + '&amp;' + formdata;
 				}
 				else {
-					options.url = options.url + '?' + formdata;
+					o.url = o.url + '?' + formdata;
 				}
 			}
-			$($.struts2_jquery.escId(options.id)).setGridParam({url:options.url}); 
+			$($.struts2_jquery.escId(o.id)).setGridParam({url:o.url}); 
 
-			$.struts2_jquery.log('reload grid '+options.id);
-			$($.struts2_jquery.escId(options.id)).trigger("reloadGrid");  
+			$.struts2_jquery.log('reload grid '+o.id);
+			$($.struts2_jquery.escId(o.id)).trigger("reloadGrid");  
 		}
 	});
 
