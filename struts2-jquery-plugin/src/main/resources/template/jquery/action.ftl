@@ -51,6 +51,9 @@
   <#if parameters.dataType?exists>
 	options_${escapedOptionId?html}.datatype = "${parameters.dataType?html}";
   </#if>
+  <#if parameters.requestType?exists>
+	options_${escapedOptionId?html}.requesttype = "${parameters.requestType?html}";
+  </#if>
   <#if parameters.effect?exists>
 	options_${escapedOptionId?html}.effect = "${parameters.effect?html}";
 	<#if parameters.effectDuration?exists>

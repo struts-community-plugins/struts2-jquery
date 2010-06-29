@@ -41,6 +41,7 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
   protected String errorElementId;
 
   protected String dataType;
+  protected String requestType;
   protected String effect;
   protected String effectDuration;
   protected String effectOptions;
@@ -76,6 +77,7 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
     if (errorText != null) addParameter("errorText", findString(errorText));
     if (errorElementId != null) addParameter("errorElementId", findString(errorElementId));
     if (dataType != null) addParameter("dataType", findString(dataType));
+    if (requestType != null) addParameter("requestType", findString(requestType));
     if (effect != null) addParameter("effect", findString(effect));
     if (effectDuration != null) addParameter("effectDuration", findString(effectDuration));
     if (effectOptions != null) addParameter("effectOptions", findString(effectOptions));
@@ -155,6 +157,12 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
   public void setDataType(String dataType)
   {
     this.dataType = dataType;
+  }
+
+  @StrutsTagAttribute(description = "Type of the AJAX Request. POST, GET, PUT", defaultValue = "POST")
+  public void setRequestType(String requestType)
+  {
+    this.requestType = requestType;
   }
 
   @StrutsTagAttribute(description = "The comma separated list 'listenTopics' is the list of topic names that is used to trigger a request.")

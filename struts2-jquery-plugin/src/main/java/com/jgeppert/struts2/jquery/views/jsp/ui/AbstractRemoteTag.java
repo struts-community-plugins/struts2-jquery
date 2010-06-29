@@ -33,6 +33,7 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
   protected String          errorText;
   protected String          errorElementId;
   protected String          dataType;
+  protected String          requestType;
   protected String          effect;
   protected String          effectDuration;
   protected String          effectOptions;
@@ -52,6 +53,7 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
     remote.setErrorText(errorText);
     remote.setErrorElementId(errorElementId);
     remote.setDataType(dataType);
+    remote.setRequestType(requestType);
     remote.setEffect(effect);
     remote.setEffectDuration(effectDuration);
     remote.setEffectOptions(effectOptions);
@@ -97,6 +99,11 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
   public void setDataType(String dataType)
   {
     this.dataType = dataType;
+  }
+
+  public void setRequestType(String requestType)
+  {
+    this.requestType = requestType;
   }
 
   public void setEffect(String effect)

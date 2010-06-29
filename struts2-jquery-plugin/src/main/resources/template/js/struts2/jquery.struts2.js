@@ -1576,11 +1576,16 @@
 
 				// load container using ajax
 				if (options.href) {
-					params.type = "POST";
 					params.url = options.href;
 					params.data = '';
 					if (options.hrefparameter) {
 						params.data = options.hrefparameter;
+					}
+					if (options.requesttype) {
+						params.type = options.requesttype;
+					}
+					else {
+						params.type = "POST";
 					}
 
 					if (options.formids && params.data == '') {
