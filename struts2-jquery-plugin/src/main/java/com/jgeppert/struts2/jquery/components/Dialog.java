@@ -109,6 +109,7 @@ public class Dialog extends AbstractRemoteBean {
   protected String                     maxWidth;
   protected String                     minHeight;
   protected String                     minWidth;
+  protected String                     closeOnEscape;
   protected String                     onOpenTopics;
   protected String                     onCloseTopics;
   protected String                     onFocusTopics;
@@ -153,6 +154,7 @@ public class Dialog extends AbstractRemoteBean {
     if (maxWidth != null) addParameter("maxWidth", findString(maxWidth));
     if (minHeight != null) addParameter("minHeight", findString(minHeight));
     if (minWidth != null) addParameter("minWidth", findString(minWidth));
+    if (closeOnEscape != null) addParameter("closeOnEscape", findValue(closeOnEscape, Boolean.class));
     if (onBeforeCloseTopics != null) addParameter("onBeforeCloseTopics", findString(onBeforeCloseTopics));
     if (onCloseTopics != null) addParameter("onCloseTopics", findString(onCloseTopics));
     if (onOpenTopics != null) addParameter("onOpenTopics", findString(onOpenTopics));
@@ -293,6 +295,12 @@ public class Dialog extends AbstractRemoteBean {
   public void setMinWidth(String minWidth)
   {
     this.minWidth = minWidth;
+  }
+
+  @StrutsTagAttribute(description = "Specifies whether the dialog should close when it has focus and the user presses the esacpe (ESC) key.", defaultValue = "true", type = "Boolean")
+  public void setCloseOnEscape(String closeOnEscape)
+  {
+    this.closeOnEscape = closeOnEscape;
   }
 
   @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is opened.")

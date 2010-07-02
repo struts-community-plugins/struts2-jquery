@@ -57,6 +57,7 @@ public class DialogTag extends AbstractRemoteTag {
   protected String          maxWidth;
   protected String          minHeight;
   protected String          minWidth;
+  protected String          closeOnEscape;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -87,6 +88,7 @@ public class DialogTag extends AbstractRemoteTag {
     dialog.setMaxWidth(maxWidth);
     dialog.setMinHeight(minHeight);
     dialog.setMinWidth(minWidth);
+    dialog.setCloseOnEscape(closeOnEscape);
     dialog.setOnBeforeCloseTopics(onBeforeCloseTopics);
     dialog.setOnCloseTopics(onCloseTopics);
     dialog.setOnOpenTopics(onOpenTopics);
@@ -206,5 +208,10 @@ public class DialogTag extends AbstractRemoteTag {
   public void setOnBeforeCloseTopics(String onBeforeCloseTopics)
   {
     this.onBeforeCloseTopics = onBeforeCloseTopics;
+  }
+
+  public void setCloseOnEscape(String closeOnEscape)
+  {
+    this.closeOnEscape = closeOnEscape;
   }
 }

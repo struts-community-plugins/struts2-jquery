@@ -73,6 +73,9 @@ $(document).ready(function () {
   <#if parameters.autoOpen?exists>
 	options_${escapedOptionId?html}.autoOpen = ${parameters.autoOpen?string};
   </#if>
+  <#if parameters.closeOnEscape?exists>
+	options_${escapedOptionId?html}.closeOnEscape = ${parameters.closeOnEscape?string};
+  </#if>
 <#if parameters.modal?if_exists == "true" >
  <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">
 	<#if parameters.overlayColor?if_exists != "">
