@@ -29,6 +29,7 @@ import org.apache.struts2.views.TagLibrary;
 
 import com.jgeppert.struts2.jquery.richtext.views.freemarker.tags.JqueryRichtextModels;
 import com.jgeppert.struts2.jquery.richtext.views.velocity.components.CkeditorDirective;
+import com.jgeppert.struts2.jquery.richtext.views.velocity.components.TinymceDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
 public class JqueryRichtextTagLibrary implements TagLibrary {
@@ -42,7 +43,7 @@ public class JqueryRichtextTagLibrary implements TagLibrary {
   public List<Class> getVelocityDirectiveClasses()
   {
     Class[] directives = new Class[] {
-      CkeditorDirective.class
+        CkeditorDirective.class, TinymceDirective.class
     };
     return Arrays.asList(directives);
   }

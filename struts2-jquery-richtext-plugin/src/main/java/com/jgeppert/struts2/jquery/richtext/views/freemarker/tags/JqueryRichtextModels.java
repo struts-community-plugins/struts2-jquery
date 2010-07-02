@@ -26,6 +26,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class JqueryRichtextModels {
   protected CkeditorModel     ckeditor;
+  protected TinymceModel      tinymce;
 
   private ValueStack          stack;
   private HttpServletRequest  req;
@@ -45,5 +46,15 @@ public class JqueryRichtextModels {
     }
 
     return ckeditor;
+  }
+
+  public TinymceModel getTinymce()
+  {
+    if (tinymce == null)
+    {
+      tinymce = new TinymceModel(stack, req, res);
+    }
+
+    return tinymce;
   }
 }

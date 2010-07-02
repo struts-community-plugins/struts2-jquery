@@ -13,7 +13,7 @@
  *
  */
 
-/*global jQuery, window, CKEDITOR */
+/*global jQuery, window, CKEDITOR, tinyMCE */
 ( function($) {
 	
 
@@ -102,6 +102,29 @@
 						$.struts2_jquery.publishTopic($elem, o.onalwaystopics, {});
 		      });
 				}
+			},
+			
+			// Handle Tinymce
+			tinymce : function($elem, o) {
+				this.log('tinymce for : '+o.id);
+				this.require("js/tinymce/jquery.tinymce.js");
+				
+				this.container($elem, o);
+				o.mode = 'textareas';
+				o.script_url = o.path+'tiny_mce.js';
+				o.theme = 'advanced';
+				o.theme_advanced_toolbar_location = 'top';
+				o.theme_advanced_toolbar_align = 'left';
+				o.theme_advanced_statusbar_location = 'bottom';
+				o.theme_advanced_resizing = true;
+				$elem.tinymce(o);
+				
+				$.each(o.formids.split(','), function(i, fid) {
+					$.struts2_jquery.log('bind tinymce to form : ' + fid);
+					$($.struts2_jquery.escId(fid)).bind('form-pre-serialize', function(e) {
+				    tinyMCE.triggerSave();
+					});
+				});
 			}
 	};
 
