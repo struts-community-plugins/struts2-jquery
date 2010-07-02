@@ -21,7 +21,7 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 </div>
 <script type='text/javascript'>
-$(document).ready(function () { 
+jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
   <#if parameters.selectedTab?exists>
 	options_${escapedOptionId?html}.selectedtab = ${parameters.selectedTab?html};

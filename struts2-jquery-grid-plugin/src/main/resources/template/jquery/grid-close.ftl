@@ -231,7 +231,7 @@
 
 <#if !parameters.subGrid?default(false)>
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-	$.struts2_jquery_grid.bind($('#${escapedId?html}'),options_${escapedOptionId?html});
+	jQuery.struts2_jquery_grid.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
  });  
 </script>
 <#else>

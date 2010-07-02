@@ -21,7 +21,7 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 </div>
 <script type='text/javascript'>
-$(document).ready(function () { 
+jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.value = ${parameters.value?default('0')};
   <#if parameters.widgetid?if_exists != "">

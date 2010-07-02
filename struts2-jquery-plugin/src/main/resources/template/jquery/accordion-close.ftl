@@ -67,7 +67,7 @@
 </@s.iterator>
 </ul>
 <script type='text/javascript'>
-$(document).ready(function () { 
+jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
   <#if parameters.fillSpace?default(false)>
 	options_${escapedOptionId?html}.fillspace = true;

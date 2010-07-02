@@ -21,8 +21,8 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 var CKEDITOR_BASEPATH = "${base}/struts/js/ckeditor/";
-$(document).ready(function () { 
-	$.struts2_jquery.require("js/struts2/jquery.richtext.struts2"+$.struts2_jquery.minSuffix+".js");
+jQuery(document).ready(function () { 
+	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 	
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.type = 'text';
@@ -60,6 +60,6 @@ $(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-	$.struts2_jquery_richtext.bind($('#${escapedId?html}'),options_${escapedOptionId?html});
+	jQuery.struts2_jquery_richtext.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
  });  
 </script>

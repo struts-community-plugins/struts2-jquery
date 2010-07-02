@@ -16,7 +16,7 @@
  *
  */
 
-/*global $, jQuery, _s2j, document, window, StrutsUtils  */
+/*global jQuery, _s2j, document, window, StrutsUtils  */
 /*jslint evil: true */
 
 ( function($) {

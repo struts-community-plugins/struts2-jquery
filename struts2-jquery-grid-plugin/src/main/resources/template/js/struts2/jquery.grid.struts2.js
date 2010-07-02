@@ -13,7 +13,7 @@
  *
  */
 
-/*global $, jQuery, window  */
+/*global jQuery, window  */
 /*jslint evil: true */
 
 ( function($) {

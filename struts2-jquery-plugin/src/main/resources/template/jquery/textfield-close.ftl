@@ -20,7 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
-$(document).ready(function () { 
+jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.type = 'text';
   <#include "/${parameters.templateDir}/jquery/base.ftl" />

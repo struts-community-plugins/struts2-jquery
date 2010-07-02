@@ -92,42 +92,42 @@
 </#if>
   <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
-$(document).ready(function () {
+jQuery(document).ready(function () {
 <#if parameters.debug?default(false)>
-	$.struts2_jquery.debug = true;
+	jQuery.struts2_jquery.debug = true;
 </#if>
 <#if parameters.loadAtOnce?default(false) || parameters.loadFromGoogle?default(false)>
-	$.struts2_jquery.loadAtOnce = true;
+	jQuery.struts2_jquery.loadAtOnce = true;
 </#if>
 <#if parameters.scriptPath?if_exists != "">
-  	$.scriptPath = "${parameters.scriptPath?string}";
+  	jQuery.scriptPath = "${parameters.scriptPath?string}";
 <#else>  	
-  	$.scriptPath = "${javaScriptBasePath}";
+  	jQuery.scriptPath = "${javaScriptBasePath}";
 </#if>
 <#if !parameters.compressed?default(true)>
-	$.struts2_jquery.minSuffix = "";
+	jQuery.struts2_jquery.minSuffix = "";
 </#if>
 <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-  $.struts2_jquery.local = "${parameters.jqueryLocale?string}";
+  jQuery.struts2_jquery.local = "${parameters.jqueryLocale?string}";
 </#if>
 <#if parameters.gridLocale??>
-  $.struts2_jquery.gridLocal = "${parameters.gridLocale?default('en')}";
+  jQuery.struts2_jquery.gridLocal = "${parameters.gridLocale?default('en')}";
 </#if>
 <#if parameters.ajaxhistory?default(false)>
-	$.struts2_jquery.ajaxhistory = true;
+	jQuery.struts2_jquery.ajaxhistory = true;
 </#if>
 	<#if parameters.defaultIndicator?if_exists != "">
-	$.struts2_jquery.defaults.indicator="${parameters.defaultIndicator?string}";
+	jQuery.struts2_jquery.defaults.indicator="${parameters.defaultIndicator?string}";
 	</#if>
 	<#if parameters.defaultLoadingText?if_exists != "">
-	$.struts2_jquery.defaults.loadingText="${parameters.defaultLoadingText?string}";
+	jQuery.struts2_jquery.defaults.loadingText="${parameters.defaultLoadingText?string}";
 	</#if>
 	<#if parameters.defaultErrorText?if_exists != "">
-	$.struts2_jquery.defaults.errorText="${parameters.defaultErrorText?string}";
+	jQuery.struts2_jquery.defaults.errorText="${parameters.defaultErrorText?string}";
 	</#if>
-	$.ajaxSettings.traditional = true;
+	jQuery.ajaxSettings.traditional = true;
 
-	$.ajaxSetup ({
+	jQuery.ajaxSetup ({
 	<#if parameters.ajaxcache?default(false)>
 		cache: true
 	<#else>
@@ -135,7 +135,7 @@ $(document).ready(function () {
 	</#if>
 	});
 <#if parameters.ajaxhistory?default(false)>
-	$(window).trigger('hashchange');
+	jQuery(window).trigger('hashchange');
 </#if>
 });
 </script>

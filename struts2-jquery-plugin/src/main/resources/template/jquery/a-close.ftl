@@ -21,7 +21,7 @@
   <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 </a>
 <script type='text/javascript'>
-$(document).ready(function () { 
+jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
 	<#if parameters.openDialog?if_exists != ""> 
 	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";

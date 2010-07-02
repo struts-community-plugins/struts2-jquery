@@ -13,7 +13,7 @@
  *
  */
 
-/*global $, jQuery, window, CKEDITOR */
+/*global jQuery, window, CKEDITOR */
 ( function($) {
 	
 

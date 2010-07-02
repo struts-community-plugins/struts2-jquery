@@ -21,7 +21,7 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#include "/${parameters.templateDir}/${parameters.parentTheme}/submit-close.ftl" />
 <script type='text/javascript'>
-$(document).ready(function () { 
+jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
    <#if parameters.clearForm?default(false)>
 	options_${escapedOptionId?html}.clearform = true;
