@@ -110,21 +110,53 @@
 				this.require("js/tinymce/jquery.tinymce.js");
 				
 				this.container($elem, o);
-				o.mode = 'textareas';
 				o.script_url = o.path+'tiny_mce.js';
-				o.theme = 'advanced';
-				o.theme_advanced_toolbar_location = 'top';
-				o.theme_advanced_toolbar_align = 'left';
-				o.theme_advanced_statusbar_location = 'bottom';
-				o.theme_advanced_resizing = true;
-				$elem.tinymce(o);
+				o.resizable = false;
 				
-				$.each(o.formids.split(','), function(i, fid) {
-					$.struts2_jquery.log('bind tinymce to form : ' + fid);
-					$($.struts2_jquery.escId(fid)).bind('form-pre-serialize', function(e) {
-				    tinyMCE.triggerSave();
+				if (o.editorLocal) {
+					o.language = o.editorLocal;
+				}
+				else{
+					o.language = this.local;
+				}
+				
+				if(o.href && o.href != '#')
+				{
+					var tinymceTopic = 's2j_tinymce_'+o.id;
+					
+					// If Topic already subscribed, then remove it and subscribe it again
+					if ($elem.isSubscribed(tinymceTopic)) { $elem.unsubscribe(tinymceTopic); }
+					
+					// Init Tinymce after AJAX Content is loaded.
+					$elem.subscribe(tinymceTopic, function(event,data) {
+						if(o.editorResizable) { o.theme_advanced_resizing = true; }
+						$elem.tinymce(o);
+						$.each(o.formids.split(','), function(i, fid) {
+							$.struts2_jquery.log('bind tinymce to form : ' + fid);
+							$($.struts2_jquery.escId(fid)).bind('form-pre-serialize', function(e) {
+						    tinyMCE.triggerSave();
+							});
+						});
 					});
-				});
+					if(o.oncompletetopics && o.oncompletetopics != '') {
+						o.oncompletetopics = tinymceTopic;
+					}
+					else {
+						o.oncompletetopics = tinymceTopic;
+					}
+					
+					this.container($elem, o);
+				}
+				else {
+					this.container($elem, o);
+					$elem.tinymce(o);
+					$.each(o.formids.split(','), function(i, fid) {
+						$.struts2_jquery.log('bind tinymce to form : ' + fid);
+						$($.struts2_jquery.escId(fid)).bind('form-pre-serialize', function(e) {
+					    tinyMCE.triggerSave();
+						});
+					});
+				}
 			}
 	};
 

@@ -46,6 +46,12 @@ public class Tinymce extends Textarea {
   protected String                      wrap;
   protected String                      width;
   protected String                      height;
+  protected String                      editorLocal;
+  protected String                      editorTheme;
+  protected String                      editorSkin;
+  protected String                      toolbarLocation;
+  protected String                      toolbarAlign;
+  protected String                      statusbarLocation;
 
   public Tinymce(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -95,6 +101,38 @@ public class Tinymce extends Textarea {
     if (width != null)
     {
       addParameter("width", findValue(width, Integer.class));
+    }
+
+    if (editorLocal != null)
+    {
+      addParameter("editorLocal", findString(editorLocal));
+    }
+
+    if (editorSkin != null)
+    {
+      addParameter("editorSkin", findString(editorSkin));
+    }
+
+    if (editorTheme != null)
+    {
+      addParameter("editorTheme", findString(editorTheme));
+    }
+
+    if (toolbarAlign != null)
+    {
+      addParameter("toolbarAlign", findString(toolbarAlign));
+    }
+    if (toolbarLocation != null)
+    {
+      addParameter("toolbarLocation", findString(toolbarLocation));
+    }
+    if (statusbarLocation != null)
+    {
+      addParameter("statusbarLocation", findString(statusbarLocation));
+    }
+    if (resizable != null)
+    {
+      addParameter("editorResizable", findValue(resizable, Boolean.class));
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -155,5 +193,47 @@ public class Tinymce extends Textarea {
   public void setHeight(String height)
   {
     this.height = height;
+  }
+
+  @StrutsTagAttribute(description = "the editor local", defaultValue = "en")
+  public void setEditorLocal(String editorLocal)
+  {
+    this.editorLocal = editorLocal;
+  }
+
+  @StrutsTagAttribute(description = "This option enables you to specify what theme to use when rendering the TinyMCE WYSIWYG editor instances. e.g simple or advanced", defaultValue = "simple")
+  public void setEditorTheme(String editorTheme)
+  {
+    this.editorTheme = editorTheme;
+  }
+
+  @StrutsTagAttribute(description = "This option enables you to specify what skin you want to use with your theme. A skin is basically a CSS file that gets loaded from the skins directory inside the theme. The advanced theme that TinyMCE comes with has two skins these are called default and o2k7.", defaultValue = "default")
+  public void setEditorSkin(String editorSkin)
+  {
+    this.editorSkin = editorSkin;
+  }
+
+  @StrutsTagAttribute(description = "This option enables you to specify where the toolbar should be located. This option can be set to top or bottom or external. This option can only be used when theme is set to advanced and when the theme_advanced_layout_manager  option is set to the default value of SimpleLayout. Choosing the external location adds the toolbar to a DIV element and sets the class of this DIV to mceExternalToolbar. This enables you to freely specify the location of the toolbar.", defaultValue = "bottom")
+  public void setToolbarLocation(String toolbarLocation)
+  {
+    this.toolbarLocation = toolbarLocation;
+  }
+
+  @StrutsTagAttribute(description = "This option enables you to specify the alignment of the toolbar, this value can be left, right or center. This option can only be used when theme is set to advanced and when the theme_advanced_layout_manager  option is set to the default value of SimpleLayout. ", defaultValue = "center")
+  public void setToolbarAlign(String toolbarAlign)
+  {
+    this.toolbarAlign = toolbarAlign;
+  }
+
+  @StrutsTagAttribute(description = "This option enables you to specify where the element statusbar with the path and resize tool should be located. This option can be set to top, bottom or none. The default value is set to bottom.", defaultValue = "bottom")
+  public void setStatusbarLocation(String statusbarLocation)
+  {
+    this.statusbarLocation = statusbarLocation;
+  }
+
+  @StrutsTagAttribute(description = "This option gives you the ability to enable/disable the resizing button.", defaultValue = "false", type = "Boolean")
+  public void setResizable(String resizable)
+  {
+    this.resizable = resizable;
   }
 }

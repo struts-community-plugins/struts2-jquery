@@ -28,14 +28,11 @@ jQuery(document).ready(function () {
 
 	options_${escapedOptionId?html}.path = "${base}/struts/js/tinymce/";
 	
-	<#if parameters.customConfig?if_exists != ""> 
-	options_${escapedOptionId?html}.customConfig = "${parameters.customConfig?html}";
+	<#if parameters.editorSkin?if_exists != ""> 
+	options_${escapedOptionId?html}.skin = "${parameters.editorSkin?html}";
 	</#if>
-	<#if parameters.skin?if_exists != ""> 
-	options_${escapedOptionId?html}.skin = "${parameters.skin?html}";
-	</#if>
-	<#if parameters.toolbar?if_exists != ""> 
-	options_${escapedOptionId?html}.toolbar = "${parameters.toolbar?html}";
+	<#if parameters.editorTheme?if_exists != ""> 
+	options_${escapedOptionId?html}.theme = "${parameters.editorTheme?html}";
 	</#if>
 	<#if parameters.width??> 
 	options_${escapedOptionId?html}.width = ${parameters.width?html};
@@ -45,6 +42,18 @@ jQuery(document).ready(function () {
 	</#if>
 	<#if parameters.editorLocal?if_exists != ""> 
 	options_${escapedOptionId?html}.editorLocal = "${parameters.editorLocal?html}";
+	</#if>
+	<#if parameters.toolbarLocation?if_exists != ""> 
+	options_${escapedOptionId?html}.theme_advanced_toolbar_location = "${parameters.toolbarLocation?html}";
+	</#if>
+	<#if parameters.toolbarAlign?if_exists != ""> 
+	options_${escapedOptionId?html}.theme_advanced_toolbar_align = "${parameters.toolbarAlign?html}";
+	</#if>
+	<#if parameters.statusbarLocation?if_exists != ""> 
+	options_${escapedOptionId?html}.theme_advanced_statusbar_location = "${parameters.statusbarLocation?html}";
+	</#if>
+	<#if parameters.editorResizable?if_exists != ""> 
+	options_${escapedOptionId?html}.editorResizable = "${parameters.editorResizable?html}";
 	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />

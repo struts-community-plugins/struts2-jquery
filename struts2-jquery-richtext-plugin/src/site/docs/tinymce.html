@@ -426,6 +426,30 @@ Please do not edit it directly.
 					<td align="left" valign="top">Specifies which mode to use for testing whether a draggable is over a droppable. Possible values: fit, intersect, pointer, touch. </td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">editorLocal</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">en</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">the editor local</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">editorSkin</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">default</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">This option enables you to specify what skin you want to use with your theme. A skin is basically a CSS file that gets loaded from the skins directory inside the theme. The advanced theme that TinyMCE comes with has two skins these are called default and o2k7.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">editorTheme</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">simple</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">This option enables you to specify what theme to use when rendering the TinyMCE WYSIWYG editor instances. e.g simple or advanced</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">effect</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">none</td>
@@ -828,10 +852,10 @@ Please do not edit it directly.
 				<tr>
 					<td align="left" valign="top">resizable</td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">Boolean</td>
-					<td align="left" valign="top">Enable this div element to be resizable. With the cursor grab the right or bottom border and drag to the desired width or height.</td>
+					<td align="left" valign="top">This option gives you the ability to enable/disable the resizing button.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">resizableAnimate</td>
@@ -1386,6 +1410,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">Z-index for element/helper while being sorted. Default: 1000</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">statusbarLocation</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">bottom</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">This option enables you to specify where the element statusbar with the path and resize tool should be located. This option can be set to top, bottom or none. The default value is set to bottom.</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">tabindex</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -1432,6 +1464,22 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Set the html title attribute on rendered html element</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">toolbarAlign</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">center</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">This option enables you to specify the alignment of the toolbar, this value can be left, right or center. This option can only be used when theme is set to advanced and when the theme_advanced_layout_manager  option is set to the default value of SimpleLayout. </td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">toolbarLocation</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">bottom</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">This option enables you to specify where the toolbar should be located. This option can be set to top or bottom or external. This option can only be used when theme is set to advanced and when the theme_advanced_layout_manager  option is set to the default value of SimpleLayout. Choosing the external location adds the toolbar to a DIV element and sets the class of this DIV to mceExternalToolbar. This enables you to freely specify the location of the toolbar.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">tooltip</td>
