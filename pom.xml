@@ -20,6 +20,7 @@
             <id>johgep</id>
             <name>Johannes Geppert</name>
             <url>http://www.jgeppert.com</url>
+            <email>http://www.jgeppert.com/kontakt</email>
         </developer>
         <developer>
             <id>jyoshiriro</id>
@@ -32,6 +33,16 @@
             <url>http://twitter.com/rgielen</url>
         </developer>
     </developers>
+    
+	<mailingLists>
+		<mailingList>
+			<name>User Group</name>
+			<post>http://groups.google.com/group/struts2-jquery/post</post>
+			<subscribe>http://groups.google.com/group/struts2-jquery</subscribe>
+			<unsubscribe>http://groups.google.com/group/struts2-jquery</unsubscribe>
+			<archive>http://struts2-jquery-plugin.109969.n3.nabble.com</archive>
+		</mailingList>
+	</mailingLists>
 
     <licenses>
         <license>

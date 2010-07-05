@@ -23,6 +23,7 @@
 	$.struts2_jquery_richtext = {
 
 			editors : [],
+			editorsTinymce : [],
 			
 			// clear orphan instances from memory
 		  clean: function($elem){
@@ -109,11 +110,35 @@
 				this.log('tinymce for : '+o.id);
 				this.require("js/tinymce/jquery.tinymce.js");
 				
+				//Cleanup old tinymce instances
+				/*
+				if ($.struts2_jquery_richtext.editorsTinymce.length > 0 && tinyMCE.get(o.id)) {
+					this.log('cleanup tinymce : '+o.id);
+					tinyMCE.execCommand('mceRemoveControl', false, o.id);
+				}
+				$.struts2_jquery_richtext.editorsTinymce[$.struts2_jquery_richtext.editorsTinymce.length] = o.id;
+				*/
+				
 				this.container($elem, o);
 				o.script_url = o.path+'tiny_mce.js';
 				o.resizable = false;
-				o.cleanup_on_startup = true;
-				o.cleanup = true;
+				o.setup = function(ed) {
+					ed.onInit.add(function(ed) {
+						tinyMCE.execCommand('mceRepaint');
+					});
+					
+					/*
+					ed.onChange.add(function(ed, l) {
+						alert('Editor contents was modified. Contents: ' + l.content);
+					});
+					*/
+					
+					/*
+					ed.onEvent.add(function(ed, e) {
+						console.debug('Editor event occured: ' + e.target.nodeName);
+					});
+					*/
+				};
 				
 				if (o.editorLocal) {
 					o.language = o.editorLocal;
