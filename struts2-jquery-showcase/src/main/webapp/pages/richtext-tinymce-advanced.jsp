@@ -41,6 +41,8 @@
 			editorSkin="o2k7"
 			toolbarAlign="left"
 			toolbarLocation="top"
+			plugins="table,contextmenu,paste,emotions,fullpage,print,media"
+			toolbarButtonsRow3="hr,sub,sup,table,emotions"
 		/>
 		<sj:submit 
 			targets="result" 

@@ -52,6 +52,11 @@ public class Tinymce extends Textarea {
   protected String                      toolbarLocation;
   protected String                      toolbarAlign;
   protected String                      statusbarLocation;
+  protected String                      plugins;
+  protected String                      toolbarButtonsRow1;
+  protected String                      toolbarButtonsRow2;
+  protected String                      toolbarButtonsRow3;
+  protected String                      toolbarButtonsRow4;
 
   public Tinymce(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -133,6 +138,26 @@ public class Tinymce extends Textarea {
     if (resizable != null)
     {
       addParameter("editorResizable", findValue(resizable, Boolean.class));
+    }
+    if (plugins != null)
+    {
+      addParameter("plugins", findString(plugins));
+    }
+    if (toolbarButtonsRow1 != null)
+    {
+      addParameter("toolbarButtonsRow1", findString(toolbarButtonsRow1));
+    }
+    if (toolbarButtonsRow2 != null)
+    {
+      addParameter("toolbarButtonsRow2", findString(toolbarButtonsRow2));
+    }
+    if (toolbarButtonsRow3 != null)
+    {
+      addParameter("toolbarButtonsRow3", findString(toolbarButtonsRow3));
+    }
+    if (toolbarButtonsRow4 != null)
+    {
+      addParameter("toolbarButtonsRow4", findString(toolbarButtonsRow4));
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -235,5 +260,35 @@ public class Tinymce extends Textarea {
   public void setResizable(String resizable)
   {
     this.resizable = resizable;
+  }
+
+  @StrutsTagAttribute(description = "This option should contain a comma separated list of plugins. TinyMCE is shipped with some core plugins; these are described in greater detail in the Plugins reference. http://wiki.moxiecode.com/index.php/TinyMCE:Plugins e.g. table,contextmenu,paste", defaultValue = "")
+  public void setPlugins(String plugins)
+  {
+    this.plugins = plugins;
+  }
+
+  @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE \' \' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor", defaultValue = "")
+  public void setToolbarButtonsRow1(String toolbarButtonsRow1)
+  {
+    this.toolbarButtonsRow1 = toolbarButtonsRow1;
+  }
+
+  @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE \' \' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. bullist,numlist,separator,outdent,indent,separator,undo,redo,separator", defaultValue = "")
+  public void setToolbarButtonsRow2(String toolbarButtonsRow2)
+  {
+    this.toolbarButtonsRow2 = toolbarButtonsRow2;
+  }
+
+  @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE \' \' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. hr,removeformat,visualaid,separator,sub,sup,separator,charmap", defaultValue = "")
+  public void setToolbarButtonsRow3(String toolbarButtonsRow3)
+  {
+    this.toolbarButtonsRow3 = toolbarButtonsRow3;
+  }
+
+  @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE \' \' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. emotions,fullpage,fullscreen", defaultValue = "")
+  public void setToolbarButtonsRow4(String toolbarButtonsRow4)
+  {
+    this.toolbarButtonsRow4 = toolbarButtonsRow4;
   }
 }

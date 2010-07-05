@@ -112,6 +112,8 @@
 				this.container($elem, o);
 				o.script_url = o.path+'tiny_mce.js';
 				o.resizable = false;
+				o.cleanup_on_startup = true;
+				o.cleanup = true;
 				
 				if (o.editorLocal) {
 					o.language = o.editorLocal;

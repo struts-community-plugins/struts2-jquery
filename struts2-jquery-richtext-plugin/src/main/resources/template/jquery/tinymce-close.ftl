@@ -55,6 +55,21 @@ jQuery(document).ready(function () {
 	<#if parameters.editorResizable?if_exists != ""> 
 	options_${escapedOptionId?html}.editorResizable = "${parameters.editorResizable?html}";
 	</#if>
+	<#if parameters.plugins?if_exists != ""> 
+	options_${escapedOptionId?html}.plugins = "${parameters.plugins?html}";
+	</#if>
+	<#if parameters.toolbarButtonsRow1?if_exists != ""> 
+	options_${escapedOptionId?html}.theme_advanced_buttons1 = "${parameters.toolbarButtonsRow1?replace(" ", "")?html}";
+	</#if>
+	<#if parameters.toolbarButtonsRow2?if_exists != ""> 
+	options_${escapedOptionId?html}.theme_advanced_buttons2 = "${parameters.toolbarButtonsRow2?replace(" ", "")?html}";
+	</#if>
+	<#if parameters.toolbarButtonsRow3?if_exists != ""> 
+	options_${escapedOptionId?html}.theme_advanced_buttons3 = "${parameters.toolbarButtonsRow3?replace(" ", "")?html}";
+	</#if>
+	<#if parameters.toolbarButtonsRow4?if_exists != ""> 
+	options_${escapedOptionId?html}.theme_advanced_buttons4 = "${parameters.toolbarButtonsRow4?replace(" ", "")?html}";
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

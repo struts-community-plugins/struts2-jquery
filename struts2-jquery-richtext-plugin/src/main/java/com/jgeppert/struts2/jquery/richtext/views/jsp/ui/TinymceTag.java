@@ -43,6 +43,11 @@ public class TinymceTag extends TextareaTag {
   protected String          toolbarLocation;
   protected String          toolbarAlign;
   protected String          statusbarLocation;
+  protected String          plugins;
+  protected String          toolbarButtonsRow1;
+  protected String          toolbarButtonsRow2;
+  protected String          toolbarButtonsRow3;
+  protected String          toolbarButtonsRow4;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -66,6 +71,11 @@ public class TinymceTag extends TextareaTag {
     editor.setToolbarAlign(toolbarAlign);
     editor.setToolbarLocation(toolbarLocation);
     editor.setStatusbarLocation(statusbarLocation);
+    editor.setPlugins(plugins);
+    editor.setToolbarButtonsRow1(toolbarButtonsRow1);
+    editor.setToolbarButtonsRow2(toolbarButtonsRow2);
+    editor.setToolbarButtonsRow3(toolbarButtonsRow3);
+    editor.setToolbarButtonsRow4(toolbarButtonsRow4);
   }
 
   public void setCols(String cols)
@@ -126,5 +136,30 @@ public class TinymceTag extends TextareaTag {
   public void setStatusbarLocation(String statusbarLocation)
   {
     this.statusbarLocation = statusbarLocation;
+  }
+
+  public void setPlugins(String plugins)
+  {
+    this.plugins = plugins;
+  }
+
+  public void setToolbarButtonsRow1(String toolbarButtonsRow1)
+  {
+    this.toolbarButtonsRow1 = toolbarButtonsRow1;
+  }
+
+  public void setToolbarButtonsRow2(String toolbarButtonsRow2)
+  {
+    this.toolbarButtonsRow2 = toolbarButtonsRow2;
+  }
+
+  public void setToolbarButtonsRow3(String toolbarButtonsRow3)
+  {
+    this.toolbarButtonsRow3 = toolbarButtonsRow3;
+  }
+
+  public void setToolbarButtonsRow4(String toolbarButtonsRow4)
+  {
+    this.toolbarButtonsRow4 = toolbarButtonsRow4;
   }
 }
