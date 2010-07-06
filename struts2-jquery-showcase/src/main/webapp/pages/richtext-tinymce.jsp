@@ -38,6 +38,7 @@
 			value="Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
 		/>
 		<sj:submit 
+			id="submitSimpleRichtext"
 			targets="result" 
 			value="AJAX Submit" 
 			indicator="indicator" 
@@ -57,11 +58,6 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-	&lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot;%&gt;
-	<strong>
-	&lt;%@ taglib prefix=&quot;sjr&quot; uri=&quot;/struts-jquery-richtext-tags&quot;%&gt;
-	</strong>
-
     &lt;s:form id=&quot;formRichtext&quot; action=&quot;simpleecho&quot; theme=&quot;css_xhtml&quot;&gt;
     &lt;s:hidden name=&quot;escape&quot; value=&quot;false&quot;/&gt;
 		&lt;sjr:tinymce 
@@ -70,9 +66,11 @@
 			rows=&quot;10&quot; 
 			cols=&quot;80&quot; 
 			width=&quot;800&quot;
+			editorTheme=&quot;simple&quot;
 			value=&quot;Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&quot;
 		/&gt;
 		&lt;sj:submit 
+			id=&quot;submitSimpleRichtext&quot;
 			targets=&quot;result&quot; 
 			value=&quot;AJAX Submit&quot; 
 			indicator=&quot;indicator&quot; 
@@ -86,7 +84,7 @@
 
     &lt;strong&gt;Result Div :&lt;/strong&gt;
 	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
-	  </pre>
+ 	  </pre>
 	</div>
   </div>
   <!-- IE Column Clearing -->

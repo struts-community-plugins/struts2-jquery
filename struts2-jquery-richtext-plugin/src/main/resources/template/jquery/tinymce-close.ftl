@@ -68,6 +68,15 @@ jQuery(document).ready(function () {
 	<#if parameters.toolbarButtonsRow4?if_exists != ""> 
 	options_${escapedOptionId?html}.theme_advanced_buttons4 = "${parameters.toolbarButtonsRow4?replace(" ", "")?html}";
 	</#if>
+	<#if parameters.entityEncoding?if_exists != ""> 
+	options_${escapedOptionId?html}.entity_encoding = "${parameters.entityEncoding?html}";
+	</#if>
+	<#if parameters.contentCss?if_exists != ""> 
+	options_${escapedOptionId?html}.content_css = "${parameters.contentCss?string}";
+	</#if>
+	<#if parameters.onSaveTopics?if_exists != ""> 
+	options_${escapedOptionId?html}.onsavetopics = "${parameters.onSaveTopics?html}";
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

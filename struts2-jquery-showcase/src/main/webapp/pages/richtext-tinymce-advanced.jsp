@@ -41,17 +41,20 @@
 			editorSkin="o2k7"
 			toolbarAlign="left"
 			toolbarLocation="top"
-			plugins="safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template"
+			plugins="safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template"
 			toolbarButtonsRow1="save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect"
 			toolbarButtonsRow2="cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor"
-			toolbarButtonsRow3="tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen"
+			toolbarButtonsRow3="tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen"
 			toolbarButtonsRow4="insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage"
+			onSaveTopics="submitRichtextForm"
 		/>
 		<sj:submit 
+			id="formRichtextSubmit"
 			targets="result" 
 			value="AJAX Submit" 
 			indicator="indicator" 
 			button="true"
+		    listenTopics="submitRichtextForm" 
 		/>
 		<img id="indicator" 
 			src="images/indicator.gif" 
@@ -67,26 +70,35 @@
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-	&lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot;%&gt;
-	<strong>
-	&lt;%@ taglib prefix=&quot;sjr&quot; uri=&quot;/struts-jquery-richtext-tags&quot;%&gt;
-	</strong>
-
     &lt;s:form id=&quot;formRichtext&quot; action=&quot;simpleecho&quot; theme=&quot;css_xhtml&quot;&gt;
     &lt;s:hidden name=&quot;escape&quot; value=&quot;false&quot;/&gt;
+	&lt;s:url id=&quot;remoteurl&quot; action=&quot;ajax1&quot;/&gt;
 		&lt;sjr:tinymce 
-			id=&quot;richtextTinymceEditor&quot; 
+			id=&quot;richtextTinymceAdvancedEditor&quot; 
 			name=&quot;echo&quot; 
 			rows=&quot;10&quot; 
 			cols=&quot;80&quot; 
 			width=&quot;800&quot;
-			value=&quot;Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&quot;
+			href=&quot;%{remoteurl}&quot; 
+			editorLocal=&quot;de&quot;
+			editorTheme=&quot;advanced&quot;
+			editorSkin=&quot;o2k7&quot;
+			toolbarAlign=&quot;left&quot;
+			toolbarLocation=&quot;top&quot;
+			plugins=&quot;safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template&quot;
+			toolbarButtonsRow1=&quot;save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect&quot;
+			toolbarButtonsRow2=&quot;cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor&quot;
+			toolbarButtonsRow3=&quot;tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen&quot;
+			toolbarButtonsRow4=&quot;insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage&quot;
+			onSaveTopics=&quot;submitRichtextForm&quot;
 		/&gt;
 		&lt;sj:submit 
+			id=&quot;formRichtextSubmit&quot;
 			targets=&quot;result&quot; 
 			value=&quot;AJAX Submit&quot; 
 			indicator=&quot;indicator&quot; 
 			button=&quot;true&quot;
+		    listenTopics=&quot;submitRichtextForm&quot; 
 		/&gt;
 		&lt;img id=&quot;indicator&quot; 
 			src=&quot;images/indicator.gif&quot; 

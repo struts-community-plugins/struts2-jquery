@@ -48,6 +48,9 @@ public class TinymceTag extends TextareaTag {
   protected String          toolbarButtonsRow2;
   protected String          toolbarButtonsRow3;
   protected String          toolbarButtonsRow4;
+  protected String          entityEncoding;
+  protected String          contentCss;
+  protected String          onSaveTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -76,6 +79,9 @@ public class TinymceTag extends TextareaTag {
     editor.setToolbarButtonsRow2(toolbarButtonsRow2);
     editor.setToolbarButtonsRow3(toolbarButtonsRow3);
     editor.setToolbarButtonsRow4(toolbarButtonsRow4);
+    editor.setEntityEncoding(entityEncoding);
+    editor.setContentCss(contentCss);
+    editor.setOnSaveTopics(onSaveTopics);
   }
 
   public void setCols(String cols)
@@ -161,5 +167,20 @@ public class TinymceTag extends TextareaTag {
   public void setToolbarButtonsRow4(String toolbarButtonsRow4)
   {
     this.toolbarButtonsRow4 = toolbarButtonsRow4;
+  }
+
+  public void setEntityEncoding(String entityEncoding)
+  {
+    this.entityEncoding = entityEncoding;
+  }
+
+  public void setContentCss(String contentCss)
+  {
+    this.contentCss = contentCss;
+  }
+
+  public void setOnSaveTopics(String onSaveTopics)
+  {
+    this.onSaveTopics = onSaveTopics;
   }
 }

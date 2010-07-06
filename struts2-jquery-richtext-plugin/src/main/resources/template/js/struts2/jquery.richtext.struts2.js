@@ -78,7 +78,7 @@
 							$elem.ckeditor(callbackFunction, o);
 					});
 					if(o.oncompletetopics && o.oncompletetopics != '') {
-						o.oncompletetopics = ckeditorTopic;
+						o.oncompletetopics = o.oncompletetopics+','+ckeditorTopic;
 					}
 					else {
 						o.oncompletetopics = ckeditorTopic;
@@ -111,33 +111,41 @@
 				this.require("js/tinymce/jquery.tinymce.js");
 				
 				//Cleanup old tinymce instances
-				/*
 				if ($.struts2_jquery_richtext.editorsTinymce.length > 0 && tinyMCE.get(o.id)) {
-					this.log('cleanup tinymce : '+o.id);
-					tinyMCE.execCommand('mceRemoveControl', false, o.id);
+					if( tinyMCE.get(o.id) !== undefined ) {
+						this.log('cleanup tinymce : '+o.id);
+						delete tinyMCE.get(o.id);
+					}
 				}
 				$.struts2_jquery_richtext.editorsTinymce[$.struts2_jquery_richtext.editorsTinymce.length] = o.id;
-				*/
 				
 				this.container($elem, o);
 				o.script_url = o.path+'tiny_mce.js';
 				o.resizable = false;
+				
 				o.setup = function(ed) {
 					ed.onInit.add(function(ed) {
 						tinyMCE.execCommand('mceRepaint');
 					});
-					
-					/*
+					ed.onSaveContent.add(function(ed, l) {
+						if (o.onsavetopics) {
+							var data = {};
+							data.editor = ed;
+							data.content = l.content;
+							$.struts2_jquery.publishTopic($elem, o.onsavetopics, data);
+							$.struts2_jquery.publishTopic($elem, o.onalwaystopics, data);
+						}
+						return false;
+					});
 					ed.onChange.add(function(ed, l) {
-						alert('Editor contents was modified. Contents: ' + l.content);
+						if (o.onchangetopics) {
+							var data = {};
+							data.editor = ed;
+							data.content = l.content;
+							$.struts2_jquery.publishTopic($elem, o.onchangetopics, data);
+							$.struts2_jquery.publishTopic($elem, o.onalwaystopics, data);
+						}
 					});
-					*/
-					
-					/*
-					ed.onEvent.add(function(ed, e) {
-						console.debug('Editor event occured: ' + e.target.nodeName);
-					});
-					*/
 				};
 				
 				if (o.editorLocal) {

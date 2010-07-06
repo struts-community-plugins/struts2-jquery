@@ -57,6 +57,9 @@ public class Tinymce extends Textarea {
   protected String                      toolbarButtonsRow2;
   protected String                      toolbarButtonsRow3;
   protected String                      toolbarButtonsRow4;
+  protected String                      entityEncoding;
+  protected String                      contentCss;
+  protected String                      onSaveTopics;
 
   public Tinymce(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -158,6 +161,18 @@ public class Tinymce extends Textarea {
     if (toolbarButtonsRow4 != null)
     {
       addParameter("toolbarButtonsRow4", findString(toolbarButtonsRow4));
+    }
+    if (entityEncoding != null)
+    {
+      addParameter("entityEncoding", findString(entityEncoding));
+    }
+    if (contentCss != null)
+    {
+      addParameter("contentCss", findString(contentCss));
+    }
+    if (onSaveTopics != null)
+    {
+      addParameter("onSaveTopics", findString(onSaveTopics));
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -290,5 +305,23 @@ public class Tinymce extends Textarea {
   public void setToolbarButtonsRow4(String toolbarButtonsRow4)
   {
     this.toolbarButtonsRow4 = toolbarButtonsRow4;
+  }
+
+  @StrutsTagAttribute(description = "This option controls how entities/characters get processed by TinyMCE. http://wiki.moxiecode.com/index.php/TinyMCE:Configuration/entity_encoding e.g. named or numeric or raw", defaultValue = "")
+  public void setEntityEncoding(String entityEncoding)
+  {
+    this.entityEncoding = entityEncoding;
+  }
+
+  @StrutsTagAttribute(description = "This option enables you to specify a custom CSS file that extends the theme content CSS. This CSS file is the one used within the editor (the editable area). This option can also be a comma separated list of URLs. e.g. css/custom_content.css", defaultValue = "")
+  public void setContentCss(String contentCss)
+  {
+    this.contentCss = contentCss;
+  }
+
+  @StrutsTagAttribute(description = "Topics that are published when user press the save button", type = "String", defaultValue = "")
+  public void setOnSaveTopics(String onSaveTopics)
+  {
+    this.onSaveTopics = onSaveTopics;
   }
 }
