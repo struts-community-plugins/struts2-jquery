@@ -226,7 +226,7 @@ public class Tinymce extends Textarea {
     this.editorLocal = editorLocal;
   }
 
-  @StrutsTagAttribute(description = "This option enables you to specify what theme to use when rendering the TinyMCE WYSIWYG editor instances. e.g simple or advanced", defaultValue = "simple")
+  @StrutsTagAttribute(description = "This option enables you to specify what theme to use when rendering the TinyMCE WYSIWYG editor instances. e.g simple or advanced", defaultValue = "advanced")
   public void setEditorTheme(String editorTheme)
   {
     this.editorTheme = editorTheme;
