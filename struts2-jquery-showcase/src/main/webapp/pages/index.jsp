@@ -18,8 +18,8 @@
 	<![endif]-->
 
 	<!-- This files are needed for AJAX Validation of XHTML Forms -->
-	<script language="JavaScript" src="${pageContext.request.contextPath}/struts/utils.js" type="text/javascript"></script>
-	<script language="JavaScript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js" type="text/javascript"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/struts/utils.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
 	
   <s:if test="%{theme == 'showcase' || theme == null}">
       <sj:head debug="true" compressed="false" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
@@ -82,5 +82,18 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+  //Make it possible to link to an specific site in the Showcase
+  //e.g. and link to index.action?ajaxhistory=true#main=_sj_action_accordionlink
+  //opens now the accordion examples
+  jQuery(document).ready(function() {
+  	 if (jQuery.struts2_jquery.ajaxhistory) {
+  		 var topic = $.bbq.getState( 'main' );
+  		 if(topic !== undefined && topic != '') {
+  			 jQuery.publish(topic);
+  		 }
+  	 }
+  });
+  </script>
 </body>
 </html>
