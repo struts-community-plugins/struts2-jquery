@@ -26,7 +26,6 @@
 	<sj:a id="ajaxjsonlink" 
 		href="%{jsonurl}" 
 		dataType="json"
-		targets="result"
 		onSuccessTopics="handleJsonResult"
 		indicator="indicator" 
 		button="true" 

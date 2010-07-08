@@ -469,13 +469,25 @@
 		effect.effectoptions = o.effectoptions;
 		effect.effectduration = o.effectduration;
 
+		// Set dummy target when datatype is json
+		if(o.datatype && !o.targets) {
+			if(o.datatype == "json") {
+				o.targets = "false";
+			}
+		}
+		
 		// subscribe all targets to this action's custom execute topic
 		if (o.targets) {
 			$.each(o.targets.split(','), function(i, target) {
 				effect.targets = target;
 				var tarelem = $(_s2j.escId(target));
 
-
+				//when no target is found (e.g. a json call)
+				// the action was subscribed to the publisher
+				if(tarelem.length === 0){
+					tarelem = $elem;
+				}
+				
 				_s2j.subscribeTopics(tarelem, actionTopic, loadHandler, o);
 				_s2j.subscribeTopics(tarelem, effectTopic + target, _s2j.handler.effect, effect);
 
@@ -747,6 +759,7 @@
 			$elem.publishOnEvent('click', formTopic);
 		}
 		else {
+			
 			this.action($elem, o, this.handler.load, 'a');
 			if(o.targets && (o.reloadtopic || o.listentopics)) {
 				$.each(o.targets.split(','), function(i, t) {
@@ -1551,20 +1564,22 @@
 
 				if (modus == 'html' || modus == 'value') {
 					// Set pre-loading text (if any)
-					if (o.loadingtext && o.loadingtext != "false") {
-						if (modus == 'html') {
-							container.html(o.loadingtext);
+					if(!o.datatype || o.datatype != "json") {
+						if (o.loadingtext && o.loadingtext != "false") {
+							if (modus == 'html') {
+								container.html(o.loadingtext);
+							}
+							else {
+								container.val(o.loadingtext);
+							}
 						}
-						else {
-							container.val(o.loadingtext);
-						}
-					}
-					else if (_s2j.defaults.loadingText !== null) {
-						if (modus == 'html') {
-							container.html(_s2j.defaults.loadingText);
-						}
-						else {
-							container.val(_s2j.defaults.loadingText);
+						else if (_s2j.defaults.loadingText !== null) {
+							if (modus == 'html') {
+								container.html(_s2j.defaults.loadingText);
+							}
+							else {
+								container.val(_s2j.defaults.loadingText);
+							}
 						}
 					}
 				}
@@ -1706,15 +1721,18 @@
 					// cancel form submission
 					if (!submitForm) {
 						_s2j.hideIndicator(o.indicatorid);
-						if (o.loadingtext && o.loadingtext != "false") {
-							$.each(o.targets.split(','), function(i, target) {
-								$(_s2j.escId(target)).html(o.loadingtext);
-							});
-						}
-						else if (_s2j.defaults.loadingText !== null) {
-							$.each(o.targets.split(','), function(i, target) {
-								$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
-							});
+						
+						if(!o.datatype || o.datatype != "json") {
+							if (o.loadingtext && o.loadingtext != "false") {
+								$.each(o.targets.split(','), function(i, target) {
+									$(_s2j.escId(target)).html(o.loadingtext);
+								});
+							}
+							else if (_s2j.defaults.loadingText !== null) {
+								$.each(o.targets.split(','), function(i, target) {
+									$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
+								});
+							}
 						}
 					}
 				});
