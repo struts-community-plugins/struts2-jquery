@@ -1743,6 +1743,9 @@
 				else {
 					valParams.data = query;
 				}
+				
+				valParams.cache = false;
+				valParams.async = false;
 
 				valParams.complete = function(request, status) {
 					var f = $(form[0]);
