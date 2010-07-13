@@ -238,13 +238,18 @@
 					// Loop over Elements
 					var x = 0;
 					if (data[o.list] !== null) {
+						var isMap = false;
+						if (!$.isArray(data[o.list])) {
+							isMap = true;
+						}
+
 						$.each(data[o.list], function(j, val) {
 							var option = {};
 							if (modus == 'radio' || modus == 'checkbox') {
 								option.name = o.name;
 							}
 
-							if (data[o.list][x] === undefined) {
+							if (isMap) {
 								option.text = val;
 								option.value = j;
 							}
