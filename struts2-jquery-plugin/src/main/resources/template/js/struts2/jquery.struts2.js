@@ -851,9 +851,9 @@
 
 		_s2j.subscribeTopics($elem, o.reloadtopics, _s2j.handler.form, o);
 		_s2j.subscribeTopics($elem, o.listentopics, _s2j.handler.form, o);
-		_s2j.subscribeTopics($elem, topic, _s2j.handler.form, o);
 
 		if (o.targets) {
+			_s2j.subscribeTopics($elem, topic, _s2j.handler.form, o);
 			$.each(o.targets.split(','), function(i, target) {
 				$(_s2j.escId(target)).subscribe(topic, _s2j.handler.effect, o);
 				if (_s2j.ajaxhistory) {
@@ -872,6 +872,7 @@
 			// Submit Forms without AJAX
 			$elem.click( function() {
 				$(_s2j.escId(o.formids)).submit();
+				return false;
 			});
 		}
 	},
