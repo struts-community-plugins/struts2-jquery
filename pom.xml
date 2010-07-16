@@ -75,6 +75,7 @@
     <properties>
         <currentVersion>${project.version}</currentVersion>
         <struts2.version>2.1.8.1</struts2.version>
+        <tlib.version>2.2</tlib.version>
     </properties>
 
     <modules>

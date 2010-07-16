@@ -26,7 +26,7 @@
                 <configuration>
                     <A>
                         uri=/struts-jquery-tags,
-                        tlibVersion=2.2,
+                        tlibVersion=${tlib.version},
                         jspVersion=2.0,
                         shortName=sj,
                         displayName="Struts2 jQuery Tags",
@@ -42,7 +42,6 @@
                     <factory>
                         org.apache.struts.annotations.taglib.apt.TLDAnnotationProcessorFactory
                     </factory>
-                    <source>1.5</source>
                     <target>1.5</target>
                     <includes>
                         <include>**/*.java</include>
