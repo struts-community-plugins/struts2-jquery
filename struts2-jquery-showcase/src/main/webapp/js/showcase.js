@@ -229,6 +229,20 @@ $(document).ready(function() {
 		}
 	});
 
+  $.subscribe('autocompleteChange', function(event, data) {
+  	var ui = event.originalEvent.ui;
+		$('#topics').html('<b>'+ui.item.value+'</b>');
+	});
+
+  $.subscribe('autocompleteFocus', function(event, data) {
+  	var ui = event.originalEvent.ui;
+		$('#topics').html('<u>'+ui.item.value+'</u>');
+	});
+
+  $.subscribe('autocompleteSelect', function(event, data) {
+  	var ui = event.originalEvent.ui;
+		$('#topics').html('<i>'+ui.item.value+'</i>');
+	});
 
 	/*
 	 * Menu Highlight
