@@ -59,6 +59,9 @@
 	<#if parameters.effectDuration?exists>
 	options_${escapedOptionId?html}.effectduration = ${parameters.effectDuration?html};
 	</#if>  
+	<#if parameters.effectMode?exists>
+	options_${escapedOptionId?html}.effectmode = "${parameters.effectMode?html}";
+	</#if>  
 	<#if parameters.effectOptions?exists>
 	options_${escapedOptionId?html}.effectoptions = ${parameters.effectOptions?html};
 	<#else>

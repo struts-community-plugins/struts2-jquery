@@ -1836,7 +1836,18 @@
 				_s2j.require( [ "js/base/jquery.effects.core" + _s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + "" + _s2j.minSuffix + ".js" ]);
 			}
 			_s2j.log('effect ' + o.effect + ' for ' + o.targets);
-			$(_s2j.escId(o.targets)).effect(o.effect, eo, duration);
+			if(!o.effectmode || o.effectmode == 'none' ) {
+				$(_s2j.escId(o.targets)).effect(o.effect, eo, duration);
+			}
+			else if (o.effectmode == 'show') {
+				$(_s2j.escId(o.targets)).show(o.effect, eo, duration);
+			}
+			else if (o.effectmode == 'hide') {
+				$(_s2j.escId(o.targets)).hide(o.effect, eo, duration);
+			}
+			else if (o.effectmode == 'toggle') {
+				$(_s2j.escId(o.targets)).toggle(o.effect, eo, duration);
+			}
 		}
 	});
 

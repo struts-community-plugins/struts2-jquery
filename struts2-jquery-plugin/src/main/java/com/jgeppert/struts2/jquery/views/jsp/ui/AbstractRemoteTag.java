@@ -37,6 +37,7 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
   protected String          effect;
   protected String          effectDuration;
   protected String          effectOptions;
+  protected String          effectMode;
   protected String          timeout;
   protected String          listenTopics;
 
@@ -57,6 +58,7 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
     remote.setEffect(effect);
     remote.setEffectDuration(effectDuration);
     remote.setEffectOptions(effectOptions);
+    remote.setEffectMode(effectMode);
     remote.setTimeout(timeout);
     remote.setListenTopics(listenTopics);
   }
@@ -119,6 +121,11 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
   public void setEffectOptions(String effectOptions)
   {
     this.effectOptions = effectOptions;
+  }
+
+  public void setEffectMode(String effectMode)
+  {
+    this.effectMode = effectMode;
   }
 
   public void setTimeout(String timeout)

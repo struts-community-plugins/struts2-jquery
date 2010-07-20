@@ -45,6 +45,7 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
   protected String effect;
   protected String effectDuration;
   protected String effectOptions;
+  protected String effectMode;
   protected String timeout;
   protected String listenTopics;
 
@@ -81,6 +82,7 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
     if (effect != null) addParameter("effect", findString(effect));
     if (effectDuration != null) addParameter("effectDuration", findString(effectDuration));
     if (effectOptions != null) addParameter("effectOptions", findString(effectOptions));
+    if (effectMode != null) addParameter("effectMode", findString(effectMode));
     if (timeout != null) addParameter("timeout", findString(timeout));
     if (listenTopics != null) addParameter("listenTopics", findString(listenTopics));
 
@@ -145,6 +147,12 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
   public void setEffectOptions(String effectOptions)
   {
     this.effectOptions = effectOptions;
+  }
+
+  @StrutsTagAttribute(description = "The Effect Mode. show, hide, toggle, none", defaultValue = "none")
+  public void setEffectMode(String effectMode)
+  {
+    this.effectMode = effectMode;
   }
 
   @StrutsTagAttribute(description = "jQuery options for timeout. Default is 3000", defaultValue = "3000", type = "Integer")

@@ -31,7 +31,8 @@
                 <s:textfield id="echo" name="echo" label="Echo" value="Hello World!!!"/><br/>
                 <sj:submit 
                 	targets="result" 
-                	effect="slide" 
+                	effect="blind" 
+                	effectMode="show"
                 	value="AJAX Submit" 
                 	indicator="indicator" 
                 	button="true"
@@ -40,7 +41,7 @@
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
 
     <strong>Result Div :</strong>
-	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
+	<div id="result" class="result ui-widget-content ui-corner-all" style="display: none;">Submit form bellow.</div>
     
 
     
