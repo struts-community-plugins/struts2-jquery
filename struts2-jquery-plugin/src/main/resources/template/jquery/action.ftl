@@ -74,4 +74,7 @@
   <#if parameters.listenTopics?exists>
 	options_${escapedOptionId?html}.listentopics = "${parameters.listenTopics?html}";
   </#if>
+  <#if parameters.onEffectCompleteTopics?exists>
+	options_${escapedOptionId?html}.oneffect = "${parameters.onEffectCompleteTopics?html}";
+  </#if>
   

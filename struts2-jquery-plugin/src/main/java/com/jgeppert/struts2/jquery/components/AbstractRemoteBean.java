@@ -48,6 +48,7 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
   protected String effectMode;
   protected String timeout;
   protected String listenTopics;
+  protected String onEffectCompleteTopics;
 
   public AbstractRemoteBean(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -85,7 +86,7 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
     if (effectMode != null) addParameter("effectMode", findString(effectMode));
     if (timeout != null) addParameter("timeout", findString(timeout));
     if (listenTopics != null) addParameter("listenTopics", findString(listenTopics));
-
+    if (onEffectCompleteTopics != null) addParameter("onEffectCompleteTopics", findString(onEffectCompleteTopics));
   }
 
   @StrutsTagAttribute(name = "href", description = "The url to be use when this element is clicked", type = "String", defaultValue = "")
@@ -177,6 +178,12 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
   public void setListenTopics(String listenTopics)
   {
     this.listenTopics = listenTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when an effect is completed ", type = "String", defaultValue = "")
+  public void setOnEffectCompleteTopics(String onEffectCompleteTopics)
+  {
+    this.onEffectCompleteTopics = onEffectCompleteTopics;
   }
 
 }

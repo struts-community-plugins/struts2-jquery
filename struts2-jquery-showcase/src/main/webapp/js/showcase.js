@@ -181,6 +181,13 @@ $(document).ready(function() {
 	});
 	
 	/*
+	 * Hide the target after action is complete.
+	 */
+	$.subscribe('hideTarget', function(event, data) {
+				$('#'+event.originalEvent.targets).delay(2000).hide("blind", 2500);
+	});
+
+	/*
 	 * Topic for Drag and Drop Example.
 	 */
 	$.subscribe('ondrop', function(event,data) {

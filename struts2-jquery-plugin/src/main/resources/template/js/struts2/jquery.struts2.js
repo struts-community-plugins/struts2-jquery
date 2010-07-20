@@ -1832,21 +1832,33 @@
 			if (o.effectduration) {
 				duration = o.effectduration;
 			}
+			
+			var callback;
+			var tar = $(_s2j.escId(o.targets));
+			if(o.oneffect) {
+				
+				$.subscribe(tar, o.oneffect, o);
+				
+				callback = function () {
+					_s2j.publishTopic(tar, o.oneffect, o);
+				};
+			}
+			
 			if (!_s2j.loadAtOnce) {
 				_s2j.require( [ "js/base/jquery.effects.core" + _s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + "" + _s2j.minSuffix + ".js" ]);
 			}
 			_s2j.log('effect ' + o.effect + ' for ' + o.targets);
 			if(!o.effectmode || o.effectmode == 'none' ) {
-				$(_s2j.escId(o.targets)).effect(o.effect, eo, duration);
+				tar.effect(o.effect, eo, duration, callback);
 			}
 			else if (o.effectmode == 'show') {
-				$(_s2j.escId(o.targets)).show(o.effect, eo, duration);
+				tar.show(o.effect, eo, duration, callback);
 			}
 			else if (o.effectmode == 'hide') {
-				$(_s2j.escId(o.targets)).hide(o.effect, eo, duration);
+				tar.hide(o.effect, eo, duration, callback);
 			}
 			else if (o.effectmode == 'toggle') {
-				$(_s2j.escId(o.targets)).toggle(o.effect, eo, duration);
+				tar.toggle(o.effect, eo, duration, callback);
 			}
 		}
 	});

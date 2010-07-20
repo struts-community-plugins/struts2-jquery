@@ -40,6 +40,7 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
   protected String          effectMode;
   protected String          timeout;
   protected String          listenTopics;
+  protected String          onEffectCompleteTopics;
 
   protected void populateParams()
   {
@@ -61,6 +62,7 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
     remote.setEffectMode(effectMode);
     remote.setTimeout(timeout);
     remote.setListenTopics(listenTopics);
+    remote.setOnEffectCompleteTopics(onEffectCompleteTopics);
   }
 
   public void setTargets(String targets)
@@ -136,5 +138,10 @@ public abstract class AbstractRemoteTag extends AbstractTopicTag {
   public void setListenTopics(String listenTopics)
   {
     this.listenTopics = listenTopics;
+  }
+
+  public void setOnEffectCompleteTopics(String onEffectCompleteTopics)
+  {
+    this.onEffectCompleteTopics = onEffectCompleteTopics;
   }
 }
