@@ -1386,10 +1386,61 @@
 			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.position" + this.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + this.minSuffix + ".js" ]);
 		}
 		var params = {};
+		var url = '';
 		if (o.href && o.href != '#') {
-			params.source = o.href;
+			url = o.href;
 			if (o.hrefparameter) {
-				params.source = params.source + '?' + o.hrefparameter;
+				url = url + '?' + o.hrefparameter;
+			}
+		}
+		if(url != '') {
+			if(o.list) {
+				params.source = function(request, response) {
+					$.ajax({
+						url: url,
+						dataType: "json",
+						data: {
+						term: request.term
+						},
+						success: function(data) {
+							var x = 0;
+							if (data[o.list] !== null) {
+								var isMap = false;
+								if (!$.isArray(data[o.list])) {
+									isMap = true;
+								}
+								var result = [];
+								$.each(data[o.list], function(j, val) {
+									if (isMap) {
+										result.push({
+											label: val,
+											value: j
+										});
+									}
+									else {
+										if (o.listkey !== undefined && o.listvalue !== undefined) {
+											result.push({
+												label: val[o.listvalue],
+												value: val[o.listkey]
+											});
+										}
+										else {
+											result.push({
+												label: data[o.list][x],
+												value: data[o.list][x]
+											});
+										}
+									}
+									x++;
+								});
+								response(result);
+							}
+						}
+					});
+				};
+			}
+			else {
+				params.source = url;
 			}
 		}
 		else if (o.list && o.selectBox === false) {

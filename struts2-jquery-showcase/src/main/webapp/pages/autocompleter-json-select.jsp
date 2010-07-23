@@ -14,28 +14,26 @@
   <div id="col3_content" class="clearfix">
     <h2>Autocompleter with JSON Result</h2>
     <p>
-        A Autocompleter that handle a JSON Result with Topics.
+        A Autocompleter that handle a JSON Result with keys and values.
     </p>
     <strong>Result Div :</strong>
 	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
-    <strong>Topics Div :</strong>
-	<div id="topics" class="result ui-widget-content ui-corner-all"></div>
     
-    <s:form id="formAutocompleteJson" action="echo" theme="simple">
-		<s:url id="remoteurl" action="jsonlanguages"/> 
+    <s:form id="formAutocompleteJsonSelect" action="echo" theme="simple">
+		<s:url id="remoteurl" action="jsoncustomers"/> 
 	    <sj:autocompleter 
 	    	id="languages" 
 	    	name="echo"
 	    	href="%{remoteurl}" 
+	    	list="customers"
+    		listValue="name" 
+    		listKey="id" 
 	    	delay="50" 
 	    	loadMinimumCount="2"
-	    	onChangeTopics="autocompleteChange"
-	    	onFocusTopics="autocompleteFocus"
-	    	onSelectTopics="autocompleteSelect"
 	    />
 		<br/>
     	<sj:submit
-    		id="submitFormAutocompleteJson" 
+    		id="submitFormAutocompleteJsonSelect" 
     		targets="result" 
     		button="true" 
     		value="Submit" 
@@ -48,32 +46,28 @@
   <br/>
     <sj:tabbedpanel id="localtabs" cssClass="list">
       <sj:tab id="tab1" target="jsp" label="JSP Code"/>
-      <sj:tab id="tab2" target="javascript" label="JavaScript"/>
       <div id="jsp">
 	  <pre>
     &lt;strong&gt;Result Div :&lt;/strong&gt;
 	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
-    &lt;strong&gt;Topics Div :&lt;/strong&gt;
-	&lt;div id=&quot;topics&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;&lt;/div&gt;
     
-    &lt;s:form id=&quot;formAutocompleteJson&quot; action=&quot;echo&quot; theme=&quot;simple&quot;&gt;
-		&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonlanguages&quot;/&gt; 
+    &lt;s:form id=&quot;formAutocompleteJsonSelect&quot; action=&quot;echo&quot; theme=&quot;simple&quot;&gt;
+		&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsoncustomers&quot;/&gt; 
 	    &lt;sj:autocompleter 
 	    	id=&quot;languages&quot; 
 	    	name=&quot;echo&quot;
 	    	href=&quot;%{remoteurl}&quot; 
+	    	list=&quot;customers&quot;
+    		listValue=&quot;name&quot; 
+    		listKey=&quot;id&quot; 
 	    	delay=&quot;50&quot; 
 	    	loadMinimumCount=&quot;2&quot;
-	    	onChangeTopics=&quot;autocompleteChange&quot;
-	    	onFocusTopics=&quot;autocompleteFocus&quot;
-	    	onSelectTopics=&quot;autocompleteSelect&quot;
 	    /&gt;
 		&lt;br/&gt;
     	&lt;sj:submit
-    		id=&quot;submitFormAutocompleteJson&quot; 
+    		id=&quot;submitFormAutocompleteJsonSelect&quot; 
     		targets=&quot;result&quot; 
     		button=&quot;true&quot; 
-    		validate=&quot;true&quot; 
     		value=&quot;Submit&quot; 
     		indicator=&quot;indicator&quot;
     		/&gt;
@@ -81,25 +75,7 @@
     &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
 	  </pre>
 	  </div>
-      <div id="javascript">
-	  <pre>
-  $.subscribe('autocompleteChange', function(event, data) {
-  	var ui = event.originalEvent.ui;
-		$('#topics').html('<b>'+ui.item.value+'</b>');
-	});
-
-  $.subscribe('autocompleteFocus', function(event, data) {
-  	var ui = event.originalEvent.ui;
-		$('#topics').html('<u>'+ui.item.value+'</u>');
-	});
-
-  $.subscribe('autocompleteSelect', function(event, data) {
-  	var ui = event.originalEvent.ui;
-		$('#topics').html('<i>'+ui.item.value+'</i>');
-	});
-	  </pre>
-	  </div>
-	</sj:tabbedpanel>
+ 	</sj:tabbedpanel>
   
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>

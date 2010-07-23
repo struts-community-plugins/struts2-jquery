@@ -28,7 +28,7 @@ jQuery(document).ready(function () {
   <#if parameters.loadMinimumCount??>
 	options_${escapedOptionId?html}.minimum = ${parameters.loadMinimumCount?html};
   </#if>
-  <#if parameters.selectBox?default(false) || parameters.list?? && parameters.listKey??>
+  <#if parameters.selectBox?default(false) || (parameters.list?? && parameters.listKey?? && !parameters.hrefUrl??) >
 	options_${escapedOptionId?html}.selectBox = true;
   <#else>
 	options_${escapedOptionId?html}.selectBox = false;
@@ -42,7 +42,7 @@ jQuery(document).ready(function () {
   <#if parameters.onSelectTopics?exists>
 	options_${escapedOptionId?html}.onselecttopics = "${parameters.onSelectTopics?html}";
   </#if>
-  <#if parameters.list?? && !parameters.listKey?? && !parameters.selectBox??>
+  <#if parameters.list?? && !parameters.listKey?? && !parameters.selectBox?? &&  !parameters.hrefUrl??>
 	options_${escapedOptionId?html}.list = new Array();
 <@s.iterator value="parameters.list">
         <#if parameters.listValue??>
@@ -56,6 +56,15 @@ jQuery(document).ready(function () {
         </#if>
 	options_${escapedOptionId?html}.list.push("${itemValue?html}");
 </@s.iterator>
+  </#if>
+  <#if parameters.remoteList?? && parameters.hrefUrl?? && !parameters.selectBox??>
+	options_${escapedOptionId?html}.list = "${parameters.remoteList?html}";
+	<#if parameters.remoteListKey??>
+	options_${escapedOptionId?html}.listkey = "${parameters.remoteListKey?html}";
+	</#if>
+	<#if parameters.remoteListValue??>
+	options_${escapedOptionId?html}.listvalue = "${parameters.remoteListValue?html}";
+	</#if>
   </#if>
   
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
