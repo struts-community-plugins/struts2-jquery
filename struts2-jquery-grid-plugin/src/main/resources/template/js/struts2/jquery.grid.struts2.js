@@ -72,10 +72,10 @@
 				});
 			}
 			if (o.url.lastIndexOf('?') > 0) {
-				o.url = o.url + '&amp;' + data;
+				params.url = o.url + '&amp;' + data;
 			}
 			else {
-				o.url = o.url + '?' + data;
+				params.url = o.url + '?' + data;
 			}
 		}
 		
@@ -351,10 +351,10 @@
 					o.url = o.url + '?' + formdata;
 				}
 			}
-			$($.struts2_jquery.escId(o.id)).setGridParam({url:o.url}); 
-
+			var grid = $($.struts2_jquery.escId(o.id));
+			grid.jqGrid('setGridParam',{url:o.url})
 			$.struts2_jquery.log('reload grid '+o.id);
-			$($.struts2_jquery.escId(o.id)).trigger("reloadGrid");  
+			grid.trigger("reloadGrid");  
 		}
 	});
 

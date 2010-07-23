@@ -23,6 +23,9 @@
   <#if parameters.href?exists>
 	options_${escapedOptionId?html}.url = "${parameters.href?string}";
   </#if>
+  <#if parameters.formIds?exists>
+	options_${escapedOptionId?html}.formids = "${parameters.formIds?html}";
+  </#if>
   <#if parameters.editurl?if_exists != "">
 	options_${escapedOptionId?html}.editurl = "${parameters.editurl?string}";
   </#if>
