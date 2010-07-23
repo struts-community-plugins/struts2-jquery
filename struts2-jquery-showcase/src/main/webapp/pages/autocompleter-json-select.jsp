@@ -22,7 +22,7 @@
     <s:form id="formAutocompleteJsonSelect" action="echo" theme="simple">
 		<s:url id="remoteurl" action="jsoncustomers"/> 
 	    <sj:autocompleter 
-	    	id="languages" 
+	    	id="customers" 
 	    	name="echo"
 	    	href="%{remoteurl}" 
 	    	list="customers"
