@@ -28,12 +28,12 @@
 	</p>
     <s:form id="formRichtext" action="simpleecho" theme="css_xhtml">
     <s:hidden name="escape" value="false"/>
-		<sjr:tinymce 
+		<sjr:tinymce
 			id="richtextTinymceEditor" 
 			name="echo" 
 			rows="10" 
 			cols="80" 
-			width="800"
+			width="700"
 			editorTheme="simple"
 			value="Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
 		/>
