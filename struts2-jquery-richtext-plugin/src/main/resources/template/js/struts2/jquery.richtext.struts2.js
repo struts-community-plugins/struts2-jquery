@@ -22,6 +22,7 @@
 	 */
 	$.struts2_jquery_richtext = {
 
+			debugPrefix :'[struts2_jquery_richtext] ',
 			editors : [],
 			editorsTinymce : [],
 			
@@ -124,7 +125,6 @@
 				//use the resizing from tinymce
 				o.resizable = false;
 				if(o.editorResizable) { o.theme_advanced_resizing = true; }
-				alert('editorResizable : '+o.editorResizable+' o.theme_advanced_resizing : '+o.theme_advanced_resizing);
 				
 				this.container($elem, o);
 				o.script_url = o.path+'tiny_mce.js';

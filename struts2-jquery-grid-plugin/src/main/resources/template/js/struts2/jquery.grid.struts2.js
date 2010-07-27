@@ -23,6 +23,7 @@
 	 */
 	$.struts2_jquery_grid = {
 
+	debugPrefix :'[struts2_jquery_grid] ',
 	lastselectedrow :'',
 
 	grid : function($elem, o) {

@@ -27,6 +27,7 @@
 	$.struts2_jquery = {
 
 	debug :false,
+	debugPrefix :'[struts2_jquery] ',
 	ajaxhistory :false,
 	loadAtOnce :false,
 	local :"en",
@@ -53,7 +54,7 @@
 	 *  */
 	log : function(message) {
 		if (this.debug) {
-			var msg = '[struts2_jquery] ' + message;
+			var msg = this.debugPrefix + message;
 			if (window.console && window.console.log) {
 				window.console.log(msg);
 			}
