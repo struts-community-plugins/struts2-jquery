@@ -30,6 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * @see TabbedPanel
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
 public class TabbedPanelModel extends TagModel {
   public TabbedPanelModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {

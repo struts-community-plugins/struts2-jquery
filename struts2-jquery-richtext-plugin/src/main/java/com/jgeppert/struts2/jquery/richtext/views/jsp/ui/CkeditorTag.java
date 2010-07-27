@@ -28,85 +28,103 @@ import com.jgeppert.struts2.jquery.richtext.components.Ckeditor;
 import com.jgeppert.struts2.jquery.views.jsp.ui.TextareaTag;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class CkeditorTag extends TextareaTag
-{
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 
-	private static final long	serialVersionUID	= 3335538405812517654L;
+public class CkeditorTag extends TextareaTag {
 
-	protected String			cols;
-	protected String			readonly;
-	protected String			rows;
-	protected String			wrap;
-	protected String			skin;
-	protected String			toolbar;
-	protected String			width;
-	protected String			height;
-	protected String			editorLocal;
-	protected String			customConfig;
-	protected String			onEditorReadyTopics;
+  private static final long serialVersionUID = 3335538405812517654L;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		return new Ckeditor(stack, req, res);
-	}
+  protected String          cols;
+  protected String          readonly;
+  protected String          rows;
+  protected String          wrap;
+  protected String          skin;
+  protected String          toolbar;
+  protected String          width;
+  protected String          height;
+  protected String          editorLocal;
+  protected String          customConfig;
+  protected String          onEditorReadyTopics;
 
-	protected void populateParams() {
-		super.populateParams();
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Ckeditor(stack, req, res);
+  }
 
-		Ckeditor editor = (Ckeditor) component;
-		editor.setCols(cols);
-		editor.setRows(rows);
-		editor.setReadonly(readonly);
-		editor.setWrap(wrap);
-		editor.setSkin(skin);
-		editor.setToolbar(toolbar);
-		editor.setWidth(width);
-		editor.setHeight(height);
-		editor.setEditorLocal(editorLocal);
-		editor.setCustomConfig(customConfig);
-		editor.setOnEditorReadyTopics(onEditorReadyTopics);
-	}
+  protected void populateParams()
+  {
+    super.populateParams();
 
-	public void setCols(String cols) {
-		this.cols = cols;
-	}
+    Ckeditor editor = (Ckeditor) component;
+    editor.setCols(cols);
+    editor.setRows(rows);
+    editor.setReadonly(readonly);
+    editor.setWrap(wrap);
+    editor.setSkin(skin);
+    editor.setToolbar(toolbar);
+    editor.setWidth(width);
+    editor.setHeight(height);
+    editor.setEditorLocal(editorLocal);
+    editor.setCustomConfig(customConfig);
+    editor.setOnEditorReadyTopics(onEditorReadyTopics);
+  }
 
-	public void setReadonly(String readonly) {
-		this.readonly = readonly;
-	}
+  public void setCols(String cols)
+  {
+    this.cols = cols;
+  }
 
-	public void setRows(String rows) {
-		this.rows = rows;
-	}
+  public void setReadonly(String readonly)
+  {
+    this.readonly = readonly;
+  }
 
-	public void setWrap(String wrap) {
-		this.wrap = wrap;
-	}
+  public void setRows(String rows)
+  {
+    this.rows = rows;
+  }
 
-	public void setSkin(String skin) {
-		this.skin = skin;
-	}
+  public void setWrap(String wrap)
+  {
+    this.wrap = wrap;
+  }
 
-	public void setToolbar(String toolbar) {
-		this.toolbar = toolbar;
-	}
+  public void setSkin(String skin)
+  {
+    this.skin = skin;
+  }
 
-	public void setWidth(String width) {
-		this.width = width;
-	}
+  public void setToolbar(String toolbar)
+  {
+    this.toolbar = toolbar;
+  }
 
-	public void setHeight(String height) {
-		this.height = height;
-	}
+  public void setWidth(String width)
+  {
+    this.width = width;
+  }
 
-	public void setEditorLocal(String editorLocal) {
-		this.editorLocal = editorLocal;
-	}
+  public void setHeight(String height)
+  {
+    this.height = height;
+  }
 
-	public void setCustomConfig(String customConfig) {
-		this.customConfig = customConfig;
-	}
+  public void setEditorLocal(String editorLocal)
+  {
+    this.editorLocal = editorLocal;
+  }
 
-	public void setOnEditorReadyTopics(String onEditorReadyTopics) {
-		this.onEditorReadyTopics = onEditorReadyTopics;
-	}
+  public void setCustomConfig(String customConfig)
+  {
+    this.customConfig = customConfig;
+  }
+
+  public void setOnEditorReadyTopics(String onEditorReadyTopics)
+  {
+    this.onEditorReadyTopics = onEditorReadyTopics;
+  }
 }

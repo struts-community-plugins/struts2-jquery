@@ -19,6 +19,12 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public interface SelectableTag {
 
   void setSelectable(String selectable);

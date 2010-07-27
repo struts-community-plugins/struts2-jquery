@@ -30,6 +30,16 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Render HTML textarea providing content from remote call via AJAX
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 @StrutsTag(name = "textarea", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TextareaTag", description = "Render HTML textarea providing content from remote call via AJAX", allowDynamicAttributes = true)
 public class Textarea extends AbstractFormElement {
 

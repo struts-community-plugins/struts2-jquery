@@ -30,7 +30,11 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
  * Renders a accordion item
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
  * 
  * <p>
  * Examples
@@ -44,6 +48,9 @@ import com.opensymphony.xwork2.util.ValueStack;
  * </pre>
  * 
  * <!-- END SNIPPET: example1 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionItemTag", description = "Render an accordion item.")
 public class AccordionItem extends ClosingUIBean {

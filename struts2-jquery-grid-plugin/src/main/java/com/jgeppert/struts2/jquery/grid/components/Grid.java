@@ -36,13 +36,18 @@ import com.jgeppert.struts2.jquery.components.SortableBean;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: javadoc --> Renders a grid
- * 
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Render an grid from a JSON Result.
+ * </p>
  * <!-- END SNIPPET: javadoc -->
  * 
  * <p>
- * Examples
+ * Examples:
  * </p>
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "grid", tldTagClass = "com.jgeppert.struts2.jquery.grid.views.jsp.ui.GridTag", description = "Render an grid from a JSON Result.")
 public class Grid extends AbstractRemoteBean implements ResizableBean, DroppableBean, DraggableBean, SortableBean {

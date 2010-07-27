@@ -27,6 +27,12 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.CheckboxList;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @see CheckboxList
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class CheckboxListTag extends AbstractFormListElementTag {
 
   private static final long serialVersionUID = 1792119547676464144L;

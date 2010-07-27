@@ -87,6 +87,9 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * </pre>
  * 
  * <!-- END SNIPPET: example3 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "autocompleter", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AutocompleterTag", description = "Render a jQuery UI Autocompleter", allowDynamicAttributes = true)
 public class Autocompleter extends AbstractFormListElement {

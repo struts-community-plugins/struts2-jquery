@@ -30,18 +30,18 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * @see Autocompleter
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
-public class AutocompleterModel extends TagModel
-{
+public class AutocompleterModel extends TagModel {
 
-	public AutocompleterModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-	{
-		super(stack, req, res);
-	}
+  public AutocompleterModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+    super(stack, req, res);
+  }
 
-	@Override
-	protected Component getBean() {
-		return new Autocompleter(stack, req, res);
-	}
+  @Override
+  protected Component getBean()
+  {
+    return new Autocompleter(stack, req, res);
+  }
 
 }

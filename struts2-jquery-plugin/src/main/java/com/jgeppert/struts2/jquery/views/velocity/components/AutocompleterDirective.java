@@ -28,19 +28,24 @@ import com.jgeppert.struts2.jquery.components.Autocompleter;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Autocompleter
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
-public class AutocompleterDirective extends JqueryAbstractDirective
-{
-	public String getBeanName() {
-		return "autocompleter";
-	}
+public class AutocompleterDirective extends JqueryAbstractDirective {
+  public String getBeanName()
+  {
+    return "autocompleter";
+  }
 
-	protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		return new Autocompleter(stack, req, res);
-	}
+  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Autocompleter(stack, req, res);
+  }
 
-	public int getType() {
-		return BLOCK;
-	}
+  public int getType()
+  {
+    return BLOCK;
+  }
 }

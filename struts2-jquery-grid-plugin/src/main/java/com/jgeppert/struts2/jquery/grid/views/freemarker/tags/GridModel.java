@@ -29,7 +29,10 @@ import com.jgeppert.struts2.jquery.grid.components.Grid;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Grid
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class GridModel extends TagModel {
 

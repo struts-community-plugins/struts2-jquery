@@ -52,15 +52,31 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * Examples
  * </p>
  * 
- * <!-- START SNIPPET: example1 --> &lt;sj:datepicker id="birthday"
- * name="birthday"/&gt; <!-- END SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 -->
  * 
- * <!-- START SNIPPET: example2 --> &lt;sj:datepicker showButtonPanel="true"
- * changeMonth="true" changeYear="true" id="birthday" name="birthday"/&gt; <!--
- * END SNIPPET: example2 -->
+ * <pre>
+ * &lt;sj:datepicker id=&quot;birthday&quot; name=&quot;birthday&quot;/&gt;
+ * </pre>
  * 
- * <!-- START SNIPPET: example3 --> &lt;sj:datepicker displayFormat="dd.mm.yy"
- * id="birthday" name="birthday"/&gt; <!-- END SNIPPET: example3 -->
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * <!-- START SNIPPET: example2 -->
+ * 
+ * <pre>
+ * &lt;sj:datepicker showButtonPanel=&quot;true&quot; changeMonth=&quot;true&quot; changeYear=&quot;true&quot; id=&quot;birthday&quot; name=&quot;birthday&quot;/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
+ * 
+ * <!-- START SNIPPET: example3 -->
+ * 
+ * <pre>
+ * &lt;sj:datepicker displayFormat=&quot;dd.mm.yy&quot; id=&quot;birthday&quot; name=&quot;birthday&quot;/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example3 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "datepicker", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DatePickerTag", description = "Render a jQuery UI datepicker", allowDynamicAttributes = true)
 public class DatePicker extends AbstractTopicsBean {

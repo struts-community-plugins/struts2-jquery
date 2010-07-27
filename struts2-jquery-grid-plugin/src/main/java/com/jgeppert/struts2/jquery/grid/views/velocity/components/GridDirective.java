@@ -25,11 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.components.Component;
 
 import com.jgeppert.struts2.jquery.grid.components.Grid;
-import com.jgeppert.struts2.jquery.grid.views.velocity.components.JqueryGridAbstractDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Grid
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class GridDirective extends JqueryGridAbstractDirective {
   public String getBeanName()

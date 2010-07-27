@@ -29,7 +29,10 @@ import com.jgeppert.struts2.jquery.components.Head;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Head
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class HeadTag extends AbstractUITag {
 

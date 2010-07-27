@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Radio;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Radio
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class RadioDirective extends JqueryAbstractDirective {
   public String getBeanName()

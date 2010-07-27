@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Submit;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Submit
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class SubmitDirective extends JqueryAbstractDirective {
 

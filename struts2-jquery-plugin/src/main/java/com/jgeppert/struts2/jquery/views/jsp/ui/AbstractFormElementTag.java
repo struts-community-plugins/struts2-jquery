@@ -21,6 +21,11 @@ package com.jgeppert.struts2.jquery.views.jsp.ui;
 
 import com.jgeppert.struts2.jquery.components.AbstractFormElement;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public abstract class AbstractFormElementTag extends AbstractContainerTag {
 
   private static final long serialVersionUID = -4125616438928920288L;

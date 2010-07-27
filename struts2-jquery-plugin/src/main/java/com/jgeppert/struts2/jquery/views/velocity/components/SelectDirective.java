@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Select;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Select
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class SelectDirective extends JqueryAbstractDirective {
   public String getBeanName()

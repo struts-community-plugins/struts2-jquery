@@ -32,6 +32,11 @@ import com.jgeppert.struts2.jquery.grid.views.velocity.components.GridColumnDire
 import com.jgeppert.struts2.jquery.grid.views.velocity.components.GridDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class JqueryGridTagLibrary implements TagLibrary {
 
   public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
@@ -43,8 +48,7 @@ public class JqueryGridTagLibrary implements TagLibrary {
   public List<Class> getVelocityDirectiveClasses()
   {
     Class[] directives = new Class[] {
-        GridDirective.class,
-        GridColumnDirective.class,
+        GridDirective.class, GridColumnDirective.class,
     };
     return Arrays.asList(directives);
   }

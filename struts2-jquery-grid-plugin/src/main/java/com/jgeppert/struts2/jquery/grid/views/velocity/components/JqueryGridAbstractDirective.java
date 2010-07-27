@@ -22,7 +22,10 @@ package com.jgeppert.struts2.jquery.grid.views.velocity.components;
 import org.apache.struts2.views.velocity.components.AbstractDirective;
 
 /**
+ * 
  * Overwrite name prefix
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
 public abstract class JqueryGridAbstractDirective extends AbstractDirective {

@@ -30,6 +30,16 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Render HTML select box providing content from remote call via AJAX
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 @StrutsTag(name = "select", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SelectTag", description = "Render HTML select box providing content from remote call via AJAX", allowDynamicAttributes = true)
 public class Select extends AbstractFormListElement {
 

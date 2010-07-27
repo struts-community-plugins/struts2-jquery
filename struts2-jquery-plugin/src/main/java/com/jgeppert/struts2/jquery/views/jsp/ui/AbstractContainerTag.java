@@ -28,6 +28,11 @@ import com.jgeppert.struts2.jquery.components.AbstractContainer;
 import com.jgeppert.struts2.jquery.components.Div;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public abstract class AbstractContainerTag extends AbstractRemoteTag implements ResizableTag, DraggableTag, DroppableTag, SelectableTag, SortableTag {
 
   private static final long serialVersionUID = 3370394928132899529L;

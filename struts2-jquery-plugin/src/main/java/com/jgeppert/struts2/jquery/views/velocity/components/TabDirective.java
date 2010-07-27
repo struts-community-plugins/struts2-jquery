@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Tab;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Tab
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class TabDirective extends JqueryAbstractDirective {
   public String getBeanName()

@@ -80,6 +80,9 @@ import com.opensymphony.xwork2.util.ValueStack;
  * </pre>
  * 
  * <!-- END SNIPPET: example4 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "dialog", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag", description = "Render a Dialog")
 public class Dialog extends AbstractRemoteBean {

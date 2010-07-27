@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Slider;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Slider
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class SliderTag extends AbstractTopicTag {
 

@@ -27,6 +27,12 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Accordion;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @see Accordion
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class AccordionTag extends AbstractTopicTag {
 
   private static final long serialVersionUID = 5309231035916461134L;

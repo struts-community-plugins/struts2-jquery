@@ -35,7 +35,10 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: javadoc --> Renders a accordion from a given list or map
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Renders a accordion from a given list or map
+ * </p>
  * <!-- END SNIPPET: javadoc -->
  * 
  * <p>
@@ -107,6 +110,9 @@ import com.opensymphony.xwork2.util.ValueStack;
  * </pre>
  * 
  * <!-- END SNIPPET: example2 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "accordion", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionTag", description = "Render an accordion from a List.")
 public class Accordion extends AbstractTopicsBean {

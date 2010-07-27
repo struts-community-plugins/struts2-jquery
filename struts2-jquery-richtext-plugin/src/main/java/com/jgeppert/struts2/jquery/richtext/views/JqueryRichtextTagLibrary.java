@@ -32,6 +32,11 @@ import com.jgeppert.struts2.jquery.richtext.views.velocity.components.CkeditorDi
 import com.jgeppert.struts2.jquery.richtext.views.velocity.components.TinymceDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class JqueryRichtextTagLibrary implements TagLibrary {
 
   public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)

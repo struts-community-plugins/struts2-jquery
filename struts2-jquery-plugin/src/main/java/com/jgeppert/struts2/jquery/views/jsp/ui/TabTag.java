@@ -27,6 +27,12 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Tab;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @see Tab
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class TabTag extends AbstractRemoteTag {
 
   private static final long serialVersionUID = 5309231035916461758L;

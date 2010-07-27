@@ -48,6 +48,12 @@ import com.jgeppert.struts2.jquery.views.velocity.components.TextareaDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TextfieldDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
+
 public class JqueryTagLibrary implements TagLibrary {
 
   public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)

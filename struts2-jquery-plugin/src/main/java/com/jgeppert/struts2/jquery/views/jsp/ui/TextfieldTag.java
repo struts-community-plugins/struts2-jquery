@@ -27,6 +27,12 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Textfield;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @see Textfield
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class TextfieldTag extends AbstractFormElementTag {
 
   private static final long serialVersionUID = 8332089683341849748L;

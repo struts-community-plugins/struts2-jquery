@@ -42,25 +42,30 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Examples
  * </p>
  * 
- * <!-- START SNIPPET: example1 --> &lt;div id="div1"&gt;Div 1&lt;/div&gt;
- * &lt;s:url id="ajaxTest" value="/AjaxTest.action"/&gt;
+ * <!-- START SNIPPET: example1 -->
  * 
- * &lt;sj:a id="link1" href="%{ajaxTest}" target="div1"&gt; Update Content
- * &lt;/sj:a&gt; <!-- END SNIPPET: example1 -->
+ * <pre>
+ * &lt;div id=&quot;div1&quot;&gt;Div 1&lt;/div&gt;
+ * &lt;s:url id=&quot;ajaxTest&quot; value=&quot;/AjaxTest.action&quot;/&gt;
  * 
- * <!-- START SNIPPET: example2 --> &lt;s:form id="form" action="AjaxTest"&gt;
- * &lt;input type="textbox" name="data"&gt; &lt;/s:form&gt;
+ * &lt;sj:a id=&quot;link1&quot; href=&quot;%{ajaxTest}&quot; target=&quot;div1&quot;&gt; Update Content &lt;/sj:a&gt;
+ * </pre>
  * 
- * &lt;sj:a formId="form" targets="div1"&gt;Submit form&lt;/sj:a&gt; <!-- END
- * SNIPPET: example2 -->
+ * <!-- END SNIPPET: example1 -->
  * 
- * <!-- START SNIPPET: example3 --> &lt;script type="text/javascript"&gt;
- * function before(event){ alert('before request'); }; function complete(event){
- * alert('after request'); }; &lt;/script&gt;
+ * <!-- START SNIPPET: example2 -->
  * 
- * &lt;sj:a id="link1" href="%{ajaxTest}" target="div1" beforeSend="before()"
- * complete="complete()"&gt;Raise events&lt;/sj:a&gt; <!-- END SNIPPET: example3
- * -->
+ * <pre>
+ * &lt;s:form id=&quot;form&quot; action=&quot;AjaxTest&quot;&gt;
+ * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt; &lt;/s:form&gt;
+ * 
+ * &lt;sj:a formId=&quot;form&quot; targets=&quot;div1&quot;&gt;Submit form&lt;/sj:a&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "a", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description = "Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates its targets content", allowDynamicAttributes = true)
 public class Anchor extends AbstractRemoteBean implements ButtonBean {

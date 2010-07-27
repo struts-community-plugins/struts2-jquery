@@ -19,6 +19,11 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public interface ResizableBean {
 
   void setResizable(String resizable);

@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Progressbar;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Progressbar
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class ProgressbarDirective extends JqueryAbstractDirective {
   public String getBeanName()

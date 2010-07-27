@@ -27,6 +27,12 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Textarea;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @see Textarea
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class TextareaTag extends AbstractFormElementTag {
 
   private static final long serialVersionUID = 6782031035916461758L;

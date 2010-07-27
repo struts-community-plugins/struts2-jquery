@@ -40,17 +40,35 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <p>
  * Examples
  * </p>
- * <!-- START SNIPPET: example1 --> &lt;sj:div href="%{#url}"&gt;Initial
- * Content&lt;/sj:div&gt; <!-- END SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 -->
  * 
- * <!-- START SNIPPET: example2 --> &lt;img id="indicator"
- * src="${pageContext.request.contextPath}/images/indicator.gif"
- * style="display:none"/&gt; &lt;sj:div href="%{#url}" indicator="indicator"&gt;
- * Initial Content &lt;/sj:div&gt; <!-- END SNIPPET: example2 -->
+ * <pre>
+ * &lt;sj:div href=&quot;%{#url}&quot;&gt;Initial Content&lt;/sj:div&gt;
+ * </pre>
  * 
- * <!-- START SNIPPET: example3 --> &lt;sj:div href="%{#url}" effect="highlight"
- * effectOptions="color : '#222222'" effectDuration="3600"&gt; Initial Content
- * &lt;/sj:div&gt; <!-- END SNIPPET: example3 -->
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * <!-- START SNIPPET: example2 -->
+ * 
+ * <pre>
+ * &lt;img id=&quot;indicator&quot; src=&quot;${pageContext.request.contextPath}/images/indicator.gif&quot; style=&quot;display:none&quot;/&gt; 
+ * &lt;sj:div href=&quot;%{#url}&quot; indicator=&quot;indicator&quot;&gt; Initial Content &lt;/sj:div&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
+ * 
+ * <!-- START SNIPPET: example3 -->
+ * 
+ * <pre>
+ * &lt;sj:div href=&quot;%{#url}&quot; effect=&quot;highlight&quot; effectOptions=&quot;color : '#222222'&quot; effectDuration=&quot;3600&quot;&gt;
+ *  Initial Content
+ * &lt;/sj:div&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example3 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DivTag", description = "Render HTML div providing content from remote call via AJAX", allowDynamicAttributes = true)
 public class Div extends AbstractContainer implements ResizableBean, DroppableBean, DraggableBean, SelectableBean {

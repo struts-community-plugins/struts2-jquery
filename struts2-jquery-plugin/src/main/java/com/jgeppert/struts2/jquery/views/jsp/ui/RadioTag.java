@@ -27,6 +27,13 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Radio;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @see Radio
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
+
 public class RadioTag extends AbstractFormListElementTag {
 
   private static final long serialVersionUID = 5405919375440859551L;

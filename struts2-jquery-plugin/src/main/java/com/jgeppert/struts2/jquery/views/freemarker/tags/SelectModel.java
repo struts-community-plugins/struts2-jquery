@@ -30,6 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * @see Select
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
 public class SelectModel extends TagModel {
 

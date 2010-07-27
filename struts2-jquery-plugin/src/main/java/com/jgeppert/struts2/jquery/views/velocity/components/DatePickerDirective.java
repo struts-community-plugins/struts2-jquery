@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.DatePicker;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see DatePicker
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class DatePickerDirective extends JqueryAbstractDirective {
 

@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.AccordionItem;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see AccordionItem
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class AccordionItemDirective extends JqueryAbstractDirective {
   public String getBeanName()

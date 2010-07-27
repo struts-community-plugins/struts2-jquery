@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.DatePicker;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see DatePicker
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class DatePickerTag extends AbstractTopicTag {
 
@@ -213,7 +216,7 @@ public class DatePickerTag extends AbstractTopicTag {
   {
     this.size = size;
   }
-  
+
   public void setParentTheme(String parentTheme)
   {
     this.parentTheme = parentTheme;

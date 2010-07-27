@@ -28,6 +28,11 @@ import com.jgeppert.struts2.jquery.richtext.components.Tinymce;
 import com.jgeppert.struts2.jquery.views.jsp.ui.TextareaTag;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class TinymceTag extends TextareaTag {
 
   private static final long serialVersionUID = 4218017555155820282L;

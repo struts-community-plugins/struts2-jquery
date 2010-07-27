@@ -26,6 +26,11 @@ import org.apache.struts2.views.annotations.StrutsTagAttribute;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public abstract class AbstractContainer extends AbstractRemoteBean implements ResizableBean, DroppableBean, DraggableBean, SelectableBean, SortableBean {
 
   protected String reloadTopics;

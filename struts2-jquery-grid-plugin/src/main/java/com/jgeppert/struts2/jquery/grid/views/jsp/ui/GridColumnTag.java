@@ -28,6 +28,11 @@ import com.jgeppert.struts2.jquery.grid.components.GridColumn;
 import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractRemoteTag;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * @see GridColumn
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class GridColumnTag extends AbstractRemoteTag {
 
   private static final long serialVersionUID = 7618322146696075561L;

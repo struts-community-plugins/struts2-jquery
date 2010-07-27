@@ -32,12 +32,18 @@ import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 /**
- * <!-- START SNIPPET: javadoc --> Renders a column for the grid <!-- END
- * SNIPPET: javadoc -->
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Renders a column for the grid
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
  * 
  * <p>
  * Examples
  * </p>
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "gridColumn", tldTagClass = "com.jgeppert.struts2.jquery.grid.views.jsp.ui.GridColumnTag", description = "Renders a column for the grid")
 public class GridColumn extends AbstractRemoteBean {

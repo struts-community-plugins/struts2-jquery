@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Textarea;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Textarea
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class TextareaDirective extends JqueryAbstractDirective {
   public String getBeanName()

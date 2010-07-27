@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Head;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Head
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class HeadDirective extends JqueryAbstractDirective {
   protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)

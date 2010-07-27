@@ -24,6 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class JqueryModels {
   protected DatePickerModel    datePicker;
   protected TabbedPanelModel   tabbedPanel;

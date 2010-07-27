@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Div;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Div
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class DivDirective extends JqueryAbstractDirective {
   public String getBeanName()

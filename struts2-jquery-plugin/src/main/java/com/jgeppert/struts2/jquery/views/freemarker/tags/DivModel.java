@@ -30,6 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * @see Div
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
 public class DivModel extends TagModel {
 

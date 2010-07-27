@@ -31,6 +31,16 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.jgeppert.struts2.jquery.components.Textarea;
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Render a Richtext Element based on Tinymce
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 @StrutsTag(name = "tinymce", tldTagClass = "com.jgeppert.struts2.jquery.richtext.views.jsp.ui.TinymceTag", description = "A Richtext Element based on Tinymce", allowDynamicAttributes = true)
 public class Tinymce extends Textarea {
 

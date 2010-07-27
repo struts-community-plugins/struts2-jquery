@@ -30,6 +30,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * @see Submit
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
 public class SubmitModel extends TagModel {
 

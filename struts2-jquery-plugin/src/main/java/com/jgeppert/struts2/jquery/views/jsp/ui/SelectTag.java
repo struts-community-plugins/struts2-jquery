@@ -27,67 +27,83 @@ import org.apache.struts2.components.Component;
 import com.jgeppert.struts2.jquery.components.Select;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class SelectTag extends AbstractFormElementTag
-{
+/**
+ * 
+ * @see Select
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 
-	private static final long	serialVersionUID	= 3974875529913867071L;
-	protected String			emptyOption;
-	protected String			headerKey;
-	protected String			headerValue;
-	protected String			list;
-	protected String			listKey;
-	protected String			listValue;
-	protected String			size;
-	protected String			multiple;
+public class SelectTag extends AbstractFormElementTag {
 
-	public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		return new Select(stack, req, res);
-	}
+  private static final long serialVersionUID = 3974875529913867071L;
+  protected String          emptyOption;
+  protected String          headerKey;
+  protected String          headerValue;
+  protected String          list;
+  protected String          listKey;
+  protected String          listValue;
+  protected String          size;
+  protected String          multiple;
 
-	protected void populateParams() {
-		super.populateParams();
+  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  {
+    return new Select(stack, req, res);
+  }
 
-		Select select = (Select) component;
-		select.setEmptyOption(emptyOption);
-		select.setHeaderKey(headerKey);
-		select.setHeaderValue(headerValue);
-		select.setList(list);
-		select.setListKey(listKey);
-		select.setListValue(listValue);
-		select.setSize(size);
-		select.setMultiple(multiple);
-	}
+  protected void populateParams()
+  {
+    super.populateParams();
 
-	public void setEmptyOption(String emptyOption) {
-		this.emptyOption = emptyOption;
-	}
+    Select select = (Select) component;
+    select.setEmptyOption(emptyOption);
+    select.setHeaderKey(headerKey);
+    select.setHeaderValue(headerValue);
+    select.setList(list);
+    select.setListKey(listKey);
+    select.setListValue(listValue);
+    select.setSize(size);
+    select.setMultiple(multiple);
+  }
 
-	public void setHeaderKey(String headerKey) {
-		this.headerKey = headerKey;
-	}
+  public void setEmptyOption(String emptyOption)
+  {
+    this.emptyOption = emptyOption;
+  }
 
-	public void setHeaderValue(String headerValue) {
-		this.headerValue = headerValue;
-	}
+  public void setHeaderKey(String headerKey)
+  {
+    this.headerKey = headerKey;
+  }
 
-	public void setList(String list) {
-		this.list = list;
-	}
+  public void setHeaderValue(String headerValue)
+  {
+    this.headerValue = headerValue;
+  }
 
-	public void setListKey(String listKey) {
-		this.listKey = listKey;
-	}
+  public void setList(String list)
+  {
+    this.list = list;
+  }
 
-	public void setListValue(String listValue) {
-		this.listValue = listValue;
-	}
+  public void setListKey(String listKey)
+  {
+    this.listKey = listKey;
+  }
 
-	public void setSize(String size) {
-		this.size = size;
-	}
+  public void setListValue(String listValue)
+  {
+    this.listValue = listValue;
+  }
 
-	public void setMultiple(String multiple) {
-		this.multiple = multiple;
-	}
+  public void setSize(String size)
+  {
+    this.size = size;
+  }
+
+  public void setMultiple(String multiple)
+  {
+    this.multiple = multiple;
+  }
 
 }

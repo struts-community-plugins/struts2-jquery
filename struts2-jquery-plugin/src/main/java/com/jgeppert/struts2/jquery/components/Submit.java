@@ -35,8 +35,10 @@ import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 /**
- * <!-- START SNIPPET: javadoc --> Renders a submit button that can submit a
- * form asynchronously. The submit can have three different types of rendering:
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Renders a submit button that can submit a form asynchronously. The submit can
+ * have three different types of rendering:
  * <ul>
  * <li>input: renders as html &lt;input type="submit"...&gt;</li>
  * <li>image: renders as html &lt;input type="image"...&gt;</li>
@@ -44,8 +46,9 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * </ul>
  * Please note that the button type has advantages by adding the possibility to
  * seperate the submitted value from the text shown on the button face, but has
- * issues with Microsoft Internet Explorer at least up to 6.0 <!-- END SNIPPET:
- * javadoc -->
+ * issues with Microsoft Internet Explorer at least up to 6.0
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
  * 
  * <p>
  * Examples
@@ -53,7 +56,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example1 -->
  * 
  * <pre>
- * &lt;sj:submit value="%{'Submit'}" /&gt;
+ * &lt;sj:submit value=&quot;%{'Submit'}&quot; /&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example1 -->
@@ -61,7 +64,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example2 -->
  * 
  * <pre>
- * &lt;sj:submit type="image" value="%{'Submit'}" label="Submit the form" src="submit.gif"/&gt;
+ * &lt;sj:submit type=&quot;image&quot; value=&quot;%{'Submit'}&quot; label=&quot;Submit the form&quot; src=&quot;submit.gif&quot;/&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example2 -->
@@ -69,7 +72,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example3 -->
  * 
  * <pre>
- * &lt;sj:submit type="button" value="%{'Submit'}" label="Submit the form"/&gt;
+ * &lt;sj:submit type=&quot;button&quot; value=&quot;%{'Submit'}&quot; label=&quot;Submit the form&quot;/&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example3 -->
@@ -77,9 +80,9 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example4 -->
  * 
  * <pre>
- * &lt;div id="div1"&gt;Div 1&lt;/div&gt; 
- * &lt;s:url id="ajaxTest" value="/AjaxTest.action"/&gt;
- * &lt;sj:submit id="link1" href="%{ajaxTest}" target="div1" /&gt;
+ * &lt;div id=&quot;div1&quot;&gt;Div 1&lt;/div&gt; 
+ * &lt;s:url id=&quot;ajaxTest&quot; value=&quot;/AjaxTest.action&quot;/&gt;
+ * &lt;sj:submit id=&quot;link1&quot; href=&quot;%{ajaxTest}&quot; target=&quot;div1&quot; /&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example4 -->
@@ -87,8 +90,8 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example5 -->
  * 
  * <pre>
- * &lt;s:form id="form" action="AjaxTest"&gt;
- * &lt;input type="textbox" name="data"&gt; &lt;sj:submit /&gt; 
+ * &lt;s:form id=&quot;form&quot; action=&quot;AjaxTest&quot;&gt;
+ * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt; &lt;sj:submit /&gt; 
  * &lt;/s:form&gt;
  * </pre>
  * 
@@ -97,11 +100,11 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example6 -->
  * 
  * <pre>
- * &lt;s:form id="form" action="AjaxTest"&gt;
- * &lt;input type="textbox" name="data"&gt; 
+ * &lt;s:form id=&quot;form&quot; action=&quot;AjaxTest&quot;&gt;
+ * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt; 
  * &lt;/s:form&gt;
  * 
- * &lt;sj:submit formId="form" /&gt;
+ * &lt;sj:submit formId=&quot;form&quot; /&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example6 -->
@@ -109,12 +112,12 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example7 -->
  * 
  * <pre>
- * &lt;script type="text/javascript"&gt;
+ * &lt;script type=&quot;text/javascript&quot;&gt;
  * function before(event){ alert('before request'); }; 
  * function complete(event){ alert('after request'); }; 
  * &lt;/script&gt;
  * 
- * &lt;sj:submit beforeSend="before()" complete="complete()" /&gt;
+ * &lt;sj:submit beforeSend=&quot;before()&quot; complete=&quot;complete()&quot; /&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example7 -->
@@ -122,12 +125,14 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * <!-- START SNIPPET: example8 -->
  * 
  * <pre>
- * &lt;sj:submit value"AJAX Submit with effect"
- * effect="highlight" effectOptions="color : '#222222'"
- * effectDuration="3600"&gt; href="%{#ajaxTest}" /&gt;
+ * &lt;sj:submit value&quot;AJAX Submit with effect&quot;
+ * effect=&quot;highlight&quot; effectOptions=&quot;color : '#222222'&quot;
+ * effectDuration=&quot;3600&quot;&gt; href=&quot;%{#ajaxTest}&quot; /&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example8 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button", allowDynamicAttributes = true)

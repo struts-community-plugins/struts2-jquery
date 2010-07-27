@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Anchor;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Anchor
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class AnchorDirective extends JqueryAbstractDirective {
   public String getBeanName()

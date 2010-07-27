@@ -29,7 +29,10 @@ import com.jgeppert.struts2.jquery.richtext.components.Ckeditor;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Ckeditor
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class CkeditorModel extends TagModel {
 

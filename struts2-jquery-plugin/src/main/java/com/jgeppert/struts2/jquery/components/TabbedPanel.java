@@ -48,22 +48,38 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <b>Examples</b>
  * </p>
  * 
- * <!-- START SNIPPET: example1 --> &lt;sj:tabbedpanel id="mytabs"
- * animate="true" collapsible="true" useSelectedTabCookie="true"&gt; &lt;sj:tab
- * id="tab1" target="tone" label="Tab One"/&gt; &lt;sj:tab id="tab2"
- * target="ttwo" label="Tab Two"/&gt; &lt;sj:tab id="tab3" target="tthree"
- * label="Tab Three"/&gt; &lt;div id="tone"&gt; Test 1 &lt;/div&gt; &lt;div
- * id="ttwo"&gt; Test 2 &lt;/div&gt; &lt;div id="tthree"&gt; Test 3 &lt;/div&gt;
- * &lt;/sj:tabbedpanel&gt; <!-- END SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 -->
  * 
- * <!-- START SNIPPET: example2 --> &lt;s:url id="remoteurl1"
- * action="myremoteactionone"/&gt; &lt;s:url id="remoteurl2"
- * action="myremoteactiontwo"/&gt; &lt;s:url id="remoteurl3"
- * action="myremoteactionthree"/&gt; &lt;sj:tabbedpanel id="mytabs2"
- * selectedTab="1"&gt; &lt;sj:tab id="tab1" href="%{remoteurl1}"
- * label="Tab One"/&gt; &lt;sj:tab id="tab2" href="%{remoteurl2}"
- * label="Tab Two"/&gt; &lt;sj:tab id="tab3" href="%{remoteurl3}"
- * label="Tab Three"/&gt; &lt;/sj:tabbedpanel&gt; <!-- END SNIPPET: example2 -->
+ * <pre>
+ * &lt;sj:tabbedpanel id=&quot;mytabs&quot; animate=&quot;true&quot; collapsible=&quot;true&quot; useSelectedTabCookie=&quot;true&quot;&gt; 
+ *  &lt;sj:tab id=&quot;tab1&quot; target=&quot;tone&quot; label=&quot;Tab One&quot;/&gt; 
+ *  &lt;sj:tab id=&quot;tab2&quot; target=&quot;ttwo&quot; label=&quot;Tab Two&quot;/&gt; 
+ *  &lt;sj:tab id=&quot;tab3&quot; target=&quot;tthree&quot; label=&quot;Tab Three&quot;/&gt; 
+ *  &lt;div id=&quot;tone&quot;&gt; Test 1 &lt;/div&gt; 
+ *  &lt;div id=&quot;ttwo&quot;&gt; Test 2 &lt;/div&gt; 
+ *  &lt;div id=&quot;tthree&quot;&gt; Test 3 &lt;/div&gt;
+ * &lt;/sj:tabbedpanel&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * <!-- START SNIPPET: example2 -->
+ * 
+ * <pre>
+ * &lt;s:url id=&quot;remoteurl1&quot; action=&quot;myremoteactionone&quot;/&gt; 
+ * &lt;s:url id=&quot;remoteurl2&quot; action=&quot;myremoteactiontwo&quot;/&gt; 
+ * &lt;s:url id=&quot;remoteurl3&quot; action=&quot;myremoteactionthree&quot;/&gt; 
+ * &lt;sj:tabbedpanel id=&quot;mytabs2&quot; selectedTab=&quot;1&quot;&gt; 
+ *  &lt;sj:tab id=&quot;tab1&quot; href=&quot;%{remoteurl1}&quot; label=&quot;Tab One&quot;/&gt; 
+ *  &lt;sj:tab id=&quot;tab2&quot; href=&quot;%{remoteurl2}&quot; label=&quot;Tab Two&quot;/&gt; 
+ *  &lt;sj:tab id=&quot;tab3&quot; href=&quot;%{remoteurl3}&quot; label=&quot;Tab Three&quot;/&gt; 
+ * &lt;/sj:tabbedpanel&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "tabbedpanel", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabbedPanelTag", description = "Render a tabbedPanel widget.")
 public class TabbedPanel extends AbstractTopicsBean {

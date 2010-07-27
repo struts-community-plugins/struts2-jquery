@@ -28,7 +28,10 @@ import com.jgeppert.struts2.jquery.components.Dialog;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Dialog
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class DialogTag extends AbstractRemoteTag {
 

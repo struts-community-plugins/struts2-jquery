@@ -40,13 +40,23 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Examples
  * </p>
  * 
- * <!-- START SNIPPET: example1 --> &lt;sj:slider id="myslider"
- * name="myslider"/&gt; <!-- END SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 -->
  * 
- * <!-- START SNIPPET: example2 --> &lt;sj:slider id="myslider2"
- * name="myslider2" value="40" displayValueElement="displayvaluespan" min="20"
- * max="200" animate="true" step="5" cssStyle="margin: 10px;"/&gt; <!-- END
- * SNIPPET: example1 -->
+ * <pre>
+ * &lt;sj:slider id=&quot;myslider&quot; name=&quot;myslider&quot;/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * <!-- START SNIPPET: example2 -->
+ * 
+ * <pre>
+ * &lt;sj:slider id=&quot;myslider2&quot; name=&quot;myslider2&quot; value=&quot;40&quot; displayValueElement=&quot;displayvaluespan&quot; min=&quot;20&quot; max=&quot;200&quot; animate=&quot;true&quot; step=&quot;5&quot; cssStyle=&quot;margin: 10px;&quot;/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
 @StrutsTag(name = "slider", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SliderTag", description = "Render a Slider", allowDynamicAttributes = true)

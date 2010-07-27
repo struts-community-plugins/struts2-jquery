@@ -27,38 +27,41 @@ import org.apache.struts2.views.annotations.StrutsTagAttribute;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
-public abstract class AbstractFormElement extends AbstractContainer
-{
+/**
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ */
+public abstract class AbstractFormElement extends AbstractContainer {
 
-	protected String	parentTheme;
+  protected String parentTheme;
 
-	public AbstractFormElement(ValueStack stack, HttpServletRequest request, HttpServletResponse response)
-	{
-		super(stack, request, response);
-	}
+  public AbstractFormElement(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+    super(stack, request, response);
+  }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+  public void evaluateExtraParams()
+  {
+    super.evaluateExtraParams();
 
-		Form form = (Form) findAncestor(Form.class);
-		if (parentTheme != null)
-		{
-			addParameter("parentTheme", findString(parentTheme));
-		}
-		else if (form != null)
-		{
-			if (form != null) addParameter("parentTheme", form.getTheme());
-		}
-		else
-		{
-			addParameter("parentTheme", "simple");
-		}
+    Form form = (Form) findAncestor(Form.class);
+    if (parentTheme != null)
+    {
+      addParameter("parentTheme", findString(parentTheme));
+    }
+    else if (form != null)
+    {
+      if (form != null) addParameter("parentTheme", form.getTheme());
+    }
+    else
+    {
+      addParameter("parentTheme", "simple");
+    }
 
-		if (form != null && (formIds == null || formIds.length() <= 0)) addParameter("formIds", form.getId());
-	}
+    if (form != null && (formIds == null || formIds.length() <= 0)) addParameter("formIds", form.getId());
+  }
 
-	@StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
-	public void setParentTheme(String parentTheme) {
-		this.parentTheme = parentTheme;
-	}
+  @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
+  public void setParentTheme(String parentTheme)
+  {
+    this.parentTheme = parentTheme;
+  }
 }

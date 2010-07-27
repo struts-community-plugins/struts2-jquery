@@ -82,6 +82,8 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  * <!-- END SNIPPET: example2 -->
  * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "head", tldBodyContent = "empty", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag", description = "Render a chunk of HEAD for your HTML file", allowDynamicAttributes = false)
 @StrutsTagSkipInheritance

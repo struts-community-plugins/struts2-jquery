@@ -29,17 +29,28 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: javadoc --> Renders a local or an remote tab for
- * tabbedPanel <!-- END SNIPPET: javadoc -->
+ * <!-- START SNIPPET: javadoc -->
+ * <p>
+ * Renders a local or an remote tab for tabbedPanel
+ * </p>
+ * <!-- END SNIPPET: javadoc -->
  * 
  * <p>
  * Examples
  * </p>
- * <!-- START SNIPPET: example1 --> &lt;s:url id="remoteurl1"
- * action="myremoteactionone"/&gt; &lt;sj:tab id="tab1" target="tone"
- * label="My Local Tab for div tone"/&gt; &lt;sj:tab id="tab2"
- * href="%{remoteurl1}" label="My Remote Tab"/&gt; &lt;div id="tone"&gt; Test 1
- * &lt;/div&gt; <!-- END SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 -->
+ * 
+ * <pre>
+ * &lt;s:url id=&quot;remoteurl1&quot; action=&quot;myremoteactionone&quot;/&gt; 
+ * &lt;sj:tab id=&quot;tab1&quot; target=&quot;tone&quot; label=&quot;My Local Tab for div tone&quot;/&gt; 
+ * &lt;sj:tab id=&quot;tab2&quot; href=&quot;%{remoteurl1}&quot; label=&quot;My Remote Tab&quot;/&gt; 
+ * &lt;div id=&quot;tone&quot;&gt; Test 1 &lt;/div&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "tab", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabTag", description = "Render Tab for Tabbed Pannel providing content from remote call via AJAX")
 public class Tab extends AbstractRemoteBean {

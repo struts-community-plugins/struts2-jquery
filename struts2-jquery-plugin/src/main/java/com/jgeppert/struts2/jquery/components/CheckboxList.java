@@ -65,6 +65,9 @@ import com.opensymphony.xwork2.util.ValueStack;
  * </pre>
  * 
  * <!-- END SNIPPET: example1 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 
 @StrutsTag(name = "checkboxlist", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.CheckboxListTag", description = "Render a Button Set from a given checkbox list", allowDynamicAttributes = true)

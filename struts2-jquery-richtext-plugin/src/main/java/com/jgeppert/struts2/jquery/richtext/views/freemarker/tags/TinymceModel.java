@@ -29,7 +29,10 @@ import com.jgeppert.struts2.jquery.richtext.components.Tinymce;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Tinymce
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class TinymceModel extends TagModel {
 

@@ -33,7 +33,10 @@ import com.jgeppert.struts2.jquery.views.jsp.ui.SortableTag;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
+ * 
  * @see Grid
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 public class GridTag extends AbstractRemoteTag implements ResizableTag, DraggableTag, DroppableTag, SortableTag {
 

@@ -24,13 +24,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public class JqueryGridModels {
-  protected GridColumnModel    gridColumn;
-  protected GridModel          grid;
+  protected GridColumnModel   gridColumn;
+  protected GridModel         grid;
 
-  private ValueStack           stack;
-  private HttpServletRequest   req;
-  private HttpServletResponse  res;
+  private ValueStack          stack;
+  private HttpServletRequest  req;
+  private HttpServletResponse res;
 
   public JqueryGridModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
     this.stack = stack;

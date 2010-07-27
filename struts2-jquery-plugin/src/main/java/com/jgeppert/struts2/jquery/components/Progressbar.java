@@ -37,8 +37,16 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <p>
  * Examples
  * </p>
- * <!-- START SNIPPET: example1 --> &lt;sj:progressbar value="40" /&gt; <!-- END
- * SNIPPET: example1 -->
+ * <!-- START SNIPPET: example1 -->
+ * 
+ * <pre>
+ * &lt;sj:progressbar value=&quot;40&quot; /&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
  */
 @StrutsTag(name = "progressbar", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.ProgressbarTag", description = "Render an progressbar.", allowDynamicAttributes = true)
 public class Progressbar extends AbstractTopicsBean {

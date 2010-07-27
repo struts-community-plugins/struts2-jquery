@@ -23,6 +23,11 @@ import org.apache.struts2.views.jsp.ui.AbstractClosingTag;
 
 import com.jgeppert.struts2.jquery.components.AbstractTopicsBean;
 
+/**
+ * 
+ * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * 
+ */
 public abstract class AbstractTopicTag extends AbstractClosingTag {
 
   private static final long serialVersionUID = -704912163849377645L;
