@@ -120,9 +120,15 @@
 				}
 				$.struts2_jquery_richtext.editorsTinymce[$.struts2_jquery_richtext.editorsTinymce.length] = o.id;
 				
+				//don't use jqueryui resizable
+				//use the resizing from tinymce
+				o.resizable = false;
+				if(o.editorResizable) { o.theme_advanced_resizing = true; }
+				alert('editorResizable : '+o.editorResizable+' o.theme_advanced_resizing : '+o.theme_advanced_resizing);
+				
 				this.container($elem, o);
 				o.script_url = o.path+'tiny_mce.js';
-				o.resizable = false;
+
 				
 				o.setup = function(ed) {
 					ed.onInit.add(function(ed) {
@@ -165,7 +171,6 @@
 					
 					// Init Tinymce after AJAX Content is loaded.
 					$elem.subscribe(tinymceTopic, function(event,data) {
-						if(o.editorResizable) { o.theme_advanced_resizing = true; }
 						$elem.tinymce(o);
 						$.each(o.formids.split(','), function(i, fid) {
 							$.struts2_jquery.log('bind tinymce to form : ' + fid);
