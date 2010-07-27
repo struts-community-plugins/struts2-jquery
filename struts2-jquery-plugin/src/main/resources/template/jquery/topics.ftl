@@ -20,22 +20,22 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.onCompleteTopics?exists>
-	options_${escapedOptionId?html}.oncompletetopics = "${parameters.onCompleteTopics?html}";
+	options_${escapedOptionId?html}.oncom = "${parameters.onCompleteTopics?html}";
   </#if>
   <#if parameters.onSuccessTopics?exists>
-	options_${escapedOptionId?html}.onsuccesstopics = "${parameters.onSuccessTopics?html}";
+	options_${escapedOptionId?html}.onsuc = "${parameters.onSuccessTopics?html}";
   </#if>
   <#if parameters.onErrorTopics?exists>
-	options_${escapedOptionId?html}.onerrortopics = "${parameters.onErrorTopics?html}";
+	options_${escapedOptionId?html}.onerr = "${parameters.onErrorTopics?html}";
   </#if>
   <#if parameters.onBeforeTopics?exists>
-	options_${escapedOptionId?html}.onbeforetopics = "${parameters.onBeforeTopics?html}";
+	options_${escapedOptionId?html}.onbef = "${parameters.onBeforeTopics?html}";
   </#if>
   <#if parameters.onAlwaysTopics?exists>
-	options_${escapedOptionId?html}.onalwaystopics = "${parameters.onAlwaysTopics?html}";
+	options_${escapedOptionId?html}.onalw = "${parameters.onAlwaysTopics?html}";
   </#if>
   <#if parameters.onChangeTopics?exists>
-	options_${escapedOptionId?html}.onchangetopics = "${parameters.onChangeTopics?html}";
+	options_${escapedOptionId?html}.oncha = "${parameters.onChangeTopics?html}";
   </#if>
   <#if parameters.onHideTopics?exists>
 	options_${escapedOptionId?html}.onhidetopics = "${parameters.onHideTopics?string?html}";

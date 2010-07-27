@@ -357,9 +357,9 @@
 				else {
 					ro = {};
 				}
-				ro.start = _s2j.pubTops(c, o.onalwaystopics, o.resizableonstarttopics);
-				ro.stop = _s2j.pubTops(c, o.onalwaystopics, o.resizableonstoptopics);
-				ro.resize = _s2j.pubTops(c, o.onalwaystopics, o.resizableonresizetopics);
+				ro.start = _s2j.pubTops(c, o.onalw, o.resizableonstarttopics);
+				ro.stop = _s2j.pubTops(c, o.onalw, o.resizableonstoptopics);
+				ro.resize = _s2j.pubTops(c, o.onalw, o.resizableonresizetopics);
 				c.resizable(ro);
 			}
 		};
@@ -514,7 +514,7 @@
 			$(this.escId(o.id)).subscribe(effectTopic + o.id, this.handler.effect, effect);
 
 			// bind event topic listeners
-			if (o.onbeforetopics || o.oncompletetopics || o.onsuccesstopics || o.onerrortopics) {
+			if (o.onbef || o.oncom || o.onsuc || o.onerr) {
 				_s2j.subscribeTopics($elem, actionTopic, loadHandler, o);
 			}
 		}
@@ -589,28 +589,28 @@
 				}
 
 				$.each(eventsStr.split(','), function(i, event) {
-					if (o.onbeforetopics) {
-						$.each(o.onbeforetopics.split(','), function(i, btopic) {
+					if (o.onbef) {
+						$.each(o.onbef.split(','), function(i, btopic) {
 							bindel.publishOnEvent(event, btopic);
 						});
 					}
 					bindel.publishOnEvent(event, divEffectTopic);
-					if (o.oncompletetopics) {
-						$.each(o.oncompletetopics.split(','), function(i, ctopic) {
+					if (o.oncom) {
+						$.each(o.oncom.split(','), function(i, ctopic) {
 							bindel.publishOnEvent(event, ctopic);
 						});
 					}
 				});
 			}
 			else {
-				if (o.onbeforetopics) {
-					$.each(o.onbeforetopics.split(','), function(i, bts) {
+				if (o.onbef) {
+					$.each(o.onbef.split(','), function(i, bts) {
 						$elem.publish(bts, $elem);
 					});
 				}
 				$elem.publish(divEffectTopic, $elem);
-				if (o.oncompletetopics) {
-					$.each(o.oncompletetopics.split(','), function(i, cts) {
+				if (o.oncom) {
+					$.each(o.oncom.split(','), function(i, cts) {
 						$elem.publish(cts, $elem);
 					});
 				}
@@ -628,9 +628,9 @@
 				else {
 					ro = {};
 				}
-				ro.start = this.pubTops($elem, o.onalwaystopics, o.resizableonstarttopics);
-				ro.stop = this.pubTops($elem, o.onalwaystopics, o.resizableonstoptopics);
-				ro.resize = this.pubTops($elem, o.onalwaystopics, o.resizableonresizetopics);
+				ro.start = this.pubTops($elem, o.onalw, o.resizableonstarttopics);
+				ro.stop = this.pubTops($elem, o.onalw, o.resizableonstoptopics);
+				ro.resize = this.pubTops($elem, o.onalw, o.resizableonresizetopics);
 				$elem.resizable(ro);
 			}
 		}
@@ -648,9 +648,9 @@
 			else {
 				dao = {};
 			}
-			dao.start = this.pubTops($elem, o.onalwaystopics, o.draggableonstarttopics);
-			dao.stop = this.pubTops($elem, o.onalwaystopics, o.draggableonstoptopics);
-			dao.drap = this.pubTops($elem, o.onalwaystopics, o.draggableondragtopics);
+			dao.start = this.pubTops($elem, o.onalw, o.draggableonstarttopics);
+			dao.stop = this.pubTops($elem, o.onalw, o.draggableonstoptopics);
+			dao.drap = this.pubTops($elem, o.onalw, o.draggableondragtopics);
 			$elem.draggable(dao);
 		}
 
@@ -667,11 +667,11 @@
 			else {
 				doo = {};
 			}
-			doo.activate = this.pubTops($elem, o.onalwaystopics, o.droppableonactivatetopics);
-			doo.deactivate = this.pubTops($elem, o.onalwaystopics, o.droppableondeactivatetopics);
-			doo.start = this.pubTops($elem, o.onalwaystopics, o.droppableonstarttopics);
-			doo.stop = this.pubTops($elem, o.onalwaystopics, o.droppableonstoptopics);
-			doo.drop = this.pubTops($elem, o.onalwaystopics, o.droppableondroptopics);
+			doo.activate = this.pubTops($elem, o.onalw, o.droppableonactivatetopics);
+			doo.deactivate = this.pubTops($elem, o.onalw, o.droppableondeactivatetopics);
+			doo.start = this.pubTops($elem, o.onalw, o.droppableonstarttopics);
+			doo.stop = this.pubTops($elem, o.onalw, o.droppableonstoptopics);
+			doo.drop = this.pubTops($elem, o.onalw, o.droppableondroptopics);
 			$elem.droppable(doo);
 		}
 
@@ -688,12 +688,12 @@
 			else {
 				seo = {};
 			}
-			seo.selected = this.pubTops($elem, o.onalwaystopics, o.selectableonselectedtopics);
-			seo.selecting = this.pubTops($elem, o.onalwaystopics, o.selectableonselectingtopics);
-			seo.start = this.pubTops($elem, o.onalwaystopics, o.selectableonstarttopics);
-			seo.stop = this.pubTops($elem, o.onalwaystopics, o.selectableonstoptopics);
-			seo.unselected = this.pubTops($elem, o.onalwaystopics, o.selectableonunselectedtopics);
-			seo.unselecting = this.pubTops($elem, o.onalwaystopics, o.selectableonunselectingtopics);
+			seo.selected = this.pubTops($elem, o.onalw, o.selectableonselectedtopics);
+			seo.selecting = this.pubTops($elem, o.onalw, o.selectableonselectingtopics);
+			seo.start = this.pubTops($elem, o.onalw, o.selectableonstarttopics);
+			seo.stop = this.pubTops($elem, o.onalw, o.selectableonstoptopics);
+			seo.unselected = this.pubTops($elem, o.onalw, o.selectableonunselectedtopics);
+			seo.unselecting = this.pubTops($elem, o.onalw, o.selectableonunselectingtopics);
 			$elem.selectable(seo);
 		}
 
@@ -710,31 +710,31 @@
 			else {
 				soo = {};
 			}
-			soo.beforeStop = this.pubTops($elem, o.onalwaystopics, o.sortableonbeforestoptopics);
-			soo.stop = this.pubTops($elem, o.onalwaystopics, o.sortableonstoptopics);
-			soo.start = this.pubTops($elem, o.onalwaystopics, o.sortableonstarttopics);
-			soo.sort = this.pubTops($elem, o.onalwaystopics, o.sortableonsorttopics);
-			soo.activate = this.pubTops($elem, o.onalwaystopics, o.sortableonactivatetopics);
-			soo.deactivate = this.pubTops($elem, o.onalwaystopics, o.sortableondeactivatetopics);
-			soo.over = this.pubTops($elem, o.onalwaystopics, o.sortableonovertopics);
-			soo.out = this.pubTops($elem, o.onalwaystopics, o.sortableonouttopics);
-			soo.remove = this.pubTops($elem, o.onalwaystopics, o.sortableonremovetopics);
-			soo.receive = this.pubTops($elem, o.onalwaystopics, o.sortableonreceivetopics);
-			soo.change = this.pubTops($elem, o.onalwaystopics, o.sortableonchangetopics);
-			soo.update = this.pubTops($elem, o.onalwaystopics, o.sortableonupdatetopics);
+			soo.beforeStop = this.pubTops($elem, o.onalw, o.sortableonbeforestoptopics);
+			soo.stop = this.pubTops($elem, o.onalw, o.sortableonstoptopics);
+			soo.start = this.pubTops($elem, o.onalw, o.sortableonstarttopics);
+			soo.sort = this.pubTops($elem, o.onalw, o.sortableonsorttopics);
+			soo.activate = this.pubTops($elem, o.onalw, o.sortableonactivatetopics);
+			soo.deactivate = this.pubTops($elem, o.onalw, o.sortableondeactivatetopics);
+			soo.over = this.pubTops($elem, o.onalw, o.sortableonovertopics);
+			soo.out = this.pubTops($elem, o.onalw, o.sortableonouttopics);
+			soo.remove = this.pubTops($elem, o.onalw, o.sortableonremovetopics);
+			soo.receive = this.pubTops($elem, o.onalw, o.sortableonreceivetopics);
+			soo.change = this.pubTops($elem, o.onalw, o.sortableonchangetopics);
+			soo.update = this.pubTops($elem, o.onalw, o.sortableonupdatetopics);
 			$elem.sortable(soo);
 		}
 
-		if (o.onchangetopics) {
+		if (o.oncha) {
 			if (o.type) {
 				if (o.type == 'text') {
 					$elem.keyup( function() {
-						_s2j.publishTopic($elem, o.onchangetopics, {});
+						_s2j.publishTopic($elem, o.oncha, {});
 					});
 				}
 				else if (o.type == 'select') {
 					$elem.change( function() {
-						_s2j.publishTopic($elem, o.onchangetopics, {});
+						_s2j.publishTopic($elem, o.oncha, {});
 					});
 				}
 			}
@@ -793,8 +793,8 @@
 				$elem.publish(selectTopic, o);
 			}
 		}
-		if (o.onchangetopics) {
-			$.each(o.onchangetopics.split(','), function(i, cts) {
+		if (o.oncha) {
+			$.each(o.oncha.split(','), function(i, cts) {
 				$elem.publishOnEvent('change', cts);
 			});
 		}
@@ -909,14 +909,14 @@
 				$elem.publish(divTopic);
 			}
 
-			_s2j.publishTopic($elem, o.onalwaystopics, data);
-			_s2j.publishTopic($elem, o.onbeforetopics, data);
+			_s2j.publishTopic($elem, o.onalw, data);
+			_s2j.publishTopic($elem, o.onbef, data);
 			_s2j.publishTopic($elem, o.onopentopics, data);
 		};
-		params.close = this.pubTops($elem, o.onalwaystopics, o.onclosetopics);
-		params.focus = this.pubTops($elem, o.onalwaystopics, o.onfocustopics);
-		params.beforeclose = this.pubTops($elem, o.onalwaystopics, o.onbeforeclosetopics);
-		params.drag = this.pubTops($elem, o.onalwaystopics, o.onchangetopics);
+		params.close = this.pubTops($elem, o.onalw, o.onclosetopics);
+		params.focus = this.pubTops($elem, o.onalw, o.onfocustopics);
+		params.beforeclose = this.pubTops($elem, o.onalw, o.onbeforeclosetopics);
+		params.drag = this.pubTops($elem, o.onalw, o.oncha);
 		$elem.dialog(params);
 	},
 
@@ -977,10 +977,10 @@
 		if (o.selectedtab) {
 			para.selected = o.selectedtab;
 		}
-		if (o.oncompletetopics) {
+		if (o.oncom) {
 			para.ajaxOptions = {
 			dataType :'html',
-			complete :this.pubCom(o.id, o.onalwaystopics, o.oncompletetopics, null, null, {})
+			complete :this.pubCom(o.id, o.onalw, o.oncom, null, null, {})
 			};
 		}
 		else {
@@ -988,26 +988,26 @@
 				dataType :'html'
 			};
 		}
-		if (o.onbeforetopics) {
-			para.show = this.pubTops($elem, o.onalwaystopics, o.onbeforetopics);
+		if (o.onbef) {
+			para.show = this.pubTops($elem, o.onalw, o.onbef);
 		}
-		if (o.onchangetopics) {
-			para.select = this.pubTops($elem, o.onalwaystopics, o.onchangetopics);
+		if (o.oncha) {
+			para.select = this.pubTops($elem, o.onalw, o.oncha);
 		}
 		if (o.onenabletopics) {
-			para.enable = this.pubTops($elem, o.onalwaystopics, o.onenabletopics);
+			para.enable = this.pubTops($elem, o.onalw, o.onenabletopics);
 		}
 		if (o.ondisabletopics) {
-			para.disable = this.pubTops($elem, o.onalwaystopics, o.ondisabletopics);
+			para.disable = this.pubTops($elem, o.onalw, o.ondisabletopics);
 		}
 		if (o.onaddtopics) {
-			para.add = this.pubTops($elem, o.onalwaystopics, o.onaddtopics);
+			para.add = this.pubTops($elem, o.onalw, o.onaddtopics);
 		}
 		if (o.onremovetopics) {
-			para.remove = this.pubTops($elem, o.onalwaystopics, o.onremovetopics);
+			para.remove = this.pubTops($elem, o.onalw, o.onremovetopics);
 		}
-		if (o.oncompletetopics) {
-			para.load = this.pubTops($elem, o.onalwaystopics, o.onremovetopics);
+		if (o.oncom) {
+			para.load = this.pubTops($elem, o.onalw, o.onremovetopics);
 		}
 
 		var tabs = $elem.data('taboptions');
@@ -1071,15 +1071,15 @@
 
 		if (o) {
 
-			var oat = o.onalwaystopics;
+			var oat = o.onalw;
 
-			if (o.onbeforetopics) {
+			if (o.onbef) {
 				params.beforeShow = function(input, inst) {
 					var $input = $(input);
 					var data = {};
 					data.input = input;
 					data.inst = inst;
-					this.publishTopic($input, o.onbeforetopics, data);
+					this.publishTopic($input, o.onbef, data);
 					this.publishTopic($input, oat, data);
 				};
 			}
@@ -1104,22 +1104,22 @@
 				};
 			}
 
-			if (o.onchangetopics) {
+			if (o.oncha) {
 				params.onSelect = function(dateText, inst) {
 					var data = {};
 					data.dateText = dateText;
 					data.inst = inst;
-					this.publishTopic($elem, o.onchangetopics, data);
+					this.publishTopic($elem, o.oncha, data);
 					this.publishTopic($elem, oat, data);
 				};
 			}
 
-			if (o.oncompletetopics) {
+			if (o.oncom) {
 				params.onClose = function(dateText, inst) {
 					var data = {};
 					data.dateText = dateText;
 					data.inst = inst;
-					_s2j.publishTopic($elem, o.oncompletetopics, data);
+					_s2j.publishTopic($elem, o.oncom, data);
 					_s2j.publishTopic($elem, oat, data);
 				};
 			}
@@ -1197,9 +1197,9 @@
 		var params = {};
 		if (o) {
 
-			params.start = this.pubTops($elem, o.onalwaystopics, o.onbeforetopics);
-			params.change = this.pubTops($elem, o.onalwaystopics, o.onchangetopics);
-			params.stop = this.pubTops($elem, o.onalwaystopics, o.oncompletetopics);
+			params.start = this.pubTops($elem, o.onalw, o.onbef);
+			params.change = this.pubTops($elem, o.onalw, o.oncha);
+			params.stop = this.pubTops($elem, o.onalw, o.oncom);
 
 			params.slide = function(event, ui) {
 				if (o.hiddenid) {
@@ -1213,7 +1213,7 @@
 					data.event = event;
 					data.ui = ui;
 
-					this.publishTopic($elem, o.onalwaystopics, data);
+					this.publishTopic($elem, o.onalw, data);
 					this.publishTopic($elem, o.onslidetopics, data);
 				}
 			};
@@ -1263,7 +1263,7 @@
 		var params = {};
 		if (o) {
 
-			params.change = this.pubTops($elem, o.onalwaystopics, o.onchangetopics);
+			params.change = this.pubTops($elem, o.onalw, o.oncha);
 
 			var value = o.value;
 			if (value > 0) {
@@ -1337,7 +1337,7 @@
 				}
 			}
 
-			var onAlwaysTopics = o.onalwaystopics;
+			var onAlwaysTopics = o.onalw;
 			params.changestart = function(event, ui) {
 				if (o.href) {
 					if (typeof $(ui.newHeader).find('a').attr('paramkeys') != "undefined") {
@@ -1351,17 +1351,17 @@
 						});
 					}
 				}
-				if (o.onbeforetopics) {
+				if (o.onbef) {
 					var data = {};
 					data.event = event;
 					data.ui = ui;
 
 					this.publishTopic($elem, onAlwaysTopics, data);
-					this.publishTopic($elem, o.onbeforetopics, data);
+					this.publishTopic($elem, o.onbef, data);
 				}
 			};
 
-			params.change = this.pubTops($elem, o.onalwaystopics, o.onchangetopics);
+			params.change = this.pubTops($elem, o.onalw, o.oncha);
 		}
 		$elem.accordion(params);
 		if (o.href && active === true) {
@@ -1453,23 +1453,23 @@
 			params.minLength = o.minimum;
 		}
 
-		if (o.onsuccesstopics) {
-			params.open = this.pubTops($elem, o.onalwaystopics, o.onsuccesstopics);
+		if (o.onsuc) {
+			params.open = this.pubTops($elem, o.onalw, o.onsuc);
 		}
-		if (o.onchangetopics) {
-			params.change = this.pubTops($elem, o.onalwaystopics, o.onchangetopics);
+		if (o.oncha) {
+			params.change = this.pubTops($elem, o.onalw, o.oncha);
 		}
-		if (o.oncompletetopics) {
-			params.close = this.pubTops($elem, o.onalwaystopics, o.oncompletetopics);
+		if (o.oncom) {
+			params.close = this.pubTops($elem, o.onalw, o.oncom);
 		}
 		if (o.onsearchtopics) {
-			params.search = this.pubTops($elem, o.onalwaystopics, o.onsearchtopics);
+			params.search = this.pubTops($elem, o.onalw, o.onsearchtopics);
 		}
 		if (o.onfocustopics) {
-			params.focus = this.pubTops($elem, o.onalwaystopics, o.onfocustopics);
+			params.focus = this.pubTops($elem, o.onalw, o.onfocustopics);
 		}
 		if (o.onselecttopics) {
-			params.select = this.pubTops($elem, o.onalwaystopics, o.onselecttopics);
+			params.select = this.pubTops($elem, o.onalw, o.onselecttopics);
 		}
 
 		if (o.selectBox === false) {
@@ -1518,7 +1518,7 @@
 
 			// Init Buttonset after elements loaded via AJAX.
 			$elem.subscribe(buttonsetTopic, function(event, data) {
-				if (o.onchangetopics) {
+				if (o.oncha) {
 					var selectString = _s2j.escId(o.id) + " > input";
 					var elements = $(selectString);
 
@@ -1526,14 +1526,14 @@
 						elements.click( function() {
 							this.blur();
 							this.focus();
-							$.each(o.onchangetopics.split(','), function(i, cts) {
+							$.each(o.oncha.split(','), function(i, cts) {
 								$elem.publish(cts);
 							});
 						});
 					}
 					else {
 						elements.change( function() {
-							$.each(o.onchangetopics.split(','), function(i, cts) {
+							$.each(o.oncha.split(','), function(i, cts) {
 								$elem.publish(cts);
 							});
 						});
@@ -1542,11 +1542,11 @@
 
 				$elem.buttonset(o);
 			});
-			if (o.onsuccesstopics && o.onsuccesstopics != '') {
-				o.onsuccesstopics = buttonsetTopic;
+			if (o.onsuc && o.onsuc != '') {
+				o.onsuc = buttonsetTopic;
 			}
 			else {
-				o.onsuccesstopics = buttonsetTopic;
+				o.onsuc = buttonsetTopic;
 			}
 
 			_s2j.subscribeTopics($elem, o.reloadtopics, _s2j.handler.load, o);
@@ -1556,9 +1556,9 @@
 			$elem.publish(buttonsetLoadTopic, o);
 		}
 		else {
-			if (o.onchangetopics) {
+			if (o.oncha) {
 				$(_s2j.escId(o.id) + " > input").change( function() {
-					$.each(o.onchangetopics.split(','), function(i, cts) {
+					$.each(o.oncha.split(','), function(i, cts) {
 						$elem.publish(cts);
 					});
 				});
@@ -1601,7 +1601,7 @@
 
 				var indi = o.indicatorid;
 				_s2j.showIndicator(o.indicatorid);
-				var onAlwaysTopics = o.onalwaystopics;
+				var onAlwaysTopics = o.onalw;
 
 				var modus = 'html';
 				if (o.type) {
@@ -1642,9 +1642,9 @@
 				}
 				var params = {};
 
-				params.success = _s2j.pubSuc(event.target, onAlwaysTopics, o.onsuccesstopics, indi, modus, o);
-				params.complete = _s2j.pubCom(event.target, onAlwaysTopics, o.oncompletetopics, o.targets, indi, o);
-				params.error = _s2j.pubErr(event.target, onAlwaysTopics, o.onerrortopics, o.errortext, modus);
+				params.success = _s2j.pubSuc(event.target, onAlwaysTopics, o.onsuc, indi, modus, o);
+				params.complete = _s2j.pubCom(event.target, onAlwaysTopics, o.oncom, o.targets, indi, o);
+				params.error = _s2j.pubErr(event.target, onAlwaysTopics, o.onerr, o.errortext, modus);
 
 				// load container using ajax
 				if (o.href) {
@@ -1690,7 +1690,7 @@
 					o.options = params;
 					// publish all 'before' and 'always' topics
 					_s2j.publishTopic(container, onAlwaysTopics, o);
-					_s2j.publishTopic(container, o.onbeforetopics, o);
+					_s2j.publishTopic(container, o.onbef, o);
 
 					// Execute Ajax Request
 					$.ajax(params);
@@ -1769,10 +1769,10 @@
 			orginal.options = formoptions;
 			orginal.options.submit = true;
 
-			_s2j.publishTopic(container, o.onalwaystopics, orginal);
+			_s2j.publishTopic(container, o.onalw, orginal);
 
-			if (o.onbeforetopics) {
-				$.each(o.onbeforetopics.split(','), function(i, topic) {
+			if (o.onbef) {
+				$.each(o.onbef.split(','), function(i, topic) {
 					elem.publish(topic, elem, orginal);
 					var submitForm = orginal.options.submit;
 					// cancel form submission
@@ -1855,9 +1855,9 @@
 			return orginal.options.submit;
 		};
 
-		params.success = _s2j.pubSuc(elem, o.onalwaystopics, o.onsuccesstopics, indi, 'form', o);
-		params.complete = _s2j.pubCom(elem, o.onalwaystopics, o.oncompletetopics, o.targets, indi, o);
-		params.error = _s2j.pubErr(elem, o.onalwaystopics, o.onerrortopics, o.errortext, 'html');
+		params.success = _s2j.pubSuc(elem, o.onalw, o.onsuc, indi, 'form', o);
+		params.complete = _s2j.pubCom(elem, o.onalw, o.oncom, o.targets, indi, o);
+		params.error = _s2j.pubErr(elem, o.onalw, o.onerr, o.errortext, 'html');
 
 		$.each(o.formids.split(','), function(i, fid) {
 			_s2j.log('submit form : ' + fid);

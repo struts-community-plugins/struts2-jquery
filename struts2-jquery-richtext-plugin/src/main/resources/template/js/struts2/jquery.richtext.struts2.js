@@ -55,7 +55,7 @@
 					if (o.onEditorReadyTopics) {
 						var data = {};
 						$.struts2_jquery.publishTopic($elem, o.onEditorReadyTopics, data);
-						$.struts2_jquery.publishTopic($elem, o.onalwaystopics, data);
+						$.struts2_jquery.publishTopic($elem, o.onalw, data);
 					}
 				};
 				
@@ -77,11 +77,11 @@
 					$elem.subscribe(ckeditorTopic, function(event,data) {
 							$elem.ckeditor(callbackFunction, o);
 					});
-					if(o.oncompletetopics && o.oncompletetopics != '') {
-						o.oncompletetopics = o.oncompletetopics+','+ckeditorTopic;
+					if(o.oncom && o.oncom != '') {
+						o.oncom = o.oncom+','+ckeditorTopic;
 					}
 					else {
-						o.oncompletetopics = ckeditorTopic;
+						o.oncom = ckeditorTopic;
 					}
 					
 					this.container($elem, o);
@@ -93,14 +93,14 @@
 				if (o.onblurtopics) {
 					CKEDITOR.instances[o.id].on('blur', function() {
 						$.struts2_jquery.publishTopic($elem, o.onblurtopics, {});
-						$.struts2_jquery.publishTopic($elem, o.onalwaystopics, {});
+						$.struts2_jquery.publishTopic($elem, o.onalw, {});
 		      });
 				}
 				
 				if (o.onfocustopics) {
 					CKEDITOR.instances[o.id].on('focus', function() {
 						$.struts2_jquery.publishTopic($elem, o.onfocustopics, {});
-						$.struts2_jquery.publishTopic($elem, o.onalwaystopics, {});
+						$.struts2_jquery.publishTopic($elem, o.onalw, {});
 		      });
 				}
 			},
@@ -112,9 +112,10 @@
 				
 				//Cleanup old tinymce instances
 				if ($.struts2_jquery_richtext.editorsTinymce.length > 0 && tinyMCE.get(o.id)) {
-					if( tinyMCE.get(o.id) !== undefined ) {
+					var ins = tinyMCE.get(o.id);
+					if( ins !== undefined ) {
 						this.log('cleanup tinymce : '+o.id);
-						delete tinyMCE.get(o.id);
+						//delete ins;
 					}
 				}
 				$.struts2_jquery_richtext.editorsTinymce[$.struts2_jquery_richtext.editorsTinymce.length] = o.id;
@@ -133,7 +134,7 @@
 							data.editor = ed;
 							data.content = l.content;
 							$.struts2_jquery.publishTopic($elem, o.onsavetopics, data);
-							$.struts2_jquery.publishTopic($elem, o.onalwaystopics, data);
+							$.struts2_jquery.publishTopic($elem, o.onalw, data);
 						}
 						return false;
 					});
@@ -142,8 +143,8 @@
 							var data = {};
 							data.editor = ed;
 							data.content = l.content;
-							$.struts2_jquery.publishTopic($elem, o.onchangetopics, data);
-							$.struts2_jquery.publishTopic($elem, o.onalwaystopics, data);
+							$.struts2_jquery.publishTopic($elem, o.oncha, data);
+							$.struts2_jquery.publishTopic($elem, o.onalw, data);
 						}
 					});
 				};
@@ -173,11 +174,11 @@
 							});
 						});
 					});
-					if(o.oncompletetopics && o.oncompletetopics != '') {
-						o.oncompletetopics = tinymceTopic;
+					if(o.oncom && o.oncom != '') {
+						o.oncom = tinymceTopic;
 					}
 					else {
-						o.oncompletetopics = tinymceTopic;
+						o.oncom = tinymceTopic;
 					}
 					
 					this.container($elem, o);
