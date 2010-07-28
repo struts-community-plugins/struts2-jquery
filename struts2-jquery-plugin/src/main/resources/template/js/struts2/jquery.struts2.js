@@ -16,7 +16,7 @@
  *
  */
 
-/*global jQuery, _s2j, document, window, StrutsUtils  */
+/*global jQuery, document, window, StrutsUtils  */
 /*jslint evil: true */
 
 ( function($) {
@@ -53,8 +53,9 @@
 	 * set debug to true in the head tag to enable debug logging
 	 *  */
 	log : function(message) {
-		if (this.debug) {
-			var msg = this.debugPrefix + message;
+		var self = this;
+		if (self.debug) {
+			var msg = self.debugPrefix + message;
 			if (window.console && window.console.log) {
 				window.console.log(msg);
 			}
@@ -71,7 +72,7 @@
 
 	/** Load required JavaScript Resourcess */
 	require : function(files, callBack, basePath) {
-
+		var self = this;
 		var successFunction, path;
 		successFunction = callBack || function() {
 		};
@@ -88,8 +89,8 @@
 			files = new Array(files);
 		}
 		$.each(files, function(i, file) {
-			if (!_s2j.scriptCache[file]) {
-				_s2j.log('load require script ' + (path + file));
+			if (!self.scriptCache[file]) {
+				self.log('load require script ' + (path + file));
 				$.ajax( {
 				type :"GET",
 				url :path + file,
@@ -98,14 +99,15 @@
 				cache :true,
 				async :false
 				});
-				_s2j.scriptCache[file] = true;
+				self.scriptCache[file] = true;
 			}
 		});
 	},
 
 	/** Load required CSS Files */
 	requireCss : function(cssFile, basePath) {
-		if (!this.styleCache[cssFile]) {
+		var self = this;
+		if (!self.styleCache[cssFile]) {
 			var path, cssref;
 
 			path = basePath || null;
@@ -115,48 +117,50 @@
 			else if (path === null && $.scriptPath) {
 				path = $.scriptPath;
 			}
-			this.log('load require css ' + (path + cssFile));
+			self.log('load require css ' + (path + cssFile));
 
 			cssref = document.createElement("link");
 			cssref.setAttribute("rel", "stylesheet");
 			cssref.setAttribute("type", "text/css");
 			cssref.setAttribute("href", (path + cssFile));
 			document.getElementsByTagName("head")[0].appendChild(cssref);
-			this.styleCache[cssFile] = true;
+			self.styleCache[cssFile] = true;
 		}
 	},
 
 	/** Helper function to hide indicator */
 	hideIndicator : function(indi) {
+		var self = this;
 		if (indi) {
-			$(this.escId(indi)).hide();
+			$(self.escId(indi)).hide();
 		}
-		if (this.defaults.indicator != '') {
-			$(this.escId(this.defaults.indicator)).hide();
+		if (self.defaults.indicator != '') {
+			$(self.escId(self.defaults.indicator)).hide();
 		}
 	},
 
 	/** Helper function to show indicator */
 	showIndicator : function(indi) {
+		var self = this;
 		if (indi) {
-			$(this.escId(indi)).show();
+			$(self.escId(indi)).show();
 		}
-		if (this.defaults.indicator != '') {
-			$(this.escId(this.defaults.indicator)).show();
+		if (self.defaults.indicator != '') {
+			$(self.escId(self.defaults.indicator)).show();
 		}
 	},
 
 	/** Helper function to publish UI topics */
 	pubTops : function($elem, always, topics) {
-
+		var self = this;
 		if (topics) {
 			return function(event, ui) {
 				var data = {};
 				data.event = event;
 				data.ui = ui;
 
-				_s2j.publishTopic($elem, topics, data);
-				_s2j.publishTopic($elem, always, data);
+				self.publishTopic($elem, topics, data);
+				self.publishTopic($elem, always, data);
 			};
 		}
 		else {
@@ -166,9 +170,10 @@
 
 	/** Helper function to subscribe topics */
 	subscribeTopics : function(elem, topics, handler, o) {
+		var self = this;
 		if (topics && elem) {
 			$.each(topics.split(','), function(i, t) {
-				_s2j.log('subscribe topic : ' + t);
+				self.log('subscribe topic : ' + t);
 				if (elem.isSubscribed(t)) {
 					elem.unsubscribe(t);
 				}
@@ -179,9 +184,10 @@
 
 	/** Helper function to publish topics */
 	publishTopic : function(elem, topics, data) {
+		var self = this;
 		if (topics) {
 			$.each(topics.split(','), function(i, to) {
-				_s2j.log('publish topic : ' + to);
+				self.log('publish topic : ' + to);
 				elem.publish(to, elem, data);
 			});
 		}
@@ -191,6 +197,7 @@
 	 * handle AJAX result, insert it into container or build select box, radiobutton, checkboxes etc.
 	 * */
 	pubSuc : function(cid, always, stopics, indi, modus, o) {
+		var self = this;
 		var c = $(cid);
 		return function(data, status, request) {
 			var orginal = {};
@@ -302,20 +309,20 @@
 			}
 
 			if (stopics) {
-				_s2j.publishTopic(c, stopics, orginal);
-				_s2j.publishTopic(c, always, orginal);
+				self.publishTopic(c, stopics, orginal);
+				self.publishTopic(c, always, orginal);
 			}
 
 			// Use BBQ for Ajaxhistory
-			if (_s2j.ajaxhistory) {
+			if (self.ajaxhistory) {
 				var ahparams = {};
 				ahparams.cid = cid;
 				ahparams.options = o;
 
 				$(window).bind('hashchange', ahparams, function(e) {
 					var topic = e.getState(e.data.cid.id) || '';
-					if (e.type === topic || topic == '' || topic == _s2j.lasttopic) { return; }
-					_s2j.lasttopic = topic;
+					if (e.type === topic || topic == '' || topic == self.lasttopic) { return; }
+					self.lasttopic = topic;
 					$.publish(topic, e.data.options);
 				});
 			}
@@ -324,16 +331,17 @@
 
 	/** publish complete topics */
 	pubCom : function(cid, always, ctopics, targets, indi, o) {
+		var self = this;
 		var c = $(cid);
 		return function(request, status) {
 			var orginal = {};
 			orginal.request = request;
 			orginal.status = status;
 
-			_s2j.hideIndicator(indi);
+			self.hideIndicator(indi);
 
-			_s2j.publishTopic(c, ctopics, orginal);
-			_s2j.publishTopic(c, always, orginal);
+			self.publishTopic(c, ctopics, orginal);
+			self.publishTopic(c, always, orginal);
 
 			var ec = targets;
 			if (!ec) {
@@ -342,13 +350,13 @@
 			if (ec) {
 				var divEffectTopic = '_sj_div_effect_';
 				$.each(ec.split(','), function(i, target) {
-					var effect_elem = $(_s2j.escId(target));
+					var effect_elem = $(self.escId(target));
 					effect_elem.publish(divEffectTopic + target, effect_elem);
 				});
 			}
 			if (o.resizable) {
-				if (!_s2j.loadAtOnce) {
-					_s2j.require( [ "js/base/jquery.ui.widget" + _s2j.minSuffix + ".js", "js/base/jquery.ui.mouse" + _s2j.minSuffix + ".js", "js/base/jquery.ui.resizable" + _s2j.minSuffix + ".js" ]);
+				if (!self.loadAtOnce) {
+					self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js" ]);
 				}
 				var ros = o.resizableoptions;
 				var ro = window[ros];
@@ -358,9 +366,9 @@
 				else {
 					ro = {};
 				}
-				ro.start = _s2j.pubTops(c, o.onalw, o.resizableonstarttopics);
-				ro.stop = _s2j.pubTops(c, o.onalw, o.resizableonstoptopics);
-				ro.resize = _s2j.pubTops(c, o.onalw, o.resizableonresizetopics);
+				ro.start = self.pubTops(c, o.onalw, o.resizableonstarttopics);
+				ro.stop = self.pubTops(c, o.onalw, o.resizableonstoptopics);
+				ro.resize = self.pubTops(c, o.onalw, o.resizableonresizetopics);
 				c.resizable(ro);
 			}
 		};
@@ -368,6 +376,7 @@
 
 	/** publish error topics */
 	pubErr : function(cid, always, etopics, etext, modus) {
+		var self = this;
 		var c = $(cid);
 		if (etopics || etext) {
 			return function(request, status, error) {
@@ -380,13 +389,13 @@
 					if (etext && etext != "false") {
 						c.html(etext);
 					}
-					else if (_s2j.defaults.errorText !== null) {
-						c.html(_s2j.defaults.errorText);
+					else if (self.defaults.errorText !== null) {
+						c.html(self.defaults.errorText);
 					}
 				}
 
-				_s2j.publishTopic(c, etopics, orginal);
-				_s2j.publishTopic(c, always, orginal);
+				self.publishTopic(c, etopics, orginal);
+				self.publishTopic(c, always, orginal);
 			};
 		}
 		else {
@@ -405,6 +414,7 @@
 
 	/** bind a html element to an struts2 jquery action */
 	bind : function(el, o) {
+		var self = this;
 
 		if (el) {
 			var $el = $(el);
@@ -414,17 +424,17 @@
 			o.tagname = tag;
 
 			// extension point to allow custom pre-binding processing
-			if (typeof (this.preBind) != "function" || this.preBind($el)) {
+			if (typeof (self.preBind) != "function" || self.preBind($el)) {
 
 				if (!o.jqueryaction) {
 					o.jqueryaction = tag;
 				}
 
-				this.log('bind ' + o.jqueryaction + ' on ' + o.id);
-				this[o.jqueryaction]($el, o);
+				self.log('bind ' + o.jqueryaction + ' on ' + o.id);
+				self[o.jqueryaction]($el, o);
 
 				// extension point to allow custom post-binding processing
-				if (this.postBind && (typeof (this.postBind) == "function")) { return this.postBind(el); }
+				if (self.postBind && (typeof (self.postBind) == "function")) { return self.postBind(el); }
 			}
 
 		}
@@ -432,23 +442,24 @@
 
 	/** register a specific struts2 jquery action */
 	jqueryaction : function(name, binder) {
-
+		var self = this;
 		if (name && binder) {
-			this[name] = binder;
+			self[name] = binder;
 		}
 	},
 
 	/** opens a dialog if attribute openDialog in Anchor or Submit Tag is set to true */
 	opendialog : function($elem, o) {
-		this.log('open dialog : ' + o.opendialog);
+		var self = this;
+		self.log('open dialog : ' + o.opendialog);
 
 		if (o.opendialog) {
-			var dialog = $(this.escId(o.opendialog));
+			var dialog = $(self.escId(o.opendialog));
 			$elem.bind('click', function(event) {
 				if (o.href && o.href != '#') {
 					o.targets = o.opendialog;
 					var divTopic = '_s2j_dialog_load_' + o.id;
-					_s2j.subscribeTopics(dialog, divTopic, _s2j.handler.load, o);
+					self.subscribeTopics(dialog, divTopic, self.handler.load, o);
 					dialog.publish(divTopic, o);
 				}
 
@@ -460,7 +471,7 @@
 	
 	/** Handles remote and effect actions */
 	action : function($elem, o, loadHandler, type) {
-
+		var self = this;
 		var actionTopic = '_sj_action_' + o.id;
 		var href = o.href;
 
@@ -486,7 +497,7 @@
 		if (o.targets) {
 			$.each(o.targets.split(','), function(i, target) {
 				effect.targets = target;
-				var tarelem = $(_s2j.escId(target));
+				var tarelem = $(self.escId(target));
 
 				//when no target is found (e.g. a json call)
 				// the action was subscribed to the publisher
@@ -494,16 +505,16 @@
 					tarelem = $elem;
 				}
 				
-				_s2j.subscribeTopics(tarelem, actionTopic, loadHandler, o);
-				_s2j.subscribeTopics(tarelem, effectTopic + target, _s2j.handler.effect, effect);
+				self.subscribeTopics(tarelem, actionTopic, loadHandler, o);
+				self.subscribeTopics(tarelem, effectTopic + target, self.handler.effect, effect);
 
-				if (_s2j.ajaxhistory) {
+				if (self.ajaxhistory) {
 					var params = {};
 					params.target = target;
 					params.topic = actionTopic;
 					$elem.bind('click', params, function(event) {
-						_s2j.historyelements[event.data.target] = event.data.topic;
-						$.bbq.pushState(_s2j.historyelements);
+						self.historyelements[event.data.target] = event.data.topic;
+						$.bbq.pushState(self.historyelements);
 						return false;
 					});
 				}
@@ -512,11 +523,11 @@
 		else { // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 			effect.targets = o.id;
-			$(this.escId(o.id)).subscribe(effectTopic + o.id, this.handler.effect, effect);
+			$(self.escId(o.id)).subscribe(effectTopic + o.id, self.handler.effect, effect);
 
 			// bind event topic listeners
 			if (o.onbef || o.oncom || o.onsuc || o.onerr) {
-				_s2j.subscribeTopics($elem, actionTopic, loadHandler, o);
+				self.subscribeTopics($elem, actionTopic, loadHandler, o);
 			}
 		}
 
@@ -528,18 +539,19 @@
 
 	/** Handle all Container Elements Divs, Textarea, Textfield */
 	container : function($elem, o) {
-		this.log('container : ' + o.id);
-		this.action($elem, o, this.handler.load, 'div');
+		var self = this;
+		self.log('container : ' + o.id);
+		self.action($elem, o, self.handler.load, 'div');
 		var divTopic = '_s2j_div_load_' + o.id;
 		var divEffectTopic = '_s2j_div_effect_' + o.id;
 
 		// load div using ajax only when href is specified or form is defined
 		if ((o.formids && !o.type) || (o.href && o.href != '#')) {
 			if (o.href != '#') {
-				_s2j.subscribeTopics($elem, o.reloadtopics, _s2j.handler.load, o);
-				_s2j.subscribeTopics($elem, o.listentopics, _s2j.handler.load, o);
+				self.subscribeTopics($elem, o.reloadtopics, self.handler.load, o);
+				self.subscribeTopics($elem, o.listentopics, self.handler.load, o);
 				// publishing not triggering to prevent event propagation issues
-				_s2j.subscribeTopics($elem, divTopic, _s2j.handler.load, o);
+				self.subscribeTopics($elem, divTopic, self.handler.load, o);
 
 				if (o.bindon) {
 					var $bindElement = $('#' + o.bindon);
@@ -558,11 +570,11 @@
 
 			}
 			else if (o.formids) {
-				if (!this.loadAtOnce) {
-					this.require("js/plugins/jquery.form" + this.minSuffix + ".js");
+				if (!self.loadAtOnce) {
+					self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
 				}
 				o.targets = o.id;
-				this.formsubmit($elem, o, divTopic);
+				self.formsubmit($elem, o, divTopic);
 				if (!o.deferredloading) {
 					$elem.publish(divTopic, o);
 				}
@@ -575,7 +587,7 @@
 				effect.effect = o.effect;
 				effect.effectoptions = o.effectoptions;
 				effect.effectduration = o.effectduration;
-				_s2j.subscribeTopics($elem, divEffectTopic, _s2j.handler.effect, effect);
+				self.subscribeTopics($elem, divEffectTopic, self.handler.effect, effect);
 			}
 
 			if (o.events || o.bindon) {
@@ -583,7 +595,7 @@
 				var bindel = $elem;
 				var eventsStr = 'click';
 				if (o.bindon) {
-					bindel = $(this.escId(o.bindon));
+					bindel = $(self.escId(o.bindon));
 				}
 				if (o.events) {
 					eventsStr = o.events;
@@ -618,8 +630,8 @@
 			}
 
 			if (o.resizable) {
-				if (!this.loadAtOnce) {
-					this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.resizable" + this.minSuffix + ".js" ]);
+				if (!self.loadAtOnce) {
+					self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js" ]);
 				}
 				var ros = o.resizableoptions;
 				var ro = window[ros];
@@ -629,17 +641,17 @@
 				else {
 					ro = {};
 				}
-				ro.start = this.pubTops($elem, o.onalw, o.resizableonstarttopics);
-				ro.stop = this.pubTops($elem, o.onalw, o.resizableonstoptopics);
-				ro.resize = this.pubTops($elem, o.onalw, o.resizableonresizetopics);
+				ro.start = self.pubTops($elem, o.onalw, o.resizableonstarttopics);
+				ro.stop = self.pubTops($elem, o.onalw, o.resizableonstoptopics);
+				ro.resize = self.pubTops($elem, o.onalw, o.resizableonresizetopics);
 				$elem.resizable(ro);
 			}
 		}
 
 		if (o.draggable) {
-			this.log('draggable : ' + o.id);
-			if (!this.loadAtOnce) {
-				this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.draggable" + this.minSuffix + ".js" ]);
+			self.log('draggable : ' + o.id);
+			if (!self.loadAtOnce) {
+				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js" ]);
 			}
 			var daos = o.draggableoptions;
 			var dao = window[daos];
@@ -649,16 +661,16 @@
 			else {
 				dao = {};
 			}
-			dao.start = this.pubTops($elem, o.onalw, o.draggableonstarttopics);
-			dao.stop = this.pubTops($elem, o.onalw, o.draggableonstoptopics);
-			dao.drap = this.pubTops($elem, o.onalw, o.draggableondragtopics);
+			dao.start = self.pubTops($elem, o.onalw, o.draggableonstarttopics);
+			dao.stop = self.pubTops($elem, o.onalw, o.draggableonstoptopics);
+			dao.drap = self.pubTops($elem, o.onalw, o.draggableondragtopics);
 			$elem.draggable(dao);
 		}
 
 		if (o.droppable) {
-			this.log('droppable : ' + o.id);
-			if (!this.loadAtOnce) {
-				this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.draggable" + this.minSuffix + ".js", "js/base/jquery.ui.droppable" + this.minSuffix + ".js" ]);
+			self.log('droppable : ' + o.id);
+			if (!self.loadAtOnce) {
+				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.ui.droppable" + self.minSuffix + ".js" ]);
 			}
 			var doos = o.droppableoptions;
 			var doo = window[doos];
@@ -668,18 +680,18 @@
 			else {
 				doo = {};
 			}
-			doo.activate = this.pubTops($elem, o.onalw, o.droppableonactivatetopics);
-			doo.deactivate = this.pubTops($elem, o.onalw, o.droppableondeactivatetopics);
-			doo.start = this.pubTops($elem, o.onalw, o.droppableonstarttopics);
-			doo.stop = this.pubTops($elem, o.onalw, o.droppableonstoptopics);
-			doo.drop = this.pubTops($elem, o.onalw, o.droppableondroptopics);
+			doo.activate = self.pubTops($elem, o.onalw, o.droppableonactivatetopics);
+			doo.deactivate = self.pubTops($elem, o.onalw, o.droppableondeactivatetopics);
+			doo.start = self.pubTops($elem, o.onalw, o.droppableonstarttopics);
+			doo.stop = self.pubTops($elem, o.onalw, o.droppableonstoptopics);
+			doo.drop = self.pubTops($elem, o.onalw, o.droppableondroptopics);
 			$elem.droppable(doo);
 		}
 
 		if (o.selectable) {
-			this.log('selectable : ' + o.id);
-			if (!this.loadAtOnce) {
-				this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.selectable" + this.minSuffix + ".js" ]);
+			self.log('selectable : ' + o.id);
+			if (!self.loadAtOnce) {
+				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.selectable" + self.minSuffix + ".js" ]);
 			}
 			var seos = o.selectableoptions;
 			var seo = window[seos];
@@ -689,19 +701,19 @@
 			else {
 				seo = {};
 			}
-			seo.selected = this.pubTops($elem, o.onalw, o.selectableonselectedtopics);
-			seo.selecting = this.pubTops($elem, o.onalw, o.selectableonselectingtopics);
-			seo.start = this.pubTops($elem, o.onalw, o.selectableonstarttopics);
-			seo.stop = this.pubTops($elem, o.onalw, o.selectableonstoptopics);
-			seo.unselected = this.pubTops($elem, o.onalw, o.selectableonunselectedtopics);
-			seo.unselecting = this.pubTops($elem, o.onalw, o.selectableonunselectingtopics);
+			seo.selected = self.pubTops($elem, o.onalw, o.selectableonselectedtopics);
+			seo.selecting = self.pubTops($elem, o.onalw, o.selectableonselectingtopics);
+			seo.start = self.pubTops($elem, o.onalw, o.selectableonstarttopics);
+			seo.stop = self.pubTops($elem, o.onalw, o.selectableonstoptopics);
+			seo.unselected = self.pubTops($elem, o.onalw, o.selectableonunselectedtopics);
+			seo.unselecting = self.pubTops($elem, o.onalw, o.selectableonunselectingtopics);
 			$elem.selectable(seo);
 		}
 
 		if (o.sortable) {
-			this.log('sortable : ' + o.id);
-			if (!this.loadAtOnce) {
-				this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.sortable" + this.minSuffix + ".js" ]);
+			self.log('sortable : ' + o.id);
+			if (!self.loadAtOnce) {
+				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.sortable" + self.minSuffix + ".js" ]);
 			}
 			var soos = o.sortableoptions;
 			var soo = window[soos];
@@ -711,18 +723,18 @@
 			else {
 				soo = {};
 			}
-			soo.beforeStop = this.pubTops($elem, o.onalw, o.sortableonbeforestoptopics);
-			soo.stop = this.pubTops($elem, o.onalw, o.sortableonstoptopics);
-			soo.start = this.pubTops($elem, o.onalw, o.sortableonstarttopics);
-			soo.sort = this.pubTops($elem, o.onalw, o.sortableonsorttopics);
-			soo.activate = this.pubTops($elem, o.onalw, o.sortableonactivatetopics);
-			soo.deactivate = this.pubTops($elem, o.onalw, o.sortableondeactivatetopics);
-			soo.over = this.pubTops($elem, o.onalw, o.sortableonovertopics);
-			soo.out = this.pubTops($elem, o.onalw, o.sortableonouttopics);
-			soo.remove = this.pubTops($elem, o.onalw, o.sortableonremovetopics);
-			soo.receive = this.pubTops($elem, o.onalw, o.sortableonreceivetopics);
-			soo.change = this.pubTops($elem, o.onalw, o.sortableonchangetopics);
-			soo.update = this.pubTops($elem, o.onalw, o.sortableonupdatetopics);
+			soo.beforeStop = self.pubTops($elem, o.onalw, o.sortableonbeforestoptopics);
+			soo.stop = self.pubTops($elem, o.onalw, o.sortableonstoptopics);
+			soo.start = self.pubTops($elem, o.onalw, o.sortableonstarttopics);
+			soo.sort = self.pubTops($elem, o.onalw, o.sortableonsorttopics);
+			soo.activate = self.pubTops($elem, o.onalw, o.sortableonactivatetopics);
+			soo.deactivate = self.pubTops($elem, o.onalw, o.sortableondeactivatetopics);
+			soo.over = self.pubTops($elem, o.onalw, o.sortableonovertopics);
+			soo.out = self.pubTops($elem, o.onalw, o.sortableonouttopics);
+			soo.remove = self.pubTops($elem, o.onalw, o.sortableonremovetopics);
+			soo.receive = self.pubTops($elem, o.onalw, o.sortableonreceivetopics);
+			soo.change = self.pubTops($elem, o.onalw, o.sortableonchangetopics);
+			soo.update = self.pubTops($elem, o.onalw, o.sortableonupdatetopics);
 			$elem.sortable(soo);
 		}
 
@@ -730,12 +742,12 @@
 			if (o.type) {
 				if (o.type == 'text') {
 					$elem.keyup( function() {
-						_s2j.publishTopic($elem, o.oncha, {});
+						self.publishTopic($elem, o.oncha, {});
 					});
 				}
 				else if (o.type == 'select') {
 					$elem.change( function() {
-						_s2j.publishTopic($elem, o.oncha, {});
+						self.publishTopic($elem, o.oncha, {});
 					});
 				}
 			}
@@ -744,7 +756,8 @@
 
 	/** Handle the Anchor Element */
 	anchor : function($elem, o) {
-		this.log('anchor : ' + o.id);
+		var self = this;
+		self.log('anchor : ' + o.id);
 
 		if (o.onclicktopics) {
 			$.each(o.onclicktopics.split(','), function(i, topic) {
@@ -753,25 +766,25 @@
 		}
 
 		if (o.opendialog) {
-			this.opendialog($elem, o);
+			self.opendialog($elem, o);
 		}
 		if (o.button) {
-			this.jquerybutton($elem, o);
+			self.jquerybutton($elem, o);
 		}
 
 		if (o.formids) {
 			var formTopic = '_s2j_form_topic_' + o.id;
-			this.formsubmit($elem, o, formTopic);
+			self.formsubmit($elem, o, formTopic);
 			$elem.publishOnEvent('click', formTopic);
 		}
 		else {
 			
-			this.action($elem, o, this.handler.load, 'a');
+			self.action($elem, o, self.handler.load, 'a');
 			if(o.targets && (o.reloadtopic || o.listentopics)) {
 				$.each(o.targets.split(','), function(i, t) {
-					var te = $(_s2j.escId(t));
-					_s2j.subscribeTopics(te, o.reloadtopics, _s2j.handler.load, o);
-					_s2j.subscribeTopics(te, o.listentopics, _s2j.handler.load, o);
+					var te = $(self.escId(t));
+					self.subscribeTopics(te, o.reloadtopics, self.handler.load, o);
+					self.subscribeTopics(te, o.listentopics, self.handler.load, o);
 				});
 			}
 		}
@@ -779,17 +792,18 @@
 
 	/** Handle dynamic Select Boxes */
 	select : function($elem, o) {
-		this.log('select : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require("js/plugins/jquery.form" + this.minSuffix + ".js");
+		var self = this;
+		self.log('select : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
 		}
 		var selectTopic = '_s2j_topic_load_' + o.id;
 
 		if (o.href && o.href != '#') {
 
-			_s2j.subscribeTopics($elem, o.reloadtopics, _s2j.handler.load, o);
-			_s2j.subscribeTopics($elem, o.listentopics, _s2j.handler.load, o);
-			_s2j.subscribeTopics($elem, selectTopic, _s2j.handler.load, o);
+			self.subscribeTopics($elem, o.reloadtopics, self.handler.load, o);
+			self.subscribeTopics($elem, o.listentopics, self.handler.load, o);
+			self.subscribeTopics($elem, selectTopic, self.handler.load, o);
 			if (!o.deferredloading) {
 				$elem.publish(selectTopic, o);
 			}
@@ -803,17 +817,18 @@
 
 	/** Handle the Submit Button */
 	button : function($elem, o) {
+		var self = this;
 		var formTopic = '_s2j_form_topic_' + o.id;
 
 		if (o.opendialog) {
-			this.opendialog($elem, o);
+			self.opendialog($elem, o);
 		}
 		if (o.button) {
-			this.jquerybutton($elem, o);
+			self.jquerybutton($elem, o);
 		}
 
 		if (o.formids !== undefined) {
-			this.formsubmit($elem, o, formTopic);
+			self.formsubmit($elem, o, formTopic);
 		}
 		else {
 			var cform = $elem.parents('form:first')[0];
@@ -828,10 +843,10 @@
 					cf.attr('id', randomid);
 					o.formids = randomid;
 				}
-				this.formsubmit($elem, o, formTopic);
+				self.formsubmit($elem, o, formTopic);
 			}
 			else {
-				this.action($elem, o, this.handler.load, 'a');
+				self.action($elem, o, self.handler.load, 'a');
 			}
 		}
 		if (o.onclicktopics) {
@@ -845,25 +860,26 @@
 	
 	/** Handle all AJAX Forms submitted from Anchor or Submit Button */
 	formsubmit : function($elem, o, topic) {
-		this.log('formsubmit : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require("js/plugins/jquery.form" + this.minSuffix + ".js");
+		var self = this;
+		self.log('formsubmit : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
 		}
 
-		_s2j.subscribeTopics($elem, o.reloadtopics, _s2j.handler.form, o);
-		_s2j.subscribeTopics($elem, o.listentopics, _s2j.handler.form, o);
+		self.subscribeTopics($elem, o.reloadtopics, self.handler.form, o);
+		self.subscribeTopics($elem, o.listentopics, self.handler.form, o);
 
 		if (o.targets) {
-			_s2j.subscribeTopics($elem, topic, _s2j.handler.form, o);
+			self.subscribeTopics($elem, topic, self.handler.form, o);
 			$.each(o.targets.split(','), function(i, target) {
-				$(_s2j.escId(target)).subscribe(topic, _s2j.handler.effect, o);
-				if (_s2j.ajaxhistory) {
+				$(self.escId(target)).subscribe(topic, self.handler.effect, o);
+				if (self.ajaxhistory) {
 					var params = {};
 					params.target = target;
 					params.topic = topic;
 					$elem.bind('click', params, function(event) {
-						_s2j.historyelements[event.data.target] = event.data.topic;
-						$.bbq.pushState(_s2j.historyelements);
+						self.historyelements[event.data.target] = event.data.topic;
+						$.bbq.pushState(self.historyelements);
 						return false;
 					});
 				}
@@ -872,7 +888,7 @@
 		else {
 			// Submit Forms without AJAX
 			$elem.click( function() {
-				$(_s2j.escId(o.formids)).submit();
+				$(self.escId(o.formids)).submit();
 				return false;
 			});
 		}
@@ -880,22 +896,23 @@
 
 	/** Handle the Dialog Widget */
 	dialog : function($elem, o) {
-		this.log('dialog : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.button" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.position" + this.minSuffix + ".js", "js/base/jquery.ui.resizable" + this.minSuffix + ".js", "js/base/jquery.ui.draggable" + this.minSuffix + ".js", "js/base/jquery.bgiframe" + this.minSuffix + ".js", "js/base/jquery.ui.dialog" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('dialog : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.bgiframe" + self.minSuffix + ".js", "js/base/jquery.ui.dialog" + self.minSuffix + ".js" ]);
 		}
 		var params = {};
 		$.extend(params, o);
 		params.bgiframe = true;
 		if (o.hide) {
-			if (!this.loadAtOnce) {
-				this.require( [ "js/base/jquery.effects.core" + this.minSuffix + ".js", "js/base/jquery.effects." + o.hide + "" + this.minSuffix + ".js" ]);
+			if (!self.loadAtOnce) {
+				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.hide + "" + self.minSuffix + ".js" ]);
 			}
 			params.hide = o.hide;
 		}
 		if (o.show) {
-			if (!this.loadAtOnce) {
-				this.require( [ "js/base/jquery.effects.core" + this.minSuffix + ".js", "js/base/jquery.effects." + o.show + "" + this.minSuffix + ".js" ]);
+			if (!self.loadAtOnce) {
+				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.show + "" + self.minSuffix + ".js" ]);
 			}
 			params.show = o.show;
 		}
@@ -906,26 +923,27 @@
 
 			if (o.href && o.href != '#') {
 				var divTopic = '_s2j_topic_load_' + o.id;
-				_s2j.subscribeTopics($elem, divTopic, _s2j.handler.load, o);
+				self.subscribeTopics($elem, divTopic, self.handler.load, o);
 				$elem.publish(divTopic);
 			}
 
-			_s2j.publishTopic($elem, o.onalw, data);
-			_s2j.publishTopic($elem, o.onbef, data);
-			_s2j.publishTopic($elem, o.onopentopics, data);
+			self.publishTopic($elem, o.onalw, data);
+			self.publishTopic($elem, o.onbef, data);
+			self.publishTopic($elem, o.onopentopics, data);
 		};
-		params.close = this.pubTops($elem, o.onalw, o.onclosetopics);
-		params.focus = this.pubTops($elem, o.onalw, o.onfocustopics);
-		params.beforeclose = this.pubTops($elem, o.onalw, o.onbeforeclosetopics);
-		params.drag = this.pubTops($elem, o.onalw, o.oncha);
+		params.close = self.pubTops($elem, o.onalw, o.onclosetopics);
+		params.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
+		params.beforeclose = self.pubTops($elem, o.onalw, o.onbeforeclosetopics);
+		params.drag = self.pubTops($elem, o.onalw, o.oncha);
 		$elem.dialog(params);
 	},
 
 	/** Handle the TabbedPanel Widget */
 	tabbedpanel : function($elem, o) {
-		this.log('tabbedpanel : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.tabs" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('tabbedpanel : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.tabs" + self.minSuffix + ".js" ]);
 		}
 		if (!o) {
 			o = {};
@@ -943,16 +961,16 @@
 			para.cache = true;
 		}
 		if (o.animate) {
-			if (!this.loadAtOnce) {
-				this.require("js/base/jquery.effects.core" + this.minSuffix + ".js");
+			if (!self.loadAtOnce) {
+				self.require("js/base/jquery.effects.core" + self.minSuffix + ".js");
 			}
 			para.fx = {
 				opacity :'toggle'
 			};
 		}
 		if (o.cookie) {
-			if (!this.loadAtOnce) {
-				this.require("js/base/jquery.cookie" + this.minSuffix + ".js");
+			if (!self.loadAtOnce) {
+				self.require("js/base/jquery.cookie" + self.minSuffix + ".js");
 			}
 			para.cookie = {
 				expires :30
@@ -971,8 +989,8 @@
 		if (o.spinner !== undefined) {
 			para.spinner = o.spinner;
 		}
-		else if (_s2j.defaults.loadingText !== null) {
-			para.spinner = _s2j.defaults.loadingText;
+		else if (self.defaults.loadingText !== null) {
+			para.spinner = self.defaults.loadingText;
 		}
 
 		if (o.selectedtab) {
@@ -981,7 +999,7 @@
 		if (o.oncom) {
 			para.ajaxOptions = {
 			dataType :'html',
-			complete :this.pubCom(o.id, o.onalw, o.oncom, null, null, {})
+			complete :self.pubCom(o.id, o.onalw, o.oncom, null, null, {})
 			};
 		}
 		else {
@@ -990,25 +1008,25 @@
 			};
 		}
 		if (o.onbef) {
-			para.show = this.pubTops($elem, o.onalw, o.onbef);
+			para.show = self.pubTops($elem, o.onalw, o.onbef);
 		}
 		if (o.oncha) {
-			para.select = this.pubTops($elem, o.onalw, o.oncha);
+			para.select = self.pubTops($elem, o.onalw, o.oncha);
 		}
 		if (o.onenabletopics) {
-			para.enable = this.pubTops($elem, o.onalw, o.onenabletopics);
+			para.enable = self.pubTops($elem, o.onalw, o.onenabletopics);
 		}
 		if (o.ondisabletopics) {
-			para.disable = this.pubTops($elem, o.onalw, o.ondisabletopics);
+			para.disable = self.pubTops($elem, o.onalw, o.ondisabletopics);
 		}
 		if (o.onaddtopics) {
-			para.add = this.pubTops($elem, o.onalw, o.onaddtopics);
+			para.add = self.pubTops($elem, o.onalw, o.onaddtopics);
 		}
 		if (o.onremovetopics) {
-			para.remove = this.pubTops($elem, o.onalw, o.onremovetopics);
+			para.remove = self.pubTops($elem, o.onalw, o.onremovetopics);
 		}
 		if (o.oncom) {
-			para.load = this.pubTops($elem, o.onalw, o.onremovetopics);
+			para.load = self.pubTops($elem, o.onalw, o.onremovetopics);
 		}
 
 		var tabs = $elem.data('taboptions');
@@ -1036,37 +1054,38 @@
 				}
 				tabStr += "</span></a></li>";
 			}
-			$(this.escId(o.id) + ' > ul').html(tabStr);
+			$(self.escId(o.id) + ' > ul').html(tabStr);
 		}
 
 		$elem.tabs(para);
 
 		// History and Bookmarking for Tabs
-		if (this.ajaxhistory) {
+		if (self.ajaxhistory) {
 			var ahp = {};
 			ahp.id = o.id;
 			$elem.find('ul.ui-tabs-nav a').bind('click', ahp, function(e) {
-				var idx = $(_s2j.escId(e.data.id)).tabs('option', 'selected');
-				_s2j.historyelements[e.data.id] = idx;
-				$.bbq.pushState(_s2j.historyelements);
+				var idx = $(self.escId(e.data.id)).tabs('option', 'selected');
+				self.historyelements[e.data.id] = idx;
+				$.bbq.pushState(self.historyelements);
 				return false;
 			});
 
 			$(window).bind('hashchange', ahp, function(e) {
 				var idx = e.getState(e.data.id, true) || 0;
-				$(_s2j.escId(e.data.id)).tabs('select', idx);
+				$(self.escId(e.data.id)).tabs('select', idx);
 			});
 		}
 	},
 
 	/** Handle the Datepicker Widget */
 	datepicker : function($elem, o) {
-		this.log('datepicker : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.datepicker" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('datepicker : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.datepicker" + self.minSuffix + ".js" ]);
 		}
-		if (this.local != "en") {
-			this.require("i18n/jquery.ui.datepicker-" + this.local + ".min.js");
+		if (self.local != "en") {
+			self.require("i18n/jquery.ui.datepicker-" + self.local + ".min.js");
 		}
 		var params = {};
 
@@ -1080,8 +1099,8 @@
 					var data = {};
 					data.input = input;
 					data.inst = inst;
-					this.publishTopic($input, o.onbef, data);
-					this.publishTopic($input, oat, data);
+					self.publishTopic($input, o.onbef, data);
+					self.publishTopic($input, oat, data);
 				};
 			}
 
@@ -1089,8 +1108,8 @@
 				params.beforeShowDay = function(date) {
 					var data = {};
 					data.date = date;
-					this.publishTopic($elem, o.onbeforeshowdaytopics, data);
-					this.publishTopic($elem, oat, data);
+					self.publishTopic($elem, o.onbeforeshowdaytopics, data);
+					self.publishTopic($elem, oat, data);
 				};
 			}
 
@@ -1100,8 +1119,8 @@
 					data.year = year;
 					data.month = month;
 					data.inst = inst;
-					this.publishTopic($elem, o.onchangemonthyeartopics, data);
-					this.publishTopic($elem, oat, data);
+					self.publishTopic($elem, o.onchangemonthyeartopics, data);
+					self.publishTopic($elem, oat, data);
 				};
 			}
 
@@ -1110,8 +1129,8 @@
 					var data = {};
 					data.dateText = dateText;
 					data.inst = inst;
-					this.publishTopic($elem, o.oncha, data);
-					this.publishTopic($elem, oat, data);
+					self.publishTopic($elem, o.oncha, data);
+					self.publishTopic($elem, oat, data);
 				};
 			}
 
@@ -1120,8 +1139,8 @@
 					var data = {};
 					data.dateText = dateText;
 					data.inst = inst;
-					_s2j.publishTopic($elem, o.oncom, data);
-					_s2j.publishTopic($elem, oat, data);
+					self.publishTopic($elem, o.oncom, data);
+					self.publishTopic($elem, oat, data);
 				};
 			}
 
@@ -1148,8 +1167,8 @@
 			params.buttonText = o.buttontext;
 
 			if (o.showanim) {
-				if (!this.loadAtOnce) {
-					this.require("js/base/jquery.effects.core" + this.minSuffix + ".js");
+				if (!self.loadAtOnce) {
+					self.require("js/base/jquery.effects.core" + self.minSuffix + ".js");
 				}
 				params.showAnim = o.showanim;
 			}
@@ -1190,32 +1209,33 @@
 	
 	/** Handle the Slider Widget */
 	slider : function($elem, o) {
-		this.log('slider : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.mouse" + this.minSuffix + ".js", "js/base/jquery.ui.slider" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('slider : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.slider" + self.minSuffix + ".js" ]);
 		}
 
 		var params = {};
 		if (o) {
 
-			params.start = this.pubTops($elem, o.onalw, o.onbef);
-			params.change = this.pubTops($elem, o.onalw, o.oncha);
-			params.stop = this.pubTops($elem, o.onalw, o.oncom);
+			params.start = self.pubTops($elem, o.onalw, o.onbef);
+			params.change = self.pubTops($elem, o.onalw, o.oncha);
+			params.stop = self.pubTops($elem, o.onalw, o.oncom);
 
 			params.slide = function(event, ui) {
 				if (o.hiddenid) {
-					$(_s2j.escId(o.hiddenid)).val(ui.value);
+					$(self.escId(o.hiddenid)).val(ui.value);
 				}
 				if (o.displayvalueelement) {
-					$(_s2j.escId(o.displayvalueelement)).html(ui.value);
+					$(self.escId(o.displayvalueelement)).html(ui.value);
 				}
 				if (o.onslidetopics) {
 					var data = {};
 					data.event = event;
 					data.ui = ui;
 
-					this.publishTopic($elem, o.onalw, data);
-					this.publishTopic($elem, o.onslidetopics, data);
+					self.publishTopic($elem, o.onalw, data);
+					self.publishTopic($elem, o.onslidetopics, data);
 				}
 			};
 
@@ -1257,14 +1277,15 @@
 	
 	/** Handle the Progressbar Widget */
 	progressbar : function($elem, o) {
-		this.log('progressbar : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.progressbar" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('progressbar : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.progressbar" + self.minSuffix + ".js" ]);
 		}
 		var params = {};
 		if (o) {
 
-			params.change = this.pubTops($elem, o.onalw, o.oncha);
+			params.change = self.pubTops($elem, o.onalw, o.oncha);
 
 			var value = o.value;
 			if (value > 0) {
@@ -1279,9 +1300,10 @@
 
 	/** Handle the Accordion Widget */
 	accordion : function($elem, o) {
-		this.log('accordion : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.accordion" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('accordion : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.accordion" + self.minSuffix + ".js" ]);
 		}
 		var params = {};
 		var active = true;
@@ -1357,16 +1379,16 @@
 					data.event = event;
 					data.ui = ui;
 
-					this.publishTopic($elem, onAlwaysTopics, data);
-					this.publishTopic($elem, o.onbef, data);
+					self.publishTopic($elem, onAlwaysTopics, data);
+					self.publishTopic($elem, o.onbef, data);
 				}
 			};
 
-			params.change = this.pubTops($elem, o.onalw, o.oncha);
+			params.change = self.pubTops($elem, o.onalw, o.oncha);
 		}
 		$elem.accordion(params);
 		if (o.href && active === true) {
-			var aktiv = $(this.escId(o.id) + " li " + params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
+			var aktiv = $(self.escId(o.id) + " li " + params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
 			if (typeof $(aktiv).attr('paramkeys') != "undefined") {
 				var keys = $(aktiv).attr('paramkeys').split(',');
 				var values = $(aktiv).attr('paramvalues').split(',');
@@ -1374,7 +1396,7 @@
 				$.each(keys, function(i, val) {
 					valueparams[val] = values[i];
 				});
-				$(this.escId(o.id) + " li div").filter('.ui-accordion-content-active').load(o.href, valueparams, function() {
+				$(self.escId(o.id) + " li div").filter('.ui-accordion-content-active').load(o.href, valueparams, function() {
 				});
 			}
 		}
@@ -1382,9 +1404,10 @@
 	
 	/** Handle the Autocompleter Widget */
 	autocompleter : function($elem, o) {
-		this.log('autocompleter for : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.position" + this.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('autocompleter for : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
 		}
 		var params = {};
 		var url = '';
@@ -1455,38 +1478,39 @@
 		}
 
 		if (o.onsuc) {
-			params.open = this.pubTops($elem, o.onalw, o.onsuc);
+			params.open = self.pubTops($elem, o.onalw, o.onsuc);
 		}
 		if (o.oncha) {
-			params.change = this.pubTops($elem, o.onalw, o.oncha);
+			params.change = self.pubTops($elem, o.onalw, o.oncha);
 		}
 		if (o.oncom) {
-			params.close = this.pubTops($elem, o.onalw, o.oncom);
+			params.close = self.pubTops($elem, o.onalw, o.oncom);
 		}
 		if (o.onsearchtopics) {
-			params.search = this.pubTops($elem, o.onalw, o.onsearchtopics);
+			params.search = self.pubTops($elem, o.onalw, o.onsearchtopics);
 		}
 		if (o.onfocustopics) {
-			params.focus = this.pubTops($elem, o.onalw, o.onfocustopics);
+			params.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
 		}
 		if (o.onselecttopics) {
-			params.select = this.pubTops($elem, o.onalw, o.onselecttopics);
+			params.select = self.pubTops($elem, o.onalw, o.onselecttopics);
 		}
 
 		if (o.selectBox === false) {
 			$elem.autocomplete(params);
 		}
 		else {
-			this.require("js/plugins/jquery.combobox" + this.minSuffix + ".js");
+			self.require("js/plugins/jquery.combobox" + self.minSuffix + ".js");
 			$elem.combobox(params);
 		}
 	},
 	
 	/** Handle the Button Widget for Anchor or Submit Tag*/
 	jquerybutton : function($elem, o) {
-		this.log('button for : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.button" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('button for : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js" ]);
 		}
 		if (o.button) {
 			var params = {};
@@ -1503,9 +1527,10 @@
 	
 	/** Handle the Buttonset Widget for Radiobuttons or Checkboxes */
 	buttonset : function($elem, o) {
-		this.log('buttonset for : ' + o.id);
-		if (!this.loadAtOnce) {
-			this.require( [ "js/base/jquery.ui.widget" + this.minSuffix + ".js", "js/base/jquery.ui.button" + this.minSuffix + ".js" ]);
+		var self = this;
+		self.log('buttonset for : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js" ]);
 		}
 		var buttonsetLoadTopic = '_s2j_topic_load_' + o.id;
 
@@ -1520,7 +1545,7 @@
 			// Init Buttonset after elements loaded via AJAX.
 			$elem.subscribe(buttonsetTopic, function(event, data) {
 				if (o.oncha) {
-					var selectString = _s2j.escId(o.id) + " > input";
+					var selectString = self.escId(o.id) + " > input";
 					var elements = $(selectString);
 
 					if ($.browser.msie && o.type == 'radio') {
@@ -1550,15 +1575,15 @@
 				o.onsuc = buttonsetTopic;
 			}
 
-			_s2j.subscribeTopics($elem, o.reloadtopics, _s2j.handler.load, o);
-			_s2j.subscribeTopics($elem, o.listentopics, _s2j.handler.load, o);
+			self.subscribeTopics($elem, o.reloadtopics, self.handler.load, o);
+			self.subscribeTopics($elem, o.listentopics, self.handler.load, o);
 
-			$elem.subscribe(buttonsetLoadTopic, _s2j.handler.load);
+			$elem.subscribe(buttonsetLoadTopic, self.handler.load);
 			$elem.publish(buttonsetLoadTopic, o);
 		}
 		else {
 			if (o.oncha) {
-				$(_s2j.escId(o.id) + " > input").change( function() {
+				$(self.escId(o.id) + " > input").change( function() {
 					$.each(o.oncha.split(','), function(i, cts) {
 						$elem.publish(cts);
 					});
@@ -1570,15 +1595,14 @@
 	}
 	};
 
-	/** Create a shorthand to reduce code */
-	var _s2j = $.struts2_jquery;
-
 	/** 
 	 * Container logic 
 	 * Register handler to load a container
 	 * */
-	$.subscribeHandler(_s2j.handler.load, function(event, data) {
+	$.subscribeHandler($.struts2_jquery.handler.load, function(event, data) {
 
+		var _s2j = $.struts2_jquery;
+		
 		var container = $(event.target);
 		var o = {};
 		if (data) {
@@ -1704,7 +1728,9 @@
 	 * Form logic 
 	 * Handler to submit a form with jquery.form.js plugin
 	 * */
-	$.subscribeHandler(_s2j.handler.form, function(event, data) {
+	$.subscribeHandler($.struts2_jquery.handler.form, function(event, data) {
+		var _s2j = $.struts2_jquery;
+
 		var container = $(event.target);
 		var elem = container;
 
@@ -1872,7 +1898,9 @@
 	 * Effects 
 	 * Register handler for effects
 	 * */
-	$.subscribeHandler(_s2j.handler.effect, function(event, data) {
+	$.subscribeHandler($.struts2_jquery.handler.effect, function(event, data) {
+		var _s2j = $.struts2_jquery;
+		
 		var o = {};
 		$.extend(o, event.data);
 		if (o.targets && o.effect) {

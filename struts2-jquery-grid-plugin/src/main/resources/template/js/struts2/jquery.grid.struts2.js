@@ -329,6 +329,8 @@
 	
 	// Register handler for reloading grid
 	$.subscribeHandler('_s2j_reloadgrid', function(event, data) {
+		var _s2jg = $.struts2_jquery_grid;
+
 		var o = {};
 		$.extend(o, event.data);
 		if (o.id) {
@@ -336,11 +338,11 @@
 			if(o.url && o.formids) {
 				var formdata = '';
 				if (o.formids) {
-					if (!$.struts2_jquery.loadAtOnce) {
-						$.struts2_jquery.require("js/plugins/jquery.form"+$.struts2_jquery.minSuffix+".js");
+					if (!_s2jg.loadAtOnce) {
+						_s2jg.require("js/plugins/jquery.form"+_s2jg.minSuffix+".js");
 					}
 					$.each(o.formids.split(','), function(i, fid) {
-						var query = $($.struts2_jquery.escId(fid)).formSerialize();
+						var query = $(_s2jg.escId(fid)).formSerialize();
 						if (formdata != '') { formdata = formdata + '&' + query; }
 						else { formdata = query; }
 					});
@@ -352,9 +354,9 @@
 					o.url = o.url + '?' + formdata;
 				}
 			}
-			var grid = $($.struts2_jquery.escId(o.id));
+			var grid = $(_s2jg.escId(o.id));
 			grid.jqGrid('setGridParam',{url:o.url});
-			$.struts2_jquery.log('reload grid '+o.id);
+			_s2jg.log('reload grid '+o.id);
 			grid.trigger("reloadGrid");  
 		}
 	});

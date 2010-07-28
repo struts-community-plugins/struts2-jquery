@@ -28,8 +28,9 @@
 			
 			// clear orphan instances from memory
 		  clean: function($elem){
+				var self = this;
 				if(!window.CKEDITOR) { return; }
-				$.each(this.editors, function(i, editor) { 
+				$.each(self.editors, function(i, editor) { 
 					var inst = CKEDITOR.instances[editor];
 					if($elem.length === 0 || !inst || inst.textarea!=$elem[0]){
 						$.struts2_jquery_richtext.editors.splice(i);
@@ -40,23 +41,24 @@
 
 			// Handle CKEditor
 			ckeditor : function($elem, o) {
-				this.log('ckeditor for : '+o.id);
-				this.require("js/ckeditor/ckeditor.js");
-				this.require("js/ckeditor/adapters/jquery.js");
+				var self = this;
+				self.log('ckeditor for : '+o.id);
+				self.require("js/ckeditor/ckeditor.js");
+				self.require("js/ckeditor/adapters/jquery.js");
 				
 				var inst = CKEDITOR.instances[o.id];
 				if(inst) {
 				   CKEDITOR.remove(inst);
 				}
 				
-				this.clean($elem);
+				self.clean($elem);
 				
 				var callbackFunction = function() {
-					$.struts2_jquery_richtext.editors[$.struts2_jquery_richtext.editors.length] = o.id;
+					self.editors[self.editors.length] = o.id;
 					if (o.onEditorReadyTopics) {
 						var data = {};
-						$.struts2_jquery.publishTopic($elem, o.onEditorReadyTopics, data);
-						$.struts2_jquery.publishTopic($elem, o.onalw, data);
+						self.publishTopic($elem, o.onEditorReadyTopics, data);
+						self.publishTopic($elem, o.onalw, data);
 					}
 				};
 				
@@ -64,7 +66,7 @@
 					o.language = o.editorLocal;
 				}
 				else{
-					o.language = this.local;
+					o.language = self.local;
 				}
 
 				if(o.href && o.href != '#')
@@ -85,48 +87,49 @@
 						o.oncom = ckeditorTopic;
 					}
 					
-					this.container($elem, o);
+					self.container($elem, o);
 				}
 				else {
-					this.container($elem, o);
+					self.container($elem, o);
 					$elem.ckeditor(callbackFunction, o);
 				}
 				if (o.onblurtopics) {
 					CKEDITOR.instances[o.id].on('blur', function() {
-						$.struts2_jquery.publishTopic($elem, o.onblurtopics, {});
-						$.struts2_jquery.publishTopic($elem, o.onalw, {});
+						self.publishTopic($elem, o.onblurtopics, {});
+						self.publishTopic($elem, o.onalw, {});
 		      });
 				}
 				
 				if (o.onfocustopics) {
 					CKEDITOR.instances[o.id].on('focus', function() {
-						$.struts2_jquery.publishTopic($elem, o.onfocustopics, {});
-						$.struts2_jquery.publishTopic($elem, o.onalw, {});
+						self.publishTopic($elem, o.onfocustopics, {});
+						self.publishTopic($elem, o.onalw, {});
 		      });
 				}
 			},
 			
 			// Handle Tinymce
 			tinymce : function($elem, o) {
-				this.log('tinymce for : '+o.id);
-				this.require("js/tinymce/jquery.tinymce.js");
+				var self = this;
+				self.log('tinymce for : '+o.id);
+				self.require("js/tinymce/jquery.tinymce.js");
 				
 				//Cleanup old tinymce instances
 				if ($.struts2_jquery_richtext.editorsTinymce.length > 0 && tinyMCE.get(o.id)) {
 					var ins = tinyMCE.get(o.id);
 					if( ins !== undefined ) {
-						this.log('cleanup tinymce : '+o.id);
+						self.log('cleanup tinymce : '+o.id);
 						//delete ins;
 					}
 				}
-				$.struts2_jquery_richtext.editorsTinymce[$.struts2_jquery_richtext.editorsTinymce.length] = o.id;
+				self.editorsTinymce[$.struts2_jquery_richtext.editorsTinymce.length] = o.id;
 				
 				//don't use jqueryui resizable
 				//use the resizing from tinymce
 				o.resizable = false;
 				if(o.editorResizable) { o.theme_advanced_resizing = true; }
 				
-				this.container($elem, o);
+				self.container($elem, o);
 				o.script_url = o.path+'tiny_mce.js';
 
 				
@@ -139,8 +142,8 @@
 							var data = {};
 							data.editor = ed;
 							data.content = l.content;
-							$.struts2_jquery.publishTopic($elem, o.onsavetopics, data);
-							$.struts2_jquery.publishTopic($elem, o.onalw, data);
+							self.publishTopic($elem, o.onsavetopics, data);
+							self.publishTopic($elem, o.onalw, data);
 						}
 						return false;
 					});
@@ -149,8 +152,8 @@
 							var data = {};
 							data.editor = ed;
 							data.content = l.content;
-							$.struts2_jquery.publishTopic($elem, o.oncha, data);
-							$.struts2_jquery.publishTopic($elem, o.onalw, data);
+							self.publishTopic($elem, o.oncha, data);
+							self.publishTopic($elem, o.onalw, data);
 						}
 					});
 				};
@@ -159,7 +162,7 @@
 					o.language = o.editorLocal;
 				}
 				else{
-					o.language = this.local;
+					o.language = self.local;
 				}
 				
 				if(o.href && o.href != '#')
@@ -173,8 +176,8 @@
 					$elem.subscribe(tinymceTopic, function(event,data) {
 						$elem.tinymce(o);
 						$.each(o.formids.split(','), function(i, fid) {
-							$.struts2_jquery.log('bind tinymce to form : ' + fid);
-							$($.struts2_jquery.escId(fid)).bind('form-pre-serialize', function(e) {
+							self.log('bind tinymce to form : ' + fid);
+							$(self.escId(fid)).bind('form-pre-serialize', function(e) {
 						    tinyMCE.triggerSave();
 							});
 						});
@@ -186,14 +189,14 @@
 						o.oncom = tinymceTopic;
 					}
 					
-					this.container($elem, o);
+					self.container($elem, o);
 				}
 				else {
-					this.container($elem, o);
+					self.container($elem, o);
 					$elem.tinymce(o);
 					$.each(o.formids.split(','), function(i, fid) {
-						$.struts2_jquery.log('bind tinymce to form : ' + fid);
-						$($.struts2_jquery.escId(fid)).bind('form-pre-serialize', function(e) {
+						self.log('bind tinymce to form : ' + fid);
+						$(self.escId(fid)).bind('form-pre-serialize', function(e) {
 					    tinyMCE.triggerSave();
 						});
 					});
