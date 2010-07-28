@@ -19,6 +19,20 @@
  */
 -->
 <#if fieldErrors??><#t/>
+					<div 
+					<#if parameters.id?if_exists != "">
+					 id="${parameters.id?html}"<#rt/>
+					</#if>
+					<#if parameters.cssClass??>
+					 class="ui-widget ${parameters.cssClass?html}"<#rt/>
+					<#else>
+					 class="ui-widget actionError"<#rt/>
+					</#if>
+					<#if parameters.cssStyle??>
+					 style="margin${parameters.cssStyle?html}"<#rt/>
+					</#if>
+					>
+					<div class="ui-state-error ui-corner-all" style="padding: 0.3em 0.7em; margin-top: 20px;"> 
     <#assign eKeys = fieldErrors.keySet()><#t/>
     <#assign eKeysSize = eKeys.size()><#t/>
     <#assign doneStartUlTag=false><#t/>
@@ -31,63 +45,33 @@
                     <#assign haveMatchedErrorField=true><#t/>
                     <#assign eValue = fieldErrors[fieldErrorFieldName]><#t/>
                     <#if (haveMatchedErrorField && (!doneStartUlTag))><#t/>
-					<div 
-					<#if parameters.id?if_exists != "">
-					 id="${parameters.id?html}"<#rt/>
-					</#if>
-					<#if parameters.cssClass??>
-					 class="ui-widget ${parameters.cssClass?html}"<#rt/>
-					<#else>
-					 class="ui-widget actionError"<#rt/>
-					</#if>
-					<#if parameters.cssStyle??>
-					 style="${parameters.cssStyle?html}"<#rt/>
-					</#if>
-					>
                         <#assign doneStartUlTag=true><#t/>
                     </#if><#t/>
-						<div class="ui-state-error ui-corner-all" style="padding: 0.3em 0.7em; margin-top: 20px;"> 
 		                    <#list eValue as eEachValue><#t/>
 					            <#if eEachValue?if_exists != "">
 							<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
 							<span><#if parameters.escape>${eEachValue!?html}<#else>${eEachValue!}</#if></span></p>
 					            </#if>
 							</#list>
-						</div>
                 </#if><#t/>
             </#list><#t/>
         </#list><#t/>
         <#if (haveMatchedErrorField && (!doneEndUlTag))><#t/>
-        </div>
             <#assign doneEndUlTag=true><#t/>
         </#if><#t/>
         <#else><#t/>
         <#if (eKeysSize > 0)><#t/>
-					<div 
-					<#if parameters.id?if_exists != "">
-					 id="${parameters.id?html}"<#rt/>
-					</#if>
-					<#if parameters.cssClass??>
-					 class="ui-widget ${parameters.cssClass?html}"<#rt/>
-					<#else>
-					 class="ui-widget actionError"<#rt/>
-					</#if>
-					<#if parameters.cssStyle??>
-					 style="${parameters.cssStyle?html}"<#rt/>
-					</#if>
-					>
             <#list eKeys as eKey><#t/>
                 <#assign eValue = fieldErrors[eKey]><#t/>
-						<div class="ui-state-error ui-corner-all" style="padding: 0.3em 0.7em; margin-top: 20px;"> 
 		                    <#list eValue as eEachValue><#t/>
 					            <#if eEachValue?if_exists != "">
 							<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
 							<span><#if parameters.escape>${eEachValue!?html}<#else>${eEachValue!}</#if></span></p>
 					            </#if>
 							</#list>
-						</div>
             </#list><#t/>
-        </div>
         </#if><#t/>
     </#if><#t/>
+						</div>
+        </div>
 </#if><#t/>
