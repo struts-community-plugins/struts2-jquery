@@ -1,9 +1,9 @@
 /*
- * jQuery UI Autocomplete 1.8.2
+ * jQuery UI Autocomplete 1.8.3
  *
- * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT (MIT-LICENSE.txt)
- * and GPL (GPL-LICENSE.txt) licenses.
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Autocomplete
  *
@@ -12,12 +12,19 @@
  *	jquery.ui.widget.js
  *	jquery.ui.position.js
  */
-(function( $ ) {
+(function( $, undefined ) {
 
 $.widget( "ui.autocomplete", {
 	options: {
+		appendTo: "body",
+		delay: 300,
 		minLength: 1,
-		delay: 300
+		position: {
+			my: "left top",
+			at: "left bottom",
+			collision: "none"
+		},
+		source: null
 	},
 	_create: function() {
 		var self = this,
@@ -32,6 +39,10 @@ $.widget( "ui.autocomplete", {
 				"aria-haspopup": "true"
 			})
 			.bind( "keydown.autocomplete", function( event ) {
+				if ( self.options.disabled ) {
+					return;
+				}
+
 				var keyCode = $.ui.keyCode;
 				switch( event.keyCode ) {
 				case keyCode.PAGE_UP:
@@ -53,7 +64,7 @@ $.widget( "ui.autocomplete", {
 				case keyCode.ENTER:
 				case keyCode.NUMPAD_ENTER:
 					// when menu is open or has focus
-					if ( self.menu.active ) {
+					if ( self.menu.element.is( ":visible" ) ) {
 						event.preventDefault();
 					}
 					//passthrough - ENTER and TAB both select the current element
@@ -67,33 +78,32 @@ $.widget( "ui.autocomplete", {
 					self.element.val( self.term );
 					self.close( event );
 					break;
-				case keyCode.LEFT:
-				case keyCode.RIGHT:
-				case keyCode.SHIFT:
-				case keyCode.CONTROL:
-				case keyCode.ALT:
-				case keyCode.COMMAND:
-				case keyCode.COMMAND_RIGHT:
-				case keyCode.INSERT:
-				case keyCode.CAPS_LOCK:
-				case keyCode.END:
-				case keyCode.HOME:
-					// ignore metakeys (shift, ctrl, alt)
-					break;
 				default:
 					// keypress is triggered before the input value is changed
 					clearTimeout( self.searching );
 					self.searching = setTimeout(function() {
-						self.search( null, event );
+						// only search if the value has changed
+						if ( self.term != self.element.val() ) {
+							self.selectedItem = null;
+							self.search( null, event );
+						}
 					}, self.options.delay );
 					break;
 				}
 			})
 			.bind( "focus.autocomplete", function() {
+				if ( self.options.disabled ) {
+					return;
+				}
+
 				self.selectedItem = null;
 				self.previous = self.element.val();
 			})
 			.bind( "blur.autocomplete", function( event ) {
+				if ( self.options.disabled ) {
+					return;
+				}
+
 				clearTimeout( self.searching );
 				// clicks on the menu (or a button to trigger a search) will cause a blur event
 				self.closing = setTimeout(function() {
@@ -107,7 +117,7 @@ $.widget( "ui.autocomplete", {
 		};
 		this.menu = $( "<ul></ul>" )
 			.addClass( "ui-autocomplete" )
-			.appendTo( "body", doc )
+			.appendTo( $( this.options.appendTo || "body", doc )[0] )
 			// prevent the close-on-blur in case of a "slow" click on the menu (long mousedown)
 			.mousedown(function() {
 				// use another timeout to make sure the blur-event-handler on the input was already triggered
@@ -126,17 +136,20 @@ $.widget( "ui.autocomplete", {
 					}
 				},
 				selected: function( event, ui ) {
-					var item = ui.item.data( "item.autocomplete" );
-					if ( false !== self._trigger( "select", event, { item: item } ) ) {
-						self.element.val( item.value );
-					}
-					self.close( event );
+					var item = ui.item.data( "item.autocomplete" ),
+						previous = self.previous;
+
 					// only trigger when focus was lost (click on menu)
-					var previous = self.previous;
 					if ( self.element[0] !== doc.activeElement ) {
 						self.element.focus();
 						self.previous = previous;
 					}
+
+					if ( false !== self._trigger( "select", event, { item: item } ) ) {
+						self.element.val( item.value );
+					}
+
+					self.close( event );
 					self.selectedItem = item;
 				},
 				blur: function( event, ui ) {
@@ -166,10 +179,13 @@ $.widget( "ui.autocomplete", {
 		$.Widget.prototype.destroy.call( this );
 	},
 
-	_setOption: function( key ) {
+	_setOption: function( key, value ) {
 		$.Widget.prototype._setOption.apply( this, arguments );
 		if ( key === "source" ) {
 			this._initSource();
+		}
+		if ( key === "appendTo" ) {
+			this.menu.element.appendTo( $( value || "body", this.element[0].ownerDocument )[0] )
 		}
 	},
 
@@ -269,18 +285,15 @@ $.widget( "ui.autocomplete", {
 		// TODO refresh should check if the active item is still in the dom, removing the need for a manual deactivate
 		this.menu.deactivate();
 		this.menu.refresh();
-		this.menu.element.show().position({
-			my: "left top",
-			at: "left bottom",
-			of: this.element,
-			collision: "none"
-		});
+		this.menu.element.show().position( $.extend({
+			of: this.element
+		}, this.options.position ));
 
-		menuWidth = ul.width( "" ).width();
-		textWidth = this.element.width();
-		ul.width( Math.max( menuWidth, textWidth ) );
+		menuWidth = ul.width( "" ).outerWidth();
+		textWidth = this.element.outerWidth();
+		ul.outerWidth( Math.max( menuWidth, textWidth ) );
 	},
-	
+
 	_renderMenu: function( ul, items ) {
 		var self = this;
 		$.each( items, function( index, item ) {
@@ -291,7 +304,7 @@ $.widget( "ui.autocomplete", {
 	_renderItem: function( ul, item) {
 		return $( "<li></li>" )
 			.data( "item.autocomplete", item )
-			.append( "<a>" + item.label + "</a>" )
+			.append( $( "<a></a>" ).text( item.label ) )
 			.appendTo( ul );
 	},
 
@@ -316,7 +329,7 @@ $.widget( "ui.autocomplete", {
 
 $.extend( $.ui.autocomplete, {
 	escapeRegex: function( value ) {
-		return value.replace( /([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
+		return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 	},
 	filter: function(array, term) {
 		var matcher = new RegExp( $.ui.autocomplete.escapeRegex(term), "i" );
@@ -335,9 +348,9 @@ $.extend( $.ui.autocomplete, {
  * it for the next release. You're welcome to give it a try anyway and give us feedback,
  * as long as you're okay with migrating your code later on. We can help with that, too.
  *
- * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT (MIT-LICENSE.txt)
- * and GPL (GPL-LICENSE.txt) licenses.
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Menu
  *
@@ -426,11 +439,11 @@ $.widget("ui.menu", {
 	},
 
 	first: function() {
-		return this.active && !this.active.prev().length;
+		return this.active && !this.active.prevAll(".ui-menu-item").length;
 	},
 
 	last: function() {
-		return this.active && !this.active.next().length;
+		return this.active && !this.active.nextAll(".ui-menu-item").length;
 	},
 
 	move: function(direction, edge, event) {

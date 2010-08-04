@@ -1,13 +1,13 @@
 /*
- * jQuery UI Effects 1.8.2
+ * jQuery UI Effects 1.8.3
  *
- * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT (MIT-LICENSE.txt)
- * and GPL (GPL-LICENSE.txt) licenses.
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Effects/
  */
-;jQuery.effects || (function($) {
+;jQuery.effects || (function($, undefined) {
 
 $.effects = {};
 
@@ -301,7 +301,7 @@ $.fn.extend({
 /******************************************************************************/
 
 $.extend($.effects, {
-	version: "1.8.2",
+	version: "1.8.3",
 
 	// Saves a set of properties in a data storage
 	save: function(element, set) {
@@ -418,14 +418,14 @@ function _normalizeArguments(effect, options, speed, callback) {
 		speed = null;
 		options = {};
 	}
-	if ($.isFunction(speed)) {
-		callback = speed;
-		speed = null;
-	}
-	if (typeof options == 'number' || $.fx.speeds[options]) {
+        if (typeof options == 'number' || $.fx.speeds[options]) {
 		callback = speed;
 		speed = options;
 		options = {};
+	}
+	if ($.isFunction(speed)) {
+		callback = speed;
+		speed = null;
 	}
 
 	options = options || {};
