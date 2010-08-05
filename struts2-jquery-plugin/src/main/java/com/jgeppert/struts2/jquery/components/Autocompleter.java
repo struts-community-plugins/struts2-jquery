@@ -132,6 +132,11 @@ public class Autocompleter extends AbstractFormListElement {
 
     addParameter("jqueryaction", JQUERYACTION);
 
+    if (getParameters().get("list") != null)
+    {
+      addParameter("emptyOption", true);
+    }
+
     if (delay != null) addParameter("delay", findValue(delay, Integer.class));
     if (loadMinimumCount != null) addParameter("loadMinimumCount", findValue(loadMinimumCount, Integer.class));
     // if (list != null) addParameter("list", findString(list));
@@ -144,6 +149,11 @@ public class Autocompleter extends AbstractFormListElement {
     if (maxlength != null)
     {
       addParameter("maxlength", findString(maxlength));
+    }
+
+    if (selectBox != null)
+    {
+      addParameter("selectBox", findValue(selectBox, Boolean.class));
     }
 
     if (readonly != null)
@@ -249,7 +259,8 @@ public class Autocompleter extends AbstractFormListElement {
     this.size = size;
   }
 
-  @StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals" + " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
+  @StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals"
+                                    + " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
   public void setMultiple(String multiple)
   {
     this.multiple = multiple;

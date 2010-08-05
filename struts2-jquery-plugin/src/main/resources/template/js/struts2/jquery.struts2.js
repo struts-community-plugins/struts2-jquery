@@ -1437,20 +1437,35 @@
 								$.each(data[o.list], function(j, val) {
 									if (isMap) {
 										result.push({
-											label: val,
+											label: val.replace(
+													new RegExp(
+															"(?![^&;]+;)(?!<[^<>]*)(" +
+															$.ui.autocomplete.escapeRegex(request.term) +
+															")(?![^<>]*>)(?![^&;]+;)", "gi"
+														), "<strong>$1</strong>" ),
 											value: j
 										});
 									}
 									else {
 										if (o.listkey !== undefined && o.listvalue !== undefined) {
 											result.push({
-												label: val[o.listvalue],
+												label: val[o.listvalue].replace(
+														new RegExp(
+																"(?![^&;]+;)(?!<[^<>]*)(" +
+																$.ui.autocomplete.escapeRegex(request.term) +
+																")(?![^<>]*>)(?![^&;]+;)", "gi"
+															), "<strong>$1</strong>" ),
 												value: val[o.listkey]
 											});
 										}
 										else {
 											result.push({
-												label: data[o.list][x],
+												label: data[o.list][x].replace(
+														new RegExp(
+																"(?![^&;]+;)(?!<[^<>]*)(" +
+																$.ui.autocomplete.escapeRegex(request.term) +
+																")(?![^<>]*>)(?![^&;]+;)", "gi"
+															), "<strong>$1</strong>" ),
 												value: data[o.list][x]
 											});
 										}

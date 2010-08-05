@@ -20,7 +20,9 @@
 package com.jgeppert.struts2.jquery.showcase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
@@ -35,8 +37,9 @@ import com.opensymphony.xwork2.ActionSupport;
 @ParentPackage(value = "showcase")
 public class Autocompleter extends ActionSupport {
 
-  private static final long serialVersionUID = -3066791113091431706L;
-  private static String[]   staticLanguages  = {
+  private static final long     serialVersionUID = -3066791113091431706L;
+  private static String[]       staticLanguages  =
+                                                   {
       "Actionscript (Flash)",
       "ABAP Objects",
       "Ada",
@@ -98,10 +101,11 @@ public class Autocompleter extends ActionSupport {
       "XBase",
       "XOTcl",
       "Zonnon"
-                                             };
+                                                   };
 
-  private String            term;
-  private String[]          languages        = Autocompleter.staticLanguages;
+  private String                term;
+  private String[]              languages        = Autocompleter.staticLanguages;
+  private static List<Customer> staticCustomers  = CustomerDAO.buildList();
 
   @Actions( {
       @Action(value = "/autocompleter-select", results = {
@@ -128,7 +132,7 @@ public class Autocompleter extends ActionSupport {
           tmp.add(staticLanguages[i]);
         }
       }
-      languages = tmp.toArray(new String[tmp.size()]);
+      languages = tmp.toArray(new String[ tmp.size()]);
     }
     return SUCCESS;
   }
@@ -145,6 +149,35 @@ public class Autocompleter extends ActionSupport {
 
   public List<Customer> getCustomers()
   {
-    return CustomerDAO.buildList();
+    List<Customer> list = new ArrayList<Customer>();
+    if (term != null && term.length() > 0)
+    {
+      for (Customer customer : staticCustomers)
+      {
+        if (StringUtils.contains(customer.getName().toLowerCase(), term.toLowerCase()))
+        {
+          list.add(customer);
+        }
+      }
+    }
+    else
+    {
+      // Return all Customers for Select Box Example
+      return staticCustomers;
+    }
+    return list;
+  }
+
+  public Map<Integer, String> getCustomersMap()
+  {
+    Map<Integer, String> map = new HashMap<Integer, String>();
+    for (Customer customer : staticCustomers)
+    {
+      if (StringUtils.contains(customer.getName().toLowerCase(), term.toLowerCase()))
+      {
+        map.put(new Integer(customer.getId()), customer.getName());
+      }
+    }
+    return map;
   }
 }

@@ -82,24 +82,50 @@
     &lt;strong&gt;Topics Div :&lt;/strong&gt;
 	&lt;div id=&quot;topics&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;&lt;/div&gt;
     
-    &lt;s:form id=&quot;formAutocompleteJson&quot; action=&quot;echo&quot; theme=&quot;simple&quot;&gt;
-		&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonlanguages&quot;/&gt; 
+    &lt;s:form id=&quot;formAutocompleteJson&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+		&lt;s:url id=&quot;jsonlanguages&quot; action=&quot;jsonlanguages&quot;/&gt; 
 	    &lt;sj:autocompleter 
 	    	id=&quot;languages&quot; 
 	    	name=&quot;echo&quot;
-	    	href=&quot;%{remoteurl}&quot; 
+	    	label=&quot;Handle a Array&quot;
+	    	href=&quot;%{jsonlanguages}&quot; 
 	    	delay=&quot;50&quot; 
 	    	loadMinimumCount=&quot;2&quot;
 	    	onChangeTopics=&quot;autocompleteChange&quot;
 	    	onFocusTopics=&quot;autocompleteFocus&quot;
 	    	onSelectTopics=&quot;autocompleteSelect&quot;
 	    /&gt;
-		&lt;br/&gt;
+		&lt;s:url id=&quot;jsoncustomers&quot; action=&quot;jsoncustomers&quot;/&gt; 
+	    &lt;sj:autocompleter 
+	    	id=&quot;customers&quot; 
+	    	name=&quot;echo&quot;
+	    	label=&quot;Handle a List&quot;
+	    	href=&quot;%{jsoncustomers}&quot; 
+	    	list=&quot;customers&quot;
+    		listValue=&quot;name&quot; 
+    		listKey=&quot;id&quot; 
+	    	delay=&quot;50&quot; 
+	    	loadMinimumCount=&quot;2&quot;
+	    	onChangeTopics=&quot;autocompleteChange&quot;
+	    	onFocusTopics=&quot;autocompleteFocus&quot;
+	    	onSelectTopics=&quot;autocompleteSelect&quot;
+	    /&gt;
+	    &lt;sj:autocompleter 
+	    	id=&quot;customersMap&quot; 
+	    	name=&quot;echo&quot;
+	    	label=&quot;Handle a Map&quot;
+	    	href=&quot;%{jsoncustomers}&quot; 
+	    	list=&quot;customersMap&quot;
+	    	delay=&quot;50&quot; 
+	    	loadMinimumCount=&quot;2&quot;
+	    	onChangeTopics=&quot;autocompleteChange&quot;
+	    	onFocusTopics=&quot;autocompleteFocus&quot;
+	    	onSelectTopics=&quot;autocompleteSelect&quot;
+	    /&gt;
     	&lt;sj:submit
     		id=&quot;submitFormAutocompleteJson&quot; 
     		targets=&quot;result&quot; 
     		button=&quot;true&quot; 
-    		validate=&quot;true&quot; 
     		value=&quot;Submit&quot; 
     		indicator=&quot;indicator&quot;
     		/&gt;
