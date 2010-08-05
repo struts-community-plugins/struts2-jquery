@@ -33,29 +33,7 @@
 			$.jgrid.no_legacy_api = true;
 			$.jgrid.useJSON = true;
 		});
-		if (!self.loadAtOnce) {
-			self.require(
-					[
-					 "js/base/jquery.ui.widget"+self.minSuffix+".js",
-					 "js/base/jquery.ui.mouse"+self.minSuffix+".js",
-					 "js/base/jquery.ui.position"+self.minSuffix+".js",
-					 "js/base/jquery.ui.button"+self.minSuffix+".js",
-					 "js/base/jquery.ui.draggable"+self.minSuffix+".js",
-					 "js/base/jquery.ui.droppable"+self.minSuffix+".js",
-					 "js/base/jquery.ui.sortable"+self.minSuffix+".js",
-					 "js/base/jquery.ui.selectable"+self.minSuffix+".js",
-					 "js/base/jquery.ui.resizable"+self.minSuffix+".js",
-					 "js/base/jquery.bgiframe"+self.minSuffix+".js",
-					 "js/base/jquery.effects.core"+self.minSuffix+".js",
-					 "js/base/jquery.effects.scale"+self.minSuffix+".js",
-					 "js/base/jquery.effects.drop"+self.minSuffix+".js",
-					 "js/base/jquery.ui.dialog"+self.minSuffix+".js",
-					 "js/plugins/jquery.jqGrid.js"
-					 ]);
-		}
-		else {
-			self.require("js/plugins/jquery.jqGrid.js");
-		}
+		self.require("js/plugins/jquery.jqGrid.js");
 		self.requireCss("themes/ui.jqgrid.css");
 		var params = {};
 		$.extend(params, o);
