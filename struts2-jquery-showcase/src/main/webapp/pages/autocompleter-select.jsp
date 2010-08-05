@@ -6,7 +6,6 @@
       <li><s:url id="urlautocompleter" action="autocompleter"/><sj:a id="autocompletersimple" href="%{urlautocompleter}" targets="main">Autocompleter</sj:a></li>
       <li><s:url id="urlautocompleterjson" action="autocompleter-json"/><sj:a id="autocompleterjson" href="%{urlautocompleterjson}" targets="main">Autocompleter JSON</sj:a></li>
       <li><s:url id="urlautocompleterselect" action="autocompleter-select"/><sj:a id="autocompleterselect" href="%{urlautocompleterselect}" targets="main">Autocompleter (Select Box)</sj:a></li>
-      <li><s:url id="urlautocompleterjsonselect" action="autocompleter-json-select"/><sj:a id="autocompleterjsonselect" href="%{urlautocompleterjsonselect}" targets="main">Autocompleter JSON (Select Box)</sj:a></li>
     </ul>
   </div>
 </div>
