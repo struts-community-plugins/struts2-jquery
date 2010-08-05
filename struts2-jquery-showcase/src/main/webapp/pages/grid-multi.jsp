@@ -14,7 +14,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Grid (Editable/Multiselect)</h2>
-    <p>
+    <p class="text">
         A editable Grid with pager and navigator. This Grid is sortable by name column and multiple rows can be selected.
     </p>
     <s:url id="remoteurl" action="jsontable"/> 

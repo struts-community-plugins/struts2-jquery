@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Form submission with AJAX with Effect</h2>
-	<p>
+	<p class="text">
 	    Submit a form with AJAX and run a slide effect.
 	</p>
     <s:form id="formEffect" action="echo" theme="xhtml">

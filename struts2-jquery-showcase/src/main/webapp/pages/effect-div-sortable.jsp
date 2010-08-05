@@ -19,7 +19,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Sortable</h2>
-	<p>
+	<p class="text">
 	    A simple sortable div list
 	</p>
     <strong>Div :</strong><br/>

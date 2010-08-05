@@ -19,7 +19,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Selectable</h2>
-	<p>
+	<p class="text">
 	    Selectable with Effect Div.
 	</p>
     <script type="text/javascript">

@@ -19,7 +19,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Drag and Drop</h2>
-	<p>
+	<p class="text">
 	    Drag and Drop with Remote and Effect Div's.
 	</p>
     <strong>Div :</strong>

@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Div with Pulsate Effect</h2>
-	<p>
+	<p class="text">
 	    A Remote Div that load AJAX content. After loading the Pulsate effect is executed.
 	</p>
     <strong>Remote Div :</strong>

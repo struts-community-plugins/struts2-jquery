@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Link with Events</h2>
-	<p>
+	<p class="text">
 	    A Remote Link that raise Events befor and after request.
 	</p>
     <strong>Result Div :</strong>

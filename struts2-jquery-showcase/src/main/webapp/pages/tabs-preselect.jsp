@@ -12,7 +12,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Remote Tabs with preselected Tab</h2>
-    <p>
+    <p class="text">
         A Remote TabbedPanel with preselected Tab,Animation and Collapsible.
     </p>
     <s:url id="remoteurl1" action="ajax1"/>

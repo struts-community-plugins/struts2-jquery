@@ -13,7 +13,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Accordion from Map</h2>
-    <p>
+    <p class="text">
         A Accordion build from a Map.
     </p>
     <sj:accordion id="accordionlist" list="accordion"/>

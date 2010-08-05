@@ -19,7 +19,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Resizeable Div</h2>
-	<p>
+	<p class="text">
 	    A resizeable Div.
 	</p>
     <strong>Div :</strong>

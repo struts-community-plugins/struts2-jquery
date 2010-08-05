@@ -17,7 +17,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Dialog with Topics</h2>
-    <p>
+    <p class="text">
         A modal Dialog with different topics.
     </p>
     <sj:dialog 

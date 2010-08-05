@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>A resizeable Remote Div</h2>
-	<p>
+	<p class="text">
 	    A Remote Div that load AJAX content and is resizeable.
 	</p>
     <strong>Remote Div :</strong>

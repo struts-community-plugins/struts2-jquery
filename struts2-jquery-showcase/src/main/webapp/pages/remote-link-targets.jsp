@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Link with two Targets</h2>
-	<p>
+	<p class="text">
 	    A Remote Link that updates two targets.
 	</p>
     <strong>Result Div 1 :</strong>

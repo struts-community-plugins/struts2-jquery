@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Link</h2>
-	<p>
+	<p class="text">
 	    A simple Remote Link with indicator.
 	</p>
     <strong>Result Div :</strong>

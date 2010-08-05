@@ -12,7 +12,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Local Tabs</h2>
-    <p>
+    <p class="text">
         A simple Local TabbedPanel
     </p>
     <sj:tabbedpanel id="localtabs" cssClass="list">

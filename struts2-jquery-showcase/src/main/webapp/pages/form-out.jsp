@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Form submission with AJAX outside the Form</h2>
-	<p>
+	<p class="text">
 	    Submit a form with AJAX from outside the Form.
 	</p>
     <strong>Result Div :</strong>

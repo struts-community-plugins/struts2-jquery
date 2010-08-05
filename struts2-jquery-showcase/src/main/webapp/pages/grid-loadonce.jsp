@@ -14,7 +14,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Grid (Local Data)</h2>
-    <p>
+    <p class="text">
         A Grid that loads data only once on initialization. The column Credit Limit is editable.
     </p>
     <s:url id="remoteurl" action="jsontable">

@@ -17,7 +17,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Dialog opened by different Links</h2>
-    <p>
+    <p class="text">
         A modal Dialog open by click on Link and loads the result as dialog content.
     </p>
     <sj:dialog 

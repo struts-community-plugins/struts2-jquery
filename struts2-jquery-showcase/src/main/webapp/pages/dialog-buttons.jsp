@@ -17,7 +17,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Dialog with Buttons</h2>
-    <p>
+    <p class="text">
         A modal Dialog Dialog with Buttons.
     </p>
     <script type="text/javascript">

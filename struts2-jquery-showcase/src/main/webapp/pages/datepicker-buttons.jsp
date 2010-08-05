@@ -19,7 +19,7 @@
     });
     </script>
     <h2>Datepicker with more options</h2>
-    <p>
+    <p class="text">
         A Datepicker with different options and animations.
     </p>
     <s:form id="form" theme="xhtml">

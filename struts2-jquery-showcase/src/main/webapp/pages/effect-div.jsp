@@ -19,7 +19,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Highlight Effect</h2>
-	<p>
+	<p class="text">
 	    A Div with Highlight Effect on click.
 	</p>
     <strong>Div :</strong>

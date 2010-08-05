@@ -13,7 +13,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Autocompleter</h2>
-    <p>
+    <p class="text">
         A Autocompleter that handle a String Array from Action.
     </p>
     <strong>Result Div :</strong>

@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Textarea with AJAX Content</h2>
-	<p>
+	<p class="text">
 	    A Textarea with remote content.
 	</p>
     <s:form id="formTextarea" action="echo" theme="simple" cssClass="yform">

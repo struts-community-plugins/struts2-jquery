@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Link with JSON Result</h2>
-	<p>
+	<p class="text">
 	    A Remote Link that handle an JSON Result with an onSuccessTopic.
 	</p>
     <strong>Result Div :</strong>

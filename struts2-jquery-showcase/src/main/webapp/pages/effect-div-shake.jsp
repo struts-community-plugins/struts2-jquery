@@ -19,7 +19,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Shake Effect</h2>
-	<p>
+	<p class="text">
 	    A Div with Shake Effect on mouse over.
 	</p>
     <strong>Div :</strong>

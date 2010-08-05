@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Select Box with AJAX Content</h2>
-	<p>
+	<p class="text">
 	    A Select Box with remote json content. This Component works together with the Struts2 JSON Plugin.
 	</p>
     <s:form id="formSelectOne" action="echo" theme="simple" cssClass="yform">

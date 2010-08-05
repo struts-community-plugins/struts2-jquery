@@ -33,7 +33,7 @@
 	});
     </script>  
 	<h2>Portlets with sortable</h2>
-	<p>
+	<p class="text">
 	    How to make portlet styled divs with the sortable interaction.
 	</p>
     <strong>Message :</strong><span id="sortableresult">Use the title from each portlet as handle.</span><br/>

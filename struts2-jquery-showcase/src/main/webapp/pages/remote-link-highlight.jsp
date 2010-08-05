@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Link with Highlight Effect</h2>
-	<p>
+	<p class="text">
 	    A Remote Link that highlight the target.
 	</p>
     <strong>Result Div :</strong>

@@ -19,7 +19,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Size Effect</h2>
-	<p>
+	<p class="text">
 	    A Div with Size Effect bind on a link.
 	</p>
     <strong>Div :</strong>

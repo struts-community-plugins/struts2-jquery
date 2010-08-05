@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Textarea / Resizable</h2>
-	<p>
+	<p class="text">
 	    A resizable Textarea with an onChangeTopic.
 	</p>
     <s:form id="formTextareaResize" action="simpleecho" theme="simple" cssClass="yform">

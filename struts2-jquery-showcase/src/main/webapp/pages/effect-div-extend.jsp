@@ -19,7 +19,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Extend the Struts2 jQuery Plugin</h2>
-	<p>
+	<p class="text">
 	    An example to show how you can easy extend the plugin with new functionality.
 	</p>
     

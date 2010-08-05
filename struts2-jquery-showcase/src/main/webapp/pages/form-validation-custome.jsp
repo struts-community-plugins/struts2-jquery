@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Form submission with Custome AJAX Validation</h2>
-	<p>
+	<p class="text">
 	   A Form submission with Custome AJAX Validation.
 	</p>
     <strong>Result Div :</strong>

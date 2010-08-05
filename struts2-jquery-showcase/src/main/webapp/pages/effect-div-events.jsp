@@ -27,7 +27,7 @@
 	});
     </script>        
 	<h2>Fold Effect with Events</h2>
-	<p>
+	<p class="text">
 	    A Div with Fold Effect on click with events befor and after effect..
 	</p>
     <strong>Div :</strong>

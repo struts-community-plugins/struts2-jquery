@@ -11,7 +11,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Datepicker</h2>
-    <p>
+    <p class="text">
         A simple Datepicker
     </p>
     <s:form id="form" theme="xhtml">

@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Link with form submission.</h2>
-	<p>
+	<p class="text">
 	    A Remote Link that submit a form.
 	</p>
     <strong>Result Div :</strong>

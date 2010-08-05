@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Divs with reloadable content</h2>
-	<p>
+	<p class="text">
 	   Remote Divs and Select Boxes with AJAX content they reload content automatically or by events.
 	</p>
     <strong>Div reloads : <span id="counter1"></span></strong>

@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>A AJAX based Double Select Box</h2>
-	<p>
+	<p class="text">
 	    Two select boxes with remote json content. The second select box content is dependent from the first one.
 	</p>
 	<strong>Reload example with two select boxes.</strong>

@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Link with Bounce Effect</h2>
-	<p>
+	<p class="text">
 	    A Remote Link that bounce the target.
 	</p>
     <strong>Result Div :</strong>

@@ -13,7 +13,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Autocompleter with JSON Result</h2>
-    <p>
+    <p class="text">
         A Autocompleter that handle a JSON Result with keys and values.
     </p>
     <strong>Result Div :</strong>

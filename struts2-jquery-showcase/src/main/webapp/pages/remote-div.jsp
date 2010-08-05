@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Div</h2>
-	<p>
+	<p class="text">
 	    A simple Remote Div that load AJAX content.
 	</p>
     <strong>Remote Div :</strong>

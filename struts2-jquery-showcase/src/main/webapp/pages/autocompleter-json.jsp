@@ -13,7 +13,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Autocompleter with JSON Result</h2>
-    <p>
+    <p class="text">
         A Autocompleter that handle a JSON Result with Topics.
     </p>
     <strong>Result Div :</strong>
@@ -85,17 +85,17 @@
 	  <pre>
   $.subscribe('autocompleteChange', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('<b>'+ui.item.value+'</b>');
+		$('#topics').html('&lt;b&gt;'+ui.item.value+'&lt;/b&gt;');
 	});
 
   $.subscribe('autocompleteFocus', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('<u>'+ui.item.value+'</u>');
+		$('#topics').html('&lt;u&gt;'+ui.item.value+'&lt;/u&gt;');
 	});
 
   $.subscribe('autocompleteSelect', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('<i>'+ui.item.value+'</i>');
+		$('#topics').html('&lt;i&gt;'+ui.item.value+'&lt;/i&gt;');
 	});
 	  </pre>
 	  </div>

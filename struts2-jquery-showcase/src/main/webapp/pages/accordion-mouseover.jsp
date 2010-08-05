@@ -13,7 +13,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Accordion</h2>
-    <p>
+    <p class="text">
         A Accordion that opens on mouse over and is collabsible.
     </p>
     <sj:accordion 

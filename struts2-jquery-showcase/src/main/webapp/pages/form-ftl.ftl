@@ -22,7 +22,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>AJAX Forms with Freemarker</h2>
-	<p>
+	<p class="text">
 	    Submit a form with AJAX and Freemarker templates.<br/>
 	    Clear field after successful submit.
 	</p>

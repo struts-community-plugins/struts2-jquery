@@ -17,7 +17,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
     <h2>Remote Dialog</h2>
-    <p>
+    <p class="text">
         A Dialog with remote content.
     </p>
     <s:url id="ajax" value="/ajax1.action"/>

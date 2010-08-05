@@ -16,7 +16,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Remote Div with Listen Topics</h2>
-	<p>
+	<p class="text">
 	    A Remote Div that load AJAX content with Listen Topics.
 	</p>
     <s:url id="ajax1" value="/ajax1.action"/>

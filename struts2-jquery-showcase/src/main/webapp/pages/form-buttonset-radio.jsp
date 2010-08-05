@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Buttonset / Radio Buttons</h2>
-	<p>
+	<p class="text">
 	   Create a Buttonset from Radio Buttons Map.
 	</p>
     <strong>Result Div :</strong>

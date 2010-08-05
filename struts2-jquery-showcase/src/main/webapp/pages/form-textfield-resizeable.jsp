@@ -24,7 +24,7 @@
 <div id="col3">
   <div id="col3_content" class="clearfix">
 	<h2>Textfield with AJAX Content / Resizable</h2>
-	<p>
+	<p class="text">
 	    A resizable Textfield with remote content.
 	</p>
     <s:form id="formTextfieldResize" action="echo" theme="simple" cssClass="yform">
