@@ -1,5 +1,5 @@
 /*
- * jQuery UI Autocomplete 1.8.3
+ * jQuery UI Autocomplete 1.8.4
  *
  * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -119,7 +119,24 @@ $.widget( "ui.autocomplete", {
 			.addClass( "ui-autocomplete" )
 			.appendTo( $( this.options.appendTo || "body", doc )[0] )
 			// prevent the close-on-blur in case of a "slow" click on the menu (long mousedown)
-			.mousedown(function() {
+			.mousedown(function( event ) {
+				// clicking on the scrollbar causes focus to shift to the body
+				// but we can't detect a mouseup or a click immediately afterward
+				// so we have to track the next mousedown and close the menu if
+				// the user clicks somewhere outside of the autocomplete
+				var menuElement = self.menu.element[ 0 ];
+				if ( event.target === menuElement ) {
+					setTimeout(function() {
+						$( document ).one( 'mousedown', function( event ) {
+							if ( event.target !== self.element[ 0 ] &&
+								event.target !== menuElement &&
+								!$.ui.contains( menuElement, event.target ) ) {
+								self.close();
+							}
+						});
+					}, 1 );
+				}
+
 				// use another timeout to make sure the blur-event-handler on the input was already triggered
 				setTimeout(function() {
 					clearTimeout( self.closing );
@@ -153,7 +170,10 @@ $.widget( "ui.autocomplete", {
 					self.selectedItem = item;
 				},
 				blur: function( event, ui ) {
-					if ( self.menu.element.is(":visible") ) {
+					// don't set the value of the text field if it's already correct
+					// this prevents moving the cursor unnecessarily
+					if ( self.menu.element.is(":visible") &&
+						( self.element.val() !== self.term ) ) {
 						self.element.val( self.term );
 					}
 				}

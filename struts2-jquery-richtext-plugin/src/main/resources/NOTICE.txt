@@ -2,3 +2,4 @@ This product includes software developed by
 The Apache Software Foundation (http://www.apache.org/).
 jQuery (http://jquery.com/).
 CKSource - Frederico Knabben (http://ckeditor.com).
+Tinymce (http://tinymce.moxiecode.com/).
