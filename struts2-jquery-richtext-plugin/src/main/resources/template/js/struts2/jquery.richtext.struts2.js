@@ -115,6 +115,8 @@
 				self.require("js/tinymce/jquery.tinymce.js");
 				
 				//Cleanup old tinymce instances
+				/*
+				 * this works not right with more then one instance!
 				if ($.struts2_jquery_richtext.editorsTinymce.length > 0 && tinyMCE.get(o.id)) {
 					var ins = tinyMCE.get(o.id);
 					if( ins !== undefined ) {
@@ -123,6 +125,7 @@
 					}
 				}
 				self.editorsTinymce[$.struts2_jquery_richtext.editorsTinymce.length] = o.id;
+				*/
 				
 				//don't use jqueryui resizable
 				//use the resizing from tinymce
