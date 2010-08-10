@@ -136,7 +136,10 @@ public class JsonTable extends ActionSupport implements SessionAware {
         {
           log.debug("search id equals " + id);
           List<Customer> cList = new ArrayList<Customer>();
-          cList.add(CustomerDAO.findById(myCustomers, id));
+          Customer customer = CustomerDAO.findById(myCustomers, id);
+
+          if (customer != null) cList.add(customer);
+
           setGridModel(cList);
         }
         else if (searchOper.equalsIgnoreCase("ne"))
