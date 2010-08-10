@@ -1,4 +1,4 @@
-/*
+/*!
  * jquery.struts2.js
  *
  * Integration of jquery and jquery ui with struts 2 
@@ -134,7 +134,7 @@
 		if (indi) {
 			$(self.escId(indi)).hide();
 		}
-		if (self.defaults.indicator != '') {
+		if (self.defaults.indicator !== '') {
 			$(self.escId(self.defaults.indicator)).hide();
 		}
 	},
@@ -145,7 +145,7 @@
 		if (indi) {
 			$(self.escId(indi)).show();
 		}
-		if (self.defaults.indicator != '') {
+		if (self.defaults.indicator !== '') {
 			$(self.escId(self.defaults.indicator)).show();
 		}
 	},
@@ -321,7 +321,7 @@
 
 				$(window).bind('hashchange', ahparams, function(e) {
 					var topic = e.getState(e.data.cid.id) || '';
-					if (e.type === topic || topic == '' || topic == self.lasttopic) { return; }
+					if (e.type === topic || topic === '' || topic == self.lasttopic) { return; }
 					self.lasttopic = topic;
 					$.publish(topic, e.data.options);
 				});
@@ -475,7 +475,7 @@
 		var actionTopic = '_sj_action_' + o.id;
 		var href = o.href;
 
-		if (href === null || href == "") {
+		if (href === null || href === "") {
 			href = "#";
 			o.href = href;
 		}
@@ -1417,9 +1417,17 @@
 				url = url + '?' + o.hrefparameter;
 			}
 		}
-		if(url != '') {
+		if(url !== '') {
 			if(o.list) {
 				params.source = function(request, response) {
+					
+					jQuery.ui.autocomplete.prototype._renderItem = function( ul, item ) {
+					  return $( "<li></li>" )
+					    .data( "item.autocomplete", item )
+					    .append( "<a>" + item.label + "</a>" )
+					    .appendTo( ul );
+					};
+					
 					$.ajax({
 						url: url,
 						dataType: "json",
@@ -1583,7 +1591,7 @@
 
 				$elem.buttonset(o);
 			});
-			if (o.onsuc && o.onsuc != '') {
+			if (o.onsuc && o.onsuc !== '') {
 				o.onsuc = buttonsetTopic;
 			}
 			else {
@@ -1700,13 +1708,13 @@
 						params.type = "POST";
 					}
 
-					if (o.formids && params.data == '') {
+					if (o.formids && params.data === '') {
 						if (!_s2j.loadAtOnce) {
 							_s2j.require("js/plugins/jquery.form" + _s2j.minSuffix + ".js");
 						}
 						$.each(o.formids.split(','), function(i, fid) {
 							var query = $(_s2j.escId(fid)).formSerialize();
-							if (params.data != '') {
+							if (params.data !== '') {
 								params.data = params.data + '&' + query;
 							}
 							else {
@@ -1791,7 +1799,7 @@
 		if (o.targets) {
 			$.each(o.targets.split(','), function(i, target) {
 				elem = $(_s2j.escId(target));
-				if (params.target == '') {
+				if (params.target === '') {
 					params.target = _s2j.escId(target);
 				}
 				else {
@@ -1854,7 +1862,7 @@
 
 				var query = form.formSerialize();
 				query = query + '&struts.enableJSONValidation=true&struts.validateOnly=true';
-				if (valParams.data != '') {
+				if (valParams.data !== '') {
 					valParams.data = valParams.data + '&amp;' + query;
 				}
 				else {
