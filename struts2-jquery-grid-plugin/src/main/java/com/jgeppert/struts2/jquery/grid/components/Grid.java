@@ -154,6 +154,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      draggableAppendTo;
   protected String                      draggableAxis;
   protected String                      draggableCancel;
+  protected String                      draggableCursor;
   protected String                      draggableContainment;
   protected String                      draggableDelay;
   protected String                      draggableDistance;
@@ -506,6 +507,12 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
         {
           draggableBuilder.append(", cancel: '");
           draggableBuilder.append(findString(draggableCancel));
+          draggableBuilder.append("' ");
+        }
+        if (draggableCursor != null)
+        {
+          draggableBuilder.append(", cursor: '");
+          draggableBuilder.append(findString(draggableCursor));
           draggableBuilder.append("' ");
         }
         if (draggableDelay != null)
@@ -1383,6 +1390,12 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setDraggableCancel(String draggableCancel)
   {
     this.draggableCancel = draggableCancel;
+  }
+
+  @StrutsTagAttribute(description = "The css cursor during the drag operation.")
+  public void setDraggableCursor(String draggableCursor)
+  {
+    this.draggableCursor = draggableCursor;
   }
 
   @StrutsTagAttribute(description = "Constrains dragging to within the bounds of the specified element or region. Possible string values: parent, document, window, [x1, y1, x2, y2].")

@@ -19,7 +19,6 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
-
 /**
  * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
@@ -37,6 +36,8 @@ public interface DraggableTag {
   void setDraggableAxis(String draggableAxis);
 
   void setDraggableCancel(String draggableCancel);
+
+  void setDraggableCursor(String draggableCursor);
 
   void setDraggableContainment(String draggableContainment);
 

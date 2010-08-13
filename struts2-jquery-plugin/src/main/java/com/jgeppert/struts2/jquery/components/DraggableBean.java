@@ -36,6 +36,8 @@ public interface DraggableBean {
 
   void setDraggableCancel(String draggableCancel);
 
+  void setDraggableCursor(String draggableCursor);
+
   void setDraggableContainment(String draggableContainment);
 
   void setDraggableDelay(String draggableDelay);

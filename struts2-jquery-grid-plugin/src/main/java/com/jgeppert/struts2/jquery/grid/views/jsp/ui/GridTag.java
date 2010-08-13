@@ -136,6 +136,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   protected String          draggableAppendTo;
   protected String          draggableAxis;
   protected String          draggableCancel;
+  protected String          draggableCursor;
   protected String          draggableContainment;
   protected String          draggableDelay;
   protected String          draggableDistance;
@@ -303,6 +304,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setDraggableAppendTo(draggableAppendTo);
     grid.setDraggableAxis(draggableAxis);
     grid.setDraggableCancel(draggableCancel);
+    grid.setDraggableCursor(draggableCursor);
     grid.setDraggableContainment(draggableContainment);
     grid.setDraggableDelay(draggableDelay);
     grid.setDraggableDistance(draggableDistance);
@@ -814,6 +816,11 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setDraggableCancel(String draggableCancel)
   {
     this.draggableCancel = draggableCancel;
+  }
+
+  public void setDraggableCursor(String draggableCursor)
+  {
+    this.draggableCursor = draggableCursor;
   }
 
   public void setDraggableContainment(String draggableContainment)

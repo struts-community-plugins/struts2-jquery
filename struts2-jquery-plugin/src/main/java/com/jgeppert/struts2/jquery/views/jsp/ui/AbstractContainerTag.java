@@ -78,6 +78,7 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
   protected String          draggableAppendTo;
   protected String          draggableAxis;
   protected String          draggableCancel;
+  protected String          draggableCursor;
   protected String          draggableContainment;
   protected String          draggableDelay;
   protected String          draggableDistance;
@@ -204,6 +205,7 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
     container.setDraggableAppendTo(draggableAppendTo);
     container.setDraggableAxis(draggableAxis);
     container.setDraggableCancel(draggableCancel);
+    container.setDraggableCursor(draggableCursor);
     container.setDraggableContainment(draggableContainment);
     container.setDraggableDelay(draggableDelay);
     container.setDraggableDistance(draggableDistance);
@@ -456,6 +458,11 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
   public void setDraggableCancel(String draggableCancel)
   {
     this.draggableCancel = draggableCancel;
+  }
+
+  public void setDraggableCursor(String draggableCursor)
+  {
+    this.draggableCursor = draggableCursor;
   }
 
   public void setDraggableContainment(String draggableContainment)
