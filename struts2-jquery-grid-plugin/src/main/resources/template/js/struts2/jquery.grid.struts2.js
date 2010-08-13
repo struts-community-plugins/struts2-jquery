@@ -189,6 +189,7 @@
 				self.require("js/plugins/grid.inlinedit.js");
 			}
 			else {
+				self.require("js/plugins/jquery.searchFilter.js");
 				self.require("js/plugins/grid.formedit.js");
 			}
 		}
@@ -196,7 +197,11 @@
 		if (o.cellurl) {
 			self.require("js/plugins/grid.celledit.js");
 		}
-		
+
+		if (o.navigatorsearch) {
+			self.require("js/plugins/jquery.searchFilter.js");
+		}
+
 		if (o.subgrid) {
 			self.require("js/plugins/grid.subgrid.js");
 			params.subGrid = true;
