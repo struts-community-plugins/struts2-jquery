@@ -484,6 +484,8 @@
 		var effect = {};
 		effect.effect = o.effect;
 		effect.effectoptions = o.effectoptions;
+		effect.effectmode = o.effectmode;
+		effect.oneffect = o.oneffect;
 		effect.effectduration = o.effectduration;
 
 		// Set dummy target when datatype is json
