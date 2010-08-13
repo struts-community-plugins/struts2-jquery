@@ -34,6 +34,16 @@
 			$.jgrid.useJSON = true;
 		});
 		self.require("js/plugins/jquery.jqGrid.js");
+		if (!self.loadAtOnce) {
+			self.require( [
+			               "js/base/jquery.ui.widget" + self.minSuffix + ".js",
+			               "js/base/jquery.ui.mouse" + self.minSuffix + ".js",
+			               "js/base/jquery.ui.draggable" + self.minSuffix + ".js",
+			               "js/base/jquery.ui.droppable" + self.minSuffix + ".js",
+			               "js/base/jquery.ui.sortable" + self.minSuffix + ".js",
+			               "js/base/jquery.ui.resizable" + self.minSuffix + ".js"
+			               ]);
+		}
 		self.requireCss("themes/ui.jqgrid.css");
 		var params = {};
 		$.extend(params, o);
@@ -174,7 +184,21 @@
 		params.loadComplete = self.pubCom($elem, o.onalw, o.oncom, null, null, o);
 		params.loadError = self.pubErr($elem, o.onalw, o.onerr, o.errortext);
 
+		if (o.editurl) {
+			if(o.editinline) {
+				self.require("js/plugins/grid.inlinedit.js");
+			}
+			else {
+				self.require("js/plugins/grid.formedit.js");
+			}
+		}
+
+		if (o.cellurl) {
+			self.require("js/plugins/grid.celledit.js");
+		}
+		
 		if (o.subgrid) {
+			self.require("js/plugins/grid.subgrid.js");
 			params.subGrid = true;
 
 			// gridview can't be true when using the subgrid feature
