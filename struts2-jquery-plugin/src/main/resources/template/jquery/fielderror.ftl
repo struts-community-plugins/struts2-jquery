@@ -25,6 +25,14 @@
     <#assign doneEndUlTag=false><#t/>
     <#assign haveMatchedErrorField=false><#t/>
     <#if (fieldErrorFieldNames?size > 0) ><#t/>
+        <#list fieldErrorFieldNames as fieldErrorFieldName><#t/>
+            <#list eKeys as eKey><#t/>
+                <#if (eKey = fieldErrorFieldName)><#t/>
+                    <#assign haveMatchedErrorField=true><#t/>
+                    <#assign eValue = fieldErrors[fieldErrorFieldName]><#t/>
+                    <#if (haveMatchedErrorField && (!doneStartUlTag))><#t/>
+                        <#assign doneStartUlTag=true><#t/>
+                    </#if><#t/>
 					<div 
 					<#if parameters.id?if_exists != "">
 					 id="${parameters.id?html}"<#rt/>
@@ -39,25 +47,17 @@
 					</#if>
 					>
 					<div class="ui-state-error ui-corner-all" style="padding: 0.3em 0.7em; margin-top: 20px;"> 
-        <#list fieldErrorFieldNames as fieldErrorFieldName><#t/>
-            <#list eKeys as eKey><#t/>
-                <#if (eKey = fieldErrorFieldName)><#t/>
-                    <#assign haveMatchedErrorField=true><#t/>
-                    <#assign eValue = fieldErrors[fieldErrorFieldName]><#t/>
-                    <#if (haveMatchedErrorField && (!doneStartUlTag))><#t/>
-                        <#assign doneStartUlTag=true><#t/>
-                    </#if><#t/>
 		                    <#list eValue as eEachValue><#t/>
 					            <#if eEachValue?if_exists != "">
 							<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
 							<span><#if parameters.escape>${eEachValue!?html}<#else>${eEachValue!}</#if></span></p>
 					            </#if>
 							</#list>
+					</div>
+        			</div>
                 </#if><#t/>
             </#list><#t/>
         </#list><#t/>
-						</div>
-        </div>
         <#if (haveMatchedErrorField && (!doneEndUlTag))><#t/>
             <#assign doneEndUlTag=true><#t/>
         </#if><#t/>
@@ -86,8 +86,8 @@
 					            </#if>
 							</#list>
             </#list><#t/>
-						</div>
-        </div>
+					</div>
+        			</div>
         </#if><#t/>
     </#if><#t/>
 </#if><#t/>
