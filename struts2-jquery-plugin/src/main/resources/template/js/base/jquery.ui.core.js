@@ -24,7 +24,7 @@ $.extend( $.ui, {
 	// $.ui.plugin is deprecated.  Use the proxy pattern instead.
 	plugin: {
 		add: function( module, option, set ) {
-			var proto = $.ui[ module ].prototype;
+			var proto = $.ui[ module ].prototype;
 			for ( var i in set ) {
 				proto.plugins[ i ] = proto.plugins[ i ] || [];
 				proto.plugins[ i ].push( [ option, set[ i ] ] );
