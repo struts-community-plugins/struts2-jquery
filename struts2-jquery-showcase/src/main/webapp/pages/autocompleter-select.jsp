@@ -11,16 +11,16 @@
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-    <h2>Autocompleter</h2>
+    <h2>Autocompleter - Select Box</h2>
     <p class="text">
-        A Autocompleter that handle a List from Action as Select Box.
+        The first autocompleter handle a List from Action as Select Box. The second can handle a Select Box with JSON Result as autocompleter. 
     </p>
     <strong>Result Div :</strong>
 	<div id="formResult" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
     <s:form id="form" action="echo" theme="simple" cssClass="yform">
         <fieldset>
-            <legend>Form with Autocompleter</legend>
+            <legend>Select Box as Autocompleter</legend>
 	        <div class="type-select">
 	            <label for="echo">Echo: </label>
     			<sj:autocompleter 
@@ -40,6 +40,37 @@
 	            	button="true"
 	            	/>
    				<img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
+	        </div>
+        </fieldset>
+    </s:form>
+    
+    <br/>
+    
+    <s:form id="form2" action="echo" theme="simple" cssClass="yform">
+        <fieldset>
+            <legend>Select Box with JSON Result as Autocompleter</legend>
+	        <div class="type-select">
+	            <label for="echo">Echo: </label>
+				<s:url id="jsoncustomers" action="jsoncustomers"/> 
+			    <sj:select 
+			    	id="customersjson" 
+			    	name="echo"
+			    	href="%{jsoncustomers}" 
+			    	list="customers"
+		    		listValue="name" 
+		    		listKey="id" 
+		    		autocomplete="true"
+		    		loadMinimumCount="2"
+			    />
+	        </div>
+	        <div>
+	            <sj:submit 
+	            	targets="formResult" 
+	            	value="AJAX Submit" 
+	            	indicator="indicator2"
+	            	button="true"
+	            	/>
+   				<img id="indicator2" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
 	        </div>
         </fieldset>
     </s:form>
@@ -73,6 +104,38 @@
 	            	button=&quot;true&quot;
 	            	/&gt;
    				&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
+	        &lt;/div&gt;
+        &lt;/fieldset&gt;
+    &lt;/s:form&gt;
+    
+    &lt;br/&gt;
+    
+    &lt;s:form id=&quot;form2&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;Form with Autocompleter&lt;/legend&gt;
+	        &lt;div class=&quot;type-select&quot;&gt;
+	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+				&lt;s:url id=&quot;jsoncustomers&quot; action=&quot;jsoncustomers&quot;/&gt; 
+			    &lt;sj:select 
+			    	id=&quot;customersjson&quot; 
+			    	name=&quot;echo&quot;
+			    	label=&quot;Handle a List&quot;
+			    	href=&quot;%{jsoncustomers}&quot; 
+			    	list=&quot;customers&quot;
+		    		listValue=&quot;name&quot; 
+		    		listKey=&quot;id&quot; 
+		    		autocomplete=&quot;true&quot;
+		    		loadMinimumCount=&quot;2&quot;
+			    /&gt;
+	        &lt;/div&gt;
+	        &lt;div&gt;
+	            &lt;sj:submit 
+	            	targets=&quot;formResult&quot; 
+	            	value=&quot;AJAX Submit&quot; 
+	            	indicator=&quot;indicator2&quot;
+	            	button=&quot;true&quot;
+	            	/&gt;
+   				&lt;img id=&quot;indicator2&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
 	        &lt;/div&gt;
         &lt;/fieldset&gt;
     &lt;/s:form&gt;

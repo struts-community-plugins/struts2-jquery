@@ -45,6 +45,8 @@ public class SelectTag extends AbstractFormElementTag {
   protected String          listValue;
   protected String          size;
   protected String          multiple;
+  protected String          autocomplete;
+  protected String          loadMinimumCount;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -64,6 +66,8 @@ public class SelectTag extends AbstractFormElementTag {
     select.setListValue(listValue);
     select.setSize(size);
     select.setMultiple(multiple);
+    select.setAutocomplete(autocomplete);
+    select.setLoadMinimumCount(loadMinimumCount);
   }
 
   public void setEmptyOption(String emptyOption)
@@ -104,6 +108,16 @@ public class SelectTag extends AbstractFormElementTag {
   public void setMultiple(String multiple)
   {
     this.multiple = multiple;
+  }
+
+  public void setAutocomplete(String autocomplete)
+  {
+    this.autocomplete = autocomplete;
+  }
+
+  public void setLoadMinimumCount(String loadMinimumCount)
+  {
+    this.loadMinimumCount = loadMinimumCount;
   }
 
 }

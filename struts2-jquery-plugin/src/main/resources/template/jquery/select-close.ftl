@@ -50,6 +50,12 @@ jQuery(document).ready(function () {
 <#if parameters.events?if_exists != ""> 
 	options_${escapedOptionId?html}.events = "${parameters.events?html}";
 </#if>
+<#if parameters.autocomplete?default(false)>
+	options_${escapedOptionId?html}.autocomplete = true;
+</#if>
+<#if parameters.loadMinimumCount??>
+	options_${escapedOptionId?html}.minimum = ${parameters.loadMinimumCount?html};
+</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

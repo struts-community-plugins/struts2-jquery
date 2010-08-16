@@ -57,6 +57,8 @@ public class Select extends AbstractFormListElement {
   protected String                      listValue;
   protected String                      size;
   protected String                      multiple;
+  protected String                      autocomplete;
+  protected String                      loadMinimumCount;
 
   public Select(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -109,6 +111,14 @@ public class Select extends AbstractFormListElement {
     {
       addParameter("multiple", findValue(multiple, Boolean.class));
     }
+    if (autocomplete != null)
+    {
+      addParameter("autocomplete", findValue(autocomplete, Boolean.class));
+    }
+    if (loadMinimumCount != null)
+    {
+      addParameter("loadMinimumCount", findValue(loadMinimumCount, Integer.class));
+    }
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -134,19 +144,19 @@ public class Select extends AbstractFormListElement {
     return "jquery";
   }
 
-  @StrutsTagAttribute(name = "emptyOption", description = "Add an empty option after the header option", defaultValue = "false", type = "Boolean")
+  @StrutsTagAttribute(description = "Add an empty option after the header option", defaultValue = "false", type = "Boolean")
   public void setEmptyOption(String emptyOption)
   {
     this.emptyOption = emptyOption;
   }
 
-  @StrutsTagAttribute(name = "headerKey", description = "Key for list header option. Must not be empty", type = "String", defaultValue = "")
+  @StrutsTagAttribute(description = "Key for list header option. Must not be empty", type = "String", defaultValue = "")
   public void setHeaderKey(String headerKey)
   {
     this.headerKey = headerKey;
   }
 
-  @StrutsTagAttribute(name = "headerValue", description = "Value for list header option. Must not be empty", type = "String", defaultValue = "")
+  @StrutsTagAttribute(description = "Value for list header option. Must not be empty", type = "String", defaultValue = "")
   public void setHeaderValue(String headerValue)
   {
     this.headerValue = headerValue;
@@ -176,10 +186,23 @@ public class Select extends AbstractFormListElement {
     this.size = size;
   }
 
-  @StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals" + " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
+  @StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals"
+                                    + " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
   public void setMultiple(String multiple)
   {
     this.multiple = multiple;
+  }
+
+  @StrutsTagAttribute(description = "use autocomplete for this select box", defaultValue = "false", type = "Boolean")
+  public void setAutocomplete(String autocomplete)
+  {
+    this.autocomplete = autocomplete;
+  }
+
+  @StrutsTagAttribute(description = "Minimum number of characters that will force the content to be loaded, only valid when autocomplet is true", type = "Integer", defaultValue = "1")
+  public void setLoadMinimumCount(String loadMinimumCount)
+  {
+    this.loadMinimumCount = loadMinimumCount;
   }
 
 }

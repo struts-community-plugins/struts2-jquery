@@ -171,11 +171,14 @@ public class Autocompleter extends ActionSupport {
   public Map<Integer, String> getCustomersMap()
   {
     Map<Integer, String> map = new HashMap<Integer, String>();
-    for (Customer customer : staticCustomers)
+    if (term != null && term.length() > 0)
     {
-      if (StringUtils.contains(customer.getName().toLowerCase(), term.toLowerCase()))
+      for (Customer customer : staticCustomers)
       {
-        map.put(new Integer(customer.getId()), customer.getName());
+        if (StringUtils.contains(customer.getName().toLowerCase(), term.toLowerCase()))
+        {
+          map.put(new Integer(customer.getId()), customer.getName());
+        }
       }
     }
     return map;

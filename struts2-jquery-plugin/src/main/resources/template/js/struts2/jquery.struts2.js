@@ -815,6 +815,10 @@
 				$elem.publishOnEvent('change', cts);
 			});
 		}
+		if (o.autocomplete) {
+			self.require("js/plugins/jquery.combobox" + self.minSuffix + ".js");
+			$elem.combobox(o);
+		}
 	},
 
 	/** Handle the Submit Button */
