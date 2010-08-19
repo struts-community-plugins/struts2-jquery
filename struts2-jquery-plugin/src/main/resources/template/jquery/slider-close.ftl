@@ -33,16 +33,16 @@ jQuery(document).ready(function () {
   <#if parameters.range?if_exists != "">
 	options_${escapedOptionId?html}.range = "${parameters.range?html}";
   </#if>
-  <#if parameters.max?if_exists != "">
+  <#if parameters.max??>
 	options_${escapedOptionId?html}.max = ${parameters.max?html};
   </#if>
-  <#if parameters.min?if_exists != "">
+  <#if parameters.min??>
 	options_${escapedOptionId?html}.min = ${parameters.min?html};
   </#if>
   <#if parameters.orientation?if_exists != "">
 	options_${escapedOptionId?html}.orientation = "${parameters.orientation?html}";
   </#if>
-  <#if parameters.step?if_exists != "">
+  <#if parameters.step??>
 	options_${escapedOptionId?html}.step = ${parameters.step?html};
   </#if>
   <#if parameters.displayValueElement?if_exists != "">
