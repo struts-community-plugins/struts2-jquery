@@ -42,6 +42,7 @@ public class JqueryModels {
   protected HeadModel          head;
   protected ProgressbarModel   progessbar;
   protected SliderModel        slider;
+  protected SpinnerModel       spinner;
   protected TextareaModel      textarea;
   protected TextfieldModel     textfield;
   protected SelectModel        select;
@@ -187,6 +188,16 @@ public class JqueryModels {
     }
 
     return slider;
+  }
+
+  public SpinnerModel getSpinner()
+  {
+    if (spinner == null)
+    {
+      spinner = new SpinnerModel(stack, req, res);
+    }
+
+    return spinner;
   }
 
   public TextareaModel getTextarea()

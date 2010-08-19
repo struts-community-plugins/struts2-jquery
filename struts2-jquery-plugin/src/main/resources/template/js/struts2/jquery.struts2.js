@@ -1281,6 +1281,24 @@
 		$elem.slider(params);
 	},
 	
+	/** Handle the Spinner Widget */
+	spinner : function($elem, o) {
+		var self = this;
+		self.log('spinner : ' + o.id);
+		self.container($elem, o);
+		if (!self.loadAtOnce) {
+			self.require("js/base/jquery.ui.widget" + self.minSuffix + ".js");
+		}
+		self.require("js/plugins/jquery.ui.spinner" + self.minSuffix + ".js");
+		self.requireCss("themes/ui.spinner.css");
+
+		if (o.oncha) {
+			o.change = self.pubTops($elem, o.onalw, o.oncha);
+		}
+
+		$elem.spinner(o);
+	},
+
 	/** Handle the Progressbar Widget */
 	progressbar : function($elem, o) {
 		var self = this;

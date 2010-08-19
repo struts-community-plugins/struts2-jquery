@@ -41,6 +41,7 @@ import com.jgeppert.struts2.jquery.views.velocity.components.ProgressbarDirectiv
 import com.jgeppert.struts2.jquery.views.velocity.components.RadioDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SelectDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SliderDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.SpinnerDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.SubmitDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TabDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TabbedPanelDirective;
@@ -64,26 +65,28 @@ public class JqueryTagLibrary implements TagLibrary {
   @SuppressWarnings("unchecked")
   public List<Class> getVelocityDirectiveClasses()
   {
-    Class[] directives = new Class[] {
-        DatePickerDirective.class,
-        DivDirective.class,
-        AnchorDirective.class,
-        AutocompleterDirective.class,
-        SubmitDirective.class,
-        TabDirective.class,
-        TabbedPanelDirective.class,
-        HeadDirective.class,
-        DialogDirective.class,
-        AccordionDirective.class,
-        AccordionItemDirective.class,
-        ProgressbarDirective.class,
-        SliderDirective.class,
-        TextareaDirective.class,
-        TextfieldDirective.class,
-        SelectDirective.class,
-        RadioDirective.class,
-        CheckboxListDirective.class,
-    };
+    Class[] directives =
+                         new Class[] {
+                             DatePickerDirective.class,
+                             DivDirective.class,
+                             AnchorDirective.class,
+                             AutocompleterDirective.class,
+                             SubmitDirective.class,
+                             TabDirective.class,
+                             TabbedPanelDirective.class,
+                             HeadDirective.class,
+                             DialogDirective.class,
+                             AccordionDirective.class,
+                             AccordionItemDirective.class,
+                             ProgressbarDirective.class,
+                             SliderDirective.class,
+                             SpinnerDirective.class,
+                             TextareaDirective.class,
+                             TextfieldDirective.class,
+                             SelectDirective.class,
+                             RadioDirective.class,
+                             CheckboxListDirective.class,
+                         };
     return Arrays.asList(directives);
   }
 
