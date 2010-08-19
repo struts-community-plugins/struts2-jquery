@@ -33,9 +33,9 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class SpinnerTag extends AbstractTopicTag {
+public class SpinnerTag extends TextfieldTag {
 
-  private static final long serialVersionUID = 2998110777278172006L;
+  private static final long serialVersionUID = 6678987650660687605L;
 
   protected String          max;
   protected String          min;

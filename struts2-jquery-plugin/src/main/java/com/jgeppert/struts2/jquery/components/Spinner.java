@@ -50,7 +50,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 @StrutsTag(name = "spinner", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SpinnerTag", description = "Render a Spinner. BETA", allowDynamicAttributes = true)
-public class Spinner extends AbstractFormElement {
+public class Spinner extends Textfield {
 
   public static final String            JQUERYACTION   = "spinner";
   public static final String            TEMPLATE       = "spinner";
