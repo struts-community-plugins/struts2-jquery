@@ -54,7 +54,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * &lt;sj:slider id=&quot;myslider2&quot; name=&quot;myslider2&quot; value=&quot;40&quot; displayValueElement=&quot;displayvaluespan&quot; min=&quot;20&quot; max=&quot;200&quot; animate=&quot;true&quot; step=&quot;5&quot; cssStyle=&quot;margin: 10px;&quot;/&gt;
  * </pre>
  * 
- * <!-- END SNIPPET: example1 -->
+ * <!-- END SNIPPET: example2 -->
  * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
@@ -97,11 +97,11 @@ public class Slider extends AbstractTopicsBean {
     addParameter("jqueryaction", JQUERYACTION);
 
     if (animate != null) addParameter("animate", findValue(animate, Boolean.class));
-    if (max != null) addParameter("max", findString(max));
-    if (min != null) addParameter("min", findString(min));
+    if (max != null) addParameter("max", findValue(max, Integer.class));
+    if (min != null) addParameter("min", findValue(min, Integer.class));
     if (orientation != null) addParameter("orientation", findString(orientation));
     if (range != null) addParameter("range", findString(range));
-    if (step != null) addParameter("step", findString(step));
+    if (step != null) addParameter("step", findValue(step, Integer.class));
     if (displayValueElement != null) addParameter("displayValueElement", findString(displayValueElement));
     if (onSlideTopics != null) addParameter("onSlideTopics", findString(onSlideTopics));
     if (value != null)
@@ -148,13 +148,13 @@ public class Slider extends AbstractTopicsBean {
     this.animate = animate;
   }
 
-  @StrutsTagAttribute(description = "Initialize a slider with the max option specified. Default: 100")
+  @StrutsTagAttribute(description = "Initialize a slider with the max option specified. Default: 100", type = "Integer")
   public void setMax(String max)
   {
     this.max = max;
   }
 
-  @StrutsTagAttribute(description = "The minimum value of the slider. Default: 0")
+  @StrutsTagAttribute(description = "The minimum value of the slider. Default: 0", type = "Integer")
   public void setMin(String min)
   {
     this.min = min;
@@ -172,7 +172,7 @@ public class Slider extends AbstractTopicsBean {
     this.range = range;
   }
 
-  @StrutsTagAttribute(description = "Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step. Default: 1")
+  @StrutsTagAttribute(description = "Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step. Default: 1", type = "Integer")
   public void setStep(String step)
   {
     this.step = step;
