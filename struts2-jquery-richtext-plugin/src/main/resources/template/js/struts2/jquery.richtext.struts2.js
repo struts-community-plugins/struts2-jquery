@@ -1,4 +1,4 @@
-/*
+/*!
  * jquery.richtext.struts2.js
  *
  * Integration of richtext editor with struts 2 
@@ -159,7 +159,22 @@
 							self.publishTopic($elem, o.onalw, data);
 						}
 					});
+					if (o.pasteplain) {
+						alert('only paste plain');
+						ed.onKeyDown.add(function(ed, e) {
+					    if (e.ctrlKey && (e.charCode == 118 || e.keyCode == 86)) {
+					        ed.execCommand("mcePasteText", true);
+					        ed.execCommand("mceAddUndoLevel");
+					        return tinymce.dom.Event.cancel(e);
+					    }
+						});
+					}
 				};
+				
+				if (o.pasteplain) {
+					o.paste_text_sticky = true;
+					o.paste_text_use_dialog = true;
+				}
 				
 				if (o.editorLocal) {
 					o.language = o.editorLocal;

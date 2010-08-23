@@ -69,6 +69,7 @@ public class Tinymce extends Textarea {
   protected String                      toolbarButtonsRow4;
   protected String                      entityEncoding;
   protected String                      contentCss;
+  protected String                      pastePlainText;
   protected String                      onSaveTopics;
 
   public Tinymce(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
@@ -179,6 +180,10 @@ public class Tinymce extends Textarea {
     if (contentCss != null)
     {
       addParameter("contentCss", findString(contentCss));
+    }
+    if (pastePlainText != null)
+    {
+      addParameter("pasteplain", findValue(pastePlainText, Boolean.class));
     }
     if (onSaveTopics != null)
     {
@@ -327,6 +332,12 @@ public class Tinymce extends Textarea {
   public void setContentCss(String contentCss)
   {
     this.contentCss = contentCss;
+  }
+
+  @StrutsTagAttribute(description = "Always paste as plaintext.‎", type = "Boolean", defaultValue = "false")
+  public void setPastePlainText(String pastePlainText)
+  {
+    this.pastePlainText = pastePlainText;
   }
 
   @StrutsTagAttribute(description = "Topics that are published when user press the save button", type = "String", defaultValue = "")

@@ -55,6 +55,7 @@ public class TinymceTag extends TextareaTag {
   protected String          toolbarButtonsRow4;
   protected String          entityEncoding;
   protected String          contentCss;
+  protected String          pastePlainText;
   protected String          onSaveTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
@@ -86,6 +87,7 @@ public class TinymceTag extends TextareaTag {
     editor.setToolbarButtonsRow4(toolbarButtonsRow4);
     editor.setEntityEncoding(entityEncoding);
     editor.setContentCss(contentCss);
+    editor.setPastePlainText(pastePlainText);
     editor.setOnSaveTopics(onSaveTopics);
   }
 
@@ -182,6 +184,11 @@ public class TinymceTag extends TextareaTag {
   public void setContentCss(String contentCss)
   {
     this.contentCss = contentCss;
+  }
+
+  public void setPastePlainText(String pastePlainText)
+  {
+    this.pastePlainText = pastePlainText;
   }
 
   public void setOnSaveTopics(String onSaveTopics)

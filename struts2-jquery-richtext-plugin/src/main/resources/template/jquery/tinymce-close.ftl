@@ -50,6 +50,9 @@ jQuery(document).ready(function () {
 	<#if parameters.statusbarLocation?if_exists != ""> 
 	options_${escapedOptionId?html}.theme_advanced_statusbar_location = "${parameters.statusbarLocation?html}";
 	</#if>
+  	<#if parameters.pasteplain?default(false)>
+	options_${escapedOptionId?html}.pasteplain = true;
+  	</#if>
   	<#if parameters.editorResizable?default(false)>
 	options_${escapedOptionId?html}.editorResizable = true;
   	</#if>
