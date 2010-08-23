@@ -15,26 +15,33 @@
       <li><s:url id="urlrichtext" action="richtext"/><sj:a id="richtextlink" href="%{urlrichtext}" targets="main">Richtext - Ckeditor</sj:a></li>
       <li><s:url id="urlrichtextcustome" action="richtext-custome"/><sj:a id="richtextcustomelink" href="%{urlrichtextcustome}" targets="main">Richtext - Ckeditor (Custome Toolbar)</sj:a></li>
       <li><s:url id="urlmessages" action="messages"/><sj:a id="messageslink" href="%{urlmessages}" targets="main">Action Errors/Messages</sj:a></li>
+      <li><s:url id="urlcharts" action="charts"/><sj:a id="chartslink" href="%{urlcharts}" targets="main">Charts</sj:a></li>
     </ul>
   </div>
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-    <h2>Resizeable progressbar</h2>
+    <h2>Spinner</h2>
     <p class="text">
-        A resizeable Progressbar.
+        A Spinner Widget.
     </p>
-    <sj:div id="progressbarWrapper" resizable="true" cssStyle="height:30px;" cssClass="ui-widget-default">
-        <sj:progressbar id="progressbarresize" value="21" cssStyle="height: 100%;"/>
-    </sj:div>
+    <h3>A simple Spinner</h3>
+    <sj:spinner id="spinner1"/>
+    <br/>
+    <br/>
+    <h3>A Spinner max=50 and step=2</h3>
+    <sj:spinner id="spinner2" min="5" max="50" step="2" value="25"/>
+    <br/>
+    <br/>
+    <h3>A Spinner with Topic</h3>
+    <sj:spinner id="spinner3" onChangeTopics="changeSpinner"/>
+    <br/>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">
     <strong>Code:</strong>
     <pre>
-    &lt;sj:effectDiv id="progressbarWrapper" resizable="true" cssStyle="height:30px;" cssClass="ui-widget-default"&gt;
-        &lt;sj:progressbar id="progressbarresize" value="21" change="change" cssStyle="height: 100%;"/&gt;
-    &lt;/sj:effectDiv&gt;
+    &lt;sj:slider id=&quot;simpleslider&quot;/&gt;
     </pre>
   </div>
   <!-- IE Column Clearing -->
