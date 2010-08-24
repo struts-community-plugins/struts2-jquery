@@ -40,6 +40,11 @@ public class SpinnerTag extends TextfieldTag {
   protected String          max;
   protected String          min;
   protected String          step;
+  protected String          prefix;
+  protected String          suffix;
+  protected String          showOn;
+  protected String          point;
+  protected String          mouseWheel;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -54,6 +59,11 @@ public class SpinnerTag extends TextfieldTag {
     spinner.setMax(max);
     spinner.setMin(min);
     spinner.setStep(step);
+    spinner.setPrefix(prefix);
+    spinner.setSuffix(suffix);
+    spinner.setShowOn(showOn);
+    spinner.setPoint(point);
+    spinner.setMouseWheel(mouseWheel);
   }
 
   public void setMax(String max)
@@ -69,5 +79,30 @@ public class SpinnerTag extends TextfieldTag {
   public void setStep(String step)
   {
     this.step = step;
+  }
+
+  public void setPrefix(String prefix)
+  {
+    this.prefix = prefix;
+  }
+
+  public void setSuffix(String suffix)
+  {
+    this.suffix = suffix;
+  }
+
+  public void setShowOn(String showOn)
+  {
+    this.showOn = showOn;
+  }
+
+  public void setPoint(String point)
+  {
+    this.point = point;
+  }
+
+  public void setMouseWheel(String mouseWheel)
+  {
+    this.mouseWheel = mouseWheel;
   }
 }

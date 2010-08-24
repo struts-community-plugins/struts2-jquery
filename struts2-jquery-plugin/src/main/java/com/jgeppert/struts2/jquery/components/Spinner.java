@@ -24,6 +24,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -41,10 +42,53 @@ import com.opensymphony.xwork2.util.ValueStack;
  * </p>
  * 
  * <!-- START SNIPPET: example1 -->
+ * <p>
+ * A simple Spinner.
+ * </p>
  * 
  * <pre>
- * &lt;sj:spinner id=&quot;mysspinner&quot; name=&quot;mysspinner&quot;/&gt;
+ * &lt;sj:spinner name=&quot;spinner1&quot; id=&quot;spinner1&quot;/&gt;
  * </pre>
+ * 
+ * <!-- END SNIPPET: example1 -->
+ * 
+ * <!-- START SNIPPET: example2 -->
+ * <p>
+ * A Spinner max=50 and step=2.
+ * </p>
+ * 
+ * <pre>
+ *     &lt;sj:spinner 
+ *       name=&quot;spinner2&quot; 
+ *       id=&quot;spinner2&quot; 
+ *       min=&quot;5&quot; 
+ *       max=&quot;50&quot; 
+ *       step=&quot;2&quot; 
+ *       value=&quot;25&quot;/&gt;
+ * 
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example2 -->
+ * 
+ * <!-- START SNIPPET: example3 -->
+ * <p>
+ * A Spinner with currency format and mouse wheel support.
+ * </p>
+ * 
+ * <pre>
+ * &lt;sj:spinner 
+ *       name=&quot;spinner3&quot; 
+ *       id=&quot;spinner3&quot; 
+ *       min=&quot;0.00&quot; 
+ *       max=&quot;5.00&quot; 
+ *       step=&quot;0.15&quot; 
+ *       value=&quot;2.50&quot; 
+ *       suffix=&quot;$&quot; 
+ *       mouseWheel=&quot;true&quot;/&gt;
+ *     &lt;br/&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example3 -->
  * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
@@ -60,6 +104,11 @@ public class Spinner extends Textfield {
   protected String                      max;
   protected String                      min;
   protected String                      step;
+  protected String                      prefix;
+  protected String                      suffix;
+  protected String                      showOn;
+  protected String                      point;
+  protected String                      mouseWheel;
 
   public Spinner(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -81,9 +130,21 @@ public class Spinner extends Textfield {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (max != null) addParameter("max", findValue(max, Integer.class));
-    if (min != null) addParameter("min", findValue(min, Integer.class));
-    if (step != null) addParameter("step", findValue(step, Integer.class));
+    if (max != null) addParameter("max", findValue(max, Number.class));
+    if (min != null) addParameter("min", findValue(min, Number.class));
+
+    if (step != null)
+    {
+      String stepObj = findString(step);
+      stepObj = StringUtils.replace(stepObj, ",", ".");
+      addParameter("step", stepObj);
+    }
+
+    if (prefix != null) addParameter("prefix", findString(prefix));
+    if (suffix != null) addParameter("suffix", findString(suffix));
+    if (showOn != null) addParameter("showOn", findString(showOn));
+    if (point != null) addParameter("point", findString(point));
+    if (mouseWheel != null) addParameter("mouseWheel", findValue(mouseWheel, Boolean.class));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -109,21 +170,51 @@ public class Spinner extends Textfield {
     return "jquery";
   }
 
-  @StrutsTagAttribute(description = "maximum value allowed", type = "Integer")
+  @StrutsTagAttribute(description = "maximum value allowed", type = "Number")
   public void setMax(String max)
   {
     this.max = max;
   }
 
-  @StrutsTagAttribute(description = "minimum value allowed", type = "Integer")
+  @StrutsTagAttribute(description = "minimum value allowed", type = "Number")
   public void setMin(String min)
   {
     this.min = min;
   }
 
-  @StrutsTagAttribute(description = "size of step to take when spinning", type = "Integer")
+  @StrutsTagAttribute(description = "size of step to take when spinning", type = "Number", defaultValue = "1")
   public void setStep(String step)
   {
     this.step = step;
+  }
+
+  @StrutsTagAttribute(description = "Character prefix before the number.")
+  public void setPrefix(String prefix)
+  {
+    this.prefix = prefix;
+  }
+
+  @StrutsTagAttribute(description = "Character suffix after the number.")
+  public void setSuffix(String suffix)
+  {
+    this.suffix = suffix;
+  }
+
+  @StrutsTagAttribute(description = "Defines when the spin buttons are visible. always, focus, hover, both", defaultValue = "always")
+  public void setShowOn(String showOn)
+  {
+    this.showOn = showOn;
+  }
+
+  @StrutsTagAttribute(description = "Decimal point character.", defaultValue = ".")
+  public void setPoint(String point)
+  {
+    this.point = point;
+  }
+
+  @StrutsTagAttribute(description = "If true then mouse wheel events will be attached.", type = "Boolean")
+  public void setMouseWheel(String mouseWheel)
+  {
+    this.mouseWheel = mouseWheel;
   }
 }

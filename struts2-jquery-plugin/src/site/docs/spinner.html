@@ -574,7 +574,7 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Integer</td>
+					<td align="left" valign="top">Number</td>
 					<td align="left" valign="top">maximum value allowed</td>
 				</tr>
 				<tr>
@@ -590,8 +590,16 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Integer</td>
+					<td align="left" valign="top">Number</td>
 					<td align="left" valign="top">minimum value allowed</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">mouseWheel</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">If true then mouse wheel events will be attached.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">name</td>
@@ -816,6 +824,22 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">The parent theme. Default: value of parent form tag or simple if no parent form tag is available</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">point</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">.</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">Decimal point character.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">prefix</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">Character prefix before the number.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">readonly</td>
@@ -1112,6 +1136,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Possible values: 'touch', 'fit'. Default: 'touch'</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">showOn</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">always</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">Defines when the spin buttons are visible. always, focus, hover, both</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">size</td>
@@ -1420,10 +1452,18 @@ Please do not edit it directly.
 				<tr>
 					<td align="left" valign="top">step</td>
 					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">1</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Number</td>
+					<td align="left" valign="top">size of step to take when spinning</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">suffix</td>
+					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Integer</td>
-					<td align="left" valign="top">size of step to take when spinning</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">Character suffix after the number.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">tabindex</td>

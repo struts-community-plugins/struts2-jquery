@@ -1288,6 +1288,9 @@
 		self.container($elem, o);
 		if (!self.loadAtOnce) {
 			self.require("js/base/jquery.ui.widget" + self.minSuffix + ".js");
+			if (o.mouseWheel) {
+				self.require("js/base/jquery.ui.mouse" + self.minSuffix + ".js");
+			}
 		}
 		self.require("js/plugins/jquery.ui.spinner" + self.minSuffix + ".js");
 		self.requireCss("themes/ui.spinner.css");
