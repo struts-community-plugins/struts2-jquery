@@ -106,6 +106,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      altClass;
   protected String                      altRows;
   protected String                      prmNames;
+  protected String                      direction;
+  protected String                      recordpos;
 
   protected String                      onSelectRowTopics;
   protected String                      onSelectAllTopics;
@@ -295,6 +297,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     if (altClass != null) addParameter("altClass", findString(altClass));
     if (altRows != null) addParameter("altRows", findValue(this.altRows, Boolean.class));
     if (prmNames != null) addParameter("prmNames", findString(prmNames));
+    if (direction != null) addParameter("direction", findString(direction));
+    if (recordpos != null) addParameter("recordpos", findString(recordpos));
 
     if (onSelectRowTopics != null) addParameter("onSelectRowTopics", findString(onSelectRowTopics));
     if (onSelectAllTopics != null) addParameter("onSelectAllTopics", findString(onSelectAllTopics));
@@ -1126,6 +1130,18 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setPrmNames(String prmNames)
   {
     this.prmNames = prmNames;
+  }
+
+  @StrutsTagAttribute(description = "Determines the language direction in grid. The default is 'ltr' (Left To Right language). When set to 'rtl' (Right To Left) the grid automatically do the needed.", defaultValue = "ltr")
+  public void setDirection(String direction)
+  {
+    this.direction = direction;
+  }
+
+  @StrutsTagAttribute(description = "Determines the position of the record information in the pager. Can be left, center, right", defaultValue = "right")
+  public void setRecordpos(String recordpos)
+  {
+    this.recordpos = recordpos;
   }
 
   @StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")

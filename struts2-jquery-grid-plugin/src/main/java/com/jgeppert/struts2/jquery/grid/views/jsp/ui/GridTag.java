@@ -90,6 +90,8 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   protected String          altClass;
   protected String          altRows;
   protected String          prmNames;
+  protected String          direction;
+  protected String          recordpos;
 
   protected String          onSelectRowTopics;
   protected String          onSelectAllTopics;
@@ -266,6 +268,8 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setAltClass(altClass);
     grid.setAltRows(altRows);
     grid.setPrmNames(prmNames);
+    grid.setDirection(direction);
+    grid.setRecordpos(recordpos);
 
     grid.setResizable(resizable);
     grid.setResizableAnimate(resizableAnimate);
@@ -636,6 +640,16 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setPrmNames(String prmNames)
   {
     this.prmNames = prmNames;
+  }
+
+  public void setDirection(String direction)
+  {
+    this.direction = direction;
+  }
+
+  public void setRecordpos(String recordpos)
+  {
+    this.recordpos = recordpos;
   }
 
   public void setResizableAnimate(String animate)

@@ -76,6 +76,12 @@
   <#if parameters.prmNames?if_exists != "">
 	options_${escapedOptionId?html}.prmNames = ${parameters.prmNames?html};
   </#if>
+  <#if parameters.direction?if_exists != "">
+	options_${escapedOptionId?html}.direction = "${parameters.direction?html}";
+  </#if>
+  <#if parameters.altClass?if_exists != "">
+	options_${escapedOptionId?html}.recordpos = "${parameters.recordpos?html}";
+  </#if>
   <#if parameters.navigator?default(false)>
 	options_${escapedOptionId?html}.navigator = true;
 	  <#if parameters.navigatorEditOptions?if_exists != "">
@@ -222,7 +228,7 @@
 	options_${escapedOptionId?html}.jsonReader.records = "records";
   </#if>
 	options_${escapedOptionId?html}.jsonReader.repeatitems = false;
-	
+
   <#include "/${parameters.templateDir}/jquery/draggable.ftl" />
   <#include "/${parameters.templateDir}/jquery/droppable.ftl" />
   <#include "/${parameters.templateDir}/jquery/resizable.ftl" />
@@ -235,7 +241,7 @@
 <#if !parameters.subGrid?default(false)>
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 	jQuery.struts2_jquery_grid.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
- });  
+ });
 </script>
 <#else>
 	<#if parameters.subGridUrl?if_exists != "">
