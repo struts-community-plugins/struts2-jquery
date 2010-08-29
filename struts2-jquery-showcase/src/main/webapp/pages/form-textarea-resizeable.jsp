@@ -99,7 +99,7 @@
 
     &lt;strong&gt;Result Div :&lt;/strong&gt;
 	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;
-		Enter some text in the textarea bellow.
+		Enter some text in the Textarea above.
 	&lt;/div&gt;
 	  </pre>
 	</div>
