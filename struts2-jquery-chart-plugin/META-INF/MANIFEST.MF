@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Created-By: 1.5.0
+Built-By: Johannes Geppert http://www.jgeppert.com
+Build-Jdk: 1.5.0
+Bundle-Version: 1.5.0
+Bundle-Description: Apache Struts 2 jQuery Chart Plugin
+Bundle-Name: Struts 2 jQuery Chart Plugin
+Bundle-SymbolicName: com.jgeppert.struts2-jquery-chart-plugin
