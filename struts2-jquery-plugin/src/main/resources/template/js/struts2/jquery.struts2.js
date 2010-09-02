@@ -351,7 +351,7 @@
 				var divEffectTopic = '_sj_div_effect_';
 				$.each(ec.split(','), function(i, target) {
 					var effect_elem = $(self.escId(target));
-					effect_elem.publish(divEffectTopic + target, effect_elem);
+					effect_elem.publish(divEffectTopic + target + o.id, o);
 				});
 			}
 			if (o.resizable) {
@@ -508,7 +508,7 @@
 				}
 				
 				self.subscribeTopics(tarelem, actionTopic, loadHandler, o);
-				self.subscribeTopics(tarelem, effectTopic + target, self.handler.effect, effect);
+				self.subscribeTopics(tarelem, effectTopic + target + o.id, self.handler.effect, effect);
 
 				if (self.ajaxhistory) {
 					var params = {};
@@ -525,7 +525,7 @@
 		else { // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 			effect.targets = o.id;
-			$(self.escId(o.id)).subscribe(effectTopic + o.id, self.handler.effect, effect);
+			self.subscribeTopics($(self.escId(o.id)), effectTopic + o.id + o.id, self.handler.effect, effect);
 
 			// bind event topic listeners
 			if (o.onbef || o.oncom || o.onsuc || o.onerr) {
@@ -559,11 +559,11 @@
 					var $bindElement = $('#' + o.bindon);
 					if (o.events) {
 						$.each(o.events.split(','), function(i, event) {
-							$bindElement.publishOnEvent(event, divTopic);
+							$bindElement.publishOnEvent(event, divTopic, o);
 						});
 					}
 					else {
-						$bindElement.publishOnEvent('click', divTopic);
+						$bindElement.publishOnEvent('click', divTopic, o);
 					}
 				}
 				else if (!o.deferredloading) {
@@ -589,7 +589,7 @@
 				effect.effect = o.effect;
 				effect.effectoptions = o.effectoptions;
 				effect.effectduration = o.effectduration;
-				self.subscribeTopics($elem, divEffectTopic, self.handler.effect, effect);
+				self.subscribeTopics($elem, divEffectTopic + o.id + o.id, self.handler.effect, effect);
 			}
 
 			if (o.events || o.bindon) {
@@ -609,7 +609,7 @@
 							bindel.publishOnEvent(event, btopic);
 						});
 					}
-					bindel.publishOnEvent(event, divEffectTopic);
+					bindel.publishOnEvent(event, divEffectTopic + o.id + o.id, o);
 					if (o.oncom) {
 						$.each(o.oncom.split(','), function(i, ctopic) {
 							bindel.publishOnEvent(event, ctopic);
@@ -620,13 +620,13 @@
 			else {
 				if (o.onbef) {
 					$.each(o.onbef.split(','), function(i, bts) {
-						$elem.publish(bts, $elem);
+						$elem.publish(bts, o);
 					});
 				}
-				$elem.publish(divEffectTopic, $elem);
+				$elem.publish(divEffectTopic + o.id + o.id, o);
 				if (o.oncom) {
 					$.each(o.oncom.split(','), function(i, cts) {
-						$elem.publish(cts, $elem);
+						$elem.publish(cts, o);
 					});
 				}
 			}

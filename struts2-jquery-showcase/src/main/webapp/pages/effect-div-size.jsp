@@ -24,10 +24,11 @@
 	</p>
     <strong>Div :</strong>
     <sj:div 
+    	id="sizediv"
     	bindOn="startlink" 
     	events="click" 
-    	effect="size" 
-    	effectOptions="{ to: {width: 400,height: 300} }" 
+    	effect="scale" 
+    	effectOptions="{ percent: 200, direction: 'horizontal' }" 
     	effectDuration="1000" 
     	cssClass="result ui-widget-content ui-corner-all" 
     	cssStyle="width: 200px; height: 200px; background: blue; color: yellow;"
@@ -49,8 +50,8 @@
     &lt;sj:div 
     	bindOn=&quot;startlink&quot; 
     	events=&quot;click&quot; 
-    	effect=&quot;size&quot; 
-    	effectOptions=&quot;{ to: {width: 400,height: 300} }&quot; 
+    	effect=&quot;scale&quot; 
+    	effectOptions=&quot;{ percent: 200, direction: 'horizontal' }&quot; 
     	effectDuration=&quot;1000&quot; 
     	cssClass=&quot;result ui-widget-content ui-corner-all&quot; 
     	cssStyle=&quot;width: 200px; height: 200px; background: blue; color: yellow;&quot;
