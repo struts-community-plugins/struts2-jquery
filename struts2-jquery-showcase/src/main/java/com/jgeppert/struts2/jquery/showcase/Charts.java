@@ -30,6 +30,7 @@ import java.util.Random;
 import java.util.TreeMap;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
@@ -47,8 +48,12 @@ public class Charts extends ActionSupport {
   private String                minTime;
   private String                maxTime;
 
-  @Action(value = "/charts", results = {
-    @Result(location = "charts.jsp", name = "success")
+  @Actions( {
+      @Action(value = "/charts", results = {
+        @Result(location = "charts.jsp", name = "success")
+      }), @Action(value = "/jsonchartdata", results = {
+        @Result(location = "charts.jsp", name = "success")
+      })
   })
   public String execute() throws Exception
   {

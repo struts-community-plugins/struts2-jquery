@@ -21,6 +21,30 @@
 <#assign escapedOptionId="${parameters.chart?string?replace('.', '_')}">
 
 options_${escapedOptionId?html}_data = {};
+<#if parameters.hrefUrl?if_exists != "">
+options_${escapedOptionId?html}_data.href = "${parameters.hrefUrl?html}";
+</#if>
+<#if parameters.hrefParameter?if_exists != ""> 
+options_${escapedOptionId?html}_data.hrefparameter = "${parameters.hrefParameter?string}";
+</#if>
+<#if parameters.formIds?exists>
+options_${escapedOptionId?html}_data.formids = "${parameters.formIds?html}";
+</#if>
+<#if parameters.indicator?exists>
+options_${escapedOptionId?html}_data.indicatorid = "${parameters.indicator?html}";
+</#if>
+<#if parameters.loadingText?exists>
+options_${escapedOptionId?html}_data.loadingtext = "${parameters.loadingText?html}";
+</#if>
+<#if parameters.remoteList??>
+options_${escapedOptionId?html}_data.list = "${parameters.remoteList?html}";
+</#if>
+<#if parameters.remoteListKey??>
+options_${escapedOptionId?html}_data.listkey = "${parameters.remoteListKey?html}";
+</#if>
+<#if parameters.remoteListValue??>
+options_${escapedOptionId?html}_data.listvalue = "${parameters.remoteListValue?html}";
+</#if>
 <#if parameters.label?if_exists != "">
 options_${escapedOptionId?html}_data.label = "${parameters.label?html}";
 </#if>

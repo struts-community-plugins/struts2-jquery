@@ -55,7 +55,6 @@
     	xaxisTickColor="#aaa"
     	xaxisPosition="top"
     	yaxisPosition="right"
-    	legendShow="false"
     	cssStyle="width: 600px; height: 400px;"
     >
     	<sjc:chartData
@@ -63,6 +62,31 @@
     		list="dateFromMap"
     		color="#990066"
     		bars="{ show: true }	"
+    	/>
+    </sjc:chart>
+
+    <br/>
+
+	<h3>Chart with AJAX Data</h3>
+	<s:url id="chartDataUrl" action="json-chart-data"/>
+    <sjc:chart
+    	id="chartAjax"
+    	legendLabelBoxBorderColor="#990033"
+    	legendPosition="ne"
+    	legendShow="#ccc"
+    	cssStyle="width: 600px; height: 400px;"
+    >
+    	<sjc:chartData
+    		label="Map -Double, Double-"
+    		href="%{chartDataUrl}"
+    		list="doubleMap"
+    	/>
+    	<sjc:chartData
+    		label="List -ListValue-"
+    		href="%{chartDataUrl}"
+    		list="objList"
+    		listKey="myKey"
+    		listValue="myValue"
     	/>
     </sjc:chart>
   </div>
