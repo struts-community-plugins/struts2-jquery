@@ -42,7 +42,38 @@
 				}
 			});
 			
-			$.plot($elem, self.charts[o.id], o);
+			if(o.onclick || o.onhover) {
+				o.grid = {};
+				if(o.onclick) {
+					o.grid.clickable = true;
+				}
+				if(o.onhover) {
+					o.grid.hoverable = true;
+				}
+			}
+			
+			var plot = $.plot($elem, self.charts[o.id], o);
+			
+			if(o.onclick) {
+				$elem.bind("plotclick", function (event, pos, item) {
+					var orginal = {};
+					orginal.plot = plot;
+					orginal.event = event;
+					orginal.pos = pos;
+					orginal.item = item;
+					self.publishTopic($elem, o.onclick, orginal);
+		    });
+			}
+			if(o.onhover) {
+				$elem.bind("plothover", function (event, pos, item) {
+					var orginal = {};
+					orginal.plot = plot;
+					orginal.event = event;
+					orginal.pos = pos;
+					orginal.item = item;
+					self.publishTopic($elem, o.onhover, orginal);
+				});
+			}
 
 			var chartTopic = '_s2j_chart_topic';
 			$.each(ajaxData, function(i, ad) {
@@ -113,7 +144,7 @@
 						}
 						else {
 							var arrayValue = [];
-							arrayValue.push(data[o.list][x]);
+							arrayValue.push(x);
 							arrayValue.push(data[o.list][x]);
 							result.push(arrayValue);
 						}

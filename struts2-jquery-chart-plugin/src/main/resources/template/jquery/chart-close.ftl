@@ -101,6 +101,9 @@ options_${escapedOptionId?html}.legend.labelBoxBorderColor = "${parameters.legen
 <#if parameters.legendBackgroundColor?if_exists != "">
 options_${escapedOptionId?html}.legend.backgroundColor = "${parameters.legendBackgroundColor?html}";
 </#if>
+<#if parameters.onHoverTopics?if_exists != "">
+options_${escapedOptionId?html}.onhover = "${parameters.onHoverTopics?html}";
+</#if>
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 	jQuery.struts2_jquery_chart.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});

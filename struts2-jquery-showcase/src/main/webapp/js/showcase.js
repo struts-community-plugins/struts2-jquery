@@ -250,6 +250,21 @@ $(document).ready(function() {
   	var ui = event.originalEvent.ui;
 		$('#topics').html('<i>'+ui.item.value+'</i>');
 	});
+  
+	/*
+	 * Subscribe Topics for Chart Example
+	 */
+	$.subscribe('chartHover', function(event, data) {
+    $("#topicsHover").text(event.originalEvent.pos.x.toFixed(2)+','+event.originalEvent.pos.y.toFixed(2));
+	});
+	$.subscribe('chartClick', function(event, data) {
+		var item = event.originalEvent.item;
+    if (item) {
+      $("#topicsClick").text("You clicked point " + item.dataIndex + " ("+item.datapoint[0]+","+item.datapoint[1]+") in " + item.series.label + ".");
+      event.originalEvent.plot.highlight(item.series, item.datapoint);
+    }
+	});
+
 
 	/*
 	 * Menu Highlight

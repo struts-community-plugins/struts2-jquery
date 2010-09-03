@@ -34,7 +34,7 @@
 	options_${escapedOptionId?html}.formids = "${parameters.formIds?html}";
   </#if>
   <#if parameters.onClickTopics?exists>
-	options_${escapedOptionId?html}.onclicktopics = "${parameters.onClickTopics?html}";
+	options_${escapedOptionId?html}.onclick = "${parameters.onClickTopics?html}";
   </#if>
   <#if parameters.indicator?exists>
 	options_${escapedOptionId?html}.indicatorid = "${parameters.indicator?html}";

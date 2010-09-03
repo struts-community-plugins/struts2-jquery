@@ -28,7 +28,7 @@ import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.jgeppert.struts2.jquery.components.Textarea;
+import com.jgeppert.struts2.jquery.components.AbstractContainer;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -42,7 +42,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 @StrutsTag(name = "chart", tldTagClass = "com.jgeppert.struts2.jquery.chart.views.jsp.ui.ChartTag", description = "A Chart Element based on Flot", allowDynamicAttributes = true)
-public class Chart extends Textarea {
+public class Chart extends AbstractContainer {
 
   public static final String            TEMPLATE       = "chart";
   public static final String            TEMPLATE_CLOSE = "chart-close";
@@ -74,6 +74,8 @@ public class Chart extends Textarea {
   protected String                      legendPosition;
   protected String                      legendLabelBoxBorderColor;
   protected String                      legendBackgroundColor;
+  protected String                      onClickTopics;
+  protected String                      onHoverTopics;
 
   public Chart(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -117,6 +119,8 @@ public class Chart extends Textarea {
     if (legendPosition != null) addParameter("legendPosition", findString(legendPosition));
     if (legendLabelBoxBorderColor != null) addParameter("legendLabelBoxBorderColor", findString(legendLabelBoxBorderColor));
     if (legendBackgroundColor != null) addParameter("legendBackgroundColor", findString(legendBackgroundColor));
+    if (onClickTopics != null) addParameter("onClickTopics", findString(onClickTopics));
+    if (onHoverTopics != null) addParameter("onHoverTopics", findString(onHoverTopics));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -284,5 +288,17 @@ public class Chart extends Textarea {
   public void setYaxisTickDecimals(String yaxisTickDecimals)
   {
     this.yaxisTickDecimals = yaxisTickDecimals;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the grid is clicked", type = "String")
+  public void setOnClickTopics(String onClickTopics)
+  {
+    this.onClickTopics = onClickTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published when the grid is hovered", type = "String")
+  public void setOnHoverTopics(String onHoverTopics)
+  {
+    this.onHoverTopics = onHoverTopics;
   }
 }

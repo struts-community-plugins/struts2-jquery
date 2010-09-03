@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.components.Component;
 
 import com.jgeppert.struts2.jquery.chart.components.Chart;
-import com.jgeppert.struts2.jquery.views.jsp.ui.TextareaTag;
+import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractContainerTag;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -34,7 +34,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 
-public class ChartTag extends TextareaTag {
+public class ChartTag extends AbstractContainerTag {
 
   private static final long serialVersionUID = -1079998891457416433L;
 
@@ -62,6 +62,8 @@ public class ChartTag extends TextareaTag {
   protected String          legendPosition;
   protected String          legendLabelBoxBorderColor;
   protected String          legendBackgroundColor;
+  protected String          onClickTopics;
+  protected String          onHoverTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -97,6 +99,8 @@ public class ChartTag extends TextareaTag {
     chart.setLegendPosition(legendPosition);
     chart.setLegendBackgroundColor(legendBackgroundColor);
     chart.setLegendLabelBoxBorderColor(legendLabelBoxBorderColor);
+    chart.setOnClickTopics(onClickTopics);
+    chart.setOnHoverTopics(onHoverTopics);
   }
 
   public void setXaxisPosition(String xaxisPosition)
@@ -217,6 +221,16 @@ public class ChartTag extends TextareaTag {
   public void setYaxisTickDecimals(String yaxisTickDecimals)
   {
     this.yaxisTickDecimals = yaxisTickDecimals;
+  }
+
+  public void setOnClickTopics(String onClickTopics)
+  {
+    this.onClickTopics = onClickTopics;
+  }
+
+  public void setOnHoverTopics(String onHoverTopics)
+  {
+    this.onHoverTopics = onHoverTopics;
   }
 
 }

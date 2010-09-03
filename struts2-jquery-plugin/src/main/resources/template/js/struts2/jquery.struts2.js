@@ -761,8 +761,8 @@
 		var self = this;
 		self.log('anchor : ' + o.id);
 
-		if (o.onclicktopics) {
-			$.each(o.onclicktopics.split(','), function(i, topic) {
+		if (o.onclick) {
+			$.each(o.onclick.split(','), function(i, topic) {
 				$elem.publishOnEvent('click', topic);
 			});
 		}
@@ -855,8 +855,8 @@
 				self.action($elem, o, self.handler.load, 'a');
 			}
 		}
-		if (o.onclicktopics) {
-			$.each(o.onclicktopics.split(','), function(i, topic) {
+		if (o.onclick) {
+			$.each(o.onclick.split(','), function(i, topic) {
 				$elem.publishOnEvent('click', topic);
 			});
 		}
