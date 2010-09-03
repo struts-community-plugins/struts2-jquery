@@ -28,8 +28,6 @@
       <sj:head debug="true" compressed="false" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
   </s:else>
   
-  <script type="text/javascript" src="/struts2-jquery-showcase/struts/js/struts2/jquery.chart.struts2.js"></script>
-  
 	<!-- This file includes necessary functions/topics for validation and all topic examples -->
 	<script type="text/javascript" src="js/showcase.js"></script>
 	<!-- Extend the Struts2 jQuery Plugin with an richtext editor -->
