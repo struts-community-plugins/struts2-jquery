@@ -44,6 +44,22 @@
 
     <br/>
 
+	<h3>Chart with values from a List with Objects</h3>
+    <sjc:chart id="chartObjects" cssStyle="width: 600px; height: 400px;">
+    	<sjc:chartData
+    		label="List with Objects"
+    		list="objList"
+    		listKey="myKey"
+    		listValue="myValue"
+    		points="{ show: true }"
+    		lines="{ show: true }"
+    		clickable="true"
+    		hoverable="true"
+    	/>
+    </sjc:chart>
+
+    <br/>
+
 	<h3>Chart with Date Values</h3>
     <sjc:chart
     	id="chartDate"
@@ -52,16 +68,18 @@
     	xaxisMin="%{minTime}"
     	xaxisMax="%{maxTime}"
     	xaxisColor="#666"
+    	xaxisTickSize="[2, 'month']"
     	xaxisTickColor="#aaa"
     	xaxisPosition="top"
     	yaxisPosition="right"
+    	yaxisTickSize="10"
     	cssStyle="width: 600px; height: 400px;"
     >
     	<sjc:chartData
     		label="Map -Date, Integer-"
     		list="dateFromMap"
     		color="#990066"
-    		bars="{ show: true }	"
+    		bars="{ show: true }"
     	/>
     </sjc:chart>
 

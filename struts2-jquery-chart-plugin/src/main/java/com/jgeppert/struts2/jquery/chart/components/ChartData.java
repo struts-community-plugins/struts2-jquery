@@ -20,6 +20,7 @@
 package com.jgeppert.struts2.jquery.chart.components;
 
 import java.awt.Point;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -29,13 +30,17 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts2.util.MakeIterator;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
+import com.jgeppert.struts2.jquery.components.DatePicker;
 import com.opensymphony.xwork2.util.ValueStack;
+import com.opensymphony.xwork2.util.logging.Logger;
+import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -43,31 +48,32 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Data for the Chart Element
  * </p>
  * <!-- END SNIPPET: javadoc -->
- *
+ * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- *
+ * 
  */
 @StrutsTag(name = "chartData", tldTagClass = "com.jgeppert.struts2.jquery.chart.views.jsp.ui.ChartDataTag", description = "Data for the Chart Element", allowDynamicAttributes = true)
 public class ChartData extends AbstractRemoteBean {
 
-  public static final String TEMPLATE       = "chart-data";
-  public static final String TEMPLATE_CLOSE = "chart-data-close";
-  public static final String COMPONENT_NAME = ChartData.class.getName();
+  public static final String    TEMPLATE       = "chart-data";
+  public static final String    TEMPLATE_CLOSE = "chart-data-close";
+  public static final String    COMPONENT_NAME = ChartData.class.getName();
+  protected final static Logger LOG            = LoggerFactory.getLogger(DatePicker.class);
 
-  protected String           color;
-  protected String           label;
-  protected String           lines;
-  protected String           bars;
-  protected String           points;
-  protected String           xaxis;
-  protected String           yaxis;
-  protected String           clickable;
-  protected String           hoverable;
-  protected String           shadowSize;
+  protected String              color;
+  protected String              label;
+  protected String              lines;
+  protected String              bars;
+  protected String              points;
+  protected String              xaxis;
+  protected String              yaxis;
+  protected String              clickable;
+  protected String              hoverable;
+  protected String              shadowSize;
 
-  protected Object           list;
-  protected String           listKey;
-  protected String           listValue;
+  protected Object              list;
+  protected String              listKey;
+  protected String              listValue;
 
   public ChartData(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -126,15 +132,15 @@ public class ChartData extends AbstractRemoteBean {
         list = parameters.get("list");
       }
 
-      Object listValue = findValue(list.toString());
+      Object listObject = findValue(list.toString());
 
-      if (listValue instanceof String)
+      if (listObject instanceof String)
       {
-        addParameter("data", listValue);
+        addParameter("data", listObject);
       }
-      else if (listValue instanceof Map)
+      else if (listObject instanceof Map)
       {
-        Map map = (Map) listValue;
+        Map map = (Map) listObject;
         Set keySet = map.keySet();
 
         StringBuffer data = new StringBuffer();
@@ -170,13 +176,13 @@ public class ChartData extends AbstractRemoteBean {
       else
       {
         Iterator iterator = null;
-        if (listValue instanceof Collection)
+        if (listObject instanceof Collection)
         {
-          iterator = ((Collection) listValue).iterator();
+          iterator = ((Collection) listObject).iterator();
         }
         else
         {
-          iterator = MakeIterator.convert(listValue);
+          iterator = MakeIterator.convert(listObject);
         }
 
         if (iterator != null)
@@ -186,9 +192,10 @@ public class ChartData extends AbstractRemoteBean {
 
           Object item = iterator.next();
           boolean iterat = true;
+          int count = 0;
           while (iterat)
           {
-
+            count++;
             if (item == null)
             {
               data.append("null");
@@ -207,7 +214,77 @@ public class ChartData extends AbstractRemoteBean {
               else
               {
                 data.append("[");
-                data.append(item.toString());
+                if (listKey != null)
+                {
+                  String key = findString(listKey);
+                  String itemKey = null;
+                  try
+                  {
+                    itemKey = (String) PropertyUtils.getSimpleProperty(item, key);
+                  }
+                  catch (IllegalAccessException e)
+                  {
+                    LOG.warn("Cannot read listKey", e);
+                  }
+                  catch (InvocationTargetException e)
+                  {
+                    LOG.warn("Cannot read listKey", e);
+                  }
+                  catch (NoSuchMethodException e)
+                  {
+                    LOG.warn("Cannot read listKey", e);
+                  }
+
+                  if (itemKey != null)
+                  {
+                    data.append(itemKey);
+                  }
+                  else
+                  {
+                    data.append(count);
+                  }
+                }
+                else
+                {
+                  data.append(count);
+                }
+
+                data.append(",");
+
+                if (listValue != null)
+                {
+                  String value = findString(listValue);
+                  String itemValue = null;
+                  try
+                  {
+                    itemValue = (String) PropertyUtils.getSimpleProperty(item, value);
+                  }
+                  catch (IllegalAccessException e)
+                  {
+                    LOG.warn("Cannot read listValue", e);
+                  }
+                  catch (InvocationTargetException e)
+                  {
+                    LOG.warn("Cannot read listValue", e);
+                  }
+                  catch (NoSuchMethodException e)
+                  {
+                    LOG.warn("Cannot read listValue", e);
+                  }
+
+                  if (itemValue != null)
+                  {
+                    data.append(itemValue);
+                  }
+                  else
+                  {
+                    data.append(item.toString());
+                  }
+                }
+                else
+                {
+                  data.append(item.toString());
+                }
                 data.append("]");
               }
             }

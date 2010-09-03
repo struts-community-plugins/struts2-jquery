@@ -53,6 +53,9 @@ public class Chart extends Textarea {
   protected String                      xaxisPosition;
   protected String                      xaxisMode;
   protected String                      xaxisColor;
+  protected String                      xaxisTick;
+  protected String                      xaxisTickSize;
+  protected String                      xaxisTickDecimals;
   protected String                      xaxisTickColor;
   protected String                      xaxisMin;
   protected String                      xaxisMax;
@@ -60,6 +63,9 @@ public class Chart extends Textarea {
   protected String                      yaxisPosition;
   protected String                      yaxisMode;
   protected String                      yaxisColor;
+  protected String                      yaxisTick;
+  protected String                      yaxisTickSize;
+  protected String                      yaxisTickDecimals;
   protected String                      yaxisTickColor;
   protected String                      yaxisMin;
   protected String                      yaxisMax;
@@ -92,12 +98,18 @@ public class Chart extends Textarea {
     if (xaxisPosition != null) addParameter("xaxisPosition", findString(xaxisPosition));
     if (xaxisMode != null) addParameter("xaxisMode", findString(xaxisMode));
     if (xaxisColor != null) addParameter("xaxisColor", findString(xaxisColor));
+    if (xaxisTick != null) addParameter("xaxisTick", findString(xaxisTick));
+    if (xaxisTickSize != null) addParameter("xaxisTickSize", findString(xaxisTickSize));
+    if (xaxisTickDecimals != null) addParameter("xaxisTickDecimals", findString(xaxisTickDecimals));
     if (xaxisTickColor != null) addParameter("xaxisTickColor", findString(xaxisTickColor));
     if (xaxisMin != null) addParameter("xaxisMin", findString(xaxisMin));
     if (xaxisMax != null) addParameter("xaxisMax", findString(xaxisMax));
     if (yaxisPosition != null) addParameter("yaxisPosition", findString(yaxisPosition));
     if (yaxisMode != null) addParameter("yaxisMode", findString(yaxisMode));
     if (yaxisColor != null) addParameter("yaxisColor", findString(yaxisColor));
+    if (yaxisTick != null) addParameter("yaxisTick", findString(yaxisTick));
+    if (yaxisTickSize != null) addParameter("yaxisTickSize", findString(yaxisTickSize));
+    if (yaxisTickDecimals != null) addParameter("yaxisTickDecimals", findString(yaxisTickDecimals));
     if (yaxisTickColor != null) addParameter("yaxisTickColor", findString(yaxisTickColor));
     if (yaxisMin != null) addParameter("yaxisMin", findString(yaxisMin));
     if (yaxisMax != null) addParameter("yaxisMax", findString(yaxisMax));
@@ -236,5 +248,41 @@ public class Chart extends Textarea {
   public void setLegendBackgroundColor(String legendBackgroundColor)
   {
     this.legendBackgroundColor = legendBackgroundColor;
+  }
+
+  @StrutsTagAttribute(description = "number or ticks array. If you want to completely override the tick algorithm, you can specify an array for ticks, either like this: [0, 1.2, 2.4] or like this where the labels are also customized: [[0, 'zero'], [1.2, 'one mark'], [2.4, 'two marks']]")
+  public void setXaxisTick(String xaxisTick)
+  {
+    this.xaxisTick = xaxisTick;
+  }
+
+  @StrutsTagAttribute(description = "number or ticks array. If you set it to 2, you'll get ticks at 2, 4, 6, etc. Note that for time series, the format is an array like [2, 'month']")
+  public void setXaxisTickSize(String xaxisTickSize)
+  {
+    this.xaxisTickSize = xaxisTickSize;
+  }
+
+  @StrutsTagAttribute(description = "the number of decimals to display (default is auto-detected).", defaultValue = "auto-detected")
+  public void setXaxisTickDecimals(String xaxisTickDecimals)
+  {
+    this.xaxisTickDecimals = xaxisTickDecimals;
+  }
+
+  @StrutsTagAttribute(description = "number or ticks array. If you want to completely override the tick algorithm, you can specify an array for ticks, either like this: [0, 1.2, 2.4] or like this where the labels are also customized: [[0, 'zero'], [1.2, 'one mark'], [2.4, 'two marks']]")
+  public void setYaxisTick(String yaxisTick)
+  {
+    this.yaxisTick = yaxisTick;
+  }
+
+  @StrutsTagAttribute(description = "number or ticks array. If you set it to 2, you'll get ticks at 2, 4, 6, etc. Note that for time series, the format is an array like [2, 'month']")
+  public void setYaxisTickSize(String yaxisTickSize)
+  {
+    this.yaxisTickSize = yaxisTickSize;
+  }
+
+  @StrutsTagAttribute(description = "the number of decimals to display (default is auto-detected).", defaultValue = "auto-detected")
+  public void setYaxisTickDecimals(String yaxisTickDecimals)
+  {
+    this.yaxisTickDecimals = yaxisTickDecimals;
   }
 }

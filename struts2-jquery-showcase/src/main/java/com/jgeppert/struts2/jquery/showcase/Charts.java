@@ -20,6 +20,7 @@
 package com.jgeppert.struts2.jquery.showcase;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ public class Charts extends ActionSupport {
 
   private List<Point>           points;
   private List<Point>           pointsWithNull;
+  private List<ListValue>       objList;
   private Map<Integer, Integer> pointsFromMap;
   private Map<Date, Integer>    dateFromMap;
   private String                minTime;
@@ -96,6 +98,12 @@ public class Charts extends ActionSupport {
     maxTime = "" + calendar.getTime().getTime();
     System.out.println("maxTime : " + maxTime);
 
+    objList = new ArrayList<ListValue>();
+    for (int i = 1; i <= 24; i++)
+    {
+      objList.add(new ListValue("" + i, "" + generator.nextInt(30)));
+    }
+
     return SUCCESS;
   }
 
@@ -127,5 +135,10 @@ public class Charts extends ActionSupport {
   public String getMaxTime()
   {
     return maxTime;
+  }
+
+  public List<ListValue> getObjList()
+  {
+    return objList;
   }
 }

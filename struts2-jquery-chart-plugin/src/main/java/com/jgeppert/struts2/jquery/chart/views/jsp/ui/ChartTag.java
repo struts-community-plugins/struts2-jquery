@@ -41,6 +41,9 @@ public class ChartTag extends TextareaTag {
   protected String          xaxisPosition;
   protected String          xaxisMode;
   protected String          xaxisColor;
+  protected String          xaxisTick;
+  protected String          xaxisTickSize;
+  protected String          xaxisTickDecimals;
   protected String          xaxisTickColor;
   protected String          xaxisMin;
   protected String          xaxisMax;
@@ -48,6 +51,9 @@ public class ChartTag extends TextareaTag {
   protected String          yaxisPosition;
   protected String          yaxisMode;
   protected String          yaxisColor;
+  protected String          yaxisTick;
+  protected String          yaxisTickSize;
+  protected String          yaxisTickDecimals;
   protected String          yaxisTickColor;
   protected String          yaxisMin;
   protected String          yaxisMax;
@@ -72,6 +78,9 @@ public class ChartTag extends TextareaTag {
     chart.setXaxisMin(xaxisMin);
     chart.setXaxisMode(xaxisMode);
     chart.setXaxisPosition(xaxisPosition);
+    chart.setXaxisTick(xaxisTick);
+    chart.setXaxisTickSize(xaxisTickSize);
+    chart.setXaxisTickDecimals(xaxisTickDecimals);
     chart.setXaxisTickColor(xaxisTickColor);
     chart.setXaxisTimeformat(xaxisTimeformat);
     chart.setYaxisColor(yaxisColor);
@@ -79,6 +88,9 @@ public class ChartTag extends TextareaTag {
     chart.setYaxisMin(yaxisMin);
     chart.setYaxisMode(yaxisMode);
     chart.setYaxisPosition(yaxisPosition);
+    chart.setYaxisTick(yaxisTick);
+    chart.setYaxisTickSize(yaxisTickSize);
+    chart.setYaxisTickDecimals(yaxisTickDecimals);
     chart.setYaxisTickColor(yaxisTickColor);
     chart.setYaxisTimeformat(yaxisTimeformat);
     chart.setLegendShow(legendShow);
@@ -175,6 +187,36 @@ public class ChartTag extends TextareaTag {
   public void setLegendBackgroundColor(String legendBackgroundColor)
   {
     this.legendBackgroundColor = legendBackgroundColor;
+  }
+
+  public void setXaxisTick(String xaxisTick)
+  {
+    this.xaxisTick = xaxisTick;
+  }
+
+  public void setXaxisTickSize(String xaxisTickSize)
+  {
+    this.xaxisTickSize = xaxisTickSize;
+  }
+
+  public void setXaxisTickDecimals(String xaxisTickDecimals)
+  {
+    this.xaxisTickDecimals = xaxisTickDecimals;
+  }
+
+  public void setYaxisTick(String yaxisTick)
+  {
+    this.yaxisTick = yaxisTick;
+  }
+
+  public void setYaxisTickSize(String yaxisTickSize)
+  {
+    this.yaxisTickSize = yaxisTickSize;
+  }
+
+  public void setYaxisTickDecimals(String yaxisTickDecimals)
+  {
+    this.yaxisTickDecimals = yaxisTickDecimals;
   }
 
 }

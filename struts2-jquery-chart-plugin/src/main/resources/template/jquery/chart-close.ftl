@@ -39,6 +39,15 @@ options_${escapedOptionId?html}.xaxis.timeformat = "${parameters.xaxisTimeformat
 <#if parameters.xaxisColor?if_exists != "">
 options_${escapedOptionId?html}.xaxis.color = "${parameters.xaxisColor?html}";
 </#if>
+<#if parameters.xaxisTick?if_exists != "">
+options_${escapedOptionId?html}.xaxis.tick = ${parameters.xaxisTick?html};
+</#if>
+<#if parameters.xaxisTickSize?if_exists != "">
+options_${escapedOptionId?html}.xaxis.tickSize = ${parameters.xaxisTickSize?html};
+</#if>
+<#if parameters.xaxisTickDecimals?if_exists != "">
+options_${escapedOptionId?html}.xaxis.tickDecimals = ${parameters.xaxisTickDecimals?html};
+</#if>
 <#if parameters.xaxisTickColor?if_exists != "">
 options_${escapedOptionId?html}.xaxis.tickColor = "${parameters.xaxisTickColor?html}";
 </#if>
@@ -60,6 +69,15 @@ options_${escapedOptionId?html}.yaxis.timeformat = "${parameters.yaxisTimeformat
 </#if>
 <#if parameters.yaxisColor?if_exists != "">
 options_${escapedOptionId?html}.yaxis.color = "${parameters.yaxisColor?html}";
+</#if>
+<#if parameters.yaxisTick?if_exists != "">
+options_${escapedOptionId?html}.yaxis.tick = ${parameters.yaxisTick?html};
+</#if>
+<#if parameters.yaxisTickSize?if_exists != "">
+options_${escapedOptionId?html}.yaxis.tickSize = ${parameters.yaxisTickSize?html};
+</#if>
+<#if parameters.yaxisTickDecimals?if_exists != "">
+options_${escapedOptionId?html}.yaxis.tickDecimals = ${parameters.yaxisTickDecimals?html};
 </#if>
 <#if parameters.yaxisTickColor?if_exists != "">
 options_${escapedOptionId?html}.yaxis.tickColor = "${parameters.yaxisTickColor?html}";
