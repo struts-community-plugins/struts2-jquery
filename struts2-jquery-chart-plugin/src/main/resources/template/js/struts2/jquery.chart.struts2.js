@@ -1,7 +1,7 @@
 /*!
  * jquery.chart.struts2.js
  *
- * Integration of charts with struts 2 
+ * Integration of charts with struts 2
  *
  * Requires use of jquery.struts2.js
  *
@@ -27,8 +27,11 @@
 		// Render a Chart Area
 		chart : function($elem, o) {
 			var self = this;
-			self.require("js/flot/jquery.flot.js");
-			
+			if ($.browser.msie) {
+				self.require("js/flot/excanvas" + self.minSuffix + ".js");
+			}
+			self.require("js/flot/jquery.flot" + self.minSuffix + ".js");
+
 			var ajaxData = [];
 			self.charts[o.id] = [];
 			$.each(o.data, function(i, d) {
@@ -41,7 +44,7 @@
 					self.charts[o.id].push(d);
 				}
 			});
-			
+
 			if(o.onclick || o.onhover) {
 				o.grid = {};
 				if(o.onclick) {
@@ -51,9 +54,9 @@
 					o.grid.hoverable = true;
 				}
 			}
-			
+
 			var plot = $.plot($elem, self.charts[o.id], o);
-			
+
 			if(o.onclick) {
 				$elem.bind("plotclick", function (event, pos, item) {
 					var orginal = {};
@@ -159,7 +162,7 @@
 				var floatOptions = o.plot;
 				o.data = result;
 				o.plot = null;
-				
+
 				var isFetched = false;
 				$.each($.struts2_jquery_chart.charts[floatOptions.id], function(j, val) {
 					if(val && val.id && val.id == o.id) {
@@ -167,7 +170,7 @@
 						val.data = result;
 					}
 				});
-				
+
 				if(!isFetched){
 					$.struts2_jquery_chart.charts[floatOptions.id].push(o);
 				}
@@ -179,7 +182,7 @@
 				_s2j.publishTopic(c, o.onalw, orginal);
 			}
 		};
-		
+
 		// load container using ajax
 		if (o.href) {
 			params.url = o.href;
