@@ -25,7 +25,7 @@ options_${escapedOptionId?html}_data.id = "${parameters.id?html}";
 <#if parameters.hrefUrl?if_exists != "">
 options_${escapedOptionId?html}_data.href = "${parameters.hrefUrl?html}";
 </#if>
-<#if parameters.hrefParameter?if_exists != ""> 
+<#if parameters.hrefParameter?if_exists != "">
 options_${escapedOptionId?html}_data.hrefparameter = "${parameters.hrefParameter?string}";
 </#if>
 <#if parameters.formIds?exists>
@@ -87,6 +87,21 @@ options_${escapedOptionId?html}_data.listentopics = "${parameters.listenTopics?h
 </#if>
 <#if parameters.deferredLoading?default(false)>
 options_${escapedOptionId?html}_data.deferredloading = true;
+</#if>
+<#if parameters.onCompleteTopics?exists>
+options_${escapedOptionId?html}_data.oncom = "${parameters.onCompleteTopics?html}";
+</#if>
+<#if parameters.onSuccessTopics?exists>
+options_${escapedOptionId?html}_data.onsuc = "${parameters.onSuccessTopics?html}";
+</#if>
+<#if parameters.onErrorTopics?exists>
+options_${escapedOptionId?html}_data.onerr = "${parameters.onErrorTopics?html}";
+</#if>
+<#if parameters.onBeforeTopics?exists>
+options_${escapedOptionId?html}_data.onbef = "${parameters.onBeforeTopics?html}";
+</#if>
+<#if parameters.onAlwaysTopics?exists>
+options_${escapedOptionId?html}_data.onalw = "${parameters.onAlwaysTopics?html}";
 </#if>
 
 options_${escapedOptionId?html}.data.push(options_${escapedOptionId?html}_data);
