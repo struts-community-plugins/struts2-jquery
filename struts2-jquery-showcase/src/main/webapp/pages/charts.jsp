@@ -47,7 +47,12 @@
 	<h3>Chart with values from a List with Objects</h3>
 	<div id="topicsHover"></div>
 	<div id="topicsClick"></div>
-    <sjc:chart id="chartObjects" cssStyle="width: 600px; height: 400px;" onClickTopics="chartClick" onHoverTopics="chartHover">
+    <sjc:chart
+    	id="chartObjects"
+    	cssStyle="width: 600px; height: 400px;"
+    	onClickTopics="chartClick"
+    	onHoverTopics="chartHover"
+    >
     	<sjc:chartData
     		label="List with Objects"
     		list="objList"
@@ -112,8 +117,8 @@
     		reloadTopics="reloadList"
     	/>
     </sjc:chart>
-    <sj:a onClickTopics="reloadMap" button="true" buttonIcon="ui-icon-refresh">Load/Reload Map</sj:a> 
-    <sj:a onClickTopics="reloadList" button="true" buttonIcon="ui-icon-refresh">Reload List</sj:a> 
+    <sj:a onClickTopics="reloadMap" button="true" buttonIcon="ui-icon-refresh">Load/Reload Map</sj:a>
+    <sj:a onClickTopics="reloadList" button="true" buttonIcon="ui-icon-refresh">Reload List</sj:a>
   </div>
 
     <br/>
@@ -213,8 +218,8 @@
     		reloadTopics=&quot;reloadList&quot;
     	/&gt;
     &lt;/sjc:chart&gt;
-    &lt;sj:a onClickTopics=&quot;reloadMap&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Load/Reload Map&lt;/sj:a&gt; 
-    &lt;sj:a onClickTopics=&quot;reloadList&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Reload List&lt;/sj:a&gt; 
+    &lt;sj:a onClickTopics=&quot;reloadMap&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Load/Reload Map&lt;/sj:a&gt;
+    &lt;sj:a onClickTopics=&quot;reloadList&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Reload List&lt;/sj:a&gt;
 	  </pre>
 	  </div>
       <div id="javascript">
