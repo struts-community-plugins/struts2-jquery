@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +37,7 @@ import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
+import com.jgeppert.struts2.jquery.components.AbstractContainer;
 import com.jgeppert.struts2.jquery.components.DatePicker;
 import com.opensymphony.xwork2.util.ValueStack;
 import com.opensymphony.xwork2.util.logging.Logger;
@@ -53,27 +54,28 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  */
 @StrutsTag(name = "chartData", tldTagClass = "com.jgeppert.struts2.jquery.chart.views.jsp.ui.ChartDataTag", description = "Data for the Chart Element", allowDynamicAttributes = true)
-public class ChartData extends AbstractRemoteBean {
+public class ChartData extends AbstractContainer {
 
-  public static final String    TEMPLATE       = "chart-data";
-  public static final String    TEMPLATE_CLOSE = "chart-data-close";
-  public static final String    COMPONENT_NAME = ChartData.class.getName();
-  protected final static Logger LOG            = LoggerFactory.getLogger(DatePicker.class);
+  public static final String            TEMPLATE       = "chart-data";
+  public static final String            TEMPLATE_CLOSE = "chart-data-close";
+  public static final String            COMPONENT_NAME = ChartData.class.getName();
+  protected final static Logger         LOG            = LoggerFactory.getLogger(DatePicker.class);
+  private final static transient Random RANDOM         = new Random();
 
-  protected String              color;
-  protected String              label;
-  protected String              lines;
-  protected String              bars;
-  protected String              points;
-  protected String              xaxis;
-  protected String              yaxis;
-  protected String              clickable;
-  protected String              hoverable;
-  protected String              shadowSize;
+  protected String                      color;
+  protected String                      label;
+  protected String                      lines;
+  protected String                      bars;
+  protected String                      points;
+  protected String                      xaxis;
+  protected String                      yaxis;
+  protected String                      clickable;
+  protected String                      hoverable;
+  protected String                      shadowSize;
 
-  protected Object              list;
-  protected String              listKey;
-  protected String              listValue;
+  protected Object                      list;
+  protected String                      listKey;
+  protected String                      listValue;
 
   public ChartData(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -103,6 +105,16 @@ public class ChartData extends AbstractRemoteBean {
     if (clickable != null) addParameter("clickable", findValue(this.clickable, Boolean.class));
     if (hoverable != null) addParameter("hoverable", findValue(this.hoverable, Boolean.class));
     if (shadowSize != null) addParameter("shadowSize", findValue(shadowSize, Integer.class));
+
+    if ((this.id == null || this.id.length() == 0))
+    {
+      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+      int nextInt = RANDOM.nextInt();
+      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+      this.id = "chartdata" + String.valueOf(nextInt);
+      addParameter("id", this.id);
+    }
 
     Chart chart = (Chart) findAncestor(Chart.class);
     if (chart != null)

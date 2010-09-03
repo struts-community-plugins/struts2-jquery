@@ -79,7 +79,11 @@
 			$.each(ajaxData, function(i, ad) {
 				var topic = chartTopic+i;
 				self.subscribeTopics($elem, topic, '_s2j_chart', ad);
-				$elem.publish(topic, ad);
+				self.subscribeTopics($elem, ad.reloadtopics, '_s2j_chart', ad);
+				self.subscribeTopics($elem, ad.listentopics, '_s2j_chart', ad);
+				if (!ad.deferredloading) {
+					$elem.publish(topic, ad);
+				}
 			});
 		}
 	};
@@ -155,7 +159,18 @@
 				var floatOptions = o.plot;
 				o.data = result;
 				o.plot = null;
-				$.struts2_jquery_chart.charts[floatOptions.id].push(o);
+				
+				var isFetched = false;
+				$.each($.struts2_jquery_chart.charts[floatOptions.id], function(j, val) {
+					if(val && val.id && val.id == o.id) {
+						isFetched = true;
+						val.data = result;
+					}
+				});
+				
+				if(!isFetched){
+					$.struts2_jquery_chart.charts[floatOptions.id].push(o);
+				}
 				$.plot(c,$.struts2_jquery_chart.charts[floatOptions.id],floatOptions);
 			}
 

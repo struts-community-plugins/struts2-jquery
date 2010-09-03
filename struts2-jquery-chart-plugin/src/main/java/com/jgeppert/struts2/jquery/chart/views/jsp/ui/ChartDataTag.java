@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.components.Component;
 
 import com.jgeppert.struts2.jquery.chart.components.ChartData;
-import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractRemoteTag;
+import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractContainerTag;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -34,7 +34,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 
-public class ChartDataTag extends AbstractRemoteTag {
+public class ChartDataTag extends AbstractContainerTag {
 
   private static final long serialVersionUID = -5967481302404440884L;
   protected String          color;

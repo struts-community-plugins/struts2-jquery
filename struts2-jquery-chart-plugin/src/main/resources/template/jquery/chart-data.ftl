@@ -21,6 +21,7 @@
 <#assign escapedOptionId="${parameters.chart?string?replace('.', '_')}">
 
 options_${escapedOptionId?html}_data = {};
+options_${escapedOptionId?html}_data.id = "${parameters.id?html}";
 <#if parameters.hrefUrl?if_exists != "">
 options_${escapedOptionId?html}_data.href = "${parameters.hrefUrl?html}";
 </#if>
@@ -77,6 +78,15 @@ options_${escapedOptionId?html}_data.hoverable = true;
 </#if>
 <#if parameters.shadowSize?if_exists != "">
 options_${escapedOptionId?html}_data.shadowSize = ${parameters.shadowSize};
+</#if>
+<#if parameters.reloadTopics?exists>
+options_${escapedOptionId?html}_data.reloadtopics = "${parameters.reloadTopics?html}";
+</#if>
+<#if parameters.listenTopics?exists>
+options_${escapedOptionId?html}_data.listentopics = "${parameters.listenTopics?html}";
+</#if>
+<#if parameters.deferredLoading?default(false)>
+options_${escapedOptionId?html}_data.deferredloading = true;
 </#if>
 
 options_${escapedOptionId?html}.data.push(options_${escapedOptionId?html}_data);

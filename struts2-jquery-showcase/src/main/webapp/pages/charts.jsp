@@ -100,6 +100,8 @@
     		label="Map -Double, Double-"
     		href="%{chartDataUrl}"
     		list="doubleMap"
+    		deferredLoading="true"
+    		reloadTopics="reloadMap"
     	/>
     	<sjc:chartData
     		label="List -ListValue-"
@@ -107,8 +109,11 @@
     		list="objList"
     		listKey="myKey"
     		listValue="myValue"
+    		reloadTopics="reloadList"
     	/>
     </sjc:chart>
+    <sj:a onClickTopics="reloadMap" button="true" buttonIcon="ui-icon-refresh">Load/Reload Map</sj:a> 
+    <sj:a onClickTopics="reloadList" button="true" buttonIcon="ui-icon-refresh">Reload List</sj:a> 
   </div>
 
     <br/>
@@ -196,6 +201,8 @@
     		label=&quot;Map -Double, Double-&quot;
     		href=&quot;%{chartDataUrl}&quot;
     		list=&quot;doubleMap&quot;
+    		deferredLoading=&quot;true&quot;
+    		reloadTopics=&quot;reloadMap&quot;
     	/&gt;
     	&lt;sjc:chartData
     		label=&quot;List -ListValue-&quot;
@@ -203,8 +210,11 @@
     		list=&quot;objList&quot;
     		listKey=&quot;myKey&quot;
     		listValue=&quot;myValue&quot;
+    		reloadTopics=&quot;reloadList&quot;
     	/&gt;
     &lt;/sjc:chart&gt;
+    &lt;sj:a onClickTopics=&quot;reloadMap&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Load/Reload Map&lt;/sj:a&gt; 
+    &lt;sj:a onClickTopics=&quot;reloadList&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Reload List&lt;/sj:a&gt; 
 	  </pre>
 	  </div>
       <div id="javascript">
