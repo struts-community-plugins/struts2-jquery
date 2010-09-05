@@ -104,8 +104,20 @@ options_${escapedOptionId?html}.legend.backgroundColor = "${parameters.legendBac
 <#if parameters.onHoverTopics?if_exists != "">
 options_${escapedOptionId?html}.onhover = "${parameters.onHoverTopics?html}";
 </#if>
+<#if parameters.crosshair?default(false)>
+	options_${escapedOptionId?html}.crosshair = {};
+	<#if parameters.crosshairMode?if_exists != "">
+	options_${escapedOptionId?html}.crosshair.mode = "${parameters.crosshairMode?html}";
+	</#if>
+	<#if parameters.crosshairColor?if_exists != "">
+	options_${escapedOptionId?html}.crosshair.color = "${parameters.crosshairColor?html}";
+	</#if>
+  	<#if parameters.crosshairLineWidth??>
+	options_${escapedOptionId?html}.crosshair.lineWidth = ${parameters.crosshairLineWidth?html};
+  	</#if>
+</#if>
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 	jQuery.struts2_jquery_chart.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
- });  
+ });
 </script>

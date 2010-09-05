@@ -64,6 +64,10 @@ public class ChartTag extends AbstractContainerTag {
   protected String          legendBackgroundColor;
   protected String          onClickTopics;
   protected String          onHoverTopics;
+  protected String          crosshair;
+  protected String          crosshairMode;
+  protected String          crosshairColor;
+  protected String          crosshairLineWidth;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -101,6 +105,10 @@ public class ChartTag extends AbstractContainerTag {
     chart.setLegendLabelBoxBorderColor(legendLabelBoxBorderColor);
     chart.setOnClickTopics(onClickTopics);
     chart.setOnHoverTopics(onHoverTopics);
+    chart.setCrosshair(crosshair);
+    chart.setCrosshairMode(crosshairMode);
+    chart.setCrosshairColor(crosshairColor);
+    chart.setCrosshairLineWidth(crosshairLineWidth);
   }
 
   public void setXaxisPosition(String xaxisPosition)
@@ -231,6 +239,26 @@ public class ChartTag extends AbstractContainerTag {
   public void setOnHoverTopics(String onHoverTopics)
   {
     this.onHoverTopics = onHoverTopics;
+  }
+
+  public void setCrosshair(String crosshair)
+  {
+    this.crosshair = crosshair;
+  }
+
+  public void setCrosshairMode(String crosshairMode)
+  {
+    this.crosshairMode = crosshairMode;
+  }
+
+  public void setCrosshairColor(String crosshairColor)
+  {
+    this.crosshairColor = crosshairColor;
+  }
+
+  public void setCrosshairLineWidth(String crosshairLineWidth)
+  {
+    this.crosshairLineWidth = crosshairLineWidth;
   }
 
 }

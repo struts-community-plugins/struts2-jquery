@@ -31,6 +31,9 @@
 				self.require("js/flot/excanvas" + self.minSuffix + ".js");
 			}
 			self.require("js/flot/jquery.flot" + self.minSuffix + ".js");
+			if (o.crosshair) {
+				self.require("js/flot/jquery.flot.crosshair" + self.minSuffix + ".js");
+			}
 
 			var ajaxData = [];
 			self.charts[o.id] = [];

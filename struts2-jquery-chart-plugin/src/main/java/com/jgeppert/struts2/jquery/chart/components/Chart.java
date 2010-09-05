@@ -76,6 +76,10 @@ public class Chart extends AbstractContainer {
   protected String                      legendBackgroundColor;
   protected String                      onClickTopics;
   protected String                      onHoverTopics;
+  protected String                      crosshair;
+  protected String                      crosshairMode;
+  protected String                      crosshairColor;
+  protected String                      crosshairLineWidth;
 
   public Chart(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -121,6 +125,10 @@ public class Chart extends AbstractContainer {
     if (legendBackgroundColor != null) addParameter("legendBackgroundColor", findString(legendBackgroundColor));
     if (onClickTopics != null) addParameter("onClickTopics", findString(onClickTopics));
     if (onHoverTopics != null) addParameter("onHoverTopics", findString(onHoverTopics));
+    if (crosshair != null) addParameter("crosshair", findValue(this.crosshair, Boolean.class));
+    if (crosshairMode != null) addParameter("crosshairMode", findString(crosshairMode));
+    if (crosshairColor != null) addParameter("crosshairColor", findString(crosshairColor));
+    if (crosshairLineWidth != null) addParameter("crosshairLineWidth", findValue(crosshairLineWidth, Number.class));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -300,5 +308,29 @@ public class Chart extends AbstractContainer {
   public void setOnHoverTopics(String onHoverTopics)
   {
     this.onHoverTopics = onHoverTopics;
+  }
+
+  @StrutsTagAttribute(description = "showing a crosshair, thin lines, when the mouse hovers over the plot", type = "Boolean", defaultValue = "false")
+  public void setCrosshair(String crosshair)
+  {
+    this.crosshair = crosshair;
+  }
+
+  @StrutsTagAttribute(description = "crosshair mode, 'x', 'y' or 'xy'")
+  public void setCrosshairMode(String crosshairMode)
+  {
+    this.crosshairMode = crosshairMode;
+  }
+
+  @StrutsTagAttribute(description = "crosshair color")
+  public void setCrosshairColor(String crosshairColor)
+  {
+    this.crosshairColor = crosshairColor;
+  }
+
+  @StrutsTagAttribute(description = "crosshair line width", type = "Number")
+  public void setCrosshairLineWidth(String crosshairLineWidth)
+  {
+    this.crosshairLineWidth = crosshairLineWidth;
   }
 }

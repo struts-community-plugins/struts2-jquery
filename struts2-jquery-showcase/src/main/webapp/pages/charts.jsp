@@ -53,6 +53,8 @@
     	cssStyle="width: 600px; height: 400px;"
     	onClickTopics="chartClick"
     	onHoverTopics="chartHover"
+    	crosshair="true"
+    	crosshairMode="xy"
     >
     	<sjc:chartData
     		label="List with Objects"
