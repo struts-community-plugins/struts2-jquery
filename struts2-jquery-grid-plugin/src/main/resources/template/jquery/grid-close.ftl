@@ -137,7 +137,7 @@
 	options_${escapedOptionId?html}.loadonce = true;
   </#if>
   <#if parameters.loadingText?if_exists != "">
-	options_${escapedOptionId?html}.loadtext = "${parameters.filterOptions?html}";
+	options_${escapedOptionId?html}.loadtext = "${parameters.loadingText?html}";
   </#if>
   <#if parameters.filter?default(false)>
 	options_${escapedOptionId?html}.filter = true;
