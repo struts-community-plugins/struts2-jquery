@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="cache-control" content="no-cache" />
-	<meta http-equiv="expires" content="0" />    
+	<meta http-equiv="expires" content="0" />
 	<meta http-equiv="keywords" content="struts2, jquery, jquery-ui, plugin, showcase, jqgrid" />
 	<meta http-equiv="description" content="A Showcase for the Struts2 jQuery Plugin" />
 	<link href="styles/layout.css" rel="stylesheet" type="text/css" />
@@ -20,14 +20,14 @@
 	<!-- This files are needed for AJAX Validation of XHTML Forms -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/struts/utils.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
-	
+
   <s:if test="%{theme == 'showcase' || theme == null}">
       <sj:head debug="true" compressed="false" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
   </s:if>
   <s:else>
       <sj:head debug="true" compressed="false" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
   </s:else>
-  
+
 	<!-- This file includes necessary functions/topics for validation and all topic examples -->
 	<script type="text/javascript" src="js/showcase.js"></script>
 	<!-- Extend the Struts2 jQuery Plugin with an richtext editor -->
@@ -49,7 +49,7 @@
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 2.3.1</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 2.4.0</h4>
         	<img id="myDefaultIndicator" src="images/ajax-loader.gif" alt="Loading..." style="display:none"/>
         </div>
       </div>
