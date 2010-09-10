@@ -124,6 +124,7 @@ public class Head extends org.apache.struts2.components.Head {
       "it",
       "ja",
       "ko",
+      "kz",
       "lt",
       "lv",
       "ms",

@@ -1,5 +1,5 @@
 /*
- * jQuery UI Effects 1.8.4
+ * jQuery UI Effects 1.8.5
  *
  * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -301,7 +301,7 @@ $.fn.extend({
 /******************************************************************************/
 
 $.extend($.effects, {
-	version: "1.8.4",
+	version: "1.8.5",
 
 	// Saves a set of properties in a data storage
 	save: function(element, set) {
@@ -455,7 +455,7 @@ $.fn.extend({
 
 	_show: $.fn.show,
 	show: function(speed) {
-		if (!speed || typeof speed == 'number' || $.fx.speeds[speed]) {
+		if (!speed || typeof speed == 'number' || $.fx.speeds[speed] || !$.effects[speed] ) {
 			return this._show.apply(this, arguments);
 		} else {
 			var args = _normalizeArguments.apply(this, arguments);
@@ -466,7 +466,7 @@ $.fn.extend({
 
 	_hide: $.fn.hide,
 	hide: function(speed) {
-		if (!speed || typeof speed == 'number' || $.fx.speeds[speed]) {
+		if (!speed || typeof speed == 'number' || $.fx.speeds[speed] || !$.effects[speed] ) {
 			return this._hide.apply(this, arguments);
 		} else {
 			var args = _normalizeArguments.apply(this, arguments);
@@ -475,10 +475,10 @@ $.fn.extend({
 		}
 	},
 
-	// jQuery core overloads toggle and create _toggle
+	// jQuery core overloads toggle and creates _toggle
 	__toggle: $.fn.toggle,
 	toggle: function(speed) {
-		if (!speed || typeof speed == 'number' || $.fx.speeds[speed] ||
+		if (!speed || typeof speed == 'number' || $.fx.speeds[speed] || !$.effects[speed]  ||
 			typeof speed == 'boolean' || $.isFunction(speed)) {
 			return this.__toggle.apply(this, arguments);
 		} else {
