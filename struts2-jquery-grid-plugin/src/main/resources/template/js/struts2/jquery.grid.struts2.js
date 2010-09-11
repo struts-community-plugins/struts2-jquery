@@ -1,7 +1,7 @@
-/*
+/*!
  * jquery.grid.struts2.js
  *
- * Integration of jqGrid with struts 2 
+ * Integration of jqGrid with struts 2
  *
  * Requires use of jquery.struts2.js
  *
@@ -17,7 +17,7 @@
 /*jslint evil: true */
 
 ( function($) {
-	
+
 	/**
 	 * Bind jqGrid to Struts2 Component
 	 */
@@ -47,7 +47,7 @@
 		self.requireCss("themes/ui.jqgrid.css");
 		var params = {};
 		$.extend(params, o);
-		
+
 		if(o.url && o.formids) {
 			var data = '';
 			if (o.formids) {
@@ -56,7 +56,7 @@
 				}
 				$.each(o.formids.split(','), function(i, fid) {
 					var query = $(self.escId(fid)).formSerialize();
-					if (data != '') { data = data + '&' + query; }
+					if (data !== '') { data = data + '&' + query; }
 					else { data = query; }
 				});
 			}
@@ -67,7 +67,7 @@
 				params.url = o.url + '?' + data;
 			}
 		}
-		
+
 		if (o.onselectrowtopics || (o.editurl && o.editinline === true)) {
 			params.onSelectRow = function(id, status) {
 				var data = {};
@@ -78,7 +78,7 @@
 				self.publishTopic($elem, o.onalw, data);
 				$.struts2_jquery.publishTopic($elem, o.onselectrowtopics, data);
 				if (o.editurl && o.editinline === true) {
-					if ($.struts2_jquery_grid.lastselectedrow != '') {
+					if ($.struts2_jquery_grid.lastselectedrow !== '') {
 						$elem.jqGrid('restoreRow', $.struts2_jquery_grid.lastselectedrow);
 					}
 					$.struts2_jquery_grid.lastselectedrow = id;
@@ -101,34 +101,34 @@
 
 		if(o.onbeforetopics) {
 			params.loadBeforeSend = function(xhr) {
-	
+
 				var orginal = {};
 				orginal.xhr = xhr;
-	
+
 				self.publishTopic($elem, o.onalw, orginal);
 				self.publishTopic($elem, o.onbef, orginal);
 			};
 		}
-		
+
 		if(o.onpagingtopics) {
 			params.onPaging = function(pgButton) {
-	
+
 				var orginal = {};
 				orginal.pgButton = pgButton;
-	
+
 				self.publishTopic($elem, o.onalw, orginal);
 				self.publishTopic($elem, o.onpagingtopics, orginal);
 			};
 		}
-		
+
 		if(o.onsortcoltopics) {
 			params.onSortCol = function(index, iCol, sortorder) {
-	
+
 				var orginal = {};
 				orginal.index = index;
 				orginal.iCol = iCol;
 				orginal.sortorder = sortorder;
-	
+
 				self.publishTopic($elem, o.onalw, orginal);
 				self.publishTopic($elem, o.onsortcoltopics, orginal);
 			};
@@ -136,43 +136,43 @@
 
 		if(o.oncellselecttopics) {
 			params.onCellSelect = function(rowid, iCol, cellcontent, e) {
-	
+
 				var orginal = {};
 				orginal.rowid = rowid;
 				orginal.iCol = iCol;
 				orginal.cellcontent = cellcontent;
 				orginal.e = e;
-	
+
 				self.publishTopic($elem, o.onalw, orginal);
 				self.publishTopic($elem, o.oncellselecttopics, orginal);
 			};
 		}
-		
+
 		if(o.ongridcompletetopics) {
 			params.gridComplete = function() {
-	
+
 				var orginal = {};
-	
+
 				self.publishTopic($elem, o.onalwaystopics, orginal);
 				self.publishTopic($elem, o.ongridcompletetopics, orginal);
 			};
 		}
-		
+
 		if(o.onfocustopics) {
 			params.beforeSelectRow = function(rowid, e) {
-	
+
 				var orginal = {};
 				orginal.rowid = rowid;
 				orginal.e = e;
-	
+
 				self.publishTopic($elem, o.onalw, orginal);
 				self.publishTopic($elem, o.onfocustopics, orginal);
 			};
 		}
-		
-		
+
+
 		if (o.reloadtopics) {
-			$.each(o.reloadtopics.split(','), function(i, rts) { 
+			$.each(o.reloadtopics.split(','), function(i, rts) {
 				$elem.subscribe(rts, '_s2j_reloadgrid', o);
 			});
 		}
@@ -180,7 +180,7 @@
 		if (!params.loadtext && self.defaults.loadingText !== null) {
 			params.loadtext = self.defaults.loadingText;
 		}
-		
+
 		params.loadComplete = self.pubCom($elem, o.onalw, o.oncom, null, null, o);
 		params.loadError = self.pubErr($elem, o.onalw, o.onerr, o.errortext);
 
@@ -212,11 +212,11 @@
 				var subgrid_table_id = subgrid_id + "_table";
 				var subgrid = $(self.escId(subgrid_id));
 				var subgridhtml = "<table id='" + subgrid_table_id + "' class='scroll'></table>";
-				if (o.subgridoptions.pager && o.subgridoptions.pager != "") {
+				if (o.subgridoptions.pager && o.subgridoptions.pager !== "") {
 					subgridhtml = subgridhtml + "<div id='" + subgrid_id + "_pager'></div>";
 					o.subgridoptions.pager = subgrid_id + "_pager";
 				}
-				if (o.subgridoptions.navigator && o.subgridoptions.navigator != "") {
+				if (o.subgridoptions.navigator && o.subgridoptions.navigator !== "") {
 					subgridhtml = subgridhtml + "<div id='" + subgrid_id + "_navigator'></div>";
 					o.subgridoptions.navigator = subgrid_id + "_navigator";
 				}
@@ -234,9 +234,9 @@
 		else {
 			params.gridview = true;
 		}
-		
+
 		$elem.jqGrid(params);
-		
+
 
 		if (o.resizable) {
 			var ros = o.resizableoptions;
@@ -330,10 +330,10 @@
 		}
 	}
 	};
-	
+
 	// Extend it from orginal plugin
 	$.extend($.struts2_jquery_grid, $.struts2_jquery);
-	
+
 	// Register handler for reloading grid
 	$.subscribeHandler('_s2j_reloadgrid', function(event, data) {
 		var _s2jg = $.struts2_jquery_grid;
@@ -350,7 +350,7 @@
 					}
 					$.each(o.formids.split(','), function(i, fid) {
 						var query = $(_s2jg.escId(fid)).formSerialize();
-						if (formdata != '') { formdata = formdata + '&' + query; }
+						if (formdata !== '') { formdata = formdata + '&' + query; }
 						else { formdata = query; }
 					});
 				}
@@ -364,7 +364,7 @@
 			var grid = $(_s2jg.escId(o.id));
 			grid.jqGrid('setGridParam',{url:o.url});
 			_s2jg.log('reload grid '+o.id);
-			grid.trigger("reloadGrid");  
+			grid.trigger("reloadGrid");
 		}
 	});
 

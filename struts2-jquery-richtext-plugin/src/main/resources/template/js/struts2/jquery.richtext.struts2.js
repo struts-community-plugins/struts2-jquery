@@ -13,7 +13,7 @@
  *
  */
 
-/*global jQuery, window, CKEDITOR, tinyMCE */
+/*global jQuery, window, CKEDITOR, tinyMCE, tinymce */
 ( function($) {
 
 
@@ -80,7 +80,7 @@
 					$elem.subscribe(ckeditorTopic, function(event,data) {
 							$elem.ckeditor(callbackFunction, o);
 					});
-					if(o.oncom && o.oncom != '') {
+					if(o.oncom && o.oncom !== '') {
 						o.oncom = o.oncom+','+ckeditorTopic;
 					}
 					else {
@@ -199,7 +199,7 @@
 							});
 						});
 					});
-					if(o.oncom && o.oncom != '') {
+					if(o.oncom && o.oncom !== '') {
 						o.oncom = tinymceTopic;
 					}
 					else {
