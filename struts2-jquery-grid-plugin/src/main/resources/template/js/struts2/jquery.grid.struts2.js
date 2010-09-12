@@ -185,12 +185,10 @@
 		params.loadError = self.pubErr($elem, o.onalw, o.onerr, o.errortext);
 
 		if (o.editurl) {
+			self.require("js/plugins/jquery.searchFilter.js");
+			self.require("js/plugins/grid.formedit.js");
 			if(o.editinline) {
 				self.require("js/plugins/grid.inlinedit.js");
-			}
-			else {
-				self.require("js/plugins/jquery.searchFilter.js");
-				self.require("js/plugins/grid.formedit.js");
 			}
 		}
 
