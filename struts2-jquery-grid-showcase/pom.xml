@@ -115,14 +115,14 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.4.2</version>
 		</dependency>
-		
+
 		<!-- Hibernate Plugin -->
 		<dependency>
 			<groupId>com.googlecode</groupId>
 			<artifactId>s2hibernate</artifactId>
 			<version>2.2.0</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/struts2-fullhibernatecore-plugin-2.2-GA.jar</systemPath>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/struts2-fullhibernatecore-plugin-2.2.1-GA.jar</systemPath>
 		</dependency>
 
 		<!-- Sample Database -->
