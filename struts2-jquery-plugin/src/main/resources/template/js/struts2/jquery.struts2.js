@@ -1,10 +1,10 @@
 /*!
  * jquery.struts2.js
  *
- * Integration of jquery and jquery ui with struts 2 
+ * Integration of jquery and jquery ui with struts 2
  * for ajax, widget and interactions support in struts 2
  *
- * Requires use of jQuery and jQuery UI optional. 
+ * Requires use of jQuery and jQuery UI optional.
  * Tested with jQuery 1.4.2 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
@@ -48,7 +48,7 @@
 	effect :'_s2j_effects'
 	},
 
-	/** 
+	/**
 	 * helper function for debug logging
 	 * set debug to true in the head tag to enable debug logging
 	 *  */
@@ -193,7 +193,7 @@
 		}
 	},
 
-	/** publish Success topics 
+	/** publish Success topics
 	 * handle AJAX result, insert it into container or build select box, radiobutton, checkboxes etc.
 	 * */
 	pubSuc : function(cid, always, stopics, indi, modus, o) {
@@ -209,12 +209,12 @@
 			if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) {
 				c.html(data);
 			}
-			
+
 			// Handle Text Result for Textarea or Textfield
 			else if (modus == 'value') {
 				c.val($.trim(data));
 			}
-			
+
 			// Hanlde Result for Select, Radiobuttons and Checkboxes
 			else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
 				if (modus == 'select') {
@@ -228,7 +228,7 @@
 					var i = -1;
 
 					if (modus == 'select') {
-						// Header Option 
+						// Header Option
 						if (o.headerkey && o.headervalue) {
 							var headerElement = $('<option value="' + o.headerkey + '">' + o.headervalue + '</option>');
 							if (o.value == o.headervalue) {
@@ -286,7 +286,7 @@
 							else {
 								var re;
 								var idv = ++i;
-								
+
 								// This way is needed to avoid Bug in IE6/IE7
 								if (modus == 'radio') {
 									re = $('<input name="' + option.name + '" type="radio" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
@@ -403,7 +403,7 @@
 		}
 	},
 
-	/** 
+	/**
 	 * pre-binding function of the type function(element){}. called before binding the element
 	 * returning false will prevent the binding of this element
 	 */
@@ -468,7 +468,7 @@
 			});
 		}
 	},
-	
+
 	/** Handles remote and effect actions */
 	action : function($elem, o, loadHandler, type) {
 		var self = this;
@@ -494,7 +494,7 @@
 				o.targets = "false";
 			}
 		}
-		
+
 		// subscribe all targets to this action's custom execute topic
 		if (o.targets) {
 			$.each(o.targets.split(','), function(i, target) {
@@ -506,7 +506,7 @@
 				if(tarelem.length === 0){
 					tarelem = $elem;
 				}
-				
+
 				self.subscribeTopics(tarelem, actionTopic, loadHandler, o);
 				self.subscribeTopics(tarelem, effectTopic + target + o.id, self.handler.effect, effect);
 
@@ -780,7 +780,7 @@
 			$elem.publishOnEvent('click', formTopic);
 		}
 		else {
-			
+
 			self.action($elem, o, self.handler.load, 'a');
 			if(o.targets && (o.reloadtopic || o.listentopics)) {
 				$.each(o.targets.split(','), function(i, t) {
@@ -863,7 +863,7 @@
 		$elem.publishOnEvent('click', formTopic);
 		$elem.removeAttr('name');
 	},
-	
+
 	/** Handle all AJAX Forms submitted from Anchor or Submit Button */
 	formsubmit : function($elem, o, topic) {
 		var self = this;
@@ -1212,7 +1212,7 @@
 			$('#ui-datepicker-div').css("z-index", o.zindex);
 		}
 	},
-	
+
 	/** Handle the Slider Widget */
 	slider : function($elem, o) {
 		var self = this;
@@ -1280,7 +1280,7 @@
 
 		$elem.slider(params);
 	},
-	
+
 	/** Handle the Spinner Widget */
 	spinner : function($elem, o) {
 		var self = this;
@@ -1428,7 +1428,7 @@
 			}
 		}
 	},
-	
+
 	/** Handle the Autocompleter Widget */
 	autocompleter : function($elem, o) {
 		var self = this;
@@ -1447,14 +1447,14 @@
 		if(url !== '') {
 			if(o.list) {
 				params.source = function(request, response) {
-					
+
 					jQuery.ui.autocomplete.prototype._renderItem = function( ul, item ) {
 					  return $( "<li></li>" )
 					    .data( "item.autocomplete", item )
 					    .append( "<a>" + item.label + "</a>" )
 					    .appendTo( ul );
 					};
-					
+
 					$.ajax({
 						url: url,
 						dataType: "json",
@@ -1554,7 +1554,7 @@
 			$elem.combobox(params);
 		}
 	},
-	
+
 	/** Handle the Button Widget for Anchor or Submit Tag*/
 	jquerybutton : function($elem, o) {
 		var self = this;
@@ -1574,7 +1574,7 @@
 			$elem.button(params);
 		}
 	},
-	
+
 	/** Handle the Buttonset Widget for Radiobuttons or Checkboxes */
 	buttonset : function($elem, o) {
 		var self = this;
@@ -1645,14 +1645,14 @@
 	}
 	};
 
-	/** 
-	 * Container logic 
+	/**
+	 * Container logic
 	 * Register handler to load a container
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.load, function(event, data) {
 
 		var _s2j = $.struts2_jquery;
-		
+
 		var container = $(event.target);
 		var o = {};
 		if (data) {
@@ -1774,8 +1774,8 @@
 		}
 	});
 
-	/** 
-	 * Form logic 
+	/**
+	 * Form logic
 	 * Handler to submit a form with jquery.form.js plugin
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.form, function(event, data) {
@@ -1846,6 +1846,19 @@
 			orginal.options = formoptions;
 			orginal.options.submit = true;
 
+			if(!o.datatype || o.datatype != "json") {
+				if (o.loadingtext && o.loadingtext != "false") {
+					$.each(o.targets.split(','), function(i, target) {
+						$(_s2j.escId(target)).html(o.loadingtext);
+					});
+				}
+				else if (_s2j.defaults.loadingText !== null) {
+					$.each(o.targets.split(','), function(i, target) {
+						$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
+					});
+				}
+			}
+
 			_s2j.publishTopic(container, o.onalw, orginal);
 
 			if (o.onbef) {
@@ -1855,19 +1868,6 @@
 					// cancel form submission
 					if (!submitForm) {
 						_s2j.hideIndicator(o.indicatorid);
-						
-						if(!o.datatype || o.datatype != "json") {
-							if (o.loadingtext && o.loadingtext != "false") {
-								$.each(o.targets.split(','), function(i, target) {
-									$(_s2j.escId(target)).html(o.loadingtext);
-								});
-							}
-							else if (_s2j.defaults.loadingText !== null) {
-								$.each(o.targets.split(','), function(i, target) {
-									$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
-								});
-							}
-						}
 					}
 				});
 			}
@@ -1895,7 +1895,7 @@
 				else {
 					valParams.data = query;
 				}
-				
+
 				valParams.cache = false;
 				valParams.async = false;
 
@@ -1944,13 +1944,13 @@
 		return false;
 	});
 
-	/** 
-	 * Effects 
+	/**
+	 * Effects
 	 * Register handler for effects
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.effect, function(event, data) {
 		var _s2j = $.struts2_jquery;
-		
+
 		var o = {};
 		$.extend(o, event.data);
 		if (o.targets && o.effect) {
@@ -1962,18 +1962,18 @@
 			if (o.effectduration) {
 				duration = o.effectduration;
 			}
-			
+
 			var callback;
 			var tar = $(_s2j.escId(o.targets));
 			if(o.oneffect) {
-				
+
 				$.subscribe(tar, o.oneffect, o);
-				
+
 				callback = function () {
 					_s2j.publishTopic(tar, o.oneffect, o);
 				};
 			}
-			
+
 			if (!_s2j.loadAtOnce) {
 				_s2j.require( [ "js/base/jquery.effects.core" + _s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + "" + _s2j.minSuffix + ".js" ]);
 			}
