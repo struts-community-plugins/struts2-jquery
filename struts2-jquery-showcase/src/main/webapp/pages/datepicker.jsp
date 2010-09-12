@@ -22,9 +22,10 @@
       <sj:datepicker value="yesterday" id="date4" name="date4" displayFormat="mm/dd/yy" label="Yesterday" />
       <sj:datepicker value="tomorrow" id="date5" name="date5" displayFormat="DD, d MM yy" label="Tomorrow" />
       <sj:datepicker value="2004-08-14" id="date6" name="date6" displayFormat="d M, yy" label="String Value" />
+      <sj:datepicker value="today" id="date7" name="date7" displayFormat="d M, yy" minDate="minValue" maxDate="maxValue" label="With min and max Date" />
     </s:form>
   </div>
-  
+
   <div class="code ui-widget-content ui-corner-all">
     <strong>Code:</strong>
     <pre>

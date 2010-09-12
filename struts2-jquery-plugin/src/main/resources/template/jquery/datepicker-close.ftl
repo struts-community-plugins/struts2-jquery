@@ -20,7 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId?html} = {};
   <#if parameters.dayValue?if_exists != "">
 	options_${escapedOptionId?html}.day = "${parameters.dayValue?html}";
@@ -94,13 +94,19 @@ jQuery(document).ready(function () {
   <#if parameters.maxDate?if_exists != "">
 	options_${escapedOptionId?html}.maxdate = "${parameters.maxDate?html}";
   </#if>
+  <#if parameters.maxDayValue??>
+	options_${escapedOptionId?html}.maxdate = new Date(${parameters.maxYearValue?html}, ${parameters.maxMonthValue?html}, ${parameters.maxDayValue?html});
+  </#if>
   <#if parameters.minDate?if_exists != "">
 	options_${escapedOptionId?html}.mindate = "${parameters.minDate?html}";
+  </#if>
+  <#if parameters.minDayValue??>
+	options_${escapedOptionId?html}.mindate = new Date(${parameters.minYearValue?html}, ${parameters.minMonthValue?html}, ${parameters.minDayValue?html});
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />
 
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
- });  
+ });
 </script>

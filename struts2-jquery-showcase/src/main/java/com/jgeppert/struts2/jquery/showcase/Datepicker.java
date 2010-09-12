@@ -35,6 +35,8 @@ public class Datepicker extends ActionSupport {
 
   private Date              dateValue;
   private Date              nameValue;
+  private Date              minValue;
+  private Date              maxValue;
 
   @Action(value = "/datepicker", results = {
     @Result(location = "datepicker.jsp", name = "success")
@@ -51,6 +53,13 @@ public class Datepicker extends ActionSupport {
 
     nameValue = c.getTime();
 
+    c.setTime(new Date());
+    c.roll(Calendar.MONTH, -1);
+    minValue = c.getTime();
+
+    c.roll(Calendar.MONTH, 2);
+    maxValue = c.getTime();
+
     return SUCCESS;
   }
 
@@ -62,5 +71,15 @@ public class Datepicker extends ActionSupport {
   public Date getNameValue()
   {
     return nameValue;
+  }
+
+  public Date getMinValue()
+  {
+    return minValue;
+  }
+
+  public Date getMaxValue()
+  {
+    return maxValue;
   }
 }

@@ -163,9 +163,6 @@ public class DatePicker extends AbstractTopicsBean {
     if (onBeforeShowDayTopics != null) addParameter("onBeforeShowDayTopics", findString(onBeforeShowDayTopics));
     if (onChangeMonthYearTopics != null) addParameter("onChangeMonthYearTopics", findString(onChangeMonthYearTopics));
 
-    if (minDate != null) addParameter("minDate", findString(minDate));
-    if (maxDate != null) addParameter("maxDate", findString(maxDate));
-
     if (size != null)
     {
       addParameter("size", findString(size));
@@ -203,6 +200,56 @@ public class DatePicker extends AbstractTopicsBean {
       nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
       this.id = "datepicker_" + String.valueOf(nextInt);
       addParameter("id", this.id);
+    }
+
+    Object minDateValue = null;
+    if (minDate != null)
+    {
+      minDateValue = findValue(minDate, Date.class);
+      if (minDateValue == null) minDateValue = findString(minDate);
+
+      if (minDateValue != null)
+      {
+        if (minDateValue instanceof Date)
+        {
+          minDateValue = (Date) minDateValue;
+          Calendar minCalendar = new GregorianCalendar();
+          minCalendar.setTime((Date) minDateValue);
+          addParameter("minDayValue", "" + minCalendar.get(Calendar.DAY_OF_MONTH));
+          addParameter("minMonthValue", "" + minCalendar.get(Calendar.MONTH));
+          addParameter("minYearValue", "" + minCalendar.get(Calendar.YEAR));
+        }
+        else
+        {
+          addParameter("minDate", findString(minDateValue.toString()));
+        }
+
+      }
+    }
+
+    Object maxDateValue = null;
+    if (maxDate != null)
+    {
+      maxDateValue = findValue(maxDate, Date.class);
+      if (maxDateValue == null) maxDateValue = findString(maxDate);
+
+      if (maxDateValue != null)
+      {
+        if (maxDateValue instanceof Date)
+        {
+          maxDateValue = (Date) maxDateValue;
+          Calendar minCalendar = new GregorianCalendar();
+          minCalendar.setTime((Date) maxDateValue);
+          addParameter("maxDayValue", "" + minCalendar.get(Calendar.DAY_OF_MONTH));
+          addParameter("maxMonthValue", "" + minCalendar.get(Calendar.MONTH));
+          addParameter("maxYearValue", "" + minCalendar.get(Calendar.YEAR));
+        }
+        else
+        {
+          addParameter("maxDate", findString(maxDateValue.toString()));
+        }
+
+      }
     }
 
     Object nameValue = null;
@@ -387,13 +434,13 @@ public class DatePicker extends AbstractTopicsBean {
     this.onChangeMonthYearTopics = onChangeMonthYearTopics;
   }
 
-  @StrutsTagAttribute(description = "Set a minimum selectable date via a number of days from today (e.g. +7) or a string of values and periods ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '-1y -1m').")
+  @StrutsTagAttribute(description = "Set a minimum selectable date via a number of days from today (e.g. +7) or a string of values and periods ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '-1y -1m'). Can also be a Java Date Object.")
   public void setMinDate(String minDate)
   {
     this.minDate = minDate;
   }
 
-  @StrutsTagAttribute(description = "Set a maximum selectable date via a number of days from today (e.g. +7) or a string of values and periods ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '+1m +1w').")
+  @StrutsTagAttribute(description = "Set a maximum selectable date via a number of days from today (e.g. +7) or a string of values and periods ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '+1m +1w'). Can also be a Java Date Object.")
   public void setMaxDate(String maxDate)
   {
     this.maxDate = maxDate;
