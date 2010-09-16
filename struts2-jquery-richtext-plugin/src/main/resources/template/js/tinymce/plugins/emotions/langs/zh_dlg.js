@@ -1,7 +1,7 @@
 tinyMCE.addI18n('zh.emotions_dlg',{
 title:"\u63D2\u5165\u8868\u60C5",
-desc:"\u8868\u60C5",
-cool:"\u51B7\u9177",
+desc:"\u8868\u60C5\u5217\u8868",
+cool:"\u9177",
 cry:"\u54ED\u6CE3",
 embarassed:"\u5C34\u5C2C",
 foot_in_mouth:"\u54A7\u5634",
@@ -14,7 +14,7 @@ sealed:"\u4FDD\u5BC6",
 smile:"\u5FAE\u7B11",
 surprised:"\u60CA\u8BB6",
 tongue_out:"\u5410\u820C\u5934",
-undecided:"\u601D\u7D22",
+undecided:"\u601D\u8003",
 wink:"\u7728\u773C",
 yell:"\u5927\u53EB"
 });
