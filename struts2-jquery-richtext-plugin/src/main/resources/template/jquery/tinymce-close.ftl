@@ -20,34 +20,34 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2"+jQuery.struts2_jquery.minSuffix+".js");
-	
+
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.type = 'text';
 
 	options_${escapedOptionId?html}.path = "${base}/struts/js/tinymce/";
-	
-	<#if parameters.editorSkin?if_exists != ""> 
+
+	<#if parameters.editorSkin?if_exists != "">
 	options_${escapedOptionId?html}.skin = "${parameters.editorSkin?html}";
 	</#if>
 	options_${escapedOptionId?html}.theme = "${parameters.editorTheme?default("advanced")?html}";
-	<#if parameters.width??> 
+	<#if parameters.width??>
 	options_${escapedOptionId?html}.width = ${parameters.width?html};
 	</#if>
-	<#if parameters.height??> 
+	<#if parameters.height??>
 	options_${escapedOptionId?html}.height = ${parameters.height?html};
 	</#if>
-	<#if parameters.editorLocal?if_exists != ""> 
+	<#if parameters.editorLocal?if_exists != "">
 	options_${escapedOptionId?html}.editorLocal = "${parameters.editorLocal?html}";
 	</#if>
-	<#if parameters.toolbarLocation?if_exists != ""> 
+	<#if parameters.toolbarLocation?if_exists != "">
 	options_${escapedOptionId?html}.theme_advanced_toolbar_location = "${parameters.toolbarLocation?html}";
 	</#if>
-	<#if parameters.toolbarAlign?if_exists != ""> 
+	<#if parameters.toolbarAlign?if_exists != "">
 	options_${escapedOptionId?html}.theme_advanced_toolbar_align = "${parameters.toolbarAlign?html}";
 	</#if>
-	<#if parameters.statusbarLocation?if_exists != ""> 
+	<#if parameters.statusbarLocation?if_exists != "">
 	options_${escapedOptionId?html}.theme_advanced_statusbar_location = "${parameters.statusbarLocation?html}";
 	</#if>
   	<#if parameters.pasteplain?default(false)>
@@ -56,28 +56,34 @@ jQuery(document).ready(function () {
   	<#if parameters.editorResizable?default(false)>
 	options_${escapedOptionId?html}.editorResizable = true;
   	</#if>
-	<#if parameters.plugins?if_exists != ""> 
+	<#if parameters.plugins?if_exists != "">
 	options_${escapedOptionId?html}.plugins = "${parameters.plugins?html}";
 	</#if>
-	<#if parameters.toolbarButtonsRow1?if_exists != ""> 
+	<#if parameters.toolbarButtonsRow1?if_exists != "">
 	options_${escapedOptionId?html}.theme_advanced_buttons1 = "${parameters.toolbarButtonsRow1?replace(" ", "")?html}";
 	</#if>
-	<#if parameters.toolbarButtonsRow2?if_exists != ""> 
+	<#if parameters.toolbarButtonsRow2?if_exists != "">
 	options_${escapedOptionId?html}.theme_advanced_buttons2 = "${parameters.toolbarButtonsRow2?replace(" ", "")?html}";
 	</#if>
-	<#if parameters.toolbarButtonsRow3?if_exists != ""> 
+	<#if parameters.toolbarButtonsRow3?if_exists != "">
 	options_${escapedOptionId?html}.theme_advanced_buttons3 = "${parameters.toolbarButtonsRow3?replace(" ", "")?html}";
 	</#if>
-	<#if parameters.toolbarButtonsRow4?if_exists != ""> 
+	<#if parameters.toolbarButtonsRow4?if_exists != "">
 	options_${escapedOptionId?html}.theme_advanced_buttons4 = "${parameters.toolbarButtonsRow4?replace(" ", "")?html}";
 	</#if>
-	<#if parameters.entityEncoding?if_exists != ""> 
+	<#if parameters.entityEncoding?if_exists != "">
 	options_${escapedOptionId?html}.entity_encoding = "${parameters.entityEncoding?html}";
 	</#if>
-	<#if parameters.contentCss?if_exists != ""> 
+	<#if parameters.contentCss?if_exists != "">
 	options_${escapedOptionId?html}.content_css = "${parameters.contentCss?string}";
 	</#if>
-	<#if parameters.onSaveTopics?if_exists != ""> 
+	<#if parameters.removeLinebreaks?exists>
+	options_${escapedOptionId?html}.remove_linebreaks = ${parameters.removeLinebreaks?string};
+	</#if>
+	<#if parameters.removeRedundantBrs?exists>
+	options_${escapedOptionId?html}.remove_redundant_brs = ${parameters.removeRedundantBrs?string};
+	</#if>
+	<#if parameters.onSaveTopics?if_exists != "">
 	options_${escapedOptionId?html}.onsavetopics = "${parameters.onSaveTopics?html}";
 	</#if>
 
@@ -94,5 +100,5 @@ jQuery(document).ready(function () {
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 	jQuery.struts2_jquery_richtext.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
- });  
+ });
 </script>

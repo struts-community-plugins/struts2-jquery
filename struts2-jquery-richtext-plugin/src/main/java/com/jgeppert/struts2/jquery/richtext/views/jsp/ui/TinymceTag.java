@@ -56,6 +56,8 @@ public class TinymceTag extends TextareaTag {
   protected String          entityEncoding;
   protected String          contentCss;
   protected String          pastePlainText;
+  protected String          removeLinebreaks;
+  protected String          removeRedundantBrs;
   protected String          onSaveTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
@@ -88,6 +90,8 @@ public class TinymceTag extends TextareaTag {
     editor.setEntityEncoding(entityEncoding);
     editor.setContentCss(contentCss);
     editor.setPastePlainText(pastePlainText);
+    editor.setRemoveLinebreaks(removeLinebreaks);
+    editor.setRemoveRedundantBrs(removeRedundantBrs);
     editor.setOnSaveTopics(onSaveTopics);
   }
 
@@ -189,6 +193,16 @@ public class TinymceTag extends TextareaTag {
   public void setPastePlainText(String pastePlainText)
   {
     this.pastePlainText = pastePlainText;
+  }
+
+  public void setRemoveLinebreaks(String removeLinebreaks)
+  {
+    this.removeLinebreaks = removeLinebreaks;
+  }
+
+  public void setRemoveRedundantBrs(String removeRedundantBrs)
+  {
+    this.removeRedundantBrs = removeRedundantBrs;
   }
 
   public void setOnSaveTopics(String onSaveTopics)

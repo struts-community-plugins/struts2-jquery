@@ -70,6 +70,8 @@ public class Tinymce extends Textarea {
   protected String                      entityEncoding;
   protected String                      contentCss;
   protected String                      pastePlainText;
+  protected String                      removeLinebreaks;
+  protected String                      removeRedundantBrs;
   protected String                      onSaveTopics;
 
   public Tinymce(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
@@ -184,6 +186,14 @@ public class Tinymce extends Textarea {
     if (pastePlainText != null)
     {
       addParameter("pasteplain", findValue(pastePlainText, Boolean.class));
+    }
+    if (removeLinebreaks != null)
+    {
+      addParameter("removeLinebreaks", findValue(removeLinebreaks, Boolean.class));
+    }
+    if (removeRedundantBrs != null)
+    {
+      addParameter("removeRedundantBrs", findValue(removeRedundantBrs, Boolean.class));
     }
     if (onSaveTopics != null)
     {
@@ -338,6 +348,18 @@ public class Tinymce extends Textarea {
   public void setPastePlainText(String pastePlainText)
   {
     this.pastePlainText = pastePlainText;
+  }
+
+  @StrutsTagAttribute(description = "This option controls whether line break characters should be removed from output HTML.‎", type = "Boolean", defaultValue = "true")
+  public void setRemoveLinebreaks(String removeLinebreaks)
+  {
+    this.removeLinebreaks = removeLinebreaks;
+  }
+
+  @StrutsTagAttribute(description = "This option is enabled by default and will control the output of trailing BR elements at the end of block elements.‎", type = "Boolean", defaultValue = "true")
+  public void setRemoveRedundantBrs(String removeRedundantBrs)
+  {
+    this.removeRedundantBrs = removeRedundantBrs;
   }
 
   @StrutsTagAttribute(description = "Topics that are published when user press the save button", type = "String", defaultValue = "")
