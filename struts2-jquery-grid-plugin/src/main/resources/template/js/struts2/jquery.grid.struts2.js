@@ -196,6 +196,10 @@
 			self.require("js/plugins/grid.celledit.js");
 		}
 
+		if (o.navigator) {
+			self.require("js/plugins/grid.formedit.js");
+		}
+
 		if (o.navigatorsearch) {
 			self.require("js/plugins/jquery.searchFilter.js");
 		}
