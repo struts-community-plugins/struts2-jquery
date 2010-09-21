@@ -211,26 +211,39 @@
 			// gridview can't be true when using the subgrid feature
 			params.gridview = false;
 			params.subGridRowExpanded = function(subgrid_id, row_id) {
+				var so = o.subgridoptions;
 				var subgrid_table_id = subgrid_id + "_table";
 				var subgrid = $(self.escId(subgrid_id));
 				var subgridhtml = "<table id='" + subgrid_table_id + "' class='scroll'></table>";
-				if (o.subgridoptions.pager && o.subgridoptions.pager !== "") {
+				if ((so.pager && so.pager !== "") || so.navigator) {
 					subgridhtml = subgridhtml + "<div id='" + subgrid_id + "_pager'></div>";
-					o.subgridoptions.pager = subgrid_id + "_pager";
-				}
-				if (o.subgridoptions.navigator && o.subgridoptions.navigator !== "") {
-					subgridhtml = subgridhtml + "<div id='" + subgrid_id + "_navigator'></div>";
-					o.subgridoptions.navigator = subgrid_id + "_navigator";
+					so.pager = subgrid_id + "_pager";
 				}
 
 				subgrid.html(subgridhtml);
 
-				if (o.subgridoptions.url) {
-					var to = o.subgridoptions.url.indexOf('?');
-					if (to > 0) { o.subgridoptions.url = o.subgridoptions.url.substring(0, to); }
-					o.subgridoptions.url = o.subgridoptions.url + "?id=" + row_id;
+				if (so.url) {
+					var to = so.url.indexOf('?');
+					if (to > 0) { so.url = so.url.substring(0, to); }
+					so.url = so.url + "?id=" + row_id;
 				}
-				$(self.escId(subgrid_table_id)).jqGrid(o.subgridoptions);
+				var subgrid = $(self.escId(subgrid_table_id));
+				subgrid.jqGrid(so);
+				if (so.navigator) {
+					var navparams = {};
+					navparams.add = so.navigatoradd;
+					navparams.del = so.navigatordel;
+					navparams.edit = so.navigatoredit;
+					navparams.refresh = so.navigatorrefresh;
+					navparams.search = so.navigatorsearch;
+					navparams.view = so.navigatorview;
+					subgrid.jqGrid('navGrid', self.escId(subgrid_id + "_pager"), navparams, so.navigatoreditoptions, so.navigatoraddoptions, so.navigatordeleteoptions, so.navigatorsearchoptions, so.navigatorviewoptions);
+				}
+				if (so.filter) {
+					var fpara = {};
+					if (so.filteroptions) { fpara = so.filteroptions; }
+					subgrid.jqGrid('filterToolbar', fpara);
+				}
 			};
 		}
 		else {
