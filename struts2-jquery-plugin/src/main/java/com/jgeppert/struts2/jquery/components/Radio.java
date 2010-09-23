@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.views.annotations.StrutsTag;
+import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
@@ -77,6 +78,8 @@ public class Radio extends AbstractFormListElement {
   final private static transient Random RANDOM         = new Random();
   public static final String            JQUERYACTION   = "buttonset";
 
+  protected String                      buttonset;
+
   public Radio(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
@@ -96,6 +99,8 @@ public class Radio extends AbstractFormListElement {
     super.evaluateExtraParams();
 
     addParameter("jqueryaction", JQUERYACTION);
+
+    if (buttonset != null) addParameter("buttonset", findValue(buttonset, Boolean.class));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -119,6 +124,12 @@ public class Radio extends AbstractFormListElement {
   public String getTheme()
   {
     return "jquery";
+  }
+
+  @StrutsTagAttribute(description = "Disable or enable the jQuery UI buttonset feature.", defaultValue = "true", type = "Boolean")
+  public void setButtonset(String buttonset)
+  {
+    this.buttonset = buttonset;
   }
 
 }

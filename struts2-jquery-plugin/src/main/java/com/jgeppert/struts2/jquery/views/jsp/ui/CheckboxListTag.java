@@ -37,6 +37,8 @@ public class CheckboxListTag extends AbstractFormListElementTag {
 
   private static final long serialVersionUID = 1792119547676464144L;
 
+  protected String          buttonset;
+
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
     return new CheckboxList(stack, req, res);
@@ -46,6 +48,12 @@ public class CheckboxListTag extends AbstractFormListElementTag {
   {
     super.populateParams();
 
-    // Radio completer = (Radio) component;
+    CheckboxList checkboxList = (CheckboxList) component;
+    checkboxList.setButtonset(buttonset);
+  }
+
+  public void setButtonset(String buttonset)
+  {
+    this.buttonset = buttonset;
   }
 }

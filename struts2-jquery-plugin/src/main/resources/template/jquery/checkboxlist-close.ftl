@@ -33,6 +33,11 @@ jQuery(document).ready(function () {
 <#if parameters.remoteListValue??>
 	options_${escapedOptionId?html}.listvalue = "${parameters.remoteListValue?html}";
 </#if>
+<#if parameters.buttonset?default(true)>
+	options_${escapedOptionId?html}.buttonset = true;
+<#else>
+	options_${escapedOptionId?html}.buttonset = false;
+</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

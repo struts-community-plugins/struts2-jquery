@@ -1616,7 +1616,9 @@
 					}
 				}
 
-				$elem.buttonset(o);
+				if(o.buttonset) {
+					$elem.buttonset(o);
+				}
 			});
 			if (o.onsuc && o.onsuc !== '') {
 				o.onsuc = buttonsetTopic;
@@ -1640,7 +1642,9 @@
 				});
 			}
 
-			$elem.buttonset(o);
+			if(o.buttonset) {
+				$elem.buttonset(o);
+			}
 		}
 	}
 	};
