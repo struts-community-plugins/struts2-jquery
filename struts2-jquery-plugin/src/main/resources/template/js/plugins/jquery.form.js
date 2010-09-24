@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 2.45 (09-AUG-2010)
+ * version: 2.47 (04-SEP-2010)
  * @requires jQuery v1.3.2 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -8,7 +8,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  */
-(function($) {
+;(function($) {
 
 /*
 	Usage Note:
@@ -88,9 +88,7 @@ $.fn.ajaxSubmit = function(options) {
 		for (n in options.data) {
 			if(options.data[n] instanceof Array) {
 				for (var k in options.data[n]) {
-					if(k) {
-						a.push( { name: n, value: options.data[n][k] } );
-					}
+					a.push( { name: n, value: options.data[n][k] } );
 				}
 			}
 			else {
@@ -151,6 +149,31 @@ $.fn.ajaxSubmit = function(options) {
 		}
 	};
 
+	// are there files to upload?
+	var fileInputs = $('input:file', this).length > 0;
+	var mp = 'multipart/form-data';
+	var multipart = ($form.attr('enctype') == mp || $form.attr('encoding') == mp);
+
+	// options.iframe allows user to force iframe mode
+	// 06-NOV-09: now defaulting to iframe mode if file input is detected
+   if (options.iframe !== false && (fileInputs || options.iframe || multipart)) {
+	   // hack to fix Safari hang (thanks to Tim Molendijk for this)
+	   // see:  http://groups.google.com/group/jquery-dev/browse_thread/thread/36395b7ab510dd5d
+	   if (options.closeKeepAlive) {
+		   $.get(options.closeKeepAlive, fileUpload);
+		}
+	   else {
+		   fileUpload();
+		}
+   }
+   else {
+	   $.ajax(options);
+   }
+
+	// fire 'notify' event
+	this.trigger('form-submit-notify', [this, options]);
+	return this;
+
 
 	// private function for handling file uploads (hat tip to YAHOO!)
 	function fileUpload() {
@@ -162,11 +185,19 @@ $.fn.ajaxSubmit = function(options) {
 			alert('Error: Form elements must not have name or id of "submit".');
 			return;
 		}
-
+		
 		var s = $.extend(true, {}, $.ajaxSettings, options);
 		s.context = s.context || s;
-		var id = 'jqFormIO' + (new Date().getTime());
-		var $io = $('<iframe id="' + id + '" name="' + id + '" src="'+ s.iframeSrc +'" onload="var f = jQuery(this).data(\'form-plugin-onload\'); if (f) f();" />');
+		var id = 'jqFormIO' + (new Date().getTime()), fn = '_'+id;
+		window[fn] = function() {
+			var f = $io.data('form-plugin-onload');
+			if (f) {
+				f();
+				window[fn] = undefined;
+				try { delete window[fn]; } catch(e){}
+			}
+		}
+		var $io = $('<iframe id="' + id + '" name="' + id + '" src="'+ s.iframeSrc +'" onload="window[\'_\'+this.id]()" />');
 		var io = $io[0];
 
 		$io.css({ position: 'absolute', top: '-1000px', left: '-1000px' });
@@ -254,11 +285,9 @@ $.fn.ajaxSubmit = function(options) {
 			try {
 				if (s.extraData) {
 					for (var n in s.extraData) {
-						if(n) {
-							extraInputs.push(
-								$('<input type="hidden" name="'+n+'" value="'+s.extraData[n]+'" />')
+						extraInputs.push(
+							$('<input type="hidden" name="'+n+'" value="'+s.extraData[n]+'" />')
 								.appendTo(form)[0]);
-						}
 					}
 				}
 
@@ -286,7 +315,7 @@ $.fn.ajaxSubmit = function(options) {
 			setTimeout(doSubmit, 10); // this lets dom updates render
 		}
 	
-		var data, doc, domCheckCount = 100;
+		var data, doc, domCheckCount = 50;
 
 		function cb() {
 			if (cbInvoked) {
@@ -305,7 +334,7 @@ $.fn.ajaxSubmit = function(options) {
 				
 				var isXml = s.dataType == 'xml' || doc.XMLDocument || $.isXMLDoc(doc);
 				log('isXml='+isXml);
-				if (!isXml && (doc.body === null || doc.body.innerHTML === '')) {
+				if (!isXml && window.opera && (doc.body == null || doc.body.innerHTML == '')) {
 					if (--domCheckCount) {
 						// in some browsers (Opera) the iframe DOM is not always traversable when
 						// the onload callback fires, so we loop a bit to accommodate
@@ -313,11 +342,12 @@ $.fn.ajaxSubmit = function(options) {
 						setTimeout(cb, 250);
 						return;
 					}
-					log('Could not access iframe DOM after 100 tries.');
-					throw 'DOMException: not available';
+					// let this fall through because server response could be an empty document
+					//log('Could not access iframe DOM after mutiple tries.');
+					//throw 'DOMException: not available';
 				}
 
-				log('response detected');
+				//log('response detected');
 				cbInvoked = true;
 				xhr.responseText = doc.documentElement ? doc.documentElement.innerHTML : null; 
 				xhr.responseXML = doc.XMLDocument ? doc.XMLDocument : doc;
@@ -341,7 +371,7 @@ $.fn.ajaxSubmit = function(options) {
 						}
 					}			  
 				}
-				else if (s.dataType == 'xml' && !xhr.responseXML && xhr.responseText !== null) {
+				else if (s.dataType == 'xml' && !xhr.responseXML && xhr.responseText != null) {
 					xhr.responseXML = toXml(xhr.responseText);
 				}
 				data = $.httpData(xhr, s.dataType);
@@ -355,7 +385,7 @@ $.fn.ajaxSubmit = function(options) {
 
 			// ordering of these callbacks/triggers is odd, but that's how $.ajax does it
 			if (ok) {
-				s.success.call(s.context, data, 'success');
+				s.success.call(s.context, data, 'success', xhr);
 				if (g) {
 					$.event.trigger("ajaxSuccess", [xhr, s]);
 				}
@@ -390,32 +420,6 @@ $.fn.ajaxSubmit = function(options) {
 			return (doc && doc.documentElement && doc.documentElement.tagName != 'parsererror') ? doc : null;
 		}
 	}
-
-	// are there files to upload?
-	var fileInputs = $('input:file', this).length > 0;
-	var mp = 'multipart/form-data';
-	var multipart = ($form.attr('enctype') == mp || $form.attr('encoding') == mp);
-
-	// options.iframe allows user to force iframe mode
-	// 06-NOV-09: now defaulting to iframe mode if file input is detected
-   if (options.iframe !== false && (fileInputs || options.iframe || multipart)) {
-	   // hack to fix Safari hang (thanks to Tim Molendijk for this)
-	   // see:  http://groups.google.com/group/jquery-dev/browse_thread/thread/36395b7ab510dd5d
-	   if (options.closeKeepAlive) {
-		   $.get(options.closeKeepAlive, fileUpload);
-		}
-	   else {
-		   fileUpload();
-		}
-   }
-   else {
-	   $.ajax(options);
-   }
-
-	// fire 'notify' event
-	this.trigger('form-submit-notify', [this, options]);
-	return this;
-
 };
 
 /**
@@ -460,7 +464,7 @@ $.fn.ajaxForm = function(options) {
 		if (!($el.is(":submit,input:image"))) {
 			// is this a child element of the submit el?  (ex: a span within a button)
 			var t = $el.closest(':submit');
-			if (t.length === 0) {
+			if (t.length == 0) {
 				return;
 			}
 			target = t[0];
@@ -468,7 +472,7 @@ $.fn.ajaxForm = function(options) {
 		var form = this;
 		form.clk = target;
 		if (target.type == 'image') {
-			if (e.offsetX !== undefined) {
+			if (e.offsetX != undefined) {
 				form.clk_x = e.offsetX;
 				form.clk_y = e.offsetY;
 			} else if (typeof $.fn.offset == 'function') { // try to use dimensions plugin
@@ -666,7 +670,7 @@ $.fieldValue = function(el, successful) {
 			if (op.selected) {
 				var v = op.value;
 				if (!v) { // extra pain for IE...
-					v = (op.attributes && op.attributes.value && !(op.attributes.value.specified)) ? op.text : op.value;
+					v = (op.attributes && op.attributes['value'] && !(op.attributes['value'].specified)) ? op.text : op.value;
 				}
 				if (one) {
 					return v;
@@ -772,6 +776,6 @@ function log() {
 			window.opera.postError(msg);
 		}
 	}
-}
+};
 
 })(jQuery);
