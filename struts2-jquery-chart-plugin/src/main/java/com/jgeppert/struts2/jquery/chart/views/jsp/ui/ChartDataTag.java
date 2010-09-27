@@ -47,6 +47,7 @@ public class ChartDataTag extends AbstractContainerTag {
   protected String          clickable;
   protected String          hoverable;
   protected String          shadowSize;
+  protected String          data;
   protected Object          list;
   protected String          listKey;
   protected String          listValue;
@@ -71,6 +72,7 @@ public class ChartDataTag extends AbstractContainerTag {
     chartData.setClickable(clickable);
     chartData.setHoverable(hoverable);
     chartData.setShadowSize(shadowSize);
+    chartData.setData(data);
     chartData.setList(list);
     chartData.setListKey(listKey);
     chartData.setListValue(listValue);
@@ -124,6 +126,11 @@ public class ChartDataTag extends AbstractContainerTag {
   public void setShadowSize(String shadowSize)
   {
     this.shadowSize = shadowSize;
+  }
+
+  public void setData(String data)
+  {
+    this.data = data;
   }
 
   public void setList(Object list)

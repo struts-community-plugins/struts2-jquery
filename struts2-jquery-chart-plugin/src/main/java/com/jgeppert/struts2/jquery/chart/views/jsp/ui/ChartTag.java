@@ -68,6 +68,14 @@ public class ChartTag extends AbstractContainerTag {
   protected String          crosshairMode;
   protected String          crosshairColor;
   protected String          crosshairLineWidth;
+  protected String          pie;
+  protected String          pieRadius;
+  protected String          pieInnerRadius;
+  protected String          pieLabel;
+  protected String          pieLabelFormatter;
+  protected String          pieLabelRadius;
+  protected String          pieLabelBackgroundColor;
+  protected String          pieLabelBackgroundOpacity;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -109,6 +117,14 @@ public class ChartTag extends AbstractContainerTag {
     chart.setCrosshairMode(crosshairMode);
     chart.setCrosshairColor(crosshairColor);
     chart.setCrosshairLineWidth(crosshairLineWidth);
+    chart.setPie(pie);
+    chart.setPieRadius(pieRadius);
+    chart.setPieInnerRadius(pieInnerRadius);
+    chart.setPieLabel(pieLabel);
+    chart.setPieLabelBackgroundColor(pieLabelBackgroundColor);
+    chart.setPieLabelBackgroundOpacity(pieLabelBackgroundOpacity);
+    chart.setPieLabelFormatter(pieLabelFormatter);
+    chart.setPieLabelRadius(pieLabelRadius);
   }
 
   public void setXaxisPosition(String xaxisPosition)
@@ -259,6 +275,46 @@ public class ChartTag extends AbstractContainerTag {
   public void setCrosshairLineWidth(String crosshairLineWidth)
   {
     this.crosshairLineWidth = crosshairLineWidth;
+  }
+
+  public void setPie(String pie)
+  {
+    this.pie = pie;
+  }
+
+  public void setPieRadius(String pieRadius)
+  {
+    this.pieRadius = pieRadius;
+  }
+
+  public void setPieInnerRadius(String pieInnerRadius)
+  {
+    this.pieInnerRadius = pieInnerRadius;
+  }
+
+  public void setPieLabel(String pieLabel)
+  {
+    this.pieLabel = pieLabel;
+  }
+
+  public void setPieLabelFormatter(String pieLabelFormatter)
+  {
+    this.pieLabelFormatter = pieLabelFormatter;
+  }
+
+  public void setPieLabelRadius(String pieLabelRadius)
+  {
+    this.pieLabelRadius = pieLabelRadius;
+  }
+
+  public void setPieLabelBackgroundColor(String pieLabelBackgroundColor)
+  {
+    this.pieLabelBackgroundColor = pieLabelBackgroundColor;
+  }
+
+  public void setPieLabelBackgroundOpacity(String pieLabelBackgroundOpacity)
+  {
+    this.pieLabelBackgroundOpacity = pieLabelBackgroundOpacity;
   }
 
 }

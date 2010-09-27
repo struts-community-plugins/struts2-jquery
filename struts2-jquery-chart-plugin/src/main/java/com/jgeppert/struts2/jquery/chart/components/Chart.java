@@ -80,6 +80,14 @@ public class Chart extends AbstractContainer {
   protected String                      crosshairMode;
   protected String                      crosshairColor;
   protected String                      crosshairLineWidth;
+  protected String                      pie;
+  protected String                      pieRadius;
+  protected String                      pieInnerRadius;
+  protected String                      pieLabel;
+  protected String                      pieLabelFormatter;
+  protected String                      pieLabelRadius;
+  protected String                      pieLabelBackgroundColor;
+  protected String                      pieLabelBackgroundOpacity;
 
   public Chart(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -129,6 +137,14 @@ public class Chart extends AbstractContainer {
     if (crosshairMode != null) addParameter("crosshairMode", findString(crosshairMode));
     if (crosshairColor != null) addParameter("crosshairColor", findString(crosshairColor));
     if (crosshairLineWidth != null) addParameter("crosshairLineWidth", findValue(crosshairLineWidth, Number.class));
+    if (pie != null) addParameter("pie", findValue(this.pie, Boolean.class));
+    if (pieRadius != null) addParameter("pieRadius", findString(pieRadius));
+    if (pieInnerRadius != null) addParameter("pieInnerRadius", findString(pieInnerRadius));
+    if (pieLabel != null) addParameter("pieLabel", findValue(this.pieLabel, Boolean.class));
+    if (pieLabelRadius != null) addParameter("pieLabelRadius", findString(pieLabelRadius));
+    if (pieLabelBackgroundOpacity != null) addParameter("pieLabelBackgroundOpacity", findString(pieLabelBackgroundOpacity));
+    if (pieLabelBackgroundColor != null) addParameter("pieLabelBackgroundColor", findString(pieLabelBackgroundColor));
+    if (pieLabelFormatter != null) addParameter("pieLabelFormatter", findString(pieLabelFormatter));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -332,5 +348,53 @@ public class Chart extends AbstractContainer {
   public void setCrosshairLineWidth(String crosshairLineWidth)
   {
     this.crosshairLineWidth = crosshairLineWidth;
+  }
+
+  @StrutsTagAttribute(description = "Display the Chart as a Pie", type = "Boolean", defaultValue = "false")
+  public void setPie(String pie)
+  {
+    this.pie = pie;
+  }
+
+  @StrutsTagAttribute(description = "0-1 for percentage of fullsize, or a specified pixel length", defaultValue = "auto")
+  public void setPieRadius(String pieRadius)
+  {
+    this.pieRadius = pieRadius;
+  }
+
+  @StrutsTagAttribute(description = "0-1 for percentage of fullsize or a specified pixel length, for creating a donut effect")
+  public void setPieInnerRadius(String pieInnerRadius)
+  {
+    this.pieInnerRadius = pieInnerRadius;
+  }
+
+  @StrutsTagAttribute(description = "Display Pie Labels", type = "Boolean", defaultValue = "false")
+  public void setPieLabel(String pieLabel)
+  {
+    this.pieLabel = pieLabel;
+  }
+
+  @StrutsTagAttribute(description = "a user-defined function that modifies the text/style of the label text. eg. name of a function like this function(label, series){ return '<div style=\"font-size:8pt;text-align:center;padding:2px;color:white;\">'+label+'<br/>'+Math.round(series.percent)+'%</div>'; }")
+  public void setPieLabelFormatter(String pieLabelFormatter)
+  {
+    this.pieLabelFormatter = pieLabelFormatter;
+  }
+
+  @StrutsTagAttribute(description = "0-1 for percentage of fullsize, or a specified pixel length", defaultValue = "auto")
+  public void setPieLabelRadius(String pieLabelRadius)
+  {
+    this.pieLabelRadius = pieLabelRadius;
+  }
+
+  @StrutsTagAttribute(description = "any hexidecimal color value")
+  public void setPieLabelBackgroundColor(String pieLabelBackgroundColor)
+  {
+    this.pieLabelBackgroundColor = pieLabelBackgroundColor;
+  }
+
+  @StrutsTagAttribute(description = "0-1")
+  public void setPieLabelBackgroundOpacity(String pieLabelBackgroundOpacity)
+  {
+    this.pieLabelBackgroundOpacity = pieLabelBackgroundOpacity;
   }
 }

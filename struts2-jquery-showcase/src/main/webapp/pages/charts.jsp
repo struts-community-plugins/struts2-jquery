@@ -122,6 +122,60 @@
     </sjc:chart>
     <sj:a onClickTopics="reloadMap" button="true" buttonIcon="ui-icon-refresh">Load/Reload Map</sj:a>
     <sj:a onClickTopics="reloadList" button="true" buttonIcon="ui-icon-refresh">Reload List</sj:a>
+
+    <br/>
+    <br/>
+
+	<h3>A Pie Chart</h3>
+    <sjc:chart
+    	id="chartPie"
+    	cssStyle="width: 600px; height: 400px;"
+    	pie="true"
+    	pieLabel="true"
+    >
+    	<sjc:chartData
+    		id="pieSerie1"
+    		label="Serie 1"
+    		data="10"
+    	/>
+    	<sjc:chartData
+    		id="pieSerie2"
+    		label="Serie 2"
+    		data="3"
+    	/>
+    	<sjc:chartData
+    		id="pieSerie3"
+    		label="Serie 3"
+    		data="17"
+    	/>
+    	<sjc:chartData
+    		id="pieSerie4"
+    		label="Serie 4"
+    		data="37"
+    	/>
+    </sjc:chart>
+    
+    <br/>
+
+	<h3>A Pie Donut Chart from a Map </h3>
+    <sjc:chart
+    	id="chartPie2"
+    	cssStyle="width: 600px; height: 400px;"
+    	legendShow="false"
+    	pie="true"
+    	pieLabel="true"
+    	pieInnerRadius="0.3"
+    	pieLabelRadius="0.6"
+    	pieLabelBackgroundColor="#555"
+    	pieLabelBackgroundOpacity="0.7"
+    >
+    	<s:iterator value="%{pieDataMap}">
+	    	<sjc:chartData
+	    		label="%{key}"
+	    		data="%{value}"
+	    	/>
+    	</s:iterator>
+    </sjc:chart>
   </div>
 
     <br/>
@@ -223,7 +277,61 @@
     &lt;/sjc:chart&gt;
     &lt;sj:a onClickTopics=&quot;reloadMap&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Load/Reload Map&lt;/sj:a&gt;
     &lt;sj:a onClickTopics=&quot;reloadList&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Reload List&lt;/sj:a&gt;
-	  </pre>
+
+    &lt;br/&gt;
+    &lt;br/&gt;
+
+	&lt;h3&gt;A Pie Chart&lt;/h3&gt;
+    &lt;sjc:chart
+    	id=&quot;chartPie&quot;
+    	cssStyle=&quot;width: 600px; height: 400px;&quot;
+    	pie=&quot;true&quot;
+    	pieLabel=&quot;true&quot;
+    &gt;
+    	&lt;sjc:chartData
+    		id=&quot;pieSerie1&quot;
+    		label=&quot;Serie 1&quot;
+    		data=&quot;10&quot;
+    	/&gt;
+    	&lt;sjc:chartData
+    		id=&quot;pieSerie2&quot;
+    		label=&quot;Serie 2&quot;
+    		data=&quot;3&quot;
+    	/&gt;
+    	&lt;sjc:chartData
+    		id=&quot;pieSerie3&quot;
+    		label=&quot;Serie 3&quot;
+    		data=&quot;17&quot;
+    	/&gt;
+    	&lt;sjc:chartData
+    		id=&quot;pieSerie4&quot;
+    		label=&quot;Serie 4&quot;
+    		data=&quot;37&quot;
+    	/&gt;
+    &lt;/sjc:chart&gt;
+    
+    &lt;br/&gt;
+
+	&lt;h3&gt;A Pie Donut Chart from a Map &lt;/h3&gt;
+    &lt;sjc:chart
+    	id=&quot;chartPie2&quot;
+    	cssStyle=&quot;width: 600px; height: 400px;&quot;
+    	legendShow=&quot;false&quot;
+    	pie=&quot;true&quot;
+    	pieLabel=&quot;true&quot;
+    	pieInnerRadius=&quot;0.3&quot;
+    	pieLabelRadius=&quot;0.6&quot;
+    	pieLabelBackgroundColor=&quot;#555&quot;
+    	pieLabelBackgroundOpacity=&quot;0.7&quot;
+    &gt;
+    	&lt;s:iterator value=&quot;%{pieDataMap}&quot;&gt;
+	    	&lt;sjc:chartData
+	    		label=&quot;%{key}&quot;
+	    		data=&quot;%{value}&quot;
+	    	/&gt;
+    	&lt;/s:iterator&gt;
+    &lt;/sjc:chart&gt;
+   	  </pre>
 	  </div>
       <div id="javascript">
 	  <pre>
@@ -251,6 +359,7 @@ public class Charts extends ActionSupport {
   private List&lt;ListValue&gt;       objList;
   private Map&lt;Integer, Integer&gt; pointsFromMap;
   private Map&lt;Date, Integer&gt;    dateFromMap;
+  private Map&lt;String, Integer&gt;  pieDataMap;
   private String                minTime;
   private String                maxTime;
 
@@ -285,6 +394,14 @@ public class Charts extends ActionSupport {
     pointsFromMap.put(5, 8);
     pointsFromMap.put(6, 7);
     pointsFromMap.put(7, 6);
+
+    pieDataMap = new TreeMap&lt;String, Integer&gt;();
+    pieDataMap.put(&quot;Java&quot;, 18);
+    pieDataMap.put(&quot;C&quot;, 17);
+    pieDataMap.put(&quot;C++&quot;, 10);
+    pieDataMap.put(&quot;PHP&quot;, 8);
+    pieDataMap.put(&quot;(Visual) Basic&quot;, 6);
+    pieDataMap.put(&quot;C#&quot;, 5);
 
     dateFromMap = new TreeMap&lt;Date, Integer&gt;();
     Calendar calendar = Calendar.getInstance();
@@ -345,7 +462,13 @@ public class Charts extends ActionSupport {
   {
     return objList;
   }
+
+  public Map&lt;String, Integer&gt; getPieDataMap()
+  {
+    return pieDataMap;
+  }
 }
+
 	  </pre>
 	  </div>
       <div id="jsonaction">

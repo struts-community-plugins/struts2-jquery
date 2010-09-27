@@ -47,6 +47,7 @@ public class Charts extends ActionSupport {
   private List<ListValue>       objList;
   private Map<Integer, Integer> pointsFromMap;
   private Map<Date, Integer>    dateFromMap;
+  private Map<String, Integer>  pieDataMap;
   private String                minTime;
   private String                maxTime;
 
@@ -81,6 +82,14 @@ public class Charts extends ActionSupport {
     pointsFromMap.put(5, 8);
     pointsFromMap.put(6, 7);
     pointsFromMap.put(7, 6);
+
+    pieDataMap = new TreeMap<String, Integer>();
+    pieDataMap.put("Java", 18);
+    pieDataMap.put("C", 17);
+    pieDataMap.put("C++", 10);
+    pieDataMap.put("PHP", 8);
+    pieDataMap.put("(Visual) Basic", 6);
+    pieDataMap.put("C#", 5);
 
     dateFromMap = new TreeMap<Date, Integer>();
     Calendar calendar = Calendar.getInstance();
@@ -140,5 +149,10 @@ public class Charts extends ActionSupport {
   public List<ListValue> getObjList()
   {
     return objList;
+  }
+
+  public Map<String, Integer> getPieDataMap()
+  {
+    return pieDataMap;
   }
 }

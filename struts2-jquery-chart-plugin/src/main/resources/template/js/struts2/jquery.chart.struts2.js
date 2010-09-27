@@ -34,6 +34,9 @@
 			if (o.crosshair) {
 				self.require("js/flot/jquery.flot.crosshair" + self.minSuffix + ".js");
 			}
+			if (o.series && o.series.pie) {
+				self.require("js/flot/jquery.flot.pie" + self.minSuffix + ".js");
+			}
 
 			var ajaxData = [];
 			self.charts[o.id] = [];

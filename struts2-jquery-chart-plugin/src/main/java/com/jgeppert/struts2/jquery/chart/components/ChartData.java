@@ -73,6 +73,7 @@ public class ChartData extends AbstractContainer {
   protected String                      hoverable;
   protected String                      shadowSize;
 
+  protected String                      data;
   protected Object                      list;
   protected String                      listKey;
   protected String                      listValue;
@@ -136,6 +137,10 @@ public class ChartData extends AbstractContainer {
       {
         addParameter("remoteListValue", findString(listValue));
       }
+    }
+    else if (data != null)
+    {
+      addParameter("data", findString(data));
     }
     else
     {
@@ -390,6 +395,12 @@ public class ChartData extends AbstractContainer {
   public void setShadowSize(String shadowSize)
   {
     this.shadowSize = shadowSize;
+  }
+
+  @StrutsTagAttribute(description = "Chart Data. Don't use list and data attributes together. When using a Pie Chart data can be a numerical value like 10.")
+  public void setData(String data)
+  {
+    this.data = data;
   }
 
   @StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value'" + " parameter and the Map value will become the option body.", required = false)

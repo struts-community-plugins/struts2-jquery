@@ -70,23 +70,23 @@ options_${escapedOptionId?html}.yaxis.timeformat = "${parameters.yaxisTimeformat
 <#if parameters.yaxisColor?if_exists != "">
 options_${escapedOptionId?html}.yaxis.color = "${parameters.yaxisColor?html}";
 </#if>
-<#if parameters.yaxisTick?if_exists != "">
-options_${escapedOptionId?html}.yaxis.tick = ${parameters.yaxisTick?html};
+<#if parameters.yaxisTick??>
+options_${escapedOptionId?html}.yaxis.tick = ${parameters.yaxisTick?string};
 </#if>
-<#if parameters.yaxisTickSize?if_exists != "">
-options_${escapedOptionId?html}.yaxis.tickSize = ${parameters.yaxisTickSize?html};
+<#if parameters.yaxisTickSize??>
+options_${escapedOptionId?html}.yaxis.tickSize = ${parameters.yaxisTickSize?string};
 </#if>
-<#if parameters.yaxisTickDecimals?if_exists != "">
-options_${escapedOptionId?html}.yaxis.tickDecimals = ${parameters.yaxisTickDecimals?html};
+<#if parameters.yaxisTickDecimals??>
+options_${escapedOptionId?html}.yaxis.tickDecimals = ${parameters.yaxisTickDecimals?string};
 </#if>
 <#if parameters.yaxisTickColor?if_exists != "">
 options_${escapedOptionId?html}.yaxis.tickColor = "${parameters.yaxisTickColor?html}";
 </#if>
-<#if parameters.yaxisMin?if_exists != "">
-options_${escapedOptionId?html}.yaxis.min = ${parameters.yaxisMin?html};
+<#if parameters.yaxisMin??>
+options_${escapedOptionId?html}.yaxis.min = ${parameters.yaxisMin?string};
 </#if>
-<#if parameters.yaxisMax?if_exists != "">
-options_${escapedOptionId?html}.yaxis.max = ${parameters.yaxisMax?html};
+<#if parameters.yaxisMax??>
+options_${escapedOptionId?html}.yaxis.max = ${parameters.yaxisMax?string};
 </#if>
 options_${escapedOptionId?html}.legend = {};
 <#if parameters.legendShow?exists>
@@ -113,8 +113,35 @@ options_${escapedOptionId?html}.onhover = "${parameters.onHoverTopics?html}";
 	options_${escapedOptionId?html}.crosshair.color = "${parameters.crosshairColor?html}";
 	</#if>
   	<#if parameters.crosshairLineWidth??>
-	options_${escapedOptionId?html}.crosshair.lineWidth = ${parameters.crosshairLineWidth?html};
+	options_${escapedOptionId?html}.crosshair.lineWidth = ${parameters.crosshairLineWidth?string};
   	</#if>
+</#if>
+<#if parameters.pie?default(false)>
+options_${escapedOptionId?html}.series = { pie: { show: true }};
+	<#if parameters.pieRadius??>
+		options_${escapedOptionId?html}.series.pie.radius = ${parameters.pieRadius?string};
+	</#if>
+	<#if parameters.pieInnerRadius??>
+		options_${escapedOptionId?html}.series.pie.innerRadius = ${parameters.pieInnerRadius?string};
+	</#if>
+	<#if parameters.pieLabel?default(false)>
+		options_${escapedOptionId?html}.series.pie.label = { show: true };
+		<#if parameters.pieLabelRadius??>
+			options_${escapedOptionId?html}.series.pie.label.radius = ${parameters.pieLabelRadius?string};
+		</#if>
+		<#if parameters.pieLabelFormatter?if_exists != "">
+			options_${escapedOptionId?html}.series.pie.label.formatter = "${parameters.pieLabelFormatter?html}";
+		</#if>
+	  	<#if parameters.pieLabelBackgroundColor?? || parameters.pieLabelBackgroundOpacity??>
+			options_${escapedOptionId?html}.series.pie.label.background = {};
+		<#if parameters.pieLabelBackgroundColor?if_exists != "">
+			options_${escapedOptionId?html}.series.pie.label.background.color = "${parameters.pieLabelBackgroundColor?html}";
+		</#if>
+		<#if parameters.pieLabelBackgroundOpacity??>
+			options_${escapedOptionId?html}.series.pie.label.background.opacity = ${parameters.pieLabelBackgroundOpacity?string};
+		</#if>
+	  	</#if>
+	</#if>
 </#if>
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
