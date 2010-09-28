@@ -41,6 +41,9 @@ jQuery(document).ready(function () {
   <#if parameters.label?if_exists != "">
 	options_tab_${escapedOptionId?html}.label = "${parameters.label?html}";
   </#if>
+  <#if parameters.closable?exists>
+	options_tab_${escapedOptionId?html}.closable = ${parameters.closable?string};
+  </#if>
   <#if parameters.parentTabbedPanel?if_exists != "">
   	<#assign escapedParentOptionId="${parameters.parentTabbedPanel?string?replace('.', '_')}">
   	var tabs = jQuery('#${parameters.parentTabbedPanel?string?replace('.', '\\\\\\\\.')}').data('taboptions');

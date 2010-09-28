@@ -1036,6 +1036,7 @@
 		}
 
 		var tabs = $elem.data('taboptions');
+		var closable = false;
 		if (tabs) {
 			var tabStr = "";
 			for ( var l = 0; l < tabs.length; l++) {
@@ -1058,13 +1059,23 @@
 				if (tab.label) {
 					tabStr += tab.label;
 				}
-				tabStr += "</span></a></li>";
+				tabStr += "</span></a>";
+				if (tab.closable) {
+					tabStr += "<span class='ui-icon ui-icon-close s2j-tab-closable' style='float: left; margin: 0.4em 0.2em 0 0; cursor: pointer;'>&nbsp;</span>";
+					closable = true;
+				}
+				tabStr += "</li>";
 			}
 			$(self.escId(o.id) + ' > ul').html(tabStr);
 		}
 
 		$elem.tabs(para);
-
+		if (closable) {
+			$("#"+o.id+" span.s2j-tab-closable").live('click', function() {
+				var index = $('li',$elem).index($(this).parent());
+				$elem.tabs('remove', index);
+			});
+		}
 		// History and Bookmarking for Tabs
 		if (self.ajaxhistory) {
 			var ahp = {};

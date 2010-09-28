@@ -22,8 +22,8 @@
     <sj:tabbedpanel id="remotetabs" selectedTab="2" animate="true" collapsible="true">
       <sj:tab id="tab1" href="%{remoteurl1}" label="Remote Tab One"/>
       <sj:tab id="tab2" href="%{remoteurl2}" label="Remote Tab Two"/>
-      <sj:tab id="tab3" href="%{remoteurl3}" label="Remote Tab Three"/>
-      <sj:tab id="tab4" href="%{remoteurl4}" label="Remote Tab Four"/>
+      <sj:tab id="tab3" href="%{remoteurl3}" label="Remote Tab Three" closable="true"/>
+      <sj:tab id="tab4" href="%{remoteurl4}" label="Remote Tab Four" closable="true"/>
     </sj:tabbedpanel>
   </div>
   

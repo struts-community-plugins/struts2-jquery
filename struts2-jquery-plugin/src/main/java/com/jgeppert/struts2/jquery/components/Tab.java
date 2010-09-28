@@ -60,6 +60,7 @@ public class Tab extends AbstractRemoteBean {
   public static final String COMPONENT_NAME = Tab.class.getName();
 
   protected String           target;
+  protected String           closable;
 
   public Tab(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -85,6 +86,7 @@ public class Tab extends AbstractRemoteBean {
     }
 
     if (target != null) addParameter("target", findString(target));
+    if (closable != null) addParameter("closable", findValue(closable, Boolean.class));
   }
 
   @Override
@@ -104,6 +106,12 @@ public class Tab extends AbstractRemoteBean {
   public void setTarget(String target)
   {
     this.target = target;
+  }
+
+  @StrutsTagAttribute(description = "If true then tab is closable.", defaultValue = "false", type = "Boolean")
+  public void setClosable(String closable)
+  {
+    this.closable = closable;
   }
 
 }

@@ -38,6 +38,7 @@ public class TabTag extends AbstractRemoteTag {
   private static final long serialVersionUID = 5309231035916461758L;
 
   protected String          target;
+  protected String          closable;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -50,11 +51,17 @@ public class TabTag extends AbstractRemoteTag {
 
     Tab tab = (Tab) component;
     tab.setTarget(target);
+    tab.setClosable(closable);
   }
 
   public void setTarget(String target)
   {
     this.target = target;
+  }
+
+  public void setClosable(String closable)
+  {
+    this.closable = closable;
   }
 
 }
