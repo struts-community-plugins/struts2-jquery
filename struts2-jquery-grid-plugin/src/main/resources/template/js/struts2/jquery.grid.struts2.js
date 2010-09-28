@@ -184,6 +184,10 @@
 		params.loadComplete = self.pubCom($elem, o.onalw, o.oncom, null, null, o);
 		params.loadError = self.pubErr($elem, o.onalw, o.onerr, o.errortext);
 
+		if (o.grouping) {
+			self.require("js/plugins/grid.grouping.js");
+		}
+
 		if (o.editurl) {
 			self.require("js/plugins/jquery.searchFilter.js");
 			self.require("js/plugins/grid.formedit.js");

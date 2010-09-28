@@ -204,6 +204,17 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
 
   protected String          connectWith;
 
+  protected String          groupField;
+  protected String          groupColumnShow;
+  protected String          groupText;
+  protected String          groupCollapse;
+  protected String          groupOrder;
+  protected String          groupSummary;
+  protected String          groupDataSorted;
+  protected String          groupShowSummaryOnHide;
+  protected String          groupPlusIcon;
+  protected String          groupMinusIcon;
+
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
     return new Grid(stack, req, res);
@@ -372,6 +383,17 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setSortableOnUpdateTopics(sortableOnUpdateTopics);
 
     grid.setConnectWith(connectWith);
+
+    grid.setGroupField(groupField);
+    grid.setGroupColumnShow(groupColumnShow);
+    grid.setGroupText(groupText);
+    grid.setGroupCollapse(groupCollapse);
+    grid.setGroupOrder(groupOrder);
+    grid.setGroupSummary(groupSummary);
+    grid.setGroupDataSorted(groupDataSorted);
+    grid.setGroupShowSummaryOnHide(groupShowSummaryOnHide);
+    grid.setGroupPlusIcon(groupPlusIcon);
+    grid.setGroupMinusIcon(groupMinusIcon);
   }
 
   public void setWidth(String width)
@@ -1147,5 +1169,55 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setReloadTopics(String reloadTopics)
   {
     this.reloadTopics = reloadTopics;
+  }
+
+  public void setGroupField(String groupField)
+  {
+    this.groupField = groupField;
+  }
+
+  public void setGroupColumnShow(String groupColumnShow)
+  {
+    this.groupColumnShow = groupColumnShow;
+  }
+
+  public void setGroupText(String groupText)
+  {
+    this.groupText = groupText;
+  }
+
+  public void setGroupCollapse(String groupCollapse)
+  {
+    this.groupCollapse = groupCollapse;
+  }
+
+  public void setGroupOrder(String groupOrder)
+  {
+    this.groupOrder = groupOrder;
+  }
+
+  public void setGroupSummary(String groupSummary)
+  {
+    this.groupSummary = groupSummary;
+  }
+
+  public void setGroupDataSorted(String groupDataSorted)
+  {
+    this.groupDataSorted = groupDataSorted;
+  }
+
+  public void setGroupShowSummaryOnHide(String groupShowSummaryOnHide)
+  {
+    this.groupShowSummaryOnHide = groupShowSummaryOnHide;
+  }
+
+  public void setGroupPlusIcon(String groupPlusIcon)
+  {
+    this.groupPlusIcon = groupPlusIcon;
+  }
+
+  public void setGroupMinusIcon(String groupMinusIcon)
+  {
+    this.groupMinusIcon = groupMinusIcon;
   }
 }

@@ -8,6 +8,7 @@
       <li><s:url id="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
       <li><s:url id="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
       <li><s:url id="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
+      <li><s:url id="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
     </ul>
   </div>
 </div>
@@ -17,20 +18,20 @@
     <p class="text">
         A simple grid with pager. This Grid is sortable by name column.
     </p>
-    <s:url id="remoteurl" action="jsontable"/> 
-    <sjg:grid 
-    	id="gridtable" 
-    	caption="Customers Examples" 
-    	dataType="json" 
-    	href="%{remoteurl}" 
-    	pager="true" 
+    <s:url id="remoteurl" action="jsontable"/>
+    <sjg:grid
+    	id="gridtable"
+    	caption="Customers Examples"
+    	dataType="json"
+    	href="%{remoteurl}"
+    	pager="true"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
     	rownumbers="true"
-    	resizable="true" 
-    	resizableAnimate="true" 
-    	resizableGhost="true" 
+    	resizable="true"
+    	resizableAnimate="true"
+    	resizableGhost="true"
     	resizableHandles="all"
     >
     	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
@@ -40,20 +41,20 @@
     	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
     </sjg:grid>
   </div>
-  
+
 	<br/>
     <sj:tabbedpanel id="localtabs" cssClass="list">
       <sj:tab id="tab1" target="jsp" label="JSP"/>
       <sj:tab id="tab2" target="java" label="Struts2 Action"/>
       <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt; 
-    &lt;sj:grid 
-    	id=&quot;gridtable&quot; 
-    	caption=&quot;Customer Examples&quot; 
-    	dataType=&quot;json&quot; 
-    	href=&quot;%{remoteurl}&quot; 
-    	pager=&quot;true&quot; 
+    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt;
+    &lt;sj:grid
+    	id=&quot;gridtable&quot;
+    	caption=&quot;Customer Examples&quot;
+    	dataType=&quot;json&quot;
+    	href=&quot;%{remoteurl}&quot;
+    	pager=&quot;true&quot;
     	gridModel=&quot;gridModel&quot;
     	rowList=&quot;10,15,20&quot;
     	rowNum=&quot;15&quot;
@@ -356,7 +357,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
 }
 	  </pre>
 	  </div>
-    </sj:tabbedpanel>	
+    </sj:tabbedpanel>
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
 </div>

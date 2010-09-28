@@ -14,58 +14,29 @@
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-    <h2>Grid (Local Data)</h2>
+    <h2>Grid</h2>
     <p class="text">
-        A Grid that loads data only once on initialization. The column Credit Limit is editable.
+        A Grid with local data and grouping.
     </p>
-    <s:url id="remoteurl" action="jsontable">
-    	<s:param name="loadonce" value="%{true}" />
-    </s:url>
-    <s:url id="editcellurl" action="edit-cell-entry"/>
+    <s:url id="remoteurl" action="jsontable"/>
     <sjg:grid
-    	id="gridloadtable"
-    	loadonce="true"
-    	caption="Customers Examples (Local Data)"
+    	id="gridgrouping"
+    	caption="Customers Examples (Grouping)"
+    	dataType="json"
     	href="%{remoteurl}"
+    	pager="true"
     	gridModel="gridModel"
-    	rowNum="-1"
-    	hidegrid="true"
-    	scroll="true"
-    	cellEdit="true"
-    	cellurl="%{editcellurl}"
-    	altRows="true"
-    	sortable="true"
-    	sortableOpacity="0.8"
-    	sortablePlaceholder="ui-state-highlight"
-    	sortableForcePlaceholderSize="true"
+    	rownumbers="true"
+    	groupField="['country']"
+    	groupColumnShow="[false]"
+    	groupCollapse="true"
     >
-    	<sjg:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true"/>
-    	<sjg:gridColumn name="name" index="name" title="Company" width="250" sortable="true"/>
-    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true" hidden="true"/>
-    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="true" hidden="true"/>
-    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
-    	<sjg:gridColumn name="country" index="country" title="Country" sortable="true"/>
-    	<sjg:gridColumn name="city" index="city" title="City" sortable="true"/>
-    	<sjg:gridColumn 	name="creditLimit"
-    					index="creditLimit"
-    					title="Credit Limit"
-    					align="right"
-    					editable="true"
-    					editrules="{
-    									number: true,
-    									required: true,
-    									minValue : 100.0,
-    									maxValue : 10000.0
-    								}"
-    					formatter="currency"
-    					sortable="true"/>
+    	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
+    	<sjg:gridColumn name="name" index="name" title="Name" width="250" sortable="true"/>
+    	<sjg:gridColumn name="country" index="country" title="Country" sortable="false"/>
+    	<sjg:gridColumn name="city" index="city" title="City" sortable="false"/>
+    	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
     </sjg:grid>
-	<br/>
-    <sj:submit id="grid_load_colsbutton"
-    		value="Show/Hide Columns"
-    		onClickTopics="showloadcolumns"
-    		button="true"/>
-	<br/>
   </div>
 
 	<br/>
@@ -74,47 +45,24 @@
       <sj:tab id="tab2" target="java" label="Struts2 Action"/>
       <div id="jsp">
 	  <pre>
-   &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;&gt;
-    	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
-    &lt;/s:url&gt;
-    &lt;s:url id=&quot;editcellurl&quot; action=&quot;edit-cell-entry&quot;/&gt;
+    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt;
     &lt;sj:grid
-    	id=&quot;gridloadtable&quot;
-    	loadonce=&quot;true&quot;
-    	caption=&quot;Customer Examples (Local Data)&quot;
+    	id=&quot;gridtable&quot;
+    	caption=&quot;Customer Examples&quot;
+    	dataType=&quot;json&quot;
     	href=&quot;%{remoteurl}&quot;
+    	pager=&quot;true&quot;
     	gridModel=&quot;gridModel&quot;
-    	rowNum=&quot;-1&quot;
-    	hidegrid=&quot;true&quot;
-    	scroll=&quot;true&quot;
-    	cellEdit=&quot;true&quot;
-    	cellurl=&quot;%{editcellurl}&quot;
+    	rowList=&quot;10,15,20&quot;
+    	rowNum=&quot;15&quot;
+    	rownumbers=&quot;true&quot;
     &gt;
-    	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; key=&quot;true&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Company&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn 	name=&quot;creditLimit&quot;
-    					index=&quot;creditLimit&quot;
-    					title=&quot;Credit Limit&quot;
-    					editable=&quot;true&quot;
-    					editrules=&quot;{
-    									number: true,
-    									required: true,
-    									minValue : 100.0,
-    									maxValue : 10000.0
-    								}&quot;
-    					formatter=&quot;currency&quot;
-    					sortable=&quot;true&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; sortable=&quot;true&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; formatter=&quot;currency&quot; sortable=&quot;false&quot;/&gt;
     &lt;/sj:grid&gt;
-	&lt;br/&gt;
-    &lt;sj:submit id=&quot;grid_load_colsbutton&quot;
-    		value=&quot;Show/Hide Columns&quot;
-    		onClickTopics=&quot;showloadcolumns&quot;
-    		button=&quot;true&quot;/&gt;
 	  </pre>
 	  </div>
       <div id="java">
@@ -410,11 +358,3 @@ public class JsonTable extends ActionSupport implements SessionAware {
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('.buttonlink').hover(
-            function() { $(this).addClass('ui-state-hover'); },
-            function() { $(this).removeClass('ui-state-hover'); }
-    );
-});
-</script>

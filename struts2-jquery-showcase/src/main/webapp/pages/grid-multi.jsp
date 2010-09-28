@@ -8,6 +8,7 @@
       <li><s:url id="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
       <li><s:url id="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
       <li><s:url id="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
+      <li><s:url id="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
     </ul>
   </div>
 </div>
@@ -17,14 +18,14 @@
     <p class="text">
         A editable Grid with pager and navigator. This Grid is sortable by name column and multiple rows can be selected.
     </p>
-    <s:url id="remoteurl" action="jsontable"/> 
-    <s:url id="editurl" action="edit-grid-entry"/> 
-    <sjg:grid 
-    	id="gridmultitable" 
-    	caption="Customers Examples (Editable/Multiselect)" 
-    	dataType="json" 
-    	href="%{remoteurl}" 
-    	pager="true" 
+    <s:url id="remoteurl" action="jsontable"/>
+    <s:url id="editurl" action="edit-grid-entry"/>
+    <sjg:grid
+    	id="gridmultitable"
+    	caption="Customers Examples (Editable/Multiselect)"
+    	dataType="json"
+    	href="%{remoteurl}"
+    	pager="true"
     	navigator="true"
     	navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
     	navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
@@ -51,7 +52,7 @@
 	<br/>
     <sj:submit id="grid_multi_getselectedbutton" value="Get Selected Rows" onClickTopics="getselectedids" button="true"/>
   </div>
-  
+
 	<br/>
     <sj:tabbedpanel id="localtabs" cssClass="list">
       <sj:tab id="tab1" target="javascript" label="JavaScript"/>
@@ -60,22 +61,22 @@
       <div id="javascript">
 	  <pre>
     $.subscribe('getselectedids', function(event,data) {
-    	var s; 
+    	var s;
     	s = $(&quot;#gridmultitable&quot;).jqGrid('getGridParam','selarrrow');
-    	alert('Selected Rows : '+s); 
+    	alert('Selected Rows : '+s);
   	});
 	  </pre>
 	  </div>
       <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt; 
-    &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt; 
-    &lt;sj:grid 
-    	id=&quot;gridmultitable&quot; 
-    	caption=&quot;Customer Examples (Editable/Multiselect)&quot; 
-    	dataType=&quot;json&quot; 
-    	href=&quot;%{remoteurl}&quot; 
-    	pager=&quot;true&quot; 
+    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt;
+    &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt;
+    &lt;sj:grid
+    	id=&quot;gridmultitable&quot;
+    	caption=&quot;Customer Examples (Editable/Multiselect)&quot;
+    	dataType=&quot;json&quot;
+    	href=&quot;%{remoteurl}&quot;
+    	pager=&quot;true&quot;
     	navigator=&quot;true&quot;
     	navigatorSearchOptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;
     	navigatorAddOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
@@ -393,7 +394,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
 }
 	  </pre>
 	  </div>
-    </sj:tabbedpanel>	
+    </sj:tabbedpanel>
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
 </div>

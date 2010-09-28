@@ -85,6 +85,37 @@
   <#if parameters.altClass?if_exists != "">
 	options_${escapedOptionId?html}.recordpos = "${parameters.recordpos?html}";
   </#if>
+  <#if parameters.groupField?if_exists != "">
+	options_${escapedOptionId?html}.grouping = true;
+	options_${escapedOptionId?html}.groupingView = { groupField : ${parameters.groupField ?string} };
+	  <#if parameters.groupColumnShow?if_exists != "">
+		options_${escapedOptionId?html}.groupingView.groupColumnShow = ${parameters.groupColumnShow?html};
+	  </#if>
+	  <#if parameters.groupText?if_exists != "">
+		options_${escapedOptionId?html}.groupingView.groupText = ${parameters.groupText?html};
+	  </#if>
+  	  <#if parameters.groupCollapse?default(false)>
+		options_${escapedOptionId?html}.groupingView.groupCollapse = true;
+	  </#if>
+	  <#if parameters.groupOrder?if_exists != "">
+		options_${escapedOptionId?html}.groupingView.groupOrder = ${parameters.groupOrder?html};
+	  </#if>
+	  <#if parameters.groupSummary?if_exists != "">
+		options_${escapedOptionId?html}.groupingView.groupSummary = ${parameters.groupSummary?html};
+	  </#if>
+  	  <#if parameters.groupDataSorted?default(false)>
+		options_${escapedOptionId?html}.groupingView.groupDataSorted = true;
+	  </#if>
+  	  <#if parameters.groupShowSummaryOnHide?default(false)>
+		options_${escapedOptionId?html}.groupingView.showSummaryOnHide = true;
+	  </#if>
+	  <#if parameters.groupPlusIcon?if_exists != "">
+		options_${escapedOptionId?html}.groupingView.plusicon = "${parameters.groupPlusIcon?html}";
+	  </#if>
+	  <#if parameters.groupMinusIcon?if_exists != "">
+		options_${escapedOptionId?html}.groupingView.minusicon = "${parameters.groupMinusIcon?html}";
+	  </#if>
+  </#if>
   <#if parameters.navigator?default(false)>
 	options_${escapedOptionId?html}.navigator = true;
 	  <#if parameters.navigatorEditOptions?if_exists != "">

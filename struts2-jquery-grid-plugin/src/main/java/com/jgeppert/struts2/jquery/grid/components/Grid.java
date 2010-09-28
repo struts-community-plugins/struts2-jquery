@@ -222,6 +222,17 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
 
   protected String                      connectWith;
 
+  protected String                      groupField;
+  protected String                      groupColumnShow;
+  protected String                      groupText;
+  protected String                      groupCollapse;
+  protected String                      groupOrder;
+  protected String                      groupSummary;
+  protected String                      groupDataSorted;
+  protected String                      groupShowSummaryOnHide;
+  protected String                      groupPlusIcon;
+  protected String                      groupMinusIcon;
+
   public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
   }
@@ -311,6 +322,17 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     if (reloadTopics != null) addParameter("reloadTopics", findString(reloadTopics));
 
     if (connectWith != null) addParameter("connectWith", findString(connectWith));
+
+    if (groupField != null) addParameter("groupField", findString(groupField));
+    if (groupColumnShow != null) addParameter("groupColumnShow", findString(groupColumnShow));
+    if (groupText != null) addParameter("groupText", findString(groupText));
+    if (groupOrder != null) addParameter("groupOrder", findString(groupOrder));
+    if (groupSummary != null) addParameter("groupSummary", findString(groupSummary));
+    if (groupShowSummaryOnHide != null) addParameter("groupShowSummaryOnHide", findString(groupShowSummaryOnHide));
+    if (groupPlusIcon != null) addParameter("groupPlusIcon", findString(groupPlusIcon));
+    if (groupMinusIcon != null) addParameter("groupMinusIcon", findString(groupMinusIcon));
+    if (groupDataSorted != null) addParameter("groupDataSorted", findValue(this.groupDataSorted, Boolean.class));
+    if (groupCollapse != null) addParameter("groupCollapse", findValue(this.groupCollapse, Boolean.class));
 
     if (resizable != null)
     {
@@ -1774,5 +1796,65 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setConnectWith(String connectWith)
   {
     this.connectWith = connectWith;
+  }
+
+  @StrutsTagAttribute(description = "Defines the name from  colModel  on which we group. The first value is the first lavel, the second values is the second level and etc. Currently only one level is supported. e.g. ['name']")
+  public void setGroupField(String groupField)
+  {
+    this.groupField = groupField;
+  }
+
+  @StrutsTagAttribute(description = "Show/Hide the column on which we group. The value here should be a boolean true/false for the group level. If the grouping is enabled we set this value to true. e.g. [true]")
+  public void setGroupColumnShow(String groupColumnShow)
+  {
+    this.groupColumnShow = groupColumnShow;
+  }
+
+  @StrutsTagAttribute(description = "Defines the grouping header text for the group level that will be displayed in the grid. By default if defined the value if {0} which means that the group value name will be displayed. It is possible to specify another value {1} which meant the the total cont of this group will be displayed too. It is possible to set here any valid html content. e.g. ['<b>{0} - {1} Item(s)</b>'] ")
+  public void setGroupText(String groupText)
+  {
+    this.groupText = groupText;
+  }
+
+  @StrutsTagAttribute(description = "Defines if the initially the grid should show or hide the detailed rows of the group.", defaultValue = "false", type = "Boolean")
+  public void setGroupCollapse(String groupCollapse)
+  {
+    this.groupCollapse = groupCollapse;
+  }
+
+  @StrutsTagAttribute(description = "Defines the initial sort order of the group level. Can be asc for ascending or desc for descending order. If the grouping is enabled the default value is asc. e.g. ['asc']")
+  public void setGroupOrder(String groupOrder)
+  {
+    this.groupOrder = groupOrder;
+  }
+
+  @StrutsTagAttribute(description = "Enable or disable the summary (footer) row of the current group level. If grouping is set the default value for the group is false. e.g. [true]")
+  public void setGroupSummary(String groupSummary)
+  {
+    this.groupSummary = groupSummary;
+  }
+
+  @StrutsTagAttribute(description = "If this parameter is set to true we send a additional parameter to the server in order to tell him to sort the data. This way all the sorting is done at server leaving the grid only to display the grouped data. If this parameter is false additionally before to display the data we make our own sorting in order to support grouping. This of course slow down the speed on relative big data. This parameter is not valid is the datatype is local.", defaultValue = "false", type = "Boolean")
+  public void setGroupDataSorted(String groupDataSorted)
+  {
+    this.groupDataSorted = groupDataSorted;
+  }
+
+  @StrutsTagAttribute(description = "Show or hide the summary (footer) row when we collapse the group.", defaultValue = "false", type = "Boolean")
+  public void setGroupShowSummaryOnHide(String groupShowSummaryOnHide)
+  {
+    this.groupShowSummaryOnHide = groupShowSummaryOnHide;
+  }
+
+  @StrutsTagAttribute(description = "Set the icon from jQuery UI Theme Roller that will be used if the grouped row is collapsed", defaultValue = "ui-icon-circlesmall-plus")
+  public void setGroupPlusIcon(String groupPlusIcon)
+  {
+    this.groupPlusIcon = groupPlusIcon;
+  }
+
+  @StrutsTagAttribute(description = "Set the icon from jQuery UI Theme Roller that will be used if the grouped row is expanded", defaultValue = "ui-icon-circlesmall-minus")
+  public void setGroupMinusIcon(String groupMinusIcon)
+  {
+    this.groupMinusIcon = groupMinusIcon;
   }
 }

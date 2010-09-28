@@ -8,6 +8,7 @@
       <li><s:url id="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
       <li><s:url id="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
       <li><s:url id="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
+      <li><s:url id="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
     </ul>
   </div>
 </div>
@@ -17,14 +18,14 @@
     <p class="text">
         A editable Grid with pager and navigator. Entries are editable when a cell is selected. This Grid is sortable by name column and searchable by id.
     </p>
-    <s:url id="remoteurl" action="jsontable"/> 
-    <s:url id="editurl" action="edit-grid-entry"/> 
-    <sjg:grid 
-    	id="gridedittable" 
-    	caption="Customers Examples (Editable)" 
-    	dataType="json" 
-    	href="%{remoteurl}" 
-    	pager="true" 
+    <s:url id="remoteurl" action="jsontable"/>
+    <s:url id="editurl" action="edit-grid-entry"/>
+    <sjg:grid
+    	id="gridedittable"
+    	caption="Customers Examples (Editable)"
+    	dataType="json"
+    	href="%{remoteurl}"
+    	pager="true"
     	navigator="true"
     	navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
     	navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
@@ -58,7 +59,7 @@
 	<br/>
     <div id="gridinfo" class="ui-widget-content ui-corner-all"><p>Edit Mode for Row :</p></div>
   </div>
-  
+
 	<br/>
     <sj:tabbedpanel id="localtabs" cssClass="list">
       <sj:tab id="tab1" target="javascript" label="JavaScript"/>
@@ -70,7 +71,7 @@
         $(&quot;#gridinfo&quot;).html('&lt;p&gt;Edit Mode for Row : '+event.originalEvent.id+'&lt;/p&gt;');
     });
     $.subscribe('rowadd', function(event,data) {
-        $(&quot;#gridedittable&quot;).jqGrid('editGridRow',&quot;new&quot;,{height:280,reloadAfterSubmit:false}); 
+        $(&quot;#gridedittable&quot;).jqGrid('editGridRow',&quot;new&quot;,{height:280,reloadAfterSubmit:false});
   	});
     $.subscribe('searchgrid', function(event,data) {
         $(&quot;#gridedittable&quot;).jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
@@ -82,14 +83,14 @@
 	  </div>
       <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt; 
-    &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt; 
-    &lt;sj:grid 
-    	id=&quot;gridedittable&quot; 
-    	caption=&quot;Customer Examples (Editable)&quot; 
-    	dataType=&quot;json&quot; 
-    	href=&quot;%{remoteurl}&quot; 
-    	pager=&quot;true&quot; 
+    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt;
+    &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt;
+    &lt;sj:grid
+    	id=&quot;gridedittable&quot;
+    	caption=&quot;Customer Examples (Editable)&quot;
+    	dataType=&quot;json&quot;
+    	href=&quot;%{remoteurl}&quot;
+    	pager=&quot;true&quot;
     	navigator=&quot;true&quot;
     	navigatorSearchOptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;
     	navigatorAddOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
@@ -412,7 +413,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
 }
 	  </pre>
 	  </div>
-    </sj:tabbedpanel>	
+    </sj:tabbedpanel>
   <!-- IE Column Clearing -->
   <div id="ie_clearing"> &#160; </div>
 </div>
