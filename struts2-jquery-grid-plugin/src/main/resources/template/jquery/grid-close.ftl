@@ -55,6 +55,9 @@
   <#if parameters.rowList?if_exists != "">
 	options_${escapedOptionId?html}.rowList = [${parameters.rowList?html}];
   </#if>
+  <#if parameters.rowTotal?exists>
+	options_${escapedOptionId?html}.rowTotal = ${parameters.rowTotal?html};
+  </#if>
   <#if parameters.sortname?if_exists != "">
 	options_${escapedOptionId?html}.sortname = "${parameters.sortname?html}";
   </#if>

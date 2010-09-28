@@ -1314,6 +1314,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">Sets how many records we want to view in the grid. This parameter is passed to the url for use by the server routine retrieving the data. Note that if you set this parameter to 10 (i.e. retrieve 10 records) and your server return 15 then only 10 records will be loaded. Set this parameter to -1 (unlimited) to disable this checking. Default: 20</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">rowTotal</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">null</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Integer</td>
+					<td align="left" valign="top">When set this parameter can instruct the server to load the total number of rows needed to work on. Note that rowNum determines the total records displayed in the grid, while rowTotal the total rows on which we operate. When this parameter is set we send a additional parameter to server named totalrows. You can check for this parameter and if it is available you can replace the rows parameter with this one. Mostly this parameter can be combined wit loadonce parameter set to true.</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">rownumbers</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>

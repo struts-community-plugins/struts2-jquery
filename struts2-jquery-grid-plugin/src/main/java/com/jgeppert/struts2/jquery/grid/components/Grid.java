@@ -108,6 +108,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      prmNames;
   protected String                      direction;
   protected String                      recordpos;
+  protected String                      rowTotal;
 
   protected String                      onSelectRowTopics;
   protected String                      onSelectAllTopics;
@@ -299,6 +300,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     if (prmNames != null) addParameter("prmNames", findString(prmNames));
     if (direction != null) addParameter("direction", findString(direction));
     if (recordpos != null) addParameter("recordpos", findString(recordpos));
+    if (rowTotal != null) addParameter("rowTotal", findValue(this.rowTotal, Integer.class));
 
     if (onSelectRowTopics != null) addParameter("onSelectRowTopics", findString(onSelectRowTopics));
     if (onSelectAllTopics != null) addParameter("onSelectAllTopics", findString(onSelectAllTopics));
@@ -1142,6 +1144,12 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setRecordpos(String recordpos)
   {
     this.recordpos = recordpos;
+  }
+
+  @StrutsTagAttribute(description = "When set this parameter can instruct the server to load the total number of rows needed to work on. Note that rowNum determines the total records displayed in the grid, while rowTotal the total rows on which we operate. When this parameter is set we send a additional parameter to server named totalrows. You can check for this parameter and if it is available you can replace the rows parameter with this one. Mostly this parameter can be combined wit loadonce parameter set to true.", defaultValue = "null", type = "Integer")
+  public void setRowTotal(String rowTotal)
+  {
+    this.rowTotal = rowTotal;
   }
 
   @StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")
