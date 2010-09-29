@@ -64,6 +64,9 @@ public class JsonTable extends ActionSupport implements SessionAware {
   // The Search String
   private String              searchString;
 
+  // Limit the result when using local data, value form attribute rowTotal
+  private Integer             totalrows;
+
   // he Search Operation
   // ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']
   private String              searchOper;
@@ -112,6 +115,11 @@ public class JsonTable extends ActionSupport implements SessionAware {
     // Count all record (select count(*) from your_custumers)
     records = CustomerDAO.getCustomersCount(myCustomers);
 
+    if (totalrows != null)
+    {
+      records = totalrows;
+    }
+
     // Calucalate until rows ware selected
     int to = (rows * page);
 
@@ -123,8 +131,15 @@ public class JsonTable extends ActionSupport implements SessionAware {
 
     if (loadonce)
     {
-      // All Custumer
-      setGridModel(myCustomers);
+      if (totalrows != null && totalrows > 0)
+      {
+        setGridModel(myCustomers.subList(0, totalrows));
+      }
+      else
+      {
+        // All Custumer
+        setGridModel(myCustomers);
+      }
     }
     else
     {
@@ -332,6 +347,11 @@ public class JsonTable extends ActionSupport implements SessionAware {
   public void setSession(Map<String, Object> session)
   {
     this.session = session;
+  }
+
+  public void setTotalrows(Integer totalrows)
+  {
+    this.totalrows = totalrows;
   }
 
 }

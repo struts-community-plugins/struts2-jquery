@@ -49,6 +49,19 @@
   <#if parameters.pager?default(false)>
 	options_${escapedOptionId?html}.pager = "${escapedOptionId?html}_pager";
   </#if>
+  <#if parameters.pagerButtons?default(true)>
+	options_${escapedOptionId?html}.pgbuttons = true;
+  <#else>
+	options_${escapedOptionId?html}.pgbuttons = false;
+  </#if>
+  <#if parameters.pagerInput?default(true)>
+	options_${escapedOptionId?html}.pginput = true;
+  <#else>
+	options_${escapedOptionId?html}.pginput = false;
+  </#if>
+  <#if parameters.pagerPosition?if_exists != "">
+	options_${escapedOptionId?html}.pagerpos = "${parameters.pagerPosition?string}";
+  </#if>
   <#if parameters.rowNum?if_exists != "">
 	options_${escapedOptionId?html}.rowNum = ${parameters.rowNum?html};
   </#if>
@@ -92,7 +105,7 @@
 		options_${escapedOptionId?html}.groupingView.groupColumnShow = ${parameters.groupColumnShow?html};
 	  </#if>
 	  <#if parameters.groupText?if_exists != "">
-		options_${escapedOptionId?html}.groupingView.groupText = ${parameters.groupText?html};
+		options_${escapedOptionId?html}.groupingView.groupText = ${parameters.groupText?string};
 	  </#if>
   	  <#if parameters.groupCollapse?default(false)>
 		options_${escapedOptionId?html}.groupingView.groupCollapse = true;

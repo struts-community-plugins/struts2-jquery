@@ -61,6 +61,9 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      width;
   protected String                      height;
   protected String                      pager;
+  protected String                      pagerButtons;
+  protected String                      pagerPosition;
+  protected String                      pagerInput;
   protected String                      rowNum;
   protected String                      sortname;
   protected String                      viewrecords;
@@ -265,6 +268,9 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     if (width != null) addParameter("width", findString(width));
     if (height != null) addParameter("height", findString(height));
     if (pager != null) addParameter("pager", findValue(this.pager, Boolean.class));
+    if (pagerButtons != null) addParameter("pagerButtons", findValue(this.pagerButtons, Boolean.class));
+    if (pagerInput != null) addParameter("pagerInput", findValue(this.pagerInput, Boolean.class));
+    if (pagerPosition != null) addParameter("pagerPosition", findString(pagerPosition));
     if (rowNum != null) addParameter("rowNum", findString(rowNum));
     if (sortname != null) addParameter("sortname", findString(sortname));
     if (viewrecords != null) addParameter("viewrecords", findValue(this.viewrecords, Boolean.class));
@@ -884,6 +890,24 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setPager(String pager)
   {
     this.pager = pager;
+  }
+
+  @StrutsTagAttribute(description = "Determines if the Pager buttons should be shown if pager is available. Also valid only if pager is set correctly. The buttons are placed in the pager bar.", defaultValue = "true", type = "Boolean")
+  public void setPagerButtons(String pagerButtons)
+  {
+    this.pagerButtons = pagerButtons;
+  }
+
+  @StrutsTagAttribute(description = "Determines the position of the pager in the grid. By default the pager element when created is divided in 3 parts. Can be left, center, right", defaultValue = "center")
+  public void setPagerPosition(String pagerPosition)
+  {
+    this.pagerPosition = pagerPosition;
+  }
+
+  @StrutsTagAttribute(description = "DDetermines if the input box, where the user can change the number of requested page, should be available. The input box appear in the pager bar.", defaultValue = "true", type = "Boolean")
+  public void setPagerInput(String pagerInput)
+  {
+    this.pagerInput = pagerInput;
   }
 
   @StrutsTagAttribute(description = "Sets how many records we want to view in the grid. This parameter is passed to the url for use by the server routine retrieving the data. Note that if you set this parameter to 10 (i.e. retrieve 10 records) and your server return 15 then only 10 records will be loaded. Set this parameter to -1 (unlimited) to disable this checking. Default: 20")

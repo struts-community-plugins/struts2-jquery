@@ -45,6 +45,9 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   protected String          width;
   protected String          height;
   protected String          pager;
+  protected String          pagerButtons;
+  protected String          pagerPosition;
+  protected String          pagerInput;
   protected String          rowNum;
   protected String          sortname;
   protected String          viewrecords;
@@ -228,6 +231,9 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setWidth(width);
     grid.setHeight(height);
     grid.setPager(pager);
+    grid.setPagerButtons(pagerButtons);
+    grid.setPagerInput(pagerInput);
+    grid.setPagerPosition(pagerPosition);
     grid.setRowNum(rowNum);
     grid.setSortname(sortname);
     grid.setViewrecords(viewrecords);
@@ -409,6 +415,21 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setPager(String pager)
   {
     this.pager = pager;
+  }
+
+  public void setPagerButtons(String pagerButtons)
+  {
+    this.pagerButtons = pagerButtons;
+  }
+
+  public void setPagerPosition(String pagerPosition)
+  {
+    this.pagerPosition = pagerPosition;
+  }
+
+  public void setPagerInput(String pagerInput)
+  {
+    this.pagerInput = pagerInput;
   }
 
   public void setRowNum(String rowNum)

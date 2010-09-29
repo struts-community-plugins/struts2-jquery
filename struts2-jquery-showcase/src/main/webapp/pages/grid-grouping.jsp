@@ -18,21 +18,35 @@
     <p class="text">
         A Grid with local data and grouping.
     </p>
-    <s:url id="remoteurl" action="jsontable"/>
+    <s:url id="remoteurl" action="jsontable">
+    	<s:param name="loadonce" value="%{true}" />
+    </s:url>
     <sjg:grid
     	id="gridgrouping"
     	caption="Customers Examples (Grouping)"
-    	dataType="json"
+    	loadonce="true"
     	href="%{remoteurl}"
-    	pager="true"
     	gridModel="gridModel"
-    	rownumbers="true"
     	groupField="['country']"
     	groupColumnShow="[false]"
     	groupCollapse="true"
+    	groupText="['<b>{0} - {1} Customer(s)</b>']"
+    	navigator="true"
+    	navigatorAdd="false"
+    	navigatorEdit="false"
+    	navigatorDelete="false"
+    	navigatorView="true"
+    	rowTotal="70"
+    	rowNum="-1"
+    	altRows="true"
+    	viewrecords="true"
+    	pager="true"
+    	pagerButtons="false"
+    	pagerInput="false"
     >
     	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
-    	<sjg:gridColumn name="name" index="name" title="Name" width="250" sortable="true"/>
+    	<sjg:gridColumn name="name" index="name" title="Name" sortable="true"/>
+		<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true"/>
     	<sjg:gridColumn name="country" index="country" title="Country" sortable="false"/>
     	<sjg:gridColumn name="city" index="city" title="City" sortable="false"/>
     	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
@@ -45,24 +59,39 @@
       <sj:tab id="tab2" target="java" label="Struts2 Action"/>
       <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt;
-    &lt;sj:grid
-    	id=&quot;gridtable&quot;
-    	caption=&quot;Customer Examples&quot;
-    	dataType=&quot;json&quot;
+    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;&gt;
+    	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
+    &lt;/s:url&gt;
+    &lt;sjg:grid
+    	id=&quot;gridgrouping&quot;
+    	caption=&quot;Customers Examples (Grouping)&quot;
+    	loadonce=&quot;true&quot;
     	href=&quot;%{remoteurl}&quot;
-    	pager=&quot;true&quot;
     	gridModel=&quot;gridModel&quot;
-    	rowList=&quot;10,15,20&quot;
-    	rowNum=&quot;15&quot;
-    	rownumbers=&quot;true&quot;
+    	groupField=&quot;['country']&quot;
+    	groupColumnShow=&quot;[false]&quot;
+    	groupCollapse=&quot;true&quot;
+    	groupText=&quot;['&lt;b&gt;{0} - {1} Customer(s)&lt;/b&gt;']&quot;
+    	navigator=&quot;true&quot;
+    	navigatorAdd=&quot;false&quot;
+    	navigatorEdit=&quot;false&quot;
+    	navigatorDelete=&quot;false&quot;
+    	navigatorView=&quot;true&quot;
+    	rowTotal=&quot;70&quot;
+    	rowNum=&quot;-1&quot;
+    	altRows=&quot;true&quot;
+    	viewrecords=&quot;true&quot;
+    	pager=&quot;true&quot;
+    	pagerButtons=&quot;false&quot;
+    	pagerInput=&quot;false&quot;
     &gt;
-    	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; formatter=&quot;currency&quot; sortable=&quot;false&quot;/&gt;
-    &lt;/sj:grid&gt;
+    	&lt;sjg:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;30&quot; formatter=&quot;integer&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; sortable=&quot;true&quot;/&gt;
+		&lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;true&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; sortable=&quot;false&quot;/&gt;
+    &lt;/sjg:grid&gt;
 	  </pre>
 	  </div>
       <div id="java">
@@ -70,7 +99,6 @@
 package com.jgeppert.struts2.jquery.showcase;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -93,19 +121,44 @@ public class JsonTable extends ActionSupport implements SessionAware {
   private static final long   serialVersionUID = 5078264277068533593L;
   private static final Log    log              = LogFactory.getLog(JsonTable.class);
 
+  // Your result List
   private List&lt;Customer&gt;      gridModel;
-  private List&lt;Customer&gt;      myCustomers;
+
+  // get how many rows we want to have into the grid - rowNum attribute in the
+  // grid
   private Integer             rows             = 0;
+
+  // Get the requested page. By default grid sets this to 1.
   private Integer             page             = 0;
-  private Integer             total            = 0;
-  private Integer             record           = 0;
+
+  // sorting order - asc or desc
   private String              sord;
+
+  // get index row - i.e. user click to sort.
   private String              sidx;
+
+  // Search Field
   private String              searchField;
+
+  // The Search String
   private String              searchString;
+
+  // Limit the result when using local data, value form attribute rowTotal
+  private Integer             totalrows;
+
+  // he Search Operation
+  // ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']
   private String              searchOper;
+
+  // Your Total Pages
+  private Integer             total            = 0;
+
+  // All Records
+  private Integer             records          = 0;
+
   private boolean             loadonce         = false;
   private Map&lt;String, Object&gt; session;
+  private List&lt;Customer&gt;      myCustomers;
 
   @Actions( {
     @Action(value = &quot;/jsontable&quot;, results = {
@@ -114,7 +167,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
   })
   public String execute()
   {
-    log.debug(&quot;Page &quot; + getPage()+&quot; Rows &quot; + getRows() +&quot; Sorting Order &quot;+ getSord()+&quot; Index Row :&quot; + getSidx());
+    log.debug(&quot;Page &quot; + getPage() + &quot; Rows &quot; + getRows() + &quot; Sorting Order &quot; + getSord() + &quot; Index Row :&quot; + getSidx());
     log.debug(&quot;Search :&quot; + searchField + &quot; &quot; + searchOper + &quot; &quot; + searchString);
 
     Object list = session.get(&quot;mylist&quot;);
@@ -128,29 +181,48 @@ public class JsonTable extends ActionSupport implements SessionAware {
       myCustomers = CustomerDAO.buildList();
     }
 
-    if (getSord() != null &amp;&amp; getSord().equalsIgnoreCase(&quot;asc&quot;))
+    if (sord != null &amp;&amp; sord.equalsIgnoreCase(&quot;asc&quot;))
     {
       Collections.sort(myCustomers);
     }
-    if (getSord() != null &amp;&amp; getSord().equalsIgnoreCase(&quot;desc&quot;))
+    if (sord != null &amp;&amp; sord.equalsIgnoreCase(&quot;desc&quot;))
     {
       Collections.sort(myCustomers);
       Collections.reverse(myCustomers);
     }
 
-    setRecord(CustomerDAO.getCustomersCount(myCustomers));
+    // Count all record (select count(*) from your_custumers)
+    records = CustomerDAO.getCustomersCount(myCustomers);
 
-    int to = (getRows() * getPage());
-    int from = to - getRows();
+    if (totalrows != null)
+    {
+      records = totalrows;
+    }
 
-    if (to &gt; getRecord()) to = getRecord();
+    // Calucalate until rows ware selected
+    int to = (rows * page);
+
+    // Calculate the first row to read
+    int from = to - rows;
+
+    // Set to = max rows
+    if (to &gt; records) to = records;
 
     if (loadonce)
     {
-      setGridModel(myCustomers);
+      if (totalrows != null &amp;&amp; totalrows &gt; 0)
+      {
+        setGridModel(myCustomers.subList(0, totalrows));
+      }
+      else
+      {
+        // All Custumer
+        setGridModel(myCustomers);
+      }
     }
     else
     {
+      // Search Custumers
       if (searchString != null &amp;&amp; searchOper != null)
       {
         int id = Integer.parseInt(searchString);
@@ -158,7 +230,10 @@ public class JsonTable extends ActionSupport implements SessionAware {
         {
           log.debug(&quot;search id equals &quot; + id);
           List&lt;Customer&gt; cList = new ArrayList&lt;Customer&gt;();
-          cList.add(CustomerDAO.findById(myCustomers, id));
+          Customer customer = CustomerDAO.findById(myCustomers, id);
+
+          if (customer != null) cList.add(customer);
+
           setGridModel(cList);
         }
         else if (searchOper.equalsIgnoreCase(&quot;ne&quot;))
@@ -183,8 +258,10 @@ public class JsonTable extends ActionSupport implements SessionAware {
       }
     }
 
-    setTotal((int) Math.ceil((double) getRecord() / (double) getRows()));
+    // Calculate total Pages
+    total = (int) Math.ceil((double) records / (double) rows);
 
+    // only for showcase functionality, don't do this in production
     session.put(&quot;mylist&quot;, myCustomers);
 
     return SUCCESS;
@@ -250,9 +327,9 @@ public class JsonTable extends ActionSupport implements SessionAware {
    * @return total number of records for the query. e.g. select count(*) from
    *         table
    */
-  public Integer getRecord()
+  public Integer getRecords()
   {
-    return record;
+    return records;
   }
 
   /**
@@ -260,14 +337,14 @@ public class JsonTable extends ActionSupport implements SessionAware {
    *          total number of records for the query. e.g. select count(*) from
    *          table
    */
-  public void setRecord(Integer record)
+  public void setRecords(Integer records)
   {
 
-    this.record = record;
+    this.records = records;
 
-    if (this.record &gt; 0 &amp;&amp; this.rows &gt; 0)
+    if (this.records &gt; 0 &amp;&amp; this.rows &gt; 0)
     {
-      this.total = (int) Math.ceil((double) this.record / (double) this.rows);
+      this.total = (int) Math.ceil((double) this.records / (double) this.rows);
     }
     else
     {
@@ -349,6 +426,11 @@ public class JsonTable extends ActionSupport implements SessionAware {
   public void setSession(Map&lt;String, Object&gt; session)
   {
     this.session = session;
+  }
+
+  public void setTotalrows(Integer totalrows)
+  {
+    this.totalrows = totalrows;
   }
 
 }
