@@ -20,17 +20,17 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.type = 'text';
   <#if parameters.max??>
-	options_${escapedOptionId?html}.max = ${parameters.max?html};
+	options_${escapedOptionId?html}.max = ${parameters.max?c};
   </#if>
   <#if parameters.min??>
-	options_${escapedOptionId?html}.min = ${parameters.min?html};
+	options_${escapedOptionId?html}.min = ${parameters.min?c};
   </#if>
   <#if parameters.step??>
-	options_${escapedOptionId?html}.step = ${parameters.step?html};
+	options_${escapedOptionId?html}.step = ${parameters.step?c};
   </#if>
   <#if parameters.prefix?if_exists != "">
 	options_${escapedOptionId?html}.prefix = "${parameters.prefix?html}";
@@ -59,5 +59,5 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
   <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
- });  
+ });
 </script>

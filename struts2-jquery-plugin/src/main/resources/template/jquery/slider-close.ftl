@@ -21,7 +21,7 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 </div>
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.value = ${parameters.value?default('0')};
   <#if parameters.widgetid?if_exists != "">
@@ -34,16 +34,16 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId?html}.range = "${parameters.range?html}";
   </#if>
   <#if parameters.max??>
-	options_${escapedOptionId?html}.max = ${parameters.max?html};
+	options_${escapedOptionId?html}.max = ${parameters.max?c};
   </#if>
   <#if parameters.min??>
-	options_${escapedOptionId?html}.min = ${parameters.min?html};
+	options_${escapedOptionId?html}.min = ${parameters.min?c};
   </#if>
   <#if parameters.orientation?if_exists != "">
 	options_${escapedOptionId?html}.orientation = "${parameters.orientation?html}";
   </#if>
   <#if parameters.step??>
-	options_${escapedOptionId?html}.step = ${parameters.step?html};
+	options_${escapedOptionId?html}.step = ${parameters.step?c};
   </#if>
   <#if parameters.displayValueElement?if_exists != "">
 	options_${escapedOptionId?html}.displayvalueelement = "${parameters.displayValueElement?html}";
@@ -56,5 +56,5 @@ jQuery(document).ready(function () {
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />
 
 <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
- });  
+ });
 </script>

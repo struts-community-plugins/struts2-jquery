@@ -24,7 +24,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -58,12 +57,12 @@ import com.opensymphony.xwork2.util.ValueStack;
  * </p>
  * 
  * <pre>
- *     &lt;sj:spinner 
- *       name=&quot;spinner2&quot; 
- *       id=&quot;spinner2&quot; 
- *       min=&quot;5&quot; 
- *       max=&quot;50&quot; 
- *       step=&quot;2&quot; 
+ *     &lt;sj:spinner
+ *       name=&quot;spinner2&quot;
+ *       id=&quot;spinner2&quot;
+ *       min=&quot;5&quot;
+ *       max=&quot;50&quot;
+ *       step=&quot;2&quot;
  *       value=&quot;25&quot;/&gt;
  * 
  * </pre>
@@ -76,14 +75,14 @@ import com.opensymphony.xwork2.util.ValueStack;
  * </p>
  * 
  * <pre>
- * &lt;sj:spinner 
- *       name=&quot;spinner3&quot; 
- *       id=&quot;spinner3&quot; 
- *       min=&quot;0.00&quot; 
- *       max=&quot;5.00&quot; 
- *       step=&quot;0.15&quot; 
- *       value=&quot;2.50&quot; 
- *       suffix=&quot;$&quot; 
+ * &lt;sj:spinner
+ *       name=&quot;spinner3&quot;
+ *       id=&quot;spinner3&quot;
+ *       min=&quot;0.00&quot;
+ *       max=&quot;5.00&quot;
+ *       step=&quot;0.15&quot;
+ *       value=&quot;2.50&quot;
+ *       suffix=&quot;$&quot;
  *       mouseWheel=&quot;true&quot;/&gt;
  *     &lt;br/&gt;
  * </pre>
@@ -132,14 +131,7 @@ public class Spinner extends Textfield {
 
     if (max != null) addParameter("max", findValue(max, Number.class));
     if (min != null) addParameter("min", findValue(min, Number.class));
-
-    if (step != null)
-    {
-      String stepObj = findString(step);
-      stepObj = StringUtils.replace(stepObj, ",", ".");
-      addParameter("step", stepObj);
-    }
-
+    if (step != null) addParameter("step", findValue(step, Number.class));
     if (prefix != null) addParameter("prefix", findString(prefix));
     if (suffix != null) addParameter("suffix", findString(suffix));
     if (showOn != null) addParameter("showOn", findString(showOn));
