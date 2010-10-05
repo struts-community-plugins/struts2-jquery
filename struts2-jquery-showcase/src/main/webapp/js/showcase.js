@@ -1,6 +1,6 @@
 /*
  * Function for Custome Validation Example
- * 
+ *
  */
 function customeValidation(form, errors) {
 
@@ -102,6 +102,10 @@ $(document).ready(function() {
 	$.subscribe('rowselect', function(event, data) {
 		$("#gridinfo").html('<p>Edit Mode for Row : ' + event.originalEvent.id + '</p>');
 	});
+    $.subscribe('oneditsuccess', function(event, data){
+		var message = event.originalEvent.response.statusText;
+		$("#gridinfo").html('<p>Status: ' + message + '</p>');
+	});
 	$.subscribe('rowadd', function(event, data) {
 		$("#gridedittable").jqGrid('editGridRow', "new", {
 			height : 280,
@@ -179,7 +183,7 @@ $(document).ready(function() {
 			list.append('<li>' + value + '</li>\n');
 		});
 	});
-	
+
 	/*
 	 * Hide the target after action is complete.
 	 */
@@ -250,7 +254,7 @@ $(document).ready(function() {
   	var ui = event.originalEvent.ui;
 		$('#topics').html('<i>'+ui.item.value+'</i>');
 	});
-  
+
 	/*
 	 * Subscribe Topics for Chart Example
 	 */

@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
-<div id="col1">
+	<div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
       <li><s:url id="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
@@ -40,6 +40,7 @@
     	editurl="%{editurl}"
     	editinline="true"
     	onSelectRowTopics="rowselect"
+    	onEditInlineSuccessTopics="oneditsuccess"
     	viewrecords="true"
     >
     	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
@@ -70,6 +71,10 @@
     $.subscribe('rowselect', function(event,data) {
         $(&quot;#gridinfo&quot;).html('&lt;p&gt;Edit Mode for Row : '+event.originalEvent.id+'&lt;/p&gt;');
     });
+    $.subscribe('oneditsuccess', function(event, data){
+		var message = event.originalEvent.response.statusText;
+		$(&quot;#gridinfo&quot;).html('&lt;p&gt;Status: ' + message + '&lt;/p&gt;');
+	});
     $.subscribe('rowadd', function(event,data) {
         $(&quot;#gridedittable&quot;).jqGrid('editGridRow',&quot;new&quot;,{height:280,reloadAfterSubmit:false});
   	});
@@ -105,6 +110,7 @@
     	editurl=&quot;%{editurl}&quot;
     	editinline=&quot;true&quot;
     	onSelectRowTopics=&quot;rowselect&quot;
+    	onEditInlineSuccessTopics=&quot;oneditsuccess&quot;
     &gt;
     	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
     	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;

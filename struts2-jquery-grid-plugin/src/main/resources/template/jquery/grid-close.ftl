@@ -252,6 +252,18 @@
   <#if parameters.onGridCompleteTopics?if_exists != "">
 	options_${escapedOptionId?html}.ongridcompletetopics = "${parameters.onGridCompleteTopics?html}";
   </#if>
+  <#if parameters.onEditInlineAfterSaveTopics?if_exists != "">
+	options_${escapedOptionId?html}.oneisave = "${parameters.onEditInlineAfterSaveTopics?html}";
+  </#if>
+  <#if parameters.onEditInlineBeforeTopics?if_exists != "">
+	options_${escapedOptionId?html}.oneibefore = "${parameters.onEditInlineBeforeTopics?html}";
+  </#if>
+  <#if parameters.onEditInlineSuccessTopics?if_exists != "">
+	options_${escapedOptionId?html}.oneisuccess = "${parameters.onEditInlineSuccessTopics?html}";
+  </#if>
+  <#if parameters.onEditInlineErrorTopics?if_exists != "">
+	options_${escapedOptionId?html}.oneierror = "${parameters.onEditInlineErrorTopics?html}";
+  </#if>
   <#if parameters.reloadTopics?if_exists != "">
 	options_${escapedOptionId?html}.reloadtopics = "${parameters.reloadTopics?html}";
   </#if>

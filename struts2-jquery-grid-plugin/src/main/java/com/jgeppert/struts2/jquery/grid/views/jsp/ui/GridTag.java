@@ -103,6 +103,11 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   protected String          onSortColTopics;
   protected String          onCellSelectTopics;
   protected String          onGridCompleteTopics;
+  protected String          onEditInlineBeforeTopics;
+  protected String          onEditInlineSuccessTopics;
+  protected String          onEditInlineErrorTopics;
+  protected String          onEditInlineAfterSaveTopics;
+
   protected String          reloadTopics;
 
   protected String          resizable;
@@ -277,6 +282,10 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setOnSortColTopics(onSortColTopics);
     grid.setOnPagingTopics(onPagingTopics);
     grid.setOnGridCompleteTopics(onGridCompleteTopics);
+    grid.setOnEditInlineAfterSaveTopics(onEditInlineAfterSaveTopics);
+    grid.setOnEditInlineBeforeTopics(onEditInlineBeforeTopics);
+    grid.setOnEditInlineErrorTopics(onEditInlineErrorTopics);
+    grid.setOnEditInlineSuccessTopics(onEditInlineSuccessTopics);
     grid.setReloadTopics(reloadTopics);
     grid.setOnCellSelectTopics(onCellSelectTopics);
     grid.setSubGridUrl(subGridUrl);
@@ -645,6 +654,26 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setOnGridCompleteTopics(String onGridCompleteTopics)
   {
     this.onGridCompleteTopics = onGridCompleteTopics;
+  }
+
+  public void setOnEditInlineBeforeTopics(String onEditInlineBeforeTopics)
+  {
+    this.onEditInlineBeforeTopics = onEditInlineBeforeTopics;
+  }
+
+  public void setOnEditInlineSuccessTopics(String onEditInlineSuccessTopics)
+  {
+    this.onEditInlineSuccessTopics = onEditInlineSuccessTopics;
+  }
+
+  public void setOnEditInlineErrorTopics(String onEditInlineErrorTopics)
+  {
+    this.onEditInlineErrorTopics = onEditInlineErrorTopics;
+  }
+
+  public void setOnEditInlineAfterSaveTopics(String onEditInlineAfterSaveTopics)
+  {
+    this.onEditInlineAfterSaveTopics = onEditInlineAfterSaveTopics;
   }
 
   public void setEditinline(String editinline)

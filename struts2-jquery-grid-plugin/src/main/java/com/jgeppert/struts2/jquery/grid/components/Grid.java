@@ -119,6 +119,11 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      onSortColTopics;
   protected String                      onCellSelectTopics;
   protected String                      onGridCompleteTopics;
+  protected String                      onEditInlineBeforeTopics;
+  protected String                      onEditInlineSuccessTopics;
+  protected String                      onEditInlineErrorTopics;
+  protected String                      onEditInlineAfterSaveTopics;
+
   protected String                      reloadTopics;
 
   protected String                      resizable;
@@ -325,6 +330,10 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     if (onPagingTopics != null) addParameter("onPagingTopics", findString(onPagingTopics));
     if (onSortColTopics != null) addParameter("onSortColTopics", findString(onSortColTopics));
     if (onGridCompleteTopics != null) addParameter("onGridCompleteTopics", findString(onGridCompleteTopics));
+    if (onEditInlineAfterSaveTopics != null) addParameter("onEditInlineAfterSaveTopics", findString(onEditInlineAfterSaveTopics));
+    if (onEditInlineBeforeTopics != null) addParameter("onEditInlineBeforeTopics", findString(onEditInlineBeforeTopics));
+    if (onEditInlineErrorTopics != null) addParameter("onEditInlineErrorTopics", findString(onEditInlineErrorTopics));
+    if (onEditInlineSuccessTopics != null) addParameter("onEditInlineSuccessTopics", findString(onEditInlineSuccessTopics));
     if (reloadTopics != null) addParameter("reloadTopics", findString(reloadTopics));
 
     if (connectWith != null) addParameter("connectWith", findString(connectWith));
@@ -1232,6 +1241,30 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setOnGridCompleteTopics(String onGridCompleteTopics)
   {
     this.onGridCompleteTopics = onGridCompleteTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published after successfully accessing the row for editing, prior to allowing user access to the input fields.")
+  public void setOnEditInlineBeforeTopics(String onEditInlineBeforeTopics)
+  {
+    this.onEditInlineBeforeTopics = onEditInlineBeforeTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published is called immediately after the request is successful.")
+  public void setOnEditInlineSuccessTopics(String onEditInlineSuccessTopics)
+  {
+    this.onEditInlineSuccessTopics = onEditInlineSuccessTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published is called immediately after the data is saved to the server")
+  public void setOnEditInlineErrorTopics(String onEditInlineErrorTopics)
+  {
+    this.onEditInlineErrorTopics = onEditInlineErrorTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published is called immediately after the data is saved to the server")
+  public void setOnEditInlineAfterSaveTopics(String onEditInlineAfterSaveTopics)
+  {
+    this.onEditInlineAfterSaveTopics = onEditInlineAfterSaveTopics;
   }
 
   @StrutsTagAttribute(name = "reloadTopics", description = "A comma delimited list of topics that will cause this grid to reload", type = "String", defaultValue = "")
