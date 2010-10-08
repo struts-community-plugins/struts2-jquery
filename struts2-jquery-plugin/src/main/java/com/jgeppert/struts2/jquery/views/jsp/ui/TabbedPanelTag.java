@@ -45,6 +45,8 @@ public class TabbedPanelTag extends AbstractTopicTag {
   protected String          spinner;
   protected String          cache;
   protected String          disabledTabs;
+  protected String          sortable;
+
   protected String          onAddTopics;
   protected String          onRemoveTopics;
 
@@ -65,6 +67,7 @@ public class TabbedPanelTag extends AbstractTopicTag {
     tabbedPanel.setSpinner(spinner);
     tabbedPanel.setCache(cache);
     tabbedPanel.setDisabledTabs(disabledTabs);
+    tabbedPanel.setSortable(sortable);
     tabbedPanel.setOnAddTopics(onAddTopics);
     tabbedPanel.setOnRemoveTopics(onRemoveTopics);
   }
@@ -117,5 +120,10 @@ public class TabbedPanelTag extends AbstractTopicTag {
   public void setOnRemoveTopics(String onRemoveTopics)
   {
     this.onRemoveTopics = onRemoveTopics;
+  }
+
+  public void setSortable(String sortable)
+  {
+    this.sortable = sortable;
   }
 }

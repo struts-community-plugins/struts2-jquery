@@ -51,6 +51,9 @@ jQuery(document).ready(function () {
   <#if parameters.disabledTabs?if_exists != "">
 	options_${escapedOptionId?html}.disabledtabs = "${parameters.disabledTabs?html}";
   </#if>
+  <#if parameters.sortable?default(false)>
+	options_${escapedOptionId?html}.sortable = true;
+  </#if>
   <#if parameters.onAddTopics?if_exists != "">
 	options_${escapedOptionId?html}.onaddtopics = "${parameters.onAddTopics?html}";
   </#if>

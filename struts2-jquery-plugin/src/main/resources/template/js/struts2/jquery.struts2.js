@@ -1070,6 +1070,14 @@
 		}
 
 		$elem.tabs(para);
+		
+		if (o.sortable) {
+			if (!self.loadAtOnce) {
+				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.sortable" + self.minSuffix + ".js" ]);
+			}
+			$elem.find(".ui-tabs-nav").sortable({axis:'x'});
+		}
+		
 		if (closable) {
 			$("#"+o.id+" span.s2j-tab-closable").live('click', function() {
 				var index = $('li',$elem).index($(this).parent());

@@ -97,6 +97,7 @@ public class TabbedPanel extends AbstractTopicsBean {
   protected String                      spinner;
   protected String                      cache;
   protected String                      disabledTabs;
+  protected String                      sortable;
 
   protected String                      onAddTopics;
   protected String                      onRemoveTopics;
@@ -121,6 +122,7 @@ public class TabbedPanel extends AbstractTopicsBean {
     if (this.disabledTabs != null) addParameter("disabledTabs", findString(this.disabledTabs));
     if (this.onAddTopics != null) addParameter("onAddTopics", findString(this.onAddTopics));
     if (this.onRemoveTopics != null) addParameter("onRemoveTopics", findString(this.onRemoveTopics));
+    if (this.sortable != null) addParameter("sortable", findValue(this.sortable, Boolean.class));
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -226,5 +228,11 @@ public class TabbedPanel extends AbstractTopicsBean {
   public void setOnRemoveTopics(String onRemoveTopics)
   {
     this.onRemoveTopics = onRemoveTopics;
+  }
+
+  @StrutsTagAttribute(description = "Making tabs sortable.", defaultValue = "false", type = "Boolean")
+  public void setSortable(String sortable)
+  {
+    this.sortable = sortable;
   }
 }
