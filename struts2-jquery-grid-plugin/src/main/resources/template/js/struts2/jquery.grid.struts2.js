@@ -135,6 +135,27 @@
 				};
 			}
 
+			if (o.oncesuccess) {
+				params.afterSaveCell = function(rowid, cellname, value, iRow, iCol) {
+					var d = {};
+					d.rowid = rowid;
+					d.cellname = cellname;
+					d.value = value;
+					d.iRow = iRow;
+					d.iCol = iCol;
+					self.publishTopic($elem, o.oncesuccess, d);
+				};
+			}
+
+			if (o.onceerror) {
+				params.errorCell = function(response, status) {
+					var d = {};
+					d.response = response;
+					d.status = status;
+					self.publishTopic($elem, o.oncesuccess, d);
+				};
+			}
+
 			if (o.onselectalltopics) {
 				params.onSelectAll = function(ids, status) {
 					var data = {};

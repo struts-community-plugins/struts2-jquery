@@ -264,6 +264,12 @@
   <#if parameters.onEditInlineErrorTopics?if_exists != "">
 	options_${escapedOptionId?html}.oneierror = "${parameters.onEditInlineErrorTopics?html}";
   </#if>
+  <#if parameters.onCellEditSuccessTopics?if_exists != "">
+	options_${escapedOptionId?html}.oncesuccess = "${parameters.onCellEditSuccessTopics?html}";
+  </#if>
+  <#if parameters.onCellEditErrorTopics?if_exists != "">
+	options_${escapedOptionId?html}.onceerror = "${parameters.onCellEditErrorTopics?html}";
+  </#if>
   <#if parameters.reloadTopics?if_exists != "">
 	options_${escapedOptionId?html}.reloadtopics = "${parameters.reloadTopics?html}";
   </#if>

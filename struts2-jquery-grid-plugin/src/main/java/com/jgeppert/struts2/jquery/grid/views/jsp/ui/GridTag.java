@@ -107,6 +107,8 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   protected String          onEditInlineSuccessTopics;
   protected String          onEditInlineErrorTopics;
   protected String          onEditInlineAfterSaveTopics;
+  protected String          onCellEditSuccessTopics;
+  protected String          onCellEditErrorTopics;
 
   protected String          reloadTopics;
 
@@ -286,6 +288,8 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setOnEditInlineBeforeTopics(onEditInlineBeforeTopics);
     grid.setOnEditInlineErrorTopics(onEditInlineErrorTopics);
     grid.setOnEditInlineSuccessTopics(onEditInlineSuccessTopics);
+    grid.setOnCellEditSuccessTopics(onCellEditSuccessTopics);
+    grid.setOnCellEditErrorTopics(onCellEditErrorTopics);
     grid.setReloadTopics(reloadTopics);
     grid.setOnCellSelectTopics(onCellSelectTopics);
     grid.setSubGridUrl(subGridUrl);
@@ -1269,5 +1273,15 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setGroupMinusIcon(String groupMinusIcon)
   {
     this.groupMinusIcon = groupMinusIcon;
+  }
+
+  public void setOnCellEditSuccessTopics(String onCellEditSuccessTopics)
+  {
+    this.onCellEditSuccessTopics = onCellEditSuccessTopics;
+  }
+
+  public void setOnCellEditErrorTopics(String onCellEditErrorTopics)
+  {
+    this.onCellEditErrorTopics = onCellEditErrorTopics;
   }
 }

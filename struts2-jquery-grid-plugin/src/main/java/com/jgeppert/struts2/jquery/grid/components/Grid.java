@@ -123,6 +123,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      onEditInlineSuccessTopics;
   protected String                      onEditInlineErrorTopics;
   protected String                      onEditInlineAfterSaveTopics;
+  protected String                      onCellEditSuccessTopics;
+  protected String                      onCellEditErrorTopics;
 
   protected String                      reloadTopics;
 
@@ -334,6 +336,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     if (onEditInlineBeforeTopics != null) addParameter("onEditInlineBeforeTopics", findString(onEditInlineBeforeTopics));
     if (onEditInlineErrorTopics != null) addParameter("onEditInlineErrorTopics", findString(onEditInlineErrorTopics));
     if (onEditInlineSuccessTopics != null) addParameter("onEditInlineSuccessTopics", findString(onEditInlineSuccessTopics));
+    if (onCellEditErrorTopics != null) addParameter("onCellEditErrorTopics", findString(onCellEditErrorTopics));
+    if (onCellEditSuccessTopics != null) addParameter("onCellEditSuccessTopics", findString(onCellEditSuccessTopics));
     if (reloadTopics != null) addParameter("reloadTopics", findString(reloadTopics));
 
     if (connectWith != null) addParameter("connectWith", findString(connectWith));
@@ -1265,6 +1269,18 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setOnEditInlineAfterSaveTopics(String onEditInlineAfterSaveTopics)
   {
     this.onEditInlineAfterSaveTopics = onEditInlineAfterSaveTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published is called immediately after the cell has been successfully saved.")
+  public void setOnCellEditSuccessTopics(String onCellEditSuccessTopics)
+  {
+    this.onCellEditSuccessTopics = onCellEditSuccessTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics that published is called immediately if there is a server error.")
+  public void setOnCellEditErrorTopics(String onCellEditErrorTopics)
+  {
+    this.onCellEditErrorTopics = onCellEditErrorTopics;
   }
 
   @StrutsTagAttribute(name = "reloadTopics", description = "A comma delimited list of topics that will cause this grid to reload", type = "String", defaultValue = "")
