@@ -31,7 +31,7 @@
   <#assign basePath="${javaScriptBasePath}themes">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryFile="jquery-1.4.2.min.js">
+  <#assign jqueryFile="jquery-1.4.3.min.js">
   <#assign jqueryForm="jquery.form.min.js">
   <#assign jqueryUIFile="jquery-ui.min.js">
   <#assign jqueryUICoreFile="jquery.ui.core.min.js">
@@ -40,10 +40,10 @@
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
-  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js">
   <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js">
 <#else>
-  <#assign jqueryFile="jquery-1.4.2.js">
+  <#assign jqueryFile="jquery-1.4.3.js">
   <#assign jqueryForm="jquery.form.js">
   <#assign jqueryUIFile="jquery-ui.js">
   <#assign jqueryUICoreFile="jquery.ui.core.js">
@@ -52,7 +52,7 @@
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
-  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js">
+  <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.js">
   <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.js">
 </#if>
 
