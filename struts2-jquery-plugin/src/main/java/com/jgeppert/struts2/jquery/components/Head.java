@@ -115,6 +115,7 @@ public class Head extends org.apache.struts2.components.Head {
       "fo",
       "fr",
       "fr-CH",
+      "gl",
       "he",
       "hr",
       "hu",

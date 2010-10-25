@@ -41,7 +41,7 @@
   <#assign jqueryCompat13File="jquery.compat-1.3.min.js">
   <#assign jqueryStrutsFile="jquery.struts2.min.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js">
-  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js">
+  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js">
 <#else>
   <#assign jqueryFile="jquery-1.4.3.js">
   <#assign jqueryForm="jquery.form.js">
@@ -53,7 +53,7 @@
   <#assign jqueryCompat13File="jquery.compat-1.3.js">
   <#assign jqueryStrutsFile="jquery.struts2.js">
   <#assign jqueryGoogle="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.js">
-  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.js">
+  <#assign jqueryUiGoogle="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.js">
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
@@ -82,7 +82,7 @@
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
 		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
-        	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+        	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		<#else>
         	<link rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		</#if>
