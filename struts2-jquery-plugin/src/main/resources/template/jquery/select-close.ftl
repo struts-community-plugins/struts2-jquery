@@ -21,7 +21,7 @@
 
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.datatype = "json";
 	options_${escapedOptionId?html}.type = 'select';
@@ -44,14 +44,17 @@ jQuery(document).ready(function () {
 <#if parameters.nameValue?if_exists != "">
 	options_${escapedOptionId?html}.value = "${parameters.nameValue?html}";
 </#if>
-<#if parameters.bindOn?if_exists != ""> 
+<#if parameters.bindOn?if_exists != "">
 	options_${escapedOptionId?html}.bindon = "${parameters.bindOn?html}";
 </#if>
-<#if parameters.events?if_exists != ""> 
+<#if parameters.events?if_exists != "">
 	options_${escapedOptionId?html}.events = "${parameters.events?html}";
 </#if>
 <#if parameters.autocomplete?default(false)>
 	options_${escapedOptionId?html}.autocomplete = true;
+</#if>
+<#if parameters.selectBoxIcon?default(false) >
+	options_${escapedOptionId?html}.icon = true;
 </#if>
 <#if parameters.loadMinimumCount??>
 	options_${escapedOptionId?html}.minimum = ${parameters.loadMinimumCount?html};
@@ -68,5 +71,5 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
   <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
- });  
+ });
 </script>

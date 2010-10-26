@@ -1,6 +1,9 @@
 // Taken from jquery UI Combobox Example
 ( function($) {
 	$.widget( "ui.combobox", {
+		options: {
+			icon:  false
+		},
 		_create: function() {
 			var self = this;
 			var select = this.element.hide(),
@@ -64,6 +67,46 @@
 						.append( "<a>" + item.label + "</a>" )
 						.appendTo( ul );
 				};
+
+				if(self.options.icon === true) {
+					var height = input.outerHeight();
+					var button = $( "<button>&nbsp;</button>" )
+					.attr( "tabIndex", -1 )
+					.attr( "title", "Show All Items" )
+					.button({
+						icons: {
+							primary: "ui-icon-triangle-1-s"
+						},
+						text: false
+					})
+					.css( "marginLeft", "-1px" )
+					.css( "width", height )
+					.css( "height", height )
+					.insertAfter( input )
+					.removeClass( "ui-corner-all" )
+					.addClass( "ui-corner-right ui-button-icon" )
+					.click(function(e) {
+						e.preventDefault();
+						// close if already visible
+						if ( input.autocomplete( "widget" ).is( ":visible" ) ) {
+							input.autocomplete( "close" );
+							return;
+						}
+
+						// pass empty string as value to search for, displaying all results
+						input.autocomplete( "search", "" );
+						input.focus();
+					});
+
+					button.find(".ui-button-icon-only .ui-button-text").css( "padding", "0.35em" );
+					button.css( "margin", 0 ).css( "padding", "0.48em 0 0.47em 0.45em;" );;
+					button.position({
+						of: input,
+						my: "left center" ,
+						at: "right center" ,
+						offset: "0 0"
+					});
+				}
 		}
 	});
 })(jQuery);

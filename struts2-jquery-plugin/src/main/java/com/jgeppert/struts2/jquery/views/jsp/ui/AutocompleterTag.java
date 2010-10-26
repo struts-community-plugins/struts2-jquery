@@ -40,6 +40,7 @@ public class AutocompleterTag extends AbstractFormListElementTag {
   protected String          delay;
   protected String          loadMinimumCount;
   protected String          selectBox;
+  protected String          selectBoxIcon;
   protected String          onSelectTopics;
   protected String          onFocusTopics;
   protected String          onSearchTopics;
@@ -61,6 +62,7 @@ public class AutocompleterTag extends AbstractFormListElementTag {
     completer.setDelay(delay);
     completer.setLoadMinimumCount(loadMinimumCount);
     completer.setSelectBox(selectBox);
+    completer.setSelectBoxIcon(selectBoxIcon);
     completer.setOnSelectTopics(onSelectTopics);
     completer.setOnFocusTopics(onFocusTopics);
     completer.setOnSearchTopics(onSearchTopics);
@@ -118,5 +120,10 @@ public class AutocompleterTag extends AbstractFormListElementTag {
   public void setMultiple(String multiple)
   {
     this.multiple = multiple;
+  }
+
+  public void setSelectBoxIcon(String selectBoxIcon)
+  {
+    this.selectBoxIcon = selectBoxIcon;
   }
 }

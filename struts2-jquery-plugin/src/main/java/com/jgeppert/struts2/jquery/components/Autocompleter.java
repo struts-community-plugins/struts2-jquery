@@ -59,11 +59,11 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * </p>
  * 
  * <pre>
- *  &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonlanguages&quot;/&gt; 
- *  &lt;sj:autocompleter 
- *     id=&quot;languages&quot; 
- *     href=&quot;%{remoteurl}&quot; 
- *     delay=&quot;50&quot; 
+ *  &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonlanguages&quot;/&gt;
+ *  &lt;sj:autocompleter
+ *     id=&quot;languages&quot;
+ *     href=&quot;%{remoteurl}&quot;
+ *     delay=&quot;50&quot;
  *     loadMinimumCount=&quot;2&quot;
  *   /&gt;
  * </pre>
@@ -76,12 +76,12 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * </p>
  * 
  * <pre>
- *          &lt;sj:autocompleter 
- *           id=&quot;customers&quot; 
- *           name=&quot;echo&quot; 
- *           list=&quot;%{customers}&quot; 
- *           listValue=&quot;name&quot; 
- *           listKey=&quot;id&quot; 
+ *          &lt;sj:autocompleter
+ *           id=&quot;customers&quot;
+ *           name=&quot;echo&quot;
+ *           list=&quot;%{customers}&quot;
+ *           listValue=&quot;name&quot;
+ *           listKey=&quot;id&quot;
  *           selectBox=&quot;true&quot;
  *         /&gt;
  * </pre>
@@ -103,6 +103,7 @@ public class Autocompleter extends AbstractFormListElement {
   protected String                      delay;
   protected String                      loadMinimumCount;
   protected String                      selectBox;
+  protected String                      selectBoxIcon;
   protected String                      onSelectTopics;
   protected String                      onFocusTopics;
   protected String                      onSearchTopics;
@@ -154,6 +155,11 @@ public class Autocompleter extends AbstractFormListElement {
     if (selectBox != null)
     {
       addParameter("selectBox", findValue(selectBox, Boolean.class));
+    }
+
+    if (selectBoxIcon != null)
+    {
+      addParameter("selectBoxIcon", findValue(selectBoxIcon, Boolean.class));
     }
 
     if (readonly != null)
@@ -223,6 +229,12 @@ public class Autocompleter extends AbstractFormListElement {
     this.selectBox = selectBox;
   }
 
+  @StrutsTagAttribute(description = "display the select box icon", type = "Boolean", defaultValue = "false")
+  public void setSelectBoxIcon(String selectBoxIcon)
+  {
+    this.selectBoxIcon = selectBoxIcon;
+  }
+
   @StrutsTagAttribute(description = "A comma delimited list of topics that published when item is selected")
   public void setOnSelectTopics(String onSelectTopics)
   {
@@ -259,8 +271,7 @@ public class Autocompleter extends AbstractFormListElement {
     this.size = size;
   }
 
-  @StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals"
-                                    + " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
+  @StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals" + " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
   public void setMultiple(String multiple)
   {
     this.multiple = multiple;

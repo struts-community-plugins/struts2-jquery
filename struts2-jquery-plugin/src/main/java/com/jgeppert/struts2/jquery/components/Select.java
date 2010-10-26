@@ -59,6 +59,7 @@ public class Select extends AbstractFormListElement {
   protected String                      multiple;
   protected String                      autocomplete;
   protected String                      loadMinimumCount;
+  protected String                      selectBoxIcon;
 
   public Select(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -114,6 +115,10 @@ public class Select extends AbstractFormListElement {
     if (autocomplete != null)
     {
       addParameter("autocomplete", findValue(autocomplete, Boolean.class));
+    }
+    if (selectBoxIcon != null)
+    {
+      addParameter("selectBoxIcon", findValue(selectBoxIcon, Boolean.class));
     }
     if (loadMinimumCount != null)
     {
@@ -186,8 +191,7 @@ public class Select extends AbstractFormListElement {
     this.size = size;
   }
 
-  @StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals"
-                                    + " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
+  @StrutsTagAttribute(description = " Creates a multiple select. The tag will pre-select multiple values" + " if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals" + " one of the values in the Collection or Array it wil be selected", type = "Boolean", defaultValue = "false")
   public void setMultiple(String multiple)
   {
     this.multiple = multiple;
@@ -197,6 +201,12 @@ public class Select extends AbstractFormListElement {
   public void setAutocomplete(String autocomplete)
   {
     this.autocomplete = autocomplete;
+  }
+
+  @StrutsTagAttribute(description = "display the select box icon, only valid when autocomplete is true", type = "Boolean", defaultValue = "false")
+  public void setSelectBoxIcon(String selectBoxIcon)
+  {
+    this.selectBoxIcon = selectBoxIcon;
   }
 
   @StrutsTagAttribute(description = "Minimum number of characters that will force the content to be loaded, only valid when autocomplet is true", type = "Integer", defaultValue = "1")

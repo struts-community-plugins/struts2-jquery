@@ -20,7 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId?html} = {};
   <#if parameters.delay??>
 	options_${escapedOptionId?html}.delay = ${parameters.delay?html};
@@ -32,6 +32,9 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId?html}.selectBox = true;
   <#else>
 	options_${escapedOptionId?html}.selectBox = false;
+  </#if>
+  <#if parameters.selectBoxIcon?default(false) >
+	options_${escapedOptionId?html}.selectBoxIcon = true;
   </#if>
   <#if parameters.onSearchTopics?exists>
 	options_${escapedOptionId?html}.onsearchtopics = "${parameters.onSearchTopics?html}";
@@ -66,7 +69,7 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId?html}.listvalue = "${parameters.remoteListValue?html}";
 	</#if>
   </#if>
-  
+
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
@@ -79,5 +82,5 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
   <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
- });  
+ });
 </script>
