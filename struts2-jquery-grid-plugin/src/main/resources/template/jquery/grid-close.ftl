@@ -95,7 +95,7 @@
   <#if parameters.direction?if_exists != "">
 	options_${escapedOptionId?html}.direction = "${parameters.direction?html}";
   </#if>
-  <#if parameters.altClass?if_exists != "">
+  <#if parameters.recordpos?if_exists != "">
 	options_${escapedOptionId?html}.recordpos = "${parameters.recordpos?html}";
   </#if>
   <#if parameters.groupField?if_exists != "">
