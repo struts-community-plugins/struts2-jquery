@@ -17,6 +17,9 @@
 	<link href="styles/patch_layout.css" rel="stylesheet" type="text/css" />
 	<![endif]-->
 
+<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
+
+
 	<!-- This files are needed for AJAX Validation of XHTML Forms -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/struts/utils.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
@@ -32,6 +35,14 @@
 	<script type="text/javascript" src="js/showcase.js"></script>
 	<!-- Extend the Struts2 jQuery Plugin with an richtext editor -->
 	<script type="text/javascript" src="js/extendplugin.js"></script>
+	
+	<script>
+	function changeTheme(newTheme) {
+		themePathPrefix=(newTheme=='showcase'?'':'struts/');
+		$('#jquery_theme_link').attr('href',themePathPrefix+'themes/'+newTheme+'/jquery-ui.css');
+	}
+	</script>
+	
 </head>
 <body>
   <div class="page_margins">
@@ -40,10 +51,11 @@
         <div id="themebox">
             <s:form id="themeform" action="index" theme="simple">
                 <div>
-                <s:select id="theme" name="theme" list="themes" emptyOption="true"/><br/>
+                
+                <s:select id="selected_theme" name="theme" list="themes" emptyOption="true" onchange="changeTheme(this.value);"/><br/>
                 <s:checkbox id="google" name="google"/><label for="google" style="padding: 3px;">Load jQuery from Google CDN</label><br/>
                 <s:checkbox id="ajaxhistory" name="ajaxhistory"/><label for="ajaxhistory" style="padding: 3px;">Use Ajaxhistory (BETA)</label><br/>
-                <s:submit value="Change Theme" cssClass="buttonlink ui-state-default ui-corner-all"/>
+
                 </div>
             </s:form>
         </div>
