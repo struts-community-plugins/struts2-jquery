@@ -23,7 +23,7 @@
   /* Layout Properties | Layout-Eigenschaften */
   .page_margins { width: auto;  min-width: 740px; max-width: 90em; background: #fff; }
   .page { padding: 10px; }
-  #header { height: 100px; }
+  #header { height: 70px; }
   #nav { overflow:hidden; }
   div.hlist {  }
   #main { margin: 10px 0; background: #fff; min-height: 400px; }
