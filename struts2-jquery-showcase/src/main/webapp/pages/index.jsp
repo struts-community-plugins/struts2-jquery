@@ -36,12 +36,16 @@
 	<!-- Extend the Struts2 jQuery Plugin with an richtext editor -->
 	<script type="text/javascript" src="js/extendplugin.js"></script>
 	
-	<script>
-	function changeTheme(newTheme) {
-		themePathPrefix=(newTheme=='showcase'?'':'struts/');
-		$('#jquery_theme_link').attr('href',themePathPrefix+'themes/'+newTheme+'/jquery-ui.css');
-	}
-	</script>
+		<script>
+		function changeTheme(newTheme) {
+			if ($("#google").attr('checked')) {
+				$("#themeform").submit();
+				return false;
+			}
+			themePathPrefix=(newTheme=='showcase'?'':'struts/')+'themes/';
+			$('#jquery_theme_link').attr('href',themePathPrefix+newTheme+'/jquery-ui.css');
+		}
+		</script>
 	
 </head>
 <body>
@@ -54,7 +58,7 @@
                 
                 <s:select id="selected_theme" name="theme" list="themes" emptyOption="true" onchange="changeTheme(this.value);"/><br/>
                 <s:checkbox id="google" name="google"/><label for="google" style="padding: 3px;">Load jQuery from Google CDN</label><br/>
-                <s:checkbox id="ajaxhistory" name="ajaxhistory"/><label for="ajaxhistory" style="padding: 3px;">Use Ajaxhistory (BETA)</label><br/>
+                <s:checkbox id="ajaxhistory" name="ajaxhistory" onclick="$('#themeform').submit();"/><label for="ajaxhistory" style="padding: 3px;">Use Ajaxhistory (BETA)</label><br/>
 
                 </div>
             </s:form>
