@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
 
   <s:if test="%{theme == 'showcase' || theme == null}">
-      <sj:head debug="true" compressed="false" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
+      <sj:head locale="pt-BR" debug="true" compressed="false" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
   </s:if>
   <s:else>
       <sj:head debug="true" compressed="false" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
@@ -38,13 +38,27 @@
 	
 		<script>
 		function changeTheme(newTheme) {
-			if ($("#google").attr('checked')) {
-				$("#themeform").submit();
-				return false;
+			if (newTheme=='showcase')
+				themePathPrefix = "themes/";
+			else {
+				themeHref = $('#jquery_theme_link').attr('href');
+				if ($("#google").attr('checked')) {
+					if (themeHref.indexOf("http:")==0) {
+						prefixIndex = themeHref.indexOf("themes/")+7;
+						themePathPrefix=themeHref.substring(0,prefixIndex);
+					}
+					else {
+						$("#themeform").submit();
+						return false;
+					}
+				}
+				else {
+					themePathPrefix = "struts/themes/";
+				}
 			}
-			themePathPrefix=(newTheme=='showcase'?'':'struts/')+'themes/';
 			$('#jquery_theme_link').attr('href',themePathPrefix+newTheme+'/jquery-ui.css');
 		}
+		
 		</script>
 	
 </head>
@@ -65,7 +79,7 @@
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 2.4.1</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 2.4.2</h4>
         	<img id="myDefaultIndicator" src="images/ajax-loader.gif" alt="Loading..." style="display:none"/>
         </div>
       </div>
