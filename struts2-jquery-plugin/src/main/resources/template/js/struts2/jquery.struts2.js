@@ -872,10 +872,10 @@
 			self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
 		}
 
-		self.subscribeTopics($elem, o.reloadtopics, self.handler.form, o);
-		self.subscribeTopics($elem, o.listentopics, self.handler.form, o);
-
 		if (o.targets) {
+			self.subscribeTopics($elem, o.reloadtopics, self.handler.form, o);
+			self.subscribeTopics($elem, o.listentopics, self.handler.form, o);
+
 			self.subscribeTopics($elem, topic, self.handler.form, o);
 			$.each(o.targets.split(','), function(i, target) {
 				$(self.escId(target)).subscribe(topic, self.handler.effect, o);
@@ -897,6 +897,13 @@
 				$(self.escId(o.formids)).submit();
 				return false;
 			});
+			if(o.listentopics) {
+				var params = {};
+				params.formids = o.formids;
+				$elem.subscribe(o.listentopics, function(event) {
+					$(self.escId(event.data.formids)).submit();
+				}, params);
+			}
 		}
 	},
 
