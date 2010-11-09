@@ -82,14 +82,16 @@
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
 		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
-        	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+        	<link id="jquery_theme_link" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		<#else>
-        	<link rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		</#if>
     <#else>
-        <link rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css" type="text/css"/>
+        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css" type="text/css"/>
     </#if>
 </#if>
+
+
   <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 jQuery(document).ready(function () {
@@ -107,8 +109,10 @@ jQuery(document).ready(function () {
 <#if !parameters.compressed?default(true)>
 	jQuery.struts2_jquery.minSuffix = "";
 </#if>
-<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
+<#if parameters.jqueryLocale?if_exists != "">
   jQuery.struts2_jquery.local = "${parameters.jqueryLocale?string}";
+<#else>
+  jQuery.struts2_jquery.local = '${locale?replace("_","-")}';
 </#if>
 <#if parameters.gridLocale??>
   jQuery.struts2_jquery.gridLocal = "${parameters.gridLocale?default('en')}";
@@ -139,4 +143,3 @@ jQuery(document).ready(function () {
 </#if>
 });
 </script>
-
