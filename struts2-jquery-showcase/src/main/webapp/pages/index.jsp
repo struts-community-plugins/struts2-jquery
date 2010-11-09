@@ -35,32 +35,6 @@
 	<script type="text/javascript" src="js/showcase.js"></script>
 	<!-- Extend the Struts2 jQuery Plugin with an richtext editor -->
 	<script type="text/javascript" src="js/extendplugin.js"></script>
-	
-		<script>
-		function changeTheme(newTheme) {
-			if (newTheme=='showcase')
-				themePathPrefix = "themes/";
-			else {
-				themeHref = $('#jquery_theme_link').attr('href');
-				if ($("#google").attr('checked')) {
-					if (themeHref.indexOf("http:")==0) {
-						prefixIndex = themeHref.indexOf("themes/")+7;
-						themePathPrefix=themeHref.substring(0,prefixIndex);
-					}
-					else {
-						$("#themeform").submit();
-						return false;
-					}
-				}
-				else {
-					themePathPrefix = "struts/themes/";
-				}
-			}
-			$('#jquery_theme_link').attr('href',themePathPrefix+newTheme+'/jquery-ui.css');
-		}
-		
-		</script>
-	
 </head>
 <body>
   <div class="page_margins">
@@ -69,11 +43,10 @@
         <div id="themebox">
             <s:form id="themeform" action="index" theme="simple">
                 <div>
-                
-                <s:select id="selected_theme" name="theme" list="themes" emptyOption="true" onchange="changeTheme(this.value);"/><br/>
-                <s:checkbox id="google" name="google"/><label for="google" style="padding: 3px;">Load jQuery from Google CDN</label><br/>
-                <s:checkbox id="ajaxhistory" name="ajaxhistory" onclick="$('#themeform').submit();"/><label for="ajaxhistory" style="padding: 3px;">Use Ajaxhistory (BETA)</label><br/>
-
+	                <s:select id="selected_theme" name="theme" list="themes" emptyOption="true" onchange="changeTheme(this.value);"/><br/>
+	                <s:checkbox id="google" name="google" onclick="$.publish('themeformTopic');"/><label for="google" style="padding: 3px;">Load jQuery from Google CDN</label><br/>
+	                <s:checkbox id="ajaxhistory" name="ajaxhistory" onclick="$.publish('themeformTopic');"/><label for="ajaxhistory" style="padding: 3px;">Use Ajaxhistory (BETA)</label><br/>
+					<sj:submit id="submitThemeform" formIds="themeform" listenTopics="themeformTopic" cssStyle="display: none;"/>
                 </div>
             </s:form>
         </div>

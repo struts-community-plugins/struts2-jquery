@@ -1,4 +1,30 @@
 /*
+ * Function for Theme Handling
+ *
+ */
+function changeTheme(newTheme) {
+	if (newTheme=='showcase')
+		themePathPrefix = "themes/";
+	else {
+		themeHref = $('#jquery_theme_link').attr('href');
+		if ($("#google").attr('checked')) {
+			if (themeHref.indexOf("http:")==0) {
+				prefixIndex = themeHref.indexOf("themes/")+7;
+				themePathPrefix=themeHref.substring(0,prefixIndex);
+			}
+			else {
+				$("#themeform").submit();
+				return false;
+			}
+		}
+		else {
+			themePathPrefix = "struts/themes/";
+		}
+	}
+	$('#jquery_theme_link').attr('href',themePathPrefix+newTheme+'/jquery-ui.css');
+}
+
+/*
  * Function for Custome Validation Example
  *
  */
