@@ -213,4 +213,16 @@ public class Customers implements java.io.Serializable {
     this.orders = orders;
   }
 
+  @Override
+  public String toString()
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.append("Customer [customernumber=");
+    builder.append(customernumber);
+    builder.append(", customername=");
+    builder.append(customername);
+    builder.append("]");
+    return builder.toString();
+  }
+
 }

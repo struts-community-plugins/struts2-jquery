@@ -23,13 +23,20 @@ import java.util.StringTokenizer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+import org.hibernate.Transaction;
 
+import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.EmployeeDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Employees;
 import com.opensymphony.xwork2.ActionSupport;
 
+@Results( {
+  @Result(name = "error", location = "messages.jsp")
+})
 public class EditCustomerAction extends ActionSupport {
 
   private static final long serialVersionUID = -3454448309088641394L;
@@ -46,59 +53,74 @@ public class EditCustomerAction extends ActionSupport {
   private double            creditlimit;
   private Employees         salesemployee;
 
+  @TransactionTarget
+  protected Transaction     hTransaction;
+
   public String execute() throws Exception
   {
     log.debug("Edit Customer :" + id);
 
     Customers customer;
 
-    if (oper.equalsIgnoreCase("add"))
+    try
     {
-      log.debug("Add Customer");
-      customer = new Customers();
-
-      int nextid = customersDao.nextCustomerNumber();
-      log.debug("Id for ne Customer is " + nextid);
-      customer.setCustomernumber(nextid);
-      customer.setCustomername(customername);
-      customer.setCountry(country);
-      customer.setCity(city);
-      customer.setCreditlimit(creditlimit);
-
-      if (salesemployee != null)
+      if (oper.equalsIgnoreCase("add"))
       {
-        customer.setSalesemployee(employeeDao.get(salesemployee.getEmployeenumber()));
+        log.debug("Add Customer");
+        customer = new Customers();
+
+        int nextid = customersDao.nextCustomerNumber();
+        log.debug("Id for ne Customer is " + nextid);
+        customer.setCustomernumber(nextid);
+        customer.setCustomername(customername);
+        customer.setCountry(country);
+        customer.setCity(city);
+        customer.setCreditlimit(creditlimit);
+
+        if (salesemployee != null)
+        {
+          customer.setSalesemployee(employeeDao.get(salesemployee.getEmployeenumber()));
+        }
+
+        customersDao.save(customer);
+      }
+      else if (oper.equalsIgnoreCase("edit"))
+      {
+        log.debug("Edit Customer");
+
+        customer = customersDao.get(Integer.parseInt(id));
+        customer.setCustomername(customername);
+        customer.setCountry(country);
+        customer.setCity(city);
+        customer.setCreditlimit(creditlimit);
+
+        if (salesemployee != null)
+        {
+          customer.setSalesemployee(employeeDao.get(salesemployee.getEmployeenumber()));
+        }
+        customersDao.update(customer);
+      }
+      else if (oper.equalsIgnoreCase("del"))
+      {
+        StringTokenizer ids = new StringTokenizer(id, ",");
+        while (ids.hasMoreTokens())
+        {
+          int removeId = Integer.parseInt(ids.nextToken());
+          log.debug("Delete Customer " + removeId);
+          customersDao.delete(removeId);
+        }
       }
 
-      customersDao.save(customer);
+      // Commit changes
+      hTransaction.commit();
     }
-    else if (oper.equalsIgnoreCase("edit"))
+    catch (Exception e)
     {
-      log.debug("Edit Customer");
-
-      customer = customersDao.get(Integer.parseInt(id));
-      customer.setCustomername(customername);
-      customer.setCountry(country);
-      customer.setCity(city);
-      customer.setCreditlimit(creditlimit);
-
-      if (salesemployee != null)
-      {
-        customer.setSalesemployee(employeeDao.get(salesemployee.getEmployeenumber()));
-      }
-      customersDao.update(customer);
+      hTransaction.rollback();
+      addActionError("ERROR : " + e.getLocalizedMessage());
+      addActionError("Is Database in read/write modus?");
+      return "error";
     }
-    else if (oper.equalsIgnoreCase("del"))
-    {
-      StringTokenizer ids = new StringTokenizer(id, ",");
-      while (ids.hasMoreTokens())
-      {
-        int removeId = Integer.parseInt(ids.nextToken());
-        log.debug("Delete Customer " + removeId);
-        customersDao.delete(removeId);
-      }
-    }
-
     return NONE;
   }
 
