@@ -8,19 +8,6 @@
     <s:url id="selectcountrysurl" action="customer-countrys" />
     <s:url id="selectemployeesurl" action="employees" />
     <s:url id="empurl" action="employees-detail" />
-	<script type="text/javascript">
-		function formatLink(cellvalue, options, row) {
-            return "<a href='#' onClick='javascript:openDialog("+cellvalue+")'>" + cellvalue + "</a>";
-        }
-		function openDialog(employee) {
-			$("#employees_details").load("<s:property value="empurl"/>?id="+employee);
-			$("#employees_details").dialog('open');
-        }
-        function isError(text) {
-			if(text.indexOf('ERROR') >= 0) { return [false, text]; }
-			return [true,''];
-        }
-	</script>
 	<sj:dialog
 		id="employees_details"
 		title="Employee Details"

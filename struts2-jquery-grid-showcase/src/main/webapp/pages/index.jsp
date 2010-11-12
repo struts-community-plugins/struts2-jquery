@@ -28,6 +28,10 @@
     	loadFromGoogle="false"
     	debug="true"
     />
+    <s:url id="empurl" action="employees-detail" />
+	<script type="text/javascript">
+		var employee_detail_url = '<s:property value="empurl"/>';
+	</script>
   <script type="text/javascript" src="js/showcase.js"></script>
 </head>
 <body>
