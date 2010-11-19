@@ -112,10 +112,8 @@ jQuery(document).ready(function () {
 <#if !parameters.compressed?default(true)>
 	jQuery.struts2_jquery.minSuffix = "";
 </#if>
-<#if parameters.jqueryLocale?if_exists != "">
+<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
   jQuery.struts2_jquery.local = "${parameters.jqueryLocale?string}";
-<#else>
-  jQuery.struts2_jquery.local = '${locale?default("en")?replace("_","-")}';
 </#if>
 <#if parameters.gridLocale??>
   jQuery.struts2_jquery.gridLocal = "${parameters.gridLocale?default('en')}";
