@@ -312,20 +312,6 @@
 				self.publishTopic(c, stopics, orginal);
 				self.publishTopic(c, always, orginal);
 			}
-
-			// Use BBQ for Ajaxhistory
-			if (self.ajaxhistory) {
-				var ahparams = {};
-				ahparams.cid = cid;
-				ahparams.options = o;
-
-				$(window).bind('hashchange', ahparams, function(e) {
-					var topic = e.getState(e.data.cid.id) || '';
-					if (e.type === topic || topic === '' || topic == self.lasttopic) { return; }
-					self.lasttopic = topic;
-					$.publish(topic, e.data.options);
-				});
-			}
 		};
 	},
 
@@ -473,6 +459,7 @@
 	action : function($elem, o, loadHandler, type) {
 		var self = this;
 		var actionTopic = '_sj_action_' + o.id;
+		o.actionTopic = actionTopic;
 		var href = o.href;
 
 		if (href === null || href === "") {
@@ -519,6 +506,13 @@
 						$.bbq.pushState(self.historyelements);
 						return false;
 					});
+					
+					$(window).bind('hashchange', params, function(e) {
+						var topic = e.getState(e.data.target) || '';
+						if (topic === '' || topic == self.lasttopic) { return; }
+						self.lasttopic = topic;
+						$.publish(topic, e.data.options);
+					});
 				}
 			});
 		}
@@ -536,7 +530,6 @@
 		if (type == "a") {
 			$elem.publishOnEvent('click', actionTopic); // bind custom action topic to click event
 		}
-
 	},
 
 	/** Handle all Container Elements Divs, Textarea, Textfield */
@@ -1697,7 +1690,8 @@
 		if (event.data) {
 			$.extend(o, event.data);
 		}
-
+		_s2j.lasttopic = o.actionTopic;
+		
 		var isDisabled = false;
 		isDisabled = o.disabled === null ? isDisabled : o.disabled;
 		isDisabled = container.attr('disabled') === null ? isDisabled : container.attr('disabled');
@@ -1828,6 +1822,7 @@
 		if (event.data) {
 			$.extend(o, event.data);
 		}
+		_s2j.lasttopic = o.actionTopic;
 
 		var params = {};
 		if (o.href && o.href != '#') {
