@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
 
   <s:if test="%{theme == 'showcase' || theme == null}">
-      <sj:head locale="pt-BR" debug="true" compressed="false" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
+      <sj:head debug="true" compressed="false" jquerytheme="showcase" customBasepath="themes" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
   </s:if>
   <s:else>
       <sj:head debug="true" compressed="false" jquerytheme="%{theme}" loadFromGoogle="true" loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator" defaultLoadingText="Please wait ..."/>
