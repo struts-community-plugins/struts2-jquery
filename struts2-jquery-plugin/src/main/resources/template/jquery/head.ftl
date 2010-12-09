@@ -25,7 +25,7 @@
   <#assign javaScriptBasePath="${base}/struts/">
 </#if>
 
-<#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3">
+<#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4">
 <#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6">
   
 <#if parameters.customBasepath?if_exists != "">
@@ -34,7 +34,7 @@
   <#assign basePath="${javaScriptBasePath}themes">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryFile="jquery-1.4.3.min.js">
+  <#assign jqueryFile="jquery-1.4.4.min.js">
   <#assign jqueryForm="jquery.form.min.js">
   <#assign jqueryUIFile="jquery-ui.min.js">
   <#assign jqueryUICoreFile="jquery.ui.core.min.js">
@@ -46,7 +46,7 @@
   <#assign jqueryGoogle="${googlePath}/jquery.min.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
-  <#assign jqueryFile="jquery-1.4.3.js">
+  <#assign jqueryFile="jquery-1.4.4.js">
   <#assign jqueryForm="jquery.form.js">
   <#assign jqueryUIFile="jquery-ui.js">
   <#assign jqueryUICoreFile="jquery.ui.core.js">
