@@ -1,5 +1,5 @@
 /*
- * jQuery UI Autocomplete 1.8.6
+ * jQuery UI Autocomplete 1.8.7
  *
  * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -177,6 +177,7 @@ $.widget( "ui.autocomplete", {
 						// term synchronously and asynchronously :-(
 						setTimeout(function() {
 							self.previous = previous;
+							self.selectedItem = item;
 						}, 1);
 					}
 
@@ -245,11 +246,22 @@ $.widget( "ui.autocomplete", {
 				if (self.xhr) {
 					self.xhr.abort();
 				}
-				self.xhr = $.getJSON( url, request, function( data, status, xhr ) {
-					if ( xhr === self.xhr ) {
-						response( data );
+				self.xhr = $.ajax({
+					url: url,
+					data: request,
+					dataType: "json",
+					success: function( data, status, xhr ) {
+						if ( xhr === self.xhr ) {
+							response( data );
+						}
+						self.xhr = null;
+					},
+					error: function( xhr ) {
+						if ( xhr === self.xhr ) {
+							response( [] );
+						}
+						self.xhr = null;
 					}
-					self.xhr = null;
 				});
 			};
 		} else {
@@ -295,9 +307,9 @@ $.widget( "ui.autocomplete", {
 	close: function( event ) {
 		clearTimeout( this.closing );
 		if ( this.menu.element.is(":visible") ) {
-			this._trigger( "close", event );
 			this.menu.element.hide();
 			this.menu.deactivate();
+			this._trigger( "close", event );
 		}
 	},
 	
@@ -334,11 +346,13 @@ $.widget( "ui.autocomplete", {
 		// TODO refresh should check if the active item is still in the dom, removing the need for a manual deactivate
 		this.menu.deactivate();
 		this.menu.refresh();
-		this.menu.element.show().position( $.extend({
+
+		// size and position menu
+		ul.show();
+		this._resizeMenu();
+		ul.position( $.extend({
 			of: this.element
 		}, this.options.position ));
-
-		this._resizeMenu();
 	},
 
 	_resizeMenu: function() {

@@ -1,5 +1,5 @@
 /*
- * jQuery UI Position 1.8.6
+ * jQuery UI Position 1.8.7
  *
  * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -122,8 +122,8 @@ $.fn.position = function( options ) {
 		}
 
 		// prevent fractions (see #5280)
-		position.left = parseInt( position.left );
-		position.top = parseInt( position.top );
+		position.left = Math.round( position.left );
+		position.top = Math.round( position.top );
 
 		collisionPosition = {
 			left: position.left - marginLeft,
