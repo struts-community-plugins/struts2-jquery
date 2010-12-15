@@ -51,6 +51,8 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   protected String          rowNum;
   protected String          sortname;
   protected String          viewrecords;
+  protected String          gridview;
+  protected String          autowidth;
   protected String          sortorder;
   protected String          loadonce;
   protected String          multiselect;
@@ -244,6 +246,8 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setRowNum(rowNum);
     grid.setSortname(sortname);
     grid.setViewrecords(viewrecords);
+    grid.setAutowidth(autowidth);
+    grid.setGridview(gridview);
     grid.setSortorder(sortorder);
     grid.setLoadonce(loadonce);
     grid.setMultiselect(multiselect);
@@ -458,6 +462,16 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setViewrecords(String viewrecords)
   {
     this.viewrecords = viewrecords;
+  }
+
+  public void setGridview(String gridview)
+  {
+    this.gridview = gridview;
+  }
+
+  public void setAutowidth(String autowidth)
+  {
+    this.autowidth = autowidth;
   }
 
   public void setSortorder(String sortorder)

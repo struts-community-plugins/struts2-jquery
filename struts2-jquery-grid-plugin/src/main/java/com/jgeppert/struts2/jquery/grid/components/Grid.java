@@ -67,6 +67,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      rowNum;
   protected String                      sortname;
   protected String                      viewrecords;
+  protected String                      gridview;
+  protected String                      autowidth;
   protected String                      sortorder;
   protected String                      loadonce;
   protected String                      multiselect;
@@ -281,6 +283,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     if (rowNum != null) addParameter("rowNum", findString(rowNum));
     if (sortname != null) addParameter("sortname", findString(sortname));
     if (viewrecords != null) addParameter("viewrecords", findValue(this.viewrecords, Boolean.class));
+    if (autowidth != null) addParameter("autowidth", findValue(this.autowidth, Boolean.class));
+    if (gridview != null) addParameter("gridview", findValue(this.gridview, Boolean.class));
     if (sortorder != null) addParameter("sortorder", findString(sortorder));
     if (loadonce != null) addParameter("loadonce", findValue(this.loadonce, Boolean.class));
     if (multiselect != null) addParameter("multiselect", findValue(this.multiselect, Boolean.class));
@@ -939,6 +943,18 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setViewrecords(String viewrecords)
   {
     this.viewrecords = viewrecords;
+  }
+
+  @StrutsTagAttribute(description = "Insert the entry row at once with a jQuery append. The result is impressive - about 3-5 times faster. If set to true we can not use treeGrid, subGrid, or afterInsertRow event.", defaultValue = "false", type = "Boolean")
+  public void setGridview(String gridview)
+  {
+    this.gridview = gridview;
+  }
+
+  @StrutsTagAttribute(description = "When set to true, the grid width is recalculated automatically to the width of the parent element. This is done only initially when the grid is created.", defaultValue = "false", type = "Boolean")
+  public void setAutowidth(String autowidth)
+  {
+    this.autowidth = autowidth;
   }
 
   @StrutsTagAttribute(description = "The initial sorting order.This parameter is added to the url - see prnNames. Two possible values - asc or desc. Default asc")

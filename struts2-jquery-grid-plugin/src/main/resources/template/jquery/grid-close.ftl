@@ -80,6 +80,12 @@
   <#if parameters.viewrecords?default(false)>
 	options_${escapedOptionId?html}.viewrecords = true;
   </#if>
+  <#if parameters.gridview?default(false)>
+	options_${escapedOptionId?html}.gridview = true;
+  </#if>
+  <#if parameters.autowidth?default(false)>
+	options_${escapedOptionId?html}.autowidth = true;
+  </#if>
   <#if parameters.scroll?if_exists != "">
 	options_${escapedOptionId?html}.scroll = ${parameters.scroll?html};
   </#if>

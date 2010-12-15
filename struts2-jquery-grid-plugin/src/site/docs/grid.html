@@ -66,6 +66,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">When set to true encodes (html encode) the incoming (from server) and posted data (from editing modules). By example < will be converted to &lt;</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">autowidth</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">When set to true, the grid width is recalculated automatically to the width of the parent element. This is done only initially when the grid is created.</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">caption</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -576,6 +584,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Name of you grid model. Must be a Collection</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">gridview</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">Boolean</td>
+					<td align="left" valign="top">Insert the entry row at once with a jQuery append. The result is impressive - about 3-5 times faster. If set to true we can not use treeGrid, subGrid, or afterInsertRow event.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">groupCollapse</td>
