@@ -309,6 +309,10 @@ public class Head extends org.apache.struts2.components.Head {
   private static String validateLocal(String[] locals, String local)
   {
     String retString = "en";
+
+    // Array must be sorted for binarySearch
+    Arrays.sort(locals);
+
     if (Arrays.binarySearch(locals, local) > 0)
     {
       retString = local;
