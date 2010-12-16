@@ -70,7 +70,7 @@
 
 				if(self.options.icon === true) {
 					var height = input.outerHeight();
-					var button = $( "<button>&nbsp;</button>" )
+					var button = $( "<button type='button'>&nbsp;</button>" )
 					.attr( "tabIndex", -1 )
 					.attr( "title", "Show All Items" )
 					.button({
