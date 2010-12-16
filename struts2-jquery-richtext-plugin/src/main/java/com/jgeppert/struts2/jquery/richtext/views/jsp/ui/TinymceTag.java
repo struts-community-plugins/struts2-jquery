@@ -59,6 +59,7 @@ public class TinymceTag extends TextareaTag {
   protected String          removeLinebreaks;
   protected String          removeRedundantBrs;
   protected String          onSaveTopics;
+  protected String          onEventTopics;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -93,6 +94,7 @@ public class TinymceTag extends TextareaTag {
     editor.setRemoveLinebreaks(removeLinebreaks);
     editor.setRemoveRedundantBrs(removeRedundantBrs);
     editor.setOnSaveTopics(onSaveTopics);
+    editor.setOnEventTopics(onEventTopics);
   }
 
   public void setCols(String cols)
@@ -208,5 +210,10 @@ public class TinymceTag extends TextareaTag {
   public void setOnSaveTopics(String onSaveTopics)
   {
     this.onSaveTopics = onSaveTopics;
+  }
+
+  public void setOnEventTopics(String onEventTopics)
+  {
+    this.onEventTopics = onEventTopics;
   }
 }

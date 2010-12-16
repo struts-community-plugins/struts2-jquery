@@ -73,6 +73,7 @@ public class Tinymce extends Textarea {
   protected String                      removeLinebreaks;
   protected String                      removeRedundantBrs;
   protected String                      onSaveTopics;
+  protected String                      onEventTopics;
 
   public Tinymce(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -198,6 +199,10 @@ public class Tinymce extends Textarea {
     if (onSaveTopics != null)
     {
       addParameter("onSaveTopics", findString(onSaveTopics));
+    }
+    if (onEventTopics != null)
+    {
+      addParameter("onEventTopics", findString(onEventTopics));
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -366,5 +371,11 @@ public class Tinymce extends Textarea {
   public void setOnSaveTopics(String onSaveTopics)
   {
     this.onSaveTopics = onSaveTopics;
+  }
+
+  @StrutsTagAttribute(description = "Topics that are published on event such as keydown, mousedown and so forth", type = "String", defaultValue = "")
+  public void setOnEventTopics(String onEventTopics)
+  {
+    this.onEventTopics = onEventTopics;
   }
 }

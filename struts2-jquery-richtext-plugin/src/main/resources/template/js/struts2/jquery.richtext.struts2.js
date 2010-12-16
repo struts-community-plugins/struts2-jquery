@@ -134,6 +134,39 @@
 
 				self.container($elem, o);
 				o.script_url = o.path+'tiny_mce.js';
+				if (o.onchangetopics) {
+					o.onchange_callback = function(ed) {
+							var data = {};
+							data.editor = ed;
+							data.content = ed.getBody().innerHTML;
+
+							self.publishTopic($elem, o.oncha, data);
+							self.publishTopic($elem, o.onalw, data);
+					};
+				}
+				if (o.onsavetopics) {
+					o.save_callback = function(id, html, body) {
+							var data = {};
+							data.editorid = id;
+							data.html = html;
+							data.body = body;
+
+							self.publishTopic($elem, o.onsavetopics, data);
+							self.publishTopic($elem, o.onalw, data);
+							return data.html;
+					};
+				}
+				if (o.oneventtopics) {
+					o.handle_event_callback = function(event) {
+							var data = {};
+							data.event = event;
+							data.returnvalue = true;
+
+							self.publishTopic($elem, o.oneventtopics, data);
+							self.publishTopic($elem, o.onalw, data);
+							return data.returnvalue;
+					};
+				}
 
 
 				o.setup = function(ed) {
@@ -141,23 +174,7 @@
 						tinyMCE.execCommand('mceRepaint');
 					});
 					ed.onSaveContent.add(function(ed, l) {
-						if (o.onsavetopics) {
-							var data = {};
-							data.editor = ed;
-							data.content = l.content;
-							self.publishTopic($elem, o.onsavetopics, data);
-							self.publishTopic($elem, o.onalw, data);
-						}
 						return false;
-					});
-					ed.onChange.add(function(ed, l) {
-						if (o.onchangetopics) {
-							var data = {};
-							data.editor = ed;
-							data.content = l.content;
-							self.publishTopic($elem, o.oncha, data);
-							self.publishTopic($elem, o.onalw, data);
-						}
 					});
 					if (o.pasteplain) {
 						ed.onKeyDown.add(function(ed, e) {

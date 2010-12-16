@@ -86,6 +86,9 @@ jQuery(document).ready(function () {
 	<#if parameters.onSaveTopics?if_exists != "">
 	options_${escapedOptionId?html}.onsavetopics = "${parameters.onSaveTopics?html}";
 	</#if>
+	<#if parameters.onEventTopics?if_exists != "">
+	options_${escapedOptionId?html}.oneventtopics = "${parameters.onEventTopics?html}";
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
