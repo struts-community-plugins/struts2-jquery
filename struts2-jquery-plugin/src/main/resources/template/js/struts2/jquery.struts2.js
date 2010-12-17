@@ -86,7 +86,7 @@
 		}
 
 		if (typeof files === "string") {
-			files = new Array(files);
+			files = files.split(",");
 		}
 		$.each(files, function(i, file) {
 			if (!self.scriptCache[file]) {
@@ -148,6 +148,65 @@
 		if (self.defaults.indicator !== '') {
 			$(self.escId(self.defaults.indicator)).show();
 		}
+	},
+
+	/** Helper function to validate Forms */
+	validateForm : function(form, o) {
+		var self = this;
+		var submit = true;
+		var params = {};
+		params.type = "POST";
+		if (o.href && o.href != '#') {
+			params.url = o.href;
+		}
+		else {
+			params.url = form[0].action;
+		}
+
+		params.data = '';
+		if (o.hrefparameter) {
+			params.data = o.hrefparameter;
+		}
+
+		var query = form.formSerialize();
+		query = query + '&struts.enableJSONValidation=true&struts.validateOnly=true';
+		if (params.data !== '') {
+			params.data = params.data + '&amp;' + query;
+		}
+		else {
+			params.data = query;
+		}
+
+		params.cache = false;
+		params.async = false;
+
+		params.complete = function(request, status) {
+			var f = $(form[0]);
+			if ($.isFunction(o.validateFunction)) {
+				var et = request.responseText;
+				if (et && et.length > 10) {
+					submit = false;
+					var errors = $.parseJSON(et.substring(2, et.length - 2));
+					o.validateFunction(f, errors);
+				}
+			}
+			else if (StrutsUtils !== undefined) {
+				StrutsUtils.clearValidationErrors(form[0]);
+
+				// get errors from response
+				var text = request.responseText;
+				var errorsObject = StrutsUtils.getValidationErrors(text);
+
+				// show errors, if any
+				if (errorsObject.fieldErrors) {
+					StrutsUtils.showValidationErrors(form[0], errorsObject);
+					submit = false;
+				}
+			}
+			self.log('form validation : ' + submit);
+		};
+		$.ajax(params);
+		return submit;
 	},
 
 	/** Helper function to publish UI topics */
@@ -887,7 +946,15 @@
 		else {
 			// Submit Forms without AJAX
 			$elem.click( function() {
-				$(self.escId(o.formids)).submit();
+				var form = $(self.escId(o.formids));
+				var submitForm = true;
+				if (o.validate) {
+					submitForm = self.validateForm(form, o);
+				}
+
+				if(submitForm) {
+					$(self.escId(o.formids)).submit();
+				}
 				return false;
 			});
 			if(o.listentopics) {
@@ -1904,58 +1971,7 @@
 			}
 
 			if (o.validate) {
-				var valParams = {};
-				valParams.type = "POST";
-				if (o.href && o.href != '#') {
-					valParams.url = o.href;
-				}
-				else {
-					valParams.url = form[0].action;
-				}
-
-				valParams.data = '';
-				if (o.hrefparameter) {
-					valParams.data = o.hrefparameter;
-				}
-
-				var query = form.formSerialize();
-				query = query + '&struts.enableJSONValidation=true&struts.validateOnly=true';
-				if (valParams.data !== '') {
-					valParams.data = valParams.data + '&amp;' + query;
-				}
-				else {
-					valParams.data = query;
-				}
-
-				valParams.cache = false;
-				valParams.async = false;
-
-				valParams.complete = function(request, status) {
-					var f = $(form[0]);
-					if ($.isFunction(o.validateFunction)) {
-						var et = request.responseText;
-						if (et && et.length > 10) {
-							orginal.options.submit = false;
-							var errors = $.parseJSON(et.substring(2, et.length - 2));
-							o.validateFunction(f, errors);
-						}
-					}
-					else if (StrutsUtils !== undefined) {
-						StrutsUtils.clearValidationErrors(form[0]);
-
-						// get errors from response
-						var text = request.responseText;
-						var errorsObject = StrutsUtils.getValidationErrors(text);
-
-						// show errors, if any
-						if (errorsObject.fieldErrors) {
-							StrutsUtils.showValidationErrors(form[0], errorsObject);
-							orginal.options.submit = false;
-						}
-					}
-					_s2j.log('form validation : ' + orginal.options.submit);
-				};
-				$.ajax(valParams);
+				orginal.options.submit = _s2j.validateForm(form, o);
 			}
 			if (!orginal.options.submit) {
 				_s2j.hideIndicator(o.indicatorid);
