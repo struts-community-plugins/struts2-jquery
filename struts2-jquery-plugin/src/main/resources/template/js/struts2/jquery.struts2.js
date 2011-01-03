@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery and jQuery UI optional.
- * Tested with jQuery 1.4.2 and jQuery UI 1.8
+ * Tested with jQuery 1.4.4 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2010 Johannes Geppert http://www.jgeppert.com
@@ -493,6 +493,27 @@
 		}
 	},
 
+	/** handle ajax history */
+	history : function($elem, topic, target) {
+		var self = this;
+		var params = {};
+		params.target = target;
+		params.topic = topic;
+		$elem.bind('click', params, function(event) {
+			self.historyelements[event.data.target] = event.data.topic;
+			self.lasttopic = topic;
+			$.bbq.pushState(self.historyelements);
+			return false;
+		});
+		
+		$(window).bind('hashchange', params, function(e) {
+			var topic = e.getState(e.data.target) || '';
+			if (topic === '' || topic == self.lasttopic) { return; }
+			self.lasttopic = topic;
+			$.publish(topic, e.data.options);
+		});
+	},
+
 	/** opens a dialog if attribute openDialog in Anchor or Submit Tag is set to true */
 	opendialog : function($elem, o) {
 		var self = this;
@@ -557,21 +578,7 @@
 				self.subscribeTopics(tarelem, effectTopic + target + o.id, self.handler.effect, effect);
 
 				if (self.ajaxhistory) {
-					var params = {};
-					params.target = target;
-					params.topic = actionTopic;
-					$elem.bind('click', params, function(event) {
-						self.historyelements[event.data.target] = event.data.topic;
-						$.bbq.pushState(self.historyelements);
-						return false;
-					});
-					
-					$(window).bind('hashchange', params, function(e) {
-						var topic = e.getState(e.data.target) || '';
-						if (topic === '' || topic == self.lasttopic) { return; }
-						self.lasttopic = topic;
-						$.publish(topic, e.data.options);
-					});
+					self.history($elem, actionTopic, target);
 				}
 			});
 		}
@@ -919,6 +926,7 @@
 	/** Handle all AJAX Forms submitted from Anchor or Submit Button */
 	formsubmit : function($elem, o, topic) {
 		var self = this;
+		o.actionTopic = topic;
 		self.log('formsubmit : ' + o.id);
 		if (!self.loadAtOnce) {
 			self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
@@ -932,14 +940,7 @@
 			$.each(o.targets.split(','), function(i, target) {
 				$(self.escId(target)).subscribe(topic, self.handler.effect, o);
 				if (self.ajaxhistory) {
-					var params = {};
-					params.target = target;
-					params.topic = topic;
-					$elem.bind('click', params, function(event) {
-						self.historyelements[event.data.target] = event.data.topic;
-						$.bbq.pushState(self.historyelements);
-						return false;
-					});
+					self.history($elem, topic, target);
 				}
 			});
 		}
