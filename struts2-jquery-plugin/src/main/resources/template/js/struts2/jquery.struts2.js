@@ -156,7 +156,7 @@
 		var submit = true;
 		var params = {};
 		params.type = "POST";
-		if (o.href && o.href != '#') {
+		if (o.href && o.href !== '#') {
 			params.url = o.href;
 		}
 		else {
@@ -265,32 +265,32 @@
 			orginal.request = request;
 
 			// Handle HTML Result for Divs, Submit and Anchor
-			if (modus == 'html' && !$.isArray(data) && !$.isPlainObject(data)) {
+			if (modus === 'html' && !$.isArray(data) && !$.isPlainObject(data)) {
 				c.html(data);
 			}
 
 			// Handle Text Result for Textarea or Textfield
-			else if (modus == 'value') {
+			else if (modus === 'value') {
 				c.val($.trim(data));
 			}
 
 			// Hanlde Result for Select, Radiobuttons and Checkboxes
-			else if (modus == 'select' || modus == 'radio' || modus == 'checkbox') {
-				if (modus == 'select') {
+			else if (modus === 'select' || modus === 'radio' || modus === 'checkbox') {
+				if (modus === 'select') {
 					c[0].length = 0;
 				}
 				else {
 					c.children().remove();
 				}
 
-				if (typeof (data) == "object" || $.isArray(data)) {
+				if (typeof (data) === "object" || $.isArray(data)) {
 					var i = -1;
 
-					if (modus == 'select') {
+					if (modus === 'select') {
 						// Header Option
 						if (o.headerkey && o.headervalue) {
 							var headerElement = $('<option value="' + o.headerkey + '">' + o.headervalue + '</option>');
-							if (o.value == o.headervalue) {
+							if (o.value === o.headervalue) {
 								headerElement.attr("selected", "selected");
 							}
 							headerElement.appendTo(c);
@@ -312,7 +312,7 @@
 
 						$.each(data[o.list], function(j, val) {
 							var option = {};
-							if (modus == 'radio' || modus == 'checkbox') {
+							if (modus === 'radio' || modus === 'checkbox') {
 								option.name = o.name;
 							}
 
@@ -331,11 +331,11 @@
 								}
 							}
 
-							if (o.value !== undefined && o.value == option.value) {
+							if (o.value !== undefined && o.value === option.value) {
 								option.selected = true;
 							}
 
-							if (modus == 'select') {
+							if (modus === 'select') {
 								var optionElement = $('<option value="' + option.value + '">' + option.text + '</option>');
 								if (option.selected) {
 									optionElement.attr("selected", "selected");
@@ -347,10 +347,10 @@
 								var idv = ++i;
 
 								// This way is needed to avoid Bug in IE6/IE7
-								if (modus == 'radio') {
+								if (modus === 'radio') {
 									re = $('<input name="' + option.name + '" type="radio" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
 								}
-								else if (modus == 'checkbox') {
+								else if (modus === 'checkbox') {
 									re = $('<input name="' + option.name + '" type="checkbox" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
 								}
 
@@ -430,8 +430,8 @@
 				orginal.status = status;
 				orginal.error = error;
 
-				if (modus == 'html' || modus == 'value') {
-					if (etext && etext != "false") {
+				if (modus === 'html' || modus === 'value') {
+					if (etext && etext !== "false") {
 						c.html(etext);
 					}
 					else if (self.defaults.errorText !== null) {
@@ -469,7 +469,7 @@
 			o.tagname = tag;
 
 			// extension point to allow custom pre-binding processing
-			if (typeof (self.preBind) != "function" || self.preBind($el)) {
+			if (typeof (self.preBind) !== "function" || self.preBind($el)) {
 
 				if (!o.jqueryaction) {
 					o.jqueryaction = tag;
@@ -479,7 +479,7 @@
 				self[o.jqueryaction]($el, o);
 
 				// extension point to allow custom post-binding processing
-				if (self.postBind && (typeof (self.postBind) == "function")) { return self.postBind(el); }
+				if (self.postBind && (typeof (self.postBind) === "function")) { return self.postBind(el); }
 			}
 
 		}
@@ -508,7 +508,7 @@
 		
 		$(window).bind('hashchange', params, function(e) {
 			var topic = e.getState(e.data.target) || '';
-			if (topic === '' || topic == self.lasttopic) { return; }
+			if (topic === '' || topic === self.lasttopic) { return; }
 			self.lasttopic = topic;
 			$.publish(topic, e.data.options);
 		});
@@ -522,7 +522,7 @@
 		if (o.opendialog) {
 			var dialog = $(self.escId(o.opendialog));
 			$elem.bind('click', function(event) {
-				if (o.href && o.href != '#') {
+				if (o.href && o.href !== '#') {
 					o.targets = o.opendialog;
 					var divTopic = '_s2j_dialog_load_' + o.id;
 					self.subscribeTopics(dialog, divTopic, self.handler.load, o);
@@ -557,7 +557,7 @@
 
 		// Set dummy target when datatype is json
 		if(o.datatype && !o.targets) {
-			if(o.datatype == "json") {
+			if(o.datatype === "json") {
 				o.targets = "false";
 			}
 		}
@@ -593,7 +593,7 @@
 			}
 		}
 
-		if (type == "a") {
+		if (type === "a") {
 			$elem.publishOnEvent('click', actionTopic); // bind custom action topic to click event
 		}
 	},
@@ -607,8 +607,8 @@
 		var divEffectTopic = '_s2j_div_effect_' + o.id;
 
 		// load div using ajax only when href is specified or form is defined
-		if ((o.formids && !o.type) || (o.href && o.href != '#')) {
-			if (o.href != '#') {
+		if ((o.formids && !o.type) || (o.href && o.href !== '#')) {
+			if (o.href !== '#') {
 				self.subscribeTopics($elem, o.reloadtopics, self.handler.load, o);
 				self.subscribeTopics($elem, o.listentopics, self.handler.load, o);
 				// publishing not triggering to prevent event propagation issues
@@ -801,12 +801,12 @@
 
 		if (o.oncha) {
 			if (o.type) {
-				if (o.type == 'text') {
+				if (o.type === 'text') {
 					$elem.keyup( function() {
 						self.publishTopic($elem, o.oncha, {});
 					});
 				}
-				else if (o.type == 'select') {
+				else if (o.type === 'select') {
 					$elem.change( function() {
 						self.publishTopic($elem, o.oncha, {});
 					});
@@ -860,7 +860,7 @@
 		}
 		var selectTopic = '_s2j_topic_load_' + o.id;
 
-		if (o.href && o.href != '#') {
+		if (o.href && o.href !== '#') {
 
 			self.subscribeTopics($elem, o.reloadtopics, self.handler.load, o);
 			self.subscribeTopics($elem, o.listentopics, self.handler.load, o);
@@ -995,7 +995,7 @@
 			data.event = event;
 			data.ui = ui;
 
-			if (o.href && o.href != '#') {
+			if (o.href && o.href !== '#') {
 				var divTopic = '_s2j_topic_load_' + o.id;
 				self.subscribeTopics($elem, divTopic, self.handler.load, o);
 				$elem.publish(divTopic);
@@ -1024,7 +1024,7 @@
 		}
 		var para = {};
 
-		if (o.disabledtabs && o.disabledtabs != 'false') {
+		if (o.disabledtabs && o.disabledtabs !== 'false') {
 			var disabledtabsStr = o.disabledtabs;
 			var disabledtabs = window[disabledtabsStr];
 			if (!disabledtabs) {
@@ -1106,8 +1106,8 @@
 		var tabs = $elem.data('taboptions');
 		var closable = false;
 		if (tabs) {
-			var tabStr = "";
-			for ( var l = 0; l < tabs.length; l++) {
+			var tabStr = "", l;
+			for (l = 0; l < tabs.length; l++) {
 				var tab = tabs[l];
 				tabStr += "<li ";
 				if (tab.id) {
@@ -1177,7 +1177,7 @@
 		if (!self.loadAtOnce) {
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.datepicker" + self.minSuffix + ".js" ]);
 		}
-		if (self.local != "en") {
+		if (self.local !== "en") {
 			self.require("i18n/jquery.ui.datepicker-" + self.local + ".min.js");
 		}
 		var params = {};
@@ -1338,7 +1338,7 @@
 				self.publishTopic($elem, o.onslidetopics, data);
 			}
 		};
-    if (o.range && o.range == 'true') {
+    if (o.range && o.range === 'true') {
     	o.range = true;
     }
 
@@ -1427,7 +1427,7 @@
 				params.header = 'h3';
 			}
 			if (o.animated) {
-				if (o.animated == 'true') {
+				if (o.animated === 'true') {
 					params.animated = true;
 				}
 				else if (o.animated === false) {
@@ -1439,10 +1439,10 @@
 			}
 
 			if (o.active) {
-				if (o.active == 'true') {
+				if (o.active === 'true') {
 					params.active = true;
 				}
-				else if (o.active == 'false') {
+				else if (o.active === 'false') {
 					params.active = false;
 					active = false;
 				}
@@ -1454,7 +1454,7 @@
 			var onAlwaysTopics = o.onalw;
 			params.changestart = function(event, ui) {
 				if (o.href) {
-					if (typeof $(ui.newHeader).find('a').attr('paramkeys') != "undefined") {
+					if (typeof $(ui.newHeader).find('a').attr('paramkeys') !== "undefined") {
 						var keys = $(ui.newHeader).find('a').attr('paramkeys').split(',');
 						var values = $(ui.newHeader).find('a').attr('paramvalues').split(',');
 						var valueparams = {};
@@ -1480,7 +1480,7 @@
 		$elem.accordion(params);
 		if (o.href && active === true) {
 			var aktiv = $(self.escId(o.id) + " li " + params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
-			if (typeof $(aktiv).attr('paramkeys') != "undefined") {
+			if (typeof $(aktiv).attr('paramkeys') !== "undefined") {
 				var keys = $(aktiv).attr('paramkeys').split(',');
 				var values = $(aktiv).attr('paramvalues').split(',');
 				var valueparams = {};
@@ -1502,7 +1502,7 @@
 		}
 		var params = {};
 		var url = '';
-		if (o.href && o.href != '#') {
+		if (o.href && o.href !== '#') {
 			url = o.href;
 			if (o.hrefparameter) {
 				url = url + '?' + o.hrefparameter;
@@ -1654,7 +1654,7 @@
 		}
 		var buttonsetLoadTopic = '_s2j_topic_load_' + o.id;
 
-		if (o.href && o.href != '#') {
+		if (o.href && o.href !== '#') {
 
 			var buttonsetTopic = 's2j_butonset_' + o.id;
 
@@ -1668,7 +1668,7 @@
 					var selectString = self.escId(o.id) + " > input";
 					var elements = $(selectString);
 
-					if ($.browser.msie && o.type == 'radio') {
+					if ($.browser.msie && o.type === 'radio') {
 						elements.click( function() {
 							this.blur();
 							this.focus();
@@ -1744,7 +1744,7 @@
 			isDisabled = $(event.originalEvent.currentTarget).attr("disabled") === null ? isDisabled : $(event.originalEvent.currentTarget).attr("disabled");
 		}
 
-		if (isDisabled !== true && isDisabled != 'true') {
+		if (isDisabled !== true && isDisabled !== 'true') {
 
 			// Show indicator element (if any)
 			if (o) {
@@ -1755,25 +1755,25 @@
 
 				var modus = 'html';
 				if (o.type) {
-					if (o.type == 'text') {
+					if (o.type === 'text') {
 						modus = 'value';
 					}
-					else if (o.type == 'select') {
+					else if (o.type === 'select') {
 						modus = 'select';
 					}
-					else if (o.type == 'checkbox') {
+					else if (o.type === 'checkbox') {
 						modus = 'checkbox';
 					}
-					else if (o.type == 'radio') {
+					else if (o.type === 'radio') {
 						modus = 'radio';
 					}
 				}
 
-				if (modus == 'html' || modus == 'value') {
+				if (modus === 'html' || modus === 'value') {
 					// Set pre-loading text (if any)
-					if(!o.datatype || o.datatype != "json") {
-						if (o.loadingtext && o.loadingtext != "false") {
-							if (modus == 'html') {
+					if(!o.datatype || o.datatype !== "json") {
+						if (o.loadingtext && o.loadingtext !== "false") {
+							if (modus === 'html') {
 								container.html(o.loadingtext);
 							}
 							else {
@@ -1781,7 +1781,7 @@
 							}
 						}
 						else if (_s2j.defaults.loadingText !== null) {
-							if (modus == 'html') {
+							if (modus === 'html') {
 								container.html(_s2j.defaults.loadingText);
 							}
 							else {
@@ -1870,7 +1870,7 @@
 		_s2j.lasttopic = o.actionTopic;
 
 		var params = {};
-		if (o.href && o.href != '#') {
+		if (o.href && o.href !== '#') {
 			params.url = o.href;
 			if (o.hrefparameter) {
 				params.url = params.url + '?' + o.hrefparameter;
@@ -1922,8 +1922,8 @@
 			orginal.options = formoptions;
 			orginal.options.submit = true;
 
-			if(!o.datatype || o.datatype != "json") {
-				if (o.loadingtext && o.loadingtext != "false") {
+			if(!o.datatype || o.datatype !== "json") {
+				if (o.loadingtext && o.loadingtext !== "false") {
 					$.each(o.targets.split(','), function(i, target) {
 						$(_s2j.escId(target)).html(o.loadingtext);
 					});
@@ -2003,16 +2003,16 @@
 				_s2j.require( [ "js/base/jquery.effects.core" + _s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + "" + _s2j.minSuffix + ".js" ]);
 			}
 			_s2j.log('effect ' + o.effect + ' for ' + o.targets);
-			if(!o.effectmode || o.effectmode == 'none' ) {
+			if(!o.effectmode || o.effectmode === 'none' ) {
 				tar.effect(o.effect, eo, duration, callback);
 			}
-			else if (o.effectmode == 'show') {
+			else if (o.effectmode === 'show') {
 				tar.show(o.effect, eo, duration, callback);
 			}
-			else if (o.effectmode == 'hide') {
+			else if (o.effectmode === 'hide') {
 				tar.hide(o.effect, eo, duration, callback);
 			}
-			else if (o.effectmode == 'toggle') {
+			else if (o.effectmode === 'toggle') {
 				tar.toggle(o.effect, eo, duration, callback);
 			}
 		}
