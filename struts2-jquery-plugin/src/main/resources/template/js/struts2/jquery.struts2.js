@@ -1308,64 +1308,41 @@
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.slider" + self.minSuffix + ".js" ]);
 		}
 
-		var params = {};
-		if (o) {
+		o.start = self.pubTops($elem, o.onalw, o.onbef);
+		o.change = self.pubTops($elem, o.onalw, o.oncha);
+		o.stop = self.pubTops($elem, o.onalw, o.oncom);
 
-			params.start = self.pubTops($elem, o.onalw, o.onbef);
-			params.change = self.pubTops($elem, o.onalw, o.oncha);
-			params.stop = self.pubTops($elem, o.onalw, o.oncom);
-
-			params.slide = function(event, ui) {
-				if (o.hiddenid) {
+		o.slide = function(event, ui) {
+			if (o.hiddenid) {
+				if(o.value) {
 					$(self.escId(o.hiddenid)).val(ui.value);
 				}
-				if (o.displayvalueelement) {
+				if(o.values) {
+					$(self.escId(o.hiddenid)).val(ui.values[0]+","+ui.values[1]);
+				}
+			}
+			if (o.displayvalueelement) {
+				if(o.value) {
 					$(self.escId(o.displayvalueelement)).html(ui.value);
 				}
-				if (o.onslidetopics) {
-					var data = {};
-					data.event = event;
-					data.ui = ui;
-
-					self.publishTopic($elem, o.onalw, data);
-					self.publishTopic($elem, o.onslidetopics, data);
-				}
-			};
-
-			if (o.animate) {
-				params.animate = true;
-			}
-			var value = o.value;
-			if (value > 0) {
-				params.value = value;
-			}
-			else {
-				params.value = 0;
-			}
-			if (o.max) {
-				params.max = o.max;
-			}
-			if (o.min) {
-				params.min = o.min;
-			}
-			if (o.orientation) {
-				params.orientation = o.orientation;
-			}
-			if (o.step) {
-				params.step = o.step;
-			}
-
-			if (o.range) {
-				if (o.range == 'true') {
-					params.range = true;
-				}
-				else {
-					params.range = o.range;
+				if(o.values) {
+					$(self.escId(o.displayvalueelement)).html(ui.values[0]+" - "+ui.values[1]);
 				}
 			}
-		}
+			if (o.onslidetopics) {
+				var data = {};
+				data.event = event;
+				data.ui = ui;
 
-		$elem.slider(params);
+				self.publishTopic($elem, o.onalw, data);
+				self.publishTopic($elem, o.onslidetopics, data);
+			}
+		};
+    if (o.range && o.range == 'true') {
+    	o.range = true;
+    }
+
+		$elem.slider(o);
 	},
 
 	/** Handle the Spinner Widget */

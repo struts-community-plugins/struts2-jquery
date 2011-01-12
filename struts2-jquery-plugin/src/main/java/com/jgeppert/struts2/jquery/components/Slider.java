@@ -19,6 +19,8 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -104,15 +106,59 @@ public class Slider extends AbstractTopicsBean {
     if (step != null) addParameter("step", findValue(step, Integer.class));
     if (displayValueElement != null) addParameter("displayValueElement", findString(displayValueElement));
     if (onSlideTopics != null) addParameter("onSlideTopics", findString(onSlideTopics));
+
+    Object valueObject = null;
+    String strValue = null;
+
     if (value != null)
     {
-      addParameter("value", findValue(value));
+      strValue = value;
     }
     else
     {
       if (name != null)
       {
-        addParameter("value", findValue(name));
+        strValue = name;
+      }
+    }
+    if (strValue != null)
+    {
+      valueObject = findValue(strValue);
+    }
+
+    if (valueObject == null && strValue != null)
+    {
+      valueObject = strValue;
+    }
+
+    if (valueObject != null)
+    {
+      if (valueObject instanceof String && ((String) valueObject).startsWith("["))
+      {
+        addParameter("arrayValue", findString(strValue));
+        addParameter("range", "true");
+      }
+      else if (valueObject instanceof Collection<?>)
+      {
+        Collection<Object> col = (Collection<Object>) valueObject;
+        if (col.size() >= 2)
+        {
+          addParameter("arrayValue", Arrays.toString(col.toArray()));
+          addParameter("range", "true");
+        }
+      }
+      else if (valueObject instanceof Object[])
+      {
+        Object[] ary = (Object[]) valueObject;
+        if (ary.length >= 2)
+        {
+          addParameter("arrayValue", Arrays.toString(ary));
+          addParameter("range", "true");
+        }
+      }
+      else
+      {
+        addParameter("value", findString(strValue));
       }
     }
 

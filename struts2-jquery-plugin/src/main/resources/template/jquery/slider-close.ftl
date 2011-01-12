@@ -23,7 +23,12 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId?html} = {};
+  <#if parameters.value?if_exists != "">
 	options_${escapedOptionId?html}.value = ${parameters.value?default('0')};
+  </#if>
+  <#if parameters.arrayValue?if_exists != "">
+	options_${escapedOptionId?html}.values = ${parameters.arrayValue?string};
+  </#if>
   <#if parameters.widgetid?if_exists != "">
 	options_${escapedOptionId?html}.hiddenid = "${parameters.widgetid?html}";
   </#if>

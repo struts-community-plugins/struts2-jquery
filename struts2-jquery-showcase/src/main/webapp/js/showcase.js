@@ -170,7 +170,10 @@ $(document).ready(function() {
 	 * Subscribe Topics for Slider Range Example
 	 */
 	$.subscribe('sliderStop', function(event, data) {
-		alert('Slider stop with value : ' + event.originalEvent.ui.value);
+		alert('Slider stoped with value : ' + event.originalEvent.ui.value);
+	});
+	$.subscribe('sliderRangeStop', function(event, data) {
+		alert('Slider stoped with values : ' + event.originalEvent.ui.values[0] + ' - ' + event.originalEvent.ui.values[1]);
 	});
 
 	/*
