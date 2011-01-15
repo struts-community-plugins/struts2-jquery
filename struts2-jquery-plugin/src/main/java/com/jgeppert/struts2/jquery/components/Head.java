@@ -93,8 +93,7 @@ public class Head extends org.apache.struts2.components.Head {
   private static final String[] gridLocals   = {
       "bg", "ca", "cn", "cs", "de", "da", "el", "en", "es", "en-GB", "fa", "fi", "fr", "fr-CH", "gl", "he", "hu", "is", "it", "ja", "nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sr", "sv", "tr", "ua", "zh", "zh-CN"
                                              };
-  private static final String[] jqueryLocals =
-                                               {
+  private static final String[] jqueryLocals = {
       "af",
       "ar",
       "az",
@@ -129,6 +128,7 @@ public class Head extends org.apache.struts2.components.Head {
       "kz",
       "lt",
       "lv",
+      "ml",
       "ms",
       "nl",
       "no",
@@ -151,7 +151,7 @@ public class Head extends org.apache.struts2.components.Head {
       "zh-CN",
       "zh-HK",
       "zh-TW"
-                                               };
+                                             };
 
   protected String              compressed;
   protected String              locale;

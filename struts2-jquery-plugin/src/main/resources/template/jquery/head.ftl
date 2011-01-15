@@ -26,7 +26,7 @@
 </#if>
 
 <#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4">
-<#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7">
+<#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8">
   
 <#if parameters.customBasepath?if_exists != "">
   <#assign basePath="${parameters.customBasepath?string}">
