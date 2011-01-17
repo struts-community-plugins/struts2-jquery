@@ -14,7 +14,7 @@
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />
 	<meta http-equiv="keywords" content="struts2,jquery, hibernate, plugin,showcase, grid" />
-	<meta http-equiv="description" content="Showcase for Struts2 jQuery Plugin and Full Hibernate Struts2 Plugins" />
+	<meta http-equiv="description" content="Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins" />
 	<link href="styles/layout.css" rel="stylesheet" type="text/css" />
 	<!--[if lte IE 7]>
 	<link href="styles/patch_layout.css" rel="stylesheet" type="text/css" />
@@ -39,8 +39,8 @@
     <div class="page">
       <div id="header" class="ui-widget-header">
         <div id="headline">
-	        <h1 class="ui-state-default" style="background: none; border: none;width: 700px">Showcase for Struts2 jQuery Plugin and Full Hibernate Struts2 Plugins</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version 2.5.0 / Full Hibernate Plugin - Version 2.2.1 GA</h4>
+	        <h1 class="ui-state-default" style="background: none; border: none;width: 700px">Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins</h1>
+	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version 2.5.1 / Full Hibernate Plugin - Version 2.2.1 GA</h4>
         </div>
       </div>
       <div id="nav">
