@@ -35,7 +35,7 @@
 	    <sj:a 
 	    	onClickTopics="closeEffectDialog"
 	    	button="true"
-	    	buttonIcon="ui-icon-newwin"
+	    	buttonIcon="ui-icon-close"
 	    >
 	    	Close effect dialog
 	    </sj:a>
