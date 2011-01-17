@@ -102,6 +102,12 @@ jQuery(document).ready(function () {
   <#if parameters.onBeforeCloseTopics?if_exists != "">
 	options_${escapedOptionId?html}.onbeforeclosetopics = "${parameters.onBeforeCloseTopics?html}";
   </#if>
+  <#if parameters.openTopics?if_exists != "">
+	options_${escapedOptionId?html}.opentopics = "${parameters.openTopics?html}";
+  </#if>
+  <#if parameters.closeTopics?if_exists != "">
+	options_${escapedOptionId?html}.closetopics = "${parameters.closeTopics?html}";
+  </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

@@ -45,7 +45,9 @@
 	handler : {
 	load :'_s2j_container_load',
 	form :'_s2j_form_submit',
-	effect :'_s2j_effects'
+	effect :'_s2j_effects',
+	open_dialog :'_s2j_open_dialog',
+	close_dialog :'_s2j_close_dialog'
 	},
 
 	/**
@@ -978,6 +980,15 @@
 		var params = {};
 		$.extend(params, o);
 		params.bgiframe = true;
+		
+		if(o.opentopics) {			  
+			self.subscribeTopics($elem, o.opentopics, self.handler.open_dialog, o);
+		}
+
+		if(o.closetopics) {			  
+			self.subscribeTopics($elem, o.closetopics, self.handler.close_dialog, o);
+		}
+		
 		if (o.hide) {
 			if (!self.loadAtOnce) {
 				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.hide + "" + self.minSuffix + ".js" ]);
@@ -1718,6 +1729,20 @@
 		}
 	}
 	};
+
+	/**
+	 * handler to open a dialog
+	 */
+	$.subscribeHandler($.struts2_jquery.handler.open_dialog, function(event, data) {
+		$(this).dialog('open');
+	});
+	
+	/**
+	 * handler to close a dialog
+	 */
+	$.subscribeHandler($.struts2_jquery.handler.close_dialog, function(event, data) {
+		$(this).dialog('close');
+	});
 
 	/**
 	 * Container logic

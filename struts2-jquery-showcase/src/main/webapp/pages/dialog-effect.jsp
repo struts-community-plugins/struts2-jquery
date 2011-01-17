@@ -27,11 +27,21 @@
     	autoOpen="false" 
     	modal="true" 
     	title="Dialog with Effect"
+    	openTopics="openEffectDialog"
+    	closeTopics="closeEffectDialog"
     >
-     Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+	    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+	    <hr />
+	    <sj:a 
+	    	onClickTopics="closeEffectDialog"
+	    	button="true"
+	    	buttonIcon="ui-icon-newwin"
+	    >
+	    	Close effect dialog
+	    </sj:a>
     </sj:dialog>
     <sj:a 
-    	openDialog="myeffectdialog" 
+    	onClickTopics="openEffectDialog"
     	button="true"
     	buttonIcon="ui-icon-newwin"
     >
@@ -50,11 +60,21 @@
     	autoOpen=&quot;false&quot; 
     	modal=&quot;true&quot; 
     	title=&quot;Dialog with Effect&quot;
+    	openTopics=&quot;openEffectDialog&quot;
+    	closeTopics=&quot;closeEffectDialog&quot;
     &gt;
-     Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+	    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+	    &lt;hr /&gt;
+	    &lt;sj:a 
+	    	onClickTopics=&quot;closeEffectDialog&quot;
+	    	button=&quot;true&quot;
+	    	buttonIcon=&quot;ui-icon-newwin&quot;
+	    &gt;
+	    	Close effect dialog
+	    &lt;/sj:a&gt;
     &lt;/sj:dialog&gt;
     &lt;sj:a 
-    	openDialog=&quot;myeffectdialog&quot; 
+    	onClickTopics=&quot;openEffectDialog&quot;
     	button=&quot;true&quot;
     	buttonIcon=&quot;ui-icon-newwin&quot;
     &gt;
