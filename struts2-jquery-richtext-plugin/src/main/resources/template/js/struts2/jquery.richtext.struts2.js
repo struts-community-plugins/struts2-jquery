@@ -106,6 +106,12 @@
 						self.publishTopic($elem, o.onalw, {});
 		      });
 				}
+				if (o.oncha) {
+					CKEDITOR.instances[o.id].on('change', function() {
+						self.publishTopic($elem, o.oncha, {});
+						self.publishTopic($elem, o.onalw, {});
+		      });
+				}
 			},
 
 			// Handle Tinymce
@@ -134,14 +140,16 @@
 
 				self.container($elem, o);
 				o.script_url = o.path+'tiny_mce.js';
-				if (o.onchangetopics) {
+				if (o.oncha) {
 					o.onchange_callback = function(ed) {
+						if (tinyMCE.activeEditor.isDirty()) { 
 							var data = {};
 							data.editor = ed;
 							data.content = ed.getBody().innerHTML;
 
 							self.publishTopic($elem, o.oncha, data);
 							self.publishTopic($elem, o.onalw, data);
+						}
 					};
 				}
 				if (o.onsavetopics) {
