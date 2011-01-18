@@ -152,7 +152,7 @@
 					var d = {};
 					d.response = response;
 					d.status = status;
-					self.publishTopic($elem, o.oncesuccess, d);
+					self.publishTopic($elem, o.onceerror, d);
 				};
 			}
 
@@ -167,8 +167,7 @@
 					self.publishTopic($elem, o.onselectalltopics, data);
 				};
 			}
-
-			if (o.onbeforetopics) {
+			if (o.onbef) {
 				params.loadBeforeSend = function(xhr) {
 
 					var orginal = {};
