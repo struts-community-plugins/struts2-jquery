@@ -34,6 +34,20 @@
     	navigatorView="false"
     	navigatorDelete="true"
     	navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
+    	navigatorExtraButtons="{
+    		seperator: { 
+    			title : 'seperator'  
+    		}, 
+    		hide : { 
+	    		title : 'Show/Hide', 
+	    		icon: 'ui-icon-wrench', 
+	    		topic: 'showcolumns'
+    		},
+    		alert : { 
+	    		title : 'Alert', 
+	    		onclick: function(){ alert('Grid Button clicked!') }
+    		}
+    	}"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
@@ -90,9 +104,9 @@
 	  <pre>
     &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt;
     &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt;
-    &lt;sj:grid
+    &lt;sjg:grid
     	id=&quot;gridedittable&quot;
-    	caption=&quot;Customer Examples (Editable)&quot;
+    	caption=&quot;Customers Examples (Editable)&quot;
     	dataType=&quot;json&quot;
     	href=&quot;%{remoteurl}&quot;
     	pager=&quot;true&quot;
@@ -104,6 +118,20 @@
     	navigatorView=&quot;false&quot;
     	navigatorDelete=&quot;true&quot;
     	navigatorDeleteOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
+    	navigatorExtraButtons=&quot;{
+    		seperator: { 
+    			title : 'seperator'  
+    		}, 
+    		hide : { 
+	    		title : 'Show/Hide', 
+	    		icon: 'ui-icon-wrench', 
+	    		topic: 'showcolumns'
+    		},
+    		alert : { 
+	    		title : 'Alert', 
+	    		onclick: function(){ alert('Grid Button clicked!') }
+    		}
+    	}&quot;
     	gridModel=&quot;gridModel&quot;
     	rowList=&quot;10,15,20&quot;
     	rowNum=&quot;15&quot;
@@ -111,16 +139,17 @@
     	editinline=&quot;true&quot;
     	onSelectRowTopics=&quot;rowselect&quot;
     	onEditInlineSuccessTopics=&quot;oneditsuccess&quot;
+    	viewrecords=&quot;true&quot;
     &gt;
-    	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot; editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; formatter=&quot;currency&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    &lt;/sj:grid&gt;
+    	&lt;sjg:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;30&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; width=&quot;250&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot; editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    &lt;/sjg:grid&gt;
 	&lt;br/&gt;
     &lt;sj:submit id=&quot;grid_edit_addbutton&quot; value=&quot;Add Row&quot; onClickTopics=&quot;rowadd&quot; button=&quot;true&quot;/&gt;
     &lt;sj:submit id=&quot;grid_edit_searchbutton&quot; value=&quot;Search&quot; onClickTopics=&quot;searchgrid&quot; button=&quot;true&quot;/&gt;

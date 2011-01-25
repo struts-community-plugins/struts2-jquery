@@ -185,6 +185,9 @@
 	  <#else>
 		options_${escapedOptionId?html}.navigatorview = false;
 	  </#if>
+	  <#if parameters.navigatorExtraButtons?if_exists != "">
+		options_${escapedOptionId?html}.navigatorextrabuttons = ${parameters.navigatorExtraButtons?html};
+	  </#if>
   </#if>
   <#if parameters.editinline?default(false)>
 	options_${escapedOptionId?html}.editinline = true;

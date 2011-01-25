@@ -92,6 +92,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      navigatorRefresh;
   protected String                      navigatorSearch;
   protected String                      navigatorView;
+  protected String                      navigatorExtraButtons;
   protected String                      autoencode;
   protected String                      cellEdit;
   protected String                      cellurl;
@@ -308,6 +309,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     if (navigatorRefresh != null) addParameter("navigatorRefresh", findValue(this.navigatorRefresh, Boolean.class));
     if (navigatorView != null) addParameter("navigatorView", findValue(this.navigatorView, Boolean.class));
     if (navigatorSearch != null) addParameter("navigatorSearch", findValue(this.navigatorSearch, Boolean.class));
+    if (navigatorExtraButtons != null) addParameter("navigatorExtraButtons", findString(navigatorExtraButtons));
 
     if (cellurl != null) addParameter("cellurl", findString(cellurl));
     if (multiselectWidth != null) addParameter("multiselectWidth", findString(multiselectWidth));
@@ -1159,6 +1161,12 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   public void setNavigatorView(String navigatorView)
   {
     this.navigatorView = navigatorView;
+  }
+
+  @StrutsTagAttribute(description = "Add extra buttons to Navigator. e.g.: { seperator: { title : 'seperator'  }, hidebutton : { title : 'Show Hide', icon: 'ui-icon-gear', topic: showHideGrid} }")
+  public void setNavigatorExtraButtons(String navigatorExtraButtons)
+  {
+    this.navigatorExtraButtons = navigatorExtraButtons;
   }
 
   @StrutsTagAttribute(description = "This method construct searching creating input elements just below the header elements of the grid.", defaultValue = "false", type = "Boolean")

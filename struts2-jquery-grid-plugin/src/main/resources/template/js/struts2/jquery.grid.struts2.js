@@ -434,6 +434,51 @@
 						o.navigatoreditoptions, o.navigatoraddoptions,
 						o.navigatordeleteoptions, o.navigatorsearchoptions,
 						o.navigatorviewoptions);
+				
+				if(o.navigatorextrabuttons) {
+					$.each(o.navigatorextrabuttons, function(name, options) {
+						if(options.title) {
+							if(options.title === "seperator"){
+								$elem.jqGrid('navSeparatorAdd', self.escId(o.pager));
+							}
+							else if (options.topic || options.onclick){
+								var bopts = {};
+								if(options.title) {
+									bopts.title = options.title;
+								}
+								if(options.position) {
+									bopts.position = options.position;
+								}
+								if(options.caption) {
+									bopts.caption = options.caption;
+								}
+								else {
+									bopts.caption = '';
+								}
+								if(options.icon) {
+									bopts.buttonicon = options.icon;
+								}
+								else{
+									bopts.buttonicon = "ui-icon-gear";
+								}
+								
+								if(options.topic) {
+									bopts.onClickButton = function() { 
+										var params = {};
+										params.grid = $elem;
+	
+										self.publishTopic($elem, options.topic, params);
+									};
+								}
+								else if (options.onclick) {
+									bopts.onClickButton = options.onclick;
+								}
+								
+								$elem.jqGrid('navButtonAdd', self.escId(o.pager), bopts); 
+							}
+						}
+					});
+				}
 			}
 			if (o.filter) {
 				var fpara = {};
