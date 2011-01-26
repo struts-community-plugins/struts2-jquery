@@ -1187,9 +1187,9 @@
 		self.log('datepicker : ' + o.id);
 		if (!self.loadAtOnce) {
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.datepicker" + self.minSuffix + ".js" ]);
-		}
-		if (self.local !== "en") {
-			self.require("i18n/jquery.ui.datepicker-" + self.local + ".min.js");
+			if (self.local !== "en") {
+				self.require("i18n/jquery.ui.datepicker-" + self.local + ".min.js");
+			}
 		}
 		var params = {};
 

@@ -62,11 +62,13 @@
 <#if parameters.loadFromGoogle?default(false)>
 	<script type="text/javascript" src="${jqueryGoogle}"></script>
 	<script type="text/javascript" src="${jqueryUiGoogle}"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
 <#else>
 	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryFile}"></script>
 	<#if parameters.jqueryui?default(true)>
  		<#if parameters.loadAtOnce?default(false)>
 	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
 		<#else>
 	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script>
 		</#if>
