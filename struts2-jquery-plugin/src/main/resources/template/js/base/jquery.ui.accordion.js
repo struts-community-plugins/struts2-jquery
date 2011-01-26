@@ -1,7 +1,7 @@
 /*
- * jQuery UI Accordion 1.8.8
+ * jQuery UI Accordion 1.8.9
  *
- * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
@@ -504,14 +504,16 @@ $.widget( "ui.accordion", {
 		// other classes are removed before the animation; this one needs to stay until completed
 		this.toHide.removeClass( "ui-accordion-content-active" );
 		// Work around for rendering bug in IE (#5421)
-		this.toHide.parent()[0].className = this.toHide.parent()[0].className;
+		if ( this.toHide.length ) {
+			this.toHide.parent()[0].className = this.toHide.parent()[0].className;
+		}
 
 		this._trigger( "change", null, this.data );
 	}
 });
 
 $.extend( $.ui.accordion, {
-	version: "1.8.8",
+	version: "1.8.9",
 	animations: {
 		slide: function( options, additions ) {
 			options = $.extend({

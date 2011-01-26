@@ -96,6 +96,7 @@ public class Head extends org.apache.struts2.components.Head {
   private static final String[] jqueryLocals = {
       "af",
       "ar",
+      "ar-DZ",
       "az",
       "bg",
       "bs",
@@ -105,7 +106,9 @@ public class Head extends org.apache.struts2.components.Head {
       "de",
       "el",
       "en",
+      "en-AU",
       "en-GB",
+      "en-NZ",
       "eo",
       "es",
       "et",
