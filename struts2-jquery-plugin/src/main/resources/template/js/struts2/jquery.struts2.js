@@ -835,7 +835,7 @@
 			self.jquerybutton($elem, o);
 		}
 
-		if (o.formids) {
+		if ((!o.href || o.href==='#') && o.formids) {
 			var formTopic = '_s2j_form_topic_' + o.id;
 			self.formsubmit($elem, o, formTopic);
 			$elem.publishOnEvent('click', formTopic);
@@ -894,26 +894,31 @@
 			self.jquerybutton($elem, o);
 		}
 
-		if (o.formids !== undefined) {
+		if ((!o.href || o.href === "#") && o.formids !== undefined) {
 			self.formsubmit($elem, o, formTopic);
 		}
 		else {
-			var cform = $elem.parents('form:first')[0];
-			if (cform !== undefined) {
-				var cf = $(cform);
-				var formid = cf.attr("id");
-				if (formid !== undefined) {
-					o.formids = formid;
-				}
-				else {
-					var randomid = 's2jqform' + Math.floor(Math.random() * 10000);
-					cf.attr('id', randomid);
-					o.formids = randomid;
-				}
-				self.formsubmit($elem, o, formTopic);
+			if(o.href && o.href !== "#"){
+				self.action($elem, o, self.handler.load, 'a');
 			}
 			else {
-				self.action($elem, o, self.handler.load, 'a');
+				var cform = $elem.parents('form:first')[0];
+				if (cform !== undefined) {
+					var cf = $(cform);
+					var formid = cf.attr("id");
+					if (formid !== undefined) {
+						o.formids = formid;
+					}
+					else {
+						var randomid = 's2jqform' + Math.floor(Math.random() * 10000);
+						cf.attr('id', randomid);
+						o.formids = randomid;
+					}
+					self.formsubmit($elem, o, formTopic);
+				}
+				else {
+					self.action($elem, o, self.handler.load, 'a');
+				}
 			}
 		}
 		if (o.onclick) {
