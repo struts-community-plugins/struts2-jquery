@@ -108,6 +108,9 @@ jQuery(document).ready(function () {
   <#if parameters.closeTopics?if_exists != "">
 	options_${escapedOptionId?html}.closetopics = "${parameters.closeTopics?html}";
   </#if>
+  <#if parameters.destroyTopics?if_exists != "">
+	options_${escapedOptionId?html}.destroytopics = "${parameters.destroyTopics?html}";
+  </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

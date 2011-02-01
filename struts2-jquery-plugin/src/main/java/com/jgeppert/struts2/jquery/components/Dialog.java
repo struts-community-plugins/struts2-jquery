@@ -119,6 +119,7 @@ public class Dialog extends AbstractRemoteBean {
   protected String                     onBeforeCloseTopics;
   protected String                     openTopics;
   protected String                     closeTopics;
+  protected String                     destroyTopics;
 
   public Dialog(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -166,6 +167,7 @@ public class Dialog extends AbstractRemoteBean {
     if (onFocusTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
     if (openTopics != null) addParameter("openTopics", findString(openTopics));
     if (closeTopics != null) addParameter("closeTopics", findString(closeTopics));
+    if (destroyTopics != null) addParameter("destroyTopics", findString(destroyTopics));
     if ((this.id == null || this.id.length() == 0))
     {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -344,5 +346,11 @@ public class Dialog extends AbstractRemoteBean {
   public void setCloseTopics(String closeTopics)
   {
     this.closeTopics = closeTopics;
+  }
+
+  @StrutsTagAttribute(description = "A comma delimited list of topics to destroy the dialog.")
+  public void setDestroyTopics(String destroyTopics)
+  {
+    this.destroyTopics = destroyTopics;
   }
 }

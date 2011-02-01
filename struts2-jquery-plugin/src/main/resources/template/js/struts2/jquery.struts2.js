@@ -47,7 +47,8 @@
 	form :'_s2j_form_submit',
 	effect :'_s2j_effects',
 	open_dialog :'_s2j_open_dialog',
-	close_dialog :'_s2j_close_dialog'
+	close_dialog :'_s2j_close_dialog',
+	destroy_dialog :'_s2j_destroy_dialog'
 	},
 
 	/**
@@ -994,6 +995,10 @@
 			self.subscribeTopics($elem, o.closetopics, self.handler.close_dialog, o);
 		}
 		
+		if(o.destroytopics) {			  
+			self.subscribeTopics($elem, o.destroytopics, self.handler.destroy_dialog, o);
+		}
+		
 		if (o.hide) {
 			if (!self.loadAtOnce) {
 				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.hide + "" + self.minSuffix + ".js" ]);
@@ -1023,7 +1028,18 @@
 		};
 		params.close = self.pubTops($elem, o.onalw, o.onclosetopics);
 		params.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
-		params.beforeclose = self.pubTops($elem, o.onalw, o.onbeforeclosetopics);
+		params.beforeclose = function() {
+
+			var data = {};
+			data.close = true;
+
+			self.publishTopic($elem, o.onalw, data);
+			self.publishTopic($elem, o.onbeforeclosetopics, data);
+
+			return data.close;
+		};
+
+		
 		params.drag = self.pubTops($elem, o.onalw, o.oncha);
 		$elem.dialog(params);
 	},
@@ -1757,6 +1773,13 @@
 	 */
 	$.subscribeHandler($.struts2_jquery.handler.close_dialog, function(event, data) {
 		$(this).dialog('close');
+	});
+
+	/**
+	 * handler to destroy a dialog
+	 */
+	$.subscribeHandler($.struts2_jquery.handler.destroy_dialog, function(event, data) {
+		$(this).dialog('destroy');
 	});
 
 	/**
