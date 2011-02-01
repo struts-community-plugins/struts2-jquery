@@ -405,17 +405,17 @@
 				if (!self.loadAtOnce) {
 					self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js" ]);
 				}
-				var ros = o.resizableoptions;
-				var ro = window[ros];
-				if (!ro) {
-					ro = eval("( " + ros + " )");
+				var ro = {};
+				if(o.resizableoptions) {
+					var ros = o.resizableoptions;
+					ro = window[ros];
+					if (!ro) {
+						ro = eval("( " + ros + " )");
+					}
+					ro.start = self.pubTops(c, o.onalw, o.resizableonstarttopics);
+					ro.stop = self.pubTops(c, o.onalw, o.resizableonstoptopics);
+					ro.resize = self.pubTops(c, o.onalw, o.resizableonresizetopics);
 				}
-				else {
-					ro = {};
-				}
-				ro.start = self.pubTops(c, o.onalw, o.resizableonstarttopics);
-				ro.stop = self.pubTops(c, o.onalw, o.resizableonstoptopics);
-				ro.resize = self.pubTops(c, o.onalw, o.resizableonresizetopics);
 				c.resizable(ro);
 			}
 		};
