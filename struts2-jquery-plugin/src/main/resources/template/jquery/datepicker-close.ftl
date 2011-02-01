@@ -103,6 +103,9 @@ jQuery(document).ready(function () {
   <#if parameters.minDayValue??>
 	options_${escapedOptionId?html}.mindate = new Date(${parameters.minYearValue?html}, ${parameters.minMonthValue?html}, ${parameters.minDayValue?html});
   </#if>
+  <#if parameters.inline?default(false)>
+	options_${escapedOptionId?html}.inline = true;
+  </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

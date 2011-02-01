@@ -114,6 +114,7 @@ public class DatePicker extends AbstractTopicsBean {
   protected String                      onChangeMonthYearTopics;
   protected String                      minDate;
   protected String                      maxDate;
+  protected String                      inline;
 
   protected String                      maxlength;
   protected String                      readonly;
@@ -139,6 +140,7 @@ public class DatePicker extends AbstractTopicsBean {
   public void evaluateParams()
   {
     super.evaluateParams();
+    boolean isInline = false;
 
     addParameter("jqueryaction", JQUERYACTION);
 
@@ -159,6 +161,12 @@ public class DatePicker extends AbstractTopicsBean {
     if (showOptions != null) addParameter("showOptions", findString(showOptions));
     if (yearRange != null) addParameter("yearRange", findString(yearRange));
     if (zindex != null) addParameter("zindex", findString(zindex));
+
+    if (inline != null)
+    {
+      isInline = (Boolean) findValue(inline, Boolean.class);
+      addParameter("inline", isInline);
+    }
 
     if (onBeforeShowDayTopics != null) addParameter("onBeforeShowDayTopics", findString(onBeforeShowDayTopics));
     if (onChangeMonthYearTopics != null) addParameter("onChangeMonthYearTopics", findString(onChangeMonthYearTopics));
@@ -187,7 +195,7 @@ public class DatePicker extends AbstractTopicsBean {
     {
       if (form != null) addParameter("parentTheme", form.getTheme());
     }
-    else
+    else if (isInline == false)
     {
       addParameter("parentTheme", "simple");
     }
@@ -444,6 +452,12 @@ public class DatePicker extends AbstractTopicsBean {
   public void setMaxDate(String maxDate)
   {
     this.maxDate = maxDate;
+  }
+
+  @StrutsTagAttribute(description = "Display the Datepicker inline. Default: false", defaultValue = "false", type = "Boolean")
+  public void setInline(String inline)
+  {
+    this.inline = inline;
   }
 
   @StrutsTagAttribute(description = "HTML maxlength attribute", type = "Integer")

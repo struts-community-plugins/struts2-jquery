@@ -96,8 +96,9 @@ h1 {
 }
 
 h2 {
-	display: inline;
+	display: block;
 	font-size: 13pt;
+	margin-bottom: 10px;
 }
 
 h4 {

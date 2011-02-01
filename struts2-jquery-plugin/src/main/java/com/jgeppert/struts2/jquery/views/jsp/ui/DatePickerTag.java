@@ -57,6 +57,7 @@ public class DatePickerTag extends AbstractTopicTag {
   protected String          onChangeMonthYearTopics;
   protected String          minDate;
   protected String          maxDate;
+  protected String          inline;
 
   protected String          maxlength;
   protected String          readonly;
@@ -95,6 +96,7 @@ public class DatePickerTag extends AbstractTopicTag {
     datePicker.setOnChangeMonthYearTopics(onChangeMonthYearTopics);
     datePicker.setMinDate(minDate);
     datePicker.setMaxDate(maxDate);
+    datePicker.setInline(inline);
     datePicker.setMaxlength(maxlength);
     datePicker.setSize(size);
     datePicker.setReadonly(readonly);
@@ -200,6 +202,11 @@ public class DatePickerTag extends AbstractTopicTag {
   public void setMaxDate(String maxDate)
   {
     this.maxDate = maxDate;
+  }
+
+  public void setInline(String inline)
+  {
+    this.inline = inline;
   }
 
   public void setMaxlength(String maxlength)

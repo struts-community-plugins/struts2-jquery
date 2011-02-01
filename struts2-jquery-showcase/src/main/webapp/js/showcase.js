@@ -103,6 +103,16 @@ $(document).ready(function() {
 	});
 
 	/*
+	 * Subscribe Topics for AJAX Datepicker Examples
+	 */
+  $.subscribe('onDpChangeMonthAndYear', function(event,data) {
+    alert('Change month to : '+event.originalEvent.month+' and year to '+event.originalEvent.year);
+  });
+	$.subscribe('onDpClose', function(event,data) {
+	    alert('Selected Date : '+event.originalEvent.dateText);
+	});
+
+	/*
 	 * Subscribe Topics for Dialog Event Example
 	 */
 	$.subscribe('dialogopentopic', function(event, ui) {

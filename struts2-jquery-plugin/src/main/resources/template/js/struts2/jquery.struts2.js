@@ -1233,13 +1233,18 @@
 				};
 			}
 
-			if (o.oncha) {
+			if (o.oncha || o.inline) {
 				params.onSelect = function(dateText, inst) {
-					var data = {};
-					data.dateText = dateText;
-					data.inst = inst;
-					self.publishTopic($elem, o.oncha, data);
-					self.publishTopic($elem, oat, data);
+					if(o.inline) {
+						$elem.val(dateText);
+					}
+					if(o.oncha) {
+						var data = {};
+						data.dateText = dateText;
+						data.inst = inst;
+						self.publishTopic($elem, o.oncha, data);
+						self.publishTopic($elem, oat, data);
+					}
 				};
 			}
 
@@ -1306,8 +1311,13 @@
 			}
 		}
 
-		$elem.datepicker(params);
-
+		if(o.inline) {
+			$(self.escId(o.id)+'_inline').datepicker(params);
+		}
+		else {
+			$elem.datepicker(params);
+		}
+		
 		if (o.year && o.month && o.day) {
 			$elem.val($.datepicker.formatDate(params.dateFormat, new Date(o.year, o.month, o.day)));
 		}

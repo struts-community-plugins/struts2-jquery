@@ -5,19 +5,12 @@
     <ul>
       <li><s:url id="urldatepicker" action="datepicker"/><sj:a href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
       <li><s:url id="urldatepickerbuttons" action="datepicker-buttons"/><sj:a href="%{urldatepickerbuttons}" targets="main">Datepicker with more options</sj:a></li>
+      <li><s:url id="urldatepickerinline" action="datepicker-inline"/><sj:a href="%{urldatepickerinline}" targets="main">Datepicker (Inline)</sj:a></li>
     </ul>
   </div>
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-    <script type="text/javascript">
-    $.subscribe('onDpChangeMonthAndYear', function(event,data) {
-        alert('Change month to : '+event.originalEvent.month+' and year to '+event.originalEvent.year);
-    });
-    $.subscribe('onDpClose', function(event,data) {
-        alert('Selected Date : '+event.originalEvent.dateText);
-    });
-    </script>
     <h2>Datepicker with more options</h2>
     <p class="text">
         A Datepicker with different options and animations.
