@@ -334,7 +334,7 @@
 								}
 							}
 
-							if (o.value !== undefined && o.value === option.value) {
+							if (o.value !== undefined && o.value == option.value) {
 								option.selected = true;
 							}
 
@@ -508,7 +508,7 @@
 			$.bbq.pushState(self.historyelements);
 			return false;
 		});
-		
+
 		$(window).bind('hashchange', params, function(e) {
 			var topic = e.getState(e.data.target) || '';
 			if (topic === '' || topic === self.lasttopic) { return; }
@@ -986,19 +986,19 @@
 		var params = {};
 		$.extend(params, o);
 		params.bgiframe = true;
-		
-		if(o.opentopics) {			  
+
+		if(o.opentopics) {
 			self.subscribeTopics($elem, o.opentopics, self.handler.open_dialog, o);
 		}
 
-		if(o.closetopics) {			  
+		if(o.closetopics) {
 			self.subscribeTopics($elem, o.closetopics, self.handler.close_dialog, o);
 		}
-		
-		if(o.destroytopics) {			  
+
+		if(o.destroytopics) {
 			self.subscribeTopics($elem, o.destroytopics, self.handler.destroy_dialog, o);
 		}
-		
+
 		if (o.hide) {
 			if (!self.loadAtOnce) {
 				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.hide + "" + self.minSuffix + ".js" ]);
@@ -1039,7 +1039,7 @@
 			return data.close;
 		};
 
-		
+
 		params.drag = self.pubTops($elem, o.onalw, o.oncha);
 		$elem.dialog(params);
 	},
@@ -1333,7 +1333,7 @@
 		else {
 			$elem.datepicker(params);
 		}
-		
+
 		if (o.year && o.month && o.day) {
 			$elem.val($.datepicker.formatDate(params.dateFormat, new Date(o.year, o.month, o.day)));
 		}
@@ -1767,7 +1767,7 @@
 	$.subscribeHandler($.struts2_jquery.handler.open_dialog, function(event, data) {
 		$(this).dialog('open');
 	});
-	
+
 	/**
 	 * handler to close a dialog
 	 */
@@ -1799,7 +1799,7 @@
 			$.extend(o, event.data);
 		}
 		_s2j.lasttopic = o.actionTopic;
-		
+
 		var isDisabled = false;
 		isDisabled = o.disabled === null ? isDisabled : o.disabled;
 		isDisabled = container.attr('disabled') === null ? isDisabled : container.attr('disabled');
