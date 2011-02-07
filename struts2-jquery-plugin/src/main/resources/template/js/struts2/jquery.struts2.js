@@ -511,9 +511,13 @@
 
 		$(window).bind('hashchange', params, function(e) {
 			var topic = e.getState(e.data.target) || '';
-			if (topic === '' || topic === self.lasttopic) { return; }
-			self.lasttopic = topic;
-			$.publish(topic, e.data.options);
+			$.each(e.fragment.split('&'), function(i, f) {
+				var fragment = f.split('='); 
+				if(self.historyelements[fragment[0]] !== fragment[1] && fragment[1] !== self.lasttopic ) {
+					self.lasttopic = topic;
+					$.publish(fragment[1], e.data.options);
+				}
+			});
 		});
 	},
 
