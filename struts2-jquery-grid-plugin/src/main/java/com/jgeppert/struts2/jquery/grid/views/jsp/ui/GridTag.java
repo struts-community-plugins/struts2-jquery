@@ -201,6 +201,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   protected String          sortableAxis;
   protected String          sortableAppendTo;
   protected String          sortable;
+  protected String          sortableRows;
 
   protected String          sortableOnOverTopics;
   protected String          sortableOnOutTopics;
@@ -370,6 +371,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
     grid.setDraggableZindex(draggableZindex);
     grid.setDraggableAddClasses(draggableAddClasses);
 
+    grid.setSortableRows(sortableRows);
     grid.setSortable(sortable);
     grid.setSortableAppendTo(sortableAppendTo);
     grid.setSortableAxis(sortableAxis);
@@ -1234,6 +1236,11 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag, Draggabl
   public void setSortable(String sortable)
   {
     this.sortable = sortable;
+  }
+
+  public void setSortableRows(String sortableRows)
+  {
+    this.sortableRows = sortableRows;
   }
 
   public void setConnectWith(String connectWith)

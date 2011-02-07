@@ -213,8 +213,8 @@
   <#if parameters.caption?if_exists != "">
 	options_${escapedOptionId?html}.caption = "${parameters.caption?html}";
   </#if>
-  <#if parameters.sortable?default(false)>
-	options_${escapedOptionId?html}.sortable = true;
+  <#if parameters.sortableRows?default(false)>
+	options_${escapedOptionId?html}.sortableRows = true;
   </#if>
   <#if parameters.shrinkToFit?exists>
 	options_${escapedOptionId?html}.shrinkToFit = ${parameters.shrinkToFit?string};

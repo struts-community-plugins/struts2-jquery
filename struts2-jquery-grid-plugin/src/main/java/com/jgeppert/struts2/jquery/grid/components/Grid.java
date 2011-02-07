@@ -195,6 +195,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      draggableOnStartTopics;
   protected String                      draggableOnStopTopics;
 
+  protected String                      sortable;
+  protected String                      sortableRows;
   protected String                      sortableZindex;
   protected String                      sortableTolerance;
   protected String                      sortableScrollSpeed;
@@ -219,7 +221,6 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
   protected String                      sortableCancel;
   protected String                      sortableAxis;
   protected String                      sortableAppendTo;
-  protected String                      sortable;
   protected String                      sortableOnBeforeStopTopics;
   protected String                      sortableOnStopTopics;
   protected String                      sortableOnStartTopics;
@@ -698,12 +699,13 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
       }
     }
 
-    if (sortable != null)
+    if (sortable != null) addParameter("sortable", findValue(this.sortable, Boolean.class));
+    if (sortableRows != null)
     {
-      String sortableValue = findString(sortable);
+      String sortableValue = findString(sortableRows);
       if (sortableValue != null && sortableValue.equalsIgnoreCase("true")) ;
       {
-        addParameter("sortable", Boolean.TRUE);
+        addParameter("sortableRows", Boolean.TRUE);
         StringBuilder sortableBuilder = new StringBuilder();
         sortableBuilder.append("{");
         if (sortableDropOnEmpty != null)
@@ -1667,10 +1669,16 @@ public class Grid extends AbstractRemoteBean implements ResizableBean, Droppable
     this.draggableZindex = draggableZindex;
   }
 
-  @StrutsTagAttribute(description = "Enable a elements to be sortable", type = "Boolean")
+  @StrutsTagAttribute(description = "Enable sortable columns", type = "Boolean")
   public void setSortable(String sortable)
   {
     this.sortable = sortable;
+  }
+
+  @StrutsTagAttribute(description = "Enable sortable rows", type = "Boolean")
+  public void setSortableRows(String sortableRows)
+  {
+    this.sortableRows = sortableRows;
   }
 
   @StrutsTagAttribute(description = "Defines where the helper that moves with the mouse is being appended to during the drag. Default: 'parent'")
