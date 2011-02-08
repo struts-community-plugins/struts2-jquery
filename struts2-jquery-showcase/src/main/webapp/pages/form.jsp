@@ -39,6 +39,7 @@
 	        </div>
 	        <div>
 	            <sj:submit 
+	            	id="formSubmit1"
 	            	targets="formResult" 
 	            	value="AJAX Submit" 
 	            	indicator="indicator"
@@ -46,6 +47,7 @@
 	            	/>
 				<s:url id="simpleecho" value="/simpleecho.action"/>
 	            <sj:submit 
+	            	id="formSubmit2"
 	            	href="%{simpleecho}" 
 	            	targets="formResult" 
 	            	value="AJAX Submit 2" 
@@ -69,9 +71,22 @@
 	            &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
 	        &lt;/div&gt;
 	        &lt;div class=&quot;type-button&quot;&gt;
-	            &lt;sj:submit targets=&quot;formResult&quot; value=&quot;AJAX Submit&quot; indicator=&quot;indicator&quot;/&gt;
+	            &lt;sj:submit 
+	            	id=&quot;formSubmit1&quot;
+	            	targets=&quot;formResult&quot; 
+	            	value=&quot;AJAX Submit&quot; 
+	            	indicator=&quot;indicator&quot;
+	            	button=&quot;true&quot;
+	            	/&gt;
 				&lt;s:url id=&quot;simpleecho&quot; value=&quot;/simpleecho.action&quot;/&gt;
-	            &lt;sj:submit href="%{simpleecho}" targets=&quot;formResult&quot; value=&quot;AJAX Submit 2&quot; indicator=&quot;indicator&quot;/&gt;
+	            &lt;sj:submit 
+	            	id=&quot;formSubmit2&quot;
+	            	href=&quot;%{simpleecho}&quot; 
+	            	targets=&quot;formResult&quot; 
+	            	value=&quot;AJAX Submit 2&quot; 
+	            	indicator=&quot;indicator&quot;
+	            	button=&quot;true&quot;
+	            	/&gt;
 	        &lt;/div&gt;
         &lt;/fieldset&gt;
     &lt;/s:form&gt;
