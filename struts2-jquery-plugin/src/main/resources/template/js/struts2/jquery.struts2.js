@@ -931,7 +931,18 @@
 				$elem.publishOnEvent('click', topic);
 			});
 		}
-		$elem.publishOnEvent('click', formTopic);
+		$elem.click( function() {
+			var form = $(self.escId(o.formids));
+			var submitForm = true;
+			if (o.validate) {
+				submitForm = self.validateForm(form, o);
+			}
+
+			if(submitForm) {
+				$elem.publish(formTopic);
+			}
+			return false;
+		});
 		$elem.removeAttr('name');
 	},
 
