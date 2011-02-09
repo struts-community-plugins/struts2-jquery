@@ -52,7 +52,7 @@
         </div>
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin Showcase</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;">Version 2.5.1</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;">Version 2.5.2</h4>
         	<img id="myDefaultIndicator" src="images/ajax-loader.gif" alt="Loading..." style="display:none"/>
         </div>
       </div>
