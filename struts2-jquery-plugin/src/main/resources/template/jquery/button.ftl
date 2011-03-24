@@ -19,6 +19,9 @@
  */
 -->
 	<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+	<#if parameters.disabled?default(false)>
+	options_${escapedOptionId?html}.disabled = true;
+	</#if>
 	<#if parameters.button?default(false)>
 	options_${escapedOptionId?html}.button = true;
 	</#if>

@@ -258,12 +258,11 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
           if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document"))
           {
-            resizableBuilder.append("'");
             resizableBuilder.append(containmentValue);
           }
           else
           {
-            resizableBuilder.append("'#");
+            resizableBuilder.append("#");
             resizableBuilder.append(containmentValue);
           }
           resizableBuilder.append("'");

@@ -308,6 +308,13 @@ $(document).ready(function() {
     }
 	});
 
+	/*
+	 * Subscribe Topics for Tree Example
+	 */
+	$.subscribe('treeClicked', function(event, data) {
+		  var item = event.originalEvent.data.rslt.obj;
+		  alert('Clicked ID : ' + item.attr("id") + ' - Text ' + item.text());
+	});
 
 	/*
 	 * Menu Highlight

@@ -4,8 +4,12 @@
 
     <s:url id="ordersurl" action="json-orders" />
     <s:url id="orderdetailsurl" action="json-orderdetails" />
+    <s:url id="subgridthreelevelurl" action="grid-subgrid-three-level" />
 
     <h2>Grid with Subgrid</h2>
+    
+    <p>Try out <sj:a href="%{subgridthreelevelurl}" targets="main" cssStyle="font-style:bold;">Subgrid with 3 Level.</sj:a></p>
+    
     <sjg:grid 
     	id="orderstable" 
     	caption="Orders with Orderdetails Subgrid" 
@@ -31,6 +35,7 @@
 	    	footerrow="true"
 	    	userDataOnFooter="true"
 	    >
+	    	<sjg:gridColumn name="productcode" key="true" title="Product Code" width="300" hidden="true"/>
 	    	<sjg:gridColumn name="productname" title="Product" width="300"/>
 	    	<sjg:gridColumn name="quantityordered" title="Quantity" formatter="integer" align="center"/>
 	    	<sjg:gridColumn name="priceeach" title="Price" formatter="currency" align="right"/>

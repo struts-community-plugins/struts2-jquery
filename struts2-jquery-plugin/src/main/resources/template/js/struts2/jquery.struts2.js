@@ -8,7 +8,7 @@
  * Tested with jQuery 1.4.4 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
- * Copyright (c) 2010 Johannes Geppert http://www.jgeppert.com
+ * Copyright (c) 2011 Johannes Geppert http://www.jgeppert.com
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -197,11 +197,10 @@
 				StrutsUtils.clearValidationErrors(form[0]);
 
 				// get errors from response
-				var text = request.responseText;
-				var errorsObject = StrutsUtils.getValidationErrors(text);
+				var errorsObject = StrutsUtils.getValidationErrors(request.responseText);
 
 				// show errors, if any
-				if (errorsObject.fieldErrors) {
+				if (errorsObject.fieldErrors || errorsObject.errors) {
 					StrutsUtils.showValidationErrors(form[0], errorsObject);
 					submit = false;
 				}
@@ -829,7 +828,7 @@
 
 		if (o.onclick) {
 			$.each(o.onclick.split(','), function(i, topic) {
-				$elem.publishOnEvent('click', topic);
+				$elem.publishOnEvent('click', topic, o);
 			});
 		}
 
@@ -931,6 +930,7 @@
 				$elem.publishOnEvent('click', topic);
 			});
 		}
+		/*
 		$elem.click( function() {
 			var form = $(self.escId(o.formids));
 			var submitForm = true;
@@ -943,6 +943,7 @@
 			}
 			return false;
 		});
+		*/
 		$elem.removeAttr('name');
 	},
 
@@ -966,6 +967,10 @@
 					self.history($elem, topic, target);
 				}
 			});
+			$elem.click( function() {
+				$elem.publish(topic);
+				return false;
+			});
 		}
 		else {
 			// Submit Forms without AJAX
@@ -977,15 +982,24 @@
 				}
 
 				if(submitForm) {
-					$(self.escId(o.formids)).submit();
+					form.submit();
 				}
 				return false;
 			});
 			if(o.listentopics) {
 				var params = {};
 				params.formids = o.formids;
+				params.validate = o.validate;
 				$elem.subscribe(o.listentopics, function(event) {
-					$(self.escId(event.data.formids)).submit();
+					var form = $(self.escId(event.data.formids));
+					var submitForm = true;
+					if (event.data.validate) {
+						submitForm = self.validateForm(form, o);
+					}
+
+					if(submitForm) {
+						form.submit();
+					}
 				}, params);
 			}
 		}
@@ -1016,13 +1030,13 @@
 
 		if (o.hide) {
 			if (!self.loadAtOnce) {
-				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.hide + "" + self.minSuffix + ".js" ]);
+				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.hide + self.minSuffix + ".js" ]);
 			}
 			params.hide = o.hide;
 		}
 		if (o.show) {
 			if (!self.loadAtOnce) {
-				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.show + "" + self.minSuffix + ".js" ]);
+				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.show + self.minSuffix + ".js" ]);
 			}
 			params.show = o.show;
 		}
@@ -1131,9 +1145,32 @@
 		if (o.onbef) {
 			para.show = self.pubTops($elem, o.onalw, o.onbef);
 		}
-		if (o.oncha) {
-			para.select = self.pubTops($elem, o.onalw, o.oncha);
-		}
+		para.select = function(event, ui) {
+			var data = {};
+			data.event = event;
+			data.ui = ui;
+
+			var form = $elem.data("tab"+ui.index)
+			if(form){
+				var links = $(self.escId(o.id)+" > ul").find("li a"); 
+				var u = $.data(links[ui.index], 'href.tabs')				
+				var q = $(self.escId(form)).formSerialize();
+				if (u.indexOf("?") === -1) {
+					u = u + '?';
+				}
+				else {
+					u = u + '&';
+				}
+				u = u + q;
+
+				$elem.tabs('url', ui.index, u);
+			}
+			
+			if(o.oncha) {
+				self.publishTopic($elem, o.oncha, data);
+				self.publishTopic($elem, o.onalw, data);
+			}
+		};
 		if (o.onenabletopics) {
 			para.enable = self.pubTops($elem, o.onalw, o.onenabletopics);
 		}
@@ -1166,7 +1203,9 @@
 				if (tab.cssclass) {
 					tabStr += "class='" + tab.cssclass + "' ";
 				}
+
 				tabStr += "><a href='" + tab.href + "' ";
+
 				if (tab.label) {
 					tabStr += "title='" + tab.label + "' ";
 				}
@@ -1180,6 +1219,10 @@
 					closable = true;
 				}
 				tabStr += "</li>";
+				if (tab.formIds) {
+					$elem.data("tab"+l, tab.formIds)
+				}
+
 			}
 			$(self.escId(o.id) + ' > ul').html(tabStr);
 		}
@@ -1698,6 +1741,9 @@
 			if (o.buttonIconSecondary) {
 				params.icons.secondary = o.buttonIconSecondary;
 			}
+			if (o.disabled) {
+				params.disabled = o.disabled;
+			}
 			$elem.button(params);
 		}
 	},
@@ -1780,7 +1826,27 @@
 	 * handler to open a dialog
 	 */
 	$.subscribeHandler($.struts2_jquery.handler.open_dialog, function(event, data) {
-		$(this).dialog('open');
+		var _s2j = $.struts2_jquery;
+		var o = {};
+		if (event.data) {
+			$.extend(o, event.data);
+		}
+		if (data) {
+			if (data.href) {
+				o.href = data.href;
+			}
+			if (data.hrefparameter) {
+				o.hrefparameter = data.hrefparameter;
+			}
+		}
+        if (o.href && o.href !== '#') {
+            o.targets = o.id;
+            var divTopic = '_s2j_dialog_load_' + o.id;
+            _s2j.subscribeTopics($(this), divTopic, _s2j.handler.load, o);
+            $(this).publish(divTopic, o);
+        }
+
+        $(this).dialog('open');
 	});
 
 	/**
@@ -2078,7 +2144,7 @@
 			}
 
 			if (!_s2j.loadAtOnce) {
-				_s2j.require( [ "js/base/jquery.effects.core" + _s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + "" + _s2j.minSuffix + ".js" ]);
+				_s2j.require( [ "js/base/jquery.effects.core" + _s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + _s2j.minSuffix + ".js" ]);
 			}
 			_s2j.log('effect ' + o.effect + ' for ' + o.targets);
 			if(!o.effectmode || o.effectmode === 'none' ) {

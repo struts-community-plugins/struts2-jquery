@@ -31,6 +31,9 @@ jQuery(document).ready(function () {
   <#if parameters.cssClass?if_exists != "">
 	options_tab_${escapedOptionId?html}.cssclass = "${parameters.cssClass?html}";
   </#if>
+  <#if parameters.formIds?if_exists != "">
+	options_tab_${escapedOptionId?html}.formIds = "${parameters.formIds?html}";
+  </#if>
   <#if parameters.href?if_exists != "">
 	options_tab_${escapedOptionId?html}.href = "${parameters.href?html}";
   <#elseif parameters.target?if_exists != "" >

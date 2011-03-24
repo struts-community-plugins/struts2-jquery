@@ -25,6 +25,7 @@
     	autoOpen="false" 
     	modal="true" 
     	title="Dialog with different Content"
+    	openTopics="openRemoteDialog"
     />
     
 	<s:url id="remoteurl1" action="ajax1"/>
@@ -41,7 +42,7 @@
     	Open Dialog One
     </sj:a>
     <sj:a 
-    	openDialog="myremotelinkdialog"
+    	onClickTopics="openRemoteDialog"
     	href="%{remoteurl1}"
     	button="true"
     	buttonIcon="ui-icon-newwin"
@@ -49,7 +50,7 @@
     	Open Dialog Two
     </sj:a>
     <sj:a 
-    	openDialog="myremotelinkdialog"
+    	onClickTopics="openRemoteDialog"
     	href="%{remoteurl3}"
     	button="true"
     	buttonIcon="ui-icon-newwin"
@@ -74,6 +75,7 @@
     	autoOpen=&quot;false&quot; 
     	modal=&quot;true&quot; 
     	title=&quot;Dialog with different Content&quot;
+    	openTopics=&quot;openRemoteDialog&quot;
     /&gt;
     
 	&lt;s:url id=&quot;remoteurl1&quot; action=&quot;ajax1&quot;/&gt;
@@ -90,7 +92,7 @@
     	Open Dialog One
     &lt;/sj:a&gt;
     &lt;sj:a 
-    	openDialog=&quot;myremotelinkdialog&quot;
+    	onClickTopics=&quot;openRemoteDialog&quot;
     	href=&quot;%{remoteurl1}&quot;
     	button=&quot;true&quot;
     	buttonIcon=&quot;ui-icon-newwin&quot;
@@ -98,7 +100,7 @@
     	Open Dialog Two
     &lt;/sj:a&gt;
     &lt;sj:a 
-    	openDialog=&quot;myremotelinkdialog&quot;
+    	onClickTopics=&quot;openRemoteDialog&quot;
     	href=&quot;%{remoteurl3}&quot;
     	button=&quot;true&quot;
     	buttonIcon=&quot;ui-icon-newwin&quot;

@@ -5,7 +5,7 @@
  *
  * Requires use of jquery.struts2.js
  *
- * Copyright (c) 2010 Johannes Geppert http://www.jgeppert.com
+ * Copyright (c) 2011 Johannes Geppert http://www.jgeppert.com
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -27,7 +27,7 @@
 		// Render a Chart Area
 		chart : function($elem, o) {
 			var self = this;
-			if ($.browser.msie) {
+			if ($.browser.msie && parseInt($.browser.version, 10) < 9) {
 				self.require("js/flot/excanvas" + self.minSuffix + ".js");
 			}
 			self.require("js/flot/jquery.flot" + self.minSuffix + ".js");

@@ -40,7 +40,9 @@ public class JsonOrdersAction extends ActionSupport
 	private static final long	serialVersionUID	= 5078264277068533593L;
 	private static final Log	log					= LogFactory.getLog(JsonOrdersAction.class);
 
-	// Your result List
+	  private Integer            id;
+
+	  // Your result List
 	private List<Orders>		gridModel;
 
 	// get how many rows we want to have into the grid - rowNum attribute in the
@@ -86,6 +88,12 @@ public class JsonOrdersAction extends ActionSupport
 
 		// Criteria to Build SQL
 		DetachedCriteria criteria = DetachedCriteria.forClass(Orders.class);
+
+	    if (id != null) {
+			criteria.createAlias("customer", "c");
+			criteria.add(Restrictions.eq("c.customernumber", id));
+	    }
+
 
 		// Handle Search
 		if (searchField != null)
@@ -274,5 +282,9 @@ public class JsonOrdersAction extends ActionSupport
 
 	public void setSearchOper(String searchOper) {
 		this.searchOper = searchOper;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

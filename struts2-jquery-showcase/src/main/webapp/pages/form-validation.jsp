@@ -30,7 +30,7 @@
     <strong>Result Div :</strong>
 	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
-    <s:form id="formValidate" action="login" theme="xhtml">
+    <s:form id="formValidate" action="login" theme="xhtml" target="_blank">
      	<s:textfield 
      		id="loginuser" 
      		name="loginuser" 
@@ -44,12 +44,26 @@
      		required="true"
      	/>
     	<sj:submit 
-    		targets="result" 
     		button="true" 
     		validate="true" 
     		value="Submit" 
     		indicator="indicator"
     		/>
+    	<sj:submit 
+    		targets="result" 
+    		button="true" 
+    		validate="true" 
+    		value="AJAX Submit" 
+    		indicator="indicator"
+    		/>
+    	<sj:a
+    		formIds="formValidate" 
+    		targets="result" 
+    		button="true" 
+    		buttonIcon="ui-icon-gear"
+    		validate="true" 
+    		indicator="indicator"
+    		>AJAX Submit as Link</sj:a>
     </s:form>
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
     
@@ -61,7 +75,7 @@
       <sj:tab id="tab2" target="javascript" label="Required JavaScript"/>
       <div id="jsp">
 	  <pre>
-    &lt;s:form id=&quot;formValidate&quot; action=&quot;login&quot; theme=&quot;xhtml&quot;&gt;
+    &lt;s:form id=&quot;formValidate&quot; action=&quot;login&quot; theme=&quot;xhtml&quot; target=&quot;_blank&quot;&gt;
      	&lt;s:textfield 
      		id=&quot;loginuser&quot; 
      		name=&quot;loginuser&quot; 
@@ -75,14 +89,28 @@
      		required=&quot;true&quot;
      	/&gt;
     	&lt;sj:submit 
-    		targets=&quot;result&quot; 
     		button=&quot;true&quot; 
     		validate=&quot;true&quot; 
-    		effect=&quot;pulsate&quot; 
     		value=&quot;Submit&quot; 
     		indicator=&quot;indicator&quot;
     		/&gt;
+    	&lt;sj:submit 
+    		targets=&quot;result&quot; 
+    		button=&quot;true&quot; 
+    		validate=&quot;true&quot; 
+    		value=&quot;AJAX Submit&quot; 
+    		indicator=&quot;indicator&quot;
+    		/&gt;
+    	&lt;sj:a
+    		formIds=&quot;formValidate&quot; 
+    		targets=&quot;result&quot; 
+    		button=&quot;true&quot; 
+    		buttonIcon=&quot;ui-icon-gear&quot;
+    		validate=&quot;true&quot; 
+    		indicator=&quot;indicator&quot;
+    		&gt;AJAX Submit as Link&lt;/sj:a&gt;
     &lt;/s:form&gt;
+    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
 	  </pre>
 	  </div>
       <div id="java">

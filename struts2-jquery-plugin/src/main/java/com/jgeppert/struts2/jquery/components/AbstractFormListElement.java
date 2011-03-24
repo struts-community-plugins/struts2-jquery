@@ -155,6 +155,11 @@ public abstract class AbstractFormListElement extends AbstractFormElement {
   {
     return ContainUtil.contains(obj1, obj2);
   }
+  
+  protected Class getValueClassType() {
+      return null; // don't convert nameValue to anything, we need the raw value
+  }
+
 
   @StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value'" + " parameter and the Map value will become the option body.", required = false)
   public void setList(Object list)
