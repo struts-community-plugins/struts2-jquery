@@ -148,6 +148,7 @@ public class Head extends org.apache.struts2.components.Head {
       "sv",
       "ta",
       "th",
+      "tj",
       "tr",
       "uk",
       "vi",
