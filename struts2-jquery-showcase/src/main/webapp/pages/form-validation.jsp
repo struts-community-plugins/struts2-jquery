@@ -48,6 +48,7 @@
     		validate="true" 
     		value="Submit" 
     		indicator="indicator"
+    		parentTheme="xhtml"
     		/>
     	<sj:submit 
     		targets="result" 
@@ -55,7 +56,10 @@
     		validate="true" 
     		value="AJAX Submit" 
     		indicator="indicator"
+    		parentTheme="xhtml"
     		/>
+      	<tr>
+    		<td colspan="2">
     	<sj:a
     		formIds="formValidate" 
     		targets="result" 
@@ -64,6 +68,8 @@
     		validate="true" 
     		indicator="indicator"
     		>AJAX Submit as Link</sj:a>
+    		</td>
+		</tr>
     </s:form>
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
     
