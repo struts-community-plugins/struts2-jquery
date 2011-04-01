@@ -25,6 +25,7 @@
 <#if parameters.cssStyle??>style="${parameters.cssStyle?html}" </#if><#rt/>
 <#if parameters.title??>title="${parameters.title?html}" </#if><#rt/>
 <#if parameters.role??>data-role="${parameters.role?html}" </#if><#rt/>
+<#if parameters.dataTheme??>data-theme="${parameters.dataTheme?html}" </#if><#rt/>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />

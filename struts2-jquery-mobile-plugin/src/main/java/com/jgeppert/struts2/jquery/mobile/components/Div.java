@@ -65,6 +65,19 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  * <!-- END SNIPPET: example2 -->
  * 
+ * 
+ * <!-- START SNIPPET: example3 -->
+ * <p>
+ * A Div with theme <strong>n</strong>
+ * </p>
+ * 
+ * <pre>
+ * &lt;sjm:div dataTheme=&quot;b&quot;&gt;
+ * &lt;/sjm:div&gt;
+ * </pre>
+ * 
+ * <!-- END SNIPPET: example3 -->
+ * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
@@ -77,8 +90,9 @@ public class Div extends org.apache.struts2.components.Div {
 	private static final transient Random RANDOM = new Random();
 
 	protected String role;
+  protected String dataTheme;
 
-	public Div(ValueStack stack, HttpServletRequest request,
+  public Div(ValueStack stack, HttpServletRequest request,
 			HttpServletResponse response) {
 		super(stack, request, response);
 	}
@@ -96,6 +110,8 @@ public class Div extends org.apache.struts2.components.Div {
 
 		if (role != null)
 			addParameter("role", findString(role));
+    if (dataTheme != null)
+      addParameter("dataTheme", findString(dataTheme));
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -123,4 +139,10 @@ public class Div extends org.apache.struts2.components.Div {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+  @StrutsTagAttribute(description = "set the div theme. e.g. a,b,c,d or e")
+  public void setDataTheme(String dataTheme)
+  {
+    this.dataTheme = dataTheme;
+  }
 }

@@ -38,6 +38,7 @@ public class DivTag extends org.apache.struts2.views.jsp.ui.DivTag {
 	private static final long serialVersionUID = 5331150687827132425L;
 
 	protected String role;
+  protected String dataTheme;
 
 	public Component getBean(ValueStack stack, HttpServletRequest req,
 			HttpServletResponse res) {
@@ -49,9 +50,15 @@ public class DivTag extends org.apache.struts2.views.jsp.ui.DivTag {
 
 		Div div = (Div) component;
 		div.setRole(role);
+		div.setDataTheme(dataTheme);
 	}
 
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+  public void setDataTheme(String dataTheme)
+  {
+    this.dataTheme = dataTheme;
+  }
 }

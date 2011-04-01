@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags"%>
-		<sjm:div role="page" id="searchfieldpage">
+		<sjm:div role="page" id="searchfieldpage" dataTheme="c">
 			<sjm:div role="header">
 				<sjm:a button="true" buttonIcon="arrow-l" data-rel="back">Back</sjm:a>
 				<h1>Examples for Searchfield Tag</h1>
