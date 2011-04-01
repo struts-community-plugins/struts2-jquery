@@ -42,7 +42,8 @@
 					name="echo" 
 					rows="10" 
 					cols="80" 
-					width="800"
+					width="730"
+					height="400"
 					uploads="true"
 					value="Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
 				/>
@@ -87,10 +88,11 @@
 					name=&quot;echo&quot; 
 					rows=&quot;10&quot; 
 					cols=&quot;80&quot; 
-					width=&quot;800&quot;
+					width=&quot;730&quot;
+					height=&quot;400&quot;
+					uploads=&quot;true&quot;
 					value=&quot;Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&quot;
-				&gt;
-				&lt;/sjr:ckeditor&gt;
+				/&gt;
 				</strong>
 	        &lt;/div&gt;
 	        &lt;div class=&quot;type-button&quot;&gt;
