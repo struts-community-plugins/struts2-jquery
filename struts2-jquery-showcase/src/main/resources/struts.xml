@@ -29,5 +29,13 @@
     <constant name="struts.devMode" value="false" />
     <constant name="struts.convention.result.path" value="/pages"/>
     <constant name="struts.convention.action.packages" value="com.jgeppert.struts2.jquery.showcase"/>
+    <constant name="struts.custom.i18n.resources" value="messages" />
+    
+    
+    <!-- Settings for CKEditor Image Upload -->
+    <constant name="struts.ckeditor.allowUploads" value="true" /> <!-- default is false -->
+    <constant name="struts.ckeditor.allowedFileExtensions" value="jpg,jpeg,png" />
+    <constant name="sstruts.ckeditor.uploadFolder" value="/imageUploads" />
+    
     <include file="showcase.xml" />
 </struts>

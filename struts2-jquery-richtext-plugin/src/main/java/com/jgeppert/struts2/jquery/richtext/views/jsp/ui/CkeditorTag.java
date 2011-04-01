@@ -49,6 +49,8 @@ public class CkeditorTag extends TextareaTag {
   protected String          editorLocal;
   protected String          customConfig;
   protected String          onEditorReadyTopics;
+  protected String          uploads;
+  protected String          uploadHref;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -71,6 +73,8 @@ public class CkeditorTag extends TextareaTag {
     editor.setEditorLocal(editorLocal);
     editor.setCustomConfig(customConfig);
     editor.setOnEditorReadyTopics(onEditorReadyTopics);
+    editor.setUploadHref(uploadHref);
+    editor.setUploads(uploads);
   }
 
   public void setCols(String cols)
@@ -126,5 +130,15 @@ public class CkeditorTag extends TextareaTag {
   public void setOnEditorReadyTopics(String onEditorReadyTopics)
   {
     this.onEditorReadyTopics = onEditorReadyTopics;
+  }
+
+  public void setUploads(String uploads)
+  {
+    this.uploads = uploads;
+  }
+
+  public void setUploadHref(String uploadHref)
+  {
+    this.uploadHref = uploadHref;
   }
 }

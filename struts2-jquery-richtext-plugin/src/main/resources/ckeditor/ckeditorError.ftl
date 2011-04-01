@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!--
+<#--
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -19,17 +18,5 @@
  * under the License.
  */
 -->
-<!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
-    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
-    
-<struts>
-    <bean type="org.apache.struts2.views.TagLibrary" name="sjr" class="com.jgeppert.struts2.jquery.richtext.views.JqueryRichtextTagLibrary" />
-    
-	<package name="ckedior" namespace="/ckeditor" extends="struts-default">
-		<action name="upload" class="com.jgeppert.struts2.jquery.richtext.actions.CkeditorUpload">
-			<result type="freemarker" name="error">/ckeditor/ckeditorError.ftl</result>
-		</action>
-	</package>
-    
-</struts>
+
+<@s.actionerror />

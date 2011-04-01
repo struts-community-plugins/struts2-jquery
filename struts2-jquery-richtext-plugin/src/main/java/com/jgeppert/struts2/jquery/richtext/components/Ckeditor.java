@@ -61,6 +61,8 @@ public class Ckeditor extends Textarea {
   protected String                      editorLocal;
   protected String                      customConfig;
   protected String                      onEditorReadyTopics;
+  protected String                      uploads;
+  protected String                      uploadHref;
 
   public Ckeditor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
     super(stack, request, response);
@@ -135,6 +137,16 @@ public class Ckeditor extends Textarea {
     if (onEditorReadyTopics != null)
     {
       addParameter("onEditorReadyTopics", findString(onEditorReadyTopics));
+    }
+
+    if (uploads != null)
+    {
+      addParameter("uploads", findValue(uploads, Boolean.class));
+    }
+
+    if (uploadHref != null)
+    {
+      addParameter("uploadHref", findString(uploadHref));
     }
 
     if ((this.id == null || this.id.length() == 0))
@@ -225,5 +237,17 @@ public class Ckeditor extends Textarea {
   public void setOnEditorReadyTopics(String onEditorReadyTopics)
   {
     this.onEditorReadyTopics = onEditorReadyTopics;
+  }
+
+  @StrutsTagAttribute(description = "Enable Uploads for this Editor Instance.", type = "Boolean", defaultValue = "false")
+  public void setUploads(String uploads)
+  {
+    this.uploads = uploads;
+  }
+
+  @StrutsTagAttribute(description = "Use a custom Upload URL")
+  public void setUploadHref(String uploadHref)
+  {
+    this.uploadHref = uploadHref;
   }
 }

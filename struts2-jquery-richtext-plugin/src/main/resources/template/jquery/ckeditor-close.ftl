@@ -47,6 +47,14 @@ jQuery(document).ready(function () {
 	<#if parameters.editorLocal?if_exists != ""> 
 	options_${escapedOptionId?html}.editorLocal = "${parameters.editorLocal?html}";
 	</#if>
+	<#if parameters.uploads?default(false)>
+		<#if parameters.uploadHref?if_exists != ""> 
+	options_${escapedOptionId?html}.filebrowserUploadUrl = "${parameters.uploadHref}";
+		<#else>
+	<@s.url id="ckeditorUploadUrl" action="upload" namespace="/ckeditor"/>
+	options_${escapedOptionId?html}.filebrowserUploadUrl = "<@s.property value="ckeditorUploadUrl" />";
+		</#if>
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
