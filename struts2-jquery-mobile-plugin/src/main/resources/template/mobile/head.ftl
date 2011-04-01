@@ -25,12 +25,12 @@
   <#assign javaMobileScriptBasePath="${base}/struts/">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryMobileFile="jquery.mobile-1.0a3.js">
-  <#assign jqueryMobileCss="jquery.mobile-1.0a3.css">
+  <#assign jqueryMobileFile="jquery.mobile-1.0a4.js">
+  <#assign jqueryMobileCss="jquery.mobile-1.0a4.css">
   <#assign jqueryMobileStrutsFile="jquery.mobile.struts2.min.js">
 <#else>
-  <#assign jqueryMobileFile="jquery.mobile-1.0a3.min.js">
-  <#assign jqueryMobileCss="jquery.mobile-1.0a3.min.css">
+  <#assign jqueryMobileFile="jquery.mobile-1.0a4.min.js">
+  <#assign jqueryMobileCss="jquery.mobile-1.0a4.min.css">
   <#assign jqueryMobileStrutsFile="jquery.mobile.struts2.min.js">
 </#if>
 	<script type="text/javascript" src="${javaMobileScriptBasePath}js/plugins/${jqueryMobileFile}"></script>
