@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery and jQuery UI optional.
- * Tested with jQuery 1.4.4 and jQuery UI 1.8
+ * Tested with jQuery 1.5.1 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2011 Johannes Geppert http://www.jgeppert.com
@@ -50,6 +50,7 @@
 	close_dialog :'_s2j_close_dialog',
 	destroy_dialog :'_s2j_destroy_dialog'
 	},
+	currentXhr :{},
 
 	/**
 	 * helper function for debug logging
@@ -1611,7 +1612,7 @@
 		if(url !== '') {
 			if(o.list) {
 				params.source = function(request, response) {
-
+					var self = $.struts2_jquery;
 					jQuery.ui.autocomplete.prototype._renderItem = function( ul, item ) {
 					  return $( "<li></li>" )
 					    .data( "item.autocomplete", item )
@@ -1619,13 +1620,17 @@
 					    .appendTo( ul );
 					};
 
-					$.ajax({
+					if(self.currentXhr[o.id] && self.currentXhr[o.id] != null){
+						self.currentXhr[o.id].abort();
+					}
+					self.currentXhr[o.id] = $.ajax({
 						url: url,
 						dataType: "json",
 						data: {
 						term: request.term
 						},
 						success: function(data) {
+							self.currentXhr[o.id] = null;
 							var x = 0;
 							if (data[o.list] !== null) {
 								var isMap = false;
