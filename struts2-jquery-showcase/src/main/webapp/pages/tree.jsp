@@ -58,14 +58,15 @@
   <strong>Result Div :</strong>
   <div id="result" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
 
-    <h2>Dynamic Tree</h2>
+ 
+    <h2>Dynamic Tree with AJAX Links</h2>
     <p class="text">
-        A Tree Component rendered on the server.
+        A Tree Component rendered on the server with AJAX Links.
     </p>
 
 		<s:url id="echo" value="/echo.action"/>
     	<sjt:tree 
-    		id="treeDynamic" 
+    		id="treeDynamicAjax" 
     		jstreetheme="default"
     		rootNode="nodes"
     		childCollectionProperty="children"
@@ -73,13 +74,21 @@
     		nodeIdProperty="id"
     		nodeHref="%{echo}"
     		nodeHrefParamName="echo"
+    		nodeTargets="result2"
     	/>
-  </div>
+
+  <strong>Result Div :</strong>
+  <div id="result2" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
+
   
   <div class="code ui-widget-content ui-corner-all">
     <strong>Code:</strong>
     <pre>
-    	&lt;sjt:tree id=&quot;tree&quot; jstreetheme=&quot;default&quot;&gt;
+    &lt;h2&gt;Static Tree&lt;/h2&gt;
+    &lt;p class=&quot;text&quot;&gt;
+        A simple static Tree Component.
+    &lt;/p&gt;
+    	&lt;sjt:tree id=&quot;treeStatic&quot; jstreetheme=&quot;default&quot;&gt;
     		&lt;sjt:treeItem title=&quot;Struts2&quot;&gt;
 	    		&lt;sjt:treeItem title=&quot;General&quot;&gt;
 		    		&lt;sjt:treeItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org/2.x/index.html&quot;/&gt;
@@ -105,10 +114,31 @@
     			&lt;/sjt:treeItem&gt;
     		&lt;/sjt:treeItem&gt;
     	&lt;/sjt:tree&gt;
-  &lt;/div&gt;
   
   &lt;strong&gt;Result Div :&lt;/strong&gt;
   &lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Links above.&lt;/div&gt;
+
+ 
+    &lt;h2&gt;Dynamic Tree with AJAX Links&lt;/h2&gt;
+    &lt;p class=&quot;text&quot;&gt;
+        A Tree Component rendered on the server with AJAX Links.
+    &lt;/p&gt;
+
+		&lt;s:url id=&quot;echo&quot; value=&quot;/echo.action&quot;/&gt;
+    	&lt;sjt:tree 
+    		id=&quot;treeDynamicAjax&quot; 
+    		jstreetheme=&quot;default&quot;
+    		rootNode=&quot;nodes&quot;
+    		childCollectionProperty=&quot;children&quot;
+    		nodeTitleProperty=&quot;title&quot;
+    		nodeIdProperty=&quot;id&quot;
+    		nodeHref=&quot;%{echo}&quot;
+    		nodeHrefParamName=&quot;echo&quot;
+    		nodeTargets=&quot;result2&quot;
+    	/&gt;
+
+  &lt;strong&gt;Result Div :&lt;/strong&gt;
+  &lt;div id=&quot;result2&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Links above.&lt;/div&gt;
     </pre>
   </div>
   <!-- IE Column Clearing -->

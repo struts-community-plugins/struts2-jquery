@@ -63,6 +63,7 @@ public class Tree extends AbstractContainer {
 	protected String nodeIdProperty;
 	protected String nodeHref;
 	protected String nodeHrefParamName;
+	protected String nodeTargets;
 
 	public Tree(ValueStack stack, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -110,6 +111,8 @@ public class Tree extends AbstractContainer {
 			addParameter("nodeHref", findString(nodeHref));
 		if (nodeHrefParamName != null)
 			addParameter("nodeHrefParamName", findString(nodeHrefParamName));
+		if (nodeTargets != null)
+			addParameter("nodeTargets", findString(nodeTargets));
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -212,5 +215,10 @@ public class Tree extends AbstractContainer {
     @StrutsTagAttribute(description="The href parameter name for node link.", defaultValue="id")
 	public void setNodeHrefParamName(String nodeHrefParamName) {
 		this.nodeHrefParamName = nodeHrefParamName;
+	}
+
+    @StrutsTagAttribute(description="AJAX targets for node items.")
+	public void setNodeTargets(String nodeTargets) {
+		this.nodeTargets = nodeTargets;
 	}
 }

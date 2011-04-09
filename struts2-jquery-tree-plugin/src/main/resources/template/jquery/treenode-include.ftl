@@ -20,11 +20,37 @@
 -->
 		<li id="${stack.findValue(parameters.nodeIdProperty)}">
     <#if parameters.nodeHref?exists>
-			<a href="${parameters.nodeHref}?${parameters.nodeHrefParamName?default('id')}=${stack.findValue(parameters.nodeIdProperty)}">
-    <#else>
-			<a href="javascript:void(0">
-    </#if>				${stack.findValue(parameters.nodeTitleProperty)}
+		<#if parameters.nodeTargets?if_exists != ""> 
+			<a id="${stack.findValue(parameters.nodeIdProperty)}_anchor" href="javascript:void(0)">
+    				${stack.findValue(parameters.nodeTitleProperty)}
 			</a>
+			<#assign escapedOptionId="${stack.findValue(parameters.nodeIdProperty)?string?replace('.', '_')}_anchor">
+			<#assign escapedId="${stack.findValue(parameters.nodeIdProperty)?string?replace('.', '\\\\\\\\.')}_anchor">
+			<script type='text/javascript'>
+				jQuery(document).ready(function () { 
+					var options_${escapedOptionId?html} = {};
+					options_${escapedOptionId?html}.jqueryaction = "treeitem";
+					options_${escapedOptionId?html}.id = "${stack.findValue(parameters.nodeIdProperty)}_anchor";
+				  <#if parameters.nodeTargets?if_exists != "">
+					options_${escapedOptionId?html}.targets = "${parameters.nodeTargets?html}";
+				  </#if>
+				  <#if parameters.nodeHref?if_exists != "">
+					options_${escapedOptionId?html}.href = "${parameters.nodeHref?html}";
+				  </#if>
+					options_${escapedOptionId?html}.hrefparameter = "${parameters.nodeHrefParamName?default('id')}=${stack.findValue(parameters.nodeIdProperty)}";
+					jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
+		 		});  
+			</script>
+	    <#else>
+			<a href="${parameters.nodeHref}?${parameters.nodeHrefParamName?default('id')}=${stack.findValue(parameters.nodeIdProperty)}">
+    				${stack.findValue(parameters.nodeTitleProperty)}
+			</a>
+		</#if>
+    <#else>
+			<a href="javascript:void(0)">
+    				${stack.findValue(parameters.nodeTitleProperty)}
+			</a>
+    </#if>
 			<ul>
 <#list stack.findValue(parameters.childCollectionProperty.toString())! as child>
     ${stack.push(child)}

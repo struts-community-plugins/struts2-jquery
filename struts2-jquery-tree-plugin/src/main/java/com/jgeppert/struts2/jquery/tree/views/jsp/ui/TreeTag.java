@@ -51,6 +51,7 @@ public class TreeTag extends AbstractContainerTag {
 	protected String nodeIdProperty;
 	protected String nodeHref;
 	protected String nodeHrefParamName;
+	protected String nodeTargets;
 
 	public Component getBean(ValueStack stack, HttpServletRequest req,
 			HttpServletResponse res) {
@@ -74,6 +75,7 @@ public class TreeTag extends AbstractContainerTag {
 		tree.setNodeTitleProperty(nodeTitleProperty);
 		tree.setNodeHref(nodeHref);
 		tree.setNodeHrefParamName(nodeHrefParamName);
+		tree.setNodeTargets(nodeTargets);
 	}
 
 	public void setJstreetheme(String jstreetheme) {
@@ -126,6 +128,10 @@ public class TreeTag extends AbstractContainerTag {
 
 	public void setNodeHrefParamName(String nodeHrefParamName) {
 		this.nodeHrefParamName = nodeHrefParamName;
+	}
+
+	public void setNodeTargets(String nodeTargets) {
+		this.nodeTargets = nodeTargets;
 	}
 
 }
