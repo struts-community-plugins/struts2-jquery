@@ -12,7 +12,7 @@ $.jgrid = {
 		recordtext: "Ver {0} - {1} of {2}",
 	    emptyrecords: "Nenhum registro para visualizar",
 		loadtext: "Carregando...",
-		pgtext : "Página {0} de {1}"
+		pgtext : "PÃ¡gina {0} de {1}"
 	},
 	search : {
 	    caption: "Procurar...",
@@ -29,23 +29,23 @@ $.jgrid = {
 	    bSubmit: "Enviar",
 	    bCancel: "Cancelar",
 		bClose: "Fechar",
-		saveData: "Os dados foram alterados! Salvar alterações?",
+		saveData: "Os dados foram alterados! Salvar alteraÃ§Ãµes?",
 		bYes : "Sim",
-		bNo : "Não",
+		bNo : "NÃ£o",
 		bExit : "Cancelar",
 	    msg: {
-	        required:"Campo obrigatório",
-	        number:"Por favor, informe um número válido",
+	        required:"Campo obrigatÃ³rio",
+	        number:"Por favor, informe um nÃºmero vÃ¡lido",
 	        minValue:"valor deve ser igual ou maior que ",
 	        maxValue:"valor deve ser menor ou igual a",
-	        email: "este e-mail não é válido",
+	        email: "este e-mail nÃ£o Ã© vÃ¡lido",
 	        integer: "Por favor, informe um valor inteiro",
-			date: "Por favor, informe uma data válida",
-			url: "não é uma URL válida. Prefixo obrigatório ('http://' or 'https://')",
-			nodefined : " não está definido!",
-			novalue : " um valor de retorno é obrigatório!",
-			customarray : "Função customizada deve retornar um array!",
-			customfcheck : "Função customizada deve estar presente em caso de validação customizada!"
+			date: "Por favor, informe uma data vÃ¡lida",
+			url: "nÃ£o Ã© uma URL vÃ¡lida. Prefixo obrigatÃ³rio ('http://' or 'https://')",
+			nodefined : " nÃ£o estÃ¡ definido!",
+			novalue : " um valor de retorno Ã© obrigatÃ³rio!",
+			customarray : "FunÃ§Ã£o customizada deve retornar um array!",
+			customfcheck : "FunÃ§Ã£o customizada deve estar presente em caso de validaÃ§Ã£o customizada!"
 		}
 	},
 	view : {
@@ -91,15 +91,15 @@ $.jgrid = {
 		currency : {decimalSeparator:",", thousandsSeparator: ".", decimalPlaces: 2, prefix: "R$ ", suffix:"", defaultValue: '0,00'},
 		date : {
 			dayNames:   [
-				"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb",
-				"Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
+				"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "SÃ¡b",
+				"Domingo", "Segunda", "TerÃ§a", "Quarta", "Quinta", "Sexta", "SÃ¡bado"
 			],
 			monthNames: [
 				"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez",
-				"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+				"Janeiro", "Fevereiro", "MarÃ§o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 			],
 			AmPm : ["am","pm","AM","PM"],
-			S: function (j) {return j < 11 || j > 13 ? ['º', 'º', 'º', 'º'][Math.min((j - 1) % 10, 3)] : 'º'},
+			S: function (j) {return j < 11 || j > 13 ? ['Âº', 'Âº', 'Âº', 'Âº'][Math.min((j - 1) % 10, 3)] : 'Âº'},
 			srcformat: 'Y-m-d',
 			newformat: 'd/m/Y',
 			masks : {
