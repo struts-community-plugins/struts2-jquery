@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 2.63 (29-JAN-2011)
+ * version: 2.69 (06-APR-2011)
  * @requires jQuery v1.3.2 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -64,6 +64,7 @@ $.fn.ajaxSubmit = function(options) {
 
 	options = $.extend(true, {
 		url:  url,
+		success: $.ajaxSettings.success,
 		type: this[0].getAttribute('method') || 'GET', // IE7 massage (see issue 57)
 		iframeSrc: /^https/i.test(window.location.href || '') ? 'javascript:false' : 'about:blank'
 	}, options);
@@ -205,8 +206,14 @@ $.fn.ajaxSubmit = function(options) {
 			getResponseHeader: function() {},
 			setRequestHeader: function() {},
 			abort: function() {
+				log('aborting upload...');
+				var e = 'aborted';
 				this.aborted = 1;
 				$io.attr('src', s.iframeSrc); // abort op in progress
+				xhr.error = e;
+				s.error && s.error.call(s.context, xhr, 'error', e);
+				g && $.event.trigger("ajaxError", [xhr, s, e]);
+				s.complete && s.complete.call(s.context, xhr, 'error');
 			}
 		};
 
@@ -310,10 +317,15 @@ $.fn.ajaxSubmit = function(options) {
 		var data, doc, domCheckCount = 50;
 
 		function cb() {
-			doc = io.contentWindow ? io.contentWindow.document : io.contentDocument ? io.contentDocument : io.document;
+			if (xhr.aborted) {
+				return;
+			}
+			
+			var doc = io.contentWindow ? io.contentWindow.document : io.contentDocument ? io.contentDocument : io.document;
 			if (!doc || doc.location.href == s.iframeSrc) {
 				// response not received yet
-				return;
+				if (!timedOut)
+					return;
 			}
             io.detachEvent ? io.detachEvent('onload', cb) : io.removeEventListener('load', cb, false);
 
@@ -375,7 +387,7 @@ $.fn.ajaxSubmit = function(options) {
 				log('error caught:',e);
 				ok = false;
 				xhr.error = e;
-				s.error.call(s.context, xhr, 'error', e);
+				s.error && s.error.call(s.context, xhr, 'error', e);
 				g && $.event.trigger("ajaxError", [xhr, s, e]);
 			}
 			
@@ -386,7 +398,7 @@ $.fn.ajaxSubmit = function(options) {
 
 			// ordering of these callbacks/triggers is odd, but that's how $.ajax does it
 			if (ok) {
-				s.success.call(s.context, data, 'success', xhr);
+				s.success && s.success.call(s.context, data, 'success', xhr);
 				g && $.event.trigger("ajaxSuccess", [xhr, s]);
 			}
 			
@@ -801,4 +813,3 @@ function log() {
 };
 
 })(jQuery);
-
