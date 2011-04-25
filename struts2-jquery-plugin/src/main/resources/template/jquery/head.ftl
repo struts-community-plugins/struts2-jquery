@@ -25,8 +25,8 @@
   <#assign javaScriptBasePath="${base}/struts/">
 </#if>
 
-<#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1">
-<#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11">
+<#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2">
+<#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12">
 
 <#if parameters.customBasepath?if_exists != "">
   <#assign basePath="${parameters.customBasepath?string}">
@@ -34,7 +34,7 @@
   <#assign basePath="${javaScriptBasePath}themes">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryFile="jquery-1.5.1.min.js">
+  <#assign jqueryFile="jquery-1.5.2.min.js">
   <#assign jqueryForm="jquery.form.min.js">
   <#assign jqueryUIFile="jquery-ui.min.js">
   <#assign jqueryUICoreFile="jquery.ui.core.min.js">
@@ -46,7 +46,7 @@
   <#assign jqueryGoogle="${googlePath}/jquery.min.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
-  <#assign jqueryFile="jquery-1.5.1.js">
+  <#assign jqueryFile="jquery-1.5.2.js">
   <#assign jqueryForm="jquery.form.js">
   <#assign jqueryUIFile="jquery-ui.js">
   <#assign jqueryUICoreFile="jquery.ui.core.js">
@@ -64,7 +64,7 @@
 	<#if parameters.jqueryui?default(true)>
 	<script type="text/javascript" src="${jqueryUiGoogle}"></script>
 		<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
 		</#if>
 	</#if>
 <#else>
