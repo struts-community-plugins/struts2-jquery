@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery and jQuery UI optional.
- * Tested with jQuery 1.5.1 and jQuery UI 1.8
+ * Tested with jQuery 1.5 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2011 Johannes Geppert http://www.jgeppert.com
@@ -154,6 +154,17 @@
 		}
 	},
 
+	/** Abort current requests */
+	abortReq : function(id) {
+		var self = this;
+		if(self.currentXhr[id] && self.currentXhr[id] != null){
+			self.log("abort request in state " + self.currentXhr[id].readyState);
+			if(self.currentXhr[id].readyState < 4) {
+			 self.currentXhr[id].abort();
+			}
+		}
+	},
+
 	/** Helper function to validate Forms */
 	validateForm : function(form, o) {
 		var self = this;
@@ -208,7 +219,9 @@
 			}
 			self.log('form validation : ' + submit);
 		};
+
 		$.ajax(params);
+
 		return submit;
 	},
 
@@ -1620,9 +1633,7 @@
 					    .appendTo( ul );
 					};
 
-					if(self.currentXhr[o.id] && self.currentXhr[o.id] != null){
-						self.currentXhr[o.id].abort();
-					}
+					self.abortReq(o.id);
 					self.currentXhr[o.id] = $.ajax({
 						url: url,
 						dataType: "json",
@@ -1992,7 +2003,8 @@
 					_s2j.publishTopic(container, o.onbef, o);
 
 					// Execute Ajax Request
-					$.ajax(params);
+					_s2j.abortReq(o.id);
+					_s2j.currentXhr[o.id] = $.ajax(params);
 				}
 			}
 		}
