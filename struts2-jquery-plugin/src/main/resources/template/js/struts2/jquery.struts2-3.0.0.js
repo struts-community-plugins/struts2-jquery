@@ -157,10 +157,10 @@
 	/** Abort current requests */
 	abortReq : function(id) {
 		var self = this;
-		if(self.currentXhr[id] && self.currentXhr[id] != null){
-			self.log("abort request in state " + self.currentXhr[id].readyState);
-			if(self.currentXhr[id].readyState < 4) {
-			 self.currentXhr[id].abort();
+		var xhr = self.currentXhr[id];
+		if(xhr && xhr != null){
+			if(xhr.readyState < 4) {
+				xhr.abort();
 			}
 		}
 	},
