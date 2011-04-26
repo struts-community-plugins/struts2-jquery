@@ -27,11 +27,11 @@
 <#if parameters.compressed?default(true)>
   <#assign jqueryMobileFile="jquery.mobile-1.0a4.js">
   <#assign jqueryMobileCss="jquery.mobile-1.0a4.css">
-  <#assign jqueryMobileStrutsFile="jquery.mobile.struts2.min.js">
+  <#assign jqueryMobileStrutsFile="jquery.mobile.struts2-3.0.0.min.js">
 <#else>
   <#assign jqueryMobileFile="jquery.mobile-1.0a4.min.js">
   <#assign jqueryMobileCss="jquery.mobile-1.0a4.min.css">
-  <#assign jqueryMobileStrutsFile="jquery.mobile.struts2.min.js">
+  <#assign jqueryMobileStrutsFile="jquery.mobile.struts2-3.0.0.min.js">
 </#if>
 	<script type="text/javascript" src="${javaMobileScriptBasePath}js/plugins/${jqueryMobileFile}"></script>
 	<script type="text/javascript" src="${javaMobileScriptBasePath}js/struts2/${jqueryMobileStrutsFile}"></script>
