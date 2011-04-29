@@ -43,15 +43,21 @@
 					rows="10" 
 					cols="80" 
 					width="730"
-					height="400"
+					height="250"
 					uploads="true"
+					onFocusTopics="focusRichtext"
+					onBlurTopics="blurRichtext"
+					onChangeTopics="highlightRichtext"
 					value="Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
 				/>
 	        </div>
 	        <div class="type-button">
-				<sj:submit 
+				<sj:submit
+					id="richtextSubmitButton"
+					formIds="formRichtext" 
 					targets="result" 
-					value="AJAX Submit" 
+					listenTopics="saveRichtext"
+					value="Save Button" 
 					indicator="indicator" 
 					button="true"
 				/>
@@ -82,23 +88,27 @@
             &lt;legend&gt;AJAX Form&lt;/legend&gt;
 	        &lt;div class=&quot;type-text&quot;&gt;
 	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-	            <strong>
 				&lt;sjr:ckeditor 
 					id=&quot;richtextEditor&quot; 
 					name=&quot;echo&quot; 
 					rows=&quot;10&quot; 
 					cols=&quot;80&quot; 
 					width=&quot;730&quot;
-					height=&quot;400&quot;
+					height=&quot;250&quot;
 					uploads=&quot;true&quot;
+					onFocusTopics=&quot;focusRichtext&quot;
+					onBlurTopics=&quot;blurRichtext&quot;
+					onChangeTopics=&quot;highlightRichtext&quot;
 					value=&quot;Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&quot;
 				/&gt;
-				</strong>
 	        &lt;/div&gt;
 	        &lt;div class=&quot;type-button&quot;&gt;
-				&lt;sj:submit 
+				&lt;sj:submit
+					id=&quot;richtextSubmitButton&quot;
+					formIds=&quot;formRichtext&quot; 
 					targets=&quot;result&quot; 
-					value=&quot;AJAX Submit&quot; 
+					listenTopics=&quot;saveRichtext&quot;
+					value=&quot;Save Button&quot; 
 					indicator=&quot;indicator&quot; 
 					button=&quot;true&quot;
 				/&gt;
@@ -112,6 +122,7 @@
 
     &lt;strong&gt;Result Div :&lt;/strong&gt;
 	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
+
 	  </pre>
 	</div>
   </div>

@@ -317,6 +317,22 @@ $(document).ready(function() {
 	});
 
 	/*
+	 * Subscribe Topics for Reichtext Example
+	 */
+	$.subscribe('focusRichtext', function(event, data) {
+		$("#result").addClass('ui-state-active');
+		$("#result").removeClass('ui-state-highlight');
+	});
+	$.subscribe('blurRichtext', function(event, data) {
+		$("#result").removeClass('ui-state-active');
+		$("#result").removeClass('ui-state-highlight');
+	});
+	$.subscribe('highlightRichtext', function(event, data) {
+		$("#result").removeClass('ui-state-active');
+		$("#result").addClass('ui-state-highlight');
+	});
+
+	/*
 	 * Menu Highlight
 	 */
 	$('div.ui-widget-header > ul > li').click(function() {

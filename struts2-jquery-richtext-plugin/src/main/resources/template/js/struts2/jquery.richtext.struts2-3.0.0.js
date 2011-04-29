@@ -25,6 +25,7 @@
 			debugPrefix :'[struts2_jquery_richtext] ',
 			editors : [],
 			editorsTinymce : [],
+			ckeditorTimer : undefined,
 
 			// clear orphan instances from memory
 		  clean: function($elem){
@@ -93,23 +94,29 @@
 					self.container($elem, o);
 					$elem.ckeditor(callbackFunction, o);
 				}
+				
+				inst = CKEDITOR.instances[o.id];
+
 				if (o.onblurtopics) {
-					CKEDITOR.instances[o.id].on('blur', function() {
-						self.publishTopic($elem, o.onblurtopics, {});
-						self.publishTopic($elem, o.onalw, {});
+					inst.on('blur', function(e) {
+						var ed = $(self.escId(e.editor.element.$.id))
+						self.publishTopic(ed, o.onblurtopics, {editor: ed});
+						self.publishTopic(ed, o.onalw, {editor: ed});
 		      });
 				}
-
+				
 				if (o.onfocustopics) {
-					CKEDITOR.instances[o.id].on('focus', function() {
-						self.publishTopic($elem, o.onfocustopics, {});
-						self.publishTopic($elem, o.onalw, {});
+					inst.on('focus', function(e) {
+						var ed = $(self.escId(e.editor.element.$.id))
+						self.publishTopic(ed, o.onfocustopics, {editor: ed});
+						self.publishTopic(ed, o.onalw, {editor: ed});
 		      });
 				}
 				if (o.oncha) {
-					CKEDITOR.instances[o.id].on('change', function() {
-						self.publishTopic($elem, o.oncha, {});
-						self.publishTopic($elem, o.onalw, {});
+					inst.on('change', function(e) {
+						var ed = $(self.escId(e.editor.element.$.id))
+						self.publishTopic(ed, o.oncha, {editor: ed});
+						self.publishTopic(ed, o.onalw, {editor: ed});
 		      });
 				}
 			},
