@@ -56,6 +56,9 @@
 			toolbarButtonsRow3="tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen"
 			toolbarButtonsRow4="insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage"
 			onSaveTopics="submitRichtextForm"
+			onFocusTopics="focusRichtext"
+			onBlurTopics="blurRichtext"
+			onChangeTopics="highlightRichtext"
 		/>
 		<sj:submit 
 			id="formRichtextSubmit"
@@ -87,19 +90,26 @@
 			name=&quot;echo&quot; 
 			rows=&quot;10&quot; 
 			cols=&quot;80&quot; 
-			width=&quot;800&quot;
+			width=&quot;700&quot;
+			resizable=&quot;true&quot;
 			href=&quot;%{remoteurl}&quot; 
 			editorLocal=&quot;de&quot;
 			editorTheme=&quot;advanced&quot;
 			editorSkin=&quot;o2k7&quot;
 			toolbarAlign=&quot;left&quot;
 			toolbarLocation=&quot;top&quot;
+			statusbarLocation=&quot;bottom&quot;
+			resizable=&quot;true&quot; 
+			pastePlainText=&quot;true&quot;
 			plugins=&quot;safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template&quot;
 			toolbarButtonsRow1=&quot;save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect&quot;
-			toolbarButtonsRow2=&quot;cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor&quot;
+			toolbarButtonsRow2=&quot;cut,copy,pastetext,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor&quot;
 			toolbarButtonsRow3=&quot;tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen&quot;
 			toolbarButtonsRow4=&quot;insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage&quot;
 			onSaveTopics=&quot;submitRichtextForm&quot;
+			onFocusTopics=&quot;focusRichtext&quot;
+			onBlurTopics=&quot;blurRichtext&quot;
+			onChangeTopics=&quot;highlightRichtext&quot;
 		/&gt;
 		&lt;sj:submit 
 			id=&quot;formRichtextSubmit&quot;

@@ -187,6 +187,23 @@
 				o.setup = function(ed) {
 					ed.onInit.add(function(ed) {
 						tinyMCE.execCommand('mceRepaint');
+
+						var dom = ed.dom;
+            var doc = ed.getDoc();
+
+    				if (o.onblurtopics) {
+	            tinymce.dom.Event.add(doc, 'blur', function(e) {
+    						self.publishTopic($elem, o.onblurtopics, {editor: ed});
+    						self.publishTopic($elem, o.onalw, {editor: ed});
+	            });
+    				}
+    				if (o.onfocustopics) {
+	            tinymce.dom.Event.add(doc, 'focus', function(e) {
+    						self.publishTopic($elem, o.onfocustopics, {editor: ed});
+    						self.publishTopic($elem, o.onalw, {editor: ed});
+	            });
+    				}
+
 					});
 					ed.onSaveContent.add(function(ed, l) {
 						return false;
