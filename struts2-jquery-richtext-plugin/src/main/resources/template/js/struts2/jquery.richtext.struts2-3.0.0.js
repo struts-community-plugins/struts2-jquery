@@ -34,7 +34,7 @@
 			}
 			$.each(self.editors, function(i, editor) {
 				var inst = CKEDITOR.instances[editor];
-				if ($elem.length === 0 || !inst || inst.textarea != $elem[0]) {
+				if ($elem.length === 0 || !inst || inst.textarea !== $elem[0]) {
 					$.struts2_jquery_richtext.editors.splice(i);
 					delete CKEDITOR.instances[editor];
 				}
@@ -70,7 +70,7 @@
 				o.language = self.local;
 			}
 
-			if (o.href && o.href != '#') {
+			if (o.href && o.href !== '#') {
 				var ckeditorTopic = 's2j_ckeditor_' + o.id;
 
 				// If Topic already subscribed, then remove it and subscribe it
@@ -99,7 +99,7 @@
 
 			if (o.onblurtopics) {
 				inst.on('blur', function(e) {
-					var ed = $(self.escId(e.editor.element.$.id))
+					var ed = $(self.escId(e.editor.element.$.id));
 					self.publishTopic(ed, o.onblurtopics, {
 						editor : ed
 					});
@@ -111,7 +111,7 @@
 
 			if (o.onfocustopics) {
 				inst.on('focus', function(e) {
-					var ed = $(self.escId(e.editor.element.$.id))
+					var ed = $(self.escId(e.editor.element.$.id));
 					self.publishTopic(ed, o.onfocustopics, {
 						editor : ed
 					});
@@ -122,7 +122,7 @@
 			}
 			if (o.oncha) {
 				inst.on('change', function(e) {
-					var ed = $(self.escId(e.editor.element.$.id))
+					var ed = $(self.escId(e.editor.element.$.id));
 					self.publishTopic(ed, o.oncha, {
 						editor : ed
 					});
@@ -132,6 +132,7 @@
 				});
 			}
 		},
+		/*
 		tinymceForm : function(formids) {
 			var self = this;
 			if(formids) {
@@ -144,6 +145,7 @@
 				});
 			}
 		},
+		*/
 		// Handle Tinymce
 		tinymce : function($elem, o) {
 			var self = this;
@@ -241,7 +243,7 @@
 					ed.onKeyDown
 							.add(function(ed, e) {
 								if (e.ctrlKey
-										&& (e.charCode == 118 || e.keyCode == 86)) {
+										&& (e.charCode === 118 || e.keyCode === 86)) {
 									ed.execCommand("mcePasteText", true);
 									ed.execCommand("mceAddUndoLevel");
 									return tinymce.dom.Event.cancel(e);
@@ -261,7 +263,7 @@
 				o.language = self.local;
 			}
 
-			if (o.href && o.href != '#') {
+			if (o.href && o.href !== '#') {
 				var tinymceTopic = 's2j_tinymce_' + o.id;
 
 				// If Topic already subscribed, then remove it and subscribe it
