@@ -7,6 +7,7 @@
 	<s:url id="customersurl" action="json-table" escapeAmp="false" />
 	
     <h2>Grid with Subgrid - Three Level</h2>
+    
     <sjg:grid 
     	id="customerstable" 
     	caption="Customers" 

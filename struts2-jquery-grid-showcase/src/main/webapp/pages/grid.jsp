@@ -20,7 +20,7 @@
     <h2>Grid</h2>
     <p>
 		<strong>The Database in this Showcase is per default read-only!</strong><br/>
-		Make Samples editable with following <sj:a id="openStepsDialog" openDialog="readWriteSteps" cssStyle="font-weight: bold; text-decoration: underline;">Steps</sj:a>.
+		Make Samples editable with following <sj:a id="openStepsDialog" openDialog="readWriteSteps">Steps</sj:a>.
 		<sj:dialog
 			id="readWriteSteps"
 			modal="true"
