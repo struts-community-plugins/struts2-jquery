@@ -18,24 +18,7 @@
  * under the License.
  */
 -->
-<div data-role="fieldcontain">
-<#if parameters.label??>
-    <label <#t/>
-<#if parameters.id??>
-        for="${parameters.id?html}" <#t/>
-</#if>
-        class="label"<#t/>
-    ><#t/>
-<#if parameters.required?default(false) && parameters.requiredposition?default("right") != 'right'>
-        <span class="required">*</span><#t/>
-</#if>
-${parameters.label?html}<#t/>
-<#if parameters.required?default(false) && parameters.requiredposition?default("right") == 'right'>
- <span class="required">*</span><#t/>
-</#if>
-${parameters.labelseparator?default(":")?html}<#t/>
-</label><#t/>
-</#if>
+<#include "/${parameters.templateDir}/mobile/controlheader.ftl" />
 <input type="range"<#rt/>
  name="${parameters.name?default("")?html}"<#rt/>
 <#if parameters.max??>
@@ -77,4 +60,4 @@ ${parameters.labelseparator?default(":")?html}<#t/>
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 />
-</div>
+<#include "/${parameters.templateDir}/mobile/controlfooter.ftl" />

@@ -18,7 +18,13 @@
  * under the License.
  */
 -->
+<#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
 <div data-role="fieldcontain">
+<#if hasFieldErrors>
+<#list fieldErrors[parameters.name] as error>
+        <div class="errorMessage">${error?html}</div><#t/>
+</#list>
+</#if>
  	<fieldset data-role="controlgroup"
  	<#if parameters.horizontal?default(false)>
 		data-type="horizontal"

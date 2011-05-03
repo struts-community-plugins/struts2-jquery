@@ -18,6 +18,4 @@
  * under the License.
  */
 -->
-<#include "/${parameters.templateDir}/mobile/controlheader.ftl" />
-<#include "/${parameters.templateDir}/simple/select.ftl" />
-<#include "/${parameters.templateDir}/mobile/controlfooter.ftl" />
+</div>
