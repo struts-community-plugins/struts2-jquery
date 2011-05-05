@@ -1993,8 +1993,9 @@
 					_s2j.publishTopic(container, o.onbef, o);
 
 					// Execute Ajax Request
-					_s2j.abortReq(o.id);
-					_s2j.currentXhr[o.id] = $.ajax(params);
+					var cid = container.attr('id');
+					_s2j.abortReq(cid);
+					_s2j.currentXhr[cid] = $.ajax(params);
 				}
 			}
 		}
