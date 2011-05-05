@@ -856,7 +856,6 @@
 		if ((!o.href || o.href==='#') && o.formids) {
 			var formTopic = '_s2j_form_topic_' + o.id;
 			self.formsubmit($elem, o, formTopic);
-			$elem.publishOnEvent('click', formTopic);
 		}
 		else {
 
@@ -944,20 +943,6 @@
 				$elem.publishOnEvent('click', topic);
 			});
 		}
-		/*
-		$elem.click( function() {
-			var form = $(self.escId(o.formids));
-			var submitForm = true;
-			if (o.validate) {
-				submitForm = self.validateForm(form, o);
-			}
-
-			if(submitForm) {
-				$elem.publish(formTopic);
-			}
-			return false;
-		});
-		*/
 		$elem.removeAttr('name');
 	},
 
@@ -980,6 +965,11 @@
 				if (self.ajaxhistory) {
 					self.history($elem, topic, target);
 				}
+			});
+			$.each(o.formids.split(','), function(i, f) {
+				$(self.escId(f)).bind("submit", function(e) { 
+					e.preventDefault(); 
+				});
 			});
 			$elem.click( function() {
 				$elem.publish(topic);

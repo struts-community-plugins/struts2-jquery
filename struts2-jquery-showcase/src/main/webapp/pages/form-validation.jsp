@@ -27,29 +27,25 @@
 	<p class="text">
 	   A Form submission with AJAX Validation for Forms with XHTML Theme.
 	</p>
+	
+	<h2>Form Submit with AJAX</h2>
+	
     <strong>Result Div :</strong>
 	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
-    <s:form id="formValidate" action="login" theme="xhtml" target="_blank">
+    <s:form id="formValidateAjax" action="login" theme="xhtml" target="_blank">
      	<s:textfield 
-     		id="loginuser" 
+     		id="loginuser1" 
      		name="loginuser" 
      		label="User" 
      		required="true"
      	/>
      	<s:textfield 
-     		id="loginpassword" 
+     		id="loginpassword1" 
      		name="loginpassword" 
      		label="Password (test)" 
      		required="true"
      	/>
-    	<sj:submit 
-    		button="true" 
-    		validate="true" 
-    		value="Submit" 
-    		indicator="indicator"
-    		parentTheme="xhtml"
-    		/>
     	<sj:submit 
     		targets="result" 
     		button="true" 
@@ -61,7 +57,7 @@
       	<tr>
     		<td colspan="2">
     	<sj:a
-    		formIds="formValidate" 
+    		formIds="formValidateAjax" 
     		targets="result" 
     		button="true" 
     		buttonIcon="ui-icon-gear"
@@ -72,6 +68,31 @@
 		</tr>
     </s:form>
     <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
+    
+    <br/>
+    <h2>Form Submit without AJAX</h2>
+    
+    <s:form id="formValidateNoAjax" action="login" theme="xhtml" target="_blank">
+     	<s:textfield 
+     		id="loginuser2" 
+     		name="loginuser" 
+     		label="User" 
+     		required="true"
+     	/>
+     	<s:textfield 
+     		id="loginpassword2" 
+     		name="loginpassword" 
+     		label="Password (test)" 
+     		required="true"
+     	/>
+    	<sj:submit 
+    		button="true" 
+    		validate="true" 
+    		value="Submit" 
+    		indicator="indicator"
+    		parentTheme="xhtml"
+    		/>
+    </s:form>
     
     <br/>
     
