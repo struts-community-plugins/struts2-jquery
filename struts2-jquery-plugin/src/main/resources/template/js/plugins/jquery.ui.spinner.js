@@ -1,23 +1,17 @@
-/*!
- *jQuery UI Spinner 1.25
+/*
+ *jQuery UI Spinner 1.21
  *
  *Copyright (c) 2009-2010 Brant Burnett
  *Copyright (c) 2010 Johannes Geppert http://www.jgeppert.com
  *Dual licensed under the MIT or GPL Version 2 licenses.
- *
- *  Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
- *	jquery.ui.mouse.js
- *	jquery.ui.position.js
  */
-(function($, undefined) {
+ (function($, undefined) {
 
 var
 	// constants
-	active = "ui-state-active",
-	hover = "ui-state-hover",
-	disabled = "ui-state-disabled",
+	active = 'ui-state-active',
+	hover = 'ui-state-hover',
+	disabled = 'ui-state-disabled',
 
 	keyCode = $.ui.keyCode,
 	up = keyCode.UP,
@@ -30,10 +24,10 @@ var
 	end = keyCode.END,
 
 	msie = $.browser.msie,
-	mouseWheelEventName = $.browser.mozilla ? "DOMMouseScroll" : "mousewheel",
+	mouseWheelEventName = $.browser.mozilla ? 'DOMMouseScroll' : 'mousewheel',
 
 	// namespace for events on input
-	eventNamespace = ".uispinner",
+	eventNamespace = '.uispinner',
 
 	// only these special keys will be accepted, all others will be ignored unless CTRL or ALT are pressed
 	validKeys = [up, down, right, left, pageUp, pageDown, home, end, keyCode.BACKSPACE, keyCode.DELETE, keyCode.TAB],
@@ -44,47 +38,47 @@ var
 	// this is because hitting up/down arrows with mouse causes focus to change, but blur event for previous control doesn't fire
 	focusCtrl;
 
-$.widget( "ui.spinner" , {
+$.widget('ui.spinner', {
 	options: {
 		min: null,
 		max: null,
 		allowNull: false,
 
-		group: "" ,
-		point: "." ,
-		prefix: "" ,
-		suffix: "" ,
+		group: '',
+		point: '.',
+		prefix: '',
+		suffix: '',
 		places: null, // null causes it to detect the number of places in step
 
-		defaultStep: 1, // real value is "step" , and should be passed as such.  This value is used to detect if passed value should override HTML5 attribute
+		defaultStep: 1, // real value is 'step', and should be passed as such.  This value is used to detect if passed value should override HTML5 attribute
 		largeStep: 10,
 		mouseWheel: true,
-		increment: "slow" ,
+		increment: 'slow',
 		className: null,
-		showOn: "always" ,
+		showOn: 'always',
 		width: 16,
-		upIconClass: "ui-icon-triangle-1-n" ,
-		downIconClass: "ui-icon-triangle-1-s" ,
+		upIconClass: "ui-icon-triangle-1-n",
+		downIconClass: "ui-icon-triangle-1-s",
 
 		format: function(num, places) {
 			var options = this,
 				regex = /(\d+)(\d{3})/,
-				result = ((isNaN(num) ? 0 : Math.abs(num)).toFixed(places)) + "";
+				result = ((isNaN(num) ? 0 : Math.abs(num)).toFixed(places)) + '';
 
-			for (result = result.replace( "." , options.point); regex.test(result) && options.group; result=result.replace(regex, "$1"+options.group+"$2" )) {}
-			return (num < 0 ? "-" : "" ) + options.prefix + result + options.suffix;
+			for (result = result.replace('.', options.point); regex.test(result) && options.group; result=result.replace(regex, '$1'+options.group+'$2')) {}
+			return (num < 0 ? '-' : '') + options.prefix + result + options.suffix;
 		},
 
 		parse: function(val) {
 			var options = this;
 
-			if (options.group == "." ) {
-				val = val.replace( "." , "" );
+			if (options.group == '.') {
+				val = val.replace('.', '');
 			 }
-			if (options.point != "." ) {
-				val = val.replace(options.point, "." );
+			if (options.point != '.') {
+				val = val.replace(options.point, '.');
 			 }
-			return parseFloat(val.replace(/[^0-9\-\.]/g, "" ));
+			return parseFloat(val.replace(/[^0-9\-\.]/g, ''));
 		}
 	},
 
@@ -103,17 +97,17 @@ $.widget( "ui.spinner" , {
 		// shortcuts
 		var self = this,
 			input = self.element,
-			type = input.attr( "type" );
+			type = input.attr('type');
 
-		if (!input.is( "input" ) || ((type != "text" ) && (type != "number" ))) {
-			console.error( "Invalid target for ui.spinner" );
+		if (!input.is('input') || ((type != 'text') && (type != 'number'))) {
+			console.error('Invalid target for ui.spinner');
 			return;
 		}
 
 		self._procOptions(true);
 		self._createButtons(input);
 
-		if (!input.is( ":enabled" )) {
+		if (!input.is(':enabled')) {
 			self.disable();
 		}
 	},
@@ -121,7 +115,7 @@ $.widget( "ui.spinner" , {
 	_createButtons: function(input) {
 		function getMargin(margin) {
 			// IE8 returns auto if no margin specified
-			return margin == "auto" ? 0 : parseInt(margin, 10);
+			return margin == 'auto' ? 0 : parseInt(margin, 10);
 		}
 
 		var self = this,
@@ -131,15 +125,15 @@ $.widget( "ui.spinner" , {
 			showOn = options.showOn,
 			box = $.support.boxModel,
 			height = input.outerHeight(),
-			rightMargin = self.oMargin = getMargin(input.css( "margin-right" )), // store original width and right margin for later destroy
+			rightMargin = self.oMargin = getMargin(input.css('margin-right')), // store original width and right margin for later destroy
 			wrapper = self.wrapper = input.css({ width: (self.oWidth = (box ? input.width() : input.outerWidth())) - buttonWidth,
-												 marginRight: rightMargin + buttonWidth, textAlign: "right" })
-				.after( "<span class='ui-spinner ui-widget' style='top:0;left:0;'></span>" ).next(),
+												 marginRight: rightMargin + buttonWidth, textAlign: 'right' })
+				.after('<span class="ui-spinner ui-widget"></span>').next(),
 			btnContainer = self.btnContainer = $(
-				"<div class='ui-spinner-buttons'>" +
-					"<div class='ui-spinner-up ui-spinner-button ui-state-default ui-corner-tr'><span class='ui-icon "+options.upIconClass+"'>&nbsp;</span></div>" +
-					"<div class='ui-spinner-down ui-spinner-button ui-state-default ui-corner-br'><span class='ui-icon "+options.downIconClass+"'>&nbsp;</span></div>" +
-				"</div>" ),
+				'<div class="ui-spinner-buttons">' +
+					'<div class="ui-spinner-up ui-spinner-button ui-state-default ui-corner-tr"><span class="ui-icon '+options.upIconClass+'">&nbsp;</span></div>' +
+					'<div class="ui-spinner-down ui-spinner-button ui-state-default ui-corner-br"><span class="ui-icon '+options.downIconClass+'">&nbsp;</span></div>' +
+				'</div>'),
 
 			// object shortcuts
 			upButton, downButton, buttons, icons,
@@ -151,59 +145,48 @@ $.widget( "ui.spinner" , {
 			hovered, inKeyDown, inSpecialKey, inMouseDown,
 
 			// used to reverse left/right key directions
-			rtl = input[0].dir == "rtl";
+			rtl = input[0].dir == 'rtl';
 
 		// apply className before doing any calculations because it could affect them
 		if (className) { wrapper.addClass(className); }
 
 		wrapper.append(btnContainer.css({ height: height, left: -buttonWidth-rightMargin,
 			// use offset calculation to fix vertical position in Firefox
-			top: (input.offset().top - wrapper.offset().top) + "px" }));
+			top: (input.offset().top - wrapper.offset().top) + 'px' }));
 
-		buttons = self.buttons = btnContainer.find( ".ui-spinner-button" );
+		buttons = self.buttons = btnContainer.find('.ui-spinner-button');
 		buttons.css({ width: buttonWidth - (box ? buttons.outerWidth() - buttons.width() : 0), height: height/2 - (box ? buttons.outerHeight() - buttons.height() : 0) });
 		upButton = buttons[0];
 		downButton = buttons[1];
 
 		// fix icon centering
-		icons = buttons.find( ".ui-icon" );
+		icons = buttons.find('.ui-icon');
 		icons.css({ marginLeft: (buttons.innerWidth() - icons.width()) / 2, marginTop:  (buttons.innerHeight() - icons.height()) / 2 });
 
 		// set width of btnContainer to be the same as the buttons
 		btnContainer.width(buttons.outerWidth());
-		if (showOn != "always" ) {
-			btnContainer.css( "opacity" , 0);
+		if (showOn != 'always') {
+			btnContainer.css('opacity', 0);
 		}
-
-		input.addClass( "ui-spinner-input" ).attr({role: "textbox"});
-
-		// use position to place buttons on the right side from input element
-		wrapper.position({
-			of: this.element,
-			my: "left center" ,
-			at: "right center" ,
-			offset: "0 0" ,
-			collision: "flip flip"
-		});
 
 		/* Event Bindings */
 
 		// bind hover events to show/hide buttons
-		if (showOn == "hover" || showOn == "both" ) {
+		if (showOn == 'hover' || showOn == 'both') {
 			buttons.add(input)
-				.bind( "mouseenter" + eventNamespace, function() {
+				.bind('mouseenter' + eventNamespace, function() {
 					setHoverDelay(function() {
 						hovered = true;
-						if (!self.focused || (showOn == "hover" )) { // ignore focus flag if show on hover only
+						if (!self.focused || (showOn == 'hover')) { // ignore focus flag if show on hover only
 							self.showButtons();
 						}
 					});
 				})
 
-				.bind( "mouseleave" + eventNamespace, function hoverOut() {
+				.bind('mouseleave' + eventNamespace, function hoverOut() {
 					setHoverDelay(function() {
 						hovered = false;
-						if (!self.focused || (showOn == "hover" )) {  // ignore focus flag if show on hover only
+						if (!self.focused || (showOn == 'hover')) {  // ignore focus flag if show on hover only
 							self.hideButtons();
 						}
 					});
@@ -261,10 +244,10 @@ $.widget( "ui.spinner" , {
 				})
 
 				// fixes IE8 dbl click selection highlight
-				.bind( "selectstart" , function() {return false;});
+				.bind('selectstart', function() {return false;});
 		}
 
-		input.bind( "keydown" + eventNamespace, function(e) {
+		input.bind('keydown' + eventNamespace, function(e) {
 					var dir, large, limit,
 						keyCode = e.keyCode; // shortcut for minimization
 					if (e.ctrl || e.alt) { return true; } // ignore these events
@@ -316,7 +299,7 @@ $.widget( "ui.spinner" , {
 					}
 				})
 
-			.bind( "keyup" + eventNamespace, function(e) {
+			.bind('keyup' + eventNamespace, function(e) {
 					if (e.ctrl || e.alt) { return true; } // ignore these events
 
 					if (isSpecialKey(keyCode)) { inSpecialKey = false; }
@@ -335,9 +318,9 @@ $.widget( "ui.spinner" , {
 					}
 				})
 
-			.bind( "change" + eventNamespace, function() { self._change(); })
+			.bind('change' + eventNamespace, function() { self._change(); })
 
-			.bind( "focus" + eventNamespace, function() {
+			.bind('focus' + eventNamespace, function() {
 					function selectAll() {
 						self.element.select();
 					}
@@ -348,14 +331,14 @@ $.widget( "ui.spinner" , {
 
 					self.focused = true;
 					focusCtrl = self;
-					if (!hovered && (showOn == "focus" || showOn == "both" )) { // hovered will only be set if hover affects show
+					if (!hovered && (showOn == 'focus' || showOn == 'both')) { // hovered will only be set if hover affects show
 						self.showButtons();
 					}
 				})
 
-			.bind( "blur" + eventNamespace, function() {
+			.bind('blur' + eventNamespace, function() {
 					self.focused = false;
-					if (!hovered && (showOn == "focus" || showOn == "both" )) { // hovered will only be set if hover affects show
+					if (!hovered && (showOn == 'focus' || showOn == 'both')) { // hovered will only be set if hover affects show
 						self.hideButtons();
 					}
 				});
@@ -410,26 +393,26 @@ $.widget( "ui.spinner" , {
 			maxlength = -1, temp;
 
 		// setup increment based on speed string
-		if (options.increment == "slow" ) {
+		if (options.increment == 'slow') {
 			options.increment = [{count: 1, mult: 1, delay: 250},
 								 {count: 3, mult: 1, delay: 100},
 								 {count: 0, mult: 1, delay: 50}];
 		}
-		else if (options.increment == "fast" ) {
+		else if (options.increment == 'fast') {
 			options.increment = [{count: 1, mult: 1, delay: 250},
 								 {count: 19, mult: 1, delay: 100},
 								 {count: 80, mult: 1, delay: 20},
 								 {count: 100, mult: 10, delay: 20},
 								 {count: 0, mult: 100, delay: 20}];
 		}
-		if ((min === null) && ((temp = input.attr( "min" )) !== null)) {
+		if ((min === null) && ((temp = input.attr('min')) !== null)) {
 			min = parseFloat(temp);
 		}
-		if ((max === null) && ((temp = input.attr( "max" )) !== null)) {
+		if ((max === null) && ((temp = input.attr('max')) !== null)) {
 			max = parseFloat(temp);
 		}
-		if (!step && ((temp = input.attr( "step" )) !== null)) {
-			if (temp != "any" ) {
+		if (!step && ((temp = input.attr('step')) !== null)) {
+			if (temp != 'any') {
 				step = parseFloat(temp);
 				options.largeStep *= step;
 			}
@@ -437,8 +420,8 @@ $.widget( "ui.spinner" , {
 		options.step = step = step || options.defaultStep;
 
 		// Process step for decimal places if none are specified
-		if ((places === null) && ((temp = step + "" ).indexOf( "." ) != -1)) {
-			places = temp.length - temp.indexOf( "." ) - 1;
+		if ((places === null) && ((temp = step + '').indexOf('.') != -1)) {
+			places = temp.length - temp.indexOf('.') - 1;
 		}
 		self.places = places;
 
@@ -462,7 +445,7 @@ $.widget( "ui.spinner" , {
 			if ((min === null) || (min < temp)) { min = temp; }
 		}
 
-		if (maxlength > 0) { input.attr( "maxlength" , maxlength); }
+		if (maxlength > 0) { input.attr('maxlength', maxlength); }
 
 		options.min = min;
 		options.max = max;
@@ -477,7 +460,7 @@ $.widget( "ui.spinner" , {
 	},
 
 	_mouseWheel: function(e) {
-		var self = $.data(this, "spinner" );
+		var self = $.data(this, 'spinner');
 		if (!self.options.disabled && self.focused && (focusCtrl === self)) {
 			// make sure changes are posted
 			self._change();
@@ -609,20 +592,20 @@ $.widget( "ui.spinner" , {
 	showButtons: function(immediate) {
 		var btnContainer = this.btnContainer.stop();
 		if (immediate) {
-			btnContainer.css( "opacity" , 1);
+			btnContainer.css('opacity', 1);
 		}
 		else {
-			btnContainer.fadeTo( "fast" , 1);
+			btnContainer.fadeTo('fast', 1);
 		}
 	},
 
 	hideButtons: function(immediate) {
 		var btnContainer = this.btnContainer.stop();
 		if (immediate) {
-			btnContainer.css( "opacity" , 0);
+			btnContainer.css('opacity', 0);
 		}
 		else {
-			btnContainer.fadeTo( "fast" , 0);
+			btnContainer.fadeTo('fast', 0);
 		}
 		this.buttons.removeClass(hover);
 	},
@@ -634,7 +617,7 @@ $.widget( "ui.spinner" , {
 		self.curvalue = value = self._validate(value);
 		self.element.val(value !== null ?
 			self.options.format(value, self.places, self.element) :
-			"" );
+			'');
 
 		if (!suppressFireEvent) {
 			self.selfChange = true;
@@ -677,4 +660,5 @@ $.widget( "ui.spinner" , {
 		$.Widget.prototype.destroy.call(this);
 	}
 });
+
 })( jQuery );
