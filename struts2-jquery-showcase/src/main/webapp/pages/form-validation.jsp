@@ -33,7 +33,7 @@
     <strong>Result Div :</strong>
 	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
     
-    <s:form id="formValidateAjax" action="login" theme="xhtml" target="_blank">
+    <s:form id="formValidateAjax" action="login" theme="xhtml">
      	<s:textfield 
      		id="loginuser1" 
      		name="loginuser" 
