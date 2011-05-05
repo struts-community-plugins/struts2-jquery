@@ -33,18 +33,26 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class PasswordTag extends org.apache.struts2.views.jsp.ui.PasswordTag {
+public class PasswordTag extends org.apache.struts2.views.jsp.ui.PasswordTag
+	implements ThemeableTag {
 
-	private static final long serialVersionUID = 6195524044288225533L;
+    private static final long serialVersionUID = 6195524044288225533L;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Password(stack, req, res);
-	}
+    protected String dataTheme;
 
-	protected void populateParams() {
-		super.populateParams();
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Password(stack, req, res);
+    }
 
-		Password password = (Password) component;
-	}
+    protected void populateParams() {
+	super.populateParams();
+
+	Password password = (Password) component;
+	password.setDataTheme(dataTheme);
+    }
+
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 }

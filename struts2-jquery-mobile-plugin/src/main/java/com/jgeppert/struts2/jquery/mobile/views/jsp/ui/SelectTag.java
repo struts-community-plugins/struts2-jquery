@@ -33,16 +33,25 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class SelectTag extends org.apache.struts2.views.jsp.ui.SelectTag {
+public class SelectTag extends org.apache.struts2.views.jsp.ui.SelectTag
+	implements ThemeableTag {
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Select(stack, req, res);
-	}
+    private static final long serialVersionUID = 2422443395526518196L;
+    protected String dataTheme;
 
-	protected void populateParams() {
-		super.populateParams();
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Select(stack, req, res);
+    }
 
-		Select select = (Select) component;
-	}
+    protected void populateParams() {
+	super.populateParams();
+
+	Select select = (Select) component;
+	select.setDataTheme(dataTheme);
+    }
+
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 }

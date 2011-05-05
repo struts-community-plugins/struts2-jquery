@@ -35,23 +35,23 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class ListItemTag extends AnchorTag {
 
-	private static final long serialVersionUID = -8189579620421854571L;
+    private static final long serialVersionUID = -8189579620421854571L;
 
-	protected String divider;
+    protected String divider;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new ListItem(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new ListItem(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-		ListItem listItem = (ListItem) component;
-		listItem.setDivider(divider);
-	}
+	ListItem listItem = (ListItem) component;
+	listItem.setDivider(divider);
+    }
 
-	public void setDivider(String divider) {
-		this.divider = divider;
-	}
+    public void setDivider(String divider) {
+	this.divider = divider;
+    }
 }

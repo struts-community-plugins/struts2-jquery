@@ -22,10 +22,10 @@ package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractFormListElementTag;
 import org.apache.struts2.components.Component;
 
 import com.jgeppert.struts2.jquery.mobile.components.List;
+import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractFormListElementTag;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -34,49 +34,55 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class ListTag extends AbstractFormListElementTag {
+public class ListTag extends AbstractFormListElementTag implements ThemeableTag {
 
-	private static final long serialVersionUID = 4011274475116819123L;
-	protected String inset;
-	protected String filter;
+    private static final long serialVersionUID = 4011274475116819123L;
+    protected String inset;
+    protected String filter;
 
+    protected String dataTheme;
     protected String listParam;
     protected String listHref;
     protected String listCounter;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new List(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new List(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-		List list = (List) component;
-		list.setInset(inset);
-		list.setFilter(filter);
-        list.setListCounter(listCounter);
-        list.setListHref(listHref);
-        list.setListParam(listParam);
-	}
+	List list = (List) component;
+	list.setDataTheme(dataTheme);
+	list.setInset(inset);
+	list.setFilter(filter);
+	list.setListCounter(listCounter);
+	list.setListHref(listHref);
+	list.setListParam(listParam);
+    }
 
-	public void setInset(String inset) {
-		this.inset = inset;
-	}
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 
-	public void setFilter(String filter) {
-		this.filter = filter;
-	}
+    public void setInset(String inset) {
+	this.inset = inset;
+    }
+
+    public void setFilter(String filter) {
+	this.filter = filter;
+    }
 
     public void setListParam(String listParam) {
-        this.listParam = listParam;
+	this.listParam = listParam;
     }
 
     public void setListHref(String listHref) {
-        this.listHref = listHref;
+	this.listHref = listHref;
     }
 
     public void setListCounter(String listCounter) {
-        this.listCounter = listCounter;
+	this.listCounter = listCounter;
     }
 }

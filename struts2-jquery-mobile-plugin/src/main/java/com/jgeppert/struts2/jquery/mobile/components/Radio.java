@@ -57,44 +57,53 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 
 @StrutsTag(name = "radio", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.RadioTag", description = "Renders a radio button group", allowDynamicAttributes = true)
-public class Radio extends org.apache.struts2.components.CheckboxList {
+public class Radio extends org.apache.struts2.components.CheckboxList implements
+	ThemeableBean {
 
-	public static final String TEMPLATE = "radio";
-	public static final String COMPONENT_NAME = Radio.class.getName();
+    public static final String TEMPLATE = "radio";
+    public static final String COMPONENT_NAME = Radio.class.getName();
 
-	protected String horizontal;
+    protected String dataTheme;
+    protected String horizontal;
 
-	public Radio(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
-		super(stack, request, response);
-	}
+    public Radio(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE;
-	}
+    protected String getDefaultTemplate() {
+	return TEMPLATE;
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
 
-		if (this.horizontal != null)
-			addParameter("horizontal",
-					findValue(this.horizontal, Boolean.class));
-	}
+	if (dataTheme != null)
+	    addParameter("dataTheme", findString(dataTheme));
+	if (this.horizontal != null)
+	    addParameter("horizontal",
+		    findValue(this.horizontal, Boolean.class));
+    }
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-	@Override
-	public String getTheme() {
-		return "mobile";
-	}
+    @Override
+    public String getTheme() {
+	return "mobile";
+    }
 
-	@StrutsTagAttribute(description = "make a horizontal button set", defaultValue = "false", type = "Boolean")
-	public void setHorizontal(String horizontal) {
-		this.horizontal = horizontal;
-	}
+    @StrutsTagAttribute(description = "make a horizontal button set", defaultValue = "false", type = "Boolean")
+    public void setHorizontal(String horizontal) {
+	this.horizontal = horizontal;
+    }
+
+    @StrutsTagAttribute(description = "Set the Radio Button theme. e.g. a,b,c,d or e")
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 
 }

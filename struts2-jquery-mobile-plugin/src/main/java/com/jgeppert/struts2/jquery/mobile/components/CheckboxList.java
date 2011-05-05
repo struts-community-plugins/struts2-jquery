@@ -57,44 +57,53 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 
 @StrutsTag(name = "checkboxlist", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.CheckboxListTag", description = "Render a Button Set from a given checkbox list", allowDynamicAttributes = true)
-public class CheckboxList extends org.apache.struts2.components.CheckboxList {
+public class CheckboxList extends org.apache.struts2.components.CheckboxList
+	implements ThemeableBean {
 
-	public static final String TEMPLATE = "checkboxlist";
-	public static final String COMPONENT_NAME = CheckboxList.class.getName();
+    public static final String TEMPLATE = "checkboxlist";
+    public static final String COMPONENT_NAME = CheckboxList.class.getName();
 
-	protected String horizontal;
+    protected String dataTheme;
+    protected String horizontal;
 
-	public CheckboxList(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
-		super(stack, request, response);
-	}
+    public CheckboxList(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE;
-	}
+    protected String getDefaultTemplate() {
+	return TEMPLATE;
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
 
-		if (this.horizontal != null)
-			addParameter("horizontal",
-					findValue(this.horizontal, Boolean.class));
-	}
+	if (dataTheme != null)
+	    addParameter("dataTheme", findString(dataTheme));
+	if (this.horizontal != null)
+	    addParameter("horizontal",
+		    findValue(this.horizontal, Boolean.class));
+    }
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-	@Override
-	public String getTheme() {
-		return "mobile";
-	}
+    @Override
+    public String getTheme() {
+	return "mobile";
+    }
 
-	@StrutsTagAttribute(description = "make a horizontal button set", defaultValue = "false", type = "Boolean")
-	public void setHorizontal(String horizontal) {
-		this.horizontal = horizontal;
-	}
+    @StrutsTagAttribute(description = "make a horizontal button set", defaultValue = "false", type = "Boolean")
+    public void setHorizontal(String horizontal) {
+	this.horizontal = horizontal;
+    }
+
+    @StrutsTagAttribute(description = "Set the Checkbox List theme. e.g. a,b,c,d or e")
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 
 }

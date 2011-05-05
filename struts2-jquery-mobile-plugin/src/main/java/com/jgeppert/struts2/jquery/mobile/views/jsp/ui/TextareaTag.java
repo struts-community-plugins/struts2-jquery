@@ -33,16 +33,25 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class TextareaTag extends org.apache.struts2.views.jsp.ui.TextareaTag {
+public class TextareaTag extends org.apache.struts2.views.jsp.ui.TextareaTag
+	implements ThemeableTag {
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Textarea(stack, req, res);
-	}
+    private static final long serialVersionUID = 4186340100338172364L;
+    protected String dataTheme;
 
-	protected void populateParams() {
-		super.populateParams();
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Textarea(stack, req, res);
+    }
 
-		Textarea text = (Textarea) component;
-	}
+    protected void populateParams() {
+	super.populateParams();
+
+	Textarea text = (Textarea) component;
+	text.setDataTheme(dataTheme);
+    }
+
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 }

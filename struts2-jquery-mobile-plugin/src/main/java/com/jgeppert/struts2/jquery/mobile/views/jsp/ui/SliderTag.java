@@ -19,44 +19,53 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
-import com.jgeppert.struts2.jquery.mobile.components.Searchfield;
-import com.jgeppert.struts2.jquery.mobile.components.Slider;
-import com.opensymphony.xwork2.util.ValueStack;
-import org.apache.struts2.components.Component;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.components.Component;
+
+import com.jgeppert.struts2.jquery.mobile.components.Slider;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * 
  * @see com.jgeppert.struts2.jquery.mobile.components.Slider
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- *
+ * 
  */
-public class SliderTag extends
-		org.apache.struts2.views.jsp.ui.TextFieldTag {
+public class SliderTag extends org.apache.struts2.views.jsp.ui.TextFieldTag
+	implements ThemeableTag {
 
-    protected String                      max;
-    protected String                      min;
+    private static final long serialVersionUID = -5876556326086558625L;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Slider(stack, req, res);
-	}
+    protected String dataTheme;
 
-	protected void populateParams() {
-		super.populateParams();
+    protected String max;
+    protected String min;
 
-		Slider slider = (Slider) component;
-        slider.setMax(max);
-        slider.setMin(min);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Slider(stack, req, res);
+    }
+
+    protected void populateParams() {
+	super.populateParams();
+
+	Slider slider = (Slider) component;
+	slider.setDataTheme(dataTheme);
+	slider.setMax(max);
+	slider.setMin(min);
+    }
+
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 
     public void setMax(String max) {
-        this.max = max;
+	this.max = max;
     }
 
     public void setMin(String min) {
-        this.min = min;
+	this.min = min;
     }
 }

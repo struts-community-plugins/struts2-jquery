@@ -18,15 +18,5 @@
  * under the License.
  */
 -->
-<ul <#rt/>
-<#if parameters.id??>id="${parameters.id?html}" </#if><#rt/>
-<#if parameters.cssClass??>class="${parameters.cssClass?html}" </#if><#rt/>
-<#if parameters.cssStyle??>style="${parameters.cssStyle?html}" </#if><#rt/>
-<#if parameters.role??>data-role="${parameters.role?html}" </#if><#rt/>
-<#if parameters.filter?default(false)>data-filter="true" </#if><#rt/>
-<#if parameters.inset?default(false)>data-inset="true" </#if><#rt/>
-<#if parameters.dataTheme??>data-theme="${parameters.dataTheme?html}" </#if><#rt/>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
->
+</select>
+<#include "/${parameters.templateDir}/mobile/controlfooter.ftl" />

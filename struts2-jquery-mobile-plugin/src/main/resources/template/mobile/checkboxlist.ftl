@@ -19,7 +19,9 @@
  */
 -->
 <#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
-<div data-role="fieldcontain">
+<div data-role="fieldcontain"
+<#if parameters.dataTheme??>data-theme="${parameters.dataTheme?html}" </#if><#rt/>
+>
 <#if hasFieldErrors>
 <#list fieldErrors[parameters.name] as error>
         <div class="errorMessage">${error?html}</div><#t/>

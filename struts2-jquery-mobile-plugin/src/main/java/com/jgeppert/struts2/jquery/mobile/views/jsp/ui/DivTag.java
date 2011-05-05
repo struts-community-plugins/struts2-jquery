@@ -33,32 +33,32 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class DivTag extends org.apache.struts2.views.jsp.ui.DivTag {
+public class DivTag extends org.apache.struts2.views.jsp.ui.DivTag implements
+	ThemeableTag {
 
-	private static final long serialVersionUID = 5331150687827132425L;
+    private static final long serialVersionUID = 5331150687827132425L;
 
-	protected String role;
-  protected String dataTheme;
+    protected String role;
+    protected String dataTheme;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Div(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Div(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-		Div div = (Div) component;
-		div.setRole(role);
-		div.setDataTheme(dataTheme);
-	}
+	Div div = (Div) component;
+	div.setRole(role);
+	div.setDataTheme(dataTheme);
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setRole(String role) {
+	this.role = role;
+    }
 
-  public void setDataTheme(String dataTheme)
-  {
-    this.dataTheme = dataTheme;
-  }
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 }

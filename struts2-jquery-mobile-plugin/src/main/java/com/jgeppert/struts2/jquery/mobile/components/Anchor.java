@@ -64,77 +64,87 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 @StrutsTag(name = "a", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.AnchorTag", description = "Renders an HTML anchor element.", allowDynamicAttributes = true)
-public class Anchor extends com.jgeppert.struts2.jquery.components.Anchor {
-	public static final String TEMPLATE = "a";
-	public static final String TEMPLATE_CLOSE = "a-close";
-	public static final String COMPONENT_NAME = Anchor.class.getName();
-	public static final transient Random RANDOM = new Random();
+public class Anchor extends com.jgeppert.struts2.jquery.components.Anchor
+	implements ThemeableBean {
+    public static final String TEMPLATE = "a";
+    public static final String TEMPLATE_CLOSE = "a-close";
+    public static final String COMPONENT_NAME = Anchor.class.getName();
+    public static final transient Random RANDOM = new Random();
 
-	protected String button;
-	protected String buttonIcon;
-	protected String buttonIconPosition;
+    protected String dataTheme;
+    protected String button;
+    protected String buttonIcon;
+    protected String buttonIconPosition;
 
-	public Anchor(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
-		super(stack, request, response);
+    public Anchor(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
+
+    public String getDefaultOpenTemplate() {
+	return TEMPLATE;
+    }
+
+    protected String getDefaultTemplate() {
+	return TEMPLATE_CLOSE;
+    }
+
+    public String getComponentName() {
+	return COMPONENT_NAME;
+    }
+
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
+
+	if (dataTheme != null)
+	    addParameter("dataTheme", findString(dataTheme));
+	if (button != null)
+	    addParameter("button", findValue(this.button, Boolean.class));
+	if (buttonIcon != null)
+	    addParameter("buttonIcon", findString(buttonIcon));
+	if (buttonIconPosition != null)
+	    addParameter("buttonIconPosition", findString(buttonIconPosition));
+
+	if ((this.id == null || this.id.length() == 0)) {
+	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+	    int nextInt = RANDOM.nextInt();
+	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+		    .abs(nextInt);
+	    this.id = "anchor_" + String.valueOf(nextInt);
+	    addParameter("id", this.id);
 	}
+    }
 
-	public String getDefaultOpenTemplate() {
-		return TEMPLATE;
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE_CLOSE;
-	}
+    @Override
+    public String getTheme() {
+	return "mobile";
+    }
 
-	public String getComponentName() {
-		return COMPONENT_NAME;
-	}
+    @StrutsTagAttribute(description = "Render a Button", defaultValue = "false", type = "Boolean")
+    public void setButton(String button) {
+	this.button = button;
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    @StrutsTagAttribute(description = "Icons to display. eg. gear, arrow-l, home, ....")
+    public void setButtonIcon(String buttonIcon) {
+	this.buttonIcon = buttonIcon;
+    }
 
-		if (button != null)
-			addParameter("button", findValue(this.button, Boolean.class));
-		if (buttonIcon != null)
-			addParameter("buttonIcon", findString(buttonIcon));
-		if (buttonIconPosition != null)
-			addParameter("buttonIconPosition", findString(buttonIconPosition));
+    @StrutsTagAttribute(description = "Button Icon Position. eg. left, right, top, bottom, notext")
+    public void setButtonIconPosition(String buttonIconPosition) {
+	this.buttonIconPosition = buttonIconPosition;
+    }
 
-		if ((this.id == null || this.id.length() == 0)) {
-			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-			int nextInt = RANDOM.nextInt();
-			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-					.abs(nextInt);
-			this.id = "anchor_" + String.valueOf(nextInt);
-			addParameter("id", this.id);
-		}
-	}
+    @StrutsTagAttribute(description = "Set the Anchor theme. e.g. a,b,c,d or e")
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
-
-	@Override
-	public String getTheme() {
-		return "mobile";
-	}
-
-	@StrutsTagAttribute(description = "Render a Button", defaultValue = "false", type = "Boolean")
-	public void setButton(String button) {
-		this.button = button;
-	}
-
-	@StrutsTagAttribute(description = "Icons to display. eg. gear, arrow-l, home, ....")
-	public void setButtonIcon(String buttonIcon) {
-		this.buttonIcon = buttonIcon;
-	}
-
-	@StrutsTagAttribute(description = "Button Icon Position. eg. left, right, top, bottom, notext")
-	public void setButtonIconPosition(String buttonIconPosition) {
-		this.buttonIconPosition = buttonIconPosition;
-	}
 }

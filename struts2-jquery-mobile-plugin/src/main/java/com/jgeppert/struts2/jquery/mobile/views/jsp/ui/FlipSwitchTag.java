@@ -24,35 +24,46 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
 
-import com.jgeppert.struts2.jquery.mobile.components.Textfield;
+import com.jgeppert.struts2.jquery.mobile.components.FlipSwitch;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * 
- * @see Textfield
+ * @see com.jgeppert.struts2.jquery.mobile.components.FlipSwitch
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class TextfieldTag extends org.apache.struts2.views.jsp.ui.TextFieldTag
+public class FlipSwitchTag extends org.apache.struts2.views.jsp.ui.DivTag
 	implements ThemeableTag {
 
-    private static final long serialVersionUID = 4571535560189472584L;
-
+    private static final long serialVersionUID = -7619476090491872502L;
     protected String dataTheme;
+    protected String onTitle;
+    protected String offTitle;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
 	    HttpServletResponse res) {
-	return new Textfield(stack, req, res);
+	return new FlipSwitch(stack, req, res);
     }
 
     protected void populateParams() {
 	super.populateParams();
 
-	Textfield text = (Textfield) component;
-	text.setDataTheme(dataTheme);
+	FlipSwitch flipSwitch = (FlipSwitch) component;
+	flipSwitch.setDataTheme(dataTheme);
+	flipSwitch.setOffTitle(offTitle);
+	flipSwitch.setOnTitle(onTitle);
     }
 
     public void setDataTheme(String dataTheme) {
 	this.dataTheme = dataTheme;
+    }
+
+    public void setOnTitle(String onTitle) {
+	this.onTitle = onTitle;
+    }
+
+    public void setOffTitle(String offTitle) {
+	this.offTitle = offTitle;
     }
 }

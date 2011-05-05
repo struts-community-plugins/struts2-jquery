@@ -39,6 +39,8 @@
 					<sjm:listItem id="select_link" href="%{url_select}">Select</sjm:listItem>
                     <s:url id="url_slider" action="slider"/>
                     <sjm:listItem id="slider_link" href="%{url_slider}">Slider</sjm:listItem>
+                    <s:url id="url_flip" action="flip-switch"/>
+                    <sjm:listItem id="flip_link" href="%{url_flip}">Flip Switch</sjm:listItem>
 
 					<sjm:listItem divider="true">List View</sjm:listItem>
 					<s:url id="url_listview" action="list-view"/>

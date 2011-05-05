@@ -34,25 +34,31 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 public class CheckboxListTag extends
-		org.apache.struts2.views.jsp.ui.CheckboxListTag {
+	org.apache.struts2.views.jsp.ui.CheckboxListTag implements ThemeableTag {
 
-	private static final long serialVersionUID = -4144593202700688876L;
+    private static final long serialVersionUID = -4144593202700688876L;
 
-	protected String horizontal;
+    protected String dataTheme;
+    protected String horizontal;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new CheckboxList(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new CheckboxList(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-		CheckboxList checkboxList = (CheckboxList) component;
-		checkboxList.setHorizontal(horizontal);
-	}
+	CheckboxList checkboxList = (CheckboxList) component;
+	checkboxList.setDataTheme(dataTheme);
+	checkboxList.setHorizontal(horizontal);
+    }
 
-	public void setHorizontal(String horizontal) {
-		this.horizontal = horizontal;
-	}
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
+
+    public void setHorizontal(String horizontal) {
+	this.horizontal = horizontal;
+    }
 }

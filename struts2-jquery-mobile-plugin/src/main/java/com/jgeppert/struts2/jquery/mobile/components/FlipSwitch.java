@@ -33,50 +33,28 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * <!-- START SNIPPET: javadoc -->
  * <p>
- * This tag generates an List Item.
+ * This tag generates an HTML Flip Switch for the jQuery mobile framework.
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
- * <p>
- * Examples
- * </p>
- * <!-- START SNIPPET: example1 -->
- * 
- * <pre>
- * 	&lt;s:url id=&quot;url1&quot; action=&quot;actionOne&quot;/&gt;
- * 	&lt;sjm:listItem href=&quot;%{url1}&quot;&gt;Action 1&lt;/sjm:listItem&gt;
- * 
- * </pre>
- * 
- * <!-- END SNIPPET: example1 -->
- * 
- * <!-- START SNIPPET: example2 -->
- * 
- * <p>
- * A List Item as Divider.
- * </p>
- * 
- * <pre>
- * 	&lt;sjm:listItem divider=&quot;true&quot;&gt;Group 1&lt;/sjm:listItem&gt;
- * </pre>
- * 
- * <!-- END SNIPPET: example2 -->
  * 
  * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-@StrutsTag(name = "listItem", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.ListItemTag", description = "Render List Item element", allowDynamicAttributes = true)
-public class ListItem extends Anchor {
+@StrutsTag(name = "flipSwitch", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.FlipSwitchTag", description = "Render HTML Flip Switch element", allowDynamicAttributes = true)
+public class FlipSwitch extends org.apache.struts2.components.Div implements
+	ThemeableBean {
 
-    public static final String TEMPLATE = "listItem";
-    public static final String TEMPLATE_CLOSE = "listItem-close";
-    public static final String COMPONENT_NAME = ListItem.class.getName();
+    public static final String TEMPLATE = "flipSwitch";
+    public static final String TEMPLATE_CLOSE = "flipSwitch-close";
+    public static final String COMPONENT_NAME = FlipSwitch.class.getName();
     private static final transient Random RANDOM = new Random();
 
-    protected String divider;
+    protected String dataTheme;
+    protected String onTitle;
+    protected String offTitle;
 
-    public ListItem(ValueStack stack, HttpServletRequest request,
+    public FlipSwitch(ValueStack stack, HttpServletRequest request,
 	    HttpServletResponse response) {
 	super(stack, request, response);
     }
@@ -92,8 +70,12 @@ public class ListItem extends Anchor {
     public void evaluateExtraParams() {
 	super.evaluateExtraParams();
 
-	if (this.divider != null)
-	    addParameter("divider", findValue(this.divider, Boolean.class));
+	if (dataTheme != null)
+	    addParameter("dataTheme", findString(dataTheme));
+	if (onTitle != null)
+	    addParameter("onTitle", findString(onTitle));
+	if (offTitle != null)
+	    addParameter("offTitle", findString(offTitle));
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -101,7 +83,7 @@ public class ListItem extends Anchor {
 	    int nextInt = RANDOM.nextInt();
 	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
 		    .abs(nextInt);
-	    this.id = "list_item_" + String.valueOf(nextInt);
+	    this.id = "flip_switch_" + String.valueOf(nextInt);
 	    addParameter("id", this.id);
 	}
     }
@@ -117,8 +99,18 @@ public class ListItem extends Anchor {
 	return "mobile";
     }
 
-    @StrutsTagAttribute(description = "a divider list item", defaultValue = "false", type = "Boolean")
-    public void setDivider(String divider) {
-	this.divider = divider;
+    @StrutsTagAttribute(description = "Set the Flip Switch theme. e.g. a,b,c,d or e")
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
+
+    @StrutsTagAttribute(description = "Title for On State")
+    public void setOnTitle(String onTitle) {
+	this.onTitle = onTitle;
+    }
+
+    @StrutsTagAttribute(description = "Title for Off State")
+    public void setOffTitle(String offTitle) {
+	this.offTitle = offTitle;
     }
 }

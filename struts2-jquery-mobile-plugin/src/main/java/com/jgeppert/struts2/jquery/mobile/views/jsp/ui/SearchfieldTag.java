@@ -34,18 +34,25 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 public class SearchfieldTag extends
-		org.apache.struts2.views.jsp.ui.TextFieldTag {
+	org.apache.struts2.views.jsp.ui.TextFieldTag implements ThemeableTag {
 
-	private static final long serialVersionUID = -1273121721255626186L;
+    private static final long serialVersionUID = -1273121721255626186L;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Searchfield(stack, req, res);
-	}
+    protected String dataTheme;
 
-	protected void populateParams() {
-		super.populateParams();
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Searchfield(stack, req, res);
+    }
 
-		Searchfield text = (Searchfield) component;
-	}
+    protected void populateParams() {
+	super.populateParams();
+
+	Searchfield text = (Searchfield) component;
+	text.setDataTheme(dataTheme);
+    }
+
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 }

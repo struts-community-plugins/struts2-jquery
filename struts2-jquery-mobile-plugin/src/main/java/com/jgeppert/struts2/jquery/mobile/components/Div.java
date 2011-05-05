@@ -82,67 +82,67 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 @StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.DivTag", description = "Render HTML div element", allowDynamicAttributes = true)
-public class Div extends org.apache.struts2.components.Div {
+public class Div extends org.apache.struts2.components.Div implements
+	ThemeableBean {
 
-	public static final String TEMPLATE = "div";
-	public static final String TEMPLATE_CLOSE = "div-close";
-	public static final String COMPONENT_NAME = Div.class.getName();
-	private static final transient Random RANDOM = new Random();
+    public static final String TEMPLATE = "div";
+    public static final String TEMPLATE_CLOSE = "div-close";
+    public static final String COMPONENT_NAME = Div.class.getName();
+    private static final transient Random RANDOM = new Random();
 
-	protected String role;
-  protected String dataTheme;
+    protected String role;
+    protected String dataTheme;
 
-  public Div(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
-		super(stack, request, response);
+    public Div(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
+
+    public String getDefaultOpenTemplate() {
+	return TEMPLATE;
+    }
+
+    protected String getDefaultTemplate() {
+	return TEMPLATE_CLOSE;
+    }
+
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
+
+	if (role != null)
+	    addParameter("role", findString(role));
+	if (dataTheme != null)
+	    addParameter("dataTheme", findString(dataTheme));
+
+	if ((this.id == null || this.id.length() == 0)) {
+	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+	    int nextInt = RANDOM.nextInt();
+	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+		    .abs(nextInt);
+	    this.id = "div_" + String.valueOf(nextInt);
+	    addParameter("id", this.id);
 	}
+    }
 
-	public String getDefaultOpenTemplate() {
-		return TEMPLATE;
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE_CLOSE;
-	}
+    @Override
+    public String getTheme() {
+	return "mobile";
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    @StrutsTagAttribute(description = "div role. e.g.: page, header, content, footer")
+    public void setRole(String role) {
+	this.role = role;
+    }
 
-		if (role != null)
-			addParameter("role", findString(role));
-    if (dataTheme != null)
-      addParameter("dataTheme", findString(dataTheme));
-
-		if ((this.id == null || this.id.length() == 0)) {
-			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-			int nextInt = RANDOM.nextInt();
-			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-					.abs(nextInt);
-			this.id = "div_" + String.valueOf(nextInt);
-			addParameter("id", this.id);
-		}
-	}
-
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
-
-	@Override
-	public String getTheme() {
-		return "mobile";
-	}
-
-	@StrutsTagAttribute(description = "div role. e.g.: page, header, content, footer")
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-  @StrutsTagAttribute(description = "set the div theme. e.g. a,b,c,d or e")
-  public void setDataTheme(String dataTheme)
-  {
-    this.dataTheme = dataTheme;
-  }
+    @StrutsTagAttribute(description = "set the div theme. e.g. a,b,c,d or e")
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 }

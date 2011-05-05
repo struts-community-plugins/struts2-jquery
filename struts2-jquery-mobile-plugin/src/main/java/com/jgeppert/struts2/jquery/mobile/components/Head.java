@@ -54,51 +54,51 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "head", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.HeadTag", description = "add necessary scripts and styles to the head area", allowDynamicAttributes = true)
 public class Head extends com.jgeppert.struts2.jquery.components.Head {
 
-	public static final String TEMPLATE = "head";
-	public static final String COMPONENT_NAME = Head.class.getName();
+    public static final String TEMPLATE = "head";
+    public static final String COMPONENT_NAME = Head.class.getName();
 
-	protected String compressed;
-	protected String jqueryui;
+    protected String compressed;
+    protected String jqueryui;
 
-	public Head(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
-		super(stack, request, response);
-	}
+    public Head(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE;
-	}
+    protected String getDefaultTemplate() {
+	return TEMPLATE;
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
 
-		if (this.compressed != null)
-			addParameter("compressed",
-					findValue(this.compressed, Boolean.class));
-		if (this.jqueryui != null)
-			addParameter("jqueryui", findValue(this.jqueryui, Boolean.class));
-		else
-			addParameter("jqueryui", new Boolean(false));
-	}
+	if (this.compressed != null)
+	    addParameter("compressed",
+		    findValue(this.compressed, Boolean.class));
+	if (this.jqueryui != null)
+	    addParameter("jqueryui", findValue(this.jqueryui, Boolean.class));
+	else
+	    addParameter("jqueryui", new Boolean(false));
+    }
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-	@Override
-	public String getTheme() {
-		return "mobile";
-	}
+    @Override
+    public String getTheme() {
+	return "mobile";
+    }
 
-	@StrutsTagAttribute(description = "enable jQuery UI Scripts", defaultValue = "false", type = "Boolean")
-	public void setJqueryui(String jqueryui) {
-		this.jqueryui = jqueryui;
-	}
+    @StrutsTagAttribute(description = "enable jQuery UI Scripts", defaultValue = "false", type = "Boolean")
+    public void setJqueryui(String jqueryui) {
+	this.jqueryui = jqueryui;
+    }
 
-	@StrutsTagAttribute(description = "use compressed version of jquery mobile resources", defaultValue = "true", type = "Boolean")
-	public void setCompressed(String compressed) {
-		this.compressed = compressed;
-	}
+    @StrutsTagAttribute(description = "use compressed version of jquery mobile resources", defaultValue = "true", type = "Boolean")
+    public void setCompressed(String compressed) {
+	this.compressed = compressed;
+    }
 }

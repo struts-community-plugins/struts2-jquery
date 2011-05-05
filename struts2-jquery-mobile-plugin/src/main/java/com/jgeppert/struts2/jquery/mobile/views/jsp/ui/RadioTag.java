@@ -33,25 +33,32 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class RadioTag extends org.apache.struts2.views.jsp.ui.RadioTag {
+public class RadioTag extends org.apache.struts2.views.jsp.ui.RadioTag
+	implements ThemeableTag {
 
-	private static final long serialVersionUID = 3002502207699074562L;
+    private static final long serialVersionUID = 3002502207699074562L;
 
-	protected String horizontal;
+    protected String dataTheme;
+    protected String horizontal;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Radio(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Radio(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-		Radio radio = (Radio) component;
-		radio.setHorizontal(horizontal);
-	}
+	Radio radio = (Radio) component;
+	radio.setHorizontal(horizontal);
+	radio.setDataTheme(dataTheme);
+    }
 
-	public void setHorizontal(String horizontal) {
-		this.horizontal = horizontal;
-	}
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
+
+    public void setHorizontal(String horizontal) {
+	this.horizontal = horizontal;
+    }
 }

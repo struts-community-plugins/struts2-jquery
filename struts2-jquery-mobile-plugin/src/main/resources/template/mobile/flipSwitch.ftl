@@ -18,15 +18,27 @@
  * under the License.
  */
 -->
-<ul <#rt/>
-<#if parameters.id??>id="${parameters.id?html}" </#if><#rt/>
-<#if parameters.cssClass??>class="${parameters.cssClass?html}" </#if><#rt/>
-<#if parameters.cssStyle??>style="${parameters.cssStyle?html}" </#if><#rt/>
-<#if parameters.role??>data-role="${parameters.role?html}" </#if><#rt/>
-<#if parameters.filter?default(false)>data-filter="true" </#if><#rt/>
-<#if parameters.inset?default(false)>data-inset="true" </#if><#rt/>
-<#if parameters.dataTheme??>data-theme="${parameters.dataTheme?html}" </#if><#rt/>
+<#include "/${parameters.templateDir}/mobile/controlheader.ftl" />
+<select<#rt/>
+ data-role="slider"
+ name="${parameters.name?default("")?html}"<#rt/>
+<#if parameters.disabled?default(false)>
+ disabled="disabled"<#rt/>
+</#if>
+<#if parameters.tabindex??>
+ tabindex="${parameters.tabindex?html}"<#rt/>
+</#if>
+<#if parameters.id??>
+ id="${parameters.id?html}_input"<#rt/>
+</#if>
+<#include "/${parameters.templateDir}/simple/css.ftl" />
+<#if parameters.title??>
+ title="${parameters.title?html}"<#rt/>
+</#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 >
+    <option value="true">${parameters.onTitle?default("On")?html}</option>
+    <option value="false">${parameters.offTitle?default("Off")?html}</option>
+    

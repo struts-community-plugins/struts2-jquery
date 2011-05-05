@@ -17,48 +17,33 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
+package com.jgeppert.struts2.jquery.mobile.views.freemarker.tags;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.components.Component;
+import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.mobile.components.Head;
+import com.jgeppert.struts2.jquery.mobile.components.FlipSwitch;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * 
+ * @see FlipSwitch
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
+public class FlipSwitchModel extends TagModel {
 
-public class HeadTag extends com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag {
-
-    private static final long serialVersionUID = 8907797097962067205L;
-
-    protected String compressed;
-    protected String jqueryui;
-
-    public Component getBean(ValueStack stack, HttpServletRequest req,
+    public FlipSwitchModel(ValueStack stack, HttpServletRequest req,
 	    HttpServletResponse res) {
-	return new Head(stack, req, res);
+	super(stack, req, res);
     }
 
-    protected void populateParams() {
-	super.populateParams();
-
-	Head head = (Head) component;
-	head.setCompressed(compressed);
-	head.setJqueryui(jqueryui);
-    }
-
-    public void setCompressed(String compressed) {
-	this.compressed = compressed;
-    }
-
-    public void setJqueryui(String jqueryui) {
-	this.jqueryui = jqueryui;
+    @Override
+    protected Component getBean() {
+	return new FlipSwitch(stack, req, res);
     }
 
 }

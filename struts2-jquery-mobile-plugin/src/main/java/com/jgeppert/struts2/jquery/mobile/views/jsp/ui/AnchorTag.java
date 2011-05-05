@@ -32,37 +32,44 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
 public class AnchorTag extends
-		com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag {
+	com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag implements
+	ThemeableTag {
 
-	private static final long serialVersionUID = -4249231836512621297L;
+    private static final long serialVersionUID = -4249231836512621297L;
 
-	protected String button;
-	protected String buttonIcon;
-	protected String buttonIconPosition;
+    protected String dataTheme;
+    protected String button;
+    protected String buttonIcon;
+    protected String buttonIconPosition;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Anchor(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Anchor(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-		Anchor link = (Anchor) component;
-		link.setButton(button);
-		link.setButtonIcon(buttonIcon);
-		link.setButtonIconPosition(buttonIconPosition);
-	}
+	Anchor link = (Anchor) component;
+	link.setDataTheme(dataTheme);
+	link.setButton(button);
+	link.setButtonIcon(buttonIcon);
+	link.setButtonIconPosition(buttonIconPosition);
+    }
 
-	public void setButton(String button) {
-		this.button = button;
-	}
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 
-	public void setButtonIcon(String buttonIcon) {
-		this.buttonIcon = buttonIcon;
-	}
+    public void setButton(String button) {
+	this.button = button;
+    }
 
-	public void setButtonIconPosition(String buttonIconPosition) {
-		this.buttonIconPosition = buttonIconPosition;
-	}
+    public void setButtonIcon(String buttonIcon) {
+	this.buttonIcon = buttonIcon;
+    }
+
+    public void setButtonIconPosition(String buttonIconPosition) {
+	this.buttonIconPosition = buttonIconPosition;
+    }
 }

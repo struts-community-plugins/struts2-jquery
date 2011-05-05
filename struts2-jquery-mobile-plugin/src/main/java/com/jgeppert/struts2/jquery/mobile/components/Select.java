@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.views.annotations.StrutsTag;
+import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
@@ -50,33 +51,44 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 
 @StrutsTag(name = "select", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.SelectTag", description = "Renders a Combobox", allowDynamicAttributes = true)
-public class Select extends org.apache.struts2.components.Select {
+public class Select extends org.apache.struts2.components.Select implements
+	ThemeableBean {
 
-	public static final String TEMPLATE = "select";
-	public static final String COMPONENT_NAME = Select.class.getName();
+    public static final String TEMPLATE = "select";
+    public static final String COMPONENT_NAME = Select.class.getName();
 
-	public Select(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
-		super(stack, request, response);
-	}
+    protected String dataTheme;
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE;
-	}
+    public Select(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    protected String getDefaultTemplate() {
+	return TEMPLATE;
+    }
 
-	}
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
+	if (dataTheme != null)
+	    addParameter("dataTheme", findString(dataTheme));
+    }
 
-	@Override
-	public String getTheme() {
-		return "mobile";
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
+
+    @Override
+    public String getTheme() {
+	return "mobile";
+    }
+
+    @StrutsTagAttribute(description = "Set the Select Box theme. e.g. a,b,c,d or e")
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
+
 }

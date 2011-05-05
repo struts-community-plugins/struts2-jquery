@@ -38,7 +38,8 @@
   min=&quot;100&quot;
   max=&quot;250&quot;
   value=&quot;175&quot;
-/&gt;					</pre>
+/&gt;
+					</pre>
 	    		</sjm:div>
 			</sjm:div>
 

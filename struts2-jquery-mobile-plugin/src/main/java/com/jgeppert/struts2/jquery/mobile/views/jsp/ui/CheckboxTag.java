@@ -33,18 +33,26 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class CheckboxTag extends org.apache.struts2.views.jsp.ui.CheckboxTag {
+public class CheckboxTag extends org.apache.struts2.views.jsp.ui.CheckboxTag
+	implements ThemeableTag {
 
-	private static final long serialVersionUID = -341103440291340533L;
+    private static final long serialVersionUID = -341103440291340533L;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Checkbox(stack, req, res);
-	}
+    protected String dataTheme;
 
-	protected void populateParams() {
-		super.populateParams();
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Checkbox(stack, req, res);
+    }
 
-		Checkbox checkboxList = (Checkbox) component;
-	}
+    protected void populateParams() {
+	super.populateParams();
+
+	Checkbox checkbox = (Checkbox) component;
+	checkbox.setDataTheme(dataTheme);
+    }
+
+    public void setDataTheme(String dataTheme) {
+	this.dataTheme = dataTheme;
+    }
 }
