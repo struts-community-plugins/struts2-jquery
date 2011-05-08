@@ -378,6 +378,7 @@
 			}
 
 			if (o.navigatorsearch) {
+				self.require("js/plugins/grid.filter.js");
 				self.require("js/plugins/jquery.searchFilter.js");
 			}
 			
