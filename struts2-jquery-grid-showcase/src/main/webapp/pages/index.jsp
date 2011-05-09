@@ -40,7 +40,7 @@
       <div id="header" class="ui-widget-header">
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;width: 700px">Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version 3.0.0 / Full Hibernate Plugin - Version 2.2.1 GA</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version 3.0.1 / Full Hibernate Plugin - Version 2.2.1 GA</h4>
         </div>
       </div>
       <div id="nav">
@@ -59,7 +59,7 @@
       </sj:div>
       <!-- begin: #footer -->
       <div id="footer">
-        Written by  <a href="http://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a> and <a href="http://jyoshiriro.blogspot.com" title="Java Developer Blog">José Yoshiriro</a><br/>
+        Written by  <a href="http://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a> and <a href="http://jyoshiriro.blogspot.com" title="Java Developer Blog">Jos&eacute; Yoshiriro</a><br/>
         Hosted by  <a href="http://www.weinfreund.de" title="Wein vom Weingut, Weinforum, Wein Community">weinfreund.de</a><br/>
         Layout based on <a href="http://www.yaml.de/" title="OpenSource CSS Layout">YAML</a>
       </div>
