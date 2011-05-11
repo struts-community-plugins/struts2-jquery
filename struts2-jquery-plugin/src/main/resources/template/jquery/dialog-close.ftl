@@ -47,6 +47,9 @@ jQuery(document).ready(function () {
   <#if parameters.title?if_exists != "">
 	options_${escapedOptionId?html}.title = "${parameters.title?html}";
   </#if>
+  <#if parameters.dialogClass?if_exists != "">
+	options_${escapedOptionId?html}.dialogClass = "${parameters.dialogClass?html}";
+  </#if>
   <#if parameters.showEffect?if_exists != "">
 	options_${escapedOptionId?html}.show = "${parameters.showEffect?html}";
   </#if>
