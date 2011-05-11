@@ -118,6 +118,7 @@ public class Chart extends AbstractContainer {
     if (xaxisTickColor != null) addParameter("xaxisTickColor", findString(xaxisTickColor));
     if (xaxisMin != null) addParameter("xaxisMin", findString(xaxisMin));
     if (xaxisMax != null) addParameter("xaxisMax", findString(xaxisMax));
+    if (xaxisTimeformat != null) addParameter("xaxisTimeformat", findString(xaxisTimeformat));
     if (yaxisPosition != null) addParameter("yaxisPosition", findString(yaxisPosition));
     if (yaxisMode != null) addParameter("yaxisMode", findString(yaxisMode));
     if (yaxisColor != null) addParameter("yaxisColor", findString(yaxisColor));
@@ -127,6 +128,7 @@ public class Chart extends AbstractContainer {
     if (yaxisTickColor != null) addParameter("yaxisTickColor", findString(yaxisTickColor));
     if (yaxisMin != null) addParameter("yaxisMin", findString(yaxisMin));
     if (yaxisMax != null) addParameter("yaxisMax", findString(yaxisMax));
+    if (yaxisTimeformat != null) addParameter("yaxisTimeformat", findString(yaxisTimeformat));
     if (legendShow != null) addParameter("legendShow", findValue(this.legendShow, Boolean.class));
     if (legendPosition != null) addParameter("legendPosition", findString(legendPosition));
     if (legendLabelBoxBorderColor != null) addParameter("legendLabelBoxBorderColor", findString(legendLabelBoxBorderColor));
