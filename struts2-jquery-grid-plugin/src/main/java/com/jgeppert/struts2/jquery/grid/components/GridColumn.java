@@ -67,6 +67,7 @@ public class GridColumn extends AbstractRemoteBean {
   protected String              resizable;
   protected String              key;
   protected String              search;
+  protected String              searchtype;
   protected String              searchoptions;
   protected String              hidden;
   protected String              hidedlg;
@@ -108,6 +109,7 @@ public class GridColumn extends AbstractRemoteBean {
     if (key != null) addParameter("key", findValue(this.key, Boolean.class));
     if (search != null) addParameter("search", findValue(this.search, Boolean.class));
     if (searchoptions != null) addParameter("searchoptions", findString(searchoptions));
+    if (searchtype != null) addParameter("searchtype", findString(searchtype));
     if (hidden != null) addParameter("hidden", findValue(this.hidden, Boolean.class));
     if (hidedlg != null) addParameter("hidedlg", findValue(this.hidedlg, Boolean.class));
     if (align != null) addParameter("align", findString(align));
@@ -225,6 +227,11 @@ public class GridColumn extends AbstractRemoteBean {
     this.searchoptions = searchoptions;
   }
 
+  @StrutsTagAttribute(description = "Determines the search type of the field. Can be text - also a input element with type text is created and select - a select element is created.")
+  public void setSearchtype(String searchtype) {
+      this.searchtype = searchtype;
+  }
+
   @StrutsTagAttribute(description = "Defines if this column is hidden at initialization.", defaultValue = "false", type = "Boolean")
   public void setHidden(String hidden)
   {
@@ -260,5 +267,6 @@ public class GridColumn extends AbstractRemoteBean {
   {
     this.surl = surl;
   }
+
 
 }

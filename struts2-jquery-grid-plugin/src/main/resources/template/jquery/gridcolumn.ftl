@@ -84,6 +84,9 @@ options_${escapedOptionId?html}_colmodels_${colName}.resizable = false;
 </#if>
 <#if parameters.search?default(true)>
 options_${escapedOptionId?html}_colmodels_${colName}.search = true;
+	<#if parameters.searchtype?if_exists != "">
+options_${escapedOptionId?html}_colmodels_${colName}.stype = "${parameters.searchtype?html}";
+	</#if>
 <#else>
 options_${escapedOptionId?html}_colmodels_${colName}.search = false;
 </#if>

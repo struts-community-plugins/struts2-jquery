@@ -51,6 +51,7 @@ public class GridColumnTag extends AbstractRemoteTag {
   protected String          key;
   protected String          search;
   protected String          searchoptions;
+  protected String          searchtype;
   protected String          hidden;
   protected String          hidedlg;
   protected String          align;
@@ -83,6 +84,7 @@ public class GridColumnTag extends AbstractRemoteTag {
     gc.setKey(key);
     gc.setSearch(search);
     gc.setSearchoptions(searchoptions);
+    gc.setSearchtype(searchtype);
     gc.setHidden(hidden);
     gc.setHidedlg(hidedlg);
     gc.setAlign(align);
@@ -164,6 +166,10 @@ public class GridColumnTag extends AbstractRemoteTag {
   public void setSearchoptions(String searchoptions)
   {
     this.searchoptions = searchoptions;
+  }
+
+  public void setSearchtype(String searchtype) {
+      this.searchtype = searchtype;
   }
 
   public void setHidden(String hidden)
