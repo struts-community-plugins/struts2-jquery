@@ -614,7 +614,12 @@
 		}
 
 		if (type === "a") {
-			$elem.publishOnEvent('click', actionTopic); // bind custom action topic to click event
+			$elem.click( function() {
+				$elem.publish(actionTopic);
+				if(o.preventAction) {
+					return false;
+				}
+			});
 		}
 	},
 
@@ -904,6 +909,8 @@
 		var self = this;
 		var formTopic = '_s2j_form_topic_' + o.id;
 
+		o.preventAction = true;
+		
 		if (o.opendialog) {
 			self.opendialog($elem, o);
 		}
@@ -917,6 +924,10 @@
 		else {
 			if(o.href && o.href !== "#"){
 				self.action($elem, o, self.handler.load, 'a');
+				$.each(o.targets.split(','), function(i, t) {
+					self.subscribeTopics($(self.escId(t)), o.reloadtopics, self.handler.load, o);
+					self.subscribeTopics($(self.escId(t)), o.listentopics, self.handler.load, o);
+				});
 			}
 			else {
 				var cform = $elem.parents('form:first')[0];
@@ -935,6 +946,10 @@
 				}
 				else {
 					self.action($elem, o, self.handler.load, 'a');
+					$.each(o.targets.split(','), function(i, t) {
+						self.subscribeTopics($(self.escId(t)), o.reloadtopics, self.handler.load, o);
+						self.subscribeTopics($(self.escId(t)), o.listentopics, self.handler.load, o);
+					});
 				}
 			}
 		}

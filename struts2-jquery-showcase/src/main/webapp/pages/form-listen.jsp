@@ -24,87 +24,112 @@
 </div>
 <div id="col3">
   <div id="col3_content" class="clearfix">
-	<h2>Buttonset / CheckboxList</h2>
+	<h2>Form submission with Listen Topics</h2>
 	<p class="text">
-	    Create a Buttonset from Checkbox List.
+	    Submit a form with AJAX and publish Listen Topics.
 	</p>
-    <strong>Result Div :</strong>
-	<div id="formResult" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
-    
-    <strong>Buttonset that was populated from a List with String values.</strong>
-    <s:form id="form" action="echo" theme="xhtml">
-			    <sj:checkboxlist
-			    		id="checkboxbuttonset"
-			            tooltip="Choose your Friends"
-			            label="Friends"
-			            list="{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}"
-			            name="echo"/>
-	            <sj:submit 
-	            	targets="formResult" 
-	            	value="AJAX Submit" 
-	            	indicator="indicator"
-	            	button="true"
-	            	/>
-    </s:form>
-    <br/>
-    <strong>Buttonset that was populated from AJAX JSON Result.</strong>
-    <s:form id="form2" action="echo" theme="xhtml">
-				<s:url id="remoteurl" action="jsonsample"/> 
-				<sj:checkboxlist
-					href="%{remoteurl}" 
-					id="remoteCheckboxlist" 
-					name="echo" 
-					list="languageList" 
-					label="Language"
-				/>
-	            <sj:submit 
-	            	targets="formResult" 
-	            	value="AJAX Submit" 
-	            	indicator="indicator"
-	            	button="true"
-	            	/>
-   </s:form>
+	
+<h3>Form One</h3>
+<div>
+Form Submit with AJAX form Button.
+	<s:form id="listenForm1" action="ajax1">
+		<sj:submit 
+				id="submit1" 
+				value="Submit Button"
+				onClickTopics="listenOnClick1"
+				targets="result1" 
+				effect="highlight"
+		/>
+	</s:form>
+</div>
+<div id="result1" class="ui-widget-content ui-corner-all">Result Div for Form One</div>
+<br/>
+<h3>Form Two</h3>
+<div>
+Following Form Submit Button is Listen on Submit Button in Form One.
+	<s:form id="listenForm2">
+		<s:url id="formurl1" action="ajax2" namespace="/" />
+		<sj:submit 
+				id="submit2" 
+				href="%{formurl1}" 
+				value="Listen/Submit Button" 
+				formIds="listenForm2"
+				targets="result2" 
+				effect="highlight"
+				listenTopics="listenOnClick1" 
+		/>
+	</s:form>
+</div>
+<div id="result2" class="ui-widget-content ui-corner-all">Result Div for Form Two</div>
+<br/>
 
-    <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
+<h3>Form Three</h3>
+<div>
+Form Submit with AJAX form Button with specified href attribute.
+	<s:form id="listenForm3">
+		<s:url id="formurl3" action="ajax3" namespace="/" />
+		<sj:submit 
+				id="submit3" 
+				value="Submit Button"
+				onClickTopics="listenOnClick2" 
+				targets="result3" 
+				effect="highlight"
+				href="%{formurl3}" 
+		/>
+	</s:form>
+</div>
+<div id="result3" class="ui-widget-content ui-corner-all">Result Div for Form Three</div>
+<br/>
+
+<h3>Form Four</h3>
+<div>
+Following Form Submit Button is Listen on Submit Button in Form Three.
+	<s:form id="listenForm4">
+		<s:url id="formurl4" action="ajax4" namespace="/" />
+		<sj:submit 
+				id="submit4" 
+				href="%{formurl4}" 
+				value="Listen/Submit Button" 
+				formIds="listenForm4"
+				targets="result4" 
+				effect="highlight"
+				listenTopics="listenOnClick2" />
+	</s:form>
+</div>
+<div id="result4" class="ui-widget-content ui-corner-all">Result Div for Form Four</div>
+<br/>
+
     
 	<div class="code ui-widget-content ui-corner-all">
 	  <strong>Code:</strong>
 	  <pre>
-    <strong>Buttonset that was populated from a List with String values.</strong>
-    &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
-			    &lt;sj:checkboxlist
-			    		id=&quot;checkboxbuttonset&quot;
-			            tooltip=&quot;Choose your Friends&quot;
-			            label=&quot;Friends&quot;
-			            list=&quot;{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}&quot;
-			            name=&quot;echo&quot;/&gt;
+    &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;AJAX Form&lt;/legend&gt;
+	        &lt;div class=&quot;type-text&quot;&gt;
+	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+	            &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
+	        &lt;/div&gt;
+	        &lt;div class=&quot;type-button&quot;&gt;
 	            &lt;sj:submit 
+	            	id=&quot;formSubmit1&quot;
 	            	targets=&quot;formResult&quot; 
 	            	value=&quot;AJAX Submit&quot; 
 	            	indicator=&quot;indicator&quot;
 	            	button=&quot;true&quot;
 	            	/&gt;
+				&lt;s:url id=&quot;simpleecho&quot; value=&quot;/simpleecho.action&quot;/&gt;
+	            &lt;sj:submit 
+	            	id=&quot;formSubmit2&quot;
+	            	href=&quot;%{simpleecho}&quot; 
+	            	targets=&quot;formResult&quot; 
+	            	value=&quot;AJAX Submit 2&quot; 
+	            	indicator=&quot;indicator&quot;
+	            	button=&quot;true&quot;
+	            	/&gt;
+	        &lt;/div&gt;
+        &lt;/fieldset&gt;
     &lt;/s:form&gt;
-    &lt;br/&gt;
-    <strong>Buttonset that was populated from AJAX JSON Result.</strong>
-    &lt;s:form id=&quot;form2&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-				&lt;sj:checkboxlist
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;remoteCheckboxlist&quot; 
-					name=&quot;echo&quot; 
-					list=&quot;languageList&quot; 
-					label=&quot;Language&quot;
-				/&gt;
-	            &lt;sj:submit 
-	            	targets=&quot;formResult&quot; 
-	            	value=&quot;AJAX Submit&quot; 
-	            	indicator=&quot;indicator&quot;
-	            	button=&quot;true&quot;
-	            	/&gt;
-   &lt;/s:form&gt;
-
-    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
 	  </pre>
 	</div>
   </div>
