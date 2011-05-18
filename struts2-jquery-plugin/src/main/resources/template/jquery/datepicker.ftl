@@ -64,6 +64,6 @@
 		>
 		</div>
 	<#else>
-		<#include "/${parameters.templateDir}/simple/text.ftl" />
+		<#include "/${parameters.templateDir}/${parameters.parentTheme}/text.ftl" />
 	</#if>
 </#if>
