@@ -64,6 +64,8 @@ public class Tree extends AbstractContainer {
 	protected String nodeHref;
 	protected String nodeHrefParamName;
 	protected String nodeTargets;
+	protected String openAllOnLoad;
+	protected String openAllOnRefresh;
 
 	public Tree(ValueStack stack, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -113,6 +115,12 @@ public class Tree extends AbstractContainer {
 			addParameter("nodeHrefParamName", findString(nodeHrefParamName));
 		if (nodeTargets != null)
 			addParameter("nodeTargets", findString(nodeTargets));
+		if (this.openAllOnLoad != null)
+			addParameter("openAllOnLoad",
+					findValue(this.openAllOnLoad, Boolean.class));
+		if (this.openAllOnRefresh != null)
+			addParameter("openAllOnRefresh",
+					findValue(this.openAllOnRefresh, Boolean.class));
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -221,4 +229,14 @@ public class Tree extends AbstractContainer {
 	public void setNodeTargets(String nodeTargets) {
 		this.nodeTargets = nodeTargets;
 	}
+
+    @StrutsTagAttribute(description = "Open all Nodes on load.", type = "Boolean", defaultValue = "false")
+    public void setOpenAllOnLoad(String openAllOnLoad) {
+        this.openAllOnLoad = openAllOnLoad;
+    }
+
+    @StrutsTagAttribute(description = "Open all Nodes on refresh.", type = "Boolean", defaultValue = "false")
+    public void setOpenAllOnRefresh(String openAllOnRefresh) {
+        this.openAllOnRefresh = openAllOnRefresh;
+    }
 }

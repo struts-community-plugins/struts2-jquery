@@ -45,6 +45,12 @@ jQuery(document).ready(function () {
   	<#if parameters.onClickTopics?exists>
 	options_${escapedOptionId?html}.onclick = "${parameters.onClickTopics?html}";
   	</#if>
+	<#if parameters.openAllOnLoad??>
+	options_${escapedOptionId?html}.openload = ${parameters.openAllOnLoad?string};
+	</#if>
+	<#if parameters.openAllOnRefresh??>
+	options_${escapedOptionId?html}.openrefresh = ${parameters.openAllOnRefresh?string};
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
 

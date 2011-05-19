@@ -28,7 +28,7 @@
     <p class="text">
         A simple static Tree Component.
     </p>
-    	<sjt:tree id="treeStatic" jstreetheme="default">
+    	<sjt:tree id="treeStatic" jstreetheme="default" openAllOnLoad="true">
     		<sjt:treeItem title="Struts2">
 	    		<sjt:treeItem title="General">
 		    		<sjt:treeItem title="Struts2" href="http://struts.apache.org/2.x/index.html"/>

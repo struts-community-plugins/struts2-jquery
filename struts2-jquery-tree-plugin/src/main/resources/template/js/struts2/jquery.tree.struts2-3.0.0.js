@@ -60,7 +60,17 @@
 					orginal.event = event;
 					self.publishTopic($elem, o.onclick, orginal);
 		         });
-		    }
+		  }
+			if(o.openload) {
+				$elem.bind('loaded.jstree', function(event, data){
+					$elem.jstree('open_all'); 
+		    });
+		  }
+			if(o.openrefresh) {
+				$elem.bind('refresh.jstree', function(event, data){
+					$elem.jstree('open_all'); 
+		    });
+		  }
 
 			$elem.jstree(o);
 		},
