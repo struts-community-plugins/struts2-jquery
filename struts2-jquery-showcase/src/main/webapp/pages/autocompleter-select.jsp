@@ -30,6 +30,7 @@
     				listValue="name" 
     				listKey="id" 
     				selectBox="true"
+    				selectBoxIcon="true"
     			/>
 	        </div>
 	        <div>

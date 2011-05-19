@@ -158,7 +158,7 @@
 	abortReq : function(id) {
 		var self = this;
 		var xhr = self.currentXhr[id];
-		if(xhr && xhr != null){
+		if(xhr && xhr !== null){
 			if(xhr.readyState < 4) {
 				xhr.abort();
 			}
@@ -225,6 +225,25 @@
 		return submit;
 	},
 
+	addForms : function(forms, url) {
+		var self = this;
+		if (forms) {
+			if (!self.loadAtOnce) {
+				self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
+			}
+			$.each(forms.split(','), function(i, f) {
+				var q = $(self.escId(f)).formSerialize();
+				if (url.indexOf("?") === -1) {
+					url = url + '?';
+				}
+				else {
+					url = url + '&';
+				}
+				url = url + q;
+			});
+		}
+		return url;
+	},
 	/** Helper function to publish UI topics */
 	pubTops : function($elem, always, topics) {
 		var self = this;
@@ -1169,20 +1188,10 @@
 			data.event = event;
 			data.ui = ui;
 
-			var form = $elem.data("tab"+ui.index)
+			var form = $elem.data("tab"+ui.index);
 			if(form){
 				var links = $(self.escId(o.id)+" > ul").find("li a"); 
-				var u = $.data(links[ui.index], 'href.tabs')				
-				var q = $(self.escId(form)).formSerialize();
-				if (u.indexOf("?") === -1) {
-					u = u + '?';
-				}
-				else {
-					u = u + '&';
-				}
-				u = u + q;
-
-				$elem.tabs('url', ui.index, u);
+				$elem.tabs('url', ui.index, self.addForms(form, $.data(links[ui.index], 'href.tabs')));
 			}
 			
 			if(o.oncha) {
@@ -1239,7 +1248,7 @@
 				}
 				tabStr += "</li>";
 				if (tab.formIds) {
-					$elem.data("tab"+l, tab.formIds)
+					$elem.data("tab"+l, tab.formIds);
 				}
 
 			}
@@ -1457,9 +1466,7 @@
 				self.publishTopic($elem, o.onslidetopics, data);
 			}
 		};
-    if (o.range && o.range === 'true') {
-    	o.range = true;
-    }
+    if (o.range && o.range === 'true'){o.range=true;}
 
 		$elem.slider(o);
 	},
@@ -1628,6 +1635,7 @@
 			}
 		}
 		if(url !== '') {
+			url = self.addForms(o.formids, url);
 			if(o.list) {
 				params.source = function(request, response) {
 					var self = $.struts2_jquery;
