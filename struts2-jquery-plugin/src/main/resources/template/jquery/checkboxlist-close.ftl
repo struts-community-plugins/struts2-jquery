@@ -22,8 +22,8 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
-<#if parameters.nameValue?if_exists != "">
-	options_${escapedOptionId?html}.value = "${parameters.nameValue?html}";
+<#if parameters.nameValue??>
+	options_${escapedOptionId?html}.value = "${parameters.nameValue?string}";
 </#if>
 <#if parameters.remoteList??>
 	options_${escapedOptionId?html}.datatype = "json";

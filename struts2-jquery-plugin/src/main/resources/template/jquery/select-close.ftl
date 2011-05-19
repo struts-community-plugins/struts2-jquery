@@ -41,8 +41,8 @@ jQuery(document).ready(function () {
 <#if parameters.listValue??>
 	options_${escapedOptionId?html}.listvalue = "${parameters.listValue?html}";
 </#if>
-<#if parameters.nameValue?if_exists != "">
-	options_${escapedOptionId?html}.value = "${parameters.nameValue?html}";
+<#if parameters.nameValue??>
+	options_${escapedOptionId?html}.value = "${parameters.nameValue?string}";
 </#if>
 <#if parameters.bindOn?if_exists != "">
 	options_${escapedOptionId?html}.bindon = "${parameters.bindOn?html}";
