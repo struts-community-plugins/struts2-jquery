@@ -22,6 +22,9 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
+<#if parameters.nameValue?if_exists != "">
+	options_${escapedOptionId?html}.value = "${parameters.nameValue?html}";
+</#if>
 <#if parameters.remoteList??>
 	options_${escapedOptionId?html}.datatype = "json";
 	options_${escapedOptionId?html}.type = 'radio';
