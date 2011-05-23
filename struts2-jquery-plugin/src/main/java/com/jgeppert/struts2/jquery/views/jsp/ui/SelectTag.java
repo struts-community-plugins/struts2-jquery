@@ -36,95 +36,89 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class SelectTag extends AbstractFormElementTag {
 
-  private static final long serialVersionUID = 3974875529913867071L;
-  protected String          emptyOption;
-  protected String          headerKey;
-  protected String          headerValue;
-  protected String          list;
-  protected String          listKey;
-  protected String          listValue;
-  protected String          size;
-  protected String          multiple;
-  protected String          autocomplete;
-  protected String          loadMinimumCount;
-  protected String          selectBoxIcon;
+    private static final long serialVersionUID = 3974875529913867071L;
+    protected String emptyOption;
+    protected String headerKey;
+    protected String headerValue;
+    protected String list;
+    protected String listKey;
+    protected String listValue;
+    protected String size;
+    protected String multiple;
+    protected String autocomplete;
+    protected String loadMinimumCount;
+    protected String selectBoxIcon;
+    protected String onSelectTopics;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Select(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Select(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-    Select select = (Select) component;
-    select.setEmptyOption(emptyOption);
-    select.setHeaderKey(headerKey);
-    select.setHeaderValue(headerValue);
-    select.setList(list);
-    select.setListKey(listKey);
-    select.setListValue(listValue);
-    select.setSize(size);
-    select.setMultiple(multiple);
-    select.setAutocomplete(autocomplete);
-    select.setLoadMinimumCount(loadMinimumCount);
-    select.setSelectBoxIcon(selectBoxIcon);
-  }
+	Select select = (Select) component;
+	select.setEmptyOption(emptyOption);
+	select.setHeaderKey(headerKey);
+	select.setHeaderValue(headerValue);
+	select.setList(list);
+	select.setListKey(listKey);
+	select.setListValue(listValue);
+	select.setSize(size);
+	select.setMultiple(multiple);
+	select.setAutocomplete(autocomplete);
+	select.setLoadMinimumCount(loadMinimumCount);
+	select.setSelectBoxIcon(selectBoxIcon);
+	select.setOnSelectTopics(onSelectTopics);
+    }
 
-  public void setEmptyOption(String emptyOption)
-  {
-    this.emptyOption = emptyOption;
-  }
+    public void setEmptyOption(String emptyOption) {
+	this.emptyOption = emptyOption;
+    }
 
-  public void setHeaderKey(String headerKey)
-  {
-    this.headerKey = headerKey;
-  }
+    public void setHeaderKey(String headerKey) {
+	this.headerKey = headerKey;
+    }
 
-  public void setHeaderValue(String headerValue)
-  {
-    this.headerValue = headerValue;
-  }
+    public void setHeaderValue(String headerValue) {
+	this.headerValue = headerValue;
+    }
 
-  public void setList(String list)
-  {
-    this.list = list;
-  }
+    public void setList(String list) {
+	this.list = list;
+    }
 
-  public void setListKey(String listKey)
-  {
-    this.listKey = listKey;
-  }
+    public void setListKey(String listKey) {
+	this.listKey = listKey;
+    }
 
-  public void setListValue(String listValue)
-  {
-    this.listValue = listValue;
-  }
+    public void setListValue(String listValue) {
+	this.listValue = listValue;
+    }
 
-  public void setSize(String size)
-  {
-    this.size = size;
-  }
+    public void setSize(String size) {
+	this.size = size;
+    }
 
-  public void setMultiple(String multiple)
-  {
-    this.multiple = multiple;
-  }
+    public void setMultiple(String multiple) {
+	this.multiple = multiple;
+    }
 
-  public void setAutocomplete(String autocomplete)
-  {
-    this.autocomplete = autocomplete;
-  }
+    public void setAutocomplete(String autocomplete) {
+	this.autocomplete = autocomplete;
+    }
 
-  public void setLoadMinimumCount(String loadMinimumCount)
-  {
-    this.loadMinimumCount = loadMinimumCount;
-  }
+    public void setLoadMinimumCount(String loadMinimumCount) {
+	this.loadMinimumCount = loadMinimumCount;
+    }
 
-  public void setSelectBoxIcon(String selectBoxIcon)
-  {
-    this.selectBoxIcon = selectBoxIcon;
-  }
+    public void setSelectBoxIcon(String selectBoxIcon) {
+	this.selectBoxIcon = selectBoxIcon;
+    }
+
+    public void setOnSelectTopics(String onSelectTopics) {
+	this.onSelectTopics = onSelectTopics;
+    }
 
 }

@@ -59,6 +59,9 @@ jQuery(document).ready(function () {
 <#if parameters.loadMinimumCount??>
 	options_${escapedOptionId?html}.minimum = ${parameters.loadMinimumCount?html};
 </#if>
+<#if parameters.onSelectTopics?if_exists != "">
+	options_${escapedOptionId?html}.onselecttopics = "${parameters.onSelectTopics?html}";
+</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

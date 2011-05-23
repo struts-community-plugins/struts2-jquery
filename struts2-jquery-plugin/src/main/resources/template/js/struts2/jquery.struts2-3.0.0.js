@@ -854,6 +854,9 @@
 					$elem.change( function() {
 						self.publishTopic($elem, o.oncha, {});
 					});
+					$elem.select( function() {
+						self.publishTopic($elem, o.onselecttopics, {});
+					});
 				}
 			}
 		}

@@ -9,6 +9,7 @@
 			var select = this.element.hide(),
 				selected = select.children( ":selected" ),
 				value = selected.val() ? selected.text() : "";
+			select.focus()
 			var input = $( "<input>" )
 				.insertAfter( select )
 				.val( value )
@@ -33,12 +34,24 @@
 						}
 						}) );
 					},
+					focus: function( event, ui ) {
+						self._trigger( "focus", event, { item: ui.item } )
+						event.ui = ui;
+						if(self.options.onfocustopics ) {
+							$.each(self.options.onfocustopics .split(','), function(i, fts) {
+								select.publish(fts, { item: ui.item }, event);
+							});
+						}
+					},
 					select: function( event, ui ) {
 						ui.item.option.selected = true;
-						//select.val( ui.item.option.value );
-						self._trigger( "selected", event, {
-							item: ui.item.option
-						});
+						self._trigger( "select", event, { item: ui.item } )
+						event.ui = ui;
+						if(self.options.onselecttopics) {
+							$.each(self.options.onselecttopics.split(','), function(i, sts) {
+								select.publish(sts, { item: ui.item }, event);
+							});
+						}
 					},
 					change: function( event, ui ) {
 						if ( !ui.item ) {
@@ -56,6 +69,13 @@
 								select.val( "" );
 								return false;
 							}
+						}
+						self._trigger( "change", event, { item: ui.item } );
+						event.ui = ui;
+						if(self.options.oncha) {
+							$.each(self.options.oncha.split(','), function(i, cts) {
+								select.publish(cts, { item: ui.item }, event);
+							});
 						}
 					}
 				})

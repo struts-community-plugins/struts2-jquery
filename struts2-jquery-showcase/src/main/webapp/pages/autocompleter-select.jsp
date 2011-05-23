@@ -17,6 +17,8 @@
     </p>
     <strong>Result Div :</strong>
 	<div id="formResult" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
+    <strong>Topics Div :</strong>
+	<div id="topics" class="result ui-widget-content ui-corner-all"></div>
     
     <s:form id="form" action="echo" theme="simple" cssClass="yform">
         <fieldset>
@@ -31,6 +33,9 @@
     				listKey="id" 
     				selectBox="true"
     				selectBoxIcon="true"
+	    			onChangeTopics="autocompleteChange"
+	    			onFocusTopics="autocompleteFocus"
+	    			onSelectTopics="autocompleteSelect"
     			/>
 	        </div>
 	        <div>
@@ -62,6 +67,9 @@
 		    		listKey="id" 
 		    		autocomplete="true"
 		    		loadMinimumCount="2"
+	    			onChangeTopics="autocompleteChange"
+	    			onFocusTopics="autocompleteFocus"
+	    			onSelectTopics="autocompleteSelect"
 			    />
 	        </div>
 	        <div>
