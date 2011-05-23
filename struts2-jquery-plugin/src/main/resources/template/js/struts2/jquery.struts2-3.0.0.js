@@ -1445,7 +1445,7 @@
 
 		o.slide = function(event, ui) {
 			if (o.hiddenid) {
-				if(o.value) {
+				if(o.value != undefined) {
 					$(self.escId(o.hiddenid)).val(ui.value);
 				}
 				if(o.values) {
@@ -1453,7 +1453,7 @@
 				}
 			}
 			if (o.displayvalueelement) {
-				if(o.value) {
+				if(o.value != undefined) {
 					$(self.escId(o.displayvalueelement)).html(ui.value);
 				}
 				if(o.values) {
