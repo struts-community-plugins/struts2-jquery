@@ -40,7 +40,7 @@
       <div id="header" class="ui-widget-header">
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;width: 700px">Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version 3.0.1 / Full Hibernate Plugin - Version 2.2.1 GA</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version 3.0.2 / Full Hibernate Plugin - Version 2.2.1 GA</h4>
         </div>
       </div>
       <div id="nav">
