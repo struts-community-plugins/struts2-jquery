@@ -59,11 +59,10 @@
   <div id="result" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
 
  
-    <h2>Dynamic Tree with AJAX Links</h2>
+    <h2>Dynamic Tree with AJAX Links and Contextmenu</h2>
     <p class="text">
-        A Tree Component rendered on the server with AJAX Links.
+        A Tree Component rendered on the server with AJAX Links and Contextmenu.
     </p>
-
 		<s:url id="echo" value="/echo.action"/>
     	<sjt:tree 
     		id="treeDynamicAjax" 
@@ -75,6 +74,17 @@
     		nodeHref="%{echo}"
     		nodeHrefParamName="echo"
     		nodeTargets="result2"
+    		contextmenu="{
+    			items: { 
+    				'create' : false,
+    				'rename' : false,
+    				'ccp' : false,
+    				'remove' : { 
+    					'label': 'Delete this Node', 
+    					'action':  function (obj) { this.remove(obj); deleteTreeNode('%{echo}', obj); }
+    				} 
+    			} 
+    		}"
     	/>
 
   <strong>Result Div :</strong>
@@ -119,9 +129,9 @@
   &lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Links above.&lt;/div&gt;
 
  
-    &lt;h2&gt;Dynamic Tree with AJAX Links&lt;/h2&gt;
+    &lt;h2&gt;Dynamic Tree with AJAX Links and Contextmenu&lt;/h2&gt;
     &lt;p class=&quot;text&quot;&gt;
-        A Tree Component rendered on the server with AJAX Links.
+        A Tree Component rendered on the server with AJAX Links and Contextmenu.
     &lt;/p&gt;
 
 		&lt;s:url id=&quot;echo&quot; value=&quot;/echo.action&quot;/&gt;
@@ -135,6 +145,17 @@
     		nodeHref=&quot;%{echo}&quot;
     		nodeHrefParamName=&quot;echo&quot;
     		nodeTargets=&quot;result2&quot;
+    		contextmenu=&quot;{
+    			items: { 
+    				'create' : false,
+    				'rename' : false,
+    				'ccp' : false,
+    				'remove' : { 
+    					'label': 'Delete this Node', 
+    					'action':  function (obj) { this.remove(obj); deleteTreeNode('%{echo}', obj); }
+    				} 
+    			} 
+    		}&quot;
     	/&gt;
 
   &lt;strong&gt;Result Div :&lt;/strong&gt;

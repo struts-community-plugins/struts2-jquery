@@ -39,6 +39,10 @@
 			else {
 				o.plugins.push("themeroller"); 
 			}
+			if(o.contextmenu) {
+				o.plugins.push("crrm"); 
+				o.plugins.push("contextmenu"); 
+			}
 			
 			if(o.url){
 				o.json_data = {};

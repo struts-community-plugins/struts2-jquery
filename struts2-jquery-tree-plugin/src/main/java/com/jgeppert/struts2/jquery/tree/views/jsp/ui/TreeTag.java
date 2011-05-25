@@ -54,6 +54,7 @@ public class TreeTag extends AbstractContainerTag {
 	protected String nodeTargets;
 	protected String openAllOnLoad;
 	protected String openAllOnRefresh;
+	protected String contextmenu;
 
 	public Component getBean(ValueStack stack, HttpServletRequest req,
 			HttpServletResponse res) {
@@ -80,6 +81,7 @@ public class TreeTag extends AbstractContainerTag {
 		tree.setNodeTargets(nodeTargets);
 		tree.setOpenAllOnLoad(openAllOnLoad);
 		tree.setOpenAllOnRefresh(openAllOnRefresh);
+		tree.setContextmenu(contextmenu);
 	}
 
 	public void setJstreetheme(String jstreetheme) {
@@ -144,6 +146,10 @@ public class TreeTag extends AbstractContainerTag {
 
 	public void setOpenAllOnRefresh(String openAllOnRefresh) {
 	    this.openAllOnRefresh = openAllOnRefresh;
+	}
+
+	public void setContextmenu(String contextmenu) {
+	    this.contextmenu = contextmenu;
 	}
 
 }

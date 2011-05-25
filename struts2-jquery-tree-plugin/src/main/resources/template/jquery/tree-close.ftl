@@ -51,6 +51,9 @@ jQuery(document).ready(function () {
 	<#if parameters.openAllOnRefresh??>
 	options_${escapedOptionId?html}.openrefresh = ${parameters.openAllOnRefresh?string};
 	</#if>
+	<#if parameters.contextmenu?if_exists != ""> 
+	options_${escapedOptionId?html}.contextmenu = ${parameters.contextmenu?string};
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
 

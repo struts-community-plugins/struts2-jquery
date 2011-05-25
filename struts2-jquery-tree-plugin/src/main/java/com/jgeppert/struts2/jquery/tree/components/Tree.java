@@ -66,6 +66,7 @@ public class Tree extends AbstractContainer {
 	protected String nodeTargets;
 	protected String openAllOnLoad;
 	protected String openAllOnRefresh;
+	protected String contextmenu;
 
 	public Tree(ValueStack stack, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -121,6 +122,8 @@ public class Tree extends AbstractContainer {
 		if (this.openAllOnRefresh != null)
 			addParameter("openAllOnRefresh",
 					findValue(this.openAllOnRefresh, Boolean.class));
+		if (contextmenu != null)
+			addParameter("contextmenu", findString(contextmenu));
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -238,5 +241,10 @@ public class Tree extends AbstractContainer {
     @StrutsTagAttribute(description = "Open all Nodes on refresh.", type = "Boolean", defaultValue = "false")
     public void setOpenAllOnRefresh(String openAllOnRefresh) {
         this.openAllOnRefresh = openAllOnRefresh;
+    }
+
+    @StrutsTagAttribute(description="Expects an JavaScript object or a function, which should return an JavaScript object. e.g. {items: { 'delete' : { 'label': 'Delete Node', 'action':  function (obj) { this.delete(obj); } } } }")
+    public void setContextmenu(String contextmenu) {
+        this.contextmenu = contextmenu;
     }
 }

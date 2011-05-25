@@ -52,6 +52,14 @@ function customeValidation(form, errors) {
 	}
 }
 
+/*
+ * Function for Tree Node Delete Example
+ *
+ */
+function deleteTreeNode(url, obj) {
+	$("#result2").load(url +"?echo=Delete%20Node%20"+obj[0].id);
+}
+
 $(document).ready(function() {
 
 	/*
