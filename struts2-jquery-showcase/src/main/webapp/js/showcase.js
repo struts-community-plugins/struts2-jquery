@@ -291,17 +291,29 @@ $(document).ready(function() {
 
   $.subscribe('autocompleteChange', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('<b>'+ui.item.value+'</b>');
+  	var message = ui.item.value;
+  	if(ui.item.key) {
+  		message = '( '+ ui.item.key +' ) '+message;
+  	}
+		$('#topics').html('<b>'+message+'</b>');
 	});
 
   $.subscribe('autocompleteFocus', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('<u>'+ui.item.value+'</u>');
+  	var message = ui.item.value;
+  	if(ui.item.key) {
+  		message = '( '+ ui.item.key +' ) '+message;
+  	}
+		$('#topics').html('<u>'+message+'</u>');
 	});
 
   $.subscribe('autocompleteSelect', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('<i>'+ui.item.value+'</i>');
+  	var message = ui.item.value;
+  	if(ui.item.key) {
+  		message = '( '+ ui.item.key +' ) '+message;
+  	}
+		$('#topics').html('<i>'+message+'</i>');
 	});
 
 	/*

@@ -137,17 +137,29 @@
 	  <pre>
   $.subscribe('autocompleteChange', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('&lt;b&gt;'+ui.item.value+'&lt;/b&gt;');
+  	var message = ui.item.value;
+  	if(ui.item.key) {
+  		message = '( '+ ui.item.key +' ) '+message;
+  	}
+		$('#topics').html('&lt;b&gt;'+message+'&lt;/b&gt;');
 	});
 
   $.subscribe('autocompleteFocus', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('&lt;u&gt;'+ui.item.value+'&lt;/u&gt;');
+  	var message = ui.item.value;
+  	if(ui.item.key) {
+  		message = '( '+ ui.item.key +' ) '+message;
+  	}
+		$('#topics').html('&lt;u&gt;'+message+'&lt;/u&gt;');
 	});
 
   $.subscribe('autocompleteSelect', function(event, data) {
   	var ui = event.originalEvent.ui;
-		$('#topics').html('&lt;i&gt;'+ui.item.value+'&lt;/i&gt;');
+  	var message = ui.item.value;
+  	if(ui.item.key) {
+  		message = '( '+ ui.item.key +' ) '+message;
+  	}
+		$('#topics').html('&lt;i&gt;'+message+'&lt;/i&gt;');
 	});
 	  </pre>
 	  </div>

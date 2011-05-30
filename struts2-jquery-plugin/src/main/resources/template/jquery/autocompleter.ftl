@@ -18,6 +18,20 @@
  * under the License.
  */
 -->
+<input type="hidden"
+  <#if parameters.widgetid?if_exists != "">
+    id="${parameters.widgetid?html}"<#rt/>
+  </#if>
+  <#if parameters.value??>
+    value="${parameters.value?html}"<#rt/>
+  </#if>
+  <#if parameters.widgetname?if_exists != "">
+ 	name="${parameters.widgetname?html}"<#rt/>
+  </#if>
+  <#if parameters.disabled?default(false)>
+    disabled="disabled"<#rt/>
+  </#if>
+/>
 <#if parameters.parentTheme == 'xhtml' || parameters.parentTheme == 'css_xhtml' || parameters.parentTheme == 'simple'>
 	<#if parameters.parentTheme == 'xhtml'>
 		<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />

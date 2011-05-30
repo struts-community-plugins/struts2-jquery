@@ -194,8 +194,11 @@ public class Autocompleter extends AbstractFormListElement {
       int nextInt = RANDOM.nextInt();
       nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
       this.id = "autocompleter_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
     }
+    addParameter("id", this.id + "_widget");
+    addParameter("widgetid", this.id);
+    addParameter("name", this.name + "_widget");
+    addParameter("widgetname", this.name);
   }
 
   @Override

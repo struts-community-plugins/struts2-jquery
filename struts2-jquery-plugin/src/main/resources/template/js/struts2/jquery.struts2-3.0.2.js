@@ -1674,7 +1674,8 @@
 															$.ui.autocomplete.escapeRegex(request.term) +
 															")(?![^<>]*>)(?![^&;]+;)", "gi"
 														), "<strong>$1</strong>" ),
-											value: j
+											value: val,
+											key: j
 										});
 									}
 									else {
@@ -1686,7 +1687,8 @@
 																$.ui.autocomplete.escapeRegex(request.term) +
 																")(?![^<>]*>)(?![^&;]+;)", "gi"
 															), "<strong>$1</strong>" ),
-												value: val[o.listkey]
+												value: val[o.listvalue],
+												key: val[o.listkey]
 											});
 										}
 										else {
@@ -1697,7 +1699,8 @@
 																$.ui.autocomplete.escapeRegex(request.term) +
 																")(?![^<>]*>)(?![^&;]+;)", "gi"
 															), "<strong>$1</strong>" ),
-												value: data[o.list][x]
+												value: data[o.list][x],
+												key: data[o.list][x]
 											});
 										}
 									}
@@ -1738,9 +1741,29 @@
 		if (o.onfocustopics) {
 			params.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
 		}
-		if (o.onselecttopics) {
-			params.select = self.pubTops($elem, o.onalw, o.onselecttopics);
-		}
+		params.select = function( event, ui ) {
+			if (o.onselecttopics) {
+				params.select = self.pubTops($elem, o.onalw, o.onselecttopics);
+				var data = {};
+				data.event = event;
+				data.ui = ui;
+
+				self.publishTopic($elem, o.onalw, data);
+				self.publishTopic($elem, o.onselecttopics, data);
+			}
+      if(ui.item){
+      	if(ui.item.option) {
+      		$(self.escId(o.hiddenid)).val(ui.item.option.value);
+      	}
+      	else if(ui.item.key) {
+      		$(self.escId(o.hiddenid)).val(ui.item.key);
+      	}
+      	else {
+      		$(self.escId(o.hiddenid)).val(ui.item.value);
+      	}
+      }
+		};
+
 
 		if (o.selectBox === false) {
 			$elem.autocomplete(params);

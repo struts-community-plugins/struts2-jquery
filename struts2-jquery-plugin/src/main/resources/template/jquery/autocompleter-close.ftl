@@ -22,6 +22,9 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId?html} = {};
+  <#if parameters.widgetid?if_exists != "">
+	options_${escapedOptionId?html}.hiddenid = "${parameters.widgetid?html}";
+  </#if>
   <#if parameters.delay??>
 	options_${escapedOptionId?html}.delay = ${parameters.delay?html};
   </#if>
