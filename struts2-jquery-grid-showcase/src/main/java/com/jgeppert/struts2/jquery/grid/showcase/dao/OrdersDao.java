@@ -40,7 +40,7 @@ public class OrdersDao extends AbstractSimpleGenericDao<Orders, Integer>
 		{
 			Criteria criteria = dc.getExecutableCriteria(hSession);
 			criteria.setProjection(Projections.rowCount());
-			return ((Integer) criteria.list().get(0)).intValue();
+			return ((Long) criteria.list().get(0)).intValue();
 		}
 		catch (HibernateException e)
 		{
