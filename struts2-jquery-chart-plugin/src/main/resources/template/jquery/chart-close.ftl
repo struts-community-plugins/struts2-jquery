@@ -40,7 +40,7 @@ options_${escapedOptionId?html}.xaxis.timeformat = "${parameters.xaxisTimeformat
 options_${escapedOptionId?html}.xaxis.color = "${parameters.xaxisColor?html}";
 </#if>
 <#if parameters.xaxisTick?if_exists != "">
-options_${escapedOptionId?html}.xaxis.tick = ${parameters.xaxisTick?html};
+options_${escapedOptionId?html}.xaxis.ticks = ${parameters.xaxisTick?html};
 </#if>
 <#if parameters.xaxisTickSize?if_exists != "">
 options_${escapedOptionId?html}.xaxis.tickSize = ${parameters.xaxisTickSize?html};
@@ -71,7 +71,7 @@ options_${escapedOptionId?html}.yaxis.timeformat = "${parameters.yaxisTimeformat
 options_${escapedOptionId?html}.yaxis.color = "${parameters.yaxisColor?html}";
 </#if>
 <#if parameters.yaxisTick??>
-options_${escapedOptionId?html}.yaxis.tick = ${parameters.yaxisTick?string};
+options_${escapedOptionId?html}.yaxis.ticks = ${parameters.yaxisTick?string};
 </#if>
 <#if parameters.yaxisTickSize??>
 options_${escapedOptionId?html}.yaxis.tickSize = ${parameters.yaxisTickSize?string};
