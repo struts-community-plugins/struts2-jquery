@@ -1680,13 +1680,20 @@
 									}
 									else {
 										if (o.listkey !== undefined && o.listvalue !== undefined) {
-											result.push({
-												label: val[o.listvalue].replace(
+											var label;
+											if(o.listlabel) {
+												label = val[o.listlabel];
+											}
+											else {
+												label = val[o.listvalue].replace(
 														new RegExp(
 																"(?![^&;]+;)(?!<[^<>]*)(" +
 																$.ui.autocomplete.escapeRegex(request.term) +
 																")(?![^<>]*>)(?![^&;]+;)", "gi"
-															), "<strong>$1</strong>" ),
+															), "<strong>$1</strong>" );
+											}
+											result.push({
+												label: label,
 												value: val[o.listvalue],
 												key: val[o.listkey]
 											});

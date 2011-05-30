@@ -42,6 +42,7 @@
 	    	list="customers"
     		listValue="name" 
     		listKey="id" 
+    		listLabel="label"
 	    	delay="50" 
 	    	loadMinimumCount="2"
 	    	onChangeTopics="autocompleteChange"
@@ -104,6 +105,7 @@
 	    	list=&quot;customers&quot;
     		listValue=&quot;name&quot; 
     		listKey=&quot;id&quot; 
+    		listLabel=&quot;label&quot;
 	    	delay=&quot;50&quot; 
 	    	loadMinimumCount=&quot;2&quot;
 	    	onChangeTopics=&quot;autocompleteChange&quot;

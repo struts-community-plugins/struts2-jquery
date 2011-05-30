@@ -71,6 +71,9 @@ jQuery(document).ready(function () {
 	<#if parameters.remoteListValue??>
 	options_${escapedOptionId?html}.listvalue = "${parameters.remoteListValue?html}";
 	</#if>
+	<#if parameters.listLabel??>
+	options_${escapedOptionId?html}.listlabel = "${parameters.listLabel?html}";
+	</#if>
   </#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />

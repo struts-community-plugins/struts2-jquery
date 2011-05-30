@@ -35,95 +35,89 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class AutocompleterTag extends AbstractFormListElementTag {
 
-  private static final long serialVersionUID = 4675729906623010236L;
+    private static final long serialVersionUID = 4675729906623010236L;
 
-  protected String          delay;
-  protected String          loadMinimumCount;
-  protected String          selectBox;
-  protected String          selectBoxIcon;
-  protected String          onSelectTopics;
-  protected String          onFocusTopics;
-  protected String          onSearchTopics;
-  protected String          maxlength;
-  protected String          readonly;
-  protected String          size;
-  protected String          multiple;
+    protected String delay;
+    protected String loadMinimumCount;
+    protected String selectBox;
+    protected String selectBoxIcon;
+    protected String onSelectTopics;
+    protected String onFocusTopics;
+    protected String onSearchTopics;
+    protected String maxlength;
+    protected String readonly;
+    protected String size;
+    protected String multiple;
+    protected String listLabel;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Autocompleter(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Autocompleter(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-    Autocompleter completer = (Autocompleter) component;
-    completer.setDelay(delay);
-    completer.setLoadMinimumCount(loadMinimumCount);
-    completer.setSelectBox(selectBox);
-    completer.setSelectBoxIcon(selectBoxIcon);
-    completer.setOnSelectTopics(onSelectTopics);
-    completer.setOnFocusTopics(onFocusTopics);
-    completer.setOnSearchTopics(onSearchTopics);
-    completer.setMaxlength(maxlength);
-    completer.setReadonly(readonly);
-    completer.setSize(size);
-    completer.setMultiple(multiple);
-  }
+	Autocompleter completer = (Autocompleter) component;
+	completer.setDelay(delay);
+	completer.setLoadMinimumCount(loadMinimumCount);
+	completer.setSelectBox(selectBox);
+	completer.setSelectBoxIcon(selectBoxIcon);
+	completer.setOnSelectTopics(onSelectTopics);
+	completer.setOnFocusTopics(onFocusTopics);
+	completer.setOnSearchTopics(onSearchTopics);
+	completer.setMaxlength(maxlength);
+	completer.setReadonly(readonly);
+	completer.setSize(size);
+	completer.setMultiple(multiple);
+	completer.setListLabel(listLabel);
+    }
 
-  public void setMaxlength(String maxlength)
-  {
-    this.maxlength = maxlength;
-  }
+    public void setMaxlength(String maxlength) {
+	this.maxlength = maxlength;
+    }
 
-  public void setReadonly(String readonly)
-  {
-    this.readonly = readonly;
-  }
+    public void setReadonly(String readonly) {
+	this.readonly = readonly;
+    }
 
-  public void setSize(String size)
-  {
-    this.size = size;
-  }
+    public void setSize(String size) {
+	this.size = size;
+    }
 
-  public void setDelay(String delay)
-  {
-    this.delay = delay;
-  }
+    public void setDelay(String delay) {
+	this.delay = delay;
+    }
 
-  public void setLoadMinimumCount(String loadMinimumCount)
-  {
-    this.loadMinimumCount = loadMinimumCount;
-  }
+    public void setLoadMinimumCount(String loadMinimumCount) {
+	this.loadMinimumCount = loadMinimumCount;
+    }
 
-  public void setSelectBox(String selectBox)
-  {
-    this.selectBox = selectBox;
-  }
+    public void setSelectBox(String selectBox) {
+	this.selectBox = selectBox;
+    }
 
-  public void setOnSelectTopics(String onSelectTopics)
-  {
-    this.onSelectTopics = onSelectTopics;
-  }
+    public void setOnSelectTopics(String onSelectTopics) {
+	this.onSelectTopics = onSelectTopics;
+    }
 
-  public void setOnFocusTopics(String onFocusTopics)
-  {
-    this.onFocusTopics = onFocusTopics;
-  }
+    public void setOnFocusTopics(String onFocusTopics) {
+	this.onFocusTopics = onFocusTopics;
+    }
 
-  public void setOnSearchTopics(String onSearchTopics)
-  {
-    this.onSearchTopics = onSearchTopics;
-  }
+    public void setOnSearchTopics(String onSearchTopics) {
+	this.onSearchTopics = onSearchTopics;
+    }
 
-  public void setMultiple(String multiple)
-  {
-    this.multiple = multiple;
-  }
+    public void setMultiple(String multiple) {
+	this.multiple = multiple;
+    }
 
-  public void setSelectBoxIcon(String selectBoxIcon)
-  {
-    this.selectBoxIcon = selectBoxIcon;
-  }
+    public void setSelectBoxIcon(String selectBoxIcon) {
+	this.selectBoxIcon = selectBoxIcon;
+    }
+
+    public void setListLabel(String listLabel) {
+	this.listLabel = listLabel;
+    }
 }
