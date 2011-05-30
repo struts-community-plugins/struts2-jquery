@@ -39,6 +39,7 @@ Form Submit with AJAX form Button.
 				onClickTopics="listenOnClick1"
 				targets="result1" 
 				effect="highlight"
+				button="true"
 		/>
 	</s:form>
 </div>
@@ -57,6 +58,7 @@ Following Form Submit Button is Listen on Submit Button in Form One.
 				targets="result2" 
 				effect="highlight"
 				listenTopics="listenOnClick1" 
+				button="true"
 		/>
 	</s:form>
 </div>
@@ -75,6 +77,7 @@ Form Submit with AJAX form Button with specified href attribute.
 				targets="result3" 
 				effect="highlight"
 				href="%{formurl3}" 
+				button="true"
 		/>
 	</s:form>
 </div>
@@ -93,7 +96,9 @@ Following Form Submit Button is Listen on Submit Button in Form Three.
 				formIds="listenForm4"
 				targets="result4" 
 				effect="highlight"
-				listenTopics="listenOnClick2" />
+				listenTopics="listenOnClick2"
+				button="true"
+		 />
 	</s:form>
 </div>
 <div id="result4" class="ui-widget-content ui-corner-all">Result Div for Form Four</div>
