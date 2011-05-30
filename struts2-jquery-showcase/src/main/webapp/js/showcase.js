@@ -62,6 +62,10 @@ function deleteTreeNode(url, obj) {
 
 $(document).ready(function() {
 
+	$.subscribe('changeTextfield', function(event, data) {
+		$('#result').html('Textfield '+data.id+' value is '+data.value);
+	});
+
 	/*
 	 * Subscribe Topics for AJAX Link Event Example
 	 */

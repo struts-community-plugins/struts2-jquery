@@ -49,6 +49,7 @@
 					}"
 					id="echo" 
 					name="echo"
+					onChangeTopics="changeTextfield"
 					loadingText="Loading content of textfield ..."
 				/>
 	        </div>
