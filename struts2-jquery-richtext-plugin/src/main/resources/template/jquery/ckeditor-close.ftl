@@ -55,6 +55,9 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId?html}.filebrowserUploadUrl = "<@s.property value="ckeditorUploadUrl" />";
 		</#if>
 	</#if>
+  	<#if parameters.editorResizable?default(false)>
+	options_${escapedOptionId?html}.editorResizable = true;
+  	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

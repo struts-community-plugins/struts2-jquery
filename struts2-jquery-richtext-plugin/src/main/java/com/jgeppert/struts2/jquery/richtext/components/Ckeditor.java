@@ -148,6 +148,10 @@ public class Ckeditor extends Textarea {
     {
       addParameter("uploadHref", findString(uploadHref));
     }
+    if (resizable != null)
+    {
+      addParameter("editorResizable", findValue(resizable, Boolean.class));
+    }
 
     if ((this.id == null || this.id.length() == 0))
     {
@@ -250,4 +254,12 @@ public class Ckeditor extends Textarea {
   {
     this.uploadHref = uploadHref;
   }
+  
+
+  @StrutsTagAttribute(description = "This option gives you the ability to enable/disable the resizing of the ckeditor instance.", defaultValue = "false", type = "Boolean")
+  public void setResizable(String resizable)
+  {
+    this.resizable = resizable;
+  }
+
 }

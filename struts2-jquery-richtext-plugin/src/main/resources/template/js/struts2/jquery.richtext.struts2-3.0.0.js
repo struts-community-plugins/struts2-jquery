@@ -69,6 +69,13 @@
 			} else {
 				o.language = self.local;
 			}
+			
+			o.resizable = false;
+			if (o.editorResizable) {
+				o.resize_enabled  = true;
+			}else{
+				o.resize_enabled  = false;
+			}
 
 			if (o.href && o.href !== '#') {
 				var ckeditorTopic = 's2j_ckeditor_' + o.id;
