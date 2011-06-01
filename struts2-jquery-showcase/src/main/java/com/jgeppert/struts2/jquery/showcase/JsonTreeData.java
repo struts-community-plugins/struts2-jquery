@@ -20,6 +20,7 @@
 package com.jgeppert.struts2.jquery.showcase;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -48,8 +49,24 @@ public class JsonTreeData extends ActionSupport {
 
 		TreeNode nodeB = new TreeNode();
 		nodeB.setId("B" + id);
-		nodeB.setState(TreeNode.NODE_STATE_CLOSED);
+		nodeB.setState(TreeNode.NODE_STATE_OPEN);
+		nodeB.setIcon("ui-icon-suitcase");
 		nodeB.setTitle("Node B" + id);
+		nodeB.setChildren(new LinkedList<TreeNode>());
+		
+		TreeNode nodeB1 = new TreeNode();
+		nodeB1.setId("B1" + id);
+		nodeB1.setState(TreeNode.NODE_STATE_LEAF);
+		nodeB1.setIcon("ui-icon-document");
+		nodeB1.setTitle("Node B1" + id);
+		nodeB.getChildren().add(nodeB1);
+		
+		TreeNode nodeB2 = new TreeNode();
+		nodeB2.setId("B2" + id);
+		nodeB2.setState(TreeNode.NODE_STATE_LEAF);
+		nodeB2.setIcon("ui-icon-image");
+		nodeB2.setTitle("Node B2" + id);
+		nodeB.getChildren().add(nodeB2);
 
 		TreeNode nodeC = new TreeNode();
 		nodeC.setId("C" + id);

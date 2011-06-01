@@ -18,6 +18,7 @@ public class Tree extends ActionSupport{
 		TreeNode nodeA = new TreeNode();
 		nodeA.setId("A");
 		nodeA.setTitle("Node A");
+		nodeA.setState(TreeNode.NODE_STATE_OPEN);
 	
 		TreeNode nodeAA = new TreeNode();
 		nodeAA.setId("AA");
@@ -26,6 +27,7 @@ public class Tree extends ActionSupport{
 		TreeNode nodeAB = new TreeNode();
 		nodeAB.setId("AB");
 		nodeAB.setTitle("Node AB");
+		//nodeAB.setIcon(TreeNode.NODE_STATE_OPEN);
 		
 		nodeA.setChildren(new LinkedList<TreeNode>());
 		nodeA.getChildren().add(nodeAA);
@@ -41,6 +43,7 @@ public class Tree extends ActionSupport{
 	
 		nodes.setId("rootNode");
 		nodes.setTitle("Root Node");
+		nodes.setState(TreeNode.NODE_STATE_OPEN);
 		nodes.setChildren(new LinkedList<TreeNode>());
 		nodes.getChildren().add(nodeA);
 		nodes.getChildren().add(nodeB);

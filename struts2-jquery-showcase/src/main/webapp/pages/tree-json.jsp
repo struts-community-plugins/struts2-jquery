@@ -30,7 +30,7 @@
     </p>
     	<s:url id="treeDataUrl" action="json-tree-data"/>
     	<sjt:tree 
-    		id="jsonTree" 
+    		id="jsonTree"
     		href="%{treeDataUrl}"
     		onClickTopics="treeClicked" 
     	/>
@@ -82,8 +82,24 @@ public class JsonTreeData extends ActionSupport {
 
 		TreeNode nodeB = new TreeNode();
 		nodeB.setId(&quot;B&quot; + id);
-		nodeB.setState(TreeNode.NODE_STATE_CLOSED);
+		nodeB.setState(TreeNode.NODE_STATE_OPEN);
+		nodeB.setIcon(&quot;ui-icon-suitcase&quot;);
 		nodeB.setTitle(&quot;Node B&quot; + id);
+		nodeB.setChildren(new LinkedList&lt;TreeNode&gt;());
+		
+		TreeNode nodeB1 = new TreeNode();
+		nodeB1.setId(&quot;B1&quot; + id);
+		nodeB1.setState(TreeNode.NODE_STATE_LEAF);
+		nodeB1.setIcon(&quot;ui-icon-document&quot;);
+		nodeB1.setTitle(&quot;Node B1&quot; + id);
+		nodeB.getChildren().add(nodeB1);
+		
+		TreeNode nodeB2 = new TreeNode();
+		nodeB2.setId(&quot;B2&quot; + id);
+		nodeB2.setState(TreeNode.NODE_STATE_LEAF);
+		nodeB2.setIcon(&quot;ui-icon-image&quot;);
+		nodeB2.setTitle(&quot;Node B2&quot; + id);
+		nodeB.getChildren().add(nodeB2);
 
 		TreeNode nodeC = new TreeNode();
 		nodeC.setId(&quot;C&quot; + id);

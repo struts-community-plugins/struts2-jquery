@@ -7,10 +7,12 @@ import java.util.Map;
 public class TreeNode {
 
 	public static final String NODE_STATE_CLOSED = "closed";
+	public static final String NODE_STATE_LEAF = "leaf";
 	public static final String NODE_STATE_OPEN = "open";
 
 	private Map<String, Object> attr;
 	private Collection<TreeNode> children;
+	private Map<String, Object> data;
 	private String icon;
 	private String id;
 	private String state = TreeNode.NODE_STATE_CLOSED;
@@ -25,16 +27,16 @@ public class TreeNode {
 		this.title = title;
 	}
 	
-	public TreeNode(String id, String title) {
-		super();
-		this.id = id;
-		this.title = title;
-	}
-
 	public TreeNode(String title, Collection<TreeNode> children) {
 		super();
 		this.title = title;
 		this.children = children;
+	}
+
+	public TreeNode(String id, String title) {
+		super();
+		this.id = id;
+		this.title = title;
 	}
 	
 	public TreeNode(String id, String title, Collection<TreeNode> children) {
@@ -52,12 +54,16 @@ public class TreeNode {
 		return children;
 	}
 
+	public Map<String, Object> getData() {
+	    return data;
+	}
+
 	/**
 	 * Get the Tree Node Title
 	 */
-	public String getData() {
-		return title;
-	}
+//	public String getDatay() {
+//		return title;
+//	}
 
 	public String getIcon() {
 		return icon;
@@ -88,12 +94,24 @@ public class TreeNode {
 		this.children = children;
 	}
 
+	public void setData(Map<String, Object> data) {
+	    this.data = data;
+	}
+
 	/**
 	 * Set the Tree Node Icon
 	 * 
 	 * @param icon
 	 */
 	public void setIcon(String icon) {
+		if (this.data == null) {
+		    data = new HashMap<String, Object>();
+		}
+
+		if (this.data.containsKey("icon")) {
+			this.data.remove("icon");
+		}
+		this.data.put("icon", icon);
 		this.icon = icon;
 	}
 
@@ -116,7 +134,7 @@ public class TreeNode {
 	}
 
 	/**
-	 * Set the Tree Node State open or closed
+	 * Set the Tree Node State open, closed or leaf
 	 * 
 	 * @param state
 	 */
@@ -130,6 +148,14 @@ public class TreeNode {
 	 * @param title
 	 */
 	public void setTitle(String title) {
+		if (this.data == null) {
+		    data = new HashMap<String, Object>();
+		}
+
+		if (this.data.containsKey("title")) {
+			this.data.remove("title");
+		}
+		this.data.put("title", title);
 		this.title = title;
 	}
 
