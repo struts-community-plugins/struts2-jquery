@@ -24,10 +24,18 @@
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
   <#if parameters.height?if_exists != "">
+  	<#if parameters.height?if_exists == "auto">
+	options_${escapedOptionId?html}.height = "auto";
+  	<#else>
 	options_${escapedOptionId?html}.height = ${parameters.height?html};
+  	</#if>
   </#if>
   <#if parameters.width?if_exists != "">
+ 	<#if parameters.width?if_exists == "auto">
+	options_${escapedOptionId?html}.width = "auto";
+  	<#else>
 	options_${escapedOptionId?html}.width = ${parameters.width?html};
+  	</#if>
   </#if>
    <#if parameters.maxHeight?if_exists != "">
 	options_${escapedOptionId?html}.maxHeight = ${parameters.maxHeight?html};
