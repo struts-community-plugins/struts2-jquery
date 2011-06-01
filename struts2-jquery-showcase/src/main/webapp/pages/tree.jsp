@@ -66,7 +66,7 @@
 		<s:url id="echo" value="/echo.action"/>
     	<sjt:tree 
     		id="treeDynamicAjax" 
-    		jstreetheme="default"
+    		jstreetheme="apple"
     		rootNode="nodes"
     		childCollectionProperty="children"
     		nodeTitleProperty="title"

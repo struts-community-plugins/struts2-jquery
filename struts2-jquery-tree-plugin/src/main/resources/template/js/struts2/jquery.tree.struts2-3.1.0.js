@@ -34,7 +34,17 @@
 			o.plugins = ["ui"];
 			if(o.treetheme) {
 				o.plugins.push("themes"); 
-				self.requireCss("js/jstree/themes/"+o.treetheme+"/style.css");
+				o.themes = {};
+				o.themes.theme = o.treetheme;
+				var path = null;
+				if (!$.scriptPath) {
+					path = '';
+				}
+				else {
+					path = $.scriptPath;
+				}
+
+				o.themes.url = path + "js/jstree/themes/"+o.treetheme+"/style.css"
 			}
 			else {
 				o.plugins.push("themeroller"); 
