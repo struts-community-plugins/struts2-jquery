@@ -946,10 +946,12 @@
 		else {
 			if(o.href && o.href !== "#"){
 				self.action($elem, o, self.handler.load, 'a');
-				$.each(o.targets.split(','), function(i, t) {
-					self.subscribeTopics($(self.escId(t)), o.reloadtopics, self.handler.load, o);
-					self.subscribeTopics($(self.escId(t)), o.listentopics, self.handler.load, o);
-				});
+				if(o.targets) {
+					$.each(o.targets.split(','), function(i, t) {
+						self.subscribeTopics($(self.escId(t)), o.reloadtopics, self.handler.load, o);
+						self.subscribeTopics($(self.escId(t)), o.listentopics, self.handler.load, o);
+					});
+				}
 			}
 			else {
 				var cform = $elem.parents('form:first')[0];
