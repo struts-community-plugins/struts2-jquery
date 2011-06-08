@@ -362,7 +362,7 @@
 			}
 
 			if (o.editurl) {
-				self.require("js/plugins/jquery.filter.js");
+				self.require("js/plugins/grid.filter.js");
 				self.require("js/plugins/grid.formedit.js");
 				if (o.editinline) {
 					self.require("js/plugins/grid.inlinedit.js");
