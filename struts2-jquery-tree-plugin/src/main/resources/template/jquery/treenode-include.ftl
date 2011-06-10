@@ -18,7 +18,11 @@
  * under the License.
  */
 -->
-		<li id="${stack.findValue(parameters.nodeIdProperty)}">
+		<li id="${stack.findValue(parameters.nodeIdProperty)}"
+		<#if parameters.nodeTypeProperty?if_exists != ""> 
+			rel="${stack.findValue(parameters.nodeTypeProperty)}"
+		</#if>
+		>
     <#if parameters.nodeHref?exists>
 		<#if parameters.nodeTargets?if_exists != ""> 
 			<a id="${stack.findValue(parameters.nodeIdProperty)}_anchor" href="javascript:void(0)">

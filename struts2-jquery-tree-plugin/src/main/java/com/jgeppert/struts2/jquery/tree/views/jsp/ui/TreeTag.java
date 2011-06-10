@@ -48,6 +48,7 @@ public class TreeTag extends AbstractContainerTag {
 	protected String rootNode;
 	protected String childCollectionProperty;
 	protected String nodeTitleProperty;
+	protected String nodeTypeProperty;
 	protected String nodeIdProperty;
 	protected String nodeHref;
 	protected String nodeHrefParamName;
@@ -55,6 +56,7 @@ public class TreeTag extends AbstractContainerTag {
 	protected String openAllOnLoad;
 	protected String openAllOnRefresh;
 	protected String contextmenu;
+	protected String types;
 
 	public Component getBean(ValueStack stack, HttpServletRequest req,
 			HttpServletResponse res) {
@@ -76,12 +78,14 @@ public class TreeTag extends AbstractContainerTag {
 		tree.setChildCollectionProperty(childCollectionProperty);
 		tree.setNodeIdProperty(nodeIdProperty);
 		tree.setNodeTitleProperty(nodeTitleProperty);
+		tree.setNodeTypeProperty(nodeTypeProperty);
 		tree.setNodeHref(nodeHref);
 		tree.setNodeHrefParamName(nodeHrefParamName);
 		tree.setNodeTargets(nodeTargets);
 		tree.setOpenAllOnLoad(openAllOnLoad);
 		tree.setOpenAllOnRefresh(openAllOnRefresh);
 		tree.setContextmenu(contextmenu);
+		tree.setTypes(types);
 	}
 
 	public void setJstreetheme(String jstreetheme) {
@@ -150,6 +154,14 @@ public class TreeTag extends AbstractContainerTag {
 
 	public void setContextmenu(String contextmenu) {
 	    this.contextmenu = contextmenu;
+	}
+
+	public void setTypes(String types) {
+	    this.types = types;
+	}
+
+	public void setNodeTypeProperty(String nodeTypeProperty) {
+	    this.nodeTypeProperty = nodeTypeProperty;
 	}
 
 }

@@ -60,6 +60,7 @@ public class Tree extends AbstractContainer {
 	protected String rootNode;
 	protected String childCollectionProperty;
 	protected String nodeTitleProperty;
+	protected String nodeTypeProperty;
 	protected String nodeIdProperty;
 	protected String nodeHref;
 	protected String nodeHrefParamName;
@@ -67,6 +68,7 @@ public class Tree extends AbstractContainer {
 	protected String openAllOnLoad;
 	protected String openAllOnRefresh;
 	protected String contextmenu;
+	protected String types;
 
 	public Tree(ValueStack stack, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -108,6 +110,8 @@ public class Tree extends AbstractContainer {
 					findString(childCollectionProperty));
 		if (nodeTitleProperty != null)
 			addParameter("nodeTitleProperty", findString(nodeTitleProperty));
+		if (nodeTypeProperty != null)
+			addParameter("nodeTypeProperty", findString(nodeTypeProperty));
 		if (nodeIdProperty != null)
 			addParameter("nodeIdProperty", findString(nodeIdProperty));
 		if (nodeHref != null)
@@ -124,6 +128,8 @@ public class Tree extends AbstractContainer {
 					findValue(this.openAllOnRefresh, Boolean.class));
 		if (contextmenu != null)
 			addParameter("contextmenu", findString(contextmenu));
+		if (types != null)
+			addParameter("types", findString(types));
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -218,6 +224,11 @@ public class Tree extends AbstractContainer {
         return nodeIdProperty;
     }
 
+    @StrutsTagAttribute(description = "The type property for node. This needs a valid types definition.")
+    public void setNodeTypeProperty(String nodeTypeProperty) {
+        this.nodeTypeProperty = nodeTypeProperty;
+    }
+
     @StrutsTagAttribute(description="The href property for node.")
 	public void setNodeHref(String nodeHref) {
 		this.nodeHref = nodeHref;
@@ -246,5 +257,10 @@ public class Tree extends AbstractContainer {
     @StrutsTagAttribute(description="Expects an JavaScript object or a function, which should return an JavaScript object. e.g. {items: { 'delete' : { 'label': 'Delete Node', 'action':  function (obj) { this.delete(obj); } } } }")
     public void setContextmenu(String contextmenu) {
         this.contextmenu = contextmenu;
+    }
+
+    @StrutsTagAttribute(description="The types enables node types - each node can have a type, and you can define rules on how that type should behave - maximum children count, maximum depth, valid children types, selectable or not, etc.")
+    public void setTypes(String types) {
+        this.types = types;
     }
 }

@@ -90,6 +90,51 @@
   <strong>Result Div :</strong>
   <div id="result2" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
 
+    <h2>Tree with Types</h2>
+    <p class="text">
+        A Tree with different node types.
+    </p>
+		<s:set id="contextPath"  value="#request.get('javax.servlet.forward.context_path')" />
+    	<sjt:tree 
+    		id="treeTypes" 
+    		jstreetheme="default" 
+    		openAllOnLoad="true" 
+    		types="{
+					'valid_children' : [ 'root' ],
+					'types' : {
+						'root' : {
+							'icon' : { 
+								'image' : '%{contextPath}/images/root.png' 
+							},
+							'valid_children' : [ 'folder', 'file' ],
+						},
+						'folder' : {
+							'icon' : { 
+								'image' : '%{contextPath}/images/folder.png' 
+							},
+							'valid_children' : [ 'folder', 'file' ],
+						},
+						'file' : {
+							'icon' : { 
+								'image' : '%{contextPath}/images/file.png' 
+							},
+							'valid_children' : [ 'none' ],
+						}
+				}
+		}">
+    		<sjt:treeItem title="Root" type="root">
+	    		<sjt:treeItem title="Folder One"  type="folder">
+		    		<sjt:treeItem title="File One" type="file"/>
+		    		<sjt:treeItem title="File Two" type="file"/>
+    			</sjt:treeItem>
+	    		<sjt:treeItem title="Folder Two"  type="folder">
+		    		<sjt:treeItem title="Folder Three"  type="folder">
+			    		<sjt:treeItem title="File Four" type="file"/>
+	    			</sjt:treeItem>
+		    		<sjt:treeItem title="File Three" type="file"/>
+    			</sjt:treeItem>
+   			</sjt:treeItem>
+    	</sjt:tree>
   
   <div class="code ui-widget-content ui-corner-all">
     <strong>Code:</strong>
@@ -98,7 +143,7 @@
     &lt;p class=&quot;text&quot;&gt;
         A simple static Tree Component.
     &lt;/p&gt;
-    	&lt;sjt:tree id=&quot;treeStatic&quot; jstreetheme=&quot;default&quot;&gt;
+    	&lt;sjt:tree id=&quot;treeStatic&quot; jstreetheme=&quot;default&quot; openAllOnLoad=&quot;true&quot;&gt;
     		&lt;sjt:treeItem title=&quot;Struts2&quot;&gt;
 	    		&lt;sjt:treeItem title=&quot;General&quot;&gt;
 		    		&lt;sjt:treeItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org/2.x/index.html&quot;/&gt;
@@ -133,11 +178,10 @@
     &lt;p class=&quot;text&quot;&gt;
         A Tree Component rendered on the server with AJAX Links and Contextmenu.
     &lt;/p&gt;
-
 		&lt;s:url id=&quot;echo&quot; value=&quot;/echo.action&quot;/&gt;
     	&lt;sjt:tree 
     		id=&quot;treeDynamicAjax&quot; 
-    		jstreetheme=&quot;default&quot;
+    		jstreetheme=&quot;apple&quot;
     		rootNode=&quot;nodes&quot;
     		childCollectionProperty=&quot;children&quot;
     		nodeTitleProperty=&quot;title&quot;
@@ -160,6 +204,52 @@
 
   &lt;strong&gt;Result Div :&lt;/strong&gt;
   &lt;div id=&quot;result2&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Links above.&lt;/div&gt;
+
+    &lt;h2&gt;Tree with Types&lt;/h2&gt;
+    &lt;p class=&quot;text&quot;&gt;
+        A Tree with different node types.
+    &lt;/p&gt;
+		&lt;s:set id=&quot;contextPath&quot;  value=&quot;#request.get('javax.servlet.forward.context_path')&quot; /&gt;
+    	&lt;sjt:tree 
+    		id=&quot;treeTypes&quot; 
+    		jstreetheme=&quot;default&quot; 
+    		openAllOnLoad=&quot;true&quot; 
+    		types=&quot;{
+					'valid_children' : [ 'root' ],
+					'types' : {
+						'root' : {
+							'icon' : { 
+								'image' : '%{contextPath}/images/root.png' 
+							},
+							'valid_children' : [ 'folder', 'file' ],
+						},
+						'folder' : {
+							'icon' : { 
+								'image' : '%{contextPath}/images/folder.png' 
+							},
+							'valid_children' : [ 'folder', 'file' ],
+						},
+						'file' : {
+							'icon' : { 
+								'image' : '%{contextPath}/images/file.png' 
+							},
+							'valid_children' : [ 'none' ],
+						}
+				}
+		}&quot;&gt;
+    		&lt;sjt:treeItem title=&quot;Root&quot; type=&quot;root&quot;&gt;
+	    		&lt;sjt:treeItem title=&quot;Folder One&quot;  type=&quot;folder&quot;&gt;
+		    		&lt;sjt:treeItem title=&quot;File One&quot; type=&quot;file&quot;/&gt;
+		    		&lt;sjt:treeItem title=&quot;File Two&quot; type=&quot;file&quot;/&gt;
+    			&lt;/sjt:treeItem&gt;
+	    		&lt;sjt:treeItem title=&quot;Folder Two&quot;  type=&quot;folder&quot;&gt;
+		    		&lt;sjt:treeItem title=&quot;Folder Three&quot;  type=&quot;folder&quot;&gt;
+			    		&lt;sjt:treeItem title=&quot;File Four&quot; type=&quot;file&quot;/&gt;
+	    			&lt;/sjt:treeItem&gt;
+		    		&lt;sjt:treeItem title=&quot;File Three&quot; type=&quot;file&quot;/&gt;
+    			&lt;/sjt:treeItem&gt;
+   			&lt;/sjt:treeItem&gt;
+    	&lt;/sjt:tree&gt;
     </pre>
   </div>
   <!-- IE Column Clearing -->

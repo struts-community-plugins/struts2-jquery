@@ -53,6 +53,9 @@
 				o.plugins.push("crrm"); 
 				o.plugins.push("contextmenu"); 
 			}
+			if(o.types) {
+				o.plugins.push("types"); 
+			}
 			
 			if(o.url){
 				o.json_data = {};

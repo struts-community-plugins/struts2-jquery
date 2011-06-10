@@ -54,6 +54,9 @@ jQuery(document).ready(function () {
 	<#if parameters.contextmenu?if_exists != ""> 
 	options_${escapedOptionId?html}.contextmenu = ${parameters.contextmenu?string};
 	</#if>
+	<#if parameters.types?if_exists != ""> 
+	options_${escapedOptionId?html}.types = ${parameters.types?string};
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
 

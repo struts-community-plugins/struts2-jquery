@@ -28,6 +28,9 @@
 <#if parameters.cssClass?if_exists != "">
  			class="${parameters.cssClass?html}"<#rt/>
 </#if>
+<#if parameters.type?if_exists != "">
+			rel="${parameters.type?html}"<#rt/>
+</#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />

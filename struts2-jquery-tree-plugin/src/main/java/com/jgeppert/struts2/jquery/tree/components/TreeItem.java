@@ -28,7 +28,6 @@ import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.jgeppert.struts2.jquery.components.AbstractContainer;
 import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
 import com.opensymphony.xwork2.util.ValueStack;
 import com.opensymphony.xwork2.util.logging.Logger;
@@ -47,70 +46,78 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 @StrutsTag(name = "treeItem", tldTagClass = "com.jgeppert.struts2.jquery.tree.views.jsp.ui.TreeItemTag", description = "Item for the Tree Element", allowDynamicAttributes = true)
 public class TreeItem extends AbstractRemoteBean {
 
-	public static final String TEMPLATE = "tree-item";
-	public static final String TEMPLATE_CLOSE = "tree-item-close";
-	public static final String COMPONENT_NAME = TreeItem.class.getName();
-	protected final static Logger LOG = LoggerFactory.getLogger(TreeItem.class);
-	private final static transient Random RANDOM = new Random();
-	public static final String           JQUERYACTION   = "treeitem";
+    public static final String TEMPLATE = "tree-item";
+    public static final String TEMPLATE_CLOSE = "tree-item-close";
+    public static final String COMPONENT_NAME = TreeItem.class.getName();
+    protected final static Logger LOG = LoggerFactory.getLogger(TreeItem.class);
+    private final static transient Random RANDOM = new Random();
+    public static final String JQUERYACTION = "treeitem";
 
-	protected String title;
+    protected String title;
+    protected String type;
 
-	public TreeItem(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
-		super(stack, request, response);
+    public TreeItem(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
+
+    public String getDefaultOpenTemplate() {
+	return TEMPLATE;
+    }
+
+    protected String getDefaultTemplate() {
+	return TEMPLATE_CLOSE;
+    }
+
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
+
+	addParameter("jqueryaction", JQUERYACTION);
+
+	if (title != null)
+	    addParameter("title", findString(title));
+	if (type != null)
+	    addParameter("type", findString(type));
+
+	if ((this.id == null || this.id.length() == 0)) {
+	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+	    int nextInt = RANDOM.nextInt();
+	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+		    .abs(nextInt);
+	    this.id = "treeitem" + String.valueOf(nextInt);
+	    addParameter("id", this.id);
 	}
 
-	public String getDefaultOpenTemplate() {
-		return TEMPLATE;
+	Tree tree = (Tree) findAncestor(Tree.class);
+	if (tree != null) {
+	    addParameter("tree", tree.getId());
 	}
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE_CLOSE;
+	TreeItem parentTreeItem = (TreeItem) findAncestor(TreeItem.class);
+	if (parentTreeItem != null) {
+	    addParameter("parentTreeItem", parentTreeItem.getId());
 	}
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
-		
-	    addParameter("jqueryaction", JQUERYACTION);
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-		if (title != null)
-			addParameter("title", findString(title));
+    @Override
+    public String getTheme() {
+	return "jquery";
+    }
 
-		if ((this.id == null || this.id.length() == 0)) {
-			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-			int nextInt = RANDOM.nextInt();
-			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-					.abs(nextInt);
-			this.id = "treeitem" + String.valueOf(nextInt);
-			addParameter("id", this.id);
-		}
+    @StrutsTagAttribute(description = "Title for the Tree Item", required = true)
+    public void setTitle(String title) {
+	this.title = title;
+    }
 
-		Tree tree = (Tree) findAncestor(Tree.class);
-		if (tree != null) {
-			addParameter("tree", tree.getId());
-		}
-
-		TreeItem parentTreeItem = (TreeItem) findAncestor(TreeItem.class);
-		if (parentTreeItem != null) {
-			addParameter("parentTreeItem", parentTreeItem.getId());
-		}
-	}
-
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
-
-	@Override
-	public String getTheme() {
-		return "jquery";
-	}
-
-	@StrutsTagAttribute(description = "Title for the Tree Item", required = true)
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    @StrutsTagAttribute(description = "The type property for node. This requires a valid types definition in the tree tag.")
+    public void setType(String type) {
+	this.type = type;
+    }
 }
