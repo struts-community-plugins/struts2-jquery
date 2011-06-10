@@ -42,7 +42,7 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId?html}.listvalue = "${parameters.listValue?html}";
 </#if>
 <#if parameters.nameValue??>
-	options_${escapedOptionId?html}.value = "${parameters.nameValue?string}";
+	options_${escapedOptionId?html}.value = "<@s.property value="parameters.nameValue"/>";
 </#if>
 <#if parameters.bindOn?if_exists != "">
 	options_${escapedOptionId?html}.bindon = "${parameters.bindOn?html}";

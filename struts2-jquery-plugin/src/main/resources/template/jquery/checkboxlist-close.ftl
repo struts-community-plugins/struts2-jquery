@@ -23,7 +23,7 @@
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
 <#if parameters.nameValue??>
-	options_${escapedOptionId?html}.value = "${parameters.nameValue?string}";
+	options_${escapedOptionId?html}.value = "<@s.property value="parameters.nameValue"/>";
 </#if>
 <#if parameters.remoteList??>
 	options_${escapedOptionId?html}.datatype = "json";
