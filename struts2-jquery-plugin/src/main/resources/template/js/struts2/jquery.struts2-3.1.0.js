@@ -32,6 +32,7 @@
 	loadAtOnce :false,
 	local :"en",
 	gridLocal :"en",
+	timeLocal :"en",
 	minSuffix :".min",
 	historyelements : {},
 	forms : {},
@@ -1305,131 +1306,131 @@
 				self.require("i18n/jquery.ui.datepicker-" + self.local + ".min.js");
 			}
 		}
+		if(o.timepicker) {
+			if (!self.loadAtOnce) {
+				self.require( [ "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.slider" + self.minSuffix + ".js" ]);
+			}
+			self.require( [ "js/plugins/jquery-ui-timepicker-addon" + self.minSuffix + ".js" ]);
+			self.requireCss("themes/jquery-ui-timepicker-addon.css");
+			if (self.timeLocal !== "en") {
+				self.require("i18n/jquery-ui-timepicker-" + self.timeLocal + ".js");
+			}
+		}
+
 		var params = {};
+		$.extend(params, o);
 
-		if (o) {
+		var oat = o.onalw;
 
-			var oat = o.onalw;
+		if (o.onbef) {
+			params.beforeShow = function(input, inst) {
+				var $input = $(input);
+				var data = {};
+				data.input = input;
+				data.inst = inst;
+				self.publishTopic($input, o.onbef, data);
+				self.publishTopic($input, oat, data);
+			};
+		}
 
-			if (o.onbef) {
-				params.beforeShow = function(input, inst) {
-					var $input = $(input);
-					var data = {};
-					data.input = input;
-					data.inst = inst;
-					self.publishTopic($input, o.onbef, data);
-					self.publishTopic($input, oat, data);
-				};
-			}
+		if (o.onbeforeshowdaytopics) {
+			params.beforeShowDay = function(date) {
+				var data = {};
+				data.date = date;
+				self.publishTopic($elem, o.onbeforeshowdaytopics, data);
+				self.publishTopic($elem, oat, data);
+			};
+		}
 
-			if (o.onbeforeshowdaytopics) {
-				params.beforeShowDay = function(date) {
-					var data = {};
-					data.date = date;
-					self.publishTopic($elem, o.onbeforeshowdaytopics, data);
-					self.publishTopic($elem, oat, data);
-				};
-			}
+		if (o.onchangemonthyeartopics) {
+			params.onChangeMonthYear = function(year, month, inst) {
+				var data = {};
+				data.year = year;
+				data.month = month;
+				data.inst = inst;
+				self.publishTopic($elem, o.onchangemonthyeartopics, data);
+				self.publishTopic($elem, oat, data);
+			};
+		}
 
-			if (o.onchangemonthyeartopics) {
-				params.onChangeMonthYear = function(year, month, inst) {
-					var data = {};
-					data.year = year;
-					data.month = month;
-					data.inst = inst;
-					self.publishTopic($elem, o.onchangemonthyeartopics, data);
-					self.publishTopic($elem, oat, data);
-				};
-			}
-
-			if (o.oncha || o.inline) {
-				params.onSelect = function(dateText, inst) {
-					if(o.inline) {
-						$elem.val(dateText);
-					}
-					if(o.oncha) {
-						var data = {};
-						data.dateText = dateText;
-						data.inst = inst;
-						self.publishTopic($elem, o.oncha, data);
-						self.publishTopic($elem, oat, data);
-					}
-				};
-			}
-
-			if (o.oncom) {
-				params.onClose = function(dateText, inst) {
+		if (o.oncha || o.inline) {
+			params.onSelect = function(dateText, inst) {
+				if(o.inline) {
+					$elem.val(dateText);
+				}
+				if(o.oncha) {
 					var data = {};
 					data.dateText = dateText;
 					data.inst = inst;
-					self.publishTopic($elem, o.oncom, data);
+					self.publishTopic($elem, o.oncha, data);
 					self.publishTopic($elem, oat, data);
-				};
-			}
-
-			if (o.changemonth) {
-				params.changeMonth = true;
-			}
-			if (o.changeyear) {
-				params.changeYear = true;
-			}
-			if (o.showbuttonpanel) {
-				params.showButtonPanel = true;
-			}
-			if (o.buttonimageonly) {
-				params.buttonImageOnly = true;
-			}
-			if (o.displayformat) {
-				params.dateFormat = o.displayformat;
-			}
-			else {
-				params.dateFormat = $.datepicker._defaults.dateFormat;
-			}
-			params.buttonImage = o.buttonimage;
-			params.showOn = o.showon;
-			params.buttonText = o.buttontext;
-
-			if (o.showanim) {
-				if (!self.loadAtOnce) {
-					self.require("js/base/jquery.effects.core" + self.minSuffix + ".js");
 				}
-				params.showAnim = o.showanim;
-			}
-
-			params.firstDay = o.firstday;
-			params.yearRange = o.yearrange;
-			params.duration = o.duration;
-			params.appendText = o.appendtext;
-			params.maxDate = o.maxdate;
-			params.minDate = o.mindate;
-
-			if (o.numberofmonths) {
-				var numberofmonthsStr = o.numberofmonths;
-				var numberofmonths = window[numberofmonthsStr];
-				if (!numberofmonths) {
-					params.numberOfMonths = eval("( " + numberofmonthsStr + " )");
-				}
-			}
-
-			if (o.showoptions) {
-				var userOptionsStr = o.showoptions;
-				var userOptions = window[userOptionsStr];
-				if (!userOptions) {
-					params.showOptions = eval("( " + userOptionsStr + " )");
-				}
-			}
+			};
 		}
 
-		if(o.inline) {
-			$(self.escId(o.id)+'_inline').datepicker(params);
+		if (o.oncom) {
+			params.onClose = function(dateText, inst) {
+				var data = {};
+				data.dateText = dateText;
+				data.inst = inst;
+				self.publishTopic($elem, o.oncom, data);
+				self.publishTopic($elem, oat, data);
+			};
+		}
+
+		if (o.displayformat) {
+			params.dateFormat = o.displayformat;
 		}
 		else {
-			$elem.datepicker(params);
+			params.dateFormat = $.datepicker._defaults.dateFormat;
 		}
 
-		if (o.year && o.month && o.day) {
-			$elem.val($.datepicker.formatDate(params.dateFormat, new Date(o.year, o.month, o.day)));
+		if (o.showAnim) {
+			if (!self.loadAtOnce) {
+				self.require("js/base/jquery.effects.core" + self.minSuffix + ".js");
+			}
 		}
+
+		if (o.numberofmonths) {
+			var numberofmonthsStr = o.numberofmonths;
+			var numberofmonths = window[numberofmonthsStr];
+			if (!numberofmonths) {
+				params.numberOfMonths = eval("( " + numberofmonthsStr + " )");
+			}
+		}
+
+		if (o.showoptions) {
+			var userOptionsStr = o.showoptions;
+			var userOptions = window[userOptionsStr];
+			if (!userOptions) {
+				params.showOptions = eval("( " + userOptionsStr + " )");
+			}
+		}
+		
+		var ins = $elem;
+
+		if(o.inline) {
+			ins = $(self.escId(o.id)+'_inline');
+		}
+
+		if(o.timepicker) {
+			if(o.tponly) {
+				ins.timepicker(params);
+			} 
+			else { 
+				ins.datetimepicker(params);
+			}
+			if (o.year && o.month && o.day) {
+				ins.datetimepicker('setDate', (new Date(o.year, o.month, o.day, o.hour, o.minute, o.second)));
+			}
+		}
+		else {
+			ins.datepicker(params);
+			if (o.year && o.month && o.day) {
+				ins.val($.datepicker.formatDate(params.dateFormat, new Date(o.year, o.month, o.day)));
+			}
+		}
+		
 		if (o.zindex) {
 			$('#ui-datepicker-div').css("z-index", o.zindex);
 		}

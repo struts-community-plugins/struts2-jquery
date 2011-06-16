@@ -90,7 +90,10 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class Head extends org.apache.struts2.components.Head {
   public static final String    TEMPLATE     = "head";
 
-  private static final String[] gridLocals   = {
+  private static final String[] timeLocals   = {
+      "cs", "de", "fr", "hu", "nl", "ru"
+                                             };
+  private static final String[] gridLocals    = {
       "bg", "ca", "cn", "cs", "de", "da", "el", "en", "es", "en-GB", "fa", "fi", "fr", "fr-CH", "gl", "he", "hu", "is", "it", "ja", "lt", "nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sr", "sv", "tr", "ua", "zh", "zh-CN"
                                              };
   private static final String[] jqueryLocals = {
@@ -210,6 +213,7 @@ public class Head extends org.apache.struts2.components.Head {
     if (loc != null)
     {
       addParameter("gridLocale", validateLocal(gridLocals, loc));
+      addParameter("timeLocale", validateLocal(timeLocals, loc));
       addParameter("jqueryLocale", validateLocal(jqueryLocals, loc));
     }
   }

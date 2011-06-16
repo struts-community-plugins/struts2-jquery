@@ -126,6 +126,9 @@ jQuery(document).ready(function () {
 <#if parameters.gridLocale??>
   jQuery.struts2_jquery.gridLocal = "${parameters.gridLocale?default('en')}";
 </#if>
+<#if parameters.timeLocale??>
+  jQuery.struts2_jquery.timeLocal = "${parameters.timeLocale?default('en')}";
+</#if>
 <#if parameters.ajaxhistory?default(false)>
 	jQuery.struts2_jquery.ajaxhistory = true;
 </#if>
