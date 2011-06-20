@@ -1,5 +1,5 @@
 /*
- * jQuery UI Effects 1.8.13
+ * jQuery UI Effects 1.8.14
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -249,7 +249,7 @@ $.effects.animateClass = function(value, duration, easing, callback) {
 		that.animate(styleDifference(originalStyle, newStyle), {
 			queue: false,
 			duration: duration,
-			easding: easing,
+			easing: easing,
 			complete: function() {
 				$.each(classAnimationActions, function(i, action) {
 					if (value[action]) { that[action + 'Class'](value[action]); }
@@ -306,7 +306,7 @@ $.fn.extend({
 /******************************************************************************/
 
 $.extend($.effects, {
-	version: "1.8.13",
+	version: "1.8.14",
 
 	// Saves a set of properties in a data storage
 	save: function(element, set) {
