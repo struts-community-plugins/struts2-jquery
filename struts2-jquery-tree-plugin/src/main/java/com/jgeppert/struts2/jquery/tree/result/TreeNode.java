@@ -17,6 +17,7 @@ public class TreeNode {
 	private String id;
 	private String state = TreeNode.NODE_STATE_CLOSED;
 	private String title;
+	private String type;
 
 	public TreeNode() {
 		super();
@@ -79,6 +80,10 @@ public class TreeNode {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public String getType() {
+	    return type;
 	}
 
 	public void setAttr(Map<String, Object> attr) {
@@ -157,6 +162,15 @@ public class TreeNode {
 		}
 		this.data.put("title", title);
 		this.title = title;
+	}
+
+	/**
+	 * Set the Tree Node Type
+	 * 
+	 * @param type
+	 */
+	public void setType(String type) {
+	    this.type = type;
 	}
 
 	@Override

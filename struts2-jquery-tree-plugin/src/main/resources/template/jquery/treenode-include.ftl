@@ -20,7 +20,9 @@
 -->
 		<li id="${stack.findValue(parameters.nodeIdProperty)}"
 		<#if parameters.nodeTypeProperty?if_exists != ""> 
+			<#if stack.findValue(parameters.nodeTypeProperty)??> 
 			rel="${stack.findValue(parameters.nodeTypeProperty)}"
+			</#if>
 		</#if>
 		>
     <#if parameters.nodeHref?exists>
