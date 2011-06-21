@@ -30,21 +30,21 @@ public class TreeNode {
 	
 	public TreeNode(String title, Collection<TreeNode> children) {
 		super();
-		this.title = title;
-		this.children = children;
+		setTitle(title);
+		setChildren(children);
 	}
 
 	public TreeNode(String id, String title) {
 		super();
-		this.id = id;
-		this.title = title;
+		setId(id);
+		setTitle(title);
 	}
 	
 	public TreeNode(String id, String title, Collection<TreeNode> children) {
 		super();
-		this.id = id;
-		this.title = title;
-		this.children = children;
+		setId(id);
+		setTitle(title);
+		setChildren(children);
 	}
 
 	public Map<String, Object> getAttr() {
