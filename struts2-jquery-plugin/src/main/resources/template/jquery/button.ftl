@@ -26,8 +26,12 @@
 	options_${escapedOptionId?html}.button = true;
 	</#if>
 	<#if parameters.buttonIcon?if_exists != ""> 
-	options_${escapedOptionId?html}.buttonIcon = "${parameters.buttonIcon?html}";
+	options_${escapedOptionId?html}.bicon = "${parameters.buttonIcon?html}";
 	</#if>
 	<#if parameters.buttonIconSecondary?if_exists != ""> 
-	options_${escapedOptionId?html}.buttonIconSecondary = "${parameters.buttonIconSecondary?html}";
+	options_${escapedOptionId?html}.bicon2 = "${parameters.buttonIconSecondary?html}";
 	</#if>
+	<#if parameters.buttonText??>
+	options_${escapedOptionId?html}.btext = ${parameters.buttonText?string};
+	</#if>
+	

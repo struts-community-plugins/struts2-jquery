@@ -138,248 +138,240 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button", allowDynamicAttributes = true)
 public class Submit extends AbstractRemoteBean implements ButtonBean {
 
-  private static final Logger           LOG            = LoggerFactory.getLogger(Submit.class);
-  private final static transient Random RANDOM         = new Random();
+    private static final Logger LOG = LoggerFactory.getLogger(Submit.class);
+    private final static transient Random RANDOM = new Random();
 
-  public static final String            TEMPLATE       = "submit";
-  public static final String            TEMPLATE_CLOSE = "submit-close";
-  public static final String            JQUERYACTION   = "button";
-  public static final String            COMPONENT_NAME = Submit.class.getName();
+    public static final String TEMPLATE = "submit";
+    public static final String TEMPLATE_CLOSE = "submit-close";
+    public static final String JQUERYACTION = "button";
+    public static final String COMPONENT_NAME = Submit.class.getName();
 
-  protected String                      src;
-  protected String                      type;
-  protected String                      clearForm;
-  protected String                      resetForm;
-  protected String                      iframe;
-  protected String                      onClickTopics;
-  protected String                      openDialog;
-  protected String                      parentTheme;
-  protected String                      button;
-  protected String                      buttonIcon;
-  protected String                      buttonIconSecondary;
-  protected String                      validate;
-  protected String                      validateFunction;
-  protected String                      formFilter;
-  protected String                      replaceTarget;
+    protected String src;
+    protected String type;
+    protected String clearForm;
+    protected String resetForm;
+    protected String iframe;
+    protected String onClickTopics;
+    protected String openDialog;
+    protected String parentTheme;
+    protected String button;
+    protected String buttonIcon;
+    protected String buttonIconSecondary;
+    protected String buttonText;
+    protected String validate;
+    protected String validateFunction;
+    protected String formFilter;
+    protected String replaceTarget;
 
-  public Submit(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
-
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
-
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
-
-  public String getComponentName()
-  {
-    return COMPONENT_NAME;
-  }
-
-  public void evaluateParams()
-  {
-    super.evaluateExtraParams();
-    addParameter("jqueryaction", JQUERYACTION);
-
-    if ((key == null) && (value == null))
-    {
-      value = "Submit";
+    public Submit(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
     }
 
-    if (((key != null)) && (value == null))
-    {
-      this.value = "%{getText('" + key + "')}";
+    public String getDefaultOpenTemplate() {
+	return TEMPLATE;
     }
 
-    super.evaluateParams();
-  }
-
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
-
-    if (type != null) addParameter("type", findString(type));
-    if (src != null) addParameter("src", findString(src));
-    if (clearForm != null) addParameter("clearForm", findValue(clearForm, Boolean.class));
-    if (resetForm != null) addParameter("resetForm", findValue(resetForm, Boolean.class));
-    if (iframe != null) addParameter("iframe", findValue(iframe, Boolean.class));
-    if (onClickTopics != null) addParameter("onClickTopics", findString(onClickTopics));
-    if (openDialog != null) addParameter("openDialog", findString(openDialog));
-    if (button != null) addParameter("button", findValue(this.button, Boolean.class));
-    if (buttonIcon != null) addParameter("buttonIcon", findString(buttonIcon));
-    if (buttonIconSecondary != null) addParameter("buttonIconSecondary", findString(buttonIconSecondary));
-    if (validate != null) addParameter("validate", findValue(this.validate, Boolean.class));
-    if (validateFunction != null) addParameter("validateFunction", findString(validateFunction));
-    if (formFilter != null) addParameter("formFilter", findString(formFilter));
-    if (replaceTarget != null) addParameter("replaceTarget", findValue(this.replaceTarget, Boolean.class));
-
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "submit_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
+    protected String getDefaultTemplate() {
+	return TEMPLATE_CLOSE;
     }
 
-    Form form = (Form) findAncestor(Form.class);
-    if (parentTheme != null)
-    {
-      addParameter("parentTheme", findString(parentTheme));
-    }
-    else if (form != null)
-    {
-      if (form != null) addParameter("parentTheme", form.getTheme());
-    }
-    else
-    {
-      addParameter("parentTheme", "simple");
+    public String getComponentName() {
+	return COMPONENT_NAME;
     }
 
-    if (form != null && (formIds == null || formIds.length() <= 0)) addParameter("formIds", form.getId());
-  }
+    public void evaluateParams() {
+	super.evaluateExtraParams();
+	addParameter("jqueryaction", JQUERYACTION);
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+	if ((key == null) && (value == null)) {
+	    value = "Submit";
+	}
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+	if (((key != null)) && (value == null)) {
+	    this.value = "%{getText('" + key + "')}";
+	}
 
-  /**
-   * Indicate whether the concrete button supports the type "image".
-   * 
-   * @return <tt>true</tt> to indicate type image is supported.
-   */
-  protected boolean supportsImageType()
-  {
-    return true;
-  }
-
-  /**
-   * Overrides to be able to render body in a template rather than always before
-   * the template
-   */
-  public boolean end(Writer writer, String body)
-  {
-    evaluateParams();
-    try
-    {
-      addParameter("body", body);
-
-      mergeTemplate(writer, buildTemplateName(template, getDefaultTemplate()));
-    }
-    catch (Exception e)
-    {
-      LOG.error("error when rendering", e);
-    }
-    finally
-    {
-      popComponentStack();
+	super.evaluateParams();
     }
 
-    return false;
-  }
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
 
-  @StrutsTagAttribute(description = "The type of submit to use. Valid values are <i>input</i>, " + "<i>button</i> and <i>image</i>.", defaultValue = "input")
-  public void setType(String type)
-  {
-    this.type = type;
-  }
+	if (type != null)
+	    addParameter("type", findString(type));
+	if (src != null)
+	    addParameter("src", findString(src));
+	if (clearForm != null)
+	    addParameter("clearForm", findValue(clearForm, Boolean.class));
+	if (resetForm != null)
+	    addParameter("resetForm", findValue(resetForm, Boolean.class));
+	if (iframe != null)
+	    addParameter("iframe", findValue(iframe, Boolean.class));
+	if (onClickTopics != null)
+	    addParameter("onClickTopics", findString(onClickTopics));
+	if (openDialog != null)
+	    addParameter("openDialog", findString(openDialog));
+	if (button != null)
+	    addParameter("button", findValue(this.button, Boolean.class));
+	if (buttonIcon != null)
+	    addParameter("buttonIcon", findString(buttonIcon));
+	if (buttonIconSecondary != null)
+	    addParameter("buttonIconSecondary", findString(buttonIconSecondary));
+	if (buttonText != null)
+	    addParameter("buttonText", findValue(this.buttonText, Boolean.class));
+	if (validate != null)
+	    addParameter("validate", findValue(this.validate, Boolean.class));
+	if (validateFunction != null)
+	    addParameter("validateFunction", findString(validateFunction));
+	if (formFilter != null)
+	    addParameter("formFilter", findString(formFilter));
+	if (replaceTarget != null)
+	    addParameter("replaceTarget", findValue(this.replaceTarget,
+		    Boolean.class));
 
-  @StrutsTagAttribute(description = "Supply an image src for <i>image</i> type submit button. Will have no effect for types <i>input</i> and <i>button</i>.")
-  public void setSrc(String src)
-  {
-    this.src = src;
-  }
+	if ((this.id == null || this.id.length() == 0)) {
+	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+	    int nextInt = RANDOM.nextInt();
+	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+		    .abs(nextInt);
+	    this.id = "submit_" + String.valueOf(nextInt);
+	    addParameter("id", this.id);
+	}
 
-  @StrutsTagAttribute(description = "Clear all form fields after successful submit. Default: false", type = "Boolean")
-  public void setClearForm(String clearForm)
-  {
-    this.clearForm = clearForm;
-  }
+	Form form = (Form) findAncestor(Form.class);
+	if (parentTheme != null) {
+	    addParameter("parentTheme", findString(parentTheme));
+	} else if (form != null) {
+	    if (form != null)
+		addParameter("parentTheme", form.getTheme());
+	} else {
+	    addParameter("parentTheme", "simple");
+	}
 
-  @StrutsTagAttribute(description = "Reset the form after successful submit. Default: false", type = "Boolean")
-  public void setResetForm(String resetForm)
-  {
-    this.resetForm = resetForm;
-  }
+	if (form != null && (formIds == null || formIds.length() <= 0))
+	    addParameter("formIds", form.getId());
+    }
 
-  @StrutsTagAttribute(description = "Boolean flag indicating whether the form should always target the server response to an iframe. This is useful in conjuction with file uploads. Default: false", type = "Boolean")
-  public void setIframe(String iframe)
-  {
-    this.iframe = iframe;
-  }
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-  @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
-  public void setOnClickTopics(String onClickTopics)
-  {
-    this.onClickTopics = onClickTopics;
-  }
+    @Override
+    public String getTheme() {
+	return "jquery";
+    }
 
-  @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
-  public void setOpenDialog(String openDialog)
-  {
-    this.openDialog = openDialog;
-  }
+    /**
+     * Indicate whether the concrete button supports the type "image".
+     * 
+     * @return <tt>true</tt> to indicate type image is supported.
+     */
+    protected boolean supportsImageType() {
+	return true;
+    }
 
-  @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
-  public void setParentTheme(String parentTheme)
-  {
-    this.parentTheme = parentTheme;
-  }
+    /**
+     * Overrides to be able to render body in a template rather than always
+     * before the template
+     */
+    public boolean end(Writer writer, String body) {
+	evaluateParams();
+	try {
+	    addParameter("body", body);
 
-  @StrutsTagAttribute(description = "jQuery UI Button", defaultValue = "false", type = "Boolean")
-  public void setButton(String button)
-  {
-    this.button = button;
-  }
+	    mergeTemplate(writer, buildTemplateName(template,
+		    getDefaultTemplate()));
+	} catch (Exception e) {
+	    LOG.error("error when rendering", e);
+	} finally {
+	    popComponentStack();
+	}
 
-  @StrutsTagAttribute(description = "Icons to display. The primary icon is displayed on the left of the label text. Value must be a classname (String), eg. ui-icon-gear.")
-  public void setButtonIcon(String buttonIcon)
-  {
-    this.buttonIcon = buttonIcon;
-  }
+	return false;
+    }
 
-  @StrutsTagAttribute(description = "Icons to display. The secondary icon is displayed on the right of the label text. Value must be a classname (String), eg. ui-icon-gear.")
-  public void setButtonIconSecondary(String buttonIconSecondary)
-  {
-    this.buttonIconSecondary = buttonIconSecondary;
-  }
+    @StrutsTagAttribute(description = "The type of submit to use. Valid values are <i>input</i>, "
+	    + "<i>button</i> and <i>image</i>.", defaultValue = "input")
+    public void setType(String type) {
+	this.type = type;
+    }
 
-  @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, errors)")
-  public void setValidateFunction(String validateFunction)
-  {
-    this.validateFunction = validateFunction;
-  }
+    @StrutsTagAttribute(description = "Supply an image src for <i>image</i> type submit button. Will have no effect for types <i>input</i> and <i>button</i>.")
+    public void setSrc(String src) {
+	this.src = src;
+    }
 
-  @StrutsTagAttribute(description = "Enable client AJAX validation", defaultValue = "false", type = "Boolean")
-  public void setValidate(String validate)
-  {
-    this.validate = validate;
-  }
+    @StrutsTagAttribute(description = "Clear all form fields after successful submit. Default: false", type = "Boolean")
+    public void setClearForm(String clearForm) {
+	this.clearForm = clearForm;
+    }
 
-  @StrutsTagAttribute(description = "Function name used to filter the fields of the form.")
-  public void setFormFilter(String formFilter)
-  {
-    this.formFilter = formFilter;
-  }
+    @StrutsTagAttribute(description = "Reset the form after successful submit. Default: false", type = "Boolean")
+    public void setResetForm(String resetForm) {
+	this.resetForm = resetForm;
+    }
 
-  @StrutsTagAttribute(description = "Set to true if the target should be replaced or false if only the target contents should be replaced.", defaultValue = "false", type = "Boolean")
-  public void setReplaceTarget(String replaceTarget)
-  {
-    this.replaceTarget = replaceTarget;
-  }
+    @StrutsTagAttribute(description = "Boolean flag indicating whether the form should always target the server response to an iframe. This is useful in conjuction with file uploads. Default: false", type = "Boolean")
+    public void setIframe(String iframe) {
+	this.iframe = iframe;
+    }
+
+    @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
+
+    @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
+    public void setOpenDialog(String openDialog) {
+	this.openDialog = openDialog;
+    }
+
+    @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
+    public void setParentTheme(String parentTheme) {
+	this.parentTheme = parentTheme;
+    }
+
+    @StrutsTagAttribute(description = "jQuery UI Button", defaultValue = "false", type = "Boolean")
+    public void setButton(String button) {
+	this.button = button;
+    }
+
+    @StrutsTagAttribute(description = "Icons to display. The primary icon is displayed on the left of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+    public void setButtonIcon(String buttonIcon) {
+	this.buttonIcon = buttonIcon;
+    }
+
+    @StrutsTagAttribute(description = "Icons to display. The secondary icon is displayed on the right of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+    public void setButtonIconSecondary(String buttonIconSecondary) {
+	this.buttonIconSecondary = buttonIconSecondary;
+    }
+
+    @StrutsTagAttribute(description = "Whether to show any text - when set to false (display no text), icons (see icons option) must be enabled, otherwise it'll be ignored.", defaultValue = "true", type = "Boolean")
+    public void setButtonText(String buttonText) {
+	this.buttonText = buttonText;
+    }
+
+    @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, errors)")
+    public void setValidateFunction(String validateFunction) {
+	this.validateFunction = validateFunction;
+    }
+
+    @StrutsTagAttribute(description = "Enable client AJAX validation", defaultValue = "false", type = "Boolean")
+    public void setValidate(String validate) {
+	this.validate = validate;
+    }
+
+    @StrutsTagAttribute(description = "Function name used to filter the fields of the form.")
+    public void setFormFilter(String formFilter) {
+	this.formFilter = formFilter;
+    }
+
+    @StrutsTagAttribute(description = "Set to true if the target should be replaced or false if only the target contents should be replaced.", defaultValue = "false", type = "Boolean")
+    public void setReplaceTarget(String replaceTarget) {
+	this.replaceTarget = replaceTarget;
+    }
 }

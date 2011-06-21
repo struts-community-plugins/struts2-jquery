@@ -69,116 +69,119 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 @StrutsTag(name = "a", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description = "Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates its targets content", allowDynamicAttributes = true)
 public class Anchor extends AbstractRemoteBean implements ButtonBean {
-  public static final String           TEMPLATE       = "a";
-  public static final String           TEMPLATE_CLOSE = "a-close";
-  public static final String           COMPONENT_NAME = Anchor.class.getName();
-  public static final transient Random RANDOM         = new Random();
-  public static final String           JQUERYACTION   = "anchor";
+    public static final String TEMPLATE = "a";
+    public static final String TEMPLATE_CLOSE = "a-close";
+    public static final String COMPONENT_NAME = Anchor.class.getName();
+    public static final transient Random RANDOM = new Random();
+    public static final String JQUERYACTION = "anchor";
 
-  protected String                     openDialog;
-  protected String                     onClickTopics;
-  protected String                     validate;
-  protected String                     validateFunction;
-  protected String                     button;
-  protected String                     buttonIcon;
-  protected String                     buttonIconSecondary;
+    protected String openDialog;
+    protected String onClickTopics;
+    protected String validate;
+    protected String validateFunction;
+    protected String button;
+    protected String buttonIcon;
+    protected String buttonIconSecondary;
+    protected String buttonText;
 
-  public Anchor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
-
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
-
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
-
-  public String getComponentName()
-  {
-    return COMPONENT_NAME;
-  }
-
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
-
-    addParameter("jqueryaction", JQUERYACTION);
-
-    if (openDialog != null) addParameter("openDialog", findString(openDialog));
-    if (onClickTopics != null) addParameter("onClickTopics", findString(onClickTopics));
-    if (button != null) addParameter("button", findValue(this.button, Boolean.class));
-    if (buttonIcon != null) addParameter("buttonIcon", findString(buttonIcon));
-    if (buttonIconSecondary != null) addParameter("buttonIconSecondary", findString(buttonIconSecondary));
-    if (validate != null) addParameter("validate", findValue(this.validate, Boolean.class));
-    if (validateFunction != null) addParameter("validateFunction", findString(validateFunction));
-
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "anchor_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
+    public Anchor(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
     }
-  }
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+    public String getDefaultOpenTemplate() {
+	return TEMPLATE;
+    }
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+    protected String getDefaultTemplate() {
+	return TEMPLATE_CLOSE;
+    }
 
-  @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
-  public void setOpenDialog(String openDialog)
-  {
-    this.openDialog = openDialog;
-  }
+    public String getComponentName() {
+	return COMPONENT_NAME;
+    }
 
-  @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
-  public void setOnClickTopics(String onClickTopics)
-  {
-    this.onClickTopics = onClickTopics;
-  }
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
 
-  @StrutsTagAttribute(description = "jQuery UI Button", defaultValue = "false", type = "Boolean")
-  public void setButton(String button)
-  {
-    this.button = button;
-  }
+	addParameter("jqueryaction", JQUERYACTION);
 
-  @StrutsTagAttribute(description = "Icons to display. The primary icon is displayed on the left of the label text. Value must be a classname (String), eg. ui-icon-gear.")
-  public void setButtonIcon(String buttonIcon)
-  {
-    this.buttonIcon = buttonIcon;
-  }
+	if (openDialog != null)
+	    addParameter("openDialog", findString(openDialog));
+	if (onClickTopics != null)
+	    addParameter("onClickTopics", findString(onClickTopics));
+	if (button != null)
+	    addParameter("button", findValue(this.button, Boolean.class));
+	if (buttonIcon != null)
+	    addParameter("buttonIcon", findString(buttonIcon));
+	if (buttonIconSecondary != null)
+	    addParameter("buttonIconSecondary", findString(buttonIconSecondary));
+	if (buttonText != null)
+	    addParameter("buttonText", findValue(this.buttonText, Boolean.class));
+	if (validate != null)
+	    addParameter("validate", findValue(this.validate, Boolean.class));
+	if (validateFunction != null)
+	    addParameter("validateFunction", findString(validateFunction));
 
-  @StrutsTagAttribute(description = "Icons to display. The secondary icon is displayed on the right of the label text. Value must be a classname (String), eg. ui-icon-gear.")
-  public void setButtonIconSecondary(String buttonIconSecondary)
-  {
-    this.buttonIconSecondary = buttonIconSecondary;
-  }
+	if ((this.id == null || this.id.length() == 0)) {
+	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+	    int nextInt = RANDOM.nextInt();
+	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+		    .abs(nextInt);
+	    this.id = "anchor_" + String.valueOf(nextInt);
+	    addParameter("id", this.id);
+	}
+    }
 
-  @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, errors)")
-  public void setValidateFunction(String validateFunction)
-  {
-    this.validateFunction = validateFunction;
-  }
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-  @StrutsTagAttribute(description = "Enable client AJAX validation", defaultValue = "false", type = "Boolean")
-  public void setValidate(String validate)
-  {
-    this.validate = validate;
-  }
+    @Override
+    public String getTheme() {
+	return "jquery";
+    }
+
+    @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
+    public void setOpenDialog(String openDialog) {
+	this.openDialog = openDialog;
+    }
+
+    @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
+
+    @StrutsTagAttribute(description = "jQuery UI Button", defaultValue = "false", type = "Boolean")
+    public void setButton(String button) {
+	this.button = button;
+    }
+
+    @StrutsTagAttribute(description = "Icons to display. The primary icon is displayed on the left of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+    public void setButtonIcon(String buttonIcon) {
+	this.buttonIcon = buttonIcon;
+    }
+
+    @StrutsTagAttribute(description = "Icons to display. The secondary icon is displayed on the right of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+    public void setButtonIconSecondary(String buttonIconSecondary) {
+	this.buttonIconSecondary = buttonIconSecondary;
+    }
+
+    @StrutsTagAttribute(description = "Whether to show any text - when set to false (display no text), icons (see icons option) must be enabled, otherwise it'll be ignored.", defaultValue = "true", type = "Boolean")
+    public void setButtonText(String buttonText) {
+	this.buttonText = buttonText;
+    }
+
+    @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, errors)")
+    public void setValidateFunction(String validateFunction) {
+	this.validateFunction = validateFunction;
+    }
+
+    @StrutsTagAttribute(description = "Enable client AJAX validation", defaultValue = "false", type = "Boolean")
+    public void setValidate(String validate) {
+	this.validate = validate;
+    }
 }

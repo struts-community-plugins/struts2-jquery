@@ -35,123 +35,113 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
 
-  private static final long serialVersionUID = 2179281109958301343L;
+    private static final long serialVersionUID = 2179281109958301343L;
 
-  protected String          src;
-  protected String          type;
-  protected String          clearForm;
-  protected String          resetForm;
-  protected String          iframe;
-  protected String          onClickTopics;
-  protected String          openDialog;
-  protected String          parentTheme;
-  protected String          button;
-  protected String          buttonIcon;
-  protected String          buttonIconSecondary;
-  protected String          validateFunction;
-  protected String          validate;
-  protected String          formFilter;
-  protected String          replaceTarget;
+    protected String src;
+    protected String type;
+    protected String clearForm;
+    protected String resetForm;
+    protected String iframe;
+    protected String onClickTopics;
+    protected String openDialog;
+    protected String parentTheme;
+    protected String button;
+    protected String buttonIcon;
+    protected String buttonIconSecondary;
+    protected String buttonText;
+    protected String validateFunction;
+    protected String validate;
+    protected String formFilter;
+    protected String replaceTarget;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Submit(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Submit(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-    Submit submit = ((Submit) component);
-    submit.setOnClickTopics(onClickTopics);
-    submit.setSrc(src);
-    submit.setType(type);
-    submit.setClearForm(clearForm);
-    submit.setResetForm(resetForm);
-    submit.setIframe(iframe);
-    submit.setOpenDialog(openDialog);
-    submit.setParentTheme(parentTheme);
-    submit.setButton(button);
-    submit.setButtonIcon(buttonIcon);
-    submit.setButtonIconSecondary(buttonIconSecondary);
-    submit.setValidateFunction(validateFunction);
-    submit.setValidate(validate);
-    submit.setFormFilter(formFilter);
-    submit.setReplaceTarget(replaceTarget);
-  }
+	Submit submit = ((Submit) component);
+	submit.setOnClickTopics(onClickTopics);
+	submit.setSrc(src);
+	submit.setType(type);
+	submit.setClearForm(clearForm);
+	submit.setResetForm(resetForm);
+	submit.setIframe(iframe);
+	submit.setOpenDialog(openDialog);
+	submit.setParentTheme(parentTheme);
+	submit.setButton(button);
+	submit.setButtonIcon(buttonIcon);
+	submit.setButtonIconSecondary(buttonIconSecondary);
+	submit.setButtonText(buttonText);
+	submit.setValidateFunction(validateFunction);
+	submit.setValidate(validate);
+	submit.setFormFilter(formFilter);
+	submit.setReplaceTarget(replaceTarget);
+    }
 
-  public void setOnClickTopics(String onClickTopics)
-  {
-    this.onClickTopics = onClickTopics;
-  }
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
 
-  public void setType(String type)
-  {
-    this.type = type;
-  }
+    public void setType(String type) {
+	this.type = type;
+    }
 
-  public void setSrc(String src)
-  {
-    this.src = src;
-  }
+    public void setSrc(String src) {
+	this.src = src;
+    }
 
-  public void setClearForm(String clearForm)
-  {
-    this.clearForm = clearForm;
-  }
+    public void setClearForm(String clearForm) {
+	this.clearForm = clearForm;
+    }
 
-  public void setResetForm(String resetForm)
-  {
-    this.resetForm = resetForm;
-  }
+    public void setResetForm(String resetForm) {
+	this.resetForm = resetForm;
+    }
 
-  public void setIframe(String iframe)
-  {
-    this.iframe = iframe;
-  }
+    public void setIframe(String iframe) {
+	this.iframe = iframe;
+    }
 
-  public void setOpenDialog(String openDialog)
-  {
-    this.openDialog = openDialog;
-  }
+    public void setOpenDialog(String openDialog) {
+	this.openDialog = openDialog;
+    }
 
-  public void setParentTheme(String parentTheme)
-  {
-    this.parentTheme = parentTheme;
-  }
+    public void setParentTheme(String parentTheme) {
+	this.parentTheme = parentTheme;
+    }
 
-  public void setButton(String button)
-  {
-    this.button = button;
-  }
+    public void setButton(String button) {
+	this.button = button;
+    }
 
-  public void setButtonIcon(String buttonIcon)
-  {
-    this.buttonIcon = buttonIcon;
-  }
+    public void setButtonIcon(String buttonIcon) {
+	this.buttonIcon = buttonIcon;
+    }
 
-  public void setButtonIconSecondary(String buttonIconSecondary)
-  {
-    this.buttonIconSecondary = buttonIconSecondary;
-  }
+    public void setButtonIconSecondary(String buttonIconSecondary) {
+	this.buttonIconSecondary = buttonIconSecondary;
+    }
 
-  public void setValidateFunction(String validateFunction)
-  {
-    this.validateFunction = validateFunction;
-  }
+    public void setButtonText(String buttonText) {
+	this.buttonText = buttonText;
+    }
 
-  public void setValidate(String validate)
-  {
-    this.validate = validate;
-  }
+    public void setValidateFunction(String validateFunction) {
+	this.validateFunction = validateFunction;
+    }
 
-  public void setFormFilter(String formFilter)
-  {
-    this.formFilter = formFilter;
-  }
+    public void setValidate(String validate) {
+	this.validate = validate;
+    }
 
-  public void setReplaceTarget(String replaceTarget)
-  {
-    this.replaceTarget = replaceTarget;
-  }
+    public void setFormFilter(String formFilter) {
+	this.formFilter = formFilter;
+    }
+
+    public void setReplaceTarget(String replaceTarget) {
+	this.replaceTarget = replaceTarget;
+    }
 }

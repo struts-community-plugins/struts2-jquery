@@ -33,67 +33,65 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
 
-  private static final long serialVersionUID = -1034616578492431113L;
+    private static final long serialVersionUID = -1034616578492431113L;
 
-  protected String          openDialog;
-  protected String          onClickTopics;
-  protected String          button;
-  protected String          buttonIcon;
-  protected String          buttonIconSecondary;
-  protected String          validateFunction;
-  protected String          validate;
+    protected String openDialog;
+    protected String onClickTopics;
+    protected String button;
+    protected String buttonIcon;
+    protected String buttonIconSecondary;
+    protected String buttonText;
+    protected String validateFunction;
+    protected String validate;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Anchor(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Anchor(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-    Anchor link = (Anchor) component;
-    link.setOpenDialog(openDialog);
-    link.setOnClickTopics(onClickTopics);
-    link.setButton(button);
-    link.setButtonIcon(buttonIcon);
-    link.setButtonIconSecondary(buttonIconSecondary);
-    link.setValidateFunction(validateFunction);
-    link.setValidate(validate);
-  }
+	Anchor link = (Anchor) component;
+	link.setOpenDialog(openDialog);
+	link.setOnClickTopics(onClickTopics);
+	link.setButton(button);
+	link.setButtonIcon(buttonIcon);
+	link.setButtonIconSecondary(buttonIconSecondary);
+	link.setButtonText(buttonText);
+	link.setValidateFunction(validateFunction);
+	link.setValidate(validate);
+    }
 
-  public void setOpenDialog(String openDialog)
-  {
-    this.openDialog = openDialog;
-  }
+    public void setOpenDialog(String openDialog) {
+	this.openDialog = openDialog;
+    }
 
-  public void setOnClickTopics(String onClickTopics)
-  {
-    this.onClickTopics = onClickTopics;
-  }
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
 
-  public void setButton(String button)
-  {
-    this.button = button;
-  }
+    public void setButton(String button) {
+	this.button = button;
+    }
 
-  public void setButtonIcon(String buttonIcon)
-  {
-    this.buttonIcon = buttonIcon;
-  }
+    public void setButtonIcon(String buttonIcon) {
+	this.buttonIcon = buttonIcon;
+    }
 
-  public void setButtonIconSecondary(String buttonIconSecondary)
-  {
-    this.buttonIconSecondary = buttonIconSecondary;
-  }
+    public void setButtonIconSecondary(String buttonIconSecondary) {
+	this.buttonIconSecondary = buttonIconSecondary;
+    }
 
-  public void setValidateFunction(String validateFunction)
-  {
-    this.validateFunction = validateFunction;
-  }
+    public void setButtonText(String buttonText) {
+	this.buttonText = buttonText;
+    }
 
-  public void setValidate(String validate)
-  {
-    this.validate = validate;
-  }
+    public void setValidateFunction(String validateFunction) {
+	this.validateFunction = validateFunction;
+    }
+
+    public void setValidate(String validate) {
+	this.validate = validate;
+    }
 }

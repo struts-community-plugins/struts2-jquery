@@ -31,4 +31,6 @@ public interface ButtonBean {
   void setButtonIcon(String buttonIcon);
 
   void setButtonIconSecondary(String buttonIconSecondary);
+
+  void setButtonText(String buttonText);
 }

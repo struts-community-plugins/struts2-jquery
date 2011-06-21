@@ -31,6 +31,7 @@
     	targets="result1,result2" 
     	button="true" 
 		buttonIcon="ui-icon-gear"
+		buttonText="false"
     >
       Run AJAX Action
     </sj:a>
@@ -50,6 +51,7 @@
     	targets=&quot;result1,result2&quot; 
     	button=&quot;true&quot; 
 		buttonIcon=&quot;ui-icon-gear&quot;
+		buttonText=&quot;false&quot;
     &gt;
       Run AJAX Action
     &lt;/sj:a&gt;

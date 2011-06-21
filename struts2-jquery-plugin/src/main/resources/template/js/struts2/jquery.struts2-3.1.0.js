@@ -1802,15 +1802,16 @@
 		if (o.button) {
 			var params = {};
 			params.icons = {};
-			if (o.buttonIcon) {
-				params.icons.primary = o.buttonIcon;
+			if (o.bicon) {
+				params.icons.primary = o.bicon;
 			}
-			if (o.buttonIconSecondary) {
-				params.icons.secondary = o.buttonIconSecondary;
+			if (o.bicon2) {
+				params.icons.secondary = o.bicon2;
 			}
-			if (o.disabled) {
-				params.disabled = o.disabled;
+			if (o.bicon2) {
+				params.icons.secondary = o.bicon2;
 			}
+			params.text = o.btext;
 			$elem.button(params);
 		}
 	},
