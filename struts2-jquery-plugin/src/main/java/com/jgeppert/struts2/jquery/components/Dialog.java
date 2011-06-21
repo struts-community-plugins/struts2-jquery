@@ -246,7 +246,7 @@ public class Dialog extends AbstractRemoteBean {
     this.width = width;
   }
 
-  @StrutsTagAttribute(description = "The starting z-index for the dialog. Default: 1000")
+  @StrutsTagAttribute(description = "The starting z-index for the dialog.", defaultValue = "1000")
   public void setZindex(String zindex)
   {
     this.zindex = zindex;

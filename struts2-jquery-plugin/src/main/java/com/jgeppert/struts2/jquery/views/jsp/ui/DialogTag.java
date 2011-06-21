@@ -102,6 +102,7 @@ public class DialogTag extends AbstractRemoteTag {
     dialog.setOpenTopics(openTopics);
     dialog.setCloseTopics(closeTopics);
     dialog.setDestroyTopics(destroyTopics);
+    dialog.setZindex(zindex);
   }
 
   public void setButtons(String buttons)
