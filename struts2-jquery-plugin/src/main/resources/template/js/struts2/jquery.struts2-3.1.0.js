@@ -1808,10 +1808,9 @@
 			if (o.bicon2) {
 				params.icons.secondary = o.bicon2;
 			}
-			if (o.bicon2) {
-				params.icons.secondary = o.bicon2;
+			if (o.btext !== undefined) {
+				params.text = o.btext;
 			}
-			params.text = o.btext;
 			$elem.button(params);
 		}
 	},
