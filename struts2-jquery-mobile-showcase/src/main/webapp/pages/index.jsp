@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags"%>
 <!DOCTYPE html>
