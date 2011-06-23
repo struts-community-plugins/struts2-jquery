@@ -19,7 +19,7 @@
 				<sjm:list inset="true" filter="true">
 					<sjm:listItem divider="true">AJAX</sjm:listItem>
 					<s:url id="url_checkboxlist" action="checkboxlist"/>
-					<sjm:listItem id="checkboxlist_link" href="%{url_checkboxlist}">AJAX Form Examples</sjm:listItem>
+					<sjm:listItem id="ajaxform_link" href="%{url_checkboxlist}">AJAX Form Examples</sjm:listItem>
 
 					<sjm:listItem divider="true">Form Elements</sjm:listItem>
 					<s:url id="url_textfield" action="textfield"/>
