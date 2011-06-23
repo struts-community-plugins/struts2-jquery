@@ -19,13 +19,17 @@
  */
 -->
 
+<#if !jQueryVersion?? >
+  <#assign jQueryVersion="1.5.2">
+</#if>
+
 <#if parameters.scriptPath?if_exists != "">
   <#assign javaScriptBasePath="${parameters.scriptPath?string}">
 <#else>
   <#assign javaScriptBasePath="${base}/struts/">
 </#if>
 
-<#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2">
+<#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/${jQueryVersion}">
 <#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14">
 
 <#if parameters.customBasepath?if_exists != "">
@@ -34,7 +38,7 @@
   <#assign basePath="${javaScriptBasePath}themes">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryFile="jquery-1.5.2.min.js">
+  <#assign jqueryFile="jquery-${jQueryVersion}.min.js">
   <#assign jqueryForm="jquery.form.min.js">
   <#assign jqueryUIFile="jquery-ui.min.js">
   <#assign jqueryUICoreFile="jquery.ui.core.min.js">
@@ -46,7 +50,7 @@
   <#assign jqueryGoogle="${googlePath}/jquery.min.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
-  <#assign jqueryFile="jquery-1.5.2.js">
+  <#assign jqueryFile="jquery-${jQueryVersion}.js">
   <#assign jqueryForm="jquery.form.js">
   <#assign jqueryUIFile="jquery-ui.js">
   <#assign jqueryUICoreFile="jquery.ui.core.js">
