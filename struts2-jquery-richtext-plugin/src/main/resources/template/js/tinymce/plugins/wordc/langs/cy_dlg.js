@@ -1,1 +1,1 @@
-tinyMCE.addI18n('cy.wordcount',{words:"Words: "});
+tinyMCE.addI18n('cy.wordcount',{words:"Geiriau:"});

@@ -1,1 +1,1 @@
-tinyMCE.addI18n('fi.wordcount',{words:"Words: "});
+tinyMCE.addI18n('fi.wordcount',{words:"Sanaa:"});

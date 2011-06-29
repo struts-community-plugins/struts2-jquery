@@ -1,1 +1,1 @@
-tinyMCE.addI18n('zh-cn.wordcount',{words:"Words: "});
+tinyMCE.addI18n('zh-cn.wordcount',{words:"\u5b57\u6570:"});

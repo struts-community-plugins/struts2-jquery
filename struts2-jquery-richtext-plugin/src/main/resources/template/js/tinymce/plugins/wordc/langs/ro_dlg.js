@@ -1,1 +1,1 @@
-tinyMCE.addI18n('ro.wordcount',{words:"Words: "});
+tinyMCE.addI18n('ro.wordcount',{words:"Cuvinte:"});
