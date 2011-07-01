@@ -27,7 +27,6 @@ public class Tree extends ActionSupport{
 		TreeNode nodeAB = new TreeNode();
 		nodeAB.setId("AB");
 		nodeAB.setTitle("Node AB");
-		//nodeAB.setIcon(TreeNode.NODE_STATE_OPEN);
 		
 		nodeA.setChildren(new LinkedList<TreeNode>());
 		nodeA.getChildren().add(nodeAA);
