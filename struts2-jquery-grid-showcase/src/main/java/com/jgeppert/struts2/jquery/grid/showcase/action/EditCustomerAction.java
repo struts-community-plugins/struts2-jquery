@@ -31,162 +31,159 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.EmployeeDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
-import com.jgeppert.struts2.jquery.grid.showcase.model.Employees;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Results( {
-  @Result(name = "error", location = "messages.jsp")
-})
+@Results( { @Result(name = "error", location = "messages.jsp") })
 public class EditCustomerAction extends ActionSupport {
 
-  private static final long serialVersionUID = -3454448309088641394L;
-  private static final Log  log              = LogFactory.getLog(EditCustomerAction.class);
+    private static final long serialVersionUID = -3454448309088641394L;
+    private static final Log log = LogFactory.getLog(EditCustomerAction.class);
 
-  private CustomersDao      customersDao     = new CustomersDao();
-  private EmployeeDao       employeeDao      = new EmployeeDao();
+    private CustomersDao customersDao = new CustomersDao();
+    private EmployeeDao employeeDao = new EmployeeDao();
 
-  private String            oper             = "edit";
-  private String            id;
-  private String            customername;
-  private String            country;
-  private String            city;
-  private double            creditlimit;
-  private Employees         salesemployee;
+    private String oper = "edit";
+    private String id;
+    private String customername;
+    private String country;
+    private String city;
+    private String contactfirstname;
+    private String contactlastname;
+    private double creditlimit;
+    private Integer salesemployee_employeenumber;
 
-  @TransactionTarget
-  protected Transaction     hTransaction;
+    @TransactionTarget
+    protected Transaction hTransaction;
 
-  public String execute() throws Exception
-  {
-    log.debug("Edit Customer :" + id);
+    public String execute() throws Exception {
+	log.debug("Edit Customer :" + id);
 
-    Customers customer;
+	Customers customer;
 
-    try
-    {
-      if (oper.equalsIgnoreCase("add"))
-      {
-        log.debug("Add Customer");
-        customer = new Customers();
+	try {
+	    if (oper.equalsIgnoreCase("add")) {
+		log.debug("Add Customer");
+		customer = new Customers();
 
-        int nextid = customersDao.nextCustomerNumber();
-        log.debug("Id for ne Customer is " + nextid);
-        customer.setCustomernumber(nextid);
-        customer.setCustomername(customername);
-        customer.setCountry(country);
-        customer.setCity(city);
-        customer.setCreditlimit(creditlimit);
+		int nextid = customersDao.nextCustomerNumber();
+		log.debug("Id for ne Customer is " + nextid);
+		customer.setCustomernumber(nextid);
+		customer.setCustomername(customername);
+		customer.setContactfirstname(contactfirstname);
+		customer.setContactlastname(contactlastname);
+		customer.setCountry(country);
+		customer.setCity(city);
+		customer.setCreditlimit(creditlimit);
 
-        if (salesemployee != null)
-        {
-          customer.setSalesemployee(employeeDao.get(salesemployee.getEmployeenumber()));
-        }
+		if (salesemployee_employeenumber != null) {
+		    customer.setSalesemployee(employeeDao
+			    .get(salesemployee_employeenumber));
+		}
 
-        customersDao.save(customer);
-      }
-      else if (oper.equalsIgnoreCase("edit"))
-      {
-        log.debug("Edit Customer");
+		customersDao.save(customer);
+	    } else if (oper.equalsIgnoreCase("edit")) {
+		log.debug("Edit Customer");
 
-        customer = customersDao.get(Integer.parseInt(id));
-        customer.setCustomername(customername);
-        customer.setCountry(country);
-        customer.setCity(city);
-        customer.setCreditlimit(creditlimit);
+		customer = customersDao.get(Integer.parseInt(id));
+		customer.setCustomername(customername);
+		customer.setContactfirstname(contactfirstname);
+		customer.setContactlastname(contactlastname);
+		customer.setCountry(country);
+		customer.setCity(city);
+		customer.setCreditlimit(creditlimit);
 
-        if (salesemployee != null)
-        {
-          customer.setSalesemployee(employeeDao.get(salesemployee.getEmployeenumber()));
-        }
-        customersDao.update(customer);
-      }
-      else if (oper.equalsIgnoreCase("del"))
-      {
-        StringTokenizer ids = new StringTokenizer(id, ",");
-        while (ids.hasMoreTokens())
-        {
-          int removeId = Integer.parseInt(ids.nextToken());
-          log.debug("Delete Customer " + removeId);
-          customersDao.delete(removeId);
-        }
-      }
+		if (salesemployee_employeenumber != null) {
+		    customer.setSalesemployee(employeeDao
+			    .get(salesemployee_employeenumber));
+		}
+		customersDao.update(customer);
+	    } else if (oper.equalsIgnoreCase("del")) {
+		StringTokenizer ids = new StringTokenizer(id, ",");
+		while (ids.hasMoreTokens()) {
+		    int removeId = Integer.parseInt(ids.nextToken());
+		    log.debug("Delete Customer " + removeId);
+		    customersDao.delete(removeId);
+		}
+	    }
 
-      // Commit changes
-      hTransaction.commit();
+	    // Commit changes
+	    hTransaction.commit();
+	} catch (Exception e) {
+	    hTransaction.rollback();
+	    addActionError("ERROR : " + e.getLocalizedMessage());
+	    addActionError("Is Database in read/write modus?");
+	    return "error";
+	}
+	return NONE;
     }
-    catch (Exception e)
-    {
-      hTransaction.rollback();
-      addActionError("ERROR : " + e.getLocalizedMessage());
-      addActionError("Is Database in read/write modus?");
-      return "error";
+
+    public String getId() {
+	return id;
     }
-    return NONE;
-  }
 
-  public String getId()
-  {
-    return id;
-  }
+    public void setId(String id) {
+	this.id = id;
+    }
 
-  public void setId(String id)
-  {
-    this.id = id;
-  }
+    public String getCountry() {
+	return country;
+    }
 
-  public String getCountry()
-  {
-    return country;
-  }
+    public void setCountry(String country) {
+	this.country = country;
+    }
 
-  public void setCountry(String country)
-  {
-    this.country = country;
-  }
+    public String getCity() {
+	return city;
+    }
 
-  public String getCity()
-  {
-    return city;
-  }
+    public void setCity(String city) {
+	this.city = city;
+    }
 
-  public void setCity(String city)
-  {
-    this.city = city;
-  }
+    public void setOper(String oper) {
+	this.oper = oper;
+    }
 
-  public void setOper(String oper)
-  {
-    this.oper = oper;
-  }
+    public String getCustomername() {
+	return customername;
+    }
 
-  public String getCustomername()
-  {
-    return customername;
-  }
+    public void setCustomername(String customername) {
+	this.customername = customername;
+    }
 
-  public void setCustomername(String customername)
-  {
-    this.customername = customername;
-  }
+    public double getCreditlimit() {
+	return creditlimit;
+    }
 
-  public double getCreditlimit()
-  {
-    return creditlimit;
-  }
+    public void setCreditlimit(double creditlimit) {
+	this.creditlimit = creditlimit;
+    }
 
-  public void setCreditlimit(double creditlimit)
-  {
-    this.creditlimit = creditlimit;
-  }
+    public Integer getSalesemployee_employeenumber() {
+	return salesemployee_employeenumber;
+    }
 
-  public Employees getSalesemployee()
-  {
-    return salesemployee;
-  }
+    public void setSalesemployee_employeenumber(
+	    Integer salesemployeeEmployeenumber) {
+	salesemployee_employeenumber = salesemployeeEmployeenumber;
+    }
 
-  public void setSalesemployee(Employees salesemployee)
-  {
-    this.salesemployee = salesemployee;
-  }
+    public String getContactfirstname() {
+        return contactfirstname;
+    }
+
+    public void setContactfirstname(String contactfirstname) {
+        this.contactfirstname = contactfirstname;
+    }
+
+    public String getContactlastname() {
+        return contactlastname;
+    }
+
+    public void setContactlastname(String contactlastname) {
+        this.contactlastname = contactlastname;
+    }
 
 }
