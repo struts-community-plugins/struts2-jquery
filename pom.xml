@@ -92,10 +92,20 @@
 
     <build>
         <plugins>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-resources-plugin</artifactId>
+			    <version>2.4.2</version>
+ 				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
                 <configuration>
+					<encoding>UTF-8</encoding>
                     <source>1.5</source>
                     <target>1.5</target>
                 </configuration>
@@ -104,6 +114,9 @@
                 <!-- Attach javadoc jar to builds -->
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.2</version>
+ 				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
                 <executions>
                     <execution>
                         <id>attach-source</id>
@@ -117,6 +130,10 @@
                 <!-- Attach source jar to builds -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+  				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
                 <executions>
                     <execution>
                         <id>attach-source</id>
