@@ -922,7 +922,7 @@
 			});
 		}
 		if (o.autocomplete) {
-			self.require("js/plugins/jquery.combobox" + self.minSuffix + ".js");
+			self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/plugins/jquery.combobox" + self.minSuffix + ".js" ]);
 			$elem.combobox(o);
 		}
 	},
@@ -1781,7 +1781,7 @@
 			$elem.autocomplete(params);
 		}
 		else {
-			self.require("js/plugins/jquery.combobox" + self.minSuffix + ".js");
+			self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/plugins/jquery.combobox" + self.minSuffix + ".js" ]);
 			if (o.selectBoxIcon) {
 				params.icon = true;
 			}
