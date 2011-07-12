@@ -14,7 +14,7 @@
  */
 
 /*global jQuery, window,  */
-(function($) {
+(function ($) {
 
 	/**
 	 * Bind a Tree to Struts2 Component
@@ -24,40 +24,37 @@
 		debugPrefix : '[struts2_jquery_tree] ',
 
 		// Render a Tree
-		tree : function($elem, o) {
-			var self = this;
+		tree : function ($elem, o) {
+			var self = this, path = null;
 			if (!self.loadAtOnce) {
 				self.require("js/base/jquery.cookie" + self.minSuffix + ".js");
 			}
 			self.require("js/jstree/jquery.hotkeys" + self.minSuffix + ".js");
 			self.require("js/jstree/jquery.jstree" + self.minSuffix + ".js");
 			o.plugins = ["ui"];
-			if(o.treetheme) {
+			if (o.treetheme) {
 				o.plugins.push("themes"); 
 				o.themes = {};
 				o.themes.theme = o.treetheme;
-				var path = null;
 				if (!$.scriptPath) {
 					path = '';
-				}
-				else {
+				} else { 
 					path = $.scriptPath;
 				}
 
-				o.themes.url = path + "js/jstree/themes/"+o.treetheme+"/style.css"
-			}
-			else {
+				o.themes.url = path + "js/jstree/themes/"+o.treetheme+"/style.css";
+			}	else {
 				o.plugins.push("themeroller"); 
 			}
-			if(o.contextmenu) {
+			if (o.contextmenu) {
 				o.plugins.push("crrm"); 
 				o.plugins.push("contextmenu"); 
 			}
-			if(o.types) {
+			if (o.types) {
 				o.plugins.push("types"); 
 			}
 			
-			if(o.url){
+			if (o.url){
 				o.json_data = {};
 				o.json_data.ajax = {};
 				o.json_data.ajax.url = o.url;
@@ -65,13 +62,12 @@
 					return { id : n.attr ? n.attr("id") : 0 }; 
 				};
 				o.plugins.push("json_data");
-			}
-			else {
+			}	else {
 				o.plugins.push("html_data");
 			}
 			
 			if(o.onclick) {
-				$elem.bind('select_node.jstree', function(event, data){
+				$elem.bind('select_node.jstree', function (event, data){
 					var orginal = {};
 					orginal.data = data;
 					orginal.event = event;
@@ -79,12 +75,12 @@
 		         });
 		  }
 			if(o.openload) {
-				$elem.bind('loaded.jstree', function(event, data){
+				$elem.bind('loaded.jstree', function (event, data){
 					$elem.jstree('open_all'); 
 		    });
 		  }
 			if(o.openrefresh) {
-				$elem.bind('refresh.jstree', function(event, data){
+				$elem.bind('refresh.jstree', function (event, data){
 					$elem.jstree('open_all'); 
 		    });
 		  }

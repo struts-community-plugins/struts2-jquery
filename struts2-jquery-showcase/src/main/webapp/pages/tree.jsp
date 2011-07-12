@@ -106,19 +106,19 @@
 							'icon' : { 
 								'image' : '%{contextPath}/images/root.png' 
 							},
-							'valid_children' : [ 'folder', 'file' ],
+							'valid_children' : [ 'folder', 'file' ]
 						},
 						'folder' : {
 							'icon' : { 
 								'image' : '%{contextPath}/images/folder.png' 
 							},
-							'valid_children' : [ 'folder', 'file' ],
+							'valid_children' : [ 'folder', 'file' ]
 						},
 						'file' : {
 							'icon' : { 
 								'image' : '%{contextPath}/images/file.png' 
 							},
-							'valid_children' : [ 'none' ],
+							'valid_children' : [ 'none' ]
 						}
 				}
 		}">
