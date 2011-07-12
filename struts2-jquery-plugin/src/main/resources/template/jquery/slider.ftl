@@ -30,7 +30,7 @@
   <#if parameters.widgetid?if_exists != "">
     id="${parameters.widgetid?html}"<#rt/>
   </#if>
-    value="${parameters.value?default('0')}"<#rt/>
+    value="${parameters.nameValue?default('0')}"<#rt/>
   <#if parameters.name?if_exists != "">
     name="${parameters.name?html}"<#rt/>
   </#if>

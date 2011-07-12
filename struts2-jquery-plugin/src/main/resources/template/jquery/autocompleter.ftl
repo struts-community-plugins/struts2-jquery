@@ -22,8 +22,8 @@
   <#if parameters.widgetid?if_exists != "">
     id="${parameters.widgetid?html}"<#rt/>
   </#if>
-  <#if parameters.value??>
-    value="${parameters.value?html}"<#rt/>
+  <#if parameters.nameValue??>
+    value="<@s.property value="parameters.nameValue"/>"<#rt/>
   </#if>
   <#if parameters.widgetname?if_exists != "">
  	name="${parameters.widgetname?html}"<#rt/>
