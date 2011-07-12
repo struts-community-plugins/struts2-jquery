@@ -22,7 +22,7 @@
 <#assign escapedOptionId="${parameters.grid?string?replace('.', '_')}">
 
 options_${escapedOptionId?html}_colmodels_${colName} = {};
-options_${escapedOptionId?html}_colmodels_${colName}.name = "${parameters.name?string?replace('.', '_')?html}";
+options_${escapedOptionId?html}_colmodels_${colName}.name = "${parameters.name?string}";
 options_${escapedOptionId?html}_colmodels_${colName}.jsonmap = "${parameters.name?html}";
 <#if parameters.index?if_exists != "">
 options_${escapedOptionId?html}_colmodels_${colName}.index = "${parameters.index?html}";

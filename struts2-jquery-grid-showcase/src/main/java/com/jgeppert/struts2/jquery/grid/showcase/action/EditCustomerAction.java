@@ -31,9 +31,10 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.EmployeeDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
+import com.jgeppert.struts2.jquery.grid.showcase.model.Employees;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Results( { @Result(name = "error", location = "messages.jsp") })
+@Results({ @Result(name = "error", location = "messages.jsp") })
 public class EditCustomerAction extends ActionSupport {
 
     private static final long serialVersionUID = -3454448309088641394L;
@@ -45,12 +46,12 @@ public class EditCustomerAction extends ActionSupport {
     private String oper = "edit";
     private String id;
     private String customername;
-    private String country;
-    private String city;
     private String contactfirstname;
     private String contactlastname;
+    private String country;
+    private String city;
     private double creditlimit;
-    private Integer salesemployee_employeenumber;
+    private Employees salesemployee;
 
     @TransactionTarget
     protected Transaction hTransaction;
@@ -69,15 +70,15 @@ public class EditCustomerAction extends ActionSupport {
 		log.debug("Id for ne Customer is " + nextid);
 		customer.setCustomernumber(nextid);
 		customer.setCustomername(customername);
-		customer.setContactfirstname(contactfirstname);
-		customer.setContactlastname(contactlastname);
 		customer.setCountry(country);
 		customer.setCity(city);
 		customer.setCreditlimit(creditlimit);
+		customer.setContactfirstname(contactfirstname);
+		customer.setContactlastname(contactlastname);
 
-		if (salesemployee_employeenumber != null) {
-		    customer.setSalesemployee(employeeDao
-			    .get(salesemployee_employeenumber));
+		if (salesemployee != null) {
+		    customer.setSalesemployee(employeeDao.get(salesemployee
+			    .getEmployeenumber()));
 		}
 
 		customersDao.save(customer);
@@ -86,15 +87,15 @@ public class EditCustomerAction extends ActionSupport {
 
 		customer = customersDao.get(Integer.parseInt(id));
 		customer.setCustomername(customername);
-		customer.setContactfirstname(contactfirstname);
-		customer.setContactlastname(contactlastname);
 		customer.setCountry(country);
 		customer.setCity(city);
 		customer.setCreditlimit(creditlimit);
+		customer.setContactfirstname(contactfirstname);
+		customer.setContactlastname(contactlastname);
 
-		if (salesemployee_employeenumber != null) {
-		    customer.setSalesemployee(employeeDao
-			    .get(salesemployee_employeenumber));
+		if (salesemployee != null) {
+		    customer.setSalesemployee(employeeDao.get(salesemployee
+			    .getEmployeenumber()));
 		}
 		customersDao.update(customer);
 	    } else if (oper.equalsIgnoreCase("del")) {
@@ -161,29 +162,28 @@ public class EditCustomerAction extends ActionSupport {
 	this.creditlimit = creditlimit;
     }
 
-    public Integer getSalesemployee_employeenumber() {
-	return salesemployee_employeenumber;
+    public Employees getSalesemployee() {
+	return salesemployee;
     }
 
-    public void setSalesemployee_employeenumber(
-	    Integer salesemployeeEmployeenumber) {
-	salesemployee_employeenumber = salesemployeeEmployeenumber;
+    public void setSalesemployee(Employees salesemployee) {
+	this.salesemployee = salesemployee;
     }
 
     public String getContactfirstname() {
-        return contactfirstname;
+	return contactfirstname;
     }
 
     public void setContactfirstname(String contactfirstname) {
-        this.contactfirstname = contactfirstname;
+	this.contactfirstname = contactfirstname;
     }
 
     public String getContactlastname() {
-        return contactlastname;
+	return contactlastname;
     }
 
     public void setContactlastname(String contactlastname) {
-        this.contactlastname = contactlastname;
+	this.contactlastname = contactlastname;
     }
 
 }
