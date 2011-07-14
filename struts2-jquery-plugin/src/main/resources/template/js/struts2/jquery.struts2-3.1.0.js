@@ -98,6 +98,7 @@
 				self.log('load require script ' + (path + file));
 				$.ajax( {
 				type :"GET",
+				scriptCharset:"UTF-8",
 				url :path + file,
 				success :successFunction,
 				dataType :"script",
