@@ -1151,9 +1151,7 @@
 			};
 		}
 		if (o.cookie) {
-			if (!self.loadAtOnce) {
-				self.require("js/base/jquery.cookie" + self.minSuffix + ".js");
-			}
+			self.require("js/base/jquery.cookie" + self.minSuffix + ".js");
 			para.cookie = {
 				expires :30
 			};
