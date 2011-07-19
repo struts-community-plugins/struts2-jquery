@@ -38,7 +38,7 @@
 	<#if !parameters.targets?exists && parameters.href?if_exists != ""> 
 			<a href="${parameters.href?string}">
 	<#else>
-			<a href="javascript:void(0">
+			<a href="javascript:void(0)">
 	</#if>
 <#if parameters.title?if_exists != "">
 			${parameters.title?html}
