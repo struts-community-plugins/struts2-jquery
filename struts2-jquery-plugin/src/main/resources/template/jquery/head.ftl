@@ -64,23 +64,23 @@
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
-	<script type="text/javascript" src="${jqueryGoogle}" charset="UTF-8"></script>
+	<script type="text/javascript" src="${jqueryGoogle}"></script>
 	<#if parameters.jqueryui?default(true)>
-	<script type="text/javascript" src="${jqueryUiGoogle}" charset="UTF-8"></script>
+	<script type="text/javascript" src="${jqueryUiGoogle}"></script>
 		<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
 		</#if>
 	</#if>
 <#else>
-	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryFile}" charset="UTF-8"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryFile}"></script>
 	<#if parameters.jqueryui?default(true)>
  		<#if parameters.loadAtOnce?default(false)>
-	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile} charset="UTF-8""></script>
+	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"></script>
 			<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-	<script type="text/javascript" src="${javaScriptBasePath}i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
 			</#if>
 		<#else>
-	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}" charset="UTF-8"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script>
 		</#if>
 	</#if>
 </#if>
@@ -88,11 +88,11 @@
 	<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryCompat13File}"></script>
 </#if>
 <#if parameters.loadAtOnce?default(false) ||  parameters.loadFromGoogle?default(false)>
-	<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryForm}" charset="UTF-8"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryForm}"></script>
 </#if>
-  <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}" charset="UTF-8"></script>
+  <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}"></script>
 <#if parameters.ajaxhistory?default(false)>
-  <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryHistoryFile}" charset="UTF-8"></script>
+  <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryHistoryFile}"></script>
 </#if>
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
@@ -107,7 +107,7 @@
 </#if>
 
 
-  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}" charset="UTF-8"></script>
+  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 jQuery(document).ready(function () {
 <#if parameters.debug?default(false)>
