@@ -84,8 +84,14 @@
 					$elem.jstree('open_all'); 
 		    });
 		  }
+			
+		  if (o.animation) {
+			  o.plugins.push("core"); 
+			  o.core = {};
+			  o.core.animation = o.animation;
+		  }
 
-			$elem.jstree(o);
+		  $elem.jstree(o);
 		},
 		treeitem : function($elem, o) {
 			var self = this;
