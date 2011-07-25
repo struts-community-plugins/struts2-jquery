@@ -282,6 +282,9 @@
   <#if parameters.onCellEditErrorTopics?if_exists != "">
 	options_${escapedOptionId?html}.onceerror = "${parameters.onCellEditErrorTopics?html}";
   </#if>
+  <#if parameters.onSubGridRowExpanded?if_exists != "">
+	options_${escapedOptionId?html}.onsgrowexpanded = "${parameters.onSubGridRowExpanded?html}";
+  </#if>
   <#if parameters.reloadTopics?if_exists != "">
 	options_${escapedOptionId?html}.reloadtopics = "${parameters.reloadTopics?html}";
   </#if>

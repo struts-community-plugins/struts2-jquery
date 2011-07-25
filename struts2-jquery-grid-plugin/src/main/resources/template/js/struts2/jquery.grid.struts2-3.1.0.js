@@ -88,10 +88,10 @@
 									$.struts2_jquery_grid.lastselectedrow);
 						}
 						$.struts2_jquery_grid.lastselectedrow = id;
-						var oneditbefor = null;
-						var onsuccess = null;
-						var onerror = null;
-						var onaftersave = null;
+						var oneditbefor = null,
+							onsuccess = null,
+							onerror = null,
+							onaftersave = null;
 	
 						if (o.oneibefore) {
 							oneditbefor = function() {
@@ -226,7 +226,11 @@
 						if (!self.loadAtOnce) {
 							self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.ui.droppable" + self.minSuffix + ".js" ]);
 						}
-						var daos = o.draggableoptions;
+						
+						var daos = o.draggableoptions,
+							doos = o.droppableoptions,
+							ddo = {};
+
 						var dao = window[daos];
 						if (!dao) {
 							dao = eval("( " + daos + " )");
@@ -235,7 +239,6 @@
 						}
 						dao.drap = self.pubTops($elem, o.onalw, o.draggableondragtopics);
 	
-						var doos = o.droppableoptions;
 						var doo = window[doos];
 						if (!doo) {
 							doo = eval("( " + doos + " )");
@@ -247,7 +250,6 @@
 						doo.start = self.pubTops($elem, o.onalw, o.droppableonstarttopics);
 						doo.stop = self.pubTops($elem, o.onalw, o.droppableonstoptopics);
 	
-						var ddo = {};
 						ddo.drag_opts = dao;
 						ddo.drop_opts = doo;
 						ddo.connectWith = o.connectWith;
@@ -388,28 +390,44 @@
 				// gridview can't be true when using the subgrid feature
 				params.gridview = false;
 				params.subGridRowExpanded = function(subgrid_id, row_id) {
-					var so = o.subgridoptions;
-					var subgridtableid = subgrid_id + "_table";
-					var subgrid = $(self.escId(subgrid_id));
-					var subgridhtml = "<table id='" + subgridtableid + "' class='scroll'></table>";
-					if ((so.pager && so.pager !== "") || so.navigator) {
-						subgridhtml = subgridhtml + "<div id='" + subgrid_id+ "_pager'></div>";
-						so.pager = subgrid_id + "_pager";
+					
+					var orginal = {};
+					orginal.proceed = true;
+					
+					if(o.onsgrowexpanded){
+						orginal.row_id = row_id;
+						orginal.subgrid_id = subgrid_id;
+		
+						self.publishTopic($elem, o.onalw, orginal);
+						self.publishTopic($elem, o.onsgrowexpanded, orginal);
 					}
-
-					subgrid.html(subgridhtml);
-
-					if (so.url) {
-						var to = so.url.indexOf('?');
-						if (to > 0) {
-							so.url = so.url.substring(0, to);
+					
+					if(orginal.proceed) {
+						var so = o.subgridoptions;
+						var subgridtableid = subgrid_id + "_table";
+						var subgrid = $(self.escId(subgrid_id));
+						var subgridhtml = "<table id='" + subgridtableid + "' class='scroll'></table>";
+						if ((so.pager && so.pager !== "") || so.navigator) {
+							subgridhtml = subgridhtml + "<div id='" + subgrid_id+ "_pager'></div>";
+							so.pager = subgrid_id + "_pager";
+							so.navigatoraddoptions = $.extend(true,so.navigatoraddoptions||{}, {editData:{rowid:row_id}});
+							so.navigatoreditoptions = $.extend(true,so.navigatoreditoptions||{}, {editData:{rowid:row_id}});
 						}
-						so.url = so.url + "?id=" + row_id;
+	
+						subgrid.html(subgridhtml);
+	
+						if (so.url) {
+							var to = so.url.indexOf('?');
+							if (to > 0) {
+								so.url = so.url.substring(0, to);
+							}
+							so.url = so.url + "?id=" + row_id;
+						}
+						subgrid = $(self.escId(subgridtableid));
+						so = self.parseGridParams(subgrid, so, so);
+	
+						subgrid.jqGrid(so);
 					}
-					subgrid = $(self.escId(subgridtableid));
-					so = self.parseGridParams(subgrid, so, so);
-
-					subgrid.jqGrid(so);
 				};
 			} else {
 				params.gridview = true;

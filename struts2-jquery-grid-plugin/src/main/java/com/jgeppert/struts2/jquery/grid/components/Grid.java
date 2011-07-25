@@ -129,6 +129,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	protected String onEditInlineAfterSaveTopics;
 	protected String onCellEditSuccessTopics;
 	protected String onCellEditErrorTopics;
+	protected String onSubGridRowExpanded;
 
 	protected String reloadTopics;
 
@@ -442,6 +443,9 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 		if (onCellEditSuccessTopics != null)
 			addParameter("onCellEditSuccessTopics",
 					findString(onCellEditSuccessTopics));
+		if (onSubGridRowExpanded != null)
+			addParameter("onSubGridRowExpanded",
+					findString(onSubGridRowExpanded));
 		if (reloadTopics != null)
 			addParameter("reloadTopics", findString(reloadTopics));
 
@@ -1346,6 +1350,11 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	@StrutsTagAttribute(description = "A comma delimited list of topics that published is called immediately if there is a server error.")
 	public void setOnCellEditErrorTopics(String onCellEditErrorTopics) {
 		this.onCellEditErrorTopics = onCellEditErrorTopics;
+	}
+
+	@StrutsTagAttribute(description = "A comma delimited list of topics that published when subgrid row is expanded. Set event.originalEvent.orginal.proceed = false in your topic to prevent default action.")
+	public void setOnSubGridRowExpanded(String onSubGridRowExpanded) {
+	    this.onSubGridRowExpanded = onSubGridRowExpanded;
 	}
 
 	@StrutsTagAttribute(name = "reloadTopics", description = "A comma delimited list of topics that will cause this grid to reload", type = "String", defaultValue = "")
