@@ -792,6 +792,8 @@
 			doo.start = self.pubTops($elem, o.onalw, o.droppableonstarttopics);
 			doo.stop = self.pubTops($elem, o.onalw, o.droppableonstoptopics);
 			doo.drop = self.pubTops($elem, o.onalw, o.droppableondroptopics);
+			doo.over = self.pubTops($elem, o.onalw, o.droppableonovertopics);
+			doo.out = self.pubTops($elem, o.onalw, o.droppableonouttopics);
 			$elem.droppable(doo);
 		}
 
