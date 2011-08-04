@@ -49,6 +49,7 @@ public class AutocompleterTag extends AbstractFormListElementTag {
     protected String size;
     protected String multiple;
     protected String listLabel;
+    protected String forceValidOption;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
 	    HttpServletResponse res) {
@@ -71,6 +72,7 @@ public class AutocompleterTag extends AbstractFormListElementTag {
 	completer.setSize(size);
 	completer.setMultiple(multiple);
 	completer.setListLabel(listLabel);
+	completer.setForceValidOption(forceValidOption);
     }
 
     public void setMaxlength(String maxlength) {
@@ -119,5 +121,9 @@ public class AutocompleterTag extends AbstractFormListElementTag {
 
     public void setListLabel(String listLabel) {
 	this.listLabel = listLabel;
+    }
+
+    public void setForceValidOption(String forceValidOption) {
+        this.forceValidOption = forceValidOption;
     }
 }

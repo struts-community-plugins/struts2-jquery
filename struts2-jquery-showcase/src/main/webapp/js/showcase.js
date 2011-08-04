@@ -295,11 +295,13 @@ $(document).ready(function() {
 
   $.subscribe('autocompleteChange', function(event, data) {
   	var ui = event.originalEvent.ui;
-  	var message = ui.item.value;
-  	if(ui.item.key) {
-  		message = '( '+ ui.item.key +' ) '+message;
+  	if(ui.item) {
+    	var message = ui.item.value;
+    	if(ui.item.key) {
+    		message = '( '+ ui.item.key +' ) '+message;
+    	}
+  		$('#topics').html('<b>'+message+'</b>');
   	}
-		$('#topics').html('<b>'+message+'</b>');
 	});
 
   $.subscribe('autocompleteFocus', function(event, data) {

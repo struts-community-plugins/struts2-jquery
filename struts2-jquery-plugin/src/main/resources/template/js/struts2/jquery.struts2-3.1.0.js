@@ -1741,6 +1741,11 @@
 		if (o.minimum) {
 			params.minLength = o.minimum;
 		}
+		if (o.forceValidOption === false) {
+			$elem.keyup(function(e) {
+				$(self.escId(o.hiddenid)).val($elem.val());
+			});
+		}
 
 		if (o.onsuc) {
 			params.open = self.pubTops($elem, o.onalw, o.onsuc);

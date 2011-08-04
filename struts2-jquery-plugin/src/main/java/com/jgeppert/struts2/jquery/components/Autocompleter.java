@@ -113,6 +113,7 @@ public class Autocompleter extends AbstractFormListElement {
     protected String size;
     protected String multiple;
     protected String listLabel;
+    protected String forceValidOption;
 
     public Autocompleter(ValueStack stack, HttpServletRequest request,
 	    HttpServletResponse response) {
@@ -184,6 +185,9 @@ public class Autocompleter extends AbstractFormListElement {
 	if (listLabel != null) {
 	    listLabel = stripExpressionIfAltSyntax(listLabel);
 	    addParameter("listLabel", listLabel);
+	}
+	if (forceValidOption != null) {
+	    addParameter("forceValidOption", findValue(forceValidOption, Boolean.class));
 	}
 
 	if ((this.id == null || this.id.length() == 0)) {
@@ -271,6 +275,11 @@ public class Autocompleter extends AbstractFormListElement {
     @StrutsTagAttribute(description = "a seperate label element.")
     public void setListLabel(String listLabel) {
 	this.listLabel = listLabel;
+    }
+
+    @StrutsTagAttribute(description = "Force selection to be one of the options.", defaultValue = "true", type = "Boolean", required = false)
+    public void setForceValidOption(String forceValidOption) {
+        this.forceValidOption = forceValidOption;
     }
 
 }

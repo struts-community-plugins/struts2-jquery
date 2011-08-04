@@ -42,6 +42,11 @@ jQuery(document).ready(function () {
   <#if parameters.onSearchTopics?exists>
 	options_${escapedOptionId?html}.onsearchtopics = "${parameters.onSearchTopics?html}";
   </#if>
+  <#if parameters.forceValidOption?default(true) >
+	options_${escapedOptionId?html}.forceValidOption = true;
+  <#else>
+	options_${escapedOptionId?html}.forceValidOption = false;
+  </#if>
   <#if parameters.onFocusTopics?exists>
 	options_${escapedOptionId?html}.onfocustopics = "${parameters.onFocusTopics?html}";
   </#if>

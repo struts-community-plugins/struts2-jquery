@@ -57,6 +57,7 @@
 	    	list="customersMap"
 	    	delay="50" 
 	    	loadMinimumCount="2"
+	    	forceValidOption="false"
 	    	onChangeTopics="autocompleteChange"
 	    	onFocusTopics="autocompleteFocus"
 	    	onSelectTopics="autocompleteSelect"
