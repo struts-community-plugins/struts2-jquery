@@ -563,6 +563,9 @@
 		if (o.opendialog) {
 			var dialog = $(self.escId(o.opendialog));
 			$elem.bind('click', function(event) {
+				if ($elem.attr("disabled") != undefined) {
+					return false;
+				}
 				if (o.href && o.href !== '#') {
 					o.targets = o.opendialog;
 					var divTopic = '_s2j_dialog_load_' + o.id;
