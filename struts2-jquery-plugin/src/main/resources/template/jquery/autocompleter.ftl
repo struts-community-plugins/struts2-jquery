@@ -18,20 +18,6 @@
  * under the License.
  */
 -->
-<input type="hidden"
-  <#if parameters.widgetid?if_exists != "">
-    id="${parameters.widgetid?html}"<#rt/>
-  </#if>
-  <#if parameters.nameValue??>
-    value="<@s.property value="parameters.nameValue"/>"<#rt/>
-  </#if>
-  <#if parameters.widgetname?if_exists != "">
- 	name="${parameters.widgetname?html}"<#rt/>
-  </#if>
-  <#if parameters.disabled?default(false)>
-    disabled="disabled"<#rt/>
-  </#if>
-/>
 <#if parameters.parentTheme == 'xhtml' || parameters.parentTheme == 'css_xhtml' || parameters.parentTheme == 'simple'>
 	<#if parameters.parentTheme == 'xhtml'>
 		<#include "/${parameters.templateDir}/xhtml/controlheader.ftl" />
@@ -39,6 +25,20 @@
 	<#if parameters.parentTheme == 'css_xhtml'>
 		<#include "/${parameters.templateDir}/css_xhtml/controlheader.ftl" />
 	</#if>
+		<input type="hidden"
+		  <#if parameters.widgetid?if_exists != "">
+		    id="${parameters.widgetid?html}"<#rt/>
+		  </#if>
+		  <#if parameters.nameValue??>
+		    value="<@s.property value="parameters.nameValue"/>"<#rt/>
+		  </#if>
+		  <#if parameters.widgetname?if_exists != "">
+		 	name="${parameters.widgetname?html}"<#rt/>
+		  </#if>
+		  <#if parameters.disabled?default(false)>
+		    disabled="disabled"<#rt/>
+		  </#if>
+		/>
 	<#if (parameters.list?? && parameters.listKey??) || parameters.selectBox??>
 		<#include "/${parameters.templateDir}/simple/select.ftl" />
   	<#else>
@@ -51,5 +51,19 @@
 		<#include "/${parameters.templateDir}/css_xhtml/controlfooter.ftl" />
 	</#if>
 <#else>
+	<input type="hidden"
+	  <#if parameters.widgetid?if_exists != "">
+	    id="${parameters.widgetid?html}"<#rt/>
+	  </#if>
+	  <#if parameters.nameValue??>
+	    value="<@s.property value="parameters.nameValue"/>"<#rt/>
+	  </#if>
+	  <#if parameters.widgetname?if_exists != "">
+	 	name="${parameters.widgetname?html}"<#rt/>
+	  </#if>
+	  <#if parameters.disabled?default(false)>
+	    disabled="disabled"<#rt/>
+	  </#if>
+	/>
 	<#include "/${parameters.templateDir}/${parameters.parentTheme}/text.ftl" />
 </#if>
