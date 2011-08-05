@@ -563,7 +563,7 @@
 		if (o.opendialog) {
 			var dialog = $(self.escId(o.opendialog));
 			$elem.bind('click', function(event) {
-				if ($elem.attr("disabled") != undefined) {
+				if (!!$(this).attr("disabled")) {
 					return false;
 				}
 				if (o.href && o.href !== '#') {
