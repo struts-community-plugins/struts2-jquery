@@ -116,6 +116,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	protected String direction;
 	protected String recordpos;
 	protected String rowTotal;
+	protected String viewsortcols;
 
 	protected String onSelectRowTopics;
 	protected String onSelectAllTopics;
@@ -411,6 +412,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 			addParameter("recordpos", findString(recordpos));
 		if (rowTotal != null)
 			addParameter("rowTotal", findValue(this.rowTotal, Integer.class));
+		if (viewsortcols != null)
+			addParameter("viewsortcols", findString(viewsortcols));
 
 		if (onSelectRowTopics != null)
 			addParameter("onSelectRowTopics", findString(onSelectRowTopics));
@@ -1289,6 +1292,11 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	@StrutsTagAttribute(description = "When set this parameter can instruct the server to load the total number of rows needed to work on. Note that rowNum determines the total records displayed in the grid, while rowTotal the total rows on which we operate. When this parameter is set we send a additional parameter to server named totalrows. You can check for this parameter and if it is available you can replace the rows parameter with this one. Mostly this parameter can be combined wit loadonce parameter set to true.", defaultValue = "null", type = "Integer")
 	public void setRowTotal(String rowTotal) {
 		this.rowTotal = rowTotal;
+	}
+
+	@StrutsTagAttribute(description = "The purpose of this parameter is to define different look and behavior of sorting icons that appear near the header. This parameter is array with the following default options viewsortcols : [false,'vertical',true]. The first parameter determines if all icons should be viewed at the same time when all columns have sort property set to true. The default of false determines that only the icons of the current sorting column should be viewed. Setting this parameter to true causes all icons in all sortable columns to be viewed. The second parameter determines how icons should be placed - vertical means that the sorting icons are one under another. 'horizontal' means that the icons should be one near other. The third parameter determines the click functionality. If set to true the columns are sorted if the header is clicked. If set to false the columns are sorted only when the icons are clicked. Important note: When set a third parameter to false be a sure that the first parameter is set to true, otherwise you will loose the sorting.", defaultValue = "false")
+	public void setViewsortcols(String viewsortcols) {
+	    this.viewsortcols = viewsortcols;
 	}
 
 	@StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")

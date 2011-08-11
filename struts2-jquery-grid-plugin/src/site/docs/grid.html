@@ -1986,6 +1986,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">Defines whether we want to display the number of total records from the query in the pager bar.</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">viewsortcols</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">The purpose of this parameter is to define different look and behavior of sorting icons that appear near the header. This parameter is array with the following default options viewsortcols : [false,'vertical',true]. The first parameter determines if all icons should be viewed at the same time when all columns have sort property set to true. The default of false determines that only the icons of the current sorting column should be viewed. Setting this parameter to true causes all icons in all sortable columns to be viewed. The second parameter determines how icons should be placed - vertical means that the sorting icons are one under another. 'horizontal' means that the icons should be one near other. The third parameter determines the click functionality. If set to true the columns are sorted if the header is clicked. If set to false the columns are sorted only when the icons are clicked. Important note: When set a third parameter to false be a sure that the first parameter is set to true, otherwise you will loose the sorting.</td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">width</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>

@@ -75,6 +75,7 @@
     	editinline="false"
     	multiselect="true"
     	viewrecords="true"
+    	viewsortcols="[true, 'horizontal', true]"
     >
     	<sjg:gridColumn name="customernumber"
     		index="customernumber"
