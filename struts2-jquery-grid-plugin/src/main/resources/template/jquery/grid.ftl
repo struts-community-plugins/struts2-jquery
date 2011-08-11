@@ -47,7 +47,7 @@
 <#else>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2-3.1.0"+jQuery.struts2_jquery.minSuffix+".js");
+	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2-3.1.1"+jQuery.struts2_jquery.minSuffix+".js");
 </#if>
 	var options_${escapedOptionId?html} = {};
 	var options_${escapedOptionId?html}_colmodels = new Array();

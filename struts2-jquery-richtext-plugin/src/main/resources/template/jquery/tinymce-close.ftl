@@ -21,7 +21,7 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () {
-	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2-3.0.0"+jQuery.struts2_jquery.minSuffix+".js");
+	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2-3.1.1"+jQuery.struts2_jquery.minSuffix+".js");
 
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.type = 'text';

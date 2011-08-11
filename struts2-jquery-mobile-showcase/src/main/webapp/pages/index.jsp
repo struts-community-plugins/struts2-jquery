@@ -10,7 +10,7 @@
 		<sjm:div role="page" id="start">
 			<sjm:div role="header">
 				<h1>Struts2 jQuery Mobile Plugin Showcase</h1>
-				<h2>Version 3.1.0</h2>
+				<h2>Version 3.1.1</h2>
 			</sjm:div>
 			
 			<sjm:div role="content">
