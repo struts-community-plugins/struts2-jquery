@@ -20,7 +20,7 @@
 -->
 
 <#if !jQueryVersion?? >
-  <#assign jQueryVersion="1.5.2">
+  <#assign jQueryVersion="1.6.2">
 </#if>
 
 <#if parameters.scriptPath?if_exists != "">
