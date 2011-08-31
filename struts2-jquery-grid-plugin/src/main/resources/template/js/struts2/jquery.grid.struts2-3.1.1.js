@@ -34,6 +34,9 @@
 					}
 					else if (options.topic || options.onclick){
 						var bopts = {};
+						if(options.id) {
+							bopts.title = options.id;
+						}
 						if(options.title) {
 							bopts.title = options.title;
 						}
