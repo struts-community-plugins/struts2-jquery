@@ -52,7 +52,7 @@
     <li id="${parameters.id?html}_li_<@s.property value="%{#rowstatus.count}" />">
     <#if parameters.listHref?if_exists != "">
         <a<#rt/>
-		     href="${parameters.listHref}?${parameters.listParam?default("id")}=${itemKey?html}"<#rt/>
+		     href="${parameters.listHref}?${parameters.listParam?default("id")}=${itemKeyStr?html}"<#rt/>
     	>
     </#if>
                 ${itemValue?html}
