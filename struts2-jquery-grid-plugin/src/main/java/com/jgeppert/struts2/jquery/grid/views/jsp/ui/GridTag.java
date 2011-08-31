@@ -101,6 +101,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
     protected String recordpos;
     protected String rowTotal;
     protected String viewsortcols;
+    protected String toppager;
 
     protected String onSelectRowTopics;
     protected String onSelectAllTopics;
@@ -313,6 +314,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
 	grid.setRecordpos(recordpos);
 	grid.setRowTotal(rowTotal);
 	grid.setViewsortcols(viewsortcols);
+	grid.setToppager(toppager);
 
 	grid.setResizable(resizable);
 	grid.setResizableAnimate(resizableAnimate);
@@ -609,6 +611,10 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
 
     public void setFilter(String filter) {
 	this.filter = filter;
+    }
+    
+    public void setToppager(String toppager) {
+        this.toppager = toppager;
     }
 
     public void setOnSelectRowTopics(String onSelectRowTopics) {
@@ -1149,4 +1155,5 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
     public void setOnSubGridRowExpanded(String onSubGridRowExpanded) {
 	this.onSubGridRowExpanded = onSubGridRowExpanded;
     }
+
 }

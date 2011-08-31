@@ -117,6 +117,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	protected String recordpos;
 	protected String rowTotal;
 	protected String viewsortcols;
+	protected String toppager;
 
 	protected String onSelectRowTopics;
 	protected String onSelectAllTopics;
@@ -414,6 +415,8 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 			addParameter("rowTotal", findValue(this.rowTotal, Integer.class));
 		if (viewsortcols != null)
 			addParameter("viewsortcols", findString(viewsortcols));
+		if (toppager != null)
+			addParameter("toppager", findValue(this.toppager, Boolean.class));
 
 		if (onSelectRowTopics != null)
 			addParameter("onSelectRowTopics", findString(onSelectRowTopics));
@@ -1297,6 +1300,11 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	@StrutsTagAttribute(description = "The purpose of this parameter is to define different look and behavior of sorting icons that appear near the header. This parameter is array with the following default options viewsortcols : [false,'vertical',true]. The first parameter determines if all icons should be viewed at the same time when all columns have sort property set to true. The default of false determines that only the icons of the current sorting column should be viewed. Setting this parameter to true causes all icons in all sortable columns to be viewed. The second parameter determines how icons should be placed - vertical means that the sorting icons are one under another. 'horizontal' means that the icons should be one near other. The third parameter determines the click functionality. If set to true the columns are sorted if the header is clicked. If set to false the columns are sorted only when the icons are clicked. Important note: When set a third parameter to false be a sure that the first parameter is set to true, otherwise you will loose the sorting.", defaultValue = "false")
 	public void setViewsortcols(String viewsortcols) {
 	    this.viewsortcols = viewsortcols;
+	}
+
+	@StrutsTagAttribute(description = "When enabled this option place a pager element at top of the grid below the caption (if available).", defaultValue = "false", type = "Boolean")
+	public void setToppager(String toppager) {
+	    this.toppager = toppager;
 	}
 
 	@StrutsTagAttribute(description = "A comma delimited list of topics that published when a row is selected")

@@ -26,6 +26,7 @@
     	dataType="json"
     	href="%{remoteurl}"
     	pager="true"
+    	toppager="true"
     	navigator="true"
     	navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
     	navigatorAddOptions="{height:280,reloadAfterSubmit:true}"

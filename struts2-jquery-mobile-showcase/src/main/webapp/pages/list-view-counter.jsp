@@ -32,6 +32,15 @@
 				    listCounter="count"
 			        dataTheme="e"
 		        />
+		        <h2>A Readonly List</h2>
+				<sjm:list
+				    id="list"
+				    inset="true"
+				    list="myList"
+				    listValue="title"
+				    listCounter="count"
+			        dataTheme="a"
+		        />
 	    		<sjm:div role="collapsible" data-collapsed="true">
 	    			<h3>Example Code</h3>
 					<pre>

@@ -110,6 +110,9 @@
   <#if parameters.viewsortcols?if_exists != "">
 	options_${escapedOptionId?html}.viewsortcols = ${parameters.viewsortcols?html};
   </#if>
+  <#if parameters.toppager?default(true)>
+	options_${escapedOptionId?html}.toppager = true;
+  </#if>
   <#if parameters.groupField?if_exists != "">
 	options_${escapedOptionId?html}.grouping = true;
 	options_${escapedOptionId?html}.groupingView = { groupField : ${parameters.groupField ?string} };
