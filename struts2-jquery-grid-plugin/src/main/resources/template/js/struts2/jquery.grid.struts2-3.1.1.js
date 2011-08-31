@@ -412,6 +412,7 @@
 							so.pager = subgrid_id + "_pager";
 							so.navigatoraddoptions = $.extend(true,so.navigatoraddoptions||{}, {editData:{rowid:row_id}});
 							so.navigatoreditoptions = $.extend(true,so.navigatoreditoptions||{}, {editData:{rowid:row_id}});
+							so.navigatordeleteoptions = $.extend(true,so.navigatordeleteoptions||{}, {editData:{rowid:row_id}});
 						}
 	
 						subgrid.html(subgridhtml);
