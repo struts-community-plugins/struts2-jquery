@@ -22,5 +22,7 @@
 	<#if parameters.divider?default(false)>data-role="list-divider" </#if><#rt/>
 	><#rt/>
 <#if !parameters.divider?default(false)>
-<#include "/${parameters.templateDir}/mobile/a.ftl" />
+	<#if parameters.href?if_exists != "">
+		<#include "/${parameters.templateDir}/mobile/a.ftl" />
+	</#if>
 </#if>

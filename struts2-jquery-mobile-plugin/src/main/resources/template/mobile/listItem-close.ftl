@@ -19,6 +19,8 @@
  */
 -->
 <#if !parameters.divider?default(false)>
-<#include "/${parameters.templateDir}/mobile/a-close.ftl" />
+	<#if parameters.href?if_exists != "">
+		<#include "/${parameters.templateDir}/mobile/a-close.ftl" />
+	</#if>
 </#if>
 	<li>

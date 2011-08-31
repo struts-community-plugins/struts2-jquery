@@ -50,18 +50,18 @@
             <#assign itemCounter = ''/>
         </#if>
     <li id="${parameters.id?html}_li_<@s.property value="%{#rowstatus.count}" />">
-        <a<#rt/>
     <#if parameters.listHref?if_exists != "">
-     href="${parameters.listHref}?${parameters.listParam?default("id")}=${itemKey?html}"<#rt/>
-    <#else>
-     href="#"<#rt/>
+        <a<#rt/>
+		     href="${parameters.listHref}?${parameters.listParam?default("id")}=${itemKey?html}"<#rt/>
+    	>
     </#if>
-    >
                 ${itemValue?html}
     <#if itemCounter?if_exists != "">
           <span class="ui-li-count">${itemCounter?html}</span>
     </#if>
+    <#if parameters.listHref?if_exists != "">
         </a>
+    </#if>
 	</li>
 	<#lt/>
 </@s.iterator>
