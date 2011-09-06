@@ -219,6 +219,46 @@
 					self.publishTopic($elem, o.oncellselecttopics, orginal);
 				};
 			}
+			
+			if (o.onclickgroup) {
+				params.onClickGroup = function(groupid, collapsed ) {
+	
+					var orginal = {};
+					orginal.groupid = groupid;
+					orginal.collapsed = collapsed;
+	
+					self.publishTopic($elem, o.onalw, orginal);
+					self.publishTopic($elem, o.onclickgroup, orginal);
+				};
+			}
+			
+			if (o.ondblclickrow) {
+				params.ondblClickRow = function(rowid, iRow, iCol, e) {
+	
+					var orginal = {};
+					orginal.rowid = rowid;
+					orginal.iRow = iRow;
+					orginal.iCol = iCol;
+					orginal.e = e;
+	
+					self.publishTopic($elem, o.onalw, orginal);
+					self.publishTopic($elem, o.ondblclickrow, orginal);
+				};
+			}
+			
+			if (o.onrightclickrow) {
+				params.onRightClickRow = function(rowid, iRow, iCol, e) {
+	
+					var orginal = {};
+					orginal.rowid = rowid;
+					orginal.iRow = iRow;
+					orginal.iCol = iCol;
+					orginal.e = e;
+	
+					self.publishTopic($elem, o.onalw, orginal);
+					self.publishTopic($elem, o.onrightclickrow, orginal);
+				};
+			}
 	
 			params.gridComplete = function() {
 

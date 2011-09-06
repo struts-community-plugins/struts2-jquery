@@ -132,6 +132,9 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	protected String onCellEditSuccessTopics;
 	protected String onCellEditErrorTopics;
 	protected String onSubGridRowExpanded;
+	protected String onClickGroupTopics;
+	protected String onDblClickRowTopics;
+	protected String onRightClickRowTopics;
 
 	protected String reloadTopics;
 
@@ -452,6 +455,15 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 		if (onSubGridRowExpanded != null)
 			addParameter("onSubGridRowExpanded",
 					findString(onSubGridRowExpanded));
+		if (onClickGroupTopics != null)
+			addParameter("onClickGroupTopics",
+					findString(onClickGroupTopics));
+		if (onDblClickRowTopics != null)
+			addParameter("onDblClickRowTopics",
+					findString(onDblClickRowTopics));
+		if (onRightClickRowTopics != null)
+			addParameter("onRightClickRowTopics",
+					findString(onRightClickRowTopics));
 		if (reloadTopics != null)
 			addParameter("reloadTopics", findString(reloadTopics));
 
@@ -1371,6 +1383,21 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	@StrutsTagAttribute(description = "A comma delimited list of topics that published when subgrid row is expanded. Set event.originalEvent.orginal.proceed = false in your topic to prevent default action.")
 	public void setOnSubGridRowExpanded(String onSubGridRowExpanded) {
 	    this.onSubGridRowExpanded = onSubGridRowExpanded;
+	}
+
+	@StrutsTagAttribute(description = "A comma delimited list of topics that published when a group is clicked.")
+	public void setOnClickGroupTopics(String onClickGroupTopics) {
+	    this.onClickGroupTopics = onClickGroupTopics;
+	}
+
+	@StrutsTagAttribute(description = "A comma delimited list of topics that published row was double clicked.")
+	public void setOnDblClickRowTopics(String onDblClickRowTopics) {
+	    this.onDblClickRowTopics = onDblClickRowTopics;
+	}
+
+	@StrutsTagAttribute(description = "A comma delimited list of topics that published after row was right clicked. Note - this event does not work in Opera browsers, since Opera does not support oncontextmenu event")
+	public void setOnRightClickRowTopics(String onRightClickRowTopics) {
+	    this.onRightClickRowTopics = onRightClickRowTopics;
 	}
 
 	@StrutsTagAttribute(name = "reloadTopics", description = "A comma delimited list of topics that will cause this grid to reload", type = "String", defaultValue = "")

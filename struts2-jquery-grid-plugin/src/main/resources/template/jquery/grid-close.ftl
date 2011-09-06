@@ -291,6 +291,15 @@
   <#if parameters.onSubGridRowExpanded?if_exists != "">
 	options_${escapedOptionId?html}.onsgrowexpanded = "${parameters.onSubGridRowExpanded?html}";
   </#if>
+  <#if parameters.onClickGroupTopics?if_exists != "">
+	options_${escapedOptionId?html}.onclickgroup = "${parameters.onClickGroupTopics?html}";
+  </#if>
+  <#if parameters.onDblClickRowTopics?if_exists != "">
+	options_${escapedOptionId?html}.ondblclickrow = "${parameters.onDblClickRowTopics?html}";
+  </#if>
+  <#if parameters.onRightClickRowTopics?if_exists != "">
+	options_${escapedOptionId?html}.onrightclickrow = "${parameters.onRightClickRowTopics?html}";
+  </#if>
   <#if parameters.reloadTopics?if_exists != "">
 	options_${escapedOptionId?html}.reloadtopics = "${parameters.reloadTopics?html}";
   </#if>

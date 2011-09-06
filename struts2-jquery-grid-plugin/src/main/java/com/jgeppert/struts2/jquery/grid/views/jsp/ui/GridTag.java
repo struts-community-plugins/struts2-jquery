@@ -116,6 +116,9 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
     protected String onCellEditSuccessTopics;
     protected String onCellEditErrorTopics;
     protected String onSubGridRowExpanded;
+    protected String onClickGroupTopics;
+    protected String onDblClickRowTopics;
+    protected String onRightClickRowTopics;
 
     protected String reloadTopics;
 
@@ -301,6 +304,9 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
 	grid.setOnCellEditSuccessTopics(onCellEditSuccessTopics);
 	grid.setOnCellEditErrorTopics(onCellEditErrorTopics);
 	grid.setOnSubGridRowExpanded(onSubGridRowExpanded);
+	grid.setOnClickGroupTopics(onClickGroupTopics);
+	grid.setOnDblClickRowTopics(onDblClickRowTopics);
+	grid.setOnRightClickRowTopics(onRightClickRowTopics);
 	grid.setReloadTopics(reloadTopics);
 	grid.setOnCellSelectTopics(onCellSelectTopics);
 	grid.setSubGridUrl(subGridUrl);
@@ -1154,6 +1160,18 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
 
     public void setOnSubGridRowExpanded(String onSubGridRowExpanded) {
 	this.onSubGridRowExpanded = onSubGridRowExpanded;
+    }
+
+    public void setOnClickGroupTopics(String onClickGroupTopics) {
+        this.onClickGroupTopics = onClickGroupTopics;
+    }
+
+    public void setOnDblClickRowTopics(String onDblClickRowTopics) {
+        this.onDblClickRowTopics = onDblClickRowTopics;
+    }
+
+    public void setOnRightClickRowTopics(String onRightClickRowTopics) {
+        this.onRightClickRowTopics = onRightClickRowTopics;
     }
 
 }
