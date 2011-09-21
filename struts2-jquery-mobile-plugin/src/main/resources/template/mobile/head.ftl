@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-<#assign jQueryVersion="1.6.2">
+<#assign jQueryVersion="1.6.4">
 <#include "/${parameters.templateDir}/jquery/head.ftl" />
 <#if parameters.scriptPath?if_exists != "">
   <#assign javaMobileScriptBasePath="${parameters.scriptPath?string}">
@@ -26,12 +26,12 @@
   <#assign javaMobileScriptBasePath="${base}/struts/">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryMobileFile="jquery.mobile-1.0b2.js">
-  <#assign jqueryMobileCss="jquery.mobile-1.0b2.css">
+  <#assign jqueryMobileFile="jquery.mobile-1.0b3.js">
+  <#assign jqueryMobileCss="jquery.mobile-1.0b3.css">
   <#assign jqueryMobileStrutsFile="jquery.mobile.struts2-3.1.1.min.js">
 <#else>
-  <#assign jqueryMobileFile="jquery.mobile-1.0b2.min.js">
-  <#assign jqueryMobileCss="jquery.mobile-1.0b2.min.css">
+  <#assign jqueryMobileFile="jquery.mobile-1.0b3.min.js">
+  <#assign jqueryMobileCss="jquery.mobile-1.0b3.min.css">
   <#assign jqueryMobileStrutsFile="jquery.mobile.struts2-3.1.1.min.js">
 </#if>
 	<script type="text/javascript" src="${javaMobileScriptBasePath}js/plugins/${jqueryMobileFile}"></script>
