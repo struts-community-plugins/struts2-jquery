@@ -23,4 +23,4 @@
 		<#include "/${parameters.templateDir}/mobile/a-close.ftl" />
 	</#if>
 </#if>
-	<li>
+	</li>
