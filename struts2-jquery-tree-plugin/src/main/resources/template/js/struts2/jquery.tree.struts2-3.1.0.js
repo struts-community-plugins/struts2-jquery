@@ -31,7 +31,7 @@
 			}
 			self.require("js/jstree/jquery.hotkeys" + self.minSuffix + ".js");
 			self.require("js/jstree/jquery.jstree" + self.minSuffix + ".js");
-			o.plugins = ["ui"];
+			o.plugins = [];
 			if (o.treetheme) {
 				o.plugins.push("themes"); 
 				o.themes = {};
@@ -67,12 +67,13 @@
 			}
 			
 			if(o.onclick) {
+				o.plugins.push("ui"); 
 				$elem.bind('select_node.jstree', function (event, data){
 					var orginal = {};
 					orginal.data = data;
 					orginal.event = event;
 					self.publishTopic($elem, o.onclick, orginal);
-		         });
+		    });
 		  }
 			if(o.openload) {
 				$elem.bind('loaded.jstree', function (event, data){
@@ -92,6 +93,7 @@
 		  }
 
 		  $elem.jstree(o);
+
 		},
 		treeitem : function($elem, o) {
 			var self = this;
