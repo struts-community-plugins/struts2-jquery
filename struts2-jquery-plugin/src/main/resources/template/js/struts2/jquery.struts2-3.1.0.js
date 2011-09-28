@@ -566,14 +566,9 @@
 				if (!!$(this).attr("disabled")) {
 					return false;
 				}
-				if (o.href && o.href !== '#') {
-					o.targets = o.opendialog;
-					var divTopic = '_s2j_dialog_load_' + o.id;
-					self.subscribeTopics(dialog, divTopic, self.handler.load, o);
-					dialog.publish(divTopic, o);
-				}
-
-				dialog.dialog('open');
+				var openTopic = '_s2j_dialog_open_' + o.id;
+				self.subscribeTopics(dialog, openTopic, self.handler.open_dialog, o);
+				dialog.publish(openTopic, o);
 				return false;
 			});
 		}
@@ -1915,14 +1910,23 @@
 				o.hrefparameter = data.hrefparameter;
 			}
 		}
-        if (o.href && o.href !== '#') {
-            o.targets = o.id;
-            var divTopic = '_s2j_dialog_load_' + o.id;
-            _s2j.subscribeTopics($(this), divTopic, _s2j.handler.load, o);
-            $(this).publish(divTopic, o);
-        }
 
-        $(this).dialog('open');
+		$(this).dialog("option", "open", function(event, ui) {
+			var data = {};
+			data.event = event;
+			data.ui = ui;
+
+			if (o.href && o.href !== '#') {
+				var divTopic = '_s2j_topic_load_' + o.id;
+				_s2j.subscribeTopics($(this), divTopic, _s2j.handler.load, o);
+				$(this).publish(divTopic);
+			}
+
+			_s2j.publishTopic($(this), o.onalw, data);
+			_s2j.publishTopic($(this), o.onbef, data);
+			_s2j.publishTopic($(this), o.onopentopics, data);
+		});
+    $(this).dialog("open");
 	});
 
 	/**

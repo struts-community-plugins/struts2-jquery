@@ -35,7 +35,7 @@
 	
     <sj:a 
     	openDialog="myremotelinkdialog"
-    	href="%{remoteurl2}"
+    	href="%{remoteurl1}"
     	button="true"
     	buttonIcon="ui-icon-newwin"
     >
@@ -43,7 +43,7 @@
     </sj:a>
     <sj:a 
     	onClickTopics="openRemoteDialog"
-    	href="%{remoteurl1}"
+    	href="%{remoteurl2}"
     	button="true"
     	buttonIcon="ui-icon-newwin"
     >
