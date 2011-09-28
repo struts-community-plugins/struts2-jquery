@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery and jQuery UI optional.
- * Tested with jQuery 1.5 and jQuery UI 1.8
+ * Tested with jQuery 1.6 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2011 Johannes Geppert http://www.jgeppert.com
@@ -328,7 +328,7 @@
 						if (o.headerkey && o.headervalue) {
 							var headerElement = $('<option value="' + o.headerkey + '">' + o.headervalue + '</option>');
 							if (o.value === o.headervalue) {
-								headerElement.attr("selected", "selected");
+								headerElement.prop("selected", true);
 							}
 							headerElement.appendTo(c);
 						}
@@ -375,7 +375,7 @@
 							if (modus === 'select') {
 								var optionElement = $('<option value="' + option.value + '">' + option.text + '</option>');
 								if (option.selected) {
-									optionElement.attr("selected", "selected");
+									optionElement.prop("selected", true);
 								}
 								optionElement.appendTo(c);
 							}
@@ -392,7 +392,7 @@
 								}
 
 								if (option.selected) {
-									re.attr("checked", "checked");
+									re.prop("checked", true);
 								}
 
 								c.append(re);
@@ -563,7 +563,7 @@
 		if (o.opendialog) {
 			var dialog = $(self.escId(o.opendialog));
 			$elem.bind('click', function(event) {
-				if (!!$(this).attr("disabled")) {
+				if ($(this).prop("disabled")) {
 					return false;
 				}
 				var openTopic = '_s2j_dialog_open_' + o.id;
@@ -1963,12 +1963,12 @@
 
 		var isDisabled = false;
 		isDisabled = o.disabled === null ? isDisabled : o.disabled;
-		isDisabled = container.attr('disabled') === null ? isDisabled : container.attr('disabled');
+		isDisabled = container.prop('disabled');
 		if (event.originalEvent) { // means that container load is being triggered by other action (link button/link click) need to see if that button/link is disabled
-			isDisabled = $(event.originalEvent.currentTarget).attr("disabled") === null ? isDisabled : $(event.originalEvent.currentTarget).attr("disabled");
+			isDisabled = $(event.originalEvent.currentTarget).prop("disabled");
 		}
 
-		if (isDisabled !== true && isDisabled !== 'true') {
+		if (isDisabled !== true) {
 
 			// Show indicator element (if any)
 			if (o) {
