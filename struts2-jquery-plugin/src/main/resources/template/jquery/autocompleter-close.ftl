@@ -31,6 +31,9 @@ jQuery(document).ready(function () {
   <#if parameters.loadMinimumCount??>
 	options_${escapedOptionId?html}.minimum = ${parameters.loadMinimumCount?html};
   </#if>
+  <#if parameters.autoFocus?default(false) >
+	options_${escapedOptionId?html}.autoFocus = true;
+  </#if>
   <#if parameters.selectBox?default(false) || (parameters.list?? && parameters.listKey?? && !parameters.hrefUrl??) >
 	options_${escapedOptionId?html}.selectBox = true;
   <#else>

@@ -114,6 +114,7 @@ public class Autocompleter extends AbstractFormListElement {
     protected String multiple;
     protected String listLabel;
     protected String forceValidOption;
+    protected String autoFocus;
 
     public Autocompleter(ValueStack stack, HttpServletRequest request,
 	    HttpServletResponse response) {
@@ -188,6 +189,9 @@ public class Autocompleter extends AbstractFormListElement {
 	}
 	if (forceValidOption != null) {
 	    addParameter("forceValidOption", findValue(forceValidOption, Boolean.class));
+	}
+	if (autoFocus != null) {
+	    addParameter("autoFocus", findValue(autoFocus, Boolean.class));
 	}
 
 	if ((this.id == null || this.id.length() == 0)) {
@@ -281,5 +285,10 @@ public class Autocompleter extends AbstractFormListElement {
     public void setForceValidOption(String forceValidOption) {
         this.forceValidOption = forceValidOption;
     }
+
+    @StrutsTagAttribute(description = "If set to true the first item will be automatically focused.", defaultValue = "false", type = "Boolean", required = false)
+	public void setAutoFocus(String autoFocus) {
+		this.autoFocus = autoFocus;
+	}
 
 }
