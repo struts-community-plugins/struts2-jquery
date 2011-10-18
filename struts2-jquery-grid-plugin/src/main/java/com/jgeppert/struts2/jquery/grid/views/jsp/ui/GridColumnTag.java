@@ -35,171 +35,156 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class GridColumnTag extends AbstractRemoteTag {
 
-  private static final long serialVersionUID = 7618322146696075561L;
-  protected String          name;
-  protected String          title;
-  protected String          index;
-  protected String          width;
-  protected String          editable;
-  protected String          editoptions;
-  protected String          edittype;
-  protected String          editrules;
-  protected String          formatter;
-  protected String          formatoptions;
-  protected String          sortable;
-  protected String          resizable;
-  protected String          key;
-  protected String          search;
-  protected String          searchoptions;
-  protected String          searchtype;
-  protected String          hidden;
-  protected String          hidedlg;
-  protected String          align;
-  protected String          formoptions;
-  protected String          defval;
-  protected String          surl;
+	private static final long serialVersionUID = 7618322146696075561L;
+	protected String name;
+	protected String jsonmap;
+	protected String title;
+	protected String index;
+	protected String width;
+	protected String editable;
+	protected String editoptions;
+	protected String edittype;
+	protected String editrules;
+	protected String formatter;
+	protected String formatoptions;
+	protected String sortable;
+	protected String resizable;
+	protected String key;
+	protected String search;
+	protected String searchoptions;
+	protected String searchtype;
+	protected String hidden;
+	protected String hidedlg;
+	protected String align;
+	protected String formoptions;
+	protected String defval;
+	protected String surl;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new com.jgeppert.struts2.jquery.grid.components.GridColumn(stack, req, res);
-  }
+	public Component getBean(ValueStack stack, HttpServletRequest req,
+			HttpServletResponse res) {
+		return new com.jgeppert.struts2.jquery.grid.components.GridColumn(
+				stack, req, res);
+	}
 
-  protected void populateParams()
-  {
-    super.populateParams();
+	protected void populateParams() {
+		super.populateParams();
 
-    GridColumn gc = (GridColumn) component;
-    gc.setName(name);
-    gc.setTitle(title);
-    gc.setIndex(index);
-    gc.setWidth(width);
-    gc.setEditable(editable);
-    gc.setEditoptions(editoptions);
-    gc.setEdittype(edittype);
-    gc.setEditrules(editrules);
-    gc.setFormatter(formatter);
-    gc.setFormatoptions(formatoptions);
-    gc.setSortable(sortable);
-    gc.setResizable(resizable);
-    gc.setKey(key);
-    gc.setSearch(search);
-    gc.setSearchoptions(searchoptions);
-    gc.setSearchtype(searchtype);
-    gc.setHidden(hidden);
-    gc.setHidedlg(hidedlg);
-    gc.setAlign(align);
-    gc.setFormoptions(formoptions);
-    gc.setDefval(defval);
-    gc.setSurl(surl);
-  }
+		GridColumn gc = (GridColumn) component;
+		gc.setName(name);
+		gc.setJsonmap(jsonmap);
+		gc.setTitle(title);
+		gc.setIndex(index);
+		gc.setWidth(width);
+		gc.setEditable(editable);
+		gc.setEditoptions(editoptions);
+		gc.setEdittype(edittype);
+		gc.setEditrules(editrules);
+		gc.setFormatter(formatter);
+		gc.setFormatoptions(formatoptions);
+		gc.setSortable(sortable);
+		gc.setResizable(resizable);
+		gc.setKey(key);
+		gc.setSearch(search);
+		gc.setSearchoptions(searchoptions);
+		gc.setSearchtype(searchtype);
+		gc.setHidden(hidden);
+		gc.setHidedlg(hidedlg);
+		gc.setAlign(align);
+		gc.setFormoptions(formoptions);
+		gc.setDefval(defval);
+		gc.setSurl(surl);
+	}
 
-  public void setName(String name)
-  {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setTitle(String title)
-  {
-    this.title = title;
-  }
+	public void setJsonmap(String jsonmap) {
+		this.jsonmap = jsonmap;
+	}
 
-  public void setIndex(String index)
-  {
-    this.index = index;
-  }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-  public void setWidth(String width)
-  {
-    this.width = width;
-  }
+	public void setIndex(String index) {
+		this.index = index;
+	}
 
-  public void setEditable(String editable)
-  {
-    this.editable = editable;
-  }
+	public void setWidth(String width) {
+		this.width = width;
+	}
 
-  public void setEditoptions(String editoptions)
-  {
-    this.editoptions = editoptions;
-  }
+	public void setEditable(String editable) {
+		this.editable = editable;
+	}
 
-  public void setEdittype(String edittype)
-  {
-    this.edittype = edittype;
-  }
+	public void setEditoptions(String editoptions) {
+		this.editoptions = editoptions;
+	}
 
-  public void setEditrules(String editrules)
-  {
-    this.editrules = editrules;
-  }
+	public void setEdittype(String edittype) {
+		this.edittype = edittype;
+	}
 
-  public void setFormatter(String formatter)
-  {
-    this.formatter = formatter;
-  }
+	public void setEditrules(String editrules) {
+		this.editrules = editrules;
+	}
 
-  public void setFormatoptions(String formatoptions)
-  {
-    this.formatoptions = formatoptions;
-  }
+	public void setFormatter(String formatter) {
+		this.formatter = formatter;
+	}
 
-  public void setSortable(String sortable)
-  {
-    this.sortable = sortable;
-  }
+	public void setFormatoptions(String formatoptions) {
+		this.formatoptions = formatoptions;
+	}
 
-  public void setResizable(String resizable)
-  {
-    this.resizable = resizable;
-  }
+	public void setSortable(String sortable) {
+		this.sortable = sortable;
+	}
 
-  public void setKey(String key)
-  {
-    this.key = key;
-  }
+	public void setResizable(String resizable) {
+		this.resizable = resizable;
+	}
 
-  public void setSearch(String search)
-  {
-    this.search = search;
-  }
+	public void setKey(String key) {
+		this.key = key;
+	}
 
-  public void setSearchoptions(String searchoptions)
-  {
-    this.searchoptions = searchoptions;
-  }
+	public void setSearch(String search) {
+		this.search = search;
+	}
 
-  public void setSearchtype(String searchtype) {
-      this.searchtype = searchtype;
-  }
+	public void setSearchoptions(String searchoptions) {
+		this.searchoptions = searchoptions;
+	}
 
-  public void setHidden(String hidden)
-  {
-    this.hidden = hidden;
-  }
+	public void setSearchtype(String searchtype) {
+		this.searchtype = searchtype;
+	}
 
-  public void setHidedlg(String hidedlg)
-  {
-    this.hidedlg = hidedlg;
-  }
+	public void setHidden(String hidden) {
+		this.hidden = hidden;
+	}
 
-  public void setAlign(String align)
-  {
-    this.align = align;
-  }
+	public void setHidedlg(String hidedlg) {
+		this.hidedlg = hidedlg;
+	}
 
-  public void setFormoptions(String formoptions)
-  {
-    this.formoptions = formoptions;
-  }
+	public void setAlign(String align) {
+		this.align = align;
+	}
 
-  public void setDefval(String defval)
-  {
-    this.defval = defval;
-  }
+	public void setFormoptions(String formoptions) {
+		this.formoptions = formoptions;
+	}
 
-  public void setSurl(String surl)
-  {
-    this.surl = surl;
-  }
+	public void setDefval(String defval) {
+		this.defval = defval;
+	}
+
+	public void setSurl(String surl) {
+		this.surl = surl;
+	}
 
 }

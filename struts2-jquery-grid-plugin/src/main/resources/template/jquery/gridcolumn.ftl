@@ -23,7 +23,11 @@
 
 options_${escapedOptionId?html}_colmodels_${colName} = {};
 options_${escapedOptionId?html}_colmodels_${colName}.name = "${parameters.name?string}";
+<#if parameters.jsonmap?if_exists != "">
+options_${escapedOptionId?html}_colmodels_${colName}.jsonmap = "${parameters.jsonmap?html}";
+<#else>
 options_${escapedOptionId?html}_colmodels_${colName}.jsonmap = "${parameters.name?html}";
+</#if>
 <#if parameters.index?if_exists != "">
 options_${escapedOptionId?html}_colmodels_${colName}.index = "${parameters.index?html}";
 </#if>
