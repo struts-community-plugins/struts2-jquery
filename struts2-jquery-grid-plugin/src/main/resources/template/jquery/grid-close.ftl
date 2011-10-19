@@ -110,7 +110,7 @@
   <#if parameters.viewsortcols?if_exists != "">
 	options_${escapedOptionId?html}.viewsortcols = ${parameters.viewsortcols?html};
   </#if>
-  <#if parameters.toppager?default(true)>
+  <#if parameters.toppager?default(false)>
 	options_${escapedOptionId?html}.toppager = true;
   </#if>
   <#if parameters.groupField?if_exists != "">
