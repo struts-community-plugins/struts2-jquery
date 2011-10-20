@@ -34,25 +34,29 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class AccordionItemTag extends AbstractClosingTag {
 
-  private static final long serialVersionUID = -270033824138017378L;
+    private static final long serialVersionUID = -270033824138017378L;
 
-  protected String          title;
+    protected String title;
+    protected String onClickTopics;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new AccordionItem(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new AccordionItem(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-    AccordionItem item = (AccordionItem) component;
-    item.setTitle(title);
-  }
+	AccordionItem item = (AccordionItem) component;
+	item.setTitle(title);
+	item.setOnClickTopics(onClickTopics);
+    }
 
-  public void setTitle(String title)
-  {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+	this.title = title;
+    }
+
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
 }

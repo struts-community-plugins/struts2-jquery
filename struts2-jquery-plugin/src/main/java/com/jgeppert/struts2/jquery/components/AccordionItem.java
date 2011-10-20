@@ -19,6 +19,8 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -55,55 +57,74 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionItemTag", description = "Render an accordion item.")
 public class AccordionItem extends ClosingUIBean {
 
-  public static final String TEMPLATE       = "accordionItem";
-  public static final String TEMPLATE_CLOSE = "accordionItem-close";
-  public static final String COMPONENT_NAME = AccordionItem.class.getName();
+    final private static transient Random RANDOM = new Random();
+    public static final String TEMPLATE = "accordionItem";
+    public static final String JQUERYACTION = "accordionItem";
+    public static final String TEMPLATE_CLOSE = "accordionItem-close";
+    public static final String COMPONENT_NAME = AccordionItem.class.getName();
 
-  protected String           title;
+    protected String title;
+    protected String onClickTopics;
 
-  public AccordionItem(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
+    public AccordionItem(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
 
-  @Override
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
+    @Override
+    public String getDefaultOpenTemplate() {
+	return TEMPLATE;
+    }
 
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
+    protected String getDefaultTemplate() {
+	return TEMPLATE_CLOSE;
+    }
 
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
 
-    if (title != null) addParameter("title", findString(title));
+	addParameter("jqueryaction", JQUERYACTION);
 
-    Accordion accordion = (Accordion) findAncestor(Accordion.class);
+	if (title != null)
+	    addParameter("title", findString(title));
+	if (onClickTopics != null)
+	    addParameter("onClickTopics", findString(onClickTopics));
 
-    if (accordion != null) addParameter("header", accordion.getHeader());
+	Accordion accordion = (Accordion) findAncestor(Accordion.class);
 
-  }
+	if (accordion != null)
+	    addParameter("header", accordion.getHeader());
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+	if ((this.id == null || this.id.length() == 0)) {
+	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+	    int nextInt = RANDOM.nextInt();
+	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+		    .abs(nextInt);
+	    this.id = "accordionItem_" + String.valueOf(nextInt);
+	    addParameter("id", this.id);
+	}
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+    }
 
-  @StrutsTagAttribute(description = "accordion item title")
-  public void setTitle(String title)
-  {
-    this.title = title;
-  }
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
+
+    @Override
+    public String getTheme() {
+	return "jquery";
+    }
+
+    @StrutsTagAttribute(description = "accordion item title")
+    public void setTitle(String title) {
+	this.title = title;
+    }
+
+    @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
 }

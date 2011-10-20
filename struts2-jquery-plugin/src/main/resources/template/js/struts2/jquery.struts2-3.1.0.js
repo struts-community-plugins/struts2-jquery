@@ -1625,6 +1625,18 @@
 			}
 		}
 	},
+	
+	/** Handle the Accordion Item */
+	accordionItem : function($elem, o) {
+		var self = this;
+
+		if (o.onclick) {
+			var a = $(self.escId(o.id) + "_link");
+			$.each(o.onclick.split(','), function(i, topic) {
+				$elem.publishOnEvent('click', topic, o);
+			});
+		}
+	},
 
 	/** Handle the Autocompleter Widget */
 	autocompleter : function($elem, o) {
