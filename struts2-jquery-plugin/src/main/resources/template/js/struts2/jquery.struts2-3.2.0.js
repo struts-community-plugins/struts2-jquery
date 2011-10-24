@@ -271,7 +271,7 @@
 			$.each(topics.split(','), function(i, t) {
 				self.log('subscribe topic : ' + t);
 				if (elem.isSubscribed(t)) {
-					elem.unsubscribe(t);
+					elem.destroyTopic(t);
 				}
 				elem.subscribe(t, handler, o);
 			});
@@ -1004,7 +1004,7 @@
 
 			self.subscribeTopics($elem, topic, self.handler.form, o);
 			$.each(o.targets.split(','), function(i, target) {
-				$(self.escId(target)).subscribe(topic, self.handler.effect, o);
+				self.subscribeTopics($(self.escId(target)), topic, self.handler.effect, o);
 				if (self.ajaxhistory) {
 					self.history($elem, topic, target);
 				}
@@ -1059,6 +1059,14 @@
 		if (!self.loadAtOnce) {
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.bgiframe" + self.minSuffix + ".js", "js/base/jquery.ui.dialog" + self.minSuffix + ".js" ]);
 		}
+
+		// Remove existing Dialog Instances
+		var widgetInst = $(".ui-dialog:has("+self.escId(o.id)+")");
+		if(widgetInst.length > 0) {
+			$("div"+self.escId(o.id)).dialog("destroy");
+			$("div"+self.escId(o.id)).remove();
+		}
+
 		var params = {};
 		$.extend(params, o);
 		params.bgiframe = true;
@@ -1117,6 +1125,7 @@
 
 
 		params.drag = self.pubTops($elem, o.onalw, o.oncha);
+		
 		$elem.dialog(params);
 	},
 
@@ -1845,7 +1854,7 @@
 			var buttonsetTopic = 's2j_butonset_' + o.id;
 
 			if ($elem.isSubscribed(buttonsetTopic)) {
-				$elem.unsubscribe(buttonsetTopic);
+				$elem.destroyTopic(buttonsetTopic);
 			}
 
 			// Init Buttonset after elements loaded via AJAX.
