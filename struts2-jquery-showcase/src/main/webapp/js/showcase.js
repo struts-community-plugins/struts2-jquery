@@ -217,6 +217,9 @@ $(document).ready(function() {
 	$.subscribe('tabcomplete', function(event, ui) {
 		$('#infopanel').html('<strong>Completed request with Status ' + event.originalEvent.status + '.</strong><br/>Status: ' + event.originalEvent.request.status);
 	});
+    $.subscribe("removeTabEvent", function(event, ui) {
+        alert("Tab "+event.originalEvent.ui.tab.text+" was removed.");
+    });
 
 	/*
 	 * Remove Error Labels when Validation Forms are successfully
