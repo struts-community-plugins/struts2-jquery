@@ -17,14 +17,14 @@
         A simple Datepicker
     </p>
     <s:form id="form" theme="xhtml">
-      <sj:datepicker id="date0" label="Select a Date" />
-      <sj:datepicker value="%{dateValue}" id="date1" name="date1" label="Date Value from Action" />
+      <sj:datepicker id="date0" name="date0" maxDate="-1d" label="Select a Date" />
+      <sj:datepicker id="date1" name="date1" value="%{dateValue}" label="Date Value from Action" />
       <sj:datepicker id="date2" name="nameValue" label="Date Value by Name" />
-      <sj:datepicker value="today" id="date3" name="date3" displayFormat="dd.mm.yy" label="Today" />
-      <sj:datepicker value="yesterday" id="date4" name="date4" displayFormat="mm/dd/yy" label="Yesterday" />
-      <sj:datepicker value="tomorrow" id="date5" name="date5" displayFormat="DD, d MM yy" label="Tomorrow" />
-      <sj:datepicker value="2004-08-14" id="date6" name="date6" displayFormat="d M, yy" label="String Value" />
-      <sj:datepicker value="today" id="date7" name="date7" displayFormat="d M, yy" minDate="minValue" maxDate="maxValue" label="With min and max Date" />
+      <sj:datepicker id="date3" name="date3" value="today" displayFormat="dd.mm.yy" label="Today" />
+      <sj:datepicker id="date4" name="date4" value="yesterday" displayFormat="mm/dd/yy" label="Yesterday" />
+      <sj:datepicker id="date5" name="date5" value="tomorrow" displayFormat="DD, d MM yy" label="Tomorrow" />
+      <sj:datepicker id="date6" name="date6" value="2004-08-14" displayFormat="d M, yy" label="String Value" />
+      <sj:datepicker id="date7" name="date7" value="today" displayFormat="d M, yy" minDate="minValue" maxDate="maxValue" label="With min and max Date" />
     </s:form>
   </div>
 
@@ -32,7 +32,7 @@
     <strong>Code:</strong>
     <pre>
     &lt;s:form id=&quot;form&quot; theme=&quot;xhtml&quot;&gt;
-      &lt;sj:datepicker id=&quot;date0&quot; label=&quot;Select a Date&quot; /&gt;
+      &lt;sj:datepicker id=&quot;date0&quot; name=&quot;date0&quot; maxDate=&quot;-1d&quot; label=&quot;Select a Date&quot; /&gt;
       &lt;sj:datepicker value=&quot;%{dateValue}&quot; id=&quot;date1&quot; name=&quot;date1&quot; label=&quot;Date Value from Action&quot; /&gt;
       &lt;sj:datepicker id=&quot;date2&quot; name=&quot;nameValue&quot; label=&quot;Date Value by Name&quot; /&gt;
       &lt;sj:datepicker value=&quot;today&quot; id=&quot;date3&quot; name=&quot;date3&quot; displayFormat=&quot;dd.mm.yy&quot; label=&quot;Today&quot; /&gt;

@@ -1428,13 +1428,13 @@
 			else { 
 				ins.datetimepicker(params);
 			}
-			if (o.year!==null && o.month!==null && o.day!==null) {
+			if (o.year!==undefined) {
 				ins.datetimepicker('setDate', (new Date(o.year, o.month, o.day, o.hour, o.minute, o.second)));
 			}
 		}
 		else {
 			ins.datepicker(params);
-			if (o.year!==null && o.month!==null && o.day!==null) {
+			if (o.year!==undefined) {
 				ins.val($.datepicker.formatDate(params.dateFormat, new Date(o.year, o.month, o.day)));
 			}
 		}
