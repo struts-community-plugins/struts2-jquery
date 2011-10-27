@@ -66,6 +66,7 @@ public class GridColumn extends AbstractRemoteBean {
 	protected String formatter;
 	protected String formatoptions;
 	protected String sortable;
+	protected String sorttype;
 	protected String resizable;
 	protected String key;
 	protected String search;
@@ -118,6 +119,8 @@ public class GridColumn extends AbstractRemoteBean {
 			addParameter("formatoptions", findString(formatoptions));
 		if (sortable != null)
 			addParameter("sortable", findValue(this.sortable, Boolean.class));
+		if (sorttype != null)
+			addParameter("sorttype", findString(sorttype));
 		if (resizable != null)
 			addParameter("resizable", findValue(this.resizable, Boolean.class));
 		if (key != null)
@@ -216,6 +219,11 @@ public class GridColumn extends AbstractRemoteBean {
 	@StrutsTagAttribute(description = "Defines is this can be sorted.", defaultValue = "true", type = "Boolean")
 	public void setSortable(String sortable) {
 		this.sortable = sortable;
+	}
+
+	@StrutsTagAttribute(description = "Used when datatype is local. Defines the type of the column for appropriate sorting.Possible values: int/integer - for sorting integer, float/number/currency - for sorting decimal numbers, date - for sorting date, text - for text sorting, function - defines a custom function for sorting.", defaultValue = "text")
+	public void setSorttype(String sorttype) {
+		this.sorttype = sorttype;
 	}
 
 	@StrutsTagAttribute(description = "Defines if the column can be re sized", defaultValue = "true", type = "Boolean")

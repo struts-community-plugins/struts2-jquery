@@ -39,7 +39,7 @@
     	sortablePlaceholder="ui-state-highlight"
     	sortableForcePlaceholderSize="true"
     >
-    	<sjg:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true"/>
+    	<sjg:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true" sorttype="int"/>
     	<sjg:gridColumn name="name" index="name" title="Company" width="250" sortable="true"/>
     	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true" hidden="true"/>
     	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="true" hidden="true"/>
@@ -58,7 +58,8 @@
     									maxValue : 10000.0
     								}"
     					formatter="currency"
-    					sortable="true"/>
+    					sortable="true"
+    					sorttype="currency"/>
     </sjg:grid>
 	<br/>
     <sj:submit id="grid_load_colsbutton"

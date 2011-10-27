@@ -81,6 +81,9 @@ options_${escapedOptionId?html}_colmodels_${colName}.sortable = true;
 <#else>
 options_${escapedOptionId?html}_colmodels_${colName}.sortable = false;
 </#if>
+<#if parameters.sorttype?if_exists != "">
+options_${escapedOptionId?html}_colmodels_${colName}.sorttype = "${parameters.sorttype?html}";
+</#if>
 <#if parameters.resizable?default(true)>
 options_${escapedOptionId?html}_colmodels_${colName}.resizable = true;
 <#else>

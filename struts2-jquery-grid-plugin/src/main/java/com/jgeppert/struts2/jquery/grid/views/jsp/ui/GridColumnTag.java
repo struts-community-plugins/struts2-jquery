@@ -48,6 +48,7 @@ public class GridColumnTag extends AbstractRemoteTag {
 	protected String formatter;
 	protected String formatoptions;
 	protected String sortable;
+	protected String sorttype;
 	protected String resizable;
 	protected String key;
 	protected String search;
@@ -82,6 +83,7 @@ public class GridColumnTag extends AbstractRemoteTag {
 		gc.setFormatter(formatter);
 		gc.setFormatoptions(formatoptions);
 		gc.setSortable(sortable);
+		gc.setSorttype(sorttype);
 		gc.setResizable(resizable);
 		gc.setKey(key);
 		gc.setSearch(search);
@@ -141,6 +143,10 @@ public class GridColumnTag extends AbstractRemoteTag {
 
 	public void setSortable(String sortable) {
 		this.sortable = sortable;
+	}
+
+	public void setSorttype(String sorttype) {
+		this.sorttype = sorttype;
 	}
 
 	public void setResizable(String resizable) {
