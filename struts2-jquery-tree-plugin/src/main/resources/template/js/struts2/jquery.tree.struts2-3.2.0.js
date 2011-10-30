@@ -61,6 +61,44 @@
 				o.json_data.ajax.data = function (n) { 
 					return { id : n.attr ? n.attr("id") : 0 }; 
 				};
+				if (o.onsuc) {
+					o.json_data.ajax.complete  =  function(data, status, request) {
+						$.each(o.onsuc.split(','), function(i, stopic) {
+							var orginal = {};
+							orginal.data = data;
+							orginal.status = status;
+							orginal.request = request;
+	
+							self.publishTopic($elem, stopic, orginal);
+							self.publishTopic($elem, o.onalw, orginal);
+						});
+					};
+				}
+				if (o.oncom) {
+					o.json_data.ajax.complete  =  function(request, status) {
+						$.each(o.oncom.split(','), function(i, ctopic) {
+							var orginal = {};
+							orginal.request = request;
+							orginal.status = status;
+	
+							self.publishTopic($elem, ctopic, orginal);
+							self.publishTopic($elem, o.onalw, orginal);
+						});
+					};
+				}
+				if (o.onerr) {
+					o.json_data.ajax.error  =  function(request, status, error) {
+						$.each(o.onerr.split(','), function(i, etopic) {
+							var orginal = {};
+							orginal.request = request;
+							orginal.status = status;
+							orginal.error = error;
+	
+							self.publishTopic($elem, etopic, orginal);
+							self.publishTopic($elem, o.onalw, orginal);
+						});
+					};
+				}
 				o.plugins.push("json_data");
 			}	else {
 				o.plugins.push("html_data");
