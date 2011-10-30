@@ -1303,18 +1303,16 @@
 			});
 		}
 	},
-
-	/** Handle the Datepicker Widget */
-	datepicker : function($elem, o) {
+	/** Load Ressources for Datepicker Widget */
+	initDatepicker : function(timepicker) {
 		var self = this;
-		self.log('datepicker : ' + o.id);
 		if (!self.loadAtOnce) {
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.datepicker" + self.minSuffix + ".js" ]);
 			if (self.local !== "en") {
 				self.require("i18n/jquery.ui.datepicker-" + self.local + ".min.js");
 			}
 		}
-		if(o.timepicker) {
+		if(timepicker) {
 			if (!self.loadAtOnce) {
 				self.require( [ "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.slider" + self.minSuffix + ".js" ]);
 			}
@@ -1324,6 +1322,12 @@
 				self.require("i18n/jquery-ui-timepicker-" + self.timeLocal + ".js");
 			}
 		}
+
+	},
+	/** Handle the Datepicker Widget */
+	datepicker : function($elem, o) {
+		var self = this;
+		self.log('datepicker : ' + o.id);
 
 		var params = {};
 		$.extend(params, o);

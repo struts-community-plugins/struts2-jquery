@@ -21,6 +21,14 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () {
+  <#if parameters.timepicker?default(false)>
+	jQuery.struts2_jquery.initDatepicker(true);
+  <#else>
+	jQuery.struts2_jquery.initDatepicker(false);
+  </#if>
+
+});
+jQuery(document).ready(function () {
 	var options_${escapedOptionId?html} = {};
   <#if parameters.dayValue?if_exists != "">
 	options_${escapedOptionId?html}.day = ${parameters.dayValue?html};
