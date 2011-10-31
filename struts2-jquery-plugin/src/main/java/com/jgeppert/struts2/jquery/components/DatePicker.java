@@ -334,7 +334,7 @@ public class DatePicker extends AbstractTopicsBean {
 					addParameter("minYearValue",
 							"" + minCalendar.get(Calendar.YEAR));
 					addParameter("minHourValue",
-							"" + minCalendar.get(Calendar.HOUR));
+							"" + minCalendar.get(Calendar.HOUR_OF_DAY));
 					addParameter("minMinuteValue",
 							"" + minCalendar.get(Calendar.MINUTE));
 					addParameter("minSecondValue",
@@ -367,7 +367,7 @@ public class DatePicker extends AbstractTopicsBean {
 					addParameter("maxYearValue",
 							"" + minCalendar.get(Calendar.YEAR));
 					addParameter("maxHourValue",
-							"" + minCalendar.get(Calendar.HOUR));
+							"" + minCalendar.get(Calendar.HOUR_OF_DAY));
 					addParameter("maxMinuteValue",
 							"" + minCalendar.get(Calendar.MINUTE));
 					addParameter("maxSecondValue",
@@ -421,7 +421,7 @@ public class DatePicker extends AbstractTopicsBean {
 						"" + calendar.get(Calendar.DAY_OF_MONTH));
 				addParameter("monthValue", "" + calendar.get(Calendar.MONTH));
 				addParameter("yearValue", "" + calendar.get(Calendar.YEAR));
-				addParameter("hourValue", "" + calendar.get(Calendar.HOUR));
+				addParameter("hourValue", "" + calendar.get(Calendar.HOUR_OF_DAY));
 				addParameter("minuteValue", "" + calendar.get(Calendar.MINUTE));
 				addParameter("secondValue", "" + calendar.get(Calendar.SECOND));
 			}
