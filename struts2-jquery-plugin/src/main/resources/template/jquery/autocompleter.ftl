@@ -65,5 +65,9 @@
 	    disabled="disabled"<#rt/>
 	  </#if>
 	/>
-	<#include "/${parameters.templateDir}/${parameters.parentTheme}/text.ftl" />
+	<#if (parameters.list?? && parameters.listKey??) || parameters.selectBox??>
+		<#include "/${parameters.templateDir}/${parameters.parentTheme}/select.ftl" />
+  	<#else>
+		<#include "/${parameters.templateDir}/${parameters.parentTheme}/text.ftl" />
+  	</#if>
 </#if>
