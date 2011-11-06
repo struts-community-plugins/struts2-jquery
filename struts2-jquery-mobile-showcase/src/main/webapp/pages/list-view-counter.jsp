@@ -8,7 +8,7 @@
 			</sjm:div>
 
 			<sjm:div role="content">
-				<s:url id="url_echo" action="echo"/>
+				<s:url id="url_echo" action="echo" namespace="/"/>
 				<sjm:list
 				    id="list"
 				    inset="true"

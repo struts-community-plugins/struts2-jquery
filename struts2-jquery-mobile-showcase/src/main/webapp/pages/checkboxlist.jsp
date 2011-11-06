@@ -12,6 +12,7 @@
 				<h1>A Checkbox List</h1>
 				
 			    <s:form id="checkboxlist_form1" action="echo" theme="simple">
+			    	<s:hidden name="ajax" value="true"/>
 					<sjm:checkboxlist
 			    		id="checkboxlist1"
 			    		name="echo"

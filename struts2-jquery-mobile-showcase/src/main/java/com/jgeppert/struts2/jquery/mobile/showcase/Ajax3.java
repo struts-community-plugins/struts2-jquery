@@ -28,13 +28,10 @@ import com.opensymphony.xwork2.ActionSupport;
 @ParentPackage(value = "showcase")
 public class Ajax3 extends ActionSupport {
 
-  private static final long serialVersionUID = -1752349066940782737L;
+	private static final long serialVersionUID = -1752349066940782737L;
 
-  @Action(value = "/ajax3", results = {
-    @Result(location = "ajax3.jsp", name = "success")
-  })
-  public String execute() throws Exception
-  {
-    return SUCCESS;
-  }
+	@Action(value = "/ajax3", results = { @Result(location = "ajax3.jsp", name = "success") })
+	public String execute() throws Exception {
+		return SUCCESS;
+	}
 }

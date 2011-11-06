@@ -32,39 +32,46 @@ public class Echo extends ActionSupport {
 
 	private static final long serialVersionUID = 521846450324317687L;
 
-private static final Log  log              = LogFactory.getLog(Echo.class);
+	private static final Log log = LogFactory.getLog(Echo.class);
 
-  private String            echo;
-  private boolean           escape           = true;
+	private String echo;
+	private boolean escape = true;
+	private boolean ajax = false;
 
-  @Action(value = "/echo", results = {
-    @Result(location = "echo.jsp", name = "success")
-  })
-  public String execute() throws Exception
-  {
+	@Action(value = "/echo", results = { @Result(location = "echo.jsp", name = "success"), @Result(location = "echo-ajax.jsp", name = "ajax") })
+	public String execute() throws Exception {
 
-    log.info("Echo : " + echo);
+		log.info("Echo : " + echo);
 
-    return SUCCESS;
-  }
+		if(ajax){
+			return "ajax";
+			
+		}else {
+			return SUCCESS;
+		}
+	}
 
-  public String getEcho()
-  {
-    return echo;
-  }
+	public String getEcho() {
+		return echo;
+	}
 
-  public void setEcho(String echo)
-  {
-    this.echo = echo;
-  }
+	public void setEcho(String echo) {
+		this.echo = echo;
+	}
 
-  public boolean isEscape()
-  {
-    return escape;
-  }
+	public boolean isEscape() {
+		return escape;
+	}
 
-  public void setEscape(boolean escape)
-  {
-    this.escape = escape;
-  }
+	public void setEscape(boolean escape) {
+		this.escape = escape;
+	}
+
+	public boolean isAjax() {
+		return ajax;
+	}
+
+	public void setAjax(boolean ajax) {
+		this.ajax = ajax;
+	}
 }

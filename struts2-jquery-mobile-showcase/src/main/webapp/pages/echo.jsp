@@ -1,2 +1,15 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div>Echo : <s:property value="echo" escape="%{escape}"/></div>
+<%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags"%>
+		<sjm:div role="page" id="echopage">
+			<sjm:div role="header">
+				<sjm:a button="true" buttonIcon="arrow-l" data-rel="back">Back</sjm:a>
+				<h1>Echo Page</h1>
+				<sjm:a href="#start" button="true" buttonIcon="home">Back to Start</sjm:a>
+			</sjm:div>
+
+			<sjm:div role="content">
+				Echo : <s:property value="echo" escape="%{escape}"/>
+			</sjm:div>
+
+			<jsp:include page="inc.footer.jsp" />
+		</sjm:div>
