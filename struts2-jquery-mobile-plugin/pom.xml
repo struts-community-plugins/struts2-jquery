@@ -5,7 +5,7 @@
     <parent>
        <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.1-SNAPSHOT</version>
     </parent>
     <artifactId>struts2-jquery-mobile-plugin</artifactId>
     <name>Struts 2 jQuery Mobile Plugin</name>
