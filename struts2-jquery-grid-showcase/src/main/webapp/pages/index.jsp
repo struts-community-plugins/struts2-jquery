@@ -7,7 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Struts2 jQuery Grid Plugin Showcase</title>
+    <title>Struts2 jQuery Grid Plugin Showcase - <s:text name="showcase.version"/></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="pragma" content="no-cache" />
@@ -40,7 +40,7 @@
       <div id="header" class="ui-widget-header">
         <div id="headline">
 	        <h1 class="ui-state-default" style="background: none; border: none;width: 700px">Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version 3.2.0 / Full Hibernate Plugin - Version 2.2.1 GA</h4>
+	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version <s:text name="showcase.version"/> / Full Hibernate Plugin - Version 2.2.1 GA</h4>
         </div>
       </div>
       <div id="nav">
