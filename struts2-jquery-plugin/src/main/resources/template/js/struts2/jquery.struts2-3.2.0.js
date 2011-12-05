@@ -1022,9 +1022,10 @@
 		}
 		else {
 			// Submit Forms without AJAX
-			$elem.click( function() {
+			$elem.click( function(e) {
 				var form = $(self.escId(o.formids));
 				var submitForm = true;
+				e.preventDefault(); 
 				if (o.validate) {
 					submitForm = self.validateForm(form, o);
 				}
