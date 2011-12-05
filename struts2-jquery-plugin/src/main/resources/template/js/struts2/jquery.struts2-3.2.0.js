@@ -897,6 +897,7 @@
 				});
 			}
 		}
+		
 	},
 
 	/** Handle dynamic Select Boxes */
@@ -1126,6 +1127,8 @@
 
 		params.drag = self.pubTops($elem, o.onalw, o.oncha);
 		
+		$elem.data('s2j_options', o);
+
 		$elem.dialog(params);
 	},
 
@@ -1923,7 +1926,7 @@
 	 */
 	$.subscribeHandler($.struts2_jquery.handler.open_dialog, function(event, data) {
 		var _s2j = $.struts2_jquery;
-		var o = {};
+		var o = $(this).data('s2j_options');
 		if (event.data) {
 			$.extend(o, event.data);
 		}
