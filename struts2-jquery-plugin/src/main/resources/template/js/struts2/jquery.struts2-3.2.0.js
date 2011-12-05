@@ -2090,14 +2090,17 @@
 					}
 
 					o.options = params;
+					o.options.submit = true;
 					// publish all 'before' and 'always' topics
 					_s2j.publishTopic(container, onAlwaysTopics, o);
 					_s2j.publishTopic(container, o.onbef, o);
 
 					// Execute Ajax Request
-					var cid = container.attr('id');
-					_s2j.abortReq(cid);
-					_s2j.currentXhr[cid] = $.ajax(params);
+					if(o.options.submit){
+						var cid = container.attr('id');
+						_s2j.abortReq(cid);
+						_s2j.currentXhr[cid] = $.ajax(params);
+					}
 				}
 			}
 		}
