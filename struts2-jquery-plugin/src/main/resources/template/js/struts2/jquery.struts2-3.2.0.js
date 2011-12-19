@@ -925,7 +925,7 @@
 		}
 		if (o.autocomplete) {
 			if (!self.loadAtOnce) {
-				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
+				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
 			}
 			self.require([ "js/plugins/jquery.combobox" + self.minSuffix + ".js" ]);
 			$elem.combobox(o);
