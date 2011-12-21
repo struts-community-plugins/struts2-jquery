@@ -46,6 +46,9 @@
 <#if parameters.buttonIconPosition??>
  data-iconpos="${parameters.buttonIconPosition?html}"<#rt/>
 </#if>
+<#if parameters.dataTheme??>
+ data-theme="${parameters.dataTheme?html}"<#rt/>
+</#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
