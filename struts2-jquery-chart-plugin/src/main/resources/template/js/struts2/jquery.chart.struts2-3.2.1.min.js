@@ -5,7 +5,7 @@
  *
  * Requires use of jquery.struts2.js
  *
- * Copyright (c) 2011 Johannes Geppert http://www.jgeppert.com
+ * Copyright (c) 2012 Johannes Geppert http://www.jgeppert.com
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
