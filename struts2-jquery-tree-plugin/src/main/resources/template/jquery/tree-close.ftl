@@ -42,6 +42,15 @@ jQuery(document).ready(function () {
 	<#if parameters.href?if_exists != ""> 
 	options_${escapedOptionId?html}.url = "${parameters.href?string}";
 	</#if>
+  	<#if parameters.nodeTargets?exists>
+	options_${escapedOptionId?html}.nodeTargets = "${parameters.nodeTargets?html}";
+  	</#if>
+  	<#if parameters.nodeHref?exists>
+	options_${escapedOptionId?html}.nodeHref = "${parameters.nodeHref?html}";
+  	</#if>
+  	<#if parameters.nodeHref?exists>
+	options_${escapedOptionId?html}.nodeHrefParamName = "${parameters.nodeHrefParamName?default('id')}";
+  	</#if>
   	<#if parameters.onClickTopics?exists>
 	options_${escapedOptionId?html}.onclick = "${parameters.onClickTopics?html}";
   	</#if>

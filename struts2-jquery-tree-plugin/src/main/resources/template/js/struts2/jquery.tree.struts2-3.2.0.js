@@ -104,13 +104,33 @@
 				o.plugins.push("html_data");
 			}
 			
-			if(o.onclick) {
+			if(o.onclick || (o.url && o.nodeHref)) {
 				o.plugins.push("ui"); 
 				$elem.bind('select_node.jstree', function (event, data){
 					var orginal = {};
 					orginal.data = data;
 					orginal.event = event;
 					self.publishTopic($elem, o.onclick, orginal);
+					if(o.url && o.nodeHref){
+						var url = o.nodeHref;
+						if (url.indexOf("?") === -1) {
+							url = url + '?';
+						}
+						else {
+							url = url + '&';
+						}
+						url = url + o.nodeHrefParamName + "=";
+						if(o.nodeTargets) {
+							// Handle AJAX Requests
+							$.each(o.nodeTargets.split(','), function(i, target) {
+								$(self.escId(target)).load(url+data.rslt.obj.attr("id"));
+							});
+						}
+						else {
+							// Handle Normal Requests
+							window.location.href = url+data.rslt.obj.attr("id");
+						}
+					}
 		    });
 		  }
 			if(o.openload) {
