@@ -113,7 +113,7 @@ jQuery(document).ready(function () {
   </#if>
   <#if parameters.maxDayValue??>
   	<#if parameters.timepicker?default(false)>
-	options_${escapedOptionId?html}.maxDate = new Date(${parameters.maxYearValue?html}, ${parameters.maxMonthValue?html}, ${parameters.maxDayValue?html}, ${parameters.maxHourValue?html}, ${parameters.maxMinuteValue?html}, ${parameters.maxSecondValue?html});
+	options_${escapedOptionId?html}.maxDate = new Date(${parameters.maxYearValue?html}, ${parameters.maxMonthValue?html}, ${parameters.maxDayValue?html});
 	<#else>
 	options_${escapedOptionId?html}.maxDate = new Date(${parameters.maxYearValue?html}, ${parameters.maxMonthValue?html}, ${parameters.maxDayValue?html});
   	</#if>
@@ -123,7 +123,7 @@ jQuery(document).ready(function () {
   </#if>
   <#if parameters.minDayValue??>
   	<#if parameters.timepicker?default(false)>
-	options_${escapedOptionId?html}.minDate = new Date(${parameters.minYearValue?html}, ${parameters.minMonthValue?html}, ${parameters.minDayValue?html}, ${parameters.minHourValue?html}, ${parameters.minMinuteValue?html}, ${parameters.minSecondValue?html});
+	options_${escapedOptionId?html}.minDate = new Date(${parameters.minYearValue?html}, ${parameters.minMonthValue?html}, ${parameters.minDayValue?html});
 	<#else>
 	options_${escapedOptionId?html}.minDate = new Date(${parameters.minYearValue?html}, ${parameters.minMonthValue?html}, ${parameters.minDayValue?html});
   	</#if>

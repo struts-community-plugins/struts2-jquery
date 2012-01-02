@@ -1440,7 +1440,7 @@
 				ins.datetimepicker(params);
 			}
 			if (o.year!==undefined) {
-				ins.datetimepicker('setDate', (new Date(o.year, o.month, o.day, o.hour, o.minute, o.second)));
+				ins.datetimepicker('setDate', new Date(o.year, o.month, o.day, o.hour, o.minute, o.second));
 			}
 		}
 		else {

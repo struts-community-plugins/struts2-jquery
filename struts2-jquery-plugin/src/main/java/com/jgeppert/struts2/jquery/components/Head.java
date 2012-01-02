@@ -91,7 +91,7 @@ public class Head extends org.apache.struts2.components.Head {
   public static final String    TEMPLATE     = "head";
 
   private static final String[] timeLocals   = {
-      "cs", "de", "fr", "hu", "nl", "ru"
+      "ca", "cs", "de", "el", "es", "et", "fi", "fr", "gl", "he", "hu", "id", "it", "ja", "lt", "nl", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sv", "tr", "sk", "sr", "sv", "th", "vi","zh-CN","zh-TW"
                                              };
   private static final String[] gridLocals    = {
 	  "ar", "bg", "ca", "cn", "cs", "de", "da", "el", "en", "es", "en-GB", "fa", "fi", "fr", "fr-CH", "gl", "he", "hu", "is", "it", "ja", "lt", "mne", "nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sr", "sv", "th", "tr", "ua", "zh", "zh-CN"
