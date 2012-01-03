@@ -160,6 +160,9 @@ jQuery(document).ready(function () {
   	<#if parameters.timepickerFormat?if_exists != "">
 	options_${escapedOptionId?html}.timeFormat = "${parameters.timepickerFormat?html}";
   	</#if>
+  	<#if parameters.timepickerCurrentText?if_exists != "">
+	options_${escapedOptionId?html}.currentText = "${parameters.timepickerCurrentText?html}";
+  	</#if>
   	<#if parameters.timepickerSeparator?if_exists != "">
 	options_${escapedOptionId?html}.separator = "${parameters.timepickerSeparator?html}";
   	</#if>

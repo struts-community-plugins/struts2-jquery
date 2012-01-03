@@ -295,6 +295,8 @@ public class DatePicker extends AbstractTopicsBean {
 			addParameter("timepickerFormat", findString(timepickerFormat));
 		if (timepickerSeparator != null)
 			addParameter("timepickerSeparator", findString(timepickerSeparator));
+		if (timepickerCurrentText != null)
+			addParameter("timepickerCurrentText", findString(timepickerCurrentText));
 		if (timepickerGridHour != null)
 			addParameter("timepickerGridHour",
 					findValue(timepickerGridHour, Number.class));
