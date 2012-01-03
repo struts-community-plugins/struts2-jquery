@@ -844,6 +844,22 @@
 			soo.update = self.pubTops($elem, o.onalw, o.sortableonupdatetopics);
 			$elem.sortable(soo);
 		}
+		
+		if (o.onblurtopics) {
+			$.each(o.onblurtopics.split(','), function(i, topic) {
+				$elem.blur( function() {
+					self.publishTopic($elem, topic, {});
+				});
+			});
+		}
+
+		if (o.onfocustopics) {
+			$.each(o.onfocustopics.split(','), function(i, topic) {
+				$elem.focus( function() {
+					self.publishTopic($elem, topic, {});
+				});
+			});
+		}
 
 		if (o.oncha) {
 			if (o.type) {
