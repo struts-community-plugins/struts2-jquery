@@ -35,7 +35,10 @@
 		<#include "/${parameters.templateDir}/css_xhtml/controlfooter.ftl" />
 	</#if>
 <#else>
+<#include "/${parameters.templateDir}/${parameters.parentTheme}/controlheader.ftl" />
 <div id="${parameters.id?html}">
-	<#include "/${parameters.templateDir}/${parameters.parentTheme}/radiomap.ftl" />
+<#include "/${parameters.templateDir}/${parameters.parentTheme}/radiomap.ftl" />
 </div>
+<#include "/${parameters.templateDir}/${parameters.parentTheme}/controlfooter.ftl" />
+
 </#if>
