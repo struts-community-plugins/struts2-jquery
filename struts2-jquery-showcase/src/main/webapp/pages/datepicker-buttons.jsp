@@ -44,6 +44,15 @@
     $.subscribe('onDpClose', function(event,data) {
         alert('Selected Date : '+event.originalEvent.dateText);
     });
+	$.subscribe('beforeDatepickerShow', function(event, data) {
+	   var date = event.originalEvent.date;
+	   if (date.getDay() == 6 || date.getDay() == 0){
+	  	 event.originalEvent.returnValue = [false,"","Not allowed!"];    
+	   }
+	   else{
+	  	 event.originalEvent.returnValue = [true,"",""];
+	   }
+	});
     &lt;/script&gt;  
       </pre>
     <strong>Code:</strong>
@@ -61,7 +70,7 @@
       &lt;sj:datepicker id=&quot;date9&quot; name=&quot;date9&quot; label=&quot;Show Years only from 2008 until 2012&quot; yearRange=&quot;2008:2012&quot; changeYear=&quot;true&quot;/&gt;
       &lt;sj:datepicker id=&quot;date10&quot; name=&quot;date10&quot; label=&quot;Button Only&quot; buttonImageOnly=&quot;true&quot;/&gt;
       &lt;sj:datepicker id=&quot;date11&quot; name=&quot;date11&quot; label=&quot;Without Button&quot; showOn=&quot;focus&quot;/&gt;
-      &lt;sj:datepicker id=&quot;date12&quot; name=&quot;date12&quot; label=&quot;With Close Event&quot; onCompleteTopics=&quot;onDpClose&quot;/&gt;
+      &lt;sj:datepicker id=&quot;date12&quot; name=&quot;date12&quot; label=&quot;With Close Event&quot; onCompleteTopics=&quot;onDpClose&quot; onBeforeShowDayTopics=&quot;beforeDatepickerShow&quot;/&gt;
       &lt;sj:datepicker id=&quot;date13&quot; name=&quot;date13&quot; label=&quot;With Min and Max Date&quot; minDate=&quot;-2&quot; maxDate=&quot;+2m&quot;/&gt;
     &lt;/s:form&gt;
     </pre>
