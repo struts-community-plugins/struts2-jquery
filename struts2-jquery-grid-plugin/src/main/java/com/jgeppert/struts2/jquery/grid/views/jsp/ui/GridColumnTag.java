@@ -45,8 +45,10 @@ public class GridColumnTag extends AbstractRemoteTag {
 	protected String editoptions;
 	protected String edittype;
 	protected String editrules;
+	protected String fixed;
 	protected String formatter;
 	protected String formatoptions;
+	protected String frozen;
 	protected String sortable;
 	protected String sorttype;
 	protected String resizable;
@@ -80,8 +82,10 @@ public class GridColumnTag extends AbstractRemoteTag {
 		gc.setEditoptions(editoptions);
 		gc.setEdittype(edittype);
 		gc.setEditrules(editrules);
+		gc.setFixed(fixed);
 		gc.setFormatter(formatter);
 		gc.setFormatoptions(formatoptions);
+		gc.setFrozen(frozen);
 		gc.setSortable(sortable);
 		gc.setSorttype(sorttype);
 		gc.setResizable(resizable);
@@ -133,12 +137,20 @@ public class GridColumnTag extends AbstractRemoteTag {
 		this.editrules = editrules;
 	}
 
+	public void setFixed(String fixed) {
+	    this.fixed = fixed;
+	}
+
 	public void setFormatter(String formatter) {
 		this.formatter = formatter;
 	}
 
 	public void setFormatoptions(String formatoptions) {
 		this.formatoptions = formatoptions;
+	}
+
+	public void setFrozen(String frozen) {
+	    this.frozen = frozen;
 	}
 
 	public void setSortable(String sortable) {

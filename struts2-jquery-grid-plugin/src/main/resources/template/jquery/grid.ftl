@@ -50,5 +50,6 @@ jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2-3.2.1"+jQuery.struts2_jquery.minSuffix+".js");
 </#if>
 	var options_${escapedOptionId?html} = {};
+	options_${escapedOptionId?html}.frozen = false;
 	var options_${escapedOptionId?html}_colmodels = new Array();
 	var options_${escapedOptionId?html}_colnames = new Array();

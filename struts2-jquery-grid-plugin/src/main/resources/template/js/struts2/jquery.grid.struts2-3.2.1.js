@@ -352,6 +352,9 @@
 						}
 						$elem.jqGrid('filterToolbar', fpara);
 					}
+					if (o.frozen) {
+						$elem.jqGrid('setFrozenColumns');
+					}
 					
 					if (o.resizable) {
 						if (!self.loadAtOnce) {

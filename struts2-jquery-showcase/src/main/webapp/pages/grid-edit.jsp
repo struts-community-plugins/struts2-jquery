@@ -16,7 +16,7 @@
   <div id="col3_content" class="clearfix">
     <h2>Grid (Editable)</h2>
     <p class="text">
-        A editable Grid with pager and navigator. Entries are editable when a cell is selected. This Grid is sortable by name column and searchable by id.
+        A editable Grid with pager and navigator. Entries are editable when a cell is selected. This Grid is sortable by name column and searchable by id. The first two Columns are frozen.
     </p>
     <s:url id="remoteurl" action="jsontable"/>
     <s:url id="editurl" action="edit-grid-entry"/>
@@ -56,12 +56,14 @@
     	onSelectRowTopics="rowselect"
     	onEditInlineSuccessTopics="oneditsuccess"
     	viewrecords="true"
+    	width="700"
+    	shrinkToFit="false"
     >
-    	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
-    	<sjg:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true" search="false"/>
-    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" hidden="true"/>
-    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" hidden="true"/>
-    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" hidden="true"/>
+    	<sjg:gridColumn name="id" frozen="true" index="id" title="ID" width="60" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
+    	<sjg:gridColumn name="name" frozen="true" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true" search="false"/>
+    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false"/>
+    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false"/>
+    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false"/>
     	<sjg:gridColumn name="country" index="country" title="Country" editable="true" edittype="select" editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}" sortable="false" search="false"/>
     	<sjg:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false" search="false"/>
     	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" editable="true" edittype="text" sortable="false" search="false"/>
@@ -140,12 +142,14 @@
     	onSelectRowTopics=&quot;rowselect&quot;
     	onEditInlineSuccessTopics=&quot;oneditsuccess&quot;
     	viewrecords=&quot;true&quot;
+    	width=&quot;700&quot;
+    	shrinkToFit=&quot;false&quot;
     &gt;
-    	&lt;sjg:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;30&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; width=&quot;250&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;id&quot; frozen=&quot;true&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;60&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;name&quot; frozen=&quot;true&quot; index=&quot;name&quot; title=&quot;Name&quot; width=&quot;250&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot;/&gt;
     	&lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot; editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
     	&lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
     	&lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;

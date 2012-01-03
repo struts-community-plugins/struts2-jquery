@@ -63,8 +63,10 @@ public class GridColumn extends AbstractRemoteBean {
 	protected String editoptions;
 	protected String edittype;
 	protected String editrules;
+	protected String fixed;
 	protected String formatter;
 	protected String formatoptions;
+	protected String frozen;
 	protected String sortable;
 	protected String sorttype;
 	protected String resizable;
@@ -113,10 +115,14 @@ public class GridColumn extends AbstractRemoteBean {
 			addParameter("edittype", findString(edittype));
 		if (editrules != null)
 			addParameter("editrules", findString(editrules));
+		if (fixed != null)
+			addParameter("fixed", findValue(this.fixed, Boolean.class));
 		if (formatter != null)
 			addParameter("formatter", findString(formatter));
 		if (formatoptions != null)
 			addParameter("formatoptions", findString(formatoptions));
+		if (frozen != null)
+			addParameter("frozen", findValue(this.frozen, Boolean.class));
 		if (sortable != null)
 			addParameter("sortable", findValue(this.sortable, Boolean.class));
 		if (sorttype != null)
@@ -206,6 +212,11 @@ public class GridColumn extends AbstractRemoteBean {
 		this.editrules = editrules;
 	}
 
+	@StrutsTagAttribute(description = "If set to true this option does not allow recalculation of the width of the column if shrinkToFit option is set to true. Also the width does not change if a setGridWidth method is used to change the grid width.", defaultValue = "false", type = "Boolean")
+	public void setFixed(String fixed) {
+	    this.fixed = fixed;
+	}
+
 	@StrutsTagAttribute(description = "The predefined types (string) or custom function name that controls the format of this field. e.g.: integer, currency, date, checkbox")
 	public void setFormatter(String formatter) {
 		this.formatter = formatter;
@@ -214,6 +225,11 @@ public class GridColumn extends AbstractRemoteBean {
 	@StrutsTagAttribute(description = "Format options can be defined for particular columns, overwriting the defaults from the language file.")
 	public void setFormatoptions(String formatoptions) {
 		this.formatoptions = formatoptions;
+	}
+
+	@StrutsTagAttribute(description = "If set to true determines that this column will be frozen.", defaultValue = "false", type = "Boolean")
+	public void setFrozen(String frozen) {
+	    this.frozen = frozen;
 	}
 
 	@StrutsTagAttribute(description = "Defines is this can be sorted.", defaultValue = "true", type = "Boolean")

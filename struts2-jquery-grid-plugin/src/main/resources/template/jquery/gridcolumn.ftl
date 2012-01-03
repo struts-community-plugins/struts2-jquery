@@ -71,6 +71,14 @@ options_${escapedOptionId?html}_colmodels_${colName}.align = "${parameters.align
 <#if parameters.cssClass?if_exists != "">
 options_${escapedOptionId?html}_colmodels_${colName}.classes = "${parameters.cssClass?html}";
 </#if>
+<#if parameters.fixed?default(false)>
+options_${escapedOptionId?html}_colmodels_${colName}.fixed = true;
+options_${escapedOptionId?html}.true = false;
+</#if>
+<#if parameters.frozen?default(false)>
+options_${escapedOptionId?html}_colmodels_${colName}.frozen = true;
+options_${escapedOptionId?html}.frozen = true;
+</#if>
 <#if parameters.editable?default(false)>
 options_${escapedOptionId?html}_colmodels_${colName}.editable = true;
 <#else>
