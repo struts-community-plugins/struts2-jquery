@@ -1356,8 +1356,10 @@
 			params.beforeShowDay = function(date) {
 				var data = {};
 				data.date = date;
+				data.returnValue = [true,"",""];
 				self.publishTopic($elem, o.onbeforeshowdaytopics, data);
 				self.publishTopic($elem, oat, data);
+				return data.returnValue;
 			};
 		}
 

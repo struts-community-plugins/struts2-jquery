@@ -29,7 +29,7 @@
       <sj:datepicker id="date9" name="date9" label="Show Years only from 2008 until 2012" yearRange="2008:2012" changeYear="true"/>
       <sj:datepicker id="date10" name="date10" label="Button Only" buttonImageOnly="true"/>
       <sj:datepicker id="date11" name="date11" label="Without Button" showOn="focus"/>
-      <sj:datepicker id="date12" name="date12" label="With Close Event" onCompleteTopics="onDpClose"/>
+      <sj:datepicker id="date12" name="date12" label="With Close Event" onCompleteTopics="onDpClose" onBeforeShowDayTopics="beforeDatepickerShow"/>
       <sj:datepicker id="date13" name="date13" label="With Min and Max Date" minDate="-2" maxDate="+2m"/>
     </s:form>
   </div>

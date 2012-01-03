@@ -123,6 +123,17 @@ $(document).ready(function() {
 	$.subscribe('onDpClose', function(event,data) {
 	    alert('Selected Date : '+event.originalEvent.dateText);
 	});
+	$.subscribe('beforeDatepickerShow', function(event, data) {
+	   var date = event.originalEvent.date;
+	   if (date.getDay() == 6 || date.getDay() == 0){
+	  	 event.originalEvent.returnValue = [false,"","Not allowed!"];    
+	   }
+	   else{
+	  	 event.originalEvent.returnValue = [true,"",""];
+	   }
+	});
+
+
 
 	/*
 	 * Subscribe Topics for Dialog Event Example
