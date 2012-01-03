@@ -1688,11 +1688,15 @@
 					};
 
 					self.abortReq(o.id);
+					self.showIndicator(o.indicatorid);
 					self.currentXhr[o.id] = $.ajax({
 						url: url,
 						dataType: "json",
 						data: {
 						term: request.term
+						},
+						complete: function(request, status) {
+							self.hideIndicator(o.indicatorid);
 						},
 						success: function(data) {
 							self.currentXhr[o.id] = null;
