@@ -203,7 +203,14 @@
 				var et = request.responseText;
 				if (et && et.length > 10) {
 					submit = false;
-					var errors = $.parseJSON(et.substring(2, et.length - 2));
+					var errors;
+					if(et.substring(0,2) === "/*") {
+						// Handle Validation Errors for all Struts2 versions until 2.2.3.1
+						errors = $.parseJSON(et.substring(2, et.length - 2));
+					}
+					else {
+						errors = $.parseJSON(et);
+					}
 					o.validateFunction(f, errors);
 				}
 			}
