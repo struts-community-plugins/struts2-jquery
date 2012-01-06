@@ -172,7 +172,16 @@
 		var self = this;
 		var submit = true;
 		var params = {};
+
+		if (!self.loadAtOnce) {
+			self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
+		}
+		
 		params.type = "POST";
+		params.data = {
+				"struts.enableJSONValidation": true,
+				"struts.validateOnly": true
+		}
 		if (o.href && o.href !== '#') {
 			params.url = o.href;
 		}
@@ -180,21 +189,12 @@
 			params.url = form[0].action;
 		}
 
-		params.data = '';
 		if (o.hrefparameter) {
-			params.data = o.hrefparameter;
-		}
-
-		var query = form.formSerialize();
-		query = query + '&struts.enableJSONValidation=true&struts.validateOnly=true';
-		if (params.data !== '') {
-			params.data = params.data + '&amp;' + query;
-		}
-		else {
-			params.data = query;
+			params.url = params.url + '?' + o.hrefparameter;
 		}
 
 		params.cache = false;
+		//params.forceSync = true;
 		params.async = false;
 
 		params.complete = function(request, status) {
@@ -229,7 +229,7 @@
 			self.log('form validation : ' + submit);
 		};
 
-		$.ajax(params);
+		form.ajaxSubmit(params);
 
 		return submit;
 	},
