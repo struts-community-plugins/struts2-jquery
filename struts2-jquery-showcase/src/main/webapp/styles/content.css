@@ -1,3 +1,7 @@
+li {
+	margin: 0;
+}
+
 #col1_content li {
 	list-style-type: none;
 }
