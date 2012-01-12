@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-<#assign jQueryVersion="1.6.4">
+<#assign jQueryVersion="1.7.1">
 <#include "/${parameters.templateDir}/jquery/head.ftl" />
 <#if parameters.scriptPath?if_exists != "">
   <#assign javaMobileScriptBasePath="${parameters.scriptPath?string}">
