@@ -130,7 +130,7 @@ options_${escapedOptionId?html}.series = { pie: { show: true }};
 			options_${escapedOptionId?html}.series.pie.label.radius = ${parameters.pieLabelRadius?string};
 		</#if>
 		<#if parameters.pieLabelFormatter?if_exists != "">
-			options_${escapedOptionId?html}.series.pie.label.formatter = "${parameters.pieLabelFormatter?html}";
+			options_${escapedOptionId?html}.series.pie.label.formatter = ${parameters.pieLabelFormatter?html};
 		</#if>
 	  	<#if parameters.pieLabelBackgroundColor?? || parameters.pieLabelBackgroundOpacity??>
 			options_${escapedOptionId?html}.series.pie.label.background = {};
