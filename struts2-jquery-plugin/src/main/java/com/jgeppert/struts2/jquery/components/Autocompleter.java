@@ -204,8 +204,10 @@ public class Autocompleter extends AbstractFormListElement {
 	}
 	addParameter("id", this.id + "_widget");
 	addParameter("widgetid", this.id);
-	addParameter("name", this.name + "_widget");
-	addParameter("widgetname", this.name);
+	
+	String nameValue = (String) getParameters().get("name");
+	addParameter("name", nameValue + "_widget");
+	addParameter("widgetname", nameValue);
     }
 
     @Override
