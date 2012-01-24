@@ -495,11 +495,7 @@
 						}
 					});
 				}
-				if (o.url.lastIndexOf('?') > 0) {
-					params.url = o.url + '&amp;' + data;
-				} else {
-					params.url = o.url + '?' + data;
-				}
+				params.url = self.addParam(o.url, data)
 			}
 			
 			return params;
@@ -556,11 +552,7 @@
 						}
 					});
 				}
-				if (o.url.lastIndexOf('?') > 0) {
-					o.url = o.url + '&amp;' + formdata;
-				} else {
-					o.url = o.url + '?' + formdata;
-				}
+				o.url = _s2jg.addParam(o.url, formdata)
 			}
 			var grid = $(_s2jg.escId(o.id));
 			grid.jqGrid('setGridParam', {

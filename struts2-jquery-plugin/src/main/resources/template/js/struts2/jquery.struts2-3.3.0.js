@@ -255,13 +255,7 @@
 			}
 			$.each(forms.split(','), function(i, f) {
 				var q = $(self.escId(f)).formSerialize();
-				if (url.indexOf("?") === -1) {
-					url = url + '?';
-				}
-				else {
-					url = url + '&';
-				}
-				url = url + q;
+				url = self.addParam(url, q)
 			});
 		}
 		return url;
