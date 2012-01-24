@@ -46,7 +46,7 @@
   <#assign jquerySubscribeFile="jquery.subscribe.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.min.js">
-  <#assign jqueryStrutsFile="jquery.struts2-3.2.1.min.js">
+  <#assign jqueryStrutsFile="jquery.struts2-3.3.0.min.js">
   <#assign jqueryGoogle="${googlePath}/jquery.min.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
@@ -58,7 +58,7 @@
   <#assign jquerySubscribeFile="jquery.subscribe.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.js">
-  <#assign jqueryStrutsFile="jquery.struts2-3.2.1.js">
+  <#assign jqueryStrutsFile="jquery.struts2-3.3.0.js">
   <#assign jqueryGoogle="${googlePath}/jquery.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.js">
 </#if>
