@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery and jQuery UI optional.
- * Tested with jQuery 1.6 and jQuery UI 1.8
+ * Tested with jQuery 1.7 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2012 Johannes Geppert http://www.jgeppert.com
@@ -75,6 +75,16 @@
 		return '#' + id.replace(/(:|\.)/g, '\\$1');
 	},
 
+	/** Escape Ids */
+	addParam : function(url, param) {
+		if (url.indexOf("?") > 0) {
+			return url = url+"&"+param;
+		}
+		else {
+			return url+"?"+param;
+		}
+	},
+
 	/** Load required JavaScript Resourcess */
 	require : function(files, callBack, basePath) {
 		var self = this;
@@ -94,6 +104,9 @@
 			files = files.split(",");
 		}
 		$.each(files, function(i, file) {
+			
+			file = self.addParam(file, "s2j="+self.version)
+			
 			if (!self.scriptCache[file]) {
 				self.log('load require script ' + (path + file));
 				$.ajax( {

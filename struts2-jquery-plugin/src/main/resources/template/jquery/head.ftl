@@ -39,9 +39,9 @@
 </#if>
 <#if parameters.compressed?default(true)>
   <#assign jqueryFile="jquery-${jQueryVersion}.min.js">
-  <#assign jqueryForm="jquery.form.min.js">
-  <#assign jqueryUIFile="jquery-ui.min.js">
-  <#assign jqueryUICoreFile="jquery.ui.core.min.js">
+  <#assign jqueryForm="jquery.form.min.js?s2j=3.3.0">
+  <#assign jqueryUIFile="jquery-ui.min.js?s2j=3.3.0">
+  <#assign jqueryUICoreFile="jquery.ui.core.min.js?s2j=3.3.0">
   <#assign jqueryRequireFile="jquery.require.min.js">
   <#assign jquerySubscribeFile="jquery.subscribe.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
@@ -51,9 +51,9 @@
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
   <#assign jqueryFile="jquery-${jQueryVersion}.js">
-  <#assign jqueryForm="jquery.form.js">
-  <#assign jqueryUIFile="jquery-ui.js">
-  <#assign jqueryUICoreFile="jquery.ui.core.js">
+  <#assign jqueryForm="jquery.form.js?s2j=3.3.0">
+  <#assign jqueryUIFile="jquery-ui.js?s2j=3.3.0">
+  <#assign jqueryUICoreFile="jquery.ui.core.js?s2j=3.3.0">
   <#assign jqueryRequireFile="jquery.require.js">
   <#assign jquerySubscribeFile="jquery.subscribe.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
@@ -77,7 +77,7 @@
  		<#if parameters.loadAtOnce?default(false)>
 	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"></script>
 			<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-	<script type="text/javascript" src="${javaScriptBasePath}i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js?s2j=3.3.0"></script>
 			</#if>
 		<#else>
 	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script>
@@ -99,10 +99,10 @@
 		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
         	<link id="jquery_theme_link" rel="stylesheet" href="${googleUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		<#else>
-        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=3.3.0" type="text/css"/>
 		</#if>
     <#else>
-        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css" type="text/css"/>
+        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css?s2j=3.3.0" type="text/css"/>
     </#if>
 </#if>
 
@@ -110,6 +110,7 @@
   <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 jQuery(document).ready(function () {
+	jQuery.struts2_jquery.version="3.3.0";
 <#if parameters.debug?default(false)>
 	jQuery.struts2_jquery.debug = true;
 </#if>
