@@ -105,7 +105,7 @@
 		}
 		$.each(files, function(i, file) {
 			
-			file = self.addParam(file, "s2j="+self.version)
+			file = self.addParam(file, "s2j="+self.version);
 			
 			if (!self.scriptCache[file]) {
 				self.log('load require script ' + (path + file));
