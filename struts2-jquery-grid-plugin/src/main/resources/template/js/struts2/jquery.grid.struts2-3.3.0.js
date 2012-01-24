@@ -460,7 +460,27 @@
 							so.navigatoreditoptions = $.extend(true,so.navigatoreditoptions||{}, {editData:{rowid:row_id}});
 							so.navigatordeleteoptions = $.extend(true,so.navigatordeleteoptions||{}, {delData:{rowid:row_id}});
 						}
-	
+						
+            $.each(so.colModel, function(i, col) {
+              if(col.editoptions && col.editoptions.dataUrl){
+              	if(col.editoptions.dataUrl.indexOf("rowid") > 0) {
+//              		col.editoptions.dataUrl = col.editoptions.dataUrl.replace(/(rowid=).*?(&)/,'$1' + row_id + '$2'); 
+                	col.editoptions.dataUrl = self.changeParam(col.editoptions.dataUrl, "rowid", row_id);
+              	}
+              	else {
+                	col.editoptions.dataUrl = self.addParam(col.editoptions.dataUrl, "rowid="+row_id);
+								}
+              }
+              if(col.searchoptions && col.searchoptions.dataUrl){
+              	if(col.searchoptions.dataUrlindexOf("rowid") > 0) {
+                	col.searchoptions.dataUrl = self.changeParam(col.searchoptions.dataUrl, "rowid", row_id);
+              	}
+              	else {
+                	col.searchoptions.dataUrl = self.addParam(col.searchoptions.dataUrl, "rowid="+row_id);
+								}
+              }
+            });
+						
 						subgrid.html(subgridhtml);
 	
 						if (so.url) {

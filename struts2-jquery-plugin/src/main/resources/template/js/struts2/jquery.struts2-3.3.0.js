@@ -75,7 +75,7 @@
 		return '#' + id.replace(/(:|\.)/g, '\\$1');
 	},
 
-	/** Escape Ids */
+	/**Add Parameter to URL */
 	addParam : function(url, param) {
 		if (url.indexOf("?") > 0) {
 			return url = url+"&"+param;
@@ -83,6 +83,20 @@
 		else {
 			return url+"?"+param;
 		}
+	},
+
+	/**Change Parameter Value in URL */
+	changeParam : function(url, param, value) {
+		var ua = url.split('?'); // split url
+		var pa = ua[1].split('&'); // split query 
+		var ia = []; 
+		for (i=0; i<pa.length; i++) { 
+			ia = pa[i].split('='); // split name/value 
+			if (ia[0] == param) { 
+				pa[i] = ia[0] + '=' + value; 
+			}
+		}
+		return ua[0] + '?' + pa.join('&'); 
 	},
 
 	/** Load required JavaScript Resourcess */
