@@ -31,6 +31,9 @@
   <#if parameters.onBeforeTopics?exists>
 	options_${escapedOptionId?html}.onbef = "${parameters.onBeforeTopics?html}";
   </#if>
+  <#if parameters.onAfterValidationTopics?exists>
+    options_${escapedOptionId?html}.onaftervalidation = "${parameters.onAfterValidationTopics?html}";
+  </#if>  
   <#if parameters.onAlwaysTopics?exists>
 	options_${escapedOptionId?html}.onalw = "${parameters.onAlwaysTopics?html}";
   </#if>

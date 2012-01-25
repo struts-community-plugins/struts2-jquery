@@ -30,83 +30,78 @@ import com.jgeppert.struts2.jquery.components.AbstractTopicsBean;
  */
 public abstract class AbstractTopicTag extends AbstractClosingTag {
 
-  private static final long serialVersionUID = -704912163849377645L;
+    private static final long serialVersionUID = -704912163849377645L;
 
-  protected String          onBeforeTopics;
-  protected String          onCompleteTopics;
-  protected String          onSuccessTopics;
-  protected String          onErrorTopics;
-  protected String          onAlwaysTopics;
-  protected String          onChangeTopics;
-  protected String          onEnableTopics;
-  protected String          onDisableTopics;
-  protected String          onBlurTopics;
-  protected String          onFocusTopics;
+    protected String onBeforeTopics;
+    protected String onAfterValidationTopics;
+    protected String onCompleteTopics;
+    protected String onSuccessTopics;
+    protected String onErrorTopics;
+    protected String onAlwaysTopics;
+    protected String onChangeTopics;
+    protected String onEnableTopics;
+    protected String onDisableTopics;
+    protected String onBlurTopics;
+    protected String onFocusTopics;
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-    AbstractTopicsBean topic = (AbstractTopicsBean) component;
-    topic.setOnBeforeTopics(onBeforeTopics);
-    topic.setOnCompleteTopics(onCompleteTopics);
-    topic.setOnSuccessTopics(onSuccessTopics);
-    topic.setOnErrorTopics(onErrorTopics);
-    topic.setOnAlwaysTopics(onAlwaysTopics);
-    topic.setOnChangeTopics(onChangeTopics);
-    topic.setOnDisableTopics(onDisableTopics);
-    topic.setOnEnableTopics(onEnableTopics);
-    topic.setOnBlurTopics(onBlurTopics);
-    topic.setOnFocusTopics(onFocusTopics);
-  }
+	AbstractTopicsBean topic = (AbstractTopicsBean) component;
+	topic.setOnBeforeTopics(onBeforeTopics);
+	topic.setOnAfterValidationTopics(onAfterValidationTopics);
+	topic.setOnCompleteTopics(onCompleteTopics);
+	topic.setOnSuccessTopics(onSuccessTopics);
+	topic.setOnErrorTopics(onErrorTopics);
+	topic.setOnAlwaysTopics(onAlwaysTopics);
+	topic.setOnChangeTopics(onChangeTopics);
+	topic.setOnDisableTopics(onDisableTopics);
+	topic.setOnEnableTopics(onEnableTopics);
+	topic.setOnBlurTopics(onBlurTopics);
+	topic.setOnFocusTopics(onFocusTopics);
+    }
 
-  public void setOnCompleteTopics(String onCompleteTopics)
-  {
-    this.onCompleteTopics = onCompleteTopics;
-  }
+    public void setOnAfterValidationTopics(String onAfterValidationTopics) {
+	this.onAfterValidationTopics = onAfterValidationTopics;
+    }
 
-  public void setOnSuccessTopics(String onSuccessTopics)
-  {
-    this.onSuccessTopics = onSuccessTopics;
-  }
+    public void setOnCompleteTopics(String onCompleteTopics) {
+	this.onCompleteTopics = onCompleteTopics;
+    }
 
-  public void setOnErrorTopics(String onErrorTopics)
-  {
-    this.onErrorTopics = onErrorTopics;
-  }
+    public void setOnSuccessTopics(String onSuccessTopics) {
+	this.onSuccessTopics = onSuccessTopics;
+    }
 
-  public void setOnBeforeTopics(String onBeforeTopics)
-  {
-    this.onBeforeTopics = onBeforeTopics;
-  }
+    public void setOnErrorTopics(String onErrorTopics) {
+	this.onErrorTopics = onErrorTopics;
+    }
 
-  public void setOnAlwaysTopics(String onAlwaysTopics)
-  {
-    this.onAlwaysTopics = onAlwaysTopics;
-  }
+    public void setOnBeforeTopics(String onBeforeTopics) {
+	this.onBeforeTopics = onBeforeTopics;
+    }
 
-  public void setOnChangeTopics(String onChangeTopics)
-  {
-    this.onChangeTopics = onChangeTopics;
-  }
+    public void setOnAlwaysTopics(String onAlwaysTopics) {
+	this.onAlwaysTopics = onAlwaysTopics;
+    }
 
-  public void setOnDisableTopics(String onEnableTopics)
-  {
-    this.onEnableTopics = onEnableTopics;
-  }
+    public void setOnChangeTopics(String onChangeTopics) {
+	this.onChangeTopics = onChangeTopics;
+    }
 
-  public void setOnEnableTopics(String onDisableTopics)
-  {
-    this.onDisableTopics = onDisableTopics;
-  }
+    public void setOnDisableTopics(String onEnableTopics) {
+	this.onEnableTopics = onEnableTopics;
+    }
 
-  public void setOnBlurTopics(String onBlurTopics)
-  {
-    this.onBlurTopics = onBlurTopics;
-  }
+    public void setOnEnableTopics(String onDisableTopics) {
+	this.onDisableTopics = onDisableTopics;
+    }
 
-  public void setOnFocusTopics(String onFocusTopics)
-  {
-    this.onFocusTopics = onFocusTopics;
-  }
+    public void setOnBlurTopics(String onBlurTopics) {
+	this.onBlurTopics = onBlurTopics;
+    }
+
+    public void setOnFocusTopics(String onFocusTopics) {
+	this.onFocusTopics = onFocusTopics;
+    }
 }

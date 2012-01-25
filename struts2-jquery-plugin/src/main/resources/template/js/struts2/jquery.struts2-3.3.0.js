@@ -1071,13 +1071,19 @@
 			// Submit Forms without AJAX
 			$elem.click( function(e) {
 				var form = $(self.escId(o.formids));
-				var submitForm = true;
+				var orginal = {};
+				orginal.formvalidate = true; 
 				e.preventDefault(); 
 				if (o.validate) {
-					submitForm = self.validateForm(form, o);
+					orginal.formvalidate = self.validateForm(form, o);
+					if (o.onaftervalidationtopics) {
+						$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
+							$elem.publish(topic, elem, orginal);
+						});
+					}  
 				}
-
-				if(submitForm) {
+				
+				if(orginal.formvalidate) {
 					form.submit();
 				}
 				return false;
@@ -1088,12 +1094,17 @@
 				params.validate = o.validate;
 				$elem.subscribe(o.listentopics, function(event) {
 					var form = $(self.escId(event.data.formids));
+					var orginal = {};
+					orginal.formvalidate = true; 
 					var submitForm = true;
 					if (event.data.validate) {
-						submitForm = self.validateForm(form, o);
+						orginal.formvalidate = self.validateForm(form, o);
+						$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
+							$elem.publish(topic, elem, orginal);
+						});
 					}
 
-					if(submitForm) {
+					if(orginal.formvalidate) {
 						form.submit();
 					}
 				}, params);
@@ -2223,7 +2234,6 @@
 		}
 
 		var indi = o.indicatorid;
-		_s2j.showIndicator(indi);
 
 		params.beforeSubmit = function(formData, form, formoptions) {
 
@@ -2233,37 +2243,38 @@
 			orginal.options = formoptions;
 			orginal.options.submit = true;
 
-			if(!o.datatype || o.datatype !== "json") {
-				if (o.loadingtext && o.loadingtext !== "false") {
-					$.each(o.targets.split(','), function(i, target) {
-						$(_s2j.escId(target)).html(o.loadingtext);
-					});
-				}
-				else if (_s2j.defaults.loadingText !== null) {
-					$.each(o.targets.split(','), function(i, target) {
-						$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
-					});
-				}
-			}
-
 			_s2j.publishTopic(container, o.onalw, orginal);
 
 			if (o.onbef) {
 				$.each(o.onbef.split(','), function(i, topic) {
 					elem.publish(topic, elem, orginal);
 					var submitForm = orginal.options.submit;
-					// cancel form submission
-					if (!submitForm) {
-						_s2j.hideIndicator(o.indicatorid);
-					}
 				});
 			}
 
 			if (o.validate) {
 				orginal.options.submit = _s2j.validateForm(form, o);
+				orginal.formvalidate = orginal.options.submit; 
+				if (o.onaftervalidationtopics) {
+					$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
+						elem.publish(topic, elem, orginal);
+					});
+				}  
 			}
-			if (!orginal.options.submit) {
-				_s2j.hideIndicator(o.indicatorid);
+			if (orginal.options.submit) {
+				_s2j.showIndicator(indi);
+				if(!o.datatype || o.datatype !== "json") {
+					if (o.loadingtext && o.loadingtext !== "false") {
+						$.each(o.targets.split(','), function(i, target) {
+							$(_s2j.escId(target)).html(o.loadingtext);
+						});
+					}
+					else if (_s2j.defaults.loadingText !== null) {
+						$.each(o.targets.split(','), function(i, target) {
+							$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
+						});
+					}
+				}
 			}
 			return orginal.options.submit;
 		};
