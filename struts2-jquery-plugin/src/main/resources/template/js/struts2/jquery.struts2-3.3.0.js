@@ -226,8 +226,8 @@
 
 		params.complete = function(request, status) {
 			var f = $(form[0]);
+			var et = request.responseText;
 			if ($.isFunction(o.validateFunction)) {
-				var et = request.responseText;
 				if (et && et.length > 10) {
 					submit = false;
 					var errors;
@@ -245,7 +245,14 @@
 				StrutsUtils.clearValidationErrors(form[0]);
 
 				// get errors from response
-				var errorsObject = StrutsUtils.getValidationErrors(request.responseText);
+				var errorsObject;
+				
+				if(et.substring(0,2) === "/*") {
+					errorsObject = StrutsUtils.getValidationErrors(et);
+				}
+				else {
+					errorsObject = StrutsUtils.getValidationErrors($.parseJSON(et));
+				}
 
 				// show errors, if any
 				if (errorsObject.fieldErrors || errorsObject.errors) {
