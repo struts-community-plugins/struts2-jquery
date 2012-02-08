@@ -1297,7 +1297,7 @@
 			para.remove = self.pubTops($elem, o.onalw, o.onremovetopics);
 		}
 		if (o.oncom) {
-			para.load = self.pubTops($elem, o.onalw, o.onremovetopics);
+			para.load = self.pubTops($elem, o.onalw, o.oncom);
 		}
 
 		var tabs = $elem.data('taboptions');
