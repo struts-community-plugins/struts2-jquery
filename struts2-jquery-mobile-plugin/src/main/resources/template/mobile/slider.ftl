@@ -31,6 +31,9 @@
 <#else>
  min="0"<#rt/>
 </#if>
+<#if parameters.step?>
+ step="${parameters.step?c}"<#rt/>
+</#if>
 <#if parameters.get("size")??>
  size="${parameters.get("size")?html}"<#rt/>
 </#if>

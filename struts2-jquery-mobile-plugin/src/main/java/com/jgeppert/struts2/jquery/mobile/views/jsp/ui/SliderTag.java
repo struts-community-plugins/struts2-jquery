@@ -34,38 +34,44 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 public class SliderTag extends org.apache.struts2.views.jsp.ui.TextFieldTag
-	implements ThemeableTag {
+		implements ThemeableTag {
 
-    private static final long serialVersionUID = -5876556326086558625L;
+	private static final long serialVersionUID = -5876556326086558625L;
 
-    protected String dataTheme;
+	protected String dataTheme;
 
-    protected String max;
-    protected String min;
+	protected String max;
+	protected String min;
+	protected String step;
 
-    public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Slider(stack, req, res);
-    }
+	public Component getBean(ValueStack stack, HttpServletRequest req,
+			HttpServletResponse res) {
+		return new Slider(stack, req, res);
+	}
 
-    protected void populateParams() {
-	super.populateParams();
+	protected void populateParams() {
+		super.populateParams();
 
-	Slider slider = (Slider) component;
-	slider.setDataTheme(dataTheme);
-	slider.setMax(max);
-	slider.setMin(min);
-    }
+		Slider slider = (Slider) component;
+		slider.setDataTheme(dataTheme);
+		slider.setMax(max);
+		slider.setMin(min);
+		slider.setStep(step);
+	}
 
-    public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
-    }
+	public void setDataTheme(String dataTheme) {
+		this.dataTheme = dataTheme;
+	}
 
-    public void setMax(String max) {
-	this.max = max;
-    }
+	public void setMax(String max) {
+		this.max = max;
+	}
 
-    public void setMin(String min) {
-	this.min = min;
-    }
+	public void setMin(String min) {
+		this.min = min;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
 }

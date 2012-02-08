@@ -74,70 +74,78 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 @StrutsTag(name = "slider", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.SliderTag", description = "Renders a slider field", allowDynamicAttributes = true)
 public class Slider extends org.apache.struts2.components.TextField implements
-	ThemeableBean {
+		ThemeableBean {
 
-    public static final String TEMPLATE = "slider";
-    public static final String COMPONENT_NAME = Slider.class.getName();
-    final private static transient Random RANDOM = new Random();
+	public static final String TEMPLATE = "slider";
+	public static final String COMPONENT_NAME = Slider.class.getName();
+	final private static transient Random RANDOM = new Random();
 
-    protected String dataTheme;
-    protected String max;
-    protected String min;
+	protected String dataTheme;
+	protected String max;
+	protected String min;
+	protected String step;
 
-    public Slider(ValueStack stack, HttpServletRequest request,
-	    HttpServletResponse response) {
-	super(stack, request, response);
-    }
-
-    protected String getDefaultTemplate() {
-	return TEMPLATE;
-    }
-
-    public void evaluateExtraParams() {
-	super.evaluateExtraParams();
-
-	if (dataTheme != null)
-	    addParameter("dataTheme", findString(dataTheme));
-	if (max != null)
-	    addParameter("max", findValue(max, Integer.class));
-	if (min != null)
-	    addParameter("min", findValue(min, Integer.class));
-
-	if ((this.id == null || this.id.length() == 0)) {
-	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-	    int nextInt = RANDOM.nextInt();
-	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-		    .abs(nextInt);
-	    this.id = "slider_" + String.valueOf(nextInt);
-	    addParameter("id", this.id);
+	public Slider(ValueStack stack, HttpServletRequest request,
+			HttpServletResponse response) {
+		super(stack, request, response);
 	}
-    }
 
-    @Override
-    @StrutsTagSkipInheritance
-    public void setTheme(String theme) {
-	super.setTheme(theme);
-    }
+	protected String getDefaultTemplate() {
+		return TEMPLATE;
+	}
 
-    @Override
-    public String getTheme() {
-	return "mobile";
-    }
+	public void evaluateExtraParams() {
+		super.evaluateExtraParams();
 
-    @StrutsTagAttribute(description = "Initialize a slider with the max option specified. Default: 100", type = "Integer")
-    public void setMax(String max) {
-	this.max = max;
-    }
+		if (dataTheme != null)
+			addParameter("dataTheme", findString(dataTheme));
+		if (max != null)
+			addParameter("max", findValue(max, Integer.class));
+		if (min != null)
+			addParameter("min", findValue(min, Integer.class));
+		if (step != null)
+			addParameter("step", findValue(step, Integer.class));
 
-    @StrutsTagAttribute(description = "The minimum value of the slider. Default: 0", type = "Integer")
-    public void setMin(String min) {
-	this.min = min;
-    }
+		if ((this.id == null || this.id.length() == 0)) {
+			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+			int nextInt = RANDOM.nextInt();
+			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+					.abs(nextInt);
+			this.id = "slider_" + String.valueOf(nextInt);
+			addParameter("id", this.id);
+		}
+	}
 
-    @StrutsTagAttribute(description = "Set the Slider theme. e.g. a,b,c,d or e")
-    public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
-    }
+	@Override
+	@StrutsTagSkipInheritance
+	public void setTheme(String theme) {
+		super.setTheme(theme);
+	}
+
+	@Override
+	public String getTheme() {
+		return "mobile";
+	}
+
+	@StrutsTagAttribute(description = "Initialize a slider with the max option specified. Default: 100", type = "Integer")
+	public void setMax(String max) {
+		this.max = max;
+	}
+
+	@StrutsTagAttribute(description = "The minimum value of the slider. Default: 0", type = "Integer")
+	public void setMin(String min) {
+		this.min = min;
+	}
+
+	@StrutsTagAttribute(description = "Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step. Default: 1", type = "Integer")
+	public void setStep(String step) {
+		this.step = step;
+	}
+
+	@StrutsTagAttribute(description = "Set the Slider theme. e.g. a,b,c,d or e")
+	public void setDataTheme(String dataTheme) {
+		this.dataTheme = dataTheme;
+	}
 
 }
