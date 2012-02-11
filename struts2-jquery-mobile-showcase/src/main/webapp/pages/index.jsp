@@ -1,12 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags"%>
-<!DOCTYPE html>
-<html>
-	<head>
-    	<title>Struts2 jQuery Mobile Plugin Showcase</title>
-    	<sjm:head jqueryui="false"/>
-	</head>
-	<body>
+<jsp:include page="inc.header.jsp" />
 		<sjm:div role="page" id="start">
 			<sjm:div role="header">
 				<h1>Struts2 jQuery Mobile Plugin Showcase</h1>
@@ -54,3 +48,4 @@
 		</sjm:div>
 	</body>
 </html>
+			

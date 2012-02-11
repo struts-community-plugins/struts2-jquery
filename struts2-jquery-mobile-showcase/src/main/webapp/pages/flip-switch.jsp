@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags"%>
+<jsp:include page="inc.header.jsp" />
 		<sjm:div role="page" id="flipSwitchPage">
 			<sjm:div role="header">
 				<sjm:a button="true" buttonIcon="arrow-l" data-rel="back">Back</sjm:a>
@@ -46,3 +47,5 @@
 
 			<jsp:include page="inc.footer.jsp" />
 		</sjm:div>
+	</body>
+</html>
