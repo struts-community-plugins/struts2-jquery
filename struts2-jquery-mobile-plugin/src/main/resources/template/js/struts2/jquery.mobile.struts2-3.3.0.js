@@ -25,6 +25,6 @@
 	};
 
 	// Extend it from orginal plugin
-	$.extend($.struts2_jquery_mobile, $.struts2_jquery);
+	$.extend(true, $.struts2_jquery_mobile, $.struts2_jquery);
 
 })(jQuery);

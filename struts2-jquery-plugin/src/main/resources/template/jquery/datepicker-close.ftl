@@ -22,9 +22,9 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () {
   <#if parameters.timepicker?default(false)>
-	jQuery.struts2_jquery.initDatepicker(true);
+	jQuery.struts2_jquery_ui.initDatepicker(true);
   <#else>
-	jQuery.struts2_jquery.initDatepicker(false);
+	jQuery.struts2_jquery_ui.initDatepicker(false);
   </#if>
 
 });
@@ -201,6 +201,6 @@ jQuery(document).ready(function () {
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />
 
-<#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+<#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
  });
 </script>

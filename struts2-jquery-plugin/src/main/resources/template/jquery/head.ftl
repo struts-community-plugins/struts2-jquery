@@ -47,6 +47,7 @@
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.min.js">
   <#assign jqueryStrutsFile="jquery.struts2-3.3.0.min.js">
+  <#assign jqueryUiStrutsFile="jquery.ui.struts2-3.3.0.min.js">
   <#assign jqueryGoogle="${googlePath}/jquery.min.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
@@ -59,6 +60,7 @@
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.js">
   <#assign jqueryStrutsFile="jquery.struts2-3.3.0.js">
+  <#assign jqueryUiStrutsFile="jquery.ui.struts2-3.3.0.js">
   <#assign jqueryGoogle="${googlePath}/jquery.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.js">
 </#if>
@@ -94,7 +96,11 @@
 <#if parameters.ajaxhistory?default(false)>
   <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryHistoryFile}"></script>
 </#if>
+
+  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
 <#if parameters.jqueryui?default(true)>
+  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryUiStrutsFile}"></script>
+
     <#if parameters.jquerytheme?if_exists != "">
 		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
         	<link id="jquery_theme_link" rel="stylesheet" href="${googleUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
@@ -107,7 +113,6 @@
 </#if>
 
 
-  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
 <script type="text/javascript">
 jQuery(document).ready(function () {
 	jQuery.struts2_jquery.version="3.3.0";

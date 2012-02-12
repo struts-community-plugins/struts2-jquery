@@ -47,6 +47,6 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/action.ftl" />
   <#include "/${parameters.templateDir}/jquery/container.ftl" />
 
-  <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+  <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
  });  
 </script>

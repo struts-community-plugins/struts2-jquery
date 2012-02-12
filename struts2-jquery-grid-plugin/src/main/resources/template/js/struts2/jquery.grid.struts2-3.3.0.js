@@ -547,7 +547,7 @@
 	};
 
 	// Extend it from orginal plugin
-	$.extend($.struts2_jquery_grid, $.struts2_jquery);
+	$.extend(true, $.struts2_jquery_grid, $.struts2_jquery);
 
 	// Register handler for reloading grid
 	$.subscribeHandler('_s2j_reloadgrid', function(event, data) {

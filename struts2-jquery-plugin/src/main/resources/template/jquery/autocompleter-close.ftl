@@ -95,6 +95,6 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/selectable.ftl" />
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
-  <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
+  <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
  });
 </script>

@@ -18,19 +18,7 @@
  * under the License.
  */
 -->
-		</div>
-	</li>
+<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-<script type='text/javascript'>
-jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
-  <#if parameters.onClickTopics?exists>
-	options_${escapedOptionId?html}.onclick = "${parameters.onClickTopics?html}";
-  </#if>
-<#include "/${parameters.templateDir}/jquery/base.ftl" />
-<#include "/${parameters.templateDir}/jquery/interactive.ftl" />
-<#include "/${parameters.templateDir}/jquery/topics.ftl" />
+jQuery.struts2_jquery_ui.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
 
-<#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
- });  
-</script>

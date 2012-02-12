@@ -98,7 +98,7 @@
 	};
 
 	// Extend it from orginal plugin
-	$.extend($.struts2_jquery_chart, $.struts2_jquery);
+	$.extend(true, $.struts2_jquery_chart, $.struts2_jquery);
 
 	/**
 	 * Chart logic Register handler to load a chart
