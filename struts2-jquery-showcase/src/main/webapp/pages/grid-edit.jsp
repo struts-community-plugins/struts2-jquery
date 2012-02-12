@@ -34,6 +34,7 @@
     	navigatorView="false"
     	navigatorDelete="true"
     	navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
+    	navigatorInlineEditButtons="true"
     	navigatorExtraButtons="{
     		seperator: { 
     			title : 'seperator'  
@@ -60,10 +61,10 @@
     	shrinkToFit="false"
     >
     	<sjg:gridColumn name="id" frozen="true" index="id" title="ID" width="60" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
-    	<sjg:gridColumn name="name" frozen="true" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true" search="false"/>
-    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false"/>
-    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false"/>
-    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false"/>
+    	<sjg:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true" search="false"/>
+    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" editable="true" edittype="text"/>
+    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" editable="true" edittype="text"/>
+    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" editable="true" edittype="text"/>
     	<sjg:gridColumn name="country" index="country" title="Country" editable="true" edittype="select" editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}" sortable="false" search="false"/>
     	<sjg:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false" search="false"/>
     	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" editable="true" edittype="text" sortable="false" search="false"/>

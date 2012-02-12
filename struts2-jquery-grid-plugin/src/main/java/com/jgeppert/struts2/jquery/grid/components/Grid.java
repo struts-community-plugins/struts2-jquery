@@ -93,6 +93,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	protected String navigatorRefresh;
 	protected String navigatorSearch;
 	protected String navigatorView;
+	protected String navigatorInlineEditButtons;
 	protected String navigatorExtraButtons;
 	protected String autoencode;
 	protected String cellEdit;
@@ -370,6 +371,9 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 		if (navigatorExtraButtons != null)
 			addParameter("navigatorExtraButtons",
 					findString(navigatorExtraButtons));
+		if (navigatorInlineEditButtons != null)
+			addParameter("navigatorInlineEditButtons", findValue(this.navigatorInlineEditButtons,
+					Boolean.class));
 
 		if (cellurl != null)
 			addParameter("cellurl", findString(cellurl));
@@ -1252,6 +1256,11 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	@StrutsTagAttribute(description = "Add extra buttons to Navigator. e.g.: { seperator: { title : 'seperator'  }, hidebutton : { title : 'Show Hide', icon: 'ui-icon-gear', topic: showHideGrid} }")
 	public void setNavigatorExtraButtons(String navigatorExtraButtons) {
 		this.navigatorExtraButtons = navigatorExtraButtons;
+	}
+
+	@StrutsTagAttribute(description = "Show buttons for edit and add rows in case of editinline is true.", defaultValue = "true", type = "Boolean")
+	public void setNavigatorInlineEditButtons(String navigatorInlineEditButtons) {
+		this.navigatorInlineEditButtons = navigatorInlineEditButtons;
 	}
 
 	@StrutsTagAttribute(description = "This method construct searching creating input elements just below the header elements of the grid.", defaultValue = "false", type = "Boolean")

@@ -85,7 +85,7 @@
 					self.publishTopic($elem, o.onalw, data);
 					$.struts2_jquery.publishTopic($elem, o.onselectrowtopics,
 							data);
-					if (o.editurl && o.editinline === true) {
+					if (o.editurl && o.editinline === true && o.navinline === false) {
 						if ($.struts2_jquery_grid.lastselectedrow !== '') {
 							$elem.jqGrid('restoreRow',
 									$.struts2_jquery_grid.lastselectedrow);
@@ -341,6 +341,9 @@
 								o.navigatordeleteoptions, o.navigatorsearchoptions,
 								o.navigatorviewoptions);
 						
+						if(o.editinline === true && o.navinline === true) {
+							$elem.jqGrid('inlineNav',self.escId(o.pager));
+						}
 						if(o.navigatorextrabuttons) {
 							self.navigatorButtons($elem, o.navigatorextrabuttons, self.escId(o.pager));
 						}

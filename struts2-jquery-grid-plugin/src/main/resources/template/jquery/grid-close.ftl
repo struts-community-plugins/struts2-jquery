@@ -194,6 +194,11 @@
 	  <#if parameters.navigatorExtraButtons?if_exists != "">
 		options_${escapedOptionId?html}.navigatorextrabuttons = ${parameters.navigatorExtraButtons?html};
 	  </#if>
+	  <#if parameters.navigatorInlineEditButtons?default(true)>
+		options_${escapedOptionId?html}.navinline = true;
+	  <#else>
+		options_${escapedOptionId?html}.navinline = false;
+	  </#if>
   </#if>
   <#if parameters.editinline?default(false)>
 	options_${escapedOptionId?html}.editinline = true;
