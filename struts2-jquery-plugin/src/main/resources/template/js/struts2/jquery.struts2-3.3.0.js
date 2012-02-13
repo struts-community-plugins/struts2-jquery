@@ -19,8 +19,9 @@
 /*global jQuery, document, window, StrutsUtils  */
 /*jslint evil: true */
 
-( function($) {
-
+(function( $, undefined ) {
+	"use strict";
+	
 	/**
 	 * Bind Struts2 Components for jQuery AJAX and UI functions
 	 */
@@ -55,9 +56,8 @@
 	 * set debug to true in the head tag to enable debug logging
 	 *  */
 	log : function(message) {
-		var self = this;
-		if (self.debug) {
-			var msg = self.debugPrefix + message;
+		if (this.debug) {
+			var msg = this.debugPrefix + message;
 			if (window.console && window.console.log) {
 				window.console.log(msg);
 			}
@@ -75,7 +75,7 @@
 	/**Add Parameter to URL */
 	addParam : function(url, param) {
 		if (url.indexOf("?") > 0) {
-			return url = url+"&"+param;
+			return url+"&"+param;
 		}
 		else {
 			return url+"?"+param;
@@ -84,28 +84,28 @@
 
 	/**Change Parameter Value in URL */
 	changeParam : function(url, param, value) {
-		var ua = url.split('?'); // split url
-		var pa = ua[1].split('&'); // split query 
-		var ia = []; 
-		for (i=0; i<pa.length; i++) { 
-			ia = pa[i].split('='); // split name/value 
-			if (ia[0] == param) { 
-				pa[i] = ia[0] + '=' + value; 
+		var ua = url.split("?"), // split url
+			pa = ua[1].split("&"), // split query 
+			ia = [],
+			i; 
+		for (i=0; i < pa.length; i++) { 
+			ia = pa[i].split("="); // split name/value 
+			if (ia[0] === param) { 
+				pa[i] = ia[0] + "=" + value; 
 			}
 		}
-		return ua[0] + '?' + pa.join('&'); 
+		return ua[0] + "?" + pa.join("&"); 
 	},
 
 	/** Load required JavaScript Resourcess */
 	require : function(files, callBack, basePath) {
-		var self = this;
-		var successFunction, path;
+		var self = this, successFunction, path;
 		successFunction = callBack || function() {
 		};
 		path = basePath || null;
 
 		if (path === null && !$.scriptPath) {
-			path = '';
+			path = "";
 		}
 		else if (path === null && $.scriptPath) {
 			path = $.scriptPath;
@@ -136,8 +136,7 @@
 
 	/** Load required CSS Files */
 	requireCss : function(cssFile, basePath) {
-		var self = this;
-		if (!self.styleCache[cssFile]) {
+		if (!this.styleCache[cssFile]) {
 			var path, cssref;
 
 			path = basePath || null;
@@ -147,43 +146,40 @@
 			else if (path === null && $.scriptPath) {
 				path = $.scriptPath;
 			}
-			self.log('load require css ' + (path + cssFile));
+			this.log('load require css ' + (path + cssFile));
 
 			cssref = document.createElement("link");
 			cssref.setAttribute("rel", "stylesheet");
 			cssref.setAttribute("type", "text/css");
 			cssref.setAttribute("href", (path + cssFile));
 			document.getElementsByTagName("head")[0].appendChild(cssref);
-			self.styleCache[cssFile] = true;
+			this.styleCache[cssFile] = true;
 		}
 	},
 
 	/** Helper function to hide indicator */
 	hideIndicator : function(indi) {
-		var self = this;
 		if (indi) {
-			$(self.escId(indi)).hide();
+			$(this.escId(indi)).hide();
 		}
-		if (self.defaults.indicator !== '') {
-			$(self.escId(self.defaults.indicator)).hide();
+		if (this.defaults.indicator !== '') {
+			$(this.escId(this.defaults.indicator)).hide();
 		}
 	},
 
 	/** Helper function to show indicator */
 	showIndicator : function(indi) {
-		var self = this;
 		if (indi) {
-			$(self.escId(indi)).show();
+			$(this.escId(indi)).show();
 		}
-		if (self.defaults.indicator !== '') {
-			$(self.escId(self.defaults.indicator)).show();
+		if (this.defaults.indicator !== '') {
+			$(this.escId(this.defaults.indicator)).show();
 		}
 	},
 
 	/** Abort current requests */
 	abortReq : function(id) {
-		var self = this;
-		var xhr = self.currentXhr[id];
+		var xhr = this.currentXhr[id];
 		if(xhr && xhr !== null){
 			if(xhr.readyState < 4) {
 				xhr.abort();
@@ -193,9 +189,9 @@
 
 	/** Helper function to validate Forms */
 	validateForm : function(form, o) {
-		var self = this;
-		var submit = true;
-		var params = {};
+		var self = this,
+			submit = true,
+			params = {};
 
 		if (!self.loadAtOnce) {
 			self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
@@ -205,7 +201,7 @@
 		params.data = {
 				"struts.enableJSONValidation": true,
 				"struts.validateOnly": true
-		}
+		};
 		if (o.href && o.href !== '#') {
 			params.url = o.href;
 		}
@@ -222,12 +218,12 @@
 		params.async = false;
 
 		params.complete = function(request, status) {
-			var f = $(form[0]);
-			var et = request.responseText;
+			var f = $(form[0]),
+				et = request.responseText,
+				errors;
 			if ($.isFunction(o.validateFunction)) {
 				if (et && et.length > 10) {
 					submit = false;
-					var errors;
 					if(et.substring(0,2) === "/*") {
 						// Handle Validation Errors for all Struts2 versions until 2.2.3.1
 						errors = $.parseJSON(et.substring(2, et.length - 2));
@@ -242,18 +238,16 @@
 				StrutsUtils.clearValidationErrors(form[0]);
 
 				// get errors from response
-				var errorsObject;
-				
 				if(et.substring(0,2) === "/*") {
-					errorsObject = StrutsUtils.getValidationErrors(et);
+					errors = StrutsUtils.getValidationErrors(et);
 				}
 				else {
-					errorsObject = StrutsUtils.getValidationErrors($.parseJSON(et));
+					errors = StrutsUtils.getValidationErrors($.parseJSON(et));
 				}
 
 				// show errors, if any
-				if (errorsObject.fieldErrors || errorsObject.errors) {
-					StrutsUtils.showValidationErrors(form[0], errorsObject);
+				if (errors.fieldErrors || errors.errors) {
+					StrutsUtils.showValidationErrors(form[0], errors);
 					submit = false;
 				}
 			}
@@ -273,7 +267,7 @@
 			}
 			$.each(forms.split(','), function(i, f) {
 				var q = $(self.escId(f)).formSerialize();
-				url = self.addParam(url, q)
+				url = self.addParam(url, q);
 			});
 		}
 		return url;
@@ -298,10 +292,8 @@
 
 	/** Helper function to subscribe topics */
 	subscribeTopics : function(elem, topics, handler, o) {
-		var self = this;
 		if (topics && elem) {
 			$.each(topics.split(','), function(i, t) {
-				self.log('subscribe topic : ' + t);
 				if (elem.isSubscribed(t)) {
 					elem.destroyTopic(t);
 				}
@@ -325,8 +317,12 @@
 	 * handle AJAX result, insert it into container or build select box, radiobutton, checkboxes etc.
 	 * */
 	pubSuc : function(cid, always, stopics, indi, modus, o) {
-		var self = this;
-		var c = $(cid);
+		var self = this,
+			c = $(cid),
+			i,idv,element = null,
+			x = 0,
+			isMap = false;
+
 		return function(data, status, request) {
 			var orginal = {};
 			orginal.data = data;
@@ -353,16 +349,16 @@
 				}
 
 				if (typeof (data) === "object" || $.isArray(data)) {
-					var i = -1;
+					i = -1;
 
 					if (modus === 'select') {
 						// Header Option
 						if (o.headerkey && o.headervalue) {
-							var headerElement = $('<option value="' + o.headerkey + '">' + o.headervalue + '</option>');
+							element = $('<option value="' + o.headerkey + '">' + o.headervalue + '</option>');
 							if (o.value === o.headervalue) {
-								headerElement.prop("selected", true);
+								element.prop("selected", true);
 							}
-							headerElement.appendTo(c);
+							element.appendTo(c);
 						}
 
 						// Is Empty Option set to true
@@ -372,9 +368,7 @@
 					}
 
 					// Loop over Elements
-					var x = 0;
 					if (data[o.list] !== null) {
-						var isMap = false;
 						if (!$.isArray(data[o.list])) {
 							isMap = true;
 						}
@@ -405,29 +399,28 @@
 							}
 
 							if (modus === 'select') {
-								var optionElement = $('<option value="' + option.value + '">' + option.text + '</option>');
+								element = $('<option value="' + option.value + '">' + option.text + '</option>');
 								if (option.selected) {
-									optionElement.prop("selected", true);
+									element.prop("selected", true);
 								}
-								optionElement.appendTo(c);
+								element.appendTo(c);
 							}
 							else {
-								var re;
-								var idv = ++i;
+								idv = ++i;
 
 								// This way is needed to avoid Bug in IE6/IE7
 								if (modus === 'radio') {
-									re = $('<input name="' + option.name + '" type="radio" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
+									element = $('<input name="' + option.name + '" type="radio" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
 								}
 								else if (modus === 'checkbox') {
-									re = $('<input name="' + option.name + '" type="checkbox" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
+									element = $('<input name="' + option.name + '" type="checkbox" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
 								}
 
 								if (option.selected) {
-									re.prop("checked", true);
+									element.prop("checked", true);
 								}
 
-								c.append(re);
+								c.append(element);
 								c.append($('<label id="' + option.name + (idv) + 'label" for="' + option.name + (idv) + '">' + option.text + '</label>'));
 							}
 							x++;
@@ -445,8 +438,9 @@
 
 	/** publish complete topics */
 	pubCom : function(cid, always, ctopics, targets, indi, o) {
-		var self = this;
-		var c = $(cid);
+		var self = this,
+			ui = $.struts2_jquery_ui,
+			c = $(cid);
 		return function(request, status) {
 			var orginal = {};
 			orginal.request = request;
@@ -457,27 +451,25 @@
 			self.publishTopic(c, ctopics, orginal);
 			self.publishTopic(c, always, orginal);
 
-			var ec = targets;
-			if (!ec) {
-				ec = o.id;
+			if (!targets) {
+				targets = o.id;
 			}
-			if (ec) {
-				var divEffectTopic = '_sj_div_effect_';
-				$.each(ec.split(','), function(i, target) {
+			if (targets) {
+				$.each(targets.split(','), function(i, target) {
 					var effect_elem = $(self.escId(target));
-					effect_elem.publish(divEffectTopic + target + o.id, o);
+					effect_elem.publish("_sj_div_effect_" + target + o.id, o);
 				});
 			}
-			if ($.struts2_jquery_ui && o.resizable) {
-				$.struts2_jquery_ui.resizable(c, o);
+			if (ui && o.resizable) {
+				ui.resizable(c, o);
 			}
 		};
 	},
 
 	/** publish error topics */
 	pubErr : function(cid, always, etopics, etext, modus) {
-		var self = this;
-		var c = $(cid);
+		var self = this,
+			c = $(cid);
 		if (etopics || etext) {
 			return function(request, status, error) {
 				var orginal = {};
@@ -514,13 +506,13 @@
 
 	/** bind a html element to an struts2 jquery action */
 	bind : function(el, o) {
-		var self = this;
+		var self = this, $el, tag;
 
 		if (el) {
-			var $el = $(el);
+			$el = $(el);
 			el = $el[0];
 
-			var tag = el.tagName.toLowerCase();
+			tag = el.tagName.toLowerCase();
 			o.tagname = tag;
 
 			// extension point to allow custom pre-binding processing
@@ -550,8 +542,8 @@
 
 	/** handle ajax history */
 	history : function($elem, topic, target) {
-		var self = this;
-		var params = {};
+		var self = this,
+			params = {};
 		params.target = target;
 		params.topic = topic;
 		$elem.bind('click', params, function(event) {
@@ -575,18 +567,18 @@
 
 	/** Handles remote and effect actions */
 	action : function($elem, o, loadHandler, type) {
-		var self = this;
-		var actionTopic = '_sj_action_' + o.id;
+		var self = this,
+			actionTopic = '_sj_action_' + o.id,
+			href = o.href,
+			effect = {};
+			
 		o.actionTopic = actionTopic;
-		var href = o.href;
 
 		if (href === null || href === "") {
 			href = "#";
 			o.href = href;
 		}
 
-		var effectTopic = '_sj_div_effect_';
-		var effect = {};
 		effect.effect = o.effect;
 		effect.effectoptions = o.effectoptions;
 		effect.effectmode = o.effectmode;
@@ -613,7 +605,7 @@
 				}
 
 				self.subscribeTopics(tarelem, actionTopic, loadHandler, o);
-				self.subscribeTopics(tarelem, effectTopic + target + o.id, self.handler.effect, effect);
+				self.subscribeTopics(tarelem, "_sj_div_effect_" + target + o.id, self.handler.effect, effect);
 
 				if (self.ajaxhistory) {
 					self.history($elem, actionTopic, target);
@@ -623,7 +615,7 @@
 		else { // if no targets, then the action can still execute ajax request and will handle itself (no loading result into container
 
 			effect.targets = o.id;
-			self.subscribeTopics($(self.escId(o.id)), effectTopic + o.id + o.id, self.handler.effect, effect);
+			self.subscribeTopics($(self.escId(o.id)), "_sj_div_effect_" + o.id + o.id, self.handler.effect, effect);
 
 			// bind event topic listeners
 			if (o.onbef || o.oncom || o.onsuc || o.onerr) {
@@ -643,12 +635,16 @@
 
 	/** Handle all Container Elements Divs, Textarea, Textfield */
 	container : function($elem, o) {
-		var self = this;
+		var self = this,
+			divTopic = '_s2j_div_load_' + o.id,
+			divEffectTopic = '_s2j_div_effect_' + o.id,
+			ui = $.struts2_jquery_ui,
+			effect = {},
+			bindel = $elem,
+			eventsStr = 'click';
+		
 		self.log('container : ' + o.id);
 		self.action($elem, o, self.handler.load, 'div');
-		var divTopic = '_s2j_div_load_' + o.id;
-		var divEffectTopic = '_s2j_div_effect_' + o.id;
-		var ui = $.struts2_jquery_ui;
 
 		// load div using ajax only when href is specified or form is defined
 		if ((o.formids && !o.type) || (o.href && o.href !== '#')) {
@@ -659,14 +655,13 @@
 				self.subscribeTopics($elem, divTopic, self.handler.load, o);
 
 				if (o.bindon) {
-					var $bindElement = $('#' + o.bindon);
 					if (o.events) {
 						$.each(o.events.split(','), function(i, event) {
-							$bindElement.publishOnEvent(event, divTopic, o);
+							$('#' + o.bindon).publishOnEvent(event, divTopic, o);
 						});
 					}
 					else {
-						$bindElement.publishOnEvent('click', divTopic, o);
+						$('#' + o.bindon).publishOnEvent('click', divTopic, o);
 					}
 				}
 				else if (!o.deferredloading) {
@@ -687,7 +682,6 @@
 		}
 		else {
 			if (o.id && o.effect) {
-				var effect = {};
 				effect.targets = o.id;
 				effect.effect = o.effect;
 				effect.effectoptions = o.effectoptions;
@@ -697,8 +691,6 @@
 
 			if (o.events || o.bindon) {
 
-				var bindel = $elem;
-				var eventsStr = 'click';
 				if (o.bindon) {
 					bindel = $(self.escId(o.bindon));
 				}
@@ -789,7 +781,8 @@
 
 	/** Handle the Anchor Element */
 	anchor : function($elem, o) {
-		var self = this;
+		var self = this,
+			formTopic = '_s2j_form_topic_' + o.id;
 		self.log('anchor : ' + o.id);
 
 		if (o.onclick) {
@@ -806,7 +799,6 @@
 		}
 
 		if ((!o.href || o.href==='#') && o.formids) {
-			var formTopic = '_s2j_form_topic_' + o.id;
 			self.formsubmit($elem, o, formTopic);
 		}
 		else {
@@ -825,12 +817,12 @@
 
 	/** Handle dynamic Select Boxes */
 	select : function($elem, o) {
-		var self = this;
+		var self = this,
+			selectTopic = '_s2j_topic_load_' + o.id;
 		self.log('select : ' + o.id);
 		if (!self.loadAtOnce) {
 			self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
 		}
-		var selectTopic = '_s2j_topic_load_' + o.id;
 
 		if (o.href && o.href !== '#') {
 
@@ -857,8 +849,9 @@
 
 	/** Handle the Submit Button */
 	button : function($elem, o) {
-		var self = this;
-		var formTopic = '_s2j_form_topic_' + o.id;
+		var self = this,
+			formTopic = '_s2j_form_topic_' + o.id,
+			cform,cf,formid,randomid;
 
 		o.preventAction = true;
 		
@@ -883,15 +876,15 @@
 				}
 			}
 			else {
-				var cform = $elem.parents('form:first')[0];
+				cform = $elem.parents('form:first')[0];
 				if (cform !== undefined) {
-					var cf = $(cform);
-					var formid = cf.attr("id");
+					cf = $(cform);
+					formid = cf.attr("id");
 					if (formid !== undefined) {
 						o.formids = formid;
 					}
 					else {
-						var randomid = 's2jqform' + Math.floor(Math.random() * 10000);
+						randomid = 's2jqform' + Math.floor(Math.random() * 10000);
 						cf.attr('id', randomid);
 						o.formids = randomid;
 					}
@@ -918,7 +911,8 @@
 
 	/** Handle all AJAX Forms submitted from Anchor or Submit Button */
 	formsubmit : function($elem, o, topic) {
-		var self = this;
+		var self = this,
+			params = {};
 		o.actionTopic = topic;
 		self.log('formsubmit : ' + o.id);
 		if (!self.loadAtOnce) {
@@ -931,7 +925,7 @@
 
 			self.subscribeTopics($elem, topic, self.handler.form, o);
 			$.each(o.targets.split(','), function(i, target) {
-				self.subscribeTopics($(self.escId(target)), topic, self.handler.effect, o);
+				self.subscribeTopics($(self.escId(target)), "_sj_div_effect_" + target + o.id, self.handler.effect, o);
 				if (self.ajaxhistory) {
 					self.history($elem, topic, target);
 				}
@@ -949,15 +943,15 @@
 		else {
 			// Submit Forms without AJAX
 			$elem.click( function(e) {
-				var form = $(self.escId(o.formids));
-				var orginal = {};
+				var form = $(self.escId(o.formids)),
+					orginal = {};
 				orginal.formvalidate = true; 
 				e.preventDefault(); 
 				if (o.validate) {
 					orginal.formvalidate = self.validateForm(form, o);
 					if (o.onaftervalidationtopics) {
 						$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
-							$elem.publish(topic, elem, orginal);
+							$elem.publish(topic, $elem, orginal);
 						});
 					}  
 				}
@@ -968,18 +962,16 @@
 				return false;
 			});
 			if(o.listentopics) {
-				var params = {};
 				params.formids = o.formids;
 				params.validate = o.validate;
 				$elem.subscribe(o.listentopics, function(event) {
-					var form = $(self.escId(event.data.formids));
-					var orginal = {};
-					orginal.formvalidate = true; 
-					var submitForm = true;
+					var form = $(self.escId(event.data.formids)),
+						orginal = {formvalidate : true};
+					
 					if (event.data.validate) {
 						orginal.formvalidate = self.validateForm(form, o);
 						$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
-							$elem.publish(topic, elem, orginal);
+							$elem.publish(topic, $elem, orginal);
 						});
 					}
 
@@ -989,7 +981,7 @@
 				}, params);
 			}
 		}
-	},
+	}
 
 	};
 
@@ -999,19 +991,25 @@
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.load, function(event, data) {
 
-		var _s2j = $.struts2_jquery;
-
-		var container = $(event.target);
-		var o = {};
+		var s2j = $.struts2_jquery,
+			container = $(event.target),
+			cid,
+			o = {},
+			isDisabled = false,
+			indi, always,
+			modus = 'html',
+			params = {};
+			
 		if (data) {
 			$.extend(o, data);
 		}
 		if (event.data) {
 			$.extend(o, event.data);
 		}
-		_s2j.lasttopic = o.actionTopic;
-
-		var isDisabled = false;
+		s2j.lasttopic = o.actionTopic;
+		indi = o.indicatorid;
+		always = o.onalw;
+		
 		isDisabled = o.disabled === null ? isDisabled : o.disabled;
 		isDisabled = container.prop('disabled');
 		if (event.originalEvent) { // means that container load is being triggered by other action (link button/link click) need to see if that button/link is disabled
@@ -1023,11 +1021,7 @@
 			// Show indicator element (if any)
 			if (o) {
 
-				var indi = o.indicatorid;
-				_s2j.showIndicator(o.indicatorid);
-				var onAlwaysTopics = o.onalw;
-
-				var modus = 'html';
+				s2j.showIndicator(indi);
 				if (o.type) {
 					if (o.type === 'text') {
 						modus = 'value';
@@ -1054,21 +1048,20 @@
 								container.val(o.loadingtext);
 							}
 						}
-						else if (_s2j.defaults.loadingText !== null) {
+						else if (s2j.defaults.loadingText !== null) {
 							if (modus === 'html') {
-								container.html(_s2j.defaults.loadingText);
+								container.html(s2j.defaults.loadingText);
 							}
 							else {
-								container.val(_s2j.defaults.loadingText);
+								container.val(s2j.defaults.loadingText);
 							}
 						}
 					}
 				}
-				var params = {};
 
-				params.success = _s2j.pubSuc(event.target, onAlwaysTopics, o.onsuc, indi, modus, o);
-				params.complete = _s2j.pubCom(event.target, onAlwaysTopics, o.oncom, o.targets, indi, o);
-				params.error = _s2j.pubErr(event.target, onAlwaysTopics, o.onerr, o.errortext, modus);
+				params.success = s2j.pubSuc(event.target, always, o.onsuc, indi, modus, o);
+				params.complete = s2j.pubCom(event.target, always, o.oncom, o.targets, indi, o);
+				params.error = s2j.pubErr(event.target, always, o.onerr, o.errortext, modus);
 
 				// load container using ajax
 				if (o.href) {
@@ -1085,11 +1078,11 @@
 					}
 
 					if (o.formids && params.data === '') {
-						if (!_s2j.loadAtOnce) {
-							_s2j.require("js/plugins/jquery.form" + _s2j.minSuffix + ".js");
+						if (!s2j.loadAtOnce) {
+							s2j.require("js/plugins/jquery.form" + s2j.minSuffix + ".js");
 						}
 						$.each(o.formids.split(','), function(i, fid) {
-							var query = $(_s2j.escId(fid)).formSerialize();
+							var query = $(s2j.escId(fid)).formSerialize();
 							if (params.data !== '') {
 								params.data = params.data + '&' + query;
 							}
@@ -1114,14 +1107,14 @@
 					o.options = params;
 					o.options.submit = true;
 					// publish all 'before' and 'always' topics
-					_s2j.publishTopic(container, onAlwaysTopics, o);
-					_s2j.publishTopic(container, o.onbef, o);
+					s2j.publishTopic(container, always, o);
+					s2j.publishTopic(container, o.onbef, o);
 
 					// Execute Ajax Request
 					if(o.options.submit){
-						var cid = container.attr('id');
-						_s2j.abortReq(cid);
-						_s2j.currentXhr[cid] = $.ajax(params);
+						cid = container.attr('id');
+						s2j.abortReq(container.attr('id'));
+						s2j.currentXhr[cid] = $.ajax(params);
 					}
 				}
 			}
@@ -1133,22 +1126,24 @@
 	 * Handler to submit a form with jquery.form.js plugin
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.form, function(event, data) {
-		var _s2j = $.struts2_jquery;
-
-		var container = $(event.target);
-		var elem = container;
+		var s2j = $.struts2_jquery,
+			elem = $(event.target),
+			o = {},
+			params = {},
+			indi,
+			always;
 
 		// need to also make use of original attributes registered with the container (such as onCompleteTopics)
-		var o = {};
 		if (data) {
 			$.extend(o, data);
 		}
 		if (event.data) {
 			$.extend(o, event.data);
 		}
-		_s2j.lasttopic = o.actionTopic;
+		s2j.lasttopic = o.actionTopic;
+		indi = o.indicatorid;
+		always = o.onalw;
 
-		var params = {};
 		if (o.href && o.href !== '#') {
 			params.url = o.href;
 			if (o.hrefparameter) {
@@ -1180,17 +1175,16 @@
 		params.target = '';
 		if (o.targets) {
 			$.each(o.targets.split(','), function(i, target) {
-				elem = $(_s2j.escId(target));
+				elem = $(s2j.escId(target));
 				if (params.target === '') {
-					params.target = _s2j.escId(target);
+					params.target = s2j.escId(target);
 				}
 				else {
-					params.target = params.target + ',#' + _s2j.escId(target);
+					params.target = params.target + ',#' + s2j.escId(target);
 				}
 			});
 		}
 
-		var indi = o.indicatorid;
 
 		params.beforeSubmit = function(formData, form, formoptions) {
 
@@ -1200,17 +1194,16 @@
 			orginal.options = formoptions;
 			orginal.options.submit = true;
 
-			_s2j.publishTopic(container, o.onalw, orginal);
+			s2j.publishTopic(elem, always, orginal);
 
 			if (o.onbef) {
 				$.each(o.onbef.split(','), function(i, topic) {
 					elem.publish(topic, elem, orginal);
-					var submitForm = orginal.options.submit;
 				});
 			}
 
 			if (o.validate) {
-				orginal.options.submit = _s2j.validateForm(form, o);
+				orginal.options.submit = s2j.validateForm(form, o);
 				orginal.formvalidate = orginal.options.submit; 
 				if (o.onaftervalidationtopics) {
 					$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
@@ -1219,16 +1212,16 @@
 				}  
 			}
 			if (orginal.options.submit) {
-				_s2j.showIndicator(indi);
+				s2j.showIndicator(indi);
 				if(!o.datatype || o.datatype !== "json") {
 					if (o.loadingtext && o.loadingtext !== "false") {
 						$.each(o.targets.split(','), function(i, target) {
-							$(_s2j.escId(target)).html(o.loadingtext);
+							$(s2j.escId(target)).html(o.loadingtext);
 						});
 					}
-					else if (_s2j.defaults.loadingText !== null) {
+					else if (s2j.defaults.loadingText !== null) {
 						$.each(o.targets.split(','), function(i, target) {
-							$(_s2j.escId(target)).html(_s2j.defaults.loadingText);
+							$(s2j.escId(target)).html(s2j.defaults.loadingText);
 						});
 					}
 				}
@@ -1236,13 +1229,13 @@
 			return orginal.options.submit;
 		};
 
-		params.success = _s2j.pubSuc(elem, o.onalw, o.onsuc, indi, 'form', o);
-		params.complete = _s2j.pubCom(elem, o.onalw, o.oncom, o.targets, indi, o);
-		params.error = _s2j.pubErr(elem, o.onalw, o.onerr, o.errortext, 'html');
+		params.success = s2j.pubSuc(elem, always, o.onsuc, indi, 'form', o);
+		params.complete = s2j.pubCom(elem, always, o.oncom, o.targets, indi, o);
+		params.error = s2j.pubErr(elem, always, o.onerr, o.errortext, 'html');
 
 		$.each(o.formids.split(','), function(i, fid) {
-			_s2j.log('submit form : ' + fid);
-			$(_s2j.escId(fid)).ajaxSubmit(params);
+			s2j.log('submit form : ' + fid);
+			$(s2j.escId(fid)).ajaxSubmit(params);
 		});
 
 		return false;
@@ -1253,13 +1246,15 @@
 	 * Register handler for effects
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.effect, function(event, data) {
-		var _s2j = $.struts2_jquery;
+		var s2j = $.struts2_jquery,
+			o = {},
+			eo = {},
+			duration = 2000,
+			callback = null,
+			tar = null;
 
-		var o = {};
 		$.extend(o, event.data);
 		if (o.targets && o.effect) {
-			var eo = {};
-			var duration = 2000;
 			if (o.effectoptions) {
 				eo = o.effectoptions;
 			}
@@ -1267,33 +1262,38 @@
 				duration = o.effectduration;
 			}
 
-			var callback;
-			var tar = $(_s2j.escId(o.targets));
 			if(o.oneffect) {
 
-				$.subscribe(tar, o.oneffect, o);
+				$.each(o.targets.split(','), function(i, target) {
+					$.subscribe($(s2j.escId(target)), o.oneffect, o);
+				});
 
 				callback = function () {
-					_s2j.publishTopic(tar, o.oneffect, o);
+					$.each(o.targets.split(','), function(i, target) {
+						s2j.publishTopic($(s2j.escId(target)), o.oneffect, o);
+					});
 				};
 			}
 
-			if (!_s2j.loadAtOnce) {
-				_s2j.require( [ "js/base/jquery.effects.core" + _s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + _s2j.minSuffix + ".js" ]);
+			if (!s2j.loadAtOnce) {
+				s2j.require( [ "js/base/jquery.effects.core" + s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + s2j.minSuffix + ".js" ]);
 			}
-			_s2j.log('effect ' + o.effect + ' for ' + o.targets);
-			if(!o.effectmode || o.effectmode === 'none' ) {
-				tar.effect(o.effect, eo, duration, callback);
-			}
-			else if (o.effectmode === 'show') {
-				tar.show(o.effect, eo, duration, callback);
-			}
-			else if (o.effectmode === 'hide') {
-				tar.hide(o.effect, eo, duration, callback);
-			}
-			else if (o.effectmode === 'toggle') {
-				tar.toggle(o.effect, eo, duration, callback);
-			}
+			s2j.log('effect ' + o.effect + ' for ' + o.targets);
+			$.each(o.targets.split(','), function(i, target) {
+				tar = $(s2j.escId(target));
+				if(!o.effectmode || o.effectmode === 'none' ) {
+					tar.effect(o.effect, eo, duration, callback);
+				}
+				else if (o.effectmode === 'show') {
+					tar.show(o.effect, eo, duration, callback);
+				}
+				else if (o.effectmode === 'hide') {
+					tar.hide(o.effect, eo, duration, callback);
+				}
+				else if (o.effectmode === 'toggle') {
+					tar.toggle(o.effect, eo, duration, callback);
+				}
+			});
 		}
 	});
 

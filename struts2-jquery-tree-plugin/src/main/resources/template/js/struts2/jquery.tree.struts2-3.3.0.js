@@ -15,13 +15,12 @@
 
 /*global jQuery, window,  */
 (function ($) {
+	"use strict";
 
 	/**
 	 * Bind a Tree to Struts2 Component
 	 */
 	$.struts2_jquery_tree = {
-
-		debugPrefix : '[struts2_jquery_tree] ',
 
 		// Render a Tree
 		tree : function ($elem, o) {
@@ -107,12 +106,12 @@
 			if(o.onclick || (o.url && o.nodeHref)) {
 				o.plugins.push("ui"); 
 				$elem.bind('select_node.jstree', function (event, data){
-					var orginal = {};
+					var orginal = {}, url;
 					orginal.data = data;
 					orginal.event = event;
 					self.publishTopic($elem, o.onclick, orginal);
 					if(o.url && o.nodeHref){
-						var url = self.addParam(o.nodeHref, nodeHrefParamName+"="+data.rslt.obj.attr("id"));
+						url = self.addParam(o.nodeHref, o.nodeHrefParamName+"="+data.rslt.obj.attr("id"));
 						if(o.nodeTargets) {
 							// Handle AJAX Requests
 							$.each(o.nodeTargets.split(','), function(i, target) {
@@ -154,5 +153,6 @@
 
 	// Extend it from orginal plugin
 	$.extend(true, $.struts2_jquery_tree, $.struts2_jquery);
+	$.struts2_jquery_tree.debugPrefix = "[struts2_jquery_tree] ";
 
 })(jQuery);

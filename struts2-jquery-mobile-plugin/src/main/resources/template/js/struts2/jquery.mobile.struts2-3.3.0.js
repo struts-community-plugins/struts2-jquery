@@ -15,16 +15,16 @@
 
 /*global jQuery, window,  */
 (function($) {
+	"use strict";
 
 	/**
 	 * Bind Mobile Elements to Struts2 Component
 	 */
 	$.struts2_jquery_mobile = {
-
-		debugPrefix : '[struts2_jquery_mobile] '
 	};
 
 	// Extend it from orginal plugin
 	$.extend(true, $.struts2_jquery_mobile, $.struts2_jquery);
-
+	$.struts2_jquery_mobile.debugPrefix = "[struts2_jquery_mobile] ";
+	
 })(jQuery);

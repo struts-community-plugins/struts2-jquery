@@ -15,18 +15,21 @@
 
 /*global jQuery, window,  */
 (function($) {
+	"use strict";
 
 	/**
 	 * Bind a Chart to Struts2 Component
 	 */
 	$.struts2_jquery_chart = {
 
-		debugPrefix : '[struts2_jquery_chart] ',
 		charts : [],
 
 		// Render a Chart Area
 		chart : function($elem, o) {
-			var self = this;
+			var self = this,
+				ajaxData = [],
+				chartTopic = '_s2j_chart_topic',
+				plot;
 			if ($.browser.msie && parseInt($.browser.version, 10) < 9) {
 				self.require("js/flot/excanvas" + self.minSuffix + ".js");
 			}
@@ -38,7 +41,6 @@
 				self.require("js/flot/jquery.flot.pie" + self.minSuffix + ".js");
 			}
 
-			var ajaxData = [];
 			self.charts[o.id] = [];
 			$.each(o.data, function(i, d) {
 				if(d.href) {
@@ -61,7 +63,7 @@
 				}
 			}
 
-			var plot = $.plot($elem, self.charts[o.id], o);
+			plot = $.plot($elem, self.charts[o.id], o);
 
 			if(o.onclick) {
 				$elem.bind("plotclick", function (event, pos, item) {
@@ -84,7 +86,6 @@
 				});
 			}
 
-			var chartTopic = '_s2j_chart_topic';
 			$.each(ajaxData, function(i, ad) {
 				var topic = chartTopic+i;
 				self.subscribeTopics($elem, topic, '_s2j_chart', ad);
@@ -99,16 +100,18 @@
 
 	// Extend it from orginal plugin
 	$.extend(true, $.struts2_jquery_chart, $.struts2_jquery);
+	$.struts2_jquery_chart.debugPrefix = "[struts2_jquery_chart] ";
 
 	/**
 	 * Chart logic Register handler to load a chart
 	 */
 	$.subscribeHandler('_s2j_chart', function(event, data) {
 
-		var _s2j = $.struts2_jquery;
-
-		var c = $(event.target);
-		var o = {};
+		var s2j = $.struts2_jquery,
+			c = $(event.target),
+			params = {},
+			o = {},
+			indi;
 		if (data) {
 			$.extend(o, data);
 		}
@@ -116,62 +119,63 @@
 			$.extend(o, event.data);
 		}
 
-		var indi = o.indicatorid;
-		_s2j.showIndicator(indi);
+		indi = o.indicatorid;
+		s2j.showIndicator(indi);
 
 		// publish all 'before' and 'always' topics
-		_s2j.publishTopic(c, o.onalw, o);
-		_s2j.publishTopic(c, o.onbef, o);
+		s2j.publishTopic(c, o.onalw, o);
+		s2j.publishTopic(c, o.onbef, o);
 
-		var params = {};
-		params.complete = _s2j.pubCom(event.target, o.onalw, o.oncom, o.targets, indi, o);
-		params.error = _s2j.pubErr(event.target, o.onalw, o.onerr, o.errortext, 'html');
+		params.complete = s2j.pubCom(event.target, o.onalw, o.oncom, o.targets, indi, o);
+		params.error = s2j.pubErr(event.target, o.onalw, o.onerr, o.errortext, 'html');
 
 		params.success = function(data, status, request) {
 
-			var orginal = {};
+			var orginal = {},
+				x = 0,
+				isMap = false,
+				isFetched = false,
+				floatOptions = o.plot,
+				result = [];
+
 			orginal.data = data;
 			orginal.status = status;
 			orginal.request = request;
 
-			var x = 0;
 			if (data[o.list] !== null) {
-				var isMap = false;
 				if (!$.isArray(data[o.list])) {
 					isMap = true;
 				}
-				var result = [];
 				$.each(data[o.list], function(j, val) {
+					var value;
 					if (isMap) {
-						var mapValue = [];
-						mapValue.push(j);
-						mapValue.push(val);
-						result.push(mapValue);
+						value = [];
+						value.push(j);
+						value.push(val);
+						result.push(value);
 					}
 					else {
 						if (o.listkey !== undefined && o.listvalue !== undefined) {
-							var listValue = [];
-							listValue.push(val[o.listkey]);
-							listValue.push(val[o.listvalue]);
-							result.push(listValue);
+							value = [];
+							value.push(val[o.listkey]);
+							value.push(val[o.listvalue]);
+							result.push(value);
 						}
 						else {
-							var arrayValue = [];
-							arrayValue.push(x);
-							arrayValue.push(data[o.list][x]);
-							result.push(arrayValue);
+							value = [];
+							value.push(x);
+							value.push(data[o.list][x]);
+							result.push(value);
 						}
 					}
 					x++;
 				});
 				o.data = result;
-				var floatOptions = o.plot;
 				o.data = result;
 				o.plot = null;
 
-				var isFetched = false;
 				$.each($.struts2_jquery_chart.charts[floatOptions.id], function(j, val) {
-					if(val && val.id && val.id == o.id) {
+					if(val && val.id && val.id === o.id) {
 						isFetched = true;
 						val.data = result;
 					}
@@ -184,8 +188,8 @@
 			}
 
 			if (o.onsuc) {
-				_s2j.publishTopic(c, o.onsuc, orginal);
-				_s2j.publishTopic(c, o.onalw, orginal);
+				s2j.publishTopic(c, o.onsuc, orginal);
+				s2j.publishTopic(c, o.onalw, orginal);
 			}
 		};
 
@@ -204,11 +208,11 @@
 			}
 
 			if (o.formids && params.data === '') {
-				if (!_s2j.loadAtOnce) {
-					_s2j.require("js/plugins/jquery.form" + _s2j.minSuffix + ".js");
+				if (!s2j.loadAtOnce) {
+					s2j.require("js/plugins/jquery.form" + s2j.minSuffix + ".js");
 				}
 				$.each(o.formids.split(','), function(i, fid) {
-					var query = $(_s2j.escId(fid)).formSerialize();
+					var query = $(s2j.escId(fid)).formSerialize();
 					if (params.data !== '') {
 						params.data = params.data + '&' + query;
 					}
@@ -227,8 +231,8 @@
 
 			o.options = params;
 			// publish all 'before' and 'always' topics
-			_s2j.publishTopic(c, o.onalw, o);
-			_s2j.publishTopic(c, o.onbef, o);
+			s2j.publishTopic(c, o.onalw, o);
+			s2j.publishTopic(c, o.onbef, o);
 
 			// Execute Ajax Request
 			$.ajax(params);

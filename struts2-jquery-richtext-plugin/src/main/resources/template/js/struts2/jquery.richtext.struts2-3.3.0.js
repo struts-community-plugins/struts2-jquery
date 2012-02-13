@@ -15,13 +15,13 @@
 
 /*global jQuery, window, CKEDITOR, tinyMCE, tinymce */
 (function($) {
+	"use strict";
 
 	/**
 	 * Bind a Richtext Editor to Struts2 Component
 	 */
 	$.struts2_jquery_richtext = {
 
-		debugPrefix : '[struts2_jquery_richtext] ',
 		editors : [],
 		editorsTinymce : [],
 		ckeditorTimer : undefined,
@@ -35,7 +35,7 @@
 			$.each(self.editors, function(i, editor) {
 				var inst = CKEDITOR.instances[editor];
 				if ($elem.length === 0 || !inst || inst.textarea !== $elem[0]) {
-					$.struts2_jquery_richtext.editors.splice(i);
+					self.editors.splice(i);
 					delete CKEDITOR.instances[editor];
 				}
 			});
@@ -43,19 +43,21 @@
 
 		// Handle CKEditor
 		ckeditor : function($elem, o) {
-			var self = this;
+			var self = this,
+				inst = CKEDITOR.instances[o.id],
+				ckeditorTopic = 's2j_ckeditor_' + o.id,
+				callbackFunction;
 			self.log('ckeditor for : ' + o.id);
 			self.require("js/ckeditor/ckeditor.js");
 			self.require("js/ckeditor/adapters/jquery.js");
 
-			var inst = CKEDITOR.instances[o.id];
 			if (inst) {
 				CKEDITOR.remove(inst);
 			}
 
 			self.clean($elem);
 
-			var callbackFunction = function() {
+			callbackFunction = function() {
 				self.editors[self.editors.length] = o.id;
 				if (o.onEditorReadyTopics) {
 					var data = {};
@@ -78,7 +80,6 @@
 			}
 
 			if (o.href && o.href !== '#') {
-				var ckeditorTopic = 's2j_ckeditor_' + o.id;
 
 				// If Topic already subscribed, then remove it and subscribe it
 				// again
@@ -155,7 +156,8 @@
 		*/
 		// Handle Tinymce
 		tinymce : function($elem, o) {
-			var self = this;
+			var self = this,
+				tinymceTopic = 's2j_tinymce_' + o.id;
 			self.log('tinymce for : ' + o.id);
 			self.require("js/tinymce/jquery.tinymce.js");
 
@@ -218,8 +220,8 @@
 				ed.onInit.add(function(ed) {
 					tinyMCE.execCommand('mceRepaint');
 
-					var dom = ed.dom;
-					var doc = ed.getDoc();
+					var dom = ed.dom,
+						doc = ed.getDoc();
 
 					if (o.onblurtopics) {
 						tinymce.dom.Event.add(doc, 'blur', function(e) {
@@ -271,7 +273,6 @@
 			}
 
 			if (o.href && o.href !== '#') {
-				var tinymceTopic = 's2j_tinymce_' + o.id;
 
 				// If Topic already subscribed, then remove it and subscribe it
 				// again
@@ -298,5 +299,6 @@
 
 	// Extend it from orginal plugin
 	$.extend(true, $.struts2_jquery_richtext, $.struts2_jquery);
+	$.struts2_jquery_richtext.debugPrefix = "[struts2_jquery_richtext] ";
 
 })(jQuery);

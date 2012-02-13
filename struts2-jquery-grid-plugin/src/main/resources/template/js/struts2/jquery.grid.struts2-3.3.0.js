@@ -17,13 +17,13 @@
 /*jslint evil: true */
 
 (function($) {
+	"use strict";
 
 	/**
 	 * Bind jqGrid to Struts2 Component
 	 */
 	$.struts2_jquery_grid = {
 
-		debugPrefix : '[struts2_jquery_grid] ',
 		lastselectedrow : '',
 		navigatorButtons : function($elem, buttons, pager) {
 			var self = this;
@@ -77,24 +77,23 @@
 			var self = this;
 			if (o.onselectrowtopics || (o.editurl && o.editinline === true)) {
 				params.onSelectRow = function(id, status) {
-					var data = {};
+					var data = {},
+						oneditbefor = null,
+						onsuccess = null,
+						onerror = null,
+						onaftersave = null;
+					
 					data.id = id;
 					data.status = status;
 					data.grid = $elem;
 	
 					self.publishTopic($elem, o.onalw, data);
-					$.struts2_jquery.publishTopic($elem, o.onselectrowtopics,
-							data);
+					$.struts2_jquery.publishTopic($elem, o.onselectrowtopics, data);
 					if (o.editurl && o.editinline === true && o.navinline === false) {
-						if ($.struts2_jquery_grid.lastselectedrow !== '') {
-							$elem.jqGrid('restoreRow',
-									$.struts2_jquery_grid.lastselectedrow);
+						if (self.lastselectedrow !== '') {
+							$elem.jqGrid('restoreRow',	self.lastselectedrow);
 						}
-						$.struts2_jquery_grid.lastselectedrow = id;
-						var oneditbefor = null,
-							onsuccess = null,
-							onerror = null,
-							onaftersave = null;
+						self.lastselectedrow = id;
 	
 						if (o.oneibefore) {
 							oneditbefor = function() {
@@ -262,6 +261,18 @@
 	
 			params.gridComplete = function() {
 
+				var daos = o.draggableoptions,
+				dao = window[daos],
+				doos = o.droppableoptions,
+				doo = window[doos],
+				soos = o.sortableoptions,
+				soo = window[soos],
+				ros = o.resizableoptions,
+				ro = window[ros],
+				ddo = {},
+				navparams = {},
+				fpara = {};
+
 				if(!$elem.data('_s2jg_init')) {
 					$elem.data('_s2jg_init', true);
 					if (o.draggable && o.droppable) {
@@ -270,11 +281,7 @@
 							self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.ui.droppable" + self.minSuffix + ".js" ]);
 						}
 						
-						var daos = o.draggableoptions,
-							doos = o.droppableoptions,
-							ddo = {};
 
-						var dao = window[daos];
 						if (!dao) {
 							dao = eval("( " + daos + " )");
 						} else {
@@ -282,7 +289,6 @@
 						}
 						dao.drap = self.pubTops($elem, o.onalw, o.draggableondragtopics);
 	
-						var doo = window[doos];
 						if (!doo) {
 							doo = eval("( " + doos + " )");
 						} else {
@@ -306,8 +312,6 @@
 					if (o.sortableRows) {
 						self.log('sortable rows for : ' + o.id);
 						
-						var soos = o.sortableoptions;
-						var soo = window[soos];
 						if (!soo) {
 							soo = eval("( " + soos + " )");
 						} else {
@@ -329,7 +333,6 @@
 					}
 	
 					if (o.navigator) {
-						var navparams = {};
 						navparams.add = o.navigatoradd;
 						navparams.del = o.navigatordel;
 						navparams.edit = o.navigatoredit;
@@ -349,7 +352,6 @@
 						}
 					}
 					if (o.filter) {
-						var fpara = {};
 						if (o.filteroptions) {
 							fpara = o.filteroptions;
 						}
@@ -363,8 +365,6 @@
 						if (!self.loadAtOnce) {
 							self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js" ]);
 						}
-						var ros = o.resizableoptions;
-						var ro = window[ros];
 						if (!ro) {
 							ro = eval("( " + ros + " )");
 						} else {
@@ -440,7 +440,13 @@
 				params.gridview = false;
 				params.subGridRowExpanded = function(subgrid_id, row_id) {
 					
-					var orginal = {};
+					var orginal = {},
+						so = o.subgridoptions,
+						subgridtableid = subgrid_id + "_table",
+						subgrid = $(self.escId(subgrid_id)),
+						subgridhtml = "<table id='" + subgridtableid + "' class='scroll'></table>",
+						to = so.url.indexOf('?');
+					
 					orginal.proceed = true;
 					
 					if(o.onsgrowexpanded){
@@ -452,10 +458,6 @@
 					}
 					
 					if(orginal.proceed) {
-						var so = o.subgridoptions;
-						var subgridtableid = subgrid_id + "_table";
-						var subgrid = $(self.escId(subgrid_id));
-						var subgridhtml = "<table id='" + subgridtableid + "' class='scroll'></table>";
 						if ((so.pager && so.pager !== "") || so.navigator) {
 							subgridhtml = subgridhtml + "<div id='" + subgrid_id+ "_pager'></div>";
 							so.pager = subgrid_id + "_pager";
@@ -464,30 +466,28 @@
 							so.navigatordeleteoptions = $.extend(true,so.navigatordeleteoptions||{}, {delData:{rowid:row_id}});
 						}
 						
-            $.each(so.colModel, function(i, col) {
-              if(col.editoptions && col.editoptions.dataUrl){
-              	if(col.editoptions.dataUrl.indexOf("rowid") > 0) {
-//              		col.editoptions.dataUrl = col.editoptions.dataUrl.replace(/(rowid=).*?(&)/,'$1' + row_id + '$2'); 
-                	col.editoptions.dataUrl = self.changeParam(col.editoptions.dataUrl, "rowid", row_id);
-              	}
-              	else {
-                	col.editoptions.dataUrl = self.addParam(col.editoptions.dataUrl, "rowid="+row_id);
+						$.each(so.colModel, function(i, col) {
+							if(col.editoptions && col.editoptions.dataUrl){
+								if(col.editoptions.dataUrl.indexOf("rowid") > 0) {
+									col.editoptions.dataUrl = self.changeParam(col.editoptions.dataUrl, "rowid", row_id);
 								}
-              }
-              if(col.searchoptions && col.searchoptions.dataUrl){
-              	if(col.searchoptions.dataUrlindexOf("rowid") > 0) {
-                	col.searchoptions.dataUrl = self.changeParam(col.searchoptions.dataUrl, "rowid", row_id);
-              	}
-              	else {
-                	col.searchoptions.dataUrl = self.addParam(col.searchoptions.dataUrl, "rowid="+row_id);
+								else {
+									col.editoptions.dataUrl = self.addParam(col.editoptions.dataUrl, "rowid="+row_id);
 								}
-              }
-            });
+							}
+							if(col.searchoptions && col.searchoptions.dataUrl){
+								if(col.searchoptions.dataUrlindexOf("rowid") > 0) {
+									col.searchoptions.dataUrl = self.changeParam(col.searchoptions.dataUrl, "rowid", row_id);
+								}
+								else {
+									col.searchoptions.dataUrl = self.addParam(col.searchoptions.dataUrl, "rowid="+row_id);
+								}
+							}
+						});
 						
 						subgrid.html(subgridhtml);
 	
 						if (so.url) {
-							var to = so.url.indexOf('?');
 							if (to > 0) {
 								so.url = so.url.substring(0, to);
 							}
@@ -518,13 +518,14 @@
 						}
 					});
 				}
-				params.url = self.addParam(o.url, data)
+				params.url = self.addParam(o.url, data);
 			}
 			
 			return params;
 		},
 		grid : function($elem, o) {
-			var self = this;
+			var self = this,
+				params = {};
 			self.log('grid for : ' + o.id);
 			self.require("i18n/grid.locale-" + self.gridLocal + ".js",
 					function() {
@@ -538,7 +539,6 @@
 					self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.sortable" + self.minSuffix + ".js" ]);
 				}
 			}
-			var params = {};
 			$.extend(params, o);
 
 			$elem.data('_s2jg_init', false);
@@ -551,23 +551,25 @@
 
 	// Extend it from orginal plugin
 	$.extend(true, $.struts2_jquery_grid, $.struts2_jquery);
+	$.struts2_jquery_grid.debugPrefix = "[struts2_jquery_grid] ";
 
 	// Register handler for reloading grid
 	$.subscribeHandler('_s2j_reloadgrid', function(event, data) {
-		var _s2jg = $.struts2_jquery_grid;
+		var s2jg = $.struts2_jquery_grid,
+			o = {},
+			formdata = '',
+			grid;
 
-		var o = {};
 		$.extend(o, event.data);
 		if (o.id) {
 
 			if (o.url && o.formids) {
-				var formdata = '';
 				if (o.formids) {
-					if (!_s2jg.loadAtOnce) {
-						_s2jg.require("js/plugins/jquery.form" + _s2jg.minSuffix + ".js");
+					if (!s2jg.loadAtOnce) {
+						s2jg.require("js/plugins/jquery.form" + s2jg.minSuffix + ".js");
 					}
 					$.each(o.formids.split(','), function(i, fid) {
-						var query = $(_s2jg.escId(fid)).formSerialize();
+						var query = $(s2jg.escId(fid)).formSerialize();
 						if (formdata !== '') {
 							formdata = formdata + '&' + query;
 						} else {
@@ -575,13 +577,13 @@
 						}
 					});
 				}
-				o.url = _s2jg.addParam(o.url, formdata)
+				o.url = s2jg.addParam(o.url, formdata);
 			}
-			var grid = $(_s2jg.escId(o.id));
+			grid = $(s2jg.escId(o.id));
 			grid.jqGrid('setGridParam', {
 				url : o.url
 			});
-			_s2jg.log('reload grid ' + o.id);
+			s2jg.log('reload grid ' + o.id);
 			grid.trigger("reloadGrid");
 		}
 	});
