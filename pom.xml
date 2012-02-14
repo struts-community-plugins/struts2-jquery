@@ -88,6 +88,7 @@
         <module>struts2-jquery-showcase</module>
         <module>struts2-jquery-grid-showcase</module>
         <module>struts2-jquery-mobile-showcase</module>
+        <module>struts2-jquery-archetypes</module>
     </modules>
 
     <build>
