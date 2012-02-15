@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${project.version}</version>
+	<groupId>\${groupId}</groupId>
+	<artifactId>\${artifactId}</artifactId>
+	<version>\${version}</version>
     <packaging>war</packaging>
-    <name>Struts2 jQuery Base Webapp</name>
+    <name>${artifactId}</name>
 
     <properties>
         <struts2.version>2.3.1.2</struts2.version>
-        <struts2.jquery.version>${project.version}</struts2.jquery.version>
+        <struts2-jquery.version>${version}</struts2-jquery.version>
     </properties>
 
     <dependencies>
@@ -43,33 +43,8 @@
         <dependency>
             <groupId>com.jgeppert.struts2.jquery</groupId>
             <artifactId>struts2-jquery-plugin</artifactId>
-            <version>${project.version}</version>
+            <version>${struts2-jquery.version}</version>
         </dependency>
-
-		<!-- Uncomment following dependencies if you need them  -->		
-        <!-- dependency>
-            <groupId>com.jgeppert.struts2.jquery</groupId>
-            <artifactId>struts2-jquery-grid-plugin</artifactId>
-            <version>${struts2.jquery.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jgeppert.struts2.jquery</groupId>
-            <artifactId>struts2-jquery-richtext-plugin</artifactId>
-            <version>${struts2.jquery.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jgeppert.struts2.jquery</groupId>
-            <artifactId>struts2-jquery-chart-plugin</artifactId>
-            <version>${struts2.jquery.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jgeppert.struts2.jquery</groupId>
-            <artifactId>struts2-jquery-tree-plugin</artifactId>
-            <version>${struts2.jquery.version}</version>
-        </dependency -->
 
         <dependency>
             <groupId>commons-logging</groupId>

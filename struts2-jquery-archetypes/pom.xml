@@ -9,7 +9,7 @@
     <groupId>com.jgeppert.struts2.jquery</groupId>
    	<artifactId>struts2-jquery-archetypes</artifactId>
     <packaging>pom</packaging>
-    <name>Struts2 jQuery Maven Archetypes</name>
+    <name>Struts 2 jQuery Maven Archetypes</name>
 
     <scm>
         <connection>scm:svn:http://struts2-jquery.googlecode.com/svn/trunk/archetypes</connection>

@@ -5,7 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 /**
  * <code>Set welcome message.</code>
  */
-public class HelloAction extends ActionSupport {
+public class DialogContentAction extends ActionSupport {
 
     public String execute() throws Exception {
         setMessage(getText(MESSAGE));
@@ -13,7 +13,7 @@ public class HelloAction extends ActionSupport {
     }
 
     /**
-     * Provide default valuie for Message property.
+     * Provide default value for Message property.
      */
     public static final String MESSAGE = "hello.message";
 
@@ -34,7 +34,7 @@ public class HelloAction extends ActionSupport {
     /**
      * Set Message property.
      *
-     * @param message Text to display on HelloWorld page.
+     * @param message Text to display on dialog-content page.
      */
     public void setMessage(String message) {
         this.message = message;

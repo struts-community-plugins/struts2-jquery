@@ -10,7 +10,5 @@ public class HelloActionTest extends StrutsTestCase {
         String result = hello.execute();
         assertTrue("Expected a success result!",
                 ActionSupport.SUCCESS.equals(result));
-        assertTrue("Expected the default message!",
-                hello.getText(HelloAction.MESSAGE).equals(hello.getMessage()));
     }
 }
