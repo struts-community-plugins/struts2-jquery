@@ -44,13 +44,15 @@
 		// Handle CKEditor
 		ckeditor : function($elem, o) {
 			var self = this,
-				inst = CKEDITOR.instances[o.id],
+				inst,
 				ckeditorTopic = 's2j_ckeditor_' + o.id,
 				callbackFunction;
 			self.log('ckeditor for : ' + o.id);
 			self.require("js/ckeditor/ckeditor.js");
 			self.require("js/ckeditor/adapters/jquery.js");
 
+			inst = CKEDITOR.instances[o.id];
+			
 			if (inst) {
 				CKEDITOR.remove(inst);
 			}
