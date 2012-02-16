@@ -356,7 +356,7 @@
 		if (o.onremovetopics) {
 			para.remove = self.pubTops($elem, o.onalw, o.onremovetopics);
 		}
-		if (o.oncom) {
+		if (o.onloadtopics) {
 			para.load = self.pubTops($elem, o.onalw, o.oncom);
 		}
 

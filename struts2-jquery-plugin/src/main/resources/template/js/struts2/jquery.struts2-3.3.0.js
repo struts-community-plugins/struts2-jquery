@@ -604,11 +604,11 @@
 					tarelem = $elem;
 				}
 
-				self.subscribeTopics(tarelem, actionTopic, loadHandler, o);
+				self.subscribeTopics(tarelem, actionTopic + target, loadHandler, o);
 				self.subscribeTopics(tarelem, "_sj_div_effect_" + target + o.id, self.handler.effect, effect);
 
 				if (self.ajaxhistory) {
-					self.history($elem, actionTopic, target);
+					self.history($elem, actionTopic + target, target);
 				}
 			});
 		}
@@ -625,7 +625,9 @@
 
 		if (type === "a") {
 			$elem.click( function() {
-				$elem.publish(actionTopic);
+				$.each(o.targets.split(','), function(i, target) {
+					$elem.publish(actionTopic + target);
+				});
 				if(o.preventAction) {
 					return false;
 				}
