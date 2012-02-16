@@ -6,7 +6,7 @@
 	<artifactId>\${artifactId}</artifactId>
 	<version>\${version}</version>
     <packaging>war</packaging>
-    <name>${artifactId}</name>
+    <name>\${artifactId}</name>
 
     <properties>
         <struts2.version>2.3.1.2</struts2.version>
