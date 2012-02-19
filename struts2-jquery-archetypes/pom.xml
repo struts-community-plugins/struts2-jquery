@@ -12,13 +12,14 @@
     <name>Struts 2 jQuery Maven Archetypes</name>
 
     <scm>
-        <connection>scm:svn:http://struts2-jquery.googlecode.com/svn/trunk/archetypes</connection>
-        <developerConnection>scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/archetypes</developerConnection>
+        <connection>scm:svn:http://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-archetypes</connection>
+        <developerConnection>scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-archetypes</developerConnection>
         <url>http://code.google.com/p/struts2-jquery/source/browse/</url>
     </scm>
 
     <modules>
         <module>struts2-jquery-archetype-base</module>
+        <module>struts2-jquery-bootstrap-archetype-grid</module>
     </modules>
 
 </project>

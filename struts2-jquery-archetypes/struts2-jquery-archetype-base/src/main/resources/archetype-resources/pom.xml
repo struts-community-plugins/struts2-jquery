@@ -18,32 +18,32 @@
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-core</artifactId>
-            <version>${struts2.version}</version>
+            <version>\${struts2.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-convention-plugin</artifactId>
-            <version>${struts2.version}</version>
+            <version>\${struts2.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-junit-plugin</artifactId>
-            <version>${struts2.version}</version>
+            <version>\${struts2.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
           <groupId>org.apache.struts</groupId>
           <artifactId>struts2-config-browser-plugin</artifactId>
-          <version>${struts2.version}</version>
+          <version>\${struts2.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.jgeppert.struts2.jquery</groupId>
             <artifactId>struts2-jquery-plugin</artifactId>
-            <version>${struts2-jquery.version}</version>
+            <version>\${struts2-jquery.version}</version>
         </dependency>
 
         <dependency>
