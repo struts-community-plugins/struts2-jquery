@@ -934,7 +934,10 @@
 			$elem.autocomplete(params);
 		}
 		else {
-			self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/plugins/jquery.combobox" + self.minSuffix + ".js" ]);
+			if (!self.loadAtOnce) {
+				self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js" ]);
+			}
+			self.require([ "js/plugins/jquery.combobox" + self.minSuffix + ".js" ]);
 			if (o.selectBoxIcon) {
 				params.icon = true;
 			}
