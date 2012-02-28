@@ -116,9 +116,9 @@
 		}
 		$.each(files, function(i, file) {
 			
-			file = self.addParam(file, "s2j="+self.version);
+			file = self.addParam(file, "s2j="+$.struts2_jquery.version);
 			
-			if (!self.scriptCache[file]) {
+			if (!$.struts2_jquery.scriptCache[file]) {
 				self.log('load require script ' + (path + file));
 				$.ajax( {
 				type :"GET",
@@ -129,7 +129,7 @@
 				cache :true,
 				async :false
 				});
-				self.scriptCache[file] = true;
+				$.struts2_jquery.scriptCache[file] = true;
 			}
 		});
 	},

@@ -98,23 +98,9 @@
 </#if>
 
   <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
-<#if parameters.jqueryui?default(true)>
-  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryUiStrutsFile}"></script>
-
-    <#if parameters.jquerytheme?if_exists != "">
-		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
-        	<link id="jquery_theme_link" rel="stylesheet" href="${googleUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
-		<#else>
-        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=3.3.0" type="text/css"/>
-		</#if>
-    <#else>
-        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css?s2j=3.3.0" type="text/css"/>
-    </#if>
-</#if>
-
 
 <script type="text/javascript">
-jQuery(document).ready(function () {
+$(function() {
 	jQuery.struts2_jquery.version="3.3.0";
 <#if parameters.debug?default(false)>
 	jQuery.struts2_jquery.debug = true;
@@ -160,8 +146,25 @@ jQuery(document).ready(function () {
 		cache: false
 	</#if>
 	});
+	
+<#if parameters.jqueryui?default(true)>
+	jQuery.struts2_jquery.require("js/struts2/${jqueryUiStrutsFile}");
+</#if>
+	
 <#if parameters.ajaxhistory?default(false)>
 	jQuery(window).trigger('hashchange');
 </#if>
 });
 </script>
+
+<#if parameters.jqueryui?default(true)>
+    <#if parameters.jquerytheme?if_exists != "">
+		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
+        	<link id="jquery_theme_link" rel="stylesheet" href="${googleUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+		<#else>
+        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=3.3.0" type="text/css"/>
+		</#if>
+    <#else>
+        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css?s2j=3.3.0" type="text/css"/>
+    </#if>
+</#if>
