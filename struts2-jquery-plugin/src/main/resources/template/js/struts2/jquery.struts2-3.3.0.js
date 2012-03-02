@@ -625,9 +625,11 @@
 
 		if (type === "a") {
 			$elem.click( function() {
-				$.each(o.targets.split(','), function(i, target) {
-					$elem.publish(actionTopic + target);
-				});
+				if(o.targets) {
+					$.each(o.targets.split(','), function(i, target) {
+						$elem.publish(actionTopic + target);
+					});
+				}
 				if(o.preventAction) {
 					return false;
 				}
