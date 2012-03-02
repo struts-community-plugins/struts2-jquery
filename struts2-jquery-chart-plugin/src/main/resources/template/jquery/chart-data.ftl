@@ -64,10 +64,10 @@ options_${escapedOptionId?html}_data.bars = ${parameters.bars?html};
 <#if parameters.points?if_exists != "">
 options_${escapedOptionId?html}_data.points = ${parameters.points?html};
 </#if>
-<#if parameters.xaxis?if_exists != "">
+<#if parameters.xaxis??>
 options_${escapedOptionId?html}_data.xaxis = ${parameters.xaxis};
 </#if>
-<#if parameters.yaxis?if_exists != "">
+<#if parameters.yaxis??>
 options_${escapedOptionId?html}_data.yaxis = ${parameters.yaxis};
 </#if>
 <#if parameters.clickable?default(false)>
