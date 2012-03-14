@@ -110,7 +110,7 @@ public class CkeditorUpload extends ActionSupport {
       }
     }
     PrintWriter out = ServletActionContext.getResponse().getWriter();
-    out.write("<script type=\"text/javascript\">window.parent.CKEDITOR.tools.callFunction(" + this.CKEditorFuncNum + ", \"uploads/" + this.uploadFileName + "\", \"\");</script>");
+    out.write("<script type=\"text/javascript\">window.parent.CKEDITOR.tools.callFunction(" + this.CKEditorFuncNum + ", \"" + this.uploadFolder + "/" + this.uploadFileName + "\", \"\");</script>");
     return Action.NONE;
   }
 
