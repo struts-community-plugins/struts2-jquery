@@ -290,6 +290,7 @@
 		if (o.cookie) {
 			self.require("js/base/jquery.cookie" + self.minSuffix + ".js");
 			para.cookie = {
+				name: "tab"+o.id, 
 				expires :30
 			};
 		}
