@@ -21,7 +21,7 @@
 -->
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
-    "http://struts.apache.org/dtds/struts-2.3.dtd  ">
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
     
 <struts>
     <bean type="org.apache.struts2.views.TagLibrary" name="sjm" class="com.jgeppert.struts2.jquery.mobile.views.JqueryMobileTagLibrary" />
