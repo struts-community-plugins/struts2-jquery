@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 3.03 (08-MAR-2012)
+ * version: 3.09 (16-APR-2012)
  * @requires jQuery v1.3.2 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -21,7 +21,7 @@
     to bind your own submit handler to the form.  For example,
 
     $(document).ready(function() {
-        $('#myForm').bind('submit', function(e) {
+        $('#myForm').on('submit', function(e) {
             e.preventDefault(); // <-- important
             $(this).ajaxSubmit({
                 target: '#output'
@@ -112,7 +112,8 @@ $.fn.ajaxSubmit = function(options) {
         traditional = $.ajaxSettings.traditional;
     }
     
-    var qx, a = this.formToArray(options.semantic);
+    var elements = [];
+    var qx, a = this.formToArray(options.semantic, elements);
     if (options.data) {
         options.extraData = options.data;
         qx = $.param(options.data, traditional);
@@ -201,9 +202,13 @@ $.fn.ajaxSubmit = function(options) {
         $.ajax(options);
     }
 
-     // fire 'notify' event
-     this.trigger('form-submit-notify', [this, options]);
-     return this;
+    // clear element array
+    for (var k=0; k < elements.length; k++)
+        elements[k] = null;
+
+    // fire 'notify' event
+    this.trigger('form-submit-notify', [this, options]);
+    return this;
 
      // XMLHttpRequest Level 2 file uploads (big hat tip to francois2metz)
     function fileUploadXhr(a) {
@@ -214,9 +219,9 @@ $.fn.ajaxSubmit = function(options) {
         }
 
         if (options.extraData) {
-            for (var k in options.extraData)
-                if (options.extraData.hasOwnProperty(k))
-                    formdata.append(k, options.extraData[k]);
+            for (var p in options.extraData)
+                if (options.extraData.hasOwnProperty(p))
+                    formdata.append(p, options.extraData[p]);
         }
 
         options.data = null;
@@ -227,52 +232,40 @@ $.fn.ajaxSubmit = function(options) {
             cache: false,
             type: 'POST'
         });
+        
+        if (options.uploadProgress) {
+            // workaround because jqXHR does not expose upload property
+            s.xhr = function() {
+                var xhr = jQuery.ajaxSettings.xhr();
+                if (xhr.upload) {
+                    xhr.upload.onprogress = function(event) {
+                        var percent = 0;
+                        var position = event.loaded || event.position; /*event.position is deprecated*/
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                            percent = Math.ceil(position / total * 100);
+                        }
+                        options.uploadProgress(event, position, total, percent);
+                    };
+                }
+                return xhr;
+            };
+        }
 
-		if (options.uploadProgress) {
-			// workaround because jqXHR does not expose upload property
-			s.xhr = function() {
-				var xhr = jQuery.ajaxSettings.xhr();
-				if (xhr.upload) {
-					xhr.upload.onprogress = function(event) {
-						var percent = 0;
-						if (event.lengthComputable)
-							percent = parseInt((event.position / event.total) * 100, 10);
-						options.uploadProgress(event, event.position, event.total, percent);
-					}
-				}
-				return xhr;
-			}
-		}
-
-      	s.data = null;
-      	var beforeSend = s.beforeSend;
-      	s.beforeSend = function(xhr, o) {
-          	o.data = formdata;
+        s.data = null;
+          var beforeSend = s.beforeSend;
+          s.beforeSend = function(xhr, o) {
+              o.data = formdata;
             if(beforeSend)
                 beforeSend.call(o, xhr, options);
-      	};
-      	$.ajax(s);
-   	 }
+        };
+        $.ajax(s);
+    }
 
     // private function for handling file uploads (hat tip to YAHOO!)
     function fileUploadIframe(a) {
         var form = $form[0], el, i, s, g, id, $io, io, xhr, sub, n, timedOut, timeoutHandle;
         var useProp = !!$.fn.prop;
-
-        if (a) {
-            if ( useProp ) {
-                // ensure that every serialized input is still enabled
-                for (i=0; i < a.length; i++) {
-                    el = $(form[a[i].name]);
-                    el.prop('disabled', false);
-                }
-            } else {
-                for (i=0; i < a.length; i++) {
-                    el = $(form[a[i].name]);
-                    el.removeAttr('disabled');
-                }
-            }
-        }
 
         if ($(':input[name=submit],:input[id=submit]', form).length) {
             // if there is an input with a name or id of 'submit' then we won't be
@@ -281,6 +274,17 @@ $.fn.ajaxSubmit = function(options) {
             return;
         }
         
+        if (a) {
+            // ensure that every serialized input is still enabled
+            for (i=0; i < elements.length; i++) {
+                el = $(elements[i]);
+                if ( useProp )
+                    el.prop('disabled', false);
+                else
+                    el.removeAttr('disabled');
+            }
+        }
+
         s = $.extend(true, {}, $.ajaxSettings, options);
         s.context = s.context || s;
         id = 'jqFormIO' + (new Date().getTime());
@@ -763,7 +767,7 @@ $.fn.ajaxFormUnbind = function() {
  * It is this array that is passed to pre-submit callback functions provided to the
  * ajaxSubmit() and ajaxForm() methods.
  */
-$.fn.formToArray = function(semantic) {
+$.fn.formToArray = function(semantic, elements) {
     var a = [];
     if (this.length === 0) {
         return a;
@@ -794,18 +798,30 @@ $.fn.formToArray = function(semantic) {
 
         v = $.fieldValue(el, true);
         if (v && v.constructor == Array) {
+            if (elements) 
+                elements.push(el);
             for(j=0, jmax=v.length; j < jmax; j++) {
                 a.push({name: n, value: v[j]});
             }
         }
         else if (feature.fileapi && el.type == 'file' && !el.disabled) {
+            if (elements) 
+                elements.push(el);
             var files = el.files;
-            for (j=0; j < files.length; j++) {
-                a.push({name: n, value: files[j], type: el.type});
+            if (files.length) {
+                for (j=0; j < files.length; j++) {
+                    a.push({name: n, value: files[j], type: el.type});
+                }
+            }
+            else {
+                // #180
+                a.push({ name: n, value: '', type: el.type });
             }
         }
         else if (v !== null && typeof v != 'undefined') {
-            a.push({name: n, value: v, type: el.type});
+            if (elements) 
+                elements.push(el);
+            a.push({name: n, value: v, type: el.type, required: el.required});
         }
     }
 
@@ -971,7 +987,7 @@ $.fn.clearFields = $.fn.clearInputs = function(includeHidden) {
     var re = /^(?:color|date|datetime|email|month|number|password|range|search|tel|text|time|url|week)$/i; // 'hidden' is not in this list
     return this.each(function() {
         var t = this.type, tag = this.tagName.toLowerCase();
-        if (re.test(t) || tag == 'textarea' || (includeHidden && /hidden/.test(t)) ) {
+        if (re.test(t) || tag == 'textarea') {
             this.value = '';
         }
         else if (t == 'checkbox' || t == 'radio') {
@@ -979,6 +995,15 @@ $.fn.clearFields = $.fn.clearInputs = function(includeHidden) {
         }
         else if (tag == 'select') {
             this.selectedIndex = -1;
+        }
+        else if (includeHidden) {
+            // includeHidden can be the valud true, or it can be a selector string
+            // indicating a special test; for example:
+            //  $('#myForm').clearForm('.special:hidden')
+            // the above would clean hidden inputs that have the class of 'special'
+            if ( (includeHidden === true && /hidden/.test(t)) ||
+                 (typeof includeHidden == 'string' && $(this).is(includeHidden)) )
+                this.value = '';
         }
     });
 };
