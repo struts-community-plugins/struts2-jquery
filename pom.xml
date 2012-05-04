@@ -74,7 +74,7 @@
 
     <properties>
         <currentVersion>${project.version}</currentVersion>
-        <struts2.version>2.3.1.2</struts2.version>
+        <struts2.version>2.3.3</struts2.version>
         <tlib.version>2.2</tlib.version>
     </properties>
 
