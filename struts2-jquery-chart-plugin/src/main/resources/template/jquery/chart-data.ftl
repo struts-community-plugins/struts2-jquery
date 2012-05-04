@@ -79,6 +79,10 @@ options_${escapedOptionId?html}_data.hoverable = true;
 <#if parameters.shadowSize?if_exists != "">
 options_${escapedOptionId?html}_data.shadowSize = ${parameters.shadowSize};
 </#if>
+<#if parameters.fillBetween?if_exists != "">
+options_${escapedOptionId?html}_data.fillBetween = "${parameters.fillBetween}";
+options_${escapedOptionId?html}.fill = true;
+</#if>
 <#if parameters.reloadTopics?exists>
 options_${escapedOptionId?html}_data.reloadtopics = "${parameters.reloadTopics?html}";
 </#if>

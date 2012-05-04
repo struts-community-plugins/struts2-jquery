@@ -37,6 +37,9 @@
 			if (o.crosshair) {
 				self.require("js/flot/jquery.flot.crosshair" + self.minSuffix + ".js");
 			}
+			if (o.fill) {
+				self.require("js/flot/jquery.flot.fillbetween" + self.minSuffix + ".js");
+			}
 			if (o.series && o.series.pie) {
 				self.require("js/flot/jquery.flot.pie" + self.minSuffix + ".js");
 			}

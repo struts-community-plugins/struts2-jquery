@@ -178,6 +178,25 @@
 	    	/>
     	</s:iterator>
     </sjc:chart>
+
+    <br/>
+
+	<h3>Fill between two Series</h3>
+    <sjc:chart id="chartPointsFill" cssStyle="width: 600px; height: 400px;">
+    	<sjc:chartData
+    		id="series1"
+    		label="Series 1"
+    		data="[[2, 88.0], [3, 93.3], [4, 102.0], [5, 108.5], [6, 115.7], [7, 115.6], [8, 124.6], [9, 130.3], [10, 134.3], [11, 141.4], [12, 146.5], [13, 151.7], [14, 159.9], [15, 165.4], [16, 167.8], [17, 168.7], [18, 169.5], [19, 168.0]]"
+    		lines="{ show: true }"
+    	/>
+    	<sjc:chartData
+    		id="series2"
+    		label="Series 2"
+    		data="[[2, 96.8], [3, 105.2], [4, 113.9], [5, 120.8], [6, 127.0], [7, 133.1], [8, 139.1], [9, 143.9], [10, 151.3], [11, 161.1], [12, 164.8], [13, 173.5], [14, 179.0], [15, 182.0], [16, 186.9], [17, 185.2], [18, 186.3], [19, 186.6]]"
+    		lines="{ show: true, fill: true }"
+    		fillBetween="series1"
+    	/>
+    </sjc:chart>
   </div>
 
     <br/>
@@ -212,7 +231,14 @@
 	&lt;h3&gt;Chart with values from a List with Objects&lt;/h3&gt;
 	&lt;div id=&quot;topicsHover&quot;&gt;&lt;/div&gt;
 	&lt;div id=&quot;topicsClick&quot;&gt;&lt;/div&gt;
-    &lt;sjc:chart id=&quot;chartObjects&quot; cssStyle=&quot;width: 600px; height: 400px;&quot; onClickTopics=&quot;chartClick&quot; onHoverTopics=&quot;chartHover&quot;&gt;
+    &lt;sjc:chart
+    	id=&quot;chartObjects&quot;
+    	cssStyle=&quot;width: 600px; height: 400px;&quot;
+    	onClickTopics=&quot;chartClick&quot;
+    	onHoverTopics=&quot;chartHover&quot;
+    	crosshair=&quot;true&quot;
+    	crosshairMode=&quot;xy&quot;
+    &gt;
     	&lt;sjc:chartData
     		label=&quot;List with Objects&quot;
     		list=&quot;objList&quot;
@@ -332,6 +358,25 @@
 	    		data=&quot;%{value}&quot;
 	    	/&gt;
     	&lt;/s:iterator&gt;
+    &lt;/sjc:chart&gt;
+
+    &lt;br/&gt;
+
+	&lt;h3&gt;Fill between two Series&lt;/h3&gt;
+    &lt;sjc:chart id=&quot;chartPointsFill&quot; cssStyle=&quot;width: 600px; height: 400px;&quot;&gt;
+    	&lt;sjc:chartData
+    		id=&quot;series1&quot;
+    		label=&quot;Series 1&quot;
+    		data=&quot;[[2, 88.0], [3, 93.3], [4, 102.0], [5, 108.5], [6, 115.7], [7, 115.6], [8, 124.6], [9, 130.3], [10, 134.3], [11, 141.4], [12, 146.5], [13, 151.7], [14, 159.9], [15, 165.4], [16, 167.8], [17, 168.7], [18, 169.5], [19, 168.0]]&quot;
+    		lines=&quot;{ show: true }&quot;
+    	/&gt;
+    	&lt;sjc:chartData
+    		id=&quot;series2&quot;
+    		label=&quot;Series 2&quot;
+    		data=&quot;[[2, 96.8], [3, 105.2], [4, 113.9], [5, 120.8], [6, 127.0], [7, 133.1], [8, 139.1], [9, 143.9], [10, 151.3], [11, 161.1], [12, 164.8], [13, 173.5], [14, 179.0], [15, 182.0], [16, 186.9], [17, 185.2], [18, 186.3], [19, 186.6]]&quot;
+    		lines=&quot;{ show: true, fill: true }&quot;
+    		fillBetween=&quot;series1&quot;
+    	/&gt;
     &lt;/sjc:chart&gt;
    	  </pre>
 	  </div>
