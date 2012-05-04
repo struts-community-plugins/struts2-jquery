@@ -199,6 +199,9 @@
 	  <#else>
 		options_${escapedOptionId?html}.navinline = false;
 	  </#if>
+	  <#if parameters.navigatorCloneToTop?default(false)>
+		options_${escapedOptionId?html}.cloneToTop = true;
+	  </#if>
   </#if>
   <#if parameters.editinline?default(false)>
 	options_${escapedOptionId?html}.editinline = true;

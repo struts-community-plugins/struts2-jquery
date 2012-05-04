@@ -16,16 +16,17 @@
     	dataType="json" 
     	href="%{ordersurl}" 
     	pager="true" 
+    	toppager="true"
     	navigator="true"
     	navigatorEdit="false"
     	navigatorAdd="false"
     	navigatorView="true"
     	navigatorDelete="false"
+    	navigatorCloneToTop="true"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
     	viewrecords="true"
-    	
     >
 	    <sjg:grid 
 	    	id="orderssubgridtable" 

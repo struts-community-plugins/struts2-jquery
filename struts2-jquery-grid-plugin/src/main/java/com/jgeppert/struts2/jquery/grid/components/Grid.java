@@ -95,6 +95,7 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	protected String navigatorView;
 	protected String navigatorInlineEditButtons;
 	protected String navigatorExtraButtons;
+	protected String navigatorCloneToTop;
 	protected String autoencode;
 	protected String cellEdit;
 	protected String cellurl;
@@ -373,6 +374,9 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 					findString(navigatorExtraButtons));
 		if (navigatorInlineEditButtons != null)
 			addParameter("navigatorInlineEditButtons", findValue(this.navigatorInlineEditButtons,
+					Boolean.class));
+		if (navigatorCloneToTop != null)
+			addParameter("navigatorCloneToTop", findValue(this.navigatorCloneToTop,
 					Boolean.class));
 
 		if (cellurl != null)
@@ -1166,6 +1170,11 @@ public class Grid extends AbstractRemoteBean implements ResizableBean,
 	@StrutsTagAttribute(description = "View Options for Navigator. e.g. {sopt:['cn','bw','eq','ne','lt','gt','ew']},")
 	public void setNavigatorViewOptions(String navigatorViewOptions) {
 		this.navigatorViewOptions = navigatorViewOptions;
+	}
+
+	@StrutsTagAttribute(description = "Clones all the actions from the bottom pager to the top pager if defined.", defaultValue = "false", type = "Boolean")
+	public void setNavigatorCloneToTop(String navigatorCloneToTop) {
+	    this.navigatorCloneToTop = navigatorCloneToTop;
 	}
 
 	@StrutsTagAttribute(description = "When set to true encodes (html encode) the incoming (from server) and posted data (from editing modules). By example < will be converted to &lt;", defaultValue = "true", type = "Boolean")

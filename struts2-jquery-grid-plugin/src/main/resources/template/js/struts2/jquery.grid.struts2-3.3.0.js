@@ -339,6 +339,7 @@
 						navparams.refresh = o.navigatorrefresh;
 						navparams.search = o.navigatorsearch;
 						navparams.view = o.navigatorview;
+						navparams.cloneToTop = o.cloneToTop;
 						$elem.jqGrid('navGrid', self.escId(o.pager), navparams,
 								o.navigatoreditoptions, o.navigatoraddoptions,
 								o.navigatordeleteoptions, o.navigatorsearchoptions,

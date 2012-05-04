@@ -78,8 +78,9 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
     protected String navigatorSearch;
     protected String navigatorView;
     protected String navigatorExtraButtons;
-	protected String navigatorInlineEditButtons;
-	protected String autoencode;
+    protected String navigatorInlineEditButtons;
+    protected String navigatorCloneToTop;
+    protected String autoencode;
     protected String cellEdit;
     protected String cellurl;
     protected String footerrow;
@@ -282,6 +283,7 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
 	grid.setNavigatorRefresh(navigatorRefresh);
 	grid.setNavigatorExtraButtons(navigatorExtraButtons);
 	grid.setNavigatorInlineEditButtons(navigatorInlineEditButtons);
+	grid.setNavigatorCloneToTop(navigatorCloneToTop);
 	grid.setAutoencode(autoencode);
 	grid.setCellEdit(cellEdit);
 	grid.setCellurl(cellurl);
@@ -618,8 +620,12 @@ public class GridTag extends AbstractRemoteTag implements ResizableTag,
     }
     
     public void setNavigatorInlineEditButtons(String navigatorInlineEditButtons) {
-		this.navigatorInlineEditButtons = navigatorInlineEditButtons;
-	}
+	this.navigatorInlineEditButtons = navigatorInlineEditButtons;
+    }
+
+    public void setNavigatorCloneToTop(String navigatorCloneToTop) {
+        this.navigatorCloneToTop = navigatorCloneToTop;
+    }
 
     public void setFilter(String filter) {
 	this.filter = filter;
