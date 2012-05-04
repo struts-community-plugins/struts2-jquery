@@ -30,7 +30,7 @@
 </#if>
 
 <#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/${jQueryVersion}">
-<#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19">
+<#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.20">
 
 <#if parameters.customBasepath?if_exists != "">
   <#assign basePath="${parameters.customBasepath?string}">
@@ -70,7 +70,7 @@
 	<#if parameters.jqueryui?default(true)>
 	<script type="text/javascript" src="${jqueryUiGoogle}"></script>
 		<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.20/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
 		</#if>
 	</#if>
 <#else>
