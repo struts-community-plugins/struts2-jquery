@@ -378,7 +378,7 @@
     		fillBetween=&quot;series1&quot;
     	/&gt;
     &lt;/sjc:chart&gt;
-   	  </pre>
+       	  </pre>
 	  </div>
       <div id="javascript">
 	  <pre>
