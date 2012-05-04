@@ -953,8 +953,8 @@
 				e.preventDefault(); 
 				if (o.validate) {
 					orginal.formvalidate = self.validateForm(form, o);
-					if (o.onaftervalidationtopics) {
-						$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
+					if (o.onaftervalidation) {
+						$.each(o.onaftervalidation.split(','), function(i, topic) { 
 							$elem.publish(topic, $elem, orginal);
 						});
 					}  
@@ -974,7 +974,7 @@
 					
 					if (event.data.validate) {
 						orginal.formvalidate = self.validateForm(form, o);
-						$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
+						$.each(o.onaftervalidation.split(','), function(i, topic) { 
 							$elem.publish(topic, $elem, orginal);
 						});
 					}
@@ -1209,8 +1209,8 @@
 			if (o.validate) {
 				orginal.options.submit = s2j.validateForm(form, o);
 				orginal.formvalidate = orginal.options.submit; 
-				if (o.onaftervalidationtopics) {
-					$.each(o.onaftervalidationtopics.split(','), function(i, topic) { 
+				if (o.onaftervalidation) {
+					$.each(o.onaftervalidation.split(','), function(i, topic) { 
 						elem.publish(topic, elem, orginal);
 					});
 				}  
