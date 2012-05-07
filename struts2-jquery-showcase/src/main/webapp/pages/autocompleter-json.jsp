@@ -48,6 +48,7 @@
 	    	onChangeTopics="autocompleteChange"
 	    	onFocusTopics="autocompleteFocus"
 	    	onSelectTopics="autocompleteSelect"
+	    	placeholder="Select a Customer"
 	    />
 	    <sj:autocompleter 
 	    	id="customersMap" 
@@ -112,6 +113,7 @@
 	    	onChangeTopics=&quot;autocompleteChange&quot;
 	    	onFocusTopics=&quot;autocompleteFocus&quot;
 	    	onSelectTopics=&quot;autocompleteSelect&quot;
+	    	placeholder=&quot;Select a Customer&quot;
 	    /&gt;
 	    &lt;sj:autocompleter 
 	    	id=&quot;customersMap&quot; 

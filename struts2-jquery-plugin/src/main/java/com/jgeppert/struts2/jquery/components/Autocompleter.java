@@ -115,6 +115,7 @@ public class Autocompleter extends AbstractFormListElement {
     protected String listLabel;
     protected String forceValidOption;
     protected String autoFocus;
+    protected String valueWidget;
 
     public Autocompleter(ValueStack stack, HttpServletRequest request,
 	    HttpServletResponse response) {
@@ -142,8 +143,8 @@ public class Autocompleter extends AbstractFormListElement {
 	if (delay != null)
 	    addParameter("delay", findValue(delay, Integer.class));
 	if (loadMinimumCount != null)
-	    addParameter("loadMinimumCount", findValue(loadMinimumCount,
-		    Integer.class));
+	    addParameter("loadMinimumCount",
+		    findValue(loadMinimumCount, Integer.class));
 	// if (list != null) addParameter("list", findString(list));
 
 	if (size != null) {
@@ -159,8 +160,8 @@ public class Autocompleter extends AbstractFormListElement {
 	}
 
 	if (selectBoxIcon != null) {
-	    addParameter("selectBoxIcon", findValue(selectBoxIcon,
-		    Boolean.class));
+	    addParameter("selectBoxIcon",
+		    findValue(selectBoxIcon, Boolean.class));
 	}
 
 	if (readonly != null) {
@@ -188,7 +189,8 @@ public class Autocompleter extends AbstractFormListElement {
 	    addParameter("listLabel", listLabel);
 	}
 	if (forceValidOption != null) {
-	    addParameter("forceValidOption", findValue(forceValidOption, Boolean.class));
+	    addParameter("forceValidOption",
+		    findValue(forceValidOption, Boolean.class));
 	}
 	if (autoFocus != null) {
 	    addParameter("autoFocus", findValue(autoFocus, Boolean.class));
@@ -204,10 +206,17 @@ public class Autocompleter extends AbstractFormListElement {
 	}
 	addParameter("id", this.id + "_widget");
 	addParameter("widgetid", this.id);
-	
+
 	String nameValue = (String) getParameters().get("name");
 	addParameter("name", nameValue + "_widget");
 	addParameter("widgetname", nameValue);
+
+	if (valueWidget != null) {
+	    addParameter("valueWidget", findString(valueWidget));
+	} else if (value != null) {
+	    addParameter("valueWidget", findString(value));
+	}
+
     }
 
     @Override
@@ -285,12 +294,17 @@ public class Autocompleter extends AbstractFormListElement {
 
     @StrutsTagAttribute(description = "Force selection to be one of the options.", defaultValue = "true", type = "Boolean", required = false)
     public void setForceValidOption(String forceValidOption) {
-        this.forceValidOption = forceValidOption;
+	this.forceValidOption = forceValidOption;
     }
 
     @StrutsTagAttribute(description = "If set to true the first item will be automatically focused.", defaultValue = "false", type = "Boolean", required = false)
-	public void setAutoFocus(String autoFocus) {
-		this.autoFocus = autoFocus;
-	}
+    public void setAutoFocus(String autoFocus) {
+	this.autoFocus = autoFocus;
+    }
+
+    @StrutsTagAttribute(description = "The value of the Widget Input Field.")
+    public void setValueWidget(String valueWidget) {
+	this.valueWidget = valueWidget;
+    }
 
 }
