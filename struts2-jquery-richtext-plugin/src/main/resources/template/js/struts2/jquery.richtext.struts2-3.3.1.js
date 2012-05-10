@@ -226,7 +226,7 @@
 						doc = ed.getDoc();
 
 					if (o.onblurtopics) {
-						tinymce.dom.Event.add(doc, 'blur', function(e) {
+						tinymce.dom.Event.add(ed.settings.content_editable ? ed.getBody() : (tinymce.isGecko ? ed.getDoc() : ed.getWin()), 'blur', function(e) {
 							self.publishTopic($elem, o.onblurtopics, {
 								editor : ed
 							});
@@ -236,7 +236,7 @@
 						});
 					}
 					if (o.onfocustopics) {
-						tinymce.dom.Event.add(doc, 'focus', function(e) {
+						tinymce.dom.Event.add(ed.settings.content_editable ? ed.getBody() : (tinymce.isGecko ? ed.getDoc() : ed.getWin()), 'focus', function(e) {
 							self.publishTopic($elem, o.onfocustopics, {
 								editor : ed
 							});
