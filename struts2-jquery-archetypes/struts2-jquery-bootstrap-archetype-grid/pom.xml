@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jgeppert.struts2.jquery</groupId>
 		<artifactId>struts2-jquery-archetypes</artifactId>
-		<version>3.3.1</version>
+		<version>3.3.2-SNAPSHOT</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
