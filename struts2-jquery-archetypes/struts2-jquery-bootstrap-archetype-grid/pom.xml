@@ -8,7 +8,6 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>struts2-jquery-bootstrap-archetype-grid</artifactId>
-	<version>3.3.1</version>
 	<packaging>jar</packaging>
 	<name>Struts 2 jQuery Bootstrap Archetype - Grid</name>
 	<description>This Archetype provides a Webapp Configuration ready for the Struts2 jQuery Grid Plugin and the Struts2 Bootstrap Plugin. </description>
