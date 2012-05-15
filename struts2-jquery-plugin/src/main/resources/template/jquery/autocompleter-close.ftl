@@ -21,7 +21,7 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () {
-  <#if parameters.valueWidget??>
+  <#if parameters.valueWidget?if_exists != "">
 	jQuery("#${parameters.id?html}").val("${parameters.valueWidget?html}");
   </#if>
 	var options_${escapedOptionId?html} = {};
