@@ -974,9 +974,11 @@
 					
 					if (event.data.validate) {
 						orginal.formvalidate = self.validateForm(form, o);
-						$.each(o.onaftervalidation.split(','), function(i, topic) { 
-							$elem.publish(topic, $elem, orginal);
-						});
+						if (o.onaftervalidation) {
+							$.each(o.onaftervalidation.split(','), function(i, topic) { 
+								$elem.publish(topic, $elem, orginal);
+							});
+						}
 					}
 
 					if(orginal.formvalidate) {
