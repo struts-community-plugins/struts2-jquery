@@ -103,10 +103,10 @@ public class Head extends org.apache.struts2.components.Head {
 			"bg", "bs", "ca", "cs", "cy-GB", "da", "de", "el", "en", "en-AU",
 			"en-GB", "en-NZ", "eo", "es", "et", "eu", "fa", "fi", "fo", "fr",
 			"fr-CH", "ge", "gl", "he", "hi", "hr", "hu", "hy", "id", "is",
-			"it", "ja", "kk", "km", "ko", "kz", "lt", "lb", "lv", "mk", "ml",
-			"ms", "nl-BE", "nl", "no", "pl", "pt", "pt-BR", "rm", "ro", "ru",
-			"sk", "sl", "sq", "sr-SR", "sv", "ta", "th", "tj", "tr", "uk",
-			"vi", "zh-CN", "zh-HK", "zh-TW" };
+			"it", "ja", "ka", "kk", "km", "ko", "kz", "lt", "lb", "lv", "mk",
+			"ml", "ms", "nl-BE", "nl", "no", "pl", "pt", "pt-BR", "rm", "ro",
+			"ru", "sk", "sl", "sq", "sr-SR", "sv", "ta", "th", "tj", "tr",
+			"uk", "vi", "zh-CN", "zh-HK", "zh-TW" };
 
 	protected String compressed;
 	protected String locale;
