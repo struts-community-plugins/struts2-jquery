@@ -36,132 +36,138 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class TreeTag extends AbstractContainerTag {
 
-	private static final long serialVersionUID = -6297851020849153739L;
+    private static final long serialVersionUID = -6297851020849153739L;
 
-	protected String jstreetheme;
-	protected String htmlTitles;
-	protected String animation;
-	protected String initiallyOpen;
-	protected String rtl;
-	protected String href;
-	protected String onClickTopics;
-	protected String rootNode;
-	protected String childCollectionProperty;
-	protected String nodeTitleProperty;
-	protected String nodeTypeProperty;
-	protected String nodeIdProperty;
-	protected String nodeHref;
-	protected String nodeHrefParamName;
-	protected String nodeTargets;
-	protected String openAllOnLoad;
-	protected String openAllOnRefresh;
-	protected String contextmenu;
-	protected String types;
+    protected String jstreetheme;
+    protected String htmlTitles;
+    protected String animation;
+    protected String initiallyOpen;
+    protected String rtl;
+    protected String href;
+    protected String onClickTopics;
+    protected String rootNode;
+    protected String childCollectionProperty;
+    protected String nodeTitleProperty;
+    protected String nodeTypeProperty;
+    protected String nodeIdProperty;
+    protected String nodeHref;
+    protected String nodeHrefParamName;
+    protected String nodeTargets;
+    protected String openAllOnLoad;
+    protected String openAllOnRefresh;
+    protected String contextmenu;
+    protected String types;
+    protected String checkbox;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Tree(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Tree(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-		Tree tree = (Tree) component;
-		tree.setJstreetheme(jstreetheme);
-		tree.setAnimation(animation);
-		tree.setHtmlTitles(htmlTitles);
-		tree.setInitiallyOpen(initiallyOpen);
-		tree.setRtl(rtl);
-		tree.setHref(href);
-		tree.setOnClickTopics(onClickTopics);
-		tree.setRootNode(rootNode);
-		tree.setChildCollectionProperty(childCollectionProperty);
-		tree.setNodeIdProperty(nodeIdProperty);
-		tree.setNodeTitleProperty(nodeTitleProperty);
-		tree.setNodeTypeProperty(nodeTypeProperty);
-		tree.setNodeHref(nodeHref);
-		tree.setNodeHrefParamName(nodeHrefParamName);
-		tree.setNodeTargets(nodeTargets);
-		tree.setOpenAllOnLoad(openAllOnLoad);
-		tree.setOpenAllOnRefresh(openAllOnRefresh);
-		tree.setContextmenu(contextmenu);
-		tree.setTypes(types);
-	}
+	Tree tree = (Tree) component;
+	tree.setJstreetheme(jstreetheme);
+	tree.setAnimation(animation);
+	tree.setHtmlTitles(htmlTitles);
+	tree.setInitiallyOpen(initiallyOpen);
+	tree.setRtl(rtl);
+	tree.setHref(href);
+	tree.setOnClickTopics(onClickTopics);
+	tree.setRootNode(rootNode);
+	tree.setChildCollectionProperty(childCollectionProperty);
+	tree.setNodeIdProperty(nodeIdProperty);
+	tree.setNodeTitleProperty(nodeTitleProperty);
+	tree.setNodeTypeProperty(nodeTypeProperty);
+	tree.setNodeHref(nodeHref);
+	tree.setNodeHrefParamName(nodeHrefParamName);
+	tree.setNodeTargets(nodeTargets);
+	tree.setOpenAllOnLoad(openAllOnLoad);
+	tree.setOpenAllOnRefresh(openAllOnRefresh);
+	tree.setContextmenu(contextmenu);
+	tree.setTypes(types);
+	tree.setCheckbox(checkbox);
+    }
 
-	public void setJstreetheme(String jstreetheme) {
-		this.jstreetheme = jstreetheme;
-	}
+    public void setJstreetheme(String jstreetheme) {
+	this.jstreetheme = jstreetheme;
+    }
 
-	public void setHtmlTitles(String htmlTitles) {
-		this.htmlTitles = htmlTitles;
-	}
+    public void setHtmlTitles(String htmlTitles) {
+	this.htmlTitles = htmlTitles;
+    }
 
-	public void setAnimation(String animation) {
-		this.animation = animation;
-	}
+    public void setAnimation(String animation) {
+	this.animation = animation;
+    }
 
-	public void setInitiallyOpen(String initiallyOpen) {
-		this.initiallyOpen = initiallyOpen;
-	}
+    public void setInitiallyOpen(String initiallyOpen) {
+	this.initiallyOpen = initiallyOpen;
+    }
 
-	public void setRtl(String rtl) {
-		this.rtl = rtl;
-	}
+    public void setRtl(String rtl) {
+	this.rtl = rtl;
+    }
 
-	public void setHref(String href) {
-		this.href = href;
-	}
+    public void setHref(String href) {
+	this.href = href;
+    }
 
-	public void setOnClickTopics(String onClickTopics) {
-		this.onClickTopics = onClickTopics;
-	}
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
 
-	public void setRootNode(String rootNode) {
-		this.rootNode = rootNode;
-	}
+    public void setRootNode(String rootNode) {
+	this.rootNode = rootNode;
+    }
 
-	public void setChildCollectionProperty(String childCollectionProperty) {
-		this.childCollectionProperty = childCollectionProperty;
-	}
+    public void setChildCollectionProperty(String childCollectionProperty) {
+	this.childCollectionProperty = childCollectionProperty;
+    }
 
-	public void setNodeTitleProperty(String nodeTitleProperty) {
-		this.nodeTitleProperty = nodeTitleProperty;
-	}
+    public void setNodeTitleProperty(String nodeTitleProperty) {
+	this.nodeTitleProperty = nodeTitleProperty;
+    }
 
-	public void setNodeIdProperty(String nodeIdProperty) {
-		this.nodeIdProperty = nodeIdProperty;
-	}
+    public void setNodeIdProperty(String nodeIdProperty) {
+	this.nodeIdProperty = nodeIdProperty;
+    }
 
-	public void setNodeHref(String nodeHref) {
-		this.nodeHref = nodeHref;
-	}
+    public void setNodeHref(String nodeHref) {
+	this.nodeHref = nodeHref;
+    }
 
-	public void setNodeHrefParamName(String nodeHrefParamName) {
-		this.nodeHrefParamName = nodeHrefParamName;
-	}
+    public void setNodeHrefParamName(String nodeHrefParamName) {
+	this.nodeHrefParamName = nodeHrefParamName;
+    }
 
-	public void setNodeTargets(String nodeTargets) {
-		this.nodeTargets = nodeTargets;
-	}
+    public void setNodeTargets(String nodeTargets) {
+	this.nodeTargets = nodeTargets;
+    }
 
-	public void setOpenAllOnLoad(String openAllOnLoad) {
-	    this.openAllOnLoad = openAllOnLoad;
-	}
+    public void setOpenAllOnLoad(String openAllOnLoad) {
+	this.openAllOnLoad = openAllOnLoad;
+    }
 
-	public void setOpenAllOnRefresh(String openAllOnRefresh) {
-	    this.openAllOnRefresh = openAllOnRefresh;
-	}
+    public void setOpenAllOnRefresh(String openAllOnRefresh) {
+	this.openAllOnRefresh = openAllOnRefresh;
+    }
 
-	public void setContextmenu(String contextmenu) {
-	    this.contextmenu = contextmenu;
-	}
+    public void setContextmenu(String contextmenu) {
+	this.contextmenu = contextmenu;
+    }
 
-	public void setTypes(String types) {
-	    this.types = types;
-	}
+    public void setTypes(String types) {
+	this.types = types;
+    }
 
-	public void setNodeTypeProperty(String nodeTypeProperty) {
-	    this.nodeTypeProperty = nodeTypeProperty;
-	}
+    public void setNodeTypeProperty(String nodeTypeProperty) {
+	this.nodeTypeProperty = nodeTypeProperty;
+    }
+
+    public void setCheckbox(String checkbox) {
+	this.checkbox = checkbox;
+    }
 
 }

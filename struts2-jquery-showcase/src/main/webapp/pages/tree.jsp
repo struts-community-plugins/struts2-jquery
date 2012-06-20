@@ -90,6 +90,29 @@
   <strong>Result Div :</strong>
   <div id="result2" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
 
+    <h2>Dynamic Tree in form with Checkboxes</h2>
+    <p class="text">
+        A Tree Component in a form with Checkboxes.
+    </p>
+    <s:form id="treeForm" action="echo" theme="simple">
+    	<sjt:tree 
+    		name="echo"
+    		id="treeDynamicCheckboxes" 
+    		jstreetheme="apple"
+    		rootNode="nodes"
+    		childCollectionProperty="children"
+    		nodeTitleProperty="title"
+    		nodeIdProperty="id"
+    		openAllOnLoad="true" 
+    		checkbox="true"
+    		onClickTopics="treeClicked" 
+    	/>
+    	<sj:submit formIds="treeForm" targets="result3" button="true" />
+	</s:form>
+  	<strong>Result Div :</strong>
+  	<div id="result3" class="result ui-widget-content ui-corner-all">Click on the AJAX Submit above.</div>
+
+
     <h2>Tree with Types</h2>
     <p class="text">
         A Tree with different node types.
@@ -205,6 +228,29 @@
   &lt;strong&gt;Result Div :&lt;/strong&gt;
   &lt;div id=&quot;result2&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Links above.&lt;/div&gt;
 
+    &lt;h2&gt;Dynamic Tree in form with Checkboxes&lt;/h2&gt;
+    &lt;p class=&quot;text&quot;&gt;
+        A Tree Component in a form with Checkboxes.
+    &lt;/p&gt;
+    &lt;s:form id=&quot;treeForm&quot; action=&quot;echo&quot; theme=&quot;simple&quot;&gt;
+    	&lt;sjt:tree 
+    		name=&quot;echo&quot;
+    		id=&quot;treeDynamicCheckboxes&quot; 
+    		jstreetheme=&quot;apple&quot;
+    		rootNode=&quot;nodes&quot;
+    		childCollectionProperty=&quot;children&quot;
+    		nodeTitleProperty=&quot;title&quot;
+    		nodeIdProperty=&quot;id&quot;
+    		openAllOnLoad=&quot;true&quot; 
+    		checkbox=&quot;true&quot;
+    		onClickTopics=&quot;treeClicked&quot; 
+    	/&gt;
+    	&lt;sj:submit formIds=&quot;treeForm&quot; targets=&quot;result3&quot; button=&quot;true&quot; /&gt;
+	&lt;/s:form&gt;
+  	&lt;strong&gt;Result Div :&lt;/strong&gt;
+  	&lt;div id=&quot;result3&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Submit above.&lt;/div&gt;
+
+
     &lt;h2&gt;Tree with Types&lt;/h2&gt;
     &lt;p class=&quot;text&quot;&gt;
         A Tree with different node types.
@@ -221,19 +267,19 @@
 							'icon' : { 
 								'image' : '%{contextPath}/images/root.png' 
 							},
-							'valid_children' : [ 'folder', 'file' ],
+							'valid_children' : [ 'folder', 'file' ]
 						},
 						'folder' : {
 							'icon' : { 
 								'image' : '%{contextPath}/images/folder.png' 
 							},
-							'valid_children' : [ 'folder', 'file' ],
+							'valid_children' : [ 'folder', 'file' ]
 						},
 						'file' : {
 							'icon' : { 
 								'image' : '%{contextPath}/images/file.png' 
 							},
-							'valid_children' : [ 'none' ],
+							'valid_children' : [ 'none' ]
 						}
 				}
 		}&quot;&gt;

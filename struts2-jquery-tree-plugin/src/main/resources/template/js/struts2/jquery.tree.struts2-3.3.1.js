@@ -52,6 +52,11 @@
 			if (o.types) {
 				o.plugins.push("types"); 
 			}
+			if (o.checkbox) {
+				o.plugins.push("ui"); 
+				o.plugins.push("checkbox");
+				o.checkbox = { override_ui : true, real_checkboxes : true, real_checkboxes_names : function (n) { return [o.name, n.attr ? n.attr("id") : 0 ] }};
+			}
 			
 			if (o.url){
 				o.json_data = {};
@@ -125,6 +130,7 @@
 					}
 		    });
 		  }
+			
 			if(o.openload) {
 				$elem.bind('loaded.jstree', function (event, data){
 					$elem.jstree('open_all'); 

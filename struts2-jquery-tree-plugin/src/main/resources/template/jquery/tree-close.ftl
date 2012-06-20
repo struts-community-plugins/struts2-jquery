@@ -66,6 +66,9 @@ jQuery(document).ready(function () {
 	<#if parameters.types?if_exists != ""> 
 	options_${escapedOptionId?html}.types = ${parameters.types?string};
 	</#if>
+	<#if parameters.checkbox??>
+	options_${escapedOptionId?html}.checkbox = ${parameters.checkbox?string};
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
