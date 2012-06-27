@@ -1083,7 +1083,7 @@
 						params.type = "POST";
 					}
 
-					if (o.formids && params.data === '') {
+					if (o.formids) {
 						if (!s2j.loadAtOnce) {
 							s2j.require("js/plugins/jquery.form" + s2j.minSuffix + ".js");
 						}

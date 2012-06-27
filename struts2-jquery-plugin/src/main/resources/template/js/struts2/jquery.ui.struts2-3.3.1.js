@@ -1062,6 +1062,9 @@
 			if (data.hrefparameter) {
 				o.hrefparameter = data.hrefparameter;
 			}
+			if (data.formids) {
+				o.formids = data.formids;
+			}
 		}
 
 		$(this).dialog("option", "open", function(event, ui) {
