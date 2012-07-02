@@ -90,8 +90,8 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class Head extends org.apache.struts2.components.Head {
 	public static final String TEMPLATE = "head";
 
-	private static final String[] timeLocals = { "ca", "cs", "de", "el", "es",
-			"et", "fi", "fr", "gl", "he", "hu", "id", "it", "ja", "lt", "nl",
+	private static final String[] timeLocals = { "af", "ca", "cs", "de", "el", "es",
+			"et", "fi", "fr", "gl", "he", "hu", "id", "it", "ja", "ko", "lt", "nl", "no",
 			"pl", "pt", "pt-BR", "ro", "ru", "sk", "sv", "tr", "sk", "sr",
 			"sv", "th", "vi", "zh-CN", "zh-TW" };
 	private static final String[] gridLocals = { "ar", "bg", "ca", "cn", "cs",
