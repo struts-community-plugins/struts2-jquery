@@ -70,6 +70,10 @@ public class Tree extends AbstractContainer {
     protected String contextmenu;
     protected String types;
     protected String checkbox;
+    protected String checkboxCheckAllTopics;
+    protected String checkboxUncheckAllTopics;
+    protected String checkboxHideTopics;
+    protected String checkboxShowTopics;
 
     public Tree(ValueStack stack, HttpServletRequest request,
 	    HttpServletResponse response) {
@@ -133,6 +137,14 @@ public class Tree extends AbstractContainer {
 	    addParameter("types", findString(types));
 	if (checkbox != null)
 	    addParameter("checkbox", findValue(this.checkbox, Boolean.class));
+	if (checkboxCheckAllTopics != null)
+	    addParameter("checkboxCheckAllTopics", findString(checkboxCheckAllTopics));
+	if (checkboxUncheckAllTopics != null)
+	    addParameter("checkboxUncheckAllTopics", findString(checkboxUncheckAllTopics));
+	if (checkboxHideTopics != null)
+	    addParameter("checkboxHideTopics", findString(checkboxHideTopics));
+	if (checkboxShowTopics != null)
+	    addParameter("checkboxShowTopics", findString(checkboxShowTopics));
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -270,5 +282,25 @@ public class Tree extends AbstractContainer {
     @StrutsTagAttribute(description = "Makes multiselection possible using three-state checkboxes.", type = "Boolean", defaultValue = "false")
     public void setCheckbox(String checkbox) {
 	this.checkbox = checkbox;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics to check all nodes.")
+    public void setCheckboxCheckAllTopics(String checkboxCheckAllTopics) {
+        this.checkboxCheckAllTopics = checkboxCheckAllTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics to uncheck all nodes.")
+    public void setCheckboxUncheckAllTopics(String checkboxUncheckAllTopics) {
+        this.checkboxUncheckAllTopics = checkboxUncheckAllTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics to hide checkboxes.")
+    public void setCheckboxHideTopics(String checkboxHideTopics) {
+        this.checkboxHideTopics = checkboxHideTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics to show checkboxes.")
+    public void setCheckboxShowTopics(String checkboxShowTopics) {
+        this.checkboxShowTopics = checkboxShowTopics;
     }
 }

@@ -69,6 +69,18 @@ jQuery(document).ready(function () {
 	<#if parameters.checkbox??>
 	options_${escapedOptionId?html}.checkbox = ${parameters.checkbox?string};
 	</#if>
+	<#if parameters.checkboxCheckAllTopics?if_exists != ""> 
+	options_${escapedOptionId?html}.checkAllTopics = "${parameters.checkboxCheckAllTopics?string}";
+	</#if>
+	<#if parameters.checkboxUncheckAllTopics?if_exists != ""> 
+	options_${escapedOptionId?html}.uncheckAllTopics = "${parameters.checkboxUncheckAllTopics?string}";
+	</#if>
+	<#if parameters.checkboxHideTopics?if_exists != ""> 
+	options_${escapedOptionId?html}.checkHideTopics = "${parameters.checkboxHideTopics?string}";
+	</#if>
+	<#if parameters.checkboxShowTopics?if_exists != ""> 
+	options_${escapedOptionId?html}.checkShowTopics = "${parameters.checkboxShowTopics?string}";
+	</#if>
 
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
   <#include "/${parameters.templateDir}/jquery/base.ftl" />

@@ -105,9 +105,17 @@
     		nodeIdProperty="id"
     		openAllOnLoad="true" 
     		checkbox="true"
+    		checkboxCheckAllTopics="checkAllNodesTopic"
+    		checkboxUncheckAllTopics="uncheckAllNodesTopic"
+    		checkboxShowTopics="showCheckboxesTopic"
+    		checkboxHideTopics="hideCheckboxesTopic"
     		onClickTopics="treeClicked" 
     	/>
     	<sj:submit formIds="treeForm" targets="result3" button="true" />
+    	<sj:submit onClickTopics="checkAllNodesTopic" value="Check all Nodes" button="true" />
+    	<sj:submit onClickTopics="uncheckAllNodesTopic" value="Uncheck all Nodes" button="true" />
+    	<sj:submit onClickTopics="showCheckboxesTopic" value="Show Checkboxes" button="true" />
+    	<sj:submit onClickTopics="hideCheckboxesTopic" value="Hide Checkboxes" button="true" />
 	</s:form>
   	<strong>Result Div :</strong>
   	<div id="result3" class="result ui-widget-content ui-corner-all">Click on the AJAX Submit above.</div>
@@ -243,9 +251,17 @@
     		nodeIdProperty=&quot;id&quot;
     		openAllOnLoad=&quot;true&quot; 
     		checkbox=&quot;true&quot;
+    		checkboxCheckAllTopics=&quot;checkAllNodesTopic&quot;
+    		checkboxUncheckAllTopics=&quot;uncheckAllNodesTopic&quot;
+    		checkboxShowTopics=&quot;showCheckboxesTopic&quot;
+    		checkboxHideTopics=&quot;hideCheckboxesTopic&quot;
     		onClickTopics=&quot;treeClicked&quot; 
     	/&gt;
     	&lt;sj:submit formIds=&quot;treeForm&quot; targets=&quot;result3&quot; button=&quot;true&quot; /&gt;
+    	&lt;sj:submit onClickTopics=&quot;checkAllNodesTopic&quot; value=&quot;Check all Nodes&quot; button=&quot;true&quot; /&gt;
+    	&lt;sj:submit onClickTopics=&quot;uncheckAllNodesTopic&quot; value=&quot;Uncheck all Nodes&quot; button=&quot;true&quot; /&gt;
+    	&lt;sj:submit onClickTopics=&quot;showCheckboxesTopic&quot; value=&quot;Show Checkboxes&quot; button=&quot;true&quot; /&gt;
+    	&lt;sj:submit onClickTopics=&quot;hideCheckboxesTopic&quot; value=&quot;Hide Checkboxes&quot; button=&quot;true&quot; /&gt;
 	&lt;/s:form&gt;
   	&lt;strong&gt;Result Div :&lt;/strong&gt;
   	&lt;div id=&quot;result3&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Submit above.&lt;/div&gt;

@@ -21,6 +21,13 @@
 	 * Bind a Tree to Struts2 Component
 	 */
 	$.struts2_jquery_tree = {
+			
+			handler : {
+				show_checkboxes:'_s2j_show_checkboxes',
+				hide_checkboxes:'_s2j_hide_checkboxes',
+				check_all:'_s2j_check_all',
+				uncheck_all :'_s2j_uncheck_all'
+			},
 
 		// Render a Tree
 		tree : function ($elem, o) {
@@ -57,6 +64,20 @@
 				o.plugins.push("checkbox");
 				o.checkbox = { override_ui : true, real_checkboxes : true, real_checkboxes_names : function (n) { return [o.name, n.attr ? n.attr("id") : 0 ] }};
 			}
+			
+			if(o.checkAllTopics) {
+				self.subscribeTopics($elem, o.checkAllTopics, self.handler.check_all, o);
+			}
+			if(o.uncheckAllTopics) {
+				self.subscribeTopics($elem, o.uncheckAllTopics, self.handler.uncheck_all, o);
+			}
+			if(o.checkShowTopics) {
+				self.subscribeTopics($elem, o.checkShowTopics, self.handler.show_checkboxes, o);
+			}
+			if(o.checkHideTopics) {
+				self.subscribeTopics($elem, o.checkHideTopics, self.handler.hide_checkboxes, o);
+			}
+
 			
 			if (o.url){
 				o.json_data = {};
@@ -156,6 +177,34 @@
 			self.anchor($elem, o);
 		}
 	};
+	
+	/**
+	 * handler to show checkboxes
+	 */
+	$.subscribeHandler($.struts2_jquery_tree.handler.show_checkboxes, function(event, data) {
+		$(this).jstree("show_checkboxes");
+	});
+	
+	/**
+	 * handler to hide checkboxes
+	 */
+	$.subscribeHandler($.struts2_jquery_tree.handler.hide_checkboxes, function(event, data) {
+		$(this).jstree("hide_checkboxes");
+	});
+	
+	/**
+	 * handler to check all tree nodes
+	 */
+	$.subscribeHandler($.struts2_jquery_tree.handler.check_all, function(event, data) {
+		$(this).jstree("check_all");
+	});
+	
+	/**
+	 * handler to uncheck all tree nodes
+	 */
+	$.subscribeHandler($.struts2_jquery_tree.handler.uncheck_all, function(event, data) {
+		$(this).jstree("uncheck_all");
+	});
 
 	// Extend it from orginal plugin
 	$.extend(true, $.struts2_jquery_tree, $.struts2_jquery);
