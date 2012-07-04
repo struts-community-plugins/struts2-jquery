@@ -44,6 +44,10 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
     protected String buttonText;
     protected String validateFunction;
     protected String validate;
+    protected String clearForm;
+    protected String resetForm;
+    protected String iframe;
+    protected String replaceTarget;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
 	    HttpServletResponse res) {
@@ -63,6 +67,10 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
 	link.setButtonText(buttonText);
 	link.setValidateFunction(validateFunction);
 	link.setValidate(validate);
+	link.setClearForm(clearForm);
+	link.setResetForm(resetForm);
+	link.setIframe(iframe);
+	link.setReplaceTarget(replaceTarget);
     }
 
     public void setOpenDialog(String openDialog) {
@@ -99,5 +107,21 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
 
     public void setValidate(String validate) {
 	this.validate = validate;
+    }
+
+    public void setClearForm(String clearForm) {
+        this.clearForm = clearForm;
+    }
+
+    public void setResetForm(String resetForm) {
+        this.resetForm = resetForm;
+    }
+
+    public void setIframe(String iframe) {
+        this.iframe = iframe;
+    }
+
+    public void setReplaceTarget(String replaceTarget) {
+        this.replaceTarget = replaceTarget;
     }
 }

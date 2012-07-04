@@ -77,4 +77,15 @@
   <#if parameters.onEffectCompleteTopics?exists>
 	options_${escapedOptionId?html}.oneffect = "${parameters.onEffectCompleteTopics?html}";
   </#if>
-  
+   <#if parameters.clearForm?default(false)>
+	options_${escapedOptionId?html}.clearform = true;
+    </#if>
+   <#if parameters.resetForm?default(false)>
+	options_${escapedOptionId?html}.resetform = true;
+    </#if>
+   <#if parameters.iframe?default(false)>
+	options_${escapedOptionId?html}.iframe = true;
+    </#if>
+   <#if parameters.replaceTarget?default(false)>
+	options_${escapedOptionId?html}.replaceTarget = true;
+    </#if>

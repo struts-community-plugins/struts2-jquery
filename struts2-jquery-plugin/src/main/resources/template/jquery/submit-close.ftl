@@ -23,18 +23,6 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
-   <#if parameters.clearForm?default(false)>
-	options_${escapedOptionId?html}.clearform = true;
-    </#if>
-   <#if parameters.resetForm?default(false)>
-	options_${escapedOptionId?html}.resetform = true;
-    </#if>
-   <#if parameters.iframe?default(false)>
-	options_${escapedOptionId?html}.iframe = true;
-    </#if>
-   <#if parameters.replaceTarget?default(false)>
-	options_${escapedOptionId?html}.replaceTarget = true;
-    </#if>
 	<#if parameters.openDialog?if_exists != ""> 
 	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
 	</#if>

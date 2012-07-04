@@ -29,6 +29,7 @@
     <sj:a 
     	id="ajaxformlink" 
     	formIds="form" 
+    	clearForm="true"
     	targets="formResult" 
     	indicator="indicator" 
     	button="true" 

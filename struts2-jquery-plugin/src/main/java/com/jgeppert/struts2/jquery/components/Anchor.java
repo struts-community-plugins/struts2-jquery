@@ -84,6 +84,10 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
     protected String buttonIcon;
     protected String buttonIconSecondary;
     protected String buttonText;
+    protected String clearForm;
+    protected String resetForm;
+    protected String iframe;
+    protected String replaceTarget;
 
     public Anchor(ValueStack stack, HttpServletRequest request,
 	    HttpServletResponse response) {
@@ -125,6 +129,15 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
 	    addParameter("validate", findValue(this.validate, Boolean.class));
 	if (validateFunction != null)
 	    addParameter("validateFunction", findString(validateFunction));
+	if (clearForm != null)
+	    addParameter("clearForm", findValue(clearForm, Boolean.class));
+	if (resetForm != null)
+	    addParameter("resetForm", findValue(resetForm, Boolean.class));
+	if (iframe != null)
+	    addParameter("iframe", findValue(iframe, Boolean.class));
+	if (replaceTarget != null)
+	    addParameter("replaceTarget", findValue(this.replaceTarget,
+		    Boolean.class));
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -191,5 +204,25 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
     @StrutsTagAttribute(description = "Enable client AJAX validation", defaultValue = "false", type = "Boolean")
     public void setValidate(String validate) {
 	this.validate = validate;
+    }
+
+    @StrutsTagAttribute(description = "Clear all form fields after successful submit when using formIds. Default: false", type = "Boolean")
+    public void setClearForm(String clearForm) {
+	this.clearForm = clearForm;
+    }
+
+    @StrutsTagAttribute(description = "Reset the form after successful submi twhen using formIds. Default: false", type = "Boolean")
+    public void setResetForm(String resetForm) {
+	this.resetForm = resetForm;
+    }
+
+    @StrutsTagAttribute(description = "Boolean flag indicating whether the form should always target the server response to an iframe when using formIds. This is useful in conjuction with file uploads. Default: false", type = "Boolean")
+    public void setIframe(String iframe) {
+	this.iframe = iframe;
+    }
+
+    @StrutsTagAttribute(description = "Set to true if the target should be replaced or false if only the target contents should be replaced when using formIds.", defaultValue = "false", type = "Boolean")
+    public void setReplaceTarget(String replaceTarget) {
+	this.replaceTarget = replaceTarget;
     }
 }
