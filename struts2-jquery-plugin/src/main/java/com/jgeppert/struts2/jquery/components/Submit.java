@@ -153,6 +153,7 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
     protected String iframe;
     protected String onClickTopics;
     protected String openDialog;
+    protected String openDialogTitle;
     protected String parentTheme;
     protected String button;
     protected String buttonIcon;
@@ -212,6 +213,8 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
 	    addParameter("onClickTopics", findString(onClickTopics));
 	if (openDialog != null)
 	    addParameter("openDialog", findString(openDialog));
+	if (openDialogTitle != null)
+	    addParameter("openDialogTitle", findString(openDialogTitle));
 	if (button != null)
 	    addParameter("button", findValue(this.button, Boolean.class));
 	if (buttonIcon != null)
@@ -328,6 +331,11 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
     @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
     public void setOpenDialog(String openDialog) {
 	this.openDialog = openDialog;
+    }
+
+    @StrutsTagAttribute(description = "Set the title of a dialog opened by openDialog or openDialogTopics")
+    public void setOpenDialogTitle(String openDialogTitle) {
+        this.openDialogTitle = openDialogTitle;
     }
 
     @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")

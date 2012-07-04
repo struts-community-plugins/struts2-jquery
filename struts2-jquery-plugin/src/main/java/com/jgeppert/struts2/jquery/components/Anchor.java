@@ -76,6 +76,7 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
     public static final String JQUERYACTION = "anchor";
 
     protected String openDialog;
+    protected String openDialogTitle;
     protected String onClickTopics;
     protected String validate;
     protected String validateFunction;
@@ -108,6 +109,8 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
 
 	if (openDialog != null)
 	    addParameter("openDialog", findString(openDialog));
+	if (openDialogTitle != null)
+	    addParameter("openDialogTitle", findString(openDialogTitle));
 	if (onClickTopics != null)
 	    addParameter("onClickTopics", findString(onClickTopics));
 	if (button != null)
@@ -148,6 +151,11 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
     @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
     public void setOpenDialog(String openDialog) {
 	this.openDialog = openDialog;
+    }
+
+    @StrutsTagAttribute(description = "Set the title of a dialog opened by openDialog or openDialogTopics")
+    public void setOpenDialogTitle(String openDialogTitle) {
+        this.openDialogTitle = openDialogTitle;
     }
 
     @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")

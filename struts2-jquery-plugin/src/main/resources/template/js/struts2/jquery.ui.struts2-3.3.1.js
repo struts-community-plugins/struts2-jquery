@@ -1065,6 +1065,9 @@
 			if (data.formids) {
 				o.formids = data.formids;
 			}
+			if (data.opendialogtitle) {
+				o.opendialogtitle = data.opendialogtitle;
+			}
 		}
 
 		$(this).dialog("option", "open", function(event, ui) {
@@ -1082,6 +1085,9 @@
 			s2j.publishTopic($(this), o.onbef, data);
 			s2j.publishTopic($(this), o.onopentopics, data);
 		});
+		if (o.opendialogtitle) {
+			$(this).dialog("option", "title", o.opendialogtitle);
+		}
 		$(this).dialog("open");
 	});
 

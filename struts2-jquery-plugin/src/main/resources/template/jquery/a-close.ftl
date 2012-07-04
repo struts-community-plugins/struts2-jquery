@@ -26,6 +26,9 @@ jQuery(document).ready(function () {
 	<#if parameters.openDialog?if_exists != ""> 
 	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
 	</#if>
+	<#if parameters.openDialogTitle?if_exists != ""> 
+	options_${escapedOptionId?html}.opendialogtitle = "${parameters.openDialogTitle?html}";
+	</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

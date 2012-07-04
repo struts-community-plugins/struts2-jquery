@@ -44,6 +44,7 @@ public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
     protected String iframe;
     protected String onClickTopics;
     protected String openDialog;
+    protected String openDialogTitle;
     protected String parentTheme;
     protected String button;
     protected String buttonIcon;
@@ -70,6 +71,7 @@ public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
 	submit.setResetForm(resetForm);
 	submit.setIframe(iframe);
 	submit.setOpenDialog(openDialog);
+	submit.setOpenDialogTitle(openDialogTitle);
 	submit.setParentTheme(parentTheme);
 	submit.setButton(button);
 	submit.setButtonIcon(buttonIcon);
@@ -107,6 +109,10 @@ public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
 
     public void setOpenDialog(String openDialog) {
 	this.openDialog = openDialog;
+    }
+
+    public void setOpenDialogTitle(String openDialogTitle) {
+        this.openDialogTitle = openDialogTitle;
     }
 
     public void setParentTheme(String parentTheme) {

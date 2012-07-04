@@ -36,6 +36,7 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
     private static final long serialVersionUID = -1034616578492431113L;
 
     protected String openDialog;
+    protected String openDialogTitle;
     protected String onClickTopics;
     protected String button;
     protected String buttonIcon;
@@ -54,6 +55,7 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
 
 	Anchor link = (Anchor) component;
 	link.setOpenDialog(openDialog);
+	link.setOpenDialogTitle(openDialogTitle);
 	link.setOnClickTopics(onClickTopics);
 	link.setButton(button);
 	link.setButtonIcon(buttonIcon);
@@ -65,6 +67,10 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
 
     public void setOpenDialog(String openDialog) {
 	this.openDialog = openDialog;
+    }
+
+    public void setOpenDialogTitle(String openDialogTitle) {
+        this.openDialogTitle = openDialogTitle;
     }
 
     public void setOnClickTopics(String onClickTopics) {

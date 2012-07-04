@@ -35,6 +35,7 @@
 	
     <sj:a 
     	openDialog="myremotelinkdialog"
+    	openDialogTitle="Dialog One"
     	href="%{remoteurl1}"
     	button="true"
     	buttonIcon="ui-icon-newwin"
@@ -43,6 +44,7 @@
     </sj:a>
     <sj:a 
     	onClickTopics="openRemoteDialog"
+    	openDialogTitle="Dialog Two"
     	href="%{remoteurl2}"
     	button="true"
     	buttonIcon="ui-icon-newwin"
@@ -51,6 +53,7 @@
     </sj:a>
     <sj:a 
     	onClickTopics="openRemoteDialog"
+     	openDialogTitle="Dialog Three"
     	href="%{remoteurl3}"
     	button="true"
     	buttonIcon="ui-icon-newwin"
@@ -59,6 +62,7 @@
     </sj:a>
     <sj:a 
     	openDialog="myremotelinkdialog"
+    	openDialogTitle="Dialog Four"
     	href="%{remoteurl4}"
     	button="true"
     	buttonIcon="ui-icon-newwin"
