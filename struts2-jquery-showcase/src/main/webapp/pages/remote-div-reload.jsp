@@ -109,6 +109,22 @@
     		cssClass="result ui-widget-content ui-corner-all">
     </sj:div>
 
+    <br/><br/>
+
+    <strong>Div with updateFreq every 5000 milliseconds</strong>
+    <img id="indicator4" 
+    		src="images/indicator.gif" 
+    		alt="Loading..." 
+    		style="display:none"/>
+    <s:url id="ajax3" value="/ajax3.action"/>
+    <sj:div id="div4" 
+			href="%{ajax3}" 
+    		indicator="indicator4" 
+    		updateFreq="5000" 
+    		effect="highlight" 
+    		cssClass="result ui-widget-content ui-corner-all">
+    </sj:div>
+
     <sj:tabbedpanel id="localtabs" cssClass="list">
       <sj:tab id="tab1" target="javascript" label="JavaScript Code"/>
       <sj:tab id="tab2" target="jsp" label="JSP Code"/>
@@ -245,6 +261,22 @@
         		src=&quot;images/indicator.gif&quot; 
         		alt=&quot;Loading...&quot; 
         		style=&quot;display:none&quot;/&gt;
+    &lt;/sj:div&gt;
+
+    &lt;br/&gt;&lt;br/&gt;
+
+    &lt;strong&gt;Div with updateFreq every 5000 milliseconds&lt;/strong&gt;
+    &lt;img id=&quot;indicator4&quot; 
+    		src=&quot;images/indicator.gif&quot; 
+    		alt=&quot;Loading...&quot; 
+    		style=&quot;display:none&quot;/&gt;
+    &lt;s:url id=&quot;ajax3&quot; value=&quot;/ajax3.action&quot;/&gt;
+    &lt;sj:div id=&quot;div4&quot; 
+			href=&quot;%{ajax3}&quot; 
+    		indicator=&quot;indicator4&quot; 
+    		updateFreq=&quot;5000&quot; 
+    		effect=&quot;highlight&quot; 
+    		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
     &lt;/sj:div&gt;
 	  </pre>
 	  </div>

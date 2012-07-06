@@ -671,6 +671,10 @@
 				else if (!o.deferredloading) {
 					$elem.publish(divTopic, o);
 				}
+				
+				if(o.updatefreq){
+					setInterval(function() { $elem.publish(divTopic, o); }, o.updatefreq);
+				}
 
 			}
 			else if (o.formids) {

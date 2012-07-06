@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.views.annotations.StrutsTag;
+import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.opensymphony.xwork2.util.ValueStack;
@@ -71,55 +72,61 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 @StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DivTag", description = "Render HTML div providing content from remote call via AJAX", allowDynamicAttributes = true)
-public class Div extends AbstractContainer implements ResizableBean, DroppableBean, DraggableBean, SelectableBean {
+public class Div extends AbstractContainer implements ResizableBean,
+	DroppableBean, DraggableBean, SelectableBean {
 
-  public static final String            TEMPLATE       = "div";
-  public static final String            TEMPLATE_CLOSE = "div-close";
-  public static final String            COMPONENT_NAME = Div.class.getName();
-  final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION   = "container";
+    public static final String TEMPLATE = "div";
+    public static final String TEMPLATE_CLOSE = "div-close";
+    public static final String COMPONENT_NAME = Div.class.getName();
+    final private static transient Random RANDOM = new Random();
+    public static final String JQUERYACTION = "container";
 
-  public Div(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
+    protected String updateFreq;
 
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
-
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
-
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
-
-    addParameter("jqueryaction", JQUERYACTION);
-
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "div_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
+    public Div(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
     }
-  }
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+    public String getDefaultOpenTemplate() {
+	return TEMPLATE;
+    }
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+    protected String getDefaultTemplate() {
+	return TEMPLATE_CLOSE;
+    }
+
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
+	addParameter("jqueryaction", JQUERYACTION);
+
+	if (updateFreq != null)
+	    addParameter("updateFreq", findValue(updateFreq, Number.class));
+
+	if ((this.id == null || this.id.length() == 0)) {
+	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+	    int nextInt = RANDOM.nextInt();
+	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+		    .abs(nextInt);
+	    this.id = "div_" + String.valueOf(nextInt);
+	    addParameter("id", this.id);
+	}
+    }
+
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
+
+    @Override
+    public String getTheme() {
+	return "jquery";
+    }
+
+    @StrutsTagAttribute(description = "How often to reload the content (in milliseconds). e.g. 5000", type = "Number")
+    public void setUpdateFreq(String updateFreq) {
+	this.updateFreq = updateFreq;
+    }
 }

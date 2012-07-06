@@ -23,6 +23,9 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
+  <#if parameters.updateFreq??>
+	options_${escapedOptionId?html}.updatefreq = ${parameters.updateFreq?c};
+  </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
