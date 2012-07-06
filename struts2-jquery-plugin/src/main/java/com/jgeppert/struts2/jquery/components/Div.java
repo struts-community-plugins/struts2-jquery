@@ -82,6 +82,7 @@ public class Div extends AbstractContainer implements ResizableBean,
     public static final String JQUERYACTION = "container";
 
     protected String updateFreq;
+    protected String delay;
 
     public Div(ValueStack stack, HttpServletRequest request,
 	    HttpServletResponse response) {
@@ -102,6 +103,8 @@ public class Div extends AbstractContainer implements ResizableBean,
 
 	if (updateFreq != null)
 	    addParameter("updateFreq", findValue(updateFreq, Number.class));
+	if (delay != null)
+	    addParameter("delay", findValue(delay, Number.class));
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -128,5 +131,10 @@ public class Div extends AbstractContainer implements ResizableBean,
     @StrutsTagAttribute(description = "How often to reload the content (in milliseconds). e.g. 5000", type = "Number")
     public void setUpdateFreq(String updateFreq) {
 	this.updateFreq = updateFreq;
+    }
+
+    @StrutsTagAttribute(description = "How long to wait before fetching the content (in milliseconds). e.g. 2000", type = "Number")
+    public void setDelay(String delay) {
+        this.delay = delay;
     }
 }

@@ -669,7 +669,11 @@
 					}
 				}
 				else if (!o.deferredloading) {
-					$elem.publish(divTopic, o);
+					if(o.delay){
+						setTimeout(function() { $elem.publish(divTopic, o); }, o.delay);
+					} else {
+						$elem.publish(divTopic, o);
+					}
 				}
 				
 				if(o.updatefreq){

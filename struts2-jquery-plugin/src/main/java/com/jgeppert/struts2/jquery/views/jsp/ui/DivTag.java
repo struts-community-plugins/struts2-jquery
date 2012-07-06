@@ -38,6 +38,7 @@ public class DivTag extends AbstractContainerTag {
     private static final long serialVersionUID = 3769231035916461758L;
 
     protected String updateFreq;
+    protected String delay;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
 	    HttpServletResponse res) {
@@ -49,9 +50,14 @@ public class DivTag extends AbstractContainerTag {
 
 	Div div = (Div) component;
 	div.setUpdateFreq(updateFreq);
+	div.setDelay(delay);
     }
 
     public void setUpdateFreq(String updateFreq) {
 	this.updateFreq = updateFreq;
+    }
+
+    public void setDelay(String delay) {
+        this.delay = delay;
     }
 }

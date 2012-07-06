@@ -26,6 +26,9 @@ jQuery(document).ready(function () {
   <#if parameters.updateFreq??>
 	options_${escapedOptionId?html}.updatefreq = ${parameters.updateFreq?c};
   </#if>
+  <#if parameters.delay??>
+	options_${escapedOptionId?html}.delay = ${parameters.delay?c};
+  </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
