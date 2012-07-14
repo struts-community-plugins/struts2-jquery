@@ -39,28 +39,26 @@
 </#if>
 <#if parameters.compressed?default(true)>
   <#assign jqueryFile="jquery-${jQueryVersion}.min.js">
-  <#assign jqueryForm="jquery.form.min.js?s2j=3.3.1">
-  <#assign jqueryUIFile="jquery-ui.min.js?s2j=3.3.1">
-  <#assign jqueryUICoreFile="jquery.ui.core.min.js?s2j=3.3.1">
-  <#assign jqueryRequireFile="jquery.require.min.js">
+  <#assign jqueryForm="jquery.form.min.js?s2j=3.3.3">
+  <#assign jqueryUIFile="jquery-ui.min.js?s2j=3.3.3">
+  <#assign jqueryUICoreFile="jquery.ui.core.min.js?s2j=3.3.3">
   <#assign jquerySubscribeFile="jquery.subscribe.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.min.js">
-  <#assign jqueryStrutsFile="jquery.struts2-3.3.1.min.js">
-  <#assign jqueryUiStrutsFile="jquery.ui.struts2-3.3.1.min.js">
+  <#assign jqueryStrutsFile="jquery.struts2-3.3.3.min.js">
+  <#assign jqueryUiStrutsFile="jquery.ui.struts2-3.3.3.min.js">
   <#assign jqueryGoogle="${googlePath}/jquery.min.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
   <#assign jqueryFile="jquery-${jQueryVersion}.js">
-  <#assign jqueryForm="jquery.form.js?s2j=3.3.1">
-  <#assign jqueryUIFile="jquery-ui.js?s2j=3.3.1">
-  <#assign jqueryUICoreFile="jquery.ui.core.js?s2j=3.3.1">
-  <#assign jqueryRequireFile="jquery.require.js">
+  <#assign jqueryForm="jquery.form.js?s2j=3.3.3">
+  <#assign jqueryUIFile="jquery-ui.js?s2j=3.3.3">
+  <#assign jqueryUICoreFile="jquery.ui.core.js?s2j=3.3.3">
   <#assign jquerySubscribeFile="jquery.subscribe.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.js">
-  <#assign jqueryStrutsFile="jquery.struts2-3.3.1.js">
-  <#assign jqueryUiStrutsFile="jquery.ui.struts2-3.3.1.js">
+  <#assign jqueryStrutsFile="jquery.struts2-3.3.3.js">
+  <#assign jqueryUiStrutsFile="jquery.ui.struts2-3.3.3.js">
   <#assign jqueryGoogle="${googlePath}/jquery.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.js">
 </#if>
@@ -101,7 +99,7 @@
 
 <script type="text/javascript">
 $(function() {
-	jQuery.struts2_jquery.version="3.3.1";
+	jQuery.struts2_jquery.version="3.3.3";
 <#if parameters.debug?default(false)>
 	jQuery.struts2_jquery.debug = true;
 </#if>
@@ -162,9 +160,9 @@ $(function() {
 		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
         	<link id="jquery_theme_link" rel="stylesheet" href="${googleUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		<#else>
-        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=3.3.1" type="text/css"/>
+        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=3.3.3" type="text/css"/>
 		</#if>
     <#else>
-        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css?s2j=3.3.1" type="text/css"/>
+        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css?s2j=3.3.3" type="text/css"/>
     </#if>
 </#if>

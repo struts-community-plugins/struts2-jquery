@@ -47,7 +47,7 @@
 <#else>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2-3.3.1"+jQuery.struts2_jquery.minSuffix+".js");
+	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2-3.3.3"+jQuery.struts2_jquery.minSuffix+".js");
 </#if>
 	var options_${escapedOptionId?html} = {};
 	options_${escapedOptionId?html}.frozen = false;
