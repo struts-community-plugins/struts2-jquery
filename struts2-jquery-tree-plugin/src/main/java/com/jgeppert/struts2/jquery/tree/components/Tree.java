@@ -70,6 +70,7 @@ public class Tree extends AbstractContainer {
     protected String contextmenu;
     protected String types;
     protected String checkbox;
+    protected String checkboxTwoState;
     protected String checkboxCheckAllTopics;
     protected String checkboxUncheckAllTopics;
     protected String checkboxHideTopics;
@@ -137,6 +138,8 @@ public class Tree extends AbstractContainer {
 	    addParameter("types", findString(types));
 	if (checkbox != null)
 	    addParameter("checkbox", findValue(this.checkbox, Boolean.class));
+	if (checkboxTwoState != null)
+	    addParameter("checkboxTwoState", findValue(this.checkboxTwoState, Boolean.class));
 	if (checkboxCheckAllTopics != null)
 	    addParameter("checkboxCheckAllTopics", findString(checkboxCheckAllTopics));
 	if (checkboxUncheckAllTopics != null)
@@ -282,6 +285,11 @@ public class Tree extends AbstractContainer {
     @StrutsTagAttribute(description = "Makes multiselection possible using three-state checkboxes.", type = "Boolean", defaultValue = "false")
     public void setCheckbox(String checkbox) {
 	this.checkbox = checkbox;
+    }
+
+    @StrutsTagAttribute(description = "If set to true checkboxes will be two-state only, meaning that you will be able to select parent and children independently and there will be no undetermined state.", type = "Boolean", defaultValue = "false")
+    public void setCheckboxTwoState(String checkboxTwoState) {
+        this.checkboxTwoState = checkboxTwoState;
     }
 
     @StrutsTagAttribute(description = "A comma delimited list of topics to check all nodes.")

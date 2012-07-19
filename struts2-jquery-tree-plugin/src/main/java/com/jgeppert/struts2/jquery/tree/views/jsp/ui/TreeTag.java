@@ -58,6 +58,7 @@ public class TreeTag extends AbstractContainerTag {
     protected String contextmenu;
     protected String types;
     protected String checkbox;
+    protected String checkboxTwoState;
     protected String checkboxCheckAllTopics;
     protected String checkboxUncheckAllTopics;
     protected String checkboxHideTopics;
@@ -92,6 +93,7 @@ public class TreeTag extends AbstractContainerTag {
 	tree.setContextmenu(contextmenu);
 	tree.setTypes(types);
 	tree.setCheckbox(checkbox);
+	tree.setCheckboxTwoState(checkboxTwoState);
 	tree.setCheckboxCheckAllTopics(checkboxCheckAllTopics);
 	tree.setCheckboxUncheckAllTopics(checkboxUncheckAllTopics);
 	tree.setCheckboxShowTopics(checkboxShowTopics);
@@ -176,6 +178,10 @@ public class TreeTag extends AbstractContainerTag {
 
     public void setCheckbox(String checkbox) {
 	this.checkbox = checkbox;
+    }
+
+    public void setCheckboxTwoState(String checkboxTwoState) {
+        this.checkboxTwoState = checkboxTwoState;
     }
 
     public void setCheckboxCheckAllTopics(String checkboxCheckAllTopics) {

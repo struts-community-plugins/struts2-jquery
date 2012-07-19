@@ -63,6 +63,7 @@
 				o.plugins.push("ui"); 
 				o.plugins.push("checkbox");
 				o.checkbox = { override_ui : true, real_checkboxes : true, real_checkboxes_names : function (n) { return [o.name, n.attr ? n.attr("id") : 0 ] }};
+				if(o.two_state) { o.checkbox.two_state = true; }
 			}
 			
 			if(o.checkAllTopics) {

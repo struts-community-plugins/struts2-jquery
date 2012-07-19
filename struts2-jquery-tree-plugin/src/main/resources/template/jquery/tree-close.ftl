@@ -69,6 +69,9 @@ jQuery(document).ready(function () {
 	<#if parameters.checkbox??>
 	options_${escapedOptionId?html}.checkbox = ${parameters.checkbox?string};
 	</#if>
+	<#if parameters.checkboxTwoState??>
+	options_${escapedOptionId?html}.two_state = ${parameters.checkboxTwoState?string};
+	</#if>
 	<#if parameters.checkboxCheckAllTopics?if_exists != ""> 
 	options_${escapedOptionId?html}.checkAllTopics = "${parameters.checkboxCheckAllTopics?string}";
 	</#if>
