@@ -33,7 +33,9 @@
     		label="List -Points-"
     		list="points"
     		points="{ show: true }"
-    		lines="{ show: true }"
+    		lines="{ show: false }"
+     		curvedLines="true"
+     		curvedLinesFit="true"
     	/>
     	<sjc:chartData
     		label="List -Points with Null Value-"
@@ -64,9 +66,13 @@
     		listKey="myKey"
     		listValue="myValue"
     		points="{ show: true }"
-    		lines="{ show: true }"
+    		lines="{ show: false }"
     		clickable="true"
     		hoverable="true"
+     		curvedLines="true"
+     		curvedLinesFill="true"
+     		curvedLinesFillColor="#ccc"
+     		curvedLinesLineWidth="3"
     	/>
     </sjc:chart>
 

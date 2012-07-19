@@ -83,6 +83,26 @@ options_${escapedOptionId?html}_data.shadowSize = ${parameters.shadowSize};
 options_${escapedOptionId?html}_data.fillBetween = "${parameters.fillBetween}";
 options_${escapedOptionId?html}.fill = true;
 </#if>
+<#if parameters.curvedLines?default(false)>
+options_${escapedOptionId?html}_data.curvedLines = { show : true };
+if(options_${escapedOptionId?html}.series){
+options_${escapedOptionId?html}.series = $.extend(options_${escapedOptionId?html}.series , { curvedLines: { active : true }});
+} else {
+options_${escapedOptionId?html}.series = { curvedLines: { active: true }};
+}
+	<#if parameters.curvedLinesFit?default(false)>
+	options_${escapedOptionId?html}_data.curvedLines.fit = true;
+	</#if>
+	<#if parameters.curvedLinesFill?default(false)>
+	options_${escapedOptionId?html}_data.curvedLines.fill = true;
+	</#if>
+	<#if parameters.curvedLinesFillColor?if_exists != "">
+	options_${escapedOptionId?html}_data.curvedLines.fillColor = "${parameters.curvedLinesFillColor?html}";
+	</#if>
+	<#if parameters.curvedLinesLineWidth??>
+	options_${escapedOptionId?html}_data.curvedLines.lineWidth = ${parameters.curvedLinesLineWidth};
+	</#if>
+</#if>
 <#if parameters.reloadTopics?exists>
 options_${escapedOptionId?html}_data.reloadtopics = "${parameters.reloadTopics?html}";
 </#if>

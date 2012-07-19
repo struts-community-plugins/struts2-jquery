@@ -35,57 +35,46 @@ import com.opensymphony.xwork2.ActionSupport;
 @ParentPackage(value = "showcase")
 public class JsonChartData extends ActionSupport {
 
-  private static final long   serialVersionUID = 6659512910595305843L;
-  private List<ListValue>     objList;
-  private Map<Double, Double> doubleMap;
+	private static final long serialVersionUID = -1868891788172934382L;
+	private static Random generator = new Random();
+	private List<ListValue> objList;
+	private Map<Double, Double> doubleMap;
 
-  @Actions( {
-    @Action(value = "/json-chart-data", results = {
-      @Result(name = "success", type = "json")
-    })
-  })
-  public String execute()
-  {
+	@Actions({ @Action(value = "/json-chart-data", results = { @Result(name = "success", type = "json") }) })
+	public String execute() {
 
-    objList = new ArrayList<ListValue>();
-    doubleMap = new TreeMap<Double, Double>();
+		objList = new ArrayList<ListValue>();
+		doubleMap = new TreeMap<Double, Double>();
 
-    Random generator = new Random();
-    for (int i = 1; i <= 24; i++)
-    {
-      doubleMap.put(Double.valueOf("" + i), generator.nextDouble() * 10.0);
-    }
+		for (int i = 1; i <= 24; i++) {
+			doubleMap
+					.put(Double.valueOf("" + i), generator.nextDouble() * 10.0);
+		}
 
-    for (int i = 1; i <= 24; i++)
-    {
-      objList.add(new ListValue("" + i, "" + generator.nextInt(30)));
-    }
+		for (int i = 1; i <= 24; i++) {
+			objList.add(new ListValue("" + i, "" + generator.nextInt(30)));
+		}
 
-    return SUCCESS;
-  }
+		return SUCCESS;
+	}
 
-  public String getJSON()
-  {
-    return execute();
-  }
+	public String getJSON() {
+		return execute();
+	}
 
-  public List<ListValue> getObjList()
-  {
-    return objList;
-  }
+	public List<ListValue> getObjList() {
+		return objList;
+	}
 
-  public void setObjList(List<ListValue> objList)
-  {
-    this.objList = objList;
-  }
+	public void setObjList(List<ListValue> objList) {
+		this.objList = objList;
+	}
 
-  public Map<Double, Double> getDoubleMap()
-  {
-    return doubleMap;
-  }
+	public Map<Double, Double> getDoubleMap() {
+		return doubleMap;
+	}
 
-  public void setDoubleMap(Map<Double, Double> doubleMap)
-  {
-    this.doubleMap = doubleMap;
-  }
+	public void setDoubleMap(Map<Double, Double> doubleMap) {
+		this.doubleMap = doubleMap;
+	}
 }

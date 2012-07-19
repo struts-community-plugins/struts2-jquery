@@ -117,7 +117,11 @@ options_${escapedOptionId?html}.onhover = "${parameters.onHoverTopics?html}";
   	</#if>
 </#if>
 <#if parameters.pie?default(false)>
-options_${escapedOptionId?html}.series = { pie: { show: true }};
+	if(options_${escapedOptionId?html}.series){
+	options_${escapedOptionId?html}.series = $.extend(options_${escapedOptionId?html}.series , { pie: { show: true }});
+	} else {
+	options_${escapedOptionId?html}.series = { pie: { show: true }};
+	}
 	<#if parameters.pieRadius??>
 		options_${escapedOptionId?html}.series.pie.radius = ${parameters.pieRadius?string};
 	</#if>
