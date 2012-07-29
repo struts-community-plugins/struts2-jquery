@@ -20,9 +20,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.myfaces.tobago</groupId>
-                <artifactId>maven-apt-plugin</artifactId>
-                <version>1.0.36</version>
+				<groupId>org.apache.myfaces.tobago</groupId>
+				<artifactId>maven-apt-plugin</artifactId>
+				<version>1.0.39</version>
                 <configuration>
                     <A>
                         uri=/struts-jquery-tags,
