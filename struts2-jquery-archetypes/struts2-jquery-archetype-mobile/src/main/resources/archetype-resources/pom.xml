@@ -47,6 +47,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.jgeppert.struts2.jquery</groupId>
+            <artifactId>struts2-jquery-mobile-plugin</artifactId>
+            <version>\${struts2-jquery.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.1</version>

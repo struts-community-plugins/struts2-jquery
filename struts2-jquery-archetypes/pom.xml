@@ -19,6 +19,7 @@
 
     <modules>
         <module>struts2-jquery-archetype-base</module>
+        <module>struts2-jquery-archetype-mobile</module>
         <module>struts2-jquery-bootstrap-archetype-grid</module>
     </modules>
 

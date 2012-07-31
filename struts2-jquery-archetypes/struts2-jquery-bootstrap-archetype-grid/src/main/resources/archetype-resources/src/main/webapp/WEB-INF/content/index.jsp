@@ -78,7 +78,7 @@
 	</div>
 	<!-- /container -->
 
-	<footer class="footer">
+	<footer class="footer container well" style="margin-top: 30px;">
 		<p class="pull-right">
 			<a href="#">Back to top</a>
 		</p>

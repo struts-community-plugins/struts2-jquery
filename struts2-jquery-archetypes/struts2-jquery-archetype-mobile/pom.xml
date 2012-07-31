@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.jgeppert.struts2.jquery</groupId>
+		<artifactId>struts2-jquery-archetypes</artifactId>
+		<version>3.4.0-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>struts2-jquery-archetype-mobile</artifactId>
+	<packaging>jar</packaging>
+	<name>Struts 2 jQuery Archetype - Mobile</name>
+	<description>This Archetype provides a Webapp Configuration ready for the Struts2 jQuery Mobile Plugin.</description>
+
+    <scm>
+        <connection>scm:svn:http://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-archetypes/struts2-jquery-archetype-mobile</connection>
+        <developerConnection>scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-archetypes/struts2-jquery-archetype-mobile</developerConnection>
+        <url>http://code.google.com/p/struts2-jquery/source/browse/</url>
+    </scm>
+
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources/archetype-resources/src</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.archetype</groupId>
+				<artifactId>archetype-packaging</artifactId>
+				<version>2.0</version>
+			</extension>
+		</extensions>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<escapeString>\</escapeString>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>2.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

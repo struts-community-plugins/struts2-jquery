@@ -9,9 +9,9 @@
     <name>\${artifactId}</name>
 
 	<properties>
-		<struts2.version>2.3.1.2</struts2.version>
+		<struts2.version>${struts2.version}</struts2.version>
 		<struts2-jquery.version>${version}</struts2-jquery.version>
-		<struts2-bootstrap.version>1.2.1</struts2-bootstrap.version>
+		<struts2-bootstrap.version>1.4.3</struts2-bootstrap.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
 	</properties>
 

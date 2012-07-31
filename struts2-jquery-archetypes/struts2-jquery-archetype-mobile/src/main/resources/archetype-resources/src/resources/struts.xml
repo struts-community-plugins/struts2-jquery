@@ -6,6 +6,5 @@
 
   <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
   <constant name="struts.devMode" value="true"/>
-  <constant name="struts.custom.i18n.resources" value="package" />
 
 </struts>
