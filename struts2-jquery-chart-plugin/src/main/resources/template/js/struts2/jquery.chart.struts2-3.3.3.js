@@ -37,6 +37,9 @@
 			if (o.crosshair) {
 				self.require("js/flot/jquery.flot.crosshair" + self.minSuffix + ".js");
 			}
+			if ((o.xaxis && o.xaxis.mode === "time") || (o.yaxis && o.yaxis.mode === "time")) {
+				self.require("js/flot/jquery.flot.time" + self.minSuffix + ".js");
+			}
 			if (o.fill) {
 				self.require("js/flot/jquery.flot.fillbetween" + self.minSuffix + ".js");
 			}
