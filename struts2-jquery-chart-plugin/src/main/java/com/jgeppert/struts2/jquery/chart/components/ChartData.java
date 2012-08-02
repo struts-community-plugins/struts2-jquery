@@ -79,6 +79,7 @@ public class ChartData extends AbstractContainer {
 	protected String curvedLinesFill;
 	protected String curvedLinesFillColor;
 	protected String curvedLinesLineWidth;
+	protected String stack;
 
 	protected String data;
 	protected Object list;
@@ -138,6 +139,8 @@ public class ChartData extends AbstractContainer {
 		if (curvedLinesLineWidth != null)
 			addParameter("curvedLinesLineWidth",
 					findValue(curvedLinesLineWidth, Integer.class));
+		if (stack != null)
+			addParameter("stack", findString(stack));
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -407,5 +410,10 @@ public class ChartData extends AbstractContainer {
 	@StrutsTagAttribute(description = "the width of the line.", type = "Integer")
 	public void setCurvedLinesLineWidth(String curvedLinesLineWidth) {
 		this.curvedLinesLineWidth = curvedLinesLineWidth;
+	}
+
+	@StrutsTagAttribute(description = "Stacking data sets, i.e. putting them on top of each other, for accumulative graphs")
+	public void setStack(String stack) {
+	    this.stack = stack;
 	}
 }

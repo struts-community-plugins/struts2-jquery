@@ -53,6 +53,7 @@ public class ChartDataTag extends AbstractContainerTag {
 	protected String curvedLinesFill;
 	protected String curvedLinesFillColor;
 	protected String curvedLinesLineWidth;
+	protected String stack;
 	protected String data;
 	protected Object list;
 	protected String listKey;
@@ -83,6 +84,7 @@ public class ChartDataTag extends AbstractContainerTag {
 		chartData.setCurvedLinesFill(curvedLinesFill);
 		chartData.setCurvedLinesFillColor(curvedLinesFillColor);
 		chartData.setCurvedLinesLineWidth(curvedLinesLineWidth);
+		chartData.setStack(stack);
 		chartData.setData(data);
 		chartData.setList(list);
 		chartData.setListKey(listKey);
@@ -151,6 +153,10 @@ public class ChartDataTag extends AbstractContainerTag {
 
 	public void setCurvedLinesLineWidth(String curvedLinesLineWidth) {
 		this.curvedLinesLineWidth = curvedLinesLineWidth;
+	}
+
+	public void setStack(String stack) {
+	    this.stack = stack;
 	}
 
 	public void setData(String data) {

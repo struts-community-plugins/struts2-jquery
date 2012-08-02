@@ -82,11 +82,11 @@
     <sjc:chart
     	id="chartDate"
     	xaxisMode="time"
-    	xaxisTimeformat="%0m.%y"
+    	xaxisTimeformat="%m.%Y"
     	xaxisMin="%{minTime}"
     	xaxisMax="%{maxTime}"
     	xaxisColor="#666"
-    	xaxisTickSize="[2, 'month']"
+    	xaxisTickSize="[3, 'month']"
     	xaxisTickColor="#aaa"
     	xaxisPosition="top"
     	yaxisPosition="right"
@@ -94,16 +94,17 @@
     	cssStyle="width: 600px; height: 400px;"
     >
     	<sjc:chartData
+    		id="chartDateData"
     		label="Map -Date, Integer-"
     		list="dateFromMap"
     		color="#990066"
-    		bars="{ show: true }"
+    		lines="{ show: true }"
     	/>
     </sjc:chart>
 
     <br/>
 
-	<h3>Chart with AJAX Data</h3>
+	<h3>Chart with AJAX Data and Topics</h3>
 	<s:url id="chartDataUrl" action="json-chart-data"/>
     <sjc:chart
     	id="chartAjax"
@@ -113,23 +114,54 @@
     	cssStyle="width: 600px; height: 400px;"
     >
     	<sjc:chartData
+    		id="chartAjaxData1"
     		label="Map -Double, Double-"
     		href="%{chartDataUrl}"
     		list="doubleMap"
     		deferredLoading="true"
     		reloadTopics="reloadMap"
+    		lines="{show : true}"
     	/>
     	<sjc:chartData
+    		id="chartAjaxData2"
     		label="List -ListValue-"
     		href="%{chartDataUrl}"
     		list="objList"
     		listKey="myKey"
     		listValue="myValue"
     		reloadTopics="reloadList"
+    		lines="{show : true}"
     	/>
     </sjc:chart>
     <sj:a onClickTopics="reloadMap" button="true" buttonIcon="ui-icon-refresh">Load/Reload Map</sj:a>
     <sj:a onClickTopics="reloadList" button="true" buttonIcon="ui-icon-refresh">Reload List</sj:a>
+
+    <br/>
+
+	<h3>Chart with AJAX Data with Stacked Values</h3>
+    <sjc:chart
+    	id="chartAjaxTwo"
+    	cssStyle="width: 600px; height: 400px;"
+    >
+    	<sjc:chartData
+    		id="chartAjaxTwoData1"
+    		label="Map -Double, Double-"
+    		href="%{chartDataUrl}"
+    		list="doubleMap"
+    		bars="{show : true, barWidth: 0.7}"
+    		stack="stack1"
+    	/>
+    	<sjc:chartData
+    		id="chartAjaxTwoData2"
+    		label="List -ListValue-"
+    		href="%{chartDataUrl}"
+    		list="objList"
+    		listKey="myKey"
+    		listValue="myValue"
+    		bars="{show : true, barWidth: 0.7}"
+    		stack="stack1"
+    	/>
+    </sjc:chart>
 
     <br/>
     <br/>
@@ -220,7 +252,9 @@
     		label=&quot;List -Points-&quot;
     		list=&quot;points&quot;
     		points=&quot;{ show: true }&quot;
-    		lines=&quot;{ show: true }&quot;
+    		lines=&quot;{ show: false }&quot;
+     		curvedLines=&quot;true&quot;
+     		curvedLinesFit=&quot;true&quot;
     	/&gt;
     	&lt;sjc:chartData
     		label=&quot;List -Points with Null Value-&quot;
@@ -251,9 +285,13 @@
     		listKey=&quot;myKey&quot;
     		listValue=&quot;myValue&quot;
     		points=&quot;{ show: true }&quot;
-    		lines=&quot;{ show: true }&quot;
+    		lines=&quot;{ show: false }&quot;
     		clickable=&quot;true&quot;
     		hoverable=&quot;true&quot;
+     		curvedLines=&quot;true&quot;
+     		curvedLinesFill=&quot;true&quot;
+     		curvedLinesFillColor=&quot;#ccc&quot;
+     		curvedLinesLineWidth=&quot;3&quot;
     	/&gt;
     &lt;/sjc:chart&gt;
 
@@ -263,11 +301,11 @@
     &lt;sjc:chart
     	id=&quot;chartDate&quot;
     	xaxisMode=&quot;time&quot;
-    	xaxisTimeformat=&quot;%0m.%y&quot;
+    	xaxisTimeformat=&quot;%m.%Y&quot;
     	xaxisMin=&quot;%{minTime}&quot;
     	xaxisMax=&quot;%{maxTime}&quot;
     	xaxisColor=&quot;#666&quot;
-    	xaxisTickSize=&quot;[2, 'month']&quot;
+    	xaxisTickSize=&quot;[3, 'month']&quot;
     	xaxisTickColor=&quot;#aaa&quot;
     	xaxisPosition=&quot;top&quot;
     	yaxisPosition=&quot;right&quot;
@@ -275,16 +313,17 @@
     	cssStyle=&quot;width: 600px; height: 400px;&quot;
     &gt;
     	&lt;sjc:chartData
+    		id=&quot;chartDateData&quot;
     		label=&quot;Map -Date, Integer-&quot;
     		list=&quot;dateFromMap&quot;
     		color=&quot;#990066&quot;
-    		bars=&quot;{ show: true }&quot;
+    		lines=&quot;{ show: true }&quot;
     	/&gt;
     &lt;/sjc:chart&gt;
 
     &lt;br/&gt;
 
-	&lt;h3&gt;Chart with AJAX Data&lt;/h3&gt;
+	&lt;h3&gt;Chart with AJAX Data and Topics&lt;/h3&gt;
 	&lt;s:url id=&quot;chartDataUrl&quot; action=&quot;json-chart-data&quot;/&gt;
     &lt;sjc:chart
     	id=&quot;chartAjax&quot;
@@ -294,23 +333,54 @@
     	cssStyle=&quot;width: 600px; height: 400px;&quot;
     &gt;
     	&lt;sjc:chartData
+    		id=&quot;chartAjaxData1&quot;
     		label=&quot;Map -Double, Double-&quot;
     		href=&quot;%{chartDataUrl}&quot;
     		list=&quot;doubleMap&quot;
     		deferredLoading=&quot;true&quot;
     		reloadTopics=&quot;reloadMap&quot;
+    		lines=&quot;{show : true}&quot;
     	/&gt;
     	&lt;sjc:chartData
+    		id=&quot;chartAjaxData2&quot;
     		label=&quot;List -ListValue-&quot;
     		href=&quot;%{chartDataUrl}&quot;
     		list=&quot;objList&quot;
     		listKey=&quot;myKey&quot;
     		listValue=&quot;myValue&quot;
     		reloadTopics=&quot;reloadList&quot;
+    		lines=&quot;{show : true}&quot;
     	/&gt;
     &lt;/sjc:chart&gt;
     &lt;sj:a onClickTopics=&quot;reloadMap&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Load/Reload Map&lt;/sj:a&gt;
     &lt;sj:a onClickTopics=&quot;reloadList&quot; button=&quot;true&quot; buttonIcon=&quot;ui-icon-refresh&quot;&gt;Reload List&lt;/sj:a&gt;
+
+    &lt;br/&gt;
+
+	&lt;h3&gt;Chart with AJAX Data with Stacked Values&lt;/h3&gt;
+    &lt;sjc:chart
+    	id=&quot;chartAjaxTwo&quot;
+    	cssStyle=&quot;width: 600px; height: 400px;&quot;
+    &gt;
+    	&lt;sjc:chartData
+    		id=&quot;chartAjaxTwoData1&quot;
+    		label=&quot;Map -Double, Double-&quot;
+    		href=&quot;%{chartDataUrl}&quot;
+    		list=&quot;doubleMap&quot;
+    		bars=&quot;{show : true, barWidth: 0.7}&quot;
+    		stack=&quot;stack1&quot;
+    	/&gt;
+    	&lt;sjc:chartData
+    		id=&quot;chartAjaxTwoData2&quot;
+    		label=&quot;List -ListValue-&quot;
+    		href=&quot;%{chartDataUrl}&quot;
+    		list=&quot;objList&quot;
+    		listKey=&quot;myKey&quot;
+    		listValue=&quot;myValue&quot;
+    		bars=&quot;{show : true, barWidth: 0.7}&quot;
+    		stack=&quot;stack1&quot;
+    	/&gt;
+    &lt;/sjc:chart&gt;
 
     &lt;br/&gt;
     &lt;br/&gt;

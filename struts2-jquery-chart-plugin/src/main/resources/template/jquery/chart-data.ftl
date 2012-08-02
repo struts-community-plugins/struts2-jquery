@@ -83,6 +83,10 @@ options_${escapedOptionId?html}_data.shadowSize = ${parameters.shadowSize};
 options_${escapedOptionId?html}_data.fillBetween = "${parameters.fillBetween}";
 options_${escapedOptionId?html}.fill = true;
 </#if>
+<#if parameters.stack?if_exists != "">
+options_${escapedOptionId?html}_data.stack = "${parameters.stack}";
+options_${escapedOptionId?html}.stack = true;
+</#if>
 <#if parameters.curvedLines?default(false)>
 options_${escapedOptionId?html}_data.curvedLines = { show : true };
 if(options_${escapedOptionId?html}.series){

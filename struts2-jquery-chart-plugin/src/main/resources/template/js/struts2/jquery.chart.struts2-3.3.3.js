@@ -43,6 +43,9 @@
 			if (o.fill) {
 				self.require("js/flot/jquery.flot.fillbetween" + self.minSuffix + ".js");
 			}
+			if (o.stack) {
+				self.require("js/flot/jquery.flot.stack" + self.minSuffix + ".js");
+			}
 			if (o.series && o.series.curvedLines) {
 				self.require("js/flot/curvedLines" + self.minSuffix + ".js");
 			}
@@ -96,7 +99,7 @@
 			}
 
 			$.each(ajaxData, function(i, ad) {
-				var topic = chartTopic+i;
+				var topic = chartTopic+o.id+i;
 				self.subscribeTopics($elem, topic, '_s2j_chart', ad);
 				self.subscribeTopics($elem, ad.reloadtopics, '_s2j_chart', ad);
 				self.subscribeTopics($elem, ad.listentopics, '_s2j_chart', ad);
