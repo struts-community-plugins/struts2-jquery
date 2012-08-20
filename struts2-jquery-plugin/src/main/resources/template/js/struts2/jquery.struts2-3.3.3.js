@@ -874,7 +874,7 @@
 			$.struts2_jquery_ui.jquerybutton($elem, o);
 		}
 
-		if ((!o.href || o.href === "#") && o.formids !== undefined) {
+		if ((!o.href || o.href === "#") || o.formids !== undefined) {
 			self.formsubmit($elem, o, formTopic);
 		}
 		else {
