@@ -443,7 +443,7 @@
 					
 					var orginal = {},
 						so = o.subgridoptions,
-						subgridtableid = subgrid_id + "_table",
+						subgridtableid = subgrid_id.replace(/(:|\.)/g, '\\$1') + "_table",
 						subgrid = $(self.escId(subgrid_id)),
 						subgridhtml = "<table id='" + subgridtableid + "' class='scroll'></table>",
 						to = so.url.indexOf('?');
@@ -457,11 +457,11 @@
 						self.publishTopic($elem, o.onalw, orginal);
 						self.publishTopic($elem, o.onsgrowexpanded, orginal);
 					}
-					
+					row_id = escape(row_id);
 					if(orginal.proceed) {
 						if ((so.pager && so.pager !== "") || so.navigator) {
-							subgridhtml = subgridhtml + "<div id='" + subgrid_id+ "_pager'></div>";
-							so.pager = subgrid_id + "_pager";
+							subgridhtml = subgridhtml + "<div id='" + subgrid_id.replace(/(:|\.)/g, '\\$1')+ "_pager'></div>";
+							so.pager = subgrid_id.replace(/(:|\.)/g, '\\$1') + "_pager";
 							so.navigatoraddoptions = $.extend(true,so.navigatoraddoptions||{}, {editData:{rowid:row_id}});
 							so.navigatoreditoptions = $.extend(true,so.navigatoreditoptions||{}, {editData:{rowid:row_id}});
 							so.navigatordeleteoptions = $.extend(true,so.navigatordeleteoptions||{}, {delData:{rowid:row_id}});
@@ -487,7 +487,7 @@
 						});
 						
 						subgrid.html(subgridhtml);
-	
+						
 						if (so.url) {
 							if (to > 0) {
 								so.url = so.url.substring(0, to);
@@ -504,22 +504,11 @@
 				params.gridview = true;
 			}
 			
-			if (o.url && o.formids) {
-				var data = '';
+			if (o.url) {
 				if (o.formids) {
-					if (!self.loadAtOnce) {
-						self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
-					}
-					$.each(o.formids.split(','), function(i, fid) {
-						var query = $(self.escId(fid)).formSerialize();
-						if (data !== '') {
-							data = data + '&' + query;
-						} else {
-							data = query;
-						}
-					});
+					o.url = self.addForms(o.formids, o.url);
 				}
-				params.url = self.addParam(o.url, data);
+				params.url = o.url;
 			}
 			
 			return params;
