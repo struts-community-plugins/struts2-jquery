@@ -38,7 +38,6 @@ import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import com.jgeppert.struts2.jquery.components.AbstractContainer;
-import com.jgeppert.struts2.jquery.components.DatePicker;
 import com.opensymphony.xwork2.util.ValueStack;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
@@ -60,7 +59,7 @@ public class ChartData extends AbstractContainer {
 	public static final String TEMPLATE_CLOSE = "chart-data-close";
 	public static final String COMPONENT_NAME = ChartData.class.getName();
 	protected final static Logger LOG = LoggerFactory
-			.getLogger(DatePicker.class);
+			.getLogger(ChartData.class);
 	private final static transient Random RANDOM = new Random();
 
 	protected String color;
@@ -99,7 +98,6 @@ public class ChartData extends AbstractContainer {
 		return TEMPLATE_CLOSE;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void evaluateExtraParams() {
 		super.evaluateExtraParams();
 		if (color != null)
