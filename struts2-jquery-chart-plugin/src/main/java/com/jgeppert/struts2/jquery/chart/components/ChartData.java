@@ -234,10 +234,9 @@ public class ChartData extends AbstractContainer {
 								data.append("[");
 								if (listKey != null) {
 									String key = findString(listKey);
-									String itemKey = null;
+									Object itemKey = null;
 									try {
-										itemKey = (String) PropertyUtils
-												.getSimpleProperty(item, key);
+										itemKey = PropertyUtils.getSimpleProperty(item, key);
 									} catch (IllegalAccessException e) {
 										LOG.warn("Cannot read listKey", e);
 									} catch (InvocationTargetException e) {
@@ -247,7 +246,11 @@ public class ChartData extends AbstractContainer {
 									}
 
 									if (itemKey != null) {
-										data.append(itemKey);
+										if (itemKey instanceof Date) {
+											data.append(((Date) itemKey).getTime());
+										} else {
+											data.append(itemKey.toString());
+										}
 									} else {
 										data.append(count);
 									}
@@ -259,10 +262,9 @@ public class ChartData extends AbstractContainer {
 
 								if (listValue != null) {
 									String value = findString(listValue);
-									String itemValue = null;
+									Object itemValue = null;
 									try {
-										itemValue = (String) PropertyUtils
-												.getSimpleProperty(item, value);
+										itemValue = PropertyUtils.getSimpleProperty(item, value);
 									} catch (IllegalAccessException e) {
 										LOG.warn("Cannot read listValue", e);
 									} catch (InvocationTargetException e) {
@@ -272,7 +274,11 @@ public class ChartData extends AbstractContainer {
 									}
 
 									if (itemValue != null) {
-										data.append(itemValue);
+										if (itemValue instanceof Date) {
+											data.append(((Date) itemValue).getTime());
+										} else {
+											data.append(itemValue.toString());
+										}
 									} else {
 										data.append(item.toString());
 									}
