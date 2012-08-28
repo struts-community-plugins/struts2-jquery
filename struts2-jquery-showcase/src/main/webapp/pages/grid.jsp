@@ -33,12 +33,14 @@
     	resizableAnimate="true"
     	resizableGhost="true"
     	resizableHandles="all"
+    	width="700"
+    	shrinkToFit="false"
     >
     	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
-    	<sjg:gridColumn name="name" index="name" title="Name" width="250" sortable="true"/>
-    	<sjg:gridColumn name="country" index="country" title="Country" sortable="false"/>
-    	<sjg:gridColumn name="city" index="city" title="City" sortable="false"/>
-    	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
+    	<sjg:gridColumn name="name" index="name" title="Name" width="290" sortable="true"/>
+    	<sjg:gridColumn name="country" index="country" width="100" title="Country" sortable="false"/>
+    	<sjg:gridColumn name="city" index="city" width="100" title="City" sortable="false"/>
+    	<sjg:gridColumn name="creditLimit" index="creditLimit" width="100" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
     </sjg:grid>
   </div>
 

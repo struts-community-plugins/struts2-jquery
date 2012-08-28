@@ -98,12 +98,12 @@ public class Head extends org.apache.struts2.components.Head {
 			"de", "da", "dk", "el", "en", "es", "en-GB", "fa", "fi", "fr",
 			"fr-CH", "gl", "he", "hr", "hu", "is", "it", "ja", "lt", "mne",
 			"nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sr", "sv",
-			"th", "tr", "ua", "zh", "zh-CN" };
+			"th", "tr", "ua", "zh", "zh-CN", "zh-TW" };
 	private static final String[] jqueryLocals = { "af", "ar", "ar-DZ", "az",
 			"bg", "bs", "ca", "cs", "cy-GB", "da", "de", "el", "en", "en-AU",
 			"en-GB", "en-NZ", "eo", "es", "et", "eu", "fa", "fi", "fo", "fr",
 			"fr-CH", "ge", "gl", "he", "hi", "hr", "hu", "hy", "id", "is",
-			"it", "ja", "ka", "kk", "km", "ko", "kz", "lt", "lb", "lv", "mk",
+			"it", "ja", "ka", "kk", "km", "ko", "kr", "kz", "lt", "lb", "lv", "mk",
 			"ml", "ms", "nl-BE", "nl", "no", "pl", "pt", "pt-BR", "rm", "ro",
 			"ru", "sk", "sl", "sq", "sr-SR", "sv", "ta", "th", "tj", "tr",
 			"uk", "vi", "zh-CN", "zh-HK", "zh-TW" };

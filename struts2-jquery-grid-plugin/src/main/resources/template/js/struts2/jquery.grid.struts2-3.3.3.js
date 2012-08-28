@@ -532,7 +532,7 @@
 						$.jgrid.no_legacy_api = true;
 						$.jgrid.useJSON = true;
 					});
-			self.require("js/plugins/jquery.jqGrid" + self.minSuffix + ".js");
+			self.require("js/plugins/jquery.jqGrid.min.js");
 			self.requireCss("themes/ui.jqgrid.css");
 			if(o.sortable || o.sortableRows) {
 				if (!self.loadAtOnce) {
