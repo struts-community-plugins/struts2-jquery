@@ -505,12 +505,22 @@
 			}
 			
 			if (o.url) {
+				var data = '';
 				if (o.formids) {
-					o.url = self.addForms(o.formids, o.url);
+					if (!self.loadAtOnce) {
+						self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
+					}
+					$.each(o.formids.split(','), function(i, fid) {
+						var query = $(self.escId(fid)).formSerialize();
+						if (data !== '') {
+							data = data + '&' + query;
+						} else {
+							data = query;
+						}
+					});
 				}
-				params.url = o.url;
-			}
-			
+				params.url = self.addParam(o.url, data);
+			}			
 			return params;
 		},
 		grid : function($elem, o) {
