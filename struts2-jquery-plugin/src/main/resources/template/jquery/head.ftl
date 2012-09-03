@@ -22,6 +22,8 @@
 <#if !jQueryVersion?? >
   <#assign jQueryVersion="1.8.1">
 </#if>
+<#assign jQueryUIVersion="1.8.23">
+<#assign struts2jQueryVersion="3.4.0-SNAPSHOT">
 
 <#if parameters.scriptPath?if_exists != "">
   <#assign javaScriptBasePath="${parameters.scriptPath?string}">
@@ -30,7 +32,7 @@
 </#if>
 
 <#assign googlePath="http://ajax.googleapis.com/ajax/libs/jquery/${jQueryVersion}">
-<#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23">
+<#assign googleUiPath="http://ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}">
 
 <#if parameters.customBasepath?if_exists != "">
   <#assign basePath="${parameters.customBasepath?string}">
@@ -39,9 +41,9 @@
 </#if>
 <#if parameters.compressed?default(true)>
   <#assign jqueryFile="jquery-${jQueryVersion}.min.js">
-  <#assign jqueryForm="jquery.form.min.js?s2j=3.3.3">
-  <#assign jqueryUIFile="jquery-ui.min.js?s2j=3.3.3">
-  <#assign jqueryUICoreFile="jquery.ui.core.min.js?s2j=3.3.3">
+  <#assign jqueryForm="jquery.form.min.js?s2j=${struts2jQueryVersion}">
+  <#assign jqueryUIFile="jquery-ui.min.js?s2j=${struts2jQueryVersion}">
+  <#assign jqueryUICoreFile="jquery.ui.core.min.js?s2j=${struts2jQueryVersion}">
   <#assign jquerySubscribeFile="jquery.subscribe.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.min.js">
@@ -51,9 +53,9 @@
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
   <#assign jqueryFile="jquery-${jQueryVersion}.js">
-  <#assign jqueryForm="jquery.form.js?s2j=3.3.3">
-  <#assign jqueryUIFile="jquery-ui.js?s2j=3.3.3">
-  <#assign jqueryUICoreFile="jquery.ui.core.js?s2j=3.3.3">
+  <#assign jqueryForm="jquery.form.js?s2j=${struts2jQueryVersion}">
+  <#assign jqueryUIFile="jquery-ui.js?s2j=${struts2jQueryVersion}">
+  <#assign jqueryUICoreFile="jquery.ui.core.js?s2j=${struts2jQueryVersion}">
   <#assign jquerySubscribeFile="jquery.subscribe.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
   <#assign jqueryCompat13File="jquery.compat-1.3.js">
@@ -68,7 +70,7 @@
 	<#if parameters.jqueryui?default(true)>
 	<script type="text/javascript" src="${jqueryUiGoogle}"></script>
 		<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
 		</#if>
 	</#if>
 <#else>
@@ -99,7 +101,7 @@
 
 <script type="text/javascript">
 $(function() {
-	jQuery.struts2_jquery.version="3.3.3";
+	jQuery.struts2_jquery.version="${struts2jQueryVersion}";
 <#if parameters.debug?default(false)>
 	jQuery.struts2_jquery.debug = true;
 </#if>
@@ -160,9 +162,9 @@ $(function() {
 		<#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
         	<link id="jquery_theme_link" rel="stylesheet" href="${googleUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
 		<#else>
-        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=3.3.3" type="text/css"/>
+        	<link id="jquery_theme_link" rel="stylesheet" href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=${struts2jQueryVersion}" type="text/css"/>
 		</#if>
     <#else>
-        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css?s2j=3.3.3" type="text/css"/>
+        <link id="jquery_theme_link" rel="stylesheet" href="${basePath}/smoothness/jquery-ui.css?s2j=${struts2jQueryVersion}" type="text/css"/>
     </#if>
 </#if>
