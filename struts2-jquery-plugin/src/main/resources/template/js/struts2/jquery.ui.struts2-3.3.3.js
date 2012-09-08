@@ -176,7 +176,7 @@
 	dialog : function($elem, o) {
 		var self = this,
 			params = {},
-			widgetInst = $(".ui-dialog:has("+self.escId(o.id)+")");
+			widgetInst = $(".ui-dialog").has(self.escId(o.id));
 		self.log('dialog : ' + o.id);
 		if (!self.loadAtOnce) {
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.bgiframe" + self.minSuffix + ".js", "js/base/jquery.ui.dialog" + self.minSuffix + ".js" ]);
