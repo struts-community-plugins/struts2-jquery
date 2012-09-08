@@ -1052,11 +1052,8 @@
 	$.subscribeHandler($.struts2_jquery_ui.handler.open_dialog, function(event, data) {
 		var s2j = $.struts2_jquery_ui,
 			o = $(this).data('s2j_options');
-		if (event.data) {
-			$.extend(o, event.data);
-		}
 		if (data) {
-			if (data.href) {
+			if (data.href && data.href !== '#') {
 				o.href = data.href;
 			}
 			if (data.hrefparameter) {
