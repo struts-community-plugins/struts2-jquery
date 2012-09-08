@@ -79,7 +79,7 @@
  		<#if parameters.loadAtOnce?default(false)>
 	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"></script>
 			<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-	<script type="text/javascript" src="${javaScriptBasePath}i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js?s2j=3.3.1"></script>
+	<script type="text/javascript" src="${javaScriptBasePath}i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"></script>
 			</#if>
 		<#else>
 	<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script>
@@ -148,7 +148,7 @@ $(function() {
 	});
 	
 <#if parameters.jqueryui?default(true)>
-	jQuery.struts2_jquery.require("js/struts2/${jqueryUiStrutsFile}");
+  $.struts2_jquery.scriptCache["js/struts2/${jqueryUiStrutsFile}?s2j=${struts2jQueryVersion}"] = true;
 </#if>
 	
 <#if parameters.ajaxhistory?default(false)>
@@ -156,6 +156,9 @@ $(function() {
 </#if>
 });
 </script>
+<#if parameters.jqueryui?default(true)>
+  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryUiStrutsFile}?s2j=${struts2jQueryVersion}"></script>
+</#if>
 
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
