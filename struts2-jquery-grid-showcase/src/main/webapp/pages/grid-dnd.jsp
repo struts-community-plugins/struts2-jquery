@@ -3,12 +3,12 @@
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 
 
-    <s:url id="remoteurla" action="json-table" escapeAmp="false">
+    <s:url var="remoteurla" action="json-table" escapeAmp="false">
     	<s:param name="searchString">200</s:param>
     	<s:param name="searchOper">lt</s:param>
     	<s:param name="searchField">customernumber</s:param>
     </s:url>
-    <s:url id="remoteurlb" action="json-table" escapeAmp="false">
+    <s:url var="remoteurlb" action="json-table" escapeAmp="false">
     	<s:param name="searchString">400</s:param>
     	<s:param name="searchOper">gt</s:param>
     	<s:param name="searchField">customernumber</s:param>

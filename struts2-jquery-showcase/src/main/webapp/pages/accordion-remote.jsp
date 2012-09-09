@@ -3,10 +3,10 @@
 <div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
-      <li><s:url id="urlaccordion" action="accordion"/><sj:a href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
-      <li><s:url id="urlaccordionlist" action="accordion-list"/><sj:a href="%{urlaccordionlist}" targets="main">Accordion from List</sj:a></li>
-      <li><s:url id="urlaccordionremote" action="accordion-remote"/><sj:a href="%{urlaccordionremote}" targets="main">Accordion with remote content</sj:a></li>
-      <li><s:url id="urlaccordionmouseover" action="accordion-mouseover"/><sj:a href="%{urlaccordionmouseover}" targets="main">Accordion Collabsible/MouseOver</sj:a></li>
+      <li><s:url var="urlaccordion" action="accordion"/><sj:a href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
+      <li><s:url var="urlaccordionlist" action="accordion-list"/><sj:a href="%{urlaccordionlist}" targets="main">Accordion from List</sj:a></li>
+      <li><s:url var="urlaccordionremote" action="accordion-remote"/><sj:a href="%{urlaccordionremote}" targets="main">Accordion with remote content</sj:a></li>
+      <li><s:url var="urlaccordionmouseover" action="accordion-mouseover"/><sj:a href="%{urlaccordionmouseover}" targets="main">Accordion Collabsible/MouseOver</sj:a></li>
     </ul>
   </div>
 </div>
@@ -16,7 +16,7 @@
     <p class="text">
         A Accordion with remote content.
     </p>
-    <s:url id="urlecho" action="echo"/>
+    <s:url var="urlecho" action="echo"/>
     <sj:accordion 
     	id="accordionremote"
     	list="accordion" 

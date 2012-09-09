@@ -3,9 +3,9 @@
 <div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
-      <li><s:url id="urltabslocal" action="tabs-local"/><sj:a id="tabslocallink" href="%{urltabslocal}" targets="main">Local Tabs</sj:a></li>
-      <li><s:url id="urltabs" action="tabs"/><sj:a id="tabslocalremote" href="%{urltabs}" targets="main">Remote Tabs with Topics</sj:a></li>
-      <li><s:url id="urltabspreselect" action="tabs-preselect"/><sj:a id="tabspreselectedlink" href="%{urltabspreselect}" targets="main">Preselectet Tabs with Animation</sj:a></li>
+      <li><s:url var="urltabslocal" action="tabs-local"/><sj:a id="tabslocallink" href="%{urltabslocal}" targets="main">Local Tabs</sj:a></li>
+      <li><s:url var="urltabs" action="tabs"/><sj:a id="tabslocalremote" href="%{urltabs}" targets="main">Remote Tabs with Topics</sj:a></li>
+      <li><s:url var="urltabspreselect" action="tabs-preselect"/><sj:a id="tabspreselectedlink" href="%{urltabspreselect}" targets="main">Preselectet Tabs with Animation</sj:a></li>
     </ul>
   </div>
 </div>
@@ -19,10 +19,10 @@
     <div id="changepanel"></div>
     <div id="infopanel"></div>
     
-    <s:url id="remoteurl1" action="ajax1"/>
-    <s:url id="remoteurl2" action="ajax2"/>
-    <s:url id="remoteurl3" action="ajax3"/>
-    <s:url id="remoteurl4" action="ajax4"/>
+    <s:url var="remoteurl1" action="ajax1"/>
+    <s:url var="remoteurl2" action="ajax2"/>
+    <s:url var="remoteurl3" action="ajax3"/>
+    <s:url var="remoteurl4" action="ajax4"/>
     <sj:tabbedpanel 
     	id="remotetabs" 
     	spinner="Please wait ..." 

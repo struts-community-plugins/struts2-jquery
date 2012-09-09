@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 
-<s:url id="urlgrid" action="grid"/>
+<s:url var="urlgrid" action="grid"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -28,7 +28,7 @@
     	loadFromGoogle="false"
     	debug="true"
     />
-    <s:url id="empurl" action="employees-detail" />
+    <s:url var="empurl" action="employees-detail" />
 	<script type="text/javascript">
 		var employee_detail_url = '<s:property value="empurl"/>';
 	</script>
@@ -46,9 +46,9 @@
       <div id="nav">
         <div class="hlist ui-widget-header">
           <ul>
-            <li class="ui-widget-header ui-state-active"><s:url id="urlgrid" action="grid" /><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid (Editable)</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlgridsubgrid" action="grid-subgrid" /><sj:a id="gridsubgridlink" href="%{urlgridsubgrid}" targets="main">Grid with Subgrid</sj:a></li>
-            <li class="ui-widget-header"><s:url id="urlgriddnd" action="grid-dnd" /><sj:a id="griddndlink" href="%{urlgriddnd}" targets="main">Grid with Drag and Drop</sj:a></li>
+            <li class="ui-widget-header ui-state-active"><s:url var="urlgrid" action="grid" /><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid (Editable)</sj:a></li>
+            <li class="ui-widget-header"><s:url var="urlgridsubgrid" action="grid-subgrid" /><sj:a id="gridsubgridlink" href="%{urlgridsubgrid}" targets="main">Grid with Subgrid</sj:a></li>
+            <li class="ui-widget-header"><s:url var="urlgriddnd" action="grid-dnd" /><sj:a id="griddndlink" href="%{urlgriddnd}" targets="main">Grid with Drag and Drop</sj:a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/">Struts2 jQuery Plugin</a></li>
             <li class="ui-widget-header"><a href="http://code.google.com/p/full-hibernate-plugin-for-struts2/">Full Hibernate Plugin</a></li>
           </ul>

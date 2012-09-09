@@ -14,7 +14,7 @@
 
 <body>
 
-    <s:url id="url" action="dialog-content" />
+    <s:url var="url" action="dialog-content" />
 	<sj:dialog href="%{url}" id="welcomeDialog" title="Welcome to Struts2 jQuery" />
 </body>
 </html>

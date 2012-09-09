@@ -12,12 +12,12 @@
 				<sjm:list inset="true">
 					<sjm:listItem divider="true">Languages</sjm:listItem>
 
-				 	<s:url id="url" action="hello">
+				 	<s:url var="url" action="hello">
 				    	<s:param name="request_locale">en</s:param>
 				 	</s:url>
 					<sjm:listItem id="en_link" href="%{url}">English</sjm:listItem>
 
-				 	<s:url id="url" action="hello">
+				 	<s:url var="url" action="hello">
 				    	<s:param name="request_locale">es</s:param>
 				 	</s:url>
 					<sjm:listItem id="es_link" href="%{url}">Espanol</sjm:listItem>

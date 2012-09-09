@@ -3,9 +3,9 @@
 <div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
-      <li><s:url id="urlautocompleter" action="autocompleter"/><sj:a id="autocompletersimple" href="%{urlautocompleter}" targets="main">Autocompleter</sj:a></li>
-      <li><s:url id="urlautocompleterjson" action="autocompleter-json"/><sj:a id="autocompleterjson" href="%{urlautocompleterjson}" targets="main">Autocompleter JSON</sj:a></li>
-      <li><s:url id="urlautocompleterselect" action="autocompleter-select"/><sj:a id="autocompleterselect" href="%{urlautocompleterselect}" targets="main">Autocompleter (Select Box)</sj:a></li>
+      <li><s:url var="urlautocompleter" action="autocompleter"/><sj:a id="autocompletersimple" href="%{urlautocompleter}" targets="main">Autocompleter</sj:a></li>
+      <li><s:url var="urlautocompleterjson" action="autocompleter-json"/><sj:a id="autocompleterjson" href="%{urlautocompleterjson}" targets="main">Autocompleter JSON</sj:a></li>
+      <li><s:url var="urlautocompleterselect" action="autocompleter-select"/><sj:a id="autocompleterselect" href="%{urlautocompleterselect}" targets="main">Autocompleter (Select Box)</sj:a></li>
     </ul>
   </div>
 </div>
@@ -21,7 +21,7 @@
 	<div id="topics" class="result ui-widget-content ui-corner-all"></div>
     
     <s:form id="formAutocompleteJson" action="echo" theme="xhtml">
-		<s:url id="jsonlanguages" action="jsonlanguages"/> 
+		<s:url var="jsonlanguages" action="jsonlanguages"/> 
 	    <sj:autocompleter 
 	    	id="languages" 
 	    	name="echo"
@@ -33,7 +33,7 @@
 	    	onFocusTopics="autocompleteFocus"
 	    	onSelectTopics="autocompleteSelect"
 	    />
-		<s:url id="jsoncustomers" action="jsoncustomers"/> 
+		<s:url var="jsoncustomers" action="jsoncustomers"/> 
 	    <sj:autocompleter 
 	    	id="customers" 
 	    	name="echo"

@@ -54,7 +54,7 @@
 		<h1>Struts2 jQuery Grid with Bootstrap starter template</h1>
 		<p>Use this Struts2 jQuery Grid archetype as a way to quick start any new project.</p>
 
-		<s:url id="customers_data_provider_url" action="customers-data-provider" namespace="/data"/>
+		<s:url var="customers_data_provider_url" action="customers-data-provider" namespace="/data"/>
 		<sjg:grid 
 			id="customersGrid" 
 			width="900"

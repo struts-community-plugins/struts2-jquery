@@ -3,10 +3,10 @@
 <div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
-      <li><s:url id="urldatepicker" action="datepicker"/><sj:a href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
-      <li><s:url id="urldatepickerbuttons" action="datepicker-buttons"/><sj:a href="%{urldatepickerbuttons}" targets="main">Datepicker with more options</sj:a></li>
-      <li><s:url id="urldatepickerinline" action="datepicker-inline"/><sj:a href="%{urldatepickerinline}" targets="main">Datepicker (Inline)</sj:a></li>
-      <li><s:url id="urldatepickertime" action="datepicker-time"/><sj:a href="%{urldatepickertime}" targets="main">Timepicker</sj:a></li>
+      <li><s:url var="urldatepicker" action="datepicker"/><sj:a href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
+      <li><s:url var="urldatepickerbuttons" action="datepicker-buttons"/><sj:a href="%{urldatepickerbuttons}" targets="main">Datepicker with more options</sj:a></li>
+      <li><s:url var="urldatepickerinline" action="datepicker-inline"/><sj:a href="%{urldatepickerinline}" targets="main">Datepicker (Inline)</sj:a></li>
+      <li><s:url var="urldatepickertime" action="datepicker-time"/><sj:a href="%{urldatepickertime}" targets="main">Timepicker</sj:a></li>
     </ul>
   </div>
 </div>

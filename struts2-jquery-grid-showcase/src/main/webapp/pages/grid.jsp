@@ -3,11 +3,11 @@
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 
 
-    <s:url id="remoteurl" action="json-table" />
-    <s:url id="editurl" action="edit-customer" />
-    <s:url id="selectcountrysurl" action="customer-countrys" />
-    <s:url id="selectemployeesurl" action="employees" />
-    <s:url id="empurl" action="employees-detail" />
+    <s:url var="remoteurl" action="json-table" />
+    <s:url var="editurl" action="edit-customer" />
+    <s:url var="selectcountrysurl" action="customer-countrys" />
+    <s:url var="selectemployeesurl" action="employees" />
+    <s:url var="empurl" action="employees-detail" />
 	<sj:dialog
 		id="employees_details"
 		title="Employee Details"

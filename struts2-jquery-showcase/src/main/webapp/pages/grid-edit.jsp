@@ -4,11 +4,11 @@
 	<div id="col1">
   <div id="col1_content" class="clearfix">
     <ul>
-      <li><s:url id="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
-      <li><s:url id="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
-      <li><s:url id="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
-      <li><s:url id="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
-      <li><s:url id="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
+      <li><s:url var="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
+      <li><s:url var="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
+      <li><s:url var="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
+      <li><s:url var="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
+      <li><s:url var="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
     </ul>
   </div>
 </div>
@@ -18,8 +18,8 @@
     <p class="text">
         A editable Grid with pager and navigator. Entries are editable when a cell is selected. This Grid is sortable by name column and searchable by id. The first two Columns are frozen.
     </p>
-    <s:url id="remoteurl" action="jsontable"/>
-    <s:url id="editurl" action="edit-grid-entry"/>
+    <s:url var="remoteurl" action="jsontable"/>
+    <s:url var="editurl" action="edit-grid-entry"/>
     <sjg:grid
     	id="gridedittable"
     	caption="Customers Examples (Editable)"
