@@ -184,8 +184,7 @@
 
 		// Remove existing Dialog Instances
 		if(widgetInst.length > 0) {
-			$("div"+self.escId(o.id)).dialog("destroy");
-			$("div"+self.escId(o.id)).remove();
+			$("div"+self.escId(o.id)).dialog("destroy").remove();
 		}
 
 		$.extend(params, o);
