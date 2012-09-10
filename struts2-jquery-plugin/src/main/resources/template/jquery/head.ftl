@@ -148,7 +148,7 @@ $(function() {
 	});
 	
 <#if parameters.jqueryui?default(true)>
-  $.struts2_jquery.scriptCache["js/struts2/${jqueryUiStrutsFile}?s2j=${struts2jQueryVersion}"] = true;
+	jQuery.struts2_jquery.require("js/struts2/${jqueryUiStrutsFile}");
 </#if>
 	
 <#if parameters.ajaxhistory?default(false)>
@@ -156,9 +156,6 @@ $(function() {
 </#if>
 });
 </script>
-<#if parameters.jqueryui?default(true)>
-  <script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryUiStrutsFile}?s2j=${struts2jQueryVersion}"></script>
-</#if>
 
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
