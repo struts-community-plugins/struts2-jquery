@@ -40,6 +40,9 @@
 			if ((o.xaxis && o.xaxis.mode === "time") || (o.yaxis && o.yaxis.mode === "time")) {
 				self.require("js/flot/jquery.flot.time" + self.minSuffix + ".js");
 			}
+			if ((o.xaxis && o.xaxis.axisLabel) || (o.yaxis && o.yaxis.axisLabel)) {
+				self.require("js/flot/jquery.flot.axislabels" + self.minSuffix + ".js");
+			}
 			if (o.fill) {
 				self.require("js/flot/jquery.flot.fillbetween" + self.minSuffix + ".js");
 			}

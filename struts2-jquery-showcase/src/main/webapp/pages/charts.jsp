@@ -57,6 +57,10 @@
     	cssStyle="width: 600px; height: 400px;"
     	onClickTopics="chartClick"
     	onHoverTopics="chartHover"
+    	xaxisLabel="Label-X"
+    	yaxisLabel="Label-Y"
+    	yaxisLabelFontSizePixels="22"
+    	yaxisLabelFontFamily="Arial"
     	crosshair="true"
     	crosshairMode="xy"
     >
@@ -276,6 +280,10 @@
     	cssStyle=&quot;width: 600px; height: 400px;&quot;
     	onClickTopics=&quot;chartClick&quot;
     	onHoverTopics=&quot;chartHover&quot;
+    	xaxisLabel=&quot;Label-X&quot;
+    	yaxisLabel=&quot;Label-Y&quot;
+    	yaxisLabelFontSizePixels="22"
+    	yaxisLabelFontFamily="Arial"
     	crosshair=&quot;true&quot;
     	crosshairMode=&quot;xy&quot;
     &gt;

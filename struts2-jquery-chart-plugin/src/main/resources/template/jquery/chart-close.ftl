@@ -57,6 +57,16 @@ options_${escapedOptionId?html}.xaxis.min = ${parameters.xaxisMin?html};
 <#if parameters.xaxisMax?if_exists != "">
 options_${escapedOptionId?html}.xaxis.max = ${parameters.xaxisMax?html};
 </#if>
+<#if parameters.xaxisLabel?if_exists != "">
+options_${escapedOptionId?html}.xaxis.axisLabel = "${parameters.xaxisLabel?html}";
+options_${escapedOptionId?html}.xaxis.axisLabelUseCanvas = true;
+	<#if parameters.xaxisLabelFontSizePixels??>
+options_${escapedOptionId?html}.xaxis.axisLabelFontSizePixels = ${parameters.xaxisLabelFontSizePixels?c};
+	</#if>
+	<#if parameters.xaxisLabelFontFamily?if_exists != "">
+options_${escapedOptionId?html}.xaxis.axisLabelFontFamily = "${parameters.xaxisLabelFontFamily?html}";
+	</#if>
+</#if>
 options_${escapedOptionId?html}.yaxis = {};
 <#if parameters.yaxisPosition?if_exists != "">
 options_${escapedOptionId?html}.yaxis.position = "${parameters.yaxisPosition?html}";
@@ -87,6 +97,16 @@ options_${escapedOptionId?html}.yaxis.min = ${parameters.yaxisMin?string};
 </#if>
 <#if parameters.yaxisMax??>
 options_${escapedOptionId?html}.yaxis.max = ${parameters.yaxisMax?string};
+</#if>
+<#if parameters.yaxisLabel?if_exists != "">
+options_${escapedOptionId?html}.yaxis.axisLabel = "${parameters.yaxisLabel?html}";
+options_${escapedOptionId?html}.yaxis.axisLabelUseCanvas = true;
+	<#if parameters.yaxisLabelFontSizePixels??>
+options_${escapedOptionId?html}.yaxis.axisLabelFontSizePixels = ${parameters.yaxisLabelFontSizePixels?c};
+	</#if>
+	<#if parameters.yaxisLabelFontFamily?if_exists != "">
+options_${escapedOptionId?html}.yaxis.axisLabelFontFamily = "${parameters.yaxisLabelFontFamily?html}";
+	</#if>
 </#if>
 options_${escapedOptionId?html}.legend = {};
 <#if parameters.legendShow?exists>
