@@ -60,7 +60,6 @@
       <!-- begin: #footer -->
       <div id="footer">
         Written by  <a href="http://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a> and <a href="http://jyoshiriro.blogspot.com" title="Java Developer Blog">Jos&eacute; Yoshiriro</a><br/>
-        Hosted by  <a href="http://www.weinfreund.de" title="Wein vom Weingut, Weinforum, Wein Community">weinfreund.de</a><br/>
         Layout based on <a href="http://www.yaml.de/" title="OpenSource CSS Layout">YAML</a>
       </div>
     </div>
