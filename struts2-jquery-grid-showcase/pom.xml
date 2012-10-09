@@ -149,16 +149,6 @@
         		<filtering>true</filtering>
       		</resource>
 	    </resources>
-		<plugins>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.22</version>
-				<configuration>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-				</configuration>
-			</plugin>
-		</plugins>
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -191,7 +181,6 @@
                 </dependencies>
             </plugin>
         </plugins>
-
     </build>
 
 </project>
