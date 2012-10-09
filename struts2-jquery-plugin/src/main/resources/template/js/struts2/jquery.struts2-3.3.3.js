@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery.
- * Tested with jQuery 1.7 and jQuery UI 1.8
+ * Tested with jQuery 1.8 and jQuery UI 1.8
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2012 Johannes Geppert http://www.jgeppert.com
@@ -668,18 +668,6 @@
 						$('#' + o.bindon).publishOnEvent('click', divTopic, o);
 					}
 				}
-				else if (!o.deferredloading) {
-					if(o.delay){
-						setTimeout(function() { $elem.publish(divTopic, o); }, o.delay);
-					} else {
-						$elem.publish(divTopic, o);
-					}
-				}
-				
-				if(o.updatefreq){
-					setInterval(function() { $elem.publish(divTopic, o); }, o.updatefreq);
-				}
-
 			}
 			else if (o.formids) {
 				if (!self.loadAtOnce) {
@@ -687,11 +675,24 @@
 				}
 				o.targets = o.id;
 				self.formsubmit($elem, o, divTopic);
-				if (!o.deferredloading) {
-					$elem.publish(divTopic, o);
-				}
 			}
-		}
+
+            if (!o.deferredloading) {
+                if(o.delay){
+                    setTimeout(function() { $elem.publish(divTopic, o); }, o.delay);
+                } else {
+                    $elem.publish(divTopic, o);
+                }
+            }
+
+            if(o.updatefreq){
+                if(o.delay){
+                    setTimeout(function() { setInterval(function() { $elem.publish(divTopic, o); }, o.updatefreq); }, o.delay);
+                } else {
+                    setInterval(function() { $elem.publish(divTopic, o); }, o.updatefreq);
+                }
+            }
+        }
 		else {
 			if (o.id && o.effect) {
 				effect.targets = o.id;
