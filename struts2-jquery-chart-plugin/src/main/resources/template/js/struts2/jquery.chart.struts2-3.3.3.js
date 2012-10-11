@@ -55,6 +55,9 @@
 			if (o.series && o.series.pie) {
 				self.require("js/flot/jquery.flot.pie" + self.minSuffix + ".js");
 			}
+			if (o.autoresize) {
+				self.require("js/flot/jquery.flot.resize" + self.minSuffix + ".js");
+			}
 
 			self.charts[o.id] = [];
 			$.each(o.data, function(i, d) {

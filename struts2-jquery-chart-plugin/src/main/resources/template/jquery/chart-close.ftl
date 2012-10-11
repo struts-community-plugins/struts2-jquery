@@ -167,7 +167,9 @@ options_${escapedOptionId?html}.onhover = "${parameters.onHoverTopics?html}";
 	  	</#if>
 	</#if>
 </#if>
-
+<#if parameters.autoResize?default(false)>
+	options_${escapedOptionId?html}.autoresize = true;
+</#if>
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 	jQuery.struts2_jquery_chart.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
  });

@@ -82,6 +82,7 @@ public class ChartTag extends AbstractContainerTag {
 	protected String pieLabelRadius;
 	protected String pieLabelBackgroundColor;
 	protected String pieLabelBackgroundOpacity;
+	protected String autoResize;
 
 	public Component getBean(ValueStack stack, HttpServletRequest req,
 			HttpServletResponse res) {
@@ -136,6 +137,7 @@ public class ChartTag extends AbstractContainerTag {
 		chart.setPieLabelBackgroundOpacity(pieLabelBackgroundOpacity);
 		chart.setPieLabelFormatter(pieLabelFormatter);
 		chart.setPieLabelRadius(pieLabelRadius);
+		chart.setAutoResize(autoResize);
 	}
 
 	public void setXaxisPosition(String xaxisPosition) {
@@ -312,6 +314,10 @@ public class ChartTag extends AbstractContainerTag {
 
 	public void setYaxisLabelFontFamily(String yaxisLabelFontFamily) {
 		this.yaxisLabelFontFamily = yaxisLabelFontFamily;
+	}
+
+	public void setAutoResize(String autoResize) {
+	    this.autoResize = autoResize;
 	}
 
 }

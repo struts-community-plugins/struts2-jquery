@@ -94,6 +94,7 @@ public class Chart extends AbstractContainer {
 	protected String pieLabelRadius;
 	protected String pieLabelBackgroundColor;
 	protected String pieLabelBackgroundOpacity;
+	protected String autoResize;
 
 	public Chart(ValueStack stack, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -212,6 +213,8 @@ public class Chart extends AbstractContainer {
 		if (pieLabelFormatter != null)
 			addParameter("pieLabelFormatter", findString(pieLabelFormatter));
 
+		if (autoResize != null)
+			addParameter("autoResize", findValue(this.autoResize, Boolean.class));
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
 			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
@@ -452,5 +455,10 @@ public class Chart extends AbstractContainer {
 	@StrutsTagAttribute(description = "Y-Axis Label Font Family. e.g. Arial")
 	public void setYaxisLabelFontFamily(String yaxisLabelFontFamily) {
 		this.yaxisLabelFontFamily = yaxisLabelFontFamily;
+	}
+
+	@StrutsTagAttribute(description = "If the size of the Placeholder DIV is changed, it will redraw the plot.", type = "Boolean", defaultValue = "false")
+	public void setAutoResize(String autoResize) {
+	    this.autoResize = autoResize;
 	}
 }
