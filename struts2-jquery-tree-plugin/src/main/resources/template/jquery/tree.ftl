@@ -20,7 +20,7 @@
 -->
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	jQuery.struts2_jquery.require("js/struts2/jquery.tree.struts2-3.3.3"+jQuery.struts2_jquery.minSuffix+".js");
+	jQuery.struts2_jquery.require("js/struts2/jquery.tree.struts2"+jQuery.struts2_jquery.minSuffix+".js");
  });
 </script>
 <#include "/${parameters.templateDir}/simple/div.ftl" />

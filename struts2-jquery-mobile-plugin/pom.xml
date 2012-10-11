@@ -18,6 +18,22 @@
     </scm>
 
     <build>
+ 		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>template/mobile/head.ftl</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>template/mobile/head.ftl</exclude>
+				</excludes>
+			</resource>
+		</resources>
         <plugins>
             <plugin>
 				<groupId>org.apache.myfaces.tobago</groupId>

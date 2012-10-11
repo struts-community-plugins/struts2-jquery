@@ -23,7 +23,7 @@
   <#assign jQueryVersion="1.8.2">
 </#if>
 <#assign jQueryUIVersion="1.8.24">
-<#assign struts2jQueryVersion="3.4.0-SNAPSHOT">
+<#assign struts2jQueryVersion="${version}">
 
 <#if parameters.scriptPath?if_exists != "">
   <#assign javaScriptBasePath="${parameters.scriptPath?string}">
@@ -48,9 +48,8 @@
   <#assign jqueryUICoreFile="jquery.ui.core.min.js?s2j=${struts2jQueryVersion}">
   <#assign jquerySubscribeFile="jquery.subscribe.min.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
-  <#assign jqueryCompat13File="jquery.compat-1.3.min.js">
-  <#assign jqueryStrutsFile="jquery.struts2-3.3.3.min.js">
-  <#assign jqueryUiStrutsFile="jquery.ui.struts2-3.3.3.min.js">
+  <#assign jqueryStrutsFile="jquery.struts2.min.js?s2j=${struts2jQueryVersion}">
+  <#assign jqueryUiStrutsFile="jquery.ui.struts2.min.js">
   <#assign jqueryGoogle="${googlePath}/jquery.min.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
@@ -60,9 +59,8 @@
   <#assign jqueryUICoreFile="jquery.ui.core.js?s2j=${struts2jQueryVersion}">
   <#assign jquerySubscribeFile="jquery.subscribe.js">
   <#assign jqueryHistoryFile="jquery.ba-bbq.js">
-  <#assign jqueryCompat13File="jquery.compat-1.3.js">
-  <#assign jqueryStrutsFile="jquery.struts2-3.3.3.js">
-  <#assign jqueryUiStrutsFile="jquery.ui.struts2-3.3.3.js">
+  <#assign jqueryStrutsFile="jquery.struts2.js?s2j=${struts2jQueryVersion}">
+  <#assign jqueryUiStrutsFile="jquery.ui.struts2.js">
   <#assign jqueryGoogle="${googlePath}/jquery.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.js">
 </#if>
