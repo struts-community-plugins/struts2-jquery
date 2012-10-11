@@ -122,7 +122,6 @@ public class Head extends org.apache.struts2.components.Head {
 	protected String loadAtOnce;
 	protected String debug;
 	protected String scriptPath;
-	protected String compatibility;
 
 	private String defaultLocale;
 
@@ -169,8 +168,6 @@ public class Head extends org.apache.struts2.components.Head {
 			addParameter("debug", findValue(this.debug, Boolean.class));
 		if (this.scriptPath != null)
 			addParameter("scriptPath", findString(this.scriptPath));
-		if (this.compatibility != null)
-			addParameter("compatibility", findString(this.compatibility));
 
 		String loc = null;
 		if (this.locale != null)
@@ -289,10 +286,5 @@ public class Head extends org.apache.struts2.components.Head {
 	@StrutsTagAttribute(description = "path to the JavaScript ressources", defaultValue = "#your context root#/struts/")
 	public void setScriptPath(String scriptPath) {
 		this.scriptPath = scriptPath;
-	}
-
-	@StrutsTagAttribute(description = "Enable Compatibility for older jQuery Versions. e.g. 1.3", defaultValue = "")
-	public void setCompatibility(String compatibility) {
-		this.compatibility = compatibility;
 	}
 }

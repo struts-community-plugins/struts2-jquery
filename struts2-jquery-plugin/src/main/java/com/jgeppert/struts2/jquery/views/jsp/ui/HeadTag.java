@@ -52,7 +52,6 @@ public class HeadTag extends AbstractUITag {
   protected String          loadAtOnce;
   protected String          debug;
   protected String          scriptPath;
-  protected String          compatibility;
 
   public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
@@ -78,7 +77,6 @@ public class HeadTag extends AbstractUITag {
     head.setLoadAtOnce(loadAtOnce);
     head.setDebug(debug);
     head.setScriptPath(scriptPath);
-    head.setCompatibility(compatibility);
   }
 
   public void setCompressed(String compressed)
@@ -149,10 +147,5 @@ public class HeadTag extends AbstractUITag {
   public void setScriptPath(String scriptPath)
   {
     this.scriptPath = scriptPath;
-  }
-
-  public void setCompatibility(String compatibility)
-  {
-    this.compatibility = compatibility;
   }
 }
