@@ -175,9 +175,12 @@
 	
 					var orginal = {};
 					orginal.xhr = xhr;
+					orginal.proceed = true;
 	
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.onbef, orginal);
+					
+					return orginal.proceed;
 				};
 			}
 	
