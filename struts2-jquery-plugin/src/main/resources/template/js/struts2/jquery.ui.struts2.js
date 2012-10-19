@@ -625,7 +625,7 @@
 			self.require("js/base/jquery.ui.widget" + self.minSuffix + ".js");
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.spinner" + self.minSuffix + ".js" ]);
 			if (o.mouseWheel) {
-				self.require("js/base/jquery.ui.mouse" + self.minSuffix + ".js");
+				self.require("js/plugins/jquery.mousewheel" + self.minSuffix + ".js");
 			}
 		}
 
