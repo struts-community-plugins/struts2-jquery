@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery.
- * Tested with jQuery 1.8 and jQuery UI 1.8
+ * Tested with jQuery 1.8 and jQuery UI 1.9
  *
  * Copyright (c) 2008 Eric Chijioke (obinna a-t g mail dot c o m)
  * Copyright (c) 2012 Johannes Geppert http://www.jgeppert.com
@@ -853,7 +853,7 @@
 		}
 		if (o.autocomplete) {
 			if (!self.loadAtOnce) {
-				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
+				self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.menu" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
 			}
 			self.require([ "js/plugins/jquery.combobox" + self.minSuffix + ".js" ]);
 			$elem.combobox(o);
@@ -1291,7 +1291,7 @@
 			}
 
 			if (!s2j.loadAtOnce) {
-				s2j.require( [ "js/base/jquery.effects.core" + s2j.minSuffix + ".js", "js/base/jquery.effects." + o.effect + s2j.minSuffix + ".js" ]);
+				s2j.require( [ "js/base/jquery.ui.effect" + s2j.minSuffix + ".js", "js/base/jquery.ui.effect-" + o.effect + s2j.minSuffix + ".js" ]);
 			}
 			s2j.log('effect ' + o.effect + ' for ' + o.targets);
 			$.each(o.targets.split(','), function(i, target) {

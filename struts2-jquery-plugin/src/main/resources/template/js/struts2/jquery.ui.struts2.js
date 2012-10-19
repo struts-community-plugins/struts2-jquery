@@ -5,7 +5,7 @@
  * for ajax, widget and interactions support in struts 2
  *
  * Requires use of jQuery and jQuery UI.
- * Tested with jQuery 1.7 and jQuery UI 1.8
+ * Tested with jQuery 1.8 and jQuery UI 1.9
  *
  * Copyright (c) 2012 Johannes Geppert http://www.jgeppert.com
  *
@@ -204,13 +204,13 @@
 
 		if (o.hide) {
 			if (!self.loadAtOnce) {
-				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.hide + self.minSuffix + ".js" ]);
+				self.require( [ "js/base/jquery.ui.effect" + self.minSuffix + ".js", "js/base/jquery.ui.effect-" + o.hide + self.minSuffix + ".js" ]);
 			}
 			params.hide = o.hide;
 		}
 		if (o.show) {
 			if (!self.loadAtOnce) {
-				self.require( [ "js/base/jquery.effects.core" + self.minSuffix + ".js", "js/base/jquery.effects." + o.show + self.minSuffix + ".js" ]);
+				self.require( [ "js/base/jquery.ui.effect" + self.minSuffix + ".js", "js/base/jquery.ui.effect-" + o.show + self.minSuffix + ".js" ]);
 			}
 			params.show = o.show;
 		}
@@ -280,7 +280,7 @@
 		}
 		if (o.animate) {
 			if (!self.loadAtOnce) {
-				self.require("js/base/jquery.effects.core" + self.minSuffix + ".js");
+				self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
 			}
 			para.fx = {
 				opacity :'toggle'
@@ -526,7 +526,7 @@
 
 		if (o.showAnim) {
 			if (!self.loadAtOnce) {
-				self.require("js/base/jquery.effects.core" + self.minSuffix + ".js");
+				self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
 			}
 		}
 
@@ -623,12 +623,12 @@
 		self.container($elem, o);
 		if (!self.loadAtOnce) {
 			self.require("js/base/jquery.ui.widget" + self.minSuffix + ".js");
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.spinner" + self.minSuffix + ".js" ]);
 			if (o.mouseWheel) {
 				self.require("js/base/jquery.ui.mouse" + self.minSuffix + ".js");
 			}
 		}
-		self.require("js/plugins/jquery.ui.spinner" + self.minSuffix + ".js");
-		self.requireCss("themes/ui.spinner.css");
+
 
 		if (o.oncha) {
 			o.change = self.pubTops($elem, o.onalw, o.oncha);
@@ -779,7 +779,7 @@
 			url = '';
 		self.log('autocompleter for : ' + o.id);
 		if (!self.loadAtOnce) {
-			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.menu" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
 		}
 		if (o.href && o.href !== '#') {
 			url = o.href;
