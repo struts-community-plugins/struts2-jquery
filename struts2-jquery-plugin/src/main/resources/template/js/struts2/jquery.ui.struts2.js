@@ -662,7 +662,6 @@
 	/** Handle the Accordion Widget */
 	accordion : function($elem, o) {
 		var self = this,
-			params = {},
 			data = {},
 			active = true,
 			aktivItem;
@@ -670,89 +669,52 @@
 		if (!self.loadAtOnce) {
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.accordion" + self.minSuffix + ".js" ]);
 		}
-		if (o) {
-
-			if (o.fillspace) {
-				params.fillSpace = true;
+		if (!o.header) {
+			o.header = 'h3';
+		}
+		if (o.active) {
+			if (o.active === 'true') {
+				o.active = true;
 			}
-			if (o.collapsible) {
-				params.collapsible = true;
-			}
-			if (o.clearstyle) {
-				params.clearStyle = true;
-			}
-			if (o.autoheight !== undefined) {
-				if (o.autoheight) {
-					params.autoHeight = true;
-				}
-				else {
-					params.autoHeight = false;
-				}
-			}
-			if (o.event) {
-				params.event = o.event;
-			}
-			if (o.header) {
-				params.header = o.header;
+			else if (o.active === 'false') {
+				o.active = false;
+				active = false;
 			}
 			else {
-				params.header = 'h3';
+				o.active = parseInt(o.active, 10);
 			}
-			if (o.animated) {
-				if (o.animated === 'true') {
-					params.animated = true;
-				}
-				else if (o.animated === false) {
-					params.animated = false;
-				}
-				else {
-					params.animated = o.animated;
-				}
-			}
-
-			if (o.active) {
-				if (o.active === 'true') {
-					params.active = true;
-				}
-				else if (o.active === 'false') {
-					params.active = false;
-					active = false;
-				}
-				else {
-					params.active = parseInt(o.active, 10);
-				}
-			}
-
-			params.changestart = function(event, ui) {
-				if (o.href) {
-					if (typeof $(ui.newHeader).find('a').attr('paramkeys') !== "undefined") {
-						var keys = $(ui.newHeader).find('a').attr('paramkeys').split(','),
-							values = $(ui.newHeader).find('a').attr('paramvalues').split(','),
-							valueparams = {};
-						$.each(keys, function(i, val) {
-							valueparams[val] = values[i];
-						});
-						ui.newContent.load(o.href, valueparams, function() {
-						});
-					}
-				}
-				if (o.onbef) {
-					data.event = event;
-					data.ui = ui;
-
-					self.publishTopic($elem, o.onalw, data);
-					self.publishTopic($elem, o.onbef, data);
-				}
-			};
-
-			params.change = self.pubTops($elem, o.onalw, o.oncha);
 		}
-		$elem.accordion(params);
+
+		o.beforeActivate = function(event, ui) {
+			if (o.href) {
+				if (typeof $(ui.newHeader).find('a').data('keys') !== "undefined") {
+					var keys = $(ui.newHeader).find('a').data('keys').split(','),
+						values = $(ui.newHeader).find('a').data('values').split(','),
+						valueparams = {};
+					$.each(keys, function(i, val) {
+						valueparams[val] = values[i];
+					});
+					ui.newPanel.load(o.href, valueparams, function() {
+					});
+				}
+			}
+			if (o.onbef) {
+				data.event = event;
+				data.ui = ui;
+
+				self.publishTopic($elem, o.onalw, data);
+				self.publishTopic($elem, o.onbef, data);
+			}
+		};
+
+		o.change = self.pubTops($elem, o.onalw, o.oncha);
+
+		$elem.accordion(o);
 		if (o.href && active === true) {
 			aktivItem = $(self.escId(o.id) + " li " + params.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
-			if (typeof $(aktivItem).attr('paramkeys') !== "undefined") {
-				var keys = $(aktivItem).attr('paramkeys').split(','),
-					values = $(aktivItem).attr('paramvalues').split(','),
+			if (typeof $(aktivItem).data('keys') !== "undefined") {
+				var keys = $(aktivItem).data('keys').split(','),
+					values = $(aktivItem).data('values').split(','),
 					valueparams = {};
 				$.each(keys, function(i, val) {
 					valueparams[val] = values[i];
@@ -767,7 +729,7 @@
 	accordionItem : function($elem, o) {
 		if (o.onclick) {
 			$.each(o.onclick.split(','), function(i, topic) {
-				$elem.publishOnEvent('click', topic, o);
+				$elem.find(o.header).publishOnEvent('click', topic, o);
 			});
 		}
 	},

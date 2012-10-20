@@ -49,10 +49,10 @@
     <li id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />">
 	<${parameters.header?default('h3')}><a id="${escapedOptionId}_a_<@s.property value="%{#rowstatus.count}" />" href="#"
 <#if parameters.paramKeys?if_exists != "">
-	 paramkeys="${parameters.paramKeys?trim}"
+	 data-keys="${parameters.paramKeys?trim}"
 </#if>	 
 <#if parameters.paramValues?if_exists != "">
-	 paramvalues="${hrefValues?trim}"
+	 data-values="${hrefValues?trim}"
 </#if>	 
 	 >${itemKeyStr?html}</a></${parameters.header?default('h3')}>
 		<div id="${escapedOptionId}_div_<@s.property value="%{#rowstatus.count}" />">
@@ -69,22 +69,14 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
-  <#if parameters.fillSpace?default(false)>
-	options_${escapedOptionId?html}.fillspace = true;
-  </#if>
   <#if parameters.collapsible?default(false)>
 	options_${escapedOptionId?html}.collapsible = true;
   </#if>
-  <#if parameters.clearStyle?default(false)>
-	options_${escapedOptionId?html}.clearstyle = true;
-  </#if>
-  <#if parameters.autoHeight?default(true)>
-	options_${escapedOptionId?html}.autoheight = true;
-  <#else>
-	options_${escapedOptionId?html}.autoheight = false;
-  </#if>
   <#if parameters.openOnMouseover?default(false)>
 	options_${escapedOptionId?html}.event = "mouseover";
+  </#if>
+  <#if parameters.heightStyle?if_exists != "">
+	options_${escapedOptionId?html}.heightStyle = "${parameters.heightStyle?html}";
   </#if>
   <#if parameters.active?if_exists != "">
 	options_${escapedOptionId?html}.active = "${parameters.active?html}";
@@ -95,12 +87,8 @@ jQuery(document).ready(function () {
   <#if parameters.header?if_exists != "">
 	options_${escapedOptionId?html}.header = "${parameters.header?html}";
   </#if>
-<#if parameters.animated?if_exists != "">
-<#if parameters.animated?if_exists == "false">
-	options_${escapedOptionId?html}.animated = false;
-<#else>
-	options_${escapedOptionId?html}.animated = "${parameters.animated?html}";
-</#if>
+<#if parameters.animate?if_exists != "">
+	options_${escapedOptionId?html}.animate = ${parameters.animate?html};
 </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

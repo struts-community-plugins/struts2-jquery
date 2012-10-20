@@ -18,34 +18,23 @@
  * under the License.
  */
 -->
-    <li 
-<#if parameters.id?if_exists != "">
- id="${parameters.id?html}"<#rt/>
-</#if>
-<#if parameters.cssStyle?if_exists != "">
- style="${parameters.cssStyle?html}"<#rt/>
-</#if>
-<#if parameters.cssClass?if_exists != "">
- class="${parameters.cssClass?html}"<#rt/>
-</#if>
-    >
+    <li
+    <#if parameters.tabindex??>
+		tabindex="${parameters.tabindex?html}"<#rt/>
+    </#if>
+    <#if parameters.disabled?default(false)>
+		disabled="disabled"<#rt/>
+    </#if>
+    <#if parameters.id?if_exists != "">
+        id="${parameters.id?html}"<#rt/>
+	</#if>
+    <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
+    <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
+    <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+	><#rt/>
 	<${parameters.header?default('h3')}>
-		<a href="#"<#rt/>
-		<#if parameters.id?if_exists != "">
- 			id="${parameters.id?html}_link"<#rt/>
-		</#if>
-		<#if parameters.tabindex??>
- 			tabindex="${parameters.tabindex?html}"<#rt/>
-		</#if>
-		<#if parameters.disabled?default(false)>
- 			disabled="disabled"<#rt/>
-		</#if>
-		<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-		<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-		<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
-		>
 		${parameters.title?html}
-		</a></${parameters.header?default('h3')}>
+	</${parameters.header?default('h3')}>
 		<div>
 <#if parameters.value?if_exists != "">
 			${parameters.value?html}

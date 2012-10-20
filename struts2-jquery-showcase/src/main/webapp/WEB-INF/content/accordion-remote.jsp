@@ -25,29 +25,26 @@
     	paramKeys="echo" 
     	paramValues="content" 
     	href="%{urlecho}" 
-    	active="false" 
-    	autoHeight="false" 
-    	clearStyle="true" 
+    	active="false"
+        heightStyle="content"
     	/>
   </div>
   
   <div class="code ui-widget-content ui-corner-all">
     <strong>Code in JSP:</strong>
     <pre>
-    &lt;s:url id=&quot;urlecho&quot; action=&quot;echo&quot;/&gt;
-    &lt;sj:accordion 
+    &lt;s:url var=&quot;urlecho&quot; action=&quot;echo&quot;/&gt;
+    &lt;sj:accordion
     	id=&quot;accordionremote&quot;
-    	list=&quot;accordion&quot; 
-    	listKey=&quot;title&quot; 
+    	list=&quot;accordion&quot;
+    	listKey=&quot;title&quot;
     	listValue=&quot;content&quot;
-    	paramKeys=&quot;echo&quot; 
-    	paramValues=&quot;content&quot; 
-    	href=&quot;%{urlecho}&quot; 
-    	active=&quot;false&quot; 
-    	autoHeight=&quot;false&quot; 
-    	clearStyle=&quot;true&quot; 
-    	/&gt;
-    </pre>
+    	paramKeys=&quot;echo&quot;
+    	paramValues=&quot;content&quot;
+    	href=&quot;%{urlecho}&quot;
+    	active=&quot;false&quot;
+        heightStyle=&quot;content&quot;
+    	/&gt;    </pre>
     <strong>Code in Action:</strong>
     <pre>
     private List&lt;AccordionBean&gt; accordion;

@@ -24,7 +24,8 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
-  <#if parameters.onClickTopics?exists>
+	options_${escapedOptionId?html}.header = "${parameters.header?default('h3')}";
+<#if parameters.onClickTopics?exists>
 	options_${escapedOptionId?html}.onclick = "${parameters.onClickTopics?html}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />

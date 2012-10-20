@@ -28,138 +28,106 @@ import com.jgeppert.struts2.jquery.components.Accordion;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * 
- * @see Accordion
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Accordion
  */
 public class AccordionTag extends AbstractTopicTag {
 
-  private static final long serialVersionUID = 5309231035916461134L;
+	private static final long serialVersionUID = 5309231035916461134L;
 
-  protected String          active;
-  protected String          animated;
-  protected String          autoHeight;
-  protected String          clearStyle;
-  protected String          collapsible;
-  protected String          fillSpace;
-  protected String          header;
-  protected String          openOnMouseover;
-  protected String          href;
-  protected String          paramKeys;
-  protected String          paramValues;
-  protected String          list;
-  protected String          listKey;
-  protected String          listValue;
+	protected String active;
+	protected String animate;
+	protected String heightStyle;
+	protected String collapsible;
+	protected String header;
+	protected String openOnMouseover;
+	protected String href;
+	protected String paramKeys;
+	protected String paramValues;
+	protected String list;
+	protected String listKey;
+	protected String listValue;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Accordion(stack, req, res);
-  }
+	public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+		return new Accordion(stack, req, res);
+	}
 
-  protected void populateParams()
-  {
-    super.populateParams();
+	protected void populateParams() {
+		super.populateParams();
 
-    Accordion accordion = (Accordion) component;
-    accordion.setActive(active);
-    accordion.setAnimated(animated);
-    accordion.setAutoHeight(autoHeight);
-    accordion.setClearStyle(clearStyle);
-    accordion.setCollapsible(collapsible);
-    accordion.setFillSpace(fillSpace);
-    accordion.setHeader(header);
-    accordion.setOpenOnMouseover(openOnMouseover);
-    accordion.setHref(href);
-    accordion.setParamKeys(paramKeys);
-    accordion.setParamValues(paramValues);
-    accordion.setList(list);
-    accordion.setListKey(listKey);
-    accordion.setListValue(listValue);
-  }
+		Accordion accordion = (Accordion) component;
+		accordion.setActive(active);
+		accordion.setAnimate(animate);
+		accordion.setHeightStyle(heightStyle);
+		accordion.setCollapsible(collapsible);
+		accordion.setHeader(header);
+		accordion.setOpenOnMouseover(openOnMouseover);
+		accordion.setHref(href);
+		accordion.setParamKeys(paramKeys);
+		accordion.setParamValues(paramValues);
+		accordion.setList(list);
+		accordion.setListKey(listKey);
+		accordion.setListValue(listValue);
+	}
 
-  public void setActive(String active)
-  {
-    this.active = active;
-  }
+	public void setActive(String active) {
+		this.active = active;
+	}
 
-  public void setAnimated(String animated)
-  {
-    this.animated = animated;
-  }
+	public void setAnimate(String animate) {
+		this.animate = animate;
+	}
 
-  public void setAutoHeight(String autoHeight)
-  {
-    this.autoHeight = autoHeight;
-  }
+	public void setHeightStyle(String heightStyle) {
+		this.heightStyle = heightStyle;
+	}
 
-  public void setClearStyle(String clearStyle)
-  {
-    this.clearStyle = clearStyle;
-  }
 
-  public void setCollapsible(String collapsible)
-  {
-    this.collapsible = collapsible;
-  }
+	public void setCollapsible(String collapsible) {
+		this.collapsible = collapsible;
+	}
 
-  public void setFillSpace(String fillSpace)
-  {
-    this.fillSpace = fillSpace;
-  }
+	public void setHeader(String header) {
+		this.header = header;
+	}
 
-  public void setHeader(String header)
-  {
-    this.header = header;
-  }
+	public void setOpenOnMouseover(String openOnMouseover) {
+		this.openOnMouseover = openOnMouseover;
+	}
 
-  public void setOpenOnMouseover(String openOnMouseover)
-  {
-    this.openOnMouseover = openOnMouseover;
-  }
+	public void setHref(String href) {
+		this.href = href;
+	}
 
-  public void setHref(String href)
-  {
-    this.href = href;
-  }
+	public void setParamKeys(String paramKeys) {
+		this.paramKeys = paramKeys;
+	}
 
-  public void setParamKeys(String paramKeys)
-  {
-    this.paramKeys = paramKeys;
-  }
+	public void setParamValues(String paramValues) {
+		this.paramValues = paramValues;
+	}
 
-  public void setParamValues(String paramValues)
-  {
-    this.paramValues = paramValues;
-  }
+	public void setOnBeforeTopics(String onBeforeTopics) {
+		this.onBeforeTopics = onBeforeTopics;
+	}
 
-  public void setOnBeforeTopics(String onBeforeTopics)
-  {
-    this.onBeforeTopics = onBeforeTopics;
-  }
+	public void setOnAlwaysTopics(String onAlwaysTopics) {
+		this.onAlwaysTopics = onAlwaysTopics;
+	}
 
-  public void setOnAlwaysTopics(String onAlwaysTopics)
-  {
-    this.onAlwaysTopics = onAlwaysTopics;
-  }
+	public void setOnChangeTopics(String onChangeTopics) {
+		this.onChangeTopics = onChangeTopics;
+	}
 
-  public void setOnChangeTopics(String onChangeTopics)
-  {
-    this.onChangeTopics = onChangeTopics;
-  }
+	public void setList(String list) {
+		this.list = list;
+	}
 
-  public void setList(String list)
-  {
-    this.list = list;
-  }
+	public void setListKey(String listKey) {
+		this.listKey = listKey;
+	}
 
-  public void setListKey(String listKey)
-  {
-    this.listKey = listKey;
-  }
-
-  public void setListValue(String listValue)
-  {
-    this.listValue = listValue;
-  }
+	public void setListValue(String listValue) {
+		this.listValue = listValue;
+	}
 }

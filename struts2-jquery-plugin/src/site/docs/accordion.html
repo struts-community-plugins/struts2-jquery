@@ -50,28 +50,12 @@ Please do not edit it directly.
 					<td align="left" valign="top">Selector for the active element. Set to false to display none at start. Needs collapsible: true.  Default: 0</td>
 				</tr>
 				<tr>
-					<td align="left" valign="top">animated</td>
+					<td align="left" valign="top">animate</td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">Choose your favorite animation, or disable them (set to false). Values are slide, bounceslide. Default: slide</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">autoHeight</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">true</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Boolean</td>
-					<td align="left" valign="top">If set, the highest content part is used as height reference for all other parts. Provides more consistent animations. Default: true</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">clearStyle</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Boolean</td>
-					<td align="left" valign="top">If set, clears height and overflow styles after finishing animations. This enables accordions to work with dynamic content. Won't work together with autoHeight. Default: false</td>
+					<td align="left" valign="top">If and how to animate changing panels. Can be Boolean, Number, String (Escaped with simple ' sign) or JavaScript Object</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">collapsible</td>
@@ -122,20 +106,20 @@ Please do not edit it directly.
 					<td align="left" valign="top">Set the html disabled attribute on rendered html element</td>
 				</tr>
 				<tr>
-					<td align="left" valign="top">fillSpace</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Boolean</td>
-					<td align="left" valign="top">If set, the accordion completely fills the height of the parent element. Overrides autoheight.. Default: false</td>
-				</tr>
-				<tr>
 					<td align="left" valign="top">header</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">h3</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">Selector for the header element. Default: h3</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">heightStyle</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">auto</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">Controls the height of the accordion and each panel. Possible values 'auto': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">href</td>
