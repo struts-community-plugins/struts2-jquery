@@ -24,8 +24,7 @@
     <s:url var="remoteurl3" action="ajax3"/>
     <s:url var="remoteurl4" action="ajax4"/>
     <sj:tabbedpanel 
-    	id="remotetabs" 
-    	spinner="Please wait ..." 
+    	id="remotetabs"
     	disabledTabs="[3,4]" 
     	onCompleteTopics="tabcomplete" 
     	onChangeTopics="tabchange"
@@ -41,34 +40,32 @@
   <div class="code ui-widget-content ui-corner-all">
       <strong>JavaScript functions:</strong>
       <pre>
-    $.subscribe('tabchange', function(event,data) {
+	$.subscribe('tabchange', function(event, data) {
 
-        var tab = event.originalEvent.ui.index;
-        $('#changepanel').html('Change to Tab &lt;strong&gt;'+tab+'.&lt;/strong&gt;');
-        $('#infopanel').html('');
-        if(tab == 2) {
-        	$('#remotetabs').tabs( 'enable' , 3 );
-        }
-        else if(tab == 3) {
-        	$('#remotetabs').tabs( 'enable' , 4 );
-        }
-    });
-    $.subscribe('tabcomplete', function(event,ui) {
-        $('#infopanel').html('&lt;strong&gt;Completed request with Status '+event.originalEvent.status+ '.&lt;/strong&gt;&lt;br/&gt;Status: '+event.originalEvent.request.status);
-    });
+		var tab = event.originalEvent.ui.newTab.attr(&quot;id&quot;);
+		$('#changepanel').html('Change to Tab &lt;strong&gt;' + event.originalEvent.ui.newTab.attr(&quot;id&quot;) + '.&lt;/strong&gt;');
+		$('#infopanel').html('');
+		if (tab === &quot;tab3&quot;) {
+			$('#remotetabs').tabs('enable', 3);
+		} else if (tab === &quot;tab4&quot;) {
+			$('#remotetabs').tabs('enable', 4);
+		}
+	});
+	$.subscribe('tabcomplete', function(event, ui) {
+		$('#infopanel').html('&lt;strong&gt;Request for Tab '+event.originalEvent.ui.newTab.attr(&quot;id&quot;) +' completed!&lt;/strong&gt;');
+	});
       </pre>
     <strong>Code:</strong>
     <pre>
     &lt;div id=&quot;changepanel&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;infopanel&quot;&gt;&lt;/div&gt;
     
-    &lt;s:url id=&quot;remoteurl1&quot; action=&quot;ajax1&quot;/&gt;
-    &lt;s:url id=&quot;remoteurl2&quot; action=&quot;ajax2&quot;/&gt;
-    &lt;s:url id=&quot;remoteurl3&quot; action=&quot;ajax3&quot;/&gt;
-    &lt;s:url id=&quot;remoteurl4&quot; action=&quot;ajax4&quot;/&gt;
-    &lt;sj:tabbedpanel 
-    	id=&quot;remotetabs&quot; 
-    	spinner=&quot;Please wait ...&quot; 
+    &lt;s:url var=&quot;remoteurl1&quot; action=&quot;ajax1&quot;/&gt;
+    &lt;s:url var=&quot;remoteurl2&quot; action=&quot;ajax2&quot;/&gt;
+    &lt;s:url var=&quot;remoteurl3&quot; action=&quot;ajax3&quot;/&gt;
+    &lt;s:url var=&quot;remoteurl4&quot; action=&quot;ajax4&quot;/&gt;
+    &lt;sj:tabbedpanel
+    	id=&quot;remotetabs&quot;
     	disabledTabs=&quot;[3,4]&quot; 
     	onCompleteTopics=&quot;tabcomplete&quot; 
     	onChangeTopics=&quot;tabchange&quot;

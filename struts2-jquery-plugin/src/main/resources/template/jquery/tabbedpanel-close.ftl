@@ -24,7 +24,7 @@
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};
   <#if parameters.selectedTab?exists>
-	options_${escapedOptionId?html}.selectedtab = ${parameters.selectedTab?html};
+	options_${escapedOptionId?html}.selectedtab = ${parameters.selectedTab?c};
   </#if>
   <#if parameters.openOnMouseover?default(false)>
 	options_${escapedOptionId?html}.event = "mouseover";
@@ -35,18 +35,14 @@ jQuery(document).ready(function () {
   <#if parameters.useSelectedTabCookie?default(false)>
 	options_${escapedOptionId?html}.cookie = true;
   </#if>
-  <#if parameters.animate?default(false)>
-	options_${escapedOptionId?html}.animate = true;
+  <#if parameters.show?if_exists != "">
+	options_${escapedOptionId?html}.show = ${parameters.show?html};
+  </#if>
+  <#if parameters.hide?if_exists != "">
+	options_${escapedOptionId?html}.hide = ${parameters.hide?html};
   </#if>
   <#if parameters.cache?default(false)>
 	options_${escapedOptionId?html}.cache = true;
-  </#if>
-  <#if parameters.spinner?exists>
-	  <#if parameters.spinner?if_exists != "">
-	options_${escapedOptionId?html}.spinner = "${parameters.spinner?html}";
-	  <#else>
-	options_${escapedOptionId?html}.spinner = "";
-	  </#if>
   </#if>
   <#if parameters.disabledTabs?if_exists != "">
 	options_${escapedOptionId?html}.disabledtabs = "${parameters.disabledTabs?html}";
@@ -54,15 +50,18 @@ jQuery(document).ready(function () {
   <#if parameters.sortable?default(false)>
 	options_${escapedOptionId?html}.sortable = true;
   </#if>
-  <#if parameters.onAddTopics?if_exists != "">
-	options_${escapedOptionId?html}.onaddtopics = "${parameters.onAddTopics?html}";
-  </#if>
-  <#if parameters.onRemoveTopics?if_exists != "">
-	options_${escapedOptionId?html}.onremovetopics = "${parameters.onRemoveTopics?html}";
+  <#if parameters.heightStyle?if_exists != "">
+	options_${escapedOptionId?html}.heightStyle = "${parameters.heightStyle?html}";
   </#if>
   <#if parameters.onLoadTopics?if_exists != "">
 	options_${escapedOptionId?html}.onloadtopics = "${parameters.onLoadTopics?html}";
   </#if>
+  <#if parameters.onActivateTopics?if_exists != "">
+	options_${escapedOptionId?html}.onactivatetopics = "${parameters.onActivateTopics?html}";
+  </#if>
+<#if parameters.onBeforeActivateTopics?if_exists != "">
+	options_${escapedOptionId?html}.onbefacttopics = "${parameters.onBeforeActivateTopics?html}";
+</#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

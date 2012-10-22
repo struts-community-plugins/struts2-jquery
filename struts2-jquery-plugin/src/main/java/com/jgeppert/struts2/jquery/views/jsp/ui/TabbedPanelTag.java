@@ -41,15 +41,15 @@ public class TabbedPanelTag extends AbstractTopicTag {
 	protected String useSelectedTabCookie;
 	protected String openOnMouseover;
 	protected String collapsible;
-	protected String animate;
-	protected String spinner;
+	protected String show;
+	protected String hide;
 	protected String cache;
 	protected String disabledTabs;
 	protected String sortable;
-
-	protected String onAddTopics;
-	protected String onRemoveTopics;
 	protected String onLoadTopics;
+	protected String onActivateTopics;
+	protected String onBeforeActivateTopics;
+	protected String heightStyle;
 
 	public Component getBean(ValueStack stack, HttpServletRequest req,
 			HttpServletResponse res) {
@@ -61,16 +61,17 @@ public class TabbedPanelTag extends AbstractTopicTag {
 		TabbedPanel tabbedPanel = (TabbedPanel) component;
 		tabbedPanel.setSelectedTab(selectedTab);
 		tabbedPanel.setUseSelectedTabCookie(useSelectedTabCookie);
-		tabbedPanel.setAnimate(animate);
+		tabbedPanel.setShow(show);
+		tabbedPanel.setHide(hide);
 		tabbedPanel.setCollapsible(collapsible);
 		tabbedPanel.setOpenOnMouseover(openOnMouseover);
-		tabbedPanel.setSpinner(spinner);
 		tabbedPanel.setCache(cache);
 		tabbedPanel.setDisabledTabs(disabledTabs);
 		tabbedPanel.setSortable(sortable);
-		tabbedPanel.setOnAddTopics(onAddTopics);
-		tabbedPanel.setOnRemoveTopics(onRemoveTopics);
 		tabbedPanel.setOnLoadTopics(onLoadTopics);
+		tabbedPanel.setOnActivateTopics(onActivateTopics);
+		tabbedPanel.setOnBeforeActivateTopics(onBeforeActivateTopics);
+		tabbedPanel.setHeightStyle(heightStyle);
 	}
 
 	public void setSelectedTab(String selectedTab) {
@@ -89,12 +90,12 @@ public class TabbedPanelTag extends AbstractTopicTag {
 		this.collapsible = collapsible;
 	}
 
-	public void setAnimate(String animate) {
-		this.animate = animate;
+	public void setShow(String show) {
+		this.show = show;
 	}
 
-	public void setSpinner(String spinner) {
-		this.spinner = spinner;
+	public void setHide(String hide) {
+		this.hide = hide;
 	}
 
 	public void setCache(String cache) {
@@ -105,19 +106,23 @@ public class TabbedPanelTag extends AbstractTopicTag {
 		this.disabledTabs = disabledTabs;
 	}
 
-	public void setOnAddTopics(String onAddTopics) {
-		this.onAddTopics = onAddTopics;
-	}
-
-	public void setOnRemoveTopics(String onRemoveTopics) {
-		this.onRemoveTopics = onRemoveTopics;
-	}
-
 	public void setOnLoadTopics(String onLoadTopics) {
 		this.onLoadTopics = onLoadTopics;
 	}
 
+	public void setOnActivateTopics(String onActivateTopics) {
+		this.onActivateTopics = onActivateTopics;
+	}
+
+	public void setOnBeforeActivateTopics(String onBeforeActivateTopics) {
+		this.onBeforeActivateTopics = onBeforeActivateTopics;
+	}
+
 	public void setSortable(String sortable) {
 		this.sortable = sortable;
+	}
+
+	public void setHeightStyle(String heightStyle) {
+		this.heightStyle = heightStyle;
 	}
 }

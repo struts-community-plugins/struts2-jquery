@@ -93,15 +93,15 @@ public class TabbedPanel extends AbstractTopicsBean {
 	protected String useSelectedTabCookie;
 	protected String openOnMouseover;
 	protected String collapsible;
-	protected String animate;
-	protected String spinner;
+	protected String show;
+	protected String hide;
 	protected String cache;
 	protected String disabledTabs;
 	protected String sortable;
-
-	protected String onAddTopics;
-	protected String onRemoveTopics;
 	protected String onLoadTopics;
+	protected String onActivateTopics;
+	protected String onBeforeActivateTopics;
+	protected String heightStyle;
 
 	public TabbedPanel(ValueStack stack, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -124,22 +124,24 @@ public class TabbedPanel extends AbstractTopicsBean {
 		if (this.collapsible != null)
 			addParameter("collapsible",
 					findValue(this.collapsible, Boolean.class));
-		if (this.animate != null)
-			addParameter("animate", findValue(this.animate, Boolean.class));
-		if (this.spinner != null)
-			addParameter("spinner", findString(this.spinner));
+		if (show != null)
+			addParameter("show", findString(show));
+		if (hide != null)
+			addParameter("hide", findString(hide));
 		if (this.cache != null)
 			addParameter("cache", findValue(this.cache, Boolean.class));
 		if (this.disabledTabs != null)
 			addParameter("disabledTabs", findString(this.disabledTabs));
-		if (this.onAddTopics != null)
-			addParameter("onAddTopics", findString(this.onAddTopics));
-		if (this.onRemoveTopics != null)
-			addParameter("onRemoveTopics", findString(this.onRemoveTopics));
 		if (this.onLoadTopics != null)
 			addParameter("onLoadTopics", findString(this.onLoadTopics));
+		if (this.onActivateTopics!= null)
+			addParameter("onActivateTopics", findString(this.onActivateTopics));
+		if (this.onBeforeActivateTopics!= null)
+			addParameter("onBeforeActivateTopics", findString(this.onBeforeActivateTopics));
 		if (this.sortable != null)
 			addParameter("sortable", findValue(this.sortable, Boolean.class));
+		if (heightStyle != null)
+			addParameter("heightStyle", findString(heightStyle));
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -197,19 +199,19 @@ public class TabbedPanel extends AbstractTopicsBean {
 		this.collapsible = collapsible;
 	}
 
-	@StrutsTagAttribute(description = "Enable animations for hiding and showing tab panels", defaultValue = "false", type = "Boolean")
-	public void setAnimate(String animate) {
-		this.animate = animate;
+	@StrutsTagAttribute(description = "If and how to animate the hiding of the panel. Multiple types supported: Boolean, Number, Object or String (escaped with ' e.g.: 'fold' ")
+	public void setShow(String show) {
+		this.show = show;
+	}
+
+	@StrutsTagAttribute(description = "If and how to animate the showing of the panel. Multiple types supported: Boolean, Number, Object or String (escaped with ' e.g.: 'fold' ")
+	public void setHide(String hide) {
+		this.hide = hide;
 	}
 
 	@StrutsTagAttribute(description = "Store the latest selected tab in a cookie. The cookie is then used to determine the initially selected tab if the selectedTab option is not defined.", defaultValue = "false", type = "Boolean")
 	public void setUseSelectedTabCookie(String useSelectedTabCookie) {
 		this.useSelectedTabCookie = useSelectedTabCookie;
-	}
-
-	@StrutsTagAttribute(description = "The HTML content of this string is shown in a tab title while remote content is loading. Pass in empty string to deactivate that behavior.")
-	public void setSpinner(String spinner) {
-		this.spinner = spinner;
 	}
 
 	@StrutsTagAttribute(description = "Whether or not to cache remote tabs content, e.g. load only once or with every click. Cached content is being lazy loaded, e.g once and only once for the first click.", defaultValue = "false", type = "Boolean")
@@ -221,24 +223,28 @@ public class TabbedPanel extends AbstractTopicsBean {
 	public void setDisabledTabs(String disabledTabs) {
 		this.disabledTabs = disabledTabs;
 	}
-
-	@StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is added", type = "String", defaultValue = "")
-	public void setOnAddTopics(String onAddTopics) {
-		this.onAddTopics = onAddTopics;
-	}
-
-	@StrutsTagAttribute(description = "A comma delimited list of topics that published when a tab is removed", type = "String", defaultValue = "")
-	public void setOnRemoveTopics(String onRemoveTopics) {
-		this.onRemoveTopics = onRemoveTopics;
-	}
-
 	@StrutsTagAttribute(description = "A comma delimited list of topics that published after the content of a remote tab has been loaded.", type = "String", defaultValue = "")
 	public void setOnLoadTopics(String onLoadTopics) {
 		this.onLoadTopics = onLoadTopics;
 	}
 
+	@StrutsTagAttribute(description = "A comma delimited list of topics that published after a tab has been activated (after animation completes). If the tabs were previously collapsed.", type = "String", defaultValue = "")
+	public void setOnActivateTopics(String onActivateTopics) {
+		this.onActivateTopics = onActivateTopics;
+	}
+
+	@StrutsTagAttribute(description = "A comma delimited list of topics that published directly after a tab is activated.", type = "String", defaultValue = "")
+	public void setOnBeforeActivateTopics(String onBeforeActivateTopics) {
+		this.onBeforeActivateTopics = onBeforeActivateTopics;
+	}
+
 	@StrutsTagAttribute(description = "Making tabs sortable.", defaultValue = "false", type = "Boolean")
 	public void setSortable(String sortable) {
 		this.sortable = sortable;
+	}
+
+	@StrutsTagAttribute(description = "Controls the height of the accordion and each panel. Possible values 'auto\': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.", defaultValue = "auto")
+	public void setHeightStyle(String heightStyle) {
+		this.heightStyle = heightStyle;
 	}
 }

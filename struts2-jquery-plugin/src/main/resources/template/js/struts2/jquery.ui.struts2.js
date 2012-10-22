@@ -254,7 +254,6 @@
 	/** Handle the TabbedPanel Widget */
 	tabbedpanel : function($elem, o) {
 		var self = this,
-			para = {},
 			ahp = {},
 			disabledtabsStr = o.disabledtabs,
 			disabledtabs = window[disabledtabsStr],
@@ -266,98 +265,94 @@
 		if (!self.loadAtOnce) {
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.tabs" + self.minSuffix + ".js" ]);
 		}
-		if (!o) {
-			o = {};
-		}
 
 		if (o.disabledtabs && o.disabledtabs !== 'false') {
 			if (!disabledtabs) {
-				para.disabled = eval("( " + disabledtabsStr + " )");
+				o.disabled = eval("( " + disabledtabsStr + " )");
 			}
 		}
-		if (o.cache) {
-			para.cache = true;
-		}
-		if (o.animate) {
-			if (!self.loadAtOnce) {
-				self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
-			}
-			para.fx = {
-				opacity :'toggle'
-			};
+		if (o.openonmouseover) {
+			o.event = 'mouseover';
 		}
 		if (o.cookie) {
 			self.require("js/base/jquery.cookie" + self.minSuffix + ".js");
-			para.cookie = {
-				name: "tab"+o.id, 
-				expires :30
-			};
-		}
-		if (o.collapsible) {
-			para.collapsible = true;
-		}
-		if (o.openonmouseover) {
-			para.event = 'mouseover';
-		}
-		if (o.orientation) {
-			para.orientation = o.orientation;
-		}
-
-		if (o.spinner !== undefined) {
-			para.spinner = o.spinner;
-		}
-		else if (self.defaults.loadingText !== null) {
-			para.spinner = self.defaults.loadingText;
 		}
 
 		if (o.selectedtab) {
-			para.selected = o.selectedtab;
+			o.active = o.selectedtab;
+		} else if (o.cookie) {
+			o.active  = $.cookie($elem.prop('id'));
 		}
-		if (o.oncom) {
-			para.ajaxOptions = {
-				dataType : "html",
-				complete : self.pubCom(o.id, o.onalw, o.oncom, null, null, {})
-			};
+
+
+		if (o.show) {
+			self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
+			if(typeof o.show == "string") {
+				self.require("js/base/jquery.ui.effect-" + o.show + self.minSuffix + ".js");
+			}
 		}
-		else {
-			para.ajaxOptions = {
-				dataType : "html"
-			};
+		if (o.hide) {
+			self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
+			if(typeof o.hide == "string") {
+				self.require("js/base/jquery.ui.effect-" + o.hide + self.minSuffix + ".js");
+			}
 		}
-		if (o.onbef) {
-			para.show = self.pubTops($elem, o.onalw, o.onbef);
-		}
-		para.select = function(event, ui) {
+
+		o.ajaxOptions = {
+			dataType : "html"
+		};
+
+		o.beforeLoad  = function(event, ui) {
+			var data = {},
+				form = ui.tab.data("form"),
+				links;
+			data.event = event;
+			data.ui = ui;
+
+			if(form){
+				ui.ajaxSettings.url =  self.addForms(form, ui.ajaxSettings.url);
+			}
+
+			if(o.onbef) {
+				self.publishTopic($elem, o.onbef, data);
+				self.publishTopic($elem, o.onalw, data);
+			}
+			if (o.cache) {
+				if ( ui.tab.data( "loaded" ) ) {
+					event.preventDefault();
+					return;
+				}
+
+				ui.jqXHR.success(function() {
+					ui.tab.data( "loaded", true );
+				});
+			}
+		};
+		o.activate = function(event, ui) {
 			var data = {},
 				form = $elem.data("tab"+ui.index),
 				links;
 			data.event = event;
 			data.ui = ui;
 
-			if(form){
-				links = $(self.escId(o.id)+" > ul").find("li a"); 
-				$elem.tabs('url', ui.index, self.addForms(form, $.data(links[ui.index], 'href.tabs')));
+			if (o.cookie) {
+				$.cookie($elem.prop('id'), ui.newTab.index(), { name: "tab"+o.id, expires: 365 });
 			}
-			
+
 			if(o.oncha) {
 				self.publishTopic($elem, o.oncha, data);
 				self.publishTopic($elem, o.onalw, data);
 			}
 		};
-		if (o.onenabletopics) {
-			para.enable = self.pubTops($elem, o.onalw, o.onenabletopics);
+
+		if (o.oncom) {
+			o.load = self.pubTops($elem, o.onalw, o.oncom);
 		}
-		if (o.ondisabletopics) {
-			para.disable = self.pubTops($elem, o.onalw, o.ondisabletopics);
+		if (o.onactivatetopics) {
+			o.load = self.pubTops($elem, o.onalw, o.onactivatetopics);
 		}
-		if (o.onaddtopics) {
-			para.add = self.pubTops($elem, o.onalw, o.onaddtopics);
-		}
-		if (o.onremovetopics) {
-			para.remove = self.pubTops($elem, o.onalw, o.onremovetopics);
-		}
-		if (o.onloadtopics) {
-			para.load = self.pubTops($elem, o.onalw, o.oncom);
+		if (o.onbefacttopics) {
+			o.load = self.pubTops($elem, o.onalw, o.onbefacttopics);
 		}
 
 		if (tabs) {
@@ -373,7 +368,9 @@
 				if (tab.cssclass) {
 					tabStr += "class='" + tab.cssclass + "' ";
 				}
-
+				if (tab.formIds) {
+					tabStr += "data-form='"+tab.formIds + "' ";
+				}
 				tabStr += "><a href='" + tab.href + "' ";
 
 				if (tab.label) {
@@ -389,15 +386,11 @@
 					closable = true;
 				}
 				tabStr += "</li>";
-				if (tab.formIds) {
-					$elem.data("tab"+l, tab.formIds);
-				}
-
 			}
 			$(self.escId(o.id) + ' > ul').html(tabStr);
 		}
 
-		$elem.tabs(para);
+		$elem.tabs(o);
 
 		if (o.sortable) {
 			if (!self.loadAtOnce) {

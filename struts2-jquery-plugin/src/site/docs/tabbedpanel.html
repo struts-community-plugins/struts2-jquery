@@ -42,14 +42,6 @@ Please do not edit it directly.
 					<td align="left" valign="top">Set the html accesskey attribute on rendered html element</td>
 				</tr>
 				<tr>
-					<td align="left" valign="top">animate</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">Boolean</td>
-					<td align="left" valign="top">Enable animations for hiding and showing tab panels</td>
-				</tr>
-				<tr>
 					<td align="left" valign="top">cache</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
@@ -114,6 +106,22 @@ Please do not edit it directly.
 					<td align="left" valign="top">An array containing the position of the tabs (zero-based index) that should be disabled on initialization. e.g. [1, 2]</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">heightStyle</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">auto</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">Controls the height of the accordion and each panel. Possible values 'auto': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">hide</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">If and how to animate the showing of the panel. Multiple types supported: Boolean, Number, Object or String (escaped with ' e.g.: 'fold' </td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">id</td>
 					<td align="left" valign="top"><strong>true</strong></td>
 					<td align="left" valign="top"></td>
@@ -170,12 +178,12 @@ Please do not edit it directly.
 					<td align="left" valign="top">The name to set for element</td>
 				</tr>
 				<tr>
-					<td align="left" valign="top">onAddTopics</td>
+					<td align="left" valign="top">onActivateTopics</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">A comma delimited list of topics that published when a tab is added</td>
+					<td align="left" valign="top">A comma delimited list of topics that published after a tab has been activated (after animation completes). If the tabs were previously collapsed.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">onAfterValidationTopics</td>
@@ -192,6 +200,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">A comma delimited list of topics that published always</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">onBeforeActivateTopics</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">A comma delimited list of topics that published directly after a tab is activated.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">onBeforeTopics</td>
@@ -264,14 +280,6 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">A comma delimited list of topics that published after the content of a remote tab has been loaded.</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">onRemoveTopics</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">A comma delimited list of topics that published when a tab is removed</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">onSuccessTopics</td>
@@ -434,20 +442,20 @@ Please do not edit it directly.
 					<td align="left" valign="top">Number of tab that will be selected by default. e.g. 0 for the first tab or 1 for the second tab.</td>
 				</tr>
 				<tr>
+					<td align="left" valign="top">show</td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top"></td>
+					<td align="left" valign="top">false</td>
+					<td align="left" valign="top">String</td>
+					<td align="left" valign="top">If and how to animate the hiding of the panel. Multiple types supported: Boolean, Number, Object or String (escaped with ' e.g.: 'fold' </td>
+				</tr>
+				<tr>
 					<td align="left" valign="top">sortable</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">Boolean</td>
 					<td align="left" valign="top">Making tabs sortable.</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top">spinner</td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top"></td>
-					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">The HTML content of this string is shown in a tab title while remote content is loading. Pass in empty string to deactivate that behavior.</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">tabindex</td>

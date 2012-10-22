@@ -216,21 +216,19 @@ $(document).ready(function() {
 	 */
 	$.subscribe('tabchange', function(event, data) {
 
-		var tab = event.originalEvent.ui.index;
-		$('#changepanel').html('Change to Tab <strong>' + tab + '.</strong>');
+		var tab = event.originalEvent.ui.newTab.attr("id");
+		$('#changepanel').html('Change to Tab <strong>' + event.originalEvent.ui.newTab.attr("id") + '.</strong>');
 		$('#infopanel').html('');
-		if (tab == 2) {
+		if (tab === "tab3") {
 			$('#remotetabs').tabs('enable', 3);
-		} else if (tab == 3) {
+		} else if (tab === "tab4") {
 			$('#remotetabs').tabs('enable', 4);
 		}
 	});
 	$.subscribe('tabcomplete', function(event, ui) {
-		$('#infopanel').html('<strong>Completed request with Status ' + event.originalEvent.status + '.</strong><br/>Status: ' + event.originalEvent.request.status);
+		$('#infopanel').html('<strong>Request for Tab '+event.originalEvent.ui.newTab.attr("id") +' completed!</strong>');
 	});
-    $.subscribe("removeTabEvent", function(event, ui) {
-        alert("Tab "+event.originalEvent.ui.tab.text+" was removed.");
-    });
+
 
 	/*
 	 * Remove Error Labels when Validation Forms are successfully
