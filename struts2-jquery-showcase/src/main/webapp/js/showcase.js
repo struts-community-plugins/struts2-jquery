@@ -145,7 +145,7 @@ $(document).ready(function() {
 		alert('run topic on dialog close');
 	});
 	$.subscribe('dialogbeforeclosetopic', function(event, ui) {
-		alert('run topic befor dialog close');
+		alert('run topic before dialog close');
 	});
 
 	/*

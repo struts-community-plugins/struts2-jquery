@@ -175,11 +175,31 @@
 	/** Handle the Dialog Widget */
 	dialog : function($elem, o) {
 		var self = this,
-			params = {},
 			widgetInst = $(".ui-dialog").has(self.escId(o.id));
 		self.log('dialog : ' + o.id);
+
+		var jsFiles = [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.dialog" + self.minSuffix + ".js" ];
+		if ($.browser.msie && parseInt($.browser.version, 10) <= 6) {
+			o.bgiframe = true;
+			self.require("js/base/jquery.bgiframe" + self.minSuffix + ".js");
+		}
+		if (o.hide || o.show) {
+			jsFiles.push("js/base/jquery.ui.effect" + self.minSuffix + ".js");
+		}
+		if (o.hide) {
+			jsFiles.push("js/base/jquery.ui.effect-" + o.hide + self.minSuffix + ".js");
+		}
+		if (o.show) {
+			jsFiles.push("js/base/jquery.ui.effect-" + o.show + self.minSuffix + ".js");
+		}
+		if (o.resizable) {
+			jsFiles.push("js/base/jquery.ui.resizable" + self.minSuffix + ".js");
+		}
+		if (o.draggable) {
+			jsFiles.push("js/base/jquery.ui.draggable" + self.minSuffix + ".js");
+		}
 		if (!self.loadAtOnce) {
-			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.bgiframe" + self.minSuffix + ".js", "js/base/jquery.ui.dialog" + self.minSuffix + ".js" ]);
+			self.require(jsFiles);
 		}
 
 		// Remove existing Dialog Instances
@@ -187,8 +207,7 @@
 			$("div"+self.escId(o.id)).dialog("destroy").remove();
 		}
 
-		$.extend(params, o);
-		params.bgiframe = true;
+		o.bgiframe = true;
 
 		if(o.opentopics) {
 			self.subscribeTopics($elem, o.opentopics, self.handler.open_dialog, o);
@@ -202,19 +221,7 @@
 			self.subscribeTopics($elem, o.destroytopics, self.handler.destroy_dialog, o);
 		}
 
-		if (o.hide) {
-			if (!self.loadAtOnce) {
-				self.require( [ "js/base/jquery.ui.effect" + self.minSuffix + ".js", "js/base/jquery.ui.effect-" + o.hide + self.minSuffix + ".js" ]);
-			}
-			params.hide = o.hide;
-		}
-		if (o.show) {
-			if (!self.loadAtOnce) {
-				self.require( [ "js/base/jquery.ui.effect" + self.minSuffix + ".js", "js/base/jquery.ui.effect-" + o.show + self.minSuffix + ".js" ]);
-			}
-			params.show = o.show;
-		}
-		params.open = function(event, ui) {
+		o.open = function(event, ui) {
 			var data = {},
 				divTopic = '_s2j_topic_load_' + o.id;
 
@@ -230,9 +237,9 @@
 			self.publishTopic($elem, o.onbef, data);
 			self.publishTopic($elem, o.onopentopics, data);
 		};
-		params.close = self.pubTops($elem, o.onalw, o.onclosetopics);
-		params.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
-		params.beforeclose = function() {
+		o.close = self.pubTops($elem, o.onalw, o.onclosetopics);
+		o.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
+		o.beforeClose = function() {
 
 			var data = {};
 			data.close = true;
@@ -244,11 +251,11 @@
 		};
 
 
-		params.drag = self.pubTops($elem, o.onalw, o.oncha);
+		o.drag = self.pubTops($elem, o.onalw, o.oncha);
 		
 		$elem.data('s2j_options', o);
 
-		$elem.dialog(params);
+		$elem.dialog(o);
 	},
 
 	/** Handle the TabbedPanel Widget */
