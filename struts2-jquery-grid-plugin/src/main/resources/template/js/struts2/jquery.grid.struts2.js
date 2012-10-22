@@ -480,7 +480,7 @@
 								}
 							}
 							if(col.searchoptions && col.searchoptions.dataUrl){
-								if(col.searchoptions.dataUrlindexOf("rowid") > 0) {
+								if(col.searchoptions.dataUrl.indexOf("rowid") > 0) {
 									col.searchoptions.dataUrl = self.changeParam(col.searchoptions.dataUrl, "rowid", row_id);
 								}
 								else {
