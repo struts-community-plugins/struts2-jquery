@@ -659,6 +659,25 @@
 		$elem.progressbar(params);
 	},
 
+	/** Handle the Menu Widget */
+	menu : function($elem, o) {
+		var self = this,
+			params = {};
+		self.log('menu : ' + o.id);
+		if (!self.loadAtOnce) {
+			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.menu" + self.minSuffix + ".js" ]);
+		}
+
+
+		$elem.menu(o);
+	},
+
+	/** Handle the Menu Item */
+	menuItem : function($elem, o) {
+		var self = this;
+		self.anchor($elem, o);
+	},
+
 	/** Handle the Accordion Widget */
 	accordion : function($elem, o) {
 		var self = this,

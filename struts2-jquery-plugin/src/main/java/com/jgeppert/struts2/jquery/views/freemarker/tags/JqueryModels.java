@@ -25,228 +25,206 @@ import javax.servlet.http.HttpServletResponse;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryModels {
-  protected DatePickerModel    datePicker;
-  protected TabbedPanelModel   tabbedPanel;
-  protected DivModel           div;
-  protected DialogModel        dialog;
-  protected AccordionModel     accordion;
-  protected AccordionItemModel accordionItem;
-  protected TabModel           tab;
-  protected AnchorModel        a;
-  protected SubmitModel        submit;
-  protected HeadModel          head;
-  protected ProgressbarModel   progessbar;
-  protected SliderModel        slider;
-  protected SpinnerModel       spinner;
-  protected TextareaModel      textarea;
-  protected TextfieldModel     textfield;
-  protected SelectModel        select;
-  protected AutocompleterModel autocompleter;
-  protected RadioModel         radio;
-  protected CheckboxListModel  checkboxlist;
+	protected DatePickerModel datePicker;
+	protected TabbedPanelModel tabbedPanel;
+	protected DivModel div;
+	protected DialogModel dialog;
+	protected AccordionModel accordion;
+	protected AccordionItemModel accordionItem;
+	protected TabModel tab;
+	protected AnchorModel a;
+	protected SubmitModel submit;
+	protected HeadModel head;
+	protected ProgressbarModel progessbar;
+	protected SliderModel slider;
+	protected SpinnerModel spinner;
+	protected TextareaModel textarea;
+	protected TextfieldModel textfield;
+	protected SelectModel select;
+	protected AutocompleterModel autocompleter;
+	protected RadioModel radio;
+	protected CheckboxListModel checkboxlist;
+	protected MenuModel menu;
+	protected MenuItemModel menuItem;
 
-  private ValueStack           stack;
-  private HttpServletRequest   req;
-  private HttpServletResponse  res;
+	private ValueStack stack;
+	private HttpServletRequest req;
+	private HttpServletResponse res;
 
-  public JqueryModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    this.stack = stack;
-    this.req = req;
-    this.res = res;
-  }
+	public JqueryModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+		this.stack = stack;
+		this.req = req;
+		this.res = res;
+	}
 
-  public AccordionItemModel getAccordionItem()
-  {
-    if (accordionItem == null)
-    {
-      accordionItem = new AccordionItemModel(stack, req, res);
-    }
+	public MenuModel getMenu() {
+		if (menu == null) {
+			menu = new MenuModel(stack, req, res);
+		}
 
-    return accordionItem;
-  }
+		return menu;
+	}
 
-  public AutocompleterModel getAutocompleter()
-  {
-    if (autocompleter == null)
-    {
-      autocompleter = new AutocompleterModel(stack, req, res);
-    }
+	public MenuItemModel getMenuItem() {
+		if (menuItem == null) {
+			menuItem = new MenuItemModel(stack, req, res);
+		}
 
-    return autocompleter;
-  }
+		return menuItem;
+	}
 
-  public HeadModel getHead()
-  {
-    if (head == null)
-    {
-      head = new HeadModel(stack, req, res);
-    }
+	public AccordionItemModel getAccordionItem() {
+		if (accordionItem == null) {
+			accordionItem = new AccordionItemModel(stack, req, res);
+		}
 
-    return head;
-  }
+		return accordionItem;
+	}
 
-  public DatePickerModel getDatepicker()
-  {
-    if (datePicker == null)
-    {
-      datePicker = new DatePickerModel(stack, req, res);
-    }
+	public AutocompleterModel getAutocompleter() {
+		if (autocompleter == null) {
+			autocompleter = new AutocompleterModel(stack, req, res);
+		}
 
-    return datePicker;
-  }
+		return autocompleter;
+	}
 
-  public TabbedPanelModel getTabbedpanel()
-  {
-    if (tabbedPanel == null)
-    {
-      tabbedPanel = new TabbedPanelModel(stack, req, res);
-    }
+	public HeadModel getHead() {
+		if (head == null) {
+			head = new HeadModel(stack, req, res);
+		}
 
-    return tabbedPanel;
-  }
+		return head;
+	}
 
-  public TabModel getTab()
-  {
-    if (tab == null)
-    {
-      tab = new TabModel(stack, req, res);
-    }
+	public DatePickerModel getDatepicker() {
+		if (datePicker == null) {
+			datePicker = new DatePickerModel(stack, req, res);
+		}
 
-    return tab;
-  }
+		return datePicker;
+	}
 
-  public DivModel getDiv()
-  {
-    if (div == null)
-    {
-      div = new DivModel(stack, req, res);
-    }
+	public TabbedPanelModel getTabbedpanel() {
+		if (tabbedPanel == null) {
+			tabbedPanel = new TabbedPanelModel(stack, req, res);
+		}
 
-    return div;
-  }
+		return tabbedPanel;
+	}
 
-  public AnchorModel getA()
-  {
-    if (a == null)
-    {
-      a = new AnchorModel(stack, req, res);
-    }
+	public TabModel getTab() {
+		if (tab == null) {
+			tab = new TabModel(stack, req, res);
+		}
 
-    return a;
-  }
+		return tab;
+	}
 
-  public SubmitModel getSubmit()
-  {
-    if (submit == null)
-    {
-      submit = new SubmitModel(stack, req, res);
-    }
+	public DivModel getDiv() {
+		if (div == null) {
+			div = new DivModel(stack, req, res);
+		}
 
-    return submit;
-  }
+		return div;
+	}
 
-  public DialogModel getDialog()
-  {
-    if (dialog == null)
-    {
-      dialog = new DialogModel(stack, req, res);
-    }
+	public AnchorModel getA() {
+		if (a == null) {
+			a = new AnchorModel(stack, req, res);
+		}
 
-    return dialog;
-  }
+		return a;
+	}
 
-  public AccordionModel getAccordion()
-  {
-    if (accordion == null)
-    {
-      accordion = new AccordionModel(stack, req, res);
-    }
+	public SubmitModel getSubmit() {
+		if (submit == null) {
+			submit = new SubmitModel(stack, req, res);
+		}
 
-    return accordion;
-  }
+		return submit;
+	}
 
-  public ProgressbarModel getProgressbar()
-  {
-    if (progessbar == null)
-    {
-      progessbar = new ProgressbarModel(stack, req, res);
-    }
+	public DialogModel getDialog() {
+		if (dialog == null) {
+			dialog = new DialogModel(stack, req, res);
+		}
 
-    return progessbar;
-  }
+		return dialog;
+	}
 
-  public SliderModel getSlider()
-  {
-    if (slider == null)
-    {
-      slider = new SliderModel(stack, req, res);
-    }
+	public AccordionModel getAccordion() {
+		if (accordion == null) {
+			accordion = new AccordionModel(stack, req, res);
+		}
 
-    return slider;
-  }
+		return accordion;
+	}
 
-  public SpinnerModel getSpinner()
-  {
-    if (spinner == null)
-    {
-      spinner = new SpinnerModel(stack, req, res);
-    }
+	public ProgressbarModel getProgressbar() {
+		if (progessbar == null) {
+			progessbar = new ProgressbarModel(stack, req, res);
+		}
 
-    return spinner;
-  }
+		return progessbar;
+	}
 
-  public TextareaModel getTextarea()
-  {
-    if (textarea == null)
-    {
-      textarea = new TextareaModel(stack, req, res);
-    }
+	public SliderModel getSlider() {
+		if (slider == null) {
+			slider = new SliderModel(stack, req, res);
+		}
 
-    return textarea;
-  }
+		return slider;
+	}
 
-  public TextfieldModel getTextfield()
-  {
-    if (textfield == null)
-    {
-      textfield = new TextfieldModel(stack, req, res);
-    }
+	public SpinnerModel getSpinner() {
+		if (spinner == null) {
+			spinner = new SpinnerModel(stack, req, res);
+		}
 
-    return textfield;
-  }
+		return spinner;
+	}
 
-  public SelectModel getSelect()
-  {
-    if (select == null)
-    {
-      select = new SelectModel(stack, req, res);
-    }
+	public TextareaModel getTextarea() {
+		if (textarea == null) {
+			textarea = new TextareaModel(stack, req, res);
+		}
 
-    return select;
-  }
+		return textarea;
+	}
 
-  public RadioModel getRadio()
-  {
-    if (radio == null)
-    {
-      radio = new RadioModel(stack, req, res);
-    }
+	public TextfieldModel getTextfield() {
+		if (textfield == null) {
+			textfield = new TextfieldModel(stack, req, res);
+		}
 
-    return radio;
-  }
+		return textfield;
+	}
 
-  public CheckboxListModel getCheckboxlist()
-  {
-    if (checkboxlist == null)
-    {
-      checkboxlist = new CheckboxListModel(stack, req, res);
-    }
+	public SelectModel getSelect() {
+		if (select == null) {
+			select = new SelectModel(stack, req, res);
+		}
 
-    return checkboxlist;
-  }
+		return select;
+	}
+
+	public RadioModel getRadio() {
+		if (radio == null) {
+			radio = new RadioModel(stack, req, res);
+		}
+
+		return radio;
+	}
+
+	public CheckboxListModel getCheckboxlist() {
+		if (checkboxlist == null) {
+			checkboxlist = new CheckboxListModel(stack, req, res);
+		}
+
+		return checkboxlist;
+	}
 }

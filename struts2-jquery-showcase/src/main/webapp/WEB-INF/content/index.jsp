@@ -66,7 +66,8 @@
             <li class="ui-widget-header"><s:url var="urldatepicker" action="datepicker"/><sj:a id="dplink" href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
             <li class="ui-widget-header"><s:url var="urldialog" action="dialog"/><sj:a id="dialink" href="%{urldialog}" targets="main">Dialog</sj:a></li>
             <li class="ui-widget-header"><s:url var="urlaccordion" action="accordion"/><sj:a id="accordionlink" href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
-            <li class="ui-widget-header"><s:url var="urlautocompleter" action="autocompleter"/><sj:a id="autocompleterlink" href="%{urlautocompleter}" targets="main">Autocompleter</sj:a></li>
+	        <li class="ui-widget-header"><s:url var="urlautocompleter" action="autocompleter"/><sj:a id="autocompleterlink" href="%{urlautocompleter}" targets="main">Autocompleter</sj:a></li>
+            <li class="ui-widget-header"><s:url var="urlmenu" action="menu"/><sj:a id="menulink" href="%{urlmenu}" targets="main">Menu</sj:a></li>
             <li class="ui-widget-header"><s:url var="urlslider" action="slider"/><sj:a id="sliderlink" href="%{urlslider}" targets="main">More Widgets</sj:a></li>
             <li class="ui-widget-header"><s:url var="urlgrid" action="grid"/><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid</sj:a></li>
             <li class="ui-widget-header"><s:url var="urleffectdiv" action="effect-div"/><sj:a id="interactionlink" href="%{urleffectdiv}" targets="main">Effects/Interactions</sj:a></li>
