@@ -80,6 +80,7 @@ public class GridColumn extends AbstractRemoteBean {
 	protected String formoptions;
 	protected String defval;
 	protected String surl;
+	protected String displayTitle;
 
 	public GridColumn(ValueStack stack, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -149,6 +150,8 @@ public class GridColumn extends AbstractRemoteBean {
 			addParameter("defval", findString(defval));
 		if (surl != null)
 			addParameter("surl", findString(surl));
+		if (displayTitle != null)
+			addParameter("displayTitle", findValue(this.displayTitle, Boolean.class));
 
 		Grid grid = (Grid) findAncestor(Grid.class);
 		if (grid != null) {
@@ -297,4 +300,8 @@ public class GridColumn extends AbstractRemoteBean {
 		this.surl = surl;
 	}
 
+	@StrutsTagAttribute(description = "If this option is false the title is not displayed in that column when we hover a cell with the mouse", defaultValue = "true", type = "Boolean")
+	public void setDisplayTitle(String displayTitle) {
+		this.displayTitle = displayTitle;
+	}
 }

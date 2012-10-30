@@ -62,6 +62,7 @@ public class GridColumnTag extends AbstractRemoteTag {
 	protected String formoptions;
 	protected String defval;
 	protected String surl;
+	protected String displayTitle;
 
 	public Component getBean(ValueStack stack, HttpServletRequest req,
 			HttpServletResponse res) {
@@ -99,6 +100,7 @@ public class GridColumnTag extends AbstractRemoteTag {
 		gc.setFormoptions(formoptions);
 		gc.setDefval(defval);
 		gc.setSurl(surl);
+		gc.setDisplayTitle(displayTitle);
 	}
 
 	public void setName(String name) {
@@ -205,4 +207,7 @@ public class GridColumnTag extends AbstractRemoteTag {
 		this.surl = surl;
 	}
 
+	public void setDisplayTitle(String displayTitle) {
+		this.displayTitle = displayTitle;
+	}
 }

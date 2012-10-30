@@ -123,5 +123,9 @@ options_${escapedOptionId?html}_colmodels_${colName}.surl = "${parameters.surl?s
 <#if parameters.searchoptions?if_exists != "">
 options_${escapedOptionId?html}_colmodels_${colName}.searchoptions = ${parameters.searchoptions?html};
 </#if>
+<#if !parameters.displayTitle?default(true)>
+options_${escapedOptionId?html}_colmodels_${colName}.title = false;
+</#if>
+
 options_${escapedOptionId?html}_colnames.push("${parameters.title?html}");
 options_${escapedOptionId?html}_colmodels.push(options_${escapedOptionId?html}_colmodels_${colName});
