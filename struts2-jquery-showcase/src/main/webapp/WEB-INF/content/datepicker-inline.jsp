@@ -1,48 +1,36 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urldatepicker" action="datepicker"/><sj:a href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
-      <li><s:url var="urldatepickerbuttons" action="datepicker-buttons"/><sj:a href="%{urldatepickerbuttons}" targets="main">Datepicker with more options</sj:a></li>
-      <li><s:url var="urldatepickerinline" action="datepicker-inline"/><sj:a href="%{urldatepickerinline}" targets="main">Datepicker (Inline)</sj:a></li>
-      <li><s:url var="urldatepickertime" action="datepicker-time"/><sj:a href="%{urldatepickertime}" targets="main">Timepicker</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Inline Datepicker</h2>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<h2>Inline Datepicker</h2>
 
-    <sj:datepicker id="dpinline" inline="true" onChangeTopics="onDpClose"/>
-    
-    
-    <h2>Inline Datepicker inside of an form</h2>
-    
-    <strong>Result Div :</strong>
-	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
+<sj:datepicker id="dpinline" inline="true" onChangeTopics="onDpClose"/>
 
-    <s:form id="form" action="echo" theme="xhtml">
-      	<sj:datepicker 
-      		id="dpinlineform" 
-      		inline="true" 
-      		name="echo" 
-      		label="Inline Datepicker" 
-      		onCompleteTopics="onDpClose"
-      		numberOfMonths="[2,2]" 
-      	/>
-    	<sj:submit 
-    		targets="result" 
-    		button="true" 
-    		value="Submit" 
-    		indicator="indicator"
-    	/>
-    </s:form>
-    <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
-  </div>
-  
-  <div class="code ui-widget-content ui-corner-all">
-      <strong>JavaScript:</strong>
+
+<h2>Inline Datepicker inside of an form</h2>
+
+<strong>Result Div :</strong>
+
+<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
+
+<s:form id="form" action="echo" theme="xhtml">
+	<sj:datepicker
+			id="dpinlineform"
+			inline="true"
+			name="echo"
+			label="Inline Datepicker"
+			onCompleteTopics="onDpClose"
+			numberOfMonths="[2,2]"
+			/>
+	<sj:submit
+			targets="result"
+			button="true"
+			value="Submit"
+			indicator="indicator"
+			/>
+</s:form>
+<img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
+
+<div class="code ui-widget-content ui-corner-all">
+	<strong>JavaScript:</strong>
       <pre>
     &lt;script type="text/javascript"&gt;
     $.subscribe('onDpClose', function(event,data) {
@@ -50,7 +38,7 @@
     });
     &lt;/script&gt;  
       </pre>
-    <strong>Code:</strong>
+	<strong>Code:</strong>
     <pre>
     &lt;h2&gt;Inline Datepicker&lt;/h2&gt;
 
@@ -80,7 +68,5 @@
     &lt;/s:form&gt;
     &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
     </pre>
-  </div>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>
+

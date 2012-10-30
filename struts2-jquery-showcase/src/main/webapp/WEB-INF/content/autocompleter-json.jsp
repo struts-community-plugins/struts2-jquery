@@ -1,84 +1,76 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlautocompleter" action="autocompleter"/><sj:a id="autocompletersimple" href="%{urlautocompleter}" targets="main">Autocompleter</sj:a></li>
-      <li><s:url var="urlautocompleterjson" action="autocompleter-json"/><sj:a id="autocompleterjson" href="%{urlautocompleterjson}" targets="main">Autocompleter JSON</sj:a></li>
-      <li><s:url var="urlautocompleterselect" action="autocompleter-select"/><sj:a id="autocompleterselect" href="%{urlautocompleterselect}" targets="main">Autocompleter (Select Box)</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Autocompleter with JSON Result</h2>
-    <p class="text">
-        A Autocompleter that handle a JSON Result with Topics.
-    </p>
-    <strong>Result Div :</strong>
-	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
-    <strong>Topics Div :</strong>
-	<div id="topics" class="result ui-widget-content ui-corner-all"></div>
-    
-    <s:form id="formAutocompleteJson" action="echo" theme="xhtml">
-		<s:url var="jsonlanguages" action="jsonlanguages"/> 
-	    <sj:autocompleter 
-	    	id="languages" 
-	    	name="echo"
-	    	label="Handle a Array"
-	    	href="%{jsonlanguages}" 
-	    	delay="50" 
-	    	loadMinimumCount="2"
-	    	onChangeTopics="autocompleteChange"
-	    	onFocusTopics="autocompleteFocus"
-	    	onSelectTopics="autocompleteSelect"
-	    />
-		<s:url var="jsoncustomers" action="jsoncustomers"/> 
-	    <sj:autocompleter 
-	    	id="customers" 
-	    	name="echo"
-	    	label="Handle a List"
-	    	href="%{jsoncustomers}" 
-	    	list="customers"
-    		listValue="name" 
-    		listKey="id" 
-    		listLabel="label"
-	    	delay="50" 
-	    	loadMinimumCount="2"
-	    	onChangeTopics="autocompleteChange"
-	    	onFocusTopics="autocompleteFocus"
-	    	onSelectTopics="autocompleteSelect"
-	    	placeholder="Select a Customer"
-	    />
-	    <sj:autocompleter 
-	    	id="customersMap" 
-	    	name="echo"
-	    	label="Handle a Map"
-	    	href="%{jsoncustomers}" 
-	    	list="customersMap"
-	    	delay="50" 
-	    	loadMinimumCount="2"
-	    	forceValidOption="false"
-	    	onChangeTopics="autocompleteChange"
-	    	onFocusTopics="autocompleteFocus"
-	    	onSelectTopics="autocompleteSelect"
-	    />
-    	<sj:submit
-    		id="submitFormAutocompleteJson" 
-    		targets="result" 
-    		button="true" 
-    		value="Submit" 
-    		indicator="indicator"
-    		/>
-    </s:form>
-    <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-  </div>
-  <br/>
-    <sj:tabbedpanel id="localtabs" cssClass="list">
-      <sj:tab id="tab1" target="jsp" label="JSP Code"/>
-      <sj:tab id="tab2" target="javascript" label="JavaScript"/>
-      <div id="jsp">
+<h2>Autocompleter with JSON Result</h2>
+
+<p class="text">
+	A Autocompleter that handle a JSON Result with Topics.
+</p>
+<strong>Result Div :</strong>
+
+<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
+<strong>Topics Div :</strong>
+
+<div id="topics" class="result ui-widget-content ui-corner-all"></div>
+
+<s:form id="formAutocompleteJson" action="echo" theme="xhtml">
+	<s:url var="jsonlanguages" action="jsonlanguages"/>
+	<sj:autocompleter
+			id="languages"
+			name="echo"
+			label="Handle a Array"
+			href="%{jsonlanguages}"
+			delay="50"
+			loadMinimumCount="2"
+			onChangeTopics="autocompleteChange"
+			onFocusTopics="autocompleteFocus"
+			onSelectTopics="autocompleteSelect"
+			/>
+	<s:url var="jsoncustomers" action="jsoncustomers"/>
+	<sj:autocompleter
+			id="customers"
+			name="echo"
+			label="Handle a List"
+			href="%{jsoncustomers}"
+			list="customers"
+			listValue="name"
+			listKey="id"
+			listLabel="label"
+			delay="50"
+			loadMinimumCount="2"
+			onChangeTopics="autocompleteChange"
+			onFocusTopics="autocompleteFocus"
+			onSelectTopics="autocompleteSelect"
+			placeholder="Select a Customer"
+			/>
+	<sj:autocompleter
+			id="customersMap"
+			name="echo"
+			label="Handle a Map"
+			href="%{jsoncustomers}"
+			list="customersMap"
+			delay="50"
+			loadMinimumCount="2"
+			forceValidOption="false"
+			onChangeTopics="autocompleteChange"
+			onFocusTopics="autocompleteFocus"
+			onSelectTopics="autocompleteSelect"
+			/>
+	<sj:submit
+			id="submitFormAutocompleteJson"
+			targets="result"
+			button="true"
+			value="Submit"
+			indicator="indicator"
+			/>
+</s:form>
+<img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
+
+<br/>
+<sj:tabbedpanel id="localtabs" cssClass="list">
+	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
+	<sj:tab id="tab2" target="javascript" label="JavaScript"/>
+	<div id="jsp">
 	  <pre>
     &lt;strong&gt;Result Div :&lt;/strong&gt;
 	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
@@ -137,8 +129,8 @@
     &lt;/s:form&gt;
     &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
 	  </pre>
-	  </div>
-      <div id="javascript">
+	</div>
+	<div id="javascript">
 	  <pre>
   $.subscribe('autocompleteChange', function(event, data) {
   	var ui = event.originalEvent.ui;
@@ -167,9 +159,6 @@
 		$('#topics').html('&lt;i&gt;'+message+'&lt;/i&gt;');
 	});
 	  </pre>
-	  </div>
-	</sj:tabbedpanel>
-  
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
-</div>
+	</div>
+</sj:tabbedpanel>
+

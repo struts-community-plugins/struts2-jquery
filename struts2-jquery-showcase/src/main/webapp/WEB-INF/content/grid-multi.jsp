@@ -1,65 +1,58 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
-      <li><s:url var="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
-      <li><s:url var="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
-      <li><s:url var="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
-      <li><s:url var="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Grid (Editable/Multiselect)</h2>
-    <p class="text">
-        A editable Grid with pager and navigator. This Grid is sortable by name column and multiple rows can be selected.
-    </p>
-    <s:url var="remoteurl" action="jsontable"/>
-    <s:url var="editurl" action="edit-grid-entry"/>
-    <sjg:grid
-    	id="gridmultitable"
-    	caption="Customers Examples (Editable/Multiselect)"
-    	dataType="json"
-    	href="%{remoteurl}"
-    	pager="true"
-    	toppager="true"
-    	navigator="true"
-    	navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
-    	navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
-    	navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
-    	navigatorEdit="true"
-    	navigatorView="true"
-    	navigatorDelete="true"
-    	navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
-    	gridModel="gridModel"
-    	rowList="10,15,20"
-    	rowNum="15"
-    	editurl="%{editurl}"
-    	multiselect="true"
-    >
-    	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
-    	<sjg:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true" search="false"/>
-    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" hidden="true"/>
-    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" hidden="true"/>
-    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" hidden="true"/>
-    	<sjg:gridColumn name="country" index="country" title="Country" editable="true" edittype="select" editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}" sortable="false" search="false"/>
-    	<sjg:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false" search="false"/>
-    	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" editable="true" edittype="text" sortable="false" search="false"/>
-    </sjg:grid>
-	<br/>
-    <sj:submit id="grid_multi_getselectedbutton" value="Get Selected Rows" onClickTopics="getselectedids" button="true"/>
-  </div>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
+<h2>Grid (Editable/Multiselect)</h2>
 
-	<br/>
-    <sj:tabbedpanel id="localtabs" cssClass="list">
-      <sj:tab id="tab1" target="javascript" label="JavaScript"/>
-      <sj:tab id="tab2" target="jsp" label="JSP"/>
-      <sj:tab id="tab3" target="java" label="Struts2 Action"/>
-      <div id="javascript">
+<p class="text">
+	A editable Grid with pager and navigator. This Grid is sortable by name column and multiple rows can be selected.
+</p>
+<s:url var="remoteurl" action="jsontable"/>
+<s:url var="editurl" action="edit-grid-entry"/>
+<sjg:grid
+		id="gridmultitable"
+		caption="Customers Examples (Editable/Multiselect)"
+		dataType="json"
+		href="%{remoteurl}"
+		pager="true"
+		toppager="true"
+		navigator="true"
+		navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
+		navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
+		navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
+		navigatorEdit="true"
+		navigatorView="true"
+		navigatorDelete="true"
+		navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
+		gridModel="gridModel"
+		rowList="10,15,20"
+		rowNum="15"
+		editurl="%{editurl}"
+		multiselect="true"
+		>
+	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" editable="false" sortable="false"
+	                search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
+	<sjg:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true"
+	                search="false"/>
+	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" hidden="true"/>
+	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" hidden="true"/>
+	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" hidden="true"/>
+	<sjg:gridColumn name="country" index="country" title="Country" editable="true" edittype="select"
+	                editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}"
+	                sortable="false" search="false"/>
+	<sjg:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false"
+	                search="false"/>
+	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency"
+	                editable="true" edittype="text" sortable="false" search="false"/>
+</sjg:grid>
+<br/>
+<sj:submit id="grid_multi_getselectedbutton" value="Get Selected Rows" onClickTopics="getselectedids" button="true"/>
+
+<br/>
+<sj:tabbedpanel id="localtabs" cssClass="list">
+<sj:tab id="tab1" target="javascript" label="JavaScript"/>
+<sj:tab id="tab2" target="jsp" label="JSP"/>
+<sj:tab id="tab3" target="java" label="Struts2 Action"/>
+<div id="javascript">
 	  <pre>
     $.subscribe('getselectedids', function(event,data) {
     	var s;
@@ -67,8 +60,8 @@
     	alert('Selected Rows : '+s);
   	});
 	  </pre>
-	  </div>
-      <div id="jsp">
+</div>
+<div id="jsp">
 	  <pre>
     &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt;
     &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt;
@@ -105,9 +98,9 @@
 	&lt;br/&gt;
     &lt;sj:submit id=&quot;grid_multi_getselectedbutton&quot; value=&quot;Get Selected Rows&quot; onClickTopics=&quot;getselectedids&quot; button=&quot;true&quot;/&gt;
 	  </pre>
-	  </div>
-      <div id="java">
-	  <pre>
+</div>
+<div id="java">
+<pre>
 package com.jgeppert.struts2.jquery.showcase;
 
 import java.util.ArrayList;
@@ -394,8 +387,5 @@ public class JsonTable extends ActionSupport implements SessionAware {
 
 }
 	  </pre>
-	  </div>
-    </sj:tabbedpanel>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>
+</sj:tabbedpanel>

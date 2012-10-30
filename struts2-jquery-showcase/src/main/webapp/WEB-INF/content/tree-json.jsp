@@ -1,47 +1,23 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjt" uri="/struts-jquery-tree-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlslider" action="slider"/><sj:a id="slidersimplelink" href="%{urlslider}" targets="main">Slider</sj:a></li>
-      <li><s:url var="urlsliderform" action="slider-form"/><sj:a id="sliderformlink"  href="%{urlsliderform}" targets="main">Slider in a Form</sj:a></li>
-      <li><s:url var="urlsliderrange" action="slider-range"/><sj:a id="sliderrangelink"  href="%{urlsliderrange}" targets="main">Slider with Range and Events</sj:a></li>
-      <li><s:url var="urlprogressbar" action="progressbar"/><sj:a id="progressbarsimplelink" href="%{urlprogressbar}" targets="main">Progressbar</sj:a></li>
-      <li><s:url var="urlprogressbarchange" action="progressbar-change"/><sj:a id="progressbarchangelink" href="%{urlprogressbarchange}" targets="main">Progressbar with change event</sj:a></li>
-      <li><s:url var="urlprogressbarresizeable" action="progressbar-resizeable"/><sj:a id="progressbarresizeablelink" href="%{urlprogressbarresizeable}" targets="main">Resizeable progressbar</sj:a></li>
-      <li><s:url var="urlspinner" action="spinner"/><sj:a id="spinnerlink" href="%{urlspinner}" targets="main">Spinner</sj:a></li>
-      <li><s:url var="urlrichtexttinymce" action="richtext-tinymce"/><sj:a id="richtexttinymcelink" href="%{urlrichtexttinymce}" targets="main">Richtext - Tinymce</sj:a></li>
-      <li><s:url var="urlrichtexttinymceadvanced" action="richtext-tinymce-advanced"/><sj:a id="richtexttinymcelinkadvanced" href="%{urlrichtexttinymceadvanced}" targets="main">Richtext - Tinymce (Advanced)</sj:a></li>
-      <li><s:url var="urlrichtext" action="richtext"/><sj:a id="richtextlink" href="%{urlrichtext}" targets="main">Richtext - Ckeditor</sj:a></li>
-      <li><s:url var="urlrichtextcustome" action="richtext-custome"/><sj:a id="richtextcustomelink" href="%{urlrichtextcustome}" targets="main">Richtext - Ckeditor (Custome Toolbar)</sj:a></li>
-      <li><s:url var="urlmessages" action="messages"/><sj:a id="messageslink" href="%{urlmessages}" targets="main">Action Errors/Messages</sj:a></li>
-      <li><s:url var="urlcharts" action="charts"/><sj:a id="chartslink" href="%{urlcharts}" targets="main">Charts</sj:a></li>
-      <li><s:url var="urltree" action="tree"/><sj:a id="treelink" href="%{urltree}" targets="main">Tree</sj:a></li>
-      <li><s:url var="urltreejson" action="tree-json"/><sj:a id="treejsonlink" href="%{urltreejson}" targets="main">Tree (JSON Data)</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Tree (JSON Data)</h2>
-    <p class="text">
-        A Tree Component with a JSON Data Source.
-    </p>
-    	<s:url var="treeDataUrl" action="json-tree-data"/>
-    	<sjt:tree 
-    		id="jsonTree"
-    		href="%{treeDataUrl}"
-    		onClickTopics="treeClicked" 
-    	/>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjt" uri="/struts-jquery-tree-tags" %>
+<h2>Tree (JSON Data)</h2>
 
-  </div>
-  
-    <sj:tabbedpanel id="localtabs" cssClass="list">
-      <sj:tab id="tab1" target="jsp" label="JSP Code"/>
-      <sj:tab id="tab2" target="javascript" label="JavaScript"/>
-      <sj:tab id="tab3" target="jsonaction" label="JSON Action"/>
-      <div id="jsp">
+<p class="text">
+	A Tree Component with a JSON Data Source.
+</p>
+<s:url var="treeDataUrl" action="json-tree-data"/>
+<sjt:tree
+		id="jsonTree"
+		href="%{treeDataUrl}"
+		onClickTopics="treeClicked"
+		/>
+
+<sj:tabbedpanel id="localtabs" cssClass="list">
+	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
+	<sj:tab id="tab2" target="javascript" label="JavaScript"/>
+	<sj:tab id="tab3" target="jsonaction" label="JSON Action"/>
+	<div id="jsp">
 	  <pre>
     	&lt;s:url id=&quot;treeDataUrl&quot; action=&quot;json-tree-data&quot;/&gt;
     	&lt;sjt:tree 
@@ -50,16 +26,16 @@
     		onClickTopics=&quot;treeClicked&quot; 
     	/&gt;
    	  </pre>
-	  </div>
-      <div id="javascript">
+	</div>
+	<div id="javascript">
 	  <pre>
 	$.subscribe('treeClicked', function(event, data) {
 		  var item = event.originalEvent.data.rslt.obj;
 		  alert('Clicked ID : ' + item.attr(&quot;id&quot;) + ' - Text ' + item.text());
 	});
 	  </pre>
-	  </div>
-      <div id="jsonaction">
+	</div>
+	<div id="jsonaction">
 	  <pre>
 @ParentPackage(value = &quot;showcase&quot;)
 public class JsonTreeData extends ActionSupport {
@@ -124,8 +100,5 @@ public class JsonTreeData extends ActionSupport {
 	public void setId(String id) {
 		this.id = id;
 	}	  </pre>
-	  </div>
-	</sj:tabbedpanel>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
-</div>
+	</div>
+</sj:tabbedpanel>

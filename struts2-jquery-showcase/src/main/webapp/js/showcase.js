@@ -46,7 +46,7 @@ function customeValidation(form, errors) {
 			var elem = $('#' + index + 'Error');
 			if (elem) {
 				elem.html(value[0]);
-				elem.addClass('errorLabel');
+				elem.addClass('ym-error');
 			}
 		});
 	}
@@ -370,19 +370,5 @@ $(document).ready(function() {
 	$.subscribe('highlightRichtext', function(event, data) {
 		$("#result").removeClass('ui-state-active');
 		$("#result").addClass('ui-state-highlight');
-	});
-
-	/*
-	 * Menu Highlight
-	 */
-	$('div.ui-widget-header > ul > li').click(function() {
-		$('div.ui-widget-header > ul > li').removeClass('ui-state-active');
-		$(this).addClass('ui-state-active');
-	}, function() {
-	});
-	$('div.ui-widget-header > ul > li').hover(function() {
-		$(this).addClass('ui-state-hover');
-	}, function() {
-		$(this).removeClass('ui-state-hover');
 	});
 });

@@ -1,50 +1,21 @@
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li>#surl("id=urlform" "action=form") #sja("id=remoteformlink" "href=%{urlform}" "targets=main")AJAX Forms #end</li>
-      <li>#surl("id=urlformeffect" "action=form-effect") #sja ("id=remoteformeffectlink" "href=%{urlformeffect}" "targets=main")AJAX Forms with Effects #end</li>
-      <li>#surl("id=urlformout" "action=form-out") #sja ("id=remoteformoutlink" "href=%{urlformout}" "targets=main")AJAX Forms with Outside Button #end</li>
-      <li>#surl("id=urlformftl" "action=form-ftl") #sja ("id=remoteformftllink" "href=%{urlformftl}" "targets=main")AJAX Forms with Freemarker #end</li>
-      <li>#surl("id=urlformvel" "action=form-velocity") #sja ("id=remoteformvellink" "href=%{urlformvel}" "targets=main")AJAX Forms with Velocity #end</li>
-      <li>#surl("id=urlformevent" "action=form-event") #sja ("id=remoteformeventlink" "href=%{urlformevent}" "targets=main")AJAX Forms with Events #end</li>
-      <li>#surl("id=urlformlisten" "action=form-listen") #sja ("id=remoteformlistenlink" "href=%{urlformlisten}" "targets=main")AJAX Forms with Listen Topics #end</li>
-      <li>#surl("id=urlformvalidation" "action=form-validation") #sja ("id=remoteformvalidationlink" "href=%{urlformvalidation}" "targets=main")AJAX Forms with Validation #end</li>
-      <li>#surl("id=urlformvalidationcust" "action=form-validation-custome") #sja ("id=remoteformvalidationcustlink" "href=%{urlformvalidationcust}" "targets=main")AJAX Forms with Custome Validation #end</li>
-      <li>#surl("id=urlformtextarea" "action=form-textarea") #sja ("id=remoteformtextarealink" "href=%{urlformtextarea}" "targets=main")AJAX Textarea #end</li>
-      <li>#surl("id=urlformtextarearesize" "action=form-textarea-resizeable") #sja ("id=remoteformtextarearesizelink" "href=%{urlformtextarearesize}" "targets=main")AJAX Textarea / Resizable #end</li>
-      <li>#surl("id=urlformtextfieldresize" "action=form-textfield-resizeable") #sja ("id=remoteformtextfieldresizelink" "href=%{urlformtextfieldresize}" "targets=main")AJAX Textfield / Resizable #end</li>
-      <li>#surl("id=urlformbuttonsetcheckbox" "action=form-buttonset-checkbox") #sja ("id=remoteformbuttonsetcheckboxes" "href=%{urlformbuttonsetcheckbox}" "targets=main")Buttonset / Checkboxes #end</li>
-      <li>#surl("id=urlformbuttonsetradio" "action=form-buttonset-radio") #sja ("id=remoteformbuttonsetradio" "href=%{urlformbuttonsetradio}" "targets=main")Buttonset / Radio Buttons #end</li>
-      <li>#surl("id=urlformselect" "action=form-select") #sja ("id=remoteformselectlink" "href=%{urlformselect}" "targets=main")AJAX Select #end</li>
-      <li>#surl("id=urlformdoubleselect" "action=form-doubleselect") #sja ("id=remoteformdoubleselectlink" "href=%{urlformdoubleselect}" "targets=main")AJAX Select (Doubleselect) #end</li>
-	    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-	<h2>AJAX Form with Velocity</h2>
-	<p class="text">
-	    A velocity sample.
-	</p>
-    <strong>Result Div :</strong>
-	<div id="formVelocityResult" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
-    
-	#sform("id=formvelocity"  "theme=simple" "action=echo" "cssClass=yform")
-        <fieldset>
-            <legend>AJAX Form</legend>
-	        <div class="type-text">
-	            <label for="echo">Echo: </label>
-	            #stextfield("id=echo" "name=echo" "value=Hello World!!!")
-	        </div>
-	        <div class="type-button">
-                #sjsubmit( "id=formvelocity_submit" "targets=formVelocityResult" "value=AJAX Submit" "formIds=formvelocity" "indicator=indicator" "button=true") #end
-	        </div>
-        </fieldset>
-    #end
+<h2>AJAX Form with Velocity</h2>
+<p class="text">
+	A velocity sample.
+</p>
+<strong>Result Div :</strong>
+<div id="formVelocityResult" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
 
-    <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>    
-    
-  </div>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
-</div>
+#sform("id=formvelocity"  "theme=simple" "action=echo" "cssClass=yform")
+<fieldset>
+	<legend>AJAX Form</legend>
+	<div class="type-text">
+		<label for="echo">Echo: </label>
+		#stextfield("id=echo" "name=echo" "value=Hello World!!!")
+	</div>
+	<div class="type-button">
+		#sjsubmit( "id=formvelocity_submit" "targets=formVelocityResult" "value=AJAX Submit" "formIds=formvelocity" "indicator=indicator" "button=true") #end
+	</div>
+</fieldset>
+#end
+
+<img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>

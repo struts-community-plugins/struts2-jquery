@@ -1,41 +1,35 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urldatepicker" action="datepicker"/><sj:a href="%{urldatepicker}" targets="main">Datepicker</sj:a></li>
-      <li><s:url var="urldatepickerbuttons" action="datepicker-buttons"/><sj:a href="%{urldatepickerbuttons}" targets="main">Datepicker with more options</sj:a></li>
-      <li><s:url var="urldatepickerinline" action="datepicker-inline"/><sj:a href="%{urldatepickerinline}" targets="main">Datepicker (Inline)</sj:a></li>
-      <li><s:url var="urldatepickertime" action="datepicker-time"/><sj:a href="%{urldatepickertime}" targets="main">Timepicker</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Datepicker with more options</h2>
-    <p class="text">
-        A Datepicker with different options and animations.
-    </p>
-    <s:form id="form" theme="xhtml">
-      <sj:datepicker id="date0" name="date0" label="With Button Panel" showButtonPanel="true"/>
-      <sj:datepicker id="date1" name="date1" label="Change Month and Year" changeMonth="true" changeYear="true" onChangeMonthYearTopics="onDpChangeMonthAndYear"/>
-      <sj:datepicker id="date2" name="date2" label="Custom Button Text" showOn="both" buttonText="Select a Date"/>
-      <sj:datepicker id="date3" name="date3" label="Show only on Button Click" showOn="button"/>
-      <sj:datepicker id="date4" name="date4" label="Text after selection" appendText=" (dd.MM.yy)" displayFormat="dd.MM.yy"/>
-      <sj:datepicker id="date5" name="date5" label="With fast slideDown Animation" showAnim="slideDown" duration="fast"/>
-      <sj:datepicker id="date6" name="date6" label="With slow fadeIn Animation" showAnim="fadeIn" showOptions="{direction: 'up' }" duration="slow" />
-      <sj:datepicker id="date7" name="date7" label="Show 3 Months" numberOfMonths="3"/>
-      <sj:datepicker id="date8" name="date8" label="Show Month Array" numberOfMonths="[2,3]"/>
-      <sj:datepicker id="date9" name="date9" label="Show Years only from 2008 until 2012" yearRange="2008:2012" changeYear="true"/>
-      <sj:datepicker id="date10" name="date10" label="Button Only" buttonImageOnly="true"/>
-      <sj:datepicker id="date11" name="date11" label="Without Button" showOn="focus"/>
-      <sj:datepicker id="date12" name="date12" label="With Close Event" onCompleteTopics="onDpClose" onBeforeShowDayTopics="beforeDatepickerShow"/>
-      <sj:datepicker id="date13" name="date13" label="With Min and Max Date" minDate="-2" maxDate="+2m"/>
-    </s:form>
-  </div>
-  
-  <div class="code ui-widget-content ui-corner-all">
-      <strong>JavaScript:</strong>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+
+<h2>Datepicker with more options</h2>
+
+<p class="text">
+	A Datepicker with different options and animations.
+</p>
+<s:form id="form" theme="xhtml">
+	<sj:datepicker id="date0" name="date0" label="With Button Panel" showButtonPanel="true"/>
+	<sj:datepicker id="date1" name="date1" label="Change Month and Year" changeMonth="true" changeYear="true"
+	               onChangeMonthYearTopics="onDpChangeMonthAndYear"/>
+	<sj:datepicker id="date2" name="date2" label="Custom Button Text" showOn="both" buttonText="Select a Date"/>
+	<sj:datepicker id="date3" name="date3" label="Show only on Button Click" showOn="button"/>
+	<sj:datepicker id="date4" name="date4" label="Text after selection" appendText=" (dd.MM.yy)"
+	               displayFormat="dd.MM.yy"/>
+	<sj:datepicker id="date5" name="date5" label="With fast slideDown Animation" showAnim="slideDown" duration="fast"/>
+	<sj:datepicker id="date6" name="date6" label="With slow fadeIn Animation" showAnim="fadeIn"
+	               showOptions="{direction: 'up' }" duration="slow"/>
+	<sj:datepicker id="date7" name="date7" label="Show 3 Months" numberOfMonths="3"/>
+	<sj:datepicker id="date8" name="date8" label="Show Month Array" numberOfMonths="[2,3]"/>
+	<sj:datepicker id="date9" name="date9" label="Show Years only from 2008 until 2012" yearRange="2008:2012"
+	               changeYear="true"/>
+	<sj:datepicker id="date10" name="date10" label="Button Only" buttonImageOnly="true"/>
+	<sj:datepicker id="date11" name="date11" label="Without Button" showOn="focus"/>
+	<sj:datepicker id="date12" name="date12" label="With Close Event" onCompleteTopics="onDpClose"
+	               onBeforeShowDayTopics="beforeDatepickerShow"/>
+	<sj:datepicker id="date13" name="date13" label="With Min and Max Date" minDate="-2" maxDate="+2m"/>
+</s:form>
+
+<div class="code ui-widget-content ui-corner-all">
+	<strong>JavaScript:</strong>
       <pre>
     &lt;script type="text/javascript"&gt;
     $.subscribe('onDpChangeMonthAndYear', function(event,data) {
@@ -55,7 +49,7 @@
 	});
     &lt;/script&gt;  
       </pre>
-    <strong>Code:</strong>
+	<strong>Code:</strong>
     <pre>
     &lt;s:form id=&quot;form&quot; theme=&quot;xhtml&quot;&gt;
       &lt;sj:datepicker id=&quot;date0&quot; name=&quot;date0&quot; label=&quot;With Button Panel&quot; showButtonPanel=&quot;true&quot;/&gt;
@@ -74,7 +68,4 @@
       &lt;sj:datepicker id=&quot;date13&quot; name=&quot;date13&quot; label=&quot;With Min and Max Date&quot; minDate=&quot;-2&quot; maxDate=&quot;+2m&quot;/&gt;
     &lt;/s:form&gt;
     </pre>
-  </div>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>

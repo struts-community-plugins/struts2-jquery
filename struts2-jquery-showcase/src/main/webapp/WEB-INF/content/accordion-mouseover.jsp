@@ -1,32 +1,22 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlaccordion" action="accordion"/><sj:a href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
-      <li><s:url var="urlaccordionlist" action="accordion-list"/><sj:a href="%{urlaccordionlist}" targets="main">Accordion from List</sj:a></li>
-      <li><s:url var="urlaccordionremote" action="accordion-remote"/><sj:a href="%{urlaccordionremote}" targets="main">Accordion with remote content</sj:a></li>
-      <li><s:url var="urlaccordionmouseover" action="accordion-mouseover"/><sj:a href="%{urlaccordionmouseover}" targets="main">Accordion Collabsible/MouseOver</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Accordion</h2>
-    <p class="text">
-        A Accordion that opens on mouse over and is collabsible.
-    </p>
-    <sj:accordion 
-    	id="accordionmouseover" 
-    	list="accordion" 
-    	active="false" 
-    	openOnMouseover="true" 
-    	collapsible="true"
-    />
-  </div>
-  
-  <div class="code ui-widget-content ui-corner-all">
-    <strong>Code in JSP:</strong>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+
+<h2>Accordion</h2>
+
+<p class="text">
+	A Accordion that opens on mouse over and is collabsible.
+</p>
+<sj:accordion
+		id="accordionmouseover"
+		list="accordion"
+		active="false"
+		openOnMouseover="true"
+		collapsible="true"
+		/>
+
+
+<div class="code ui-widget-content ui-corner-all">
+	<strong>Code in JSP:</strong>
     <pre>
     &lt;sj:accordion 
     	id=&quot;accordionmouseover&quot; 
@@ -36,7 +26,7 @@
     	collapsible=&quot;true&quot;
     /&gt;
     </pre>
-    <strong>Code in Action:</strong>
+	<strong>Code in Action:</strong>
     <pre>
     private Map&lt;String, String&gt; accordion;
 
@@ -53,7 +43,4 @@
         return accordion;
     }
     </pre>
-  </div>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>

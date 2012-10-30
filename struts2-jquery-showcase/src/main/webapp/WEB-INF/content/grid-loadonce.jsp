@@ -1,79 +1,67 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
-      <li><s:url var="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
-      <li><s:url var="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
-      <li><s:url var="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
-      <li><s:url var="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Grid (Local Data)</h2>
-    <p class="text">
-        A Grid that loads data only once on initialization. The column Credit Limit is editable.
-    </p>
-    <s:url var="remoteurl" action="jsontable">
-    	<s:param name="loadonce" value="%{true}" />
-    </s:url>
-    <s:url var="editcellurl" action="edit-cell-entry"/>
-    <sjg:grid
-    	id="gridloadtable"
-    	loadonce="true"
-    	caption="Customers Examples (Local Data)"
-    	href="%{remoteurl}"
-    	gridModel="gridModel"
-    	rowNum="-1"
-    	hidegrid="true"
-    	scroll="true"
-    	cellEdit="true"
-    	cellurl="%{editcellurl}"
-    	altRows="true"
-    	sortable="true"
-    	sortableOpacity="0.8"
-    	sortablePlaceholder="ui-state-highlight"
-    	sortableForcePlaceholderSize="true"
-    >
-    	<sjg:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true" sorttype="int"/>
-    	<sjg:gridColumn name="name" index="name" title="Company" width="250" sortable="true"/>
-    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true" hidden="true"/>
-    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="true" hidden="true"/>
-    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
-    	<sjg:gridColumn name="country" index="country" title="Country" sortable="true"/>
-    	<sjg:gridColumn name="city" index="city" title="City" sortable="true"/>
-    	<sjg:gridColumn 	name="creditLimit"
-    					index="creditLimit"
-    					title="Credit Limit"
-    					align="right"
-    					editable="true"
-    					editrules="{
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
+<h2>Grid (Local Data)</h2>
+
+<p class="text">
+	A Grid that loads data only once on initialization. The column Credit Limit is editable.
+</p>
+<s:url var="remoteurl" action="jsontable">
+	<s:param name="loadonce" value="%{true}"/>
+</s:url>
+<s:url var="editcellurl" action="edit-cell-entry"/>
+<sjg:grid
+		id="gridloadtable"
+		loadonce="true"
+		caption="Customers Examples (Local Data)"
+		href="%{remoteurl}"
+		gridModel="gridModel"
+		rowNum="-1"
+		hidegrid="true"
+		scroll="true"
+		cellEdit="true"
+		cellurl="%{editcellurl}"
+		altRows="true"
+		sortable="true"
+		sortableOpacity="0.8"
+		sortablePlaceholder="ui-state-highlight"
+		sortableForcePlaceholderSize="true"
+		>
+	<sjg:gridColumn name="id" index="id" key="true" title="ID" width="30" formatter="integer" sortable="true"
+	                sorttype="int"/>
+	<sjg:gridColumn name="name" index="name" title="Company" width="250" sortable="true"/>
+	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true" hidden="true"/>
+	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="true" hidden="true"/>
+	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="true" hidden="true"/>
+	<sjg:gridColumn name="country" index="country" title="Country" sortable="true"/>
+	<sjg:gridColumn name="city" index="city" title="City" sortable="true"/>
+	<sjg:gridColumn name="creditLimit"
+	                index="creditLimit"
+	                title="Credit Limit"
+	                align="right"
+	                editable="true"
+	                editrules="{
     									number: true,
     									required: true,
     									minValue : 100.0,
     									maxValue : 10000.0
     								}"
-    					formatter="currency"
-    					sortable="true"
-    					sorttype="currency"/>
-    </sjg:grid>
-	<br/>
-    <sj:submit id="grid_load_colsbutton"
-    		value="Show/Hide Columns"
-    		onClickTopics="showloadcolumns"
-    		button="true"/>
-	<br/>
-  </div>
+	                formatter="currency"
+	                sortable="true"
+	                sorttype="currency"/>
+</sjg:grid>
+<br/>
+<sj:submit id="grid_load_colsbutton"
+           value="Show/Hide Columns"
+           onClickTopics="showloadcolumns"
+           button="true"/>
+<br/>
 
-	<br/>
-    <sj:tabbedpanel id="localtabs" cssClass="list">
-      <sj:tab id="tab1" target="jsp" label="JSP"/>
-      <sj:tab id="tab2" target="java" label="Struts2 Action"/>
-      <div id="jsp">
+<br/>
+<sj:tabbedpanel id="localtabs" cssClass="list">
+<sj:tab id="tab1" target="jsp" label="JSP"/>
+<sj:tab id="tab2" target="java" label="Struts2 Action"/>
+<div id="jsp">
 	  <pre>
    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;&gt;
     	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
@@ -117,9 +105,9 @@
     		onClickTopics=&quot;showloadcolumns&quot;
     		button=&quot;true&quot;/&gt;
 	  </pre>
-	  </div>
-      <div id="java">
-	  <pre>
+</div>
+<div id="java">
+<pre>
 package com.jgeppert.struts2.jquery.showcase;
 
 import java.util.ArrayList;
@@ -406,16 +394,6 @@ public class JsonTable extends ActionSupport implements SessionAware {
 
 }
 	  </pre>
-	  </div>
-    </sj:tabbedpanel>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('.buttonlink').hover(
-            function() { $(this).addClass('ui-state-hover'); },
-            function() { $(this).removeClass('ui-state-hover'); }
-    );
-});
-</script>
+</sj:tabbedpanel>
+

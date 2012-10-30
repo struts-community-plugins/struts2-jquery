@@ -1,134 +1,121 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlremotediv" action="remote-div"/><sj:a id="remotedivlink" href="%{urlremotediv}" targets="main">Remote Div</sj:a></li>
-      <li><s:url var="urlremotedivpulasate" action="remote-div-pulsate"/><sj:a id="remotedivpulsatelink" href="%{urlremotedivpulasate}" targets="main">Remote Div Pulsate Effect</sj:a></li>
-      <li><s:url var="urlremotedivresize" action="remote-div-resizable"/><sj:a id="remotedivresizelink" href="%{urlremotedivresize}" targets="main">Remote Div - Resizable</sj:a></li>
-      <li><s:url var="urlremotedivevent" action="remote-div-event"/><sj:a id="remotediveventlink" href="%{urlremotedivevent}" targets="main">Remote Div - Event</sj:a></li>
-      <li><s:url var="urlremotedivreload" action="remote-div-reload"/><sj:a id="remotedivreloadlink" href="%{urlremotedivreload}" targets="main">Remote Div - Reload</sj:a></li>
-      <li><s:url var="urlremotedivlisten" action="remote-div-listen"/><sj:a id="remotedivlistenlink" href="%{urlremotedivlisten}" targets="main">Remote Div - Listen Topics</sj:a></li>
-      <li><s:url var="urleffectdivdragdrop" action="effect-div-dragdrop"/><sj:a id="remotedivdragdroplink" href="%{urleffectdivdragdrop}" targets="main">Drag and Drop</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-	<h2>Remote Divs with reloadable content</h2>
-	<p class="text">
-	   Remote Divs and Select Boxes with AJAX content they reload content automatically or by events.
-	</p>
-    <strong>Div reloads : <span id="counter1"></span></strong>
-    <img id="indicator1" 
-       	src="images/indicator.gif" 
-       	alt="Loading..." 
-       	style="display:none"/>
-    <s:url var="ajax1" value="/ajax1.action"/>
-    <sj:div id="div1" 
-    		href="%{ajax1}" 
-    		indicator="indicator1" 
-    		reloadTopics="reloaddiv1" 
-    		onCompleteTopics="completediv1" 
-    		effect="highlight" 
-    		cssClass="result ui-widget-content ui-corner-all">
-    </sj:div>
-    <sj:a 	
-    	id="refreshlink" 
-    	onClickTopics="refreshdiv" 
-		button="true" 
-		buttonIcon="ui-icon-refresh"
-    >
-    	Refresh Div
-    </sj:a>
-    
-    <br/><br/>
-    
-    <strong>Div reloads every 10 seconds : <span id="counter2"></span></strong>
-    <img id="indicator2" 
-       	src="images/indicator.gif" 
-       	alt="Loading..." 
-       	style="display:none"/>
-    <s:url var="ajax2" value="/ajax2.action"/>
-    <sj:div id="div2" 
-    		href="%{ajax2}" 
-    		indicator="indicator2" 
-    		reloadTopics="reloaddiv2" 
-    		onCompleteTopics="completediv2" 
-    		effect="highlight" 
-    		cssClass="result ui-widget-content ui-corner-all">
-    </sj:div>
-        
-    <br/><br/>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-    <strong>List Reloads : <span id="counter3"></span></strong>
-    <s:form id="formSelectOne" action="echo" theme="simple" cssClass="yform">
-        <fieldset>
-            <legend>AJAX Form</legend>
-	        <div class="type-select">
-	            <label for="echo">List: </label>
-				<s:url var="remoteurl" action="jsonsample"/> 
-				<sj:select 
-					reloadTopics="reloadlist" 
-					onCompleteTopics="completelist" 
-					href="%{remoteurl}" 
+<h2>Remote Divs with reloadable content</h2>
+
+<p class="text">
+	Remote Divs and Select Boxes with AJAX content they reload content automatically or by events.
+</p>
+<strong>Div reloads : <span id="counter1"></span></strong>
+<img id="indicator1"
+     src="images/indicator.gif"
+     alt="Loading..."
+     style="display:none"/>
+<s:url var="ajax1" value="/ajax1.action"/>
+<sj:div id="div1"
+        href="%{ajax1}"
+        indicator="indicator1"
+        reloadTopics="reloaddiv1"
+        onCompleteTopics="completediv1"
+        effect="highlight"
+        cssClass="result ui-widget-content ui-corner-all">
+</sj:div>
+<sj:a
+		id="refreshlink"
+		onClickTopics="refreshdiv"
+		button="true"
+		buttonIcon="ui-icon-refresh"
+		>
+	Refresh Div
+</sj:a>
+
+<br/><br/>
+
+<strong>Div reloads every 10 seconds : <span id="counter2"></span></strong>
+<img id="indicator2"
+     src="images/indicator.gif"
+     alt="Loading..."
+     style="display:none"/>
+<s:url var="ajax2" value="/ajax2.action"/>
+<sj:div id="div2"
+        href="%{ajax2}"
+        indicator="indicator2"
+        reloadTopics="reloaddiv2"
+        onCompleteTopics="completediv2"
+        effect="highlight"
+        cssClass="result ui-widget-content ui-corner-all">
+</sj:div>
+
+<br/><br/>
+
+<strong>List Reloads : <span id="counter3"></span></strong>
+<s:form id="formSelectOne" action="echo" theme="simple" cssClass="yform">
+	<fieldset>
+		<legend>AJAX Form</legend>
+		<div class="type-select">
+			<label for="echo">List: </label>
+			<s:url var="remoteurl" action="jsonsample"/>
+			<sj:select
+					reloadTopics="reloadlist"
+					onCompleteTopics="completelist"
+					href="%{remoteurl}"
 					id="echo"
-					name="echo" 
+					name="echo"
 					list="languageList"/>
-	        </div>
-        </fieldset>
-    </s:form>
-    <sj:a 	
-    	id="refreshlink2" 
-    	onClickTopics="refreshlist" 
-		button="true" 
+		</div>
+	</fieldset>
+</s:form>
+<sj:a
+		id="refreshlink2"
+		onClickTopics="refreshlist"
+		button="true"
 		buttonIcon="ui-icon-refresh"
-    >
-    	Refresh List
-    </sj:a>
-    <sj:submit 	
-    	id="refreshsubmit2" 
-    	onClickTopics="reloaddiv3" 
-		button="true" 
+		>
+	Refresh List
+</sj:a>
+<sj:submit
+		id="refreshsubmit2"
+		onClickTopics="reloaddiv3"
+		button="true"
 		buttonIcon="ui-icon-refresh"
-    />
+		/>
 
-    <br/><br/>
+<br/><br/>
 
-    <strong>Div reloads every 15 seconds with form values : <span id="counter4"></span></strong>
-    <img id="indicator3" 
-    		src="images/indicator.gif" 
-    		alt="Loading..." 
-    		style="display:none"/>
-    <sj:div id="div3" 
-    		formIds="formSelectOne" 
-    		indicator="indicator3" 
-    		reloadTopics="reloaddiv3" 
-    		onCompleteTopics="completediv3" 
-    		effect="highlight" 
-    		cssClass="result ui-widget-content ui-corner-all">
-    </sj:div>
+<strong>Div reloads every 15 seconds with form values : <span id="counter4"></span></strong>
+<img id="indicator3"
+     src="images/indicator.gif"
+     alt="Loading..."
+     style="display:none"/>
+<sj:div id="div3"
+        formIds="formSelectOne"
+        indicator="indicator3"
+        reloadTopics="reloaddiv3"
+        onCompleteTopics="completediv3"
+        effect="highlight"
+        cssClass="result ui-widget-content ui-corner-all">
+</sj:div>
 
-    <br/><br/>
+<br/><br/>
 
-    <strong>Div with updateFreq every 5000 milliseconds</strong>
-    <img id="indicator4" 
-    		src="images/indicator.gif" 
-    		alt="Loading..." 
-    		style="display:none"/>
-    <s:url var="ajax3" value="/ajax3.action"/>
-    <sj:div id="div4" 
-			href="%{ajax3}" 
-    		indicator="indicator4" 
-    		updateFreq="5000" 
-    		effect="highlight" 
-    		cssClass="result ui-widget-content ui-corner-all">
-    </sj:div>
+<strong>Div with updateFreq every 5000 milliseconds</strong>
+<img id="indicator4"
+     src="images/indicator.gif"
+     alt="Loading..."
+     style="display:none"/>
+<s:url var="ajax3" value="/ajax3.action"/>
+<sj:div id="div4"
+        href="%{ajax3}"
+        indicator="indicator4"
+        updateFreq="5000"
+        effect="highlight"
+        cssClass="result ui-widget-content ui-corner-all">
+</sj:div>
 
-    <sj:tabbedpanel id="localtabs" cssClass="list">
-      <sj:tab id="tab1" target="javascript" label="JavaScript Code"/>
-      <sj:tab id="tab2" target="jsp" label="JSP Code"/>
-      <div id="javascript">
+<sj:tabbedpanel id="localtabs" cssClass="list">
+	<sj:tab id="tab1" target="javascript" label="JavaScript Code"/>
+	<sj:tab id="tab2" target="jsp" label="JSP Code"/>
+	<div id="javascript">
 	  <pre>
     var refreshDiv1 = 0;
     var refreshDiv2 = 0;
@@ -172,8 +159,8 @@
         }
     });
 	  </pre>
-	  </div>
-      <div id="jsp">
+	</div>
+	<div id="jsp">
 	  <pre>
     &lt;strong&gt;Div reloads : &lt;span id=&quot;counter1&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
     &lt;s:url id=&quot;ajax1&quot; value=&quot;/ajax1.action&quot;/&gt;
@@ -279,15 +266,6 @@
     		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
     &lt;/sj:div&gt;
 	  </pre>
-	  </div>
-    </sj:tabbedpanel>	
-  </div>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
-</div>
-<script type="text/javascript">
-    $('.buttonlink').hover(
-            function() { $(this).addClass('ui-state-hover'); }, 
-            function() { $(this).removeClass('ui-state-hover'); }
-    );
-</script>
+	</div>
+</sj:tabbedpanel>
+

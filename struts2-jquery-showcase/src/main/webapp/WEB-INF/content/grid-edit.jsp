@@ -1,41 +1,30 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
-	<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
-      <li><s:url var="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
-      <li><s:url var="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
-      <li><s:url var="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
-      <li><s:url var="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Grid (Editable)</h2>
-    <p class="text">
-        A editable Grid with pager and navigator. Entries are editable when a cell is selected. This Grid is sortable by name column and searchable by id. The first two Columns are frozen.
-    </p>
-    <s:url var="remoteurl" action="jsontable"/>
-    <s:url var="editurl" action="edit-grid-entry"/>
-    <sjg:grid
-    	id="gridedittable"
-    	caption="Customers Examples (Editable)"
-    	dataType="json"
-    	href="%{remoteurl}"
-    	pager="true"
-    	navigator="true"
-    	navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
-    	navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
-    	navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
-    	navigatorEdit="false"
-    	navigatorView="false"
-    	navigatorDelete="true"
-    	navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
-    	navigatorInlineEditButtons="true"
-    	navigatorExtraButtons="{
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
+<h2>Grid (Editable)</h2>
+
+<p class="text">
+	A editable Grid with pager and navigator. Entries are editable when a cell is selected. This Grid is sortable by
+	name column and searchable by id. The first two Columns are frozen.
+</p>
+<s:url var="remoteurl" action="jsontable"/>
+<s:url var="editurl" action="edit-grid-entry"/>
+<sjg:grid
+		id="gridedittable"
+		caption="Customers Examples (Editable)"
+		dataType="json"
+		href="%{remoteurl}"
+		pager="true"
+		navigator="true"
+		navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
+		navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
+		navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
+		navigatorEdit="false"
+		navigatorView="false"
+		navigatorDelete="true"
+		navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
+		navigatorInlineEditButtons="true"
+		navigatorExtraButtons="{
     		seperator: { 
     			title : 'seperator'  
     		}, 
@@ -49,41 +38,50 @@
 	    		onclick: function(){ alert('Grid Button clicked!') }
     		}
     	}"
-    	gridModel="gridModel"
-    	rowList="10,15,20"
-    	rowNum="15"
-    	editurl="%{editurl}"
-    	editinline="true"
-    	onSelectRowTopics="rowselect"
-    	onEditInlineSuccessTopics="oneditsuccess"
-    	viewrecords="true"
-    	width="700"
-    	shrinkToFit="false"
-    >
-    	<sjg:gridColumn name="id" frozen="true" index="id" title="ID" width="60" formatter="integer" editable="false" sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
-    	<sjg:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true" search="false"/>
-    	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" editable="true" edittype="text"/>
-    	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" editable="true" edittype="text"/>
-    	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" editable="true" edittype="text"/>
-    	<sjg:gridColumn name="country" index="country" title="Country" editable="true" edittype="select" editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}" sortable="false" search="false"/>
-    	<sjg:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false" search="false"/>
-    	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" editable="true" edittype="text" sortable="false" search="false"/>
-    </sjg:grid>
-	<br/>
-    <sj:submit id="grid_edit_addbutton" value="Add Row" onClickTopics="rowadd" button="true"/>
-    <sj:submit id="grid_edit_searchbutton" value="Search" onClickTopics="searchgrid" button="true"/>
-    <sj:submit id="grid_edit_colsbutton" value="Show/Hide Columns" onClickTopics="showcolumns" button="true"/>
-	<br/>
-	<br/>
-    <div id="gridinfo" class="ui-widget-content ui-corner-all"><p>Edit Mode for Row :</p></div>
-  </div>
+		gridModel="gridModel"
+		rowList="10,15,20"
+		rowNum="15"
+		editurl="%{editurl}"
+		editinline="true"
+		onSelectRowTopics="rowselect"
+		onEditInlineSuccessTopics="oneditsuccess"
+		viewrecords="true"
+		width="700"
+		shrinkToFit="false"
+		>
+	<sjg:gridColumn name="id" frozen="true" index="id" title="ID" width="60" formatter="integer" editable="false"
+	                sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
+	<sjg:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true"
+	                search="false"/>
+	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" editable="true"
+	                edittype="text"/>
+	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" editable="true"
+	                edittype="text"/>
+	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" editable="true"
+	                edittype="text"/>
+	<sjg:gridColumn name="country" index="country" title="Country" editable="true" edittype="select"
+	                editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}"
+	                sortable="false" search="false"/>
+	<sjg:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false"
+	                search="false"/>
+	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency"
+	                editable="true" edittype="text" sortable="false" search="false"/>
+</sjg:grid>
+<br/>
+<sj:submit id="grid_edit_addbutton" value="Add Row" onClickTopics="rowadd" button="true"/>
+<sj:submit id="grid_edit_searchbutton" value="Search" onClickTopics="searchgrid" button="true"/>
+<sj:submit id="grid_edit_colsbutton" value="Show/Hide Columns" onClickTopics="showcolumns" button="true"/>
+<br/>
+<br/>
 
-	<br/>
-    <sj:tabbedpanel id="localtabs" cssClass="list">
-      <sj:tab id="tab1" target="javascript" label="JavaScript"/>
-      <sj:tab id="tab2" target="jsp" label="JSP"/>
-      <sj:tab id="tab3" target="java" label="Struts2 Action"/>
-      <div id="javascript">
+<div id="gridinfo" class="ui-widget-content ui-corner-all"><p>Edit Mode for Row :</p></div>
+
+<br/>
+<sj:tabbedpanel id="localtabs" cssClass="list">
+<sj:tab id="tab1" target="javascript" label="JavaScript"/>
+<sj:tab id="tab2" target="jsp" label="JSP"/>
+<sj:tab id="tab3" target="java" label="Struts2 Action"/>
+<div id="javascript">
 	  <pre>
     $.subscribe('rowselect', function(event,data) {
         $(&quot;#gridinfo&quot;).html('&lt;p&gt;Edit Mode for Row : '+event.originalEvent.id+'&lt;/p&gt;');
@@ -102,8 +100,8 @@
         $(&quot;#gridedittable&quot;).jqGrid('setColumns',{});
   	});
 	  &lt;/pre&gt;
-	  </div>
-      <div id="jsp">
+</div>
+<div id="jsp">
 	  <pre>
     &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;/&gt;
     &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt;
@@ -163,9 +161,9 @@
 	&lt;br/&gt;
     &lt;div id=&quot;gridinfo&quot; class=&quot;ui-widget-content ui-corner-all&quot;&gt;&lt;p&gt;Edit Mode for Row :&lt;/p&gt;&lt;/div&gt;
 	  </pre>
-	  </div>
-      <div id="java">
-	  <pre>
+</div>
+<div id="java">
+<pre>
 package com.jgeppert.struts2.jquery.showcase;
 
 import java.util.ArrayList;
@@ -452,8 +450,5 @@ public class JsonTable extends ActionSupport implements SessionAware {
 
 }
 	  </pre>
-	  </div>
-    </sj:tabbedpanel>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>
+</sj:tabbedpanel>

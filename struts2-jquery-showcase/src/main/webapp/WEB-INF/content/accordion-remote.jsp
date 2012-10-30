@@ -1,37 +1,26 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlaccordion" action="accordion"/><sj:a href="%{urlaccordion}" targets="main">Accordion</sj:a></li>
-      <li><s:url var="urlaccordionlist" action="accordion-list"/><sj:a href="%{urlaccordionlist}" targets="main">Accordion from List</sj:a></li>
-      <li><s:url var="urlaccordionremote" action="accordion-remote"/><sj:a href="%{urlaccordionremote}" targets="main">Accordion with remote content</sj:a></li>
-      <li><s:url var="urlaccordionmouseover" action="accordion-mouseover"/><sj:a href="%{urlaccordionmouseover}" targets="main">Accordion Collabsible/MouseOver</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Accordion Remote</h2>
-    <p class="text">
-        A Accordion with remote content.
-    </p>
-    <s:url var="urlecho" action="echo"/>
-    <sj:accordion 
-    	id="accordionremote"
-    	list="accordion" 
-    	listKey="title" 
-    	listValue="content"
-    	paramKeys="echo" 
-    	paramValues="content" 
-    	href="%{urlecho}" 
-    	active="false"
-        heightStyle="content"
-    	/>
-  </div>
-  
-  <div class="code ui-widget-content ui-corner-all">
-    <strong>Code in JSP:</strong>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+
+<h2>Accordion Remote</h2>
+
+<p class="text">
+	A Accordion with remote content.
+</p>
+<s:url var="urlecho" action="echo"/>
+<sj:accordion
+		id="accordionremote"
+		list="accordion"
+		listKey="title"
+		listValue="content"
+		paramKeys="echo"
+		paramValues="content"
+		href="%{urlecho}"
+		active="false"
+		heightStyle="content"
+		/>
+
+<div class="code ui-widget-content ui-corner-all">
+	<strong>Code in JSP:</strong>
     <pre>
     &lt;s:url var=&quot;urlecho&quot; action=&quot;echo&quot;/&gt;
     &lt;sj:accordion
@@ -45,7 +34,7 @@
     	active=&quot;false&quot;
         heightStyle=&quot;content&quot;
     	/&gt;    </pre>
-    <strong>Code in Action:</strong>
+	<strong>Code in Action:</strong>
     <pre>
     private List&lt;AccordionBean&gt; accordion;
 
@@ -66,7 +55,7 @@
         return accordion;
     }
     </pre>
-    <strong>Code in Bean:</strong>
+	<strong>Code in Bean:</strong>
     <pre>
 public class AccordionBean {
     String title;
@@ -90,7 +79,4 @@ public class AccordionBean {
     }
 }
     </pre>
-  </div>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>

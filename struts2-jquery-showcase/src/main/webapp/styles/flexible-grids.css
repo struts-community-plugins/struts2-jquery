@@ -1,0 +1,113 @@
+/**
+ * "Yet Another Multicolumn Layout" - YAML CSS Framework
+ *
+ * central stylesheet - layout example "flexible-grids"
+ *
+ * @copyright       Copyright 2005-2012, Dirk Jesse
+ * @license         CC-BY 2.0 (http://creativecommons.org/licenses/by/2.0/),
+ *                  YAML-CDL (http://www.yaml.de/license.html)
+ * @link            http://www.yaml.de
+ * @package         yaml
+ * @version         v4.0.2
+ * @lastmodified    $Date: 2012-10-23 23:01:14 +0200 (Di, 23 Okt 2012) $
+ */
+
+/* Google Font API */
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700|Droid+Sans:700);
+
+/* import core styles | Basis-Stylesheets einbinden */
+@import url(../yaml/core/base.css);
+
+/* import screen layout | Screen-Layout einbinden */
+@import url(../yaml/navigation/hlist.css);
+@import url(../yaml/forms/gray-theme.css);
+
+@import url(../yaml/screen/typography.css);
+@import url(../yaml/screen/screen-FULLPAGE-layout.css);
+
+/* import print layout | Druck-Layout einbinden */
+@import url(../yaml/print/print.css);
+
+#content > p, #content > div, #content > form {
+	margin: 10px;
+}
+
+
+.ym-hlist, .ym-hlist ul {
+	border: 0;
+	padding: 0;
+	background: inherit;
+}
+.ym-hlist li {
+	border: 0;
+	padding: 0;
+}
+
+.ym-hlist ul li a, .ym-hlist ul li strong, .ym-hlist ul li a:hover, .ym-hlist ul li a:active {
+	background: inherit !important;
+	color: inherit !important;
+}
+
+.result{
+	padding: 5px;
+}
+
+.messagesexamples p {
+	margin: 0;
+}
+.code,.result {
+	margin: 30px 20px 20px 10px;
+	overflow: auto;
+	padding: 10px;
+}
+.selectable {
+	border: 1px solid #000;
+	float: left;
+	height: 80px;
+	margin: 5px;
+	padding: 20px;
+	width: 80px;
+}
+
+.selectablelist {
+	border: 1px solid #000;
+	height: 25px;
+	margin: 5px;
+	padding: 10px;
+	list-style-type: none;
+}
+
+.ui-selected {
+	background: #F39814;
+	color: #FFF;
+}
+
+.ui-selecting {
+	background: #FECA40;
+}
+
+.sortable {
+	border: 1px solid #000;
+	height: 20px;
+	margin: 5px;
+	padding: 10px;
+	text-align: center;
+}
+
+.errorLabel {
+	color: red;
+}
+
+.column {
+	width: 170px;
+	float: left;
+	padding-bottom: 100px;
+}
+
+.column div {
+	margin: 5px;
+}
+
+.column div div .ui-icon {
+	float: right;
+}

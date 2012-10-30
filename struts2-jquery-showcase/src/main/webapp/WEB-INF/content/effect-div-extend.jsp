@@ -1,50 +1,35 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urleffectdiv" action="effect-div"/><sj:a href="%{urleffectdiv}" targets="main">Highlight Effect / Click</sj:a></li>
-      <li><s:url var="urleffectdivshake" action="effect-div-shake"/><sj:a href="%{urleffectdivshake}" targets="main">Shake Effect / MouseOver</sj:a></li>
-      <li><s:url var="urleffectdivsize" action="effect-div-size"/><sj:a href="%{urleffectdivsize}" targets="main">Size Effect / Bind on Link</sj:a></li>
-      <li><s:url var="urleffectdivevents" action="effect-div-events"/><sj:a href="%{urleffectdivevents}" targets="main">Fold Effect with Events</sj:a></li>
-      <li><s:url var="urleffectdivresize" action="effect-div-resizeable"/><sj:a href="%{urleffectdivresize}" targets="main">A Resizeable Div</sj:a></li>
-      <li><s:url var="urleffectdivdragdrop" action="effect-div-dragdrop"/><sj:a href="%{urleffectdivdragdrop}" targets="main">Drag and Drop</sj:a></li>
-      <li><s:url var="urleffectdivselectable" action="effect-div-selectable"/><sj:a href="%{urleffectdivselectable}" targets="main">Selectable</sj:a></li>
-      <li><s:url var="urleffectdivsortable" action="effect-div-sortable"/><sj:a href="%{urleffectdivsortable}" targets="main">Sortable</sj:a></li>
-      <li><s:url var="urleffectdivportlets" action="effect-div-portlets"/><sj:a href="%{urleffectdivportlets}" targets="main">Sortable (Portlets)</sj:a></li>
-      <li><s:url var="urleffectdivextend" action="effect-div-extend"/><sj:a href="%{urleffectdivextend}" targets="main">Extend this Plugin</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-	<h2>Extend the Struts2 jQuery Plugin</h2>
-	<p class="text">
-	    An example to show how you can easy extend the plugin with new functionality.
-	</p>
-    
-    <textarea name="richtextarea" id="richtextarea" rows="15" cols="80">
-    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-    </textarea>
- <script type='text/javascript'>
-	 // See js/extendplugin.js to see how to extend the jquery plugin
-	$(document).ready(function () { 
-		
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<h2>Extend the Struts2 jQuery Plugin</h2>
+
+<p class="text">
+	An example to show how you can easy extend the plugin with new functionality.
+</p>
+
+<textarea name="richtextarea" id="richtextarea" rows="15" cols="80">
+	Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel,
+	gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio.
+	Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+</textarea>
+<script type='text/javascript'>
+	// See js/extendplugin.js to see how to extend the jquery plugin
+	$(document).ready(function () {
+
 		var myrichtextoptions = {};
 		myrichtextoptions.jqueryaction = "myrichtextextend";
 		myrichtextoptions.id = "richtextarea";
 		myrichtextoptions.wysiwygoptions = {};
 		myrichtextoptions.wysiwygoptions.resizeOptions = {};
-		$.mys2jextend.bind($('#richtextarea'),myrichtextoptions);
-	 });  
-</script>	
+		$.mys2jextend.bind($('#richtextarea'), myrichtextoptions);
+	});
+</script>
 
 <br/>
 <br/>
-    <sj:tabbedpanel id="showextendcode">
-      <sj:tab id="tab1" target="jsp" label="JSP Code"/>
-      <sj:tab id="tab2" target="javascript" label="JavaScript Code"/>
-      <div id="jsp">
+<sj:tabbedpanel id="showextendcode">
+	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
+	<sj:tab id="tab2" target="javascript" label="JavaScript Code"/>
+	<div id="jsp">
 	  <pre>
     &lt;textarea name=&quot;richtextarea&quot; id=&quot;richtextarea&quot; rows=&quot;15&quot; cols=&quot;80&quot;&gt;
     Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
@@ -62,8 +47,8 @@
 	 });  
 &lt;/script&gt;	
 	  </pre>
-	  </div>
-      <div id="javascript">
+	</div>
+	<div id="javascript">
 	  <pre>
 ( function($) {
 	$.mys2jextend = {
@@ -79,9 +64,5 @@
 	$.extend($.mys2jextend, $.struts2_jquery);
 
 })(jQuery);	  </pre>
-	  </div>
-    </sj:tabbedpanel>
-  </div>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
-</div>
+	</div>
+</sj:tabbedpanel>

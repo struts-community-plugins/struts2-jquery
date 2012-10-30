@@ -1,63 +1,51 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlgrid" action="grid"/><sj:a href="%{urlgrid}" targets="main">Grid</sj:a></li>
-      <li><s:url var="urlgridedit" action="grid-edit"/><sj:a href="%{urlgridedit}" targets="main">Grid (Editable)</sj:a></li>
-      <li><s:url var="urlgridmulti" action="grid-multi"/><sj:a href="%{urlgridmulti}" targets="main">Grid (Editable/Multiselect)</sj:a></li>
-      <li><s:url var="urlgridloadonce" action="grid-loadonce"/><sj:a href="%{urlgridloadonce}" targets="main">Grid (Local Data)</sj:a></li>
-      <li><s:url var="urlgridgrouping" action="grid-grouping"/><sj:a href="%{urlgridgrouping}" targets="main">Grid (Grouping)</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Grid</h2>
-    <p class="text">
-        A Grid with local data and grouping.
-    </p>
-    <s:url var="remoteurl" action="jsontable">
-    	<s:param name="loadonce" value="%{true}" />
-    </s:url>
-    <sjg:grid
-    	id="gridgrouping"
-    	caption="Customers Examples (Grouping)"
-    	loadonce="true"
-    	href="%{remoteurl}"
-    	gridModel="gridModel"
-    	groupField="['country']"
-    	groupColumnShow="[false]"
-    	groupCollapse="true"
-    	groupText="['<b>{0} - {1} Customer(s)</b>']"
-    	navigator="true"
-    	navigatorAdd="false"
-    	navigatorEdit="false"
-    	navigatorDelete="false"
-    	navigatorView="true"
-    	rowTotal="70"
-    	rowNum="-1"
-    	altRows="true"
-    	viewrecords="true"
-    	pager="true"
-    	pagerButtons="false"
-    	pagerInput="false"
-    >
-    	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
-    	<sjg:gridColumn name="name" index="name" title="Name" sortable="true"/>
-		<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true"/>
-    	<sjg:gridColumn name="country" index="country" title="Country" sortable="false"/>
-    	<sjg:gridColumn name="city" index="city" title="City" sortable="false"/>
-    	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency" sortable="false"/>
-    </sjg:grid>
-  </div>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
+<h2>Grid</h2>
 
-	<br/>
-    <sj:tabbedpanel id="localtabs" cssClass="list">
-      <sj:tab id="tab1" target="jsp" label="JSP"/>
-      <sj:tab id="tab2" target="java" label="Struts2 Action"/>
-      <div id="jsp">
+<p class="text">
+	A Grid with local data and grouping.
+</p>
+<s:url var="remoteurl" action="jsontable">
+	<s:param name="loadonce" value="%{true}"/>
+</s:url>
+<sjg:grid
+		id="gridgrouping"
+		caption="Customers Examples (Grouping)"
+		loadonce="true"
+		href="%{remoteurl}"
+		gridModel="gridModel"
+		groupField="['country']"
+		groupColumnShow="[false]"
+		groupCollapse="true"
+		groupText="['<b>{0} - {1} Customer(s)</b>']"
+		navigator="true"
+		navigatorAdd="false"
+		navigatorEdit="false"
+		navigatorDelete="false"
+		navigatorView="true"
+		rowTotal="70"
+		rowNum="-1"
+		altRows="true"
+		viewrecords="true"
+		pager="true"
+		pagerButtons="false"
+		pagerInput="false"
+		>
+	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
+	<sjg:gridColumn name="name" index="name" title="Name" sortable="true"/>
+	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true"/>
+	<sjg:gridColumn name="country" index="country" title="Country" sortable="false"/>
+	<sjg:gridColumn name="city" index="city" title="City" sortable="false"/>
+	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency"
+	                sortable="false"/>
+</sjg:grid>
+
+<br/>
+<sj:tabbedpanel id="localtabs" cssClass="list">
+<sj:tab id="tab1" target="jsp" label="JSP"/>
+<sj:tab id="tab2" target="java" label="Struts2 Action"/>
+<div id="jsp">
 	  <pre>
     &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;&gt;
     	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
@@ -93,9 +81,9 @@
     	&lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; sortable=&quot;false&quot;/&gt;
     &lt;/sjg:grid&gt;
 	  </pre>
-	  </div>
-      <div id="java">
-	  <pre>
+</div>
+<div id="java">
+<pre>
 package com.jgeppert.struts2.jquery.showcase;
 
 import java.util.ArrayList;
@@ -435,8 +423,5 @@ public class JsonTable extends ActionSupport implements SessionAware {
 
 }
 	  </pre>
-	  </div>
-    </sj:tabbedpanel>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>
+</sj:tabbedpanel>

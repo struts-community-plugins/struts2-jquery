@@ -1,255 +1,233 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjc" uri="/struts-jquery-chart-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlslider" action="slider"/><sj:a id="slidersimplelink" href="%{urlslider}" targets="main">Slider</sj:a></li>
-      <li><s:url var="urlsliderform" action="slider-form"/><sj:a id="sliderformlink"  href="%{urlsliderform}" targets="main">Slider in a Form</sj:a></li>
-      <li><s:url var="urlsliderrange" action="slider-range"/><sj:a id="sliderrangelink"  href="%{urlsliderrange}" targets="main">Slider with Range and Events</sj:a></li>
-      <li><s:url var="urlprogressbar" action="progressbar"/><sj:a id="progressbarsimplelink" href="%{urlprogressbar}" targets="main">Progressbar</sj:a></li>
-      <li><s:url var="urlprogressbarchange" action="progressbar-change"/><sj:a id="progressbarchangelink" href="%{urlprogressbarchange}" targets="main">Progressbar with change event</sj:a></li>
-      <li><s:url var="urlprogressbarresizeable" action="progressbar-resizeable"/><sj:a id="progressbarresizeablelink" href="%{urlprogressbarresizeable}" targets="main">Resizeable progressbar</sj:a></li>
-      <li><s:url var="urlspinner" action="spinner"/><sj:a id="spinnerlink" href="%{urlspinner}" targets="main">Spinner</sj:a></li>
-      <li><s:url var="urlrichtexttinymce" action="richtext-tinymce"/><sj:a id="richtexttinymcelink" href="%{urlrichtexttinymce}" targets="main">Richtext - Tinymce</sj:a></li>
-      <li><s:url var="urlrichtexttinymceadvanced" action="richtext-tinymce-advanced"/><sj:a id="richtexttinymcelinkadvanced" href="%{urlrichtexttinymceadvanced}" targets="main">Richtext - Tinymce (Advanced)</sj:a></li>
-      <li><s:url var="urlrichtext" action="richtext"/><sj:a id="richtextlink" href="%{urlrichtext}" targets="main">Richtext - Ckeditor</sj:a></li>
-      <li><s:url var="urlrichtextcustome" action="richtext-custome"/><sj:a id="richtextcustomelink" href="%{urlrichtextcustome}" targets="main">Richtext - Ckeditor (Custome Toolbar)</sj:a></li>
-      <li><s:url var="urlmessages" action="messages"/><sj:a id="messageslink" href="%{urlmessages}" targets="main">Action Errors/Messages</sj:a></li>
-      <li><s:url var="urlcharts" action="charts"/><sj:a id="chartslink" href="%{urlcharts}" targets="main">Charts</sj:a></li>
-      <li><s:url var="urltree" action="tree"/><sj:a id="treelink" href="%{urltree}" targets="main">Tree</sj:a></li>
-      <li><s:url var="urltreejson" action="tree-json"/><sj:a id="treejsonlink" href="%{urltreejson}" targets="main">Tree (JSON Data)</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-    <h2>Charts</h2>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjc" uri="/struts-jquery-chart-tags" %>
+
+<h2>Charts</h2>
 
 
-	<h3>Chart with values from a List or a Map</h3>
-    <sjc:chart id="chartPoints" cssStyle="width: 600px; height: 400px;">
-    	<sjc:chartData
-    		label="List -Points-"
-    		list="points"
-    		points="{ show: true }"
-    		lines="{ show: false }"
-     		curvedLines="true"
-     		curvedLinesFit="true"
-    	/>
-    	<sjc:chartData
-    		label="List -Points with Null Value-"
-    		list="pointsWithNull"
-    	/>
-    	<sjc:chartData
-    		label="Map -Integer, Integer-"
-    		list="pointsFromMap"
-    	/>
-    </sjc:chart>
+<h3>Chart with values from a List or a Map</h3>
+<sjc:chart id="chartPoints" cssStyle="width: 600px; height: 400px;">
+	<sjc:chartData
+			label="List -Points-"
+			list="points"
+			points="{ show: true }"
+			lines="{ show: false }"
+			curvedLines="true"
+			curvedLinesFit="true"
+			/>
+	<sjc:chartData
+			label="List -Points with Null Value-"
+			list="pointsWithNull"
+			/>
+	<sjc:chartData
+			label="Map -Integer, Integer-"
+			list="pointsFromMap"
+			/>
+</sjc:chart>
 
-    <br/>
+<br/>
 
-	<h3>Chart with values from a List with Objects</h3>
-	<div id="topicsHover"></div>
-	<div id="topicsClick"></div>
-    <sjc:chart
-    	id="chartObjects"
-    	cssStyle="width: 600px; height: 400px;"
-    	onClickTopics="chartClick"
-    	onHoverTopics="chartHover"
-    	xaxisLabel="Label-X"
-    	yaxisLabel="Label-Y"
-    	yaxisLabelFontSizePixels="22"
-    	yaxisLabelFontFamily="Arial"
-    	crosshair="true"
-    	crosshairMode="xy"
-    >
-    	<sjc:chartData
-    		label="List with Objects"
-    		list="objList"
-    		listKey="myKey"
-    		listValue="myValue"
-    		points="{ show: true }"
-    		lines="{ show: false }"
-    		clickable="true"
-    		hoverable="true"
-     		curvedLines="true"
-     		curvedLinesFill="true"
-     		curvedLinesFillColor="#ccc"
-     		curvedLinesLineWidth="3"
-    	/>
-    </sjc:chart>
+<h3>Chart with values from a List with Objects</h3>
 
-    <br/>
+<div id="topicsHover"></div>
+<div id="topicsClick"></div>
+<sjc:chart
+		id="chartObjects"
+		cssStyle="width: 600px; height: 400px;"
+		onClickTopics="chartClick"
+		onHoverTopics="chartHover"
+		xaxisLabel="Label-X"
+		yaxisLabel="Label-Y"
+		yaxisLabelFontSizePixels="22"
+		yaxisLabelFontFamily="Arial"
+		crosshair="true"
+		crosshairMode="xy"
+		>
+	<sjc:chartData
+			label="List with Objects"
+			list="objList"
+			listKey="myKey"
+			listValue="myValue"
+			points="{ show: true }"
+			lines="{ show: false }"
+			clickable="true"
+			hoverable="true"
+			curvedLines="true"
+			curvedLinesFill="true"
+			curvedLinesFillColor="#ccc"
+			curvedLinesLineWidth="3"
+			/>
+</sjc:chart>
 
-	<h3>Chart with Date Values</h3>
-    <sjc:chart
-    	id="chartDate"
-    	xaxisMode="time"
-    	xaxisTimeformat="%m.%Y"
-    	xaxisMin="%{minTime}"
-    	xaxisMax="%{maxTime}"
-    	xaxisColor="#666"
-    	xaxisTickSize="[3, 'month']"
-    	xaxisTickColor="#aaa"
-    	xaxisPosition="top"
-    	yaxisPosition="right"
-    	yaxisTickSize="10"
-    	cssStyle="width: 600px; height: 400px;"
-    >
-    	<sjc:chartData
-    		id="chartDateData"
-    		label="Map -Date, Integer-"
-    		list="dateFromMap"
-    		color="#990066"
-    		lines="{ show: true }"
-    	/>
-    </sjc:chart>
+<br/>
 
-    <br/>
+<h3>Chart with Date Values</h3>
+<sjc:chart
+		id="chartDate"
+		xaxisMode="time"
+		xaxisTimeformat="%m.%Y"
+		xaxisMin="%{minTime}"
+		xaxisMax="%{maxTime}"
+		xaxisColor="#666"
+		xaxisTickSize="[3, 'month']"
+		xaxisTickColor="#aaa"
+		xaxisPosition="top"
+		yaxisPosition="right"
+		yaxisTickSize="10"
+		cssStyle="width: 600px; height: 400px;"
+		>
+	<sjc:chartData
+			id="chartDateData"
+			label="Map -Date, Integer-"
+			list="dateFromMap"
+			color="#990066"
+			lines="{ show: true }"
+			/>
+</sjc:chart>
 
-	<h3>Chart with AJAX Data and Topics</h3>
-	<s:url var="chartDataUrl" action="json-chart-data"/>
-    <sjc:chart
-    	id="chartAjax"
-    	legendLabelBoxBorderColor="#990033"
-    	legendPosition="ne"
-    	legendShow="#ccc"
-    	cssStyle="width: 600px; height: 400px;"
-    >
-    	<sjc:chartData
-    		id="chartAjaxData1"
-    		label="Map -Double, Double-"
-    		href="%{chartDataUrl}"
-    		list="doubleMap"
-    		deferredLoading="true"
-    		reloadTopics="reloadMap"
-    		lines="{show : true}"
-    	/>
-    	<sjc:chartData
-    		id="chartAjaxData2"
-    		label="List -ListValue-"
-    		href="%{chartDataUrl}"
-    		list="objList"
-    		listKey="myKey"
-    		listValue="myValue"
-    		reloadTopics="reloadList"
-    		lines="{show : true}"
-    	/>
-    </sjc:chart>
-    <sj:a onClickTopics="reloadMap" button="true" buttonIcon="ui-icon-refresh">Load/Reload Map</sj:a>
-    <sj:a onClickTopics="reloadList" button="true" buttonIcon="ui-icon-refresh">Reload List</sj:a>
+<br/>
 
-    <br/>
+<h3>Chart with AJAX Data and Topics</h3>
+<s:url var="chartDataUrl" action="json-chart-data"/>
+<sjc:chart
+		id="chartAjax"
+		legendLabelBoxBorderColor="#990033"
+		legendPosition="ne"
+		legendShow="#ccc"
+		cssStyle="width: 600px; height: 400px;"
+		>
+	<sjc:chartData
+			id="chartAjaxData1"
+			label="Map -Double, Double-"
+			href="%{chartDataUrl}"
+			list="doubleMap"
+			deferredLoading="true"
+			reloadTopics="reloadMap"
+			lines="{show : true}"
+			/>
+	<sjc:chartData
+			id="chartAjaxData2"
+			label="List -ListValue-"
+			href="%{chartDataUrl}"
+			list="objList"
+			listKey="myKey"
+			listValue="myValue"
+			reloadTopics="reloadList"
+			lines="{show : true}"
+			/>
+</sjc:chart>
+<sj:a onClickTopics="reloadMap" button="true" buttonIcon="ui-icon-refresh">Load/Reload Map</sj:a>
+<sj:a onClickTopics="reloadList" button="true" buttonIcon="ui-icon-refresh">Reload List</sj:a>
 
-	<h3>Chart with AJAX Data with Stacked Values</h3>
-    <sjc:chart
-    	id="chartAjaxTwo"
-    	cssStyle="width: 600px; height: 400px;"
-    >
-    	<sjc:chartData
-    		id="chartAjaxTwoData1"
-    		label="Map -Double, Double-"
-    		href="%{chartDataUrl}"
-    		list="doubleMap"
-    		bars="{show : true, barWidth: 0.7}"
-    		stack="stack1"
-    	/>
-    	<sjc:chartData
-    		id="chartAjaxTwoData2"
-    		label="List -ListValue-"
-    		href="%{chartDataUrl}"
-    		list="objList"
-    		listKey="myKey"
-    		listValue="myValue"
-    		bars="{show : true, barWidth: 0.7}"
-    		stack="stack1"
-    	/>
-    </sjc:chart>
+<br/>
 
-    <br/>
-    <br/>
+<h3>Chart with AJAX Data with Stacked Values</h3>
+<sjc:chart
+		id="chartAjaxTwo"
+		cssStyle="width: 600px; height: 400px;"
+		>
+	<sjc:chartData
+			id="chartAjaxTwoData1"
+			label="Map -Double, Double-"
+			href="%{chartDataUrl}"
+			list="doubleMap"
+			bars="{show : true, barWidth: 0.7}"
+			stack="stack1"
+			/>
+	<sjc:chartData
+			id="chartAjaxTwoData2"
+			label="List -ListValue-"
+			href="%{chartDataUrl}"
+			list="objList"
+			listKey="myKey"
+			listValue="myValue"
+			bars="{show : true, barWidth: 0.7}"
+			stack="stack1"
+			/>
+</sjc:chart>
 
-	<h3>A Pie Chart</h3>
-    <sjc:chart
-    	id="chartPie"
-    	cssStyle="width: 600px; height: 400px;"
-    	pie="true"
-    	pieLabel="true"
-    >
-    	<sjc:chartData
-    		id="pieSerie1"
-    		label="Serie 1"
-    		data="10"
-    	/>
-    	<sjc:chartData
-    		id="pieSerie2"
-    		label="Serie 2"
-    		data="3"
-    	/>
-    	<sjc:chartData
-    		id="pieSerie3"
-    		label="Serie 3"
-    		data="17"
-    	/>
-    	<sjc:chartData
-    		id="pieSerie4"
-    		label="Serie 4"
-    		data="37"
-    	/>
-    </sjc:chart>
-    
-    <br/>
+<br/>
+<br/>
 
-	<h3>A Pie Donut Chart from a Map </h3>
-    <sjc:chart
-    	id="chartPie2"
-    	cssStyle="width: 600px; height: 400px;"
-    	legendShow="false"
-    	pie="true"
-    	pieLabel="true"
-    	pieInnerRadius="0.3"
-    	pieLabelRadius="0.6"
-    	pieLabelBackgroundColor="#555"
-    	pieLabelBackgroundOpacity="0.7"
-    >
-    	<s:iterator value="%{pieDataMap}">
-	    	<sjc:chartData
-	    		label="%{key}"
-	    		data="%{value}"
-	    	/>
-    	</s:iterator>
-    </sjc:chart>
+<h3>A Pie Chart</h3>
+<sjc:chart
+		id="chartPie"
+		cssStyle="width: 600px; height: 400px;"
+		pie="true"
+		pieLabel="true"
+		>
+	<sjc:chartData
+			id="pieSerie1"
+			label="Serie 1"
+			data="10"
+			/>
+	<sjc:chartData
+			id="pieSerie2"
+			label="Serie 2"
+			data="3"
+			/>
+	<sjc:chartData
+			id="pieSerie3"
+			label="Serie 3"
+			data="17"
+			/>
+	<sjc:chartData
+			id="pieSerie4"
+			label="Serie 4"
+			data="37"
+			/>
+</sjc:chart>
 
-    <br/>
+<br/>
 
-	<h3>Fill between two Series</h3>
-    <sjc:chart id="chartPointsFill" cssStyle="width: 600px; height: 400px;">
-    	<sjc:chartData
-    		id="series1"
-    		label="Series 1"
-    		data="[[2, 88.0], [3, 93.3], [4, 102.0], [5, 108.5], [6, 115.7], [7, 115.6], [8, 124.6], [9, 130.3], [10, 134.3], [11, 141.4], [12, 146.5], [13, 151.7], [14, 159.9], [15, 165.4], [16, 167.8], [17, 168.7], [18, 169.5], [19, 168.0]]"
-    		lines="{ show: true }"
-    	/>
-    	<sjc:chartData
-    		id="series2"
-    		label="Series 2"
-    		data="[[2, 96.8], [3, 105.2], [4, 113.9], [5, 120.8], [6, 127.0], [7, 133.1], [8, 139.1], [9, 143.9], [10, 151.3], [11, 161.1], [12, 164.8], [13, 173.5], [14, 179.0], [15, 182.0], [16, 186.9], [17, 185.2], [18, 186.3], [19, 186.6]]"
-    		lines="{ show: true, fill: true }"
-    		fillBetween="series1"
-    	/>
-    </sjc:chart>
-  </div>
+<h3>A Pie Donut Chart from a Map </h3>
+<sjc:chart
+		id="chartPie2"
+		cssStyle="width: 600px; height: 400px;"
+		legendShow="false"
+		pie="true"
+		pieLabel="true"
+		pieInnerRadius="0.3"
+		pieLabelRadius="0.6"
+		pieLabelBackgroundColor="#555"
+		pieLabelBackgroundOpacity="0.7"
+		>
+	<s:iterator value="%{pieDataMap}">
+		<sjc:chartData
+				label="%{key}"
+				data="%{value}"
+				/>
+	</s:iterator>
+</sjc:chart>
 
-    <br/>
-    <br/>
-    <sj:tabbedpanel id="localtabs" cssClass="list">
-      <sj:tab id="tab1" target="jsp" label="JSP Code"/>
-      <sj:tab id="tab2" target="javascript" label="JavaScript"/>
-      <sj:tab id="tab3" target="action" label="Action"/>
-      <sj:tab id="tab4" target="jsonaction" label="JSON Action"/>
-      <div id="jsp">
-	  <pre>
+<br/>
+
+<h3>Fill between two Series</h3>
+<sjc:chart id="chartPointsFill" cssStyle="width: 600px; height: 400px;">
+	<sjc:chartData
+			id="series1"
+			label="Series 1"
+			data="[[2, 88.0], [3, 93.3], [4, 102.0], [5, 108.5], [6, 115.7], [7, 115.6], [8, 124.6], [9, 130.3], [10, 134.3], [11, 141.4], [12, 146.5], [13, 151.7], [14, 159.9], [15, 165.4], [16, 167.8], [17, 168.7], [18, 169.5], [19, 168.0]]"
+			lines="{ show: true }"
+			/>
+	<sjc:chartData
+			id="series2"
+			label="Series 2"
+			data="[[2, 96.8], [3, 105.2], [4, 113.9], [5, 120.8], [6, 127.0], [7, 133.1], [8, 139.1], [9, 143.9], [10, 151.3], [11, 161.1], [12, 164.8], [13, 173.5], [14, 179.0], [15, 182.0], [16, 186.9], [17, 185.2], [18, 186.3], [19, 186.6]]"
+			lines="{ show: true, fill: true }"
+			fillBetween="series1"
+			/>
+</sjc:chart>
+
+<br/>
+<br/>
+<sj:tabbedpanel id="localtabs" cssClass="list">
+<sj:tab id="tab1" target="jsp" label="JSP Code"/>
+<sj:tab id="tab2" target="javascript" label="JavaScript"/>
+<sj:tab id="tab3" target="action" label="Action"/>
+<sj:tab id="tab4" target="jsonaction" label="JSON Action"/>
+<div id="jsp">
+<pre>
 	&lt;h3&gt;Chart with values from a List or a Map&lt;/h3&gt;
     &lt;sjc:chart id=&quot;chartPoints&quot; cssStyle=&quot;width: 600px; height: 400px;&quot;&gt;
     	&lt;sjc:chartData
@@ -463,8 +441,8 @@
     	/&gt;
     &lt;/sjc:chart&gt;
        	  </pre>
-	  </div>
-      <div id="javascript">
+</div>
+<div id="javascript">
 	  <pre>
 	$.subscribe('chartHover', function(event, data) {
     $(&quot;#topicsHover&quot;).text(event.originalEvent.pos.x.toFixed(2)+','+event.originalEvent.pos.y.toFixed(2));
@@ -477,8 +455,8 @@
     }
 	});
 	  </pre>
-	  </div>
-      <div id="action">
+</div>
+<div id="action">
 	  <pre>
 @ParentPackage(value = &quot;showcase&quot;)
 public class Charts extends ActionSupport {
@@ -601,8 +579,8 @@ public class Charts extends ActionSupport {
 }
 
 	  </pre>
-	  </div>
-      <div id="jsonaction">
+</div>
+<div id="jsonaction">
 	  <pre>
 @ParentPackage(value = &quot;showcase&quot;)
 public class JsonChartData extends ActionSupport {
@@ -662,8 +640,5 @@ public class JsonChartData extends ActionSupport {
   }
 }
 	  </pre>
-	  </div>
-	</sj:tabbedpanel>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>
+</sj:tabbedpanel>

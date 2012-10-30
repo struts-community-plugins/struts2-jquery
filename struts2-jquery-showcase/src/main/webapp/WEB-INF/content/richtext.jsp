@@ -1,47 +1,27 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjr" uri="/struts-jquery-richtext-tags"%>
-<div id="col1">
-  <div id="col1_content" class="clearfix">
-    <ul>
-      <li><s:url var="urlslider" action="slider"/><sj:a id="slidersimplelink" href="%{urlslider}" targets="main">Slider</sj:a></li>
-      <li><s:url var="urlsliderform" action="slider-form"/><sj:a id="sliderformlink"  href="%{urlsliderform}" targets="main">Slider in a Form</sj:a></li>
-      <li><s:url var="urlsliderrange" action="slider-range"/><sj:a id="sliderrangelink"  href="%{urlsliderrange}" targets="main">Slider with Range and Events</sj:a></li>
-      <li><s:url var="urlprogressbar" action="progressbar"/><sj:a id="progressbarsimplelink" href="%{urlprogressbar}" targets="main">Progressbar</sj:a></li>
-      <li><s:url var="urlprogressbarchange" action="progressbar-change"/><sj:a id="progressbarchangelink" href="%{urlprogressbarchange}" targets="main">Progressbar with change event</sj:a></li>
-      <li><s:url var="urlprogressbarresizeable" action="progressbar-resizeable"/><sj:a id="progressbarresizeablelink" href="%{urlprogressbarresizeable}" targets="main">Resizeable progressbar</sj:a></li>
-      <li><s:url var="urlspinner" action="spinner"/><sj:a id="spinnerlink" href="%{urlspinner}" targets="main">Spinner</sj:a></li>
-      <li><s:url var="urlrichtexttinymce" action="richtext-tinymce"/><sj:a id="richtexttinymcelink" href="%{urlrichtexttinymce}" targets="main">Richtext - Tinymce</sj:a></li>
-      <li><s:url var="urlrichtexttinymceadvanced" action="richtext-tinymce-advanced"/><sj:a id="richtexttinymcelinkadvanced" href="%{urlrichtexttinymceadvanced}" targets="main">Richtext - Tinymce (Advanced)</sj:a></li>
-      <li><s:url var="urlrichtext" action="richtext"/><sj:a id="richtextlink" href="%{urlrichtext}" targets="main">Richtext - Ckeditor</sj:a></li>
-      <li><s:url var="urlrichtextcustome" action="richtext-custome"/><sj:a id="richtextcustomelink" href="%{urlrichtextcustome}" targets="main">Richtext - Ckeditor (Custome Toolbar)</sj:a></li>
-      <li><s:url var="urlmessages" action="messages"/><sj:a id="messageslink" href="%{urlmessages}" targets="main">Action Errors/Messages</sj:a></li>
-      <li><s:url var="urlcharts" action="charts"/><sj:a id="chartslink" href="%{urlcharts}" targets="main">Charts</sj:a></li>
-      <li><s:url var="urltree" action="tree"/><sj:a id="treelink" href="%{urltree}" targets="main">Tree</sj:a></li>
-      <li><s:url var="urltreejson" action="tree-json"/><sj:a id="treejsonlink" href="%{urltreejson}" targets="main">Tree (JSON Data)</sj:a></li>
-    </ul>
-  </div>
-</div>
-<div id="col3">
-  <div id="col3_content" class="clearfix">
-	<h2>Richtext</h2>
-	<p class="text">
-	    A simple Richtext Editor with default values. The Richtext Editor is based on <a href="http://ckeditor.com/">CKEditor</a>.
-	</p>
-	<p>
-	    To enable the Richtext Editor in your Project you need to copy the separate <strong>struts2-jquery-richtext-plugin.jar</strong> into your WEB-INF/lib path.
-	</p>
-    <s:form id="formRichtext" action="simpleecho" theme="simple" cssClass="yform">
-    <s:hidden name="escape" value="false"/>
-        <fieldset>
-            <legend>AJAX Form</legend>
-	        <div class="type-text">
-	            <label for="echo">Echo: </label>
-				<sjr:ckeditor 
-					id="richtextEditor" 
-					name="echo" 
-					rows="10" 
-					cols="80" 
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjr" uri="/struts-jquery-richtext-tags" %>
+<h2>Richtext</h2>
+
+<p class="text">
+	A simple Richtext Editor with default values. The Richtext Editor is based on <a href="http://ckeditor.com/">CKEditor</a>.
+</p>
+
+<p>
+	To enable the Richtext Editor in your Project you need to copy the separate <strong>struts2-jquery-richtext-plugin.jar</strong>
+	into your WEB-INF/lib path.
+</p>
+<s:form id="formRichtext" action="simpleecho" theme="simple" cssClass="yform">
+	<s:hidden name="escape" value="false"/>
+	<fieldset>
+		<legend>AJAX Form</legend>
+		<div class="type-text">
+			<label for="echo">Echo: </label>
+			<sjr:ckeditor
+					id="richtextEditor"
+					name="echo"
+					rows="10"
+					cols="80"
 					width="730"
 					height="250"
 					uploads="true"
@@ -49,37 +29,37 @@
 					onBlurTopics="blurRichtext"
 					onChangeTopics="highlightRichtext"
 					value="Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
-				/>
-	        </div>
-	        <div class="type-button">
-				<sj:submit
+					/>
+		</div>
+		<div class="type-button">
+			<sj:submit
 					id="richtextSubmitButton"
-					formIds="formRichtext" 
-					targets="result" 
+					formIds="formRichtext"
+					targets="result"
 					listenTopics="saveRichtext"
-					value="Save Button" 
-					indicator="indicator" 
+					value="Save Button"
+					indicator="indicator"
 					button="true"
-				/>
-				<img id="indicator" 
-					src="images/indicator.gif" 
-					alt="Loading..." 
-					style="display:none"/>
-	        </div>
-        </fieldset>
-    </s:form>
+					/>
+			<img id="indicator"
+			     src="images/indicator.gif"
+			     alt="Loading..."
+			     style="display:none"/>
+		</div>
+	</fieldset>
+</s:form>
 
-    <strong>Result Div :</strong>
-	<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
-    
+<strong>Result Div :</strong>
 
-    
-	<div class="code ui-widget-content ui-corner-all">
-	  <strong>Code:</strong>
+<div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
+
+
+<div class="code ui-widget-content ui-corner-all">
+	<strong>Code:</strong>
 	  <pre>
 	&lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot;%&gt;
 	<strong>
-	&lt;%@ taglib prefix=&quot;sjr&quot; uri=&quot;/struts-jquery-richtext-tags&quot;%&gt;
+		&lt;%@ taglib prefix=&quot;sjr&quot; uri=&quot;/struts-jquery-richtext-tags&quot;%&gt;
 	</strong>
 
     &lt;s:form id=&quot;formRichtext&quot; action=&quot;simpleecho&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
@@ -124,8 +104,4 @@
 	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
 
 	  </pre>
-	</div>
-  </div>
-  <!-- IE Column Clearing -->
-  <div id="ie_clearing"> &#160; </div>
 </div>
