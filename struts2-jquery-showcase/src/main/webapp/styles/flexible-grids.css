@@ -111,3 +111,7 @@
 .column div div .ui-icon {
 	float: right;
 }
+
+#menu .ui-menu, #menu .ui-menu-item {
+	z-index: 1000;
+}
