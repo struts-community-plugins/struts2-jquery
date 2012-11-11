@@ -8,7 +8,7 @@
 
     <h2>Grid with Subgrid</h2>
     
-    <p>Try out <sj:a href="%{subgridthreelevelurl}" targets="main" cssStyle="font-style:bold;">Subgrid with 3 Level.</sj:a></p>
+    <p>Try out <sj:a href="%{subgridthreelevelurl}" targets="main_content" cssStyle="font-style:bold;">Subgrid with 3 Level.</sj:a></p>
     
     <sjg:grid 
     	id="orderstable" 

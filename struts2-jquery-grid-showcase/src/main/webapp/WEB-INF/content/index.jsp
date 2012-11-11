@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-
-<s:url var="urlgrid" action="grid"/>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Struts2 jQuery Grid Plugin Showcase - <s:text name="showcase.version"/></title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="pragma" content="no-cache" />
@@ -15,12 +13,19 @@
 	<meta http-equiv="expires" content="0" />
 	<meta http-equiv="keywords" content="struts2,jquery, hibernate, plugin,showcase, grid" />
 	<meta http-equiv="description" content="Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins" />
-	<link href="styles/layout.css" rel="stylesheet" type="text/css" />
+
+	<title>Struts2 jQuery Grid Plugin Showcase - <s:text name="showcase.version"/></title>
+
+	<link href="<s:url value="/styles/flexible-grids.css" />" rel="stylesheet" type="text/css" />
 	<!--[if lte IE 7]>
-	<link href="styles/patch_layout.css" rel="stylesheet" type="text/css" />
+	<link href="<s:url value="/yaml/core/iehacks.min.css" />" rel="stylesheet" type="text/css" />
 	<![endif]-->
 
-    <sj:head
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<sj:head
     	loadAtOnce="true"
     	compressed="false"
     	jquerytheme="showcase"
@@ -28,41 +33,58 @@
     	loadFromGoogle="false"
     	debug="true"
     />
-    <s:url var="empurl" action="employees-detail" />
+
+	<s:url var="empurl" action="employees-detail" />
 	<script type="text/javascript">
 		var employee_detail_url = '<s:property value="empurl"/>';
 	</script>
-  <script type="text/javascript" src="js/showcase.js"></script>
+  <script type="text/javascript" src="<s:url value="/js/showcase.js" />"></script>
 </head>
 <body>
-  <div class="page_margins">
-    <div class="page">
-      <div id="header" class="ui-widget-header">
-        <div id="headline">
-	        <h1 class="ui-state-default" style="background: none; border: none;width: 700px">Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins</h1>
-	        <h4 class="ui-state-default" style="background: none; border: none;width: 700px">Struts2 jQuery Plugin - Version <s:text name="showcase.version"/> / Full Hibernate Plugin - Version 2.2.1 GA</h4>
-        </div>
-      </div>
-      <div id="nav">
-        <div class="hlist ui-widget-header">
-          <ul>
-            <li class="ui-widget-header ui-state-active"><s:url var="urlgrid" action="grid" /><sj:a id="gridlink" href="%{urlgrid}" targets="main">Grid (Editable)</sj:a></li>
-            <li class="ui-widget-header"><s:url var="urlgridsubgrid" action="grid-subgrid" /><sj:a id="gridsubgridlink" href="%{urlgridsubgrid}" targets="main">Grid with Subgrid</sj:a></li>
-            <li class="ui-widget-header"><s:url var="urlgriddnd" action="grid-dnd" /><sj:a id="griddndlink" href="%{urlgriddnd}" targets="main">Grid with Drag and Drop</sj:a></li>
-            <li class="ui-widget-header"><a href="http://code.google.com/p/struts2-jquery/">Struts2 jQuery Plugin</a></li>
-            <li class="ui-widget-header"><a href="http://code.google.com/p/full-hibernate-plugin-for-struts2/">Full Hibernate Plugin</a></li>
-          </ul>
-        </div>
-      </div>
-      <sj:div id="main" href="%{urlgrid}">
-        <img id="indicator" src="images/indicator.gif" alt="Loading..."/>
-      </sj:div>
-      <!-- begin: #footer -->
-      <div id="footer">
-        Written by  <a href="http://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a> and <a href="http://jyoshiriro.blogspot.com" title="Java Developer Blog">Jos&eacute; Yoshiriro</a><br/>
-        Layout based on <a href="http://www.yaml.de/" title="OpenSource CSS Layout">YAML</a>
-      </div>
-    </div>
-  </div>
+
+<header class="ui-widget-header">
+	<div class="ym-wrapper">
+		<div class="ym-wbox" style="padding: 5px 0 0 0;">
+			<div>
+				<h1 class="ui-state-default" style="background: none; border: none; margin: 0;">Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins</h1>
+				<h4 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin - Version <s:text name="showcase.version"/> / Full Hibernate Plugin - Version 2.2.1 GA</h4>
+			</div>
+	</div>
+</header>
+
+<nav id="nav" class="ui-widget-header">
+	<div class="ym-wrapper">
+		<div class="ym-hlist">
+			<ul id="navlist">
+				<li><s:url var="urlgrid" action="grid" /><sj:a id="gridlink" href="%{urlgrid}" targets="main_content">Grid (Editable)</sj:a></li>
+				<li><s:url var="urlgridsubgrid" action="grid-subgrid" /><sj:a id="gridsubgridlink" href="%{urlgridsubgrid}" targets="main_content">Grid with Subgrid</sj:a></li>
+				<li><s:url var="urlgriddnd" action="grid-dnd" /><sj:a id="griddndlink" href="%{urlgriddnd}" targets="main_content">Grid with Drag and Drop</sj:a></li>
+				<li><a href="http://code.google.com/p/struts2-jquery/">Struts2 jQuery Plugin</a></li>
+				<li><a href="http://code.google.com/p/full-hibernate-plugin-for-struts2/">Full Hibernate Plugin</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div id="main">
+	<div class="ym-wrapper">
+		<sj:div id="main_content" href="%{urlgrid}" cssClass="ym-wbox">
+			<img id="indicator" src="images/indicator.gif" alt="Loading..."/>
+		</sj:div>
+	</div>
+</div>
+
+<footer>
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<p style="text-align: center;">
+				Written by  <a href="http://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a> and <a href="http://jyoshiriro.blogspot.com" title="Java Developer Blog">Jos&eacute; Yoshiriro</a><br/>
+				Layout based on <a href="http://www.yaml.de/" title="OpenSource CSS Layout">YAML</a>
+			</p>
+		</div>
+	</div>
+</footer>
+
 </body>
 </html>
