@@ -495,7 +495,7 @@
 		if (o.oncha || o.inline) {
 			params.onSelect = function(dateText, inst) {
 				if(o.inline) {
-					$elem.val(dateText);
+					$(self.escId(o.id)).val(dateText);
 				}
 				if(o.oncha) {
 					var data = {};
