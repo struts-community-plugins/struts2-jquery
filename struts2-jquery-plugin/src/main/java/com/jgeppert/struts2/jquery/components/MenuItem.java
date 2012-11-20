@@ -19,14 +19,16 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Random;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -34,75 +36,83 @@ import java.util.Random;
  * Renders a menu item
  * </p>
  * <!-- END SNIPPET: javadoc -->
- *
+ * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "menuItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.MenuItemTag", description = "Render an menu item.")
 public class MenuItem extends AbstractRemoteBean {
 
-	final private static transient Random RANDOM = new Random();
-	public static final String TEMPLATE = "menuItem";
-	public static final String JQUERYACTION = "menuItem";
-	public static final String TEMPLATE_CLOSE = "menuItem-close";
-	public static final String COMPONENT_NAME = MenuItem.class.getName();
+    final private static transient Random RANDOM = new Random();
+    public static final String TEMPLATE = "menuItem";
+    public static final String JQUERYACTION = "menuItem";
+    public static final String TEMPLATE_CLOSE = "menuItem-close";
+    public static final String COMPONENT_NAME = MenuItem.class.getName();
 
-	protected String title;
-	protected String onClickTopics;
+    protected String title;
+    protected String menuIcon;
+    protected String onClickTopics;
 
-	public MenuItem(ValueStack stack, HttpServletRequest request,
-					HttpServletResponse response) {
-		super(stack, request, response);
+    public MenuItem(ValueStack stack, HttpServletRequest request,
+	    HttpServletResponse response) {
+	super(stack, request, response);
+    }
+
+    @Override
+    public String getDefaultOpenTemplate() {
+	return TEMPLATE;
+    }
+
+    protected String getDefaultTemplate() {
+	return TEMPLATE_CLOSE;
+    }
+
+    public void evaluateExtraParams() {
+	super.evaluateExtraParams();
+
+	addParameter("jqueryaction", JQUERYACTION);
+
+	if (title != null)
+	    addParameter("title", findString(title));
+	if (menuIcon != null)
+	    addParameter("menuIcon", findString(menuIcon));
+	if (onClickTopics != null)
+	    addParameter("onClickTopics", findString(onClickTopics));
+
+	if ((this.id == null || this.id.length() == 0)) {
+	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+	    int nextInt = RANDOM.nextInt();
+	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+		    .abs(nextInt);
+	    this.id = "menuItem_" + String.valueOf(nextInt);
+	    addParameter("id", this.id);
 	}
 
-	@Override
-	public String getDefaultOpenTemplate() {
-		return TEMPLATE;
-	}
+    }
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE_CLOSE;
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+	super.setTheme(theme);
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    @Override
+    public String getTheme() {
+	return "jquery";
+    }
 
-		addParameter("jqueryaction", JQUERYACTION);
+    @StrutsTagAttribute(description = "menu item title")
+    public void setTitle(String title) {
+	this.title = title;
+    }
 
-		if (title != null)
-			addParameter("title", findString(title));
-		if (onClickTopics != null)
-			addParameter("onClickTopics", findString(onClickTopics));
+    @StrutsTagAttribute(description = "Icons to display. The icon is displayed on the left of the label text. Value must be a classname (String), eg. ui-icon-gear.")
+    public void setMenuIcon(String menuIcon) {
+	this.menuIcon = menuIcon;
+    }
 
-		if ((this.id == null || this.id.length() == 0)) {
-			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-			int nextInt = RANDOM.nextInt();
-			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-					.abs(nextInt);
-			this.id = "menuItem_" + String.valueOf(nextInt);
-			addParameter("id", this.id);
-		}
-
-	}
-
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
-
-	@Override
-	public String getTheme() {
-		return "jquery";
-	}
-
-	@StrutsTagAttribute(description = "menu item title")
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	@StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
-	public void setOnClickTopics(String onClickTopics) {
-		this.onClickTopics = onClickTopics;
-	}
+    @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
 }

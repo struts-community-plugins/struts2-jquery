@@ -19,13 +19,13 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
-import com.jgeppert.struts2.jquery.components.MenuItem;
-import com.opensymphony.xwork2.util.ValueStack;
-import org.apache.struts2.components.Component;
-import org.apache.struts2.views.jsp.ui.AbstractClosingTag;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.components.Component;
+
+import com.jgeppert.struts2.jquery.components.MenuItem;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
@@ -33,29 +33,35 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MenuItemTag extends AbstractRemoteTag {
 
-	private static final long serialVersionUID = -270033824138017378L;
+    private static final long serialVersionUID = -270033824138017378L;
 
-	protected String title;
-	protected String onClickTopics;
+    protected String title;
+    protected String menuIcon;
+    protected String onClickTopics;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-							 HttpServletResponse res) {
-		return new MenuItem(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new MenuItem(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-		MenuItem item = (MenuItem) component;
-		item.setTitle(title);
-		item.setOnClickTopics(onClickTopics);
-	}
+	MenuItem item = (MenuItem) component;
+	item.setTitle(title);
+	item.setMenuIcon(menuIcon);
+	item.setOnClickTopics(onClickTopics);
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+	this.title = title;
+    }
 
-	public void setOnClickTopics(String onClickTopics) {
-		this.onClickTopics = onClickTopics;
-	}
+    public void setMenuIcon(String menuIcon) {
+	this.menuIcon = menuIcon;
+    }
+
+    public void setOnClickTopics(String onClickTopics) {
+	this.onClickTopics = onClickTopics;
+    }
 }

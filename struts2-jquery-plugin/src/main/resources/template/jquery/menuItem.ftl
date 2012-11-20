@@ -40,7 +40,10 @@
 <#else>
 <a href="javascript:void(0)">
 </#if>
-<#if parameters.title?if_exists != "">
-${parameters.title?html}
+<#if parameters.menuIcon?if_exists != "">
+<span class="ui-icon ${parameters.menuIcon?html}"></span><#rt/>
 </#if>
-</a>
+<#if parameters.title?if_exists != "">
+${parameters.title?html}<#rt/>
+</#if>
+</a><#rt/>
