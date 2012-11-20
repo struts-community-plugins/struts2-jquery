@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.showcase;
+package com.jgeppert.struts2.jquery.showcase.tree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -31,15 +31,14 @@ import org.apache.struts2.convention.annotation.Result;
 import com.jgeppert.struts2.jquery.tree.result.TreeNode;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
+@Actions( { @Action(value = "/json-tree-data", results = { @Result(name = "success", type = "json", params = {
+		"root", "nodes" }) }) })
 public class JsonTreeData extends ActionSupport {
 
 	private static final long serialVersionUID = -2886756982077980790L;
 	private List<TreeNode> nodes = new ArrayList<TreeNode>();
 	private String id = "";
 
-	@Actions( { @Action(value = "/json-tree-data", results = { @Result(name = "success", type = "json", params = {
-			"root", "nodes" }) }) })
 	public String execute() {
 
 		TreeNode nodeA = new TreeNode();

@@ -1,90 +1,107 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
-<h2>Grid</h2>
+<h2>Grid (Editable/Multiselect)</h2>
 
 <p class="text">
-	A Grid with local data and grouping.
+	A editable Grid with pager and navigator. This Grid is sortable by name column and multiple rows can be selected.
 </p>
-<s:url var="remoteurl" action="jsontable">
-	<s:param name="loadonce" value="%{true}"/>
-</s:url>
+<s:url var="remoteurl" action="grid-data-provider" namespace="/grid"/>
+<s:url var="editurl" action="edit-grid-entry" namespace="/grid"/>
 <sjg:grid
-		id="gridgrouping"
-		caption="Customers Examples (Grouping)"
-		loadonce="true"
+		id="gridmultitable"
+		caption="Customers Examples (Editable/Multiselect)"
+		dataType="json"
 		href="%{remoteurl}"
-		gridModel="gridModel"
-		groupField="['country']"
-		groupColumnShow="[false]"
-		groupCollapse="true"
-		groupText="['<b>{0} - {1} Customer(s)</b>']"
-		navigator="true"
-		navigatorAdd="false"
-		navigatorEdit="false"
-		navigatorDelete="false"
-		navigatorView="true"
-		rowTotal="70"
-		rowNum="-1"
-		altRows="true"
-		viewrecords="true"
 		pager="true"
-		pagerButtons="false"
-		pagerInput="false"
+		toppager="true"
+		navigator="true"
+		navigatorSearchOptions="{sopt:['eq','ne','lt','gt']}"
+		navigatorAddOptions="{height:280,reloadAfterSubmit:true}"
+		navigatorEditOptions="{height:280,reloadAfterSubmit:false}"
+		navigatorEdit="true"
+		navigatorView="true"
+		navigatorDelete="true"
+		navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
+		gridModel="gridModel"
+		rowList="10,15,20"
+		rowNum="15"
+		editurl="%{editurl}"
+		multiselect="true"
 		>
-	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
-	<sjg:gridColumn name="name" index="name" title="Name" sortable="true"/>
-	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="true"/>
-	<sjg:gridColumn name="country" index="country" title="Country" sortable="false"/>
-	<sjg:gridColumn name="city" index="city" title="City" sortable="false"/>
+	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" editable="false" sortable="false"
+	                search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
+	<sjg:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true"
+	                search="false"/>
+	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" hidden="true"/>
+	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" hidden="true"/>
+	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" hidden="true"/>
+	<sjg:gridColumn name="country" index="country" title="Country" editable="true" edittype="select"
+	                editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}"
+	                sortable="false" search="false"/>
+	<sjg:gridColumn name="city" index="city" title="City" editable="true" edittype="text" sortable="false"
+	                search="false"/>
 	<sjg:gridColumn name="creditLimit" index="creditLimit" title="Credit Limit" align="right" formatter="currency"
-	                sortable="false"/>
+	                editable="true" edittype="text" sortable="false" search="false"/>
 </sjg:grid>
+<br/>
+<sj:submit id="grid_multi_getselectedbutton" value="Get Selected Rows" onClickTopics="getselectedids" button="true"/>
 
 <br/>
 <sj:tabbedpanel id="localtabs" cssClass="list">
-<sj:tab id="tab1" target="jsp" label="JSP"/>
-<sj:tab id="tab2" target="java" label="Struts2 Action"/>
+<sj:tab id="tab1" target="javascript" label="JavaScript"/>
+<sj:tab id="tab2" target="jsp" label="JSP"/>
+<sj:tab id="tab3" target="java" label="Struts2 Action"/>
+<div id="javascript">
+	  <pre>
+    $.subscribe('getselectedids', function(event,data) {
+    	var s;
+    	s = $(&quot;#gridmultitable&quot;).jqGrid('getGridParam','selarrrow');
+    	alert('Selected Rows : '+s);
+  	});
+	  </pre>
+</div>
 <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;&gt;
-    	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
-    &lt;/s:url&gt;
-    &lt;sjg:grid
-    	id=&quot;gridgrouping&quot;
-    	caption=&quot;Customers Examples (Grouping)&quot;
-    	loadonce=&quot;true&quot;
+    &lt;s:url id=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;/&gt;
+    &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt;
+    &lt;sj:grid
+    	id=&quot;gridmultitable&quot;
+    	caption=&quot;Customer Examples (Editable/Multiselect)&quot;
+    	dataType=&quot;json&quot;
     	href=&quot;%{remoteurl}&quot;
-    	gridModel=&quot;gridModel&quot;
-    	groupField=&quot;['country']&quot;
-    	groupColumnShow=&quot;[false]&quot;
-    	groupCollapse=&quot;true&quot;
-    	groupText=&quot;['&lt;b&gt;{0} - {1} Customer(s)&lt;/b&gt;']&quot;
-    	navigator=&quot;true&quot;
-    	navigatorAdd=&quot;false&quot;
-    	navigatorEdit=&quot;false&quot;
-    	navigatorDelete=&quot;false&quot;
-    	navigatorView=&quot;true&quot;
-    	rowTotal=&quot;70&quot;
-    	rowNum=&quot;-1&quot;
-    	altRows=&quot;true&quot;
-    	viewrecords=&quot;true&quot;
     	pager=&quot;true&quot;
-    	pagerButtons=&quot;false&quot;
-    	pagerInput=&quot;false&quot;
+    	navigator=&quot;true&quot;
+    	navigatorSearchOptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;
+    	navigatorAddOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
+    	navigatorEditOptions=&quot;{height:280,reloadAfterSubmit:false}&quot;
+    	navigatorEdit=&quot;true&quot;
+    	navigatorView=&quot;true&quot;
+    	navigatorDelete=&quot;true&quot;
+    	navigatorDeleteOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
+    	gridModel=&quot;gridModel&quot;
+    	rowList=&quot;10,15,20&quot;
+    	rowNum=&quot;15&quot;
+    	editurl=&quot;%{editurl}&quot;
+    	multiselect=&quot;true&quot;
+    	onSelectRowTopics=&quot;rowselect&quot;
     &gt;
-    	&lt;sjg:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;30&quot; formatter=&quot;integer&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; sortable=&quot;true&quot;/&gt;
-		&lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; sortable=&quot;false&quot;/&gt;
-    &lt;/sjg:grid&gt;
+    	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot; editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; formatter=&quot;currency&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    &lt;/sj:grid&gt;
+	&lt;br/&gt;
+    &lt;sj:submit id=&quot;grid_multi_getselectedbutton&quot; value=&quot;Get Selected Rows&quot; onClickTopics=&quot;getselectedids&quot; button=&quot;true&quot;/&gt;
 	  </pre>
 </div>
 <div id="java">
 <pre>
-package com.jgeppert.struts2.jquery.showcase;
+package com.jgeppert.struts2.jquery.showcase.grid;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -103,11 +120,11 @@ import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = &quot;showcase&quot;)
-public class JsonTable extends ActionSupport implements SessionAware {
+@Result(name = &quot;success&quot;, type = &quot;json&quot;)
+public class GridDataProvider extends ActionSupport implements SessionAware {
 
   private static final long   serialVersionUID = 5078264277068533593L;
-  private static final Log    log              = LogFactory.getLog(JsonTable.class);
+  private static final Log    log              = LogFactory.getLog(GridDataProvider.class);
 
   // Your result List
   private List&lt;Customer&gt;      gridModel;
@@ -148,11 +165,6 @@ public class JsonTable extends ActionSupport implements SessionAware {
   private Map&lt;String, Object&gt; session;
   private List&lt;Customer&gt;      myCustomers;
 
-  @Actions( {
-    @Action(value = &quot;/jsontable&quot;, results = {
-      @Result(name = &quot;success&quot;, type = &quot;json&quot;)
-    })
-  })
   public String execute()
   {
     log.debug(&quot;Page &quot; + getPage() + &quot; Rows &quot; + getRows() + &quot; Sorting Order &quot; + getSord() + &quot; Index Row :&quot; + getSidx());
@@ -422,6 +434,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
   }
 
 }
+
 	  </pre>
 </div>
 </sj:tabbedpanel>

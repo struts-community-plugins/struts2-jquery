@@ -1,4 +1,4 @@
-package com.jgeppert.struts2.jquery.showcase;
+package com.jgeppert.struts2.jquery.showcase.model;
 
 public class AccordionBean {
   String title;

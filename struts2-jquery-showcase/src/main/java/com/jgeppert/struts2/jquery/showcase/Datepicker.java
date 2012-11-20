@@ -28,7 +28,6 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
 public class Datepicker extends ActionSupport {
 
   private static final long serialVersionUID = 7641453994518254115L;

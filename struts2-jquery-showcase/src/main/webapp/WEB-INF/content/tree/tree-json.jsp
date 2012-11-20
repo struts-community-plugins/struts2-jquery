@@ -6,7 +6,7 @@
 <p class="text">
 	A Tree Component with a JSON Data Source.
 </p>
-<s:url var="treeDataUrl" action="json-tree-data"/>
+<s:url var="treeDataUrl" action="json-tree-data" namespace="/tree"/>
 <sjt:tree
 		id="jsonTree"
 		href="%{treeDataUrl}"

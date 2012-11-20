@@ -29,7 +29,6 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
 public class Accordion extends ActionSupport
 {
 

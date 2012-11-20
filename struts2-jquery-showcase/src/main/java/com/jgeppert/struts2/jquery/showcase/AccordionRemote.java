@@ -22,13 +22,12 @@ package com.jgeppert.struts2.jquery.showcase;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.jgeppert.struts2.jquery.showcase.model.AccordionBean;
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
 public class AccordionRemote extends ActionSupport {
 
   private static final long   serialVersionUID = -3066791113091431706L;

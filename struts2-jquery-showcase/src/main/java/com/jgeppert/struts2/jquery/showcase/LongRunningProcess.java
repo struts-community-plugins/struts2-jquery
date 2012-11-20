@@ -27,7 +27,6 @@ import org.apache.struts2.convention.annotation.Result;
 import com.opensymphony.xwork2.ActionSupport;
 
 @InterceptorRef("execAndWait")
-@ParentPackage(value = "showcase")
 public class LongRunningProcess extends ActionSupport {
 
     private static final long serialVersionUID = 191303420519684012L;

@@ -6,10 +6,10 @@
 <p class="text">
 	A Grid that loads data only once on initialization. The column Credit Limit is editable.
 </p>
-<s:url var="remoteurl" action="jsontable">
+<s:url var="remoteurl" action="grid-data-provider" namespace="/grid">
 	<s:param name="loadonce" value="%{true}"/>
 </s:url>
-<s:url var="editcellurl" action="edit-cell-entry"/>
+<s:url var="editcellurl" action="edit-cell-entry" namespace="/grid"/>
 <sjg:grid
 		id="gridloadtable"
 		loadonce="true"
@@ -63,10 +63,10 @@
 <sj:tab id="tab2" target="java" label="Struts2 Action"/>
 <div id="jsp">
 	  <pre>
-   &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsontable&quot;&gt;
+   &lt;s:url id=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;&gt;
     	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
     &lt;/s:url&gt;
-    &lt;s:url id=&quot;editcellurl&quot; action=&quot;edit-cell-entry&quot;/&gt;
+    &lt;s:url id=&quot;editcellurl&quot; action=&quot;edit-cell-entry&quot; namespace=&quot;/grid&quot;/&gt;
     &lt;sj:grid
     	id=&quot;gridloadtable&quot;
     	loadonce=&quot;true&quot;
@@ -108,10 +108,9 @@
 </div>
 <div id="java">
 <pre>
-package com.jgeppert.struts2.jquery.showcase;
+package com.jgeppert.struts2.jquery.showcase.grid;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -128,34 +127,54 @@ import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = &quot;showcase&quot;)
-public class JsonTable extends ActionSupport implements SessionAware {
+@Result(name = &quot;success&quot;, type = &quot;json&quot;)
+public class GridDataProvider extends ActionSupport implements SessionAware {
 
   private static final long   serialVersionUID = 5078264277068533593L;
-  private static final Log    log              = LogFactory.getLog(JsonTable.class);
+  private static final Log    log              = LogFactory.getLog(GridDataProvider.class);
 
+  // Your result List
   private List&lt;Customer&gt;      gridModel;
-  private List&lt;Customer&gt;      myCustomers;
+
+  // get how many rows we want to have into the grid - rowNum attribute in the
+  // grid
   private Integer             rows             = 0;
+
+  // Get the requested page. By default grid sets this to 1.
   private Integer             page             = 0;
-  private Integer             total            = 0;
-  private Integer             record           = 0;
+
+  // sorting order - asc or desc
   private String              sord;
+
+  // get index row - i.e. user click to sort.
   private String              sidx;
+
+  // Search Field
   private String              searchField;
+
+  // The Search String
   private String              searchString;
+
+  // Limit the result when using local data, value form attribute rowTotal
+  private Integer             totalrows;
+
+  // he Search Operation
+  // ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']
   private String              searchOper;
+
+  // Your Total Pages
+  private Integer             total            = 0;
+
+  // All Records
+  private Integer             records          = 0;
+
   private boolean             loadonce         = false;
   private Map&lt;String, Object&gt; session;
+  private List&lt;Customer&gt;      myCustomers;
 
-  @Actions( {
-    @Action(value = &quot;/jsontable&quot;, results = {
-      @Result(name = &quot;success&quot;, type = &quot;json&quot;)
-    })
-  })
   public String execute()
   {
-    log.debug(&quot;Page &quot; + getPage()+&quot; Rows &quot; + getRows() +&quot; Sorting Order &quot;+ getSord()+&quot; Index Row :&quot; + getSidx());
+    log.debug(&quot;Page &quot; + getPage() + &quot; Rows &quot; + getRows() + &quot; Sorting Order &quot; + getSord() + &quot; Index Row :&quot; + getSidx());
     log.debug(&quot;Search :&quot; + searchField + &quot; &quot; + searchOper + &quot; &quot; + searchString);
 
     Object list = session.get(&quot;mylist&quot;);
@@ -169,29 +188,48 @@ public class JsonTable extends ActionSupport implements SessionAware {
       myCustomers = CustomerDAO.buildList();
     }
 
-    if (getSord() != null &amp;&amp; getSord().equalsIgnoreCase(&quot;asc&quot;))
+    if (sord != null &amp;&amp; sord.equalsIgnoreCase(&quot;asc&quot;))
     {
       Collections.sort(myCustomers);
     }
-    if (getSord() != null &amp;&amp; getSord().equalsIgnoreCase(&quot;desc&quot;))
+    if (sord != null &amp;&amp; sord.equalsIgnoreCase(&quot;desc&quot;))
     {
       Collections.sort(myCustomers);
       Collections.reverse(myCustomers);
     }
 
-    setRecord(CustomerDAO.getCustomersCount(myCustomers));
+    // Count all record (select count(*) from your_custumers)
+    records = CustomerDAO.getCustomersCount(myCustomers);
 
-    int to = (getRows() * getPage());
-    int from = to - getRows();
+    if (totalrows != null)
+    {
+      records = totalrows;
+    }
 
-    if (to &gt; getRecord()) to = getRecord();
+    // Calucalate until rows ware selected
+    int to = (rows * page);
+
+    // Calculate the first row to read
+    int from = to - rows;
+
+    // Set to = max rows
+    if (to &gt; records) to = records;
 
     if (loadonce)
     {
-      setGridModel(myCustomers);
+      if (totalrows != null &amp;&amp; totalrows &gt; 0)
+      {
+        setGridModel(myCustomers.subList(0, totalrows));
+      }
+      else
+      {
+        // All Custumer
+        setGridModel(myCustomers);
+      }
     }
     else
     {
+      // Search Custumers
       if (searchString != null &amp;&amp; searchOper != null)
       {
         int id = Integer.parseInt(searchString);
@@ -199,7 +237,10 @@ public class JsonTable extends ActionSupport implements SessionAware {
         {
           log.debug(&quot;search id equals &quot; + id);
           List&lt;Customer&gt; cList = new ArrayList&lt;Customer&gt;();
-          cList.add(CustomerDAO.findById(myCustomers, id));
+          Customer customer = CustomerDAO.findById(myCustomers, id);
+
+          if (customer != null) cList.add(customer);
+
           setGridModel(cList);
         }
         else if (searchOper.equalsIgnoreCase(&quot;ne&quot;))
@@ -224,8 +265,10 @@ public class JsonTable extends ActionSupport implements SessionAware {
       }
     }
 
-    setTotal((int) Math.ceil((double) getRecord() / (double) getRows()));
+    // Calculate total Pages
+    total = (int) Math.ceil((double) records / (double) rows);
 
+    // only for showcase functionality, don't do this in production
     session.put(&quot;mylist&quot;, myCustomers);
 
     return SUCCESS;
@@ -291,9 +334,9 @@ public class JsonTable extends ActionSupport implements SessionAware {
    * @return total number of records for the query. e.g. select count(*) from
    *         table
    */
-  public Integer getRecord()
+  public Integer getRecords()
   {
-    return record;
+    return records;
   }
 
   /**
@@ -301,14 +344,14 @@ public class JsonTable extends ActionSupport implements SessionAware {
    *          total number of records for the query. e.g. select count(*) from
    *          table
    */
-  public void setRecord(Integer record)
+  public void setRecords(Integer records)
   {
 
-    this.record = record;
+    this.records = records;
 
-    if (this.record &gt; 0 &amp;&amp; this.rows &gt; 0)
+    if (this.records &gt; 0 &amp;&amp; this.rows &gt; 0)
     {
-      this.total = (int) Math.ceil((double) this.record / (double) this.rows);
+      this.total = (int) Math.ceil((double) this.records / (double) this.rows);
     }
     else
     {
@@ -392,7 +435,13 @@ public class JsonTable extends ActionSupport implements SessionAware {
     this.session = session;
   }
 
+  public void setTotalrows(Integer totalrows)
+  {
+    this.totalrows = totalrows;
+  }
+
 }
+
 	  </pre>
 </div>
 </sj:tabbedpanel>

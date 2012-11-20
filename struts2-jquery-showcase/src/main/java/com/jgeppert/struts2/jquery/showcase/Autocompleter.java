@@ -34,7 +34,6 @@ import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
 public class Autocompleter extends ActionSupport {
 
   private static final long     serialVersionUID = -3066791113091431706L;

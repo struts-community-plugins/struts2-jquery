@@ -55,7 +55,7 @@
 			<sj:menu id="subMenuAjaxForms">
 
 				<s:url var="urlform" action="form"/>
-				<sj:menuItem id="remoteformlink" href="%{urlform}" targets="content" title="AJAX Forms" />
+				<sj:menuItem id="remoteform" href="%{urlform}" targets="content" title="AJAX Forms" />
 
 				<s:url var="urlformeffect" action="form-effect"/>
 				<sj:menuItem id="remoteformeffectlink" href="%{urlformeffect}" targets="content" title="Forms with Effects" />

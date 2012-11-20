@@ -25,7 +25,6 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
 public class Ajax3 extends ActionSupport {
 
   private static final long serialVersionUID = -1752349066940782737L;

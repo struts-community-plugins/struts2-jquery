@@ -83,19 +83,19 @@
 		<sj:menuItem title="Grid">
 			<sj:menu id="subMenuGrid">
 
-				<s:url var="urlgrid" action="grid"/>
+				<s:url var="urlgrid" action="grid" namespace="/grid"/>
 				<sj:menuItem id="gridink" href="%{urlgrid}" targets="content" title="Grid" />
 
-				<s:url var="urlgridedit" action="grid-edit"/>
+				<s:url var="urlgridedit" action="grid-edit" namespace="/grid"/>
 				<sj:menuItem id="grideditlink" href="%{urlgridedit}" targets="content" title="Grid (Editable)" />
 
-				<s:url var="urlgridmulti" action="grid-multi"/>
+				<s:url var="urlgridmulti" action="grid-multi" namespace="/grid"/>
 				<sj:menuItem id="gridmultilink" href="%{urlgridmulti}" targets="content" title="Grid (Editable/Multiselect)" />
 
-				<s:url var="urlgridloadonce" action="grid-loadonce"/>
+				<s:url var="urlgridloadonce" action="grid-loadonce" namespace="/grid"/>
 				<sj:menuItem id="gridloadoncelink" href="%{urlgridloadonce}" targets="content" title="Grid (Local Data)" />
 
-				<s:url var="urlgridgrouping" action="grid-grouping"/>
+				<s:url var="urlgridgrouping" action="grid-grouping" namespace="/grid"/>
 				<sj:menuItem id="gridgroupinglink" href="%{urlgridgrouping}" targets="content" title="Grid (Grouping)" />
 
 			</sj:menu>
@@ -185,10 +185,10 @@
 		<sj:menuItem title="Tree">
 			<sj:menu id="subMenuTree">
 
-				<s:url var="urltree" action="tree"/>
+				<s:url var="urltree" action="tree" namespace="/tree"/>
 				<sj:menuItem id="treelink" href="%{urltree}" targets="content" title="Tree" />
 
-				<s:url var="urltreejson" action="tree-json"/>
+				<s:url var="urltreejson" action="tree-json" namespace="/tree"/>
 				<sj:menuItem id="treejsonlink" href="%{urltreejson}" targets="content" title="Tree (JSON Data)" />
 
 			</sj:menu>

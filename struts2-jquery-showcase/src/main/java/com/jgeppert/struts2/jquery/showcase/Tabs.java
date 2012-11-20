@@ -25,7 +25,6 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
 public class Tabs extends ActionSupport {
 
   private static final long serialVersionUID = 621496832249551748L;

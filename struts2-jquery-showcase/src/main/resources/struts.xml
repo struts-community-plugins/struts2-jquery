@@ -28,6 +28,7 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="false" />
     <constant name="struts.convention.action.packages" value="com.jgeppert.struts2.jquery.showcase"/>
+    <constant name="struts.convention.default.parent.package" value="json-default"/>
     <constant name="struts.custom.i18n.resources" value="messages" />
     
     
@@ -36,5 +37,5 @@
     <constant name="struts.ckeditor.allowedFileExtensions" value="jpg,jpeg,png" />
     <constant name="sstruts.ckeditor.uploadFolder" value="/imageUploads" />
     
-    <include file="showcase.xml" />
+    <!-- include file="showcase.xml" / -->
 </struts>

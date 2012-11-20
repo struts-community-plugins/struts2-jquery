@@ -25,14 +25,13 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
+import com.jgeppert.struts2.jquery.showcase.model.ListValue;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
 public class JsonChartData extends ActionSupport {
 
 	private static final long serialVersionUID = -1868891788172934382L;

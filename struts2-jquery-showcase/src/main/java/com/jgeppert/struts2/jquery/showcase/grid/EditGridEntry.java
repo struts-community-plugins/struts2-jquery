@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.jgeppert.struts2.jquery.showcase;
+package com.jgeppert.struts2.jquery.showcase.grid;
 
 import java.util.List;
 import java.util.Map;
@@ -36,8 +36,11 @@ import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
-public class EditGridEntry extends ActionSupport implements SessionAware {
+@Actions( {
+		@Action(value = "/edit-grid-entry", results = {
+				@Result(location = "../simpleecho.jsp", name = "success"), @Result(location = "../simpleecho.jsp", name = "input")
+		})
+})public class EditGridEntry extends ActionSupport implements SessionAware {
 
   private static final long   serialVersionUID = -3454448309088641394L;
   private static final Log    log              = LogFactory.getLog(EditGridEntry.class);
@@ -51,11 +54,7 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
   private Map<String, Object> session;
   private List<Customer>      myCustomers;
 
-  @Actions( {
-    @Action(value = "/edit-grid-entry", results = {
-        @Result(location = "simpleecho.jsp", name = "success"), @Result(location = "simpleecho.jsp", name = "input")
-    })
-  })
+
   public String execute() throws Exception
   {
     log.debug("id :" + id);

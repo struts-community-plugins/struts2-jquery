@@ -1,4 +1,4 @@
-package com.jgeppert.struts2.jquery.showcase;
+package com.jgeppert.struts2.jquery.showcase.tree;
 
 import java.util.LinkedList;
 
@@ -8,12 +8,12 @@ import org.apache.struts2.convention.annotation.Result;
 import com.jgeppert.struts2.jquery.tree.result.TreeNode;
 import com.opensymphony.xwork2.ActionSupport;
 
+@Action(value = "/tree", results = { @Result(location = "tree.jsp", name = "success") })
 public class Tree extends ActionSupport{
 	private static final long serialVersionUID = 6518221459701336965L;
 	
 	private TreeNode nodes = new TreeNode();
 	
-	@Action(value = "/tree", results = { @Result(location = "tree.jsp", name = "success") })
 	public String execute() throws Exception {
 		TreeNode nodeA = new TreeNode();
 		nodeA.setId("A");

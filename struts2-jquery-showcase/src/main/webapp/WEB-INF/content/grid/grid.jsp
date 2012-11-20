@@ -1,23 +1,66 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
+<h2>Grid</h2>
 
-package com.jgeppert.struts2.jquery.showcase;
+<p class="text">
+	A simple grid with pager. This Grid is sortable by name column.
+</p>
+<s:url var="remoteurl" action="grid-data-provider" namespace="/grid"/>
+<sjg:grid
+		id="gridtable"
+		caption="Customers Examples"
+		dataType="json"
+		href="%{remoteurl}"
+		pager="true"
+		gridModel="gridModel"
+		rowList="10,15,20"
+		rowNum="15"
+		rownumbers="true"
+		resizable="true"
+		resizableAnimate="true"
+		resizableGhost="true"
+		resizableHandles="all"
+		width="700"
+		shrinkToFit="false"
+		>
+	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false" displayTitle="false"/>
+	<sjg:gridColumn name="name" index="name" title="Name" width="290" sortable="true"/>
+	<sjg:gridColumn name="country" index="country" width="100" title="Country" sortable="false"/>
+	<sjg:gridColumn name="city" index="city" width="100" title="City" sortable="false"/>
+	<sjg:gridColumn name="creditLimit" index="creditLimit" width="100" title="Credit Limit" align="right"
+	                formatter="currency" sortable="false"/>
+</sjg:grid>
+
+<br/>
+<sj:tabbedpanel id="localtabs" cssClass="list">
+<sj:tab id="tab1" target="jsp" label="JSP"/>
+<sj:tab id="tab2" target="java" label="Struts2 Action"/>
+<div id="jsp">
+	  <pre>
+    &lt;s:url id=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;/&gt;
+    &lt;sj:grid
+    	id=&quot;gridtable&quot;
+    	caption=&quot;Customer Examples&quot;
+    	dataType=&quot;json&quot;
+    	href=&quot;%{remoteurl}&quot;
+    	pager=&quot;true&quot;
+    	gridModel=&quot;gridModel&quot;
+    	rowList=&quot;10,15,20&quot;
+    	rowNum=&quot;15&quot;
+    	rownumbers=&quot;true&quot;
+    &gt;
+    	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; sortable=&quot;true&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;false&quot;/&gt;
+    	&lt;sj:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; formatter=&quot;currency&quot; sortable=&quot;false&quot;/&gt;
+    &lt;/sj:grid&gt;
+	  </pre>
+</div>
+<div id="java">
+<pre>
+package com.jgeppert.struts2.jquery.showcase.grid;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,14 +79,14 @@ import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage(value = "showcase")
-public class JsonTable extends ActionSupport implements SessionAware {
+@Result(name = &quot;success&quot;, type = &quot;json&quot;)
+public class GridDataProvider extends ActionSupport implements SessionAware {
 
   private static final long   serialVersionUID = 5078264277068533593L;
-  private static final Log    log              = LogFactory.getLog(JsonTable.class);
+  private static final Log    log              = LogFactory.getLog(GridDataProvider.class);
 
   // Your result List
-  private List<Customer>      gridModel;
+  private List&lt;Customer&gt;      gridModel;
 
   // get how many rows we want to have into the grid - rowNum attribute in the
   // grid
@@ -78,35 +121,30 @@ public class JsonTable extends ActionSupport implements SessionAware {
   private Integer             records          = 0;
 
   private boolean             loadonce         = false;
-  private Map<String, Object> session;
-  private List<Customer>      myCustomers;
+  private Map&lt;String, Object&gt; session;
+  private List&lt;Customer&gt;      myCustomers;
 
-  @Actions( {
-    @Action(value = "/jsontable", results = {
-      @Result(name = "success", type = "json")
-    })
-  })
   public String execute()
   {
-    log.debug("Page " + getPage() + " Rows " + getRows() + " Sorting Order " + getSord() + " Index Row :" + getSidx());
-    log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
+    log.debug(&quot;Page &quot; + getPage() + &quot; Rows &quot; + getRows() + &quot; Sorting Order &quot; + getSord() + &quot; Index Row :&quot; + getSidx());
+    log.debug(&quot;Search :&quot; + searchField + &quot; &quot; + searchOper + &quot; &quot; + searchString);
 
-    Object list = session.get("mylist");
+    Object list = session.get(&quot;mylist&quot;);
     if (list != null)
     {
-      myCustomers = (List<Customer>) list;
+      myCustomers = (List&lt;Customer&gt;) list;
     }
     else
     {
-      log.debug("Build new List");
+      log.debug(&quot;Build new List&quot;);
       myCustomers = CustomerDAO.buildList();
     }
 
-    if (sord != null && sord.equalsIgnoreCase("asc"))
+    if (sord != null &amp;&amp; sord.equalsIgnoreCase(&quot;asc&quot;))
     {
       Collections.sort(myCustomers);
     }
-    if (sord != null && sord.equalsIgnoreCase("desc"))
+    if (sord != null &amp;&amp; sord.equalsIgnoreCase(&quot;desc&quot;))
     {
       Collections.sort(myCustomers);
       Collections.reverse(myCustomers);
@@ -127,11 +165,11 @@ public class JsonTable extends ActionSupport implements SessionAware {
     int from = to - rows;
 
     // Set to = max rows
-    if (to > records) to = records;
+    if (to &gt; records) to = records;
 
     if (loadonce)
     {
-      if (totalrows != null && totalrows > 0)
+      if (totalrows != null &amp;&amp; totalrows &gt; 0)
       {
         setGridModel(myCustomers.subList(0, totalrows));
       }
@@ -144,32 +182,32 @@ public class JsonTable extends ActionSupport implements SessionAware {
     else
     {
       // Search Custumers
-      if (searchString != null && searchOper != null)
+      if (searchString != null &amp;&amp; searchOper != null)
       {
         int id = Integer.parseInt(searchString);
-        if (searchOper.equalsIgnoreCase("eq"))
+        if (searchOper.equalsIgnoreCase(&quot;eq&quot;))
         {
-          log.debug("search id equals " + id);
-          List<Customer> cList = new ArrayList<Customer>();
+          log.debug(&quot;search id equals &quot; + id);
+          List&lt;Customer&gt; cList = new ArrayList&lt;Customer&gt;();
           Customer customer = CustomerDAO.findById(myCustomers, id);
 
           if (customer != null) cList.add(customer);
 
           setGridModel(cList);
         }
-        else if (searchOper.equalsIgnoreCase("ne"))
+        else if (searchOper.equalsIgnoreCase(&quot;ne&quot;))
         {
-          log.debug("search id not " + id);
+          log.debug(&quot;search id not &quot; + id);
           setGridModel(CustomerDAO.findNotById(myCustomers, id, from, to));
         }
-        else if (searchOper.equalsIgnoreCase("lt"))
+        else if (searchOper.equalsIgnoreCase(&quot;lt&quot;))
         {
-          log.debug("search id lesser then " + id);
+          log.debug(&quot;search id lesser then &quot; + id);
           setGridModel(CustomerDAO.findLesserAsId(myCustomers, id, from, to));
         }
-        else if (searchOper.equalsIgnoreCase("gt"))
+        else if (searchOper.equalsIgnoreCase(&quot;gt&quot;))
         {
-          log.debug("search id greater then " + id);
+          log.debug(&quot;search id greater then &quot; + id);
           setGridModel(CustomerDAO.findGreaterAsId(myCustomers, id, from, to));
         }
       }
@@ -183,7 +221,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
     total = (int) Math.ceil((double) records / (double) rows);
 
     // only for showcase functionality, don't do this in production
-    session.put("mylist", myCustomers);
+    session.put(&quot;mylist&quot;, myCustomers);
 
     return SUCCESS;
   }
@@ -263,7 +301,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
 
     this.records = records;
 
-    if (this.records > 0 && this.rows > 0)
+    if (this.records &gt; 0 &amp;&amp; this.rows &gt; 0)
     {
       this.total = (int) Math.ceil((double) this.records / (double) this.rows);
     }
@@ -276,7 +314,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
   /**
    * @return an collection that contains the actual data
    */
-  public List<Customer> getGridModel()
+  public List&lt;Customer&gt; getGridModel()
   {
     return gridModel;
   }
@@ -285,7 +323,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
    * @param gridModel
    *          an collection that contains the actual data
    */
-  public void setGridModel(List<Customer> gridModel)
+  public void setGridModel(List&lt;Customer&gt; gridModel)
   {
     this.gridModel = gridModel;
   }
@@ -344,7 +382,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
     this.loadonce = loadonce;
   }
 
-  public void setSession(Map<String, Object> session)
+  public void setSession(Map&lt;String, Object&gt; session)
   {
     this.session = session;
   }
@@ -355,3 +393,7 @@ public class JsonTable extends ActionSupport implements SessionAware {
   }
 
 }
+
+	  </pre>
+</div>
+</sj:tabbedpanel>
