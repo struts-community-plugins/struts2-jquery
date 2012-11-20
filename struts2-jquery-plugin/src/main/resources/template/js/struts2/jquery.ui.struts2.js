@@ -174,8 +174,7 @@
 
 	/** Handle the Dialog Widget */
 	dialog : function($elem, o) {
-		var self = this,
-			widgetInst = $(".ui-dialog").has(self.escId(o.id));
+		var self = this;
 		self.log('dialog : ' + o.id);
 
 		var jsFiles = [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.dialog" + self.minSuffix + ".js" ];
@@ -201,13 +200,6 @@
 		if (!self.loadAtOnce) {
 			self.require(jsFiles);
 		}
-
-		// Remove existing Dialog Instances
-		if(widgetInst.length > 0) {
-			$("div"+self.escId(o.id)).dialog("destroy").remove();
-		}
-
-		o.bgiframe = true;
 
 		if(o.opentopics) {
 			self.subscribeTopics($elem, o.opentopics, self.handler.open_dialog, o);
