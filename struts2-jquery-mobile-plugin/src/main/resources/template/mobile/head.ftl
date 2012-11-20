@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-<#assign jQueryVersion="1.8.2">
+<#assign jQueryVersion="1.8.3">
 <#assign struts2jQueryVersion="${version}">
 
 <#include "/${parameters.templateDir}/jquery/head.ftl" />
