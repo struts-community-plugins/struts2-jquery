@@ -64,6 +64,13 @@
 				o.plugins.push("checkbox");
 				o.checkbox = { override_ui : true, real_checkboxes : true, real_checkboxes_names : function (n) { return [o.name, n.attr ? n.attr("id") : 0 ] }};
 				if(o.two_state) { o.checkbox.two_state = true; }
+				$elem.bind('loaded.jstree', function (event, data){
+					$elem.find('li').each(function(i) {
+						if($(this).data('checked')==true){
+							$elem.jstree("check_node", $(this) );
+						}
+					}); 
+				}); 
 			}
 			
 			if(o.checkAllTopics) {
@@ -156,8 +163,8 @@
 			if(o.openload) {
 				$elem.bind('loaded.jstree', function (event, data){
 					$elem.jstree('open_all'); 
-		    });
-		  }
+				});
+			}
 			if(o.openrefresh) {
 				$elem.bind('refresh.jstree', function (event, data){
 					$elem.jstree('open_all'); 

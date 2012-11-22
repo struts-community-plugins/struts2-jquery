@@ -24,6 +24,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.util.ContainUtil;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
@@ -158,6 +159,14 @@ public class Tree extends AbstractContainer {
 	    this.id = "tree" + String.valueOf(nextInt);
 	    addParameter("id", this.id);
 	}
+    }
+
+    public boolean contains(Object obj1, Object obj2) {
+	return ContainUtil.contains(obj1, obj2);
+    }
+    
+    protected Class getValueClassType() {
+        return null; // don't convert nameValue to anything, we need the raw value
     }
 
     @Override

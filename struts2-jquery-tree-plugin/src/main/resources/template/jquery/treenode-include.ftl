@@ -18,37 +18,45 @@
  * under the License.
  */
 -->
-		<li id="${stack.findValue(parameters.nodeIdProperty)}"
+		<#assign itemId = stack.findValue(parameters.nodeIdProperty)/>
+		<li id="${itemId}"
 		<#if parameters.nodeTypeProperty?if_exists != ""> 
 			<#if stack.findValue(parameters.nodeTypeProperty)??> 
 			rel="${stack.findValue(parameters.nodeTypeProperty)}"
 			</#if>
 		</#if>
+		<#if parameters.checkbox?default(false)>
+	    <#if tag.contains(parameters.nameValue, itemId) == true>
+			data-checked="true"<#rt/>
+		<#else>
+			data-checked="false"<#rt/>
+		</#if>
+		</#if>
 		>
     <#if parameters.nodeHref?exists>
 		<#if parameters.nodeTargets?if_exists != ""> 
-			<a id="${stack.findValue(parameters.nodeIdProperty)}_anchor" href="javascript:void(0)">
+			<a id="${itemId}_anchor" href="javascript:void(0)">
     				${stack.findValue(parameters.nodeTitleProperty)}
 			</a>
-			<#assign escapedOptionId="${stack.findValue(parameters.nodeIdProperty)?string?replace('.', '_')}_anchor">
-			<#assign escapedId="${stack.findValue(parameters.nodeIdProperty)?string?replace('.', '\\\\\\\\.')}_anchor">
+			<#assign escapedOptionId="${itemId?string?replace('.', '_')}_anchor">
+			<#assign escapedId="${itemId?string?replace('.', '\\\\\\\\.')}_anchor">
 			<script type='text/javascript'>
 				jQuery(document).ready(function () { 
 					var options_${escapedOptionId?html} = {};
 					options_${escapedOptionId?html}.jqueryaction = "treeitem";
-					options_${escapedOptionId?html}.id = "${stack.findValue(parameters.nodeIdProperty)}_anchor";
+					options_${escapedOptionId?html}.id = "${itemId}_anchor";
 				  <#if parameters.nodeTargets?if_exists != "">
 					options_${escapedOptionId?html}.targets = "${parameters.nodeTargets?html}";
 				  </#if>
 				  <#if parameters.nodeHref?if_exists != "">
 					options_${escapedOptionId?html}.href = "${parameters.nodeHref?html}";
 				  </#if>
-					options_${escapedOptionId?html}.hrefparameter = "${parameters.nodeHrefParamName?default('id')}=${stack.findValue(parameters.nodeIdProperty)}";
+					options_${escapedOptionId?html}.hrefparameter = "${parameters.nodeHrefParamName?default('id')}=${itemId}";
 					jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
 		 		});  
 			</script>
 	    <#else>
-			<a href="${parameters.nodeHref}?${parameters.nodeHrefParamName?default('id')}=${stack.findValue(parameters.nodeIdProperty)}">
+			<a href="${parameters.nodeHref}?${parameters.nodeHrefParamName?default('id')}=${itemId}">
     				${stack.findValue(parameters.nodeTitleProperty)}
 			</a>
 		</#if>
