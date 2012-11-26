@@ -27,7 +27,7 @@
  *
  * V. 1.1: Fix error handling so e.g. parsing an empty string does
  * produce a color rather than just crashing.
- */ 
+ */
 (function(B){B.color={};B.color.make=function(F,E,C,D){var G={};G.r=F||0;G.g=E||0;G.b=C||0;G.a=D!=null?D:1;G.add=function(J,I){for(var H=0;H<J.length;++H){G[J.charAt(H)]+=I}return G.normalize()};G.scale=function(J,I){for(var H=0;H<J.length;++H){G[J.charAt(H)]*=I}return G.normalize()};G.toString=function(){if(G.a>=1){return"rgb("+[G.r,G.g,G.b].join(",")+")"}else{return"rgba("+[G.r,G.g,G.b,G.a].join(",")+")"}};G.normalize=function(){function H(J,K,I){return K<J?J:(K>I?I:K)}G.r=H(0,parseInt(G.r),255);G.g=H(0,parseInt(G.g),255);G.b=H(0,parseInt(G.b),255);G.a=H(0,G.a,1);return G};G.clone=function(){return B.color.make(G.r,G.b,G.g,G.a)};return G.normalize()};B.color.extract=function(D,C){var E;do{E=D.css(C).toLowerCase();if(E!=""&&E!="transparent"){break}D=D.parent()}while(!B.nodeName(D.get(0),"body"));if(E=="rgba(0, 0, 0, 0)"){E="transparent"}return B.color.parse(E)};B.color.parse=function(F){var E,C=B.color.make;if(E=/rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(F)){return C(parseInt(E[1],10),parseInt(E[2],10),parseInt(E[3],10))}if(E=/rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(F)){return C(parseInt(E[1],10),parseInt(E[2],10),parseInt(E[3],10),parseFloat(E[4]))}if(E=/rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(F)){return C(parseFloat(E[1])*2.55,parseFloat(E[2])*2.55,parseFloat(E[3])*2.55)}if(E=/rgba\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(F)){return C(parseFloat(E[1])*2.55,parseFloat(E[2])*2.55,parseFloat(E[3])*2.55,parseFloat(E[4]))}if(E=/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(F)){return C(parseInt(E[1],16),parseInt(E[2],16),parseInt(E[3],16))}if(E=/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(F)){return C(parseInt(E[1]+E[1],16),parseInt(E[2]+E[2],16),parseInt(E[3]+E[3],16))}var D=B.trim(F).toLowerCase();if(D=="transparent"){return C(255,255,255,0)}else{E=A[D]||[0,0,0];return C(E[0],E[1],E[2])}};var A={aqua:[0,255,255],azure:[240,255,255],beige:[245,245,220],black:[0,0,0],blue:[0,0,255],brown:[165,42,42],cyan:[0,255,255],darkblue:[0,0,139],darkcyan:[0,139,139],darkgrey:[169,169,169],darkgreen:[0,100,0],darkkhaki:[189,183,107],darkmagenta:[139,0,139],darkolivegreen:[85,107,47],darkorange:[255,140,0],darkorchid:[153,50,204],darkred:[139,0,0],darksalmon:[233,150,122],darkviolet:[148,0,211],fuchsia:[255,0,255],gold:[255,215,0],green:[0,128,0],indigo:[75,0,130],khaki:[240,230,140],lightblue:[173,216,230],lightcyan:[224,255,255],lightgreen:[144,238,144],lightgrey:[211,211,211],lightpink:[255,182,193],lightyellow:[255,255,224],lime:[0,255,0],magenta:[255,0,255],maroon:[128,0,0],navy:[0,0,128],olive:[128,128,0],orange:[255,165,0],pink:[255,192,203],purple:[128,0,128],violet:[128,0,128],red:[255,0,0],silver:[192,192,192],white:[255,255,255],yellow:[255,255,0]}})(jQuery);
 
 // the actual Flot code
@@ -561,7 +561,7 @@
                 ps = s.datapoints.pointsize;
                 points = s.datapoints.points;
 
-                insertSteps = s.lines.show && s.lines.steps;
+                var insertSteps = s.lines.show && s.lines.steps;
                 s.xaxis.used = s.yaxis.used = true;
                 
                 for (j = k = 0; j < data.length; ++j, k += ps) {
@@ -724,12 +724,15 @@
         // therefore has a pixel ratio of 2, while most normal devices have a ratio of 1.
 
         function getPixelRatio(cctx) {
-            if (window.devicePixelRatio > 1 &&
-                (cctx.webkitBackingStorePixelRatio === undefined ||
-                 cctx.webkitBackingStorePixelRatio < 2))
-                return window.devicePixelRatio;
+            var devicePixelRatio = window.devicePixelRatio || 1;
+            var backingStoreRatio = 
+                cctx.webkitBackingStorePixelRatio || 
+                cctx.mozBackingStorePixelRatio || 
+                cctx.msBackingStorePixelRatio || 
+                cctx.oBackingStorePixelRatio || 
+                cctx.backingStorePixelRatio || 1;
 
-            return 1;
+            return devicePixelRatio / backingStoreRatio;
         }
 
         function makeCanvas(skipPositioning, cls) {
@@ -742,10 +745,17 @@
 
             $(c).appendTo(placeholder);
 
-            if (!c.getContext) // excanvas hack
-                c = window.G_vmlCanvasManager.initElement(c);
+			// If HTML5 Canvas isn't available, fall back to Excanvas
 
-            var cctx = c.getContext("2d");            
+			if (!c.getContext) {
+				if (window.G_vmlCanvasManager) {
+					c = window.G_vmlCanvasManager.initElement(c);
+				} else {
+					throw new Error("Canvas is not available. If you're using IE with a fall-back such as Excanvas, then there's either a mistake in your conditional include, or the page has no DOCTYPE and is rendering in Quirks Mode.");
+				}
+			}
+
+            var cctx = c.getContext("2d");
 
             // Increase the canvas density based on the display's pixel ratio; basically
             // giving the canvas more pixels without increasing the size of its element,
@@ -1110,8 +1120,14 @@
 
             // If the grid is visible, add its border width to the offset
 
-            for (var a in plotOffset)
-                plotOffset[a] += showGrid ? options.grid.borderWidth : 0;
+            for (var a in plotOffset) {
+                if(typeof(options.grid.borderWidth) == "object") {
+                    plotOffset[a] = showGrid ? options.grid.borderWidth[a] : 0;
+                }
+                else {
+                    plotOffset[a] = showGrid ? options.grid.borderWidth : 0;
+                }
+            }
 
             // init axes
             $.each(axes, function (_, axis) {
@@ -1281,9 +1297,23 @@
                     return ticks;
                 };
 
-                axis.tickFormatter = function (v, axis) {
-                    var factor = Math.pow(10, axis.tickDecimals);
-                    return "" + Math.round(v * factor) / factor;
+				axis.tickFormatter = function (value, axis) {
+
+					var factor = Math.pow(10, axis.tickDecimals);
+					var formatted = "" + Math.round(value * factor) / factor;
+
+					// If tickDecimals was specified, ensure that we have exactly that
+					// much precision; otherwise default to the value's own precision.
+
+					if (axis.tickDecimals != null) {
+						var decimal = formatted.indexOf(".");
+						var precision = decimal == -1 ? 0 : formatted.length - decimal - 1;
+						if (precision < axis.tickDecimals) {
+							return (precision ? formatted : formatted + ".") + ("" + factor).substr(1, axis.tickDecimals - precision);
+						}
+					}
+
+                    return formatted;
                 };
             }
 
@@ -1573,7 +1603,8 @@
 
                     if (v < axis.min || v > axis.max
                         // skip those lying on the axes if we got a border
-                        || (t == "full" && bw > 0
+                        || (t == "full"
+                            && ((typeof bw == "object" && bw[axis.position] > 0) || bw > 0)
                             && (v == axis.min || v == axis.max)))
                         continue;
 
@@ -1609,9 +1640,43 @@
             
             // draw border
             if (bw) {
-                ctx.lineWidth = bw;
-                ctx.strokeStyle = options.grid.borderColor;
-                ctx.strokeRect(-bw/2, -bw/2, plotWidth + bw, plotHeight + bw);
+                // If either borderWidth or borderColor is an object, then draw the border
+                // line by line instead of as one rectangle
+                bc = options.grid.borderColor;
+                if(typeof bw == "object" || typeof bc == "object") {
+                    ctx.beginPath();
+                    ctx.strokeStyle = (typeof bc == "object" ? bc.top : bc);
+                    ctx.lineWidth = (typeof bw == "object" ? bw.top : bw);
+                    ctx.moveTo(0 - bw.left, 0 - bw.top/2);
+                    ctx.lineTo(plotWidth, 0 - bw.top/2);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = (typeof bc == "object" ? bc.right : bc);
+                    ctx.lineWidth = (typeof bw == "object" ? bw.right : bw);
+                    ctx.moveTo(plotWidth + bw.right / 2, 0 - bw.top);
+                    ctx.lineTo(plotWidth + bw.right / 2, plotHeight);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = (typeof bc == "object" ? bc.bottom : bc);
+                    ctx.lineWidth = (typeof bw == "object" ? bw.bottom : bw);
+                    ctx.moveTo(plotWidth + bw.right, plotHeight + bw.bottom / 2);
+                    ctx.lineTo(0, plotHeight + bw.bottom / 2);
+                    ctx.stroke();
+                    
+                    ctx.beginPath();
+                    ctx.strokeStyle = (typeof bc == "object" ? bc.left : bc);
+                    ctx.lineWidth = (typeof bw == "object" ? bw.left : bw);
+                    ctx.moveTo(0 - bw.left/2, plotHeight + bw.bottom);
+                    ctx.lineTo(0- bw.left/2, 0);
+                    ctx.stroke();
+                }
+                else {
+                    ctx.lineWidth = bw;
+                    ctx.strokeStyle = options.grid.borderColor;
+                    ctx.strokeRect(-bw/2, -bw/2, plotWidth + bw, plotHeight + bw);
+                }
             }
 
             ctx.restore();
