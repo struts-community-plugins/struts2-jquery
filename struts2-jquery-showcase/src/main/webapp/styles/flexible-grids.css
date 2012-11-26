@@ -28,10 +28,13 @@
 /* import print layout | Druck-Layout einbinden */
 @import url(../yaml/print/print.css);
 
+body{
+	font-size: 9pt;
+}
+
 #content > p, #content > div, #content > form {
 	margin: 10px;
 }
-
 
 .ym-hlist, .ym-hlist ul {
 	border: 0;

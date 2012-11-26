@@ -77,6 +77,9 @@
 
 				<s:url var="urldialogtopics" action="dialog-topics"/>
 				<sj:menuItem id="dialogtopicslink" href="%{urldialogtopics}" targets="content" title="Dialog with Topics" />
+
+				<s:url var="urldialogforms" action="dialog-forms"/>
+				<sj:menuItem id="dialogformslink" href="%{urldialogforms}" targets="content" title="Dialog with Form" />
 			</sj:menu>
 		</sj:menuItem>
 
