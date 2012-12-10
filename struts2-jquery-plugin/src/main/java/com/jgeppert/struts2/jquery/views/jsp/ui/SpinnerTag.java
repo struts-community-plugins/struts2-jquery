@@ -35,74 +35,65 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class SpinnerTag extends TextfieldTag {
 
-  private static final long serialVersionUID = 6678987650660687605L;
+    private static final long serialVersionUID = 6678987650660687605L;
 
-  protected String          max;
-  protected String          min;
-  protected String          step;
-  protected String          prefix;
-  protected String          suffix;
-  protected String          showOn;
-  protected String          point;
-  protected String          mouseWheel;
+    protected String max;
+    protected String min;
+    protected String step;
+    protected String mouseWheel;
+    protected String culture;
+    protected String numberFormat;
+    protected String incremental;
+    protected String page;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Spinner(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new Spinner(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+	super.populateParams();
 
-    Spinner spinner = (Spinner) component;
-    spinner.setMax(max);
-    spinner.setMin(min);
-    spinner.setStep(step);
-    spinner.setPrefix(prefix);
-    spinner.setSuffix(suffix);
-    spinner.setShowOn(showOn);
-    spinner.setPoint(point);
-    spinner.setMouseWheel(mouseWheel);
-  }
+	Spinner spinner = (Spinner) component;
+	spinner.setMax(max);
+	spinner.setMin(min);
+	spinner.setStep(step);
+	spinner.setMouseWheel(mouseWheel);
+	spinner.setCulture(culture);
+	spinner.setNumberFormat(numberFormat);
+	spinner.setPage(page);
+	spinner.setIncremental(incremental);
+    }
 
-  public void setMax(String max)
-  {
-    this.max = max;
-  }
+    public void setMax(String max) {
+	this.max = max;
+    }
 
-  public void setMin(String min)
-  {
-    this.min = min;
-  }
+    public void setMin(String min) {
+	this.min = min;
+    }
 
-  public void setStep(String step)
-  {
-    this.step = step;
-  }
+    public void setStep(String step) {
+	this.step = step;
+    }
 
-  public void setPrefix(String prefix)
-  {
-    this.prefix = prefix;
-  }
+    public void setMouseWheel(String mouseWheel) {
+	this.mouseWheel = mouseWheel;
+    }
 
-  public void setSuffix(String suffix)
-  {
-    this.suffix = suffix;
-  }
+    public void setCulture(String culture) {
+	this.culture = culture;
+    }
 
-  public void setShowOn(String showOn)
-  {
-    this.showOn = showOn;
-  }
+    public void setNumberFormat(String numberFormat) {
+	this.numberFormat = numberFormat;
+    }
 
-  public void setPoint(String point)
-  {
-    this.point = point;
-  }
+    public void setIncremental(String incremental) {
+	this.incremental = incremental;
+    }
 
-  public void setMouseWheel(String mouseWheel)
-  {
-    this.mouseWheel = mouseWheel;
-  }
+    public void setPage(String page) {
+	this.page = page;
+    }
 }

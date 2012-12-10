@@ -32,20 +32,20 @@ jQuery(document).ready(function () {
   <#if parameters.step??>
 	options_${escapedOptionId?html}.step = ${parameters.step?c};
   </#if>
-  <#if parameters.prefix?if_exists != "">
-	options_${escapedOptionId?html}.prefix = "${parameters.prefix?html}";
+  <#if parameters.culture?if_exists != "">
+	options_${escapedOptionId?html}.culture = "${parameters.culture?html}";
   </#if>
-  <#if parameters.suffix?if_exists != "">
-	options_${escapedOptionId?html}.suffix = "${parameters.suffix?html}";
+  <#if parameters.numberFormat?if_exists != "">
+	options_${escapedOptionId?html}.numberFormat = "${parameters.numberFormat?html}";
   </#if>
-  <#if parameters.showOn?if_exists != "">
-	options_${escapedOptionId?html}.showOn = "${parameters.showOn?html}";
-  </#if>
-  <#if parameters.point?if_exists != "">
-	options_${escapedOptionId?html}.point = "${parameters.point?html}";
+  <#if parameters.page??>
+	options_${escapedOptionId?html}.page = ${parameters.page?c};
   </#if>
   <#if parameters.mouseWheel?exists>
 	options_${escapedOptionId?html}.mouseWheel = ${parameters.mouseWheel?string};
+  </#if>
+  <#if parameters.incremental?exists>
+	options_${escapedOptionId?html}.incremental = ${parameters.incremental?string};
   </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

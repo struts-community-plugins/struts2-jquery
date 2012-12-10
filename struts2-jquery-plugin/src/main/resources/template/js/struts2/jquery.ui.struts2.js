@@ -616,17 +616,21 @@
 		if (!self.loadAtOnce) {
 			self.require("js/base/jquery.ui.widget" + self.minSuffix + ".js");
 			self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.spinner" + self.minSuffix + ".js" ]);
-			if (o.mouseWheel) {
-				self.require("js/plugins/jquery.mousewheel" + self.minSuffix + ".js");
-			}
 		}
-
+		if (o.mouseWheel) {
+			self.require("js/plugins/jquery.mousewheel" + self.minSuffix + ".js");
+		}
 
 		if (o.oncha) {
 			o.change = self.pubTops($elem, o.onalw, o.oncha);
 		}
 
+		var currentValue = $elem.val();
+
 		$elem.spinner(o);
+		if(o.numberFormat && Globalize) {
+			$elem.spinner( "value", Globalize.format(parseFloat(currentValue), o.numberFormat) );
+		}
 	},
 
 	/** Handle the Progressbar Widget */
