@@ -1,5 +1,11 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<script type="text/javascript" charset="UTF-8" src="<s:url value="/js/globalize.js"/>"></script>
+<script type="text/javascript" charset="UTF-8" src="<s:url value="/js/globalize.culture.it.js"/>"></script>
+<script type="text/javascript" charset="UTF-8">
+    Globalize.culture( "it" );
+</script>
+
 <h2>Spinner</h2>
 
 <p class="text">
@@ -23,6 +29,7 @@
 <br/>
 
 <h3>A Spinner with currency format and mouse wheel support</h3>
+
 <sj:spinner
 		name="spinner3"
 		id="spinner3"
@@ -30,7 +37,7 @@
 		max="5.00"
 		step="0.15"
 		value="2.50"
-		suffix="$"
+        numberFormat="C"
 		mouseWheel="true"/>
 <br/>
 
@@ -59,7 +66,7 @@
     	max=&quot;5.00&quot; 
     	step=&quot;0.15&quot; 
     	value=&quot;2.50&quot; 
-    	suffix=&quot;$&quot; 
+    	numberFormat=&quot;C&quot;
     	mouseWheel=&quot;true&quot;/&gt;
     &lt;br/&gt;
     </pre>
