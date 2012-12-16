@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jgeppert.struts2.jquery</groupId>
     <artifactId>struts2-jquery</artifactId>
-    <version>3.5.0-SNAPSHOT</version>
+    <version>3.5.0</version>
     <name>Struts 2 jQuery Plugin Parent Module</name>
     <packaging>pom</packaging>
     <url>http://code.google.com/p/struts2-jquery</url>
