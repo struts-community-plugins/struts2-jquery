@@ -765,7 +765,6 @@
 			}
 		}
 		if(url !== '') {
-			url = self.addForms(o.formids, url);
 			if(o.list) {
 				params.source = function(request, response) {
 					var self = $.struts2_jquery;
@@ -779,7 +778,7 @@
 					self.abortReq(o.id);
 					self.showIndicator(o.indicatorid);
 					self.currentXhr[o.id] = $.ajax({
-						url: url,
+						url: self.addForms(o.formids, url),
 						dataType: "json",
 						data: {
 						term: request.term
@@ -851,7 +850,7 @@
 				};
 			}
 			else {
-				params.source = url;
+				params.source = self.addForms(o.formids, url);
 			}
 		}
 		else if (o.list && o.selectBox === false) {
