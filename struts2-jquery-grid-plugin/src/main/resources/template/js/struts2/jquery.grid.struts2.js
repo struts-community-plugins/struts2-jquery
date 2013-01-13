@@ -354,6 +354,9 @@
 						if(o.navigatorextrabuttons) {
 							self.navigatorButtons($elem, o.navigatorextrabuttons, self.escId(o.pager));
 						}
+                        if(o.cloneToTop)  {
+                            self.navigatorButtons($elem, o.navigatorextrabuttons, self.escId(o.toppagerElem));
+                        }
 					}
 					if (o.filter) {
 						if (o.filteroptions) {

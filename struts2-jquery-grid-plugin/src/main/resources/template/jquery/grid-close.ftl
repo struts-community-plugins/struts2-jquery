@@ -112,6 +112,7 @@
   </#if>
   <#if parameters.toppager?default(false)>
 	options_${escapedOptionId?html}.toppager = true;
+    options_${escapedOptionId?html}.toppagerElem = "${escapedOptionId?html}_toppager";
   </#if>
   <#if parameters.groupField?if_exists != "">
 	options_${escapedOptionId?html}.grouping = true;
