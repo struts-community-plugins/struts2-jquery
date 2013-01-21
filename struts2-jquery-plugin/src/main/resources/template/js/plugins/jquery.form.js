@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 3.23 (11-DEC-2012)
+ * version: 3.25.0-2013.01.18
  * @requires jQuery v1.5 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -465,11 +465,11 @@
                                 // if using the $.param format that allows for multiple values with the same name
                                 if($.isPlainObject(s.extraData[n]) && s.extraData[n].hasOwnProperty('name') && s.extraData[n].hasOwnProperty('value')) {
                                     extraInputs.push(
-                                        $('<input type="hidden" name="'+s.extraData[n].name+'">').attr('value',s.extraData[n].value)
+                                        $('<input type="hidden" name="'+s.extraData[n].name+'">').val(s.extraData[n].value)
                                             .appendTo(form)[0]);
                                 } else {
                                     extraInputs.push(
-                                        $('<input type="hidden" name="'+n+'">').attr('value',s.extraData[n])
+                                        $('<input type="hidden" name="'+n+'">').val(s.extraData[n])
                                             .appendTo(form)[0]);
                                 }
                             }
@@ -1046,7 +1046,7 @@
                 this.selectedIndex = -1;
             }
             else if (t == "file") {
-                if ($.browser.msie) {
+                if (/MSIE/.test(navigator.userAgent)) {
                     $(this).replaceWith($(this).clone());
                 } else {
                     $(this).val('');
