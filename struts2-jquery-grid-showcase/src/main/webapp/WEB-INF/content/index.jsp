@@ -27,7 +27,7 @@
 
 	<sj:head
     	loadAtOnce="true"
-    	compressed="false"
+    	compressed="true"
     	jquerytheme="showcase"
     	customBasepath="themes"
     	loadFromGoogle="false"
