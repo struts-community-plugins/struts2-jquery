@@ -18,11 +18,8 @@
 		rowNum="15"
 		rownumbers="true"
 		resizable="true"
-		resizableAnimate="true"
-		resizableGhost="true"
-		resizableHandles="all"
 		width="700"
-		shrinkToFit="false"
+		shrinkToFit="true"
 		>
 	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false" displayTitle="false"/>
 	<sjg:gridColumn name="name" index="name" title="Name" width="290" sortable="true"/>
