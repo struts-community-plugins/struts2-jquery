@@ -19,13 +19,13 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.velocity.components;
 
-import com.jgeppert.struts2.jquery.mobile.components.Searchfield;
-import com.jgeppert.struts2.jquery.mobile.components.Slider;
-import com.opensymphony.xwork2.util.ValueStack;
-import org.apache.struts2.components.Component;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.components.Component;
+
+import com.jgeppert.struts2.jquery.mobile.components.Slider;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * 

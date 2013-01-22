@@ -1,32 +1,28 @@
 package com.jgeppert.struts2.jquery.showcase.model;
 
 public class AccordionBean {
-  String title;
-  String content;
+    String title;
+    String content;
 
-  public AccordionBean(String title, String content) {
-    super();
-    this.title = title;
-    this.content = content;
-  }
+    public AccordionBean(String title, String content) {
+	super();
+	this.title = title;
+	this.content = content;
+    }
 
-  public String getTitle()
-  {
-    return title;
-  }
+    public String getTitle() {
+	return title;
+    }
 
-  public void setTitle(String title)
-  {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+	this.title = title;
+    }
 
-  public String getContent()
-  {
-    return content;
-  }
+    public String getContent() {
+	return content;
+    }
 
-  public void setContent(String content)
-  {
-    this.content = content;
-  }
+    public void setContent(String content) {
+	this.content = content;
+    }
 }

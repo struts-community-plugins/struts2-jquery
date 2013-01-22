@@ -25,11 +25,23 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.*;
 import org.apache.struts2.views.TagLibrary;
 
 import com.jgeppert.struts2.jquery.mobile.components.Radio;
 import com.jgeppert.struts2.jquery.mobile.views.freemarker.tags.JqueryMobileModels;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.AnchorDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.CheckboxDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.CheckboxListDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.DivDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.HeadDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.ListDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.ListItemDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.PasswordDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.SearchfieldDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.SelectDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.SliderDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.TextareaDirective;
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.TextfieldDirective;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -44,7 +56,7 @@ public class JqueryMobileTagLibrary implements TagLibrary {
 		return new JqueryMobileModels(stack, req, res);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List<Class> getVelocityDirectiveClasses() {
 		Class[] directives = new Class[] { HeadDirective.class,
 				CheckboxListDirective.class, CheckboxDirective.class,

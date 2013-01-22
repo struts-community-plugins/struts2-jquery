@@ -26,7 +26,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -34,65 +33,56 @@ import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Actions( {
-		@Action(value = "/edit-cell-entry", results = {
-				@Result(location = "../simpleecho.jsp", name = "success"), @Result(location = "../simpleecho.jsp", name = "input")
-		})
-})public class EditCellEntry extends ActionSupport implements SessionAware {
+@Actions({ @Action(value = "/edit-cell-entry", results = {
+	@Result(location = "../simpleecho.jsp", name = "success"),
+	@Result(location = "../simpleecho.jsp", name = "input") }) })
+public class EditCellEntry extends ActionSupport implements SessionAware {
 
-  private static final long   serialVersionUID = -3454448309088641394L;
-  private static final Log    log              = LogFactory.getLog(EditCellEntry.class);
+    private static final long serialVersionUID = -3454448309088641394L;
+    private static final Log log = LogFactory.getLog(EditCellEntry.class);
 
-  private int                 id;
-  private double              creditLimit;
-  private Map<String, Object> session;
-  private List<Customer>      myCustomers;
+    private int id;
+    private double creditLimit;
+    private Map<String, Object> session;
+    private List<Customer> myCustomers;
 
+    @SuppressWarnings("unchecked")
+    public String execute() throws Exception {
+	log.debug("id :" + id + " creditLimit :" + creditLimit);
 
-  public String execute() throws Exception
-  {
-    log.debug("id :" + id + " creditLimit :" + creditLimit);
+	Object list = session.get("mylist");
+	if (list != null) {
+	    myCustomers = (List<Customer>) list;
+	} else {
+	    myCustomers = CustomerDAO.buildList();
+	}
 
-    Object list = session.get("mylist");
-    if (list != null)
-    {
-      myCustomers = (List<Customer>) list;
+	Customer customer = CustomerDAO.findById(myCustomers, id);
+	if (customer != null)
+	    customer.setCreditLimit(creditLimit);
+
+	session.put("mylist", myCustomers);
+
+	return SUCCESS;
     }
-    else
-    {
-      myCustomers = CustomerDAO.buildList();
+
+    public int getId() {
+	return id;
     }
 
-    Customer customer = CustomerDAO.findById(myCustomers, id);
-    if (customer != null) customer.setCreditLimit(creditLimit);
+    public void setId(int id) {
+	this.id = id;
+    }
 
-    session.put("mylist", myCustomers);
+    public double getCreditLimit() {
+	return creditLimit;
+    }
 
-    return SUCCESS;
-  }
+    public void setCreditLimit(double creditLimit) {
+	this.creditLimit = creditLimit;
+    }
 
-  public int getId()
-  {
-    return id;
-  }
-
-  public void setId(int id)
-  {
-    this.id = id;
-  }
-
-  public double getCreditLimit()
-  {
-    return creditLimit;
-  }
-
-  public void setCreditLimit(double creditLimit)
-  {
-    this.creditLimit = creditLimit;
-  }
-
-  public void setSession(Map<String, Object> session)
-  {
-    this.session = session;
-  }
+    public void setSession(Map<String, Object> session) {
+	this.session = session;
+    }
 }

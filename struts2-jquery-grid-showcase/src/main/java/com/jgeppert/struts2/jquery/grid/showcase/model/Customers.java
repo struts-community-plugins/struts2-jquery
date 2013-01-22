@@ -1,7 +1,5 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +26,6 @@ public class Customers implements java.io.Serializable {
   private String            country;
   private Employees         salesemployee;
   private Double            creditlimit;
-  private Set<Orders>       orders;
 
   public Customers() {
   }
@@ -196,21 +193,6 @@ public class Customers implements java.io.Serializable {
   public void setCreditlimit(Double creditlimit)
   {
     this.creditlimit = creditlimit;
-  }
-
-  /*
-   * @JSON(serialize=false)
-   * 
-   * @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy
-   * = "customer")
-   * 
-   * @OrderBy(value = "orderdate") public Set<Orders> getOrders() { return
-   * orders; }
-   */
-
-  public void setOrders(Set<Orders> orders)
-  {
-    this.orders = orders;
   }
 
   @Override

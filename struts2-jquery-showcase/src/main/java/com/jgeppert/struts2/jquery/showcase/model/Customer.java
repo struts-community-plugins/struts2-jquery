@@ -148,7 +148,8 @@ public class Customer implements Comparable<Customer> {
     }
 
     /*
-     * This function is used for the Autocompleter example with seperate label element.
+     * This function is used for the Autocompleter example with seperate label
+     * element.
      */
     public String getLabel() {
 	return this.id + " - " + this.name + " from " + this.country;

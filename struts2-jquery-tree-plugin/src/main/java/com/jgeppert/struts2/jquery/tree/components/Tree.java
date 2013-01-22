@@ -165,6 +165,7 @@ public class Tree extends AbstractContainer {
 	return ContainUtil.contains(obj1, obj2);
     }
     
+    @SuppressWarnings("rawtypes")
     protected Class getValueClassType() {
         return null; // don't convert nameValue to anything, we need the raw value
     }

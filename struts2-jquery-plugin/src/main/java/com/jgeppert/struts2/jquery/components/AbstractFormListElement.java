@@ -50,7 +50,8 @@ public abstract class AbstractFormListElement extends AbstractFormElement {
     super(stack, request, response);
   }
 
-  public void evaluateExtraParams()
+  @SuppressWarnings("rawtypes")
+public void evaluateExtraParams()
   {
     super.evaluateExtraParams();
 
@@ -156,7 +157,8 @@ public abstract class AbstractFormListElement extends AbstractFormElement {
     return ContainUtil.contains(obj1, obj2);
   }
   
-  protected Class getValueClassType() {
+  @SuppressWarnings("rawtypes")
+    protected Class getValueClassType() {
       return null; // don't convert nameValue to anything, we need the raw value
   }
 

@@ -22,30 +22,25 @@ package com.jgeppert.struts2.jquery.showcase;
 import java.util.Random;
 
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Progressbar extends ActionSupport {
 
-  private static final long serialVersionUID = 6033894810818881794L;
-  private int               random           = 0;
+    private static final long serialVersionUID = 6033894810818881794L;
+    private int random = 0;
 
-  @Action(value = "/progressbar", results = {
-    @Result(location = "progressbar.jsp", name = "success")
-  })
-  public String execute() throws Exception
-  {
+    @Action(value = "/progressbar", results = { @Result(location = "progressbar.jsp", name = "success") })
+    public String execute() throws Exception {
 
-    while (random < 10)
-      random = new Random().nextInt(90);
+	while (random < 10)
+	    random = new Random().nextInt(90);
 
-    return SUCCESS;
-  }
+	return SUCCESS;
+    }
 
-  public int getRandom()
-  {
-    return random;
-  }
+    public int getRandom() {
+	return random;
+    }
 }

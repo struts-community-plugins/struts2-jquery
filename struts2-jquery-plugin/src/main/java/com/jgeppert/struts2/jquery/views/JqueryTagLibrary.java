@@ -19,15 +19,37 @@
 
 package com.jgeppert.struts2.jquery.views;
 
-import com.jgeppert.struts2.jquery.views.freemarker.tags.JqueryModels;
-import com.jgeppert.struts2.jquery.views.velocity.components.*;
-import com.opensymphony.xwork2.util.ValueStack;
-import org.apache.struts2.views.TagLibrary;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.List;
+
+import org.apache.struts2.views.TagLibrary;
+
+import com.jgeppert.struts2.jquery.views.freemarker.tags.JqueryModels;
+import com.jgeppert.struts2.jquery.views.velocity.components.AccordionDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.AccordionItemDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.AnchorDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.AutocompleterDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.CheckboxListDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.DatePickerDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.DialogDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.DivDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.HeadDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.MenuDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.MenuItemDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.ProgressbarDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.RadioDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.SelectDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.SliderDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.SpinnerDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.SubmitDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.TabDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.TabbedPanelDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.TextareaDirective;
+import com.jgeppert.struts2.jquery.views.velocity.components.TextfieldDirective;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
@@ -39,7 +61,7 @@ public class JqueryTagLibrary implements TagLibrary {
 		return new JqueryModels(stack, req, res);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List<Class> getVelocityDirectiveClasses() {
 		Class[] directives =
 				new Class[]{

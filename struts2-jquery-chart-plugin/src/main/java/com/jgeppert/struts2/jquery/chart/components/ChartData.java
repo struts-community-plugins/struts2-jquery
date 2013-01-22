@@ -98,6 +98,7 @@ public class ChartData extends AbstractContainer {
 		return TEMPLATE_CLOSE;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void evaluateExtraParams() {
 		super.evaluateExtraParams();
 		if (color != null)

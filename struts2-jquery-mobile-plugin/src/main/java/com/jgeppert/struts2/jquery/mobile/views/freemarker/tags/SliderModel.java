@@ -19,14 +19,14 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.freemarker.tags;
 
-import com.jgeppert.struts2.jquery.mobile.components.Searchfield;
-import com.jgeppert.struts2.jquery.mobile.components.Slider;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.jgeppert.struts2.jquery.mobile.components.Slider;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * 

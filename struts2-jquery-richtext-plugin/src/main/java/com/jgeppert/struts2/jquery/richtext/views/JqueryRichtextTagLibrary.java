@@ -44,9 +44,8 @@ public class JqueryRichtextTagLibrary implements TagLibrary {
     return new JqueryRichtextModels(stack, req, res);
   }
 
-  @SuppressWarnings("unchecked")
-  public List<Class> getVelocityDirectiveClasses()
-  {
+  @SuppressWarnings("rawtypes")
+    public List<Class> getVelocityDirectiveClasses() {
     Class[] directives = new Class[] {
         CkeditorDirective.class, TinymceDirective.class
     };

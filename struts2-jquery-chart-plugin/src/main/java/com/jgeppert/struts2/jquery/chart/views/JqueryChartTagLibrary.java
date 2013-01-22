@@ -39,18 +39,16 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 public class JqueryChartTagLibrary implements TagLibrary {
 
-  public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new JqueryChartModels(stack, req, res);
-  }
+    public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req,
+	    HttpServletResponse res) {
+	return new JqueryChartModels(stack, req, res);
+    }
 
-  @SuppressWarnings("unchecked")
-  public List<Class> getVelocityDirectiveClasses()
-  {
-    Class[] directives = new Class[] {
-        ChartDirective.class, ChartDataDirective.class
-    };
-    return Arrays.asList(directives);
-  }
+    @SuppressWarnings("rawtypes")
+    public List<Class> getVelocityDirectiveClasses() {
+	Class[] directives = new Class[] { ChartDirective.class,
+		ChartDataDirective.class };
+	return Arrays.asList(directives);
+    }
 
 }

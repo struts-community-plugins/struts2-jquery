@@ -140,7 +140,8 @@ public class Slider extends AbstractTopicsBean {
       }
       else if (valueObject instanceof Collection<?>)
       {
-        Collection<Object> col = (Collection<Object>) valueObject;
+        @SuppressWarnings("unchecked")
+	Collection<Object> col = (Collection<Object>) valueObject;
         if (col.size() >= 2)
         {
           addParameter("arrayValue", Arrays.toString(col.toArray()));

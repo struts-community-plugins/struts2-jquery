@@ -20,42 +20,34 @@
 package com.jgeppert.struts2.jquery.showcase;
 
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class SimpleEcho extends ActionSupport {
 
-  private static final long serialVersionUID = 6999864671102333041L;
-  private String            echo;
-  private boolean           escape           = true;
+    private static final long serialVersionUID = 6999864671102333041L;
+    private String echo;
+    private boolean escape = true;
 
-  @Action(value = "/simpleecho", results = {
-    @Result(location = "simpleecho.jsp", name = "success")
-  })
-  public String execute() throws Exception
-  {
-    return SUCCESS;
-  }
+    @Action(value = "/simpleecho", results = { @Result(location = "simpleecho.jsp", name = "success") })
+    public String execute() throws Exception {
+	return SUCCESS;
+    }
 
-  public String getEcho()
-  {
-    return echo;
-  }
+    public String getEcho() {
+	return echo;
+    }
 
-  public void setEcho(String echo)
-  {
-    this.echo = echo;
-  }
+    public void setEcho(String echo) {
+	this.echo = echo;
+    }
 
-  public boolean isEscape()
-  {
-    return escape;
-  }
+    public boolean isEscape() {
+	return escape;
+    }
 
-  public void setEscape(boolean escape)
-  {
-    this.escape = escape;
-  }
+    public void setEscape(boolean escape) {
+	this.escape = escape;
+    }
 }

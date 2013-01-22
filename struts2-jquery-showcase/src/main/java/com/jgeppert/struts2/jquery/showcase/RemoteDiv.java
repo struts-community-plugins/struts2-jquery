@@ -20,20 +20,16 @@
 package com.jgeppert.struts2.jquery.showcase;
 
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class RemoteDiv extends ActionSupport {
 
-  private static final long serialVersionUID = -6793556760537290969L;
+    private static final long serialVersionUID = -6793556760537290969L;
 
-  @Action(value = "/remote-div", results = {
-    @Result(location = "remote-div.jsp", name = "success")
-  })
-  public String execute() throws Exception
-  {
-    return SUCCESS;
-  }
+    @Action(value = "/remote-div", results = { @Result(location = "remote-div.jsp", name = "success") })
+    public String execute() throws Exception {
+	return SUCCESS;
+    }
 }

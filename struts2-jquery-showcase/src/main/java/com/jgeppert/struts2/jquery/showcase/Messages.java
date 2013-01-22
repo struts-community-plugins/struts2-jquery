@@ -20,26 +20,22 @@
 package com.jgeppert.struts2.jquery.showcase;
 
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Messages extends ActionSupport {
 
-  private static final long serialVersionUID = -7895258309088641394L;
+    private static final long serialVersionUID = -7895258309088641394L;
 
-  @Action(value = "/messages", results = {
-    @Result(location = "messages.jsp", name = "success")
-  })
-  public String execute() throws Exception
-  {
+    @Action(value = "/messages", results = { @Result(location = "messages.jsp", name = "success") })
+    public String execute() throws Exception {
 
-    addActionError("A sample Action Error Message!");
-    addActionMessage("A sample Action Message");
-    addFieldError("name", "Please fill out your name!");
-    addFieldError("name", "Your name is to short!");
-    addFieldError("email", "Please give us your e-mail adress!");
-    return SUCCESS;
-  }
+	addActionError("A sample Action Error Message!");
+	addActionMessage("A sample Action Message");
+	addFieldError("name", "Please fill out your name!");
+	addFieldError("name", "Your name is to short!");
+	addFieldError("email", "Please give us your e-mail adress!");
+	return SUCCESS;
+    }
 }

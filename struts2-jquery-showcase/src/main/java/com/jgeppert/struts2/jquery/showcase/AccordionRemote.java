@@ -22,33 +22,29 @@ package com.jgeppert.struts2.jquery.showcase;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.jgeppert.struts2.jquery.showcase.model.AccordionBean;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
+import com.jgeppert.struts2.jquery.showcase.model.AccordionBean;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AccordionRemote extends ActionSupport {
 
-  private static final long   serialVersionUID = -3066791113091431706L;
-  private List<AccordionBean> accordion;
+    private static final long serialVersionUID = -3066791113091431706L;
+    private List<AccordionBean> accordion;
 
-  @Action(value = "/accordion-remote", results = {
-    @Result(location = "accordion-remote.jsp", name = "success")
-  })
-  public String execute() throws Exception
-  {
-    accordion = new LinkedList<AccordionBean>();
-    accordion.add(new AccordionBean("My Title 1", "Content One"));
-    accordion.add(new AccordionBean("My Title 2", "Content Two"));
-    accordion.add(new AccordionBean("My Title 3", "Content Three"));
-    accordion.add(new AccordionBean("My Title 4", "Content Four"));
-    accordion.add(new AccordionBean("My Title 5", "Content Five"));
-    return SUCCESS;
-  }
+    @Action(value = "/accordion-remote", results = { @Result(location = "accordion-remote.jsp", name = "success") })
+    public String execute() throws Exception {
+	accordion = new LinkedList<AccordionBean>();
+	accordion.add(new AccordionBean("My Title 1", "Content One"));
+	accordion.add(new AccordionBean("My Title 2", "Content Two"));
+	accordion.add(new AccordionBean("My Title 3", "Content Three"));
+	accordion.add(new AccordionBean("My Title 4", "Content Four"));
+	accordion.add(new AccordionBean("My Title 5", "Content Five"));
+	return SUCCESS;
+    }
 
-  public List<AccordionBean> getAccordion()
-  {
-    return accordion;
-  }
+    public List<AccordionBean> getAccordion() {
+	return accordion;
+    }
 }

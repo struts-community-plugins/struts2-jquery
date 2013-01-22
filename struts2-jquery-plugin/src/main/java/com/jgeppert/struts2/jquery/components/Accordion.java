@@ -150,6 +150,7 @@ public class Accordion extends AbstractTopicsBean {
 		return TEMPLATE_CLOSE;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void evaluateExtraParams() {
 		super.evaluateExtraParams();
 

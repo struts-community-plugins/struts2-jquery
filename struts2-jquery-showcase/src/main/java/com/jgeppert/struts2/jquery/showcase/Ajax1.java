@@ -20,20 +20,16 @@
 package com.jgeppert.struts2.jquery.showcase;
 
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Ajax1 extends ActionSupport {
 
-  private static final long serialVersionUID = -7895258309088641394L;
+    private static final long serialVersionUID = -7895258309088641394L;
 
-  @Action(value = "/ajax1", results = {
-    @Result(location = "ajax1.jsp", name = "success")
-  })
-  public String execute() throws Exception
-  {
-    return SUCCESS;
-  }
+    @Action(value = "/ajax1", results = { @Result(location = "ajax1.jsp", name = "success") })
+    public String execute() throws Exception {
+	return SUCCESS;
+    }
 }

@@ -44,9 +44,8 @@ public class JqueryGridTagLibrary implements TagLibrary {
     return new JqueryGridModels(stack, req, res);
   }
 
-  @SuppressWarnings("unchecked")
-  public List<Class> getVelocityDirectiveClasses()
-  {
+  @SuppressWarnings("rawtypes")
+    public List<Class> getVelocityDirectiveClasses() {
     Class[] directives = new Class[] {
         GridDirective.class, GridColumnDirective.class,
     };
