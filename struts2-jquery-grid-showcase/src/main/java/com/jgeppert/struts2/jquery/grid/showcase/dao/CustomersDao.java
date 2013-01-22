@@ -5,11 +5,11 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
+import org.hibernate.type.StringType;
 
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customers;
 
@@ -63,7 +63,7 @@ public class CustomersDao extends AbstractSimpleGenericDao<Customers, Integer> {
       String queryString = "SELECT DISTINCT c.country FROM CLASSICMODELS.CUSTOMERS c where c.country is not null";
       SQLQuery q = hSession.createSQLQuery(queryString);
       q.setCacheable(true);
-      q.addScalar("country", Hibernate.STRING);
+      q.addScalar("country", StringType.INSTANCE);
       return q.list();
     }
     catch (HibernateException e)
