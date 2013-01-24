@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jgeppert.struts2.jquery</groupId>
     <artifactId>struts2-jquery</artifactId>
-    <version>3.5.1-SNAPSHOT</version>
+    <version>3.5.1</version>
     <name>Struts 2 jQuery Plugin Parent Module</name>
     <packaging>pom</packaging>
     <url>http://code.google.com/p/struts2-jquery</url>
@@ -104,7 +104,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>2.5.1</version>
                 <configuration>
 					<encoding>UTF-8</encoding>
                     <source>1.5</source>
