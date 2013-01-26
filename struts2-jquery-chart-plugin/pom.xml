@@ -5,7 +5,7 @@
     <parent>
        <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery</artifactId>
-        <version>3.5.1</version>
+        <version>3.6.0-SNAPSHOT</version>
     </parent>
     <artifactId>struts2-jquery-chart-plugin</artifactId>
     <name>Struts 2 jQuery Chart Plugin</name>
