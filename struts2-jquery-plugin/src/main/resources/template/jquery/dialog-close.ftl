@@ -49,9 +49,6 @@ jQuery(document).ready(function () {
   <#if parameters.minWidth?if_exists != "">
 	options_${escapedOptionId?html}.minWidth = ${parameters.minWidth?html};
   </#if>
-  <#if parameters.zindex?if_exists != "">
-	options_${escapedOptionId?html}.zIndex = ${parameters.zindex?html};
-  </#if>
   <#if parameters.title?if_exists != "">
 	options_${escapedOptionId?html}.title = "${parameters.title?html}";
   </#if>
@@ -65,12 +62,15 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId?html}.hide = "${parameters.hideEffect?html}";
   </#if>
   <#if parameters.position?if_exists != "">
-  	  <#-- Is position an Array? -->
-	  <#if parameters.position?substring(0, 1) == "[">
+  	  <#-- Is position an Array or Object? -->
+	  <#if parameters.position?substring(0, 1) == "[" || parameters.position?substring(0, 1) == "{">
 	options_${escapedOptionId?html}.position = ${parameters.position?html};
 	  <#else>
 	options_${escapedOptionId?html}.position = "${parameters.position?html}";
 	  </#if>
+  </#if>
+  <#if parameters.appendTo?if_exists != "">
+    options_${escapedOptionId?html}.appendTo = "${parameters.appendTo?html}";
   </#if>
   <#if parameters.buttons?if_exists != "">
 	options_${escapedOptionId?html}.buttons = ${parameters.buttons?string};

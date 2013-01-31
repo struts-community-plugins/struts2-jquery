@@ -12,7 +12,10 @@
     	overlayColor="#903" 
     	overlayOpacity="0.8" 
     	title="Modal Dialog"
-    	position="['right','top']"
+    	position="{
+            my: 'right top',
+            at: 'right-200 top+100'
+        }"
     >
         <img id="indicator" src="images/indicator.gif" alt="Loading..."/>
     </sj:dialog>

@@ -36,321 +36,287 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Renders a Dialog with local or remote content
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
+ * <p/>
  * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * 
+ * <p/>
  * <pre>
- * &lt;sj:dialog id=&quot;mydialog1&quot; title=&quot;Local Dialog&quot;&gt; 
+ * &lt;sj:dialog id=&quot;mydialog1&quot; title=&quot;Local Dialog&quot;&gt;
  * Mauris mauris ante, blandit et, ultrices a, suscipit
  * eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
  * condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin
  * viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante
- * scelerisque vulputate. 
+ * scelerisque vulputate.
  * &lt;/sj:dialog&gt;
  * </pre>
- * 
+ * <p/>
  * <!-- END SNIPPET: example1 -->
- * 
+ * <p/>
  * <!-- START SNIPPET: example2 -->
- * 
+ * <p/>
  * <pre>
- * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt; 
+ * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt;
  * &lt;sj:dialog id=&quot;mydialog2&quot; href=&quot;%{remoteurl}&quot; title=&quot;Remote Dialog&quot;/&gt;
  * </pre>
- * 
+ * <p/>
  * <!-- END SNIPPET: example2 -->
- * 
+ * <p/>
  * <!-- START SNIPPET: example3 -->
- * 
+ * <p/>
  * <pre>
  * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt;
  * &lt;sj:dialog id=&quot;mydialog3&quot; href=&quot;%{remoteurl}&quot; title=&quot;Modal Remote Dialog with Effects&quot; modal=&quot;true&quot; showEffect=&quot;slide&quot; hideEffect=&quot;explode&quot;/&gt;
  * </pre>
- * 
+ * <p/>
  * <!-- END SNIPPET: example3 -->
- * 
+ * <p/>
  * <!-- START SNIPPET: example4 -->
- * 
+ * <p/>
  * <pre>
  * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt; &lt;sj:dialog id=&quot;mydialog5&quot; href=&quot;%{remoteurl}&quot; title=&quot;Remote Dialog open on Click&quot; autoOpen=&quot;false&quot; modal=&quot;true&quot;/&gt;
  * &lt;sj:a openDialog=&quot;mydialog5&quot;&gt;Open Dialog&lt;/sj:a&gt;
  * </pre>
- * 
+ * <p/>
  * <!-- END SNIPPET: example4 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "dialog", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DialogTag", description = "Render a Dialog")
 public class Dialog extends AbstractRemoteBean {
 
-  public static final String           JQUERYACTION   = "dialog";
-  public static final String           TEMPLATE       = "dialog";
-  public static final String           TEMPLATE_CLOSE = "dialog-close";
-  public static final String           COMPONENT_NAME = Dialog.class.getName();
-  public static final transient Random RANDOM         = new Random();
+    public static final String JQUERYACTION = "dialog";
+    public static final String TEMPLATE = "dialog";
+    public static final String TEMPLATE_CLOSE = "dialog-close";
+    public static final String COMPONENT_NAME = Dialog.class.getName();
+    public static final transient Random RANDOM = new Random();
 
-  protected String                     buttons;
-  protected String                     draggable;
-  protected String                     dialogClass;
-  protected String                     height;
-  protected String                     modal;
-  protected String                     position;
-  protected String                     resizable;
-  protected String                     title;
-  protected String                     width;
-  protected String                     zindex;
-  protected String                     autoOpen;
-  protected String                     showEffect;
-  protected String                     hideEffect;
-  protected String                     overlayColor;
-  protected String                     overlayOpacity;
-  protected String                     maxHeight;
-  protected String                     maxWidth;
-  protected String                     minHeight;
-  protected String                     minWidth;
-  protected String                     closeOnEscape;
-  protected String                     onOpenTopics;
-  protected String                     onCloseTopics;
-  protected String                     onFocusTopics;
-  protected String                     onBeforeCloseTopics;
-  protected String                     openTopics;
-  protected String                     closeTopics;
-  protected String                     destroyTopics;
+    protected String appendTo;
+    protected String buttons;
+    protected String draggable;
+    protected String dialogClass;
+    protected String height;
+    protected String modal;
+    protected String position;
+    protected String resizable;
+    protected String title;
+    protected String width;
+    protected String autoOpen;
+    protected String showEffect;
+    protected String hideEffect;
+    protected String overlayColor;
+    protected String overlayOpacity;
+    protected String maxHeight;
+    protected String maxWidth;
+    protected String minHeight;
+    protected String minWidth;
+    protected String closeOnEscape;
+    protected String onOpenTopics;
+    protected String onCloseTopics;
+    protected String onFocusTopics;
+    protected String onBeforeCloseTopics;
+    protected String openTopics;
+    protected String closeTopics;
+    protected String destroyTopics;
 
-  public Dialog(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
-
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
-
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
-
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
-
-    addParameter("jqueryaction", JQUERYACTION);
-
-    if (buttons != null) addParameter("buttons", findString(buttons));
-    if (draggable != null) addParameter("draggable", findValue(draggable, Boolean.class));
-    if (dialogClass != null) addParameter("dialogClass", findString(dialogClass));
-    if (height != null) addParameter("height", findString(height));
-    if (modal != null) addParameter("modal", findString(modal));
-    if (position != null) addParameter("position", findString(position));
-    if (resizable != null) addParameter("resizable", findValue(resizable, Boolean.class));
-    if (title != null) addParameter("title", findString(title));
-    if (width != null) addParameter("width", findString(width));
-    if (zindex != null) addParameter("zindex", findString(zindex));
-    if (autoOpen != null) addParameter("autoOpen", findValue(autoOpen, Boolean.class));
-    if (showEffect != null) addParameter("showEffect", findString(showEffect));
-    if (hideEffect != null) addParameter("hideEffect", findString(hideEffect));
-    if (overlayColor != null) addParameter("overlayColor", findString(overlayColor));
-    if (overlayOpacity != null) addParameter("overlayOpacity", findString(overlayOpacity));
-    if (maxHeight != null) addParameter("maxHeight", findString(maxHeight));
-    if (maxWidth != null) addParameter("maxWidth", findString(maxWidth));
-    if (minHeight != null) addParameter("minHeight", findString(minHeight));
-    if (minWidth != null) addParameter("minWidth", findString(minWidth));
-    if (closeOnEscape != null) addParameter("closeOnEscape", findValue(closeOnEscape, Boolean.class));
-    if (onBeforeCloseTopics != null) addParameter("onBeforeCloseTopics", findString(onBeforeCloseTopics));
-    if (onCloseTopics != null) addParameter("onCloseTopics", findString(onCloseTopics));
-    if (onOpenTopics != null) addParameter("onOpenTopics", findString(onOpenTopics));
-    if (onFocusTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
-    if (openTopics != null) addParameter("openTopics", findString(openTopics));
-    if (closeTopics != null) addParameter("closeTopics", findString(closeTopics));
-    if (destroyTopics != null) addParameter("destroyTopics", findString(destroyTopics));
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "dialog_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
+    public Dialog(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
     }
-  }
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+    public String getDefaultOpenTemplate() {
+        return TEMPLATE;
+    }
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+    protected String getDefaultTemplate() {
+        return TEMPLATE_CLOSE;
+    }
 
-  @StrutsTagAttribute(description = "Specifies which buttons should be displayed on the dialog. The property key is the text of the button. The value is the callback function for when the button is clicked.")
-  public void setButtons(String buttons)
-  {
-    this.buttons = buttons;
-  }
+    public void evaluateExtraParams() {
+        super.evaluateExtraParams();
 
-  @StrutsTagAttribute(description = "If set to true, the dialog will be draggable will be draggable by the titlebar.", defaultValue = "true", type = "Boolean")
-  public void setDraggable(String draggable)
-  {
-    this.draggable = draggable;
-  }
+        addParameter("jqueryaction", JQUERYACTION);
 
-  @StrutsTagAttribute(description = "The specified class name(s) will be added to the dialog, for additional theming.")
-  public void setDialogClass(String dialogClass)
-  {
-    this.dialogClass = dialogClass;
-  }
+        if (appendTo != null) addParameter("appendTo", findString(appendTo));
+        if (buttons != null) addParameter("buttons", findString(buttons));
+        if (draggable != null) addParameter("draggable", findValue(draggable, Boolean.class));
+        if (dialogClass != null) addParameter("dialogClass", findString(dialogClass));
+        if (height != null) addParameter("height", findString(height));
+        if (modal != null) addParameter("modal", findString(modal));
+        if (position != null) addParameter("position", findString(position));
+        if (resizable != null) addParameter("resizable", findValue(resizable, Boolean.class));
+        if (title != null) addParameter("title", findString(title));
+        if (width != null) addParameter("width", findString(width));
+        if (autoOpen != null) addParameter("autoOpen", findValue(autoOpen, Boolean.class));
+        if (showEffect != null) addParameter("showEffect", findString(showEffect));
+        if (hideEffect != null) addParameter("hideEffect", findString(hideEffect));
+        if (overlayColor != null) addParameter("overlayColor", findString(overlayColor));
+        if (overlayOpacity != null) addParameter("overlayOpacity", findString(overlayOpacity));
+        if (maxHeight != null) addParameter("maxHeight", findString(maxHeight));
+        if (maxWidth != null) addParameter("maxWidth", findString(maxWidth));
+        if (minHeight != null) addParameter("minHeight", findString(minHeight));
+        if (minWidth != null) addParameter("minWidth", findString(minWidth));
+        if (closeOnEscape != null) addParameter("closeOnEscape", findValue(closeOnEscape, Boolean.class));
+        if (onBeforeCloseTopics != null) addParameter("onBeforeCloseTopics", findString(onBeforeCloseTopics));
+        if (onCloseTopics != null) addParameter("onCloseTopics", findString(onCloseTopics));
+        if (onOpenTopics != null) addParameter("onOpenTopics", findString(onOpenTopics));
+        if (onFocusTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
+        if (openTopics != null) addParameter("openTopics", findString(openTopics));
+        if (closeTopics != null) addParameter("closeTopics", findString(closeTopics));
+        if (destroyTopics != null) addParameter("destroyTopics", findString(destroyTopics));
+        if ((this.id == null || this.id.length() == 0)) {
+            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+            int nextInt = RANDOM.nextInt();
+            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+            this.id = "dialog_" + String.valueOf(nextInt);
+            addParameter("id", this.id);
+        }
+    }
 
-  @StrutsTagAttribute(description = "The height of the dialog, in pixels.")
-  public void setHeight(String height)
-  {
-    this.height = height;
-  }
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
+    }
 
-  @StrutsTagAttribute(description = "If set to true, the dialog will have modal behavior; other items on the page will be disabled (i.e. cannot be interacted with). Modal dialogs create an overlay below the dialog but above other page elements. Default: false")
-  public void setModal(String modal)
-  {
-    this.modal = modal;
-  }
+    @Override
+    public String getTheme() {
+        return "jquery";
+    }
 
-  @StrutsTagAttribute(description = "Specifies where the dialog should be displayed. Possible values: 'center', 'left', 'right', 'top', 'bottom', or an array containing a coordinate pair (in pixel offset from top left of viewport) or the possible string values (e.g. ['right','top'] for top right corner). Default: 'center'", defaultValue = "center")
-  public void setPosition(String position)
-  {
-    this.position = position;
-  }
+    @StrutsTagAttribute(description = "Which element the dialog should be appended to. Regardless of the value set, the overlay for modal dialogs will always be appended to the body and cover the entire window.", defaultValue = "body")
+    public void setAppendTo(String appendTo) {
+        this.appendTo = appendTo;
+    }
 
-  @StrutsTagAttribute(description = "If set to true, the dialog will be resizeable.", defaultValue = "true", type = "Boolean")
-  public void setResizable(String resizable)
-  {
-    this.resizable = resizable;
-  }
+    @StrutsTagAttribute(description = "Specifies which buttons should be displayed on the dialog. The property key is the text of the button. The value is the callback function for when the button is clicked.")
+    public void setButtons(String buttons) {
+        this.buttons = buttons;
+    }
 
-  @StrutsTagAttribute(description = "Specifies the title of the dialog. The title can also be specified by the title attribute on the dialog source element.")
-  public void setTitle(String title)
-  {
-    this.title = title;
-  }
+    @StrutsTagAttribute(description = "If set to true, the dialog will be draggable will be draggable by the titlebar.", defaultValue = "true", type = "Boolean")
+    public void setDraggable(String draggable) {
+        this.draggable = draggable;
+    }
 
-  @StrutsTagAttribute(description = "The width of the dialog, in pixels.")
-  public void setWidth(String width)
-  {
-    this.width = width;
-  }
+    @StrutsTagAttribute(description = "The specified class name(s) will be added to the dialog, for additional theming.")
+    public void setDialogClass(String dialogClass) {
+        this.dialogClass = dialogClass;
+    }
 
-  @StrutsTagAttribute(description = "The starting z-index for the dialog.", defaultValue = "1000")
-  public void setZindex(String zindex)
-  {
-    this.zindex = zindex;
-  }
+    @StrutsTagAttribute(description = "The height of the dialog, in pixels.")
+    public void setHeight(String height) {
+        this.height = height;
+    }
 
-  @StrutsTagAttribute(description = "When autoOpen is true the dialog will open automatically when dialog is called. If false it will stay hidden until .dialog('open') is called on it.", defaultValue = "true", type = "Boolean")
-  public void setAutoOpen(String autoOpen)
-  {
-    this.autoOpen = autoOpen;
-  }
+    @StrutsTagAttribute(description = "If set to true, the dialog will have modal behavior; other items on the page will be disabled (i.e. cannot be interacted with). Modal dialogs create an overlay below the dialog but above other page elements. Default: false")
+    public void setModal(String modal) {
+        this.modal = modal;
+    }
 
-  @StrutsTagAttribute(description = "The effect to be used when the dialog is opened. Values are slide, scale, blind, clip, puff, explode, fold and drop. Default: none")
-  public void setShowEffect(String showEffect)
-  {
-    this.showEffect = showEffect;
-  }
+    @StrutsTagAttribute(description = "Specifies where the dialog should be displayed. Possible values: 'center', 'left', 'right', 'top', 'bottom', or an array containing a coordinate pair (in pixel offset from top left of viewport) or the possible string values (e.g. ['right','top'] for top right corner). Default: 'center'", defaultValue = "center")
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
-  @StrutsTagAttribute(description = "The effect to be used when the dialog is closed. Values are slide, scale, blind, clip, puff, explode, fold and drop. Default: none")
-  public void setHideEffect(String hideEffect)
-  {
-    this.hideEffect = hideEffect;
-  }
+    @StrutsTagAttribute(description = "If set to true, the dialog will be resizeable.", defaultValue = "true", type = "Boolean")
+    public void setResizable(String resizable) {
+        this.resizable = resizable;
+    }
 
-  @StrutsTagAttribute(description = "Overlay color when modal is true. e.g. #000")
-  public void setOverlayColor(String overlayColor)
-  {
-    this.overlayColor = overlayColor;
-  }
+    @StrutsTagAttribute(description = "Specifies the title of the dialog. The title can also be specified by the title attribute on the dialog source element.")
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  @StrutsTagAttribute(description = "Overlay opacity when modal is true. e.g. 0.7")
-  public void setOverlayOpacity(String overlayOpacity)
-  {
-    this.overlayOpacity = overlayOpacity;
-  }
+    @StrutsTagAttribute(description = "The width of the dialog, in pixels.")
+    public void setWidth(String width) {
+        this.width = width;
+    }
 
-  @StrutsTagAttribute(description = "The maximum height to which the dialog can be resized, in pixels.")
-  public void setMaxHeight(String maxHeight)
-  {
-    this.maxHeight = maxHeight;
-  }
+    @StrutsTagAttribute(description = "When autoOpen is true the dialog will open automatically when dialog is called. If false it will stay hidden until .dialog('open') is called on it.", defaultValue = "true", type = "Boolean")
+    public void setAutoOpen(String autoOpen) {
+        this.autoOpen = autoOpen;
+    }
 
-  @StrutsTagAttribute(description = "The maximum width to which the dialog can be resized, in pixels.")
-  public void setMaxWidth(String maxWidth)
-  {
-    this.maxWidth = maxWidth;
-  }
+    @StrutsTagAttribute(description = "The effect to be used when the dialog is opened. Values are slide, scale, blind, clip, puff, explode, fold and drop. Default: none")
+    public void setShowEffect(String showEffect) {
+        this.showEffect = showEffect;
+    }
 
-  @StrutsTagAttribute(description = "The minimum height to which the dialog can be resized, in pixels.")
-  public void setMinHeight(String minHeight)
-  {
-    this.minHeight = minHeight;
-  }
+    @StrutsTagAttribute(description = "The effect to be used when the dialog is closed. Values are slide, scale, blind, clip, puff, explode, fold and drop. Default: none")
+    public void setHideEffect(String hideEffect) {
+        this.hideEffect = hideEffect;
+    }
 
-  @StrutsTagAttribute(description = "The minimum width to which the dialog can be resized, in pixels.")
-  public void setMinWidth(String minWidth)
-  {
-    this.minWidth = minWidth;
-  }
+    @StrutsTagAttribute(description = "Overlay color when modal is true. e.g. #000")
+    public void setOverlayColor(String overlayColor) {
+        this.overlayColor = overlayColor;
+    }
 
-  @StrutsTagAttribute(description = "Specifies whether the dialog should close when it has focus and the user presses the esacpe (ESC) key.", defaultValue = "true", type = "Boolean")
-  public void setCloseOnEscape(String closeOnEscape)
-  {
-    this.closeOnEscape = closeOnEscape;
-  }
+    @StrutsTagAttribute(description = "Overlay opacity when modal is true. e.g. 0.7")
+    public void setOverlayOpacity(String overlayOpacity) {
+        this.overlayOpacity = overlayOpacity;
+    }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is opened.")
-  public void setOnOpenTopics(String onOpenTopics)
-  {
-    this.onOpenTopics = onOpenTopics;
-  }
+    @StrutsTagAttribute(description = "The maximum height to which the dialog can be resized, in pixels.")
+    public void setMaxHeight(String maxHeight) {
+        this.maxHeight = maxHeight;
+    }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is closed.")
-  public void setOnCloseTopics(String onCloseTopics)
-  {
-    this.onCloseTopics = onCloseTopics;
-  }
+    @StrutsTagAttribute(description = "The maximum width to which the dialog can be resized, in pixels.")
+    public void setMaxWidth(String maxWidth) {
+        this.maxWidth = maxWidth;
+    }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is focused.")
-  public void setOnFocusTopics(String onFocusTopics)
-  {
-    this.onFocusTopics = onFocusTopics;
-  }
+    @StrutsTagAttribute(description = "The minimum height to which the dialog can be resized, in pixels.")
+    public void setMinHeight(String minHeight) {
+        this.minHeight = minHeight;
+    }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics that published befor dialog is closed.")
-  public void setOnBeforeCloseTopics(String onBeforeCloseTopics)
-  {
-    this.onBeforeCloseTopics = onBeforeCloseTopics;
-  }
+    @StrutsTagAttribute(description = "The minimum width to which the dialog can be resized, in pixels.")
+    public void setMinWidth(String minWidth) {
+        this.minWidth = minWidth;
+    }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics to open the dialog.")
-  public void setOpenTopics(String openTopics)
-  {
-    this.openTopics = openTopics;
-  }
+    @StrutsTagAttribute(description = "Specifies whether the dialog should close when it has focus and the user presses the esacpe (ESC) key.", defaultValue = "true", type = "Boolean")
+    public void setCloseOnEscape(String closeOnEscape) {
+        this.closeOnEscape = closeOnEscape;
+    }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics to close the dialog.")
-  public void setCloseTopics(String closeTopics)
-  {
-    this.closeTopics = closeTopics;
-  }
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is opened.")
+    public void setOnOpenTopics(String onOpenTopics) {
+        this.onOpenTopics = onOpenTopics;
+    }
 
-  @StrutsTagAttribute(description = "A comma delimited list of topics to destroy the dialog.")
-  public void setDestroyTopics(String destroyTopics)
-  {
-    this.destroyTopics = destroyTopics;
-  }
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is closed.")
+    public void setOnCloseTopics(String onCloseTopics) {
+        this.onCloseTopics = onCloseTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when dialog is focused.")
+    public void setOnFocusTopics(String onFocusTopics) {
+        this.onFocusTopics = onFocusTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published befor dialog is closed.")
+    public void setOnBeforeCloseTopics(String onBeforeCloseTopics) {
+        this.onBeforeCloseTopics = onBeforeCloseTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics to open the dialog.")
+    public void setOpenTopics(String openTopics) {
+        this.openTopics = openTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics to close the dialog.")
+    public void setCloseTopics(String closeTopics) {
+        this.closeTopics = closeTopics;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics to destroy the dialog.")
+    public void setDestroyTopics(String destroyTopics) {
+        this.destroyTopics = destroyTopics;
+    }
 }
