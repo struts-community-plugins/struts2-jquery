@@ -19,10 +19,7 @@
 
 package com.jgeppert.struts2.jquery.showcase.grid;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -80,138 +77,140 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
 
     @SuppressWarnings("unchecked")
     public String execute() {
-	log.debug("Page " + getPage() + " Rows " + getRows()
-		+ " Sorting Order " + getSord() + " Index Row :" + getSidx());
-	log.debug("Search :" + searchField + " " + searchOper + " "
-		+ searchString);
+        log.debug("Page " + getPage() + " Rows " + getRows()
+                + " Sorting Order " + getSord() + " Index Row :" + getSidx());
+        log.debug("Search :" + searchField + " " + searchOper + " "
+                + searchString);
 
-	Object list = session.get("mylist");
-	if (list != null) {
-	    myCustomers = (List<Customer>) list;
-	} else {
-	    log.debug("Build new List");
-	    myCustomers = CustomerDAO.buildList();
-	}
+        Object list = session.get("mylist");
+        if (list != null) {
+            myCustomers = (List<Customer>) list;
+        } else {
+            log.debug("Build new List");
+            myCustomers = CustomerDAO.buildList();
+        }
 
-	if (sord != null && sord.equalsIgnoreCase("asc")) {
-	    Collections.sort(myCustomers);
-	}
-	if (sord != null && sord.equalsIgnoreCase("desc")) {
-	    Collections.sort(myCustomers);
-	    Collections.reverse(myCustomers);
-	}
+        if (sord != null && sord.equalsIgnoreCase("asc")) {
+            Collections.sort(myCustomers);
+        }
+        if (sord != null && sord.equalsIgnoreCase("desc")) {
+            Collections.sort(myCustomers);
+            Collections.reverse(myCustomers);
+        }
 
-	// Count all record (select count(*) from your_custumers)
-	records = CustomerDAO.getCustomersCount(myCustomers);
+        // Count all record (select count(*) from your_custumers)
+        records = CustomerDAO.getCustomersCount(myCustomers);
 
-	if (totalrows != null) {
-	    records = totalrows;
-	}
+        if (totalrows != null) {
+            records = totalrows;
+        }
 
-	// Calucalate until rows ware selected
-	int to = (rows * page);
+        // Calucalate until rows ware selected
+        int to = (rows * page);
 
-	// Calculate the first row to read
-	int from = to - rows;
+        // Calculate the first row to read
+        int from = to - rows;
 
-	// Set to = max rows
-	if (to > records)
-	    to = records;
+        // Set to = max rows
+        if (to > records)
+            to = records;
 
-	if (loadonce) {
-	    if (totalrows != null && totalrows > 0) {
-		setGridModel(myCustomers.subList(0, totalrows));
-	    } else {
-		// All Custumer
-		setGridModel(myCustomers);
-	    }
-	} else {
-	    // Search Custumers
-	    if (searchString != null && searchOper != null) {
-		int id = Integer.parseInt(searchString);
-		if (searchOper.equalsIgnoreCase("eq")) {
-		    log.debug("search id equals " + id);
-		    List<Customer> cList = new ArrayList<Customer>();
-		    Customer customer = CustomerDAO.findById(myCustomers, id);
+        if (loadonce) {
+            if (totalrows != null && totalrows > 0) {
+                Collections.sort(myCustomers, new Comparator<Customer>() {
+                    public int compare(Customer o1, Customer o2) {
+                        return o1.getCountry().compareToIgnoreCase(o2.getCountry());
+                    }
+                });
+                setGridModel(myCustomers.subList(0, totalrows));
+            } else {
+                // All Custumer
+                setGridModel(myCustomers);
+            }
+        } else {
+            // Search Custumers
+            if (searchString != null && searchOper != null) {
+                int id = Integer.parseInt(searchString);
+                if (searchOper.equalsIgnoreCase("eq")) {
+                    log.debug("search id equals " + id);
+                    List<Customer> cList = new ArrayList<Customer>();
+                    Customer customer = CustomerDAO.findById(myCustomers, id);
 
-		    if (customer != null)
-			cList.add(customer);
+                    if (customer != null)
+                        cList.add(customer);
 
-		    setGridModel(cList);
-		} else if (searchOper.equalsIgnoreCase("ne")) {
-		    log.debug("search id not " + id);
-		    setGridModel(CustomerDAO.findNotById(myCustomers, id, from,
-			    to));
-		} else if (searchOper.equalsIgnoreCase("lt")) {
-		    log.debug("search id lesser then " + id);
-		    setGridModel(CustomerDAO.findLesserAsId(myCustomers, id,
-			    from, to));
-		} else if (searchOper.equalsIgnoreCase("gt")) {
-		    log.debug("search id greater then " + id);
-		    setGridModel(CustomerDAO.findGreaterAsId(myCustomers, id,
-			    from, to));
-		}
-	    } else {
-		setGridModel(CustomerDAO.getCustomers(myCustomers, from, to));
-	    }
-	}
+                    setGridModel(cList);
+                } else if (searchOper.equalsIgnoreCase("ne")) {
+                    log.debug("search id not " + id);
+                    setGridModel(CustomerDAO.findNotById(myCustomers, id, from,
+                            to));
+                } else if (searchOper.equalsIgnoreCase("lt")) {
+                    log.debug("search id lesser then " + id);
+                    setGridModel(CustomerDAO.findLesserAsId(myCustomers, id,
+                            from, to));
+                } else if (searchOper.equalsIgnoreCase("gt")) {
+                    log.debug("search id greater then " + id);
+                    setGridModel(CustomerDAO.findGreaterAsId(myCustomers, id,
+                            from, to));
+                }
+            } else {
+                setGridModel(CustomerDAO.getCustomers(myCustomers, from, to));
+            }
+        }
 
-	// Calculate total Pages
-	total = (int) Math.ceil((double) records / (double) rows);
+        // Calculate total Pages
+        total = (int) Math.ceil((double) records / (double) rows);
 
-	// only for showcase functionality, don't do this in production
-	session.put("mylist", myCustomers);
+        // only for showcase functionality, don't do this in production
+        session.put("mylist", myCustomers);
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public String getJSON() {
-	return execute();
+        return execute();
     }
 
     /**
      * @return how many rows we want to have into the grid
      */
     public Integer getRows() {
-	return rows;
+        return rows;
     }
 
     /**
-     * @param rows
-     *            how many rows we want to have into the grid
+     * @param rows how many rows we want to have into the grid
      */
     public void setRows(Integer rows) {
-	this.rows = rows;
+        this.rows = rows;
     }
 
     /**
      * @return current page of the query
      */
     public Integer getPage() {
-	return page;
+        return page;
     }
 
     /**
-     * @param page
-     *            current page of the query
+     * @param page current page of the query
      */
     public void setPage(Integer page) {
-	this.page = page;
+        this.page = page;
     }
 
     /**
      * @return total pages for the query
      */
     public Integer getTotal() {
-	return total;
+        return total;
     }
 
     /**
-     * @param total
-     *            total pages for the query
+     * @param total total pages for the query
      */
     public void setTotal(Integer total) {
-	this.total = total;
+        this.total = total;
     }
 
     /**
@@ -219,93 +218,89 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
      *         table
      */
     public Integer getRecords() {
-	return records;
+        return records;
     }
 
     /**
-     * @param record
-     *            total number of records for the query. e.g. select count(*)
-     *            from table
+     * @param records total number of records for the query. e.g. select count(*)
+     *               from table
      */
     public void setRecords(Integer records) {
 
-	this.records = records;
+        this.records = records;
 
-	if (this.records > 0 && this.rows > 0) {
-	    this.total = (int) Math.ceil((double) this.records
-		    / (double) this.rows);
-	} else {
-	    this.total = 0;
-	}
+        if (this.records > 0 && this.rows > 0) {
+            this.total = (int) Math.ceil((double) this.records
+                    / (double) this.rows);
+        } else {
+            this.total = 0;
+        }
     }
 
     /**
      * @return an collection that contains the actual data
      */
     public List<Customer> getGridModel() {
-	return gridModel;
+        return gridModel;
     }
 
     /**
-     * @param gridModel
-     *            an collection that contains the actual data
+     * @param gridModel an collection that contains the actual data
      */
     public void setGridModel(List<Customer> gridModel) {
-	this.gridModel = gridModel;
+        this.gridModel = gridModel;
     }
 
     /**
      * @return sorting order
      */
     public String getSord() {
-	return sord;
+        return sord;
     }
 
     /**
-     * @param sord
-     *            sorting order
+     * @param sord sorting order
      */
     public void setSord(String sord) {
-	this.sord = sord;
+        this.sord = sord;
     }
 
     /**
      * @return get index row - i.e. user click to sort.
      */
     public String getSidx() {
-	return sidx;
+        return sidx;
     }
 
     /**
-     * @param sidx
-     *            get index row - i.e. user click to sort.
+     * @param sidx get index row - i.e. user click to sort.
      */
     public void setSidx(String sidx) {
-	this.sidx = sidx;
+        this.sidx = sidx;
     }
 
     public void setSearchField(String searchField) {
-	this.searchField = searchField;
+        this.searchField = searchField;
     }
 
     public void setSearchString(String searchString) {
-	this.searchString = searchString;
+        this.searchString = searchString;
     }
 
     public void setSearchOper(String searchOper) {
-	this.searchOper = searchOper;
+        this.searchOper = searchOper;
     }
 
     public void setLoadonce(boolean loadonce) {
-	this.loadonce = loadonce;
+        this.loadonce = loadonce;
     }
 
     public void setSession(Map<String, Object> session) {
-	this.session = session;
+        this.session = session;
     }
 
     public void setTotalrows(Integer totalrows) {
-	this.totalrows = totalrows;
+        this.totalrows = totalrows;
     }
 
 }
