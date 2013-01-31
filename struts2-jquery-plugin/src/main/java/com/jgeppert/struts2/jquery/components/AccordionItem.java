@@ -37,22 +37,21 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Renders a accordion item
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
+ * <p/>
  * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * 
+ * <p/>
  * <pre>
  *       &lt;sj:accordionItem title=&quot;Sed non urna&quot;&gt;
  *         Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
  *       &lt;/sj:accordionItem&gt;
  * </pre>
- * 
+ * <p/>
  * <!-- END SNIPPET: example1 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionItemTag", description = "Render an accordion item.")
 public class AccordionItem extends ClosingUIBean {
@@ -67,64 +66,64 @@ public class AccordionItem extends ClosingUIBean {
     protected String onClickTopics;
 
     public AccordionItem(ValueStack stack, HttpServletRequest request,
-	    HttpServletResponse response) {
-	super(stack, request, response);
+                         HttpServletResponse response) {
+        super(stack, request, response);
     }
 
     @Override
     public String getDefaultOpenTemplate() {
-	return TEMPLATE;
+        return TEMPLATE;
     }
 
     protected String getDefaultTemplate() {
-	return TEMPLATE_CLOSE;
+        return TEMPLATE_CLOSE;
     }
 
     public void evaluateExtraParams() {
-	super.evaluateExtraParams();
+        super.evaluateExtraParams();
 
-	addParameter("jqueryaction", JQUERYACTION);
+        addParameter("jqueryaction", JQUERYACTION);
 
-	if (title != null)
-	    addParameter("title", findString(title));
-	if (onClickTopics != null)
-	    addParameter("onClickTopics", findString(onClickTopics));
+        if (title != null)
+            addParameter("title", findString(title));
+        if (onClickTopics != null)
+            addParameter("onClickTopics", findString(onClickTopics));
 
-	Accordion accordion = (Accordion) findAncestor(Accordion.class);
+        Accordion accordion = (Accordion) findAncestor(Accordion.class);
 
-	if (accordion != null)
-	    addParameter("header", accordion.getHeader());
+        if (accordion != null)
+            addParameter("header", accordion.getHeader());
 
-	if ((this.id == null || this.id.length() == 0)) {
-	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-	    int nextInt = RANDOM.nextInt();
-	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-		    .abs(nextInt);
-	    this.id = "accordionItem_" + String.valueOf(nextInt);
-	    addParameter("id", this.id);
-	}
+        if ((this.id == null || this.id.length() == 0)) {
+            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+            int nextInt = RANDOM.nextInt();
+            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+                    .abs(nextInt);
+            this.id = "accordionItem_" + String.valueOf(nextInt);
+            addParameter("id", this.id);
+        }
 
     }
 
     @Override
     @StrutsTagSkipInheritance
     public void setTheme(String theme) {
-	super.setTheme(theme);
+        super.setTheme(theme);
     }
 
     @Override
     public String getTheme() {
-	return "jquery";
+        return "jquery";
     }
 
     @StrutsTagAttribute(description = "accordion item title")
     public void setTitle(String title) {
-	this.title = title;
+        this.title = title;
     }
 
     @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
     public void setOnClickTopics(String onClickTopics) {
-	this.onClickTopics = onClickTopics;
+        this.onClickTopics = onClickTopics;
     }
 }

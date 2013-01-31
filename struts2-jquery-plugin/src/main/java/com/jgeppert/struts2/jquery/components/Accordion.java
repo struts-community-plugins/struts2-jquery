@@ -116,192 +116,199 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "accordion", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionTag", description = "Render an accordion from a List.")
 public class Accordion extends AbstractTopicsBean {
 
-	final private static transient Random RANDOM = new Random();
-	public static final String JQUERYACTION = "accordion";
-	public static final String TEMPLATE = "accordion";
-	public static final String TEMPLATE_CLOSE = "accordion-close";
-	public static final String COMPONENT_NAME = Accordion.class.getName();
+    final private static transient Random RANDOM = new Random();
+    public static final String JQUERYACTION = "accordion";
+    public static final String TEMPLATE = "accordion";
+    public static final String TEMPLATE_CLOSE = "accordion-close";
+    public static final String COMPONENT_NAME = Accordion.class.getName();
 
-	protected boolean throwExceptionOnNullValueAttribute = false;
+    protected boolean throwExceptionOnNullValueAttribute = false;
 
-	protected String active;
-	protected String animate;
-	protected String heightStyle;
-	protected String collapsible;
-	protected String header;
-	protected String openOnMouseover;
-	protected String href;
-	protected String paramKeys;
-	protected String paramValues;
-	protected Object list;
-	protected String listKey;
-	protected String listValue;
+    protected String active;
+    protected String animate;
+    protected String heightStyle;
+    protected String collapsible;
+    protected String header;
+    protected String openOnMouseover;
+    protected String href;
+    protected String paramKeys;
+    protected String paramValues;
+    protected Object list;
+    protected String listKey;
+    protected String listValue;
+    protected String onCreateTopics;
 
-	public Accordion(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-		super(stack, request, response);
-	}
+    public Accordion(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
+    }
 
-	@Override
-	public String getDefaultOpenTemplate() {
-		return TEMPLATE;
-	}
+    @Override
+    public String getDefaultOpenTemplate() {
+        return TEMPLATE;
+    }
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE_CLOSE;
-	}
+    protected String getDefaultTemplate() {
+        return TEMPLATE_CLOSE;
+    }
 
-	@SuppressWarnings("rawtypes")
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    @SuppressWarnings("rawtypes")
+    public void evaluateExtraParams() {
+        super.evaluateExtraParams();
 
-		addParameter("jqueryaction", JQUERYACTION);
+        addParameter("jqueryaction", JQUERYACTION);
 
-		if (active != null) addParameter("active", findString(active));
-		if (animate != null) addParameter("animate", findString(animate));
-		if (heightStyle != null) addParameter("heightStyle", findString(heightStyle));
-		if (collapsible != null) addParameter("collapsible", findValue(this.collapsible, Boolean.class));
-		if (header != null) addParameter("header", findString(header));
-		if (openOnMouseover != null) addParameter("openOnMouseover", findValue(this.openOnMouseover, Boolean.class));
-		if (href != null) addParameter("href", findString(href));
-		if (paramKeys != null) addParameter("paramKeys", findString(paramKeys));
-		if (paramValues != null) addParameter("paramValues", findString(paramValues));
+        if (active != null) addParameter("active", findString(active));
+        if (animate != null) addParameter("animate", findString(animate));
+        if (heightStyle != null) addParameter("heightStyle", findString(heightStyle));
+        if (collapsible != null) addParameter("collapsible", findValue(this.collapsible, Boolean.class));
+        if (header != null) addParameter("header", findString(header));
+        if (openOnMouseover != null) addParameter("openOnMouseover", findValue(this.openOnMouseover, Boolean.class));
+        if (href != null) addParameter("href", findString(href));
+        if (paramKeys != null) addParameter("paramKeys", findString(paramKeys));
+        if (paramValues != null) addParameter("paramValues", findString(paramValues));
+        if (onCreateTopics != null) addParameter("onCreateTopics", findString(onCreateTopics));
 
-		Object value = null;
+        Object value = null;
 
-		if (list == null) {
-			list = parameters.get("list");
-		}
+        if (list == null) {
+            list = parameters.get("list");
+        }
 
-		if (list instanceof String) {
-			value = findValue((String) list);
-		} else if (list instanceof Collection) {
-			value = list;
-		} else if (MakeIterator.isIterable(list)) {
-			value = MakeIterator.convert(list);
-		}
-		if (value == null) {
-			if (throwExceptionOnNullValueAttribute) {
-				// will throw an exception if not found
-				value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
-			} else {
-				// ww-1010, allows value with null value to be compatible with
-				// ww
-				// 2.1.7 behaviour
-				value = findValue((list == null) ? (String) list : list.toString());
-			}
-		}
+        if (list instanceof String) {
+            value = findValue((String) list);
+        } else if (list instanceof Collection) {
+            value = list;
+        } else if (MakeIterator.isIterable(list)) {
+            value = MakeIterator.convert(list);
+        }
+        if (value == null) {
+            if (throwExceptionOnNullValueAttribute) {
+                // will throw an exception if not found
+                value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
+            } else {
+                // ww-1010, allows value with null value to be compatible with
+                // ww
+                // 2.1.7 behaviour
+                value = findValue((list == null) ? (String) list : list.toString());
+            }
+        }
 
-		if (value instanceof Collection) {
-			addParameter("list", value);
-		} else {
-			addParameter("list", MakeIterator.convert(value));
-		}
+        if (value instanceof Collection) {
+            addParameter("list", value);
+        } else {
+            addParameter("list", MakeIterator.convert(value));
+        }
 
-		if (value instanceof Collection) {
-			addParameter("listSize", Integer.valueOf(((Collection) value).size()));
-		} else if (value instanceof Map) {
-			addParameter("listSize", Integer.valueOf(((Map) value).size()));
-		} else if (value != null && value.getClass().isArray()) {
-			addParameter("listSize", Integer.valueOf(Array.getLength(value)));
-		}
+        if (value instanceof Collection) {
+            addParameter("listSize", Integer.valueOf(((Collection) value).size()));
+        } else if (value instanceof Map) {
+            addParameter("listSize", Integer.valueOf(((Map) value).size()));
+        } else if (value != null && value.getClass().isArray()) {
+            addParameter("listSize", Integer.valueOf(Array.getLength(value)));
+        }
 
-		if (listKey != null) {
-			listKey = stripExpressionIfAltSyntax(listKey);
-			addParameter("listKey", listKey);
-		} else if (value instanceof Map) {
-			addParameter("listKey", "key");
-		}
+        if (listKey != null) {
+            listKey = stripExpressionIfAltSyntax(listKey);
+            addParameter("listKey", listKey);
+        } else if (value instanceof Map) {
+            addParameter("listKey", "key");
+        }
 
-		if (listValue != null) {
-			listValue = stripExpressionIfAltSyntax(listValue);
-			addParameter("listValue", listValue);
-		} else if (value instanceof Map) {
-			addParameter("listValue", "value");
-		}
+        if (listValue != null) {
+            listValue = stripExpressionIfAltSyntax(listValue);
+            addParameter("listValue", listValue);
+        } else if (value instanceof Map) {
+            addParameter("listValue", "value");
+        }
 
-		if ((this.id == null || this.id.length() == 0)) {
-			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-			int nextInt = RANDOM.nextInt();
-			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-			this.id = "accordion_" + String.valueOf(nextInt);
-			addParameter("id", this.id);
-		}
-	}
+        if ((this.id == null || this.id.length() == 0)) {
+            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+            int nextInt = RANDOM.nextInt();
+            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+            this.id = "accordion_" + String.valueOf(nextInt);
+            addParameter("id", this.id);
+        }
+    }
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
+    }
 
-	@Override
-	public String getTheme() {
-		return "jquery";
-	}
+    @Override
+    public String getTheme() {
+        return "jquery";
+    }
 
-	@StrutsTagAttribute(description = "Selector for the active element. Set to false to display none at start. Needs collapsible: true.  Default: 0")
-	public void setActive(String active) {
-		this.active = active;
-	}
+    @StrutsTagAttribute(description = "Selector for the active element. Set to false to display none at start. Needs collapsible: true.  Default: 0")
+    public void setActive(String active) {
+        this.active = active;
+    }
 
-	@StrutsTagAttribute(description = "If and how to animate changing panels. Can be Boolean, Number, String (Escaped with simple ' sign) or JavaScript Object", defaultValue = "false")
-	public void setAnimate(String animate) {
-		this.animate = animate;
-	}
+    @StrutsTagAttribute(description = "If and how to animate changing panels. Can be Boolean, Number, String (Escaped with simple ' sign) or JavaScript Object", defaultValue = "false")
+    public void setAnimate(String animate) {
+        this.animate = animate;
+    }
 
-	@StrutsTagAttribute(description = "Controls the height of the accordion and each panel. Possible values 'auto\': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.", defaultValue = "auto")
-	public void setHeightStyle(String heightStyle) {
-		this.heightStyle = heightStyle;
-	}
+    @StrutsTagAttribute(description = "Controls the height of the accordion and each panel. Possible values 'auto\': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.", defaultValue = "auto")
+    public void setHeightStyle(String heightStyle) {
+        this.heightStyle = heightStyle;
+    }
 
 
-	@StrutsTagAttribute(description = "Whether all the sections can be closed at once. Allows collapsing the active section by the triggering event. Default: false", defaultValue = "false", type = "Boolean")
-	public void setCollapsible(String collapsible) {
-		this.collapsible = collapsible;
-	}
+    @StrutsTagAttribute(description = "Whether all the sections can be closed at once. Allows collapsing the active section by the triggering event. Default: false", defaultValue = "false", type = "Boolean")
+    public void setCollapsible(String collapsible) {
+        this.collapsible = collapsible;
+    }
 
-	@StrutsTagAttribute(description = "Selector for the header element. Default: h3", defaultValue = "h3")
-	public void setHeader(String header) {
-		this.header = header;
-	}
+    @StrutsTagAttribute(description = "Selector for the header element. Default: h3", defaultValue = "h3")
+    public void setHeader(String header) {
+        this.header = header;
+    }
 
-	public String getHeader() {
-		return header;
-	}
+    public String getHeader() {
+        return header;
+    }
 
-	@StrutsTagAttribute(description = "open accordion on mouse over event. Default: false", defaultValue = "false", type = "Boolean")
-	public void setOpenOnMouseover(String openOnMouseover) {
-		this.openOnMouseover = openOnMouseover;
-	}
+    @StrutsTagAttribute(description = "open accordion on mouse over event. Default: false", defaultValue = "false", type = "Boolean")
+    public void setOpenOnMouseover(String openOnMouseover) {
+        this.openOnMouseover = openOnMouseover;
+    }
 
-	@StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value' parameter and the Map value will become the option body.")
-	public void setList(Object list) {
-		this.list = list;
-	}
+    @StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value' parameter and the Map value will become the option body.")
+    public void setList(Object list) {
+        this.list = list;
+    }
 
-	@StrutsTagAttribute(description = "Property of list objects to get field value from")
-	public void setListKey(String listKey) {
-		this.listKey = listKey;
-	}
+    @StrutsTagAttribute(description = "Property of list objects to get field value from")
+    public void setListKey(String listKey) {
+        this.listKey = listKey;
+    }
 
-	@StrutsTagAttribute(description = "Property of list objects to get field content from")
-	public void setListValue(String listValue) {
-		this.listValue = listValue;
-	}
+    @StrutsTagAttribute(description = "Property of list objects to get field content from")
+    public void setListValue(String listValue) {
+        this.listValue = listValue;
+    }
 
-	@StrutsTagAttribute(description = "The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.")
-	public void setHref(String href) {
-		this.href = href;
-	}
+    @StrutsTagAttribute(description = "The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.")
+    public void setHref(String href) {
+        this.href = href;
+    }
 
-	@StrutsTagAttribute(description = "Comma seperated List of parameter names for the href url. e.g. queryParam1,queryParam2")
-	public void setParamKeys(String paramKeys) {
-		this.paramKeys = paramKeys;
-	}
+    @StrutsTagAttribute(description = "Comma delimited List of parameter names for the href url. e.g. queryParam1,queryParam2")
+    public void setParamKeys(String paramKeys) {
+        this.paramKeys = paramKeys;
+    }
 
-	@StrutsTagAttribute(description = "Comma seperated List of List Keys for parameter values. e.g. queryValue1,queryValue2")
-	public void setParamValues(String paramValues) {
-		this.paramValues = paramValues;
-	}
+    @StrutsTagAttribute(description = "Comma delimited List of List Keys for parameter values. e.g. queryValue1,queryValue2")
+    public void setParamValues(String paramValues) {
+        this.paramValues = paramValues;
+    }
+
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the accordion is created", type = "String", defaultValue = "")
+    public void setOnCreateTopics(String onCreateTopics) {
+        this.onCreateTopics = onCreateTopics;
+    }
 }

@@ -90,6 +90,9 @@ jQuery(document).ready(function () {
 <#if parameters.animate?if_exists != "">
 	options_${escapedOptionId?html}.animate = ${parameters.animate?html};
 </#if>
+<#if parameters.onCreateTopics?exists>
+    options_${escapedOptionId?html}.oncreate = "${parameters.onCreateTopics?html}";
+</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

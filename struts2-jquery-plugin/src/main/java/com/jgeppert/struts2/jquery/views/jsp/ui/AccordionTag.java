@@ -47,6 +47,7 @@ public class AccordionTag extends AbstractTopicTag {
 	protected String list;
 	protected String listKey;
 	protected String listValue;
+    protected String onCreateTopics;
 
 	public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
 		return new Accordion(stack, req, res);
@@ -68,6 +69,7 @@ public class AccordionTag extends AbstractTopicTag {
 		accordion.setList(list);
 		accordion.setListKey(listKey);
 		accordion.setListValue(listValue);
+        accordion.setOnCreateTopics(onCreateTopics);
 	}
 
 	public void setActive(String active) {
@@ -130,4 +132,8 @@ public class AccordionTag extends AbstractTopicTag {
 	public void setListValue(String listValue) {
 		this.listValue = listValue;
 	}
+
+    public void setOnCreateTopics(String onCreateTopics) {
+        this.onCreateTopics = onCreateTopics;
+    }
 }

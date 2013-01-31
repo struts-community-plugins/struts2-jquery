@@ -15,7 +15,6 @@
 		paramKeys="echo"
 		paramValues="content"
 		href="%{urlecho}"
-		active="false"
 		heightStyle="content"
 		/>
 
