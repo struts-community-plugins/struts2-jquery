@@ -178,10 +178,6 @@
             self.log('dialog : ' + o.id);
 
             var jsFiles = [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.dialog" + self.minSuffix + ".js" ];
-            if ($.browser.msie && parseInt($.browser.version, 10) <= 6) {
-                o.bgiframe = true;
-                self.require("js/base/jquery.bgiframe" + self.minSuffix + ".js");
-            }
             if (o.hide || o.show) {
                 jsFiles.push("js/base/jquery.ui.effect" + self.minSuffix + ".js");
             }
@@ -971,7 +967,7 @@
                         var selectString = self.escId(o.id) + " > input",
                             elements = $(selectString);
 
-                        if ($.browser.msie && o.type === 'radio') {
+                        if (($.support.leadingWhitespace == false) && o.type === 'radio') {
                             elements.click( function() {
                                 this.blur();
                                 this.focus();

@@ -30,7 +30,9 @@
 				ajaxData = [],
 				chartTopic = '_s2j_chart_topic',
 				plot;
-			if ($.browser.msie && parseInt($.browser.version, 10) < 9) {
+
+            // Detect IE7-8
+			if ($.support.leadingWhitespace == false) {
 				self.require("js/flot/excanvas" + self.minSuffix + ".js");
 			}
 			self.require("js/flot/jquery.flot" + self.minSuffix + ".js");
