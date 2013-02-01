@@ -1,9 +1,9 @@
 /* Javascript plotting library for jQuery, version 0.8 alpha.
 
-Copyright (c) 2007-2012 IOLA and Ole Laursen.
-Licensed under the MIT license.
+ Copyright (c) 2007-2012 IOLA and Ole Laursen.
+ Licensed under the MIT license.
 
-*/
+ */
 
 // first an inline dependency, jquery.colorhelpers.js, we inline it here
 // for convenience
@@ -106,6 +106,8 @@ Licensed under the MIT license.
                         fill: false,
                         fillColor: null,
                         steps: false
+                        // Omit 'zero', so we can later default its value to
+                        // match that of the 'fill' option.
                     },
                     bars: {
                         show: false,
@@ -114,7 +116,8 @@ Licensed under the MIT license.
                         fill: true,
                         fillColor: null,
                         align: "left", // "left", "right", or "center"
-                        horizontal: false
+                        horizontal: false,
+                        zero: true
                     },
                     shadowSize: 3,
                     highlightColor: null
@@ -145,27 +148,27 @@ Licensed under the MIT license.
                 },
                 hooks: {}
             },
-        canvas = null,      // the canvas for the plot itself
-        overlay = null,     // canvas for interactive stuff on top of plot
-        eventHolder = null, // jQuery object that events should be bound to
-        ctx = null, octx = null,
-        xaxes = [], yaxes = [],
-        plotOffset = { left: 0, right: 0, top: 0, bottom: 0},
-        canvasWidth = 0, canvasHeight = 0,
-        plotWidth = 0, plotHeight = 0,
-        hooks = {
-            processOptions: [],
-            processRawData: [],
-            processDatapoints: [],
-            processOffset: [],
-            drawBackground: [],
-            drawSeries: [],
-            draw: [],
-            bindEvents: [],
-            drawOverlay: [],
-            shutdown: []
-        },
-        plot = this;
+            canvas = null,      // the canvas for the plot itself
+            overlay = null,     // canvas for interactive stuff on top of plot
+            eventHolder = null, // jQuery object that events should be bound to
+            ctx = null, octx = null,
+            xaxes = [], yaxes = [],
+            plotOffset = { left: 0, right: 0, top: 0, bottom: 0},
+            canvasWidth = 0, canvasHeight = 0,
+            plotWidth = 0, plotHeight = 0,
+            hooks = {
+                processOptions: [],
+                processRawData: [],
+                processDatapoints: [],
+                processOffset: [],
+                drawBackground: [],
+                drawSeries: [],
+                draw: [],
+                bindEvents: [],
+                drawOverlay: [],
+                shutdown: []
+            },
+            plot = this;
 
         // public functions
         plot.setData = setData;
@@ -421,10 +424,10 @@ Licensed under the MIT license.
 
         function fillInSeriesOptions() {
 
-            var neededColors = series.length, maxIndex = 0, i;
+            var neededColors = series.length, maxIndex = -1, i;
 
-            // Subtract the number of series that already have fixed
-            // colors from the number we need to generate.
+            // Subtract the number of series that already have fixed colors or
+            // color indexes from the number that we still need to generate.
 
             for (i = 0; i < series.length; ++i) {
                 var sc = series[i].color;
@@ -436,14 +439,15 @@ Licensed under the MIT license.
                 }
             }
 
-            // If any of the user colors are numeric indexes, then we
-            // need to generate at least as many as the highest index.
+            // If any of the series have fixed color indexes, then we need to
+            // generate at least as many colors as the highest index.
 
-            if (maxIndex > neededColors) {
+            if (neededColors <= maxIndex) {
                 neededColors = maxIndex + 1;
             }
 
-            // Generate the needed colors, based on the option colors
+            // Generate all the colors, using first the option colors and then
+            // variations on those colors once they're exhausted.
 
             var c, colors = [], colorPool = options.colors,
                 colorPoolSize = colorPool.length, variation = 0;
@@ -497,6 +501,13 @@ Licensed under the MIT license.
                         s.lines.show = true;
                 }
 
+                // If nothing was provided for lines.zero, default it to match
+                // lines.fill, since areas by default should extend to zero.
+
+                if (s.lines.zero == null) {
+                    s.lines.zero = !!s.lines.fill;
+                }
+
                 // setup axes
                 s.xaxis = getOrCreateAxis(xaxes, axisNumber(s, "x"));
                 s.yaxis = getOrCreateAxis(yaxes, axisNumber(s, "y"));
@@ -546,7 +557,8 @@ Licensed under the MIT license.
                     format.push({ y: true, number: true, required: true });
 
                     if (s.bars.show || (s.lines.show && s.lines.fill)) {
-                        format.push({ y: true, number: true, required: false, defaultValue: 0 });
+                        var autoscale = !!((s.bars.show && s.bars.zero) || (s.lines.show && s.lines.zero));
+                        format.push({ y: true, number: true, required: false, defaultValue: 0, autoscale: autoscale });
                         if (s.bars.horizontal) {
                             delete format[format.length - 1].y;
                             format[format.length - 1].x = true;
@@ -647,7 +659,7 @@ Licensed under the MIT license.
             for (i = 0; i < series.length; ++i) {
                 s = series[i];
                 points = s.datapoints.points,
-                ps = s.datapoints.pointsize;
+                    ps = s.datapoints.pointsize;
                 format = s.datapoints.format;
 
                 var xmin = topSentry, ymin = topSentry,
@@ -660,7 +672,7 @@ Licensed under the MIT license.
                     for (m = 0; m < ps; ++m) {
                         val = points[j + m];
                         f = format[m];
-                        if (!f || val == fakeInfinity || val == -fakeInfinity)
+                        if (!f || f.autoscale === false || val == fakeInfinity || val == -fakeInfinity)
                             continue;
 
                         if (f.x) {
@@ -730,10 +742,10 @@ Licensed under the MIT license.
             var devicePixelRatio = window.devicePixelRatio || 1;
             var backingStoreRatio =
                 cctx.webkitBackingStorePixelRatio ||
-                cctx.mozBackingStorePixelRatio ||
-                cctx.msBackingStorePixelRatio ||
-                cctx.oBackingStorePixelRatio ||
-                cctx.backingStorePixelRatio || 1;
+                    cctx.mozBackingStorePixelRatio ||
+                    cctx.msBackingStorePixelRatio ||
+                    cctx.oBackingStorePixelRatio ||
+                    cctx.backingStorePixelRatio || 1;
 
             return devicePixelRatio / backingStoreRatio;
         }
@@ -743,18 +755,18 @@ Licensed under the MIT license.
             var c = document.createElement('canvas');
             c.className = cls;
 
-            $(c).css({ position: 'absolute', left: 0, top: 0 })
-            	.appendTo(placeholder);
+            $(c).css({ direction: "ltr", position: "absolute", left: 0, top: 0 })
+                .appendTo(placeholder);
 
-			// If HTML5 Canvas isn't available, fall back to Excanvas
+            // If HTML5 Canvas isn't available, fall back to Excanvas
 
-			if (!c.getContext) {
-				if (window.G_vmlCanvasManager) {
-					c = window.G_vmlCanvasManager.initElement(c);
-				} else {
-					throw new Error("Canvas is not available. If you're using IE with a fall-back such as Excanvas, then there's either a mistake in your conditional include, or the page has no DOCTYPE and is rendering in Quirks Mode.");
-				}
-			}
+            if (!c.getContext) {
+                if (window.G_vmlCanvasManager) {
+                    c = window.G_vmlCanvasManager.initElement(c);
+                } else {
+                    throw new Error("Canvas is not available. If you're using IE with a fall-back such as Excanvas, then there's either a mistake in your conditional include, or the page has no DOCTYPE and is rendering in Quirks Mode.");
+                }
+            }
 
             var cctx = c.getContext("2d");
 
@@ -883,7 +895,14 @@ Licensed under the MIT license.
             // bind events
             if (options.grid.hoverable) {
                 eventHolder.mousemove(onMouseMove);
-                eventHolder.mouseleave(onMouseLeave);
+
+                // Use bind, rather than .mouseleave, because we officially
+                // still support jQuery 1.2.6, which doesn't define a shortcut
+                // for mouseenter or mouseleave.  This was a bug/oversight that
+                // was fixed somewhere around 1.3.x.  We can return to using
+                // .mouseleave when we drop support for 1.2.6.
+
+                eventHolder.bind("mouseleave", onMouseLeave);
             }
 
             if (options.grid.clickable)
@@ -955,7 +974,7 @@ Licensed under the MIT license.
 
                 // accept various kinds of newlines, including HTML ones
                 // (you can actually split directly on regexps in Javascript,
-                // but IE is unfortunately broken)
+                // but IE < 9 is unfortunately broken)
                 var lines = (t.label + "").replace(/<br ?\/?>|\r\n|\r/g, "\n").split("\n");
                 for (var j = 0; j < lines.length; ++j) {
                     var line = { text: lines[j] },
@@ -1054,7 +1073,7 @@ Licensed under the MIT license.
                 }
             }
 
-             // save for future reference
+            // save for future reference
             axis.position = pos;
             axis.tickLength = tickLength;
             axis.box.padding = padding;
@@ -1123,10 +1142,10 @@ Licensed under the MIT license.
 
             for (var a in plotOffset) {
                 if(typeof(options.grid.borderWidth) == "object") {
-                    plotOffset[a] = showGrid ? options.grid.borderWidth[a] : 0;
+                    plotOffset[a] += showGrid ? options.grid.borderWidth[a] : 0;
                 }
                 else {
-                    plotOffset[a] = showGrid ? options.grid.borderWidth : 0;
+                    plotOffset[a] += showGrid ? options.grid.borderWidth : 0;
                 }
             }
 
@@ -1237,8 +1256,8 @@ Licensed under the MIT license.
             if (typeof opts.ticks == "number" && opts.ticks > 0)
                 noTicks = opts.ticks;
             else
-                // heuristic based on the model a*sqrt(x) fitted to
-                // some data points that seemed reasonable
+            // heuristic based on the model a*sqrt(x) fitted to
+            // some data points that seemed reasonable
                 noTicks = 0.3 * Math.sqrt(axis.direction == "x" ? canvasWidth : canvasHeight);
 
             axis.delta = (axis.max - axis.min) / noTicks;
@@ -1255,40 +1274,47 @@ Licensed under the MIT license.
 
             if (!axis.tickGenerator) {
 
-                var maxDec = opts.tickDecimals;
-                var dec = -Math.floor(Math.log(axis.delta) / Math.LN10);
-                if (maxDec != null && dec > maxDec)
-                    dec = maxDec;
-
-                var magn = Math.pow(10, -dec);
-                var norm = axis.delta / magn; // norm is between 1.0 and 10.0
-                var size;
-
-                if (norm < 1.5)
-                    size = 1;
-                else if (norm < 3) {
-                    size = 2;
-                    // special case for 2.5, requires an extra decimal
-                    if (norm > 2.25 && (maxDec == null || dec + 1 <= maxDec)) {
-                        size = 2.5;
-                        ++dec;
-                    }
-                }
-                else if (norm < 7.5)
-                    size = 5;
-                else size = 10;
-
-                size *= magn;
-
-                if (opts.minTickSize != null && size < opts.minTickSize)
-                    size = opts.minTickSize;
-
-                axis.tickDecimals = Math.max(0, maxDec != null ? maxDec : dec);
-                axis.tickSize = opts.tickSize || size;
-
                 axis.tickGenerator = function (axis) {
-                    var ticks = [], start = floorInBase(axis.min, axis.tickSize),
-                        i = 0, v = Number.NaN, prev;
+                    var maxDec = opts.tickDecimals,
+                        dec = -Math.floor(Math.log(axis.delta) / Math.LN10);
+
+                    if (maxDec != null && dec > maxDec)
+                        dec = maxDec;
+
+                    var magn = Math.pow(10, -dec),
+                        norm = axis.delta / magn, // norm is between 1.0 and 10.0
+                        size,
+
+                        ticks = [],
+                        start,
+                        i = 0,
+                        v = Number.NaN,
+                        prev;
+
+                    if (norm < 1.5)
+                        size = 1;
+                    else if (norm < 3) {
+                        size = 2;
+                        // special case for 2.5, requires an extra decimal
+                        if (norm > 2.25 && (maxDec == null || dec + 1 <= maxDec)) {
+                            size = 2.5;
+                            ++dec;
+                        }
+                    }
+                    else if (norm < 7.5)
+                        size = 5;
+                    else size = 10;
+
+                    size *= magn;
+
+                    if (opts.minTickSize != null && size < opts.minTickSize)
+                        size = opts.minTickSize;
+
+                    axis.tickDecimals = Math.max(0, maxDec != null ? maxDec : dec);
+                    axis.tickSize = opts.tickSize || size;
+
+                    start = floorInBase(axis.min, axis.tickSize)
+
                     do {
                         prev = v;
                         v = start + i * axis.tickSize;
@@ -1298,21 +1324,21 @@ Licensed under the MIT license.
                     return ticks;
                 };
 
-				axis.tickFormatter = function (value, axis) {
+                axis.tickFormatter = function (value, axis) {
 
-					var factor = Math.pow(10, axis.tickDecimals);
-					var formatted = "" + Math.round(value * factor) / factor;
+                    var factor = axis.tickDecimals ? Math.pow(10, axis.tickDecimals) : 1;
+                    var formatted = "" + Math.round(value * factor) / factor;
 
-					// If tickDecimals was specified, ensure that we have exactly that
-					// much precision; otherwise default to the value's own precision.
+                    // If tickDecimals was specified, ensure that we have exactly that
+                    // much precision; otherwise default to the value's own precision.
 
-					if (axis.tickDecimals != null) {
-						var decimal = formatted.indexOf(".");
-						var precision = decimal == -1 ? 0 : formatted.length - decimal - 1;
-						if (precision < axis.tickDecimals) {
-							return (precision ? formatted : formatted + ".") + ("" + factor).substr(1, axis.tickDecimals - precision);
-						}
-					}
+                    if (axis.tickDecimals != null) {
+                        var decimal = formatted.indexOf(".");
+                        var precision = decimal == -1 ? 0 : formatted.length - decimal - 1;
+                        if (precision < axis.tickDecimals) {
+                            return (precision ? formatted : formatted + ".") + ("" + factor).substr(1, axis.tickDecimals - precision);
+                        }
+                    }
 
                     return formatted;
                 };
@@ -1366,7 +1392,7 @@ Licensed under the MIT license.
                 ticks = axis.tickGenerator(axis);
             else if (oticks) {
                 if ($.isFunction(oticks))
-                    // generate the ticks
+                // generate the ticks
                     ticks = oticks(axis);
                 else
                     ticks = oticks;
@@ -1542,8 +1568,8 @@ Licensed under the MIT license.
                         // fill area
                         ctx.fillStyle = m.color || options.grid.markingsColor;
                         ctx.fillRect(xrange.from, yrange.to,
-                                     xrange.to - xrange.from,
-                                     yrange.from - yrange.to);
+                            xrange.to - xrange.from,
+                            yrange.from - yrange.to);
                     }
                 }
             }
@@ -1606,8 +1632,8 @@ Licensed under the MIT license.
                     if (v < axis.min || v > axis.max
                         // skip those lying on the axes if we got a border
                         || (t == "full"
-                            && ((typeof bw == "object" && bw[axis.position] > 0) || bw > 0)
-                            && (v == axis.min || v == axis.max)))
+                        && ((typeof bw == "object" && bw[axis.position] > 0) || bw > 0)
+                        && (v == axis.min || v == axis.max)))
                         continue;
 
                     if (axis.direction == "x") {
@@ -1749,8 +1775,10 @@ Licensed under the MIT license.
                         y += line.height/2 + offset;
                         offset += line.height;
 
-                        if ($.browser.opera) {
-                            // FIXME: UGLY BROWSER DETECTION
+                        if (!!(window.opera && window.opera.version().split('.')[0] < 12)) {
+                            // FIXME: LEGACY BROWSER FIX
+                            // AFFECTS: Opera < 12.00
+
                             // round the coordinates since Opera
                             // otherwise switches to more ugly
                             // rendering (probably non-hinted) and
@@ -2070,18 +2098,18 @@ Licensed under the MIT license.
                 ctx.lineWidth = w;
                 ctx.strokeStyle = "rgba(0,0,0,0.1)";
                 plotPoints(series.datapoints, radius, null, w + w/2, true,
-                           series.xaxis, series.yaxis, symbol);
+                    series.xaxis, series.yaxis, symbol);
 
                 ctx.strokeStyle = "rgba(0,0,0,0.2)";
                 plotPoints(series.datapoints, radius, null, w/2, true,
-                           series.xaxis, series.yaxis, symbol);
+                    series.xaxis, series.yaxis, symbol);
             }
 
             ctx.lineWidth = lw;
             ctx.strokeStyle = series.color;
             plotPoints(series.datapoints, radius,
-                       getFillStyle(series.points, series.color), 0, false,
-                       series.xaxis, series.yaxis, symbol);
+                getFillStyle(series.points, series.color), 0, false,
+                series.xaxis, series.yaxis, symbol);
             ctx.restore();
         }
 
@@ -2283,7 +2311,7 @@ Licensed under the MIT license.
                     entries.sort(function(a, b) {
                         return a.label == b.label ? 0 : (
                             (a.label < b.label) != ascending ? 1 : -1   // Logical XOR
-                        );
+                            );
                     });
                 }
             }
@@ -2303,7 +2331,7 @@ Licensed under the MIT license.
 
                 fragments.push(
                     '<td class="legendColorBox"><div style="border:1px solid ' + options.legend.labelBoxBorderColor + ';padding:1px"><div style="width:4px;height:0;border:5px solid ' + entry.color + ';overflow:hidden"></div></div></td>' +
-                    '<td class="legendLabel">' + entry.label + '</td>'
+                        '<td class="legendLabel">' + entry.label + '</td>'
                 );
             }
 
@@ -2423,10 +2451,10 @@ Licensed under the MIT license.
                         // for a bar graph, the cursor must be inside the bar
                         if (series[i].bars.horizontal ?
                             (mx <= Math.max(b, x) && mx >= Math.min(b, x) &&
-                             my >= y + barLeft && my <= y + barRight) :
+                                my >= y + barLeft && my <= y + barRight) :
                             (mx >= x + barLeft && mx <= x + barRight &&
-                             my >= Math.min(b, y) && my <= Math.max(b, y)))
-                                item = [i, j / ps];
+                                my >= Math.min(b, y) && my <= Math.max(b, y)))
+                            item = [i, j / ps];
                     }
                 }
             }
@@ -2437,9 +2465,9 @@ Licensed under the MIT license.
                 ps = series[i].datapoints.pointsize;
 
                 return { datapoint: series[i].datapoints.points.slice(j * ps, (j + 1) * ps),
-                         dataIndex: j,
-                         series: series[i],
-                         seriesIndex: i };
+                    dataIndex: j,
+                    series: series[i],
+                    seriesIndex: i };
             }
 
             return null;
@@ -2448,18 +2476,18 @@ Licensed under the MIT license.
         function onMouseMove(e) {
             if (options.grid.hoverable)
                 triggerClickHoverEvent("plothover", e,
-                                       function (s) { return s["hoverable"] != false; });
+                    function (s) { return s["hoverable"] != false; });
         }
 
         function onMouseLeave(e) {
             if (options.grid.hoverable)
                 triggerClickHoverEvent("plothover", e,
-                                       function (s) { return false; });
+                    function (s) { return false; });
         }
 
         function onClick(e) {
             triggerClickHoverEvent("plotclick", e,
-                                   function (s) { return s["clickable"] != false; });
+                function (s) { return s["clickable"] != false; });
         }
 
         // trigger click or hover event (they send the same parameters
@@ -2468,7 +2496,7 @@ Licensed under the MIT license.
             var offset = eventHolder.offset(),
                 canvasX = event.pageX - offset.left - plotOffset.left,
                 canvasY = event.pageY - offset.top - plotOffset.top,
-            pos = canvasToAxisCoords({ left: canvasX, top: canvasY });
+                pos = canvasToAxisCoords({ left: canvasX, top: canvasY });
 
             pos.pageX = event.pageX;
             pos.pageY = event.pageY;
@@ -2487,8 +2515,8 @@ Licensed under the MIT license.
                     var h = highlights[i];
                     if (h.auto == eventname &&
                         !(item && h.series == item.series &&
-                          h.point[0] == item.datapoint[0] &&
-                          h.point[1] == item.datapoint[1]))
+                            h.point[0] == item.datapoint[0] &&
+                            h.point[1] == item.datapoint[1]))
                         unhighlight(h.series, h.point);
                 }
 
@@ -2614,7 +2642,7 @@ Licensed under the MIT license.
             octx.strokeStyle = highlightColor;
 
             drawBar(point[0], point[1], point[2] || 0, barLeft, barLeft + series.bars.barWidth,
-                    0, function () { return fillStyle; }, series.xaxis, series.yaxis, octx, series.bars.horizontal, series.bars.lineWidth);
+                0, function () { return fillStyle; }, series.xaxis, series.yaxis, octx, series.bars.horizontal, series.bars.lineWidth);
         }
 
         function getColorOrGradient(spec, bottom, top, defaultColor) {
