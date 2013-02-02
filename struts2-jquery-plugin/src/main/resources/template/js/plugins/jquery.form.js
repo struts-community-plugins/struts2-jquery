@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 3.25.0-2013.01.18
+ * version: 3.26.0-2013.01.28
  * @requires jQuery v1.5 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -222,13 +222,14 @@
         function deepSerialize(extraData){
             var serialized = $.param(extraData).split('&');
             var len = serialized.length;
-            var result = {};
+            var result = [];
             var i, part;
             for (i=0; i < len; i++) {
                 // #252; undo param space replacement
                 serialized[i] = serialized[i].replace(/\+/g,' ');
                 part = serialized[i].split('=');
-                result[decodeURIComponent(part[0])] = decodeURIComponent(part[1]);
+                // #278; use array instead of object storage, favoring array serializations
+                result.push([decodeURIComponent(part[0]), decodeURIComponent(part[1])]);
             }
             return result;
         }
@@ -243,9 +244,9 @@
 
             if (options.extraData) {
                 var serializedData = deepSerialize(options.extraData);
-                for (var p in serializedData)
-                    if (serializedData.hasOwnProperty(p))
-                        formdata.append(p, serializedData[p]);
+                for (i=0; i < serializedData.length; i++)
+                    if (serializedData[i])
+                        formdata.append(serializedData[i][0], serializedData[i][1]);
             }
 
             options.data = null;
@@ -291,14 +292,6 @@
             var form = $form[0], el, i, s, g, id, $io, io, xhr, sub, n, timedOut, timeoutHandle;
             var useProp = !!$.fn.prop;
             var deferred = $.Deferred();
-
-            if ($('[name=submit],[id=submit]', form).length) {
-                // if there is an input with a name or id of 'submit' then we won't be
-                // able to invoke the submit fn on the form (at least not x-browser)
-                alert('Error: Form elements must not have name or id of "submit".');
-                deferred.reject();
-                return deferred;
-            }
 
             if (a) {
                 // ensure that every serialized input is still enabled
@@ -485,7 +478,9 @@
                             io.addEventListener('load', cb, false);
                     }
                     setTimeout(checkState,15);
-                    form.submit();
+                    // just in case form has element with name/id of 'submit'
+                    var submitFn = document.createElement('form').submit;
+                    submitFn.apply(form);
                 }
                 finally {
                     // reset attrs and remove "extra" input elements
@@ -758,7 +753,7 @@
             .bind('click.form-plugin', options, captureSubmittingElement);
     };
 
-// private event handlers    
+// private event handlers
     function doAjaxSubmit(e) {
         /*jshint validthis:true */
         var options = e.data;
