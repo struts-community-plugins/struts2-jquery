@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 3.26.0-2013.01.28
+ * version: 3.28.0-2013.02.06
  * @requires jQuery v1.5 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -263,7 +263,7 @@
                 s.xhr = function() {
                     var xhr = jQuery.ajaxSettings.xhr();
                     if (xhr.upload) {
-                        xhr.upload.onprogress = function(event) {
+                        xhr.upload.addEventListener('progress', function(event) {
                             var percent = 0;
                             var position = event.loaded || event.position; /*event.position is deprecated*/
                             var total = event.total;
@@ -271,7 +271,7 @@
                                 percent = Math.ceil(position / total * 100);
                             }
                             options.uploadProgress(event, position, total, percent);
-                        };
+                        }, false);
                     }
                     return xhr;
                 };
@@ -478,9 +478,14 @@
                             io.addEventListener('load', cb, false);
                     }
                     setTimeout(checkState,15);
-                    // just in case form has element with name/id of 'submit'
-                    var submitFn = document.createElement('form').submit;
-                    submitFn.apply(form);
+
+                    try {
+                        form.submit();
+                    } catch(err) {
+                        // just in case form has element with name/id of 'submit'
+                        var submitFn = document.createElement('form').submit;
+                        submitFn.apply(form);
+                    }
                 }
                 finally {
                     // reset attrs and remove "extra" input elements
@@ -602,15 +607,15 @@
                     try {
                         data = httpData(xhr, dt, s);
                     }
-                    catch (e) {
+                    catch (err) {
                         status = 'parsererror';
-                        xhr.error = errMsg = (e || status);
+                        xhr.error = errMsg = (err || status);
                     }
                 }
-                catch (e) {
-                    log('error caught: ',e);
+                catch (err) {
+                    log('error caught: ',err);
                     status = 'error';
-                    xhr.error = errMsg = (e || status);
+                    xhr.error = errMsg = (err || status);
                 }
 
                 if (xhr.aborted) {
