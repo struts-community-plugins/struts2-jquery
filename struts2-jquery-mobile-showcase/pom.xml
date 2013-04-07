@@ -115,7 +115,7 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.0.0.M2</version>
+                <version>8.1.10.v20130312</version>
                 <configuration>
                     <systemProperties>
                         <systemProperty>
