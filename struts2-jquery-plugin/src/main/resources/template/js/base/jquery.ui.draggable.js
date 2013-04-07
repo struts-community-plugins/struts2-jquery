@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Draggable 1.10.0
+ * jQuery UI Draggable 1.10.2
  * http://jqueryui.com
  *
  * Copyright 2013 jQuery Foundation and other contributors
@@ -16,7 +16,7 @@
 (function( $, undefined ) {
 
 $.widget("ui.draggable", $.ui.mouse, {
-	version: "1.10.0",
+	version: "1.10.2",
 	widgetEventPrefix: "drag",
 	options: {
 		addClasses: true,
@@ -281,19 +281,9 @@ $.widget("ui.draggable", $.ui.mouse, {
 	},
 
 	_getHandle: function(event) {
-
-		var handle = !this.options.handle || !$(this.options.handle, this.element).length ? true : false;
-		$(this.options.handle, this.element)
-			.find("*")
-			.addBack()
-			.each(function() {
-				if(this === event.target) {
-					handle = true;
-				}
-			});
-
-		return handle;
-
+		return this.options.handle ?
+			!!$( event.target ).closest( this.element.find( this.options.handle ) ).length :
+			true;
 	},
 
 	_createHelper: function(event) {
@@ -423,8 +413,8 @@ $.widget("ui.draggable", $.ui.mouse, {
 			this.containment = [
 				(parseInt($(ce).css("borderLeftWidth"),10) || 0) + (parseInt($(ce).css("paddingLeft"),10) || 0),
 				(parseInt($(ce).css("borderTopWidth"),10) || 0) + (parseInt($(ce).css("paddingTop"),10) || 0),
-				(over ? Math.max(ce.scrollWidth,ce.offsetWidth) : ce.offsetWidth) - (parseInt($(ce).css("borderLeftWidth"),10) || 0) - (parseInt($(ce).css("paddingRight"),10) || 0) - this.helperProportions.width - this.margins.left - this.margins.right,
-				(over ? Math.max(ce.scrollHeight,ce.offsetHeight) : ce.offsetHeight) - (parseInt($(ce).css("borderTopWidth"),10) || 0) - (parseInt($(ce).css("paddingBottom"),10) || 0) - this.helperProportions.height - this.margins.top  - this.margins.bottom
+				(over ? Math.max(ce.scrollWidth,ce.offsetWidth) : ce.offsetWidth) - (parseInt($(ce).css("borderRightWidth"),10) || 0) - (parseInt($(ce).css("paddingRight"),10) || 0) - this.helperProportions.width - this.margins.left - this.margins.right,
+				(over ? Math.max(ce.scrollHeight,ce.offsetHeight) : ce.offsetHeight) - (parseInt($(ce).css("borderBottomWidth"),10) || 0) - (parseInt($(ce).css("paddingBottom"),10) || 0) - this.helperProportions.height - this.margins.top  - this.margins.bottom
 			];
 			this.relative_container = c;
 
@@ -600,7 +590,7 @@ $.ui.plugin.add("draggable", "connectToSortable", {
 
 				//The sortable revert is supported, and we have to set a temporary dropped variable on the draggable to support revert: "valid/invalid"
 				if(this.shouldRevert) {
-					this.instance.options.revert = true;
+					this.instance.options.revert = this.shouldRevert;
 				}
 
 				//Trigger the stop of the sortable
@@ -643,7 +633,7 @@ $.ui.plugin.add("draggable", "connectToSortable", {
 					this.instance.offset.click = inst.offset.click;
 					if (this !== thisSortable &&
 						this.instance._intersectsWith(this.instance.containerCache) &&
-						$.ui.contains(thisSortable.instance.element[0], this.instance.element[0])
+						$.contains(thisSortable.instance.element[0], this.instance.element[0])
 					) {
 						innermostIntersecting = false;
 					}
@@ -908,22 +898,19 @@ $.ui.plugin.add("draggable", "snap", {
 
 $.ui.plugin.add("draggable", "stack", {
 	start: function() {
-
 		var min,
-			o = $(this).data("ui-draggable").options,
+			o = this.data("ui-draggable").options,
 			group = $.makeArray($(o.stack)).sort(function(a,b) {
 				return (parseInt($(a).css("zIndex"),10) || 0) - (parseInt($(b).css("zIndex"),10) || 0);
 			});
 
 		if (!group.length) { return; }
 
-		min = parseInt(group[0].style.zIndex, 10) || 0;
+		min = parseInt($(group[0]).css("zIndex"), 10) || 0;
 		$(group).each(function(i) {
-			this.style.zIndex = min + i;
+			$(this).css("zIndex", min + i);
 		});
-
-		this[0].style.zIndex = min + group.length;
-
+		this.css("zIndex", (min + group.length));
 	}
 });
 
