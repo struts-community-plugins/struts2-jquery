@@ -46,8 +46,7 @@
         	<#list parameters.paramValues?split(",") as tmp>${stack.findString(tmp)?default('')}<#if tmp_has_next>,</#if></#list>
 		</#assign>
         </#if>
-    <li id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />">
-	<${parameters.header?default('h3')}><a id="${escapedOptionId}_a_<@s.property value="%{#rowstatus.count}" />" href="#"
+	<${parameters.header?default('h3')} id="${escapedOptionId}_header_<@s.property value="%{#rowstatus.count}" />"><a id="${escapedOptionId}_a_<@s.property value="%{#rowstatus.count}" />" href="#"
 <#if parameters.paramKeys?if_exists != "">
 	 data-keys="${parameters.paramKeys?trim}"
 </#if>	 
@@ -56,16 +55,13 @@
 </#if>	 
 	 >${itemKeyStr?html}</a></${parameters.header?default('h3')}>
 		<div id="${escapedOptionId}_div_<@s.property value="%{#rowstatus.count}" />">
-			<p>
 <#if parameters.href?if_exists == "">
 			${itemValue?html}
 </#if>			
-			</p>
 		</div>
-	</li>
 	<#lt/>
 </@s.iterator>
-</ul>
+</div>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
 	var options_${escapedOptionId?html} = {};

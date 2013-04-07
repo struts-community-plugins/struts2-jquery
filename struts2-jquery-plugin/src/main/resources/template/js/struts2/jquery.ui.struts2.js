@@ -723,7 +723,7 @@
 
             $elem.accordion(o);
             if (o.href && active === true) {
-                aktivItem = $(self.escId(o.id) + " li " + o.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
+                aktivItem = $(self.escId(o.id) + " " + o.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
                 if (typeof $(aktivItem).data('keys') !== "undefined") {
                     var keys = $(aktivItem).data('keys').split(','),
                         values = $(aktivItem).data('values').split(','),
@@ -731,7 +731,7 @@
                     $.each(keys, function(i, val) {
                         valueparams[val] = values[i];
                     });
-                    $(self.escId(o.id) + " li div").filter('.ui-accordion-content-active').load(o.href, valueparams, function() {
+                    $(self.escId(o.id) + " div").filter('.ui-accordion-content-active').load(o.href, valueparams, function() {
                     });
                 }
             }
@@ -741,7 +741,7 @@
         accordionItem : function($elem, o) {
             if (o.onclick) {
                 $.each(o.onclick.split(','), function(i, topic) {
-                    $elem.find(o.header).publishOnEvent('click', topic, o);
+                    $elem.publishOnEvent('click', topic, o);
                 });
             }
         },

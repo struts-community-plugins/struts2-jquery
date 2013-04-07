@@ -18,24 +18,25 @@
  * under the License.
  */
 -->
-    <li
+	<${parameters.header?default('h3')}
     <#if parameters.tabindex??>
-		tabindex="${parameters.tabindex?html}"<#rt/>
+        tabindex="${parameters.tabindex?html}"<#rt/>
     </#if>
     <#if parameters.disabled?default(false)>
-		disabled="disabled"<#rt/>
+        disabled="disabled"<#rt/>
     </#if>
     <#if parameters.id?if_exists != "">
         id="${parameters.id?html}"<#rt/>
-	</#if>
+    </#if>
     <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
     <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
     <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
-	><#rt/>
-	<${parameters.header?default('h3')}>
-		${parameters.title?html}
+    ><#rt/>
+        <a id="${parameters.id?html}_a" href="#">
+		    ${parameters.title?html}
+        </a>
 	</${parameters.header?default('h3')}>
-		<div>
+	<div id="${parameters.id?html}_div"><#rt/>
 <#if parameters.value?if_exists != "">
 			${parameters.value?html}
 </#if>			

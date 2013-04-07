@@ -18,8 +18,7 @@
  * under the License.
  */
 -->
-		</div>
-	</li>
+	</div>
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
