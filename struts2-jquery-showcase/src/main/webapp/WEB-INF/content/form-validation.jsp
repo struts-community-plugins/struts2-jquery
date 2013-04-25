@@ -19,12 +19,14 @@
 			name="loginuser"
 			label="User"
 			required="true"
+            requiredLabel="true"
 			/>
 	<s:textfield
 			id="loginpassword1"
 			name="loginpassword"
 			label="Password (test)"
 			required="true"
+            requiredLabel="true"
 			/>
 	<sj:submit
 			targets="result"
