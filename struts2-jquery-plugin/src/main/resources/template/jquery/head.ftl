@@ -22,7 +22,7 @@
 <#if !jQueryVersion?? >
   <#assign jQueryVersion="1.10.0">
 </#if>
-<#assign jQueryUIVersion="1.10.0">
+<#assign jQueryUIVersion="1.10.3">
 <#assign struts2jQueryVersion="${version}">
 
 <#if parameters.scriptPath?if_exists != "">

@@ -5,7 +5,7 @@
      * for ajax, widget and interactions support in struts 2
      *
      * Requires use of jQuery and jQuery UI.
-     * Tested with jQuery 1.8 and jQuery UI 1.10
+     * Tested with jQuery 1.10 and jQuery UI 1.10
      *
      * Copyright (c) 2012 Johannes Geppert http://www.jgeppert.com
      *
