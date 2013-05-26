@@ -68,9 +68,9 @@
 	                editable="true" edittype="text" sortable="false" search="false"/>
 </sjg:grid>
 <br/>
-<sj:submit id="grid_edit_addbutton" value="Add Row" onClickTopics="rowadd" button="true"/>
-<sj:submit id="grid_edit_searchbutton" value="Search" onClickTopics="searchgrid" button="true"/>
-<sj:submit id="grid_edit_colsbutton" value="Show/Hide Columns" onClickTopics="showcolumns" button="true"/>
+<sj:a id="grid_edit_addbutton" onClickTopics="rowadd" button="true">Add Row</sj:a>
+<sj:a id="grid_edit_searchbutton" onClickTopics="searchgrid" button="true">Search</sj:a>
+<sj:a id="grid_edit_colsbutton" onClickTopics="showcolumns" button="true">Show/Hide Columns</sj:a>
 <br/>
 <br/>
 
