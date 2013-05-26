@@ -94,6 +94,7 @@ options_${escapedOptionId?html}.series = $.extend(options_${escapedOptionId?html
 } else {
 options_${escapedOptionId?html}.series = { curvedLines: { active: true }};
 }
+    options_${escapedOptionId?html}_data.curvedLines.apply = true;
 	<#if parameters.curvedLinesFit?default(false)>
 	options_${escapedOptionId?html}_data.curvedLines.fit = true;
 	</#if>

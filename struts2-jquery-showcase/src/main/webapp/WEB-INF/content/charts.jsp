@@ -11,9 +11,7 @@
 			label="List -Points-"
 			list="points"
 			points="{ show: true }"
-			lines="{ show: false }"
-			curvedLines="true"
-			curvedLinesFit="true"
+			lines="{ show: true }"
 			/>
 	<sjc:chartData
 			label="List -Points with Null Value-"
@@ -43,15 +41,22 @@
 		crosshair="true"
 		crosshairMode="xy"
 		>
+    <sjc:chartData
+            list="objList"
+            listKey="myKey"
+            listValue="myValue"
+            points="{ show: true }"
+            lines="{ show: false }"
+            clickable="true"
+            hoverable="true"
+            />
 	<sjc:chartData
 			label="List with Objects"
 			list="objList"
 			listKey="myKey"
 			listValue="myValue"
-			points="{ show: true }"
-			lines="{ show: false }"
-			clickable="true"
-			hoverable="true"
+			points="{ show: false }"
+			lines="{ show: true }"
 			curvedLines="true"
 			curvedLinesFill="true"
 			curvedLinesFillColor="#ccc"
@@ -265,20 +270,27 @@
     	crosshair=&quot;true&quot;
     	crosshairMode=&quot;xy&quot;
     &gt;
-    	&lt;sjc:chartData
-    		label=&quot;List with Objects&quot;
-    		list=&quot;objList&quot;
-    		listKey=&quot;myKey&quot;
-    		listValue=&quot;myValue&quot;
-    		points=&quot;{ show: true }&quot;
-    		lines=&quot;{ show: false }&quot;
-    		clickable=&quot;true&quot;
-    		hoverable=&quot;true&quot;
-     		curvedLines=&quot;true&quot;
-     		curvedLinesFill=&quot;true&quot;
-     		curvedLinesFillColor=&quot;#ccc&quot;
-     		curvedLinesLineWidth=&quot;3&quot;
-    	/&gt;
+    &lt;sjc:chartData
+            list=&quot;objList&quot;
+            listKey=&quot;myKey&quot;
+            listValue=&quot;myValue&quot;
+            points=&quot;{ show: true }&quot;
+            lines=&quot;{ show: false }&quot;
+            clickable=&quot;true&quot;
+            hoverable=&quot;true&quot;
+            /&gt;
+	&lt;sjc:chartData
+            label=&quot;List with Objects&quot;
+            list=&quot;objList"
+            listKey=&quot;myKey&quot;
+            listValue=&quot;myValue&quot;
+            points=&quot;{ show: false }&quot;
+            lines=&quot;{ show: true }&quot;
+            curvedLines=&quot;true&quot;
+            curvedLinesFill=&quot;true&quot;
+            curvedLinesFillColor=&quot;#ccc&quot;
+            curvedLinesLineWidth=&quot;3&quot;
+            /&gt;
     &lt;/sjc:chart&gt;
 
     &lt;br/&gt;
