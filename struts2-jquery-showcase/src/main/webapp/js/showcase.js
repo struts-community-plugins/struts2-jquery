@@ -226,7 +226,7 @@ $(document).ready(function() {
 		}
 	});
 	$.subscribe('tabcomplete', function(event, ui) {
-		$('#infopanel').html('<strong>Request for Tab '+event.originalEvent.ui.newTab.attr("id") +' completed!</strong>');
+		$('#infopanel').html('<strong>Request for Tab '+event.originalEvent.ui.tab.attr("id") +' completed!</strong>');
 	});
 
 

@@ -41,7 +41,7 @@
 		}
 	});
 	$.subscribe('tabcomplete', function(event, ui) {
-		$('#infopanel').html('&lt;strong&gt;Request for Tab '+event.originalEvent.ui.newTab.attr(&quot;id&quot;) +' completed!&lt;/strong&gt;');
+		$('#infopanel').html('&lt;strong&gt;Request for Tab '+event.originalEvent.ui.tab.attr(&quot;id&quot;) +' completed!&lt;/strong&gt;');
 	});
       </pre>
 	<strong>Code:</strong>
