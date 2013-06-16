@@ -19,19 +19,16 @@
 
 package com.jgeppert.struts2.jquery.tree.views.jsp.ui;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.components.Component;
-
 import com.jgeppert.struts2.jquery.tree.components.Tree;
 import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractContainerTag;
 import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 
 public class TreeTag extends AbstractContainerTag {
@@ -57,6 +54,8 @@ public class TreeTag extends AbstractContainerTag {
     protected String openAllOnRefresh;
     protected String contextmenu;
     protected String types;
+    protected String showThemeDots;
+    protected String showThemeIcons;
     protected String checkbox;
     protected String checkboxTwoState;
     protected String checkboxCheckAllTopics;
@@ -65,119 +64,129 @@ public class TreeTag extends AbstractContainerTag {
     protected String checkboxShowTopics;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Tree(stack, req, res);
+                             HttpServletResponse res) {
+        return new Tree(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Tree tree = (Tree) component;
-	tree.setJstreetheme(jstreetheme);
-	tree.setAnimation(animation);
-	tree.setHtmlTitles(htmlTitles);
-	tree.setInitiallyOpen(initiallyOpen);
-	tree.setRtl(rtl);
-	tree.setHref(href);
-	tree.setOnClickTopics(onClickTopics);
-	tree.setRootNode(rootNode);
-	tree.setChildCollectionProperty(childCollectionProperty);
-	tree.setNodeIdProperty(nodeIdProperty);
-	tree.setNodeTitleProperty(nodeTitleProperty);
-	tree.setNodeTypeProperty(nodeTypeProperty);
-	tree.setNodeHref(nodeHref);
-	tree.setNodeHrefParamName(nodeHrefParamName);
-	tree.setNodeTargets(nodeTargets);
-	tree.setOpenAllOnLoad(openAllOnLoad);
-	tree.setOpenAllOnRefresh(openAllOnRefresh);
-	tree.setContextmenu(contextmenu);
-	tree.setTypes(types);
-	tree.setCheckbox(checkbox);
-	tree.setCheckboxTwoState(checkboxTwoState);
-	tree.setCheckboxCheckAllTopics(checkboxCheckAllTopics);
-	tree.setCheckboxUncheckAllTopics(checkboxUncheckAllTopics);
-	tree.setCheckboxShowTopics(checkboxShowTopics);
-	tree.setCheckboxHideTopics(checkboxHideTopics);
+        Tree tree = (Tree) component;
+        tree.setJstreetheme(jstreetheme);
+        tree.setAnimation(animation);
+        tree.setHtmlTitles(htmlTitles);
+        tree.setInitiallyOpen(initiallyOpen);
+        tree.setRtl(rtl);
+        tree.setHref(href);
+        tree.setOnClickTopics(onClickTopics);
+        tree.setRootNode(rootNode);
+        tree.setChildCollectionProperty(childCollectionProperty);
+        tree.setNodeIdProperty(nodeIdProperty);
+        tree.setNodeTitleProperty(nodeTitleProperty);
+        tree.setNodeTypeProperty(nodeTypeProperty);
+        tree.setNodeHref(nodeHref);
+        tree.setNodeHrefParamName(nodeHrefParamName);
+        tree.setNodeTargets(nodeTargets);
+        tree.setOpenAllOnLoad(openAllOnLoad);
+        tree.setOpenAllOnRefresh(openAllOnRefresh);
+        tree.setContextmenu(contextmenu);
+        tree.setTypes(types);
+        tree.setShowThemeDots(showThemeDots);
+        tree.setShowThemeIcons(showThemeIcons);
+        tree.setCheckbox(checkbox);
+        tree.setCheckboxTwoState(checkboxTwoState);
+        tree.setCheckboxCheckAllTopics(checkboxCheckAllTopics);
+        tree.setCheckboxUncheckAllTopics(checkboxUncheckAllTopics);
+        tree.setCheckboxShowTopics(checkboxShowTopics);
+        tree.setCheckboxHideTopics(checkboxHideTopics);
     }
 
     public void setJstreetheme(String jstreetheme) {
-	this.jstreetheme = jstreetheme;
+        this.jstreetheme = jstreetheme;
     }
 
     public void setHtmlTitles(String htmlTitles) {
-	this.htmlTitles = htmlTitles;
+        this.htmlTitles = htmlTitles;
     }
 
     public void setAnimation(String animation) {
-	this.animation = animation;
+        this.animation = animation;
     }
 
     public void setInitiallyOpen(String initiallyOpen) {
-	this.initiallyOpen = initiallyOpen;
+        this.initiallyOpen = initiallyOpen;
     }
 
     public void setRtl(String rtl) {
-	this.rtl = rtl;
+        this.rtl = rtl;
     }
 
     public void setHref(String href) {
-	this.href = href;
+        this.href = href;
     }
 
     public void setOnClickTopics(String onClickTopics) {
-	this.onClickTopics = onClickTopics;
+        this.onClickTopics = onClickTopics;
     }
 
     public void setRootNode(String rootNode) {
-	this.rootNode = rootNode;
+        this.rootNode = rootNode;
     }
 
     public void setChildCollectionProperty(String childCollectionProperty) {
-	this.childCollectionProperty = childCollectionProperty;
+        this.childCollectionProperty = childCollectionProperty;
     }
 
     public void setNodeTitleProperty(String nodeTitleProperty) {
-	this.nodeTitleProperty = nodeTitleProperty;
+        this.nodeTitleProperty = nodeTitleProperty;
     }
 
     public void setNodeIdProperty(String nodeIdProperty) {
-	this.nodeIdProperty = nodeIdProperty;
+        this.nodeIdProperty = nodeIdProperty;
     }
 
     public void setNodeHref(String nodeHref) {
-	this.nodeHref = nodeHref;
+        this.nodeHref = nodeHref;
     }
 
     public void setNodeHrefParamName(String nodeHrefParamName) {
-	this.nodeHrefParamName = nodeHrefParamName;
+        this.nodeHrefParamName = nodeHrefParamName;
     }
 
     public void setNodeTargets(String nodeTargets) {
-	this.nodeTargets = nodeTargets;
+        this.nodeTargets = nodeTargets;
     }
 
     public void setOpenAllOnLoad(String openAllOnLoad) {
-	this.openAllOnLoad = openAllOnLoad;
+        this.openAllOnLoad = openAllOnLoad;
     }
 
     public void setOpenAllOnRefresh(String openAllOnRefresh) {
-	this.openAllOnRefresh = openAllOnRefresh;
+        this.openAllOnRefresh = openAllOnRefresh;
     }
 
     public void setContextmenu(String contextmenu) {
-	this.contextmenu = contextmenu;
+        this.contextmenu = contextmenu;
     }
 
     public void setTypes(String types) {
-	this.types = types;
+        this.types = types;
+    }
+
+    public void setShowThemeIcons(String showThemeIcons) {
+        this.showThemeIcons = showThemeIcons;
+    }
+
+    public void setShowThemeDots(String showThemeDots) {
+        this.showThemeDots = showThemeDots;
     }
 
     public void setNodeTypeProperty(String nodeTypeProperty) {
-	this.nodeTypeProperty = nodeTypeProperty;
+        this.nodeTypeProperty = nodeTypeProperty;
     }
 
     public void setCheckbox(String checkbox) {
-	this.checkbox = checkbox;
+        this.checkbox = checkbox;
     }
 
     public void setCheckboxTwoState(String checkboxTwoState) {

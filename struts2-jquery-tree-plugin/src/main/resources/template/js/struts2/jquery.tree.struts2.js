@@ -47,6 +47,8 @@
 				} else { 
 					path = $.scriptPath;
 				}
+                o.themes.dots = o.dots;
+                o.themes.icons = o.icons;
 
 				o.themes.url = path + "js/jstree/themes/"+o.treetheme+"/style.css";
 			}	else {

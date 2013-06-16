@@ -95,6 +95,8 @@
 			checkboxShowTopics="showCheckboxesTopic"
 			checkboxHideTopics="hideCheckboxesTopic"
 			onClickTopics="treeClicked"
+            showThemeDots="false"
+            showThemeIcons="false"
 			/>
 	<sj:submit formIds="treeForm" targets="result3" button="true"/>
 	<sj:submit onClickTopics="checkAllNodesTopic" value="Check all Nodes" button="true"/>

@@ -60,7 +60,13 @@ jQuery(document).ready(function () {
 	<#if parameters.openAllOnRefresh??>
 	options_${escapedOptionId?html}.openrefresh = ${parameters.openAllOnRefresh?string};
 	</#if>
-	<#if parameters.contextmenu?if_exists != ""> 
+    <#if parameters.showThemeDots??>
+        options_${escapedOptionId?html}.dots = ${parameters.showThemeDots?string};
+    </#if>
+    <#if parameters.showThemeIcons??>
+        options_${escapedOptionId?html}.icons = ${parameters.showThemeIcons?string};
+    </#if>
+	<#if parameters.contextmenu?if_exists != "">
 	options_${escapedOptionId?html}.contextmenu = ${parameters.contextmenu?string};
 	</#if>
 	<#if parameters.types?if_exists != ""> 
