@@ -31,10 +31,8 @@
   <#assign javaScriptBasePath="${base}/struts/">
 </#if>
 
-<#assign schema="${request.requestURL.substring(0, request.requestURL.indexOf(':'))}">
-
-<#assign googlePath="${schema}://ajax.googleapis.com/ajax/libs/jquery/${jQueryVersion}">
-<#assign googleUiPath="${schema}://ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}">
+<#assign googlePath="//ajax.googleapis.com/ajax/libs/jquery/${jQueryVersion}">
+<#assign googleUiPath="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}">
 
 <#if parameters.customBasepath?if_exists != "">
   <#assign basePath="${parameters.customBasepath?string}">
@@ -70,7 +68,7 @@
 	<#if parameters.jqueryui?default(true)>
 	<script type="text/javascript" src="${jqueryUiGoogle}"></script>
 		<#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
-	<script type="text/javascript" src="${schema}://ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
 		</#if>
 	</#if>
 <#else>
