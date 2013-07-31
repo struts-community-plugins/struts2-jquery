@@ -18,6 +18,7 @@
  * under the License.
  */
 -->
+<#if parameters.list?? >
 <@s.iterator value="parameters.list" status="rowstatus">
         <#if parameters.listKey??>
             <#if stack.findValue(parameters.listKey)??>
@@ -65,4 +66,5 @@
 	</li>
 	<#lt/>
 </@s.iterator>
+</#if>
 </ul>

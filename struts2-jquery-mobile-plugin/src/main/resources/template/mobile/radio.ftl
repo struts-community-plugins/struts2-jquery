@@ -42,6 +42,7 @@ ${parameters.label?html}<#t/>
 ${parameters.labelseparator?default(":")?html}<#t/>
 </legend><#t/>
 </#if>
+<#if parameters.list?? >
 <@s.iterator value="parameters.list">
     <#if parameters.listKey??>
         <#assign itemKey = stack.findValue(parameters.listKey)/>
@@ -87,6 +88,7 @@ ${parameters.labelseparator?default(":")?html}<#t/>
     ${itemValue}<#t/>
 </label>
 </@s.iterator>
+</#if>
      </fieldset>
 <#include "/${parameters.templateDir}/mobile/controlfooter.ftl" />
  

@@ -19,6 +19,7 @@
  */
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#if parameters.list?? >
 <@s.iterator value="parameters.list" status="rowstatus">
 	<#if parameters.listKey??>
 		<#if stack.findValue(parameters.listKey)??>
@@ -83,6 +84,7 @@
 	    </#if>
 	</li>
 </@s.iterator>
+</#if>
 </ul>
 <#if !parameters.subMenu?default(false)>
 <script type='text/javascript'>

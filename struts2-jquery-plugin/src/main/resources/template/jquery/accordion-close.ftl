@@ -19,6 +19,7 @@
  */
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#if parameters.list?? >
 <@s.iterator value="parameters.list" status="rowstatus">
         <#if parameters.listKey??>
             <#if stack.findValue(parameters.listKey)??>
@@ -61,6 +62,7 @@
 		</div>
 	<#lt/>
 </@s.iterator>
+</#if>
 </div>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 

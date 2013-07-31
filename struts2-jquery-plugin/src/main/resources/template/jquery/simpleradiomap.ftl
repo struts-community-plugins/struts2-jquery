@@ -20,6 +20,7 @@
  * under the License.
  */
 -->
+<#if parameters.list??>
 <@s.iterator value="parameters.list">
     <#if parameters.listKey??>
         <#assign itemKey = stack.findValue(parameters.listKey)/>
@@ -62,3 +63,4 @@
     ${itemValue}<#t/>
 </label>
 </@s.iterator>
+</#if>
