@@ -44,10 +44,10 @@
   <#assign jqueryForm="jquery.form.min.js?s2j=${struts2jQueryVersion}">
   <#assign jqueryUIFile="jquery-ui.min.js?s2j=${struts2jQueryVersion}">
   <#assign jqueryUICoreFile="jquery.ui.core.min.js?s2j=${struts2jQueryVersion}">
-  <#assign jquerySubscribeFile="jquery.subscribe.min.js">
-  <#assign jqueryHistoryFile="jquery.ba-bbq.min.js">
+  <#assign jquerySubscribeFile="jquery.subscribe.min.js?s2j=${struts2jQueryVersion}">
+  <#assign jqueryHistoryFile="jquery.ba-bbq.min.js?s2j=${struts2jQueryVersion}">
   <#assign jqueryStrutsFile="jquery.struts2.min.js?s2j=${struts2jQueryVersion}">
-  <#assign jqueryUiStrutsFile="jquery.ui.struts2.min.js">
+  <#assign jqueryUiStrutsFile="jquery.ui.struts2.min.js?s2j=${struts2jQueryVersion}">
   <#assign jqueryGoogle="${googlePath}/jquery.min.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
 <#else>
@@ -55,10 +55,10 @@
   <#assign jqueryForm="jquery.form.js?s2j=${struts2jQueryVersion}">
   <#assign jqueryUIFile="jquery-ui.js?s2j=${struts2jQueryVersion}">
   <#assign jqueryUICoreFile="jquery.ui.core.js?s2j=${struts2jQueryVersion}">
-  <#assign jquerySubscribeFile="jquery.subscribe.js">
-  <#assign jqueryHistoryFile="jquery.ba-bbq.js">
+  <#assign jquerySubscribeFile="jquery.subscribe.js?s2j=${struts2jQueryVersion}">
+  <#assign jqueryHistoryFile="jquery.ba-bbq.js?s2j=${struts2jQueryVersion}">
   <#assign jqueryStrutsFile="jquery.struts2.js?s2j=${struts2jQueryVersion}">
-  <#assign jqueryUiStrutsFile="jquery.ui.struts2.js">
+  <#assign jqueryUiStrutsFile="jquery.ui.struts2.js?s2j=${struts2jQueryVersion}">
   <#assign jqueryGoogle="${googlePath}/jquery.js">
   <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.js">
 </#if>
