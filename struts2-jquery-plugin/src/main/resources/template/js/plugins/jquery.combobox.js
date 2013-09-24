@@ -15,6 +15,7 @@
             }
         },
         _createAutocomplete: function() {
+            var self = this.element;
             var selected = this.element.children( ":selected" ),
                 value = selected.val() ? selected.text() : "";
             this.input = $( "<input>" )
@@ -36,7 +37,7 @@
                     event.ui = ui;
                     if(this.options.onselecttopics) {
                         $.each(this.options.onselecttopics.split(','), function(i, sts) {
-                            select.publish(sts, { item: ui.item }, event);
+                            self.publish(sts, { item: ui.item }, event);
                         });
                     }
                 },
@@ -45,7 +46,7 @@
                     event.ui = ui;
                     if(this.options.onfocustopics ) {
                         $.each(this.options.onfocustopics .split(','), function(i, fts) {
-                            select.publish(fts, { item: ui.item }, event);
+                            self.publish(fts, { item: ui.item }, event);
                         });
                     }
                 },
@@ -54,7 +55,7 @@
                     if ( !ui.item ) {
                         var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" ),
                             valid = false;
-                        select.children( "option" ).each(function() {
+                        self.children( "option" ).each(function() {
                             if ( this.value.match( matcher ) ) {
                                 this.selected = valid = true;
                                 return false;
@@ -63,7 +64,7 @@
                         if ( !valid ) {
                             // remove invalid value, as it didn't match anything
                             $( this ).val( "" );
-                            select.val( "" );
+                            self.val( "" );
                             return false;
                         }
                     }
@@ -71,7 +72,7 @@
                     event.ui = ui;
                     if(this.options.oncha) {
                         $.each(this.options.oncha.split(','), function(i, cts) {
-                            select.publish(cts, { item: ui.item }, event);
+                            self.publish(cts, { item: ui.item }, event);
                         });
                     }
                 }
