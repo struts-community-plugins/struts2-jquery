@@ -5,31 +5,32 @@
         A modal Dialog Dialog with Buttons.
     </p>
     <script type="text/javascript">
-      function okButton() {
-       alert('OK Button pressed!');
-      }
-     function cancelButton() {
-      alert('Cancel Button pressed!');
-      $('#mybuttondialog').dialog('close');
-     }
+        function okButton() {
+            alert('OK Button pressed!');
+        }
+        function cancelButton() {
+            alert('Cancel Button pressed!');
+            $.publish('closeButtonDialog');
+        }
     </script>        
     <sj:dialog 
     	id="mybuttondialog" 
     	buttons="{ 
     		'OK':function() { okButton(); },
     		'Cancel':function() { cancelButton(); } 
-    		}" 
+    	}"
+        closeTopics="closeButtonDialog"
     	autoOpen="false" 
     	modal="true" 
     	title="Dialog with Buttons"
     >
      Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
     </sj:dialog>
-    <sj:submit 
-    	openDialog="mybuttondialog" 
-    	value="Open modal dialog with Buttons" 
+    <sj:a
+        id="openButtonDialogLink"
+    	openDialog="mybuttondialog"
     	button="true"
-    />
+    >Open modal dialog with Buttons</sj:a>
   
   <div class="code ui-widget-content ui-corner-all">
       <strong>JavaScript functions:</strong>
