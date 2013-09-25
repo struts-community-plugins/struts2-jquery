@@ -53,7 +53,7 @@
                 autocompletechange: function( event, ui ) {
                     this._removeIfInvalid(event, ui);
                     if ( !ui.item ) {
-                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" ),
+                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( this.input.val() ) + "$", "i" ),
                             valid = false;
                         self.children( "option" ).each(function() {
                             if ( this.value.match( matcher ) ) {
