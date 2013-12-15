@@ -25,11 +25,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.views.TagLibrary;
-
 import com.jgeppert.struts2.jquery.tree.views.freemarker.tags.JqueryTreeModels;
 import com.jgeppert.struts2.jquery.tree.views.velocity.components.TreeDirective;
 import com.jgeppert.struts2.jquery.tree.views.velocity.components.TreeItemDirective;
+
+import org.apache.struts2.views.TagLibraryDirectiveProvider;
+import org.apache.struts2.views.TagLibraryModelProvider;
+
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -37,15 +39,15 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class JqueryTreeTagLibrary implements TagLibrary {
+public class JqueryTreeTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
-    public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req,
+    public Object getModels(ValueStack stack, HttpServletRequest req,
 	    HttpServletResponse res) {
 	return new JqueryTreeModels(stack, req, res);
     }
 
     @SuppressWarnings("rawtypes")
-    public List<Class> getVelocityDirectiveClasses() {
+    public List<Class> getDirectiveClasses() {
 	Class[] directives = new Class[] { TreeDirective.class,
 		TreeItemDirective.class };
 	return Arrays.asList(directives);

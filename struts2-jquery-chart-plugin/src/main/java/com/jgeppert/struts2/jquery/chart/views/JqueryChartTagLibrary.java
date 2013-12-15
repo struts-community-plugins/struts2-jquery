@@ -25,11 +25,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.views.TagLibrary;
-
 import com.jgeppert.struts2.jquery.chart.views.freemarker.tags.JqueryChartModels;
 import com.jgeppert.struts2.jquery.chart.views.velocity.components.ChartDataDirective;
 import com.jgeppert.struts2.jquery.chart.views.velocity.components.ChartDirective;
+
+import org.apache.struts2.views.TagLibraryDirectiveProvider;
+import org.apache.struts2.views.TagLibraryModelProvider;
+
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
@@ -37,15 +39,15 @@ import com.opensymphony.xwork2.util.ValueStack;
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class JqueryChartTagLibrary implements TagLibrary {
+public class JqueryChartTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider  {
 
-    public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req,
+    public Object getModels(ValueStack stack, HttpServletRequest req,
 	    HttpServletResponse res) {
 	return new JqueryChartModels(stack, req, res);
     }
 
     @SuppressWarnings("rawtypes")
-    public List<Class> getVelocityDirectiveClasses() {
+    public List<Class> getDirectiveClasses() {
 	Class[] directives = new Class[] { ChartDirective.class,
 		ChartDataDirective.class };
 	return Arrays.asList(directives);

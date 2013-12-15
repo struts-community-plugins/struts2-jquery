@@ -25,8 +25,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.views.TagLibrary;
-
 import com.jgeppert.struts2.jquery.views.freemarker.tags.JqueryModels;
 import com.jgeppert.struts2.jquery.views.velocity.components.AccordionDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.AccordionItemDirective;
@@ -49,20 +47,24 @@ import com.jgeppert.struts2.jquery.views.velocity.components.TabDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TabbedPanelDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TextareaDirective;
 import com.jgeppert.struts2.jquery.views.velocity.components.TextfieldDirective;
+
+import org.apache.struts2.views.TagLibraryDirectiveProvider;
+import org.apache.struts2.views.TagLibraryModelProvider;
+
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
 
-public class JqueryTagLibrary implements TagLibrary {
+public class JqueryTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
-	public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+	public Object getModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
 		return new JqueryModels(stack, req, res);
 	}
 
 	@SuppressWarnings("rawtypes")
-	public List<Class> getVelocityDirectiveClasses() {
+	public List<Class> getDirectiveClasses() {
 		Class[] directives =
 				new Class[]{
 						DatePickerDirective.class,

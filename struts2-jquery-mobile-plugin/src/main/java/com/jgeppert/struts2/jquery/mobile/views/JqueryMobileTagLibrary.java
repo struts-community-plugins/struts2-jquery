@@ -25,7 +25,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.views.TagLibrary;
 
 import com.jgeppert.struts2.jquery.mobile.components.Radio;
 import com.jgeppert.struts2.jquery.mobile.views.freemarker.tags.JqueryMobileModels;
@@ -42,22 +41,25 @@ import com.jgeppert.struts2.jquery.mobile.views.velocity.components.SelectDirect
 import com.jgeppert.struts2.jquery.mobile.views.velocity.components.SliderDirective;
 import com.jgeppert.struts2.jquery.mobile.views.velocity.components.TextareaDirective;
 import com.jgeppert.struts2.jquery.mobile.views.velocity.components.TextfieldDirective;
-import com.opensymphony.xwork2.util.ValueStack;
 
+import org.apache.struts2.views.TagLibraryDirectiveProvider;
+import org.apache.struts2.views.TagLibraryModelProvider;
+
+import com.opensymphony.xwork2.util.ValueStack;
 /**
  * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class JqueryMobileTagLibrary implements TagLibrary {
+public class JqueryMobileTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
-	public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req,
+	public Object getModels(ValueStack stack, HttpServletRequest req,
 			HttpServletResponse res) {
 		return new JqueryMobileModels(stack, req, res);
 	}
 
 	@SuppressWarnings("rawtypes")
-	public List<Class> getVelocityDirectiveClasses() {
+	public List<Class> getDirectiveClasses() {
 		Class[] directives = new Class[] { HeadDirective.class,
 				CheckboxListDirective.class, CheckboxDirective.class,
 				Radio.class, DivDirective.class, ListDirective.class,

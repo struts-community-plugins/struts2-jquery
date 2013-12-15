@@ -25,27 +25,28 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.views.TagLibrary;
-
 import com.jgeppert.struts2.jquery.grid.views.freemarker.tags.JqueryGridModels;
 import com.jgeppert.struts2.jquery.grid.views.velocity.components.GridColumnDirective;
 import com.jgeppert.struts2.jquery.grid.views.velocity.components.GridDirective;
-import com.opensymphony.xwork2.util.ValueStack;
 
+import org.apache.struts2.views.TagLibraryDirectiveProvider;
+import org.apache.struts2.views.TagLibraryModelProvider;
+
+import com.opensymphony.xwork2.util.ValueStack;
 /**
  * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
-public class JqueryGridTagLibrary implements TagLibrary {
+public class JqueryGridTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
-  public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
+  public Object getModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
   {
     return new JqueryGridModels(stack, req, res);
   }
 
   @SuppressWarnings("rawtypes")
-    public List<Class> getVelocityDirectiveClasses() {
+    public List<Class> getDirectiveClasses() {
     Class[] directives = new Class[] {
         GridDirective.class, GridColumnDirective.class,
     };
