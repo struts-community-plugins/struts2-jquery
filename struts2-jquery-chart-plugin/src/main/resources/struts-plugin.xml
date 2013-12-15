@@ -24,5 +24,6 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
     
 <struts>
-    <bean type="org.apache.struts2.views.TagLibrary" name="sjc" class="com.jgeppert.struts2.jquery.chart.views.JqueryChartTagLibrary" />
+    <bean type="org.apache.struts2.views.TagLibraryDirectiveProvider" name="sjc" class="com.jgeppert.struts2.jquery.chart.views.JqueryChartTagLibrary" />
+    <bean type="org.apache.struts2.views.TagLibraryModelProvider" name="sjc" class="com.jgeppert.struts2.jquery.chart.views.JqueryChartTagLibrary" />
 </struts>

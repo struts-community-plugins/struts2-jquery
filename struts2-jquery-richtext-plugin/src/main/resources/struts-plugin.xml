@@ -24,8 +24,9 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
     
 <struts>
-    <bean type="org.apache.struts2.views.TagLibrary" name="sjr" class="com.jgeppert.struts2.jquery.richtext.views.JqueryRichtextTagLibrary" />
-    
+    <bean type="org.apache.struts2.views.TagLibraryDirectiveProvider" name="sjr" class="com.jgeppert.struts2.jquery.richtext.views.JqueryRichtextTagLibrary" />
+    <bean type="org.apache.struts2.views.TagLibraryModelProvider" name="sjr" class="com.jgeppert.struts2.jquery.richtext.views.JqueryRichtextTagLibrary" />
+
 	<package name="ckedior" namespace="/ckeditor" extends="struts-default">
 		<action name="upload" class="com.jgeppert.struts2.jquery.richtext.actions.CkeditorUpload">
 			<result type="freemarker" name="error">/ckeditor/ckeditorError.ftl</result>
