@@ -19,25 +19,26 @@
  */
 -->
 <#assign jQueryVersion="1.10.2">
-<#assign jQueryMobileVersion="1.3.2">
+<#assign jQueryMobileVersion="1.4.0">
 <#assign struts2jQueryVersion="${version}">
 
 <#include "/${parameters.templateDir}/jquery/head.ftl" />
 <#if parameters.scriptPath?if_exists != "">
-  <#assign javaMobileScriptBasePath="${parameters.scriptPath?string}">
+    <#assign javaMobileScriptBasePath="${parameters.scriptPath?string}">
 <#else>
-  <#assign javaMobileScriptBasePath="${base}/struts/">
+    <#assign javaMobileScriptBasePath="${base}/struts/">
 </#if>
 <#if parameters.compressed?default(true)>
-  <#assign jqueryMobileFile="jquery.mobile-${jQueryMobileVersion}.min.js">
-  <#assign jqueryMobileCss="jquery.mobile-${jQueryMobileVersion}.min.css">
-  <#assign jqueryMobileStrutsFile="jquery.mobile.struts2.min.js?s2j=${struts2jQueryVersion}">
+    <#assign jqueryMobileFile="jquery.mobile-${jQueryMobileVersion}.min.js">
+    <#assign jqueryMobileCss="jquery.mobile-${jQueryMobileVersion}.min.css">
+    <#assign jqueryMobileStrutsFile="jquery.mobile.struts2.min.js?s2j=${struts2jQueryVersion}">
 <#else>
-  <#assign jqueryMobileFile="jquery.mobile-${jQueryMobileVersion}.js">
-  <#assign jqueryMobileCss="jquery.mobile-${jQueryMobileVersion}.css">
-  <#assign jqueryMobileStrutsFile="jquery.mobile.struts2.js?s2j=${struts2jQueryVersion}">
+    <#assign jqueryMobileFile="jquery.mobile-${jQueryMobileVersion}.js">
+    <#assign jqueryMobileCss="jquery.mobile-${jQueryMobileVersion}.css">
+    <#assign jqueryMobileStrutsFile="jquery.mobile.struts2.js?s2j=${struts2jQueryVersion}">
 </#if>
-	<script type="text/javascript" src="${javaMobileScriptBasePath}js/plugins/${jqueryMobileFile}"></script>
-	<script type="text/javascript" src="${javaMobileScriptBasePath}js/struts2/${jqueryMobileStrutsFile}"></script>
-    <link id="jquery_mobile_theme_link" rel="stylesheet" href="${javaMobileScriptBasePath}js/plugins/${jqueryMobileCss}" type="text/css"/>
+<script type="text/javascript" src="${javaMobileScriptBasePath}js/plugins/${jqueryMobileFile}"></script>
+<script type="text/javascript" src="${javaMobileScriptBasePath}js/struts2/${jqueryMobileStrutsFile}"></script>
+<link id="jquery_mobile_theme_link" rel="stylesheet" href="${javaMobileScriptBasePath}js/plugins/${jqueryMobileCss}"
+      type="text/css"/>
 	
