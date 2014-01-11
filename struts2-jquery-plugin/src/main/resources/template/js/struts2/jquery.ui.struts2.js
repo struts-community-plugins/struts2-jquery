@@ -1,39 +1,39 @@
-    /*!
-     * jquery.ui.struts2.js
-     *
-     * Integration of jquery and jquery ui with struts 2
-     * for ajax, widget and interactions support in struts 2
-     *
-     * Requires use of jQuery and jQuery UI.
-     * Tested with jQuery 1.10 and jQuery UI 1.10
-     *
-     * Copyright (c) 2012 Johannes Geppert http://www.jgeppert.com
-     *
-     * Dual licensed under the MIT and GPL licenses:
-     *   http://www.opensource.org/licenses/mit-license.php
-     *   http://www.gnu.org/licenses/gpl.html
-     *
+/*!
+ * jquery.ui.struts2.js
+ *
+ * Integration of jquery and jquery ui with struts 2
+ * for ajax, widget and interactions support in struts 2
+ *
+ * Requires use of jQuery and jQuery UI.
+ * Tested with jQuery 1.10 and jQuery UI 1.10
+ *
+ * Copyright (c) 2012 Johannes Geppert http://www.jgeppert.com
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ *
+ */
+
+/*global jQuery, document, window, StrutsUtils  */
+/*jslint evil: true */
+
+(function ($) {
+    "use strict";
+
+    /**
+     * Bind Struts2 Components for jQuery UI functions
      */
+    $.struts2_jquery_ui = {
 
-    /*global jQuery, document, window, StrutsUtils  */
-    /*jslint evil: true */
-
-    ( function($) {
-        "use strict";
-
-        /**
-         * Bind Struts2 Components for jQuery UI functions
-         */
-        $.struts2_jquery_ui = {
-
-        handler : {
-            open_dialog :'_s2j_open_dialog',
-            close_dialog :'_s2j_close_dialog',
-            destroy_dialog :'_s2j_destroy_dialog'
+        handler: {
+            open_dialog: '_s2j_open_dialog',
+            close_dialog: '_s2j_close_dialog',
+            destroy_dialog: '_s2j_destroy_dialog'
         },
 
         /** opens a dialog if attribute openDialog in Anchor or Submit Tag is set to true */
-        opendialog : function($elem, o) {
+        opendialog: function ($elem, o) {
             var self = this,
                 dialog,
                 openTopic = '_s2j_dialog_open_' + o.id;
@@ -41,7 +41,7 @@
 
             if (o.opendialog) {
                 dialog = $(self.escId(o.opendialog));
-                $elem.bind('click', function(event) {
+                $elem.bind('click', function (event) {
                     if ($(this).prop("disabled")) {
                         return false;
                     }
@@ -53,13 +53,13 @@
         },
 
         /** handle interaction draggable */
-        draggable : function($elem, o) {
+        draggable: function ($elem, o) {
             var self = this,
                 daos = o.draggableoptions,
                 dao = window[daos];
             self.log("draggable : " + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js" ]);
             }
             if (!dao) {
                 dao = eval("( " + daos + " )");
@@ -74,13 +74,13 @@
         },
 
         /** handle interaction droppable */
-        droppable : function($elem, o) {
+        droppable: function ($elem, o) {
             var self = this,
                 doos = o.droppableoptions,
                 doo = window[doos];
             self.log("droppable : " + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.ui.droppable" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.draggable" + self.minSuffix + ".js", "js/base/jquery.ui.droppable" + self.minSuffix + ".js" ]);
             }
             if (!doo) {
                 doo = eval("( " + doos + " )");
@@ -99,13 +99,13 @@
         },
 
         /** handle interaction selectable */
-        selectable : function($elem, o) {
+        selectable: function ($elem, o) {
             var self = this,
                 seos = o.selectableoptions,
                 seo = window[seos];
             self.log('selectable : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.selectable" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.selectable" + self.minSuffix + ".js" ]);
             }
             if (!seo) {
                 seo = eval("( " + seos + " )");
@@ -123,13 +123,13 @@
         },
 
         /** handle interaction sortable */
-        sortable : function($elem, o) {
+        sortable: function ($elem, o) {
             var self = this,
                 soos = o.sortableoptions,
                 soo = window[soos];
             self.log('sortable : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.sortable" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.sortable" + self.minSuffix + ".js" ]);
             }
             if (!soo) {
                 soo = eval("( " + soos + " )");
@@ -153,12 +153,12 @@
         },
 
         /** handle interaction resizable */
-        resizable : function($elem, o) {
+        resizable: function ($elem, o) {
             var self = this,
                 ros = o.resizableoptions,
                 ro = window[ros];
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.resizable" + self.minSuffix + ".js" ]);
             }
             if (!ro) {
                 ro = eval("( " + ros + " )");
@@ -173,7 +173,7 @@
         },
 
         /** Handle the Dialog Widget */
-        dialog : function($elem, o) {
+        dialog: function ($elem, o) {
             var self = this;
             self.log('dialog : ' + o.id);
 
@@ -197,19 +197,19 @@
                 self.require(jsFiles);
             }
 
-            if(o.opentopics) {
+            if (o.opentopics) {
                 self.subscribeTopics($elem, o.opentopics, self.handler.open_dialog, o);
             }
 
-            if(o.closetopics) {
+            if (o.closetopics) {
                 self.subscribeTopics($elem, o.closetopics, self.handler.close_dialog, o);
             }
 
-            if(o.destroytopics) {
+            if (o.destroytopics) {
                 self.subscribeTopics($elem, o.destroytopics, self.handler.destroy_dialog, o);
             }
 
-            o.open = function(event, ui) {
+            o.open = function (event, ui) {
                 var data = {},
                     divTopic = '_s2j_topic_load_' + o.id;
 
@@ -227,7 +227,7 @@
             };
             o.close = self.pubTops($elem, o.onalw, o.onclosetopics);
             o.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
-            o.beforeClose = function() {
+            o.beforeClose = function () {
 
                 var data = {};
                 data.close = true;
@@ -247,7 +247,7 @@
         },
 
         /** Handle the TabbedPanel Widget */
-        tabbedpanel : function($elem, o) {
+        tabbedpanel: function ($elem, o) {
             var self = this,
                 ahp = {},
                 disabledtabsStr = o.disabledtabs,
@@ -255,10 +255,10 @@
                 tabs = $elem.data('taboptions'),
                 tabStr = "",
                 closable = false,
-                l,tab;
+                l, tab;
             self.log('tabbedpanel : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.tabs" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.tabs" + self.minSuffix + ".js" ]);
             }
 
             if (o.disabledtabs && o.disabledtabs !== 'false') {
@@ -276,65 +276,65 @@
             if (o.selectedtab) {
                 o.active = o.selectedtab;
             } else if (o.cookie) {
-                o.active  = $.cookie($elem.prop('id'));
+                o.active = $.cookie($elem.prop('id'));
             }
 
 
             if (o.show) {
                 self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
-                if(typeof o.show == "string") {
+                if (typeof o.show == "string") {
                     self.require("js/base/jquery.ui.effect-" + o.show + self.minSuffix + ".js");
                 }
             }
             if (o.hide) {
                 self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
-                if(typeof o.hide == "string") {
+                if (typeof o.hide == "string") {
                     self.require("js/base/jquery.ui.effect-" + o.hide + self.minSuffix + ".js");
                 }
             }
 
             o.ajaxOptions = {
-                dataType : "html"
+                dataType: "html"
             };
 
-            o.beforeLoad  = function(event, ui) {
+            o.beforeLoad = function (event, ui) {
                 var data = {},
                     form = ui.tab.data("form"),
                     links;
                 data.event = event;
                 data.ui = ui;
 
-                if(form){
-                    ui.ajaxSettings.url =  self.addForms(form, ui.ajaxSettings.url);
+                if (form) {
+                    ui.ajaxSettings.url = self.addForms(form, ui.ajaxSettings.url);
                 }
 
-                if(o.onbef) {
+                if (o.onbef) {
                     self.publishTopic($elem, o.onbef, data);
                     self.publishTopic($elem, o.onalw, data);
                 }
                 if (o.cache) {
-                    if ( ui.tab.data( "loaded" ) ) {
+                    if (ui.tab.data("loaded")) {
                         event.preventDefault();
                         return;
                     }
 
-                    ui.jqXHR.success(function() {
-                        ui.tab.data( "loaded", true );
+                    ui.jqXHR.success(function () {
+                        ui.tab.data("loaded", true);
                     });
                 }
             };
-            o.activate = function(event, ui) {
+            o.activate = function (event, ui) {
                 var data = {},
-                    form = $elem.data("tab"+ui.index),
+                    form = $elem.data("tab" + ui.index),
                     links;
                 data.event = event;
                 data.ui = ui;
 
                 if (o.cookie) {
-                    $.cookie($elem.prop('id'), ui.newTab.index(), { name: "tab"+o.id, expires: 365 });
+                    $.cookie($elem.prop('id'), ui.newTab.index(), { name: "tab" + o.id, expires: 365 });
                 }
 
-                if(o.oncha) {
+                if (o.oncha) {
                     self.publishTopic($elem, o.oncha, data);
                     self.publishTopic($elem, o.onalw, data);
                 }
@@ -364,7 +364,7 @@
                         tabStr += "class='" + tab.cssclass + "' ";
                     }
                     if (tab.formIds) {
-                        tabStr += "data-form='"+tab.formIds + "' ";
+                        tabStr += "data-form='" + tab.formIds + "' ";
                     }
                     tabStr += "><a href='" + tab.href + "' ";
 
@@ -389,47 +389,47 @@
 
             if (o.sortable) {
                 if (!self.loadAtOnce) {
-                    self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.sortable" + self.minSuffix + ".js" ]);
+                    self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.sortable" + self.minSuffix + ".js" ]);
                 }
-                $elem.find(".ui-tabs-nav").sortable({axis:'x'});
+                $elem.find(".ui-tabs-nav").sortable({axis: 'x'});
             }
 
             if (closable) {
-                $("#"+o.id+" span.s2j-tab-closable").live('click', function() {
-                    var index = $('li',$elem).index($(this).parent());
+                $("#" + o.id + " span.s2j-tab-closable").live('click', function () {
+                    var index = $('li', $elem).index($(this).parent());
                     $elem.tabs('remove', index);
                 });
             }
             // History and Bookmarking for Tabs
             if (self.ajaxhistory) {
                 ahp.id = o.id;
-                $elem.find('ul.ui-tabs-nav a').bind('click', ahp, function(e) {
+                $elem.find('ul.ui-tabs-nav a').bind('click', ahp, function (e) {
                     var idx = $(self.escId(e.data.id)).tabs('option', 'selected');
                     self.historyelements[e.data.id] = idx;
                     $.bbq.pushState(self.historyelements);
                     return false;
                 });
 
-                $(window).bind('hashchange', ahp, function(e) {
+                $(window).bind('hashchange', ahp, function (e) {
                     var idx = e.getState(e.data.id, true) || 0;
-                    $(self.escId(e.data.id)).tabs('select', idx);
+                    $(self.escId(e.data.id)).tabs('option', 'active', idx);
                 });
             }
         },
         /** Load Ressources for Datepicker Widget */
-        initDatepicker : function(timepicker) {
+        initDatepicker: function (timepicker) {
             var self = this;
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.datepicker" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.datepicker" + self.minSuffix + ".js" ]);
                 if (self.local !== "en") {
                     self.require("i18n/jquery.ui.datepicker-" + self.local + ".min.js");
                 }
             }
-            if(timepicker) {
+            if (timepicker) {
                 if (!self.loadAtOnce) {
-                    self.require( [ "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.slider" + self.minSuffix + ".js" ]);
+                    self.require([ "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.slider" + self.minSuffix + ".js" ]);
                 }
-                self.require( [ "js/plugins/jquery-ui-timepicker-addon" + self.minSuffix + ".js" ]);
+                self.require([ "js/plugins/jquery-ui-timepicker-addon" + self.minSuffix + ".js" ]);
                 self.requireCss("themes/jquery-ui-timepicker-addon.css");
                 if (self.timeLocal !== "en") {
                     self.require("i18n/jquery-ui-timepicker-" + self.timeLocal + ".js");
@@ -438,17 +438,17 @@
 
         },
         /** Handle the Datepicker Widget */
-        datepicker : function($elem, o) {
+        datepicker: function ($elem, o) {
             var self = this,
                 params = {},
-                oat = o.onalw,noms,nom,sos,so;
+                oat = o.onalw, noms, nom, sos, so;
             self.log('datepicker : ' + o.id);
 
             $.extend(params, o);
 
 
             if (o.onbef) {
-                params.beforeShow = function(input, inst) {
+                params.beforeShow = function (input, inst) {
                     var $input = $(input),
                         data = {};
                     data.input = input;
@@ -459,10 +459,10 @@
             }
 
             if (o.onbeforeshowdaytopics) {
-                params.beforeShowDay = function(date) {
+                params.beforeShowDay = function (date) {
                     var data = {};
                     data.date = date;
-                    data.returnValue = [true,"",""];
+                    data.returnValue = [true, "", ""];
                     self.publishTopic($elem, o.onbeforeshowdaytopics, data);
                     self.publishTopic($elem, oat, data);
                     return data.returnValue;
@@ -470,7 +470,7 @@
             }
 
             if (o.onchangemonthyeartopics) {
-                params.onChangeMonthYear = function(year, month, inst) {
+                params.onChangeMonthYear = function (year, month, inst) {
                     var data = {};
                     data.year = year;
                     data.month = month;
@@ -481,11 +481,11 @@
             }
 
             if (o.oncha || o.inline) {
-                params.onSelect = function(dateText, inst) {
-                    if(o.inline) {
+                params.onSelect = function (dateText, inst) {
+                    if (o.inline) {
                         $(self.escId(o.id)).val(dateText);
                     }
-                    if(o.oncha) {
+                    if (o.oncha) {
                         var data = {};
                         data.dateText = dateText;
                         data.inst = inst;
@@ -496,7 +496,7 @@
             }
 
             if (o.oncom) {
-                params.onClose = function(dateText, inst) {
+                params.onClose = function (dateText, inst) {
                     var data = {};
                     data.dateText = dateText;
                     data.inst = inst;
@@ -534,24 +534,24 @@
                 }
             }
 
-            if(o.inline) {
-                $elem = $(self.escId(o.id)+'_inline');
+            if (o.inline) {
+                $elem = $(self.escId(o.id) + '_inline');
             }
 
-            if(o.timepicker) {
-                if(o.tponly) {
+            if (o.timepicker) {
+                if (o.tponly) {
                     $elem.timepicker(params);
                 }
                 else {
                     $elem.datetimepicker(params);
                 }
-                if (o.year!==undefined) {
+                if (o.year !== undefined) {
                     $elem.datetimepicker('setDate', new Date(o.year, o.month, o.day, o.hour, o.minute, o.second));
                 }
             }
             else {
                 $elem.datepicker(params);
-                if (o.year!==undefined) {
+                if (o.year !== undefined) {
                     $elem.val($.datepicker.formatDate(params.dateFormat, new Date(o.year, o.month, o.day)));
                 }
             }
@@ -562,33 +562,33 @@
         },
 
         /** Handle the Slider Widget */
-        slider : function($elem, o) {
+        slider: function ($elem, o) {
             var self = this,
                 data = {};
             self.log('slider : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.slider" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.slider" + self.minSuffix + ".js" ]);
             }
 
             o.start = self.pubTops($elem, o.onalw, o.onbef);
             o.change = self.pubTops($elem, o.onalw, o.oncha);
             o.stop = self.pubTops($elem, o.onalw, o.oncom);
 
-            o.slide = function(event, ui) {
+            o.slide = function (event, ui) {
                 if (o.hiddenid) {
-                    if(o.value !== undefined) {
+                    if (o.value !== undefined) {
                         $(self.escId(o.hiddenid)).val(ui.value);
                     }
-                    if(o.values) {
-                        $(self.escId(o.hiddenid)).val(ui.values[0]+","+ui.values[1]);
+                    if (o.values) {
+                        $(self.escId(o.hiddenid)).val(ui.values[0] + "," + ui.values[1]);
                     }
                 }
                 if (o.displayvalueelement) {
-                    if(o.value !== undefined) {
+                    if (o.value !== undefined) {
                         $(self.escId(o.displayvalueelement)).html(ui.value);
                     }
-                    if(o.values) {
-                        $(self.escId(o.displayvalueelement)).html(ui.values[0]+" - "+ui.values[1]);
+                    if (o.values) {
+                        $(self.escId(o.displayvalueelement)).html(ui.values[0] + " - " + ui.values[1]);
                     }
                 }
                 if (o.onslidetopics) {
@@ -599,19 +599,21 @@
                     self.publishTopic($elem, o.onslidetopics, data);
                 }
             };
-        if (o.range && o.range === 'true'){o.range=true;}
+            if (o.range && o.range === 'true') {
+                o.range = true;
+            }
 
             $elem.slider(o);
         },
 
         /** Handle the Spinner Widget */
-        spinner : function($elem, o) {
+        spinner: function ($elem, o) {
             var self = this;
             self.log('spinner : ' + o.id);
             self.container($elem, o);
             if (!self.loadAtOnce) {
                 self.require("js/base/jquery.ui.widget" + self.minSuffix + ".js");
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.spinner" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.spinner" + self.minSuffix + ".js" ]);
             }
             if (o.mouseWheel) {
                 self.require("js/plugins/jquery.mousewheel" + self.minSuffix + ".js");
@@ -624,18 +626,18 @@
             var currentValue = $elem.val();
 
             $elem.spinner(o);
-            if(o.numberFormat && Globalize) {
-                $elem.spinner( "value", Globalize.format(parseFloat(currentValue), o.numberFormat) );
+            if (o.numberFormat && Globalize) {
+                $elem.spinner("value", Globalize.format(parseFloat(currentValue), o.numberFormat));
             }
         },
 
         /** Handle the Progressbar Widget */
-        progressbar : function($elem, o) {
+        progressbar: function ($elem, o) {
             var self = this,
                 params = {};
             self.log('progressbar : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.progressbar" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.progressbar" + self.minSuffix + ".js" ]);
             }
             if (o) {
 
@@ -652,12 +654,12 @@
         },
 
         /** Handle the Menu Widget */
-        menu : function($elem, o) {
+        menu: function ($elem, o) {
             var self = this,
                 params = {};
             self.log('menu : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.menu" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.menu" + self.minSuffix + ".js" ]);
             }
 
 
@@ -665,20 +667,20 @@
         },
 
         /** Handle the Menu Item */
-        menuItem : function($elem, o) {
+        menuItem: function ($elem, o) {
             var self = this;
             self.anchor($elem, o);
         },
 
         /** Handle the Accordion Widget */
-        accordion : function($elem, o) {
+        accordion: function ($elem, o) {
             var self = this,
                 data = {},
                 active = true,
                 aktivItem;
             self.log('accordion : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.accordion" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.accordion" + self.minSuffix + ".js" ]);
             }
             if (!o.header) {
                 o.header = 'h3';
@@ -696,16 +698,16 @@
                 }
             }
 
-            o.beforeActivate = function(event, ui) {
+            o.beforeActivate = function (event, ui) {
                 if (o.href) {
                     if (typeof $(ui.newHeader).find('a').data('keys') !== "undefined") {
                         var keys = $(ui.newHeader).find('a').data('keys').split(','),
                             values = $(ui.newHeader).find('a').data('values').split(','),
                             valueparams = {};
-                        $.each(keys, function(i, val) {
+                        $.each(keys, function (i, val) {
                             valueparams[val] = values[i];
                         });
-                        ui.newPanel.load(o.href, valueparams, function() {
+                        ui.newPanel.load(o.href, valueparams, function () {
                         });
                     }
                 }
@@ -728,32 +730,32 @@
                     var keys = $(aktivItem).data('keys').split(','),
                         values = $(aktivItem).data('values').split(','),
                         valueparams = {};
-                    $.each(keys, function(i, val) {
+                    $.each(keys, function (i, val) {
                         valueparams[val] = values[i];
                     });
-                    $(self.escId(o.id) + " div").filter('.ui-accordion-content-active').load(o.href, valueparams, function() {
+                    $(self.escId(o.id) + " div").filter('.ui-accordion-content-active').load(o.href, valueparams, function () {
                     });
                 }
             }
         },
 
         /** Handle the Accordion Item */
-        accordionItem : function($elem, o) {
+        accordionItem: function ($elem, o) {
             if (o.onclick) {
-                $.each(o.onclick.split(','), function(i, topic) {
+                $.each(o.onclick.split(','), function (i, topic) {
                     $elem.publishOnEvent('click', topic, o);
                 });
             }
         },
 
         /** Handle the Autocompleter Widget */
-        autocompleter : function($elem, o) {
+        autocompleter: function ($elem, o) {
             var self = this,
                 params = {},
                 url = '';
             self.log('autocompleter for : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.menu" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.menu" + self.minSuffix + ".js", "js/base/jquery.ui.autocomplete" + self.minSuffix + ".js" ]);
             }
             if (o.href && o.href !== '#') {
                 url = o.href;
@@ -761,15 +763,15 @@
                     url = url + '?' + o.hrefparameter;
                 }
             }
-            if(url !== '') {
-                if(o.list) {
-                    params.source = function(request, response) {
+            if (url !== '') {
+                if (o.list) {
+                    params.source = function (request, response) {
                         var self = $.struts2_jquery;
-                        jQuery.ui.autocomplete.prototype._renderItem = function( ul, item ) {
-                          return $( "<li></li>" )
-                            .data( "item.autocomplete", item )
-                            .append( "<a>" + item.label + "</a>" )
-                            .appendTo( ul );
+                        jQuery.ui.autocomplete.prototype._renderItem = function (ul, item) {
+                            return $("<li></li>")
+                                .data("item.autocomplete", item)
+                                .append("<a>" + item.label + "</a>")
+                                .appendTo(ul);
                         };
 
                         self.abortReq(o.id);
@@ -778,12 +780,12 @@
                             url: self.addForms(o.formids, url),
                             dataType: "json",
                             data: {
-                            term: request.term
+                                term: request.term
                             },
-                            complete: function(request, status) {
+                            complete: function (request, status) {
                                 self.hideIndicator(o.indicatorid);
                             },
-                            success: function(data) {
+                            success: function (data) {
                                 self.currentXhr[o.id] = null;
                                 var x = 0,
                                     isMap = false,
@@ -792,15 +794,15 @@
                                     if (!$.isArray(data[o.list])) {
                                         isMap = true;
                                     }
-                                    $.each(data[o.list], function(j, val) {
+                                    $.each(data[o.list], function (j, val) {
                                         if (isMap) {
                                             result.push({
                                                 label: val.replace(
-                                                        new RegExp(
-                                                                "(?![^&;]+;)(?!<[^<>]*)(" +
-                                                                $.ui.autocomplete.escapeRegex(request.term) +
-                                                                ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                                                            ), "<strong>$1</strong>" ),
+                                                    new RegExp(
+                                                        "(?![^&;]+;)(?!<[^<>]*)(" +
+                                                            $.ui.autocomplete.escapeRegex(request.term) +
+                                                            ")(?![^<>]*>)(?![^&;]+;)", "gi"
+                                                    ), "<strong>$1</strong>"),
                                                 value: val,
                                                 key: j
                                             });
@@ -808,16 +810,16 @@
                                         else {
                                             if (o.listkey !== undefined && o.listvalue !== undefined) {
                                                 var label;
-                                                if(o.listlabel) {
+                                                if (o.listlabel) {
                                                     label = val[o.listlabel];
                                                 }
                                                 else {
                                                     label = val[o.listvalue].replace(
-                                                            new RegExp(
-                                                                    "(?![^&;]+;)(?!<[^<>]*)(" +
-                                                                    $.ui.autocomplete.escapeRegex(request.term) +
-                                                                    ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                                                                ), "<strong>$1</strong>" );
+                                                        new RegExp(
+                                                            "(?![^&;]+;)(?!<[^<>]*)(" +
+                                                                $.ui.autocomplete.escapeRegex(request.term) +
+                                                                ")(?![^<>]*>)(?![^&;]+;)", "gi"
+                                                        ), "<strong>$1</strong>");
                                                 }
                                                 result.push({
                                                     label: label,
@@ -828,11 +830,11 @@
                                             else {
                                                 result.push({
                                                     label: data[o.list][x].replace(
-                                                            new RegExp(
-                                                                    "(?![^&;]+;)(?!<[^<>]*)(" +
-                                                                    $.ui.autocomplete.escapeRegex(request.term) +
-                                                                    ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                                                                ), "<strong>$1</strong>" ),
+                                                        new RegExp(
+                                                            "(?![^&;]+;)(?!<[^<>]*)(" +
+                                                                $.ui.autocomplete.escapeRegex(request.term) +
+                                                                ")(?![^<>]*>)(?![^&;]+;)", "gi"
+                                                        ), "<strong>$1</strong>"),
                                                     value: data[o.list][x],
                                                     key: data[o.list][x]
                                                 });
@@ -860,7 +862,7 @@
                 params.minLength = o.minimum;
             }
             if (o.forceValidOption === false) {
-                $elem.keyup(function(e) {
+                $elem.keyup(function (e) {
                     $(self.escId(o.hiddenid)).val($elem.val());
                 });
             }
@@ -880,7 +882,7 @@
             if (o.onfocustopics) {
                 params.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
             }
-            params.select = function( event, ui ) {
+            params.select = function (event, ui) {
                 if (o.onselecttopics) {
                     params.select = self.pubTops($elem, o.onalw, o.onselecttopics);
                     var data = {};
@@ -890,11 +892,11 @@
                     self.publishTopic($elem, o.onalw, data);
                     self.publishTopic($elem, o.onselecttopics, data);
                 }
-                if(ui.item){
-                    if(ui.item.option) {
+                if (ui.item) {
+                    if (ui.item.option) {
                         $(self.escId(o.hiddenid)).val(ui.item.option.value);
                     }
-                    else if(ui.item.key) {
+                    else if (ui.item.key) {
                         $(self.escId(o.hiddenid)).val(ui.item.key);
                     }
                     else {
@@ -923,12 +925,12 @@
         },
 
         /** Handle the Button Widget for Anchor or Submit Tag*/
-        jquerybutton : function($elem, o) {
+        jquerybutton: function ($elem, o) {
             var self = this,
                 params = {};
             self.log('button for : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js" ]);
             }
             if (o.button) {
                 params.icons = {};
@@ -946,13 +948,13 @@
         },
 
         /** Handle the Buttonset Widget for Radiobuttons or Checkboxes */
-        buttonset : function($elem, o) {
+        buttonset: function ($elem, o) {
             var self = this,
                 buttonsetLoadTopic = '_s2j_topic_load_' + o.id,
                 buttonsetTopic = 's2j_butonset_' + o.id;
             self.log('buttonset for : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require( [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js" ]);
+                self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js" ]);
             }
 
             if (o.href && o.href !== '#') {
@@ -963,30 +965,30 @@
                 }
 
                 // Init Buttonset after elements loaded via AJAX.
-                $elem.subscribe(buttonsetTopic, function(event, data) {
+                $elem.subscribe(buttonsetTopic, function (event, data) {
                     if (o.oncha) {
                         var selectString = self.escId(o.id) + " > input",
                             elements = $(selectString);
 
                         if (($.support.leadingWhitespace == false) && o.type === 'radio') {
-                            elements.click( function() {
+                            elements.click(function () {
                                 this.blur();
                                 this.focus();
-                                $.each(o.oncha.split(','), function(i, cts) {
+                                $.each(o.oncha.split(','), function (i, cts) {
                                     $elem.publish(cts);
                                 });
                             });
                         }
                         else {
-                            elements.change( function() {
-                                $.each(o.oncha.split(','), function(i, cts) {
+                            elements.change(function () {
+                                $.each(o.oncha.split(','), function (i, cts) {
                                     $elem.publish(cts);
                                 });
                             });
                         }
                     }
 
-                    if(o.buttonset) {
+                    if (o.buttonset) {
                         $elem.buttonset(o);
                     }
                 });
@@ -1005,78 +1007,78 @@
             }
             else {
                 if (o.oncha) {
-                    $(self.escId(o.id) + " > input").change( function() {
-                        $.each(o.oncha.split(','), function(i, cts) {
+                    $(self.escId(o.id) + " > input").change(function () {
+                        $.each(o.oncha.split(','), function (i, cts) {
                             $elem.publish(cts);
                         });
                     });
                 }
 
-                if(o.buttonset) {
+                if (o.buttonset) {
                     $elem.buttonset(o);
                 }
             }
         }
-        };
+    };
 
-        /**
-         * handler to open a dialog
-         */
-        $.subscribeHandler($.struts2_jquery_ui.handler.open_dialog, function(event, data) {
-            var s2j = $.struts2_jquery_ui,
-                o = $(this).data('s2j_options');
-            if (data) {
-                if (data.href && data.href !== '#') {
-                    o.href = data.href;
-                }
-                if (data.hrefparameter) {
-                    o.hrefparameter = data.hrefparameter;
-                }
-                if (data.formids) {
-                    o.formids = data.formids;
-                }
-                if (data.opendialogtitle) {
-                    o.opendialogtitle = data.opendialogtitle;
-                }
+    /**
+     * handler to open a dialog
+     */
+    $.subscribeHandler($.struts2_jquery_ui.handler.open_dialog, function (event, data) {
+        var s2j = $.struts2_jquery_ui,
+            o = $(this).data('s2j_options');
+        if (data) {
+            if (data.href && data.href !== '#') {
+                o.href = data.href;
+            }
+            if (data.hrefparameter) {
+                o.hrefparameter = data.hrefparameter;
+            }
+            if (data.formids) {
+                o.formids = data.formids;
+            }
+            if (data.opendialogtitle) {
+                o.opendialogtitle = data.opendialogtitle;
+            }
+        }
+
+        $(this).dialog("option", "open", function (event, ui) {
+            var data = {},
+                divTopic = '_s2j_topic_load_' + o.id;
+            data.event = event;
+            data.ui = ui;
+
+            if (o.href && o.href !== '#') {
+                s2j.subscribeTopics($(this), divTopic, s2j.handler.load, o);
+                $(this).publish(divTopic);
             }
 
-            $(this).dialog("option", "open", function(event, ui) {
-                var data = {},
-                    divTopic = '_s2j_topic_load_' + o.id;
-                data.event = event;
-                data.ui = ui;
-
-                if (o.href && o.href !== '#') {
-                    s2j.subscribeTopics($(this), divTopic, s2j.handler.load, o);
-                    $(this).publish(divTopic);
-                }
-
-                s2j.publishTopic($(this), o.onalw, data);
-                s2j.publishTopic($(this), o.onbef, data);
-                s2j.publishTopic($(this), o.onopentopics, data);
-            });
-            if (o.opendialogtitle) {
-                $(this).dialog("option", "title", o.opendialogtitle);
-            }
-            $(this).dialog("open");
+            s2j.publishTopic($(this), o.onalw, data);
+            s2j.publishTopic($(this), o.onbef, data);
+            s2j.publishTopic($(this), o.onopentopics, data);
         });
+        if (o.opendialogtitle) {
+            $(this).dialog("option", "title", o.opendialogtitle);
+        }
+        $(this).dialog("open");
+    });
 
-        /**
-         * handler to close a dialog
-         */
-        $.subscribeHandler($.struts2_jquery_ui.handler.close_dialog, function(event, data) {
-            $(this).dialog('close');
-        });
+    /**
+     * handler to close a dialog
+     */
+    $.subscribeHandler($.struts2_jquery_ui.handler.close_dialog, function (event, data) {
+        $(this).dialog('close');
+    });
 
-        /**
-         * handler to destroy a dialog
-         */
-        $.subscribeHandler($.struts2_jquery_ui.handler.destroy_dialog, function(event, data) {
-            $(this).dialog('destroy');
-        });
+    /**
+     * handler to destroy a dialog
+     */
+    $.subscribeHandler($.struts2_jquery_ui.handler.destroy_dialog, function (event, data) {
+        $(this).dialog('destroy');
+    });
 
-        // Extend it from orginal plugin
-        $.extend(true, $.struts2_jquery_ui, $.struts2_jquery);
-        $.struts2_jquery_ui.debugPrefix = "[struts2_jquery_ui] ";
+    // Extend it from orginal plugin
+    $.extend(true, $.struts2_jquery_ui, $.struts2_jquery);
+    $.struts2_jquery_ui.debugPrefix = "[struts2_jquery_ui] ";
 
-    })(jQuery);
+})(jQuery);
