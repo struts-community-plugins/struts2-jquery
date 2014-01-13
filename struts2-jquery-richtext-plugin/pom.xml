@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-       <groupId>com.jgeppert.struts2.jquery</groupId>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery</artifactId>
-        <version>3.7.0-SNAPSHOT</version>
+        <version>3.7.0</version>
     </parent>
     <artifactId>struts2-jquery-richtext-plugin</artifactId>
     <name>Struts 2 jQuery Richtext Plugin</name>
@@ -13,16 +13,17 @@
 
     <scm>
         <connection>scm:svn:http://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-richtext-plugin</connection>
-        <developerConnection>scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-richtext-plugin</developerConnection>
+        <developerConnection>scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-richtext-plugin
+        </developerConnection>
         <url>http://code.google.com/p/struts2-jquery/source/browse/</url>
     </scm>
 
     <build>
         <plugins>
             <plugin>
- 				<groupId>org.apache.myfaces.tobago</groupId>
-				<artifactId>maven-apt-plugin</artifactId>
-				<version>1.0.39</version>
+                <groupId>org.apache.myfaces.tobago</groupId>
+                <artifactId>maven-apt-plugin</artifactId>
+                <version>1.0.39</version>
                 <configuration>
                     <A>
                         uri=/struts-jquery-richtext-tags,

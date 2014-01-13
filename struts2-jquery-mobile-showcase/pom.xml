@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery</artifactId>
-        <version>3.7.0-SNAPSHOT</version>
+        <version>3.7.0</version>
     </parent>
     <artifactId>struts2-jquery-mobile-showcase</artifactId>
     <name>Struts 2 jQuery Mobile Showcase</name>
@@ -13,7 +13,8 @@
 
     <scm>
         <connection>scm:svn:http://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-mobile-showcase</connection>
-        <developerConnection>scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-mobile-showcase</developerConnection>
+        <developerConnection>scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-mobile-showcase
+        </developerConnection>
         <url>http://code.google.com/p/struts2-jquery/source/browse/</url>
     </scm>
 
@@ -23,12 +24,12 @@
             <groupId>com.jgeppert.struts2.jquery</groupId>
             <artifactId>struts2-jquery-plugin</artifactId>
             <version>${project.version}</version>
- 			<exclusions>
-				<exclusion>
-					<artifactId>javassist</artifactId>
-					<groupId>javassist</groupId>
-				</exclusion>
-			</exclusions>
+            <exclusions>
+                <exclusion>
+                    <artifactId>javassist</artifactId>
+                    <groupId>javassist</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -49,11 +50,11 @@
             <version>${struts2.version}</version>
         </dependency>
 
-		<dependency>
-			<groupId>org.javassist</groupId>
-			<artifactId>javassist</artifactId>
-			<version>3.17.1-GA</version>
-		</dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.17.1-GA</version>
+        </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
@@ -62,55 +63,55 @@
         </dependency>
 
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<!-- Velocity -->
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity-tools</artifactId>
-			<version>2.0</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>struts-tiles</artifactId>
-					<groupId>org.apache.struts</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>struts-core</artifactId>
-					<groupId>org.apache.struts</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>struts-taglib</artifactId>
-					<groupId>org.apache.struts</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+        <!-- Velocity -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+            <version>2.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>struts-tiles</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>struts-core</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>struts-taglib</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
     </dependencies>
 
     <build>
-     	<resources>
-      		<resource>
-        		<directory>src/main/resources</directory>
-        		<filtering>true</filtering>
-      		</resource>
-	    </resources>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
