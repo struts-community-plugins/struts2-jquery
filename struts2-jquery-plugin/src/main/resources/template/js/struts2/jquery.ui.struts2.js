@@ -299,7 +299,7 @@
 
             o.beforeLoad = function (event, ui) {
                 var data = {},
-                    form = ui.tab.data("form"),
+                    form = "" + ui.tab.data("form"),
                     links;
                 data.event = event;
                 data.ui = ui;
@@ -701,8 +701,8 @@
             o.beforeActivate = function (event, ui) {
                 if (o.href) {
                     if (typeof $(ui.newHeader).find('a').data('keys') !== "undefined") {
-                        var keys = $(ui.newHeader).find('a').data('keys').split(','),
-                            values = $(ui.newHeader).find('a').data('values').split(','),
+                        var keys = ("" + $(ui.newHeader).find('a').data('keys')).split(','),
+                            values = ("" + $(ui.newHeader).find('a').data('values')).split(','),
                             valueparams = {};
                         $.each(keys, function (i, val) {
                             valueparams[val] = values[i];
@@ -727,8 +727,8 @@
             if (o.href && active === true) {
                 aktivItem = $(self.escId(o.id) + " " + o.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
                 if (typeof $(aktivItem).data('keys') !== "undefined") {
-                    var keys = $(aktivItem).data('keys').split(','),
-                        values = $(aktivItem).data('values').split(','),
+                    var keys = ("" + $(aktivItem).data('keys')).split(','),
+                        values = ("" + $(aktivItem).data('values')).split(','),
                         valueparams = {};
                     $.each(keys, function (i, val) {
                         valueparams[val] = values[i];
