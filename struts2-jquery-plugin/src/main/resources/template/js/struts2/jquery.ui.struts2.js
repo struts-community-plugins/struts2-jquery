@@ -395,9 +395,10 @@
             }
 
             if (closable) {
-                $("#" + o.id + " span.s2j-tab-closable").live('click', function () {
+                $("#" + o.id).on('click', "span.s2j-tab-closable", function () {
                     var index = $('li', $elem).index($(this).parent());
-                    $elem.tabs('remove', index);
+                    var tab = $elem.find(".ui-tabs-nav li:eq(" + index + ")").remove();
+                    $elem.tabs("refresh");
                 });
             }
             // History and Bookmarking for Tabs
