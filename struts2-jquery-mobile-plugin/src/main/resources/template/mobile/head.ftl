@@ -19,7 +19,7 @@
  */
 -->
 <#assign jQueryVersion="1.11.0">
-<#assign jQueryMobileVersion="1.4.0">
+<#assign jQueryMobileVersion="1.4.2">
 <#assign struts2jQueryVersion="${version}">
 
 <#include "/${parameters.templateDir}/jquery/head.ftl" />

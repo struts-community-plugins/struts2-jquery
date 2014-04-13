@@ -1,9 +1,9 @@
 /*!
- * jQuery Mobile 1.4.0
- * Git HEAD hash: f09aae0e035d6805e461a7be246d04a0dbc98f69 <> Date: Thu Dec 19 2013 17:34:22 UTC
+ * jQuery Mobile 1.4.2
+ * Git HEAD hash: 9d9a42a27d0c693e8b5569c3a10d771916af5045 <> Date: Fri Feb 28 2014 17:32:01 UTC
  * http://jquerymobile.com
  *
- * Copyright 2010, 2013 jQuery Foundation, Inc. and other contributors
+ * Copyright 2010, 2014 jQuery Foundation, Inc. and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -30,7 +30,7 @@
         $.extend($.mobile, {
 
             // Version of the jQuery Mobile Framework
-            version: "1.4.0",
+            version: "1.4.2",
 
             // Deprecated and no longer used in 1.4 remove in 1.5
             // Define the url parameter used for referencing widget-generated sub-pages.
@@ -141,12 +141,12 @@
                 // Convert from a string to a proper data type
                 try {
                     data = data === "true" ? true :
-                        data === "false" ? false :
+                            data === "false" ? false :
                             data === "null" ? null :
-                                // Only convert to a number if it doesn't change the string
-                                +data + "" === data ? +data :
-                                    rbrace.test(data) ? JSON.parse(data) :
-                                        data;
+                        // Only convert to a number if it doesn't change the string
+                            +data + "" === data ? +data :
+                        rbrace.test(data) ? JSON.parse(data) :
+                            data;
                 } catch (err) {
                 }
 
@@ -331,9 +331,9 @@
             }
             return ( /input|select|textarea|button|object/.test(nodeName) ?
                 !element.disabled :
-                "a" === nodeName ?
-                    element.href || isTabIndexNotNaN :
-                    isTabIndexNotNaN) &&
+                    "a" === nodeName ?
+                element.href || isTabIndexNotNaN :
+                isTabIndexNotNaN) &&
                 // the element and all of its ancestors must be visible
                 visible(element);
         }
@@ -418,7 +418,7 @@
         if (!$.fn.addBack) {
             $.fn.addBack = function (selector) {
                 return this.add(selector == null ?
-                    this.prevObject : this.prevObject.filter(selector)
+                        this.prevObject : this.prevObject.filter(selector)
                 );
             };
         }
@@ -514,7 +514,38 @@
         };
 
     })(jQuery);
+
     (function ($, window, undefined) {
+
+        // Subtract the height of external toolbars from the page height, if the page does not have
+        // internal toolbars of the same type
+        var compensateToolbars = function (page, desiredHeight) {
+            var pageParent = page.parent(),
+                toolbarsAffectingHeight = [],
+                externalHeaders = pageParent.children(":jqmData(role='header')"),
+                internalHeaders = page.children(":jqmData(role='header')"),
+                externalFooters = pageParent.children(":jqmData(role='footer')"),
+                internalFooters = page.children(":jqmData(role='footer')");
+
+            // If we have no internal headers, but we do have external headers, then their height
+            // reduces the page height
+            if (internalHeaders.length === 0 && externalHeaders.length > 0) {
+                toolbarsAffectingHeight = toolbarsAffectingHeight.concat(externalHeaders.toArray());
+            }
+
+            // If we have no internal footers, but we do have external footers, then their height
+            // reduces the page height
+            if (internalFooters.length === 0 && externalFooters.length > 0) {
+                toolbarsAffectingHeight = toolbarsAffectingHeight.concat(externalFooters.toArray());
+            }
+
+            $.each(toolbarsAffectingHeight, function (index, value) {
+                desiredHeight -= $(value).outerHeight();
+            });
+
+            // Height must be at least zero
+            return Math.max(0, desiredHeight);
+        };
 
         $.extend($.mobile, {
             // define the window and the document objects
@@ -646,7 +677,8 @@
                     pageHeight = page.height(),
                     pageOuterHeight = page.outerHeight(true);
 
-                height = ( typeof height === "number" ) ? height : $.mobile.getScreenHeight();
+                height = compensateToolbars(page,
+                    ( typeof height === "number" ) ? height : $.mobile.getScreenHeight());
 
                 page.css("min-height", height - ( pageOuterHeight - pageHeight ));
             },
@@ -789,7 +821,7 @@
 
 
     /*!
-     * jQuery UI Widget c0ab71056b936627e8a7821f03c044aec6280a40N
+     * jQuery UI Widget c0ab71056b936627e8a7821f03c044aec6280a40
      * http://jqueryui.com
      *
      * Copyright 2013 jQuery Foundation and other contributors
@@ -1074,7 +1106,7 @@
                     .removeAttr("aria-disabled")
                     .removeClass(
                         this.widgetFullName + "-disabled " +
-                            "ui-state-disabled");
+                        "ui-state-disabled");
 
                 // clean up events and states
                 this.bindings.unbind(this.eventNamespace);
@@ -1285,9 +1317,9 @@
                 var hasOptions,
                     effectName = !options ?
                         method :
-                        options === true || typeof options === "number" ?
-                            defaultEffect :
-                            options.effect || defaultEffect;
+                            options === true || typeof options === "number" ?
+                        defaultEffect :
+                        options.effect || defaultEffect;
                 options = options || {};
                 if (typeof options === "number") {
                     options = { duration: options };
@@ -1482,8 +1514,17 @@
     })(jQuery, this);
 
 
+    /*!
+     * jQuery hashchange event - v1.3 - 7/21/2010
+     * http://benalman.com/projects/jquery-hashchange-plugin/
+     * 
+     * Copyright (c) 2010 "Cowboy" Ben Alman
+     * Dual licensed under the MIT and GPL licenses.
+     * http://benalman.com/about/license/
+     */
+
 // Script: jQuery hashchange event
-// 
+//
 // *Version: 1.3, Last updated: 7/21/2010*
 // 
 // Project Home - http://benalman.com/projects/jquery-hashchange-plugin/
@@ -1561,6 +1602,8 @@
 //         part of jQuery BBQ, but also be available separately.
 
     (function ($, window, undefined) {
+        '$:nomunge'; // Used by YUI compressor.
+
         // Reused string.
         var str_hashchange = 'hashchange',
 
@@ -1850,7 +1893,7 @@
                         iframe_doc.open();
 
                         // Set document.domain for the Iframe document as well, if necessary.
-                        domain && iframe_doc.write('<script>document.domain="' + domain + '"<\/script>');
+                        domain && iframe_doc.write('<script>document.domain="' + domain + '"</script>');
 
                         iframe_doc.close();
 
@@ -1873,7 +1916,6 @@
 
         /*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
         window.matchMedia = window.matchMedia || (function (doc, undefined) {
-
 
             var bool,
                 docElem = doc.documentElement,
@@ -1946,42 +1988,9 @@
             fbCSS = fakeBody[ 0 ].style,
             vendors = [ "Webkit", "Moz", "O" ],
             webos = "palmGetResource" in window, //only used to rule out scrollTop
-            opera = window.opera,
             operamini = window.operamini && ({}).toString.call(window.operamini) === "[object OperaMini]",
             bb = window.blackberry && !propExists("-webkit-transform"), //only used to rule out box shadow, as it's filled opaque on BB 5 and lower
             nokiaLTE7_3;
-
-        function validStyle(prop, value, check_vend) {
-            var div = document.createElement("div"),
-                uc = function (txt) {
-                    return txt.charAt(0).toUpperCase() + txt.substr(1);
-                },
-                vend_pref = function (vend) {
-                    if (vend === "") {
-                        return "";
-                    } else {
-                        return  "-" + vend.charAt(0).toLowerCase() + vend.substr(1) + "-";
-                    }
-                },
-                check_style = function (vend) {
-                    var vend_prop = vend_pref(vend) + prop + ": " + value + ";",
-                        uc_vend = uc(vend),
-                        propStyle = uc_vend + ( uc_vend === "" ? prop : uc(prop) );
-
-                    div.setAttribute("style", vend_prop);
-
-                    if (!!div.style[ propStyle ]) {
-                        ret = true;
-                    }
-                },
-                check_vends = check_vend ? check_vend : vendors,
-                i, ret;
-
-            for (i = 0; i < check_vends.length; i++) {
-                check_style(check_vends[i]);
-            }
-            return !!ret;
-        }
 
 // inline SVG support test
         function inlineSVG() {
@@ -2111,17 +2120,17 @@
             if (
             // iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
                 ( ( platform.indexOf("iPhone") > -1 || platform.indexOf("iPad") > -1 || platform.indexOf("iPod") > -1 ) && wkversion && wkversion < 534 ) ||
-                    // Opera Mini
-                    ( w.operamini && ({}).toString.call(w.operamini) === "[object OperaMini]" ) ||
-                    ( operammobilematch && omversion < 7458 ) ||
-                    //Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
-                    ( ua.indexOf("Android") > -1 && wkversion && wkversion < 533 ) ||
-                    // Firefox Mobile before 6.0 -
-                    ( ffversion && ffversion < 6 ) ||
-                    // WebOS less than 3
-                    ( "palmGetResource" in window && wkversion && wkversion < 534 ) ||
-                    // MeeGo
-                    ( ua.indexOf("MeeGo") > -1 && ua.indexOf("NokiaBrowser/8.5.0") > -1 )) {
+                // Opera Mini
+                ( w.operamini && ({}).toString.call(w.operamini) === "[object OperaMini]" ) ||
+                ( operammobilematch && omversion < 7458 ) ||
+                //Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
+                ( ua.indexOf("Android") > -1 && wkversion && wkversion < 533 ) ||
+                // Firefox Mobile before 6.0 -
+                ( ffversion && ffversion < 6 ) ||
+                // WebOS less than 3
+                ( "palmGetResource" in window && wkversion && wkversion < 534 ) ||
+                // MeeGo
+                ( ua.indexOf("MeeGo") > -1 && ua.indexOf("NokiaBrowser/8.5.0") > -1 )) {
                 return false;
             }
 
@@ -2129,9 +2138,6 @@
         }
 
         $.extend($.support, {
-            cssTransitions: "WebKitTransitionEvent" in window ||
-                validStyle("transition", "height 100ms linear", [ "Webkit", "Moz", "" ]) && !$.mobile.browser.oldIE && !opera,
-
             // Note, Chrome for iOS has an extremely quirky implementation of popstate.
             // We've chosen to take the shortest path to a bug fix here for issue #5426
             // See the following link for information about the regex chosen
@@ -2146,7 +2152,6 @@
             cssPseudoElement: !!propExists("content"),
             touchOverflow: !!propExists("overflowScrolling"),
             cssTransform3d: transform3dTest(),
-            cssAnimations: !!propExists("animationName"),
             boxShadow: !!propExists("boxShadow") && !bb,
             fixedPosition: fixedPosition(),
             scrollTop: ("pageXOffset" in window ||
@@ -2186,10 +2191,10 @@
         $.mobile.ajaxBlacklist =
             // BlackBerry browsers, pre-webkit
             window.blackberry && !window.WebKitPoint ||
-                // Opera Mini
-                operamini ||
-                // Symbian webkits pre 7.3
-                nokiaLTE7_3;
+            // Opera Mini
+            operamini ||
+            // Symbian webkits pre 7.3
+            nokiaLTE7_3;
 
 // Lastly, this workaround is the only way we've found so far to get pre 7.3 Symbian webkit devices
 // to render the stylesheets when they're referenced before this script, as we'd recommend doing.
@@ -3156,6 +3161,100 @@
     })(jQuery);
 
 
+    (function ($, undefined) {
+        var props = {
+                "animation": {},
+                "transition": {}
+            },
+            testElement = document.createElement("a"),
+            vendorPrefixes = [ "", "webkit-", "moz-", "o-" ];
+
+        $.each([ "animation", "transition" ], function (i, test) {
+
+            // Get correct name for test
+            var testName = ( i === 0 ) ? test + "-" + "name" : test;
+
+            $.each(vendorPrefixes, function (j, prefix) {
+                if (testElement.style[ $.camelCase(prefix + testName) ] !== undefined) {
+                    props[ test ][ "prefix" ] = prefix;
+                    return false;
+                }
+            });
+
+            // Set event and duration names for later use
+            props[ test ][ "duration" ] =
+                $.camelCase(props[ test ][ "prefix" ] + test + "-" + "duration");
+            props[ test ][ "event" ] =
+                $.camelCase(props[ test ][ "prefix" ] + test + "-" + "end");
+
+            // All lower case if not a vendor prop
+            if (props[ test ][ "prefix" ] === "") {
+                props[ test ][ "event" ] = props[ test ][ "event" ].toLowerCase();
+            }
+        });
+
+        // If a valid prefix was found then the it is supported by the browser
+        $.support.cssTransitions = ( props[ "transition" ][ "prefix" ] !== undefined );
+        $.support.cssAnimations = ( props[ "animation" ][ "prefix" ] !== undefined );
+
+        // Remove the testElement
+        $(testElement).remove();
+
+        // Animation complete callback
+        $.fn.animationComplete = function (callback, type, fallbackTime) {
+            var timer, duration,
+                that = this,
+                animationType = ( !type || type === "animation" ) ? "animation" : "transition";
+
+            // Make sure selected type is supported by browser
+            if (( $.support.cssTransitions && animationType === "transition" ) ||
+                ( $.support.cssAnimations && animationType === "animation" )) {
+
+                // If a fallback time was not passed set one
+                if (fallbackTime === undefined) {
+
+                    // Make sure the was not bound to document before checking .css
+                    if ($(this).context !== document) {
+
+                        // Parse the durration since its in second multiple by 1000 for milliseconds
+                        // Multiply by 3 to make sure we give the animation plenty of time.
+                        duration = parseFloat(
+                            $(this).css(props[ animationType ].duration)
+                        ) * 3000;
+                    }
+
+                    // If we could not read a duration use the default
+                    if (duration === 0 || duration === undefined || isNaN(duration)) {
+                        duration = $.fn.animationComplete.defaultDuration;
+                    }
+                }
+
+                // Sets up the fallback if event never comes
+                timer = setTimeout(function () {
+                    $(that).off(props[ animationType ].event);
+                    callback.apply(that);
+                }, duration);
+
+                // Bind the event
+                return $(this).one(props[ animationType ].event, function () {
+
+                    // Clear the timer so we dont call callback twice
+                    clearTimeout(timer);
+                    callback.call(this, arguments);
+                });
+            } else {
+
+                // CSS animation / transitions not supported
+                // Defer execution for consistency between webkit/non webkit
+                setTimeout($.proxy(callback, this), 0);
+                return $(this);
+            }
+        };
+
+        // Allow default callback to be configured on mobileInit
+        $.fn.animationComplete.defaultDuration = 1000;
+    })(jQuery);
+
 // This plugin is an experiment for abstracting away the touch and mouse
 // events so that developers don't have to worry about which method of input
 // the device their document is loaded on supports.
@@ -3685,10 +3784,14 @@
             }
         });
 
-        function triggerCustomEvent(obj, eventType, event) {
+        function triggerCustomEvent(obj, eventType, event, bubble) {
             var originalType = event.type;
             event.type = eventType;
-            $.event.dispatch.call(obj, event);
+            if (bubble) {
+                $.event.trigger(event, undefined, obj);
+            } else {
+                $.event.dispatch.call(obj, event);
+            }
             event.type = originalType;
         }
 
@@ -3790,32 +3893,67 @@
             }
         };
 
-        // also handles swipeleft, swiperight
+        // Also handles swipeleft, swiperight
         $.event.special.swipe = {
-            scrollSupressionThreshold: 30, // More than this horizontal displacement, and we will suppress scrolling.
 
-            durationThreshold: 1000, // More time than this, and it isn't a swipe.
+            // More than this horizontal displacement, and we will suppress scrolling.
+            scrollSupressionThreshold: 30,
 
-            horizontalDistanceThreshold: 30,  // Swipe horizontal displacement must be more than this.
+            // More time than this, and it isn't a swipe.
+            durationThreshold: 1000,
 
-            verticalDistanceThreshold: 75,  // Swipe vertical displacement must be less than this.
+            // Swipe horizontal displacement must be more than this.
+            horizontalDistanceThreshold: 30,
+
+            // Swipe vertical displacement must be less than this.
+            verticalDistanceThreshold: 30,
+
+            getLocation: function (event) {
+                var winPageX = window.pageXOffset,
+                    winPageY = window.pageYOffset,
+                    x = event.clientX,
+                    y = event.clientY;
+
+                if (event.pageY === 0 && Math.floor(y) > Math.floor(event.pageY) ||
+                    event.pageX === 0 && Math.floor(x) > Math.floor(event.pageX)) {
+
+                    // iOS4 clientX/clientY have the value that should have been
+                    // in pageX/pageY. While pageX/page/ have the value 0
+                    x = x - winPageX;
+                    y = y - winPageY;
+                } else if (y < ( event.pageY - winPageY) || x < ( event.pageX - winPageX )) {
+
+                    // Some Android browsers have totally bogus values for clientX/Y
+                    // when scrolling/zooming a page. Detectable since clientX/clientY
+                    // should never be smaller than pageX/pageY minus page scroll
+                    x = event.pageX - winPageX;
+                    y = event.pageY - winPageY;
+                }
+
+                return {
+                    x: x,
+                    y: y
+                };
+            },
 
             start: function (event) {
                 var data = event.originalEvent.touches ?
-                    event.originalEvent.touches[ 0 ] : event;
+                        event.originalEvent.touches[ 0 ] : event,
+                    location = $.event.special.swipe.getLocation(data);
                 return {
                     time: ( new Date() ).getTime(),
-                    coords: [ data.pageX, data.pageY ],
+                    coords: [ location.x, location.y ],
                     origin: $(event.target)
                 };
             },
 
             stop: function (event) {
                 var data = event.originalEvent.touches ?
-                    event.originalEvent.touches[ 0 ] : event;
+                        event.originalEvent.touches[ 0 ] : event,
+                    location = $.event.special.swipe.getLocation(data);
                 return {
                     time: ( new Date() ).getTime(),
-                    coords: [ data.pageX, data.pageY ]
+                    coords: [ location.x, location.y ]
                 };
             },
 
@@ -3825,25 +3963,47 @@
                     Math.abs(start.coords[ 1 ] - stop.coords[ 1 ]) < $.event.special.swipe.verticalDistanceThreshold) {
                     var direction = start.coords[0] > stop.coords[ 0 ] ? "swipeleft" : "swiperight";
 
-                    triggerCustomEvent(thisObject, "swipe", $.Event("swipe", { target: origTarget, swipestart: start, swipestop: stop }));
-                    triggerCustomEvent(thisObject, direction, $.Event(direction, { target: origTarget, swipestart: start, swipestop: stop }));
+                    triggerCustomEvent(thisObject, "swipe", $.Event("swipe", { target: origTarget, swipestart: start, swipestop: stop }), true);
+                    triggerCustomEvent(thisObject, direction, $.Event(direction, { target: origTarget, swipestart: start, swipestop: stop }), true);
                     return true;
                 }
                 return false;
 
             },
 
-            setup: function () {
-                var thisObject = this,
-                    $this = $(thisObject);
+            // This serves as a flag to ensure that at most one swipe event event is
+            // in work at any given time
+            eventInProgress: false,
 
-                $this.bind(touchStartEvent, function (event) {
+            setup: function () {
+                var events,
+                    thisObject = this,
+                    $this = $(thisObject),
+                    context = {};
+
+                // Retrieve the events data for this element and add the swipe context
+                events = $.data(this, "mobile-events");
+                if (!events) {
+                    events = { length: 0 };
+                    $.data(this, "mobile-events", events);
+                }
+                events.length++;
+                events.swipe = context;
+
+                context.start = function (event) {
+
+                    // Bail if we're already working on a swipe event
+                    if ($.event.special.swipe.eventInProgress) {
+                        return;
+                    }
+                    $.event.special.swipe.eventInProgress = true;
+
                     var stop,
                         start = $.event.special.swipe.start(event),
                         origTarget = event.target,
                         emitted = false;
 
-                    function moveHandler(event) {
+                    context.move = function (event) {
                         if (!start) {
                             return;
                         }
@@ -3851,23 +4011,57 @@
                         stop = $.event.special.swipe.stop(event);
                         if (!emitted) {
                             emitted = $.event.special.swipe.handleSwipe(start, stop, thisObject, origTarget);
+                            if (emitted) {
+
+                                // Reset the context to make way for the next swipe event
+                                $.event.special.swipe.eventInProgress = false;
+                            }
                         }
                         // prevent scrolling
                         if (Math.abs(start.coords[ 0 ] - stop.coords[ 0 ]) > $.event.special.swipe.scrollSupressionThreshold) {
                             event.preventDefault();
                         }
-                    }
+                    };
 
-                    $this.bind(touchMoveEvent, moveHandler)
-                        .one(touchStopEvent, function () {
-                            emitted = true;
-                            $this.unbind(touchMoveEvent, moveHandler);
-                        });
-                });
+                    context.stop = function () {
+                        emitted = true;
+
+                        // Reset the context to make way for the next swipe event
+                        $.event.special.swipe.eventInProgress = false;
+                        $document.off(touchMoveEvent, context.move);
+                        context.move = null;
+                    };
+
+                    $document.on(touchMoveEvent, context.move)
+                        .one(touchStopEvent, context.stop);
+                };
+                $this.on(touchStartEvent, context.start);
             },
 
             teardown: function () {
-                $(this).unbind(touchStartEvent).unbind(touchMoveEvent).unbind(touchStopEvent);
+                var events, context;
+
+                events = $.data(this, "mobile-events");
+                if (events) {
+                    context = events.swipe;
+                    delete events.swipe;
+                    events.length--;
+                    if (events.length === 0) {
+                        $.removeData(this, "mobile-events");
+                    }
+                }
+
+                if (context) {
+                    if (context.start) {
+                        $(this).off(touchStartEvent, context.start);
+                    }
+                    if (context.move) {
+                        $document.off(touchMoveEvent, context.move);
+                    }
+                    if (context.stop) {
+                        $document.off(touchStopEvent, context.stop);
+                    }
+                }
             }
         };
         $.each({
@@ -4259,7 +4453,7 @@
 
             _setOptions: function (o) {
                 if (o.theme !== undefined) {
-                    this.element.removeClass("ui-body-" + this.options.theme).addClass("ui-body-" + o.theme);
+                    this.element.removeClass("ui-page-theme-" + this.options.theme).addClass("ui-page-theme-" + o.theme);
                 }
 
                 if (o.contentTheme !== undefined) {
@@ -4316,11 +4510,6 @@
             _create: function () {
                 this.setLastScrollEnabled = true;
 
-                // TODO consider moving the navigation handler OUT of widget into
-                //      some other object as glue between the navigate event and the
-                //      content widget load and change methods
-                this._on(this.window, { navigate: "_filterNavigateEvents" });
-
                 this._on(this.window, {
                     // disable an scroll setting when a hashchange has been fired,
                     // this only works because the recording of the scroll position
@@ -4332,6 +4521,11 @@
                     // fired in that case
                     scrollstop: "_delayedRecordScroll"
                 });
+
+                // TODO consider moving the navigation handler OUT of widget into
+                //      some other object as glue between the navigate event and the
+                //      content widget load and change methods
+                this._on(this.window, { navigate: "_filterNavigateEvents" });
 
                 // TODO move from page* events to content* events
                 this._on({ pagechange: "_afterContentChange" });
@@ -5470,6 +5664,9 @@
 
         // resolved on domready
         var domreadyDeferred = $.Deferred(),
+
+        // resolved and nulled on window.load()
+            loadDeferred = $.Deferred(),
             documentUrl = $.mobile.path.documentUrl,
 
         // used to track last vclicked element to make sure its value is added to form data
@@ -5535,7 +5732,7 @@
             }
         };
 
-        //direct focus to the page title, or otherwise first focusable element
+        // Direct focus to the page title, or otherwise first focusable element
         $.mobile.focusPage = function (page) {
             var autofocus = page.find("[autofocus]"),
                 pageTitle = page.find(".ui-title:eq(0)");
@@ -5557,19 +5754,7 @@
             return transition;
         };
 
-        /* exposed $.mobile methods */
-
-        //animation complete callback
-        $.fn.animationComplete = function (callback) {
-            if ($.support.cssTransitions) {
-                return $(this).one("webkitAnimationEnd animationend", callback);
-            }
-            else {
-                // defer execution for consistency between webkit/non webkit
-                setTimeout(callback, 0);
-                return $(this);
-            }
-        };
+        // Exposed $.mobile methods
 
         $.mobile.changePage = function (to, options) {
             $.mobile.pageContainer.pagecontainer("change", to, options);
@@ -5884,13 +6069,29 @@
             $.mobile.pageContainer.pagecontainer();
 
             //set page min-heights to be device specific
-            $.mobile.document.bind("pageshow", $.mobile.resetActivePageHeight);
+            $.mobile.document.bind("pageshow", function () {
+
+                // We need to wait for window.load to make sure that styles have already been rendered,
+                // otherwise heights of external toolbars will have the wrong value
+                if (loadDeferred) {
+                    loadDeferred.done($.mobile.resetActivePageHeight);
+                } else {
+                    $.mobile.resetActivePageHeight();
+                }
+            });
             $.mobile.window.bind("throttledresize", $.mobile.resetActivePageHeight);
 
         };//navreadyDeferred done callback
 
         $(function () {
             domreadyDeferred.resolve();
+        });
+
+        $.mobile.window.load(function () {
+
+            // Resolve and null the deferred
+            loadDeferred.resolve();
+            loadDeferred = null;
         });
 
         $.when(domreadyDeferred, $.mobile.navreadyDeferred).done(function () {
@@ -5996,17 +6197,15 @@
                     }
                 });
 
-                if (!none) {
-                    this.$to.animationComplete($.proxy(function () {
-                        this.doneIn();
-                    }, this));
-                }
-
                 this.$to
                     .removeClass(this.toPreClass)
                     .addClass(this.name + " in " + reverseClass);
 
-                if (none) {
+                if (!none) {
+                    this.$to.animationComplete($.proxy(function () {
+                        this.doneIn();
+                    }, this));
+                } else {
                     this.doneIn();
                 }
 
@@ -6032,12 +6231,19 @@
                 //      better transitions with fewer bugs. Ie, it's not guaranteed that the
                 //      object will be created and transition will be run immediately after as
                 //      it is today. So we wait until transition is invoked to gather the following
-                var reverseClass = this.reverse ? " reverse" : "",
+                var none,
+                    reverseClass = this.reverse ? " reverse" : "",
                     screenHeight = $.mobile.getScreenHeight(),
-                    maxTransitionOverride = $.mobile.maxTransitionWidth !== false && $.mobile.window.width() > $.mobile.maxTransitionWidth,
-                    none = !$.support.cssTransitions || !$.support.cssAnimations || maxTransitionOverride || !this.name || this.name === "none" || Math.max($.mobile.window.scrollTop(), this.toScroll) > $.mobile.getMaxScrollForTransition();
+                    maxTransitionOverride = $.mobile.maxTransitionWidth !== false &&
+                        $.mobile.window.width() > $.mobile.maxTransitionWidth;
 
                 this.toScroll = $.mobile.navigate.history.getActive().lastScroll || $.mobile.defaultHomeScroll;
+
+                none = !$.support.cssTransitions || !$.support.cssAnimations ||
+                    maxTransitionOverride || !this.name || this.name === "none" ||
+                    Math.max($.mobile.window.scrollTop(), this.toScroll) >
+                    $.mobile.getMaxScrollForTransition();
+
                 this.toggleViewportClass();
 
                 if (this.$from && !none) {
@@ -6375,7 +6581,6 @@
                         .attr("data-" + $.mobile.ns + "rel", "back")
                         .text(text || this.options.closeBtnText || "")
                         .prependTo(dst);
-                    this._on(btn, { click: "close" });
                 }
 
                 this._headerCloseButton = btn;
@@ -6423,7 +6628,7 @@
                     attrs = {};
                     attrs[ "data-" + $.mobile.ns + "transition" ] =
                         ( $.mobile.navigate.history.getActive() || {} )[ "transition" ] ||
-                            $.mobile.defaultDialogTransition;
+                        $.mobile.defaultDialogTransition;
                     attrs[ "data-" + $.mobile.ns + "direction" ] = "reverse";
                     $target.attr(attrs);
                 }
@@ -6544,7 +6749,12 @@
 
     (function ($, undefined) {
 
-        var rInitialLetter = /([A-Z])/g;
+        var rInitialLetter = /([A-Z])/g,
+
+        // Construct iconpos class from iconpos value
+            iconposClass = function (iconpos) {
+                return ( "ui-btn-icon-" + ( iconpos === null ? "left" : iconpos ) );
+            };
 
         $.widget("mobile.collapsible", {
             options: {
@@ -6567,14 +6777,15 @@
                 var elem = this.element,
                     ui = {
                         accordion: elem
-                            .closest(":jqmData(role='collapsible-set')" +
-                                ( $.mobile.collapsibleset ? ", :mobile-collapsibleset" : "" ))
+                            .closest(":jqmData(role='collapsible-set')," +
+                                ":jqmData(role='collapsibleset')" +
+                                ( $.mobile.collapsibleset ? ", :mobile-collapsibleset" :
+                                    "" ))
                             .addClass("ui-collapsible-set")
                     };
 
-                $.extend(this, {
-                    _ui: ui
-                });
+                this._ui = ui;
+                this._renderedOptions = this._getOptions(this.options);
 
                 if (this.options.enhanced) {
                     ui.heading = $(".ui-collapsible-heading", this.element[ 0 ]);
@@ -6638,7 +6849,7 @@
 
             _enhance: function (elem, ui) {
                 var iconclass,
-                    opts = this._getOptions(this.options),
+                    opts = this._renderedOptions,
                     contentThemeClass = this._themeClassFromOption("ui-body-", opts.contentTheme);
 
                 elem.addClass("ui-collapsible " +
@@ -6674,8 +6885,7 @@
                     .first()
                     .addClass("ui-btn " +
                         ( iconclass ? iconclass + " " : "" ) +
-                        ( iconclass ? ( "ui-btn-icon-" +
-                            ( opts.iconpos === "right" ? "right" : "left" ) ) +
+                        ( iconclass ? iconposClass(opts.iconpos) +
                             " " : "" ) +
                         this._themeClassFromOption("ui-btn-", opts.theme) + " " +
                         ( opts.mini ? "ui-mini " : "" ));
@@ -6689,19 +6899,14 @@
             },
 
             refresh: function () {
-                var key, options = {};
-
-                for (key in $.mobile.collapsible.defaults) {
-                    options[ key ] = this.options[ key ];
-                }
-
-                this._setOptions(options);
+                this._applyOptions(this.options);
+                this._renderedOptions = this._getOptions(this.options);
             },
 
-            _setOptions: function (options) {
-                var isCollapsed, newTheme, oldTheme, hasCorners,
+            _applyOptions: function (options) {
+                var isCollapsed, newTheme, oldTheme, hasCorners, hasIcon,
                     elem = this.element,
-                    currentOpts = this._getOptions(this.options),
+                    currentOpts = this._renderedOptions,
                     ui = this._ui,
                     anchor = ui.anchor,
                     status = ui.status,
@@ -6716,37 +6921,61 @@
 
                 isCollapsed = elem.hasClass("ui-collapsible-collapsed");
 
-                // Only options referring to the current state need to be applied right away
-                // It is enough to store options covering the alternate in this.options.
+                // We only need to apply the cue text for the current state right away.
+                // The cue text for the alternate state will be stored in the options
+                // and applied the next time the collapsible's state is toggled
                 if (isCollapsed) {
                     if (opts.expandCueText !== undefined) {
                         status.text(opts.expandCueText);
-                    }
-                    if (opts.collapsedIcon !== undefined) {
-                        if (currentOpts.collapsedIcon) {
-                            anchor.removeClass("ui-icon-" + currentOpts.collapsedIcon);
-                        }
-                        if (opts.collapsedIcon) {
-                            anchor.addClass("ui-icon-" + opts.collapsedIcon);
-                        }
                     }
                 } else {
                     if (opts.collapseCueText !== undefined) {
                         status.text(opts.collapseCueText);
                     }
-                    if (opts.expandedIcon !== undefined) {
-                        if (currentOpts.expandedIcon) {
-                            anchor.removeClass("ui-icon-" + currentOpts.expandedIcon);
-                        }
-                        if (opts.expandedIcon) {
-                            anchor.addClass("ui-icon-" + opts.expandedIcon);
-                        }
-                    }
                 }
 
-                if (opts.iconpos !== undefined) {
-                    anchor.removeClass("ui-btn-icon-" + ( currentOpts.iconPos === "right" ? "right" : "left" ));
-                    anchor.addClass("ui-btn-icon-" + ( opts.iconPos === "right" ? "right" : "left" ));
+                // Update icon
+
+                // Is it supposed to have an icon?
+                hasIcon =
+
+                    // If the collapsedIcon is being set, consult that
+                    ( opts.collapsedIcon !== undefined ? opts.collapsedIcon !== false :
+
+                        // Otherwise consult the existing option value
+                        currentOpts.collapsedIcon !== false );
+
+
+                // If any icon-related options have changed, make sure the new icon
+                // state is reflected by first removing all icon-related classes
+                // reflecting the current state and then adding all icon-related
+                // classes for the new state
+                if (!( opts.iconpos === undefined &&
+                    opts.collapsedIcon === undefined &&
+                    opts.expandedIcon === undefined )) {
+
+                    // Remove all current icon-related classes
+                    anchor.removeClass([ iconposClass(currentOpts.iconpos) ]
+                        .concat(( currentOpts.expandedIcon ?
+                            [ "ui-icon-" + currentOpts.expandedIcon ] : [] ))
+                        .concat(( currentOpts.collapsedIcon ?
+                            [ "ui-icon-" + currentOpts.collapsedIcon ] : [] ))
+                        .join(" "));
+
+                    // Add new classes if an icon is supposed to be present
+                    if (hasIcon) {
+                        anchor.addClass(
+                            [ iconposClass(opts.iconpos !== undefined ?
+                                opts.iconpos : currentOpts.iconpos) ]
+                                .concat(isCollapsed ?
+                                    [ "ui-icon-" + ( opts.collapsedIcon !== undefined ?
+                                        opts.collapsedIcon :
+                                        currentOpts.collapsedIcon ) ] :
+                                    [ "ui-icon-" + ( opts.expandedIcon !== undefined ?
+                                        opts.expandedIcon :
+                                        currentOpts.expandedIcon ) ])
+                                .join(" "));
+                    }
                 }
 
                 if (opts.theme !== undefined) {
@@ -6756,8 +6985,10 @@
                 }
 
                 if (opts.contentTheme !== undefined) {
-                    oldTheme = this._themeClassFromOption("ui-body-", currentOpts.theme);
-                    newTheme = this._themeClassFromOption("ui-body-", opts.theme);
+                    oldTheme = this._themeClassFromOption("ui-body-",
+                        currentOpts.contentTheme);
+                    newTheme = this._themeClassFromOption("ui-body-",
+                        opts.contentTheme);
                     ui.content.removeClass(oldTheme).addClass(newTheme);
                 }
 
@@ -6777,12 +7008,16 @@
                 if (opts.mini !== undefined) {
                     anchor.toggleClass("ui-mini", opts.mini);
                 }
+            },
 
+            _setOptions: function (options) {
+                this._applyOptions(options);
                 this._super(options);
+                this._renderedOptions = this._getOptions(this.options);
             },
 
             _handleExpandCollapse: function (isCollapse) {
-                var opts = this._getOptions(this.options),
+                var opts = this._renderedOptions,
                     ui = this._ui;
 
                 ui.status.text(isCollapse ? opts.expandCueText : opts.collapseCueText);
@@ -7448,6 +7683,8 @@
 
     (function ($, undefined) {
 
+        var escapeId = $.mobile.path.hashToSelector;
+
         $.widget("mobile.checkboxradio", $.extend({
 
             initSelector: "input:not( :jqmData(role='flipswitch' ) )[type='checkbox'],input[type='radio']:not( :jqmData(role='flipswitch' ))",
@@ -7474,7 +7711,7 @@
                         input
                             .closest("form, fieldset, :jqmData(role='page'), :jqmData(role='dialog')")
                             .find("label")
-                            .filter("[for='" + $.mobile.path.hashToSelector(input[0].id) + "']")
+                            .filter("[for='" + escapeId(input[0].id) + "']")
                             .first(),
                     inputtype = input[0].type,
                     checkedClass = "ui-" + inputtype + "-on",
@@ -7548,7 +7785,7 @@
                 return $("<div class='" +
                     ( this.options.wrapperClass ? this.options.wrapperClass : "" ) +
                     " ui-" + this.inputtype +
-                    ( this.options.disabled ? " ui-state-disabled" : "" ) + "' >");
+                    ( this.options.disabled ? " ui-state-disabled" : "" ) + "' ></div>");
             },
 
             _handleInputFocus: function () {
@@ -7560,17 +7797,9 @@
             },
 
             _handleInputVClick: function () {
-                var $this = this.element;
-
                 // Adds checked attribute to checked input when keyboard is used
-                if ($this.is(":checked")) {
-
-                    $this.prop("checked", true);
-                    this._getInputSet().not($this).prop("checked", false);
-                } else {
-                    $this.prop("checked", false);
-                }
-
+                this.element.prop("checked", this.element.is(":checked"));
+                this._getInputSet().not(this.element).prop("checked", false);
                 this._updateAll();
             },
 
@@ -7614,14 +7843,51 @@
                 });
             },
 
-            //returns either a set of radios with the same name attribute, or a single checkbox
+            // Returns those radio buttons that are supposed to be in the same group as
+            // this radio button. In the case of a checkbox or a radio lacking a name
+            // attribute, it returns this.element.
             _getInputSet: function () {
-                if (this.inputtype === "checkbox") {
-                    return this.element;
-                }
+                var selector, formId,
+                    radio = this.element[ 0 ],
+                    name = radio.name,
+                    form = radio.form,
+                    doc = this.element.parents().last().get(0),
 
-                return this.element.closest("form, :jqmData(role='page'), :jqmData(role='dialog')")
-                    .find("input[name='" + this.element[ 0 ].name + "'][type='" + this.inputtype + "']");
+                // A radio is always a member of its own group
+                    radios = this.element;
+
+                // Only start running selectors if this is an attached radio button with a name
+                if (name && this.inputtype === "radio" && doc) {
+                    selector = "input[type='radio'][name='" + escapeId(name) + "']";
+
+                    // If we're inside a form
+                    if (form) {
+                        formId = form.id;
+
+                        // If the form has an ID, collect radios scattered throught the document which
+                        // nevertheless are part of the form by way of the value of their form attribute
+                        if (formId) {
+                            radios = $(selector + "[form='" + escapeId(formId) + "']", doc);
+                        }
+
+                        // Also add to those the radios in the form itself
+                        radios = $(form).find(selector).filter(function () {
+
+                            // Some radios inside the form may belong to some other form by virtue of
+                            // having a form attribute defined on them, so we must filter them out here
+                            return ( this.form === form );
+                        }).add(radios);
+
+                        // If we're outside a form
+                    } else {
+
+                        // Collect all those radios which are also outside of a form and match our name
+                        radios = $(selector, doc).filter(function () {
+                            return !this.form;
+                        });
+                    }
+                }
+                return radios;
             },
 
             _updateAll: function () {
@@ -7649,7 +7915,7 @@
                 // If the controlgroup widget is defined ...
                 if (controlgroupConstructor) {
                     controlgroup = this.element.closest(
-                        ":mobile-controlgroup," +
+                            ":mobile-controlgroup," +
                             controlgroupConstructor.prototype.initSelector);
 
                     // ... and the checkbox is in a controlgroup ...
@@ -7857,12 +8123,18 @@
             },
 
             refresh: function (create) {
+                var originalElement,
+                    isDisabled = this.element.prop("disabled");
+
                 if (this.options.icon && this.options.iconpos === "notext" && this.element.attr("title")) {
                     this.element.attr("title", this.element.val());
                 }
                 if (!create) {
-                    var originalElement = this.element.detach();
+                    originalElement = this.element.detach();
                     $(this.wrapper).text(this.element.val()).append(originalElement);
+                }
+                if (this.options.disabled !== isDisabled) {
+                    this._setOptions({ disabled: isDisabled });
                 }
             }
         });
@@ -8669,7 +8941,9 @@
             _setDisabled: function (value) {
                 value = !!value;
                 this.element.prop("disabled", value);
-                this.slider.toggleClass("ui-state-disabled").attr("aria-disabled", value);
+                this.slider
+                    .toggleClass("ui-state-disabled", value)
+                    .attr("aria-disabled", value);
             }
 
         }, $.mobile.behaviors.formReset));
@@ -8730,6 +9004,7 @@
                     if (value && !this._popup) {
                         this._popup = getPopup()
                             .addClass("ui-body-" + ( this.options.theme || "a" ))
+                            .hide()
                             .insertBefore(this.element);
                     }
                 }
@@ -8818,6 +9093,16 @@
 
                 this._handleFormReset();
 
+                // Transfer tabindex to "on" element and make input unfocusable
+                this._originalTabIndex = this.element.attr("tabindex");
+                if (this._originalTabIndex != null) {
+                    this.on.attr("tabindex", this._originalTabIndex);
+                }
+                this.element.attr("tabindex", "-1");
+                this._on({
+                    "focus": "_handleInputFocus"
+                });
+
                 if (this.element.is(":disabled")) {
                     this._setOptions({
                         "disabled": true
@@ -8837,6 +9122,10 @@
                 this._on({
                     "change": "refresh"
                 });
+            },
+
+            _handleInputFocus: function () {
+                this.on.focus();
             },
 
             widget: function () {
@@ -8868,7 +9157,11 @@
                     options = this.options,
                     element = this.element,
                     theme = options.theme ? options.theme : "inherit",
-                    on = $("<span></span>", { tabindex: 1 }),
+
+                // The "on" button is an anchor so it's focusable
+                    on = $("<a></a>", {
+                        "href": "#"
+                    }),
                     off = $("<span></span>"),
                     type = element.get(0).tagName,
                     onText = ( type === "INPUT" ) ?
@@ -8977,6 +9270,11 @@
             _destroy: function () {
                 if (this.options.enhanced) {
                     return;
+                }
+                if (this._originalTabIndex != null) {
+                    this.element.attr("tabindex", this._originalTabIndex);
+                } else {
+                    this.element.removeAttr("tabindex");
                 }
                 this.on.remove();
                 this.off.remove();
@@ -9320,7 +9618,7 @@
             _setOptions: function (options) {
                 this._super(options);
 
-                if (options.clearbtn !== undefined && !this.element.is("textarea, :jqmData(type='range')")) {
+                if (options.clearBtn !== undefined && !this.element.is("textarea, :jqmData(type='range')")) {
                     if (options.clearBtn) {
                         this._addClearBtn();
                     } else {
@@ -9329,7 +9627,8 @@
                 }
 
                 if (options.clearBtnText !== undefined && this._clearBtn !== undefined) {
-                    this._clearBtn.text(options.clearBtnText);
+                    this._clearBtn.text(options.clearBtnText)
+                        .attr("title", options.clearBtnText);
                 }
             },
 
@@ -9342,8 +9641,9 @@
             },
 
             _destroyClear: function () {
-                this.element.removeClass("ui-input-has-clear");
-                this._unbindClear()._clearBtn.remove();
+                this.widget().removeClass("ui-input-has-clear");
+                this._unbindClear();
+                this._clearBtn.remove();
             },
 
             _destroy: function () {
@@ -9372,11 +9672,13 @@
             },
 
             _autogrow: function () {
+                this.element.addClass("ui-textinput-autogrow");
+
                 this._on({
                     "keyup": "_timeout",
                     "change": "_timeout",
                     "input": "_timeout",
-                    "paste": "_timeout",
+                    "paste": "_timeout"
                 });
 
                 // Attach to the various you-have-become-visible notifications that the
@@ -9406,16 +9708,18 @@
                     if (event.type !== "popupbeforeposition") {
                         this.element
                             .addClass("ui-textinput-autogrow-resize")
-                            .one("transitionend webkitTransitionEnd oTransitionEnd",
-                                $.proxy(function () {
-                                    this.element.removeClass("ui-textinput-autogrow-resize");
-                                }, this));
+                            .animationComplete(
+                            $.proxy(function () {
+                                this.element.removeClass("ui-textinput-autogrow-resize");
+                            }, this),
+                            "transition");
                     }
-                    this._prepareHeightUpdate();
+                    this._timeout();
                 }
             },
 
             _unbindAutogrow: function () {
+                this.element.removeClass("ui-textinput-autogrow");
                 this._off(this.element, "keyup change input paste");
                 this._off(this.document,
                     "pageshow popupbeforeposition updatelayout panelopen");
@@ -9439,22 +9743,26 @@
             },
 
             _updateHeight: function () {
-
+                var paddingTop, paddingBottom, paddingHeight, scrollHeight, clientHeight,
+                    borderTop, borderBottom, borderHeight, height,
+                    scrollTop = this.window.scrollTop();
                 this.keyupTimeout = 0;
 
-                this.element.css({
-                    "height": 0,
-                    "min-height": 0,
-                    "max-height": 0
-                });
+                // IE8 textareas have the onpage property - others do not
+                if (!( "onpage" in this.element[ 0 ] )) {
+                    this.element.css({
+                        "height": 0,
+                        "min-height": 0,
+                        "max-height": 0
+                    });
+                }
 
-                var paddingTop, paddingBottom, paddingHeight,
-                    scrollHeight = this.element[ 0 ].scrollHeight,
-                    clientHeight = this.element[ 0 ].clientHeight,
-                    borderTop = parseFloat(this.element.css("border-top-width")),
-                    borderBottom = parseFloat(this.element.css("border-bottom-width")),
-                    borderHeight = borderTop + borderBottom,
-                    height = scrollHeight + borderHeight + 15;
+                scrollHeight = this.element[ 0 ].scrollHeight;
+                clientHeight = this.element[ 0 ].clientHeight;
+                borderTop = parseFloat(this.element.css("border-top-width"));
+                borderBottom = parseFloat(this.element.css("border-bottom-width"));
+                borderHeight = borderTop + borderBottom;
+                height = scrollHeight + borderHeight + 15;
 
                 // Issue 6179: Padding is not included in scrollHeight and
                 // clientHeight by Firefox if no scrollbar is visible. Because
@@ -9475,6 +9783,8 @@
                     "min-height": "",
                     "max-height": ""
                 });
+
+                this.window.scrollTop(scrollTop);
             },
 
             refresh: function () {
@@ -9736,7 +10046,9 @@
                     if (text) {
                         span.text(text);
                     } else {
-                        span.html("&nbsp;");
+
+                        // Set the contents to &nbsp; which we write as &#160; to be XHTML compliant - see gh-6699
+                        span.html("&#160;");
                     }
 
                     // TODO possibly aggregate multiple select option classes
@@ -10339,9 +10651,9 @@
                     }
                     if (this._fallbackTransition) {
                         this._ui.container
-                            .animationComplete($.proxy(args.prerequisites.container, "resolve"))
                             .addClass(args.containerClassToAdd)
-                            .removeClass(args.classToRemove);
+                            .removeClass(args.classToRemove)
+                            .animationComplete($.proxy(args.prerequisites.container, "resolve"));
                         return;
                     }
                 }
@@ -10879,8 +11191,10 @@
             },
 
             build: function () {
-                var selectId, popupId, dialogId, label, thisPage, isMultiple, menuId, themeAttr, overlayThemeAttr,
-                    dividerThemeAttr, menuPage, listbox, list, header, headerTitle, menuPageContent, menuPageClose, headerClose, self,
+                var selectId, popupId, dialogId, label, thisPage, isMultiple, menuId,
+                    themeAttr, overlayTheme, overlayThemeAttr, dividerThemeAttr,
+                    menuPage, listbox, list, header, headerTitle, menuPageContent,
+                    menuPageClose, headerClose, self,
                     o = this.options;
 
                 if (o.nativeMenu) {
@@ -10896,7 +11210,9 @@
                 isMultiple = this.element[ 0 ].multiple;
                 menuId = selectId + "-menu";
                 themeAttr = o.theme ? ( " data-" + $.mobile.ns + "theme='" + o.theme + "'" ) : "";
-                overlayThemeAttr = o.overlayTheme ? ( " data-" + $.mobile.ns + "theme='" + o.overlayTheme + "'" ) : "";
+                overlayTheme = o.overlayTheme || o.theme || null;
+                overlayThemeAttr = overlayTheme ? ( " data-" + $.mobile.ns +
+                    "overlay-theme='" + overlayTheme + "'" ) : "";
                 dividerThemeAttr = ( o.dividerTheme && isMultiple ) ? ( " data-" + $.mobile.ns + "divider-theme='" + o.dividerTheme + "'" ) : "";
                 menuPage = $("<div data-" + $.mobile.ns + "role='dialog' class='ui-selectmenu' id='" + dialogId + "'" + themeAttr + overlayThemeAttr + ">" +
                     "<div data-" + $.mobile.ns + "role='header'>" +
@@ -10904,10 +11220,10 @@
                     "</div>" +
                     "<div data-" + $.mobile.ns + "role='content'></div>" +
                     "</div>");
-                listbox = $("<div id='" + popupId + "' class='ui-selectmenu'>").insertAfter(this.select).popup({ theme: o.overlayTheme });
-                list = $("<ul class='ui-selectmenu-list' id='" + menuId + "' role='listbox' aria-labelledby='" + this.buttonId + "'" + themeAttr + dividerThemeAttr + ">").appendTo(listbox);
-                header = $("<div class='ui-header ui-bar-" + ( o.theme ? o.theme : "inherit" ) + "'>").prependTo(listbox);
-                headerTitle = $("<h1 class='ui-title'>").appendTo(header);
+                listbox = $("<div id='" + popupId + "' class='ui-selectmenu'></div>").insertAfter(this.select).popup({ theme: o.overlayTheme });
+                list = $("<ul class='ui-selectmenu-list' id='" + menuId + "' role='listbox' aria-labelledby='" + this.buttonId + "'" + themeAttr + dividerThemeAttr + "></ul>").appendTo(listbox);
+                header = $("<div class='ui-header ui-bar-" + ( o.theme ? o.theme : "inherit" ) + "'></div>").prependTo(listbox);
+                headerTitle = $("<h1 class='ui-title'></h1>").appendTo(header);
 
                 if (this.isMultiple) {
                     headerClose = $("<a>", {
@@ -11305,7 +11621,6 @@
 
     (function ($, undefined) {
 
-
 // General policy: Do not access data-* attributes except during enhancement.
 // In all other cases we determine the state of the button exclusively from its
 // className. That's why optionsToClasses expects a full complement of options,
@@ -11349,8 +11664,8 @@
             // If there's an icon, add the icon-related classes
             if (options.icon) {
                 classes = classes.concat([
-                    "ui-icon-" + options.icon,
-                    "ui-btn-icon-" + options.iconpos
+                        "ui-icon-" + options.icon,
+                        "ui-btn-icon-" + options.iconpos
                 ]);
                 if (options.iconshadow) {
                     classes.push("ui-shadow-icon");
@@ -11519,7 +11834,6 @@
                 }
 
                 el.className = optionsToClasses(
-
                     // Merge all the options and apply them as classes
                     $.extend({},
 
@@ -11755,8 +12069,7 @@
                     role: role,
                     page: page,
                     leftbtn: leftbtn,
-                    rightbtn: rightbtn,
-                    backBtn: null
+                    rightbtn: rightbtn
                 });
                 this.element.attr("role", role === "header" ? "banner" : "contentinfo").addClass("ui-" + role);
                 this.refresh();
@@ -11811,7 +12124,10 @@
 
             // Deprecated in 1.4. As from 1.5 button classes have to be present in the markup.
             _btnMarkup: function () {
-                this.element.children("a").attr("data-" + $.mobile.ns + "role", "button");
+                this.element
+                    .children("a")
+                    .filter(":not([data-" + $.mobile.ns + "role='none'])")
+                    .attr("data-" + $.mobile.ns + "role", "button");
                 this.element.trigger("create");
             },
             // Deprecated in 1.4. As from 1.5 ui-btn-left/right classes have to be present in the markup.
@@ -11826,18 +12142,15 @@
 
             },
             _addBackButton: function () {
-                var theme,
-                    options = this.options;
-
-                if (!this.backBtn) {
+                var options = this.options,
                     theme = options.backBtnTheme || options.theme;
-                    this.backBtn = $("<a role='button' href='javascript:void(0);' " +
-                        "class='ui-btn ui-corner-all ui-shadow ui-btn-left " +
-                        ( theme ? "ui-btn-" + theme + " " : "" ) +
-                        "ui-toolbar-back-btn ui-icon-carat-l ui-btn-icon-left' " +
-                        "data-" + $.mobile.ns + "rel='back'>" + options.backBtnText + "</a>")
-                        .prependTo(this.element);
-                }
+
+                $("<a role='button' href='javascript:void(0);' " +
+                    "class='ui-btn ui-corner-all ui-shadow ui-btn-left " +
+                    ( theme ? "ui-btn-" + theme + " " : "" ) +
+                    "ui-toolbar-back-btn ui-icon-carat-l ui-btn-icon-left' " +
+                    "data-" + $.mobile.ns + "rel='back'>" + options.backBtnText + "</a>")
+                    .prependTo(this.element);
             },
             _addHeadingClasses: function () {
                 this.element.children("h1, h2, h3, h4, h5, h6")
@@ -11891,7 +12204,6 @@
                 this._addTransitionClass();
                 this._bindPageEvents();
                 this._bindToggleHandlers();
-                this._setOptions(this.options);
             },
 
             _setOptions: function (o) {
@@ -12026,7 +12338,7 @@
                     ( this.options.transition && this.options.transition !== "none" &&
                         (
                             ( this.role === "header" && !this.options.fullscreen && scroll > elHeight ) ||
-                                ( this.role === "footer" && !this.options.fullscreen && scroll + viewportHeight < pHeight - elHeight )
+                            ( this.role === "footer" && !this.options.fullscreen && scroll + viewportHeight < pHeight - elHeight )
                             ) || this.options.fullscreen
                         );
             },
@@ -12236,24 +12548,19 @@
 
         var ieHack = ( $.mobile.browser.oldIE && $.mobile.browser.oldIE <= 8 ),
             uiTemplate = $(
-                "<div class='ui-popup-arrow-guide'></div>" +
+                    "<div class='ui-popup-arrow-guide'></div>" +
                     "<div class='ui-popup-arrow-container" + ( ieHack ? " ie" : "" ) + "'>" +
-                    "<div class='ui-popup-arrow'>" +
-                    "<div class='ui-popup-arrow-background'></div>" +
-                    "</div>" +
+                    "<div class='ui-popup-arrow'></div>" +
                     "</div>"
-            ),
-        // Needed for transforming coordinates from screen to arrow background
-            txFactor = Math.sqrt(2) / 2;
+            );
 
         function getArrow() {
             var clone = uiTemplate.clone(),
                 gd = clone.eq(0),
                 ct = clone.eq(1),
-                ar = ct.children(),
-                bg = ar.children();
+                ar = ct.children();
 
-            return { arEls: ct.add(gd), gd: gd, ct: ct, ar: ar, bg: bg };
+            return { arEls: ct.add(gd), gd: gd, ct: ct, ar: ar };
         }
 
         $.widget("mobile.popup", $.mobile.popup, {
@@ -12280,7 +12587,6 @@
 
                 theme = this._themeClassFromOption("ui-body-", opts.theme);
                 ar.ar.addClass(theme + ( opts.shadow ? " ui-overlay-shadow" : "" ));
-                ar.bg.addClass(theme);
                 ar.arEls.hide().appendTo(this.element);
 
                 return ar;
@@ -12362,7 +12668,7 @@
             },
 
             _placementCoords: function (desired) {
-                var state, best, params, bgOffset, elOffset, diff, bgRef,
+                var state, best, params, elOffset, bgRef,
                     optionValue = this.options.arrow,
                     ar = this._ui.arrow;
 
@@ -12411,12 +12717,6 @@
                         left: elOffset.left + state.contentBox.x,
                         top: elOffset.top + state.contentBox.y
                     };
-                    bgOffset = ar.bg
-                        .removeAttr("style")
-                        .css(( "cx" === params[ best.dir ].dimKey ? "width" : "height" ), state.contentBox[ params[ best.dir ].dimKey ])
-                        .offset();
-                    diff = { dx: bgRef.x.left - bgOffset.left, dy: bgRef.y.top - bgOffset.top };
-                    ar.bg.css({ left: txFactor * diff.dy + txFactor * diff.dx, top: txFactor * diff.dy - txFactor * diff.dx });
                 }
 
                 return best.result;
@@ -12449,7 +12749,6 @@
                         oldTheme = this._themeClassFromOption("ui-body-", oldTheme);
                         newTheme = this._themeClassFromOption("ui-body-", opts.theme);
                         ar.ar.removeClass(oldTheme).addClass(newTheme);
-                        ar.bg.removeClass(oldTheme).addClass(newTheme);
                     }
 
                     if (opts.shadow !== undefined) {
@@ -12501,7 +12800,6 @@
                 positionFixed: false
             },
 
-            _panelID: null,
             _closeLink: null,
             _parentPage: null,
             _page: null,
@@ -12512,19 +12810,20 @@
 
             _create: function () {
                 var el = this.element,
-                    parentPage = el.closest(":jqmData(role='page')");
+                    parentPage = el.closest(".ui-page, :jqmData(role='page')");
 
                 // expose some private props to other methods
                 $.extend(this, {
-                    _panelID: el.attr("id"),
                     _closeLink: el.find(":jqmData(rel='close')"),
                     _parentPage: ( parentPage.length > 0 ) ? parentPage : false,
+                    _openedPage: null,
                     _page: this._getPage,
                     _panelInner: this._getPanelInner(),
-                    _wrapper: this._getWrapper,
                     _fixedToolbars: this._getFixedToolbars
                 });
-
+                if (this.options.display !== "overlay") {
+                    this._getWrapper();
+                }
                 this._addPanelClasses();
 
                 // if animating, add the class to do so
@@ -12558,7 +12857,7 @@
                 var self = this,
                     target = self._parentPage ? self._parentPage.parent() : self.element.parent();
 
-                self._modal = $("<div class='" + self.options.classes.modal + "' data-panelid='" + self._panelID + "'></div>")
+                self._modal = $("<div class='" + self.options.classes.modal + "'></div>")
                     .on("mousedown", function () {
                         self.close();
                     })
@@ -12566,21 +12865,20 @@
             },
 
             _getPage: function () {
-                var page = this._parentPage ? this._parentPage : $("." + $.mobile.activePageClass);
+                var page = this._openedPage || this._parentPage || $("." + $.mobile.activePageClass);
 
                 return page;
             },
 
             _getWrapper: function () {
                 var wrapper = this._page().find("." + this.options.classes.pageWrapper);
-
                 if (wrapper.length === 0) {
                     wrapper = this._page().children(".ui-header:not(.ui-header-fixed), .ui-content:not(.ui-popup), .ui-footer:not(.ui-footer-fixed)")
                         .wrapAll("<div class='" + this.options.classes.pageWrapper + "'></div>")
                         .parent();
                 }
 
-                return wrapper;
+                this._wrapper = wrapper;
             },
 
             _getFixedToolbars: function () {
@@ -12612,20 +12910,31 @@
                 this.element.addClass(this._getPanelClasses());
             },
 
-            _bindCloseEvents: function () {
-                var self = this;
-
-                self._closeLink.on("click.panel", function (e) {
-                    e.preventDefault();
-                    self.close();
+            _handleCloseClickAndEatEvent: function (event) {
+                if (!event.isDefaultPrevented()) {
+                    event.preventDefault();
+                    this.close();
                     return false;
+                }
+            },
+
+            _handleCloseClick: function (event) {
+                if (!event.isDefaultPrevented()) {
+                    this.close();
+                }
+            },
+
+            _bindCloseEvents: function () {
+                this._on(this._closeLink, {
+                    "click": "_handleCloseClick"
                 });
-                self.element.on("click.panel", "a:jqmData(ajax='false')", function (/* e */) {
-                    self.close();
+
+                this._on({
+                    "click a:jqmData(ajax='false')": "_handleCloseClick"
                 });
             },
 
-            _positionPanel: function () {
+            _positionPanel: function (scrollToTop) {
                 var self = this,
                     panelInnerHeight = self._panelInner.outerHeight(),
                     expand = panelInnerHeight > $.mobile.getScreenHeight();
@@ -12635,7 +12944,9 @@
                         self._unfixPanel();
                         $.mobile.resetActivePageHeight(panelInnerHeight);
                     }
-                    window.scrollTo(0, $.mobile.defaultHomeScroll);
+                    if (scrollToTop) {
+                        this.window[ 0 ].scrollTo(0, $.mobile.defaultHomeScroll);
+                    }
                 } else {
                     self._fixPanel();
                 }
@@ -12679,9 +12990,13 @@
             },
 
             _handleClick: function (e) {
-                if (e.currentTarget.href.split("#")[ 1 ] === this._panelID && this._panelID !== undefined) {
+                var link,
+                    panelId = this.element.attr("id");
+
+                if (e.currentTarget.href.split("#")[ 1 ] === panelId && panelId !== undefined) {
+
                     e.preventDefault();
-                    var link = $(e.target);
+                    link = $(e.target);
                     if (link.hasClass("ui-btn")) {
                         link.addClass($.mobile.activeBtnClass);
                         this.element.one("panelopen panelclose", function () {
@@ -12727,7 +13042,11 @@
                             self.close();
                         }
                     });
-
+                if (!this._parentPage && this.options.display !== "overlay") {
+                    this._on(this.document, {
+                        "pageshow": "_getWrapper"
+                    });
+                }
                 // Clean up open panels after page hide
                 if (self._parentPage) {
                     this.document.on("pagehide", ":jqmData(role='page')", function () {
@@ -12759,12 +13078,12 @@
                             self._page().jqmData("panel", "open");
 
                             if ($.support.cssTransform3d && !!o.animate && o.display !== "overlay") {
-                                self._wrapper().addClass(o.classes.animate);
+                                self._wrapper.addClass(o.classes.animate);
                                 self._fixedToolbars().addClass(o.classes.animate);
                             }
 
                             if (!immediate && $.support.cssTransform3d && !!o.animate) {
-                                self.document.on(self._transitionEndEvents, complete);
+                                self.element.animationComplete(complete, "transition");
                             } else {
                                 setTimeout(complete, 0);
                             }
@@ -12778,13 +13097,13 @@
                                 .removeClass(o.classes.panelClosed)
                                 .addClass(o.classes.panelOpen);
 
-                            self._positionPanel();
+                            self._positionPanel(true);
 
                             self._pageContentOpenClasses = self._getPosDisplayClasses(o.classes.pageContentPrefix);
 
                             if (o.display !== "overlay") {
                                 self._page().parent().addClass(o.classes.pageContainer);
-                                self._wrapper().addClass(self._pageContentOpenClasses);
+                                self._wrapper.addClass(self._pageContentOpenClasses);
                                 self._fixedToolbars().addClass(self._pageContentOpenClasses);
                             }
 
@@ -12796,16 +13115,17 @@
                             }
                         },
                         complete = function () {
-                            self.document.off(self._transitionEndEvents, complete);
 
                             if (o.display !== "overlay") {
-                                self._wrapper().addClass(o.classes.pageContentPrefix + "-open");
+                                self._wrapper.addClass(o.classes.pageContentPrefix + "-open");
                                 self._fixedToolbars().addClass(o.classes.pageContentPrefix + "-open");
                             }
 
                             self._bindFixListener();
 
                             self._trigger("open");
+
+                            self._openedPage = self._page();
                         };
 
                     self._trigger("beforeopen");
@@ -12828,17 +13148,18 @@
                         o = this.options,
 
                         _closePanel = function () {
-                            if (!immediate && $.support.cssTransform3d && !!o.animate) {
-                                self.document.on(self._transitionEndEvents, complete);
-                            } else {
-                                setTimeout(complete, 0);
-                            }
 
                             self.element.removeClass(o.classes.panelOpen);
 
                             if (o.display !== "overlay") {
-                                self._wrapper().removeClass(self._pageContentOpenClasses);
+                                self._wrapper.removeClass(self._pageContentOpenClasses);
                                 self._fixedToolbars().removeClass(self._pageContentOpenClasses);
+                            }
+
+                            if (!immediate && $.support.cssTransform3d && !!o.animate) {
+                                self.element.animationComplete(complete, "transition");
+                            } else {
+                                setTimeout(complete, 0);
                             }
 
                             if (self._modal) {
@@ -12846,8 +13167,6 @@
                             }
                         },
                         complete = function () {
-                            self.document.off(self._transitionEndEvents, complete);
-
                             if (o.theme && o.display !== "overlay") {
                                 self._page().parent().removeClass(o.classes.pageContainer + "-themed " + o.classes.pageContainer + "-" + o.theme);
                             }
@@ -12856,12 +13175,12 @@
 
                             if (o.display !== "overlay") {
                                 self._page().parent().removeClass(o.classes.pageContainer);
-                                self._wrapper().removeClass(o.classes.pageContentPrefix + "-open");
+                                self._wrapper.removeClass(o.classes.pageContentPrefix + "-open");
                                 self._fixedToolbars().removeClass(o.classes.pageContentPrefix + "-open");
                             }
 
                             if ($.support.cssTransform3d && !!o.animate && o.display !== "overlay") {
-                                self._wrapper().removeClass(o.classes.animate);
+                                self._wrapper.removeClass(o.classes.animate);
                                 self._fixedToolbars().removeClass(o.classes.animate);
                             }
 
@@ -12872,6 +13191,8 @@
                             self._page().jqmRemoveData("panel");
 
                             self._trigger("close");
+
+                            self._openedPage = null;
                         };
 
                     self._trigger("beforeclose");
@@ -12886,8 +13207,6 @@
                 this[ this._open ? "close" : "open" ]();
             },
 
-            _transitionEndEvents: "webkitTransitionEnd oTransitionEnd otransitionend transitionend msTransitionEnd",
-
             _destroy: function () {
                 var otherPanels,
                     o = this.options,
@@ -12898,7 +13217,7 @@
                     //  remove the wrapper if not in use by another panel
                     otherPanels = $("body > :mobile-panel").add($.mobile.activePage.find(":mobile-panel"));
                     if (otherPanels.not(".ui-panel-display-overlay").not(this.element).length === 0) {
-                        this._wrapper().children().unwrap();
+                        this._wrapper.children().unwrap();
                     }
 
                     if (this._open) {
@@ -12921,10 +13240,6 @@
 
                     this.document.off("panelopen panelclose");
 
-                    if (this._open) {
-                        this.document.off(this._transitionEndEvents);
-                        $.mobile.resetActivePageHeight();
-                    }
                 }
 
                 if (this._open) {
@@ -12939,10 +13254,7 @@
                     .off("panelbeforeopen")
                     .off("panelhide")
                     .off("keyup.panel")
-                    .off("updatelayout")
-                    .off(this._transitionEndEvents);
-
-                this._closeLink.off("click.panel");
+                    .off("updatelayout");
 
                 if (this._modal) {
                     this._modal.remove();
@@ -13064,7 +13376,6 @@
                 if (this.options.enhanced) {
                     this._menu = $(this.document[ 0 ].getElementById(this._id() + "-popup")).children().first();
                     this._addToggles(this._menu, true);
-                    this._bindToggles(this._menu);
                 } else {
                     this._menu = this._enhanceColToggle();
                     this.element.addClass(this.options.classes.columnToggleTable);
@@ -13087,13 +13398,8 @@
                 this._on(this.window, {
                     throttledresize: "_setToggleState"
                 });
-            },
-
-            _bindToggles: function (menu) {
-                var inputs = menu.find("input");
-
-                this._on(inputs, {
-                    change: "_menuInputChange"
+                this._on(this._menu, {
+                    "change input": "_menuInputChange"
                 });
             },
 
@@ -13136,7 +13442,6 @@
                 // set bindings here
                 if (!keep) {
                     menu.controlgroup("refresh");
-                    this._bindToggles(menu);
                 }
             },
 
@@ -13208,7 +13513,8 @@
 
                 if (!create && this.options.mode === "columntoggle") {
                     // columns not being replaced must be cleared from input toggle-locks
-                    this._unlockCells(this.allHeaders);
+                    this._unlockCells(this.element.find(".ui-table-cell-hidden, " +
+                        ".ui-table-cell-visible"));
 
                     // update columntoggles and cells
                     this._addToggles(this._menu, create);
@@ -13367,7 +13673,7 @@
                     }
 
                     this._timer = this._delay(function () {
-                        this._trigger("beforefilter", "beforefilter", { input: search });
+                        this._trigger("beforefilter", null, { input: search });
 
                         // Change val as lastval for next execution
                         search[ 0 ].setAttribute("data-" + $.mobile.ns + "lastval", val);
@@ -13422,6 +13728,10 @@
                 }
 
                 this._refreshChildWidget();
+
+                this._trigger("filter", null, {
+                    items: filterItems
+                });
             },
 
             // The Default implementation of _refreshChildWidget attempts to call
@@ -13567,6 +13877,16 @@
                 this._setWidget(this.element.data("mobile-" + evt.type.substring(0, evt.type.length - 6)));
             },
 
+            _trigger: function (type, event, data) {
+                if (this._widget && this._widget.widgetFullName === "mobile-listview" &&
+                    type === "beforefilter") {
+
+                    // Also trigger listviewbeforefilter if this widget is also a listview
+                    this._widget._trigger("beforefilter", event, data);
+                }
+                this._super(type, event, data);
+            },
+
             _setWidget: function (widget) {
                 if (!this._widget && widget) {
                     this._widget = widget;
@@ -13576,7 +13896,7 @@
                 if (!!this._widget) {
                     this._syncTextInputOptions(this._widget.options);
                     if (this._widget.widgetName === "listview") {
-                        this._widget.options.hidedividers = true;
+                        this._widget.options.hideDividers = true;
                         this._widget.element.listview("refresh");
                     }
                 }
@@ -13707,7 +14027,7 @@
         function isLocal(anchor) {
             return anchor.hash.length > 1 &&
                 decodeURIComponent(anchor.href.replace(rhash, "")) ===
-                    decodeURIComponent(location.href.replace(rhash, ""));
+                decodeURIComponent(location.href.replace(rhash, ""));
         }
 
         $.widget("ui.tabs", {
