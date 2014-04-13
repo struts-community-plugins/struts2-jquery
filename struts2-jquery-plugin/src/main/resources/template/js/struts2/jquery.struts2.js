@@ -77,9 +77,7 @@
 		if (url.indexOf("?") > 0) {
 			return url+"&"+param;
 		}
-		else {
-			return url+"?"+param;
-		}
+        return url + "?" + param;
 	},
 
 	/**Change Parameter Value in URL */
@@ -285,9 +283,7 @@
 				self.publishTopic($elem, always, data);
 			};
 		}
-		else {
-			return null;
-		}
+        return null;
 	},
 
 	/** Helper function to subscribe topics */
@@ -348,7 +344,7 @@
 					c.children().remove();
 				}
 
-				if (typeof (data) === "object" || $.isArray(data)) {
+                if ($.isPlainObject(data) || $.isArray(data)) {
 					i = -1;
 
 					if (modus === 'select') {
@@ -410,10 +406,10 @@
 
 								// This way is needed to avoid Bug in IE6/IE7
 								if (modus === 'radio') {
-									element = $('<input name="' + option.name + '" type="radio" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
+                                    element = $('<input name="' + option.name + '" type="radio" id="' + option.name + idv + '" value="' + option.value + '"></input>');
 								}
 								else if (modus === 'checkbox') {
-									element = $('<input name="' + option.name + '" type="checkbox" id="' + option.name + (idv) + '" value="' + option.value + '"></input>');
+                                    element = $('<input name="' + option.name + '" type="checkbox" id="' + option.name + idv + '" value="' + option.value + '"></input>');
 								}
 
 								if (option.selected) {
@@ -421,7 +417,7 @@
 								}
 
 								c.append(element);
-								c.append($('<label id="' + option.name + (idv) + 'label" for="' + option.name + (idv) + '">' + option.text + '</label>'));
+                                c.append($('<label id="' + option.name + idv + 'label" for="' + option.name + idv + '">' + option.text + '</label>'));
 							}
 							x++;
 						});
@@ -490,9 +486,7 @@
 				self.publishTopic(c, always, orginal);
 			};
 		}
-		else {
-			return null;
-		}
+        return null;
 	},
 
 	/**

@@ -178,6 +178,7 @@
             self.log('dialog : ' + o.id);
 
             var jsFiles = [ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.button" + self.minSuffix + ".js", "js/base/jquery.ui.mouse" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.dialog" + self.minSuffix + ".js" ];
+
             if (o.hide || o.show) {
                 jsFiles.push("js/base/jquery.ui.effect" + self.minSuffix + ".js");
             }
@@ -282,13 +283,13 @@
 
             if (o.show) {
                 self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
-                if (typeof o.show == "string") {
+                if ($.type(o.show) === "string") {
                     self.require("js/base/jquery.ui.effect-" + o.show + self.minSuffix + ".js");
                 }
             }
             if (o.hide) {
                 self.require("js/base/jquery.ui.effect" + self.minSuffix + ".js");
-                if (typeof o.hide == "string") {
+                if ($.type(o.hide) === "string") {
                     self.require("js/base/jquery.ui.effect-" + o.hide + self.minSuffix + ".js");
                 }
             }
@@ -299,8 +300,7 @@
 
             o.beforeLoad = function (event, ui) {
                 var data = {},
-                    form = "" + ui.tab.data("form"),
-                    links;
+                    form = "" + ui.tab.data("form");
                 data.event = event;
                 data.ui = ui;
 
@@ -324,9 +324,7 @@
                 }
             };
             o.activate = function (event, ui) {
-                var data = {},
-                    form = $elem.data("tab" + ui.index),
-                    links;
+                var data = {};
                 data.event = event;
                 data.ui = ui;
 
@@ -609,7 +607,9 @@
 
         /** Handle the Spinner Widget */
         spinner: function ($elem, o) {
-            var self = this;
+            var self = this,
+                currentValue = $elem.val();
+
             self.log('spinner : ' + o.id);
             self.container($elem, o);
             if (!self.loadAtOnce) {
@@ -623,8 +623,6 @@
             if (o.oncha) {
                 o.change = self.pubTops($elem, o.onalw, o.oncha);
             }
-
-            var currentValue = $elem.val();
 
             $elem.spinner(o);
             if (o.numberFormat && Globalize) {
@@ -656,13 +654,11 @@
 
         /** Handle the Menu Widget */
         menu: function ($elem, o) {
-            var self = this,
-                params = {};
+            var self = this;
             self.log('menu : ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([ "js/base/jquery.ui.widget" + self.minSuffix + ".js", "js/base/jquery.ui.position" + self.minSuffix + ".js", "js/base/jquery.ui.menu" + self.minSuffix + ".js" ]);
             }
-
 
             $elem.menu(o);
         },
@@ -701,7 +697,7 @@
 
             o.beforeActivate = function (event, ui) {
                 if (o.href) {
-                    if (typeof $(ui.newHeader).find('a').data('keys') !== "undefined") {
+                    if ($.type($(ui.newHeader).find('a').data('keys')) !== "undefined") {
                         var keys = ("" + $(ui.newHeader).find('a').data('keys')).split(','),
                             values = ("" + $(ui.newHeader).find('a').data('values')).split(','),
                             valueparams = {};
@@ -727,7 +723,7 @@
             $elem.accordion(o);
             if (o.href && active === true) {
                 aktivItem = $(self.escId(o.id) + " " + o.header).filter('.ui-accordion-header').filter('.ui-state-active').find('a');
-                if (typeof $(aktivItem).data('keys') !== "undefined") {
+                if ($.type($(aktivItem).data('keys')) !== "undefined") {
                     var keys = ("" + $(aktivItem).data('keys')).split(','),
                         values = ("" + $(aktivItem).data('values')).split(','),
                         valueparams = {};
