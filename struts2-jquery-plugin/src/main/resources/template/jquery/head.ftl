@@ -20,7 +20,7 @@
 -->
 
 <#if !jQueryVersion?? >
-  <#assign jQueryVersion="1.10.2">
+    <#assign jQueryVersion="1.11.0">
 </#if>
 <#assign jQueryUIVersion="1.10.3">
 <#assign struts2jQueryVersion="${version}">
