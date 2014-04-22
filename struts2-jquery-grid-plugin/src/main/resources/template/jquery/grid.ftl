@@ -20,7 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <#if !parameters.subGrid?default(false)>
-<table id="${parameters.id?html}" class="scroll" cellpadding="0" cellspacing="0"
+<table id="${parameters.id?html}" cellpadding="0" cellspacing="0"
 <#if parameters.cssStyle?if_exists != "">
  style="${parameters.cssStyle?html}"<#rt/>
 </#if>
