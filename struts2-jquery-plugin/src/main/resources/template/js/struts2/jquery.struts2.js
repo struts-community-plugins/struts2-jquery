@@ -965,7 +965,10 @@
 				}
 				
 				if(orginal.formvalidate) {
-					form.submit();
+                    if ( o.href && o.href != "#") {
+                        form[0].action = o.href;
+                    }
+                    form.submit();
 				}
 				return false;
 			});
@@ -986,7 +989,10 @@
 					}
 
 					if(orginal.formvalidate) {
-						form.submit();
+                        if ( o.href && o.href != "#") {
+                            form[0].action = o.href;
+                        }
+                        form.submit();
 					}
 				}, params);
 			}
