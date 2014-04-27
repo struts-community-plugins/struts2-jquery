@@ -22,7 +22,7 @@
     	navigatorAdd="false"
     	navigatorView="true"
     	navigatorDelete="false"
-    	navigatorCloneToTop="true"
+    	navigatorCloneToTop="false"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
