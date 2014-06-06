@@ -2,8 +2,10 @@
 
 A Plugin for the popular java web framework struts2 to provide ajax functionality and UI Widgets based on the jQuery javascript framework.
 
-### [Download] (https://oss.sonatype.org/content/groups/staging/com/jgeppert/struts2/jquery/)
-### [News and Developer Blog] (https://www.jgeppert.com)
+#### [Download] (https://oss.sonatype.org/content/groups/staging/com/jgeppert/struts2/jquery/)
+#### [News and Developer Blog] (https://www.jgeppert.com)
+#### [Showcase] (http://struts.jgeppert.com/struts2-jquery-showcase/)
+#### [Showcase Grid Plugin] (http://struts.jgeppert.com/struts2-jquery-grid-showcase/)
 
 
 ## Features
