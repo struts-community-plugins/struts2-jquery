@@ -58,7 +58,7 @@ Built in themes from jQuery
   * vader
   * Your custom theme create with [jQuery ThemeRoller](http://jqueryui.com/themeroller/)
 
-More about themes see the [HeadTag Head Tag]
+More about themes see the [Head Tag](https://code.google.com/p/struts2-jquery/wiki/HeadTag)
 
 Use of Build in themes:
 ```jsp
@@ -72,7 +72,9 @@ Use of Build in themes:
   </body>
 </html>
 ```
+
 Use of your costume theme:
+
 ```jsp
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
@@ -107,3 +109,64 @@ Use of your costume theme:
   * [Selectable for Divs](https://code.google.com/p/struts2-jquery/wiki/Selectable)
   * [Sortable for Divs](https://code.google.com/p/struts2-jquery/wiki/Sortable)
 
+
+## Installation
+
+### How can I use the Plugin?
+
+  * [Download](https://oss.sonatype.org/content/groups/staging/com/jgeppert/struts2/jquery/) the struts2-jquery-plugin-x.x.x.jar
+  * Put it into your Classpath (WEB-INF/lib)
+  * Add the Tag-Lib to your JSP `<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>`
+  * Place the [HeadTag Head Tag] inside your html head tags
+
+### How can I use the Plugin from Maven?
+
+Since version 1.8.3 the plugin is found in the central Maven repository. Just add to your dependencies section:
+```xml
+<dependencies>
+    ...
+    <dependency>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
+        <artifactId>struts2-jquery-plugin</artifactId>
+        <version>3.7.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
+        <artifactId>struts2-jquery-grid-plugin</artifactId>
+        <version>3.7.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
+        <artifactId>struts2-jquery-richtext-plugin</artifactId>
+        <version>3.7.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
+        <artifactId>struts2-jquery-tree-plugin</artifactId>
+        <version>3.7.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
+        <artifactId>struts2-jquery-mobile-plugin</artifactId>
+        <version>3.7.1</version>
+    </dependency>
+    ...
+</dependencies>
+```
+
+To access SNAPSHOT builds, you need to declare the snapshot repository lookup in your pom.xml:
+
+```xml
+...
+<repositories>
+    ...
+    <repository>
+        <id>sonatype.oss.snapshots</id>
+        <name>Sonatype OSS Snapshot Repository</name>
+        <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        <releases>false</releases>
+        <snapshots>true</snapshots>
+    </repository>
+</repositories>
+...
+```
