@@ -13,13 +13,7 @@
     <description>This Archetype provides a Webapp Configuration ready for the Struts2 jQuery Plugin.</description>
 
     <scm>
-        <connection>
-            scm:svn:http://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-archetypes/struts2-jquery-archetype-base
-        </connection>
-        <developerConnection>
-            scm:svn:https://struts2-jquery.googlecode.com/svn/trunk/struts2-jquery-archetypes/struts2-jquery-archetype-base
-        </developerConnection>
-        <url>http://code.google.com/p/struts2-jquery/source/browse/</url>
+        <url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-archetypes/struts2-jquery-archetype-base/</url>
     </scm>
 
     <properties>
