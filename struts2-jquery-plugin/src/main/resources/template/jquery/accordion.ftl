@@ -20,8 +20,7 @@
 -->
 <div id="${parameters.id?html}"
 <#if parameters.cssStyle?if_exists != "">
- style=" class="${parameters.cssStyle?html}"<#rt/>
-"<#rt/>
+ style="${parameters.cssStyle?html}"<#rt/>
 </#if>
 <#if parameters.cssClass?if_exists != "">
  class="${parameters.cssClass?html}"<#rt/>
