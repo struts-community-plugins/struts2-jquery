@@ -11,7 +11,7 @@
 		id="jsonTree"
 		href="%{treeDataUrl}"
 		onClickTopics="treeClicked"
-		/>
+/>
 
 <sj:tabbedpanel id="localtabs" cssClass="list">
 	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
@@ -30,75 +30,78 @@
 	<div id="javascript">
 	  <pre>
 	$.subscribe('treeClicked', function(event, data) {
-		  var item = event.originalEvent.data.rslt.obj;
-		  alert('Clicked ID : ' + item.attr(&quot;id&quot;) + ' - Text ' + item.text());
+		  var item = event.originalEvent.data.node;
+		  alert('Clicked item with ID: ' + item.id + ' and text: ' + item.text);
 	});
 	  </pre>
 	</div>
 	<div id="jsonaction">
 	  <pre>
-@ParentPackage(value = &quot;showcase&quot;)
-public class JsonTreeData extends ActionSupport {
+@Actions({ @Action(value = &quot;/json-tree-data&quot;, results = { @Result(name = &quot;success&quot;, type = &quot;json&quot;, params = {
+	&quot;root&quot;, &quot;nodes&quot; }) }) })
+public class JsonTreeData extends ActionSupport implements ServletContextAware {
 
-	private static final long serialVersionUID = -2886756982077980790L;
-	private List&lt;TreeNode&gt; nodes = new ArrayList&lt;TreeNode&gt;();
-	private String id = &quot;&quot;;
+    private static final long serialVersionUID = -2886756982077980790L;
+    private List&lt;TreeNode&gt; nodes = new ArrayList&lt;TreeNode&gt;();
+    private String id = &quot;&quot;;
+    private ServletContext servletContext;
 
-	@Actions( { @Action(value = &quot;/json-tree-data&quot;, results = { 
-		@Result(name = &quot;success&quot;, type = &quot;json&quot;, params = {
-			&quot;root&quot;, &quot;nodes&quot; 
-		}) 
-	}) })
-	public String execute() {
+    public String execute() {
 
-		TreeNode nodeA = new TreeNode();
-		nodeA.setId(&quot;A&quot; + id);
-		nodeA.setTitle(&quot;Node A&quot; + id);
-		nodeA.setState(TreeNode.NODE_STATE_CLOSED);
+	TreeNode nodeA = new TreeNode();
+	nodeA.setId(&quot;A&quot; + id);
+    nodeA.getState().setOpened(false);
+    nodeA.setHasChildren(true);
+	nodeA.setText(&quot;Node A&quot; + id);
+    nodeA.setIcon(servletContext.getContextPath() + &quot;/images/root.png&quot;);
 
-		TreeNode nodeB = new TreeNode();
-		nodeB.setId(&quot;B&quot; + id);
-		nodeB.setState(TreeNode.NODE_STATE_OPEN);
-		nodeB.setIcon(&quot;ui-icon-suitcase&quot;);
-		nodeB.setTitle(&quot;Node B&quot; + id);
-		nodeB.setChildren(new LinkedList&lt;TreeNode&gt;());
-		
-		TreeNode nodeB1 = new TreeNode();
-		nodeB1.setId(&quot;B1&quot; + id);
-		nodeB1.setState(TreeNode.NODE_STATE_LEAF);
-		nodeB1.setIcon(&quot;ui-icon-document&quot;);
-		nodeB1.setTitle(&quot;Node B1&quot; + id);
-		nodeB.getChildren().add(nodeB1);
-		
-		TreeNode nodeB2 = new TreeNode();
-		nodeB2.setId(&quot;B2&quot; + id);
-		nodeB2.setState(TreeNode.NODE_STATE_LEAF);
-		nodeB2.setIcon(&quot;ui-icon-image&quot;);
-		nodeB2.setTitle(&quot;Node B2&quot; + id);
-		nodeB.getChildren().add(nodeB2);
+	TreeNode nodeB = new TreeNode();
+	nodeB.setId(&quot;B&quot; + id);
+    nodeB.getState().setOpened(true);
+    nodeB.setIcon(servletContext.getContextPath() + &quot;/images/folder.png&quot;);
+	nodeB.setText(&quot;Node B&quot; + id);
 
-		TreeNode nodeC = new TreeNode();
-		nodeC.setId(&quot;C&quot; + id);
-		nodeC.setState(TreeNode.NODE_STATE_CLOSED);
-		nodeC.setTitle(&quot;Node C&quot; + id);
+	TreeNode nodeB1 = new TreeNode();
+	nodeB1.setId(&quot;B1&quot; + id);
+    nodeB1.setIcon(servletContext.getContextPath() + &quot;/images/file.png&quot;);
+	nodeB1.setText(&quot;Node B1&quot; + id);
+	nodeB.getChildrens().add(nodeB1);
 
-		nodes.add(nodeA);
-		nodes.add(nodeB);
-		nodes.add(nodeC);
+	TreeNode nodeB2 = new TreeNode();
+	nodeB2.setId(&quot;B2&quot; + id);
+    nodeB2.getState().setDisabled(true);
+    nodeB2.setIcon(servletContext.getContextPath() + &quot;/images/file.png&quot;);
+	nodeB2.setText(&quot;Node B2&quot; + id);
+	nodeB.getChildrens().add(nodeB2);
 
-		return SUCCESS;
-	}
+	TreeNode nodeC = new TreeNode();
+	nodeC.setId(&quot;C&quot; + id);
+	nodeC.setText(&quot;Node C&quot; + id);
+    nodeC.setIcon(servletContext.getContextPath() + &quot;/images/folder.png&quot;);
+    nodeC.setHasChildren(true);
 
-	public String getJSON() {
-		return execute();
-	}
+	nodes.add(nodeA);
+	nodes.add(nodeB);
+	nodes.add(nodeC);
 
-	public List&lt;TreeNode&gt; getNodes() {
-		return nodes;
-	}
+	return SUCCESS;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}	  </pre>
+    public String getJSON() {
+	return execute();
+    }
+
+    public List&lt;TreeNode&gt; getNodes() {
+	return nodes;
+    }
+
+    public void setId(String id) {
+	this.id = id;
+    }
+
+    public void setServletContext(ServletContext servletContext) {
+          this.servletContext = servletContext;
+    }
+}       </pre>
 	</div>
 </sj:tabbedpanel>

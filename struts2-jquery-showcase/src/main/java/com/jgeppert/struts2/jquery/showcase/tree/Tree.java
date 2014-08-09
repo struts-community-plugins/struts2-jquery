@@ -17,36 +17,37 @@ public class Tree extends ActionSupport {
     public String execute() throws Exception {
 	TreeNode nodeA = new TreeNode();
 	nodeA.setId("A");
-	nodeA.setTitle("Node A");
-	nodeA.setState(TreeNode.NODE_STATE_OPEN);
+	nodeA.setText("Node A");
+    nodeA.getState().setOpened(true);
 
 	TreeNode nodeAA = new TreeNode();
 	nodeAA.setId("AA");
-	nodeAA.setTitle("Node AA");
+	nodeAA.setText("Node AA");
 
 	TreeNode nodeAB = new TreeNode();
 	nodeAB.setId("AB");
-	nodeAB.setTitle("Node AB");
+	nodeAB.setText("Node AB");
+    nodeAB.getState().setDisabled(true);
 
 	nodeA.setChildren(new LinkedList<TreeNode>());
-	nodeA.getChildren().add(nodeAA);
-	nodeA.getChildren().add(nodeAB);
+	nodeA.getChildrens().add(nodeAA);
+	nodeA.getChildrens().add(nodeAB);
 
 	TreeNode nodeB = new TreeNode();
 	nodeB.setId("B");
-	nodeB.setTitle("Node B");
+	nodeB.setText("Node B");
 
 	TreeNode nodeC = new TreeNode();
 	nodeC.setId("C");
-	nodeC.setTitle("Node C");
+	nodeC.setText("Node C");
 
 	nodes.setId("rootNode");
-	nodes.setTitle("Root Node");
-	nodes.setState(TreeNode.NODE_STATE_OPEN);
+	nodes.setText("Root Node");
+	nodes.getState().setOpened(true);
 	nodes.setChildren(new LinkedList<TreeNode>());
-	nodes.getChildren().add(nodeA);
-	nodes.getChildren().add(nodeB);
-	nodes.getChildren().add(nodeC);
+	nodes.getChildrens().add(nodeA);
+	nodes.getChildrens().add(nodeB);
+	nodes.getChildrens().add(nodeC);
 	return SUCCESS;
     }
 
