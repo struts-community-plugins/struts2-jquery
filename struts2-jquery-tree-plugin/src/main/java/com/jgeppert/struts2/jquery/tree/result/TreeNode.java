@@ -1,63 +1,67 @@
 package com.jgeppert.struts2.jquery.tree.result;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.commons.collections.CollectionUtils;
 
-public class TreeNode {
+import java.util.*;
 
-	public static final String NODE_STATE_CLOSED = "closed";
-	public static final String NODE_STATE_LEAF = "leaf";
-	public static final String NODE_STATE_OPEN = "open";
+public class TreeNode implements Comparable<TreeNode> {
 
-	private Map<String, Object> attr;
-	private Collection<TreeNode> children;
-	private Map<String, Object> data;
+	private Map<String, Object> li_attr;
+    private Map<String, Object> a_attr;
+	private Collection<TreeNode> children = new TreeSet<TreeNode>();
 	private String icon;
 	private String id;
-	private String state = TreeNode.NODE_STATE_CLOSED;
-	private String title;
+	private TreeNodeState state = new TreeNodeState();
+	private String text;
 	private String type;
+    private Boolean hasChildren = false;
 
 	public TreeNode() {
 		super();
 	}
 
-	public TreeNode(String title) {
+	public TreeNode(String text) {
 		super();
-		this.title = title;
+		this.text = text;
 	}
 	
-	public TreeNode(String title, Collection<TreeNode> children) {
+	public TreeNode(String text, Collection<TreeNode> children) {
 		super();
-		setTitle(title);
+        setText(text);
 		setChildren(children);
 	}
 
-	public TreeNode(String id, String title) {
+	public TreeNode(String id, String text) {
 		super();
 		setId(id);
-		setTitle(title);
+		setText(text);
 	}
 	
-	public TreeNode(String id, String title, Collection<TreeNode> children) {
+	public TreeNode(String id, String text, Collection<TreeNode> children) {
 		super();
 		setId(id);
-		setTitle(title);
+		setText(text);
 		setChildren(children);
 	}
 
-	public Map<String, Object> getAttr() {
-		return attr;
+	public Map<String, Object> getA_attr() {
+		return a_attr;
 	}
 
-	public Collection<TreeNode> getChildren() {
+    public Map<String, Object> getLi_attr() {
+        return li_attr;
+    }
+
+	public Object getChildren() {
+        if(children == null || children.isEmpty()) {
+            return hasChildren;
+        }
 		return children;
 	}
 
-	public Map<String, Object> getData() {
-	    return data;
-	}
+    public Collection<TreeNode> getChildrens() {
+        return children;
+    }
 
 	/**
 	 * Get the Tree Node Title
@@ -74,21 +78,25 @@ public class TreeNode {
 		return id;
 	}
 
-	public String getState() {
+	public TreeNodeState getState() {
 		return state;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getText() {
+		return text;
 	}
 
 	public String getType() {
 	    return type;
 	}
 
-	public void setAttr(Map<String, Object> attr) {
-		this.attr = attr;
+	public void setLi_attr(Map<String, Object> attr) {
+		this.li_attr = attr;
 	}
+
+    public void setA_attr(Map<String, Object> attr) {
+        this.a_attr = attr;
+    }
 
 	/**
 	 * Set the Tree Node Childrens
@@ -99,69 +107,40 @@ public class TreeNode {
 		this.children = children;
 	}
 
-	public void setData(Map<String, Object> data) {
-	    this.data = data;
-	}
-
 	/**
 	 * Set the Tree Node Icon
 	 * 
 	 * @param icon
 	 */
 	public void setIcon(String icon) {
-		if (this.data == null) {
-		    data = new HashMap<String, Object>();
-		}
-
-		if (this.data.containsKey("icon")) {
-			this.data.remove("icon");
-		}
-		this.data.put("icon", icon);
 		this.icon = icon;
 	}
 
 	/**
 	 * Set the Tree Node Id
 	 * 
-	 * @param icon
+	 * @param id
 	 */
 	public void setId(String id) {
-
 		this.id = id;
-		if (this.attr == null) {
-			attr = new HashMap<String, Object>();
-		}
-
-		if (this.attr.containsKey("id")) {
-			this.attr.remove("id");
-		}
-		this.attr.put("id", id);
 	}
 
 	/**
-	 * Set the Tree Node State open, closed or leaf
+	 * Set the Tree Node State opened, disabled or selected
 	 * 
 	 * @param state
 	 */
-	public void setState(String state) {
+	public void setState(TreeNodeState state) {
 		this.state = state;
 	}
 
 	/**
 	 * Set the Tree Node Title
 	 * 
-	 * @param title
+	 * @param text
 	 */
-	public void setTitle(String title) {
-		if (this.data == null) {
-		    data = new HashMap<String, Object>();
-		}
-
-		if (this.data.containsKey("title")) {
-			this.data.remove("title");
-		}
-		this.data.put("title", title);
-		this.title = title;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	/**
@@ -176,12 +155,19 @@ public class TreeNode {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("TreeNode [id=").append(id).append(", title=").append(
-				title).append(", icon=").append(icon).append(", state=")
-				.append(state).append(", attr=").append(attr).append(
+		builder.append("TreeNode [id=").append(id).append(", text=").append(
+                text).append(", icon=").append(icon).append(", state=")
+				.append(state).append(", li_attr=").append(li_attr).append(", a_attr=").append(a_attr).append(
 						", children=").append(children).append("]");
 		return builder.toString();
 	}
-	
-	
+
+
+    public void setHasChildren(Boolean hasChildren) {
+        this.hasChildren = hasChildren;
+    }
+
+    public int compareTo(TreeNode other) {
+        return text.compareTo(other.getText());
+    }
 }

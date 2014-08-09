@@ -28,15 +28,23 @@ jQuery(document).ready(function () {
 	<#if parameters.openDialog?if_exists != ""> 
 	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
 	</#if>
-  <#include "/${parameters.templateDir}/jquery/base.ftl" />
+    <#if parameters.jqueryaction?exists>
+        options_${escapedOptionId?html}.jqueryaction = "anchor";
+    </#if>
+    <#if parameters.id?exists>
+        options_${escapedOptionId?html}.id = "${parameters.id?html}_link";
+    </#if>
+    <#if parameters.name?exists>
+        options_${escapedOptionId?html}.name = "${parameters.name?html}";
+    </#if>
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
   <#include "/${parameters.templateDir}/jquery/action.ftl" />
   <#include "/${parameters.templateDir}/jquery/validation.ftl" />
 
-<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')} a">
+<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-	jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
+	jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId?html}_link'),options_${escapedOptionId?html});
  });  
 </script>
 </#if>

@@ -57,7 +57,7 @@ function customeValidation(form, errors) {
  *
  */
 function deleteTreeNode(url, obj) {
-	$("#result2").load(url +"?echo=Delete%20Node%20"+obj[0].id);
+	$("#result2").load(url +"?echo=Delete%20Node%20"+obj[0]);
 }
 
 $(document).ready(function() {
@@ -352,8 +352,8 @@ $(document).ready(function() {
 	 * Subscribe Topics for Tree Example
 	 */
 	$.subscribe('treeClicked', function(event, data) {
-		  var item = event.originalEvent.data.rslt.obj;
-		  alert('Clicked ID : ' + item.attr("id") + ' - Text ' + item.text());
+		  var item = event.originalEvent.data.node;
+		  alert('Clicked item with ID: ' + item.id + ' and text: ' + item.text);
 	});
 
 	/*
