@@ -59,7 +59,7 @@
 				<li><s:url var="urlgrid" action="grid" /><sj:a id="gridlink" href="%{urlgrid}" targets="main_content">Grid (Editable)</sj:a></li>
 				<li><s:url var="urlgridsubgrid" action="grid-subgrid" /><sj:a id="gridsubgridlink" href="%{urlgridsubgrid}" targets="main_content">Grid with Subgrid</sj:a></li>
 				<li><s:url var="urlgriddnd" action="grid-dnd" /><sj:a id="griddndlink" href="%{urlgriddnd}" targets="main_content">Grid with Drag and Drop</sj:a></li>
-				<li><a href="http://code.google.com/p/struts2-jquery/">Struts2 jQuery Plugin</a></li>
+				<li><a href="https://github.com/struts-community-plugins/struts2-jquery/">Struts2 jQuery Plugin</a></li>
 				<li><a href="http://code.google.com/p/full-hibernate-plugin-for-struts2/">Full Hibernate Plugin</a></li>
 			</ul>
 		</div>

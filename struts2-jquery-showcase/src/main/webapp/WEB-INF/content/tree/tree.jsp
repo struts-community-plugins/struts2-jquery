@@ -15,7 +15,7 @@
 		</sjt:treeItem>
 		<sjt:treeItem title="Plugins">
 			<sjt:treeItem title="Struts2 Plugins" href="https://cwiki.apache.org/S2PLUGINS/home.html"/>
-			<sjt:treeItem title="Struts2 jQuery Plugin" href="http://code.google.com/p/struts2-jquery/"/>
+			<sjt:treeItem title="Struts2 jQuery Plugin" href="https://github.com/struts-community-plugins/struts2-jquery/"/>
 			<sjt:treeItem title="Struts2 Full Hibernate Plugin"
 			              href="http://code.google.com/p/full-hibernate-plugin-for-struts2/"/>
 		</sjt:treeItem>

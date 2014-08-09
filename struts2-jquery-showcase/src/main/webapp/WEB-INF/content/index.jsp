@@ -94,7 +94,7 @@
                 <li><s:url var="effectsurl" action="showcase-menu-effects" namespace="/"/><sj:a id="effectsmenulink"
                                                                                                 href="%{effectsurl}"
                                                                                                 targets="menu">Effects / Interactions</sj:a></li>
-                <li><a href="http://code.google.com/p/struts2-jquery/downloads/list">Download</a></li>
+                <li><a href="https://oss.sonatype.org/content/groups/staging/com/jgeppert/struts2/jquery/">Download</a></li>
                 <li><a href="http://code.google.com/p/struts2-jquery/w/list">Wiki</a></li>
             </ul>
         </div>
