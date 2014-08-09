@@ -78,8 +78,8 @@ jQuery(document).ready(function () {
 	<#if parameters.checkboxTwoState??>
 	options_${escapedOptionId?html}.two_state = ${parameters.checkboxTwoState?string};
 	</#if>
-	<#if parameters.checkboxCheckAllTopics?if_exists != ""> 
-	options_${escapedOptionId?html}.checkAllTopics = "${parameters.checkboxCheckAllTopics?string}";
+	<#if parameters.checkboxToogleAllTopics?if_exists != "">
+	options_${escapedOptionId?html}.toogleAllTopics = "${parameters.checkboxToogleAllTopics?string}";
 	</#if>
 	<#if parameters.checkboxUncheckAllTopics?if_exists != ""> 
 	options_${escapedOptionId?html}.uncheckAllTopics = "${parameters.checkboxUncheckAllTopics?string}";
