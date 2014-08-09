@@ -71,8 +71,7 @@ public class Tree extends AbstractContainer {
     protected String showThemeIcons;
     protected String checkbox;
     protected String checkboxTwoState;
-    protected String checkboxCheckAllTopics;
-    protected String checkboxUncheckAllTopics;
+    protected String checkboxToogleAllTopics;
     protected String checkboxHideTopics;
     protected String checkboxShowTopics;
 
@@ -146,10 +145,8 @@ public class Tree extends AbstractContainer {
             addParameter("checkbox", findValue(this.checkbox, Boolean.class));
         if (checkboxTwoState != null)
             addParameter("checkboxTwoState", findValue(this.checkboxTwoState, Boolean.class));
-        if (checkboxCheckAllTopics != null)
-            addParameter("checkboxCheckAllTopics", findString(checkboxCheckAllTopics));
-        if (checkboxUncheckAllTopics != null)
-            addParameter("checkboxUncheckAllTopics", findString(checkboxUncheckAllTopics));
+        if (checkboxToogleAllTopics != null)
+            addParameter("checkboxToogleAllTopics", findString(checkboxToogleAllTopics));
         if (checkboxHideTopics != null)
             addParameter("checkboxHideTopics", findString(checkboxHideTopics));
         if (checkboxShowTopics != null)
@@ -317,14 +314,9 @@ public class Tree extends AbstractContainer {
         this.checkboxTwoState = checkboxTwoState;
     }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics to check all nodes.")
-    public void setCheckboxCheckAllTopics(String checkboxCheckAllTopics) {
-        this.checkboxCheckAllTopics = checkboxCheckAllTopics;
-    }
-
-    @StrutsTagAttribute(description = "A comma delimited list of topics to uncheck all nodes.")
-    public void setCheckboxUncheckAllTopics(String checkboxUncheckAllTopics) {
-        this.checkboxUncheckAllTopics = checkboxUncheckAllTopics;
+    @StrutsTagAttribute(description = "A comma delimited list of topics to toogle display of checkboxes.")
+    public void setCheckboxToogleAllTopics(String checkboxToogleAllTopics) {
+        this.checkboxToogleAllTopics = checkboxToogleAllTopics;
     }
 
     @StrutsTagAttribute(description = "A comma delimited list of topics to hide checkboxes.")

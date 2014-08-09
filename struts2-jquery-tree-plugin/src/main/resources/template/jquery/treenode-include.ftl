@@ -21,8 +21,8 @@
 		<#assign itemId = stack.findValue(parameters.nodeIdProperty)/>
 		<li id="${itemId}"
 		<#if parameters.nodeTypeProperty?if_exists != ""> 
-			<#if stack.findValue(parameters.nodeTypeProperty)??> 
-			rel="${stack.findValue(parameters.nodeTypeProperty)}"
+			<#if stack.findValue(parameters.nodeTypeProperty)??>
+                    data-jstree='{"type" : "${stack.findValue(parameters.nodeTypeProperty)}"}'
 			</#if>
 		</#if>
 		<#if parameters.checkbox?default(false)>
@@ -57,12 +57,12 @@
 			</script>
 	    <#else>
 			<a href="${parameters.nodeHref}?${parameters.nodeHrefParamName?default('id')}=${itemId}">
-    				${stack.findValue(parameters.nodeTitleProperty)}
+    				${stack.findValue(parameters.nodeTitleProperty?default('text'))}
 			</a>
 		</#if>
     <#else>
 			<a href="javascript:void(0)">
-    				${stack.findValue(parameters.nodeTitleProperty)}
+    				${stack.findValue(parameters.nodeTitleProperty?default('text'))}
 			</a>
     </#if>
 			<ul>

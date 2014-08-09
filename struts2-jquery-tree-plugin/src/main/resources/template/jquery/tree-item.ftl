@@ -29,16 +29,27 @@
  			class="${parameters.cssClass?html}"<#rt/>
 </#if>
 <#if parameters.type?if_exists != "">
-			rel="${parameters.type?html}"<#rt/>
+        data-jstree='{"type" : "${parameters.type?html}"}'<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 		>
 	<#if !parameters.targets?exists && parameters.href?if_exists != ""> 
-			<a href="${parameters.href?string}">
+			<a href="${parameters.href?string}"
+            <#if parameters.id?if_exists != "">
+               id="${parameters.id?html}_link"<#rt/>
+            </#if>
+            ><#rt/>
 	<#else>
-			<a href="javascript:void(0)">
+			<a href="#"
+                <#if parameters.id?if_exists != "">
+               id="${parameters.id?html}_link"<#rt/>
+                </#if>
+                <#if parameters.targets?if_exists != "">
+               data-targets="${parameters.targets?html}"<#rt/>
+                </#if>
+            ><#rt/>
 	</#if>
 <#if parameters.title?if_exists != "">
 			${parameters.title?html}
