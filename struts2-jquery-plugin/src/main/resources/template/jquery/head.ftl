@@ -22,7 +22,7 @@
 <#if !jQueryVersion?? >
     <#assign jQueryVersion="2.1.1">
 </#if>
-<#assign jQueryUIVersion="1.10.4">
+<#assign jQueryUIVersion="1.11.2">
 <#assign struts2jQueryVersion="${version}">
 
 <#if parameters.scriptPath?if_exists != "">
@@ -43,7 +43,7 @@
     <#assign jqueryFile="jquery-${jQueryVersion}.min.js">
     <#assign jqueryForm="jquery.form.min.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryUIFile="jquery-ui.min.js?s2j=${struts2jQueryVersion}">
-    <#assign jqueryUICoreFile="jquery.ui.core.min.js?s2j=${struts2jQueryVersion}">
+    <#assign jqueryUICoreFile="core.min.js?s2j=${struts2jQueryVersion}">
     <#assign jquerySubscribeFile="jquery.subscribe.min.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryHistoryFile="jquery.ba-bbq.min.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryStrutsFile="jquery.struts2.min.js?s2j=${struts2jQueryVersion}">
@@ -54,7 +54,7 @@
     <#assign jqueryFile="jquery-${jQueryVersion}.js">
     <#assign jqueryForm="jquery.form.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryUIFile="jquery-ui.js?s2j=${struts2jQueryVersion}">
-    <#assign jqueryUICoreFile="jquery.ui.core.js?s2j=${struts2jQueryVersion}">
+    <#assign jqueryUICoreFile="core.js?s2j=${struts2jQueryVersion}">
     <#assign jquerySubscribeFile="jquery.subscribe.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryHistoryFile="jquery.ba-bbq.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryStrutsFile="jquery.struts2.js?s2j=${struts2jQueryVersion}">
@@ -71,7 +71,7 @@
     <script type="text/javascript" src="${jqueryUiGoogle}"></script>
         <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
         <script type="text/javascript"
-                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}/i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"></script>
         </#if>
     </#if>
 <#else>
@@ -83,7 +83,7 @@
         <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"></script>
             <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
             <script type="text/javascript"
-                    src="${javaScriptBasePath}i18n/jquery.ui.datepicker-${parameters.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"></script>
+                    src="${javaScriptBasePath}i18n/datepicker-${parameters.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"></script>
             </#if>
         <#else>
         <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script>
