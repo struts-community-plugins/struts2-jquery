@@ -109,6 +109,7 @@ public class Head extends org.apache.struts2.components.Head {
 
 	protected String compressed;
 	protected String locale;
+    protected String jquery;
 	protected String jquerytheme;
 	protected String jqueryui;
 	protected String customBasepath;
@@ -136,6 +137,8 @@ public class Head extends org.apache.struts2.components.Head {
 	public void evaluateParams() {
 		super.evaluateParams();
 
+        if (this.jquery != null)
+            addParameter("jquery", findValue(this.jquery, Boolean.class));
 		if (this.jqueryui != null)
 			addParameter("jqueryui", findValue(this.jqueryui, Boolean.class));
 		if (this.compressed != null)
@@ -197,7 +200,12 @@ public class Head extends org.apache.struts2.components.Head {
 		return "jquery";
 	}
 
-	public boolean isJqueryui() {
+    @StrutsTagAttribute(description = "Include jQuery Script", defaultValue = "true", type = "Boolean")
+    public void setJquery(String jquery) {
+        this.jquery = jquery;
+    }
+
+    public boolean isJqueryui() {
 		return jqueryui != null && Boolean.parseBoolean(jqueryui);
 	}
 

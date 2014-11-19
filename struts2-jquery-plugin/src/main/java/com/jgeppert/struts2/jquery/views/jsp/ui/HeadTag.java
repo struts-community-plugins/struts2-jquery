@@ -40,6 +40,7 @@ public class HeadTag extends AbstractUITag {
 
   protected String          compressed;
   protected String          locale;
+  protected String          jquery;
   protected String          jquerytheme;
   protected String          jqueryui;
   protected String          customBasepath;
@@ -63,6 +64,7 @@ public class HeadTag extends AbstractUITag {
     super.populateParams();
 
     Head head = (Head) component;
+    head.setJquery(jquery);
     head.setJquerytheme(jquerytheme);
     head.setCompressed(compressed);
     head.setJqueryui(jqueryui);
@@ -92,6 +94,11 @@ public class HeadTag extends AbstractUITag {
   public void setJquerytheme(String jquerytheme)
   {
     this.jquerytheme = jquerytheme;
+  }
+
+  public void setJquery(String jquery)
+  {
+    this.jquery = jquery;
   }
 
   public void setJqueryui(String jqueryui)

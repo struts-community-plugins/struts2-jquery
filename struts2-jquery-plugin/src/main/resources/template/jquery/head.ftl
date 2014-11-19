@@ -64,7 +64,9 @@
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
-<script type="text/javascript" src="${jqueryGoogle}"></script>
+    <#if parameters.jquery?default(true)>
+    <script type="text/javascript" src="${jqueryGoogle}"></script>
+    </#if>
     <#if parameters.jqueryui?default(true)>
     <script type="text/javascript" src="${jqueryUiGoogle}"></script>
         <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
@@ -73,7 +75,9 @@
         </#if>
     </#if>
 <#else>
-<script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryFile}"></script>
+    <#if parameters.jquery?default(true)>
+        <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryFile}"></script>
+    </#if>
     <#if parameters.jqueryui?default(true)>
         <#if parameters.loadAtOnce?default(false)>
         <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"></script>
