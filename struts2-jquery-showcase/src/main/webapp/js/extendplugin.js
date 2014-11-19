@@ -23,13 +23,13 @@
 				if (!this.loadAtOnce) {
 					this.require(
 						[
-						 "js/base/jquery.ui.widget"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.mouse"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.position"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.draggable"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.resizable"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.button"+$.struts2_jquery.minSuffix+".js",
-						 "js/base/jquery.ui.dialog"+$.struts2_jquery.minSuffix+".js"
+						 "js/base/widget"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/mouse"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/position"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/draggable"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/resizable"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/button"+$.struts2_jquery.minSuffix+".js",
+						 "js/base/dialog"+$.struts2_jquery.minSuffix+".js"
 						 ]);
 				}
 				$elem.wysiwyg(options.wysiwygoptions);
