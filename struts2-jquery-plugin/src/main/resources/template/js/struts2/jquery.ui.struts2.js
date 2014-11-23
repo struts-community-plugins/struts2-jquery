@@ -764,7 +764,7 @@
                 if (o.list) {
                     params.source = function (request, response) {
                         var self = $.struts2_jquery;
-                        autocomplete.prototype._renderItem = function (ul, item) {
+                        $.ui.autocomplete.prototype._renderItem = function (ul, item) {
                             return $("<li></li>")
                                 .data("item.autocomplete", item)
                                 .append("<a>" + item.label + "</a>")
