@@ -115,6 +115,3 @@ body{
 	float: right;
 }
 
-#menu .ui-menu, #menu .ui-menu-item {
-	z-index: 1000;
-}
