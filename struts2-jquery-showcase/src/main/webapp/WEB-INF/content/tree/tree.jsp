@@ -9,7 +9,7 @@
 <sjt:tree id="treeStatic" jstreetheme="default" openAllOnLoad="true">
 	<sjt:treeItem title="Struts2">
 		<sjt:treeItem title="General">
-			<sjt:treeItem title="Struts2" href="http://struts.apache.org/2.x/index.html"/>
+			<sjt:treeItem title="Struts2" href="http://struts.apache.org"/>
 			<sjt:treeItem title="Struts2 @ Facebook"
 			              href="http://www.facebook.com/pages/Struts2-Users/103890046351798"/>
 		</sjt:treeItem>
@@ -44,11 +44,12 @@
 <h2>Dynamic Tree with AJAX Links and Contextmenu</h2>
 
 <p class="text">
-	A Tree Component rendered on the server with AJAX Links and Contextmenu.
+	A Tree Component rendered on the server with AJAX links, context menu and dark theme.
 </p>
 <s:url var="echo" value="/echo.action"/>
 <sjt:tree
 		id="treeDynamicAjax"
+        jstreetheme="default-dark"
 		rootNode="nodes"
 		childCollectionProperty="children"
 		nodeTitleProperty="text"
