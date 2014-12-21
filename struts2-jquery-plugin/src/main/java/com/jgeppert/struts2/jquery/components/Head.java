@@ -34,14 +34,14 @@ import com.opensymphony.xwork2.inject.Inject;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * <!-- START SNIPPET: notice --> The "head" tag renders required JavaScript
+ * <!-- START SNIPPET: notice -->
+ * <p>The "head" tag renders required JavaScript
  * code to configure jQuery and is required in order to use any of the tags
- * included in the jQuery plugin.</p> <!-- END SNIPPET: notice -->
+ * included in the jQuery plugin.
+ * </p>
+ * <!-- END SNIPPET: notice -->
  * 
  * <!-- START SNIPPET: javadoc -->
- * <p>
- * </p>
- * 
  * <p>
  * Some tags like the "datepicker" can use different locales, to use a locale
  * that is different from the request locale.
@@ -55,8 +55,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  * <!-- END SNIPPET: javadoc -->
  * 
- * <p/>
- * <b>Examples</b>
+ * <p>Examples</p>
  * 
  * <!-- START SNIPPET: example1 -->
  * 

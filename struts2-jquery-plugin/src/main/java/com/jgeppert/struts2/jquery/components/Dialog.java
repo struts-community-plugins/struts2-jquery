@@ -36,12 +36,10 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Renders a Dialog with local or remote content
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * <p/>
  * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * <p/>
  * <pre>
  * &lt;sj:dialog id=&quot;mydialog1&quot; title=&quot;Local Dialog&quot;&gt;
  * Mauris mauris ante, blandit et, ultrices a, suscipit
@@ -51,34 +49,24 @@ import com.opensymphony.xwork2.util.ValueStack;
  * scelerisque vulputate.
  * &lt;/sj:dialog&gt;
  * </pre>
- * <p/>
  * <!-- END SNIPPET: example1 -->
- * <p/>
  * <!-- START SNIPPET: example2 -->
- * <p/>
  * <pre>
  * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt;
  * &lt;sj:dialog id=&quot;mydialog2&quot; href=&quot;%{remoteurl}&quot; title=&quot;Remote Dialog&quot;/&gt;
  * </pre>
- * <p/>
  * <!-- END SNIPPET: example2 -->
- * <p/>
  * <!-- START SNIPPET: example3 -->
- * <p/>
  * <pre>
  * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt;
  * &lt;sj:dialog id=&quot;mydialog3&quot; href=&quot;%{remoteurl}&quot; title=&quot;Modal Remote Dialog with Effects&quot; modal=&quot;true&quot; showEffect=&quot;slide&quot; hideEffect=&quot;explode&quot;/&gt;
  * </pre>
- * <p/>
  * <!-- END SNIPPET: example3 -->
- * <p/>
  * <!-- START SNIPPET: example4 -->
- * <p/>
  * <pre>
  * &lt;s:url id=&quot;remoteurl&quot; action=&quot;myremoteaction&quot;/&gt; &lt;sj:dialog id=&quot;mydialog5&quot; href=&quot;%{remoteurl}&quot; title=&quot;Remote Dialog open on Click&quot; autoOpen=&quot;false&quot; modal=&quot;true&quot;/&gt;
  * &lt;sj:a openDialog=&quot;mydialog5&quot;&gt;Open Dialog&lt;/sj:a&gt;
  * </pre>
- * <p/>
  * <!-- END SNIPPET: example4 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

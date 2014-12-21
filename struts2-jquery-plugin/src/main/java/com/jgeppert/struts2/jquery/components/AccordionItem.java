@@ -37,18 +37,15 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Renders a accordion item
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * <p/>
  * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * <p/>
  * <pre>
  *       &lt;sj:accordionItem title=&quot;Sed non urna&quot;&gt;
  *         Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
  *       &lt;/sj:accordionItem&gt;
  * </pre>
- * <p/>
  * <!-- END SNIPPET: example1 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

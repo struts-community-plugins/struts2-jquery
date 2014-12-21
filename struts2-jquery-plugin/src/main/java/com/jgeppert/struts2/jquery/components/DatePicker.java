@@ -54,7 +54,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  * <!-- START SNIPPET: example1 -->
  * 
- * </p>A simple Datepicker</p>
+ * <p>A simple Datepicker</p>
  * 
  * <pre>
  * &lt;sj:datepicker id=&quot;birthday&quot; name=&quot;birthday&quot;/&gt;
@@ -64,7 +64,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  * <!-- START SNIPPET: example2 -->
  * 
- * </p>A Datepicker with Button Panel and select boxes to change year and
+ * <p>A Datepicker with Button Panel and select boxes to change year and
  * month.</p>
  * 
  * <pre>
@@ -75,7 +75,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  * <!-- START SNIPPET: example3 -->
  * 
- * </p>A Datepicker with different Display Format.</p>
+ * <p>A Datepicker with different Display Format.</p>
  * 
  * <pre>
  * &lt;sj:datepicker displayFormat=&quot;dd.mm.yy&quot; id=&quot;birthday&quot; name=&quot;birthday&quot;/&gt;
@@ -86,7 +86,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  * <!-- START SNIPPET: example4 -->
  * 
- * </p>A Datepicker with Timepicker.</p>
+ * <p>A Datepicker with Timepicker.</p>
  * 
  * <pre>
  * &lt;sj:datepicker id=&quot;time0&quot; label=&quot;Select a Date/Time&quot; timepicker=&quot;true&quot; /&gt;
@@ -97,7 +97,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 
  * <!-- START SNIPPET: example5 -->
  * 
- * </p>A Timepicker.</p>
+ * <p>A Timepicker.</p>
  * 
  * <pre>
  * &lt;sj:datepicker id=&quot;time1&quot; label=&quot;Select a Time&quot; timepicker=&quot;true&quot; timepickerOnly=&quot;true&quot;/&gt;

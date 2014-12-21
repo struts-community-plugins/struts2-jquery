@@ -40,7 +40,6 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Renders a accordion from a given list or map
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * <p/>
  * <p>
  * Examples
  * </p>
@@ -48,7 +47,6 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <p>
  * Build Accordion manuelly
  * </p>
- * <p/>
  * <pre>
  *    &lt;s:url id=&quot;urlajax1&quot; action=&quot;ajax1&quot;/&gt;
  *     &lt;sj:accordion id=&quot;accordion&quot;&gt;
@@ -66,21 +64,16 @@ import com.opensymphony.xwork2.util.ValueStack;
  *       &lt;/sj:accordionItem&gt;
  *     &lt;/sj:accordion&gt;
  * </pre>
- * <p/>
  * <!-- END SNIPPET: example1 -->
- * <p/>
  * <!-- START SNIPPET: example2 -->
  * <p>
  * A Accordion build from a Map.
  * </p>
  * <strong>Code in JSP:</strong>
- * <p/>
  * <pre>
  * &lt;sj:accordion id=&quot;accordionlist&quot; list=&quot;accordion&quot;/&gt;
  * </pre>
- * <p/>
  * <strong>Code in Action:</strong>
- * <p/>
  * <pre>
  * private Map&lt;String, String&gt; accordion;
  *
@@ -108,7 +101,6 @@ import com.opensymphony.xwork2.util.ValueStack;
  *                                          return accordion;
  *                                        }
  * </pre>
- * <p/>
  * <!-- END SNIPPET: example2 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

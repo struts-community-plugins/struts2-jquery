@@ -36,19 +36,16 @@ import java.util.Random;
  * Renders a local or an remote tab for tabbedPanel
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * <p/>
  * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * <p/>
  * <pre>
  * &lt;s:url id=&quot;remoteurl1&quot; action=&quot;myremoteactionone&quot;/&gt;
  * &lt;sj:tab id=&quot;tab1&quot; target=&quot;tone&quot; label=&quot;My Local Tab for div tone&quot;/&gt;
  * &lt;sj:tab id=&quot;tab2&quot; href=&quot;%{remoteurl1}&quot; label=&quot;My Remote Tab&quot;/&gt;
  * &lt;div id=&quot;tone&quot;&gt; Test 1 &lt;/div&gt;
  * </pre>
- * <p/>
  * <!-- END SNIPPET: example1 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
