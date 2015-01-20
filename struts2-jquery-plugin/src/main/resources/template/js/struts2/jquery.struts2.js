@@ -1218,7 +1218,7 @@
 				});
 			}
 
-			if (o.validate) {
+			if (o.validate && orginal.options.submit)  {
 				orginal.options.submit = s2j.validateForm(form, o);
 				orginal.formvalidate = orginal.options.submit; 
 				if (o.onaftervalidation) {
