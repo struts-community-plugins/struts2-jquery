@@ -11,8 +11,8 @@
 	<properties>
 		<struts2.version>${struts2.version}</struts2.version>
 		<struts2-jquery.version>${version}</struts2-jquery.version>
-		<struts2-bootstrap.version>1.6.0</struts2-bootstrap.version>
-		<spring.version>3.2.3.RELEASE</spring.version>
+		<struts2-bootstrap.version>2.0.1</struts2-bootstrap.version>
+		<spring.version>4.1.4.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
