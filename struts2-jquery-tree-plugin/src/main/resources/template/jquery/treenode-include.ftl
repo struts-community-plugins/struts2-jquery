@@ -33,28 +33,11 @@
 		</#if>
 		</#if>
 		>
-    <#if parameters.nodeHref?exists>
+    <#if parameters.nodeHref?if_exists != "">
 		<#if parameters.nodeTargets?if_exists != ""> 
-			<a id="${itemId}_anchor" href="javascript:void(0)">
+			<a id="${itemId}_anchor" href="javascript:void(0)" data-targets="${parameters.nodeTargets?html}">
     				${stack.findValue(parameters.nodeTitleProperty)}
 			</a>
-			<#assign escapedOptionId="${itemId?string?replace('.', '_')}_anchor">
-			<#assign escapedId="${itemId?string?replace('.', '\\\\\\\\.')}_anchor">
-			<script type='text/javascript'>
-				jQuery(document).ready(function () { 
-					var options_${escapedOptionId?html} = {};
-					options_${escapedOptionId?html}.jqueryaction = "treeitem";
-					options_${escapedOptionId?html}.id = "${itemId}_anchor";
-				  <#if parameters.nodeTargets?if_exists != "">
-					options_${escapedOptionId?html}.targets = "${parameters.nodeTargets?html}";
-				  </#if>
-				  <#if parameters.nodeHref?if_exists != "">
-					options_${escapedOptionId?html}.href = "${parameters.nodeHref?html}";
-				  </#if>
-					options_${escapedOptionId?html}.hrefparameter = "${parameters.nodeHrefParamName?default('id')}=${itemId}";
-					jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
-		 		});  
-			</script>
 	    <#else>
 			<a href="${parameters.nodeHref}?${parameters.nodeHrefParamName?default('id')}=${itemId}">
     				${stack.findValue(parameters.nodeTitleProperty?default('text'))}
@@ -66,10 +49,27 @@
 			</a>
     </#if>
 			<ul>
-<#list stack.findValue(parameters.childCollectionProperty.toString())! as child>
-    ${stack.push(child)}
-    <#include "/${parameters.templateDir}/jquery/treenode-include.ftl" />
-    <#assign oldNode = stack.pop() /> <#-- pop the node off of the stack, but don't show it -->
-</#list>
+<#if stack.findValue(parameters.childCollectionProperty.toString())?is_enumerable>
+    <#list stack.findValue(parameters.childCollectionProperty.toString())! as child>
+        ${stack.push(child)}
+        <#include "/${parameters.templateDir}/jquery/treenode-include.ftl" />
+        <#assign oldNode = stack.pop() /> <#-- pop the node off of the stack, but don't show it -->
+    </#list>
+</#if>
 			</ul>
 		</li>
+        <#if parameters.nodeHref?if_exists != "" && parameters.nodeTargets?if_exists != "">
+            <#assign escapedOptionId="${itemId?string?replace('.', '_')}_anchor">
+            <#assign escapedId="${itemId?string?replace('.', '\\\\\\\\.')}_anchor">
+        <script type='text/javascript'>
+            jQuery(document).ready(function () {
+                var options_${escapedOptionId?html} = {};
+                options_${escapedOptionId?html}.jqueryaction = "treeitem";
+                options_${escapedOptionId?html}.id = "${itemId}_anchor";
+                options_${escapedOptionId?html}.href = "${parameters.nodeHref?html}";
+                options_${escapedOptionId?html}.targets = "${parameters.nodeTargets?html}";
+                options_${escapedOptionId?html}.hrefparameter = "${parameters.nodeHrefParamName?default('id')}=${itemId}";
+                jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
+            });
+        </script>
+        </#if>

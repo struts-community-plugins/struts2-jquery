@@ -8,7 +8,7 @@ public class TreeNode implements Comparable<TreeNode> {
 
 	private Map<String, Object> li_attr;
     private Map<String, Object> a_attr;
-	private Collection<TreeNode> children = new TreeSet<TreeNode>();
+	private Collection<TreeNode> childrens = new TreeSet<TreeNode>();
 	private String icon;
 	private String id;
 	private TreeNodeState state = new TreeNodeState();
@@ -53,14 +53,14 @@ public class TreeNode implements Comparable<TreeNode> {
     }
 
 	public Object getChildren() {
-        if(children == null || children.isEmpty()) {
+        if(childrens == null || childrens.isEmpty()) {
             return hasChildren;
         }
-		return children;
+		return childrens;
 	}
 
     public Collection<TreeNode> getChildrens() {
-        return children;
+        return childrens;
     }
 
 	/**
@@ -103,8 +103,8 @@ public class TreeNode implements Comparable<TreeNode> {
 	 * 
 	 * @param children
 	 */
-	public void setChildren(Collection<TreeNode> children) {
-		this.children = children;
+	public void setChildren(Collection<TreeNode> childrens) {
+		this.childrens = childrens;
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class TreeNode implements Comparable<TreeNode> {
 		builder.append("TreeNode [id=").append(id).append(", text=").append(
                 text).append(", icon=").append(icon).append(", state=")
 				.append(state).append(", li_attr=").append(li_attr).append(", a_attr=").append(a_attr).append(
-						", children=").append(children).append("]");
+						", childrens=").append(childrens).append("]");
 		return builder.toString();
 	}
 

@@ -51,7 +51,7 @@
 		id="treeDynamicAjax"
         jstreetheme="default-dark"
 		rootNode="nodes"
-		childCollectionProperty="children"
+		childCollectionProperty="childrens"
 		nodeTitleProperty="text"
 		nodeIdProperty="id"
 		nodeHref="%{echo}"
@@ -90,7 +90,7 @@
 			name="echo"
 			id="treeDynamicCheckboxes"
 			rootNode="nodes"
-			childCollectionProperty="children"
+			childCollectionProperty="childrens"
 			nodeTitleProperty="text"
 			nodeIdProperty="id"
 			openAllOnLoad="true"
@@ -98,14 +98,20 @@
 			checkboxToogleAllTopics="toogleAllNodesTopic"
 			checkboxShowTopics="showCheckboxesTopic"
 			checkboxHideTopics="hideCheckboxesTopic"
+            checkboxCheckAllTopics="checkAllCheckboxesTopic"
+            checkboxUncheckAllTopics="uncheckAllCheckboxesTopic"
 			onClickTopics="treeClicked"
             showThemeDots="false"
             showThemeIcons="false"
 			/>
-	<sj:submit formIds="treeForm" targets="result3" button="true"/>
-	<sj:submit onClickTopics="toogleAllNodesTopic" value="Toogle all Nodes" button="true"/>
-	<sj:submit onClickTopics="showCheckboxesTopic" value="Show Checkboxes" button="true"/>
-	<sj:submit onClickTopics="hideCheckboxesTopic" value="Hide Checkboxes" button="true"/>
+    <div>
+        <sj:submit formIds="treeForm" targets="result3" button="true"/>
+        <sj:submit onClickTopics="toogleAllNodesTopic" value="Toogle all Nodes" button="true"/>
+        <sj:submit onClickTopics="showCheckboxesTopic" value="Show Checkboxes" button="true"/>
+        <sj:submit onClickTopics="hideCheckboxesTopic" value="Hide Checkboxes" button="true"/>
+        <sj:submit onClickTopics="checkAllCheckboxesTopic" value="Check all" button="true"/>
+        <sj:submit onClickTopics="uncheckAllCheckboxesTopic" value="Uncheck all" button="true"/>
+    </div>
 </s:form>
 <strong>Result Div :</strong>
 

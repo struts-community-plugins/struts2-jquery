@@ -59,8 +59,11 @@ public class TreeTag extends AbstractContainerTag {
     protected String checkbox;
     protected String checkboxTwoState;
     protected String checkboxToogleAllTopics;
-     protected String checkboxHideTopics;
+    protected String checkboxHideTopics;
     protected String checkboxShowTopics;
+    protected String checkboxCheckAllTopics;
+
+    protected String checkboxUncheckAllTopics;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
                              HttpServletResponse res) {
@@ -97,6 +100,8 @@ public class TreeTag extends AbstractContainerTag {
         tree.setCheckboxToogleAllTopics(checkboxToogleAllTopics);
         tree.setCheckboxShowTopics(checkboxShowTopics);
         tree.setCheckboxHideTopics(checkboxHideTopics);
+        tree.setCheckboxCheckAllTopics(checkboxCheckAllTopics);
+        tree.setCheckboxUncheckAllTopics(checkboxUncheckAllTopics);
     }
 
     public void setJstreetheme(String jstreetheme) {
@@ -201,6 +206,14 @@ public class TreeTag extends AbstractContainerTag {
 
     public void setCheckboxShowTopics(String checkboxShowTopics) {
         this.checkboxShowTopics = checkboxShowTopics;
+    }
+
+    public void setCheckboxUncheckAllTopics(String checkboxUncheckAllTopics) {
+        this.checkboxUncheckAllTopics = checkboxUncheckAllTopics;
+    }
+
+    public void setCheckboxCheckAllTopics(String checkboxCheckAllTopics) {
+        this.checkboxCheckAllTopics = checkboxCheckAllTopics;
     }
 
 }

@@ -42,7 +42,7 @@
             </#if>
             ><#rt/>
 	<#else>
-			<a href="#"
+			<a href="javascript:void(0)"
                 <#if parameters.id?if_exists != "">
                id="${parameters.id?html}_link"<#rt/>
                 </#if>

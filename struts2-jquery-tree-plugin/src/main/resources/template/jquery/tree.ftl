@@ -23,7 +23,10 @@ jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.tree.struts2"+jQuery.struts2_jquery.minSuffix+".js");
  });
 </script>
-<#include "/${parameters.templateDir}/simple/div.ftl" />
+<#if parameters.checkbox?default(false)>
+    <input type="hidden" id="${parameters.id?html}_hidden" name="${parameters.name?html}" value=""></input>
+</#if>
+<div id="${parameters.id?html}">
 	<ul>
     <#if parameters.rootNode?exists>
     ${stack.push(parameters.rootNode)}

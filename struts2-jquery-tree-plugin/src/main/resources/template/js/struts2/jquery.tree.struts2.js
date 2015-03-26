@@ -25,6 +25,8 @@
         handler : {
             show_checkboxes:'_s2j_show_checkboxes',
             hide_checkboxes:'_s2j_hide_checkboxes',
+            check_checkboxes: '_s2j_check_checkboxes',
+            uncheck_checkboxes: '_s2j_uncheck_checkboxes',
             toggle_checkboxes:'_s2j_toggle_all'
         },
 
@@ -72,7 +74,12 @@
 							$elem.jstree("check_node", $(this) );
 						}
 					}); 
-				}); 
+				});
+
+                $elem.on('changed.jstree', function (e, data) {
+                    $(self.escId(o.id+'_hidden')).val( $elem.jstree("get_checked", false) );
+                });
+                $(self.escId(o.id+'_hidden')).val( $elem.jstree("get_checked", false) );
 			}
 			
 			if(o.toogleAllTopics) {
@@ -84,12 +91,18 @@
 			if(o.checkHideTopics) {
 				self.subscribeTopics($elem, o.checkHideTopics, self.handler.hide_checkboxes, o);
 			}
+            if(o.checkAllTopics) {
+                self.subscribeTopics($elem, o.checkAllTopics, self.handler.check_checkboxes, o);
+            }
+            if(o.uncheckAllTopics) {
+                self.subscribeTopics($elem, o.uncheckAllTopics, self.handler.uncheck_checkboxes, o);
+            }
 
-			if (o.url){
+            if (o.url){
 				o.core.data = {};
 				o.core.data.url = o.url;
 				o.core.data.data = function (n) {
-					return { "operation" : "get_children", id : n.id };
+					return { id : n.id };
 				};
 				if (o.onsuc) {
 					o.json_data.ajax.complete  =  function(data, status, request) {
@@ -138,9 +151,9 @@
                 if(o.onclick) {
                     self.publishTopic($elem, o.onclick, orginal);
                 }
-                if(data.node.a_attr.href && data.node.a_attr.href !== '#'){
+                if(data.node.a_attr.href  && data.node.a_attr.href !== 'javascript:void(0)'){
                         // Handle Normal Requests
-                        window.location = data.node.a_attr.href;
+                        window.open(data.node.a_attr.href,'_blank');
                 } else {
                     var aId = data.node.a_attr.id,
                         link = $(self.escId(aId)),
@@ -199,6 +212,20 @@
 	$.subscribeHandler($.struts2_jquery_tree.handler.toggle_checkboxes, function(event, data) {
 		$(this).jstree("toggle_checkboxes");
 	});
+
+    /**
+     * handler to check all checkboxes for all tree nodes
+     */
+    $.subscribeHandler($.struts2_jquery_tree.handler.check_checkboxes, function(event, data) {
+        $(this).jstree("check_all");
+    });
+
+    /**
+     * handler to uncheck all checkboxes for all tree nodes
+     */
+    $.subscribeHandler($.struts2_jquery_tree.handler.uncheck_checkboxes, function(event, data) {
+        $(this).jstree("uncheck_all");
+    });
 
 	// Extend it from orginal plugin
 	$.extend(true, $.struts2_jquery_tree, $.struts2_jquery);
