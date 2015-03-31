@@ -54,6 +54,32 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.samaxes.maven</groupId>
+                <artifactId>minify-maven-plugin</artifactId>
+                <version>${minify.version}</version>
+                <executions>
+                    <execution>
+                       <id>default-minify</id>
+                       <phase>package</phase>
+                       <configuration>
+                           <jsEngine>CLOSURE</jsEngine>
+                           <closureLanguage>ECMASCRIPT5_STRICT</closureLanguage>
+                           <skipMerge>true</skipMerge>
+                           <webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
+                           <webappTargetDir>${basedir}/src/main/resources</webappTargetDir>
+                           <jsSourceDir>template/js/struts2</jsSourceDir>
+                            <jsTargetDir>template/js/struts2</jsTargetDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>jquery.tree.struts2.js</jsSourceFile>
+                            </jsSourceFiles>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

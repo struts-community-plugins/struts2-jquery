@@ -1,4 +1,5 @@
-/*!
+/**
+ * @preserve
  * jquery.tree.struts2.js
  *
  * Integration of trees with struts 2

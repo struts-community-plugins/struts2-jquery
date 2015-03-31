@@ -76,6 +76,7 @@
         <currentVersion>${project.version}</currentVersion>
         <struts2.version>2.3.20</struts2.version>
         <tlib.version>2.2</tlib.version>
+        <minify.version>1.7.4</minify.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

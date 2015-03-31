@@ -7,11 +7,17 @@
 	A Tree Component with a JSON Data Source.
 </p>
 <s:url var="treeDataUrl" action="json-tree-data" namespace="/tree"/>
+<s:url var="echo" value="/echo.action"/>
 <sjt:tree
 		id="jsonTree"
 		href="%{treeDataUrl}"
+        nodeHref="%{echo}"
+        nodeHrefParamName="echo"
+        nodeTargets="result"
 		onClickTopics="treeClicked"
 />
+
+<div id="result" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
 
 <sj:tabbedpanel id="localtabs" cssClass="list">
 	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
