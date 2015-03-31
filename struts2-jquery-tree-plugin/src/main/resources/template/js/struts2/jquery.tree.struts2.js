@@ -14,8 +14,8 @@
  */
 
 /*global jQuery, window,  */
+"use strict";
 (function ($) {
-	"use strict";
 
 	/**
 	 * Bind a Tree to Struts2 Component
@@ -151,16 +151,27 @@
                 if(o.onclick) {
                     self.publishTopic($elem, o.onclick, orginal);
                 }
-                if(data.node.a_attr.href  && data.node.a_attr.href !== 'javascript:void(0)'){
+                if(data.node.a_attr.href  && data.node.a_attr.href !== 'javascript:void(0)' && data.node.a_attr.href !== '#'){
                         // Handle Normal Requests
                         window.open(data.node.a_attr.href,'_blank');
                 } else {
                     var aId = data.node.a_attr.id,
                         link = $(self.escId(aId)),
                         targets = link.data("targets");
+                    if(targets === undefined){
+                        targets = o.nodeTargets;
+                    }
                     if(targets) {
                         $.each(targets.split(','), function (i, target) {
-                            link.publish("_sj_action_" + aId + target);
+							if($(self.escId(target)).isSubscribed("_sj_action_" + aId + target)) {
+								link.publish("_sj_action_" + aId + target);
+							} else {
+								var url = o.nodeHref;
+								if(o.nodeHrefParamName) {
+									url = self.addParam(url, o.nodeHrefParamName+'='+aId);
+								}
+								$(self.escId(target)).load(url);
+							}
                             return false;
                         });
                     }
