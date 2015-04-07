@@ -37,8 +37,8 @@
 		>
 <#if !parameters.targets?exists && parameters.href?if_exists != "">
 <a href="${parameters.href?string}">
-<#else>
-<a href="javascript:void(0)">
+<#elseif parameters.targets?exists && parameters.href?if_exists != "">
+<a href="javascript:void(0)" >
 </#if>
 <#if parameters.menuIcon?if_exists != "">
 <span class="ui-icon ${parameters.menuIcon?html}"></span><#rt/>
@@ -46,4 +46,6 @@
 <#if parameters.title?if_exists != "">
 ${parameters.title?html}<#rt/>
 </#if>
+<#if parameters.href?if_exists != "">
 </a><#rt/>
+</#if>
