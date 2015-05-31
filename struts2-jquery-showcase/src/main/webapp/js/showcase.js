@@ -186,9 +186,8 @@ $(document).ready(function() {
 	 * Subscribe Topics for Grid Multiselect Example
 	 */
 	$.subscribe('getselectedids', function(event, data) {
-		var s;
-		s = $("#gridmultitable").jqGrid('getGridParam', 'selarrrow');
-		alert('Selected Rows : ' + s);
+		var rows = $("#gridmultitable").jqGrid('getGridParam', 'selarrrow');
+		alert('Selected Rows : ' + JSON.stringify(rows));
 	});
 
 	/*

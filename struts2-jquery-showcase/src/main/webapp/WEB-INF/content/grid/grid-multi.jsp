@@ -45,7 +45,7 @@
 	                editable="true" edittype="text" sortable="false" search="false"/>
 </sjg:grid>
 <br/>
-<sj:submit id="grid_multi_getselectedbutton" value="Get Selected Rows" onClickTopics="getselectedids" button="true"/>
+<sj:a id="grid_multi_getselectedbutton" onClickTopics="getselectedids" button="true">Get Selected Rows</sj:a>
 
 <br/>
 <sj:tabbedpanel id="localtabs" cssClass="list">
