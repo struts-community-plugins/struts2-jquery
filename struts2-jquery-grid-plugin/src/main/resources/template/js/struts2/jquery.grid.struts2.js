@@ -129,7 +129,6 @@
 							};
 						}
 	
-						//$elem.jqGrid('editRow', id, true);
 						$elem.jqGrid('editRow', id, true, oneditbefor,
 								onsuccess, null, null, onaftersave, onerror,
 								null);
@@ -261,7 +260,7 @@
 				};
 			}
 	
-			params.gridComplete = function() {
+			params.gridComplete = function(data) {
 
 				var daos = o.draggableoptions,
 				dao = window[daos],
@@ -409,37 +408,34 @@
 				params.loadtext = self.defaults.loadingText;
 			}
 
-			params.loadComplete = self.pubCom($elem, o.onalw, o.oncom, null,
-					null, o);
-			params.loadError = self
-					.pubErr($elem, o.onalw, o.onerr, o.errortext);
+			params.loadComplete = self.pubCom($elem, o.onalw, o.oncom, null, null, o);
+			params.loadError = self.pubErr($elem, o.onalw, o.onerr, o.errortext);
 
 			if (o.grouping) {
-				self.require("js/plugins/grid.grouping.js");
+				self.require("js/plugins/grid.grouping" + self.minSuffix + ".js");
 			}
 
 			if (o.editurl) {
-				self.require("js/plugins/grid.filter.js");
-				self.require("js/plugins/grid.formedit.js");
+				self.require(["js/plugins/grid.filter" + self.minSuffix + ".js", "js/plugins/grid.formedit" + self.minSuffix + ".js"]);
 				if (o.editinline) {
-					self.require("js/plugins/grid.inlinedit.js");
+					self.require("js/plugins/grid.inlinedit" + self.minSuffix + ".js");
 				}
 			}
 
 			if (o.cellurl) {
-				self.require("js/plugins/grid.celledit.js");
+				self.require("js/plugins/grid.celledit" + self.minSuffix + ".js");
 			}
 
 			if (o.navigator) {
-				self.require("js/plugins/grid.formedit.js");
+				self.require("js/plugins/grid.formedit" + self.minSuffix + ".js");
 			}
 
 			if (o.navigatorsearch) {
-				self.require("js/plugins/grid.filter.js");
+				self.require("js/plugins/grid.filter" + self.minSuffix + ".js");
 			}
 			
 			if (o.subgrid) {
-				self.require("js/plugins/grid.subgrid.js");
+				self.require("js/plugins/grid.subgrid" + self.minSuffix + ".js");
 				params.subGrid = true;
 
 				// gridview can't be true when using the subgrid feature
@@ -537,6 +533,9 @@
 						$.jgrid.no_legacy_api = true;
 						$.jgrid.useJSON = true;
 					});
+            if (!self.loadAtOnce) {
+                self.require(["js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/sortable" + self.minSuffix + ".js", "js/base/dialog" + self.minSuffix + ".js"]);
+            }
 			self.require("js/plugins/jquery.jqGrid" + self.minSuffix + ".js");
 			self.requireCss("themes/ui.jqgrid.css");
 			if(o.sortable || o.sortableRows) {

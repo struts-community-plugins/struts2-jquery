@@ -7,7 +7,7 @@
 	A Grid with local data and grouping.
 </p>
 <s:url var="remoteurl" action="grid-data-provider" namespace="/grid">
-	<s:param name="loadonce" value="%{true}"/>
+  <s:param name="loadonce" value="%{true}"/>
 </s:url>
 <sjg:grid
 		id="gridgrouping"
@@ -15,22 +15,17 @@
 		loadonce="true"
 		href="%{remoteurl}"
 		gridModel="gridModel"
-		groupField="['country']"
-		groupColumnShow="[false]"
-		groupCollapse="true"
-		groupText="['<b>{0} - {1} Customer(s)</b>']"
-		navigator="true"
-		navigatorAdd="false"
-		navigatorEdit="false"
-		navigatorDelete="false"
-		navigatorView="true"
-		rowTotal="70"
-		rowNum="-1"
-		altRows="true"
-		viewrecords="true"
-		pager="true"
-		pagerButtons="false"
-		pagerInput="false"
+        navigator="false"
+        navigatorAdd="false"
+        navigatorEdit="false"
+        navigatorDelete="false"
+        navigatorView="true"
+        rowNum="10000"
+        pager="false"
+        groupField="['country']"
+        groupColumnShow="[false]"
+        groupCollapse="true"
+        groupText="['<b>{0} - {1} Customer(s)</b>']"
 		>
 	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false"/>
 	<sjg:gridColumn name="name" index="name" title="Name" sortable="true"/>

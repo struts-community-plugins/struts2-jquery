@@ -41,7 +41,6 @@
                     <factory>
                         org.apache.struts.annotations.taglib.apt.TLDAnnotationProcessorFactory
                     </factory>
-                    <target>1.5</target>
                     <includes>
                         <include>**/*.java</include>
                     </includes>
@@ -69,10 +68,18 @@
                             <skipMerge>true</skipMerge>
                             <webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
                             <webappTargetDir>${basedir}/src/main/resources</webappTargetDir>
-                            <jsSourceDir>template/js/struts2</jsSourceDir>
-                            <jsTargetDir>template/js/struts2</jsTargetDir>
+                            <jsSourceDir>template/js</jsSourceDir>
+                            <jsTargetDir>template/js</jsTargetDir>
                             <jsSourceFiles>
-                                <jsSourceFile>jquery.grid.struts2.js</jsSourceFile>
+                                <jsSourceFile>struts2/jquery.grid.struts2.js</jsSourceFile>
+                                <jsSourceFile>plugins/jquery.jqGrid.js</jsSourceFile>
+                                <jsSourceFile>plugins/grid.grouping.js</jsSourceFile>
+                                <jsSourceFile>plugins/grid.subgrid.js</jsSourceFile>
+                                <jsSourceFile>plugins/grid.inlinedit.js</jsSourceFile>
+                                <jsSourceFile>plugins/grid.formedit.js</jsSourceFile>
+                                <jsSourceFile>plugins/grid.celledit.js</jsSourceFile>
+                                <jsSourceFile>plugins/grid.filter.js</jsSourceFile>
+                                <jsSourceFile>plugins/grid.addons.js</jsSourceFile>
                             </jsSourceFiles>
                         </configuration>
                         <goals>

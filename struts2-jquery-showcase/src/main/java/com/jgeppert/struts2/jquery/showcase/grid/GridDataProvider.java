@@ -124,11 +124,11 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
                 });
                 setGridModel(myCustomers.subList(0, totalrows));
             } else {
-                // All Custumer
-                setGridModel(myCustomers);
+                // All Customer
+                setGridModel(sortListByCountry(myCustomers));
             }
         } else {
-            // Search Custumers
+            // Search Customers
             if (searchString != null && searchOper != null) {
                 int id = Integer.parseInt(searchString);
                 if (searchOper.equalsIgnoreCase("eq")) {
@@ -159,12 +159,27 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
         }
 
         // Calculate total Pages
-        total = (int) Math.ceil((double) records / (double) rows);
+        if(loadonce) {
+            total = records;
+            rows = records;
+        } else{
+            total = (int) Math.ceil((double) records / (double) rows);
+        }
 
         // only for showcase functionality, don't do this in production
         session.put("mylist", myCustomers);
 
         return SUCCESS;
+    }
+
+    private List<Customer> sortListByCountry(List<Customer> customers) {
+        Collections.sort(customers, new Comparator<Customer>(){
+            public int compare(Customer o1, Customer o2){
+                return o1.getCountry().compareTo(o2.getCountry());
+            }
+        });
+
+        return customers;
     }
 
     public String getJSON() {

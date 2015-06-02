@@ -1,9 +1,652 @@
+/*jshint eqeqeq:false, eqnull:true, devel:true */
+/*global jQuery */
+(function($){
 /**
  * jqGrid extension for manipulating Grid Data
  * Tony Tomov tony@trirand.com
- * http://trirand.com/blog/
+ * http://trirand.com/blog/ 
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl-2.0.html
- **/
-(function(a){a.jgrid.inlineEdit=a.jgrid.inlineEdit||{};a.jgrid.extend({editRow:function(c,l,k,f,b,g,e,h,i){var d={},j=a.makeArray(arguments).slice(1);if(a.type(j[0])==="object"){d=j[0]}else{if(l!==undefined){d.keys=l}if(a.isFunction(k)){d.oneditfunc=k}if(a.isFunction(f)){d.successfunc=f}if(b!==undefined){d.url=b}if(g!==undefined){d.extraparam=g}if(a.isFunction(e)){d.aftersavefunc=e}if(a.isFunction(h)){d.errorfunc=h}if(a.isFunction(i)){d.afterrestorefunc=i}}d=a.extend(true,{keys:false,oneditfunc:null,successfunc:null,url:null,extraparam:{},aftersavefunc:null,errorfunc:null,afterrestorefunc:null,restoreAfterError:true,mtype:"POST"},a.jgrid.inlineEdit,d);return this.each(function(){var p=this,v,q,n,o=0,u=null,t={},m,s,r;if(!p.grid){return}m=a(p).jqGrid("getInd",c,true);if(m===false){return}r=a.isFunction(d.beforeEditRow)?d.beforeEditRow.call(p,d,c):undefined;if(r===undefined){r=true}if(!r){return}n=a(m).attr("editable")||"0";if(n==="0"&&!a(m).hasClass("not-editable-row")){s=p.p.colModel;a('td[role="gridcell"]',m).each(function(z){v=s[z].name;var y=p.p.treeGrid===true&&v===p.p.ExpandColumn;if(y){q=a("span:first",this).html()}else{try{q=a.unformat.call(p,this,{rowId:c,colModel:s[z]},z)}catch(w){q=(s[z].edittype&&s[z].edittype==="textarea")?a(this).text():a(this).html()}}if(v!=="cb"&&v!=="subgrid"&&v!=="rn"){if(p.p.autoencode){q=a.jgrid.htmlDecode(q)}t[v]=q;if(s[z].editable===true){if(u===null){u=z}if(y){a("span:first",this).html("")}else{a(this).html("")}var x=a.extend({},s[z].editoptions||{},{id:c+"_"+v,name:v});if(!s[z].edittype){s[z].edittype="text"}if(q==="&nbsp;"||q==="&#160;"||(q.length===1&&q.charCodeAt(0)===160)){q=""}var A=a.jgrid.createEl.call(p,s[z].edittype,x,q,true,a.extend({},a.jgrid.ajaxOptions,p.p.ajaxSelectOptions||{}));a(A).addClass("editable");if(y){a("span:first",this).append(A)}else{a(this).append(A)}a.jgrid.bindEv.call(p,A,x);if(s[z].edittype==="select"&&s[z].editoptions!==undefined&&s[z].editoptions.multiple===true&&s[z].editoptions.dataUrl===undefined&&a.jgrid.msie){a(A).width(a(A).width())}o++}}});if(o>0){t.id=c;p.p.savedRow.push(t);a(m).attr("editable","1");setTimeout(function(){a("td:eq("+u+") input",m).focus()},0);if(d.keys===true){a(m).bind("keydown",function(x){if(x.keyCode===27){a(p).jqGrid("restoreRow",c,d.afterrestorefunc);if(p.p._inlinenav){try{a(p).jqGrid("showAddEditButtons")}catch(z){}}return false}if(x.keyCode===13){var w=x.target;if(w.tagName==="TEXTAREA"){return true}if(a(p).jqGrid("saveRow",c,d)){if(p.p._inlinenav){try{a(p).jqGrid("showAddEditButtons")}catch(y){}}}return false}})}a(p).triggerHandler("jqGridInlineEditRow",[c,d]);if(a.isFunction(d.oneditfunc)){d.oneditfunc.call(p,c)}}}})},saveRow:function(p,l,h,j,u,s,c){var f=a.makeArray(arguments).slice(1),D={};if(a.type(f[0])==="object"){D=f[0]}else{if(a.isFunction(l)){D.successfunc=l}if(h!==undefined){D.url=h}if(j!==undefined){D.extraparam=j}if(a.isFunction(u)){D.aftersavefunc=u}if(a.isFunction(s)){D.errorfunc=s}if(a.isFunction(c)){D.afterrestorefunc=c}}D=a.extend(true,{successfunc:null,url:null,extraparam:{},aftersavefunc:null,errorfunc:null,afterrestorefunc:null,restoreAfterError:true,mtype:"POST"},a.jgrid.inlineEdit,D);var r=false;var I=this[0],d,K={},C={},B={},E,n,g,x;if(!I.grid){return r}x=a(I).jqGrid("getInd",p,true);if(x===false){return r}var G=a.isFunction(D.beforeSaveRow)?D.beforeSaveRow.call(I,D,p):undefined;if(G===undefined){G=true}if(!G){return}E=a(x).attr("editable");D.url=D.url||I.p.editurl;if(E==="1"){var v;a('td[role="gridcell"]',x).each(function(o){v=I.p.colModel[o];d=v.name;if(d!=="cb"&&d!=="subgrid"&&v.editable===true&&d!=="rn"&&!a(this).hasClass("not-editable-cell")){switch(v.edittype){case"checkbox":var k=["Yes","No"];if(v.editoptions){k=v.editoptions.value.split(":")}K[d]=a("input",this).is(":checked")?k[0]:k[1];break;case"text":case"password":case"textarea":case"button":K[d]=a("input, textarea",this).val();break;case"select":if(!v.editoptions.multiple){K[d]=a("select option:selected",this).val();C[d]=a("select option:selected",this).text()}else{var L=a("select",this),N=[];K[d]=a(L).val();if(K[d]){K[d]=K[d].join(",")}else{K[d]=""}a("select option:selected",this).each(function(e,O){N[e]=a(O).text()});C[d]=N.join(",")}if(v.formatter&&v.formatter==="select"){C={}}break;case"custom":try{if(v.editoptions&&a.isFunction(v.editoptions.custom_value)){K[d]=v.editoptions.custom_value.call(I,a(".customelement",this),"get");if(K[d]===undefined){throw"e2"}}else{throw"e1"}}catch(M){if(M==="e1"){a.jgrid.info_dialog(a.jgrid.errors.errcap,"function 'custom_value' "+a.jgrid.edit.msg.nodefined,a.jgrid.edit.bClose)}if(M==="e2"){a.jgrid.info_dialog(a.jgrid.errors.errcap,"function 'custom_value' "+a.jgrid.edit.msg.novalue,a.jgrid.edit.bClose)}else{a.jgrid.info_dialog(a.jgrid.errors.errcap,M.message,a.jgrid.edit.bClose)}}break}g=a.jgrid.checkValues.call(I,K[d],o);if(g[0]===false){return false}if(I.p.autoencode){K[d]=a.jgrid.htmlEncode(K[d])}if(D.url!=="clientArray"&&v.editoptions&&v.editoptions.NullIfEmpty===true){if(K[d]===""){B[d]="null"}}}});if(g[0]===false){try{var b=a(I).jqGrid("getGridRowById",p),t=a.jgrid.findPos(b);a.jgrid.info_dialog(a.jgrid.errors.errcap,g[1],a.jgrid.edit.bClose,{left:t[0],top:t[1]+a(b).outerHeight()})}catch(J){alert(g[1])}return r}var z,w=I.p.prmNames,q=p;if(I.p.keyIndex===false){z=w.id}else{z=I.p.colModel[I.p.keyIndex+(I.p.rownumbers===true?1:0)+(I.p.multiselect===true?1:0)+(I.p.subGrid===true?1:0)].name}if(K){K[w.oper]=w.editoper;if(K[z]===undefined||K[z]===""){K[z]=p}else{if(x.id!==I.p.idPrefix+K[z]){var y=a.jgrid.stripPref(I.p.idPrefix,p);if(I.p._index[y]!==undefined){I.p._index[K[z]]=I.p._index[y];delete I.p._index[y]}p=I.p.idPrefix+K[z];a(x).attr("id",p);if(I.p.selrow===q){I.p.selrow=p}if(a.isArray(I.p.selarrrow)){var H=a.inArray(q,I.p.selarrrow);if(H>=0){I.p.selarrrow[H]=p}}if(I.p.multiselect){var m="jqg_"+I.p.id+"_"+p;a("input.cbox",x).attr("id",m).attr("name",m)}}}if(I.p.inlineData===undefined){I.p.inlineData={}}K=a.extend({},K,I.p.inlineData,D.extraparam)}if(D.url==="clientArray"){K=a.extend({},K,C);if(I.p.autoencode){a.each(K,function(i,e){K[i]=a.jgrid.htmlDecode(e)})}var F,A=a(I).jqGrid("setRowData",p,K);a(x).attr("editable","0");for(F=0;F<I.p.savedRow.length;F++){if(String(I.p.savedRow[F].id)===String(q)){n=F;break}}if(n>=0){I.p.savedRow.splice(n,1)}a(I).triggerHandler("jqGridInlineAfterSaveRow",[p,A,K,D]);if(a.isFunction(D.aftersavefunc)){D.aftersavefunc.call(I,p,A,D)}r=true;a(x).removeClass("jqgrid-new-row").unbind("keydown")}else{a("#lui_"+a.jgrid.jqID(I.p.id)).show();B=a.extend({},K,B);B[z]=a.jgrid.stripPref(I.p.idPrefix,B[z]);a.ajax(a.extend({url:D.url,data:a.isFunction(I.p.serializeRowData)?I.p.serializeRowData.call(I,B):B,type:D.mtype,async:false,complete:function(o,L){a("#lui_"+a.jgrid.jqID(I.p.id)).hide();if(L==="success"){var i=true,M,e;M=a(I).triggerHandler("jqGridInlineSuccessSaveRow",[o,p,D]);if(!a.isArray(M)){M=[true,K]}if(M[0]&&a.isFunction(D.successfunc)){M=D.successfunc.call(I,o)}if(a.isArray(M)){i=M[0];K=M[1]||K}else{i=M}if(i===true){if(I.p.autoencode){a.each(K,function(N,k){K[N]=a.jgrid.htmlDecode(k)})}K=a.extend({},K,C);a(I).jqGrid("setRowData",p,K);a(x).attr("editable","0");for(e=0;e<I.p.savedRow.length;e++){if(String(I.p.savedRow[e].id)===String(p)){n=e;break}}if(n>=0){I.p.savedRow.splice(n,1)}a(I).triggerHandler("jqGridInlineAfterSaveRow",[p,o,K,D]);if(a.isFunction(D.aftersavefunc)){D.aftersavefunc.call(I,p,o)}r=true;a(x).removeClass("jqgrid-new-row").unbind("keydown")}else{a(I).triggerHandler("jqGridInlineErrorSaveRow",[p,o,L,null,D]);if(a.isFunction(D.errorfunc)){D.errorfunc.call(I,p,o,L,null)}if(D.restoreAfterError===true){a(I).jqGrid("restoreRow",p,D.afterrestorefunc)}}}},error:function(k,o,L){a("#lui_"+a.jgrid.jqID(I.p.id)).hide();a(I).triggerHandler("jqGridInlineErrorSaveRow",[p,k,o,L,D]);if(a.isFunction(D.errorfunc)){D.errorfunc.call(I,p,k,o,L)}else{var i=k.responseText||k.statusText;try{a.jgrid.info_dialog(a.jgrid.errors.errcap,'<div class="ui-state-error">'+i+"</div>",a.jgrid.edit.bClose,{buttonalign:"right"})}catch(M){alert(i)}}if(D.restoreAfterError===true){a(I).jqGrid("restoreRow",p,D.afterrestorefunc)}}},a.jgrid.ajaxOptions,I.p.ajaxRowOptions||{}))}}return r},restoreRow:function(d,b){var c=a.makeArray(arguments).slice(1),e={};if(a.type(c[0])==="object"){e=c[0]}else{if(a.isFunction(b)){e.afterrestorefunc=b}}e=a.extend(true,{},a.jgrid.inlineEdit,e);return this.each(function(){var m=this,f=-1,h,l={},g;if(!m.grid){return}h=a(m).jqGrid("getInd",d,true);if(h===false){return}var j=a.isFunction(e.beforeCancelRow)?e.beforeCancelRow.call(m,e,sr):undefined;if(j===undefined){j=true}if(!j){return}for(g=0;g<m.p.savedRow.length;g++){if(String(m.p.savedRow[g].id)===String(d)){f=g;break}}if(f>=0){if(a.isFunction(a.fn.datepicker)){try{a("input.hasDatepicker","#"+a.jgrid.jqID(h.id)).datepicker("hide")}catch(i){}}a.each(m.p.colModel,function(){if(this.editable===true&&m.p.savedRow[f].hasOwnProperty(this.name)){l[this.name]=m.p.savedRow[f][this.name]}});a(m).jqGrid("setRowData",d,l);a(h).attr("editable","0").unbind("keydown");m.p.savedRow.splice(f,1);if(a("#"+a.jgrid.jqID(d),"#"+a.jgrid.jqID(m.p.id)).hasClass("jqgrid-new-row")){setTimeout(function(){a(m).jqGrid("delRowData",d);a(m).jqGrid("showAddEditButtons")},0)}}a(m).triggerHandler("jqGridInlineAfterRestoreRow",[d]);if(a.isFunction(e.afterrestorefunc)){e.afterrestorefunc.call(m,d)}})},addRow:function(b){b=a.extend(true,{rowID:null,initdata:{},position:"first",useDefValues:true,useFormatter:false,addRowParams:{extraparam:{}}},b||{});return this.each(function(){if(!this.grid){return}var f=this;var c=a.isFunction(b.beforeAddRow)?b.beforeAddRow.call(f,b.addRowParams):undefined;if(c===undefined){c=true}if(!c){return}b.rowID=a.isFunction(b.rowID)?b.rowID.call(f,b):((b.rowID!=null)?b.rowID:a.jgrid.randId());if(b.useDefValues===true){a(f.p.colModel).each(function(){if(this.editoptions&&this.editoptions.defaultValue){var h=this.editoptions.defaultValue,g=a.isFunction(h)?h.call(f):h;b.initdata[this.name]=g}})}a(f).jqGrid("addRowData",b.rowID,b.initdata,b.position);b.rowID=f.p.idPrefix+b.rowID;a("#"+a.jgrid.jqID(b.rowID),"#"+a.jgrid.jqID(f.p.id)).addClass("jqgrid-new-row");if(b.useFormatter){a("#"+a.jgrid.jqID(b.rowID)+" .ui-inline-edit","#"+a.jgrid.jqID(f.p.id)).click()}else{var d=f.p.prmNames,e=d.oper;b.addRowParams.extraparam[e]=d.addoper;a(f).jqGrid("editRow",b.rowID,b.addRowParams);a(f).jqGrid("setSelection",b.rowID)}})},inlineNav:function(b,c){c=a.extend(true,{edit:true,editicon:"ui-icon-pencil",add:true,addicon:"ui-icon-plus",save:true,saveicon:"ui-icon-disk",cancel:true,cancelicon:"ui-icon-cancel",addParams:{addRowParams:{extraparam:{}}},editParams:{},restoreAfterSelect:true},a.jgrid.nav,c||{});return this.each(function(){if(!this.grid){return}var k=this,e,h=a.jgrid.jqID(k.p.id);k.p._inlinenav=true;if(c.addParams.useFormatter===true){var d=k.p.colModel,g;for(g=0;g<d.length;g++){if(d[g].formatter&&d[g].formatter==="actions"){if(d[g].formatoptions){var j={keys:false,onEdit:null,onSuccess:null,afterSave:null,onError:null,afterRestore:null,extraparam:{},url:null},f=a.extend(j,d[g].formatoptions);c.addParams.addRowParams={keys:f.keys,oneditfunc:f.onEdit,successfunc:f.onSuccess,url:f.url,extraparam:f.extraparam,aftersavefunc:f.afterSave,errorfunc:f.onError,afterrestorefunc:f.afterRestore}}break}}}if(c.add){a(k).jqGrid("navButtonAdd",b,{caption:c.addtext,title:c.addtitle,buttonicon:c.addicon,id:k.p.id+"_iladd",onClickButton:function(){a(k).jqGrid("addRow",c.addParams);if(!c.addParams.useFormatter){a("#"+h+"_ilsave").removeClass("ui-state-disabled");a("#"+h+"_ilcancel").removeClass("ui-state-disabled");a("#"+h+"_iladd").addClass("ui-state-disabled");a("#"+h+"_iledit").addClass("ui-state-disabled")}}})}if(c.edit){a(k).jqGrid("navButtonAdd",b,{caption:c.edittext,title:c.edittitle,buttonicon:c.editicon,id:k.p.id+"_iledit",onClickButton:function(){var i=a(k).jqGrid("getGridParam","selrow");if(i){a(k).jqGrid("editRow",i,c.editParams);a("#"+h+"_ilsave").removeClass("ui-state-disabled");a("#"+h+"_ilcancel").removeClass("ui-state-disabled");a("#"+h+"_iladd").addClass("ui-state-disabled");a("#"+h+"_iledit").addClass("ui-state-disabled")}else{a.jgrid.viewModal("#alertmod",{gbox:"#gbox_"+h,jqm:true});a("#jqg_alrt").focus()}}})}if(c.save){a(k).jqGrid("navButtonAdd",b,{caption:c.savetext||"",title:c.savetitle||"Save row",buttonicon:c.saveicon,id:k.p.id+"_ilsave",onClickButton:function(){var l=k.p.savedRow[0].id;if(l){var i=k.p.prmNames,n=i.oper,m=c.editParams;if(a("#"+a.jgrid.jqID(l),"#"+h).hasClass("jqgrid-new-row")){c.addParams.addRowParams.extraparam[n]=i.addoper;m=c.addParams.addRowParams}else{if(!c.editParams.extraparam){c.editParams.extraparam={}}c.editParams.extraparam[n]=i.editoper}if(a(k).jqGrid("saveRow",l,m)){a(k).jqGrid("showAddEditButtons")}}else{a.jgrid.viewModal("#alertmod",{gbox:"#gbox_"+h,jqm:true});a("#jqg_alrt").focus()}}});a("#"+h+"_ilsave").addClass("ui-state-disabled")}if(c.cancel){a(k).jqGrid("navButtonAdd",b,{caption:c.canceltext||"",title:c.canceltitle||"Cancel row editing",buttonicon:c.cancelicon,id:k.p.id+"_ilcancel",onClickButton:function(){var l=k.p.savedRow[0].id,i=c.editParams;if(l){if(a("#"+a.jgrid.jqID(l),"#"+h).hasClass("jqgrid-new-row")){i=c.addParams.addRowParams}a(k).jqGrid("restoreRow",l,i);a(k).jqGrid("showAddEditButtons")}else{a.jgrid.viewModal("#alertmod",{gbox:"#gbox_"+h,jqm:true});a("#jqg_alrt").focus()}}});a("#"+h+"_ilcancel").addClass("ui-state-disabled")}if(c.restoreAfterSelect===true){if(a.isFunction(k.p.beforeSelectRow)){e=k.p.beforeSelectRow}else{e=false}k.p.beforeSelectRow=function(m,l){var i=true;if(k.p.savedRow.length>0&&k.p._inlinenav===true&&(m!==k.p.selrow&&k.p.selrow!==null)){if(k.p.selrow===c.addParams.rowID){a(k).jqGrid("delRowData",k.p.selrow)}else{a(k).jqGrid("restoreRow",k.p.selrow,c.editParams)}a(k).jqGrid("showAddEditButtons")}if(e){i=e.call(k,m,l)}return i}}})},showAddEditButtons:function(){return this.each(function(){if(!this.grid){return}var b=a.jgrid.jqID(this.p.id);a("#"+b+"_ilsave").addClass("ui-state-disabled");a("#"+b+"_ilcancel").addClass("ui-state-disabled");a("#"+b+"_iladd").removeClass("ui-state-disabled");a("#"+b+"_iledit").removeClass("ui-state-disabled")})}})})(jQuery);
+**/ 
+"use strict";
+$.jgrid.inlineEdit = $.jgrid.inlineEdit || {};
+$.jgrid.extend({
+//Editing
+	editRow : function(rowid,keys,oneditfunc,successfunc, url, extraparam, aftersavefunc,errorfunc, afterrestorefunc) {
+		// Compatible mode old versions
+		var o={}, args = $.makeArray(arguments).slice(1);
+
+		if( $.type(args[0]) === "object" ) {
+			o = args[0];
+		} else {
+			if (keys !== undefined) { o.keys = keys; }
+			if ($.isFunction(oneditfunc)) { o.oneditfunc = oneditfunc; }
+			if ($.isFunction(successfunc)) { o.successfunc = successfunc; }
+			if (url !== undefined) { o.url = url; }
+			if (extraparam !== undefined) { o.extraparam = extraparam; }
+			if ($.isFunction(aftersavefunc)) { o.aftersavefunc = aftersavefunc; }
+			if ($.isFunction(errorfunc)) { o.errorfunc = errorfunc; }
+			if ($.isFunction(afterrestorefunc)) { o.afterrestorefunc = afterrestorefunc; }
+			// last two not as param, but as object (sorry)
+			//if (restoreAfterError !== undefined) { o.restoreAfterError = restoreAfterError; }
+			//if (mtype !== undefined) { o.mtype = mtype || "POST"; }			
+		}
+		o = $.extend(true, {
+			keys : false,
+			oneditfunc: null,
+			successfunc: null,
+			url: null,
+			extraparam: {},
+			aftersavefunc: null,
+			errorfunc: null,
+			afterrestorefunc: null,
+			restoreAfterError: true,
+			mtype: "POST",
+			focusField : true
+		}, $.jgrid.inlineEdit, o );
+
+		// End compatible
+		return this.each(function(){
+			var $t = this, nm, tmp, editable, cnt=0, focus=null, svr={}, ind,cm, bfer;
+			if (!$t.grid ) { return; }
+			ind = $($t).jqGrid("getInd",rowid,true);
+			if( ind === false ) {return;}
+			bfer = $.isFunction( o.beforeEditRow ) ? o.beforeEditRow.call($t,o, rowid) :  undefined;
+			if( bfer === undefined ) {
+				bfer = true;
+			}
+			if(!bfer) { return; }
+			editable = $(ind).attr("editable") || "0";
+			if (editable === "0" && !$(ind).hasClass("not-editable-row")) {
+				cm = $t.p.colModel;
+				$('td[role="gridcell"]',ind).each( function(i) {
+					nm = cm[i].name;
+					var treeg = $t.p.treeGrid===true && nm === $t.p.ExpandColumn;
+					if(treeg) { tmp = $("span:first",this).html();}
+					else {
+						try {
+							tmp = $.unformat.call($t,this,{rowId:rowid, colModel:cm[i]},i);
+						} catch (_) {
+							tmp =  ( cm[i].edittype && cm[i].edittype === 'textarea' ) ? $(this).text() : $(this).html();
+						}
+					}
+					if ( nm !== 'cb' && nm !== 'subgrid' && nm !== 'rn') {
+						if($t.p.autoencode) { tmp = $.jgrid.htmlDecode(tmp); }
+						svr[nm]=tmp;
+						if(cm[i].editable===true) {
+							if(focus===null) { focus = i; }
+							if (treeg) { $("span:first",this).html(""); }
+							else { $(this).html(""); }
+							var opt = $.extend({},cm[i].editoptions || {},{id:rowid+"_"+nm,name:nm,rowId:rowid});
+							if(!cm[i].edittype) { cm[i].edittype = "text"; }
+							if(tmp === "&nbsp;" || tmp === "&#160;" || (tmp.length===1 && tmp.charCodeAt(0)===160) ) {tmp='';}
+							var elc = $.jgrid.createEl.call($t,cm[i].edittype,opt,tmp,true,$.extend({},$.jgrid.ajaxOptions,$t.p.ajaxSelectOptions || {}));
+							$(elc).addClass("editable");
+							if(treeg) { $("span:first",this).append(elc); }
+							else { $(this).append(elc); }
+							$.jgrid.bindEv.call($t, elc, opt);
+							//Again IE
+							if(cm[i].edittype === "select" && cm[i].editoptions!==undefined && cm[i].editoptions.multiple===true  && cm[i].editoptions.dataUrl===undefined && $.jgrid.msie) {
+								$(elc).width($(elc).width());
+							}
+							cnt++;
+						}
+					}
+				});
+				if(cnt > 0) {
+					svr.id = rowid; $t.p.savedRow.push(svr);
+					$(ind).attr("editable","1");
+					if(o.focusField ) {
+						if(typeof o.focusField === 'number' && parseInt(o.focusField,10) <= cm.length) {
+							focus = o.focusField;
+						}
+						setTimeout(function(){ 
+							var fe = $("td:eq("+focus+") :input:visible",ind).not(":disabled"); 
+							if(fe.length > 0) {
+								fe.focus();
+							}
+						},0);
+					}
+					if(o.keys===true) {
+						$(ind).bind("keydown",function(e) {
+							if (e.keyCode === 27) {
+								$($t).jqGrid("restoreRow",rowid, o.afterrestorefunc);
+								if($t.p._inlinenav) {
+									try {
+										$($t).jqGrid('showAddEditButtons');
+									} catch (eer1) {}
+								}
+								return false;
+							}
+							if (e.keyCode === 13) {
+								var ta = e.target;
+								if(ta.tagName === 'TEXTAREA') { return true; }
+								if( $($t).jqGrid("saveRow", rowid, o ) ) {
+									if($t.p._inlinenav) {
+										try {
+											$($t).jqGrid('showAddEditButtons');
+										} catch (eer2) {}
+									}
+								}
+								return false;
+							}
+						});
+					}
+					$($t).triggerHandler("jqGridInlineEditRow", [rowid, o]);
+					if( $.isFunction(o.oneditfunc)) { o.oneditfunc.call($t, rowid); }
+				}
+			}
+		});
+	},
+	saveRow : function(rowid, successfunc, url, extraparam, aftersavefunc,errorfunc, afterrestorefunc) {
+		// Compatible mode old versions
+		var args = $.makeArray(arguments).slice(1), o = {};
+
+		if( $.type(args[0]) === "object" ) {
+			o = args[0];
+		} else {
+			if ($.isFunction(successfunc)) { o.successfunc = successfunc; }
+			if (url !== undefined) { o.url = url; }
+			if (extraparam !== undefined) { o.extraparam = extraparam; }
+			if ($.isFunction(aftersavefunc)) { o.aftersavefunc = aftersavefunc; }
+			if ($.isFunction(errorfunc)) { o.errorfunc = errorfunc; }
+			if ($.isFunction(afterrestorefunc)) { o.afterrestorefunc = afterrestorefunc; }
+		}
+		o = $.extend(true, {
+			successfunc: null,
+			url: null,
+			extraparam: {},
+			aftersavefunc: null,
+			errorfunc: null,
+			afterrestorefunc: null,
+			restoreAfterError: true,
+			mtype: "POST",
+			saveui : "enable",
+			savetext : $.jgrid.defaults.savetext || "Saving..."
+		}, $.jgrid.inlineEdit, o );
+		// End compatible
+
+		var success = false;
+		var $t = this[0], nm, tmp={}, tmp2={}, tmp3= {}, editable, fr, cv, ind;
+		if (!$t.grid ) { return success; }
+		ind = $($t).jqGrid("getInd",rowid,true);
+		if(ind === false) {return success;}
+		var bfsr = $.isFunction( o.beforeSaveRow ) ?	o.beforeSaveRow.call($t,o, rowid) :  undefined;
+		if( bfsr === undefined ) {
+			bfsr = true;
+		}
+		if(!bfsr) { return; }
+		editable = $(ind).attr("editable");
+		o.url = o.url || $t.p.editurl;
+		if (editable==="1") {
+			var cm;
+			$('td[role="gridcell"]',ind).each(function(i) {
+				cm = $t.p.colModel[i];
+				nm = cm.name;
+				if ( nm !== 'cb' && nm !== 'subgrid' && cm.editable===true && nm !== 'rn' && !$(this).hasClass('not-editable-cell')) {
+					switch (cm.edittype) {
+						case "checkbox":
+							var cbv = ["Yes","No"];
+							if(cm.editoptions ) {
+								cbv = cm.editoptions.value.split(":");
+							}
+							tmp[nm]=  $("input",this).is(":checked") ? cbv[0] : cbv[1]; 
+							break;
+						case 'text':
+						case 'password':
+						case 'textarea':
+						case "button" :
+							tmp[nm]=$("input, textarea",this).val();
+							break;
+						case 'select':
+							if(!cm.editoptions.multiple) {
+								tmp[nm] = $("select option:selected",this).val();
+								tmp2[nm] = $("select option:selected", this).text();
+							} else {
+								var sel = $("select",this), selectedText = [];
+								tmp[nm] = $(sel).val();
+								if(tmp[nm]) { tmp[nm]= tmp[nm].join(","); } else { tmp[nm] =""; }
+								$("select option:selected",this).each(
+									function(i,selected){
+										selectedText[i] = $(selected).text();
+									}
+								);
+								tmp2[nm] = selectedText.join(",");
+							}
+							if(cm.formatter && cm.formatter === 'select') { tmp2={}; }
+							break;
+						case 'custom' :
+							try {
+								if(cm.editoptions && $.isFunction(cm.editoptions.custom_value)) {
+									tmp[nm] = cm.editoptions.custom_value.call($t, $(".customelement",this),'get');
+									if (tmp[nm] === undefined) { throw "e2"; }
+								} else { throw "e1"; }
+							} catch (e) {
+								if (e==="e1") { $.jgrid.info_dialog($.jgrid.errors.errcap,"function 'custom_value' "+$.jgrid.edit.msg.nodefined,$.jgrid.edit.bClose); }
+								if (e==="e2") { $.jgrid.info_dialog($.jgrid.errors.errcap,"function 'custom_value' "+$.jgrid.edit.msg.novalue,$.jgrid.edit.bClose); }
+								else { $.jgrid.info_dialog($.jgrid.errors.errcap,e.message,$.jgrid.edit.bClose); }
+							}
+							break;
+					}
+					cv = $.jgrid.checkValues.call($t,tmp[nm],i);
+					if(cv[0] === false) {
+						return false;
+					}
+					if($t.p.autoencode) { tmp[nm] = $.jgrid.htmlEncode(tmp[nm]); }
+					if(o.url !== 'clientArray' && cm.editoptions && cm.editoptions.NullIfEmpty === true) {
+						if(tmp[nm] === "") {
+							tmp3[nm] = 'null';
+						}
+					}
+				}
+			});
+			if (cv[0] === false){
+				try {
+					var tr = $($t).jqGrid('getGridRowById', rowid), positions = $.jgrid.findPos(tr);
+					$.jgrid.info_dialog($.jgrid.errors.errcap,cv[1],$.jgrid.edit.bClose,{left:positions[0],top:positions[1]+$(tr).outerHeight()});
+				} catch (e) {
+					alert(cv[1]);
+				}
+				return success;
+			}
+			var idname, opers = $t.p.prmNames, oldRowId = rowid;
+			if ($t.p.keyName === false) {
+				idname = opers.id;
+			} else {
+				idname = $t.p.keyName;
+			}
+			if(tmp) {
+				tmp[opers.oper] = opers.editoper;
+				if (tmp[idname] === undefined || tmp[idname]==="") {
+					tmp[idname] = rowid;
+				} else if (ind.id !== $t.p.idPrefix + tmp[idname]) {
+					// rename rowid
+					var oldid = $.jgrid.stripPref($t.p.idPrefix, rowid);
+					if ($t.p._index[oldid] !== undefined) {
+						$t.p._index[tmp[idname]] = $t.p._index[oldid];
+						delete $t.p._index[oldid];
+					}
+					rowid = $t.p.idPrefix + tmp[idname];
+					$(ind).attr("id", rowid);
+					if ($t.p.selrow === oldRowId) {
+						$t.p.selrow = rowid;
+					}
+					if ($.isArray($t.p.selarrrow)) {
+						var i = $.inArray(oldRowId, $t.p.selarrrow);
+						if (i>=0) {
+							$t.p.selarrrow[i] = rowid;
+						}
+					}
+					if ($t.p.multiselect) {
+						var newCboxId = "jqg_" + $t.p.id + "_" + rowid;
+						$("input.cbox",ind)
+							.attr("id", newCboxId)
+							.attr("name", newCboxId);
+					}
+					// TODO: to test the case of frozen columns
+				}
+				if($t.p.inlineData === undefined) { $t.p.inlineData ={}; }
+				tmp = $.extend({},tmp,$t.p.inlineData,o.extraparam);
+			}
+			if (o.url === 'clientArray') {
+				tmp = $.extend({},tmp, tmp2);
+				if($t.p.autoencode) {
+					$.each(tmp,function(n,v){
+						tmp[n] = $.jgrid.htmlDecode(v);
+					});
+				}
+				var k, resp = $($t).jqGrid("setRowData",rowid,tmp);
+				$(ind).attr("editable","0");
+				for(k=0;k<$t.p.savedRow.length;k++) {
+					if( String($t.p.savedRow[k].id) === String(oldRowId)) {fr = k; break;}
+				}
+				if(fr >= 0) { $t.p.savedRow.splice(fr,1); }
+				$($t).triggerHandler("jqGridInlineAfterSaveRow", [rowid, resp, tmp, o]);
+				if( $.isFunction(o.aftersavefunc) ) { o.aftersavefunc.call($t, rowid, resp, tmp, o); }
+				success = true;
+				$(ind).removeClass("jqgrid-new-row").unbind("keydown");
+			} else {
+				$($t).jqGrid("progressBar", {method:"show", loadtype : o.saveui, htmlcontent: o.savetext });
+				tmp3 = $.extend({},tmp,tmp3);
+				tmp3[idname] = $.jgrid.stripPref($t.p.idPrefix, tmp3[idname]);
+				$.ajax($.extend({
+					url:o.url,
+					data: $.isFunction($t.p.serializeRowData) ? $t.p.serializeRowData.call($t, tmp3) : tmp3,
+					type: o.mtype,
+					async : false, //?!?
+					complete: function(res,stat){
+						$($t).jqGrid("progressBar", {method:"hide", loadtype : o.saveui, htmlcontent: o.savetext});
+						if (stat === "success"){
+							var ret = true, sucret, k;
+							sucret = $($t).triggerHandler("jqGridInlineSuccessSaveRow", [res, rowid, o]);
+							if (!$.isArray(sucret)) {sucret = [true, tmp];}
+							if (sucret[0] && $.isFunction(o.successfunc)) {sucret = o.successfunc.call($t, res);}							
+							if($.isArray(sucret)) {
+								// expect array - status, data, rowid
+								ret = sucret[0];
+								tmp = sucret[1] || tmp;
+							} else {
+								ret = sucret;
+							}
+							if (ret===true) {
+								if($t.p.autoencode) {
+									$.each(tmp,function(n,v){
+										tmp[n] = $.jgrid.htmlDecode(v);
+									});
+								}
+								tmp = $.extend({},tmp, tmp2);
+								$($t).jqGrid("setRowData",rowid,tmp);
+								$(ind).attr("editable","0");
+								for(k=0;k<$t.p.savedRow.length;k++) {
+									if( String($t.p.savedRow[k].id) === String(rowid)) {fr = k; break;}
+								}
+								if(fr >= 0) { $t.p.savedRow.splice(fr,1); }
+								$($t).triggerHandler("jqGridInlineAfterSaveRow", [rowid, res, tmp, o]);
+								if( $.isFunction(o.aftersavefunc) ) { o.aftersavefunc.call($t, rowid, res, tmp, o); }
+								success = true;
+								$(ind).removeClass("jqgrid-new-row").unbind("keydown");
+							} else {
+								$($t).triggerHandler("jqGridInlineErrorSaveRow", [rowid, res, stat, null, o]);
+								if($.isFunction(o.errorfunc) ) {
+									o.errorfunc.call($t, rowid, res, stat, null);
+								}
+								if(o.restoreAfterError === true) {
+									$($t).jqGrid("restoreRow",rowid, o.afterrestorefunc);
+								}
+							}
+						}
+					},
+					error:function(res,stat,err){
+						$("#lui_"+$.jgrid.jqID($t.p.id)).hide();
+						$($t).triggerHandler("jqGridInlineErrorSaveRow", [rowid, res, stat, err, o]);
+						if($.isFunction(o.errorfunc) ) {
+							o.errorfunc.call($t, rowid, res, stat, err);
+						} else {
+							var rT = res.responseText || res.statusText;
+							try {
+								$.jgrid.info_dialog($.jgrid.errors.errcap,'<div class="ui-state-error">'+ rT +'</div>', $.jgrid.edit.bClose,{buttonalign:'right'});
+							} catch(e) {
+								alert(rT);
+							}
+						}
+						if(o.restoreAfterError === true) {
+							$($t).jqGrid("restoreRow",rowid, o.afterrestorefunc);
+						}
+					}
+				}, $.jgrid.ajaxOptions, $t.p.ajaxRowOptions || {}));
+			}
+		}
+		return success;
+	},
+	restoreRow : function(rowid, afterrestorefunc) {
+		// Compatible mode old versions
+		var args = $.makeArray(arguments).slice(1), o={};
+
+		if( $.type(args[0]) === "object" ) {
+			o = args[0];
+		} else {
+			if ($.isFunction(afterrestorefunc)) { o.afterrestorefunc = afterrestorefunc; }
+		}
+		o = $.extend(true, {}, $.jgrid.inlineEdit, o );
+
+		// End compatible
+
+		return this.each(function(){
+			var $t= this, fr=-1, ind, ares={}, k;
+			if (!$t.grid ) { return; }
+			ind = $($t).jqGrid("getInd",rowid,true);
+			if(ind === false) {return;}
+			var bfcr = $.isFunction( o.beforeCancelRow ) ?	o.beforeCancelRow.call($t, o, rowid) :  undefined;
+			if( bfcr === undefined ) {
+				bfcr = true;
+			}
+			if(!bfcr) { return; }
+			for(k=0;k<$t.p.savedRow.length;k++) {
+				if( String($t.p.savedRow[k].id) === String(rowid)) {fr = k; break;}
+			}
+			if(fr >= 0) {
+				if($.isFunction($.fn.datepicker)) {
+					try {
+						$("input.hasDatepicker","#"+$.jgrid.jqID(ind.id)).datepicker('hide');
+					} catch (e) {}
+				}
+				$.each($t.p.colModel, function(){
+					if(this.editable === true && $t.p.savedRow[fr].hasOwnProperty(this.name)) {
+						ares[this.name] = $t.p.savedRow[fr][this.name];
+					}
+				});
+				$($t).jqGrid("setRowData",rowid,ares);
+				$(ind).attr("editable","0").unbind("keydown");
+				$t.p.savedRow.splice(fr,1);
+				if($("#"+$.jgrid.jqID(rowid), "#"+$.jgrid.jqID($t.p.id)).hasClass("jqgrid-new-row")){
+					setTimeout(function(){
+						$($t).jqGrid("delRowData",rowid);
+						$($t).jqGrid('showAddEditButtons');
+					},0);
+				}
+			}
+			$($t).triggerHandler("jqGridInlineAfterRestoreRow", [rowid]);
+			if ($.isFunction(o.afterrestorefunc))
+			{
+				o.afterrestorefunc.call($t, rowid);
+			}
+		});
+	},
+	addRow : function ( p ) {
+		p = $.extend(true, {
+			rowID : null,
+			initdata : {},
+			position :"first",
+			useDefValues : true,
+			useFormatter : false,
+			addRowParams : {extraparam:{}}
+		},p  || {});
+		return this.each(function(){
+			if (!this.grid ) { return; }
+			var $t = this;
+			var bfar = $.isFunction( p.beforeAddRow ) ?	p.beforeAddRow.call($t,p.addRowParams) :  undefined;
+			if( bfar === undefined ) {
+				bfar = true;
+			}
+			if(!bfar) { return; }
+			p.rowID = $.isFunction(p.rowID) ? p.rowID.call($t, p) : ( (p.rowID != null) ? p.rowID : $.jgrid.randId());
+			if(p.useDefValues === true) {
+				$($t.p.colModel).each(function(){
+					if( this.editoptions && this.editoptions.defaultValue ) {
+						var opt = this.editoptions.defaultValue,
+						tmp = $.isFunction(opt) ? opt.call($t) : opt;
+						p.initdata[this.name] = tmp;
+					}
+				});
+			}
+			$($t).jqGrid('addRowData', p.rowID, p.initdata, p.position);
+			p.rowID = $t.p.idPrefix + p.rowID;
+			$("#"+$.jgrid.jqID(p.rowID), "#"+$.jgrid.jqID($t.p.id)).addClass("jqgrid-new-row");
+			if(p.useFormatter) {
+				$("#"+$.jgrid.jqID(p.rowID)+" .ui-inline-edit", "#"+$.jgrid.jqID($t.p.id)).click();
+			} else {
+				var opers = $t.p.prmNames,
+				oper = opers.oper;
+				p.addRowParams.extraparam[oper] = opers.addoper;
+				$($t).jqGrid('editRow', p.rowID, p.addRowParams);
+				$($t).jqGrid('setSelection', p.rowID);
+			}
+		});
+	},
+	inlineNav : function (elem, o) {
+		o = $.extend(true,{
+			edit: true,
+			editicon: "ui-icon-pencil",
+			add: true,
+			addicon:"ui-icon-plus",
+			save: true,
+			saveicon:"ui-icon-disk",
+			cancel: true,
+			cancelicon:"ui-icon-cancel",
+			addParams : {addRowParams: {extraparam: {}}},
+			editParams : {},
+			restoreAfterSelect : true
+		}, $.jgrid.nav, o ||{});
+		return this.each(function(){
+			if (!this.grid ) { return; }
+			var $t = this, onSelect, gID = $.jgrid.jqID($t.p.id);
+			$t.p._inlinenav = true;
+			// detect the formatactions column
+			if(o.addParams.useFormatter === true) {
+				var cm = $t.p.colModel,i;
+				for (i = 0; i<cm.length; i++) {
+					if(cm[i].formatter && cm[i].formatter === "actions" ) {
+						if(cm[i].formatoptions) {
+							var defaults =  {
+								keys:false,
+								onEdit : null,
+								onSuccess: null,
+								afterSave:null,
+								onError: null,
+								afterRestore: null,
+								extraparam: {},
+								url: null
+							},
+							ap = $.extend( defaults, cm[i].formatoptions );
+							o.addParams.addRowParams = {
+								"keys" : ap.keys,
+								"oneditfunc" : ap.onEdit,
+								"successfunc" : ap.onSuccess,
+								"url" : ap.url,
+								"extraparam" : ap.extraparam,
+								"aftersavefunc" : ap.afterSave,
+								"errorfunc": ap.onError,
+								"afterrestorefunc" : ap.afterRestore
+							};
+						}
+						break;
+					}
+				}
+			}
+			if(o.add) {
+				$($t).jqGrid('navButtonAdd', elem,{
+					caption : o.addtext,
+					title : o.addtitle,
+					buttonicon : o.addicon,
+					id : $t.p.id+"_iladd",
+					onClickButton : function () {
+						$($t).jqGrid('addRow', o.addParams);
+						if(!o.addParams.useFormatter) {
+							$("#"+gID+"_ilsave").removeClass('ui-state-disabled');
+							$("#"+gID+"_ilcancel").removeClass('ui-state-disabled');
+							$("#"+gID+"_iladd").addClass('ui-state-disabled');
+							$("#"+gID+"_iledit").addClass('ui-state-disabled');
+						}
+					}
+				});
+			}
+			if(o.edit) {
+				$($t).jqGrid('navButtonAdd', elem,{
+					caption : o.edittext,
+					title : o.edittitle,
+					buttonicon : o.editicon,
+					id : $t.p.id+"_iledit",
+					onClickButton : function () {
+						var sr = $($t).jqGrid('getGridParam','selrow');
+						if(sr) {
+							$($t).jqGrid('editRow', sr, o.editParams);
+							$("#"+gID+"_ilsave").removeClass('ui-state-disabled');
+							$("#"+gID+"_ilcancel").removeClass('ui-state-disabled');
+							$("#"+gID+"_iladd").addClass('ui-state-disabled');
+							$("#"+gID+"_iledit").addClass('ui-state-disabled');
+						} else {
+							$.jgrid.viewModal("#alertmod",{gbox:"#gbox_"+gID,jqm:true});$("#jqg_alrt").focus();							
+						}
+					}
+				});
+			}
+			if(o.save) {
+				$($t).jqGrid('navButtonAdd', elem,{
+					caption : o.savetext || '',
+					title : o.savetitle || 'Save row',
+					buttonicon : o.saveicon,
+					id : $t.p.id+"_ilsave",
+					onClickButton : function () {
+						var sr = $t.p.savedRow[0].id;
+						if(sr) {
+							var opers = $t.p.prmNames,
+							oper = opers.oper, tmpParams = o.editParams;
+							if($("#"+$.jgrid.jqID(sr), "#"+gID ).hasClass("jqgrid-new-row")) {
+								o.addParams.addRowParams.extraparam[oper] = opers.addoper;
+								tmpParams = o.addParams.addRowParams;
+							} else {
+								if(!o.editParams.extraparam) {
+									o.editParams.extraparam = {};
+								}
+								o.editParams.extraparam[oper] = opers.editoper;
+							}
+							if( $($t).jqGrid('saveRow', sr, tmpParams) ) {
+								$($t).jqGrid('showAddEditButtons');
+							}
+						} else {
+							$.jgrid.viewModal("#alertmod",{gbox:"#gbox_"+gID,jqm:true});$("#jqg_alrt").focus();							
+						}
+					}
+				});
+				$("#"+gID+"_ilsave").addClass('ui-state-disabled');
+			}
+			if(o.cancel) {
+				$($t).jqGrid('navButtonAdd', elem,{
+					caption : o.canceltext || '',
+					title : o.canceltitle || 'Cancel row editing',
+					buttonicon : o.cancelicon,
+					id : $t.p.id+"_ilcancel",
+					onClickButton : function () {
+						var sr = $t.p.savedRow[0].id, cancelPrm = o.editParams;
+						if(sr) {
+							if($("#"+$.jgrid.jqID(sr), "#"+gID ).hasClass("jqgrid-new-row")) {
+								cancelPrm = o.addParams.addRowParams;
+							}
+							$($t).jqGrid('restoreRow', sr, cancelPrm);
+							$($t).jqGrid('showAddEditButtons');
+						} else {
+							$.jgrid.viewModal("#alertmod",{gbox:"#gbox_"+gID,jqm:true});$("#jqg_alrt").focus();							
+						}
+					}
+				});
+				$("#"+gID+"_ilcancel").addClass('ui-state-disabled');
+			}
+			if(o.restoreAfterSelect === true) {
+				if($.isFunction($t.p.beforeSelectRow)) {
+					onSelect = $t.p.beforeSelectRow;
+				} else {
+					onSelect =  false;
+				}
+				$t.p.beforeSelectRow = function(id, stat) {
+					var ret = true;
+					if($t.p.savedRow.length > 0 && $t.p._inlinenav===true && ( id !== $t.p.selrow && $t.p.selrow !==null) ) {
+						if($t.p.selrow === o.addParams.rowID ) {
+							$($t).jqGrid('delRowData', $t.p.selrow);
+						} else {
+							$($t).jqGrid('restoreRow', $t.p.selrow, o.editParams);
+						}
+						$($t).jqGrid('showAddEditButtons');
+					}
+					if(onSelect) {
+						ret = onSelect.call($t, id, stat);
+					}
+					return ret;
+				};
+			}
+
+		});
+	},
+	showAddEditButtons : function()  {
+		return this.each(function(){
+			if (!this.grid ) { return; }
+			var gID = $.jgrid.jqID(this.p.id);
+			$("#"+gID+"_ilsave").addClass('ui-state-disabled');
+			$("#"+gID+"_ilcancel").addClass('ui-state-disabled');
+			$("#"+gID+"_iladd").removeClass('ui-state-disabled');
+			$("#"+gID+"_iledit").removeClass('ui-state-disabled');
+		});
+	}
+//end inline edit
+});
+})(jQuery);

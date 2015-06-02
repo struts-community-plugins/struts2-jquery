@@ -152,8 +152,7 @@ $(document).ready(function() {
 	 * Subscribe Topics for Grid Loadonce Example
 	 */
 	$.subscribe('showloadcolumns', function(event, data) {
-		$.struts2_jquery.require("js/plugins/grid.setcolumns.js");
-		$("#gridloadtable").jqGrid('setColumns', {});
+		$("#gridloadtable").jqGrid('columnChooser', {});
 	});
 
 	/*
@@ -178,8 +177,7 @@ $(document).ready(function() {
 		});
 	});
 	$.subscribe('showcolumns', function(event, data) {
-		$.struts2_jquery.require("js/plugins/grid.setcolumns.js");
-		$("#gridedittable").jqGrid('setColumns', {});
+		$("#gridedittable").jqGrid('columnChooser', {});
 	});
 
 	/*

@@ -1,7 +1,7 @@
 ;(function($){
     /**
      * jqGrid Catalan Translation
-     * Traducció jqGrid en Catatà per Faserline, S.L.
+     * TraducciÃ³ jqGrid en CatatÃ  per Faserline, S.L.
      * http://www.faserline.com
      * Dual licensed under the MIT and GPL licenses:
      * http://www.opensource.org/licenses/mit-license.php
@@ -13,7 +13,13 @@
             recordtext: "Mostrant {0} - {1} de {2}",
             emptyrecords: "Sense registres que mostrar",
             loadtext: "Carregant...",
-            pgtext : "Pàgina {0} de {1}"
+            pgtext : "PÃ gina {0} de {1}",
+            pgfirst : "First Page",
+            pglast : "Last Page",
+            pgnext : "Next Page",
+            pgprev : "Previous Page",
+            pgrecs : "Records per Page",
+            showhide: "Toggle Expand Collapse Grid"
         },
         search : {
             caption: "Cerca...",
@@ -39,10 +45,10 @@
                 number:"Introdueixi un nombre",
                 minValue:"El valor ha de ser major o igual que ",
                 maxValue:"El valor ha de ser menor o igual a ",
-                email: "no és una direcció de correu vàlida",
+                email: "no Ã©s una direcciÃ³ de correu vÃ lida",
                 integer: "Introdueixi un valor enter",
                 date: "Introdueixi una data correcta ",
-                url: "no és una URL vàlida. Prefix requerit ('http://' or 'https://')",
+                url: "no Ã©s una URL vÃ lida. Prefix requerit ('http://' or 'https://')",
                 nodefined : " is not defined!",
                 novalue : " return value is required!",
                 customarray : "Custom function should return array!",
@@ -55,7 +61,7 @@
         },
         del : {
             caption: "Eliminar",
-            msg: "¿Desitja eliminar els registres seleccionats?",
+            msg: "Â¿Desitja eliminar els registres seleccionats?",
             bSubmit: "Eliminar",
             bCancel: "Cancelar"
         },
@@ -67,10 +73,10 @@
             deltext: " ",
             deltitle: "Eliminar fila seleccionada",
             searchtext: " ",
-            searchtitle: "Cercar informació",
+            searchtitle: "Cercar informaciÃ³",
             refreshtext: "",
             refreshtitle: "Refrescar taula",
-            alertcap: "Avís",
+            alertcap: "AvÃ­s",
             alerttext: "Seleccioni una fila",
             viewtext: " ",
             viewtitle: "Veure fila seleccionada"
@@ -85,7 +91,7 @@
             errcap : "Error",
             nourl : "No s'ha especificat una URL",
             norecords: "No hi ha dades per processar",
-            model : "Les columnes de noms són diferents de les columnes del model"
+            model : "Les columnes de noms sÃ³n diferents de les columnes del model"
         },
         formatter : {
             integer : {thousandsSeparator: ".", defaultValue: '0'},
@@ -97,8 +103,8 @@
                     "Diumenge", "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte"
                 ],
                 monthNames: [
-                    "Gen", "Febr", "Març", "Abr", "Maig", "Juny", "Jul", "Ag", "Set", "Oct", "Nov", "Des",
-                    "Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"
+                    "Gen", "Febr", "MarÃ§", "Abr", "Maig", "Juny", "Jul", "Ag", "Set", "Oct", "Nov", "Des",
+                    "Gener", "Febrer", "MarÃ§", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"
                 ],
                 AmPm : ["am","pm","AM","PM"],
                 S: function (j) {return j < 11 || j > 13 ? ['st', 'nd', 'rd', 'th'][Math.min((j - 1) % 10, 3)] : 'th'},
@@ -118,7 +124,8 @@
                     UniversalSortableDateTime: "Y-m-d H:i:sO",
                     YearMonth: "F, Y"
                 },
-                reformatAfterEdit : false
+                reformatAfterEdit : false,
+                userLocalTime : false
             },
             baseLinkUrl: '',
             showAction: 'show',

@@ -7,5 +7,706 @@
  * 
  * The work is inspired from this Stefan Pirvu
  * http://www.codeproject.com/KB/scripting/json-filtering.aspx
- */
-(function(a){a.fn.jqFilter=function(b){if(typeof b==="string"){var d=a.fn.jqFilter[b];if(!d){throw ("jqFilter - No such method: "+b)}var c=a.makeArray(arguments).slice(1);return d.apply(this,c)}var e=a.extend(true,{filter:null,columns:[],onChange:null,afterRedraw:null,checkValues:null,error:false,errmsg:"",errorcheck:true,showQuery:true,sopt:null,ops:[],operands:null,numopts:["eq","ne","lt","le","gt","ge","nu","nn","in","ni"],stropts:["eq","ne","bw","bn","ew","en","cn","nc","nu","nn","in","ni"],strarr:["text","string","blob"],groupOps:[{op:"AND",text:"AND"},{op:"OR",text:"OR"}],groupButton:true,ruleButtons:true,direction:"ltr"},a.jgrid.filter,b||{});return this.each(function(){if(this.filter){return}this.p=e;if(this.p.filter===null||this.p.filter===undefined){this.p.filter={groupOp:this.p.groupOps[0].op,rules:[],groups:[]}}var j,f=this.p.columns.length,g,k=/msie/i.test(navigator.userAgent)&&!window.opera;this.p.initFilter=a.extend(true,{},this.p.filter);if(!f){return}for(j=0;j<f;j++){g=this.p.columns[j];if(g.stype){g.inputtype=g.stype}else{if(!g.inputtype){g.inputtype="text"}}if(g.sorttype){g.searchtype=g.sorttype}else{if(!g.searchtype){g.searchtype="string"}}if(g.hidden===undefined){g.hidden=false}if(!g.label){g.label=g.name}if(g.index){g.name=g.index}if(!g.hasOwnProperty("searchoptions")){g.searchoptions={}}if(!g.hasOwnProperty("searchrules")){g.searchrules={}}}if(this.p.showQuery){a(this).append("<table class='queryresult ui-widget ui-widget-content' style='display:block;max-width:440px;border:0px none;' dir='"+this.p.direction+"'><tbody><tr><td class='query'></td></tr></tbody></table>")}var l=function(){return a("#"+a.jgrid.jqID(e.id))[0]||null};var h=function(o,i){var m=[true,""],p=l();if(a.isFunction(i.searchrules)){m=i.searchrules.call(p,o,i)}else{if(a.jgrid&&a.jgrid.checkValues){try{m=a.jgrid.checkValues.call(p,o,-1,i.searchrules,i.label)}catch(n){}}}if(m&&m.length&&m[0]===false){e.error=!m[0];e.errmsg=m[1]}};this.onchange=function(){this.p.error=false;this.p.errmsg="";return a.isFunction(this.p.onChange)?this.p.onChange.call(this,this.p):false};this.reDraw=function(){a("table.group:first",this).remove();var i=this.createTableForGroup(e.filter,null);a(this).append(i);if(a.isFunction(this.p.afterRedraw)){this.p.afterRedraw.call(this,this.p)}};this.createTableForGroup=function(p,A){var o=this,y;var z=a("<table class='group ui-widget ui-widget-content' style='border:0px none;'><tbody></tbody></table>"),w="left";if(this.p.direction==="rtl"){w="right";z.attr("dir","rtl")}if(A===null){z.append("<tr class='error' style='display:none;'><th colspan='5' class='ui-state-error' align='"+w+"'></th></tr>")}var m=a("<tr></tr>");z.append(m);var n=a("<th colspan='5' align='"+w+"'></th>");m.append(n);if(this.p.ruleButtons===true){var t=a("<select class='opsel'></select>");n.append(t);var v="",u;for(y=0;y<e.groupOps.length;y++){u=p.groupOp===o.p.groupOps[y].op?" selected='selected'":"";v+="<option value='"+o.p.groupOps[y].op+"'"+u+">"+o.p.groupOps[y].text+"</option>"}t.append(v).bind("change",function(){p.groupOp=a(t).val();o.onchange()})}var D="<span></span>";if(this.p.groupButton){D=a("<input type='button' value='+ {}' title='Add subgroup' class='add-group'/>");D.bind("click",function(){if(p.groups===undefined){p.groups=[]}p.groups.push({groupOp:e.groupOps[0].op,rules:[],groups:[]});o.reDraw();o.onchange();return false})}n.append(D);if(this.p.ruleButtons===true){var r=a("<input type='button' value='+' title='Add rule' class='add-rule ui-add'/>"),q;r.bind("click",function(){if(p.rules===undefined){p.rules=[]}for(y=0;y<o.p.columns.length;y++){var i=(o.p.columns[y].search===undefined)?true:o.p.columns[y].search,G=(o.p.columns[y].hidden===true),F=(o.p.columns[y].searchoptions.searchhidden===true);if((F&&i)||(i&&!G)){q=o.p.columns[y];break}}var E;if(q.searchoptions.sopt){E=q.searchoptions.sopt}else{if(o.p.sopt){E=o.p.sopt}else{if(a.inArray(q.searchtype,o.p.strarr)!==-1){E=o.p.stropts}else{E=o.p.numopts}}}p.rules.push({field:q.name,op:E[0],data:""});o.reDraw();return false});n.append(r)}if(A!==null){var s=a("<input type='button' value='-' title='Delete group' class='delete-group'/>");n.append(s);s.bind("click",function(){for(y=0;y<A.groups.length;y++){if(A.groups[y]===p){A.groups.splice(y,1);break}}o.reDraw();o.onchange();return false})}if(p.groups!==undefined){for(y=0;y<p.groups.length;y++){var x=a("<tr></tr>");z.append(x);var B=a("<td class='first'></td>");x.append(B);var C=a("<td colspan='4'></td>");C.append(this.createTableForGroup(p.groups[y],p));x.append(C)}}if(p.groupOp===undefined){p.groupOp=o.p.groupOps[0].op}if(p.rules!==undefined){for(y=0;y<p.rules.length;y++){z.append(this.createTableRowForRule(p.rules[y],p))}}return z};this.createTableRowForRule=function(v,x){var w=this,I=l(),n=a("<tr></tr>"),H,z,p,y,C="",B;n.append("<td class='first'></td>");var q=a("<td class='columns'></td>");n.append(q);var J=a("<select></select>"),A,E=[];q.append(J);J.bind("change",function(){v.field=a(J).val();p=a(this).parents("tr:first");for(H=0;H<w.p.columns.length;H++){if(w.p.columns[H].name===v.field){y=w.p.columns[H];break}}if(!y){return}y.searchoptions.id=a.jgrid.randId();if(k&&y.inputtype==="text"){if(!y.searchoptions.size){y.searchoptions.size=10}}var N=a.jgrid.createEl.call(I,y.inputtype,y.searchoptions,"",true,w.p.ajaxSelectOptions||{},true);a(N).addClass("input-elm");if(y.searchoptions.sopt){z=y.searchoptions.sopt}else{if(w.p.sopt){z=w.p.sopt}else{if(a.inArray(y.searchtype,w.p.strarr)!==-1){z=w.p.stropts}else{z=w.p.numopts}}}var L="",M=0;E=[];a.each(w.p.ops,function(){E.push(this.oper)});for(H=0;H<z.length;H++){A=a.inArray(z[H],E);if(A!==-1){if(M===0){v.op=w.p.ops[A].oper}L+="<option value='"+w.p.ops[A].oper+"'>"+w.p.ops[A].text+"</option>";M++}}a(".selectopts",p).empty().append(L);a(".selectopts",p)[0].selectedIndex=0;if(a.jgrid.msie&&a.jgrid.msiever()<9){var i=parseInt(a("select.selectopts",p)[0].offsetWidth,10)+1;a(".selectopts",p).width(i);a(".selectopts",p).css("width","auto")}a(".data",p).empty().append(N);a.jgrid.bindEv.call(I,N,y.searchoptions);a(".input-elm",p).bind("change",function(P){var O=P.target;v.data=O.nodeName.toUpperCase()==="SPAN"&&y.searchoptions&&a.isFunction(y.searchoptions.custom_value)?y.searchoptions.custom_value.call(I,a(O).children(".customelement:first"),"get"):O.value;w.onchange()});setTimeout(function(){v.data=a(N).val();w.onchange()},0)});var F=0;for(H=0;H<w.p.columns.length;H++){var t=(w.p.columns[H].search===undefined)?true:w.p.columns[H].search,G=(w.p.columns[H].hidden===true),K=(w.p.columns[H].searchoptions.searchhidden===true);if((K&&t)||(t&&!G)){B="";if(v.field===w.p.columns[H].name){B=" selected='selected'";F=H}C+="<option value='"+w.p.columns[H].name+"'"+B+">"+w.p.columns[H].label+"</option>"}}J.append(C);var D=a("<td class='operators'></td>");n.append(D);y=e.columns[F];y.searchoptions.id=a.jgrid.randId();if(k&&y.inputtype==="text"){if(!y.searchoptions.size){y.searchoptions.size=10}}var o=a.jgrid.createEl.call(I,y.inputtype,y.searchoptions,v.data,true,w.p.ajaxSelectOptions||{},true);if(v.op==="nu"||v.op==="nn"){a(o).attr("readonly","true");a(o).attr("disabled","true")}var m=a("<select class='selectopts'></select>");D.append(m);m.bind("change",function(){v.op=a(m).val();p=a(this).parents("tr:first");var i=a(".input-elm",p)[0];if(v.op==="nu"||v.op==="nn"){v.data="";if(i.tagName.toUpperCase()!=="SELECT"){i.value=""}i.setAttribute("readonly","true");i.setAttribute("disabled","true")}else{if(i.tagName.toUpperCase()==="SELECT"){v.data=i.value}i.removeAttribute("readonly");i.removeAttribute("disabled")}w.onchange()});if(y.searchoptions.sopt){z=y.searchoptions.sopt}else{if(w.p.sopt){z=w.p.sopt}else{if(a.inArray(y.searchtype,w.p.strarr)!==-1){z=w.p.stropts}else{z=w.p.numopts}}}C="";a.each(w.p.ops,function(){E.push(this.oper)});for(H=0;H<z.length;H++){A=a.inArray(z[H],E);if(A!==-1){B=v.op===w.p.ops[A].oper?" selected='selected'":"";C+="<option value='"+w.p.ops[A].oper+"'"+B+">"+w.p.ops[A].text+"</option>"}}m.append(C);var s=a("<td class='data'></td>");n.append(s);s.append(o);a.jgrid.bindEv.call(I,o,y.searchoptions);a(o).addClass("input-elm").bind("change",function(){v.data=y.inputtype==="custom"?y.searchoptions.custom_value.call(I,a(this).children(".customelement:first"),"get"):a(this).val();w.onchange()});var u=a("<td></td>");n.append(u);if(this.p.ruleButtons===true){var r=a("<input type='button' value='-' title='Delete rule' class='delete-rule ui-del'/>");u.append(r);r.bind("click",function(){for(H=0;H<x.rules.length;H++){if(x.rules[H]===v){x.rules.splice(H,1);break}}w.reDraw();w.onchange();return false})}return n};this.getStringForGroup=function(o){var m="(",i;if(o.groups!==undefined){for(i=0;i<o.groups.length;i++){if(m.length>1){m+=" "+o.groupOp+" "}try{m+=this.getStringForGroup(o.groups[i])}catch(p){alert(p)}}}if(o.rules!==undefined){try{for(i=0;i<o.rules.length;i++){if(m.length>1){m+=" "+o.groupOp+" "}m+=this.getStringForRule(o.rules[i])}}catch(n){alert(n)}}m+=")";if(m==="()"){return""}return m};this.getStringForRule=function(r){var o="",t="",q,n,p,s,m=["int","integer","float","number","currency"];for(q=0;q<this.p.ops.length;q++){if(this.p.ops[q].oper===r.op){o=this.p.operands.hasOwnProperty(r.op)?this.p.operands[r.op]:"";t=this.p.ops[q].oper;break}}for(q=0;q<this.p.columns.length;q++){if(this.p.columns[q].name===r.field){n=this.p.columns[q];break}}if(n==undefined){return""}s=r.data;if(t==="bw"||t==="bn"){s=s+"%"}if(t==="ew"||t==="en"){s="%"+s}if(t==="cn"||t==="nc"){s="%"+s+"%"}if(t==="in"||t==="ni"){s=" ("+s+")"}if(e.errorcheck){h(r.data,n)}if(a.inArray(n.searchtype,m)!==-1||t==="nn"||t==="nu"){p=r.field+" "+o+" "+s}else{p=r.field+" "+o+' "'+s+'"'}return p};this.resetFilter=function(){this.p.filter=a.extend(true,{},this.p.initFilter);this.reDraw();this.onchange()};this.hideError=function(){a("th.ui-state-error",this).html("");a("tr.error",this).hide()};this.showError=function(){a("th.ui-state-error",this).html(this.p.errmsg);a("tr.error",this).show()};this.toUserFriendlyString=function(){return this.getStringForGroup(e.filter)};this.toString=function(){var m=this;function n(q){if(m.p.errorcheck){var p,o;for(p=0;p<m.p.columns.length;p++){if(m.p.columns[p].name===q.field){o=m.p.columns[p];break}}if(o){h(q.data,o)}}return q.op+"(item."+q.field+",'"+q.data+"')"}function i(q){var p="(",o;if(q.groups!==undefined){for(o=0;o<q.groups.length;o++){if(p.length>1){if(q.groupOp==="OR"){p+=" || "}else{p+=" && "}}p+=i(q.groups[o])}}if(q.rules!==undefined){for(o=0;o<q.rules.length;o++){if(p.length>1){if(q.groupOp==="OR"){p+=" || "}else{p+=" && "}}p+=n(q.rules[o])}}p+=")";if(p==="()"){return""}return p}return i(this.p.filter)};this.reDraw();if(this.p.showQuery){this.onchange()}this.filter=true})};a.extend(a.fn.jqFilter,{toSQLString:function(){var b="";this.each(function(){b=this.toUserFriendlyString()});return b},filterData:function(){var b;this.each(function(){b=this.p.filter});return b},getParameter:function(b){if(b!==undefined){if(this.p.hasOwnProperty(b)){return this.p[b]}}return this.p},resetFilter:function(){return this.each(function(){this.resetFilter()})},addFilter:function(b){if(typeof b==="string"){b=a.jgrid.parse(b)}this.each(function(){this.p.filter=b;this.reDraw();this.onchange()})}})})(jQuery);
+ *
+ * The filter uses JSON entities to hold filter rules and groups. Here is an example of a filter:
+
+{ "groupOp": "AND",
+      "groups" : [ 
+        { "groupOp": "OR",
+            "rules": [
+                { "field": "name", "op": "eq", "data": "England" }, 
+                { "field": "id", "op": "le", "data": "5"}
+             ]
+        } 
+      ],
+      "rules": [
+        { "field": "name", "op": "eq", "data": "Romania" }, 
+        { "field": "id", "op": "le", "data": "1"}
+      ]
+}
+*/
+/*jshint eqeqeq:false, eqnull:true, devel:true */
+/*global jQuery */
+
+(function ($) {
+"use strict";
+
+$.fn.jqFilter = function( arg ) {
+	if (typeof arg === 'string') {
+		
+		var fn = $.fn.jqFilter[arg];
+		if (!fn) {
+			throw ("jqFilter - No such method: " + arg);
+		}
+		var args = $.makeArray(arguments).slice(1);
+		return fn.apply(this,args);
+	}
+
+	var p = $.extend(true,{
+		filter: null,
+		columns: [],
+		onChange : null,
+		afterRedraw : null,
+		checkValues : null,
+		error: false,
+		errmsg : "",
+		errorcheck : true,
+		showQuery : true,
+		sopt : null,
+		ops : [],
+		operands : null,
+		numopts : ['eq','ne', 'lt', 'le', 'gt', 'ge', 'nu', 'nn', 'in', 'ni'],
+		stropts : ['eq', 'ne', 'bw', 'bn', 'ew', 'en', 'cn', 'nc', 'nu', 'nn', 'in', 'ni'],
+		strarr : ['text', 'string', 'blob'],
+		groupOps : [{ op: "AND", text: "AND" },	{ op: "OR",  text: "OR" }],
+		groupButton : true,
+		ruleButtons : true,
+		direction : "ltr"
+	}, $.jgrid.filter, arg || {});
+	return this.each( function() {
+		if (this.filter) {return;}
+		this.p = p;
+		// setup filter in case if they is not defined
+		if (this.p.filter === null || this.p.filter === undefined) {
+			this.p.filter = {
+				groupOp: this.p.groupOps[0].op,
+				rules: [],
+				groups: []
+			};
+		}
+		var i, len = this.p.columns.length, cl,
+		isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+
+		// translating the options
+		this.p.initFilter = $.extend(true,{},this.p.filter);
+
+		// set default values for the columns if they are not set
+		if( !len ) {return;}
+		for(i=0; i < len; i++) {
+			cl = this.p.columns[i];
+			if( cl.stype ) {
+				// grid compatibility
+				cl.inputtype = cl.stype;
+			} else if(!cl.inputtype) {
+				cl.inputtype = 'text';
+			}
+			if( cl.sorttype ) {
+				// grid compatibility
+				cl.searchtype = cl.sorttype;
+			} else if (!cl.searchtype) {
+				cl.searchtype = 'string';
+			}
+			if(cl.hidden === undefined) {
+				// jqGrid compatibility
+				cl.hidden = false;
+			}
+			if(!cl.label) {
+				cl.label = cl.name;
+			}
+			if(cl.index) {
+				cl.name = cl.index;
+			}
+			if(!cl.hasOwnProperty('searchoptions')) {
+				cl.searchoptions = {};
+			}
+			if(!cl.hasOwnProperty('searchrules')) {
+				cl.searchrules = {};
+			}
+
+		}
+		if(this.p.showQuery) {
+			$(this).append("<table class='queryresult ui-widget ui-widget-content' style='display:block;max-width:440px;border:0px none;' dir='"+this.p.direction+"'><tbody><tr><td class='query'></td></tr></tbody></table>");
+		}
+		var getGrid = function () {
+			return $("#" + $.jgrid.jqID(p.id))[0] || null;
+		};
+		/*
+		 *Perform checking.
+		 *
+		*/
+		var checkData = function(val, colModelItem) {
+			var ret = [true,""], $t = getGrid();
+			if($.isFunction(colModelItem.searchrules)) {
+				ret = colModelItem.searchrules.call($t, val, colModelItem);
+			} else if($.jgrid && $.jgrid.checkValues) {
+				try {
+					ret = $.jgrid.checkValues.call($t, val, -1, colModelItem.searchrules, colModelItem.label);
+				} catch (e) {}
+			}
+			if(ret && ret.length && ret[0] === false) {
+				p.error = !ret[0];
+				p.errmsg = ret[1];
+			}
+		};
+		/* moving to common
+		randId = function() {
+			return Math.floor(Math.random()*10000).toString();
+		};
+		*/
+
+		this.onchange = function (  ){
+			// clear any error 
+			this.p.error = false;
+			this.p.errmsg="";
+			return $.isFunction(this.p.onChange) ? this.p.onChange.call( this, this.p ) : false;
+		};
+		/*
+		 * Redraw the filter every time when new field is added/deleted
+		 * and field is  changed
+		 */
+		this.reDraw = function() {
+			$("table.group:first",this).remove();
+			var t = this.createTableForGroup(p.filter, null);
+			$(this).append(t);
+			if($.isFunction(this.p.afterRedraw) ) {
+				this.p.afterRedraw.call(this, this.p);
+			}
+		};
+		/**
+		 * Creates a grouping data for the filter
+		 * @param group - object
+		 * @param parentgroup - object
+		 */
+		this.createTableForGroup = function(group, parentgroup) {
+			var that = this,  i;
+			// this table will hold all the group (tables) and rules (rows)
+			var table = $("<table class='group ui-widget ui-widget-content' style='border:0px none;'><tbody></tbody></table>"),
+			// create error message row
+			align = "left";
+			if(this.p.direction === "rtl") {
+				align = "right";
+				table.attr("dir","rtl");
+			}
+			if(parentgroup === null) {
+				table.append("<tr class='error' style='display:none;'><th colspan='5' class='ui-state-error' align='"+align+"'></th></tr>");
+			}
+
+			var tr = $("<tr></tr>");
+			table.append(tr);
+			// this header will hold the group operator type and group action buttons for
+			// creating subgroup "+ {}", creating rule "+" or deleting the group "-"
+			var th = $("<th colspan='5' align='"+align+"'></th>");
+			tr.append(th);
+
+			if(this.p.ruleButtons === true) {
+			// dropdown for: choosing group operator type
+			var groupOpSelect = $("<select class='opsel'></select>");
+			th.append(groupOpSelect);
+			// populate dropdown with all posible group operators: or, and
+			var str= "", selected;
+			for (i = 0; i < p.groupOps.length; i++) {
+				selected =  group.groupOp === that.p.groupOps[i].op ? " selected='selected'" :"";
+				str += "<option value='"+that.p.groupOps[i].op+"'" + selected+">"+that.p.groupOps[i].text+"</option>";
+			}
+
+			groupOpSelect
+			.append(str)
+			.bind('change',function() {
+				group.groupOp = $(groupOpSelect).val();
+				that.onchange(); // signals that the filter has changed
+			});
+			}
+			// button for adding a new subgroup
+			var inputAddSubgroup ="<span></span>";
+			if(this.p.groupButton) {
+				inputAddSubgroup = $("<input type='button' value='+ {}' title='Add subgroup' class='add-group'/>");
+				inputAddSubgroup.bind('click',function() {
+					if (group.groups === undefined ) {
+						group.groups = [];
+					}
+
+					group.groups.push({
+						groupOp: p.groupOps[0].op,
+						rules: [],
+						groups: []
+					}); // adding a new group
+
+					that.reDraw(); // the html has changed, force reDraw
+
+					that.onchange(); // signals that the filter has changed
+					return false;
+				});
+			}
+			th.append(inputAddSubgroup);
+			if(this.p.ruleButtons === true) {
+			// button for adding a new rule
+			var inputAddRule = $("<input type='button' value='+' title='Add rule' class='add-rule ui-add'/>"), cm;
+			inputAddRule.bind('click',function() {
+				//if(!group) { group = {};}
+				if (group.rules === undefined) {
+					group.rules = [];
+				}
+				for (i = 0; i < that.p.columns.length; i++) {
+				// but show only serchable and serchhidden = true fields
+					var searchable = (that.p.columns[i].search === undefined) ?  true: that.p.columns[i].search,
+					hidden = (that.p.columns[i].hidden === true),
+					ignoreHiding = (that.p.columns[i].searchoptions.searchhidden === true);
+					if ((ignoreHiding && searchable) || (searchable && !hidden)) {
+						cm = that.p.columns[i];
+						break;
+					}
+				}
+				
+				var opr;
+				if( cm.searchoptions.sopt ) {opr = cm.searchoptions.sopt;}
+				else if(that.p.sopt) { opr= that.p.sopt; }
+				else if  ( $.inArray(cm.searchtype, that.p.strarr) !== -1 ) {opr = that.p.stropts;}
+				else {opr = that.p.numopts;}
+
+				group.rules.push({
+					field: cm.name,
+					op: opr[0],
+					data: ""
+				}); // adding a new rule
+
+				that.reDraw(); // the html has changed, force reDraw
+				// for the moment no change have been made to the rule, so
+				// this will not trigger onchange event
+				return false;
+			});
+			th.append(inputAddRule);
+			}
+
+			// button for delete the group
+			if (parentgroup !== null) { // ignore the first group
+				var inputDeleteGroup = $("<input type='button' value='-' title='Delete group' class='delete-group'/>");
+				th.append(inputDeleteGroup);
+				inputDeleteGroup.bind('click',function() {
+				// remove group from parent
+					for (i = 0; i < parentgroup.groups.length; i++) {
+						if (parentgroup.groups[i] === group) {
+							parentgroup.groups.splice(i, 1);
+							break;
+						}
+					}
+
+					that.reDraw(); // the html has changed, force reDraw
+
+					that.onchange(); // signals that the filter has changed
+					return false;
+				});
+			}
+
+			// append subgroup rows
+			if (group.groups !== undefined) {
+				for (i = 0; i < group.groups.length; i++) {
+					var trHolderForSubgroup = $("<tr></tr>");
+					table.append(trHolderForSubgroup);
+
+					var tdFirstHolderForSubgroup = $("<td class='first'></td>");
+					trHolderForSubgroup.append(tdFirstHolderForSubgroup);
+
+					var tdMainHolderForSubgroup = $("<td colspan='4'></td>");
+					tdMainHolderForSubgroup.append(this.createTableForGroup(group.groups[i], group));
+					trHolderForSubgroup.append(tdMainHolderForSubgroup);
+				}
+			}
+			if(group.groupOp === undefined) {
+				group.groupOp = that.p.groupOps[0].op;
+			}
+
+			// append rules rows
+			if (group.rules !== undefined) {
+				for (i = 0; i < group.rules.length; i++) {
+					table.append(
+                       this.createTableRowForRule(group.rules[i], group)
+					);
+				}
+			}
+
+			return table;
+		};
+		/*
+		 * Create the rule data for the filter
+		 */
+		this.createTableRowForRule = function(rule, group ) {
+			// save current entity in a variable so that it could
+			// be referenced in anonimous method calls
+
+			var that=this, $t = getGrid(), tr = $("<tr></tr>"),
+			//document.createElement("tr"),
+
+			// first column used for padding
+			//tdFirstHolderForRule = document.createElement("td"),
+			i, op, trpar, cm, str="", selected;
+			//tdFirstHolderForRule.setAttribute("class", "first");
+			tr.append("<td class='first'></td>");
+
+
+			// create field container
+			var ruleFieldTd = $("<td class='columns'></td>");
+			tr.append(ruleFieldTd);
+
+
+			// dropdown for: choosing field
+			var ruleFieldSelect = $("<select></select>"), ina, aoprs = [];
+			ruleFieldTd.append(ruleFieldSelect);
+			ruleFieldSelect.bind('change',function() {
+				rule.field = $(ruleFieldSelect).val();
+
+				trpar = $(this).parents("tr:first");
+				for (i=0;i<that.p.columns.length;i++) {
+					if(that.p.columns[i].name ===  rule.field) {
+						cm = that.p.columns[i];
+						break;
+					}
+				}
+				if(!cm) {return;}
+				cm.searchoptions.id = $.jgrid.randId();
+				if(isIE && cm.inputtype === "text") {
+					if(!cm.searchoptions.size) {
+						cm.searchoptions.size = 10;
+					}
+				}
+				var elm = $.jgrid.createEl.call($t, cm.inputtype,cm.searchoptions, "", true, that.p.ajaxSelectOptions || {}, true);
+				$(elm).addClass("input-elm");
+				//that.createElement(rule, "");
+
+				if( cm.searchoptions.sopt ) {op = cm.searchoptions.sopt;}
+				else if(that.p.sopt) { op= that.p.sopt; }
+				else if  ($.inArray(cm.searchtype, that.p.strarr) !== -1) {op = that.p.stropts;}
+				else {op = that.p.numopts;}
+				// operators
+				var s ="", so = 0;
+				aoprs = [];
+				$.each(that.p.ops, function() { aoprs.push(this.oper); });
+				for ( i = 0 ; i < op.length; i++) {
+					ina = $.inArray(op[i],aoprs);
+					if(ina !== -1) {
+						if(so===0) {
+							rule.op = that.p.ops[ina].oper;
+						}
+						s += "<option value='"+that.p.ops[ina].oper+"'>"+that.p.ops[ina].text+"</option>";
+						so++;
+					}
+				}
+				$(".selectopts",trpar).empty().append( s );
+				$(".selectopts",trpar)[0].selectedIndex = 0;
+				if( $.jgrid.msie && $.jgrid.msiever() < 9) {
+					var sw = parseInt($("select.selectopts",trpar)[0].offsetWidth, 10) + 1;
+					$(".selectopts",trpar).width( sw );
+					$(".selectopts",trpar).css("width","auto");
+				}
+				// data
+				$(".data",trpar).empty().append( elm );
+				$.jgrid.bindEv.call($t, elm, cm.searchoptions);
+				$(".input-elm",trpar).bind('change',function( e ) {
+					var elem = e.target;
+					rule.data = elem.nodeName.toUpperCase() === "SPAN" && cm.searchoptions && $.isFunction(cm.searchoptions.custom_value) ?
+						cm.searchoptions.custom_value.call($t, $(elem).children(".customelement:first"), 'get') : elem.value;
+					that.onchange(); // signals that the filter has changed
+				});
+				setTimeout(function(){ //IE, Opera, Chrome
+				rule.data = $(elm).val();
+				that.onchange();  // signals that the filter has changed
+				}, 0);
+			});
+
+			// populate drop down with user provided column definitions
+			var j=0;
+			for (i = 0; i < that.p.columns.length; i++) {
+				// but show only serchable and serchhidden = true fields
+				var searchable = (that.p.columns[i].search === undefined) ? true: that.p.columns[i].search,
+				hidden = (that.p.columns[i].hidden === true),
+				ignoreHiding = (that.p.columns[i].searchoptions.searchhidden === true);
+				if ((ignoreHiding && searchable) || (searchable && !hidden)) {
+					selected = "";
+					if(rule.field === that.p.columns[i].name) {
+						selected = " selected='selected'";
+						j=i;
+					}
+					str += "<option value='"+that.p.columns[i].name+"'" +selected+">"+that.p.columns[i].label+"</option>";
+				}
+			}
+			ruleFieldSelect.append( str );
+
+
+			// create operator container
+			var ruleOperatorTd = $("<td class='operators'></td>");
+			tr.append(ruleOperatorTd);
+			cm = p.columns[j];
+			// create it here so it can be referentiated in the onchange event
+			//var RD = that.createElement(rule, rule.data);
+			cm.searchoptions.id = $.jgrid.randId();
+			if(isIE && cm.inputtype === "text") {
+				if(!cm.searchoptions.size) {
+					cm.searchoptions.size = 10;
+				}
+			}
+			var ruleDataInput = $.jgrid.createEl.call($t, cm.inputtype,cm.searchoptions, rule.data, true, that.p.ajaxSelectOptions || {}, true);
+			if(rule.op === 'nu' || rule.op === 'nn') {
+				$(ruleDataInput).attr('readonly','true');
+				$(ruleDataInput).attr('disabled','true');
+			} //retain the state of disabled text fields in case of null ops
+			// dropdown for: choosing operator
+			var ruleOperatorSelect = $("<select class='selectopts'></select>");
+			ruleOperatorTd.append(ruleOperatorSelect);
+			ruleOperatorSelect.bind('change',function() {
+				rule.op = $(ruleOperatorSelect).val();
+				trpar = $(this).parents("tr:first");
+				var rd = $(".input-elm",trpar)[0];
+				if (rule.op === "nu" || rule.op === "nn") { // disable for operator "is null" and "is not null"
+					rule.data = "";
+					if(rd.tagName.toUpperCase() !== 'SELECT') rd.value = "";
+					rd.setAttribute("readonly", "true");
+					rd.setAttribute("disabled", "true");
+				} else {
+					if(rd.tagName.toUpperCase() === 'SELECT') rule.data = rd.value;
+					rd.removeAttribute("readonly");
+					rd.removeAttribute("disabled");
+				}
+
+				that.onchange();  // signals that the filter has changed
+			});
+
+			// populate drop down with all available operators
+			if( cm.searchoptions.sopt ) {op = cm.searchoptions.sopt;}
+			else if(that.p.sopt) { op= that.p.sopt; }
+			else if  ($.inArray(cm.searchtype, that.p.strarr) !== -1) {op = that.p.stropts;}
+			else {op = that.p.numopts;}
+			str="";
+			$.each(that.p.ops, function() { aoprs.push(this.oper); });
+			for ( i = 0; i < op.length; i++) {
+				ina = $.inArray(op[i],aoprs);
+				if(ina !== -1) {
+					selected = rule.op === that.p.ops[ina].oper ? " selected='selected'" : "";
+					str += "<option value='"+that.p.ops[ina].oper+"'"+selected+">"+that.p.ops[ina].text+"</option>";
+				}
+			}
+			ruleOperatorSelect.append( str );
+			// create data container
+			var ruleDataTd = $("<td class='data'></td>");
+			tr.append(ruleDataTd);
+
+			// textbox for: data
+			// is created previously
+			//ruleDataInput.setAttribute("type", "text");
+			ruleDataTd.append(ruleDataInput);
+			$.jgrid.bindEv.call($t, ruleDataInput, cm.searchoptions);
+			$(ruleDataInput)
+			.addClass("input-elm")
+			.bind('change', function() {
+				rule.data = cm.inputtype === 'custom' ? cm.searchoptions.custom_value.call($t, $(this).children(".customelement:first"),'get') : $(this).val();
+				that.onchange(); // signals that the filter has changed
+			});
+
+			// create action container
+			var ruleDeleteTd = $("<td></td>");
+			tr.append(ruleDeleteTd);
+
+			// create button for: delete rule
+			if(this.p.ruleButtons === true) {
+			var ruleDeleteInput = $("<input type='button' value='-' title='Delete rule' class='delete-rule ui-del'/>");
+			ruleDeleteTd.append(ruleDeleteInput);
+			//$(ruleDeleteInput).html("").height(20).width(30).button({icons: {  primary: "ui-icon-minus", text:false}});
+			ruleDeleteInput.bind('click',function() {
+				// remove rule from group
+				for (i = 0; i < group.rules.length; i++) {
+					if (group.rules[i] === rule) {
+						group.rules.splice(i, 1);
+						break;
+					}
+				}
+
+				that.reDraw(); // the html has changed, force reDraw
+
+				that.onchange(); // signals that the filter has changed
+				return false;
+			});
+			}
+			return tr;
+		};
+
+		this.getStringForGroup = function(group) {
+			var s = "(", index;
+			if (group.groups !== undefined) {
+				for (index = 0; index < group.groups.length; index++) {
+					if (s.length > 1) {
+						s += " " + group.groupOp + " ";
+					}
+					try {
+						s += this.getStringForGroup(group.groups[index]);
+					} catch (eg) {alert(eg);}
+				}
+			}
+
+			if (group.rules !== undefined) {
+				try{
+					for (index = 0; index < group.rules.length; index++) {
+						if (s.length > 1) {
+							s += " " + group.groupOp + " ";
+						}
+						s += this.getStringForRule(group.rules[index]);
+					}
+				} catch (e) {alert(e);}
+			}
+
+			s += ")";
+
+			if (s === "()") {
+				return ""; // ignore groups that don't have rules
+			}
+			return s;
+		};
+		this.getStringForRule = function(rule) {
+			var opUF = "",opC="", i, cm, ret, val,
+			numtypes = ['int', 'integer', 'float', 'number', 'currency']; // jqGrid
+			for (i = 0; i < this.p.ops.length; i++) {
+				if (this.p.ops[i].oper === rule.op) {
+					opUF = this.p.operands.hasOwnProperty(rule.op) ? this.p.operands[rule.op] : "";
+					opC = this.p.ops[i].oper;
+					break;
+				}
+			}
+			for (i=0; i<this.p.columns.length; i++) {
+				if(this.p.columns[i].name === rule.field) {
+					cm = this.p.columns[i];
+					break;
+				}
+			}
+			if (cm == undefined) { return ""; }
+			val = rule.data;
+			if(opC === 'bw' || opC === 'bn') { val = val+"%"; }
+			if(opC === 'ew' || opC === 'en') { val = "%"+val; }
+			if(opC === 'cn' || opC === 'nc') { val = "%"+val+"%"; }
+			if(opC === 'in' || opC === 'ni') { val = " ("+val+")"; }
+			if(p.errorcheck) { checkData(rule.data, cm); }
+			if($.inArray(cm.searchtype, numtypes) !== -1 || opC === 'nn' || opC === 'nu') { ret = rule.field + " " + opUF + " " + val; }
+			else { ret = rule.field + " " + opUF + " \"" + val + "\""; }
+			return ret;
+		};
+		this.resetFilter = function () {
+			this.p.filter = $.extend(true,{},this.p.initFilter);
+			this.reDraw();
+			this.onchange();
+		};
+		this.hideError = function() {
+			$("th.ui-state-error", this).html("");
+			$("tr.error", this).hide();
+		};
+		this.showError = function() {
+			$("th.ui-state-error", this).html(this.p.errmsg);
+			$("tr.error", this).show();
+		};
+		this.toUserFriendlyString = function() {
+			return this.getStringForGroup(p.filter);
+		};
+		this.toString = function() {
+			// this will obtain a string that can be used to match an item.
+			var that = this;
+			function getStringRule(rule) {
+				if(that.p.errorcheck) {
+					var i, cm;
+					for (i=0; i<that.p.columns.length; i++) {
+						if(that.p.columns[i].name === rule.field) {
+							cm = that.p.columns[i];
+							break;
+						}
+					}
+					if(cm) {checkData(rule.data, cm);}
+				}
+				return rule.op + "(item." + rule.field + ",'" + rule.data + "')";
+			}
+
+			function getStringForGroup(group) {
+				var s = "(", index;
+
+				if (group.groups !== undefined) {
+					for (index = 0; index < group.groups.length; index++) {
+						if (s.length > 1) {
+							if (group.groupOp === "OR") {
+								s += " || ";
+							}
+							else {
+								s += " && ";
+							}
+						}
+						s += getStringForGroup(group.groups[index]);
+					}
+				}
+
+				if (group.rules !== undefined) {
+					for (index = 0; index < group.rules.length; index++) {
+						if (s.length > 1) {
+							if (group.groupOp === "OR") {
+								s += " || ";
+							}
+							else  {
+								s += " && ";
+							}
+						}
+						s += getStringRule(group.rules[index]);
+					}
+				}
+
+				s += ")";
+
+				if (s === "()") {
+					return ""; // ignore groups that don't have rules
+				}
+				return s;
+			}
+
+			return getStringForGroup(this.p.filter);
+		};
+
+		// Here we init the filter
+		this.reDraw();
+
+		if(this.p.showQuery) {
+			this.onchange();
+		}
+		// mark is as created so that it will not be created twice on this element
+		this.filter = true;
+	});
+};
+$.extend($.fn.jqFilter,{
+	/*
+	 * Return SQL like string. Can be used directly
+	 */
+	toSQLString : function()
+	{
+		var s ="";
+		this.each(function(){
+			s = this.toUserFriendlyString();
+		});
+		return s;
+	},
+	/*
+	 * Return filter data as object.
+	 */
+	filterData : function()
+	{
+		var s;
+		this.each(function(){
+			s = this.p.filter;
+		});
+		return s;
+
+	},
+	getParameter : function (param) {
+		if(param !== undefined) {
+			if (this.p.hasOwnProperty(param) ) {
+				return this.p[param];
+			}
+		}
+		return this.p;
+	},
+	resetFilter: function() {
+		return this.each(function(){
+			this.resetFilter();
+		});
+	},
+	addFilter: function (pfilter) {
+		if (typeof pfilter === "string") {
+			pfilter = $.jgrid.parse( pfilter );
+	}
+		this.each(function(){
+			this.p.filter = pfilter;
+			this.reDraw();
+			this.onchange();
+		});
+	}
+
+});
+})(jQuery);
