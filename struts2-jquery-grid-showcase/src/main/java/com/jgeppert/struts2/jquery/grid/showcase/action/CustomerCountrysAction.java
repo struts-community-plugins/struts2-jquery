@@ -19,25 +19,27 @@
 
 package com.jgeppert.struts2.jquery.grid.showcase.action;
 
-import java.util.List;
-
-import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomersDao;
+import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomerDao;
 import com.opensymphony.xwork2.ActionSupport;
 
+import javax.inject.Inject;
+import java.util.List;
+
 public class CustomerCountrysAction extends ActionSupport {
-  private List<String>      countrys;
-  private CustomersDao customersDao = new CustomersDao();
 
-  private static final long serialVersionUID = 6721064966173343669L;
+    private static final long serialVersionUID = 6721064966173343669L;
 
-  public String execute() throws Exception
-  {
-    countrys = customersDao.findCountrys();
-    return SUCCESS;
-  }
-  
-  public List<String> getCountrys()
-  {
-    return countrys;
-  }
+    @Inject
+    private CustomerDao customerDao;
+
+    private List<String> countrys;
+
+    public String execute() throws Exception {
+        countrys = customerDao.findCountrys();
+        return SUCCESS;
+    }
+
+    public List<String> getCountrys() {
+        return countrys;
+    }
 }

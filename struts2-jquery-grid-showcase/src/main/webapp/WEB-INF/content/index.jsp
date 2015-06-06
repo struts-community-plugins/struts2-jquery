@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,8 +12,9 @@
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />
-	<meta http-equiv="keywords" content="struts2,jquery, hibernate, plugin,showcase, grid" />
-	<meta http-equiv="description" content="Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins" />
+	<meta http-equiv="keywords" content="struts2,jquery,hibernate,spring,plugin,showcase,grid"/>
+	<meta http-equiv="description"
+		  content="Showcase for Struts2 jQuery Grid Plugin with hibernate and spring integration"/>
 
 	<title>Struts2 jQuery Grid Plugin Showcase - <s:text name="showcase.version"/></title>
 
@@ -46,8 +48,10 @@
 	<div class="ym-wrapper">
 		<div class="ym-wbox" style="padding: 5px 0 0 0;">
 			<div>
-				<h1 class="ui-state-default" style="background: none; border: none; margin: 0;">Showcase for Struts2 jQuery Grid Plugin and Full Hibernate Struts2 Plugins</h1>
-				<h4 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin - Version <s:text name="showcase.version"/> / Full Hibernate Plugin - Version 2.2.1 GA</h4>
+				<h1 class="ui-state-default" style="background: none; border: none; margin: 0;">Showcase for Struts2
+					jQuery Grid Plugin</h1>
+				<h4 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin - Version
+					<s:text name="showcase.version"/></h4>
 			</div>
 	</div>
 </header>
@@ -60,7 +64,6 @@
 				<li><s:url var="urlgridsubgrid" action="grid-subgrid" /><sj:a id="gridsubgridlink" href="%{urlgridsubgrid}" targets="main_content">Grid with Subgrid</sj:a></li>
 				<li><s:url var="urlgriddnd" action="grid-dnd" /><sj:a id="griddndlink" href="%{urlgriddnd}" targets="main_content">Grid with Drag and Drop</sj:a></li>
 				<li><a href="https://github.com/struts-community-plugins/struts2-jquery/">Struts2 jQuery Plugin</a></li>
-				<li><a href="http://code.google.com/p/full-hibernate-plugin-for-struts2/">Full Hibernate Plugin</a></li>
 			</ul>
 		</div>
 	</div>
@@ -79,7 +82,7 @@
 	<div class="ym-wrapper">
 		<div class="ym-wbox">
 			<p style="text-align: center;">
-				Written by  <a href="http://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a> and <a href="http://jyoshiriro.blogspot.com" title="Java Developer Blog">Jos&eacute; Yoshiriro</a><br/>
+				Written by <a href="http://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a><br/>
 				Layout based on <a href="http://www.yaml.de/" title="OpenSource CSS Layout">YAML</a>
 			</p>
 		</div>

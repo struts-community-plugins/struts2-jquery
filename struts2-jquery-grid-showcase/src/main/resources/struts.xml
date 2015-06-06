@@ -30,13 +30,9 @@
     <constant name="struts.convention.action.packages" value="com.jgeppert.struts2.jquery.grid.showcase.action"/>
     <constant name="struts.convention.default.parent.package" value="showcase"/>
     <constant name="struts.custom.i18n.resources" value="messages" />
-    
-    <package name="showcase" extends="hibernate-default,json-default">
-        <interceptors>
-			<interceptor-stack name="showcaseStack">
-				<interceptor-ref name="defaultStackHibernate"/>
-            </interceptor-stack>
-        </interceptors>
-    	<default-interceptor-ref name="showcaseStack"/>
+
+    <constant name="struts.objectFactory" value="spring"/>
+
+    <package name="showcase" extends="json-default">
     </package>
 </struts>

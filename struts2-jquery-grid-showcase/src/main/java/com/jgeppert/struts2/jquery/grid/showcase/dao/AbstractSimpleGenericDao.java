@@ -1,103 +1,80 @@
 package com.jgeppert.struts2.jquery.grid.showcase.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
-import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
-
 @SuppressWarnings("unchecked")
 public abstract class AbstractSimpleGenericDao<C, I extends Serializable> {
 
-  private static final Log log = LogFactory.getLog(AbstractSimpleGenericDao.class);
-  Class<C>                 entityClass;
+    private static final Logger log = LogManager.getLogger(AbstractSimpleGenericDao.class);
 
-  @SessionTarget
-  protected Session        hSession;
+    @Inject
+    protected SessionFactory sessionFactory;
 
-  @TransactionTarget
-  protected Transaction    hTransaction;
+    Class<C> entityClass;
 
-  {
-    entityClass = (Class<C>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-  }
+    {
+        entityClass = (Class<C>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
 
-  public List<C> getAll()
-  {
-    try
-    {
-      return hSession.createCriteria(entityClass).list();
+    protected Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
     }
-    catch (HibernateException e)
-    {
-      log.error(e.getMessage(), e);
-      throw e;
-    }
-  }
 
-  public C get(I id)
-  {
-    try
-    {
-      return (C) hSession.get(entityClass, id);
+    public List<C> getAll() {
+        try {
+            return getCurrentSession().createCriteria(entityClass).list();
+        } catch (HibernateException e) {
+            log.error(e.getMessage(), e);
+            throw e;
+        }
     }
-    catch (HibernateException e)
-    {
-      log.error(e.getMessage(), e);
-      throw e;
-    }
-  }
 
-  public void save(C object)
-  {
-    try
-    {
-      hSession.save(object);
+    public C get(I id) {
+        try {
+            return (C) getCurrentSession().get(entityClass, id);
+        } catch (HibernateException e) {
+            throw e;
+        }
     }
-    catch (HibernateException e)
-    {
-      hTransaction.rollback();
-      log.error(e.getMessage());
-      log.error("Be sure your Database is in read-write mode!");
-      throw e;
-    }
-  }
 
-  public void update(C object)
-  {
-    try
-    {
-      hSession.update(object);
+    @Transactional
+    public void save(C object) {
+        try {
+            getCurrentSession().saveOrUpdate(object);
+        } catch (RuntimeException e) {
+            log.error("Be sure your Database is in read-write mode!");
+            throw e;
+        }
     }
-    catch (HibernateException e)
-    {
-      hTransaction.rollback();
-      log.error(e.getMessage());
-      log.error("Be sure your Database is in read-write mode!");
-      throw e;
-    }
-  }
 
-  public void delete(I id)
-  {
-    try
-    {
-      C actual = get(id);
-      hSession.delete(actual);
+    @Transactional
+    public void update(C object) {
+        try {
+            getCurrentSession().update(object);
+        } catch (RuntimeException e) {
+            log.error("Be sure your Database is in read-write mode!");
+            throw e;
+        }
     }
-    catch (HibernateException e)
-    {
-      hTransaction.rollback();
-      log.error(e.getMessage());
-      log.error("Be sure your Database is in read-write mode!");
-      throw e;
+
+    @Transactional
+    public void delete(I id) {
+        try {
+            C actual = get(id);
+            getCurrentSession().delete(actual);
+        } catch (RuntimeException e) {
+            log.error("Be sure your Database is in read-write mode!");
+            throw e;
+        }
     }
-  }
 }

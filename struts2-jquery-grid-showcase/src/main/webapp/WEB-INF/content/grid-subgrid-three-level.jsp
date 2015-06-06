@@ -3,7 +3,7 @@
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 
     <s:url var="ordersurl" action="json-orders" />
-    <s:url var="orderdetailsurl" action="json-orderdetails" />
+<s:url var="orderdetailsurl" action="json-order-details"/>
 	<s:url var="customersurl" action="json-table" escapeAmp="false" />
 	
     <h2>Grid with Subgrid - Three Level</h2>

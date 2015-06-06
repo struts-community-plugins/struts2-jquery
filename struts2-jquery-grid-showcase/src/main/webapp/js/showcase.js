@@ -2,7 +2,7 @@
  * Format a Column as Link
  */
 function formatLink(cellvalue, options, row) {
-	return "<a href='#' onClick='javascript:openDialog("+cellvalue+")'>" + cellvalue + "</a>";
+	return "<a href='#' onClick='javascript:openDialog(" + cellvalue + ")'><strong>" + cellvalue + "</strong></a>";
 }
 
 /*

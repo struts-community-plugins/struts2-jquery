@@ -19,272 +19,254 @@
 
 package com.jgeppert.struts2.jquery.grid.showcase.action;
 
-import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.jgeppert.struts2.jquery.grid.showcase.dao.OrderDao;
+import com.jgeppert.struts2.jquery.grid.showcase.model.Order;
+import com.opensymphony.xwork2.ActionSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import com.jgeppert.struts2.jquery.grid.showcase.dao.OrdersDao;
-import com.jgeppert.struts2.jquery.grid.showcase.model.Orders;
-import com.opensymphony.xwork2.ActionSupport;
+import javax.inject.Inject;
+import java.util.List;
 
 @Result(type = "json")
-public class JsonOrdersAction extends ActionSupport
-{
+public class JsonOrdersAction extends ActionSupport {
 
-	private static final long	serialVersionUID	= 5078264277068533593L;
-	private static final Log	log					= LogFactory.getLog(JsonOrdersAction.class);
+    private static final long serialVersionUID = 5078264277068533593L;
+    private static final Logger log = LogManager.getLogger(JsonOrdersAction.class);
 
-	  private Integer            id;
+    @Inject
+    private OrderDao ordersDao;
 
-	  // Your result List
-	private List<Orders>		gridModel;
+    private Integer id;
 
-	// get how many rows we want to have into the grid - rowNum attribute in the
-	// grid
-	private Integer				rows				= 0;
+    // Your result List
+    private List<Order> gridModel;
 
-	// Get the requested page. By default grid sets this to 1.
-	private Integer				page				= 0;
+    // get how many rows we want to have into the grid - rowNum attribute in the
+    // grid
+    private Integer rows = 0;
 
-	// sorting order - asc or desc
-	private String				sord				= "asc";
+    // Get the requested page. By default grid sets this to 1.
+    private Integer page = 0;
 
-	// get index row - i.e. user click to sort.
-	private String				sidx;
+    // sorting order - asc or desc
+    private String sord = "asc";
 
-	// Search Field
-	private String				searchField;
+    // get index row - i.e. user click to sort.
+    private String sidx;
 
-	// The Search String
-	private String				searchString;
+    // Search Field
+    private String searchField;
 
-	// he Search Operation
-	// ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']
-	private String				searchOper;
+    // The Search String
+    private String searchString;
 
-	// Your Total Pages
-	private Integer				total				= 0;
+    // he Search Operation
+    // ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']
+    private String searchOper;
 
-	// All Records
-	private Integer				records				= 0;
+    // Your Total Pages
+    private Integer total = 0;
 
-	private OrdersDao			ordersDao			= new OrdersDao();
+    // All Records
+    private Integer records = 0;
 
-	public String execute() {
-		log.debug("Page " + getPage() + " Rows " + getRows() + " Sorting Order " + getSord() + " Index Row :" + getSidx());
-		log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
+    public String execute() {
+        log.debug("Page " + getPage() + " Rows " + getRows() + " Sorting Order " + getSord() + " Index Row :" + getSidx());
+        log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
 
-		// Calcalate until rows ware selected
-		int to = (rows * page);
+        // Calcalate until rows ware selected
+        int to = (rows * page);
 
-		// Calculate the first row to read
-		int from = to - rows;
+        // Calculate the first row to read
+        int from = to - rows;
 
-		// Criteria to Build SQL
-		DetachedCriteria criteria = DetachedCriteria.forClass(Orders.class);
+        // Criteria to Build SQL
+        DetachedCriteria criteria = DetachedCriteria.forClass(Order.class);
 
-	    if (id != null) {
-			criteria.createAlias("customer", "c");
-			criteria.add(Restrictions.eq("c.customernumber", id));
-	    }
+        if (id != null) {
+            criteria.createAlias("customer", "c");
+            criteria.add(Restrictions.eq("c.customernumber", id));
+        }
 
 
-		// Handle Search
-		if (searchField != null)
-		{
-			if (searchField.equals("customernumber"))
-			{
-				Integer searchValue = Integer.parseInt(searchString);
-				if (searchOper.equals("eq")) criteria.add(Restrictions.eq("ordernumber", searchValue));
-				else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("ordernumber", searchValue));
-				else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("ordernumber", searchValue));
-				else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("ordernumber", searchValue));
-			}
-			else if (searchField.equals("status") || searchField.equals("comments"))
-			{
-				if (searchOper.equals("eq")) criteria.add(Restrictions.eq(searchField, searchString));
-				else if (searchOper.equals("ne")) criteria.add(Restrictions.ne(searchField, searchString));
-				else if (searchOper.equals("bw")) criteria.add(Restrictions.like(searchField, searchString + "%"));
-				else if (searchOper.equals("cn")) criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
-			}
-			if (searchField.equals("customer"))
-			{
-				Integer searchValue = Integer.parseInt(searchString);
-				criteria.createAlias("customer", "c");
+        // Handle Search
+        if (searchField != null) {
+            if (searchField.equals("customernumber")) {
+                Integer searchValue = Integer.parseInt(searchString);
+                if (searchOper.equals("eq")) criteria.add(Restrictions.eq("ordernumber", searchValue));
+                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("ordernumber", searchValue));
+                else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("ordernumber", searchValue));
+                else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("ordernumber", searchValue));
+            } else if (searchField.equals("status") || searchField.equals("comments")) {
+                if (searchOper.equals("eq")) criteria.add(Restrictions.eq(searchField, searchString));
+                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne(searchField, searchString));
+                else if (searchOper.equals("bw")) criteria.add(Restrictions.like(searchField, searchString + "%"));
+                else if (searchOper.equals("cn"))
+                    criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
+            }
+            if (searchField.equals("customer")) {
+                Integer searchValue = Integer.parseInt(searchString);
+                criteria.createAlias("customer", "c");
 
-				if (searchOper.equals("eq")) criteria.add(Restrictions.eq("c.customernumber", searchValue));
-				else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("c.customernumber", searchValue));
-				else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("c.customernumber", searchValue));
-				else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("c.customernumber", searchValue));
-			}
-		}
+                if (searchOper.equals("eq")) criteria.add(Restrictions.eq("c.customernumber", searchValue));
+                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("c.customernumber", searchValue));
+                else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("c.customernumber", searchValue));
+                else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("c.customernumber", searchValue));
+            }
+        }
 
-		// Count Orders
-		records = ordersDao.countByCriteria(criteria);
+        // Count Orders
+        records = ordersDao.countByCriteria(criteria);
 
-		// Reset count Projection
-		criteria.setProjection(null);
-		criteria.setResultTransformer(Criteria.ROOT_ENTITY);
+        // Reset count Projection
+        criteria.setProjection(null);
+        criteria.setResultTransformer(Criteria.ROOT_ENTITY);
 
-		// Handle Order By
-		if (sidx != null && !sidx.equals(""))
-		{
-			if (!sidx.equals("customer"))
-			{
-				if (sord.equals("asc")) criteria.addOrder(Order.asc(sidx));
-				else criteria.addOrder(Order.desc(sidx));
-			}
-			else
-			{
-				if (sord.equals("asc")) criteria.addOrder(Order.asc("customer.customernumber"));
-				else criteria.addOrder(Order.desc("customer.customernumber"));
-			}
-		}
+        // Handle Order By
+        if (sidx != null && !sidx.equals("")) {
+            if (!sidx.equals("customer")) {
+                if (sord.equals("asc")) criteria.addOrder(org.hibernate.criterion.Order.asc(sidx));
+                else criteria.addOrder(org.hibernate.criterion.Order.desc(sidx));
+            } else {
+                if (sord.equals("asc")) criteria.addOrder(org.hibernate.criterion.Order.asc("customer.customernumber"));
+                else criteria.addOrder(org.hibernate.criterion.Order.desc("customer.customernumber"));
+            }
+        }
 
-		// Get Customers by Criteria
-		gridModel = ordersDao.findByCriteria(criteria, from, rows);
+        // Get Customers by Criteria
+        gridModel = ordersDao.findByCriteria(criteria, from, rows);
 
-		// Set to = max rows
-		if (to > records) to = records;
+        // Set to = max rows
+        if (to > records) to = records;
 
-		// Calculate total Pages
-		total = (int) Math.ceil((double) records / (double) rows);
+        // Calculate total Pages
+        total = (int) Math.ceil((double) records / (double) rows);
 
-		return SUCCESS;
-	}
+        return SUCCESS;
+    }
 
-	public String getJSON() {
-		return execute();
-	}
+    public String getJSON() {
+        return execute();
+    }
 
-	/**
-	 * @return how many rows we want to have into the grid
-	 */
-	public Integer getRows() {
-		return rows;
-	}
+    /**
+     * @return how many rows we want to have into the grid
+     */
+    public Integer getRows() {
+        return rows;
+    }
 
-	/**
-	 * @param rows
-	 *            how many rows we want to have into the grid
-	 */
-	public void setRows(Integer rows) {
-		this.rows = rows;
-	}
+    /**
+     * @param rows how many rows we want to have into the grid
+     */
+    public void setRows(Integer rows) {
+        this.rows = rows;
+    }
 
-	/**
-	 * @return current page of the query
-	 */
-	public Integer getPage() {
-		return page;
-	}
+    /**
+     * @return current page of the query
+     */
+    public Integer getPage() {
+        return page;
+    }
 
-	/**
-	 * @param page
-	 *            current page of the query
-	 */
-	public void setPage(Integer page) {
-		this.page = page;
-	}
+    /**
+     * @param page current page of the query
+     */
+    public void setPage(Integer page) {
+        this.page = page;
+    }
 
-	/**
-	 * @return total pages for the query
-	 */
-	public Integer getTotal() {
-		return total;
-	}
+    /**
+     * @return total pages for the query
+     */
+    public Integer getTotal() {
+        return total;
+    }
 
-	/**
-	 * @param total
-	 *            total pages for the query
-	 */
-	public void setTotal(Integer total) {
-		this.total = total;
-	}
+    /**
+     * @param total total pages for the query
+     */
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
 
-	/**
-	 * @return total number of records for the query. e.g. select count(*) from
-	 *         table
-	 */
-	public Integer getRecords() {
-		return records;
-	}
+    /**
+     * @return total number of records for the query. e.g. select count(*) from
+     * table
+     */
+    public Integer getRecords() {
+        return records;
+    }
 
-	/**
-	 * @param records
-	 *            total number of records for the query. e.g. select count(*)
-	 *            from table
-	 */
-	public void setRecords(Integer records) {
+    /**
+     * @param records total number of records for the query. e.g. select count(*)
+     *                from table
+     */
+    public void setRecords(Integer records) {
 
-		this.records = records;
+        this.records = records;
 
-		if (this.records > 0 && this.rows > 0)
-		{
-			this.total = (int) Math.ceil((double) this.records / (double) this.rows);
-		}
-		else
-		{
-			this.total = 0;
-		}
-	}
+        if (this.records > 0 && this.rows > 0) {
+            this.total = (int) Math.ceil((double) this.records / (double) this.rows);
+        } else {
+            this.total = 0;
+        }
+    }
 
-	/**
-	 * @return an collection that contains the actual data
-	 */
-	public List<Orders> getGridModel() {
-		return gridModel;
-	}
+    /**
+     * @return an collection that contains the actual data
+     */
+    public List<Order> getGridModel() {
+        return gridModel;
+    }
 
-	/**
-	 * @return sorting order
-	 */
-	public String getSord() {
-		return sord;
-	}
+    /**
+     * @return sorting order
+     */
+    public String getSord() {
+        return sord;
+    }
 
-	/**
-	 * @param sord
-	 *            sorting order
-	 */
-	public void setSord(String sord) {
-		this.sord = sord;
-	}
+    /**
+     * @param sord sorting order
+     */
+    public void setSord(String sord) {
+        this.sord = sord;
+    }
 
-	/**
-	 * @return get index row - i.e. user click to sort.
-	 */
-	public String getSidx() {
-		return sidx;
-	}
+    /**
+     * @return get index row - i.e. user click to sort.
+     */
+    public String getSidx() {
+        return sidx;
+    }
 
-	/**
-	 * @param sidx
-	 *            get index row - i.e. user click to sort.
-	 */
-	public void setSidx(String sidx) {
-		this.sidx = sidx;
-	}
+    /**
+     * @param sidx get index row - i.e. user click to sort.
+     */
+    public void setSidx(String sidx) {
+        this.sidx = sidx;
+    }
 
-	public void setSearchField(String searchField) {
-		this.searchField = searchField;
-	}
+    public void setSearchField(String searchField) {
+        this.searchField = searchField;
+    }
 
-	public void setSearchString(String searchString) {
-		this.searchString = searchString;
-	}
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
+    }
 
-	public void setSearchOper(String searchOper) {
-		this.searchOper = searchOper;
-	}
+    public void setSearchOper(String searchOper) {
+        this.searchOper = searchOper;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

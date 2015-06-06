@@ -19,26 +19,27 @@
 
 package com.jgeppert.struts2.jquery.grid.showcase.action;
 
-import java.util.List;
-
 import com.jgeppert.struts2.jquery.grid.showcase.dao.EmployeeDao;
-import com.jgeppert.struts2.jquery.grid.showcase.model.Employees;
+import com.jgeppert.struts2.jquery.grid.showcase.model.Employee;
 import com.opensymphony.xwork2.ActionSupport;
 
+import javax.inject.Inject;
+import java.util.List;
+
 public class EmployeesAction extends ActionSupport {
-  private List<Employees>   employees;
-  private EmployeeDao       employeeDao      = new EmployeeDao();
+    private static final long serialVersionUID = 6721064966173343669L;
 
-  private static final long serialVersionUID = 6721064966173343669L;
+    @Inject
+    private EmployeeDao employeeDao;
 
-  public String execute() throws Exception
-  {
-    employees = employeeDao.getAll();
-    return SUCCESS;
-  }
+    private List<Employee> employees;
 
-  public List<Employees> getEmployees()
-  {
-    return employees;
-  }
+    public String execute() throws Exception {
+        employees = employeeDao.getAll();
+        return SUCCESS;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
 }

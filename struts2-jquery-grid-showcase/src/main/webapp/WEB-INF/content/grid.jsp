@@ -23,6 +23,7 @@
 		Make Samples editable with following <sj:a id="openStepsDialog" openDialog="readWriteSteps">Steps</sj:a>.
 		<sj:dialog
 			id="readWriteSteps"
+			title="Write Configuration Steps"
 			modal="true"
 			autoOpen="false"
 			width="600"
@@ -32,8 +33,8 @@
 			<ol>
 				<li>Copy BirtSample.jar from the WEB-INF/lib folder to your Harddrive (e.g. C:\)</li>
 				<li>Extract BirtSample.jar to C:\BirtSample)</li>
-				<li>Edit WEB-INF/classes/hibernate.cfg.xml</li>
-				<li>&lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:derby:directory:C:/BirtSample/BirtSample&lt;/property&gt;</li>
+				<li>Edit WEB-INF/classes/spring/applicationContext-db.xml</li>
+				<li>&lt;property name=&quot;jdbcUrl&quot; value=&quot;jdbc:derby:directory:C:/BirtSample/BirtSample&quot;/&gt;</li>
 			</ol>
 		</sj:dialog>
     </p>
