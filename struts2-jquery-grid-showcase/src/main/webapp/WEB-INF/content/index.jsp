@@ -53,6 +53,7 @@
 				<h4 class="ui-state-default" style="background: none; border: none;">Struts2 jQuery Plugin - Version
 					<s:text name="showcase.version"/></h4>
 			</div>
+		</div>
 	</div>
 </header>
 
