@@ -95,6 +95,61 @@
                             <goal>minify</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>jqueryui-minify</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <jsEngine>CLOSURE</jsEngine>
+                            <closureLanguage>ECMASCRIPT5_STRICT</closureLanguage>
+                            <skipMerge>true</skipMerge>
+                            <webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
+                            <webappTargetDir>${basedir}/src/main/resources</webappTargetDir>
+                            <jsSourceDir>template/js/base</jsSourceDir>
+                            <jsTargetDir>template/js/base</jsTargetDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>accordion.js</jsSourceFile>
+                                <jsSourceFile>autocomplete.js</jsSourceFile>
+                                <jsSourceFile>button.js</jsSourceFile>
+                                <jsSourceFile>core.js</jsSourceFile>
+                                <jsSourceFile>datepicker.js</jsSourceFile>
+                                <jsSourceFile>dialog.js</jsSourceFile>
+                                <jsSourceFile>draggable.js</jsSourceFile>
+                                <jsSourceFile>droppable.js</jsSourceFile>
+                                <jsSourceFile>effect.js</jsSourceFile>
+                                <jsSourceFile>effect-blind.js</jsSourceFile>
+                                <jsSourceFile>effect-bounce.js</jsSourceFile>
+                                <jsSourceFile>effect-clip.js</jsSourceFile>
+                                <jsSourceFile>effect-drop.js</jsSourceFile>
+                                <jsSourceFile>effect-explode.js</jsSourceFile>
+                                <jsSourceFile>effect-fade.js</jsSourceFile>
+                                <jsSourceFile>effect-fold.js</jsSourceFile>
+                                <jsSourceFile>effect-highlight.js</jsSourceFile>
+                                <jsSourceFile>effect-puff.js</jsSourceFile>
+                                <jsSourceFile>effect-pulsate.js</jsSourceFile>
+                                <jsSourceFile>effect-scale.js</jsSourceFile>
+                                <jsSourceFile>effect-shake.js</jsSourceFile>
+                                <jsSourceFile>effect-size.js</jsSourceFile>
+                                <jsSourceFile>effect-slide.js</jsSourceFile>
+                                <jsSourceFile>effect-transfer.js</jsSourceFile>
+                                <jsSourceFile>menu.js</jsSourceFile>
+                                <jsSourceFile>mouse.js</jsSourceFile>
+                                <jsSourceFile>position.js</jsSourceFile>
+                                <jsSourceFile>progressbar.js</jsSourceFile>
+                                <jsSourceFile>resizable.js</jsSourceFile>
+                                <jsSourceFile>selectable.js</jsSourceFile>
+                                <jsSourceFile>selectmenu.js</jsSourceFile>
+                                <jsSourceFile>slider.js</jsSourceFile>
+                                <jsSourceFile>sortable.js</jsSourceFile>
+                                <jsSourceFile>spinner.js</jsSourceFile>
+                                <jsSourceFile>tabs.js</jsSourceFile>
+                                <jsSourceFile>tooltip.js</jsSourceFile>
+                                <jsSourceFile>widget.js</jsSourceFile>
+                            </jsSourceFiles>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
