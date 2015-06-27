@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-<#assign jQueryVersion="2.1.1">
+<#assign jQueryVersion="2.1.4">
 <#assign jQueryMobileVersion="1.4.2">
 <#assign struts2jQueryVersion="${version}">
 
