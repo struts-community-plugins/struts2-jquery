@@ -35,39 +35,47 @@
 	</sj:div>
 </div>
 
-<div class="code ui-widget-content ui-corner-all" style="clear: left;">
-	<strong>JavaScript:</strong>
-      <pre>
-        &lt;script type="text/javascript"&gt;
-		$.subscribe('ondrop', function(event,data) {
-	        $(data).addClass('ui-state-highlight').find('p').html($(event.originalEvent.ui.draggable).attr('id')+' dropped!');
-	        $(event.originalEvent.ui.draggable).find('p').html('I was dragged!');
-		});
-        &lt;/script&gt;        
-      </pre>
-	<strong>Code:</strong>
-	  <pre>
-    &lt;div class=&quot;draganddrop&quot; style=&quot;width: 100%; height: 250px;&quot;&gt;
-	    &lt;sj:div id=&quot;draggablenonvalid&quot; <strong>draggable=&quot;true&quot;</strong> cssClass=&quot;noaccept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot;&gt;
-	        I'm draggable but can't be dropped
-	    &lt;/sj:div&gt;
+<h4>Source Code</h4>
 
-	    &lt;sj:div id=&quot;draggable&quot;  <strong>draggable=&quot;true&quot; draggableHandle=&quot;h3&quot;
-		  draggableRevert=&quot;invalid&quot;</strong> cssClass=&quot;accept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot;&gt;
-	        &lt;h3 class=&quot;ui-widget-header&quot;&gt;Drag me to my target&lt;/h3&gt;
-	        &lt;p&gt;&lt;/p&gt;
-	    &lt;/sj:div&gt;
+<sj:tabbedpanel id="sourcecode">
+	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
+	<sj:tab id="tab2" target="javascript" label="JavaScript"/>
+	<div id="jsp">
+	    <pre>
+            <code class="html">
+&lt;div class=&quot;draganddrop&quot; style=&quot;width: 100%; height: 250px;&quot;&gt;
+	&lt;sj:div id=&quot;draggablenonvalid&quot; <strong>draggable=&quot;true&quot;</strong> cssClass=&quot;noaccept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot;&gt;
+		I'm draggable but can't be dropped
+	&lt;/sj:div&gt;
 
-	    &lt;s:url id=&quot;urlecho&quot; action=&quot;echo&quot;&gt;&lt;s:param name=&quot;echo&quot;&gt;I'm a remote div, drag me!&lt;/s:param&gt;&lt;/s:url&gt;
-	    &lt;sj:div href=&quot;%{urlecho}&quot; id=&quot;draggableremote&quot;  <strong>draggable=&quot;true&quot;</strong> indicator=&quot;indicator&quot; cssClass=&quot;accept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot; &gt;
-            &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
-        &lt;/sj:div&gt;
+	&lt;sj:div id=&quot;draggable&quot;  <strong>draggable=&quot;true&quot; draggableHandle=&quot;h3&quot;
+	draggableRevert=&quot;invalid&quot;</strong> cssClass=&quot;accept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot;&gt;
+		&lt;h3 class=&quot;ui-widget-header&quot;&gt;Drag me to my target&lt;/h3&gt;
+		&lt;p&gt;&lt;/p&gt;
+	&lt;/sj:div&gt;
 
-	    &lt;sj:div id=&quot;droptarget&quot; <strong>droppable=&quot;true&quot; droppableOnDropTopics=&quot;ondrop&quot;
-		  droppableActiveClass=&quot;ui-state-hover&quot; droppableHoverClass=&quot;ui-state-active&quot;
-		  droppableAccept=&quot;.accept&quot;</strong> cssClass=&quot;ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 220px; height: 220px; padding: 0.5em; float: left; margin: 10px;&quot;&gt;
-	        &lt;p&gt;Drop here&lt;/p&gt;
-	    &lt;/sj:div&gt;
-    &lt;/div&gt;
-	  </pre>
-</div>
+	&lt;s:url id=&quot;urlecho&quot; action=&quot;echo&quot;&gt;&lt;s:param name=&quot;echo&quot;&gt;I'm a remote div, drag me!&lt;/s:param&gt;&lt;/s:url&gt;
+	&lt;sj:div href=&quot;%{urlecho}&quot; id=&quot;draggableremote&quot;  <strong>draggable=&quot;true&quot;</strong> indicator=&quot;indicator&quot; cssClass=&quot;accept ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;&quot; &gt;
+		&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+	&lt;/sj:div&gt;
+
+	&lt;sj:div id=&quot;droptarget&quot; <strong>droppable=&quot;true&quot; droppableOnDropTopics=&quot;ondrop&quot;
+	droppableActiveClass=&quot;ui-state-hover&quot; droppableHoverClass=&quot;ui-state-active&quot;
+	droppableAccept=&quot;.accept&quot;</strong> cssClass=&quot;ui-widget-content ui-corner-all&quot; cssStyle=&quot;width: 220px; height: 220px; padding: 0.5em; float: left; margin: 10px;&quot;&gt;
+		&lt;p&gt;Drop here&lt;/p&gt;
+	&lt;/sj:div&gt;
+&lt;/div&gt;
+			</code>
+	    </pre>
+	</div>
+	<div id="javascript">
+	    <pre>
+          <code class="javascript">
+$.subscribe('ondrop', function(event,data) {
+	$(data).addClass('ui-state-highlight').find('p').html($(event.originalEvent.ui.draggable).attr('id')+' dropped!');
+	$(event.originalEvent.ui.draggable).find('p').html('I was dragged!');
+});
+		  </code>
+	    </pre>
+	</div>
+</sj:tabbedpanel>

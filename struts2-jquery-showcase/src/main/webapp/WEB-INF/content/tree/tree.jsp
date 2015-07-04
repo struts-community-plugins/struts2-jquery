@@ -4,23 +4,22 @@
 <h2>Static Tree</h2>
 
 <p class="text">
-	A simple static Tree Component.
+	A static tree component.
 </p>
 <sjt:tree id="treeStatic" jstreetheme="default" openAllOnLoad="true">
 	<sjt:treeItem title="Struts2">
 		<sjt:treeItem title="General">
 			<sjt:treeItem title="Struts2" href="http://struts.apache.org"/>
-			<sjt:treeItem title="Struts2 @ Facebook"
-			              href="http://www.facebook.com/pages/Struts2-Users/103890046351798"/>
+			<sjt:treeItem title="Struts2 @ Facebook" href="https://www.facebook.com/apachestruts"/>
+			<sjt:treeItem title="Struts2 @ Twitter" href="https://twitter.com/TheApacheStruts"/>
 		</sjt:treeItem>
 		<sjt:treeItem title="Plugins">
 			<sjt:treeItem title="Struts2 Plugins" href="https://cwiki.apache.org/S2PLUGINS/home.html"/>
 			<sjt:treeItem title="Struts2 jQuery Plugin" href="https://github.com/struts-community-plugins/struts2-jquery/"/>
-			<sjt:treeItem title="Struts2 Full Hibernate Plugin"
-			              href="http://code.google.com/p/full-hibernate-plugin-for-struts2/"/>
+			<sjt:treeItem title="Struts2 Bootstrap Plugin" href="https://github.com/struts-community-plugins/struts2-bootstrap/"/>
 		</sjt:treeItem>
 		<sjt:treeItem title="Blogs">
-			<sjt:treeItem title="Struts2 jQuery News" href="http://www.jgeppert.com/category/java/struts2-jquery/"/>
+			<sjt:treeItem title="Struts2 jQuery News" href="http://www.jgeppert.com"/>
 		</sjt:treeItem>
 		<sjt:treeItem title="AJAX Links">
 			<s:url var="ajax1" value="/ajax1.action"/>
@@ -36,15 +35,15 @@
 	</sjt:treeItem>
 </sjt:tree>
 
-<strong>Result Div :</strong>
+<strong>Result div:</strong>
 
-<div id="result" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
+<div id="result" class="result ui-widget-content ui-corner-all">Click on the AJAX links above.</div>
 
 
-<h2>Dynamic Tree with AJAX Links and Contextmenu</h2>
+<h2>Dynamic tree with AJAX links and context menu</h2>
 
 <p class="text">
-	A Tree Component rendered on the server with AJAX links, context menu and dark theme.
+	A tree component rendered on the server with AJAX links, context menu and dark theme.
 </p>
 <s:url var="echo" value="/echo.action"/>
 <sjt:tree
@@ -76,14 +75,14 @@
     		}"
 		/>
 
-<strong>Result Div :</strong>
+<strong>Result div:</strong>
 
-<div id="result2" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
+<div id="result2" class="result ui-widget-content ui-corner-all">Click on the AJAX links above.</div>
 
-<h2>Dynamic Tree in form with Checkboxes</h2>
+<h2>Dynamic Tree in form with checkboxes</h2>
 
 <p class="text">
-	A Tree Component in a form with Checkboxes.
+	A tree component in a form with checkboxes.
 </p>
 <s:form id="treeForm" action="echo" theme="simple">
 	<sjt:tree
@@ -115,10 +114,10 @@
 </s:form>
 <strong>Result Div :</strong>
 
-<div id="result3" class="result ui-widget-content ui-corner-all">Click on the AJAX Submit above.</div>
+<div id="result3" class="result ui-widget-content ui-corner-all">Click on the AJAX submit buttons above.</div>
 
 
-<h2>Tree with Types</h2>
+<h2>Tree with different node types</h2>
 
 <p class="text">
 	A Tree with different node types.
@@ -158,29 +157,30 @@
 	</sjt:treeItem>
 </sjt:tree>
 
+<h4>Source Code</h4>
+
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
-    <pre>
+	  <pre>
+            <code class="html">
 &lt;h2&gt;Static Tree&lt;/h2&gt;
 
 &lt;p class=&quot;text&quot;&gt;
-	A simple static Tree Component.
+	A static tree component.
 &lt;/p&gt;
 &lt;sjt:tree id=&quot;treeStatic&quot; jstreetheme=&quot;default&quot; openAllOnLoad=&quot;true&quot;&gt;
 	&lt;sjt:treeItem title=&quot;Struts2&quot;&gt;
 		&lt;sjt:treeItem title=&quot;General&quot;&gt;
-			&lt;sjt:treeItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org/2.x/index.html&quot;/&gt;
-			&lt;sjt:treeItem title=&quot;Struts2 @ Facebook&quot;
-			              href=&quot;http://www.facebook.com/pages/Struts2-Users/103890046351798&quot;/&gt;
+			&lt;sjt:treeItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org&quot;/&gt;
+			&lt;sjt:treeItem title=&quot;Struts2 @ Facebook&quot; href=&quot;https://www.facebook.com/apachestruts&quot;/&gt;
+			&lt;sjt:treeItem title=&quot;Struts2 @ Twitter&quot; href=&quot;https://twitter.com/TheApacheStruts&quot;/&gt;
 		&lt;/sjt:treeItem&gt;
 		&lt;sjt:treeItem title=&quot;Plugins&quot;&gt;
 			&lt;sjt:treeItem title=&quot;Struts2 Plugins&quot; href=&quot;https://cwiki.apache.org/S2PLUGINS/home.html&quot;/&gt;
-			&lt;sjt:treeItem title=&quot;Struts2 jQuery Plugin&quot; href=&quot;http://code.google.com/p/struts2-jquery/&quot;/&gt;
-			&lt;sjt:treeItem title=&quot;Struts2 Full Hibernate Plugin&quot;
-			              href=&quot;http://code.google.com/p/full-hibernate-plugin-for-struts2/&quot;/&gt;
+			&lt;sjt:treeItem title=&quot;Struts2 jQuery Plugin&quot; href=&quot;https://github.com/struts-community-plugins/struts2-jquery/&quot;/&gt;
+			&lt;sjt:treeItem title=&quot;Struts2 Bootstrap Plugin&quot; href=&quot;https://github.com/struts-community-plugins/struts2-bootstrap/&quot;/&gt;
 		&lt;/sjt:treeItem&gt;
 		&lt;sjt:treeItem title=&quot;Blogs&quot;&gt;
-			&lt;sjt:treeItem title=&quot;Struts2 jQuery News&quot; href=&quot;http://www.jgeppert.com/category/java/struts2-jquery/&quot;/&gt;
+			&lt;sjt:treeItem title=&quot;Struts2 jQuery News&quot; href=&quot;http://www.jgeppert.com&quot;/&gt;
 		&lt;/sjt:treeItem&gt;
 		&lt;sjt:treeItem title=&quot;AJAX Links&quot;&gt;
 			&lt;s:url var=&quot;ajax1&quot; value=&quot;/ajax1.action&quot;/&gt;
@@ -196,21 +196,22 @@
 	&lt;/sjt:treeItem&gt;
 &lt;/sjt:tree&gt;
 
-&lt;strong&gt;Result Div :&lt;/strong&gt;
+&lt;strong&gt;Result div:&lt;/strong&gt;
 
-&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Links above.&lt;/div&gt;
+&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX links above.&lt;/div&gt;
 
 
-&lt;h2&gt;Dynamic Tree with AJAX Links and Contextmenu&lt;/h2&gt;
+&lt;h2&gt;Dynamic tree with AJAX links and context menu&lt;/h2&gt;
 
 &lt;p class=&quot;text&quot;&gt;
-	A Tree Component rendered on the server with AJAX Links and Contextmenu.
+	A tree component rendered on the server with AJAX links, context menu and dark theme.
 &lt;/p&gt;
 &lt;s:url var=&quot;echo&quot; value=&quot;/echo.action&quot;/&gt;
 &lt;sjt:tree
 		id=&quot;treeDynamicAjax&quot;
+        jstreetheme=&quot;default-dark&quot;
 		rootNode=&quot;nodes&quot;
-		childCollectionProperty=&quot;children&quot;
+		childCollectionProperty=&quot;childrens&quot;
 		nodeTitleProperty=&quot;text&quot;
 		nodeIdProperty=&quot;id&quot;
 		nodeHref=&quot;%{echo}&quot;
@@ -235,21 +236,21 @@
     		}&quot;
 		/&gt;
 
-&lt;strong&gt;Result Div :&lt;/strong&gt;
+&lt;strong&gt;Result div:&lt;/strong&gt;
 
-&lt;div id=&quot;result2&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Links above.&lt;/div&gt;
+&lt;div id=&quot;result2&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX links above.&lt;/div&gt;
 
-&lt;h2&gt;Dynamic Tree in form with Checkboxes&lt;/h2&gt;
+&lt;h2&gt;Dynamic Tree in form with checkboxes&lt;/h2&gt;
 
 &lt;p class=&quot;text&quot;&gt;
-	A Tree Component in a form with Checkboxes.
+	A tree component in a form with checkboxes.
 &lt;/p&gt;
 &lt;s:form id=&quot;treeForm&quot; action=&quot;echo&quot; theme=&quot;simple&quot;&gt;
 	&lt;sjt:tree
 			name=&quot;echo&quot;
 			id=&quot;treeDynamicCheckboxes&quot;
 			rootNode=&quot;nodes&quot;
-			childCollectionProperty=&quot;children&quot;
+			childCollectionProperty=&quot;childrens&quot;
 			nodeTitleProperty=&quot;text&quot;
 			nodeIdProperty=&quot;id&quot;
 			openAllOnLoad=&quot;true&quot;
@@ -257,21 +258,27 @@
 			checkboxToogleAllTopics=&quot;toogleAllNodesTopic&quot;
 			checkboxShowTopics=&quot;showCheckboxesTopic&quot;
 			checkboxHideTopics=&quot;hideCheckboxesTopic&quot;
+            checkboxCheckAllTopics=&quot;checkAllCheckboxesTopic&quot;
+            checkboxUncheckAllTopics=&quot;uncheckAllCheckboxesTopic&quot;
 			onClickTopics=&quot;treeClicked&quot;
             showThemeDots=&quot;false&quot;
             showThemeIcons=&quot;false&quot;
 			/&gt;
-	&lt;sj:submit formIds=&quot;treeForm&quot; targets=&quot;result3&quot; button=&quot;true&quot;/&gt;
-	&lt;sj:submit onClickTopics=&quot;toogleAllNodesTopic&quot; value=&quot;Toogle all Nodes&quot; button=&quot;true&quot;/&gt;
-	&lt;sj:submit onClickTopics=&quot;showCheckboxesTopic&quot; value=&quot;Show Checkboxes&quot; button=&quot;true&quot;/&gt;
-	&lt;sj:submit onClickTopics=&quot;hideCheckboxesTopic&quot; value=&quot;Hide Checkboxes&quot; button=&quot;true&quot;/&gt;
+    &lt;div&gt;
+        &lt;sj:submit formIds=&quot;treeForm&quot; targets=&quot;result3&quot; button=&quot;true&quot;/&gt;
+        &lt;sj:submit onClickTopics=&quot;toogleAllNodesTopic&quot; value=&quot;Toogle all Nodes&quot; button=&quot;true&quot;/&gt;
+        &lt;sj:submit onClickTopics=&quot;showCheckboxesTopic&quot; value=&quot;Show Checkboxes&quot; button=&quot;true&quot;/&gt;
+        &lt;sj:submit onClickTopics=&quot;hideCheckboxesTopic&quot; value=&quot;Hide Checkboxes&quot; button=&quot;true&quot;/&gt;
+        &lt;sj:submit onClickTopics=&quot;checkAllCheckboxesTopic&quot; value=&quot;Check all&quot; button=&quot;true&quot;/&gt;
+        &lt;sj:submit onClickTopics=&quot;uncheckAllCheckboxesTopic&quot; value=&quot;Uncheck all&quot; button=&quot;true&quot;/&gt;
+    &lt;/div&gt;
 &lt;/s:form&gt;
 &lt;strong&gt;Result Div :&lt;/strong&gt;
 
-&lt;div id=&quot;result3&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Submit above.&lt;/div&gt;
+&lt;div id=&quot;result3&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX submit buttons above.&lt;/div&gt;
 
 
-&lt;h2&gt;Tree with Types&lt;/h2&gt;
+&lt;h2&gt;Tree with different node types&lt;/h2&gt;
 
 &lt;p class=&quot;text&quot;&gt;
 	A Tree with different node types.
@@ -310,6 +317,6 @@
 		&lt;/sjt:treeItem&gt;
 	&lt;/sjt:treeItem&gt;
 &lt;/sjt:tree&gt;
-
+			</code>
     </pre>
 </div>

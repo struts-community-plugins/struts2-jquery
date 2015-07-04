@@ -111,116 +111,121 @@
 <div id="result3" class="result ui-widget-content ui-corner-all">Submit form above.</div>
 
 
-<sj:tabbedpanel id="localtabs" cssClass="list">
+<h4>Source Code</h4>
+
+<sj:tabbedpanel id="sourcecode">
 <sj:tab id="tab1" target="jsp" label="JSP Code"/>
 <sj:tab id="tab2" target="java" label="Java Code"/>
 <sj:tab id="tab2" target="config" label="Configuration"/>
 <div id="jsp">
 	  <pre>
-    &lt;s:form id=&quot;formSelectOne&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form populated by a String List&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-				&lt;sj:select 
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;echo&quot; 
-					name=&quot;echo&quot; 
-					list=&quot;languageList&quot; 
-					emptyOption=&quot;true&quot; 
-					headerKey=&quot;-1&quot; 
-					headerValue=&quot;Please Select a Language&quot;
-				/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-				&lt;sj:submit 
-					targets=&quot;result1&quot; 
-					value=&quot;AJAX Submit&quot; 
-					indicator=&quot;indicator&quot; 
-					button=&quot;true&quot;
-				/&gt;
-				&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
- 
-    &lt;strong&gt;Result Div 1 :&lt;/strong&gt;
-	&lt;div id=&quot;result1&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
-	
-    &lt;s:form id=&quot;formSelectTwo&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form populated by a Map&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-				&lt;sj:select 
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;echo2&quot; 
-					name=&quot;echo&quot; 
-					list=&quot;languageMap&quot; 
-					emptyOption=&quot;true&quot; 
-					headerKey=&quot;-1&quot; 
-					headerValue=&quot;Please Select a Language&quot;
-				/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-				&lt;sj:submit 
-					targets=&quot;result2&quot; 
-					value=&quot;AJAX Submit&quot; 
-					indicator=&quot;indicator&quot;
-					button=&quot;true&quot;
-				/&gt;
-				&lt;img id=&quot;indicator&quot; 
-					src=&quot;images/indicator.gif&quot; 
-					alt=&quot;Loading...&quot; style=&quot;display:none&quot;
-				/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
+            <code class="html">
+&lt;s:form id=&quot;formSelectOne&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form populated by a String List&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+			&lt;sj:select
+				href=&quot;%{remoteurl}&quot;
+				id=&quot;echo&quot;
+				name=&quot;echo&quot;
+				list=&quot;languageList&quot;
+				emptyOption=&quot;true&quot;
+				headerKey=&quot;-1&quot;
+				headerValue=&quot;Please Select a Language&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				targets=&quot;result1&quot;
+				value=&quot;AJAX Submit&quot;
+				indicator=&quot;indicator&quot;
+				button=&quot;true&quot;
+			/&gt;
+			&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
 
-    &lt;strong&gt;Result Div 2 :&lt;/strong&gt;
-	&lt;div id=&quot;result2&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
-	
-    &lt;s:form id=&quot;formSelectThree&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form populated by a List with Objects&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-				&lt;sj:select 
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;echo3&quot; 
-					name=&quot;echo&quot; 
-					list=&quot;languageObjList&quot; 
-					listKey=&quot;myKey&quot; 
-					listValue=&quot;myValue&quot; 
-					emptyOption=&quot;true&quot; 
-					headerKey=&quot;-1&quot; 
-					headerValue=&quot;Please Select a Language&quot;
-				/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-				&lt;sj:submit 
-					targets=&quot;result3&quot; 
-					value=&quot;AJAX Submit&quot; 
-					indicator=&quot;indicator&quot;
-					button=&quot;true&quot;
-				/&gt;
-				&lt;img id=&quot;indicator&quot; 
-					src=&quot;images/indicator.gif&quot; 
-					alt=&quot;Loading...&quot; 
-					style=&quot;display:none&quot;/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
+&lt;strong&gt;Result Div 1 :&lt;/strong&gt;
+&lt;div id=&quot;result1&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
 
-    &lt;strong&gt;Result Div 3 :&lt;/strong&gt;
-	&lt;div id=&quot;result3&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
+&lt;s:form id=&quot;formSelectTwo&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form populated by a Map&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+			&lt;sj:select
+				href=&quot;%{remoteurl}&quot;
+				id=&quot;echo2&quot;
+				name=&quot;echo&quot;
+				list=&quot;languageMap&quot;
+				emptyOption=&quot;true&quot;
+				headerKey=&quot;-1&quot;
+				headerValue=&quot;Please Select a Language&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				targets=&quot;result2&quot;
+				value=&quot;AJAX Submit&quot;
+				indicator=&quot;indicator&quot;
+				button=&quot;true&quot;
+			/&gt;
+			&lt;img id=&quot;indicator&quot;
+				src=&quot;images/indicator.gif&quot;
+				alt=&quot;Loading...&quot; style=&quot;display:none&quot;
+			/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+
+&lt;strong&gt;Result Div 2 :&lt;/strong&gt;
+&lt;div id=&quot;result2&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
+
+&lt;s:form id=&quot;formSelectThree&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form populated by a List with Objects&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+			&lt;sj:select
+				href=&quot;%{remoteurl}&quot;
+				id=&quot;echo3&quot;
+				name=&quot;echo&quot;
+				list=&quot;languageObjList&quot;
+				listKey=&quot;myKey&quot;
+				listValue=&quot;myValue&quot;
+				emptyOption=&quot;true&quot;
+				headerKey=&quot;-1&quot;
+				headerValue=&quot;Please Select a Language&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				targets=&quot;result3&quot;
+				value=&quot;AJAX Submit&quot;
+				indicator=&quot;indicator&quot;
+				button=&quot;true&quot;
+			/&gt;
+			&lt;img id=&quot;indicator&quot;
+				src=&quot;images/indicator.gif&quot;
+				alt=&quot;Loading...&quot;
+				style=&quot;display:none&quot;/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+
+&lt;strong&gt;Result Div 3 :&lt;/strong&gt;
+&lt;div id=&quot;result3&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form above.&lt;/div&gt;
+			</code>
  	  </pre>
 </div>
 <div id="java">
 	  <pre>
+            <code class="java">
 @ParentPackage( value = &quot;showcase&quot;)
 public class JsonSample extends ActionSupport{
     
@@ -307,12 +312,15 @@ public class JsonSample extends ActionSupport{
     }
   }
 }
+			</code>
 	  </pre>
 </div>
 <div id="config">
 	  <pre>
-    &lt;package name=&quot;showcase&quot; extends=&quot;struts-default,<strong>json-default</strong>&quot; namespace=&quot;/&quot;&gt;
+            <code class="xml">
+    &lt;package name=&quot;showcase&quot; extends=&quot;struts-default,json-default&quot; namespace=&quot;/&quot;&gt;
     &lt;/package&gt;
+		  </code>
 	  </pre>
 </div>
 </sj:tabbedpanel>

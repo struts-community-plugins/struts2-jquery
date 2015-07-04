@@ -9,11 +9,14 @@
 	<sj:progressbar id="progressbarresize" value="21" cssStyle="height: 100%;"/>
 </sj:div>
 
+<h4>Source Code</h4>
+
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
-    <pre>
-    &lt;sj:effectDiv id="progressbarWrapper" resizable="true" cssStyle="height:30px;" cssClass="ui-widget-default"&gt;
-        &lt;sj:progressbar id="progressbarresize" value="21" change="change" cssStyle="height: 100%;"/&gt;
-    &lt;/sj:effectDiv&gt;
+	  <pre>
+            <code class="html">
+&lt;sj:div id="progressbarWrapper" resizable="true" cssStyle="height:30px;" cssClass="ui-widget-default"&gt;
+    &lt;sj:progressbar id="progressbarresize" value="21" change="change" cssStyle="height: 100%;"/&gt;
+&lt;/sj:div&gt;
+            </code>
     </pre>
 </div>

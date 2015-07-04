@@ -18,47 +18,62 @@
 		heightStyle="content"
 		/>
 
-<div class="code ui-widget-content ui-corner-all">
-	<strong>Code in JSP:</strong>
-    <pre>
-    &lt;s:url var=&quot;urlecho&quot; action=&quot;echo&quot;/&gt;
-    &lt;sj:accordion
-    	id=&quot;accordionremote&quot;
-    	list=&quot;accordion&quot;
-    	listKey=&quot;title&quot;
-    	listValue=&quot;content&quot;
-    	paramKeys=&quot;echo&quot;
-    	paramValues=&quot;content&quot;
-    	href=&quot;%{urlecho}&quot;
-    	active=&quot;false&quot;
-        heightStyle=&quot;content&quot;
-    	/&gt;    </pre>
-	<strong>Code in Action:</strong>
-    <pre>
-    private List&lt;AccordionBean&gt; accordion;
 
-    @Action(value=&quot;/accordion-remote&quot;, 
-               results={@Result( location = &quot;accordion-remote.jsp&quot;, name=&quot;success&quot;)}
-            )
-    public String execute() throws Exception {
-        accordion = new LinkedList&lt;AccordionBean&gt;();
-        accordion.add(new AccordionBean(&quot;My Title 1&quot;, &quot;Content One&quot;));
-        accordion.add(new AccordionBean(&quot;My Title 2&quot;, &quot;Content Two&quot;));
-        accordion.add(new AccordionBean(&quot;My Title 3&quot;, &quot;Content Three&quot;));
-        accordion.add(new AccordionBean(&quot;My Title 4&quot;, &quot;Content Four&quot;));
-        accordion.add(new AccordionBean(&quot;My Title 5&quot;, &quot;Content Five&quot;));
-        return SUCCESS;
-    }
+<h4>Source Code</h4>
 
-    public List&lt;AccordionBean&gt; getAccordion() {
-        return accordion;
-    }
-    </pre>
-	<strong>Code in Bean:</strong>
-    <pre>
+<sj:tabbedpanel id="codesamples">
+    <sj:tab id="tab1" target="jsp" label="JSP Code"/>
+    <sj:tab id="tab2" target="action" label="Action"/>
+    <sj:tab id="tab3" target="bean" label="Bean"/>
+    <div id="jsp">
+		<pre>
+            <code class="html">
+&lt;s:url var=&quot;urlecho&quot; action=&quot;echo&quot;/&gt;
+&lt;sj:accordion
+    id=&quot;accordionremote&quot;
+    list=&quot;accordion&quot;
+    listKey=&quot;title&quot;
+    listValue=&quot;content&quot;
+    paramKeys=&quot;echo&quot;
+    paramValues=&quot;content&quot;
+    href=&quot;%{urlecho}&quot;
+    active=&quot;false&quot;
+    heightStyle=&quot;content&quot;
+/&gt;
+            </code>
+        </pre>
+    </div>
+    <div id="action">
+		<pre>
+    			<code class="java">
+private List&lt;AccordionBean&gt; accordion;
+
+@Action(value=&quot;/accordion-remote&quot;,
+results={@Result( location = &quot;accordion-remote.jsp&quot;, name=&quot;success&quot;)}
+)
+public String execute() throws Exception {
+    accordion = new LinkedList&lt;AccordionBean&gt;();
+    accordion.add(new AccordionBean(&quot;My Title 1&quot;, &quot;Content One&quot;));
+    accordion.add(new AccordionBean(&quot;My Title 2&quot;, &quot;Content Two&quot;));
+    accordion.add(new AccordionBean(&quot;My Title 3&quot;, &quot;Content Three&quot;));
+    accordion.add(new AccordionBean(&quot;My Title 4&quot;, &quot;Content Four&quot;));
+    accordion.add(new AccordionBean(&quot;My Title 5&quot;, &quot;Content Five&quot;));
+    return SUCCESS;
+}
+
+public List&lt;AccordionBean&gt; getAccordion() {
+    return accordion;
+}
+                </code>
+		</pre>
+    </div>
+    <div id="bean">
+		<pre>
+    			<code class="java">
 public class AccordionBean {
     String title;
     String content;
+
     public AccordionBean(String title, String content) {
         super();
         this.title = title;
@@ -77,5 +92,7 @@ public class AccordionBean {
         this.content = content;
     }
 }
-    </pre>
-</div>
+		</pre>
+    </div>
+</sj:tabbedpanel>
+

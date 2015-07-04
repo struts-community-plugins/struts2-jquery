@@ -4,7 +4,7 @@
 <h2>Grid (Local Data)</h2>
 
 <p class="text">
-	A Grid that loads data only once on initialization. The column Credit Limit is editable.
+	A grid that loads data only once on initialization. The column credit limit is editable.
 </p>
 <s:url var="remoteurl" action="grid-data-provider" namespace="/grid">
 	<s:param name="loadonce" value="%{true}"/>
@@ -51,63 +51,73 @@
 	                sorttype="currency"/>
 </sjg:grid>
 <br/>
-<sj:submit id="grid_load_colsbutton"
-           value="Show/Hide Columns"
-           onClickTopics="showloadcolumns"
-           button="true"/>
-<br/>
+<sj:a id="grid_load_colsbutton"
+      onClickTopics="showloadcolumns"
+      button="true">Show/Hide Columns</sj:a>
 
-<br/>
-<sj:tabbedpanel id="localtabs" cssClass="list">
+<h4>Source Code</h4>
+
+<sj:tabbedpanel id="localtabs">
 <sj:tab id="tab1" target="jsp" label="JSP"/>
 <sj:tab id="tab2" target="java" label="Struts2 Action"/>
 <div id="jsp">
 	  <pre>
-   &lt;s:url id=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;&gt;
-    	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
-    &lt;/s:url&gt;
-    &lt;s:url id=&quot;editcellurl&quot; action=&quot;edit-cell-entry&quot; namespace=&quot;/grid&quot;/&gt;
-    &lt;sj:grid
-    	id=&quot;gridloadtable&quot;
-    	loadonce=&quot;true&quot;
-    	caption=&quot;Customer Examples (Local Data)&quot;
-    	href=&quot;%{remoteurl}&quot;
-    	gridModel=&quot;gridModel&quot;
-    	rowNum=&quot;-1&quot;
-    	hidegrid=&quot;true&quot;
-    	scroll=&quot;true&quot;
-    	cellEdit=&quot;true&quot;
-    	cellurl=&quot;%{editcellurl}&quot;
-    &gt;
-    	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; key=&quot;true&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Company&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn 	name=&quot;creditLimit&quot;
-    					index=&quot;creditLimit&quot;
-    					title=&quot;Credit Limit&quot;
-    					editable=&quot;true&quot;
-    					editrules=&quot;{
-    									number: true,
-    									required: true,
-    									minValue : 100.0,
-    									maxValue : 10000.0
-    								}&quot;
-    					formatter=&quot;currency&quot;
-    					sortable=&quot;true&quot;/&gt;
-    &lt;/sj:grid&gt;
-	&lt;br/&gt;
-    &lt;sj:submit id=&quot;grid_load_colsbutton&quot;
-    		value=&quot;Show/Hide Columns&quot;
-    		onClickTopics=&quot;showloadcolumns&quot;
-    		button=&quot;true&quot;/&gt;
+            <code class="html">
+&lt;s:url var=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;&gt;
+  &lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot;/&gt;
+&lt;/s:url&gt;
+&lt;s:url var=&quot;editcellurl&quot; action=&quot;edit-cell-entry&quot; namespace=&quot;/grid&quot;/&gt;
+&lt;sjg:grid
+  id=&quot;gridloadtable&quot;
+  loadonce=&quot;true&quot;
+  caption=&quot;Customers Examples (Local Data)&quot;
+  href=&quot;%{remoteurl}&quot;
+  gridModel=&quot;gridModel&quot;
+  rowNum=&quot;-1&quot;
+  hidegrid=&quot;true&quot;
+  scroll=&quot;true&quot;
+  cellEdit=&quot;true&quot;
+  cellurl=&quot;%{editcellurl}&quot;
+  altRows=&quot;true&quot;
+  sortable=&quot;true&quot;
+  sortableOpacity=&quot;0.8&quot;
+  sortablePlaceholder=&quot;ui-state-highlight&quot;
+  sortableForcePlaceholderSize=&quot;true&quot;
+&gt;
+  &lt;sjg:gridColumn name=&quot;id&quot; index=&quot;id&quot; key=&quot;true&quot; title=&quot;ID&quot; width=&quot;30&quot; formatter=&quot;integer&quot; sortable=&quot;true&quot;
+  sorttype=&quot;int&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Company&quot; width=&quot;250&quot; sortable=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;true&quot; hidden=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;creditLimit&quot;
+    index=&quot;creditLimit&quot;
+    title=&quot;Credit Limit&quot;
+    align=&quot;right&quot;
+    editable=&quot;true&quot;
+    editrules=&quot;{
+    number: true,
+    required: true,
+    minValue : 100.0,
+    maxValue : 10000.0
+    }&quot;
+    formatter=&quot;currency&quot;
+    sortable=&quot;true&quot;
+    sorttype=&quot;currency&quot;
+  /&gt;
+&lt;/sjg:grid&gt;
+&lt;br/&gt;
+&lt;sj:a  id=&quot;grid_load_colsbutton&quot;
+          onClickTopics=&quot;showloadcolumns&quot;
+          button=&quot;true&quot;&gt;Show/Hide Columns&lt;/sj:a&gt;
+            </code>
 	  </pre>
 </div>
 <div id="java">
-<pre>
+      <pre>
+            <code class="java">
 package com.jgeppert.struts2.jquery.showcase.grid;
 
 import java.util.ArrayList;
@@ -442,6 +452,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
 
 }
 
+            </code>
 	  </pre>
 </div>
 </sj:tabbedpanel>

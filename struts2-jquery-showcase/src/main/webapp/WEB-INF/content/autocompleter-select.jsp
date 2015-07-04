@@ -76,13 +76,17 @@
 		</div>
 	</fieldset>
 </s:form>
-<br/><br/>
+
+<h4>Source Code</h4>
+
+
 <sj:tabbedpanel id="showautocompletecode">
     <sj:tab id="tab1" target="jsp1" label="JSP Code Select Box"/>
     <sj:tab id="tab2" target="jsp2" label="JSP Code Select Box with JSON Result"/>
     <sj:tab id="tab3" target="javascript" label="JavaScript Code"/>
     <div id="jsp1">
 	  <pre>
+            <code class="html">
 &lt;strong&gt;Result Div :&lt;/strong&gt;
 &lt;div id=&quot;formResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
 &lt;strong&gt;Topics Div :&lt;/strong&gt;
@@ -117,10 +121,12 @@
 		&lt;/div&gt;
 	&lt;/fieldset&gt;
 &lt;/s:form&gt;
+			</code>
       </pre>
     </div>
     <div id="jsp2">
 	  <pre>
+            <code class="html">
 &lt;s:form id=&quot;form2&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
 	&lt;fieldset&gt;
 		&lt;legend&gt;Select Box with JSON Result as Autocompleter&lt;/legend&gt;
@@ -152,10 +158,12 @@
 		&lt;/div&gt;
 	&lt;/fieldset&gt;
 &lt;/s:form&gt;
+			</code>
       </pre>
     </div>
     <div id="javascript">
 	  <pre>
+            <code class="javascript">
     &lt;script type=&quot;text/javascript&quot;&gt;
     $(document).ready(function() {
       $.subscribe('autocompleteChange', function(event, data) {
@@ -188,6 +196,7 @@
         });
     });
     &lt;/script&gt;
+			</code>
 	  </pre>
     </div>
 </sj:tabbedpanel>

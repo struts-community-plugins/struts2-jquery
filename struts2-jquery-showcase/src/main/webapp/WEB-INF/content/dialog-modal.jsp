@@ -20,19 +20,22 @@
         <img id="indicator" src="images/indicator.gif" alt="Loading..."/>
     </sj:dialog>
 
-  <div class="code ui-widget-content ui-corner-all">
-    <strong>Code:</strong>
+<h4>Source Code</h4>
+
+<div class="code ui-widget-content ui-corner-all">
     <pre>
-    &lt;sj:dialog 
-    	id=&quot;mymodaldialog&quot; 
-    	href=&quot;%{ajax}&quot; 
-    	modal=&quot;true&quot; 
-    	overlayColor=&quot;#903&quot; 
-    	overlayOpacity=&quot;0.8&quot; 
-    	title=&quot;Modal Dialog&quot;
-    	position=&quot;['right','top']&quot;
-    &gt;
-        &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot;/&gt;
-    &lt;/sj:dialog&gt;
+    <code class="html">
+&lt;sj:dialog
+    id=&quot;mymodaldialog&quot;
+    href=&quot;%{ajax}&quot;
+    modal=&quot;true&quot;
+    overlayColor=&quot;#903&quot;
+    overlayOpacity=&quot;0.8&quot;
+    title=&quot;Modal Dialog&quot;
+    position=&quot;['right','top']&quot;
+&gt;
+    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot;/&gt;
+&lt;/sj:dialog&gt;
+    </code>
     </pre>
-  </div>
+</div>

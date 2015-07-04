@@ -24,20 +24,21 @@
 	});
 </script>
 
-<br/>
-<br/>
+
+<h4>Source Code</h4>
+
 <sj:tabbedpanel id="showextendcode">
 	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
 	<sj:tab id="tab2" target="javascript" label="JavaScript Code"/>
 	<div id="jsp">
 	  <pre>
-    &lt;textarea name=&quot;richtextarea&quot; id=&quot;richtextarea&quot; rows=&quot;15&quot; cols=&quot;80&quot;&gt;
+            <code class="html">
+&lt;textarea name=&quot;richtextarea&quot; id=&quot;richtextarea&quot; rows=&quot;15&quot; cols=&quot;80&quot;&gt;
     Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-    &lt;/textarea&gt;
- &lt;script type='text/javascript'&gt;
+&lt;/textarea&gt;
+&lt;script type='text/javascript'&gt;
 	 // See js/extendplugin.js to see how to extend the jquery plugin
 	$(document).ready(function () { 
-		
 		var myrichtextoptions = {};
 		myrichtextoptions.jqueryaction = &quot;myrichtextextend&quot;;
 		myrichtextoptions.id = &quot;richtextarea&quot;;
@@ -45,24 +46,27 @@
 		myrichtextoptions.wysiwygoptions.resizeOptions = {};
 		$.mys2jextend.bind($('#richtextarea'),myrichtextoptions);
 	 });  
-&lt;/script&gt;	
+&lt;/script&gt;
+			</code>
 	  </pre>
 	</div>
 	<div id="javascript">
 	  <pre>
-( function($) {
+          <code class="javascript">
+(function($) {
 	$.mys2jextend = {
-			myrichtextextend : function($elem, options) {
-				s2jlog('richtext for : '+options.id);
-				$.requireCss(&quot;jquery.wysiwyg.css&quot;, &quot;js/jwysiwyg/&quot;);
-				$.require(&quot;jquery.wysiwyg.js&quot;, null, &quot;js/jwysiwyg/&quot;);
-				$elem.wysiwyg(options.wysiwygoptions);
-				$(document).wysiwyg();
-			}
+		myrichtextextend : function($elem, options) {
+			s2jlog('richtext for : '+options.id);
+			$.requireCss(&quot;jquery.wysiwyg.css&quot;, &quot;js/jwysiwyg/&quot;);
+			$.require(&quot;jquery.wysiwyg.js&quot;, null, &quot;js/jwysiwyg/&quot;);
+			$elem.wysiwyg(options.wysiwygoptions);
+			$(document).wysiwyg();
+		}
 	};
 
 	$.extend($.mys2jextend, $.struts2_jquery);
-
-})(jQuery);	  </pre>
+})(jQuery);
+		  </code>
+	  </pre>
 	</div>
 </sj:tabbedpanel>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 
+<div class="ym-g50 ym-gl">
 	<sj:menu id="effectsMenu">
 		<li><s:url var="urleffectdiv" action="effect-div"/><sj:a href="%{urleffectdiv}" targets="content">Highlight Effect / Click</sj:a></li>
 		<li><s:url var="urleffectdivshake" action="effect-div-shake"/><sj:a href="%{urleffectdivshake}" targets="content">Shake Effect / MouseOver</sj:a></li>
@@ -13,3 +14,4 @@
 		<li><s:url var="urleffectdivportlets" action="effect-div-portlets"/><sj:a href="%{urleffectdivportlets}" targets="content">Sortable (Portlets)</sj:a></li>
 		<li><s:url var="urleffectdivextend" action="effect-div-extend"/><sj:a href="%{urleffectdivextend}" targets="content">Extend this Plugin</sj:a></li>
 	</sj:menu>
+</div>

@@ -53,54 +53,57 @@
     >
     	Open Dialog Four
     </sj:a>
-  
-  <div class="code ui-widget-content ui-corner-all">
-    <strong>Code:</strong>
+
+<h4>Source Code</h4>
+
+<div class="code ui-widget-content ui-corner-all">
     <pre>
-    &lt;sj:dialog 
-    	id=&quot;myremotelinkdialog&quot; 
-    	autoOpen=&quot;false&quot; 
-    	modal=&quot;true&quot; 
-    	title=&quot;Dialog with different Content&quot;
-    	openTopics=&quot;openRemoteDialog&quot;
-    /&gt;
-    
-	&lt;s:url id=&quot;remoteurl1&quot; action=&quot;ajax1&quot;/&gt;
-    &lt;s:url id=&quot;remoteurl2&quot; action=&quot;ajax2&quot;/&gt;
-    &lt;s:url id=&quot;remoteurl3&quot; action=&quot;ajax3&quot;/&gt;
-    &lt;s:url id=&quot;remoteurl4&quot; action=&quot;ajax4&quot;/&gt;
-	
-    &lt;sj:a 
-    	openDialog=&quot;myremotelinkdialog&quot;
-    	href=&quot;%{remoteurl2}&quot;
-    	button=&quot;true&quot;
-    	buttonIcon=&quot;ui-icon-newwin&quot;
-    &gt;
-    	Open Dialog One
-    &lt;/sj:a&gt;
-    &lt;sj:a 
-    	onClickTopics=&quot;openRemoteDialog&quot;
-    	href=&quot;%{remoteurl1}&quot;
-    	button=&quot;true&quot;
-    	buttonIcon=&quot;ui-icon-newwin&quot;
-    &gt;
-    	Open Dialog Two
-    &lt;/sj:a&gt;
-    &lt;sj:a 
-    	onClickTopics=&quot;openRemoteDialog&quot;
-    	href=&quot;%{remoteurl3}&quot;
-    	button=&quot;true&quot;
-    	buttonIcon=&quot;ui-icon-newwin&quot;
-    &gt;
-    	Open Dialog Three
-    &lt;/sj:a&gt;
-    &lt;sj:a 
-    	openDialog=&quot;myremotelinkdialog&quot;
-    	href=&quot;%{remoteurl4}&quot;
-    	button=&quot;true&quot;
-    	buttonIcon=&quot;ui-icon-newwin&quot;
-    &gt;
-    	Open Dialog Four
-    &lt;/sj:a&gt;
+    <code class="html">
+&lt;sj:dialog
+	id=&quot;myremotelinkdialog&quot;
+	autoOpen=&quot;false&quot;
+	modal=&quot;true&quot;
+	title=&quot;Dialog with different Content&quot;
+	openTopics=&quot;openRemoteDialog&quot;
+/&gt;
+
+&lt;s:url id=&quot;remoteurl1&quot; action=&quot;ajax1&quot;/&gt;
+&lt;s:url id=&quot;remoteurl2&quot; action=&quot;ajax2&quot;/&gt;
+&lt;s:url id=&quot;remoteurl3&quot; action=&quot;ajax3&quot;/&gt;
+&lt;s:url id=&quot;remoteurl4&quot; action=&quot;ajax4&quot;/&gt;
+
+&lt;sj:a
+	openDialog=&quot;myremotelinkdialog&quot;
+	href=&quot;%{remoteurl2}&quot;
+	button=&quot;true&quot;
+	buttonIcon=&quot;ui-icon-newwin&quot;
+&gt;
+	Open Dialog One
+&lt;/sj:a&gt;
+&lt;sj:a
+	onClickTopics=&quot;openRemoteDialog&quot;
+	href=&quot;%{remoteurl1}&quot;
+	button=&quot;true&quot;
+	buttonIcon=&quot;ui-icon-newwin&quot;
+&gt;
+	Open Dialog Two
+&lt;/sj:a&gt;
+&lt;sj:a
+	onClickTopics=&quot;openRemoteDialog&quot;
+	href=&quot;%{remoteurl3}&quot;
+	button=&quot;true&quot;
+	buttonIcon=&quot;ui-icon-newwin&quot;
+&gt;
+	Open Dialog Three
+&lt;/sj:a&gt;
+&lt;sj:a
+	openDialog=&quot;myremotelinkdialog&quot;
+	href=&quot;%{remoteurl4}&quot;
+	button=&quot;true&quot;
+	buttonIcon=&quot;ui-icon-newwin&quot;
+&gt;
+	Open Dialog Four
+&lt;/sj:a&gt;
+    </code>
     </pre>
-  </div>
+</div>

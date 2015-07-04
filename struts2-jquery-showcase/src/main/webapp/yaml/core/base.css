@@ -36,19 +36,6 @@
   }
 
   /*
-  * (en) Global fix of the Italics bugs in IE 5.x and IE 6
-  * (de) Globale Korrektur des Italics Bugs des IE 5.x und IE 6
-  *
-  * @bugfix
-  * @affected   IE 5.x/Win, IE6
-  * @css-for    IE 5.x/Win, IE6
-  * @valid      yes
-  */
-  * html body * {
-    overflow: visible;
-  }
-
-  /*
   * (en) Fix for rounding errors when scaling font sizes in older versions of Opera browser
   *      Standard values for colors and text alignment
   *

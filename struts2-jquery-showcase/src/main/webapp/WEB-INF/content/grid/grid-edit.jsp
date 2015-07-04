@@ -76,94 +76,101 @@
 
 <div id="gridinfo" class="ui-widget-content ui-corner-all"><p>Edit Mode for Row :</p></div>
 
-<br/>
-<sj:tabbedpanel id="localtabs" cssClass="list">
+
+<h4>Source Code</h4>
+
+<sj:tabbedpanel id="localtabs">
 <sj:tab id="tab1" target="javascript" label="JavaScript"/>
 <sj:tab id="tab2" target="jsp" label="JSP"/>
 <sj:tab id="tab3" target="java" label="Struts2 Action"/>
 <div id="javascript">
 	  <pre>
-    $.subscribe('rowselect', function(event,data) {
-        $(&quot;#gridinfo&quot;).html('&lt;p&gt;Edit Mode for Row : '+event.originalEvent.id+'&lt;/p&gt;');
-    });
-    $.subscribe('oneditsuccess', function(event, data){
-		var message = event.originalEvent.response.statusText;
-		$(&quot;#gridinfo&quot;).html('&lt;p&gt;Status: ' + message + '&lt;/p&gt;');
-	});
-    $.subscribe('rowadd', function(event,data) {
-        $(&quot;#gridedittable&quot;).jqGrid('editGridRow',&quot;new&quot;,{height:280,reloadAfterSubmit:false});
-  	});
-    $.subscribe('searchgrid', function(event,data) {
-        $(&quot;#gridedittable&quot;).jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
-  	});
-    $.subscribe('showcolumns', function(event,data) {
-        $(&quot;#gridedittable&quot;).jqGrid('setColumns',{});
-  	});
-	  &lt;/pre&gt;
+            <code class="javascript">
+$.subscribe('rowselect', function(event,data) {
+    $(&quot;#gridinfo&quot;).html('&lt;p&gt;Edit Mode for Row : '+event.originalEvent.id+'&lt;/p&gt;');
+});
+$.subscribe('oneditsuccess', function(event, data){
+    var message = event.originalEvent.response.statusText;
+    $(&quot;#gridinfo&quot;).html('&lt;p&gt;Status: ' + message + '&lt;/p&gt;');
+});
+$.subscribe('rowadd', function(event,data) {
+    $(&quot;#gridedittable&quot;).jqGrid('editGridRow',&quot;new&quot;,{height:280,reloadAfterSubmit:false});
+});
+$.subscribe('searchgrid', function(event,data) {
+    $(&quot;#gridedittable&quot;).jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
+});
+$.subscribe('showcolumns', function(event,data) {
+    $(&quot;#gridedittable&quot;).jqGrid('setColumns',{});
+});
+            </code>
+	  </pre>
 </div>
 <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;/&gt;
-    &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot; namespace=&quot;/grid&quot;/&gt;
-    &lt;sjg:grid
-    	id=&quot;gridedittable&quot;
-    	caption=&quot;Customers Examples (Editable)&quot;
-    	dataType=&quot;json&quot;
-    	href=&quot;%{remoteurl}&quot;
-    	pager=&quot;true&quot;
-    	navigator=&quot;true&quot;
-    	navigatorSearchOptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;
-    	navigatorAddOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
-    	navigatorEditOptions=&quot;{height:280,reloadAfterSubmit:false}&quot;
-    	navigatorEdit=&quot;false&quot;
-    	navigatorView=&quot;false&quot;
-    	navigatorDelete=&quot;true&quot;
-    	navigatorDeleteOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
-    	navigatorExtraButtons=&quot;{
-    		seperator: { 
-    			title : 'seperator'  
-    		}, 
-    		hide : { 
-	    		title : 'Show/Hide', 
-	    		icon: 'ui-icon-wrench', 
-	    		topic: 'showcolumns'
-    		},
-    		alert : { 
-	    		title : 'Alert', 
-	    		onclick: function(){ alert('Grid Button clicked!') }
-    		}
-    	}&quot;
-    	gridModel=&quot;gridModel&quot;
-    	rowList=&quot;10,15,20&quot;
-    	rowNum=&quot;15&quot;
-    	editurl=&quot;%{editurl}&quot;
-    	editinline=&quot;true&quot;
-    	onSelectRowTopics=&quot;rowselect&quot;
-    	onEditInlineSuccessTopics=&quot;oneditsuccess&quot;
-    	viewrecords=&quot;true&quot;
-    	width=&quot;700&quot;
-    	shrinkToFit=&quot;false&quot;
-    &gt;
-    	&lt;sjg:gridColumn name=&quot;id&quot; frozen=&quot;true&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;60&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;name&quot; frozen=&quot;true&quot; index=&quot;name&quot; title=&quot;Name&quot; width=&quot;250&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot; editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    &lt;/sjg:grid&gt;
-	&lt;br/&gt;
-    &lt;sj:submit id=&quot;grid_edit_addbutton&quot; value=&quot;Add Row&quot; onClickTopics=&quot;rowadd&quot; button=&quot;true&quot;/&gt;
-    &lt;sj:submit id=&quot;grid_edit_searchbutton&quot; value=&quot;Search&quot; onClickTopics=&quot;searchgrid&quot; button=&quot;true&quot;/&gt;
-    &lt;sj:submit id=&quot;grid_edit_colsbutton&quot; value=&quot;Show/Hide Columns&quot; onClickTopics=&quot;showcolumns&quot; button=&quot;true&quot;/&gt;
-	&lt;br/&gt;
-	&lt;br/&gt;
-    &lt;div id=&quot;gridinfo&quot; class=&quot;ui-widget-content ui-corner-all&quot;&gt;&lt;p&gt;Edit Mode for Row :&lt;/p&gt;&lt;/div&gt;
+            <code class="html">
+&lt;s:url id=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;/&gt;
+&lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot; namespace=&quot;/grid&quot;/&gt;
+&lt;sjg:grid
+    id=&quot;gridedittable&quot;
+    caption=&quot;Customers Examples (Editable)&quot;
+    dataType=&quot;json&quot;
+    href=&quot;%{remoteurl}&quot;
+    pager=&quot;true&quot;
+    navigator=&quot;true&quot;
+    navigatorSearchOptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;
+    navigatorAddOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
+    navigatorEditOptions=&quot;{height:280,reloadAfterSubmit:false}&quot;
+    navigatorEdit=&quot;false&quot;
+    navigatorView=&quot;false&quot;
+    navigatorDelete=&quot;true&quot;
+    navigatorDeleteOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
+    navigatorExtraButtons=&quot;{
+        seperator: {
+            title : 'seperator'
+        },
+        hide : {
+            title : 'Show/Hide',
+            icon: 'ui-icon-wrench',
+            topic: 'showcolumns'
+        },
+        alert : {
+            title : 'Alert',
+            onclick: function(){ alert('Grid Button clicked!') }
+        }
+    }&quot;
+    gridModel=&quot;gridModel&quot;
+    rowList=&quot;10,15,20&quot;
+    rowNum=&quot;15&quot;
+    editurl=&quot;%{editurl}&quot;
+    editinline=&quot;true&quot;
+    onSelectRowTopics=&quot;rowselect&quot;
+    onEditInlineSuccessTopics=&quot;oneditsuccess&quot;
+    viewrecords=&quot;true&quot;
+    width=&quot;700&quot;
+    shrinkToFit=&quot;false&quot;
+&gt;
+    &lt;sjg:gridColumn name=&quot;id&quot; frozen=&quot;true&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;60&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;name&quot; frozen=&quot;true&quot; index=&quot;name&quot; title=&quot;Name&quot; width=&quot;250&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot; editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+&lt;/sjg:grid&gt;
+&lt;br/&gt;
+&lt;sj:submit id=&quot;grid_edit_addbutton&quot; value=&quot;Add Row&quot; onClickTopics=&quot;rowadd&quot; button=&quot;true&quot;/&gt;
+&lt;sj:submit id=&quot;grid_edit_searchbutton&quot; value=&quot;Search&quot; onClickTopics=&quot;searchgrid&quot; button=&quot;true&quot;/&gt;
+&lt;sj:submit id=&quot;grid_edit_colsbutton&quot; value=&quot;Show/Hide Columns&quot; onClickTopics=&quot;showcolumns&quot; button=&quot;true&quot;/&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;div id=&quot;gridinfo&quot; class=&quot;ui-widget-content ui-corner-all&quot;&gt;&lt;p&gt;Edit Mode for Row :&lt;/p&gt;&lt;/div&gt;
+            </code>
 	  </pre>
 </div>
 <div id="java">
-<pre>
+    <pre>
+            <code class="java">
 package com.jgeppert.struts2.jquery.showcase.grid;
 
 import java.util.ArrayList;
@@ -498,6 +505,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
 
 }
 
+            </code>
 	  </pre>
 </div>
 </sj:tabbedpanel>

@@ -40,35 +40,38 @@
 
 <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
 
+<h4>Source Code</h4>
+
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
 	  <pre>
-    &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-	            &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-	            &lt;sj:submit 
-	            	id=&quot;formSubmit1&quot;
-	            	targets=&quot;formResult&quot; 
-	            	value=&quot;AJAX Submit&quot; 
-	            	indicator=&quot;indicator&quot;
-	            	button=&quot;true&quot;
-	            	/&gt;
-				&lt;s:url id=&quot;simpleecho&quot; value=&quot;/simpleecho.action&quot;/&gt;
-	            &lt;sj:submit 
-	            	id=&quot;formSubmit2&quot;
-	            	href=&quot;%{simpleecho}&quot; 
-	            	targets=&quot;formResult&quot; 
-	            	value=&quot;AJAX Submit 2&quot; 
-	            	indicator=&quot;indicator&quot;
-	            	button=&quot;true&quot;
-	            	/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
+            <code class="html">
+&lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			&lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				id=&quot;formSubmit1&quot;
+				targets=&quot;formResult&quot;
+				value=&quot;AJAX Submit&quot;
+				indicator=&quot;indicator&quot;
+				button=&quot;true&quot;
+				/&gt;
+			&lt;s:url id=&quot;simpleecho&quot; value=&quot;/simpleecho.action&quot;/&gt;
+			&lt;sj:submit
+				id=&quot;formSubmit2&quot;
+				href=&quot;%{simpleecho}&quot;
+				targets=&quot;formResult&quot;
+				value=&quot;AJAX Submit 2&quot;
+				indicator=&quot;indicator&quot;
+				button=&quot;true&quot;
+				/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+			</code>
 	  </pre>
 </div>

@@ -5,7 +5,7 @@
 <p class="text">
 	Slider in a form with AJAX submit.
 </p>
-<strong>Result Div :</strong>
+<strong>Result div:</strong>
 
 <div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
 
@@ -35,7 +35,7 @@
 					targets="result"
 					indicator="indicator_slider_form"
 					>
-				AJAX Submit
+				AJAX submit
 			</sj:a>
 			<img
 					id="indicator_slider_form"
@@ -47,9 +47,11 @@
 	</fieldset>
 </s:form>
 
+<h4>Source Code</h4>
+
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
 	  <pre>
+            <code class="html">
 &lt;s:form id=&quot;sliderForm&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
 	&lt;fieldset&gt;
 		&lt;legend&gt;AJAX Form&lt;/legend&gt;
@@ -76,7 +78,7 @@
 				targets=&quot;result&quot; 
 				indicator=&quot;indicator_slider_form&quot;
 			&gt;
-			AJAX Submit
+			AJAX submit
 			&lt;/sj:a&gt; 
 			&lt;img 
 				id=&quot;indicator_slider_form&quot; 
@@ -87,5 +89,6 @@
 		&lt;/div&gt;
 	&lt;/fieldset&gt;
 &lt;/s:form&gt;
+			</code>
 	  </pre>
 </div>

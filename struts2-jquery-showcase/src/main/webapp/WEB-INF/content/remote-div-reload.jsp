@@ -4,7 +4,7 @@
 <h2>Remote Divs with reloadable content</h2>
 
 <p class="text">
-	Remote Divs and Select Boxes with AJAX content they reload content automatically or by events.
+	Remote divs and select boxes with AJAX content they reload content automatically by a given interval or triggered by events.
 </p>
 <strong>Div reloads : <span id="counter1"></span></strong>
 <img id="indicator1"
@@ -112,159 +112,165 @@
         cssClass="result ui-widget-content ui-corner-all">
 </sj:div>
 
+<h4>Source Code</h4>
+
 <sj:tabbedpanel id="localtabs" cssClass="list">
 	<sj:tab id="tab1" target="javascript" label="JavaScript Code"/>
 	<sj:tab id="tab2" target="jsp" label="JSP Code"/>
 	<div id="javascript">
 	  <pre>
-    var refreshDiv1 = 0;
-    var refreshDiv2 = 0;
-    var refreshDiv3 = 0;
-    var refreshList = 0;
-	    
-    $.subscribe('refreshlist', function(event,data) {
-		$.publish('reloadlist');	
-    });
-    $.subscribe('refreshdiv', function(event,data) {
-		$.publish('reloaddiv1');	
-    });
-    $.subscribe('completediv1', function(event,data) {
-        if(event.originalEvent.status == &quot;success&quot;)
-        {
-        	$('#counter1').html(++refreshDiv1);
-        }
-    });
-    $.subscribe('completediv2', function(event,data) {
-        if(event.originalEvent.status == &quot;success&quot;)
-        {
-        	$('#counter2').html(++refreshDiv2);
-        	setTimeout( function() {
-				$.publish('reloaddiv2');	
-			}, 10000 );
-        }
-    });
-    $.subscribe('completediv3', function(event,data) {
-        if(event.originalEvent.status == &quot;success&quot;)
-        {
-        	$('#counter4').html(++refreshDiv3);
-        	setTimeout( function() {
-				$.publish('reloaddiv3');	
-			}, 15000 );
-        }
-    });
-    $.subscribe('completelist', function(event,data) {
-        if(event.originalEvent.status == &quot;success&quot;)
-        {
-        	$('#counter3').html(++refreshList);
-        }
-    });
+            <code class="html">
+var refreshDiv1 = 0;
+var refreshDiv2 = 0;
+var refreshDiv3 = 0;
+var refreshList = 0;
+
+$.subscribe('refreshlist', function(event,data) {
+	$.publish('reloadlist');
+});
+$.subscribe('refreshdiv', function(event,data) {
+	$.publish('reloaddiv1');
+});
+$.subscribe('completediv1', function(event,data) {
+	if(event.originalEvent.status == &quot;success&quot;)
+	{
+		$('#counter1').html(++refreshDiv1);
+	}
+});
+$.subscribe('completediv2', function(event,data) {
+	if(event.originalEvent.status == &quot;success&quot;)
+	{
+		$('#counter2').html(++refreshDiv2);
+		setTimeout( function() {
+			$.publish('reloaddiv2');
+		}, 10000 );
+	}
+});
+$.subscribe('completediv3', function(event,data) {
+	if(event.originalEvent.status == &quot;success&quot;)
+	{
+		$('#counter4').html(++refreshDiv3);
+		setTimeout( function() {
+			$.publish('reloaddiv3');
+		}, 15000 );
+	}
+});
+$.subscribe('completelist', function(event,data) {
+	if(event.originalEvent.status == &quot;success&quot;)
+	{
+		$('#counter3').html(++refreshList);
+	}
+});
+			</code>
 	  </pre>
 	</div>
 	<div id="jsp">
 	  <pre>
-    &lt;strong&gt;Div reloads : &lt;span id=&quot;counter1&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
-    &lt;s:url id=&quot;ajax1&quot; value=&quot;/ajax1.action&quot;/&gt;
-    &lt;sj:div id=&quot;div1&quot; 
-    		href=&quot;%{ajax1}&quot; 
-    		indicator=&quot;indicator1&quot; 
-    		reloadTopics=&quot;reloaddiv1&quot; 
-    		onCompleteTopics=&quot;completediv1&quot; 
-    		effect=&quot;highlight&quot; 
-    		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
-        &lt;img id=&quot;indicator1&quot; 
-        	src=&quot;images/indicator.gif&quot; 
-        	alt=&quot;Loading...&quot; 
-        	style=&quot;display:none&quot;/&gt;
-    &lt;/sj:div&gt;
-    &lt;sj:a 	
-    	id=&quot;refreshlink&quot; 
-    	onClickTopics=&quot;refreshdiv&quot; 
-		button=&quot;true&quot; 
-		buttonIcon=&quot;ui-icon-refresh&quot;
-    &gt;
-    	Refresh Div
-    &lt;/sj:a&gt;
-    
-    &lt;br/&gt;&lt;br/&gt;
-    
-    &lt;strong&gt;Div reloads every 10 seconds : &lt;span id=&quot;counter2&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
-    &lt;s:url id=&quot;ajax2&quot; value=&quot;/ajax2.action&quot;/&gt;
-    &lt;sj:div id=&quot;div2&quot; 
-    		href=&quot;%{ajax2}&quot; 
-    		indicator=&quot;indicator2&quot; 
-    		reloadTopics=&quot;reloaddiv2&quot; 
-    		onCompleteTopics=&quot;completediv2&quot; 
-    		effect=&quot;highlight&quot; 
-    		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
-        &lt;img id=&quot;indicator2&quot; 
-        	src=&quot;images/indicator.gif&quot; 
-        	alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
-    &lt;/sj:div&gt;
-        
-    &lt;br/&gt;&lt;br/&gt;
+            <code class="html">
+&lt;strong&gt;Div reloads : &lt;span id=&quot;counter1&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+&lt;s:url id=&quot;ajax1&quot; value=&quot;/ajax1.action&quot;/&gt;
+&lt;sj:div id=&quot;div1&quot;
+		href=&quot;%{ajax1}&quot;
+		indicator=&quot;indicator1&quot;
+		reloadTopics=&quot;reloaddiv1&quot;
+		onCompleteTopics=&quot;completediv1&quot;
+		effect=&quot;highlight&quot;
+		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
+	&lt;img id=&quot;indicator1&quot;
+		src=&quot;images/indicator.gif&quot;
+		alt=&quot;Loading...&quot;
+		style=&quot;display:none&quot;/&gt;
+&lt;/sj:div&gt;
+&lt;sj:a
+	id=&quot;refreshlink&quot;
+	onClickTopics=&quot;refreshdiv&quot;
+	button=&quot;true&quot;
+	buttonIcon=&quot;ui-icon-refresh&quot;
+&gt;
+	Refresh Div
+&lt;/sj:a&gt;
 
-    &lt;strong&gt;List Reloads : &lt;span id=&quot;counter3&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
-    &lt;s:form id=&quot;formSelectOne&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-select&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;List: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-				&lt;sj:select 
-					reloadTopics=&quot;reloadlist&quot; 
-					onCompleteTopics=&quot;completelist&quot; 
-					href=&quot;%{remoteurl}&quot; id=&quot;echo&quot;
-					name=&quot;echo&quot; 
-					list=&quot;languageList&quot;/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
-    &lt;sj:a 	
-    	id=&quot;refreshlink2&quot; 
-    	onClickTopics=&quot;refreshlist&quot; 
-		button=&quot;true&quot; 
-		buttonIcon=&quot;ui-icon-refresh&quot;
-    &gt;
-    	Refresh List
-    &lt;/sj:a&gt;
-    &lt;sj:submit 	
-    	id=&quot;refreshsubmit2&quot; 
-    	onClickTopics=&quot;reloaddiv3&quot; 
-		button=&quot;true&quot; 
-		buttonIcon=&quot;ui-icon-refresh&quot;
-    /&gt;
+&lt;br/&gt;&lt;br/&gt;
 
-    &lt;br/&gt;&lt;br/&gt;
+&lt;strong&gt;Div reloads every 10 seconds : &lt;span id=&quot;counter2&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+&lt;s:url id=&quot;ajax2&quot; value=&quot;/ajax2.action&quot;/&gt;
+&lt;sj:div id=&quot;div2&quot;
+		href=&quot;%{ajax2}&quot;
+		indicator=&quot;indicator2&quot;
+		reloadTopics=&quot;reloaddiv2&quot;
+		onCompleteTopics=&quot;completediv2&quot;
+		effect=&quot;highlight&quot;
+		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
+	&lt;img id=&quot;indicator2&quot;
+		src=&quot;images/indicator.gif&quot;
+		alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+&lt;/sj:div&gt;
 
-    &lt;strong&gt;Div reloads every 15 seconds with form values : &lt;span id=&quot;counter4&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
-    &lt;sj:div id=&quot;div3&quot; 
-    		formIds=&quot;formSelectOne&quot; 
-    		indicator=&quot;indicator3&quot; 
-    		reloadTopics=&quot;reloaddiv3&quot; 
-    		onCompleteTopics=&quot;completediv3&quot; 
-    		effect=&quot;highlight&quot; 
-    		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
-        &lt;img id=&quot;indicator3&quot; 
-        		src=&quot;images/indicator.gif&quot; 
-        		alt=&quot;Loading...&quot; 
-        		style=&quot;display:none&quot;/&gt;
-    &lt;/sj:div&gt;
+&lt;br/&gt;&lt;br/&gt;
 
-    &lt;br/&gt;&lt;br/&gt;
+&lt;strong&gt;List Reloads : &lt;span id=&quot;counter3&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+&lt;s:form id=&quot;formSelectOne&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form&lt;/legend&gt;
+		&lt;div class=&quot;type-select&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;List: &lt;/label&gt;
+			&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+			&lt;sj:select
+				reloadTopics=&quot;reloadlist&quot;
+				onCompleteTopics=&quot;completelist&quot;
+				href=&quot;%{remoteurl}&quot; id=&quot;echo&quot;
+				name=&quot;echo&quot;
+				list=&quot;languageList&quot;/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+&lt;sj:a
+	id=&quot;refreshlink2&quot;
+	onClickTopics=&quot;refreshlist&quot;
+	button=&quot;true&quot;
+	buttonIcon=&quot;ui-icon-refresh&quot;
+&gt;
+	Refresh List
+&lt;/sj:a&gt;
+&lt;sj:submit
+	id=&quot;refreshsubmit2&quot;
+	onClickTopics=&quot;reloaddiv3&quot;
+	button=&quot;true&quot;
+	buttonIcon=&quot;ui-icon-refresh&quot;
+/&gt;
 
-    &lt;strong&gt;Div with updateFreq every 5000 milliseconds&lt;/strong&gt;
-    &lt;img id=&quot;indicator4&quot; 
-    		src=&quot;images/indicator.gif&quot; 
-    		alt=&quot;Loading...&quot; 
-    		style=&quot;display:none&quot;/&gt;
-    &lt;s:url id=&quot;ajax3&quot; value=&quot;/ajax3.action&quot;/&gt;
-    &lt;sj:div id=&quot;div4&quot; 
-			href=&quot;%{ajax3}&quot; 
-    		indicator=&quot;indicator4&quot; 
-    		updateFreq=&quot;5000&quot; 
-    		effect=&quot;highlight&quot; 
-    		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
-    &lt;/sj:div&gt;
+&lt;br/&gt;&lt;br/&gt;
+
+&lt;strong&gt;Div reloads every 15 seconds with form values : &lt;span id=&quot;counter4&quot;&gt;&lt;/span&gt;&lt;/strong&gt;
+&lt;sj:div id=&quot;div3&quot;
+		formIds=&quot;formSelectOne&quot;
+		indicator=&quot;indicator3&quot;
+		reloadTopics=&quot;reloaddiv3&quot;
+		onCompleteTopics=&quot;completediv3&quot;
+		effect=&quot;highlight&quot;
+		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
+	&lt;img id=&quot;indicator3&quot;
+			src=&quot;images/indicator.gif&quot;
+			alt=&quot;Loading...&quot;
+			style=&quot;display:none&quot;/&gt;
+&lt;/sj:div&gt;
+
+&lt;br/&gt;&lt;br/&gt;
+
+&lt;strong&gt;Div with updateFreq every 5000 milliseconds&lt;/strong&gt;
+&lt;img id=&quot;indicator4&quot;
+		src=&quot;images/indicator.gif&quot;
+		alt=&quot;Loading...&quot;
+		style=&quot;display:none&quot;/&gt;
+&lt;s:url id=&quot;ajax3&quot; value=&quot;/ajax3.action&quot;/&gt;
+&lt;sj:div id=&quot;div4&quot;
+		href=&quot;%{ajax3}&quot;
+		indicator=&quot;indicator4&quot;
+		updateFreq=&quot;5000&quot;
+		effect=&quot;highlight&quot;
+		cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
+&lt;/sj:div&gt;
+			</code>
 	  </pre>
 	</div>
 </sj:tabbedpanel>

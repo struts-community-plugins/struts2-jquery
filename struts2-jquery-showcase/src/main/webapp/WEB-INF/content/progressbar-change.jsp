@@ -16,27 +16,39 @@
 	change value
 </sj:a>
 
-<div class="code ui-widget-content ui-corner-all">
-	<strong>JavaScript functions:</strong>
-    <pre>
-    $.subscribe('progressbarchangetopic', function(event,data) {
-        alert('value changed to : '+$(&quot;#progressbarchange&quot;).progressbar('option', 'value'));
-    });
-    $.subscribe('progressbarclicktopic', function(event,data) {
-         $(&quot;#progressbarchange&quot;).progressbar( 'value' , parseInt( Math.random() * ( 90 ) ) );
-    });
-    </pre>
-	<strong>Code:</strong>
-    <pre>
-    &lt;sj:progressbar id=&quot;progressbarchange&quot; value=&quot;21&quot; onChangeTopics=&quot;progressbarchangetopic&quot;/&gt;
-    &lt;br /&gt;
-    &lt;sj:a 
-    	href=&quot;#&quot; 
-    	onClickTopics=&quot;progressbarclicktopic&quot; 
-    	button=&quot;true&quot; 
-		buttonIcon=&quot;ui-icon-gear&quot;
-    &gt;
-    	change value
-    &lt;/sj:a&gt;
-    </pre>
-</div>
+<h4>Source Code</h4>
+
+<sj:tabbedpanel id="localtabs" cssClass="list">
+    <sj:tab id="tab1" target="jsp" label="JSP Code"/>
+    <sj:tab id="tab2" target="java" label="JavaScript"/>
+    <div id="jsp">
+	  <pre>
+            <code class="html">
+&lt;sj:progressbar id=&quot;progressbarchange&quot; value=&quot;21&quot; onChangeTopics=&quot;progressbarchangetopic&quot;/&gt;
+&lt;br /&gt;
+&lt;sj:a
+    href=&quot;#&quot;
+    onClickTopics=&quot;progressbarclicktopic&quot;
+    button=&quot;true&quot;
+    buttonIcon=&quot;ui-icon-gear&quot;
+&gt;
+change value
+&lt;/sj:a&gt;
+            </code>
+	  </pre>
+    </div>
+    <div id="java">
+	  <pre>
+            <code class="javascript">
+$.subscribe('progressbarchangetopic', function(event,data) {
+    alert('value changed to : '+$(&quot;#progressbarchange&quot;).progressbar('option', 'value'));
+});
+$.subscribe('progressbarclicktopic', function(event,data) {
+    $(&quot;#progressbarchange&quot;).progressbar( 'value' , parseInt( Math.random() * ( 90 ) ) );
+});
+
+            </code>
+	  </pre>
+    </div>
+
+</sj:tabbedpanel>

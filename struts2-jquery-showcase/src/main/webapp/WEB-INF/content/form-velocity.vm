@@ -19,3 +19,26 @@
 #end
 
 <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
+
+<h4>Source Code</h4>
+
+<div class="code ui-widget-content ui-corner-all">
+	  <pre>
+            <code class="html">
+#sform(&quot;id=formvelocity&quot;  &quot;theme=simple&quot; &quot;action=echo&quot; &quot;cssClass=yform&quot;)
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form&lt;/legend&gt;
+			&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			#stextfield(&quot;id=echo&quot; &quot;name=echo&quot; &quot;value=Hello World!!!&quot;)
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			#sjsubmit( &quot;id=formvelocity_submit&quot; &quot;targets=formVelocityResult&quot; &quot;value=AJAX Submit&quot; &quot;formIds=formvelocity&quot; &quot;indicator=indicator&quot; &quot;button=true&quot;) #end
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+#end
+
+&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+            </code>
+	  </pre>
+</div>

@@ -4,7 +4,7 @@
 <h2>Grid</h2>
 
 <p class="text">
-	A Grid with local data and grouping.
+	A grid with local data and grouping.
 </p>
 <s:url var="remoteurl" action="grid-data-provider" namespace="/grid">
   <s:param name="loadonce" value="%{true}"/>
@@ -36,49 +36,49 @@
 	                sortable="false"/>
 </sjg:grid>
 
-<br/>
-<sj:tabbedpanel id="localtabs" cssClass="list">
+<h4>Source Code</h4>
+
+<sj:tabbedpanel id="localtabs">
 <sj:tab id="tab1" target="jsp" label="JSP"/>
 <sj:tab id="tab2" target="java" label="Struts2 Action"/>
 <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;&gt;
-    	&lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot; /&gt;
-    &lt;/s:url&gt;
-    &lt;sjg:grid
-    	id=&quot;gridgrouping&quot;
-    	caption=&quot;Customers Examples (Grouping)&quot;
-    	loadonce=&quot;true&quot;
-    	href=&quot;%{remoteurl}&quot;
-    	gridModel=&quot;gridModel&quot;
-    	groupField=&quot;['country']&quot;
-    	groupColumnShow=&quot;[false]&quot;
-    	groupCollapse=&quot;true&quot;
-    	groupText=&quot;['&lt;b&gt;{0} - {1} Customer(s)&lt;/b&gt;']&quot;
-    	navigator=&quot;true&quot;
-    	navigatorAdd=&quot;false&quot;
-    	navigatorEdit=&quot;false&quot;
-    	navigatorDelete=&quot;false&quot;
-    	navigatorView=&quot;true&quot;
-    	rowTotal=&quot;70&quot;
-    	rowNum=&quot;-1&quot;
-    	altRows=&quot;true&quot;
-    	viewrecords=&quot;true&quot;
-    	pager=&quot;true&quot;
-    	pagerButtons=&quot;false&quot;
-    	pagerInput=&quot;false&quot;
-    &gt;
-    	&lt;sjg:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;30&quot; formatter=&quot;integer&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; sortable=&quot;true&quot;/&gt;
-		&lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;true&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;false&quot;/&gt;
-    	&lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; sortable=&quot;false&quot;/&gt;
-    &lt;/sjg:grid&gt;
+            <code class="html">
+&lt;s:url var=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;&gt;
+  &lt;s:param name=&quot;loadonce&quot; value=&quot;%{true}&quot;/&gt;
+&lt;/s:url&gt;
+&lt;sjg:grid
+		id=&quot;gridgrouping&quot;
+		caption=&quot;Customers Examples (Grouping)&quot;
+		loadonce=&quot;true&quot;
+		href=&quot;%{remoteurl}&quot;
+		gridModel=&quot;gridModel&quot;
+        navigator=&quot;false&quot;
+        navigatorAdd=&quot;false&quot;
+        navigatorEdit=&quot;false&quot;
+        navigatorDelete=&quot;false&quot;
+        navigatorView=&quot;true&quot;
+        rowNum=&quot;10000&quot;
+        pager=&quot;false&quot;
+        groupField=&quot;['country']&quot;
+        groupColumnShow=&quot;[false]&quot;
+        groupCollapse=&quot;true&quot;
+        groupText=&quot;['&lt;b&gt;{0} - {1} Customer(s)&lt;/b&gt;']&quot;
+		&gt;
+	&lt;sjg:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;30&quot; formatter=&quot;integer&quot; sortable=&quot;false&quot;/&gt;
+	&lt;sjg:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; sortable=&quot;true&quot;/&gt;
+	&lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;true&quot;/&gt;
+	&lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; sortable=&quot;false&quot;/&gt;
+	&lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; sortable=&quot;false&quot;/&gt;
+	&lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot;
+	                sortable=&quot;false&quot;/&gt;
+&lt;/sjg:grid&gt;
+            </code>
 	  </pre>
 </div>
 <div id="java">
-<pre>
+    <pre>
+            <code class="java">
 package com.jgeppert.struts2.jquery.showcase.grid;
 
 import java.util.ArrayList;
@@ -412,7 +412,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
   }
 
 }
-
+            </code>
 	  </pre>
 </div>
 </sj:tabbedpanel>

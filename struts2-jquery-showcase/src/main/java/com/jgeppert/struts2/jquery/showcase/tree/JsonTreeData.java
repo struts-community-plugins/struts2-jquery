@@ -20,10 +20,8 @@
 package com.jgeppert.struts2.jquery.showcase.tree;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import com.opensymphony.xwork2.ActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;

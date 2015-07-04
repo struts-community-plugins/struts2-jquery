@@ -106,6 +106,7 @@
 
 <div id="result" class="result ui-widget-content ui-corner-all">Submit a form.</div>
 
+<h4>Source Code</h4>
 
 <sj:tabbedpanel id="localtabs" cssClass="list">
 <sj:tab id="tab1" target="jsp" label="JSP Code"/>
@@ -113,108 +114,111 @@
 <sj:tab id="tab2" target="config" label="Configuration"/>
 <div id="jsp">
 	  <pre>
-	<strong>Reload example with two select boxes.</strong>
-     &lt;s:form id=&quot;formSelectReload&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;language&quot;&gt;Language: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-				&lt;sj:select 
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;language&quot; 
-					onChangeTopics=&quot;reloadsecondlist&quot; 
-					name=&quot;language&quot; 
-					list=&quot;languageObjList&quot; 
-					listKey=&quot;myKey&quot; 
-					listValue=&quot;myValue&quot; 
-					emptyOption=&quot;true&quot; 
-					headerKey=&quot;-1&quot; 
-					headerValue=&quot;Please Select a Language&quot;
+            <code class="html">
+&lt;strong&gt;Reload example with two select boxes.&lt;/strong&gt;
+ &lt;s:form id=&quot;formSelectReload&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;language&quot;&gt;Language: &lt;/label&gt;
+			&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+			&lt;sj:select
+				href=&quot;%{remoteurl}&quot;
+				id=&quot;language&quot;
+				onChangeTopics=&quot;reloadsecondlist&quot;
+				name=&quot;language&quot;
+				list=&quot;languageObjList&quot;
+				listKey=&quot;myKey&quot;
+				listValue=&quot;myValue&quot;
+				emptyOption=&quot;true&quot;
+				headerKey=&quot;-1&quot;
+				headerValue=&quot;Please Select a Language&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Framework: &lt;/label&gt;
+			&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+			&lt;sj:select
+				href=&quot;%{remoteurl}&quot;
+				id=&quot;selectWithReloadTopic&quot;
+				formIds=&quot;formSelectReload&quot;
+				reloadTopics=&quot;reloadsecondlist&quot;
+				name=&quot;echo&quot;
+				list=&quot;reloadList&quot;
+				emptyOption=&quot;true&quot;
+				headerKey=&quot;-1&quot;
+				headerValue=&quot;Please Select a Framework&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				id=&quot;submitFormSelectReload&quot;
+				targets=&quot;result&quot;
+				value=&quot;AJAX Submit&quot;
+				indicator=&quot;indicator&quot;
+				button=&quot;true&quot;
 				/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Framework: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-				&lt;sj:select 
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;selectWithReloadTopic&quot; 
-					formIds=&quot;formSelectReload&quot; 
-					reloadTopics=&quot;reloadsecondlist&quot; 
-					name=&quot;echo&quot; 
-					list=&quot;reloadList&quot; 
-					emptyOption=&quot;true&quot; 
-					headerKey=&quot;-1&quot; 
-					headerValue=&quot;Please Select a Framework&quot;
+				&lt;img id=&quot;indicator&quot;
+					src=&quot;images/indicator.gif&quot;
+					alt=&quot;Loading...&quot;
+					style=&quot;display:none&quot;
 				/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-				&lt;sj:submit 
-					id=&quot;submitFormSelectReload&quot;
-					targets=&quot;result&quot; 
-					value=&quot;AJAX Submit&quot; 
-					indicator=&quot;indicator&quot; 
-					button=&quot;true&quot;
-					/&gt;
-					&lt;img id=&quot;indicator&quot; 
-						src=&quot;images/indicator.gif&quot; 
-						alt=&quot;Loading...&quot; 
-						style=&quot;display:none&quot;
-					/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
-	&lt;br/&gt;
-	<strong>Reload example with one select box and an buttonset.</strong>
-     &lt;s:form id=&quot;formSelectCheckBox&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
-		&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-		&lt;sj:select 
-			href=&quot;%{remoteurl}&quot; 
-			id=&quot;languageSelect&quot; 
-			onChangeTopics=&quot;reloadcheckboxes&quot; 
-			name=&quot;language&quot; 
-			list=&quot;languageObjList&quot; 
-			listKey=&quot;myKey&quot; 
-			listValue=&quot;myValue&quot; 
-			emptyOption=&quot;true&quot; 
-			headerKey=&quot;-1&quot; 
-			headerValue=&quot;Please Select a Language&quot;
-			label=&quot;Language&quot;
-			required=&quot;true&quot;
-		/&gt;
-		&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-		&lt;sj:checkboxlist 
-			href=&quot;%{remoteurl}&quot; 
-			id=&quot;frameworkCheckboxes&quot; 
-			formIds=&quot;formSelectCheckBox&quot; 
-			reloadTopics=&quot;reloadcheckboxes&quot; 
-			name=&quot;echo&quot; 
-			list=&quot;reloadList&quot; 
-			label=&quot;Framework&quot;
-			required=&quot;true&quot;
-			onChangeTopics=&quot;submitCheckboxForm&quot;
-		/&gt;
-		&lt;sj:submit 
-			id=&quot;submitFormSelectCheckBox&quot;
-			listenTopics=&quot;submitCheckboxForm&quot;
-			targets=&quot;result&quot; 
-			value=&quot;AJAX Submit&quot; 
-			indicator=&quot;indicator2&quot; 
-			cssStyle=&quot;display : none;&quot;
-		/&gt;
-    &lt;/s:form&gt;
-	&lt;img id=&quot;indicator2&quot; 
-		src=&quot;images/indicator.gif&quot; 
-		alt=&quot;Loading...&quot; 
-		style=&quot;display:none&quot;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+&lt;br/&gt;
+&lt;strong&gt;Reload example with one select box and an buttonset.&lt;/strong&gt;
+ &lt;s:form id=&quot;formSelectCheckBox&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+	&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+	&lt;sj:select
+		href=&quot;%{remoteurl}&quot;
+		id=&quot;languageSelect&quot;
+		onChangeTopics=&quot;reloadcheckboxes&quot;
+		name=&quot;language&quot;
+		list=&quot;languageObjList&quot;
+		listKey=&quot;myKey&quot;
+		listValue=&quot;myValue&quot;
+		emptyOption=&quot;true&quot;
+		headerKey=&quot;-1&quot;
+		headerValue=&quot;Please Select a Language&quot;
+		label=&quot;Language&quot;
+		required=&quot;true&quot;
 	/&gt;
+	&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+	&lt;sj:checkboxlist
+		href=&quot;%{remoteurl}&quot;
+		id=&quot;frameworkCheckboxes&quot;
+		formIds=&quot;formSelectCheckBox&quot;
+		reloadTopics=&quot;reloadcheckboxes&quot;
+		name=&quot;echo&quot;
+		list=&quot;reloadList&quot;
+		label=&quot;Framework&quot;
+		required=&quot;true&quot;
+		onChangeTopics=&quot;submitCheckboxForm&quot;
+	/&gt;
+	&lt;sj:submit
+		id=&quot;submitFormSelectCheckBox&quot;
+		listenTopics=&quot;submitCheckboxForm&quot;
+		targets=&quot;result&quot;
+		value=&quot;AJAX Submit&quot;
+		indicator=&quot;indicator2&quot;
+		cssStyle=&quot;display : none;&quot;
+	/&gt;
+&lt;/s:form&gt;
+&lt;img id=&quot;indicator2&quot;
+	src=&quot;images/indicator.gif&quot;
+	alt=&quot;Loading...&quot;
+	style=&quot;display:none&quot;
+/&gt;
 
-    &lt;strong&gt;Result Div :&lt;/strong&gt;
-	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit a form.&lt;/div&gt;
+&lt;strong&gt;Result Div :&lt;/strong&gt;
+&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit a form.&lt;/div&gt;
+			</code>
 	  </pre>
 </div>
 <div id="java">
 	  <pre>
+            <code class="java">
 @ParentPackage(value = &quot;showcase&quot;)
 public class JsonSample extends ActionSupport {
 
@@ -305,12 +309,15 @@ public class JsonSample extends ActionSupport {
     this.language = language;
   }
 }
+			</code>
 	  </pre>
 </div>
 <div id="config">
 	  <pre>
-    &lt;package name=&quot;showcase&quot; extends=&quot;struts-default,<strong>json-default</strong>&quot; namespace=&quot;/&quot;&gt;
+            <code class="xml">
+    &lt;package name=&quot;showcase&quot; extends=&quot;struts-default,json-default&quot; namespace=&quot;/&quot;&gt;
     &lt;/package&gt;
+			</code>
 	  </pre>
 </div>
 </sj:tabbedpanel>

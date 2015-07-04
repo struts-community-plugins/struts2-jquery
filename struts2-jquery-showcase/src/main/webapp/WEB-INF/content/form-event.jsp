@@ -56,72 +56,82 @@
 	</fieldset>
 </s:form>
 
-<div class="code ui-widget-content ui-corner-all">
-	<strong>JavaScript functions:</strong>
-      <pre>
-    $.subscribe('beforeForm', function(event,data) {
-     var fData = event.originalEvent.formData;
-	 alert('About to submit: \n\n' + fData[0].value + ' to target '+event.originalEvent.options.target+' with timeout '+event.originalEvent.options.timeout );
-     var form = event.originalEvent.form[0]; 
-     if (form.echo.value.length  &lt; 2) { 
-         alert('Please enter a value with min 2 characters'); 
-         event.originalEvent.options.submit = false; 
-     } 
-    });
-    $.subscribe('completeForm', function(event,data) {
-   	 alert('status: ' + event.originalEvent.status + '\n\nresponseText: \n' + event.originalEvent.request.responseText + 
-     '\n\nThe output div should have already been updated with the responseText.');
-    });
-    $.subscribe('errorStateForm', function(event,data) {
-        alert('status: ' + event.originalEvent.status + '\n\nrequest status: ' +event.originalEvent.request.status);
-    });
-      </pre>
-	<strong>Code:</strong>
-	  <pre>
-    &lt;s:form id=&quot;formevent&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-	            &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-	            &lt;sj:submit 
-	            	targets=&quot;result&quot; 
-	            	value=&quot;AJAX Submit&quot; 
-	            	timeout=&quot;2500&quot; 
-	            	indicator=&quot;indicator&quot; 
-	            	onBeforeTopics=&quot;before&quot; 
-	            	onCompleteTopics=&quot;complete&quot; 
-	            	onErrorTopics=&quot;errorState&quot; 
-	            	button=&quot;true&quot;
-	            /&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
+<h4>Source Code</h4>
 
-    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
-    
-    &lt;s:form id=&quot;formeventerror&quot; action=&quot;file-does-not-exist.html&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form with Error Result&lt;/legend&gt;
-            &lt;div class=&quot;type-text&quot;&gt;
-                &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-                &lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;type-button&quot;&gt;
-                &lt;sj:submit 
-                	targets=&quot;result&quot; 
-                	value=&quot;AJAX Submit with Error&quot; 
-                	timeout=&quot;2500&quot; 
-                	indicator=&quot;indicator&quot; 
-                	onBeforeTopics=&quot;before&quot; 
-                	onCompleteTopics=&quot;complete&quot; 
-                	onErrorTopics=&quot;errorState&quot;
-	            	button=&quot;true&quot;
-                /&gt;
-            &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
+<sj:tabbedpanel id="localtabs" cssClass="list">
+	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
+	<sj:tab id="tab2" target="java" label="JavaScript"/>
+	<div id="jsp">
+	  <pre>
+            <code class="html">
+&lt;s:form id=&quot;formevent&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			&lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				targets=&quot;result&quot;
+				value=&quot;AJAX Submit&quot;
+				timeout=&quot;2500&quot;
+				indicator=&quot;indicator&quot;
+				onBeforeTopics=&quot;before&quot;
+				onCompleteTopics=&quot;complete&quot;
+				onErrorTopics=&quot;errorState&quot;
+				button=&quot;true&quot;
+			/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+
+&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+
+&lt;s:form id=&quot;formeventerror&quot; action=&quot;file-does-not-exist.html&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form with Error Result&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			&lt;s:textfield id=&quot;echo&quot; name=&quot;echo&quot; value=&quot;Hello World!!!&quot;/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				targets=&quot;result&quot;
+				value=&quot;AJAX Submit with Error&quot;
+				timeout=&quot;2500&quot;
+				indicator=&quot;indicator&quot;
+				onBeforeTopics=&quot;before&quot;
+				onCompleteTopics=&quot;complete&quot;
+				onErrorTopics=&quot;errorState&quot;
+				button=&quot;true&quot;
+			/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+			</code>
 	  </pre>
-</div>
+	</div>
+	<div id="java">
+	  <pre>
+            <code class="javascript">
+$.subscribe('beforeForm', function(event,data) {
+	var fData = event.originalEvent.formData;
+	alert('About to submit: \n\n' + fData[0].value + ' to target '+event.originalEvent.options.target+' with timeout '+event.originalEvent.options.timeout );
+	var form = event.originalEvent.form[0];
+	if (form.echo.value.length  &lt; 2) {
+		alert('Please enter a value with min 2 characters');
+		event.originalEvent.options.submit = false;
+	}
+});
+$.subscribe('completeForm', function(event,data) {
+	alert('status: ' + event.originalEvent.status + '\n\nresponseText: \n' + event.originalEvent.request.responseText + '\n\nThe output div should have already been updated with the responseText.');
+});
+$.subscribe('errorStateForm', function(event,data) {
+	alert('status: ' + event.originalEvent.status + '\n\nrequest status: ' +event.originalEvent.request.status);
+});
+			</code>
+	  </pre>
+	</div>
+
+</sj:tabbedpanel>

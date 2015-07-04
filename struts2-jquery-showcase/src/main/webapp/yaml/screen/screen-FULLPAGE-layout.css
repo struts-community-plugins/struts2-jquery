@@ -48,13 +48,6 @@
     background: #222222;
   }
 
-  main .info {
-    margin-bottom: 1.5em;
-  }
-  main aside .ym-gbox-right {
-    border-left: 1px #ddd solid;
-  }
-
   footer {
     background: #eee;
     color: #444;

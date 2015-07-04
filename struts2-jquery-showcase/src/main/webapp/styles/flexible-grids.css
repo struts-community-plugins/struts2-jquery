@@ -32,10 +32,20 @@ body{
 	font-size: 9pt;
 }
 
+.ym-wrapper {
+    max-width: 100em;
+}
 #content > p, #content > div, #content > form {
 	margin: 10px;
 }
 
+#content h4 {
+    margin-top: 35px;
+}
+
+pre, code {
+    font-size: 9pt;
+}
 .ym-hlist, .ym-hlist ul {
 	border: 0;
 	padding: 0;
@@ -51,15 +61,17 @@ body{
 	color: inherit !important;
 }
 
-.result{
-	padding: 5px;
+/* hack to avoid white links in submenu */
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color: inherit !important;
+    text-decoration: none;
 }
 
 .messagesexamples p {
 	margin: 0;
 }
-.code,.result {
-	margin: 30px 20px 20px 10px;
+.code, .result {
+	margin: 10px 20px 20px 10px;
 	overflow: auto;
 	padding: 10px;
 }
@@ -97,21 +109,12 @@ body{
 	text-align: center;
 }
 
-.errorLabel {
+.errorLabel, .errorMessage {
 	color: red;
 }
 
-.column {
-	width: 170px;
-	float: left;
-	padding-bottom: 100px;
+.errorMessage li {
+    list-style: none;
 }
 
-.column div {
-	margin: 5px;
-}
-
-.column div div .ui-icon {
-	float: right;
-}
 

@@ -8,13 +8,13 @@
 </p>
 
 <sj:menu id="menuWithItems" cssStyle="width:50%">
-	<sj:menuItem title="Struts2" href="http://struts.apache.org/2.x/index.html"/>
+	<sj:menuItem title="Struts2" href="http://struts.apache.org"/>
 	<sj:menuItem title="Struts2 jQuery News" menuIcon="ui-icon-extlink" href="http://www.jgeppert.com/category/java/struts2-jquery/"/>
 	<sj:menuItem title="Struts2 Plugins">
 		<sj:menu id="subMenuPlugins" cssStyle="width:50%">
 			<sj:menuItem title="Struts2 Plugins" href="https://cwiki.apache.org/S2PLUGINS/home.html"/>
-			<sj:menuItem title="Struts2 jQuery Plugin" href="http://code.google.com/p/struts2-jquery/"/>
-			<sj:menuItem title="Struts2 Bootstrap Plugin" href="http://code.google.com/p/struts2-jquery/"/>
+			<sj:menuItem title="Struts2 jQuery Plugin" href="https://github.com/struts-community-plugins/struts2-jquery/"/>
+			<sj:menuItem title="Struts2 Bootstrap Plugin" href="https://github.com/struts-community-plugins/struts2-bootstrap/"/>
 		</sj:menu>
 	</sj:menuItem>
 
@@ -46,18 +46,19 @@
 
 <div id="result" class="result ui-widget-content ui-corner-all">Click on the AJAX Links above.</div>
 
+<h4>Source Code</h4>
 
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
-    <pre>
+	  <pre>
+            <code class="html">
 &lt;sj:menu id=&quot;menuWithItems&quot; cssStyle=&quot;width:50%&quot;&gt;
-	&lt;sj:menuItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org/2.x/index.html&quot;/&gt;
+	&lt;sj:menuItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org&quot;/&gt;
 	&lt;sj:menuItem title=&quot;Struts2 jQuery News&quot; menuIcon=&quot;ui-icon-extlink&quot; href=&quot;http://www.jgeppert.com/category/java/struts2-jquery/&quot;/&gt;
 	&lt;sj:menuItem title=&quot;Struts2 Plugins&quot;&gt;
 		&lt;sj:menu id=&quot;subMenuPlugins&quot; cssStyle=&quot;width:50%&quot;&gt;
 			&lt;sj:menuItem title=&quot;Struts2 Plugins&quot; href=&quot;https://cwiki.apache.org/S2PLUGINS/home.html&quot;/&gt;
-			&lt;sj:menuItem title=&quot;Struts2 jQuery Plugin&quot; href=&quot;http://code.google.com/p/struts2-jquery/&quot;/&gt;
-			&lt;sj:menuItem title=&quot;Struts2 Bootstrap Plugin&quot; href=&quot;http://code.google.com/p/struts2-jquery/&quot;/&gt;
+			&lt;sj:menuItem title=&quot;Struts2 jQuery Plugin&quot; href=&quot;https://github.com/struts-community-plugins/struts2-jquery/&quot;/&gt;
+			&lt;sj:menuItem title=&quot;Struts2 Bootstrap Plugin&quot; href=&quot;https://github.com/struts-community-plugins/struts2-bootstrap/&quot;/&gt;
 		&lt;/sj:menu&gt;
 	&lt;/sj:menuItem&gt;
 
@@ -83,5 +84,11 @@
 		&lt;/sj:menu&gt;
 	&lt;/sj:menuItem&gt;
 &lt;/sj:menu&gt;
+
+&lt;br/&gt;
+&lt;strong&gt;Result Div :&lt;/strong&gt;
+
+&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Click on the AJAX Links above.&lt;/div&gt;
+			</code>
     </pre>
 </div>

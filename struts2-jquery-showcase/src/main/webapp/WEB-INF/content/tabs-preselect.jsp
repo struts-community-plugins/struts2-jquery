@@ -23,24 +23,28 @@
 	<sj:tab id="tab5" formIds="echoForm" href="%{remoteurl5}" label="Echo Tab"/>
 </sj:tabbedpanel>
 
-<div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
-    <pre>
-    &lt;s:form id=&quot;echoForm&quot;&gt;
-    	&lt;s:textfield name=&quot;echo&quot; value=&quot;Hello World!&quot; label=&quot;Echo for Echo Tab&quot;/&gt;
-    &lt;/s:form&gt;
 
-    &lt;s:url var=&quot;remoteurl1&quot; action=&quot;ajax1&quot;/&gt;
-    &lt;s:url var=&quot;remoteurl2&quot; action=&quot;ajax2&quot;/&gt;
-    &lt;s:url var=&quot;remoteurl3&quot; action=&quot;ajax3&quot;/&gt;
-    &lt;s:url var=&quot;remoteurl4&quot; action=&quot;ajax4&quot;/&gt;
-    &lt;s:url var=&quot;remoteurl5&quot; action=&quot;echo&quot;/&gt;
-    &lt;sj:tabbedpanel id=&quot;remotetabs&quot;  selectedTab=&quot;2&quot; show=&quot;true&quot; hide=&quot;'fade'&quot; collapsible=&quot;true&quot; sortable=&quot;true&quot;&gt;
-      &lt;sj:tab id=&quot;tab1&quot; href=&quot;%{remoteurl1}&quot; label=&quot;Remote Tab One&quot;/&gt;
-      &lt;sj:tab id=&quot;tab2&quot; href=&quot;%{remoteurl2}&quot; label=&quot;Remote Tab Two&quot;/&gt;
-      &lt;sj:tab id=&quot;tab3&quot; href=&quot;%{remoteurl3}&quot; label=&quot;Remote Tab Three&quot; closable=&quot;true&quot;/&gt;
-      &lt;sj:tab id=&quot;tab4&quot; href=&quot;%{remoteurl4}&quot; label=&quot;Remote Tab Four&quot; closable=&quot;true&quot;/&gt;
-      &lt;sj:tab id=&quot;tab5&quot; formIds=&quot;echoForm&quot; href=&quot;%{remoteurl5}&quot; label=&quot;Echo Tab&quot;/&gt;
-    &lt;/sj:tabbedpanel&gt;
+<h4>Source Code</h4>
+
+<div class="code ui-widget-content ui-corner-all">
+	  <pre>
+            <code class="html">
+&lt;s:form id=&quot;echoForm&quot;&gt;
+    &lt;s:textfield name=&quot;echo&quot; value=&quot;Hello World!&quot; label=&quot;Echo for Echo Tab&quot;/&gt;
+&lt;/s:form&gt;
+
+&lt;s:url var=&quot;remoteurl1&quot; action=&quot;ajax1&quot;/&gt;
+&lt;s:url var=&quot;remoteurl2&quot; action=&quot;ajax2&quot;/&gt;
+&lt;s:url var=&quot;remoteurl3&quot; action=&quot;ajax3&quot;/&gt;
+&lt;s:url var=&quot;remoteurl4&quot; action=&quot;ajax4&quot;/&gt;
+&lt;s:url var=&quot;remoteurl5&quot; action=&quot;echo&quot;/&gt;
+&lt;sj:tabbedpanel id=&quot;remotetabs&quot;  selectedTab=&quot;2&quot; show=&quot;true&quot; hide=&quot;'fade'&quot; collapsible=&quot;true&quot; sortable=&quot;true&quot;&gt;
+  &lt;sj:tab id=&quot;tab1&quot; href=&quot;%{remoteurl1}&quot; label=&quot;Remote Tab One&quot;/&gt;
+  &lt;sj:tab id=&quot;tab2&quot; href=&quot;%{remoteurl2}&quot; label=&quot;Remote Tab Two&quot;/&gt;
+  &lt;sj:tab id=&quot;tab3&quot; href=&quot;%{remoteurl3}&quot; label=&quot;Remote Tab Three&quot; closable=&quot;true&quot;/&gt;
+  &lt;sj:tab id=&quot;tab4&quot; href=&quot;%{remoteurl4}&quot; label=&quot;Remote Tab Four&quot; closable=&quot;true&quot;/&gt;
+  &lt;sj:tab id=&quot;tab5&quot; formIds=&quot;echoForm&quot; href=&quot;%{remoteurl5}&quot; label=&quot;Echo Tab&quot;/&gt;
+&lt;/sj:tabbedpanel&gt;
+            </code>
     </pre>
 </div>

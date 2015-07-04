@@ -46,43 +46,46 @@
 
 <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
 
-<div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
-	  <pre>
-    <strong>Buttonset that was populated from a List with String values.</strong>
-    &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
-			    &lt;sj:checkboxlist
-			    		id=&quot;checkboxbuttonset&quot;
-			            tooltip=&quot;Choose your Friends&quot;
-			            label=&quot;Friends&quot;
-			            list=&quot;{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}&quot;
-			            name=&quot;echo&quot;/&gt;
-	            &lt;sj:submit 
-	            	targets=&quot;formResult&quot; 
-	            	value=&quot;AJAX Submit&quot; 
-	            	indicator=&quot;indicator&quot;
-	            	button=&quot;true&quot;
-	            	/&gt;
-    &lt;/s:form&gt;
-    &lt;br/&gt;
-    <strong>Buttonset that was populated from AJAX JSON Result.</strong>
-    &lt;s:form id=&quot;form2&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt; 
-				&lt;sj:checkboxlist
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;remoteCheckboxlist&quot; 
-					name=&quot;echo&quot; 
-					list=&quot;languageList&quot; 
-					label=&quot;Language&quot;
-				/&gt;
-	            &lt;sj:submit 
-	            	targets=&quot;formResult&quot; 
-	            	value=&quot;AJAX Submit&quot; 
-	            	indicator=&quot;indicator&quot;
-	            	button=&quot;true&quot;
-	            	/&gt;
-   &lt;/s:form&gt;
+<h4>Source Code</h4>
 
-    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
+<div class="code ui-widget-content ui-corner-all">
+	  <pre>
+            <code class="html">
+&lt;strong&gt;Buttonset that was populated from a List with String values.&lt;/strong&gt;
+&lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+	&lt;sj:checkboxlist
+			id=&quot;checkboxbuttonset&quot;
+			tooltip=&quot;Choose your Friends&quot;
+			label=&quot;Friends&quot;
+			list=&quot;{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}&quot;
+			name=&quot;echo&quot;/&gt;
+	&lt;sj:submit
+		targets=&quot;formResult&quot;
+		value=&quot;AJAX Submit&quot;
+		indicator=&quot;indicator&quot;
+		button=&quot;true&quot;
+		/&gt;
+&lt;/s:form&gt;
+&lt;br/&gt;
+&lt;strong&gt;Buttonset that was populated from AJAX JSON Result.&lt;/strong&gt;
+&lt;s:form id=&quot;form2&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
+	&lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonsample&quot;/&gt;
+	&lt;sj:checkboxlist
+		href=&quot;%{remoteurl}&quot;
+		id=&quot;remoteCheckboxlist&quot;
+		name=&quot;echo&quot;
+		list=&quot;languageList&quot;
+		label=&quot;Language&quot;
+	/&gt;
+	&lt;sj:submit
+		targets=&quot;formResult&quot;
+		value=&quot;AJAX Submit&quot;
+		indicator=&quot;indicator&quot;
+		button=&quot;true&quot;
+		/&gt;
+&lt;/s:form&gt;
+
+&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+			</code>
 	  </pre>
 </div>

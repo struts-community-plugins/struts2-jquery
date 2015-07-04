@@ -47,60 +47,71 @@
 <br/>
 <sj:a id="grid_multi_getselectedbutton" onClickTopics="getselectedids" button="true">Get Selected Rows</sj:a>
 
-<br/>
-<sj:tabbedpanel id="localtabs" cssClass="list">
+<h4>Source Code</h4>
+
+<sj:tabbedpanel id="localtabs">
 <sj:tab id="tab1" target="javascript" label="JavaScript"/>
 <sj:tab id="tab2" target="jsp" label="JSP"/>
 <sj:tab id="tab3" target="java" label="Struts2 Action"/>
 <div id="javascript">
 	  <pre>
-    $.subscribe('getselectedids', function(event,data) {
-    	var s;
-    	s = $(&quot;#gridmultitable&quot;).jqGrid('getGridParam','selarrrow');
-    	alert('Selected Rows : '+s);
-  	});
+            <code class="javascript">
+$.subscribe('getselectedids', function(event,data) {
+    var rows = $(&quot;#gridmultitable&quot;).jqGrid('getGridParam', 'selarrrow');
+    alert('Selected Rows : ' + JSON.stringify(rows));
+});
+            </code>
 	  </pre>
 </div>
 <div id="jsp">
 	  <pre>
-    &lt;s:url id=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;/&gt;
-    &lt;s:url id=&quot;editurl&quot; action=&quot;edit-grid-entry&quot;/&gt;
-    &lt;sj:grid
-    	id=&quot;gridmultitable&quot;
-    	caption=&quot;Customer Examples (Editable/Multiselect)&quot;
-    	dataType=&quot;json&quot;
-    	href=&quot;%{remoteurl}&quot;
-    	pager=&quot;true&quot;
-    	navigator=&quot;true&quot;
-    	navigatorSearchOptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;
-    	navigatorAddOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
-    	navigatorEditOptions=&quot;{height:280,reloadAfterSubmit:false}&quot;
-    	navigatorEdit=&quot;true&quot;
-    	navigatorView=&quot;true&quot;
-    	navigatorDelete=&quot;true&quot;
-    	navigatorDeleteOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
-    	gridModel=&quot;gridModel&quot;
-    	rowList=&quot;10,15,20&quot;
-    	rowNum=&quot;15&quot;
-    	editurl=&quot;%{editurl}&quot;
-    	multiselect=&quot;true&quot;
-    	onSelectRowTopics=&quot;rowselect&quot;
-    &gt;
-    	&lt;sj:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot; editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    	&lt;sj:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; formatter=&quot;currency&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
-    &lt;/sj:grid&gt;
-	&lt;br/&gt;
-    &lt;sj:submit id=&quot;grid_multi_getselectedbutton&quot; value=&quot;Get Selected Rows&quot; onClickTopics=&quot;getselectedids&quot; button=&quot;true&quot;/&gt;
+            <code class="html">
+&lt;s:url var=&quot;remoteurl&quot; action=&quot;grid-data-provider&quot; namespace=&quot;/grid&quot;/&gt;
+&lt;s:url var=&quot;editurl&quot; action=&quot;edit-grid-entry&quot; namespace=&quot;/grid&quot;/&gt;
+&lt;sjg:grid
+  id=&quot;gridmultitable&quot;
+  caption=&quot;Customers Examples (Editable/Multiselect)&quot;
+  dataType=&quot;json&quot;
+  href=&quot;%{remoteurl}&quot;
+  pager=&quot;true&quot;
+  toppager=&quot;true&quot;
+  navigator=&quot;true&quot;
+  navigatorSearchOptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;
+  navigatorAddOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
+  navigatorEditOptions=&quot;{height:280,reloadAfterSubmit:false}&quot;
+  navigatorEdit=&quot;true&quot;
+  navigatorView=&quot;true&quot;
+  navigatorDelete=&quot;true&quot;
+  navigatorDeleteOptions=&quot;{height:280,reloadAfterSubmit:true}&quot;
+  gridModel=&quot;gridModel&quot;
+  rowList=&quot;10,15,20&quot;
+  rowNum=&quot;15&quot;
+  editurl=&quot;%{editurl}&quot;
+  multiselect=&quot;true&quot;
+&gt;
+  &lt;sjg:gridColumn name=&quot;id&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;30&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot;
+  search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;name&quot; index=&quot;name&quot; title=&quot;Name&quot; width=&quot;250&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot;
+  search=&quot;false&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot; hidden=&quot;true&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot;
+  editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot;
+  sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot;
+  search=&quot;false&quot;/&gt;
+  &lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot;
+  editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+&lt;/sjg:grid&gt;
+&lt;br/&gt;
+&lt;sj:a id=&quot;grid_multi_getselectedbutton&quot; onClickTopics=&quot;getselectedids&quot; button=&quot;true&quot;&gt;Get Selected Rows&lt;/sj:a&gt;
+            </code>
 	  </pre>
 </div>
 <div id="java">
-<pre>
+      <pre>
+            <code class="java">
 package com.jgeppert.struts2.jquery.showcase.grid;
 
 import java.util.ArrayList;
@@ -435,6 +446,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
 
 }
 
+            </code>
 	  </pre>
 </div>
 </sj:tabbedpanel>

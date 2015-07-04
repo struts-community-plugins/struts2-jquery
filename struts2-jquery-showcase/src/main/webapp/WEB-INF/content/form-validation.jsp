@@ -77,7 +77,7 @@
 			/>
 </s:form>
 
-<br/>
+<h4>Source Code</h4>
 
 <sj:tabbedpanel id="localtabs" cssClass="list">
 	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
@@ -85,46 +85,49 @@
 	<sj:tab id="tab2" target="javascript" label="Required JavaScript"/>
 	<div id="jsp">
 	  <pre>
-    &lt;s:form id=&quot;formValidate&quot; action=&quot;login&quot; theme=&quot;xhtml&quot; target=&quot;_blank&quot;&gt;
-     	&lt;s:textfield 
-     		id=&quot;loginuser&quot; 
-     		name=&quot;loginuser&quot; 
-     		label=&quot;User&quot; 
-     		required=&quot;true&quot;
-     	/&gt;
-     	&lt;s:textfield 
-     		id=&quot;loginpassword&quot; 
-     		name=&quot;loginpassword&quot; 
-     		label=&quot;Password (test)&quot; 
-     		required=&quot;true&quot;
-     	/&gt;
-    	&lt;sj:submit 
-    		button=&quot;true&quot; 
-    		validate=&quot;true&quot; 
-    		value=&quot;Submit&quot; 
-    		indicator=&quot;indicator&quot;
-    		/&gt;
-    	&lt;sj:submit 
-    		targets=&quot;result&quot; 
-    		button=&quot;true&quot; 
-    		validate=&quot;true&quot; 
-    		value=&quot;AJAX Submit&quot; 
-    		indicator=&quot;indicator&quot;
-    		/&gt;
-    	&lt;sj:a
-    		formIds=&quot;formValidate&quot; 
-    		targets=&quot;result&quot; 
-    		button=&quot;true&quot; 
-    		buttonIcon=&quot;ui-icon-gear&quot;
-    		validate=&quot;true&quot; 
-    		indicator=&quot;indicator&quot;
-    		&gt;AJAX Submit as Link&lt;/sj:a&gt;
-    &lt;/s:form&gt;
-    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
+            <code class="html">
+&lt;s:form id=&quot;formValidate&quot; action=&quot;login&quot; theme=&quot;xhtml&quot; target=&quot;_blank&quot;&gt;
+	&lt;s:textfield
+		id=&quot;loginuser&quot;
+		name=&quot;loginuser&quot;
+		label=&quot;User&quot;
+		required=&quot;true&quot;
+	/&gt;
+	&lt;s:textfield
+		id=&quot;loginpassword&quot;
+		name=&quot;loginpassword&quot;
+		label=&quot;Password (test)&quot;
+		required=&quot;true&quot;
+	/&gt;
+	&lt;sj:submit
+		button=&quot;true&quot;
+		validate=&quot;true&quot;
+		value=&quot;Submit&quot;
+		indicator=&quot;indicator&quot;
+		/&gt;
+	&lt;sj:submit
+		targets=&quot;result&quot;
+		button=&quot;true&quot;
+		validate=&quot;true&quot;
+		value=&quot;AJAX Submit&quot;
+		indicator=&quot;indicator&quot;
+		/&gt;
+	&lt;sj:a
+		formIds=&quot;formValidate&quot;
+		targets=&quot;result&quot;
+		button=&quot;true&quot;
+		buttonIcon=&quot;ui-icon-gear&quot;
+		validate=&quot;true&quot;
+		indicator=&quot;indicator&quot;
+		&gt;AJAX Submit as Link&lt;/sj:a&gt;
+&lt;/s:form&gt;
+&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+			</code>
 	  </pre>
 	</div>
 	<div id="java">
 	  <pre>
+            <code class="java">
 @ParentPackage(value = &quot;showcase&quot;)
 @InterceptorRef(&quot;jsonValidationWorkflowStack&quot;)
 @Validations(requiredStrings = {
@@ -176,20 +179,23 @@ public class Login extends ActionSupport {
     this.loginpassword = loginpassword;
   }
 }
+			</code>
 	  </pre>
 	</div>
 	<div id="javascript">
 	  <pre>
-	&lt;script 
-		language=&quot;JavaScript&quot; 
-		src=&quot;${pageContext.request.contextPath}/struts/utils.js&quot; 
-		type=&quot;text/javascript&quot;&gt;
-	&lt;/script&gt;
-	&lt;script 
-		language=&quot;JavaScript&quot; 
-		src=&quot;${pageContext.request.contextPath}/struts/xhtml/validation.js&quot; 
-		type=&quot;text/javascript&quot;&gt;
-	&lt;/script&gt;
+            <code class="html">
+&lt;script
+	language=&quot;JavaScript&quot;
+	src=&quot;${pageContext.request.contextPath}/struts/utils.js&quot;
+	type=&quot;text/javascript&quot;&gt;
+&lt;/script&gt;
+&lt;script
+	language=&quot;JavaScript&quot;
+	src=&quot;${pageContext.request.contextPath}/struts/xhtml/validation.js&quot;
+	type=&quot;text/javascript&quot;&gt;
+&lt;/script&gt;
+			</code>
 	  </pre>
 	</div>
 </sj:tabbedpanel>

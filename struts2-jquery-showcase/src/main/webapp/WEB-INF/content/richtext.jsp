@@ -4,11 +4,11 @@
 <h2>Richtext</h2>
 
 <p class="text">
-	A simple Richtext Editor with default values. The Richtext Editor is based on <a href="http://ckeditor.com/">CKEditor</a>.
+	A simple richtext editor with default values. The richtext editor is based on <a href="http://ckeditor.com/">CKEditor</a>.
 </p>
 
 <p>
-	To enable the Richtext Editor in your Project you need to copy the separate <strong>struts2-jquery-richtext-plugin.jar</strong>
+	To enable the richtext editor in your project you need to copy the separate <strong>struts2-jquery-richtext-plugin.jar</strong>
 	into your WEB-INF/lib path.
 </p>
 <s:form id="formRichtext" action="simpleecho" theme="simple" cssClass="yform">
@@ -49,59 +49,57 @@
 	</fieldset>
 </s:form>
 
-<strong>Result Div :</strong>
-
+<strong>Result div:</strong>
 <div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
 
+<h4>Source Code</h4>
 
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
 	  <pre>
-	&lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot;%&gt;
-	<strong>
-		&lt;%@ taglib prefix=&quot;sjr&quot; uri=&quot;/struts-jquery-richtext-tags&quot;%&gt;
-	</strong>
+            <code class="html">
+&lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot;%&gt;
+&lt;%@ taglib prefix=&quot;sjr&quot; uri=&quot;/struts-jquery-richtext-tags&quot;%&gt;
 
-    &lt;s:form id=&quot;formRichtext&quot; action=&quot;simpleecho&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-    &lt;s:hidden name=&quot;escape&quot; value=&quot;false&quot;/&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-				&lt;sjr:ckeditor 
-					id=&quot;richtextEditor&quot; 
-					name=&quot;echo&quot; 
-					rows=&quot;10&quot; 
-					cols=&quot;80&quot; 
-					width=&quot;730&quot;
-					height=&quot;250&quot;
-					uploads=&quot;true&quot;
-					onFocusTopics=&quot;focusRichtext&quot;
-					onBlurTopics=&quot;blurRichtext&quot;
-					onChangeTopics=&quot;highlightRichtext&quot;
-					value=&quot;Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&quot;
-				/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-				&lt;sj:submit
-					id=&quot;richtextSubmitButton&quot;
-					formIds=&quot;formRichtext&quot; 
-					targets=&quot;result&quot; 
-					listenTopics=&quot;saveRichtext&quot;
-					value=&quot;Save Button&quot; 
-					indicator=&quot;indicator&quot; 
-					button=&quot;true&quot;
-				/&gt;
-				&lt;img id=&quot;indicator&quot; 
-					src=&quot;images/indicator.gif&quot; 
-					alt=&quot;Loading...&quot; 
-					style=&quot;display:none&quot;/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
+&lt;s:form id=&quot;formRichtext&quot; action=&quot;simpleecho&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+&lt;s:hidden name=&quot;escape&quot; value=&quot;false&quot;/&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			&lt;sjr:ckeditor
+				id=&quot;richtextEditor&quot;
+				name=&quot;echo&quot;
+				rows=&quot;10&quot;
+				cols=&quot;80&quot;
+				width=&quot;730&quot;
+				height=&quot;250&quot;
+				uploads=&quot;true&quot;
+				onFocusTopics=&quot;focusRichtext&quot;
+				onBlurTopics=&quot;blurRichtext&quot;
+				onChangeTopics=&quot;highlightRichtext&quot;
+				value=&quot;Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				id=&quot;richtextSubmitButton&quot;
+				formIds=&quot;formRichtext&quot;
+				targets=&quot;result&quot;
+				listenTopics=&quot;saveRichtext&quot;
+				value=&quot;Save Button&quot;
+				indicator=&quot;indicator&quot;
+				button=&quot;true&quot;
+			/&gt;
+			&lt;img id=&quot;indicator&quot;
+				src=&quot;images/indicator.gif&quot;
+				alt=&quot;Loading...&quot;
+				style=&quot;display:none&quot;/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
 
-    &lt;strong&gt;Result Div :&lt;/strong&gt;
-	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
-
+&lt;strong&gt;Result div:&lt;/strong&gt;
+&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
+			</code>
 	  </pre>
 </div>

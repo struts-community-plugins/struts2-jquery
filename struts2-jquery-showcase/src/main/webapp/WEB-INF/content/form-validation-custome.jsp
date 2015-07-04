@@ -1,10 +1,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-<h2>Form submission with Custome AJAX Validation</h2>
+<h2>Form submission with custom AJAX validation</h2>
 
 <p class="text">
-	A Form submission with Custome AJAX Validation.
+	A Form submission with custom AJAX Validation.
 </p>
 <strong>Result Div :</strong>
 
@@ -13,7 +13,7 @@
 <ul id="formerrors" class="errorMessage"></ul>
 <s:form id="formValidateCustom" action="login" theme="simple" cssClass="ym-form">
 	<fieldset>
-		<legend>AJAX Form with Validation</legend>
+		<legend>AJAX Form with validation</legend>
 		<div class="ym-fbox-text">
 			<label for="echo">User: <span id="loginuserError"></span></label>
 			<s:textfield
@@ -33,7 +33,7 @@
 					targets="result"
 					button="true"
 					validate="true"
-					validateFunction="customeValidation"
+					validateFunction="customValidation"
 					onBeforeTopics="removeErrors"
 					onSuccessTopics="removeErrors"
 					value="Submit"
@@ -44,7 +44,7 @@
 </s:form>
 <img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
 
-<br/>
+<h4>Source Code</h4>
 
 <sj:tabbedpanel id="localtabs" cssClass="list">
 	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
@@ -52,45 +52,48 @@
 	<sj:tab id="tab2" target="javascript" label="Required JavaScript"/>
 	<div id="jsp">
 	  <pre>
-	&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
-    
-    &lt;ul id=&quot;formerrors&quot; class=&quot;errorMessage&quot;&gt;&lt;/ul&gt;
-    &lt;s:form id=&quot;formValidateCustom&quot; action=&quot;login&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form with Validation&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;User: &lt;span id=&quot;loginuserError&quot;&gt;&lt;/span&gt;&lt;/label&gt;
-			   	&lt;s:textfield 
-		     		id=&quot;loginuser&quot; 
-		     		name=&quot;loginuser&quot; 
-		     	/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Password: &lt;span id=&quot;loginpasswordError&quot;&gt;&lt;/span&gt;&lt;/label&gt;
-		     	&lt;s:textfield 
-		     		id=&quot;loginpassword&quot; 
-		     		name=&quot;loginpassword&quot; 
-		     	/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-		    	&lt;sj:submit 
-		    		targets=&quot;result&quot; 
-		    		button=&quot;true&quot; 
-		    		validate=&quot;true&quot; 
-		    		validateFunction=&quot;customeValidation&quot;
-		    		onBeforeTopics=&quot;removeErrors&quot;
-		    		onSuccessTopics=&quot;removeErrors&quot;
-		    		value=&quot;Submit&quot; 
-		    		indicator=&quot;indicator&quot;
-		    	/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
-    &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;    
+            <code class="html">
+&lt;div id=&quot;result&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
+
+&lt;ul id=&quot;formerrors&quot; class=&quot;errorMessage&quot;&gt;&lt;/ul&gt;
+&lt;s:form id=&quot;formValidateCustom&quot; action=&quot;login&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form with validation&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;User: &lt;span id=&quot;loginuserError&quot;&gt;&lt;/span&gt;&lt;/label&gt;
+			&lt;s:textfield
+				id=&quot;loginuser&quot;
+				name=&quot;loginuser&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Password: &lt;span id=&quot;loginpasswordError&quot;&gt;&lt;/span&gt;&lt;/label&gt;
+			&lt;s:textfield
+				id=&quot;loginpassword&quot;
+				name=&quot;loginpassword&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				targets=&quot;result&quot;
+				button=&quot;true&quot;
+				validate=&quot;true&quot;
+				validateFunction=&quot;customValidation&quot;
+				onBeforeTopics=&quot;removeErrors&quot;
+				onSuccessTopics=&quot;removeErrors&quot;
+				value=&quot;Submit&quot;
+				indicator=&quot;indicator&quot;
+			/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+&lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
+			</code>
 	  </pre>
 	</div>
 	<div id="java">
 	  <pre>
+            <code class="java">
 @ParentPackage(value = &quot;showcase&quot;)
 @InterceptorRef(&quot;jsonValidationWorkflowStack&quot;)
 @Validations(requiredStrings = {
@@ -145,11 +148,12 @@ public class Login extends ActionSupport {
     this.loginpassword = loginpassword;
   }
 }
+			</code>
 	  </pre>
 	</div>
 	<div id="javascript">
 	  <pre>
-
+            <code class="javascript">
 $(document).ready( function() {
 	$.subscribe('removeErrors', function(event,data) {
 		$('.errorLabel').html('').removeClass('errorLabel');
@@ -157,7 +161,7 @@ $(document).ready( function() {
 	});
 });	
 
-function customeValidation(form, errors) {
+function customValidation(form, errors) {
 	
 	//List for errors
 	var list = $('#formerrors');
@@ -165,7 +169,7 @@ function customeValidation(form, errors) {
 	//Handle non field errors 
 	if (errors.errors) {
 		$.each(errors.errors, function(index, value) { 
-			list.append('<li>'+value+'</li>\n');
+			list.append('<&lt;li&gt;'+value+'&lt;/li&gt;\n');
 		});
 	}
 	
@@ -181,6 +185,7 @@ function customeValidation(form, errors) {
 		});
 	}
 }
+			</code>
 	  </pre>
 	</div>
 </sj:tabbedpanel>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 
+<div class="ym-g50 ym-gl">
 	<sj:menu id="widgetsMenu">
 		<sj:menuItem title="Accordion">
 			<sj:menu id="subMenuAccordion">
@@ -197,3 +198,4 @@
 			</sj:menu>
 		</sj:menuItem>
 	</sj:menu>
+</div>

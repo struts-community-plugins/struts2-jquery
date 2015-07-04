@@ -13,14 +13,18 @@
 	Click me!<br/>
 </sj:div>
 
+<h4>Source Code</h4>
+
 <div class="code ui-widget-content ui-corner-all">
 	<strong>Code:</strong>
 	  <pre>
-    &lt;sj:div id=&quot;withclick&quot; <strong>events=&quot;click&quot; effect=&quot;highlight&quot; effectDuration=&quot;4000&quot;
-		  effectOptions=&quot;{ color: '#000000', mode: 'show' }&quot;</strong> cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
-        Click me!&lt;br/&gt;
-        Click me!&lt;br/&gt;
-        Click me!&lt;br/&gt;
-    &lt;/sj:div&gt;
+    	<code class="html">
+&lt;sj:div id=&quot;withclick&quot; events=&quot;click&quot; effect=&quot;highlight&quot; effectDuration=&quot;4000&quot;
+	  effectOptions=&quot;{ color: '#000000', mode: 'show' }&quot; cssClass=&quot;result ui-widget-content ui-corner-all&quot;&gt;
+	Click me!&lt;br/&gt;
+	Click me!&lt;br/&gt;
+	Click me!&lt;br/&gt;
+&lt;/sj:div&gt;
+		</code>
 	  </pre>
 </div>

@@ -18,10 +18,11 @@
 	               label="With min and max Date"/>
 </s:form>
 
+<h4>Source Code</h4>
 
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
     <pre>
+    <code class="html">
     &lt;s:form id=&quot;form&quot; theme=&quot;xhtml&quot;&gt;
       &lt;sj:datepicker id=&quot;date0&quot; name=&quot;date0&quot; maxDate=&quot;-1d&quot; label=&quot;Select a Date&quot; /&gt;
       &lt;sj:datepicker value=&quot;%{dateValue}&quot; id=&quot;date1&quot; name=&quot;date1&quot; label=&quot;Date Value from Action&quot; /&gt;
@@ -31,5 +32,6 @@
       &lt;sj:datepicker value=&quot;tomorrow&quot; id=&quot;date5&quot; name=&quot;date5&quot; displayFormat=&quot;DD, d MM yy&quot; label=&quot;Tomorrow&quot; /&gt;
       &lt;sj:datepicker value=&quot;2004-08-14&quot; id=&quot;date6&quot; name=&quot;date6&quot; displayFormat=&quot;d M, yy&quot; label=&quot;String Value&quot; /&gt;
     &lt;/s:form&gt;
+    </code>
     </pre>
 </div>

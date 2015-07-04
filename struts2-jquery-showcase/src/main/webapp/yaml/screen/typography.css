@@ -25,22 +25,6 @@
     font-size: 100%;
   }
 
-  /**
-  * (en) reset monospaced elements to font size 16px in all browsers
-  * (de) Schriftgröße von monospaced Elemente in allen Browsern auf 16 Pixel setzen
-  *
-  * @see: http://webkit.org/blog/67/strange-medium/
-  */
-  textarea,
-  pre,
-  code,
-  kbd,
-  samp,
-  var,
-  tt {
-    font-family: Consolas, "Lucida Console", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier;
-  }
-
   /* font-size: 14px; */
   body {
     font-family: "Droid Serif", Georgia, "Times New Roman", Times, serif;
@@ -104,52 +88,6 @@
     margin: 0 0 1.5em 0;
   }
 
-  /* --- Lists | Listen  -------------------------------------------------------------------------------- */
-  ul,
-  ol,
-  dl {
-    font-size: 100%;
-    line-height: 1.5;
-    margin: 0 0 1.5em 0;
-  }
-
-  ul {
-    list-style-type: disc;
-  }
-
-  ol {
-    list-style-type: decimal;
-  }
-
-  ul ul {
-    list-style-type: circle;
-    margin-top: 0;
-  }
-
-  ol ol {
-    list-style-type: lower-latin;
-    margin-top: 0;
-  }
-
-  ol ul {
-    list-style-type: circle;
-    margin-top: 0;
-  }
-
-  li {
-    font-size: 100%;
-    line-height: 1.5;
-    margin-left: 1.2em;
-  }
-
-  dt {
-    font-weight: bold;
-  }
-
-  dd {
-    margin: 0 0 1.5em 0.8em;
-  }
-
   /* --- general text formatting | Allgemeine Textauszeichnung ------------------------------------------ */
   p {
     font-size: 100%;
@@ -192,71 +130,6 @@
     line-height: 1.75;
   }
 
-  pre,
-  code,
-  kbd,
-  tt,
-  samp,
-  var {
-    font-size: 100%;
-  }
-
-  pre {
-    font-size: 100%;
-    line-height: 1.5;
-    margin: 0 0 1.5em 0;
-    white-space: pre;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-
-  pre,
-  code {
-    color: #880000;
-  }
-
-  kbd,
-  samp,
-  var,
-  tt {
-    color: #666666;
-    font-weight: bold;
-  }
-
-  var,
-  dfn {
-    font-style: italic;
-  }
-
-  acronym,
-  abbr {
-    border-bottom: 1px #aaa dotted;
-    font-variant: small-caps;
-    letter-spacing: .07em;
-    cursor: help;
-  }
-
-  sub,
-  sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-
-  sup {
-    top: -0.5em;
-  }
-
-  sub {
-    bottom: -0.25em;
-  }
-
-  mark {
-    background: yellow;
-    color: black;
-  }
-
   hr {
     color: #fff;
     background: transparent;
@@ -272,7 +145,7 @@
   }
 
   a:active {
-    outline: none;
+   outline: none;
   }
 
   /* (en) maximum constrast for tab focus - change with great care */

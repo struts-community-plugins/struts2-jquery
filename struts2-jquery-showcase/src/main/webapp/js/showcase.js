@@ -1,3 +1,4 @@
+
 /*
  * Function for Theme Handling
  *
@@ -25,10 +26,10 @@ function changeTheme(newTheme) {
 }
 
 /*
- * Function for Custome Validation Example
+ * Function for custom validation example
  *
  */
-function customeValidation(form, errors) {
+function customValidation(form, errors) {
 
 	// List for errors
 	var list = $('#formerrors');
@@ -60,7 +61,15 @@ function deleteTreeNode(url, obj) {
 	$("#result2").load(url +"?echo=Delete%20Node%20"+obj[0]);
 }
 
+$(document).ajaxComplete(function() {
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+});
+
 $(document).ready(function() {
+
+
 
 	$.subscribe('changeTextfield', function(event, data) {
 		$('#result').html('Textfield '+data.id+' value is '+data.value);

@@ -20,16 +20,19 @@
 	<br/>
 </div>
 
+<h4>Source Code</h4>
+
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
 	  <pre>
-		&lt;h3&gt;Action Error&lt;/h3&gt;
-		&lt;s:actionerror theme=&quot;jquery&quot;/&gt;
-		
-		&lt;h3&gt;Action Message&lt;/h3&gt;
-		&lt;s:actionmessage theme=&quot;jquery&quot;/&gt;
-		
-		&lt;h3&gt;Field Errors&lt;/h3&gt;
-		&lt;s:fielderror theme=&quot;jquery&quot;/&gt;
+            <code class="html">
+&lt;h3&gt;Action Error&lt;/h3&gt;
+&lt;s:actionerror theme=&quot;jquery&quot;/&gt;
+
+&lt;h3&gt;Action Message&lt;/h3&gt;
+&lt;s:actionmessage theme=&quot;jquery&quot;/&gt;
+
+&lt;h3&gt;Field Errors&lt;/h3&gt;
+&lt;s:fielderror theme=&quot;jquery&quot;/&gt;
+			</code>
 	  </pre>
 </div>

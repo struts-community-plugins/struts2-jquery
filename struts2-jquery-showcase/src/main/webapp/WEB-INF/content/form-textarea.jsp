@@ -43,41 +43,43 @@
 
 <div id="result" class="result ui-widget-content ui-corner-all">Submit form bellow.</div>
 
+<h4>Source Code</h4>
 
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
 	  <pre>
-    &lt;s:form id=&quot;formTextarea&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
-        &lt;fieldset&gt;
-            &lt;legend&gt;AJAX Form&lt;/legend&gt;
-	        &lt;div class=&quot;type-text&quot;&gt;
-	            &lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
-				&lt;s:url id=&quot;remoteurl&quot; action=&quot;ajax1&quot;/&gt;
-				&lt;sj:textarea 
-					href=&quot;%{remoteurl}&quot; 
-					id=&quot;echo&quot; 
-					name=&quot;echo&quot; 
-					rows=&quot;10&quot; 
-					cols=&quot;80&quot; 
-					effect=&quot;highlight&quot; 
-					effectDuration=&quot;1500&quot; 
-					loadingText=&quot;Loading content of textarea ...&quot;
-				/&gt;
-	        &lt;/div&gt;
-	        &lt;div class=&quot;type-button&quot;&gt;
-				&lt;sj:submit 
-					targets=&quot;result&quot; 
-					effect=&quot;slide&quot; 
-					value=&quot;AJAX Submit&quot; 
-					indicator=&quot;indicator&quot; 
-					button=&quot;true&quot;
-				/&gt;
-				&lt;img id=&quot;indicator&quot; 
-					src=&quot;images/indicator.gif&quot; 
-					alt=&quot;Loading...&quot; 
-					style=&quot;display:none&quot;/&gt;
-	        &lt;/div&gt;
-        &lt;/fieldset&gt;
-    &lt;/s:form&gt;
+            <code class="html">
+&lt;s:form id=&quot;formTextarea&quot; action=&quot;echo&quot; theme=&quot;simple&quot; cssClass=&quot;yform&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;AJAX Form&lt;/legend&gt;
+		&lt;div class=&quot;type-text&quot;&gt;
+			&lt;label for=&quot;echo&quot;&gt;Echo: &lt;/label&gt;
+			&lt;s:url id=&quot;remoteurl&quot; action=&quot;ajax1&quot;/&gt;
+			&lt;sj:textarea
+				href=&quot;%{remoteurl}&quot;
+				id=&quot;echo&quot;
+				name=&quot;echo&quot;
+				rows=&quot;10&quot;
+				cols=&quot;80&quot;
+				effect=&quot;highlight&quot;
+				effectDuration=&quot;1500&quot;
+				loadingText=&quot;Loading content of textarea ...&quot;
+			/&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;type-button&quot;&gt;
+			&lt;sj:submit
+				targets=&quot;result&quot;
+				effect=&quot;slide&quot;
+				value=&quot;AJAX Submit&quot;
+				indicator=&quot;indicator&quot;
+				button=&quot;true&quot;
+			/&gt;
+			&lt;img id=&quot;indicator&quot;
+				src=&quot;images/indicator.gif&quot;
+				alt=&quot;Loading...&quot;
+				style=&quot;display:none&quot;/&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/s:form&gt;
+			</code>
 	  </pre>
 </div>

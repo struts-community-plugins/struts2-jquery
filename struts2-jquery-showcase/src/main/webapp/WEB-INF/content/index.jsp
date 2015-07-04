@@ -46,12 +46,16 @@
     <script type="text/javascript" src="<s:url value="/js/showcase.js" />"></script>
     <!-- Extend the Struts2 jQuery Plugin with an richtext editor -->
     <script type="text/javascript" src="<s:url value="/js/extendplugin.js" />"></script>
+
+    <!-- source code formatting with highlight.js -->
+    <link rel="stylesheet" type="text/css" href="<s:url value="/styles/github-gist.css" />">
+    <script type="text/javascript" src="<s:url value="/js/highlight.pack.js" />"></script>
 </head>
 <body>
 
 <header class="ui-widget-header">
     <div class="ym-wrapper">
-        <div class="ym-wbox" style="padding: 5px 0 0 0;">
+        <div class="ym-wbox">
             <div class="ym-grid linearize-level-1">
                 <div class="ym-g75 ym-gl">
                     <h1 class="ui-state-default" style="background: none; border: none; margin: 0;">Struts2 jQuery
@@ -102,16 +106,16 @@
 </nav>
 
 
-<div id="main">
+<main id="main">
     <div class="ym-wrapper">
         <div class="ym-wbox">
-            <section class="ym-grid linearize-level-1">
+            <section class="ym-grid">
                 <aside class="ym-g25 ym-gl">
                     <s:url var="menuurl" action="showcase-menu-ajax" namespace="/"/>
-                    <sj:div id="menu" href="%{menuurl}" cssClass="ym-wbox">
+                    <sj:div id="menu" href="%{menuurl}" cssClass="">
                     </sj:div>
                 </aside>
-                <article class="ym-g75 ym-gr content">
+                <article class="ym-g75 ym-gr">
                     <s:url var="remotelinkurl" action="remote-link" namespace="/"/>
                     <sj:div id="content" href="%{remotelinkurl}" cssClass="ym-wbox">
                     </sj:div>
@@ -119,7 +123,7 @@
             </section>
         </div>
     </div>
-</div>
+</main>
 <footer>
     <div class="ym-wrapper">
         <div class="ym-wbox">

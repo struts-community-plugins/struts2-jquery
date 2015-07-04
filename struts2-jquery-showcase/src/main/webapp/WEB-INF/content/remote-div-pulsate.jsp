@@ -21,20 +21,23 @@
 	<img id="indicatorpuls" src="images/indicator.gif" alt="Loading..."/>
 </sj:div>
 
+<h4>Source Code</h4>
+
 <div class="code ui-widget-content ui-corner-all">
-	<strong>Code:</strong>
 	  <pre>
-    &lt;s:url id="ajax" value="/ajax1.action"/&gt;
-    &lt;sj:div
-    	id=&quot;pulsatingdiv&quot;
-    	delay=&quot;3000&quot; 
-    	href=&quot;%{ajax}&quot; 
-    	indicator=&quot;indicatorpuls&quot; 
-    	effect=&quot;pulsate&quot; 
-    	effectDuration=&quot;1500&quot; 
-    	cssClass=&quot;result ui-widget-content ui-corner-all&quot;
-    &gt;
-        &lt;img id=&quot;indicatorpuls&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot;/&gt;
-    &lt;/sj:div&gt;
+            <code class="html">
+&lt;s:url id="ajax" value="/ajax1.action"/&gt;
+&lt;sj:div
+	id=&quot;pulsatingdiv&quot;
+	delay=&quot;3000&quot;
+	href=&quot;%{ajax}&quot;
+	indicator=&quot;indicatorpuls&quot;
+	effect=&quot;pulsate&quot;
+	effectDuration=&quot;1500&quot;
+	cssClass=&quot;result ui-widget-content ui-corner-all&quot;
+&gt;
+	&lt;img id=&quot;indicatorpuls&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot;/&gt;
+&lt;/sj:div&gt;
+			</code>
 	  </pre>
 </div>
