@@ -103,7 +103,7 @@
 				o.core.data = {};
 				o.core.data.url = o.url;
 				o.core.data.data = function (n) {
-					return { id : n.id };
+					return { id : n.id === '#' ? '' : n.id };
 				};
 				if (o.onsuc) {
 					o.json_data.ajax.complete  =  function(data, status, request) {
@@ -152,7 +152,7 @@
                 if(o.onclick) {
                     self.publishTopic($elem, o.onclick, orginal);
                 }
-                if(data.node.a_attr.href  && data.node.a_attr.href !== 'javascript:void(0)' && data.node.a_attr.href !== '#'){
+		        if(data.node.a_attr.href  && data.node.a_attr.href !== 'javascript:void(0)' && data.node.a_attr.href !== '#'){
                         // Handle Normal Requests
                         window.open(data.node.a_attr.href,'_blank');
                 } else {

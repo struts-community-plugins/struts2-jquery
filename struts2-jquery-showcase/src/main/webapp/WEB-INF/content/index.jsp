@@ -17,12 +17,12 @@
     <title>Struts2 jQuery Plugin Showcase - <s:text name="showcase.version"/></title>
 
     <s:if test="%{theme == 'showcase' || theme == null}">
-        <sj:head debug="true" compressed="true" jquerytheme="showcase" customBasepath="themes"
+        <sj:head debug="false" compressed="true" jquerytheme="showcase" customBasepath="themes"
                  loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
                  defaultLoadingText="Please wait ..."/>
     </s:if>
     <s:else>
-        <sj:head debug="true" compressed="true" jquerytheme="%{theme}" loadFromGoogle="%{google}"
+        <sj:head debug="false" compressed="true" jquerytheme="%{theme}" loadFromGoogle="%{google}"
                  ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
                  defaultLoadingText="Please wait ..."/>
     </s:else>
