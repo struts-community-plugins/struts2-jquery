@@ -75,10 +75,9 @@
 			}
 			
 			o.resizable = false;
+            o.resize_enabled  = false;
 			if (o.editorResizable) {
 				o.resize_enabled  = true;
-			}else{
-				o.resize_enabled  = false;
 			}
 
 			if (o.href && o.href !== '#') {
@@ -142,36 +141,13 @@
 				});
 			}
 		},
-		/*
-		tinymceForm : function(formids) {
-			var self = this;
-			if(formids) {
-				$.each(formids.split(','), function(i, fid) {
-					self.log('bind tinymce to form : ' + fid);
-					$(self.escId(fid)).bind('form-pre-serialize',
-							function(e) {
-								tinyMCE.triggerSave();
-							});
-				});
-			}
-		},
-		*/
+
 		// Handle Tinymce
 		tinymce : function($elem, o) {
 			var self = this,
 				tinymceTopic = 's2j_tinymce_' + o.id;
-			self.log('tinymce for : ' + o.id);
-			self.require("js/tinymce/jquery.tinymce.js");
-
-			// Cleanup old tinymce instances
-			/*
-			 * this works not right with more then one instance! if
-			 * ($.struts2_jquery_richtext.editorsTinymce.length > 0 &&
-			 * tinyMCE.get(o.id)) { var ins = tinyMCE.get(o.id); if( ins !==
-			 * undefined ) { self.log('cleanup tinymce : '+o.id); //delete ins; } }
-			 * self.editorsTinymce[$.struts2_jquery_richtext.editorsTinymce.length] =
-			 * o.id;
-			 */
+			self.log('tinymce for: ' + o.id);
+			self.require("js/tinymce/jquery.tinymce.min.js");
 
 			// don't use jqueryui resizable
 			// use the resizing from tinymce
@@ -181,7 +157,7 @@
 			}
 
 			self.container($elem, o);
-			o.script_url = o.path + 'tiny_mce.js';
+			o.script_url = o.path + 'tinymce.min.js';
 			if (o.oncha) {
 				o.onchange_callback = function(ed) {
 					if (tinyMCE.activeEditor.isDirty()) {
@@ -219,14 +195,16 @@
 			}
 
 			o.setup = function(ed) {
-				ed.onInit.add(function(ed) {
-					tinyMCE.execCommand('mceRepaint');
+				ed.on('init', function(args) {
+					//tinyMCE.execCommand('mceRepaint');
+                    tinyMCE.execCommand("mceAddEditor", true, o.id);
+
 
 					var dom = ed.dom,
 						doc = ed.getDoc();
 
 					if (o.onblurtopics) {
-						tinymce.dom.Event.add(ed.settings.content_editable ? ed.getBody() : (tinymce.isGecko ? ed.getDoc() : ed.getWin()), 'blur', function(e) {
+						ed.on('blur', function(e) {
 							self.publishTopic($elem, o.onblurtopics, {
 								editor : ed
 							});
@@ -236,7 +214,7 @@
 						});
 					}
 					if (o.onfocustopics) {
-						tinymce.dom.Event.add(ed.settings.content_editable ? ed.getBody() : (tinymce.isGecko ? ed.getDoc() : ed.getWin()), 'focus', function(e) {
+						ed.on('focus', function(e) {
 							self.publishTopic($elem, o.onfocustopics, {
 								editor : ed
 							});
@@ -245,21 +223,20 @@
 							});
 						});
 					}
-
 				});
-				ed.onSaveContent.add(function(ed, l) {
+				ed.on('SaveContent', function(e) {
 					return false;
 				});
+
 				if (o.pasteplain) {
-					ed.onKeyDown
-							.add(function(ed, e) {
-								if (e.ctrlKey
-										&& (e.charCode === 118 || e.keyCode === 86)) {
-									ed.execCommand("mcePasteText", true);
-									ed.execCommand("mceAddUndoLevel");
-									return tinymce.dom.Event.cancel(e);
-								}
-							});
+					ed.on('change', function(e) {
+						if (e.ctrlKey
+								&& (e.charCode === 118 || e.keyCode === 86)) {
+							ed.execCommand("mcePasteText", true);
+							ed.execCommand("mceAddUndoLevel");
+							return tinymce.dom.Event.cancel(e);
+						}
+					});
 				}
 			};
 
@@ -285,7 +262,6 @@
 				// Init Tinymce after AJAX Content is loaded.
 				$elem.subscribe(tinymceTopic, function(event, data) {
 					$elem.tinymce(o);
-					//self.tinymceForm(o.formids);
 				});
 
 				o.oncom = tinymceTopic;
@@ -294,7 +270,6 @@
 			} else {
 				self.container($elem, o);
 				$elem.tinymce(o);
-				//self.tinymceForm(o.formids);
 			}
 		}
 	};

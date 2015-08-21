@@ -34,7 +34,7 @@ jQuery(document).ready(function () {
 	<#if parameters.editorSkinVariant?if_exists != "">
 	options_${escapedOptionId?html}.skin_variant = "${parameters.editorSkinVariant?html}";
 	</#if>
-	options_${escapedOptionId?html}.theme = "${parameters.editorTheme?default("advanced")?html}";
+	options_${escapedOptionId?html}.theme = "${parameters.editorTheme?default("modern")?html}";
 	<#if parameters.width??>
 	options_${escapedOptionId?html}.width = ${parameters.width?html};
 	</#if>
