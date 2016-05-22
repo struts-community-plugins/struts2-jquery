@@ -143,7 +143,7 @@
 		},
 
 		// Handle Tinymce
-		tinymce : function($elem, o) {
+		tinymceEditor : function($elem, o) {
 			var self = this,
 				tinymceTopic = 's2j_tinymce_' + o.id;
 			self.log('tinymce for: ' + o.id);

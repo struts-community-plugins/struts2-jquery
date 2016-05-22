@@ -19,17 +19,15 @@
 
 package com.jgeppert.struts2.jquery.richtext.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.Textarea;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.jgeppert.struts2.jquery.components.Textarea;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -48,7 +46,7 @@ public class Tinymce extends Textarea {
 	public static final String TEMPLATE_CLOSE = "tinymce-close";
 	public static final String COMPONENT_NAME = Tinymce.class.getName();
 	final private static transient Random RANDOM = new Random();
-	public static final String JQUERYACTION = "tinymce";
+	public static final String JQUERYACTION = "tinymceEditor";
 
 	protected String cols;
 	protected String readonly;
