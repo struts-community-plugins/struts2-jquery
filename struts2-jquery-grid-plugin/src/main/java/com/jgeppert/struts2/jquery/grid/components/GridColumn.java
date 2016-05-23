@@ -19,17 +19,14 @@
 
 package com.jgeppert.struts2.jquery.grid.components;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
-import com.opensymphony.xwork2.util.ValueStack;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -51,8 +48,6 @@ public class GridColumn extends AbstractRemoteBean {
 	public static final String TEMPLATE = "gridcolumn";
 	public static final String TEMPLATE_CLOSE = "gridcolumn-close";
 	public static final String COMPONENT_NAME = GridColumn.class.getName();
-	final protected static Logger LOG = LoggerFactory
-			.getLogger(GridColumn.class);
 
 	protected String name;
 	protected String jsonmap;

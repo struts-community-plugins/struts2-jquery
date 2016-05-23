@@ -1,2 +1,2 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<s:property value="echo" escape="%{escape}"/>
+<s:property value="echo" escapeHtml="%{escape}"/>

@@ -34,38 +34,25 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>org.apache.myfaces.tobago</groupId>
-                <artifactId>maven-apt-plugin</artifactId>
-                <version>1.0.39</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <A>
-                        uri=/struts-jquery-tags,
-                        tlibVersion=${tlib.version},
-                        jspVersion=2.0,
-                        shortName=sj,
-                        displayName="Struts2 jQuery Tags",
-                        outFile=${basedir}/target/classes/META-INF/struts-jquery-tags.tld,
-                        description="Struts2 AJAX tags based on jQuery.",
-                        outTemplatesDir=${basedir}/src/site/docs
-                    </A>
-                    <resourceTargetPath>target</resourceTargetPath>
-                    <fork>false</fork>
-                    <force>true</force>
-                    <nocompile>true</nocompile>
-                    <showWarnings>true</showWarnings>
-                    <factory>
-                        org.apache.struts.annotations.taglib.apt.TLDAnnotationProcessorFactory
-                    </factory>
-                    <target>1.5</target>
-                    <includes>
-                        <include>**/*.java</include>
-                    </includes>
+                    <compilerArgs>
+                        <arg>-Auri=/struts-jquery-tags</arg>
+                        <arg>-AtlibVersion=${tlib.version}</arg>
+                        <arg>-AjspVersion=2.0</arg>
+                        <arg>-AshortName=sj</arg>
+                        <arg>-AdisplayName=Struts2 jQuery Tags</arg>
+                        <arg>-AoutFile=${basedir}/target/classes/META-INF/struts-jquery-tags.tld</arg>
+                        <arg>-Adescription="Struts2 AJAX tags based on jQuery."</arg>
+                        <arg>-AoutTemplatesDir=${basedir}/src/site/docs</arg>
+                    </compilerArgs>
                 </configuration>
                 <executions>
                     <execution>
                         <phase>compile</phase>
                         <goals>
-                            <goal>execute</goal>
+                            <goal>compile</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -159,18 +146,41 @@
 
         <!-- Core -->
 
+        <!-- Core -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
+            <artifactId>jstl</artifactId>
+            <version>1.1.2</version>
+            <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts-annotations</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.6</version>
             <optional>true</optional>
         </dependency>
+
 
         <!-- JSP API -->
 

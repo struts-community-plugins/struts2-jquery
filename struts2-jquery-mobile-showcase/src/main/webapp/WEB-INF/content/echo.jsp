@@ -9,7 +9,7 @@
 			</sjm:div>
 
 			<sjm:div role="content">
-				Echo : <s:property value="echo" escape="%{escape}"/>
+				Echo : <s:property value="echo" escapeHtml="%{escape}"/>
 			</sjm:div>
 
 			<jsp:include page="inc.footer.jsp" />

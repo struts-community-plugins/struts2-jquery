@@ -19,16 +19,14 @@
 
 package com.jgeppert.struts2.jquery.mobile.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -42,8 +40,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  */
 @StrutsTag(name = "flipSwitch", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.FlipSwitchTag", description = "Render HTML Flip Switch element", allowDynamicAttributes = true)
-public class FlipSwitch extends org.apache.struts2.components.Div implements
-	ThemeableBean {
+public class FlipSwitch extends org.apache.struts2.components.ClosingUIBean implements ThemeableBean {
 
     public static final String TEMPLATE = "flipSwitch";
     public static final String TEMPLATE_CLOSE = "flipSwitch-close";
@@ -54,9 +51,8 @@ public class FlipSwitch extends org.apache.struts2.components.Div implements
     protected String onTitle;
     protected String offTitle;
 
-    public FlipSwitch(ValueStack stack, HttpServletRequest request,
-	    HttpServletResponse response) {
-	super(stack, request, response);
+    public FlipSwitch(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+	    super(stack, request, response);
     }
 
     public String getDefaultOpenTemplate() {
@@ -68,24 +64,24 @@ public class FlipSwitch extends org.apache.struts2.components.Div implements
     }
 
     public void evaluateExtraParams() {
-	super.evaluateExtraParams();
+        super.evaluateExtraParams();
 
-	if (dataTheme != null)
-	    addParameter("dataTheme", findString(dataTheme));
-	if (onTitle != null)
-	    addParameter("onTitle", findString(onTitle));
-	if (offTitle != null)
-	    addParameter("offTitle", findString(offTitle));
+        if (dataTheme != null)
+            addParameter("dataTheme", findString(dataTheme));
+        if (onTitle != null)
+            addParameter("onTitle", findString(onTitle));
+        if (offTitle != null)
+            addParameter("offTitle", findString(offTitle));
 
-	if ((this.id == null || this.id.length() == 0)) {
-	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-	    int nextInt = RANDOM.nextInt();
-	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-		    .abs(nextInt);
-	    this.id = "flip_switch_" + String.valueOf(nextInt);
-	    addParameter("id", this.id);
-	}
+        if ((this.id == null || this.id.length() == 0)) {
+            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
+            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
+            int nextInt = RANDOM.nextInt();
+            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
+                .abs(nextInt);
+            this.id = "flip_switch_" + String.valueOf(nextInt);
+            addParameter("id", this.id);
+        }
     }
 
     @Override

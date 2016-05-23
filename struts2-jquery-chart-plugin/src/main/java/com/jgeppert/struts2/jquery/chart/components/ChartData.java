@@ -19,28 +19,21 @@
 
 package com.jgeppert.struts2.jquery.chart.components;
 
-import java.awt.Point;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.AbstractContainer;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.util.MakeIterator;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.jgeppert.struts2.jquery.components.AbstractContainer;
-import com.opensymphony.xwork2.util.ValueStack;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -55,11 +48,12 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 @StrutsTag(name = "chartData", tldTagClass = "com.jgeppert.struts2.jquery.chart.views.jsp.ui.ChartDataTag", description = "Data for the Chart Element", allowDynamicAttributes = true)
 public class ChartData extends AbstractContainer {
 
+	private static final Logger LOG = LogManager.getLogger(ChartData.class);
+
 	public static final String TEMPLATE = "chart-data";
 	public static final String TEMPLATE_CLOSE = "chart-data-close";
 	public static final String COMPONENT_NAME = ChartData.class.getName();
-	protected final static Logger LOG = LoggerFactory
-			.getLogger(ChartData.class);
+
 	private final static transient Random RANDOM = new Random();
 
 	protected String color;
@@ -238,11 +232,7 @@ public class ChartData extends AbstractContainer {
 									Object itemKey = null;
 									try {
 										itemKey = PropertyUtils.getSimpleProperty(item, key);
-									} catch (IllegalAccessException e) {
-										LOG.warn("Cannot read listKey", e);
-									} catch (InvocationTargetException e) {
-										LOG.warn("Cannot read listKey", e);
-									} catch (NoSuchMethodException e) {
+									} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 										LOG.warn("Cannot read listKey", e);
 									}
 
@@ -266,11 +256,7 @@ public class ChartData extends AbstractContainer {
 									Object itemValue = null;
 									try {
 										itemValue = PropertyUtils.getSimpleProperty(item, value);
-									} catch (IllegalAccessException e) {
-										LOG.warn("Cannot read listValue", e);
-									} catch (InvocationTargetException e) {
-										LOG.warn("Cannot read listValue", e);
-									} catch (NoSuchMethodException e) {
+									} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 										LOG.warn("Cannot read listValue", e);
 									}
 

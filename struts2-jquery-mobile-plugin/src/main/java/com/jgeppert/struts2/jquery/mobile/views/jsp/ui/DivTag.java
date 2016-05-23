@@ -19,46 +19,41 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.Div;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.Div;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see com.jgeppert.struts2.jquery.mobile.components.Div
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see com.jgeppert.struts2.jquery.mobile.components.Div
  */
-public class DivTag extends org.apache.struts2.views.jsp.ui.DivTag implements
-	ThemeableTag {
+public class DivTag extends org.apache.struts2.views.jsp.ui.AbstractClosingTag implements ThemeableTag {
 
     private static final long serialVersionUID = 5331150687827132425L;
 
     protected String role;
     protected String dataTheme;
 
-    public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Div(stack, req, res);
+    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Div(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Div div = (Div) component;
-	div.setRole(role);
-	div.setDataTheme(dataTheme);
+        Div div = (Div) component;
+        div.setRole(role);
+        div.setDataTheme(dataTheme);
     }
 
     public void setRole(String role) {
-	this.role = role;
+        this.role = role;
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 }
