@@ -34,7 +34,7 @@ import java.util.Random;
  * This tag generates an HTML div for the jQuery mobile framework.
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * <p/>
+ *
  * <p>
  * Examples
  * </p>
@@ -42,38 +42,38 @@ import java.util.Random;
  * <p>
  * A Div with role <strong>page</strong>
  * </p>
- * <p/>
+ *
  * <pre>
  * &lt;sjm:div role=&quot;page&quot; id=&quot;page1&quot;&gt;
  * &lt;/sjm:div&gt;
  *
  * </pre>
- * <p/>
+ *
  * <!-- END SNIPPET: example1 -->
- * <p/>
+ *
  * <!-- START SNIPPET: example2 -->
  * <p>
  * A Div with role <strong>header</strong>
  * </p>
- * <p/>
+ *
  * <pre>
  * &lt;sjm:div role=&quot;header&quot;&gt;
  * &lt;/sjm:div&gt;
  * </pre>
- * <p/>
+ *
  * <!-- END SNIPPET: example2 -->
- * <p/>
- * <p/>
+ *
+ *
  * <!-- START SNIPPET: example3 -->
  * <p>
  * A Div with theme <strong>n</strong>
  * </p>
- * <p/>
+ *
  * <pre>
  * &lt;sjm:div dataTheme=&quot;b&quot;&gt;
  * &lt;/sjm:div&gt;
  * </pre>
- * <p/>
+ *
  * <!-- END SNIPPET: example3 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

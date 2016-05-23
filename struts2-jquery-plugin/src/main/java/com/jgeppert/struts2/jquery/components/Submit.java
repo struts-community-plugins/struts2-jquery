@@ -19,33 +19,33 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.io.Writer;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
+import com.opensymphony.xwork2.util.logging.Logger;
+import com.opensymphony.xwork2.util.logging.LoggerFactory;
 import org.apache.struts2.components.Form;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.Writer;
+import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
  * <p>
  * Renders a submit button that can submit a form asynchronously. The submit can
  * have three different types of rendering:
+ * </p>
  * <ul>
  * <li>input: renders as html &lt;input type="submit"...&gt;</li>
  * <li>image: renders as html &lt;input type="image"...&gt;</li>
  * <li>button: renders as html &lt;button type="submit"...&gt;</li>
  * </ul>
+ * <p>
  * Please note that the button type has advantages by adding the possibility to
- * seperate the submitted value from the text shown on the button face, but has
+ * separate the submitted value from the text shown on the button face, but has
  * issues with Microsoft Internet Explorer at least up to 6.0
  * </p>
  * <!-- END SNIPPET: javadoc -->

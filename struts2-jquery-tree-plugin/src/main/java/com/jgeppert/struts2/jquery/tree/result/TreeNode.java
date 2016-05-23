@@ -1,14 +1,14 @@
 package com.jgeppert.struts2.jquery.tree.result;
 
-import org.apache.commons.collections.CollectionUtils;
-
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
+import java.util.TreeSet;
 
 public class TreeNode implements Comparable<TreeNode> {
 
 	private Map<String, Object> li_attr;
     private Map<String, Object> a_attr;
-	private Collection<TreeNode> childrens = new TreeSet<TreeNode>();
+	private Collection<TreeNode> childrens = new TreeSet<>();
 	private String icon;
 	private String id;
 	private TreeNodeState state = new TreeNodeState();
@@ -63,13 +63,6 @@ public class TreeNode implements Comparable<TreeNode> {
         return childrens;
     }
 
-	/**
-	 * Get the Tree Node Title
-	 */
-//	public String getDatay() {
-//		return title;
-//	}
-
 	public String getIcon() {
 		return icon;
 	}
@@ -99,54 +92,42 @@ public class TreeNode implements Comparable<TreeNode> {
     }
 
 	/**
-	 * Set the Tree Node Childrens
-	 * 
-	 * @param children
+	 * @param childrens the Tree Node childrens
 	 */
 	public void setChildren(Collection<TreeNode> childrens) {
 		this.childrens = childrens;
 	}
 
 	/**
-	 * Set the Tree Node Icon
-	 * 
-	 * @param icon
+	 * @param icon the Tree Node Icon
 	 */
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 
 	/**
-	 * Set the Tree Node Id
-	 * 
-	 * @param id
+	 * @param id the Tree Node Id
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
 	/**
-	 * Set the Tree Node State opened, disabled or selected
-	 * 
-	 * @param state
+	 * @param state the Tree Node State opened, disabled or selected
 	 */
 	public void setState(TreeNodeState state) {
 		this.state = state;
 	}
 
 	/**
-	 * Set the Tree Node Title
-	 * 
-	 * @param text
+	 * @param text the Tree Node Title
 	 */
 	public void setText(String text) {
 		this.text = text;
 	}
 
 	/**
-	 * Set the Tree Node Type
-	 * 
-	 * @param type
+	 * @param type the Tree Node Type
 	 */
 	public void setType(String type) {
 	    this.type = type;

@@ -79,7 +79,7 @@ public class JsonOrdersAction extends ActionSupport {
         log.debug("Page " + getPage() + " Rows " + getRows() + " Sorting Order " + getSord() + " Index Row :" + getSidx());
         log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
 
-        // Calcalate until rows ware selected
+        // Calculate until rows ware selected
         int to = (rows * page);
 
         // Calculate the first row to read
@@ -98,25 +98,54 @@ public class JsonOrdersAction extends ActionSupport {
         if (searchField != null) {
             if (searchField.equals("customernumber")) {
                 Integer searchValue = Integer.parseInt(searchString);
-                if (searchOper.equals("eq")) criteria.add(Restrictions.eq("ordernumber", searchValue));
-                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("ordernumber", searchValue));
-                else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("ordernumber", searchValue));
-                else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("ordernumber", searchValue));
+                switch (searchOper) {
+                    case "eq":
+                        criteria.add(Restrictions.eq("ordernumber", searchValue));
+                        break;
+                    case "ne":
+                        criteria.add(Restrictions.ne("ordernumber", searchValue));
+                        break;
+                    case "lt":
+                        criteria.add(Restrictions.lt("ordernumber", searchValue));
+                        break;
+                    case "gt":
+                        criteria.add(Restrictions.gt("ordernumber", searchValue));
+                        break;
+                }
             } else if (searchField.equals("status") || searchField.equals("comments")) {
-                if (searchOper.equals("eq")) criteria.add(Restrictions.eq(searchField, searchString));
-                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne(searchField, searchString));
-                else if (searchOper.equals("bw")) criteria.add(Restrictions.like(searchField, searchString + "%"));
-                else if (searchOper.equals("cn"))
-                    criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
+                switch (searchOper) {
+                    case "eq":
+                        criteria.add(Restrictions.eq(searchField, searchString));
+                        break;
+                    case "ne":
+                        criteria.add(Restrictions.ne(searchField, searchString));
+                        break;
+                    case "bw":
+                        criteria.add(Restrictions.like(searchField, searchString + "%"));
+                        break;
+                    case "cn":
+                        criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
+                        break;
+                }
             }
             if (searchField.equals("customer")) {
                 Integer searchValue = Integer.parseInt(searchString);
                 criteria.createAlias("customer", "c");
 
-                if (searchOper.equals("eq")) criteria.add(Restrictions.eq("c.customernumber", searchValue));
-                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("c.customernumber", searchValue));
-                else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("c.customernumber", searchValue));
-                else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("c.customernumber", searchValue));
+                switch (searchOper) {
+                    case "eq":
+                        criteria.add(Restrictions.eq("c.customernumber", searchValue));
+                        break;
+                    case "ne":
+                        criteria.add(Restrictions.ne("c.customernumber", searchValue));
+                        break;
+                    case "lt":
+                        criteria.add(Restrictions.lt("c.customernumber", searchValue));
+                        break;
+                    case "gt":
+                        criteria.add(Restrictions.gt("c.customernumber", searchValue));
+                        break;
+                }
             }
         }
 

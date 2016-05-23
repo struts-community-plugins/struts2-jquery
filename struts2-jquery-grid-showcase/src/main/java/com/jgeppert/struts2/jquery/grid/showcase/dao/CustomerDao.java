@@ -69,7 +69,7 @@ public class CustomerDao extends AbstractSimpleGenericDao<Customer, Integer> {
             DetachedCriteria dc = DetachedCriteria.forClass(Customer.class);
             Criteria criteria = dc.getExecutableCriteria(getCurrentSession());
             criteria.setProjection(Projections.max("customernumber"));
-            return ((Integer) criteria.list().get(0)).intValue() + 1;
+            return (Integer) criteria.list().get(0) + 1;
         } catch (HibernateException e) {
             log.error(e.getMessage(), e);
             throw e;

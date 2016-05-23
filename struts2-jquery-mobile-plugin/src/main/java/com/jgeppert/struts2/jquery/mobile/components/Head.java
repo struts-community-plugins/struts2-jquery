@@ -19,14 +19,13 @@
 
 package com.jgeppert.struts2.jquery.mobile.components;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -41,13 +40,11 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <!-- START SNIPPET: example1 -->
  * 
  * <pre>
- * <sjm:head />
- * 
+ *  &lt;sjm:head /&gt;
  * </pre>
  * 
  * <!-- END SNIPPET: example1 -->
- * 
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  * 
  */
