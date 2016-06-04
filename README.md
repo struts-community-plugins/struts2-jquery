@@ -6,6 +6,7 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
 #### [News and Developer Blog] (https://www.jgeppert.com)
 #### [Showcase] (http://struts.jgeppert.com/struts2-jquery-showcase/)
 #### [Showcase Grid Plugin] (http://struts.jgeppert.com/struts2-jquery-grid-showcase/)
+#### [Sample TODO app based on Bootstrap, jQuery and jQuery Mobile] (https://github.com/jogep/struts2-todo-examples/)
 #### [Wiki - Documentation] (https://github.com/struts-community-plugins/struts2-jquery/wiki)
 
 ## Installation
