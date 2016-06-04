@@ -21,6 +21,9 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
 ### How can I use the Plugin from Maven?
 
 Since version 1.8.3 the plugin is found in the central Maven repository. Just add to your dependencies section:
+
+Current Apache Struts 2.5 compatible version is [4.0.1-SNAPSHOT] (https://oss.sonatype.org/content/repositories/snapshots/com/jgeppert/struts2/jquery/).
+
 ```xml
 <dependencies>
     ...
