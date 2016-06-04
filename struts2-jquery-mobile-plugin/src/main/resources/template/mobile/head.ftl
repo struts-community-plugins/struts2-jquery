@@ -18,8 +18,8 @@
  * under the License.
  */
 -->
-<#assign jQueryVersion="2.1.4">
-<#assign jQueryMobileVersion="1.4.2">
+<#assign jQueryVersion="2.2.4">
+<#assign jQueryMobileVersion="1.4.5">
 <#assign struts2jQueryVersion="${version}">
 
 <#include "/${parameters.templateDir}/jquery/head.ftl" />
