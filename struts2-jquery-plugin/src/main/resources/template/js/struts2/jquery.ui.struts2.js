@@ -841,7 +841,7 @@
                                                 result.push({
                                                     label: label,
                                                     value: val[o.listvalue],
-                                                    key: getObjectProperty( val, o.listkey );
+                                                    key: getObjectProperty( val, o.listkey )
                                                 });
                                             }
                                             else {
