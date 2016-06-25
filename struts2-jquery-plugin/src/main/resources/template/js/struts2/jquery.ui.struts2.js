@@ -771,6 +771,26 @@
                                 .appendTo(ul);
                         };
 
+                        // inline function handler
+                        var getObjectProperty = function( obj, prop ) {
+                            var parts = prop.split( ',' ),
+                                last = parts.pop(),
+                                l = parts.length,
+                                i = 1,
+                                current = parts[ 0 ];
+                            if ( l > 0 ) {
+                                while ( ( obj = obj[ current ] ) && i < 1 ) {
+                                    current = parts[ i ];
+                                    i++;
+                                }
+                            }
+                            else {
+                                if ( obj ) {
+                                    return obj[ last ];
+                                }
+                            }
+                        }
+
                         self.abortReq(o.id);
                         self.showIndicator(o.indicatorid);
                         self.currentXhr[o.id] = $.ajax({
@@ -821,7 +841,7 @@
                                                 result.push({
                                                     label: label,
                                                     value: val[o.listvalue],
-                                                    key: val[o.listkey]
+                                                    key: getObjectProperty( val, o.listkey );
                                                 });
                                             }
                                             else {
