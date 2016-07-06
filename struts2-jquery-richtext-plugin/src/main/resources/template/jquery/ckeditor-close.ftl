@@ -51,7 +51,7 @@ jQuery(document).ready(function () {
 		<#if parameters.uploadHref?if_exists != ""> 
 	options_${escapedOptionId?html}.filebrowserUploadUrl = "${parameters.uploadHref}";
 		<#else>
-	<@s.url id="ckeditorUploadUrl" action="upload" namespace="/ckeditor"/>
+	<@s.url var="ckeditorUploadUrl" action="upload" namespace="/ckeditor"/>
 	options_${escapedOptionId?html}.filebrowserUploadUrl = "<@s.property value="ckeditorUploadUrl" />";
 		</#if>
 	</#if>

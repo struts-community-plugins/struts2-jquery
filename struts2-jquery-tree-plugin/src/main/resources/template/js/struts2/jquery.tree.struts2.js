@@ -37,22 +37,22 @@
 			if (!self.loadAtOnce) {
 				self.require("js/base/jquery.cookie" + self.minSuffix + ".js");
 			}
+			if (!$.scriptPath) {
+				path = '';
+			} else { 
+				path = $.scriptPath;
+			}
 			self.require("js/jstree/jquery.hotkeys" + self.minSuffix + ".js");
 			self.require("js/jstree/jquery.jstree" + self.minSuffix + ".js",
                 function() {
                     $.jstree.defaults.core.themes.url = true;
-                    $.jstree.defaults.core.themes.dir = "struts/js/jstree/themes";
+                    $.jstree.defaults.core.themes.dir = path + "js/jstree/themes";
                 });
 			o.plugins = [];
             o.core = {};
 			if (o.treetheme) {
 				o.core.themes = {};
-				o.core.themes.name = o.treetheme;
-				if (!$.scriptPath) {
-					path = '';
-				} else { 
-					path = $.scriptPath;
-				}
+				o.core.themes.name = o.treetheme;			
                 o.core.themes.dots = o.dots;
                 o.core.themes.icons = o.icons;
 			}	else {

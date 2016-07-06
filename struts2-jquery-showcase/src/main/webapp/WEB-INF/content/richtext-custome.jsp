@@ -8,7 +8,7 @@
 	Also it loads the initial content via an AJAX request and the editor local is that to french.
 </p>
 <s:url var="remoteurl" action="ajax1"/>
-<s:set id="contextPath" value="#request.get('javax.servlet.forward.context_path')"/>
+<s:set var="contextPath" value="#request.get('javax.servlet.forward.context_path')"/>
 <s:form id="formRichtextCustom" action="simpleecho" theme="xhtml">
 	<s:hidden name="escape" value="false"/>
 	<sjr:ckeditor
