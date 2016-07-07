@@ -48,7 +48,7 @@
                     $.jstree.defaults.core.themes.url = true;
                     $.jstree.defaults.core.themes.dir = path + "js/jstree/themes";
                 });
-			o.plugins = [];
+			o.plugins = $.jstree.defaults.plugins != null ? $.jstree.defaults.plugins : [];
             o.core = {};
 			if (o.treetheme) {
 				o.core.themes = {};
@@ -106,7 +106,7 @@
 					return { id : n.id === '#' ? '' : n.id };
 				};
 				if (o.onsuc) {
-					o.json_data.ajax.complete  =  function(data, status, request) {
+					o.core.data.success  =  function(data, status, request) {
 						$.each(o.onsuc.split(','), function(i, stopic) {
 							var orginal = {};
 							orginal.data = data;
@@ -119,7 +119,7 @@
 					};
 				}
 				if (o.oncom) {
-					o.json_data.ajax.complete  =  function(request, status) {
+					o.core.data.complete  =  function(request, status) {
 						$.each(o.oncom.split(','), function(i, ctopic) {
 							var orginal = {};
 							orginal.request = request;
@@ -131,7 +131,7 @@
 					};
 				}
 				if (o.onerr) {
-					o.json_data.ajax.error  =  function(request, status, error) {
+					o.core.data.error  =  function(request, status, error) {
 						$.each(o.onerr.split(','), function(i, etopic) {
 							var orginal = {};
 							orginal.request = request;
