@@ -1292,7 +1292,14 @@
 			}
 
 			if (!s2j.loadAtOnce) {
-				s2j.require( [ "js/base/effect" + s2j.minSuffix + ".js", "js/base/effect-" + o.effect + s2j.minSuffix + ".js" ]);
+				var jsFiles =  [ "js/base/effect" + s2j.minSuffix + ".js", "js/base/effect-" + o.effect + s2j.minSuffix + ".js" ];
+				if (o.effect === "scale" || o.effect === "puff"){
+					jsFiles.push("js/base/effect-size" + s2j.minSuffix + ".js");
+				}
+				if (o.effect === "puff"){
+					jsFiles.push("js/base/effect-scale" + s2j.minSuffix + ".js");
+				}
+				s2j.require(jsFiles);
 			}
 			s2j.log('effect ' + o.effect + ' for ' + o.targets);
 			$.each(o.targets.split(','), function(i, target) {

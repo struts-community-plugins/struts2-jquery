@@ -28,7 +28,6 @@
 			toolbarAlign="left"
 			toolbarLocation="top"
 			statusbarLocation="bottom"
-			resizable="true"
 			pastePlainText="true"
 			plugins="spellchecker,pagebreak,layer,table,save,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,template,anchor,charmap,hr,image,link,emoticons,code,textcolor"
 			toolbarButtonsRow1="save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect"

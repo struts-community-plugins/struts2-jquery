@@ -122,7 +122,7 @@
 <p class="text">
 	A Tree with different node types.
 </p>
-<s:set id="contextPath" value="#request.get('javax.servlet.forward.context_path')"/>
+<s:set var="contextPath" value="#request.get('javax.servlet.forward.context_path')"/>
 <sjt:tree
 		id="treeTypes"
 		jstreetheme="default"

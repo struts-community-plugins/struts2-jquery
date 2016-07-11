@@ -19,7 +19,7 @@
  */
 -->
 	</ul>
-<#include "/${parameters.templateDir}/simple/div-close.ftl" />
+</div>
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () { 

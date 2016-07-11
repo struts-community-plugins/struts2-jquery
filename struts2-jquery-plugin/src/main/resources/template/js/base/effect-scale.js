@@ -80,7 +80,6 @@ return $.effects.effect.scale = function( o, done ) {
 			options.to.opacity = 0;
 		}
 	}
-
 	// Animate
 	el.effect( options );
 
