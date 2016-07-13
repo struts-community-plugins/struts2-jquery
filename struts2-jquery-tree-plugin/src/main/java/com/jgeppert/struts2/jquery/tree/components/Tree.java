@@ -49,6 +49,8 @@ public class Tree extends AbstractContainer {
     public static final String JQUERYACTION = "tree";
 
     protected String jstreetheme;
+    protected String jstreethemeVariant;
+    protected String jstreethemeResponsive;
     protected String htmlTitles;
     protected String animation;
     protected String initiallyOpen;
@@ -66,6 +68,7 @@ public class Tree extends AbstractContainer {
     protected String openAllOnLoad;
     protected String openAllOnRefresh;
     protected String contextmenu;
+    protected String plugins;
     protected String types;
     protected String showThemeDots;
     protected String showThemeIcons;
@@ -97,6 +100,10 @@ public class Tree extends AbstractContainer {
 
         if (this.jstreetheme != null)
             addParameter("jstreetheme", findString(this.jstreetheme));
+        if (this.jstreethemeResponsive != null)
+        	addParameter("jstreethemeResponsive", findValue(this.jstreethemeResponsive, Boolean.class));
+        if (this.jstreethemeVariant != null)
+        	addParameter("jstreethemeVariant", findString(this.jstreethemeVariant));
         if (this.animation != null)
             addParameter("animation", findValue(animation, Number.class));
         if (this.htmlTitles != null)
@@ -135,6 +142,8 @@ public class Tree extends AbstractContainer {
                     findValue(this.openAllOnRefresh, Boolean.class));
         if (contextmenu != null)
             addParameter("contextmenu", findString(contextmenu));
+        if (plugins != null)
+            addParameter("plugins", findString(plugins));
         if (types != null)
             addParameter("types", findString(types));
         if (this.showThemeDots != null)
@@ -193,8 +202,20 @@ public class Tree extends AbstractContainer {
     public void setJstreetheme(String jstreetheme) {
         this.jstreetheme = jstreetheme;
     }
+    
+    
 
-    @StrutsTagAttribute(description = "Defines whether titles can contain HTML code.", type = "Boolean", defaultValue = "false")
+    @StrutsTagAttribute(description = "jstree theme variant, if your theme support it.", defaultValue = "")
+	public void setJstreethemeVariant(String jstreethemeVariant) {
+		this.jstreethemeVariant = jstreethemeVariant;
+	}
+
+    @StrutsTagAttribute(description = "wether to use the responsive version of the theme, if the theme support it", type = "Boolean", defaultValue = "false")
+	public void setJstreethemeResponsive(String jstreethemeResponsive) {
+		this.jstreethemeResponsive = jstreethemeResponsive;
+	}
+
+	@StrutsTagAttribute(description = "Defines whether titles can contain HTML code.", type = "Boolean", defaultValue = "false")
     public void setHtmlTitles(String htmlTitles) {
         this.htmlTitles = htmlTitles;
     }
@@ -293,6 +314,11 @@ public class Tree extends AbstractContainer {
     @StrutsTagAttribute(description = "Expects an JavaScript object or a function, which should return an JavaScript object. e.g. {items: { 'delete' : { 'label': 'Delete Node', 'action':  function (obj) { this.delete(obj); } } } }")
     public void setContextmenu(String contextmenu) {
         this.contextmenu = contextmenu;
+    }
+    
+    @StrutsTagAttribute(description = "Expects an JavaScript object containing plugin to activate in key and conf object/function in value. e.g. {search: {ajax : {...}, ...  } , sort : function(n1,n2){...} }. Warning, settings here can override other plugins config defined in other tag attribute (eg : contextmenu)")
+    public void setPlugins(String plugins) {
+        this.plugins = plugins;
     }
 
     @StrutsTagAttribute(description = "The types enables node types - each node can have a type, and you can define rules on how that type should behave - maximum children count, maximum depth, valid children types, selectable or not, etc.")

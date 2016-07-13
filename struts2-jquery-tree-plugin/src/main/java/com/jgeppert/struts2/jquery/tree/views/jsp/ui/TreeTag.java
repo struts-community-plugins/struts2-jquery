@@ -36,6 +36,8 @@ public class TreeTag extends AbstractContainerTag {
     private static final long serialVersionUID = -6297851020849153739L;
 
     protected String jstreetheme;
+    protected String jstreethemeVariant;
+    protected String jstreethemeResponsive;
     protected String htmlTitles;
     protected String animation;
     protected String initiallyOpen;
@@ -53,6 +55,7 @@ public class TreeTag extends AbstractContainerTag {
     protected String openAllOnLoad;
     protected String openAllOnRefresh;
     protected String contextmenu;
+    protected String plugins;
     protected String types;
     protected String showThemeDots;
     protected String showThemeIcons;
@@ -75,6 +78,8 @@ public class TreeTag extends AbstractContainerTag {
 
         Tree tree = (Tree) component;
         tree.setJstreetheme(jstreetheme);
+        tree.setJstreethemeVariant(jstreethemeVariant);
+        tree.setJstreethemeResponsive(jstreethemeResponsive);
         tree.setAnimation(animation);
         tree.setHtmlTitles(htmlTitles);
         tree.setInitiallyOpen(initiallyOpen);
@@ -92,6 +97,7 @@ public class TreeTag extends AbstractContainerTag {
         tree.setOpenAllOnLoad(openAllOnLoad);
         tree.setOpenAllOnRefresh(openAllOnRefresh);
         tree.setContextmenu(contextmenu);
+        tree.setPlugins(plugins);
         tree.setTypes(types);
         tree.setShowThemeDots(showThemeDots);
         tree.setShowThemeIcons(showThemeIcons);
@@ -107,8 +113,16 @@ public class TreeTag extends AbstractContainerTag {
     public void setJstreetheme(String jstreetheme) {
         this.jstreetheme = jstreetheme;
     }
+    
+	public void setJstreethemeVariant(String jstreethemeVariant) {
+		this.jstreethemeVariant = jstreethemeVariant;
+	}
 
-    public void setHtmlTitles(String htmlTitles) {
+	public void setJstreethemeResponsive(String jstreethemeResponsive) {
+		this.jstreethemeResponsive = jstreethemeResponsive;
+	}
+
+	public void setHtmlTitles(String htmlTitles) {
         this.htmlTitles = htmlTitles;
     }
 
@@ -171,8 +185,12 @@ public class TreeTag extends AbstractContainerTag {
     public void setContextmenu(String contextmenu) {
         this.contextmenu = contextmenu;
     }
+    
+	public void setPlugins(String plugins) {
+		this.plugins = plugins;
+	}
 
-    public void setTypes(String types) {
+	public void setTypes(String types) {
         this.types = types;
     }
 
