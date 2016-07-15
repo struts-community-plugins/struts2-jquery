@@ -157,6 +157,35 @@
 	</sjt:treeItem>
 </sjt:tree>
 
+<h2>Tree with search plugin</h2>
+
+<p class="text">
+    A Tree with a search field, jstreethemeVariant set as "large" and jstreeResponsive set as "true".
+</p>
+<div>
+    <input type="text" id="searchField"  />
+    <sj:submit value="Search" button="true" 
+    onclick="$('#treeSearch').jstree('search', $('#searchField').val())" />
+</div>
+<sjt:tree
+        id="treeSearch" jstreetheme="default-dark" jstreethemeVariant="large" jstreethemeResponsive="true"
+        plugins="{search:{ajax:false}}"
+        >
+        <sjt:treeItem title="General">
+            <sjt:treeItem title="Struts2" href="http://struts.apache.org"/>
+            <sjt:treeItem title="Struts2 @ Facebook" href="https://www.facebook.com/apachestruts"/>
+            <sjt:treeItem title="Struts2 @ Twitter" href="https://twitter.com/TheApacheStruts"/>
+        </sjt:treeItem>
+        <sjt:treeItem title="Plugins">
+            <sjt:treeItem title="Struts2 Plugins" href="https://cwiki.apache.org/S2PLUGINS/home.html"/>
+            <sjt:treeItem title="Struts2 jQuery Plugin" href="https://github.com/struts-community-plugins/struts2-jquery/"/>
+            <sjt:treeItem title="Struts2 Bootstrap Plugin" href="https://github.com/struts-community-plugins/struts2-bootstrap/"/>
+        </sjt:treeItem>
+        <sjt:treeItem title="Blogs">
+            <sjt:treeItem title="Struts2 jQuery News" href="http://www.jgeppert.com"/>
+        </sjt:treeItem>
+</sjt:tree>
+
 <h4>Source Code</h4>
 
 <div class="code ui-widget-content ui-corner-all">
@@ -316,6 +345,35 @@
 			&lt;sjt:treeItem title=&quot;File Three&quot; type=&quot;file&quot;/&gt;
 		&lt;/sjt:treeItem&gt;
 	&lt;/sjt:treeItem&gt;
+&lt;/sjt:tree&gt;
+
+&lt;h2&gt;Tree with search plugin&lt;/h2&gt;
+
+&lt;p class=&quot;text&quot;&gt;
+    A Tree with a search field, jstreethemeVariant set as &quot;large&quot; and jstreeResponsive set as &quot;true&quot;.
+&lt;/p&gt;
+&lt;div&gt;
+    &lt;input type=&quot;text&quot; id=&quot;searchField&quot;  /&gt;
+    &lt;sj:submit value=&quot;Search&quot; button=&quot;true&quot; 
+    onclick=&quot;$(&apos;#treeSearch&apos;).jstree(&apos;search&apos;, $(&apos;#searchField&apos;).val())&quot; /&gt;
+&lt;/div&gt;
+&lt;sjt:tree
+        id=&quot;treeSearch&quot; jstreetheme=&quot;default-dark&quot; jstreethemeVariant=&quot;large&quot; jstreethemeResponsive=&quot;true&quot;
+        plugins=&quot;{search:{ajax:false}}&quot;
+        &gt;
+        &lt;sjt:treeItem title=&quot;General&quot;&gt;
+            &lt;sjt:treeItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org&quot;/&gt;
+            &lt;sjt:treeItem title=&quot;Struts2 @ Facebook&quot; href=&quot;https://www.facebook.com/apachestruts&quot;/&gt;
+            &lt;sjt:treeItem title=&quot;Struts2 @ Twitter&quot; href=&quot;https://twitter.com/TheApacheStruts&quot;/&gt;
+        &lt;/sjt:treeItem&gt;
+        &lt;sjt:treeItem title=&quot;Plugins&quot;&gt;
+            &lt;sjt:treeItem title=&quot;Struts2 Plugins&quot; href=&quot;https://cwiki.apache.org/S2PLUGINS/home.html&quot;/&gt;
+            &lt;sjt:treeItem title=&quot;Struts2 jQuery Plugin&quot; href=&quot;https://github.com/struts-community-plugins/struts2-jquery/&quot;/&gt;
+            &lt;sjt:treeItem title=&quot;Struts2 Bootstrap Plugin&quot; href=&quot;https://github.com/struts-community-plugins/struts2-bootstrap/&quot;/&gt;
+        &lt;/sjt:treeItem&gt;
+        &lt;sjt:treeItem title=&quot;Blogs&quot;&gt;
+            &lt;sjt:treeItem title=&quot;Struts2 jQuery News&quot; href=&quot;http://www.jgeppert.com&quot;/&gt;
+        &lt;/sjt:treeItem&gt;
 &lt;/sjt:tree&gt;
 			</code>
     </pre>

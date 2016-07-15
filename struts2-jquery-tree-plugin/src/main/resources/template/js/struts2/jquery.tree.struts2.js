@@ -48,7 +48,7 @@
                     $.jstree.defaults.core.themes.url = true;
                     $.jstree.defaults.core.themes.dir = path + "js/jstree/themes";
                 });
-			o.plugins = $.jstree.defaults.plugins != null ? $.jstree.defaults.plugins : [];
+			o.plugins = $.jstree.defaults.plugins != null ? $.jstree.defaults.plugins.slice() : [];
             o.core = {};
 			if (o.treetheme) {
 				o.core.themes = {};
@@ -89,7 +89,7 @@
                 $(self.escId(o.id+'_hidden')).val( $elem.jstree("get_checked", false) );
 			}
 			if (o.pluginsconf){
-				//We permit to override other plugins conf. Possible to modify this behaviour here
+				//We permit overriding other plugins conf. Possible to modify this behaviour here
 				$.each(o.pluginsconf,function(plugin,conf){
 					if (o.plugins.indexOf(plugin) === -1){
 						o.plugins.push(plugin);
@@ -208,7 +208,6 @@
 			  o.core = {};
 			  o.core.animation = o.animation;
 		  }
-
 		  $elem.jstree(o);
 
         },
