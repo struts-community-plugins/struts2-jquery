@@ -16,8 +16,9 @@
 		nodeTargets="result"
 		onClickTopics="treeClicked"
 />
-
 <div id="result" class="result ui-widget-content ui-corner-all">Click on the AJAX links above.</div>
+
+
 
 <sj:tabbedpanel id="localtabs" cssClass="list">
 	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
@@ -137,4 +138,175 @@ public class JsonTreeData extends ActionSupport implements ServletContextAware {
 			</code>
 	  </pre>
 	</div>
+</sj:tabbedpanel>
+<p class="text">
+    A Tree Component with a JSON Data Source and search plugin with AJAX / JSON.
+</p>
+<s:url var="treeSearchDataUrl" action="json-tree-search-data" namespace="/tree"/>
+<s:url var="treeSearchUrl" action="json-tree-search" namespace="/tree"/>
+<s:url var="echo" value="/echo.action"/>
+
+<div>
+    <input type="text" id="searchField"  />
+    <sj:submit  value="Search" button="true" 
+    onclick="$('#jsonTreeSearch').jstree('search', $('#searchField').val())" />
+</div>
+<sjt:tree
+        id="jsonTreeSearch"
+        href="%{treeSearchDataUrl}"
+        plugins="{search:{ajax:{url:'%{treeSearchUrl}'}}}"
+        
+/>
+<p class="text">
+    More about JsTree 3 plugins (unique, sort, massload, drag and drop,...) on <a href="https://www.jstree.com/">JsTree official website</a>
+</p>
+<sj:tabbedpanel id="localtabs2" cssClass="list">
+    <sj:tab id="tab4" target="jspsearch" label="JSP Code"/>
+    <sj:tab id="tab5" target="jsonsearchaction" label="JSON Action"/>
+    <div id="jspsearch">
+      <pre>
+            <code class="html">
+&lt;s:url var=&quot;treeDataUrl&quot; action=&quot;json-tree-data&quot; namespace=&quot;/tree&quot;/&gt;
+&lt;s:url var=&quot;echo&quot; value=&quot;/echo.action&quot;/&gt;
+&lt;div&gt;
+    &lt;input type=&quot;text&quot; id=&quot;searchField&quot;  /&gt;
+    &lt;sj:submit value=&quot;Search&quot; button=&quot;true&quot; 
+    onclick=&quot;$(&apos;#jsonTreeSearch&apos;).jstree(&apos;search&apos;, $(&apos;#searchField&apos;).val())&quot; /&gt;
+&lt;/div&gt;
+&lt;sjt:tree
+    id=&quot;jsonTreeSearch&quot;
+    href=&quot;%{treeSearchDataUrl}&quot;
+    plugins=&quot;{search:{ajax:{url:&apos;%{treeSearchUrl}&apos;}}}&quot;
+/&gt;
+            </code>
+      </pre>
+    </div>
+    <div id="jsonsearchaction">
+      <pre>
+            <code class="java">
+package com.jgeppert.struts2.jquery.showcase.tree;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+
+import com.jgeppert.struts2.jquery.tree.result.TreeNode;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class JsonTreeSearch extends ActionSupport {
+
+    private static final long serialVersionUID = -9222182010123442253L;
+    private static final List&lt;TreeNode&gt; treeSource = new ArrayList&lt;&gt;();
+    private List&lt;TreeNode&gt; nodes = new ArrayList&lt;TreeNode&gt;();
+    private String id = &quot;&quot;;
+    private String str;
+    Set&lt;String&gt; nodeIds = new HashSet&lt;&gt;();
+
+    static {
+        TreeNode treeRoot = new TreeNode(&quot;1&quot;, &quot;Struts 2&quot;, new ArrayList&lt;TreeNode&gt;());
+        treeRoot.setHasChildren(Boolean.TRUE);
+        treeSource.add(treeRoot);
+
+        TreeNode nodeGeneral = new TreeNode(&quot;11&quot;, &quot;General&quot;, new ArrayList&lt;TreeNode&gt;());
+        nodeGeneral.setHasChildren(Boolean.TRUE);
+        treeSource.add(nodeGeneral);
+
+        TreeNode nodePlugins = new TreeNode(&quot;12&quot;, &quot;Plugins&quot;, new ArrayList&lt;TreeNode&gt;());
+        nodePlugins.setHasChildren(Boolean.TRUE);
+        treeSource.add(nodePlugins);
+
+        TreeNode nodeBlogs = new TreeNode(&quot;13&quot;, &quot;Blogs&quot;, new ArrayList&lt;TreeNode&gt;());
+        nodeBlogs.setHasChildren(Boolean.TRUE);
+        treeSource.add(nodeBlogs);
+
+        TreeNode nodeStruts2 = new TreeNode(&quot;111&quot;, &quot;Struts 2&quot;);
+        nodeStruts2.setHasChildren(Boolean.FALSE);
+        treeSource.add(nodeStruts2);
+
+        TreeNode nodeStruts2FB = new TreeNode(&quot;112&quot;, &quot;Struts 2 @ Facebook&quot;);
+        nodeStruts2FB.setHasChildren(Boolean.FALSE);
+        treeSource.add(nodeStruts2FB);
+
+        TreeNode nodeStruts2TW = new TreeNode(&quot;113&quot;, &quot;Struts 2 @ Twitter&quot;);
+        nodeStruts2TW.setHasChildren(Boolean.FALSE);
+        treeSource.add(nodeStruts2TW);
+
+        TreeNode nodeStruts2Pins = new TreeNode(&quot;121&quot;, &quot;Struts 2 Plugins&quot;);
+        nodeStruts2Pins.setHasChildren(Boolean.FALSE);
+        treeSource.add(nodeStruts2Pins);
+
+        TreeNode nodeStruts2JQ = new TreeNode(&quot;122&quot;, &quot;Struts 2 JQuery Plugin&quot;);
+        nodeStruts2JQ.setHasChildren(Boolean.FALSE);
+        treeSource.add(nodeStruts2JQ);
+
+        TreeNode nodeStruts2BS = new TreeNode(&quot;123&quot;, &quot;Struts 2 Bootstrap Plugin&quot;);
+        nodeStruts2BS.setHasChildren(Boolean.FALSE);
+        treeSource.add(nodeStruts2BS);
+
+        TreeNode nodeStruts2JQNews = new TreeNode(&quot;131&quot;, &quot;Struts2 JQuery News&quot;);
+        nodeStruts2JQNews.setHasChildren(Boolean.FALSE);
+        treeSource.add(nodeStruts2JQNews);
+
+    }
+
+    @Action(value = &quot;json-tree-search-data&quot;, results = @Result(name = SUCCESS, type = &quot;json&quot;, params = { &quot;root&quot;,
+            &quot;nodes&quot; }))
+    public String data() {
+        for (TreeNode n : treeSource) {
+            if ((this.id == null || &quot;&quot;.equals(id)) && n.getId().equals(&quot;1&quot;)) {
+                this.nodes.add(n);
+                break;
+            } else if (this.id != null && !&quot;&quot;.equals(id) && n.getId().startsWith(id)
+                    && n.getId().length() == (this.id.length() + 1)) {
+                this.nodes.add(n);
+            }
+        }
+
+        return SUCCESS;
+    }
+
+    @Override
+    @Action(value = &quot;json-tree-search&quot;, results = @Result(name = SUCCESS, type = &quot;json&quot;, params = { &quot;root&quot;,
+            &quot;nodeIds&quot; }))
+    public String execute() {
+        if (this.str != null && !&quot;&quot;.equals(str)) {
+            for (TreeNode n : treeSource) {
+                if (n.getText().toLowerCase().contains(str.toLowerCase())) {
+                    String nodeId = n.getId();
+                    do {
+                        this.nodeIds.add(nodeId);
+                        nodeId = nodeId.substring(0, nodeId.length() - 1);
+                    } while (nodeId.length() &gt; 0);
+                }
+            }
+        }
+
+        return SUCCESS;
+    }
+
+    public List&lt;TreeNode&gt; getNodes() {
+        return nodes;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
+    }
+
+    public Set&lt;String&gt; getNodeIds() {
+        return this.nodeIds;
+    }
+
+}
+
+            </code>
+      </pre>
+    </div>
 </sj:tabbedpanel>

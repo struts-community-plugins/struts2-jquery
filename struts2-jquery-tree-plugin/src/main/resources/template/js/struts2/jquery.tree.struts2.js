@@ -48,13 +48,19 @@
                     $.jstree.defaults.core.themes.url = true;
                     $.jstree.defaults.core.themes.dir = path + "js/jstree/themes";
                 });
-			o.plugins = $.jstree.defaults.plugins != null ? $.jstree.defaults.plugins : [];
+			o.plugins = $.jstree.defaults.plugins != null ? $.jstree.defaults.plugins.slice() : [];
             o.core = {};
 			if (o.treetheme) {
 				o.core.themes = {};
 				o.core.themes.name = o.treetheme;			
                 o.core.themes.dots = o.dots;
                 o.core.themes.icons = o.icons;
+                if (o.treethemeVariant){
+                	o.core.themes.variant = o.treethemeVariant;
+                }
+                if (o.treethemeResponsive){
+                	o.core.themes.responsive = o.treethemeResponsive;
+                }
 			}	else {
 				o.plugins.push("themeroller"); 
 			}
@@ -82,7 +88,15 @@
                 });
                 $(self.escId(o.id+'_hidden')).val( $elem.jstree("get_checked", false) );
 			}
-			
+			if (o.pluginsconf){
+				//We permit overriding other plugins conf. Possible to modify this behaviour here
+				$.each(o.pluginsconf,function(plugin,conf){
+					if (o.plugins.indexOf(plugin) === -1){
+						o.plugins.push(plugin);
+					}
+					o[plugin] = conf;
+				});
+			}
 			if(o.toogleAllTopics) {
 				self.subscribeTopics($elem, o.toogleAllTopics, self.handler.toggle_checkboxes, o);
 			}
@@ -194,7 +208,6 @@
 			  o.core = {};
 			  o.core.animation = o.animation;
 		  }
-
 		  $elem.jstree(o);
 
         },

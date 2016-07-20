@@ -27,6 +27,12 @@ jQuery(document).ready(function () {
 	<#if parameters.jstreetheme?if_exists != ""> 
 	options_${escapedOptionId?html}.treetheme = "${parameters.jstreetheme?html}";
 	</#if>
+	<#if parameters.jstreethemeVariant?if_exists != ""> 
+	options_${escapedOptionId?html}.treethemeVariant = "${parameters.jstreethemeVariant?html}";
+	</#if>
+	<#if parameters.jstreethemeResponsive??>
+	options_${escapedOptionId?html}.treethemeResponsive = ${parameters.jstreethemeResponsive?string};
+  	</#if>
   	<#if parameters.animation??>
 	options_${escapedOptionId?html}.animation = ${parameters.animation?c};
   	</#if>
@@ -68,6 +74,9 @@ jQuery(document).ready(function () {
     </#if>
 	<#if parameters.contextmenu?if_exists != "">
 	options_${escapedOptionId?html}.contextmenu = ${parameters.contextmenu?string};
+	</#if>
+	<#if parameters.plugins?if_exists != "">
+	options_${escapedOptionId?html}.pluginsconf = ${parameters.plugins?string};
 	</#if>
 	<#if parameters.types?if_exists != ""> 
 	options_${escapedOptionId?html}.types = ${parameters.types?string};
