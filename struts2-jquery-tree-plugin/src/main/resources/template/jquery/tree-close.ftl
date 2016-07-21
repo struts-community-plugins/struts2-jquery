@@ -97,10 +97,19 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId?html}.checkShowTopics = "${parameters.checkboxShowTopics?string}";
 	</#if>
     <#if parameters.checkboxCheckAllTopics?if_exists != "">
-        options_${escapedOptionId?html}.checkAllTopics = "${parameters.checkboxCheckAllTopics?string}";
+    options_${escapedOptionId?html}.checkAllTopics = "${parameters.checkboxCheckAllTopics?string}";
     </#if>
     <#if parameters.checkboxUncheckAllTopics?if_exists != "">
-        options_${escapedOptionId?html}.uncheckAllTopics = "${parameters.checkboxUncheckAllTopics?string}";
+    options_${escapedOptionId?html}.uncheckAllTopics = "${parameters.checkboxUncheckAllTopics?string}";
+    </#if>
+    <#if parameters.searchTopic?if_exists != "">
+    options_${escapedOptionId?html}.searchTopic = "${parameters.searchTopic?string}";
+    </#if>
+    <#if parameters.searchElementId?if_exists != "">
+    options_${escapedOptionId?html}.searchElementId = "${parameters.searchElementId?string}";
+    </#if>
+    <#if parameters.onSearchCompleteTopics?if_exists != "">
+    options_${escapedOptionId?html}.onSearchCompleteTopics = "${parameters.onSearchCompleteTopics?string}";
     </#if>
 
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
