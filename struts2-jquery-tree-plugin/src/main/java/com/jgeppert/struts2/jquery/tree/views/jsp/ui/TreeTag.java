@@ -68,8 +68,10 @@ public class TreeTag extends AbstractContainerTag {
 	protected String checkboxCheckAllTopics;
 	protected String checkboxUncheckAllTopics;
 	protected String searchTopic;
+	protected String searchClearTopic;
 	protected String searchElementId;
 	protected String onSearchCompleteTopics;
+	protected String onSearchClearTopics;
 
 	@Override
 	public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
@@ -115,6 +117,8 @@ public class TreeTag extends AbstractContainerTag {
 		tree.setSearchElementId(searchElementId);
 		tree.setSearchTopic(searchTopic);
 		tree.setOnSearchCompleteTopics(onSearchCompleteTopics);
+		tree.setSearchClearTopic(searchClearTopic);
+		tree.setOnSearchClearTopics(onSearchClearTopics);
 	}
 
 	public void setJstreetheme(String jstreetheme) {
@@ -254,4 +258,11 @@ public class TreeTag extends AbstractContainerTag {
 		this.onSearchCompleteTopics = onSearchCompleteTopics;
 	}
 
+	public void setSearchClearTopic(String searchClearTopic) {
+		this.searchClearTopic = searchClearTopic;
+	}
+
+	public void setOnSearchClearTopics(String onSearchClearTopics) {
+		this.onSearchClearTopics = onSearchClearTopics;
+	}
 }

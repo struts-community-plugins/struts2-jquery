@@ -165,10 +165,12 @@
     <div>   
         <input type="text" id="searchField" placeholder="Search" />
         <sj:a onClickTopics="treeSearch" button="true" >Search</sj:a>
+        <sj:a onClickTopics="treeSearchClear" button="true" >Clear Search</sj:a>
     </div>
 <sjt:tree
         id="treeSearch" jstreetheme="default-dark" jstreethemeVariant="large" jstreethemeResponsive="true"
-        searchTopic="treeSearch" searchElementId="searchField" onSearchCompleteTopics="searchComplete"
+        searchTopic="treeSearch" searchElementId="searchField" onSearchCompleteTopics="searchComplete" searchClearTopic="treeSearchClear"
+        onSearchClearTopics="searchCleared"
         >
         <sjt:treeItem title="General">
             <sjt:treeItem title="Struts2" href="http://struts.apache.org"/>
@@ -190,7 +192,10 @@
             if (event.originalEvent.data.nodes){
             	alert("searchComplete :\n" + event.originalEvent.data.nodes.map(function(){return $("a",$(this)).text();}).toArray().join("\n"));
             }
-        })
+        });
+        $("#treeSearch").subscribe("searchCleared",function(event,ui){
+            alert("search cleared");           
+        });
     });
     </script>
 
@@ -360,13 +365,15 @@
 &lt;p class=&quot;text&quot;&gt;
     A Tree with a search field, jstreethemeVariant set as &quot;large&quot; and jstreeResponsive set as &quot;true&quot;.
 &lt;/p&gt;
-&lt;div&gt;
-    &lt;input type=&quot;text&quot; id=&quot;searchField&quot; placeholder=&quot;Search&quot; /&gt;
-    &lt;sj:a onClickTopics=&quot;treeSearch&quot; button=&quot;true&quot; &gt;Search&lt;/sj:a&gt;
-&lt;/div&gt;
+&lt;div&gt;   
+        &lt;input type=&quot;text&quot; id=&quot;searchField&quot; placeholder=&quot;Search&quot; /&gt;
+        &lt;sj:a onClickTopics=&quot;treeSearch&quot; button=&quot;true&quot; &gt;Search&lt;/sj:a&gt;
+        &lt;sj:a onClickTopics=&quot;treeSearchClear&quot; button=&quot;true&quot; &gt;Clear Search&lt;/sj:a&gt;
+    &lt;/div&gt;
 &lt;sjt:tree
         id=&quot;treeSearch&quot; jstreetheme=&quot;default-dark&quot; jstreethemeVariant=&quot;large&quot; jstreethemeResponsive=&quot;true&quot;
-        searchTopic=&quot;treeSearch&quot; searchElementId=&quot;searchField&quot; onSearchCompleteTopics=&quot;searchComplete&quot;
+        searchTopic=&quot;treeSearch&quot; searchElementId=&quot;searchField&quot; onSearchCompleteTopics=&quot;searchComplete&quot; searchClearTopic=&quot;treeSearchClear&quot;
+        onSearchClearTopics=&quot;searchCleared&quot;
         &gt;
         &lt;sjt:treeItem title=&quot;General&quot;&gt;
             &lt;sjt:treeItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org&quot;/&gt;
@@ -382,15 +389,18 @@
             &lt;sjt:treeItem title=&quot;Struts2 jQuery News&quot; href=&quot;http://www.jgeppert.com&quot;/&gt;
         &lt;/sjt:treeItem&gt;
 &lt;/sjt:tree&gt;
-&lt;script&gt;
+ &lt;script&gt;
     $(function(){
         $(&quot;#treeSearch&quot;).subscribe(&quot;searchComplete&quot;,function(event,ui){
             if (event.originalEvent.data.nodes){
                 alert(&quot;searchComplete :\n&quot; + event.originalEvent.data.nodes.map(function(){return $(&quot;a&quot;,$(this)).text();}).toArray().join(&quot;\n&quot;));
             }
-        })
+        });
+        $(&quot;#treeSearch&quot;).subscribe(&quot;searchCleared&quot;,function(event,ui){
+            alert(&quot;search cleared&quot;);           
+        });
     });
-&lt;/script&gt;
+    &lt;/script&gt;
 			</code>
     </pre>
 </div>

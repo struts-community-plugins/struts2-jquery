@@ -105,11 +105,17 @@ jQuery(document).ready(function () {
     <#if parameters.searchTopic?if_exists != "">
     options_${escapedOptionId?html}.searchTopic = "${parameters.searchTopic?string}";
     </#if>
+    <#if parameters.searchClearTopic?if_exists != "">
+    options_${escapedOptionId?html}.searchClearTopic = "${parameters.searchClearTopic?string}";
+    </#if>
     <#if parameters.searchElementId?if_exists != "">
     options_${escapedOptionId?html}.searchElementId = "${parameters.searchElementId?string}";
     </#if>
     <#if parameters.onSearchCompleteTopics?if_exists != "">
     options_${escapedOptionId?html}.onSearchCompleteTopics = "${parameters.onSearchCompleteTopics?string}";
+    </#if>
+    <#if parameters.onSearchClearTopics?if_exists != "">
+    options_${escapedOptionId?html}.onSearchClearTopics = "${parameters.onSearchClearTopics?string}";
     </#if>
 
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

@@ -29,7 +29,8 @@
             check_checkboxes: '_s2j_check_checkboxes',
             uncheck_checkboxes: '_s2j_uncheck_checkboxes',
             toggle_checkboxes:'_s2j_toggle_all',
-            search:'_s2j_tree_search'
+            search:'_s2j_tree_search',
+            clear_search:'_s2j_tree_clear_search'
         },
 
 		// Render a Tree
@@ -93,7 +94,10 @@
 				o.search = {};
 				o.plugins.push('search');
 				self.subscribeTopics($elem, o.searchTopic, self.handler.search, o);
-			}
+				if (o.searchClearTopic){
+					self.subscribeTopics($elem, o.searchClearTopic, self.handler.clear_search, o);
+				}
+			}	
 			if (o.pluginsconf){
 				//We permit overriding other plugins conf. Possible to modify this behaviour here
 				$.each(o.pluginsconf,function(plugin,conf){
@@ -206,6 +210,12 @@
 		              self.publishTopic($elem, o.onSearchCompleteTopics, orginal);	                
 				});
 			}
+			if (o.onSearchClearTopics){
+				$elem.on('clear_search.jstree', function (event, data){
+					 var orginal = {'data':data, 'event':event};	               
+		              self.publishTopic($elem, o.onSearchClearTopics, orginal);	                
+				});
+			}
 			if(o.openload) {
 				$elem.bind('loaded.jstree', function (event, data){
 					$elem.jstree('open_all'); 
@@ -270,6 +280,13 @@
      */
     $.subscribeHandler($.struts2_jquery_tree.handler.search, function(event, data) {
        $(this).jstree("search",$($.struts2_jquery.escId(event.data.searchElementId)).val());
+    });
+    
+    /**
+     * handler to trigger tree clear search
+     */
+    $.subscribeHandler($.struts2_jquery_tree.handler.clear_search, function(event, data) {
+       $(this).jstree("clear_search");
     });
 
 	// Extend it from orginal plugin

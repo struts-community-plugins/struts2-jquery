@@ -82,8 +82,10 @@ public class Tree extends AbstractContainer {
 	protected String checkboxCheckAllTopics;
 	protected String checkboxUncheckAllTopics;
 	protected String searchTopic;
+	protected String searchClearTopic;
 	protected String searchElementId;
 	protected String onSearchCompleteTopics;
+	protected String onSearchClearTopics;
 
 	public Tree(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
 		super(stack, request, response);
@@ -173,6 +175,10 @@ public class Tree extends AbstractContainer {
 			addParameter("searchElementId", findString(searchElementId));
 		if (onSearchCompleteTopics != null)
 			addParameter("onSearchCompleteTopics", findString(onSearchCompleteTopics));
+		if (onSearchClearTopics != null)
+			addParameter("onSearchClearTopics", findString(onSearchClearTopics));
+		if (searchClearTopic != null)
+			addParameter("searchClearTopic", findString(searchClearTopic));
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
@@ -383,7 +389,7 @@ public class Tree extends AbstractContainer {
 		this.searchTopic = searchTopic;
 	}
 
-	@StrutsTagAttribute(description = "The ID of the element that holds thhe search string")
+	@StrutsTagAttribute(description = "The ID of the element that holds the search string")
 	public void setSearchElementId(String searchElementId) {
 		this.searchElementId = searchElementId;
 	}
@@ -391,6 +397,16 @@ public class Tree extends AbstractContainer {
 	@StrutsTagAttribute(description = "comma separated list of topics published when the tree search is complete")
 	public void setOnSearchCompleteTopics(String onSearchCompleteTopics) {
 		this.onSearchCompleteTopics = onSearchCompleteTopics;
+	}
+
+	@StrutsTagAttribute(description = "The topic that will trigger the clear of the last tree search")
+	public void setSearchClearTopic(String searchClearTopic) {
+		this.searchClearTopic = searchClearTopic;
+	}
+
+	@StrutsTagAttribute(description = "comma separated list of topics published when a tree search clear happens")
+	public void setOnSearchClearTopics(String onSearchClearTopics) {
+		this.onSearchClearTopics = onSearchClearTopics;
 	}
 
 }
