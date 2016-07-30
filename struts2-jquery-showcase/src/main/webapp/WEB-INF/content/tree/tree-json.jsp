@@ -144,15 +144,13 @@ public class JsonTreeData extends ActionSupport implements ServletContextAware {
 </p>
 <s:url var="treeSearchDataUrl" action="json-tree-search-data" namespace="/tree"/>
 <s:url var="treeSearchUrl" action="json-tree-search" namespace="/tree"/>
-<s:url var="echo" value="/echo.action"/>
 
 <div>
     <input type="text" id="searchField"  />
-    <sj:submit  value="Search" button="true" 
-    onclick="$('#jsonTreeSearch').jstree('search', $('#searchField').val())" />
+    <sj:a onClickTopics="treeSearch" button="true" >Search</sj:a>
 </div>
 <sjt:tree
-        id="jsonTreeSearch"
+        id="jsonTreeSearch" searchTopic="treeSearch" searchElementId="searchField"
         href="%{treeSearchDataUrl}"
         plugins="{search:{ajax:{url:'%{treeSearchUrl}'}}}"
         
@@ -166,17 +164,18 @@ public class JsonTreeData extends ActionSupport implements ServletContextAware {
     <div id="jspsearch">
       <pre>
             <code class="html">
-&lt;s:url var=&quot;treeDataUrl&quot; action=&quot;json-tree-data&quot; namespace=&quot;/tree&quot;/&gt;
-&lt;s:url var=&quot;echo&quot; value=&quot;/echo.action&quot;/&gt;
+&lt;s:url var=&quot;treeSearchDataUrl&quot; action=&quot;json-tree-search-data&quot; namespace=&quot;/tree&quot;/&gt;
+&lt;s:url var=&quot;treeSearchUrl&quot; action=&quot;json-tree-search&quot; namespace=&quot;/tree&quot;/&gt;
+
 &lt;div&gt;
     &lt;input type=&quot;text&quot; id=&quot;searchField&quot;  /&gt;
-    &lt;sj:submit value=&quot;Search&quot; button=&quot;true&quot; 
-    onclick=&quot;$(&apos;#jsonTreeSearch&apos;).jstree(&apos;search&apos;, $(&apos;#searchField&apos;).val())&quot; /&gt;
+    &lt;sj:a onClickTopics=&quot;treeSearch&quot; button=&quot;true&quot; &gt;Search&lt;/sj:a&gt;
 &lt;/div&gt;
 &lt;sjt:tree
-    id=&quot;jsonTreeSearch&quot;
-    href=&quot;%{treeSearchDataUrl}&quot;
-    plugins=&quot;{search:{ajax:{url:&apos;%{treeSearchUrl}&apos;}}}&quot;
+        id=&quot;jsonTreeSearch&quot; searchTopic=&quot;treeSearch&quot; searchElementId=&quot;searchField&quot;
+        href=&quot;%{treeSearchDataUrl}&quot;
+        plugins=&quot;{search:{ajax:{url:'%{treeSearchUrl}'}}}&quot;
+        
 /&gt;
             </code>
       </pre>
