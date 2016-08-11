@@ -21,18 +21,7 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
- <#-- 
- /*
- * There's a big performance issue when using the main DataTable.js in minified version (the official min from the dist ! )
- * with other plugins such as responsive, and in some browser ( Firefox ) 
- * Must investigate ... Disabling minified version until a solution is found (try build our custom min version of Datatables)
- *
- *  jQuery.struts2_jquery.require(["js/struts2/jquery.datatables.struts2"+jQuery.struts2_jquery.minSuffix+".js","js/plugins/jquery.dataTables"+jQuery.struts2_jquery.minSuffix+".js"]);
- });
- *
- */
- -->
-    jQuery.struts2_jquery.require(["js/struts2/jquery.datatables.struts2"+jQuery.struts2_jquery.minSuffix+".js","js/plugins/jquery.dataTables.js"]);
+    jQuery.struts2_jquery.require(["js/struts2/jquery.datatables.struts2"+jQuery.struts2_jquery.minSuffix+".js","js/plugins/jquery.dataTables"+jQuery.struts2_jquery.minSuffix+".js"]);
  });
 </script>
 <table id="${parameters.id?html}" 
