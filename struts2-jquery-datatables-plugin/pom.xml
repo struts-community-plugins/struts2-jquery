@@ -59,17 +59,7 @@
                             <jsSourceDir>template/js</jsSourceDir>
                             <jsTargetDir>template/js</jsTargetDir>
                             <jsSourceFiles>
-                                <jsSourceFile>struts2/jquery.datatables.struts2.js</jsSourceFile>
-                                <!-- 
-                                <jsSourceFile>plugins/jquery.jqGrid.js</jsSourceFile>
-                                <jsSourceFile>plugins/grid.grouping.js</jsSourceFile>
-                                <jsSourceFile>plugins/grid.subgrid.js</jsSourceFile>
-                                <jsSourceFile>plugins/grid.inlinedit.js</jsSourceFile>
-                                <jsSourceFile>plugins/grid.formedit.js</jsSourceFile>
-                                <jsSourceFile>plugins/grid.celledit.js</jsSourceFile>
-                                <jsSourceFile>plugins/grid.filter.js</jsSourceFile>
-                                <jsSourceFile>plugins/grid.addons.js</jsSourceFile>
-                                 -->
+                                <jsSourceFile>struts2/jquery.datatables.struts2.js</jsSourceFile>                              
                             </jsSourceFiles>
                         </configuration>
                         <goals>
