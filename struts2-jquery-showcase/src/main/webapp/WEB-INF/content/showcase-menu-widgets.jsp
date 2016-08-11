@@ -104,6 +104,20 @@
 
 			</sj:menu>
 		</sj:menuItem>
+		<sj:menuItem title="DataTables">
+            <sj:menu id="subMenuDataTables">
+                <s:url var="urldatatables" action="datatables" namespace="/datatables"/>
+                <sj:menuItem id="datatablesLink" href="%{urldatatables}" targets="content" title="DataTables" />
+                <s:url var="urldatatablesjson" action="datatables-ajax" namespace="/datatables"/>
+                <sj:menuItem id="datatablesJsonLink" href="%{urldatatablesjson}" targets="content" title="DataTables JSON" />
+                <s:url var="urldatatablesssp" action="datatables-ssp" namespace="/datatables"/>
+                <sj:menuItem id="datatablesSspLink" href="%{urldatatablesssp}" targets="content" title="DataTables Server-side processing" />
+                <s:url var="urldatatablesgroup" action="datatables-group" namespace="/datatables"/>
+                <sj:menuItem id="datatablesGroupLink" href="%{urldatatablesgroup}" targets="content" title="DataTables row grouping" />
+                <s:url var="urldatatablesedit" action="datatables-editable" namespace="/datatables"/>
+                <sj:menuItem id="datatablesEditorLink" href="%{urldatatablesedit}" targets="content" title="DataTables custom Editor" />
+            </sj:menu>
+        </sj:menuItem>
 
 		<sj:menuItem title="Menu">
 			<sj:menu id="subMenuMenu">

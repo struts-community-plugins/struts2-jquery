@@ -126,6 +126,9 @@
     <#if parameters.timeLocale??>
         jQuery.struts2_jquery.timeLocal = "${parameters.timeLocale?default('en')}";
     </#if>
+    <#if parameters.datatablesLocale??>
+        jQuery.struts2_jquery.datatablesLocal = "${parameters.datatablesLocale?default('en')}";
+    </#if>
     <#if parameters.ajaxhistory?default(false)>
         jQuery.struts2_jquery.ajaxhistory = true;
     </#if>
