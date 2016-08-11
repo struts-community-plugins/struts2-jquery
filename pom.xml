@@ -65,9 +65,9 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 		<snapshotRepository>			
-			<id>nexus</id>
-			<name>Snapshots</name>
-			<url>http://sdsisrpr01.gend/nexus/content/repositories/snapshots</url>			
+			<id>struts2-jquery.snapshots</id>
+			<name>Struts 2 jQuery Plugin Snapshots and Test Builds Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>			
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 	</distributionManagement>
