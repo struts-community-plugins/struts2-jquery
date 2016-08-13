@@ -35,9 +35,9 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * <!-- START SNIPPET: notice -->
- * <p>The "head" tag renders required JavaScript
- * code to configure jQuery and is required in order to use any of the tags
- * included in the jQuery plugin.
+ * <p>
+ * The "head" tag renders required JavaScript code to configure jQuery and is
+ * required in order to use any of the tags included in the jQuery plugin.
  * </p>
  * <!-- END SNIPPET: notice -->
  * 
@@ -49,13 +49,15 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 
  * <p>
  * The "locale" attribute configures jQuery locale for datepicker. Default is
- * "en" you can use all locales that are bundled with jQuery. e.g.
- * "de, "fr", "ja", ...
+ * "en" you can use all locales that are bundled with jQuery. e.g. "de, "fr", "
+ * ja", ...
  * </p>
  * 
  * <!-- END SNIPPET: javadoc -->
  * 
- * <p>Examples</p>
+ * <p>
+ * Examples
+ * </p>
  * 
  * <!-- START SNIPPET: example1 -->
  * 
@@ -89,26 +91,27 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class Head extends org.apache.struts2.components.Head {
 	public static final String TEMPLATE = "head";
 
-	private static final String[] timeLocals = { "af", "bg", "ca", "cs", "de", "el", "es",
-			"et", "eu", "fi", "fr", "gl", "he", "hu", "id", "it", "ja", "ko", "lt", "nl", "no",
-			"pl", "pt", "pt-BR", "ro", "ru", "sk", "sv", "th", "tr", "uk", "vi", "zh-CN", "zh-TW" };
-	private static final String[] gridLocals = { "ar", "bg", "ca", "cn", "cs",
-			"de", "da", "dk", "el", "en", "es", "en-GB", "fa", "fi", "fr",
-			"fr-CH", "gl", "he", "hr", "hu", "id", "is", "it", "ja", "lt", "mne",
-			"nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sr", "sv",
-			"th", "tr", "ua", "vi", "zh", "zh-CN", "zh-TW" };
-	private static final String[] jqueryLocals = { "af", "ar", "ar-DZ", "az", "be",
-			"bg", "bs", "ca", "cs", "cy-GB", "da", "de", "el", "en", "en-AU",
-			"en-GB", "en-NZ", "eo", "es", "et", "eu", "fa", "fi", "fo", "fr",
-			"fr-CA", "fr-CH", "ge", "gl", "he", "hi", "hr", "hu", "hy", "id", "is",
-			"it", "ja", "ka", "kk", "km", "ko", "kr", "ky", "kz", "lt", "lb", "lv", "mk",
-			"ml", "ms", "nb", "nl-BE", "nl", "nn", "no", "pl", "pt", "pt-BR", "rm", "ro",
-			"ru", "sk", "sl", "sq", "sr-SR", "sv", "ta", "th", "tj", "tr",
-			"uk", "vi", "zh-CN", "zh-HK", "zh-TW" };
+	private static final String[] timeLocals = { "af", "bg", "ca", "cs", "de", "el", "es", "et", "eu", "fi", "fr", "gl",
+			"he", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sv", "th",
+			"tr", "uk", "vi", "zh-CN", "zh-TW" };
+	private static final String[] gridLocals = { "ar", "bg", "ca", "cn", "cs", "de", "da", "dk", "el", "en", "es",
+			"en-GB", "fa", "fi", "fr", "fr-CH", "gl", "he", "hr", "hu", "id", "is", "it", "ja", "lt", "mne", "nl", "no",
+			"pl", "pt", "pt-BR", "ro", "ru", "sk", "sr", "sv", "th", "tr", "ua", "vi", "zh", "zh-CN", "zh-TW" };
+	private static final String[] jqueryLocals = { "af", "ar", "ar-DZ", "az", "be", "bg", "bs", "ca", "cs", "cy-GB",
+			"da", "de", "el", "en", "en-AU", "en-GB", "en-NZ", "eo", "es", "et", "eu", "fa", "fi", "fo", "fr", "fr-CA",
+			"fr-CH", "ge", "gl", "he", "hi", "hr", "hu", "hy", "id", "is", "it", "ja", "ka", "kk", "km", "ko", "kr",
+			"ky", "kz", "lt", "lb", "lv", "mk", "ml", "ms", "nb", "nl-BE", "nl", "nn", "no", "pl", "pt", "pt-BR", "rm",
+			"ro", "ru", "sk", "sl", "sq", "sr-SR", "sv", "ta", "th", "tj", "tr", "uk", "vi", "zh-CN", "zh-HK",
+			"zh-TW" };
+	private static final String[] datatablesLocals = { "af", "ar", "ar-DZ", "az", "be", "bg", "bn", "ca", "cs", "cy-GB",
+			"da", "de", "el", "en", "en-AU", "en-GB", "en-NZ", "es", "et", "eu", "fa", "fi", "fil", "fr", "fr-CA",
+			"fr-CH", "gl", "he", "hi", "hr", "hu", "hy", "id", "is", "it", "it-CH", "ja", "ka", "ko", "ky", "lt", "lv",
+			"mk", "mn", "ms", "nb", "nl-BE", "nl", "nn", "pl", "ps", "pt", "pt-BR", "ro", "ru", "si", "sk", "sl", "sq",
+			"sr", "sv", "sw", "ta", "te", "th", "tr", "uk", "ur", "uz", "vi", "zh-CN", "zh-TW" };
 
 	protected String compressed;
 	protected String locale;
-    protected String jquery;
+	protected String jquery;
 	protected String jquerytheme;
 	protected String jqueryui;
 	protected String customBasepath;
@@ -124,47 +127,43 @@ public class Head extends org.apache.struts2.components.Head {
 
 	private String defaultLocale;
 
-	public Head(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
+	public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
 		super(stack, request, response);
 	}
 
+	@Override
 	protected String getDefaultTemplate() {
 		return TEMPLATE;
 	}
 
+	@Override
 	public void evaluateParams() {
 		super.evaluateParams();
 
-        if (this.jquery != null)
-            addParameter("jquery", findValue(this.jquery, Boolean.class));
+		if (this.jquery != null)
+			addParameter("jquery", findValue(this.jquery, Boolean.class));
 		if (this.jqueryui != null)
 			addParameter("jqueryui", findValue(this.jqueryui, Boolean.class));
 		if (this.compressed != null)
-			addParameter("compressed",
-					findValue(this.compressed, Boolean.class));
+			addParameter("compressed", findValue(this.compressed, Boolean.class));
 		if (this.jquerytheme != null)
 			addParameter("jquerytheme", findString(this.jquerytheme));
 		if (this.customBasepath != null)
 			addParameter("customBasepath", findString(this.customBasepath));
 		if (this.loadFromGoogle != null)
-			addParameter("loadFromGoogle",
-					findValue(this.loadFromGoogle, Boolean.class));
+			addParameter("loadFromGoogle", findValue(this.loadFromGoogle, Boolean.class));
 		if (this.ajaxcache != null)
 			addParameter("ajaxcache", findValue(this.ajaxcache, Boolean.class));
 		if (this.ajaxhistory != null)
-			addParameter("ajaxhistory",
-					findValue(this.ajaxhistory, Boolean.class));
+			addParameter("ajaxhistory", findValue(this.ajaxhistory, Boolean.class));
 		if (this.defaultIndicator != null)
 			addParameter("defaultIndicator", findString(this.defaultIndicator));
 		if (this.defaultLoadingText != null)
-			addParameter("defaultLoadingText",
-					findString(this.defaultLoadingText));
+			addParameter("defaultLoadingText", findString(this.defaultLoadingText));
 		if (this.defaultErrorText != null)
 			addParameter("defaultErrorText", findString(this.defaultErrorText));
 		if (this.loadAtOnce != null)
-			addParameter("loadAtOnce",
-					findValue(this.loadAtOnce, Boolean.class));
+			addParameter("loadAtOnce", findValue(this.loadAtOnce, Boolean.class));
 		if (this.debug != null)
 			addParameter("debug", findValue(this.debug, Boolean.class));
 		if (this.scriptPath != null)
@@ -180,6 +179,7 @@ public class Head extends org.apache.struts2.components.Head {
 			addParameter("gridLocale", validateLocal(gridLocals, loc));
 			addParameter("timeLocale", validateLocal(timeLocals, loc));
 			addParameter("jqueryLocale", validateLocal(jqueryLocals, loc));
+			addParameter("datatablesLocale", validateLocal(datatablesLocals, loc));
 		}
 	}
 
@@ -199,12 +199,12 @@ public class Head extends org.apache.struts2.components.Head {
 		return "jquery";
 	}
 
-    @StrutsTagAttribute(description = "Include jQuery Script", defaultValue = "true", type = "Boolean")
-    public void setJquery(String jquery) {
-        this.jquery = jquery;
-    }
+	@StrutsTagAttribute(description = "Include jQuery Script", defaultValue = "true", type = "Boolean")
+	public void setJquery(String jquery) {
+		this.jquery = jquery;
+	}
 
-    public boolean isJqueryui() {
+	public boolean isJqueryui() {
 		return jqueryui != null && Boolean.parseBoolean(jqueryui);
 	}
 
@@ -274,10 +274,9 @@ public class Head extends org.apache.struts2.components.Head {
 		// Array must be sorted for binarySearch
 		Arrays.sort(locals);
 
-		if (Arrays.binarySearch(locals, local) > 0) {
+		if (Arrays.binarySearch(locals, local) > -1) {
 			retString = local;
-		} else if (local.length() > 2
-				&& Arrays.binarySearch(locals, local.substring(0, 2)) > 0) {
+		} else if (local.length() > 2 && Arrays.binarySearch(locals, local.substring(0, 2)) > -1) {
 			retString = local.substring(0, 2);
 		}
 

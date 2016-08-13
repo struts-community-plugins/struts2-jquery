@@ -11,18 +11,18 @@
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="0"/>
-    <meta http-equiv="keywords" content="struts2, jquery, jquery-ui, plugin, showcase, jqgrid"/>
+    <meta http-equiv="keywords" content="struts2, jquery, jquery-ui, plugin, showcase, jqgrid, datatables"/>
     <meta http-equiv="description" content="A Showcase for the Struts2 jQuery Plugin"/>
 
     <title>Struts2 jQuery Plugin Showcase - <s:text name="showcase.version"/></title>
 
     <s:if test="%{theme == 'showcase' || theme == null}">
-        <sj:head debug="false" compressed="true" jquerytheme="showcase" customBasepath="themes"
+        <sj:head debug="false" compressed="true" jquerytheme="showcase" customBasepath="themes" 
                  loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
                  defaultLoadingText="Please wait ..."/>
     </s:if>
     <s:else>
-        <sj:head debug="false" compressed="true" jquerytheme="%{theme}" loadFromGoogle="%{google}"
+        <sj:head debug="false" compressed="true" jquerytheme="%{theme}" loadFromGoogle="%{google}" 
                  ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
                  defaultLoadingText="Please wait ..."/>
     </s:else>

@@ -64,11 +64,11 @@
 			<name>Struts 2 jQuery Plugin Staging Repository</name>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
-		<snapshotRepository>
+		<snapshotRepository>			
 			<id>struts2-jquery.snapshots</id>
-			<uniqueVersion>false</uniqueVersion>
 			<name>Struts 2 jQuery Plugin Snapshots and Test Builds Repository</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>			
+			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -83,6 +83,7 @@
 	<modules>
 		<module>struts2-jquery-plugin</module>
 		<module>struts2-jquery-grid-plugin</module>
+		<module>struts2-jquery-datatables-plugin</module>		
 		<module>struts2-jquery-richtext-plugin</module>
 		<module>struts2-jquery-chart-plugin</module>
 		<module>struts2-jquery-tree-plugin</module>

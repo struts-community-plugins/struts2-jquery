@@ -34,6 +34,7 @@
 	local :"en",
 	gridLocal :"en",
 	timeLocal :"en",
+	datatablesLocal :"en",
 	minSuffix :".min",
 	historyelements : {},
 	forms : {},
