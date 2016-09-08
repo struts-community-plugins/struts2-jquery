@@ -42,6 +42,7 @@ public class SelectTag extends AbstractFormElementTag {
     protected String headerValue;
     protected String list;
     protected String listKey;
+    protected String listTitle;
     protected String listValue;
     protected String size;
     protected String multiple;
@@ -64,6 +65,7 @@ public class SelectTag extends AbstractFormElementTag {
 	select.setHeaderValue(headerValue);
 	select.setList(list);
 	select.setListKey(listKey);
+	select.setListTitle(listTitle);
 	select.setListValue(listValue);
 	select.setSize(size);
 	select.setMultiple(multiple);
@@ -91,6 +93,10 @@ public class SelectTag extends AbstractFormElementTag {
 
     public void setListKey(String listKey) {
 	this.listKey = listKey;
+    }
+
+    public void setListTitle(String listTitle) {
+	this.listTitle = listTitle;
     }
 
     public void setListValue(String listValue) {
