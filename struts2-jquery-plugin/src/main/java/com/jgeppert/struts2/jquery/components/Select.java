@@ -54,6 +54,7 @@ public class Select extends AbstractFormListElement {
     protected String headerValue;
     protected String list;
     protected String listKey;
+    protected String listTitle;
     protected String listValue;
     protected String size;
     protected String multiple;
@@ -94,6 +95,9 @@ public class Select extends AbstractFormListElement {
 	}
 	if (listKey != null) {
 	    addParameter("listKey", findString(listKey));
+	}
+	if (listTitle != null) {
+	    addParameter("listTitle", findString(listTitle));
 	}
 	if (listValue != null) {
 	    addParameter("listValue", findString(listValue));
@@ -163,6 +167,11 @@ public class Select extends AbstractFormListElement {
     @StrutsTagAttribute(description = "Property of list objects to get field value from", required = false)
     public void setListKey(String listKey) {
 	this.listKey = listKey;
+    }
+
+    @StrutsTagAttribute(description = "Property of list objects to get field title from", required = false)
+    public void setListTitle(String listTitle) {
+	this.listTitle = listTitle;
     }
 
     @StrutsTagAttribute(description = "Property of list objects to get field content from", required = false)

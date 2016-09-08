@@ -384,6 +384,9 @@
 								if (o.listkey !== undefined && o.listvalue !== undefined) {
 									option.text = val[o.listvalue];
 									option.value = val[o.listkey];
+									if (o.listtitle !== undefined) {
+										option.listtitle = val[o.listtitle];
+									}
 								}
 								else {
 									option.text = data[o.list][x];
@@ -399,6 +402,9 @@
 								element = $('<option value="' + option.value + '">' + option.text + '</option>');
 								if (option.selected) {
 									element.prop("selected", true);
+								}
+								if (option.listtitle !== undefined) {
+									element.prop("title", option.listtitle);
 								}
 								element.appendTo(c);
 							}
