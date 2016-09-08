@@ -38,6 +38,9 @@ jQuery(document).ready(function () {
 <#if parameters.listKey??>
 	options_${escapedOptionId?html}.listkey = "${parameters.listKey?html}";
 </#if>
+<#if parameters.listTitle??>
+	options_${escapedOptionId?html}.listtitle = "${parameters.listTitle?html}";
+</#if>
 <#if parameters.listValue??>
 	options_${escapedOptionId?html}.listvalue = "${parameters.listValue?html}";
 </#if>
