@@ -60,9 +60,9 @@ public class JsonSample extends ActionSupport {
 	languageMap.put("P", "PHP");
 	languageMap.put("C", "C#");
 
-	languageObjList.add(new ListValue("J", "Java"));
-	languageObjList.add(new ListValue("P", "PHP"));
-	languageObjList.add(new ListValue("C", "C#"));
+	languageObjList.add(new ListValue("J", "Java", "The Java programming language"));
+	languageObjList.add(new ListValue("P", "PHP", "PHP: Hypertext Preprocessor"));
+	languageObjList.add(new ListValue("C", "C#", "C Sharp"));
 
 	reloadList = new ArrayList<String>();
 	if (language != null && language.equalsIgnoreCase("J")) {

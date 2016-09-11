@@ -85,6 +85,7 @@
 					name="echo"
 					list="languageObjList"
 					listKey="myKey"
+					listTitle="myTitle"
 					listValue="myValue"
 					emptyOption="true"
 					headerKey="-1"
@@ -197,6 +198,7 @@
 				name=&quot;echo&quot;
 				list=&quot;languageObjList&quot;
 				listKey=&quot;myKey&quot;
+				listTitle=&quot;myTitle&quot;
 				listValue=&quot;myValue&quot;
 				emptyOption=&quot;true&quot;
 				headerKey=&quot;-1&quot;
