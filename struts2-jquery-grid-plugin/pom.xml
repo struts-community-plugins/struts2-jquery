@@ -49,7 +49,7 @@
                 <executions>
                     <execution>
                         <id>default-minify</id>
-                        <phase>package</phase>
+                        <phase>generate-resources</phase>
                         <configuration>
                             <jsEngine>CLOSURE</jsEngine>
                             <closureLanguage>ECMASCRIPT5_STRICT</closureLanguage>
