@@ -1,0 +1,9 @@
+src/main/resources/template/js/struts2/jquery.grid.struts2.min.js
+src/main/resources/template/js/plugins/jquery.jqGrid.min.js
+src/main/resources/template/js/plugins/grid.grouping.min.js
+src/main/resources/template/js/plugins/grid.subgrid.min.js
+src/main/resources/template/js/plugins/grid.inlinedit.min.js
+src/main/resources/template/js/plugins/grid.formedit.min.js
+src/main/resources/template/js/plugins/grid.celledit.min.js
+src/main/resources/template/js/plugins/grid.filter.min.js
+src/main/resources/template/js/plugins/grid.addons.min.js
