@@ -111,33 +111,19 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
 
 	addParameter("jqueryaction", JQUERYACTION);
 
-	if (openDialog != null)
-	    addParameter("openDialog", findString(openDialog));
-	if (openDialogTitle != null)
-	    addParameter("openDialogTitle", findString(openDialogTitle));
-	if (onClickTopics != null)
-	    addParameter("onClickTopics", findString(onClickTopics));
-	if (button != null)
-	    addParameter("button", findValue(this.button, Boolean.class));
-	if (buttonIcon != null)
-	    addParameter("buttonIcon", findString(buttonIcon));
-	if (buttonIconSecondary != null)
-	    addParameter("buttonIconSecondary", findString(buttonIconSecondary));
-	if (buttonText != null)
-	    addParameter("buttonText", findValue(this.buttonText, Boolean.class));
-	if (validate != null)
-	    addParameter("validate", findValue(this.validate, Boolean.class));
-	if (validateFunction != null)
-	    addParameter("validateFunction", findString(validateFunction));
-	if (clearForm != null)
-	    addParameter("clearForm", findValue(clearForm, Boolean.class));
-	if (resetForm != null)
-	    addParameter("resetForm", findValue(resetForm, Boolean.class));
-	if (iframe != null)
-	    addParameter("iframe", findValue(iframe, Boolean.class));
-	if (replaceTarget != null)
-	    addParameter("replaceTarget", findValue(this.replaceTarget,
-		    Boolean.class));
+	addOgnlEvaluatedStringParameterIfExists("openDialog", openDialog);
+	addOgnlEvaluatedStringParameterIfExists("openDialogTitle", openDialogTitle);
+	addOgnlEvaluatedStringParameterIfExists("onClickTopics", onClickTopics);
+	addOgnlEvaluatedObjectParameterIfExists("button", this.button, Boolean.class);
+	addOgnlEvaluatedStringParameterIfExists("buttonIcon", buttonIcon);
+	addOgnlEvaluatedStringParameterIfExists("buttonIconSecondary", buttonIconSecondary);
+	addOgnlEvaluatedObjectParameterIfExists("buttonText", this.buttonText, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("validate", this.validate, Boolean.class);
+	addOgnlEvaluatedStringParameterIfExists("validateFunction", validateFunction);
+	addOgnlEvaluatedObjectParameterIfExists("clearForm", clearForm, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("resetForm", resetForm, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("iframe", iframe, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("replaceTarget", this.replaceTarget, Boolean.class);
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

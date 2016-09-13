@@ -161,11 +161,10 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
   {
     super.evaluateExtraParams();
 
-    if (reloadTopics != null) addParameter("reloadTopics", findString(reloadTopics));
-    if (bindOn != null) addParameter("bindOn", findString(bindOn));
-    if (events != null) addParameter("events", findString(events));
-
-    if (deferredLoading != null) addParameter("deferredLoading", findValue(this.deferredLoading, Boolean.class));
+    addOgnlEvaluatedStringParameterIfExists("reloadTopics", reloadTopics);
+    addOgnlEvaluatedStringParameterIfExists("bindOn", bindOn);
+    addOgnlEvaluatedStringParameterIfExists("events", events);
+    addOgnlEvaluatedObjectParameterIfExists("deferredLoading", deferredLoading, Boolean.class);
 
     if (resizable != null)
     {
@@ -272,9 +271,9 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (resizableBuilder.charAt(1) == ',') resizableBuilder.deleteCharAt(1);
 
         addParameter("resizableOptions", resizableBuilder.toString());
-        if (resizableOnResizeTopics != null) addParameter("resizableOnResizeTopics", findString(resizableOnResizeTopics));
-        if (resizableOnStartTopics != null) addParameter("resizableOnStartTopics", findString(resizableOnStartTopics));
-        if (resizableOnStopTopics != null) addParameter("resizableOnStopTopics", findString(resizableOnStopTopics));
+        addOgnlEvaluatedStringParameterIfExists("resizableOnResizeTopics", resizableOnResizeTopics);
+        addOgnlEvaluatedStringParameterIfExists("resizableOnStartTopics", resizableOnStartTopics);
+        addOgnlEvaluatedStringParameterIfExists("resizableOnStopTopics", resizableOnStopTopics);
       }
     }
 
@@ -331,11 +330,11 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (droppableBuilder.charAt(1) == ',') droppableBuilder.deleteCharAt(1);
         addParameter("droppableOptions", droppableBuilder.toString());
 
-        if (droppableOnActivateTopics != null) addParameter("droppableOnActivateTopics", findString(droppableOnActivateTopics));
-        if (droppableOnDeactivateTopics != null) addParameter("droppableOnDeactivateTopics", findString(droppableOnDeactivateTopics));
-        if (droppableOnOverTopics != null) addParameter("droppableOnOverTopics", findString(droppableOnOverTopics));
-        if (droppableOnOutTopics != null) addParameter("droppableOnOutTopics", findString(droppableOnOutTopics));
-        if (droppableOnDropTopics != null) addParameter("droppableOnDropTopics", findString(droppableOnDropTopics));
+        addOgnlEvaluatedStringParameterIfExists("droppableOnActivateTopics", droppableOnActivateTopics);
+        addOgnlEvaluatedStringParameterIfExists("droppableOnDeactivateTopics", droppableOnDeactivateTopics);
+        addOgnlEvaluatedStringParameterIfExists("droppableOnOverTopics", droppableOnOverTopics);
+        addOgnlEvaluatedStringParameterIfExists("droppableOnOutTopics", droppableOnOutTopics);
+        addOgnlEvaluatedStringParameterIfExists("droppableOnDropTopics", droppableOnDropTopics);
       }
     }
 
@@ -499,9 +498,9 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (draggableBuilder.charAt(1) == ',') draggableBuilder.deleteCharAt(1);
         addParameter("draggableOptions", draggableBuilder.toString());
 
-        if (draggableOnDragTopics != null) addParameter("draggableOnDragTopics", findString(draggableOnDragTopics));
-        if (draggableOnStartTopics != null) addParameter("draggableOnStartTopics", findString(draggableOnStartTopics));
-        if (draggableOnStopTopics != null) addParameter("draggableOnStopTopics", findString(draggableOnStopTopics));
+        addOgnlEvaluatedStringParameterIfExists("draggableOnDragTopics", draggableOnDragTopics);
+        addOgnlEvaluatedStringParameterIfExists("draggableOnStartTopics", draggableOnStartTopics);
+        addOgnlEvaluatedStringParameterIfExists("draggableOnStopTopics", draggableOnStopTopics);
 
       }
     }
@@ -547,12 +546,12 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (selectableBuilder.charAt(1) == ',') selectableBuilder.deleteCharAt(1);
         addParameter("selectableOptions", selectableBuilder.toString());
 
-        if (selectableOnSelectedTopics != null) addParameter("selectableOnSelectedTopics", findString(selectableOnSelectedTopics));
-        if (selectableOnSelectingTopics != null) addParameter("selectableOnSelectingTopics", findString(selectableOnSelectingTopics));
-        if (selectableOnStartTopics != null) addParameter("selectableOnStartTopics", findString(selectableOnStartTopics));
-        if (selectableOnStopTopics != null) addParameter("selectableOnStopTopics", findString(selectableOnStopTopics));
-        if (selectableOnUnselectedTopics != null) addParameter("selectableOnUnselectedTopics", findString(selectableOnUnselectedTopics));
-        if (selectableOnUnselectingTopics != null) addParameter("selectableOnUnselectingTopics", findString(selectableOnUnselectingTopics));
+        addOgnlEvaluatedStringParameterIfExists("selectableOnSelectedTopics", selectableOnSelectedTopics);
+        addOgnlEvaluatedStringParameterIfExists("selectableOnSelectingTopics", selectableOnSelectingTopics);
+        addOgnlEvaluatedStringParameterIfExists("selectableOnStartTopics", selectableOnStartTopics);
+        addOgnlEvaluatedStringParameterIfExists("selectableOnStopTopics", selectableOnStopTopics);
+        addOgnlEvaluatedStringParameterIfExists("selectableOnUnselectedTopics", selectableOnUnselectedTopics);
+        addOgnlEvaluatedStringParameterIfExists("selectableOnUnselectingTopics", selectableOnUnselectingTopics);
       }
     }
 
@@ -711,18 +710,18 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (sortableBuilder.charAt(1) == ',') sortableBuilder.deleteCharAt(1);
         addParameter("sortableOptions", sortableBuilder.toString());
 
-        if (sortableOnActivateTopics != null) addParameter("sortableOnActivateTopics", findString(sortableOnActivateTopics));
-        if (sortableOnUpdateTopics != null) addParameter("sortableOnUpdateTopics", findString(sortableOnUpdateTopics));
-        if (sortableOnStopTopics != null) addParameter("sortableOnStopTopics", findString(sortableOnStopTopics));
-        if (sortableOnStartTopics != null) addParameter("sortableOnStartTopics", findString(sortableOnStartTopics));
-        if (sortableOnSortTopics != null) addParameter("sortableOnSortTopics", findString(sortableOnSortTopics));
-        if (sortableOnRemoveTopics != null) addParameter("sortableOnRemoveTopics", findString(sortableOnRemoveTopics));
-        if (sortableOnReceiveTopics != null) addParameter("sortableOnReceiveTopics", findString(sortableOnReceiveTopics));
-        if (sortableOnOverTopics != null) addParameter("sortableOnOverTopics", findString(sortableOnOverTopics));
-        if (sortableOnOutTopics != null) addParameter("sortableOnOutTopics", findString(sortableOnOutTopics));
-        if (sortableOnDeactivateTopics != null) addParameter("sortableOnDeactivateTopics", findString(sortableOnDeactivateTopics));
-        if (sortableOnChangeTopics != null) addParameter("sortableOnChangeTopics", findString(sortableOnChangeTopics));
-        if (sortableOnBeforeStopTopics != null) addParameter("sortableOnBeforeStopTopics", findString(sortableOnBeforeStopTopics));
+        addOgnlEvaluatedStringParameterIfExists("sortableOnActivateTopics", sortableOnActivateTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnUpdateTopics", sortableOnUpdateTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnStopTopics", sortableOnStopTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnStartTopics", sortableOnStartTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnSortTopics", sortableOnSortTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnRemoveTopics", sortableOnRemoveTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnReceiveTopics", sortableOnReceiveTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnOverTopics", sortableOnOverTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnOutTopics", sortableOnOutTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnDeactivateTopics", sortableOnDeactivateTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnChangeTopics", sortableOnChangeTopics);
+        addOgnlEvaluatedStringParameterIfExists("sortableOnBeforeStopTopics", sortableOnBeforeStopTopics);
       }
     }
   }

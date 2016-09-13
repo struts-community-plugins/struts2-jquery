@@ -125,33 +125,33 @@ public class Dialog extends AbstractRemoteBean {
 
         addParameter("jqueryaction", JQUERYACTION);
 
-        if (appendTo != null) addParameter("appendTo", findString(appendTo));
-        if (buttons != null) addParameter("buttons", findString(buttons));
-        if (draggable != null) addParameter("draggable", findValue(draggable, Boolean.class));
-        if (dialogClass != null) addParameter("dialogClass", findString(dialogClass));
-        if (height != null) addParameter("height", findString(height));
-        if (modal != null) addParameter("modal", findString(modal));
-        if (position != null) addParameter("position", findString(position));
-        if (resizable != null) addParameter("resizable", findValue(resizable, Boolean.class));
-        if (title != null) addParameter("title", findString(title));
-        if (width != null) addParameter("width", findString(width));
-        if (autoOpen != null) addParameter("autoOpen", findValue(autoOpen, Boolean.class));
-        if (showEffect != null) addParameter("showEffect", findString(showEffect));
-        if (hideEffect != null) addParameter("hideEffect", findString(hideEffect));
-        if (overlayColor != null) addParameter("overlayColor", findString(overlayColor));
-        if (overlayOpacity != null) addParameter("overlayOpacity", findString(overlayOpacity));
-        if (maxHeight != null) addParameter("maxHeight", findString(maxHeight));
-        if (maxWidth != null) addParameter("maxWidth", findString(maxWidth));
-        if (minHeight != null) addParameter("minHeight", findString(minHeight));
-        if (minWidth != null) addParameter("minWidth", findString(minWidth));
-        if (closeOnEscape != null) addParameter("closeOnEscape", findValue(closeOnEscape, Boolean.class));
-        if (onBeforeCloseTopics != null) addParameter("onBeforeCloseTopics", findString(onBeforeCloseTopics));
-        if (onCloseTopics != null) addParameter("onCloseTopics", findString(onCloseTopics));
-        if (onOpenTopics != null) addParameter("onOpenTopics", findString(onOpenTopics));
-        if (onFocusTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
-        if (openTopics != null) addParameter("openTopics", findString(openTopics));
-        if (closeTopics != null) addParameter("closeTopics", findString(closeTopics));
-        if (destroyTopics != null) addParameter("destroyTopics", findString(destroyTopics));
+        addOgnlEvaluatedStringParameterIfExists("appendTo", appendTo);
+        addOgnlEvaluatedStringParameterIfExists("buttons", buttons);
+        addOgnlEvaluatedObjectParameterIfExists("draggable", draggable, Boolean.class);
+        addOgnlEvaluatedStringParameterIfExists("dialogClass", dialogClass);
+        addOgnlEvaluatedStringParameterIfExists("height", height);
+        addOgnlEvaluatedStringParameterIfExists("modal", modal);
+        addOgnlEvaluatedStringParameterIfExists("position", position);
+        addOgnlEvaluatedObjectParameterIfExists("resizable", resizable, Boolean.class);
+        addOgnlEvaluatedStringParameterIfExists("title", title);
+        addOgnlEvaluatedStringParameterIfExists("width", width);
+        addOgnlEvaluatedObjectParameterIfExists("autoOpen", autoOpen, Boolean.class);
+        addOgnlEvaluatedStringParameterIfExists("showEffect", showEffect);
+        addOgnlEvaluatedStringParameterIfExists("hideEffect", hideEffect);
+        addOgnlEvaluatedStringParameterIfExists("overlayColor", overlayColor);
+        addOgnlEvaluatedStringParameterIfExists("overlayOpacity", overlayOpacity);
+        addOgnlEvaluatedStringParameterIfExists("maxHeight", maxHeight);
+        addOgnlEvaluatedStringParameterIfExists("maxWidth", maxWidth);
+        addOgnlEvaluatedStringParameterIfExists("minHeight", minHeight);
+        addOgnlEvaluatedStringParameterIfExists("minWidth", minWidth);
+        addOgnlEvaluatedObjectParameterIfExists("closeOnEscape", closeOnEscape, Boolean.class);
+        addOgnlEvaluatedStringParameterIfExists("onBeforeCloseTopics", onBeforeCloseTopics);
+        addOgnlEvaluatedStringParameterIfExists("onCloseTopics", onCloseTopics);
+        addOgnlEvaluatedStringParameterIfExists("onOpenTopics", onOpenTopics);
+        addOgnlEvaluatedStringParameterIfExists("onFocusTopics", onFocusTopics);
+        addOgnlEvaluatedStringParameterIfExists("openTopics", openTopics);
+        addOgnlEvaluatedStringParameterIfExists("closeTopics", closeTopics);
+        addOgnlEvaluatedStringParameterIfExists("destroyTopics", destroyTopics);
         if ((this.id == null || this.id.length() == 0)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
             // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT

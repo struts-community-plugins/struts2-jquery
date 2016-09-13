@@ -113,35 +113,19 @@ public class TabbedPanel extends AbstractTopicsBean {
 
 		addParameter("jqueryaction", JQUERYACTION);
 
-		if (selectedTab != null)
-			addParameter("selectedTab", findValue(selectedTab, Integer.class));
-		if (useSelectedTabCookie != null)
-			addParameter("useSelectedTabCookie",
-					findValue(this.useSelectedTabCookie, Boolean.class));
-		if (this.openOnMouseover != null)
-			addParameter("openOnMouseover",
-					findValue(this.openOnMouseover, Boolean.class));
-		if (this.collapsible != null)
-			addParameter("collapsible",
-					findValue(this.collapsible, Boolean.class));
-		if (show != null)
-			addParameter("show", findString(show));
-		if (hide != null)
-			addParameter("hide", findString(hide));
-		if (this.cache != null)
-			addParameter("cache", findValue(this.cache, Boolean.class));
-		if (this.disabledTabs != null)
-			addParameter("disabledTabs", findString(this.disabledTabs));
-		if (this.onLoadTopics != null)
-			addParameter("onLoadTopics", findString(this.onLoadTopics));
-		if (this.onActivateTopics!= null)
-			addParameter("onActivateTopics", findString(this.onActivateTopics));
-		if (this.onBeforeActivateTopics!= null)
-			addParameter("onBeforeActivateTopics", findString(this.onBeforeActivateTopics));
-		if (this.sortable != null)
-			addParameter("sortable", findValue(this.sortable, Boolean.class));
-		if (heightStyle != null)
-			addParameter("heightStyle", findString(heightStyle));
+		addOgnlEvaluatedObjectParameterIfExists("selectedTab", selectedTab, Integer.class);
+		addOgnlEvaluatedObjectParameterIfExists("useSelectedTabCookie", this.useSelectedTabCookie, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("openOnMouseover", this.openOnMouseover, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("collapsible", this.collapsible, Boolean.class);
+		addOgnlEvaluatedStringParameterIfExists("show", show);
+		addOgnlEvaluatedStringParameterIfExists("hide", hide);
+		addOgnlEvaluatedObjectParameterIfExists("cache", this.cache, Boolean.class);
+		addOgnlEvaluatedStringParameterIfExists("disabledTabs", this.disabledTabs);
+		addOgnlEvaluatedStringParameterIfExists("onLoadTopics", this.onLoadTopics);
+		addOgnlEvaluatedStringParameterIfExists("onActivateTopics", this.onActivateTopics);
+		addOgnlEvaluatedStringParameterIfExists("onBeforeActivateTopics", this.onBeforeActivateTopics);
+		addOgnlEvaluatedObjectParameterIfExists("sortable", this.sortable, Boolean.class);
+		addOgnlEvaluatedStringParameterIfExists("heightStyle", heightStyle);
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

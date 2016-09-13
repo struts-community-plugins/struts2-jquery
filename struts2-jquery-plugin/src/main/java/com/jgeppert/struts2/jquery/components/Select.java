@@ -81,46 +81,23 @@ public class Select extends AbstractFormListElement {
 
 	addParameter("jqueryaction", JQUERYACTION);
 
-	if (emptyOption != null) {
-	    addParameter("emptyOption", findValue(emptyOption, Boolean.class));
-	}
+	addOgnlEvaluatedObjectParameterIfExists("emptyOption", emptyOption, Boolean.class);
 
 	if ((headerKey != null) && (headerValue != null)) {
 	    addParameter("headerKey", findString(headerKey));
 	    addParameter("headerValue", findString(headerValue));
 	}
 
-	if (list != null) {
-	    addParameter("list", findString(list));
-	}
-	if (listKey != null) {
-	    addParameter("listKey", findString(listKey));
-	}
-	if (listTitle != null) {
-	    addParameter("listTitle", findString(listTitle));
-	}
-	if (listValue != null) {
-	    addParameter("listValue", findString(listValue));
-	}
-	if (size != null) {
-	    addParameter("size", findString(size));
-	}
-	if (multiple != null) {
-	    addParameter("multiple", findValue(multiple, Boolean.class));
-	}
-	if (autocomplete != null) {
-	    addParameter("autocomplete", findValue(autocomplete, Boolean.class));
-	}
-	if (selectBoxIcon != null) {
-	    addParameter("selectBoxIcon", findValue(selectBoxIcon,
-		    Boolean.class));
-	}
-	if (loadMinimumCount != null) {
-	    addParameter("loadMinimumCount", findValue(loadMinimumCount,
-		    Integer.class));
-	}
-	if (onSelectTopics != null)
-	    addParameter("onSelectTopics", findString(onSelectTopics));
+	addOgnlEvaluatedStringParameterIfExists("list", list);
+	addOgnlEvaluatedStringParameterIfExists("listKey", listKey);
+	addOgnlEvaluatedStringParameterIfExists("listTitle", listTitle);
+	addOgnlEvaluatedStringParameterIfExists("listValue", listValue);
+	addOgnlEvaluatedStringParameterIfExists("size", size);
+	addOgnlEvaluatedObjectParameterIfExists("multiple", multiple, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("autocomplete", autocomplete, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("selectBoxIcon", selectBoxIcon, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("loadMinimumCount", loadMinimumCount, Integer.class);
+	addOgnlEvaluatedStringParameterIfExists("onSelectTopics", onSelectTopics);
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

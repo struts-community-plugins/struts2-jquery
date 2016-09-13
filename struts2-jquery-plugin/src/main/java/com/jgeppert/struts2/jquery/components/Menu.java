@@ -126,10 +126,10 @@ public class Menu extends AbstractTopicsBean {
 
 		addParameter("jqueryaction", JQUERYACTION);
 
-		if (disabled != null) addParameter("disabled", findValue(this.disabled, Boolean.class));
-		if (targets != null) addParameter("targets", findString(targets));
-		if (href != null) addParameter("href", findString(href));
-		if (paramName != null) addParameter("paramName", findString(paramName));
+		addOgnlEvaluatedObjectParameterIfExists("disabled", this.disabled, Boolean.class);
+		addOgnlEvaluatedStringParameterIfExists("targets", targets);
+		addOgnlEvaluatedStringParameterIfExists("href", href);
+		addOgnlEvaluatedStringParameterIfExists("paramName", paramName);
 
 		Object value = null;
 

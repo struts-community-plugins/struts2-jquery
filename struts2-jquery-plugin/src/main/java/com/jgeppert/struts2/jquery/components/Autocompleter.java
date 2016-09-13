@@ -140,61 +140,25 @@ public class Autocompleter extends AbstractFormListElement {
 	    addParameter("emptyOption", true);
 	}
 
-	if (delay != null)
-	    addParameter("delay", findValue(delay, Integer.class));
-	if (loadMinimumCount != null)
-	    addParameter("loadMinimumCount",
-		    findValue(loadMinimumCount, Integer.class));
-	// if (list != null) addParameter("list", findString(list));
-
-	if (size != null) {
-	    addParameter("size", findString(size));
-	}
-
-	if (maxlength != null) {
-	    addParameter("maxlength", findString(maxlength));
-	}
-
-	if (selectBox != null) {
-	    addParameter("selectBox", findValue(selectBox, Boolean.class));
-	}
-
-	if (selectBoxIcon != null) {
-	    addParameter("selectBoxIcon",
-		    findValue(selectBoxIcon, Boolean.class));
-	}
-
-	if (readonly != null) {
-	    addParameter("readonly", findValue(readonly, Boolean.class));
-	}
-
-	if (multiple != null) {
-	    addParameter("multiple", findValue(multiple, Boolean.class));
-	}
-
-	if (onSelectTopics != null) {
-	    addParameter("onSelectTopics", findString(onSelectTopics));
-	}
-
-	if (onFocusTopics != null) {
-	    addParameter("onFocusTopics", findString(onFocusTopics));
-	}
-
-	if (onSearchTopics != null) {
-	    addParameter("onSearchTopics", findString(onSearchTopics));
-	}
+	addOgnlEvaluatedObjectParameterIfExists("delay", delay, Integer.class);
+	addOgnlEvaluatedObjectParameterIfExists("loadMinimumCount", loadMinimumCount, Integer.class);
+	addOgnlEvaluatedStringParameterIfExists("size", size);
+	addOgnlEvaluatedStringParameterIfExists("maxlength", maxlength);
+	addOgnlEvaluatedObjectParameterIfExists("selectBox", selectBox, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("selectBoxIcon", selectBoxIcon, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("readonly", readonly, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("multiple", multiple, Boolean.class);
+	addOgnlEvaluatedStringParameterIfExists("onSelectTopics", onSelectTopics);
+	addOgnlEvaluatedStringParameterIfExists("onFocusTopics", onFocusTopics);
+	addOgnlEvaluatedStringParameterIfExists("onSearchTopics", onSearchTopics);
 
 	if (listLabel != null) {
 	    listLabel = stripExpressionIfAltSyntax(listLabel);
 	    addParameter("listLabel", listLabel);
 	}
-	if (forceValidOption != null) {
-	    addParameter("forceValidOption",
-		    findValue(forceValidOption, Boolean.class));
-	}
-	if (autoFocus != null) {
-	    addParameter("autoFocus", findValue(autoFocus, Boolean.class));
-	}
+
+	addOgnlEvaluatedObjectParameterIfExists("forceValidOption", forceValidOption, Boolean.class);
+	addOgnlEvaluatedObjectParameterIfExists("autoFocus", autoFocus, Boolean.class);
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

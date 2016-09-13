@@ -57,18 +57,9 @@ public void evaluateExtraParams()
 
     if (this.href != null && !this.href.equals("#"))
     {
-      if (list != null)
-      {
-        addParameter("remoteList", findString(list.toString()));
-      }
-      if (listKey != null)
-      {
-        addParameter("remoteListKey", findString(listKey));
-      }
-      if (listValue != null)
-      {
-        addParameter("remoteListValue", findString(listValue));
-      }
+      addOgnlEvaluatedStringParameterIfExists("remoteList", list.toString());
+      addOgnlEvaluatedStringParameterIfExists("remoteListKey", listKey);
+      addOgnlEvaluatedStringParameterIfExists("remoteListValue", listValue);
     }
     else
     {
