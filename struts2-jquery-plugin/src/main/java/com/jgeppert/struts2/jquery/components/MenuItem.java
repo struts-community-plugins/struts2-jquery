@@ -71,12 +71,9 @@ public class MenuItem extends AbstractRemoteBean {
 
 	addParameter("jqueryaction", JQUERYACTION);
 
-	if (title != null)
-	    addParameter("title", findString(title));
-	if (menuIcon != null)
-	    addParameter("menuIcon", findString(menuIcon));
-	if (onClickTopics != null)
-	    addParameter("onClickTopics", findString(onClickTopics));
+	addOgnlEvaluatedStringParameterIfExists("title", title);
+	addOgnlEvaluatedStringParameterIfExists("menuIcon", menuIcon);
+	addOgnlEvaluatedStringParameterIfExists("onClickTopics", onClickTopics);
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

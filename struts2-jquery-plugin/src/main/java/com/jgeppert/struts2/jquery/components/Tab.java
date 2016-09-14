@@ -80,8 +80,8 @@ public class Tab extends AbstractRemoteBean {
             addParameter("parentTabbedPanel", findString(parentTabbedPanel.getId()));
         }
 
-        if (target != null) addParameter("target", findString(target));
-        if (closable != null) addParameter("closable", findValue(closable, Boolean.class));
+        addOgnlEvaluatedStringParameterIfExists("target", target);
+        addOgnlEvaluatedObjectParameterIfExists("closable", closable, Boolean.class);
 
         if ((this.id == null || this.id.length() == 0)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

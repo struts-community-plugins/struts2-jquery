@@ -100,7 +100,7 @@ public class Radio extends AbstractFormListElement {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (buttonset != null) addParameter("buttonset", findValue(buttonset, Boolean.class));
+    addOgnlEvaluatedObjectParameterIfExists("buttonset", buttonset, Boolean.class);
 
     if ((this.id == null || this.id.length() == 0))
     {

@@ -98,14 +98,14 @@ public class Slider extends AbstractTopicsBean {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (animate != null) addParameter("animate", findValue(animate, Boolean.class));
-    if (max != null) addParameter("max", findValue(max, Integer.class));
-    if (min != null) addParameter("min", findValue(min, Integer.class));
-    if (orientation != null) addParameter("orientation", findString(orientation));
-    if (range != null) addParameter("range", findString(range));
-    if (step != null) addParameter("step", findValue(step, Integer.class));
-    if (displayValueElement != null) addParameter("displayValueElement", findString(displayValueElement));
-    if (onSlideTopics != null) addParameter("onSlideTopics", findString(onSlideTopics));
+    addOgnlEvaluatedObjectParameterIfExists("animate", animate, Boolean.class);
+    addOgnlEvaluatedObjectParameterIfExists("max", max, Integer.class);
+    addOgnlEvaluatedObjectParameterIfExists("min", min, Integer.class);
+    addOgnlEvaluatedStringParameterIfExists("orientation", orientation);
+    addOgnlEvaluatedStringParameterIfExists("range", range);
+    addOgnlEvaluatedObjectParameterIfExists("step", step, Integer.class);
+    addOgnlEvaluatedStringParameterIfExists("displayValueElement", displayValueElement);
+    addOgnlEvaluatedStringParameterIfExists("onSlideTopics", onSlideTopics);
 
     Object valueObject = null;
     String strValue = null;

@@ -195,117 +195,58 @@ public class DatePicker extends AbstractTopicsBean {
 
 		addParameter("jqueryaction", JQUERYACTION);
 
-		if (displayFormat != null)
-			addParameter("displayFormat", findString(displayFormat));
-		if (buttonImage != null)
-			addParameter("buttonImage", findString(buttonImage));
-		if (showButtonPanel != null)
-			addParameter("showButtonPanel",
-					findValue(showButtonPanel, Boolean.class));
-		if (changeMonth != null)
-			addParameter("changeMonth", findValue(changeMonth, Boolean.class));
-		if (changeYear != null)
-			addParameter("changeYear", findValue(changeYear, Boolean.class));
-
-		if (appendText != null)
-			addParameter("appendText", findString(appendText));
-		if (buttonImageOnly != null)
-			addParameter("buttonImageOnly",
-					findValue(buttonImageOnly, Boolean.class));
-		if (buttonText != null)
-			addParameter("buttonText", findString(buttonText));
-		if (duration != null)
-			addParameter("duration", findString(duration));
-		if (firstDay != null)
-			addParameter("firstDay", findString(firstDay));
-		if (numberOfMonths != null)
-			addParameter("numberOfMonths", findString(numberOfMonths));
-		if (showAnim != null)
-			addParameter("showAnim", findString(showAnim));
-		if (showOn != null)
-			addParameter("showOn", findString(showOn));
-		if (showOptions != null)
-			addParameter("showOptions", findString(showOptions));
-		if (yearRange != null)
-			addParameter("yearRange", findString(yearRange));
-		if (zindex != null)
-			addParameter("zindex", findString(zindex));
+		addOgnlEvaluatedStringParameterIfExists("displayFormat", displayFormat);
+		addOgnlEvaluatedStringParameterIfExists("buttonImage", buttonImage);
+		addOgnlEvaluatedObjectParameterIfExists("showButtonPanel", showButtonPanel, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("changeMonth", changeMonth, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("changeYear", changeYear, Boolean.class);
+		addOgnlEvaluatedStringParameterIfExists("appendText", appendText);
+		addOgnlEvaluatedObjectParameterIfExists("buttonImageOnly", buttonImageOnly, Boolean.class);
+		addOgnlEvaluatedStringParameterIfExists("buttonText", buttonText);
+		addOgnlEvaluatedStringParameterIfExists("duration", duration);
+		addOgnlEvaluatedStringParameterIfExists("firstDay", firstDay);
+		addOgnlEvaluatedStringParameterIfExists("numberOfMonths", numberOfMonths);
+		addOgnlEvaluatedStringParameterIfExists("showAnim", showAnim);
+		addOgnlEvaluatedStringParameterIfExists("showOn", showOn);
+		addOgnlEvaluatedStringParameterIfExists("showOptions", showOptions);
+		addOgnlEvaluatedStringParameterIfExists("yearRange", yearRange);
+		addOgnlEvaluatedStringParameterIfExists("zindex", zindex);
 
 		if (inline != null) {
 			isInline = (Boolean) findValue(inline, Boolean.class);
 			addParameter("inline", isInline);
 		}
 
-		if (onBeforeShowDayTopics != null)
-			addParameter("onBeforeShowDayTopics",
-					findString(onBeforeShowDayTopics));
-		if (onChangeMonthYearTopics != null)
-			addParameter("onChangeMonthYearTopics",
-					findString(onChangeMonthYearTopics));
-
-		if (size != null) {
-			addParameter("size", findString(size));
-		}
-
-		if (maxlength != null) {
-			addParameter("maxlength", findString(maxlength));
-		}
-
-		if (readonly != null) {
-			addParameter("readonly", findValue(readonly, Boolean.class));
-		}
+		addOgnlEvaluatedStringParameterIfExists("onBeforeShowDayTopics", onBeforeShowDayTopics);
+		addOgnlEvaluatedStringParameterIfExists("onChangeMonthYearTopics", onChangeMonthYearTopics);
+		addOgnlEvaluatedStringParameterIfExists("size", size);
+		addOgnlEvaluatedStringParameterIfExists("maxlength", maxlength);
+		addOgnlEvaluatedObjectParameterIfExists("readonly", readonly, Boolean.class);
 
 		Form form = (Form) findAncestor(Form.class);
 		if (parentTheme != null) {
 			addParameter("parentTheme", findString(parentTheme));
 		} else if (form != null) {
-			if (form != null)
-				addParameter("parentTheme", form.getTheme());
+			addParameter("parentTheme", form.getTheme());
 		} else if (isInline == false) {
 			addParameter("parentTheme", "simple");
 		}
 
-		if (timepicker != null)
-			addParameter("timepicker", findValue(timepicker, Boolean.class));
-		if (timepickerOnly != null)
-			addParameter("timepickerOnly",
-					findValue(timepickerOnly, Boolean.class));
-		if (timepickerAmPm != null)
-			addParameter("timepickerAmPm",
-					findValue(timepickerAmPm, Boolean.class));
-		if (timepickerShowHour != null)
-			addParameter("timepickerShowHour",
-					findValue(timepickerShowHour, Boolean.class));
-		if (timepickerShowMinute != null)
-			addParameter("timepickerShowMinute",
-					findValue(timepickerShowMinute, Boolean.class));
-		if (timepickerShowSecond != null)
-			addParameter("timepickerShowSecond",
-					findValue(timepickerShowSecond, Boolean.class));
-		if (timepickerStepHour != null)
-			addParameter("timepickerStepHour",
-					findValue(timepickerStepHour, Number.class));
-		if (timepickerStepMinute != null)
-			addParameter("timepickerStepMinute",
-					findValue(timepickerStepMinute, Number.class));
-		if (timepickerStepSecond != null)
-			addParameter("timepickerStepSecond",
-					findValue(timepickerStepSecond, Number.class));
-		if (timepickerFormat != null)
-			addParameter("timepickerFormat", findString(timepickerFormat));
-		if (timepickerSeparator != null)
-			addParameter("timepickerSeparator", findString(timepickerSeparator));
-		if (timepickerCurrentText != null)
-			addParameter("timepickerCurrentText", findString(timepickerCurrentText));
-		if (timepickerGridHour != null)
-			addParameter("timepickerGridHour",
-					findValue(timepickerGridHour, Number.class));
-		if (timepickerGridMinute != null)
-			addParameter("timepickerGridMinute",
-					findValue(timepickerGridMinute, Number.class));
-		if (timepickerGridSecond != null)
-			addParameter("timepickerGridSecond",
-					findValue(timepickerGridSecond, Number.class));
+		addOgnlEvaluatedObjectParameterIfExists("timepicker", timepicker, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerOnly", timepickerOnly, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerAmPm", timepickerAmPm, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerShowHour", timepickerShowHour, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerShowMinute", timepickerShowMinute, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerShowSecond", timepickerShowSecond, Boolean.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerStepHour", timepickerStepHour, Number.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerStepMinute", timepickerStepMinute, Number.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerStepSecond", timepickerStepSecond, Number.class);
+		addOgnlEvaluatedStringParameterIfExists("timepickerFormat", timepickerFormat);
+		addOgnlEvaluatedStringParameterIfExists("timepickerSeparator", timepickerSeparator);
+		addOgnlEvaluatedStringParameterIfExists("timepickerCurrentText", timepickerCurrentText);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerGridHour", timepickerGridHour, Number.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerGridMinute", timepickerGridMinute, Number.class);
+		addOgnlEvaluatedObjectParameterIfExists("timepickerGridSecond", timepickerGridSecond, Number.class);
 
 		if ((this.id == null || this.id.length() == 0)) {
 			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

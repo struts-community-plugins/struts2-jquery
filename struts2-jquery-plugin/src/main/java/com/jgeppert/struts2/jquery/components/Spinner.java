@@ -127,22 +127,14 @@ public class Spinner extends Textfield {
 
 	addParameter("jqueryaction", JQUERYACTION);
 
-	if (max != null)
-	    addParameter("max", findValue(max, Number.class));
-	if (min != null)
-	    addParameter("min", findValue(min, Number.class));
-	if (step != null)
-	    addParameter("step", findValue(step, Number.class));
-	if (mouseWheel != null)
-	    addParameter("mouseWheel", findValue(mouseWheel, Boolean.class));
-	if (culture != null)
-	    addParameter("culture", findString(culture));
-	if (numberFormat != null)
-	    addParameter("numberFormat", findString(numberFormat));
-	if (page != null)
-	    addParameter("page", findValue(page, Number.class));
-	if (incremental != null)
-	    addParameter("incremental", findString(incremental));
+	addOgnlEvaluatedObjectParameterIfExists("max", max, Number.class);
+	addOgnlEvaluatedObjectParameterIfExists("min", min, Number.class);
+	addOgnlEvaluatedObjectParameterIfExists("step", step, Number.class);
+	addOgnlEvaluatedObjectParameterIfExists("mouseWheel", mouseWheel, Boolean.class);
+	addOgnlEvaluatedStringParameterIfExists("culture", culture);
+	addOgnlEvaluatedStringParameterIfExists("numberFormat", numberFormat);
+	addOgnlEvaluatedObjectParameterIfExists("page", page, Number.class);
+	addOgnlEvaluatedStringParameterIfExists("incremental", incremental);
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

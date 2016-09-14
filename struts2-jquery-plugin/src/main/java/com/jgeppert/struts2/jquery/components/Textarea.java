@@ -74,25 +74,10 @@ public class Textarea extends AbstractFormElement {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (readonly != null)
-    {
-      addParameter("readonly", findValue(readonly, Boolean.class));
-    }
-
-    if (cols != null)
-    {
-      addParameter("cols", findString(cols));
-    }
-
-    if (rows != null)
-    {
-      addParameter("rows", findString(rows));
-    }
-
-    if (wrap != null)
-    {
-      addParameter("wrap", findString(wrap));
-    }
+    addOgnlEvaluatedObjectParameterIfExists("readonly", readonly, Boolean.class);
+    addOgnlEvaluatedStringParameterIfExists("cols", cols);
+    addOgnlEvaluatedStringParameterIfExists("rows", rows);
+    addOgnlEvaluatedStringParameterIfExists("wrap", wrap);
 
     if ((this.id == null || this.id.length() == 0))
     {

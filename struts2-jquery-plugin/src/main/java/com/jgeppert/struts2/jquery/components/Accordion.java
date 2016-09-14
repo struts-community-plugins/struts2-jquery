@@ -149,16 +149,16 @@ public class Accordion extends AbstractTopicsBean {
 
         addParameter("jqueryaction", JQUERYACTION);
 
-        if (active != null) addParameter("active", findString(active));
-        if (animate != null) addParameter("animate", findString(animate));
-        if (heightStyle != null) addParameter("heightStyle", findString(heightStyle));
-        if (collapsible != null) addParameter("collapsible", findValue(this.collapsible, Boolean.class));
-        if (header != null) addParameter("header", findString(header));
-        if (openOnMouseover != null) addParameter("openOnMouseover", findValue(this.openOnMouseover, Boolean.class));
-        if (href != null) addParameter("href", findString(href));
-        if (paramKeys != null) addParameter("paramKeys", findString(paramKeys));
-        if (paramValues != null) addParameter("paramValues", findString(paramValues));
-        if (onCreateTopics != null) addParameter("onCreateTopics", findString(onCreateTopics));
+        addOgnlEvaluatedStringParameterIfExists("active", active);
+        addOgnlEvaluatedStringParameterIfExists("animate", animate);
+        addOgnlEvaluatedStringParameterIfExists("heightStyle", heightStyle);
+        addOgnlEvaluatedObjectParameterIfExists("collapsible", collapsible, Boolean.class);
+        addOgnlEvaluatedStringParameterIfExists("header", header);
+        addOgnlEvaluatedObjectParameterIfExists("openOnMouseover", openOnMouseover, Boolean.class);
+        addOgnlEvaluatedStringParameterIfExists("href", href);
+        addOgnlEvaluatedStringParameterIfExists("paramKeys", paramKeys);
+        addOgnlEvaluatedStringParameterIfExists("paramValues", paramValues);
+        addOgnlEvaluatedStringParameterIfExists("onCreateTopics", onCreateTopics);
 
         Object value = null;
 

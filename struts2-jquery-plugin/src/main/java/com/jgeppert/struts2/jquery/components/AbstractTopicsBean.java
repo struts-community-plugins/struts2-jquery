@@ -52,31 +52,19 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
     }
 
     public void evaluateExtraParams() {
-	super.evaluateExtraParams();
+        super.evaluateExtraParams();
 
-	if (onBeforeTopics != null)
-	    addParameter("onBeforeTopics", findString(onBeforeTopics));
-	if (onAfterValidationTopics != null)
-	    addParameter("onAfterValidationTopics",
-		    findString(onAfterValidationTopics));
-	if (onCompleteTopics != null)
-	    addParameter("onCompleteTopics", findString(onCompleteTopics));
-	if (onSuccessTopics != null)
-	    addParameter("onSuccessTopics", findString(onSuccessTopics));
-	if (onErrorTopics != null)
-	    addParameter("onErrorTopics", findString(onErrorTopics));
-	if (onChangeTopics != null)
-	    addParameter("onChangeTopics", findString(onChangeTopics));
-	if (onAlwaysTopics != null)
-	    addParameter("onAlwaysTopics", findString(onAlwaysTopics));
-	if (onEnableTopics != null)
-	    addParameter("onEnableTopics", findString(onEnableTopics));
-	if (onDisableTopics != null)
-	    addParameter("onDisableTopics", findString(onDisableTopics));
-	if (onBlurTopics != null)
-	    addParameter("onBlurTopics", findString(onBlurTopics));
-	if (onFocusTopics != null)
-	    addParameter("onFocusTopics", findString(onFocusTopics));
+        addOgnlEvaluatedStringParameterIfExists("onBeforeTopics", onBeforeTopics);
+        addOgnlEvaluatedStringParameterIfExists("onAfterValidationTopics", onAfterValidationTopics);
+        addOgnlEvaluatedStringParameterIfExists("onCompleteTopics", onCompleteTopics);
+        addOgnlEvaluatedStringParameterIfExists("onSuccessTopics", onSuccessTopics);
+        addOgnlEvaluatedStringParameterIfExists("onErrorTopics", onErrorTopics);
+        addOgnlEvaluatedStringParameterIfExists("onChangeTopics", onChangeTopics);
+        addOgnlEvaluatedStringParameterIfExists("onAlwaysTopics", onAlwaysTopics);
+        addOgnlEvaluatedStringParameterIfExists("onEnableTopics", onEnableTopics);
+        addOgnlEvaluatedStringParameterIfExists("onDisableTopics", onDisableTopics);
+        addOgnlEvaluatedStringParameterIfExists("onBlurTopics", onBlurTopics);
+        addOgnlEvaluatedStringParameterIfExists("onFocusTopics", onFocusTopics);
     }
 
     @StrutsTagAttribute(description = "Topics that are published before a load", type = "String", defaultValue = "")
@@ -132,6 +120,18 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
     @StrutsTagAttribute(description = "A comma delimited list of topics that published when the element is focused", type = "String", defaultValue = "")
     public void setOnFocusTopics(String onFocusTopics) {
 	this.onFocusTopics = onFocusTopics;
+    }
+
+    protected void addOgnlEvaluatedStringParameterIfExists(String parameterName, String parameter) {
+        if (parameter != null) {
+            addParameter(parameterName, findString(parameter)); 
+        }
+    }
+
+    protected void addOgnlEvaluatedObjectParameterIfExists(String parameterName, String parameter, Class type) {
+        if (parameter != null) {
+            addParameter(parameterName, findValue(parameter, type)); 
+        }
     }
 
 }

@@ -75,21 +75,21 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
         addParameter("hrefUrl", hrefValue);
       }
     }
-    if (targets != null) addParameter("targets", findString(targets));
-    if (formIds != null) addParameter("formIds", findString(formIds));
-    if (indicator != null) addParameter("indicator", findString(indicator));
-    if (loadingText != null) addParameter("loadingText", findString(loadingText));
-    if (errorText != null) addParameter("errorText", findString(errorText));
-    if (errorElementId != null) addParameter("errorElementId", findString(errorElementId));
-    if (dataType != null) addParameter("dataType", findString(dataType));
-    if (requestType != null) addParameter("requestType", findString(requestType));
-    if (effect != null) addParameter("effect", findString(effect));
-    if (effectDuration != null) addParameter("effectDuration", findString(effectDuration));
-    if (effectOptions != null) addParameter("effectOptions", findString(effectOptions));
-    if (effectMode != null) addParameter("effectMode", findString(effectMode));
-    if (timeout != null) addParameter("timeout", findString(timeout));
-    if (listenTopics != null) addParameter("listenTopics", findString(listenTopics));
-    if (onEffectCompleteTopics != null) addParameter("onEffectCompleteTopics", findString(onEffectCompleteTopics));
+    addOgnlEvaluatedStringParameterIfExists("targets", targets);
+    addOgnlEvaluatedStringParameterIfExists("formIds", formIds);
+    addOgnlEvaluatedStringParameterIfExists("indicator", indicator);
+    addOgnlEvaluatedStringParameterIfExists("loadingText", loadingText);
+    addOgnlEvaluatedStringParameterIfExists("errorText", errorText);
+    addOgnlEvaluatedStringParameterIfExists("errorElementId", errorElementId);
+    addOgnlEvaluatedStringParameterIfExists("dataType", dataType);
+    addOgnlEvaluatedStringParameterIfExists("requestType", requestType);
+    addOgnlEvaluatedStringParameterIfExists("effect", effect);
+    addOgnlEvaluatedStringParameterIfExists("effectDuration", effectDuration);
+    addOgnlEvaluatedStringParameterIfExists("effectOptions", effectOptions);
+    addOgnlEvaluatedStringParameterIfExists("effectMode", effectMode);
+    addOgnlEvaluatedStringParameterIfExists("timeout", timeout);
+    addOgnlEvaluatedStringParameterIfExists("listenTopics", listenTopics);
+    addOgnlEvaluatedStringParameterIfExists("onEffectCompleteTopics", onEffectCompleteTopics);
   }
 
   @StrutsTagAttribute(name = "href", description = "The url to be use when this element is clicked", type = "String", defaultValue = "")

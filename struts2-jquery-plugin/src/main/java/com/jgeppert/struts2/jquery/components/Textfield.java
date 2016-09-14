@@ -74,20 +74,10 @@ public class Textfield extends AbstractFormElement {
 
     addParameter("jqueryaction", JQUERYACTION);
 
-    if (size != null)
-    {
-      addParameter("size", findString(size));
-    }
+    addOgnlEvaluatedStringParameterIfExists("size", size);
+    addOgnlEvaluatedStringParameterIfExists("maxlength", maxlength);
+    addOgnlEvaluatedObjectParameterIfExists("readonly", readonly, Boolean.class);
 
-    if (maxlength != null)
-    {
-      addParameter("maxlength", findString(maxlength));
-    }
-
-    if (readonly != null)
-    {
-      addParameter("readonly", findValue(readonly, Boolean.class));
-    }
     if ((this.id == null || this.id.length() == 0))
     {
       // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs

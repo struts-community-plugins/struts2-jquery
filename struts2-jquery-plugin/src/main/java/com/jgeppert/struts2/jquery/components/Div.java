@@ -101,10 +101,8 @@ public class Div extends AbstractContainer implements ResizableBean,
 	super.evaluateExtraParams();
 	addParameter("jqueryaction", JQUERYACTION);
 
-	if (updateFreq != null)
-	    addParameter("updateFreq", findValue(updateFreq, Number.class));
-	if (delay != null)
-	    addParameter("delay", findValue(delay, Number.class));
+	addOgnlEvaluatedObjectParameterIfExists("updateFreq", updateFreq, Number.class);
+	addOgnlEvaluatedObjectParameterIfExists("delay", delay, Number.class);
 
 	if ((this.id == null || this.id.length() == 0)) {
 	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
