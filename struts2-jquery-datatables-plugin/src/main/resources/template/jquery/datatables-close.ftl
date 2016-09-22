@@ -77,7 +77,7 @@ jQuery(document).ready(function () {
     <#if parameters.deferLoading?? >
     options_${escapedOptionId?html}.deferLoading = ${parameters.deferLoading?default(0)};
     </#if>
-    <#if parameters.displayStart?if_exists>
+    <#if parameters.displayStart??>
     options_${escapedOptionId?html}.displayStart = ${parameters.displayStart?default(0)};
     </#if>
     <#if parameters.dom?if_exists != "">
