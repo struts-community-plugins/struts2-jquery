@@ -150,10 +150,10 @@
 			self.require("js/tinymce/jquery.tinymce.min.js");
 			if (window.tinymce){
 				try{
-					window.tinymce.remove("#"+o.id));
+					window.tinymce.remove("#"+o.id);
 				}
 				catch(e){
-					self.log('destroyed old tinyMC instance for : ' + o.id);
+					self.log('destroyed old tinyMCE instance for : ' + o.id);
 				}
 			}
 			
