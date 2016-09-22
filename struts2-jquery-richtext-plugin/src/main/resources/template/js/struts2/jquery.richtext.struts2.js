@@ -148,7 +148,16 @@
 				tinymceTopic = 's2j_tinymce_' + o.id;
 			self.log('tinymce for: ' + o.id);
 			self.require("js/tinymce/jquery.tinymce.min.js");
-
+			if (window.tinymce){
+				try{
+					window.tinymce.remove("#"+o.id));
+				}
+				catch(e){
+					self.log('destroyed old tinyMC instance for : ' + o.id);
+				}
+			}
+			
+			
 			// don't use jqueryui resizable
 			// use the resizing from tinymce
 			o.resizable = false;
