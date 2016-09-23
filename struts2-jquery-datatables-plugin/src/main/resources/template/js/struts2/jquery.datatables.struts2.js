@@ -405,7 +405,9 @@
 						if (params.ajax.data && typeof params.ajax.data =='function'){
 							var origFunc = params.ajax.data;
 							params.ajax.data = function(d){
-								var data = origFunc(self.serializeServerSideParamsWithOGNLPath(d));
+								var fixedSSPrequest = self.serializeServerSideParamsWithOGNLPath(d);
+								var data = origFunc(fixedSSPrequest);
+								data = data ? data : fixedSSPrequest;
 								if (!params.ajax.type || o.ajax.type === 'GET'){
 									params.ajax.processData = false;
 								}
