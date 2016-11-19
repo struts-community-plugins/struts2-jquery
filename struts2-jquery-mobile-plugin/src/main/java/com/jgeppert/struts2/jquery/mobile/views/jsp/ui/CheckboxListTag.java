@@ -19,22 +19,19 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.CheckboxList;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.CheckboxList;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see com.jgeppert.struts2.jquery.mobile.components.CheckboxList
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see com.jgeppert.struts2.jquery.mobile.components.CheckboxList
  */
 public class CheckboxListTag extends
-	org.apache.struts2.views.jsp.ui.CheckboxListTag implements ThemeableTag {
+        org.apache.struts2.views.jsp.ui.CheckboxListTag implements ThemeableTag {
 
     private static final long serialVersionUID = -4144593202700688876L;
 
@@ -42,23 +39,23 @@ public class CheckboxListTag extends
     protected String horizontal;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new CheckboxList(stack, req, res);
+                             HttpServletResponse res) {
+        return new CheckboxList(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	CheckboxList checkboxList = (CheckboxList) component;
-	checkboxList.setDataTheme(dataTheme);
-	checkboxList.setHorizontal(horizontal);
+        CheckboxList checkboxList = (CheckboxList) component;
+        checkboxList.setDataTheme(dataTheme);
+        checkboxList.setHorizontal(horizontal);
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 
     public void setHorizontal(String horizontal) {
-	this.horizontal = horizontal;
+        this.horizontal = horizontal;
     }
 }

@@ -19,40 +19,37 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.Password;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.Password;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Password
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Password
  */
 public class PasswordTag extends org.apache.struts2.views.jsp.ui.PasswordTag
-	implements ThemeableTag {
+        implements ThemeableTag {
 
     private static final long serialVersionUID = 6195524044288225533L;
 
     protected String dataTheme;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Password(stack, req, res);
+                             HttpServletResponse res) {
+        return new Password(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Password password = (Password) component;
-	password.setDataTheme(dataTheme);
+        Password password = (Password) component;
+        password.setDataTheme(dataTheme);
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 }

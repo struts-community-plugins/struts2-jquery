@@ -19,26 +19,24 @@
 
 package com.jgeppert.struts2.jquery.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.TabbedPanel;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.components.TabbedPanel;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * @see TabbedPanel
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @see TabbedPanel
  */
 public class TabbedPanelModel extends TagModel {
-  public TabbedPanelModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    super(stack, req, res);
-  }
+    public TabbedPanelModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-  protected Component getBean()
-  {
-    return new TabbedPanel(stack, req, res);
-  }
+    protected Component getBean() {
+        return new TabbedPanel(stack, req, res);
+    }
 }

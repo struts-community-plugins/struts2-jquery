@@ -19,36 +19,32 @@
 
 package com.jgeppert.struts2.jquery.datatables.views;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.views.TagLibraryDirectiveProvider;
-import org.apache.struts2.views.TagLibraryModelProvider;
-
 import com.jgeppert.struts2.jquery.datatables.views.freemarker.tags.JqueryDatatablesModels;
 import com.jgeppert.struts2.jquery.datatables.views.velocity.components.DatatablesDirective;
 import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.views.TagLibraryDirectiveProvider;
+import org.apache.struts2.views.TagLibraryModelProvider;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryDatatablesTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
-	@Override
-	public Object getModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		return new JqueryDatatablesModels(stack, req, res);
-	}
+    @Override
+    public Object getModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new JqueryDatatablesModels(stack, req, res);
+    }
 
-	@Override
-	@SuppressWarnings("rawtypes")
-	public List<Class> getDirectiveClasses() {
-		Class[] directives = new Class[] { DatatablesDirective.class };
-		return Arrays.asList(directives);
-	}
+    @Override
+    @SuppressWarnings("rawtypes")
+    public List<Class> getDirectiveClasses() {
+        Class[] directives = new Class[]{DatatablesDirective.class};
+        return Arrays.asList(directives);
+    }
 
 }

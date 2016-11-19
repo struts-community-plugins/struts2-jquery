@@ -22,27 +22,23 @@ package com.jgeppert.struts2.jquery.views.jsp.ui;
 import com.jgeppert.struts2.jquery.components.AbstractFormElement;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public abstract class AbstractFormElementTag extends AbstractContainerTag {
 
-  private static final long serialVersionUID = -4125616438928920288L;
+    private static final long serialVersionUID = -4125616438928920288L;
 
-  protected String          parentTheme;
+    protected String parentTheme;
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+        super.populateParams();
 
-    AbstractFormElement formElement = (AbstractFormElement) component;
-    formElement.setParentTheme(parentTheme);
-  }
+        AbstractFormElement formElement = (AbstractFormElement) component;
+        formElement.setParentTheme(parentTheme);
+    }
 
-  public void setParentTheme(String parentTheme)
-  {
-    this.parentTheme = parentTheme;
-  }
+    public void setParentTheme(String parentTheme) {
+        this.parentTheme = parentTheme;
+    }
 
 }

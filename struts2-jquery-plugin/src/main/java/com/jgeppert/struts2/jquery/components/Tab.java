@@ -19,16 +19,13 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
-
-import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -50,13 +47,18 @@ import java.util.Random;
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
-@StrutsTag(name = "tab", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabTag", description = "Render Tab for Tabbed Pannel providing content from remote call via AJAX")
+@StrutsTag(name = "tab", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabTag", description = "Render Tab for Tabbed Panel providing content from remote call via AJAX")
 public class Tab extends AbstractRemoteBean {
 
     public static final String TEMPLATE = "tab";
     public static final String TEMPLATE_CLOSE = "tab-close";
     public static final String COMPONENT_NAME = Tab.class.getName();
-    private final static transient Random RANDOM = new Random();
+
+    private static final String PARAM_PARENT_TABBED_PANEL = "parentTabbedPanel";
+    private static final String PARAM_TARGET = "target";
+    private static final String PARAM_CLOSABLE = "closable";
+
+    private static final String ID_PREFIX_TAB = "tab_";
 
     protected String target;
     protected String closable;
@@ -75,23 +77,15 @@ public class Tab extends AbstractRemoteBean {
 
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
+
         TabbedPanel parentTabbedPanel = (TabbedPanel) findAncestor(TabbedPanel.class);
         if (parentTabbedPanel != null) {
-            addParameter("parentTabbedPanel", findString(parentTabbedPanel.getId()));
+            addParameter(PARAM_PARENT_TABBED_PANEL, findString(parentTabbedPanel.getId()));
         }
+        addParameterIfPresent(PARAM_CLOSABLE, this.closable, Boolean.class);
+        addParameterIfPresent(PARAM_TARGET, this.target);
 
-        if (target != null) addParameter("target", findString(target));
-        if (closable != null) addParameter("closable", findValue(closable, Boolean.class));
-
-        if ((this.id == null || this.id.length() == 0)) {
-            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-            int nextInt = RANDOM.nextInt();
-            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-                    .abs(nextInt);
-            this.id = "tab_" + String.valueOf(nextInt);
-            addParameter("id", this.id);
-        }
+        addGeneratedIdParam(ID_PREFIX_TAB);
     }
 
     @Override

@@ -36,7 +36,9 @@ public class EmployeesDetailAction extends ActionSupport {
     private Employee employee;
 
     public String execute() throws Exception {
-        if (id != null) employee = employeeDao.get(id);
+        if (id != null) {
+            employee = employeeDao.get(id);
+        }
         return SUCCESS;
     }
 

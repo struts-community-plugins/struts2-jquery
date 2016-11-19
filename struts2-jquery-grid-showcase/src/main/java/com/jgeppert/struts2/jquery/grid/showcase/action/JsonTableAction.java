@@ -75,8 +75,8 @@ public class JsonTableAction extends ActionSupport {
     private Integer records = 0;
 
     public String execute() {
-        log.debug("Page " + getPage() + " Rows " + getRows() + " Sorting Order " + getSord() + " Index Row :" + getSidx());
-        log.debug("Search :" + searchField + " " + searchOper + " " + searchString);
+        log.debug("Page {} Rows {} Sorting Order {} Index Row : {}", getPage(), getRows(), getSord(), getSidx());
+        log.debug("Search: {} {} {}", searchField, searchOper, searchString);
 
         // Calcalate until rows ware selected
         int to = (rows * page);

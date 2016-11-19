@@ -19,23 +19,15 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeMap;
-
+import com.jgeppert.struts2.jquery.showcase.model.ListValue;
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.jgeppert.struts2.jquery.showcase.model.ListValue;
-import com.opensymphony.xwork2.ActionSupport;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class Charts extends ActionSupport {
 
@@ -51,92 +43,92 @@ public class Charts extends ActionSupport {
     private String maxTime;
 
     @Actions({
-	    @Action(value = "/charts", results = { @Result(location = "charts.jsp", name = "success") }),
-	    @Action(value = "/jsonchartdata", results = { @Result(location = "charts.jsp", name = "success") }) })
+            @Action(value = "/charts", results = {@Result(location = "charts.jsp", name = "success")}),
+            @Action(value = "/jsonchartdata", results = {@Result(location = "charts.jsp", name = "success")})})
     public String execute() throws Exception {
-	points = new LinkedList<Point>();
+        points = new LinkedList<Point>();
 
-	points.add(new Point(0, 3));
-	points.add(new Point(4, 8));
-	points.add(new Point(8, 5));
-	points.add(new Point(9, 13));
+        points.add(new Point(0, 3));
+        points.add(new Point(4, 8));
+        points.add(new Point(8, 5));
+        points.add(new Point(9, 13));
 
-	pointsWithNull = new LinkedList<Point>();
+        pointsWithNull = new LinkedList<Point>();
 
-	pointsWithNull.add(new Point(0, 12));
-	pointsWithNull.add(new Point(7, 12));
-	pointsWithNull.add(null);
-	pointsWithNull.add(new Point(7, 2));
-	pointsWithNull.add(new Point(12, 2));
+        pointsWithNull.add(new Point(0, 12));
+        pointsWithNull.add(new Point(7, 12));
+        pointsWithNull.add(null);
+        pointsWithNull.add(new Point(7, 2));
+        pointsWithNull.add(new Point(12, 2));
 
-	pointsFromMap = new HashMap<Integer, Integer>();
-	pointsFromMap.put(2, 5);
-	pointsFromMap.put(3, 6);
-	pointsFromMap.put(4, 7);
-	pointsFromMap.put(5, 8);
-	pointsFromMap.put(6, 7);
-	pointsFromMap.put(7, 6);
+        pointsFromMap = new HashMap<Integer, Integer>();
+        pointsFromMap.put(2, 5);
+        pointsFromMap.put(3, 6);
+        pointsFromMap.put(4, 7);
+        pointsFromMap.put(5, 8);
+        pointsFromMap.put(6, 7);
+        pointsFromMap.put(7, 6);
 
-	pieDataMap = new TreeMap<String, Integer>();
-	pieDataMap.put("Java", 18);
-	pieDataMap.put("C", 17);
-	pieDataMap.put("C++", 10);
-	pieDataMap.put("PHP", 8);
-	pieDataMap.put("(Visual) Basic", 6);
-	pieDataMap.put("C#", 5);
+        pieDataMap = new TreeMap<String, Integer>();
+        pieDataMap.put("Java", 18);
+        pieDataMap.put("C", 17);
+        pieDataMap.put("C++", 10);
+        pieDataMap.put("PHP", 8);
+        pieDataMap.put("(Visual) Basic", 6);
+        pieDataMap.put("C#", 5);
 
-	dateFromMap = new TreeMap<Date, Integer>();
-	Calendar calendar = Calendar.getInstance();
-	calendar.add(Calendar.YEAR, -2);
+        dateFromMap = new TreeMap<Date, Integer>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, -2);
 
-	minTime = "" + calendar.getTime().getTime();
-	System.out.println("minTime : " + minTime);
+        minTime = "" + calendar.getTime().getTime();
+        System.out.println("minTime : " + minTime);
 
-	Random generator = new Random();
-	for (int i = 1; i <= 24; i++) {
-	    dateFromMap.put(calendar.getTime(), generator.nextInt(100));
-	    calendar.add(Calendar.MONTH, +1);
-	}
-	maxTime = "" + calendar.getTime().getTime();
-	System.out.println("maxTime : " + maxTime);
+        Random generator = new Random();
+        for (int i = 1; i <= 24; i++) {
+            dateFromMap.put(calendar.getTime(), generator.nextInt(100));
+            calendar.add(Calendar.MONTH, +1);
+        }
+        maxTime = "" + calendar.getTime().getTime();
+        System.out.println("maxTime : " + maxTime);
 
-	objList = new ArrayList<ListValue>();
-	for (int i = 1; i <= 24; i++) {
-	    objList.add(new ListValue("" + i, "" + generator.nextInt(30)));
-	}
+        objList = new ArrayList<ListValue>();
+        for (int i = 1; i <= 24; i++) {
+            objList.add(new ListValue("" + i, "" + generator.nextInt(30)));
+        }
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public List<Point> getPoints() {
-	return points;
+        return points;
     }
 
     public List<Point> getPointsWithNull() {
-	return pointsWithNull;
+        return pointsWithNull;
     }
 
     public Map<Integer, Integer> getPointsFromMap() {
-	return pointsFromMap;
+        return pointsFromMap;
     }
 
     public Map<Date, Integer> getDateFromMap() {
-	return dateFromMap;
+        return dateFromMap;
     }
 
     public String getMinTime() {
-	return minTime;
+        return minTime;
     }
 
     public String getMaxTime() {
-	return maxTime;
+        return maxTime;
     }
 
     public List<ListValue> getObjList() {
-	return objList;
+        return objList;
     }
 
     public Map<String, Integer> getPieDataMap() {
-	return pieDataMap;
+        return pieDataMap;
     }
 }

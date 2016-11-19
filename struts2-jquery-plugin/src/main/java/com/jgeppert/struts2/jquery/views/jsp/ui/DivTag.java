@@ -19,19 +19,16 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.Div;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Div;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Div
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Div
  */
 public class DivTag extends AbstractContainerTag {
 
@@ -41,20 +38,20 @@ public class DivTag extends AbstractContainerTag {
     protected String delay;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Div(stack, req, res);
+                             HttpServletResponse res) {
+        return new Div(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Div div = (Div) component;
-	div.setUpdateFreq(updateFreq);
-	div.setDelay(delay);
+        Div div = (Div) component;
+        div.setUpdateFreq(updateFreq);
+        div.setDelay(delay);
     }
 
     public void setUpdateFreq(String updateFreq) {
-	this.updateFreq = updateFreq;
+        this.updateFreq = updateFreq;
     }
 
     public void setDelay(String delay) {

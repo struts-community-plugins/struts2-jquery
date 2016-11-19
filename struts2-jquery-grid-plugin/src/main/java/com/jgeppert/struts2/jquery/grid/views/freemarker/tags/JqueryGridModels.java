@@ -19,47 +19,41 @@
 
 package com.jgeppert.struts2.jquery.grid.views.freemarker.tags;
 
+import com.opensymphony.xwork2.util.ValueStack;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryGridModels {
-  protected GridColumnModel   gridColumn;
-  protected GridModel         grid;
+    protected GridColumnModel gridColumn;
+    protected GridModel grid;
 
-  private ValueStack          stack;
-  private HttpServletRequest  req;
-  private HttpServletResponse res;
+    private ValueStack stack;
+    private HttpServletRequest req;
+    private HttpServletResponse res;
 
-  public JqueryGridModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    this.stack = stack;
-    this.req = req;
-    this.res = res;
-  }
-
-  public GridColumnModel getGridColumn()
-  {
-    if (gridColumn == null)
-    {
-      gridColumn = new GridColumnModel(stack, req, res);
+    public JqueryGridModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        this.stack = stack;
+        this.req = req;
+        this.res = res;
     }
 
-    return gridColumn;
-  }
+    public GridColumnModel getGridColumn() {
+        if (gridColumn == null) {
+            gridColumn = new GridColumnModel(stack, req, res);
+        }
 
-  public GridModel getGrid()
-  {
-    if (grid == null)
-    {
-      grid = new GridModel(stack, req, res);
+        return gridColumn;
     }
 
-    return grid;
-  }
+    public GridModel getGrid() {
+        if (grid == null) {
+            grid = new GridModel(stack, req, res);
+        }
+
+        return grid;
+    }
 }

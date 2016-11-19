@@ -19,13 +19,12 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.components.Component;
-
 import com.jgeppert.struts2.jquery.components.MenuItem;
 import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
@@ -40,28 +39,28 @@ public class MenuItemTag extends AbstractRemoteTag {
     protected String onClickTopics;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new MenuItem(stack, req, res);
+                             HttpServletResponse res) {
+        return new MenuItem(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	MenuItem item = (MenuItem) component;
-	item.setTitle(title);
-	item.setMenuIcon(menuIcon);
-	item.setOnClickTopics(onClickTopics);
+        MenuItem item = (MenuItem) component;
+        item.setTitle(title);
+        item.setMenuIcon(menuIcon);
+        item.setOnClickTopics(onClickTopics);
     }
 
     public void setTitle(String title) {
-	this.title = title;
+        this.title = title;
     }
 
     public void setMenuIcon(String menuIcon) {
-	this.menuIcon = menuIcon;
+        this.menuIcon = menuIcon;
     }
 
     public void setOnClickTopics(String onClickTopics) {
-	this.onClickTopics = onClickTopics;
+        this.onClickTopics = onClickTopics;
     }
 }

@@ -19,33 +19,27 @@
 
 package com.jgeppert.struts2.jquery.chart.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.chart.components.Chart;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.chart.components.Chart;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Chart
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Chart
  */
 public class ChartDirective extends JqueryChartAbstractDirective {
-  public String getBeanName()
-  {
-    return "chart";
-  }
+    public String getBeanName() {
+        return "chart";
+    }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Chart(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Chart(stack, req, res);
+    }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
+    public int getType() {
+        return BLOCK;
+    }
 }

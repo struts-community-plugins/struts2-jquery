@@ -19,31 +19,27 @@
 
 package com.jgeppert.struts2.jquery.richtext.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.richtext.components.Tinymce;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.richtext.components.Tinymce;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @see Tinymce
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Tinymce
  */
 public class TinymceModel extends TagModel {
 
-  public TinymceModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    super(stack, req, res);
-  }
+    public TinymceModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-  @Override
-  protected Component getBean()
-  {
-    return new Tinymce(stack, req, res);
-  }
+    @Override
+    protected Component getBean() {
+        return new Tinymce(stack, req, res);
+    }
 
 }

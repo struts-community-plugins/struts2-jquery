@@ -19,16 +19,15 @@
 
 package com.jgeppert.struts2.jquery.showcase.grid;
 
-import java.util.*;
-
+import com.jgeppert.struts2.jquery.showcase.model.Customer;
+import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.jgeppert.struts2.jquery.showcase.model.Customer;
-import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
+import java.util.*;
 
 @Result(name = "success", type = "json")
 public class GridDataProvider extends ActionSupport implements SessionAware {
@@ -159,10 +158,10 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
         }
 
         // Calculate total Pages
-        if(loadonce) {
+        if (loadonce) {
             total = records;
             rows = records;
-        } else{
+        } else {
             total = (int) Math.ceil((double) records / (double) rows);
         }
 
@@ -173,8 +172,8 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
     }
 
     private List<Customer> sortListByCountry(List<Customer> customers) {
-        Collections.sort(customers, new Comparator<Customer>(){
-            public int compare(Customer o1, Customer o2){
+        Collections.sort(customers, new Comparator<Customer>() {
+            public int compare(Customer o1, Customer o2) {
                 return o1.getCountry().compareTo(o2.getCountry());
             }
         });
@@ -230,7 +229,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
 
     /**
      * @return total number of records for the query. e.g. select count(*) from
-     *         table
+     * table
      */
     public Integer getRecords() {
         return records;
@@ -238,7 +237,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
 
     /**
      * @param records total number of records for the query. e.g. select count(*)
-     *               from table
+     *                from table
      */
     public void setRecords(Integer records) {
 

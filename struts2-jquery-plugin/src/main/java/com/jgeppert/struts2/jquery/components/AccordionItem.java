@@ -19,17 +19,16 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.components.ClosingUIBean;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -53,17 +52,22 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionItemTag", description = "Render an accordion item.")
 public class AccordionItem extends ClosingUIBean {
 
-    final private static transient Random RANDOM = new Random();
+    private static final transient Random RANDOM = new Random();
+
     public static final String TEMPLATE = "accordionItem";
     public static final String JQUERYACTION = "accordionItem";
     public static final String TEMPLATE_CLOSE = "accordionItem-close";
     public static final String COMPONENT_NAME = AccordionItem.class.getName();
 
+    private static final String PARAM_TITLE = "title";
+    private static final String PARAM_ON_CLICK_TOPICS = "onClickTopics";
+
+    private static final String ID_PREFIX_ACCORDION_ITEM = "accordionItem_";
+
     protected String title;
     protected String onClickTopics;
 
-    public AccordionItem(ValueStack stack, HttpServletRequest request,
-                         HttpServletResponse response) {
+    public AccordionItem(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
     }
 
@@ -79,26 +83,28 @@ public class AccordionItem extends ClosingUIBean {
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
 
-        addParameter("jqueryaction", JQUERYACTION);
+        addParameter(AbstractTopicsBean.PARAM_JQUERY_ACTION, JQUERYACTION);
 
-        if (title != null)
-            addParameter("title", findString(title));
-        if (onClickTopics != null)
-            addParameter("onClickTopics", findString(onClickTopics));
+        if (title != null) {
+            addParameter(PARAM_TITLE, findString(title));
+        }
+        if (onClickTopics != null) {
+            addParameter(PARAM_ON_CLICK_TOPICS, findString(onClickTopics));
+        }
 
         Accordion accordion = (Accordion) findAncestor(Accordion.class);
 
-        if (accordion != null)
+        if (accordion != null) {
             addParameter("header", accordion.getHeader());
+        }
 
-        if ((this.id == null || this.id.length() == 0)) {
+        if (StringUtils.isBlank(this.id)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
             // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
             int nextInt = RANDOM.nextInt();
-            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-                    .abs(nextInt);
-            this.id = "accordionItem_" + String.valueOf(nextInt);
-            addParameter("id", this.id);
+            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+            this.id = ID_PREFIX_ACCORDION_ITEM + String.valueOf(nextInt);
+            addParameter(AbstractTopicsBean.PARAM_ID, this.id);
         }
 
     }
@@ -119,7 +125,7 @@ public class AccordionItem extends ClosingUIBean {
         this.title = title;
     }
 
-    @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
+    @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked")
     public void setOnClickTopics(String onClickTopics) {
         this.onClickTopics = onClickTopics;
     }

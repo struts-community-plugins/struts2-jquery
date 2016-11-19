@@ -19,17 +19,14 @@
 
 package com.jgeppert.struts2.jquery.richtext.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.Textarea;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.jgeppert.struts2.jquery.components.Textarea;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -37,229 +34,130 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Render a Richtext Element based on Ckeditor
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "ckeditor", tldTagClass = "com.jgeppert.struts2.jquery.richtext.views.jsp.ui.CkeditorTag", description = "A Richtext Element based on Ckeditor", allowDynamicAttributes = true)
 public class Ckeditor extends Textarea {
 
-  public static final String            TEMPLATE       = "ckeditor";
-  public static final String            TEMPLATE_CLOSE = "ckeditor-close";
-  public static final String            COMPONENT_NAME = Ckeditor.class.getName();
-  final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION   = "ckeditor";
+    public static final String TEMPLATE = "ckeditor";
+    public static final String TEMPLATE_CLOSE = "ckeditor-close";
+    public static final String COMPONENT_NAME = Ckeditor.class.getName();
+    private static final String JQUERYACTION = "ckeditor";
 
-  protected String                      cols;
-  protected String                      readonly;
-  protected String                      rows;
-  protected String                      wrap;
-  protected String                      skin;
-  protected String                      toolbar;
-  protected String                      width;
-  protected String                      height;
-  protected String                      editorLocal;
-  protected String                      customConfig;
-  protected String                      onEditorReadyTopics;
-  protected String                      uploads;
-  protected String                      uploadHref;
+    private static final String PARAM_SKIN = "skin";
+    private static final String PARAM_TOOLBAR = "toolbar";
+    private static final String PARAM_HEIGHT = "height";
+    private static final String PARAM_WIDTH = "width";
+    private static final String PARAM_EDITOR_LOCAL = "editorLocal";
+    private static final String PARAM_CUSTOM_CONFIG = "customConfig";
+    private static final String PARAM_ON_EDITOR_READY_TOPICS = "onEditorReadyTopics";
+    private static final String PARAM_UPLOADS = "uploads";
+    private static final String PARAM_UPLOAD_HREF = "uploadHref";
+    private static final String PARAM_EDITOR_RESIZABLE = "editorResizable";
 
-  public Ckeditor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
+    private static final String ID_PREFIX_CKEDITOR = "ckeditor_";
 
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
+    protected String skin;
+    protected String toolbar;
+    protected String width;
+    protected String height;
+    protected String editorLocal;
+    protected String customConfig;
+    protected String onEditorReadyTopics;
+    protected String uploads;
+    protected String uploadHref;
 
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
-
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
-
-    addParameter("jqueryaction", JQUERYACTION);
-
-    if (readonly != null)
-    {
-      addParameter("readonly", findValue(readonly, Boolean.class));
+    public Ckeditor(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
     }
 
-    if (cols != null)
-    {
-      addParameter("cols", findString(cols));
+    public String getDefaultOpenTemplate() {
+        return TEMPLATE;
     }
 
-    if (rows != null)
-    {
-      addParameter("rows", findString(rows));
+    protected String getDefaultTemplate() {
+        return TEMPLATE_CLOSE;
     }
 
-    if (wrap != null)
-    {
-      addParameter("wrap", findString(wrap));
+    public void evaluateExtraParams() {
+        super.evaluateExtraParams();
+
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
+
+        addParameterIfPresent(PARAM_SKIN, this.skin);
+        addParameterIfPresent(PARAM_TOOLBAR, this.toolbar);
+        addParameterIfPresent(PARAM_HEIGHT, this.height, Integer.class);
+        addParameterIfPresent(PARAM_WIDTH, this.width, Integer.class);
+        addParameterIfPresent(PARAM_EDITOR_LOCAL, this.editorLocal);
+        addParameterIfPresent(PARAM_CUSTOM_CONFIG, this.customConfig);
+        addParameterIfPresent(PARAM_ON_EDITOR_READY_TOPICS, this.onEditorReadyTopics);
+        addParameterIfPresent(PARAM_UPLOADS, this.uploads, Boolean.class);
+        addParameterIfPresent(PARAM_UPLOAD_HREF, this.uploadHref);
+        addParameterIfPresent(PARAM_EDITOR_RESIZABLE, this.resizable, Boolean.class);
+
+        addGeneratedIdParam(ID_PREFIX_CKEDITOR);
     }
 
-    if (skin != null)
-    {
-      addParameter("skin", findString(skin));
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
     }
 
-    if (toolbar != null)
-    {
-      addParameter("toolbar", findString(toolbar));
+    @Override
+    public String getTheme() {
+        return "jquery";
     }
 
-    if (height != null)
-    {
-      addParameter("height", findValue(height, Integer.class));
+    @StrutsTagAttribute(description = "the richtext skin. e.g kama, office2003, v2")
+    public void setSkin(String skin) {
+        this.skin = skin;
     }
 
-    if (width != null)
-    {
-      addParameter("width", findValue(width, Integer.class));
+    @StrutsTagAttribute(description = "Toolbar Configuration. e.g. Basic or Full")
+    public void setToolbar(String toolbar) {
+        this.toolbar = toolbar;
     }
 
-    if (editorLocal != null)
-    {
-      addParameter("editorLocal", findString(editorLocal));
+    @StrutsTagAttribute(description = "width attribute", type = "Integer")
+    public void setWidth(String width) {
+        this.width = width;
     }
 
-    if (customConfig != null)
-    {
-      addParameter("customConfig", findString(customConfig));
+    @StrutsTagAttribute(description = "height attribute", type = "Integer")
+    public void setHeight(String height) {
+        this.height = height;
     }
 
-    if (onEditorReadyTopics != null)
-    {
-      addParameter("onEditorReadyTopics", findString(onEditorReadyTopics));
+    @StrutsTagAttribute(description = "the editor local", defaultValue = "en")
+    public void setEditorLocal(String editorLocal) {
+        this.editorLocal = editorLocal;
     }
 
-    if (uploads != null)
-    {
-      addParameter("uploads", findValue(uploads, Boolean.class));
+    @StrutsTagAttribute(description = "path to custom config file")
+    public void setCustomConfig(String customConfig) {
+        this.customConfig = customConfig;
     }
 
-    if (uploadHref != null)
-    {
-      addParameter("uploadHref", findString(uploadHref));
-    }
-    if (resizable != null)
-    {
-      addParameter("editorResizable", findValue(resizable, Boolean.class));
+    @StrutsTagAttribute(description = "Topics that are published when editor instance is ready")
+    public void setOnEditorReadyTopics(String onEditorReadyTopics) {
+        this.onEditorReadyTopics = onEditorReadyTopics;
     }
 
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "ckeditor_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
+    @StrutsTagAttribute(description = "Enable Uploads for this Editor Instance.", type = "Boolean", defaultValue = "false")
+    public void setUploads(String uploads) {
+        this.uploads = uploads;
     }
-  }
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+    @StrutsTagAttribute(description = "Use a custom Upload URL")
+    public void setUploadHref(String uploadHref) {
+        this.uploadHref = uploadHref;
+    }
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
-
-  @StrutsTagAttribute(description = "HTML cols attribute", type = "Integer")
-  public void setCols(String cols)
-  {
-    this.cols = cols;
-  }
-
-  @StrutsTagAttribute(description = "Whether the textarea is readonly", type = "Boolean", defaultValue = "false")
-  public void setReadonly(String readonly)
-  {
-    this.readonly = readonly;
-  }
-
-  @StrutsTagAttribute(description = "HTML rows attribute", type = "Integer")
-  public void setRows(String rows)
-  {
-    this.rows = rows;
-  }
-
-  @StrutsTagAttribute(description = "HTML wrap attribute")
-  public void setWrap(String wrap)
-  {
-    this.wrap = wrap;
-  }
-
-  @StrutsTagAttribute(description = "the richtext skin. e.g kama, office2003, v2")
-  public void setSkin(String skin)
-  {
-    this.skin = skin;
-  }
-
-  @StrutsTagAttribute(description = "Toolbar Configuration. e.g. Basic or Full")
-  public void setToolbar(String toolbar)
-  {
-    this.toolbar = toolbar;
-  }
-
-  @StrutsTagAttribute(description = "width attribute", type = "Integer")
-  public void setWidth(String width)
-  {
-    this.width = width;
-  }
-
-  @StrutsTagAttribute(description = "height attribute", type = "Integer")
-  public void setHeight(String height)
-  {
-    this.height = height;
-  }
-
-  @StrutsTagAttribute(description = "the editor local", defaultValue = "en")
-  public void setEditorLocal(String editorLocal)
-  {
-    this.editorLocal = editorLocal;
-  }
-
-  @StrutsTagAttribute(description = "path to custom config file")
-  public void setCustomConfig(String customConfig)
-  {
-    this.customConfig = customConfig;
-  }
-
-  @StrutsTagAttribute(description = "Topics that are published when editor instance is ready", type = "String", defaultValue = "")
-  public void setOnEditorReadyTopics(String onEditorReadyTopics)
-  {
-    this.onEditorReadyTopics = onEditorReadyTopics;
-  }
-
-  @StrutsTagAttribute(description = "Enable Uploads for this Editor Instance.", type = "Boolean", defaultValue = "false")
-  public void setUploads(String uploads)
-  {
-    this.uploads = uploads;
-  }
-
-  @StrutsTagAttribute(description = "Use a custom Upload URL")
-  public void setUploadHref(String uploadHref)
-  {
-    this.uploadHref = uploadHref;
-  }
-  
-
-  @StrutsTagAttribute(description = "This option gives you the ability to enable/disable the resizing of the ckeditor instance.", defaultValue = "false", type = "Boolean")
-  public void setResizable(String resizable)
-  {
-    this.resizable = resizable;
-  }
+    @StrutsTagAttribute(description = "This option gives you the ability to enable/disable the resizing of the ckeditor instance.", defaultValue = "false", type = "Boolean")
+    public void setResizable(String resizable) {
+        this.resizable = resizable;
+    }
 
 }

@@ -19,16 +19,13 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -39,23 +36,23 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <p>
  * Examples
  * </p>
- * 
+ * <p>
  * <!-- START SNIPPET: example1 -->
  * <p>
  * A simple Spinner.
  * </p>
- * 
+ * <p>
  * <pre>
  * &lt;sj:spinner name=&quot;spinner1&quot; id=&quot;spinner1&quot;/&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example1 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example2 -->
  * <p>
  * A Spinner max=50 and step=2.
  * </p>
- * 
+ * <p>
  * <pre>
  *     &lt;sj:spinner
  *       name=&quot;spinner2&quot;
@@ -64,16 +61,16 @@ import com.opensymphony.xwork2.util.ValueStack;
  *       max=&quot;50&quot;
  *       step=&quot;2&quot;
  *       value=&quot;25&quot;/&gt;
- * 
+ *
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example2 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example3 -->
  * <p>
  * A Spinner with currency format and mouse wheel support.
  * </p>
- * 
+ * <p>
  * <pre>
  * &lt;sj:spinner
  *       name=&quot;spinner3&quot;
@@ -86,19 +83,28 @@ import com.opensymphony.xwork2.util.ValueStack;
  *       mouseWheel=&quot;true&quot;/&gt;
  *     &lt;br/&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example3 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
-@StrutsTag(name = "spinner", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SpinnerTag", description = "Render a Spinner. BETA", allowDynamicAttributes = true)
+@StrutsTag(name = "spinner", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SpinnerTag", description = "Render a Spinner.", allowDynamicAttributes = true)
 public class Spinner extends Textfield {
 
     public static final String JQUERYACTION = "spinner";
     public static final String TEMPLATE = "spinner";
     public static final String TEMPLATE_CLOSE = "spinner-close";
-    final private static transient Random RANDOM = new Random();
+
+    private static final String PARAM_MAX = "max";
+    private static final String PARAM_MIN = "min";
+    private static final String PARAM_STEP = "step";
+    private static final String PARAM_MOUSE_WHEEL = "mouseWheel";
+    private static final String PARAM_CULTURE = "culture";
+    private static final String PARAM_NUMBER_FORMAT = "numberFormat";
+    private static final String PARAM_PAGE = "page";
+    private static final String PARAM_INCREMENTAL = "incremental";
+
+    private static final String ID_PREFIX_SPINNER = "spinner_";
 
     protected String max;
     protected String min;
@@ -109,100 +115,83 @@ public class Spinner extends Textfield {
     protected String incremental;
     protected String page;
 
-    public Spinner(ValueStack stack, HttpServletRequest request,
-	    HttpServletResponse response) {
-	super(stack, request, response);
+    public Spinner(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
     }
 
     public String getDefaultOpenTemplate() {
-	return TEMPLATE;
+        return TEMPLATE;
     }
 
     protected String getDefaultTemplate() {
-	return TEMPLATE_CLOSE;
+        return TEMPLATE_CLOSE;
     }
 
     public void evaluateParams() {
-	super.evaluateParams();
+        super.evaluateParams();
 
-	addParameter("jqueryaction", JQUERYACTION);
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-	if (max != null)
-	    addParameter("max", findValue(max, Number.class));
-	if (min != null)
-	    addParameter("min", findValue(min, Number.class));
-	if (step != null)
-	    addParameter("step", findValue(step, Number.class));
-	if (mouseWheel != null)
-	    addParameter("mouseWheel", findValue(mouseWheel, Boolean.class));
-	if (culture != null)
-	    addParameter("culture", findString(culture));
-	if (numberFormat != null)
-	    addParameter("numberFormat", findString(numberFormat));
-	if (page != null)
-	    addParameter("page", findValue(page, Number.class));
-	if (incremental != null)
-	    addParameter("incremental", findString(incremental));
+        addParameterIfPresent(PARAM_MAX, this.max, Number.class);
+        addParameterIfPresent(PARAM_MIN, this.min, Number.class);
+        addParameterIfPresent(PARAM_STEP, this.step, Number.class);
+        addParameterIfPresent(PARAM_MOUSE_WHEEL, this.mouseWheel, Boolean.class);
+        addParameterIfPresent(PARAM_CULTURE, this.culture);
+        addParameterIfPresent(PARAM_NUMBER_FORMAT, this.numberFormat);
+        addParameterIfPresent(PARAM_PAGE, this.page, Number.class);
+        addParameterIfPresent(PARAM_INCREMENTAL, this.incremental);
 
-	if ((this.id == null || this.id.length() == 0)) {
-	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-	    int nextInt = RANDOM.nextInt();
-	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-		    .abs(nextInt);
-	    this.id = "spinner_" + String.valueOf(nextInt);
-	    addParameter("id", this.id);
-	}
+        addGeneratedIdParam(ID_PREFIX_SPINNER);
     }
 
     @Override
     @StrutsTagSkipInheritance
     public void setTheme(String theme) {
-	super.setTheme(theme);
+        super.setTheme(theme);
     }
 
     @Override
     public String getTheme() {
-	return "jquery";
+        return "jquery";
     }
 
     @StrutsTagAttribute(description = "maximum value allowed", type = "Number")
     public void setMax(String max) {
-	this.max = max;
+        this.max = max;
     }
 
     @StrutsTagAttribute(description = "minimum value allowed", type = "Number")
     public void setMin(String min) {
-	this.min = min;
+        this.min = min;
     }
 
     @StrutsTagAttribute(description = "size of step to take when spinning", type = "Number", defaultValue = "1")
     public void setStep(String step) {
-	this.step = step;
+        this.step = step;
     }
 
     @StrutsTagAttribute(description = "If true then mouse wheel events will be attached.", type = "Boolean")
     public void setMouseWheel(String mouseWheel) {
-	this.mouseWheel = mouseWheel;
+        this.mouseWheel = mouseWheel;
     }
 
     @StrutsTagAttribute(description = "Sets the culture to use for parsing and formatting the value.", defaultValue = "null")
     public void setCulture(String culture) {
-	this.culture = culture;
+        this.culture = culture;
     }
 
     @StrutsTagAttribute(description = "Format of numbers passed to Globalize, if available. Most common are 'n' for a decimal number and 'C' for a currency value.", defaultValue = "null")
     public void setNumberFormat(String numberFormat) {
-	this.numberFormat = numberFormat;
+        this.numberFormat = numberFormat;
     }
 
     @StrutsTagAttribute(description = "Controls the number of steps taken when holding down a spin button.When set to true, the stepping delta will increase when spun incessantly. When set to false, all steps are equal (as defined by the step option).", type = "Boolean", defaultValue = "true")
     public void setIncremental(String incremental) {
-	this.incremental = incremental;
+        this.incremental = incremental;
     }
 
     @StrutsTagAttribute(description = "The number of steps to take when paging via the pageUp/pageDown methods.", type = "Number", defaultValue = "10")
     public void setPage(String page) {
-	this.page = page;
+        this.page = page;
     }
 }

@@ -19,20 +19,17 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.util.MakeIterator;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -92,157 +89,157 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "menu", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.MenuTag", description = "Render an Menu.")
 public class Menu extends AbstractTopicsBean {
 
-	final private static transient Random RANDOM = new Random();
-	public static final String JQUERYACTION = "menu";
-	public static final String TEMPLATE = "menu";
-	public static final String TEMPLATE_CLOSE = "menu-close";
-	public static final String COMPONENT_NAME = Menu.class.getName();
+    public static final String JQUERYACTION = "menu";
+    public static final String TEMPLATE = "menu";
+    public static final String TEMPLATE_CLOSE = "menu-close";
+    public static final String COMPONENT_NAME = Menu.class.getName();
 
-	protected boolean throwExceptionOnNullValueAttribute = false;
-	protected String disabled;
-	protected String targets;
-	protected String href;
-	protected String paramName;
-	protected Object list;
-	protected String listKey;
-	protected String listValue;
+    private static final String PARAM_DISABLED = "disabled";
+    private static final String PARAM_TARGETS = "targets";
+    private static final String PARAM_HREF = "href";
+    private static final String PARAM_PARAM_NAME = "paramName";
+    private static final String PARAM_SUB_MENU = "subMenu";
+    private static final String PARAM_PARENT_MENU = "parentMenu";
 
-	public Menu(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-		super(stack, request, response);
-	}
+    private static final String ID_PREFIX_MENU = "menu_";
 
-	@Override
-	public String getDefaultOpenTemplate() {
-		return TEMPLATE;
-	}
+    protected boolean throwExceptionOnNullValueAttribute = false;
+    protected String disabled;
+    protected String targets;
+    protected String href;
+    protected String paramName;
+    protected Object list;
+    protected String listKey;
+    protected String listValue;
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE_CLOSE;
-	}
+    public Menu(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
+    }
 
-	@SuppressWarnings("rawtypes")
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    @Override
+    public String getDefaultOpenTemplate() {
+        return TEMPLATE;
+    }
 
-		addParameter("jqueryaction", JQUERYACTION);
+    protected String getDefaultTemplate() {
+        return TEMPLATE_CLOSE;
+    }
 
-		if (disabled != null) addParameter("disabled", findValue(this.disabled, Boolean.class));
-		if (targets != null) addParameter("targets", findString(targets));
-		if (href != null) addParameter("href", findString(href));
-		if (paramName != null) addParameter("paramName", findString(paramName));
+    @SuppressWarnings("rawtypes")
+    public void evaluateExtraParams() {
+        super.evaluateExtraParams();
 
-		Object value = null;
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-		if (list == null) {
-			list = parameters.get("list");
-		}
+        addParameterIfPresent(PARAM_DISABLED, this.disabled, Boolean.class);
+        addParameterIfPresent(PARAM_TARGETS, this.targets);
+        addParameterIfPresent(PARAM_HREF, this.href);
+        addParameterIfPresent(PARAM_PARAM_NAME, this.paramName);
 
-		if (list instanceof String) {
-			value = findValue((String) list);
-		} else if (list instanceof Collection) {
-			value = list;
-		} else if (MakeIterator.isIterable(list)) {
-			value = MakeIterator.convert(list);
-		}
-		if (value == null) {
-			if (throwExceptionOnNullValueAttribute) {
-				// will throw an exception if not found
-				value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
-			} else {
-				// ww-1010, allows value with null value to be compatible with
-				// ww
-				// 2.1.7 behaviour
-				value = findValue((list == null) ? (String) list : list.toString());
-			}
-		}
+        Object value = null;
 
-		if (value instanceof Collection) {
-			addParameter("list", value);
-		} else {
-			addParameter("list", MakeIterator.convert(value));
-		}
+        if (list == null) {
+            list = parameters.get(PARAM_LIST);
+        }
 
-		if (value instanceof Collection) {
-			addParameter("listSize", Integer.valueOf(((Collection) value).size()));
-		} else if (value instanceof Map) {
-			addParameter("listSize", Integer.valueOf(((Map) value).size()));
-		} else if (value != null && value.getClass().isArray()) {
-			addParameter("listSize", Integer.valueOf(Array.getLength(value)));
-		}
+        if (list instanceof String) {
+            value = findValue((String) list);
+        } else if (list instanceof Collection) {
+            value = list;
+        } else if (MakeIterator.isIterable(list)) {
+            value = MakeIterator.convert(list);
+        }
+        if (value == null) {
+            if (throwExceptionOnNullValueAttribute) {
+                // will throw an exception if not found
+                value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. Example: people or people.{name}");
+            } else {
+                // ww-1010, allows value with null value to be compatible with ww
+                // 2.1.7 behaviour
+                value = findValue((list == null) ? (String) list : list.toString());
+            }
+        }
 
-		if (listKey != null) {
-			listKey = stripExpressionIfAltSyntax(listKey);
-			addParameter("listKey", listKey);
-		} else if (value instanceof Map) {
-			addParameter("listKey", "key");
-		}
+        if (value instanceof Collection) {
+            addParameter(PARAM_LIST, value);
+        } else {
+            addParameter(PARAM_LIST, MakeIterator.convert(value));
+        }
 
-		if (listValue != null) {
-			listValue = stripExpressionIfAltSyntax(listValue);
-			addParameter("listValue", listValue);
-		} else if (value instanceof Map) {
-			addParameter("listValue", "value");
-		}
+        if (value instanceof Collection) {
+            addParameter(PARAM_LIST_SIZE, ((Collection) value).size());
+        } else if (value instanceof Map) {
+            addParameter(PARAM_LIST_SIZE, ((Map) value).size());
+        } else if (value != null && value.getClass().isArray()) {
+            addParameter(PARAM_LIST_SIZE, Array.getLength(value));
+        }
 
-		if ((this.id == null || this.id.length() == 0)) {
-			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-			int nextInt = RANDOM.nextInt();
-			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-			this.id = "menu_" + String.valueOf(nextInt);
-			addParameter("id", this.id);
-		}
+        if (listKey != null) {
+            listKey = stripExpressionIfAltSyntax(listKey);
+            addParameter(PARAM_LIST_KEY, listKey);
+        } else if (value instanceof Map) {
+            addParameter(PARAM_LIST_KEY, "key");
+        }
 
-		Menu parentMenu = (Menu) findAncestor(Menu.class);
-		if (parentMenu != null) {
-			addParameter("subMenu", true);
-			addParameter("parentMenu", findString(parentMenu.getId()));
-		}
-	}
+        if (listValue != null) {
+            listValue = stripExpressionIfAltSyntax(listValue);
+            addParameter(PARAM_LIST_VALUE, listValue);
+        } else if (value instanceof Map) {
+            addParameter(PARAM_LIST_VALUE, "value");
+        }
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
+        addGeneratedIdParam(ID_PREFIX_MENU);
 
-	@Override
-	public String getTheme() {
-		return "jquery";
-	}
+        Menu parentMenu = (Menu) findAncestor(Menu.class);
+        if (parentMenu != null) {
+            addParameter(PARAM_SUB_MENU, true);
+            addParameter(PARAM_PARENT_MENU, findString(parentMenu.getId()));
+        }
+    }
 
-	@StrutsTagAttribute(description = "Disables the menu if set to true.", defaultValue = "false", type = "Boolean")
-	public void setDisabled(String disabled) {
-		this.disabled = disabled;
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
+    }
 
-	@StrutsTagAttribute(name = "targets", description = "A comma separated list of ids of container elements to load with the contents from the result of this request", type = "String", defaultValue = "")
-	public void setTargets(String targets) {
-		this.targets = targets;
-	}
+    @Override
+    public String getTheme() {
+        return "jquery";
+    }
 
-	@StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value' parameter and the Map value will become the option body.")
-	public void setList(Object list) {
-		this.list = list;
-	}
+    @StrutsTagAttribute(description = "Disables the menu if set to true.", defaultValue = "false", type = "Boolean")
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
+    }
 
-	@StrutsTagAttribute(description = "Property of list objects to get field value from")
-	public void setListKey(String listKey) {
-		this.listKey = listKey;
-	}
+    @StrutsTagAttribute(name = "targets", description = "A comma separated list of ids of container elements to load with the contents from the result of this request")
+    public void setTargets(String targets) {
+        this.targets = targets;
+    }
 
-	@StrutsTagAttribute(description = "Property of list objects to get field content from")
-	public void setListValue(String listValue) {
-		this.listValue = listValue;
-	}
+    @StrutsTagAttribute(description = "Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value' parameter and the Map value will become the option body.")
+    public void setList(Object list) {
+        this.list = list;
+    }
 
-	@StrutsTagAttribute(description = "The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.")
-	public void setHref(String href) {
-		this.href = href;
-	}
+    @StrutsTagAttribute(description = "Property of list objects to get field value from")
+    public void setListKey(String listKey) {
+        this.listKey = listKey;
+    }
 
-	@StrutsTagAttribute(description = "Parameter name for the href url used when rendered from a collection. e.g. id,name", defaultValue = "id")
-	public void setParamName(String paramName) {
-		this.paramName = paramName;
-	}
+    @StrutsTagAttribute(description = "Property of list objects to get field content from")
+    public void setListValue(String listValue) {
+        this.listValue = listValue;
+    }
+
+    @StrutsTagAttribute(description = "The URL to call to obtain the content. Note: If used with ajax context, the value must be set as an url tag value.")
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    @StrutsTagAttribute(description = "Parameter name for the href url used when rendered from a collection. e.g. id,name", defaultValue = "id")
+    public void setParamName(String paramName) {
+        this.paramName = paramName;
+    }
 }

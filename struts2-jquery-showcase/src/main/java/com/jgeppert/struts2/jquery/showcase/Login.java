@@ -19,22 +19,21 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.ExpressionValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.Validations;
+import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.ExpressionValidator;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.opensymphony.xwork2.validator.annotations.ValidatorType;
-
 @InterceptorRef("jsonValidationWorkflowStack")
 @Validations(requiredStrings = {
-	@RequiredStringValidator(fieldName = "loginuser", type = ValidatorType.FIELD, message = "Login User is required"),
-	@RequiredStringValidator(fieldName = "loginpassword", type = ValidatorType.FIELD, message = "Password is required") }, expressions = { @ExpressionValidator(expression = "loginpassword.trim().equals('test') == true", message = "Password must be test.")
+        @RequiredStringValidator(fieldName = "loginuser", type = ValidatorType.FIELD, message = "Login User is required"),
+        @RequiredStringValidator(fieldName = "loginpassword", type = ValidatorType.FIELD, message = "Password is required")}, expressions = {@ExpressionValidator(expression = "loginpassword.trim().equals('test') == true", message = "Password must be test.")
 
 })
 public class Login extends ActionSupport {
@@ -46,31 +45,31 @@ public class Login extends ActionSupport {
     private String loginpassword;
     private String echo;
 
-    @Action(value = "/login", results = { @Result(location = "simpleecho.jsp", name = "success") })
+    @Action(value = "/login", results = {@Result(location = "simpleecho.jsp", name = "success")})
     public String execute() throws Exception {
-	echo = "Welcome " + loginuser;
-	log.info(echo);
+        echo = "Welcome " + loginuser;
+        log.info(echo);
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public String getEcho() {
-	return echo;
+        return echo;
     }
 
     public String getLoginuser() {
-	return loginuser;
+        return loginuser;
     }
 
     public void setLoginuser(String loginuser) {
-	this.loginuser = loginuser;
+        this.loginuser = loginuser;
     }
 
     public String getLoginpassword() {
-	return loginpassword;
+        return loginpassword;
     }
 
     public void setLoginpassword(String loginpassword) {
-	this.loginpassword = loginpassword;
+        this.loginpassword = loginpassword;
     }
 }

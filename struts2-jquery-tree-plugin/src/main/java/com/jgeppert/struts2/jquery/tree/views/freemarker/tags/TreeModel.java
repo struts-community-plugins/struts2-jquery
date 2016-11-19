@@ -19,31 +19,27 @@
 
 package com.jgeppert.struts2.jquery.tree.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.tree.components.Tree;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.tree.components.Tree;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @see Tree
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Tree
  */
 public class TreeModel extends TagModel {
 
-  public TreeModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    super(stack, req, res);
-  }
+    public TreeModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-  @Override
-  protected Component getBean()
-  {
-    return new Tree(stack, req, res);
-  }
+    @Override
+    protected Component getBean() {
+        return new Tree(stack, req, res);
+    }
 
 }

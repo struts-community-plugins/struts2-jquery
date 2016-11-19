@@ -19,31 +19,27 @@
 
 package com.jgeppert.struts2.jquery.chart.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.chart.components.Chart;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.chart.components.Chart;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @see Chart
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Chart
  */
 public class ChartModel extends TagModel {
 
-  public ChartModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    super(stack, req, res);
-  }
+    public ChartModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-  @Override
-  protected Component getBean()
-  {
-    return new Chart(stack, req, res);
-  }
+    @Override
+    protected Component getBean() {
+        return new Chart(stack, req, res);
+    }
 
 }

@@ -19,47 +19,41 @@
 
 package com.jgeppert.struts2.jquery.richtext.views.freemarker.tags;
 
+import com.opensymphony.xwork2.util.ValueStack;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryRichtextModels {
-  protected CkeditorModel     ckeditor;
-  protected TinymceModel      tinymce;
+    protected CkeditorModel ckeditor;
+    protected TinymceModel tinymce;
 
-  private ValueStack          stack;
-  private HttpServletRequest  req;
-  private HttpServletResponse res;
+    private ValueStack stack;
+    private HttpServletRequest req;
+    private HttpServletResponse res;
 
-  public JqueryRichtextModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    this.stack = stack;
-    this.req = req;
-    this.res = res;
-  }
-
-  public CkeditorModel getCkeditor()
-  {
-    if (ckeditor == null)
-    {
-      ckeditor = new CkeditorModel(stack, req, res);
+    public JqueryRichtextModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        this.stack = stack;
+        this.req = req;
+        this.res = res;
     }
 
-    return ckeditor;
-  }
+    public CkeditorModel getCkeditor() {
+        if (ckeditor == null) {
+            ckeditor = new CkeditorModel(stack, req, res);
+        }
 
-  public TinymceModel getTinymce()
-  {
-    if (tinymce == null)
-    {
-      tinymce = new TinymceModel(stack, req, res);
+        return ckeditor;
     }
 
-    return tinymce;
-  }
+    public TinymceModel getTinymce() {
+        if (tinymce == null) {
+            tinymce = new TinymceModel(stack, req, res);
+        }
+
+        return tinymce;
+    }
 }

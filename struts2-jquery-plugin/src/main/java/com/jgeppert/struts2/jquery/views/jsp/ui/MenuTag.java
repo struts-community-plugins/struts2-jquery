@@ -32,75 +32,75 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MenuTag extends AbstractTopicTag {
 
-	private static final long serialVersionUID = 594523103591646134L;
+    private static final long serialVersionUID = 594523103591646134L;
 
-	protected String disabled;
-	protected String targets;
-	protected String href;
-	protected Object list;
-	protected String listKey;
-	protected String listValue;
-	protected String paramName;
+    protected String disabled;
+    protected String targets;
+    protected String href;
+    protected Object list;
+    protected String listKey;
+    protected String listValue;
+    protected String paramName;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		return new Menu(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Menu(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
+    protected void populateParams() {
+        super.populateParams();
 
-		Menu menu = (Menu) component;
-		menu.setDisabled(disabled);
-		menu.setTargets(targets);
-		menu.setHref(href);
-		menu.setParamName(paramName);
-		menu.setList(list);
-		menu.setListKey(listKey);
-		menu.setListValue(listValue);
-	}
+        Menu menu = (Menu) component;
+        menu.setDisabled(disabled);
+        menu.setTargets(targets);
+        menu.setHref(href);
+        menu.setParamName(paramName);
+        menu.setList(list);
+        menu.setListKey(listKey);
+        menu.setListValue(listValue);
+    }
 
 
-	public void setDisabled(String disabled) {
-		this.disabled = disabled;
-	}
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
+    }
 
-	public void setList(Object list) {
-		this.list = list;
-	}
+    public void setList(Object list) {
+        this.list = list;
+    }
 
-	public void setTargets(String targets) {
-		this.targets = targets;
-	}
+    public void setTargets(String targets) {
+        this.targets = targets;
+    }
 
-	public void setHref(String href) {
-		this.href = href;
-	}
+    public void setHref(String href) {
+        this.href = href;
+    }
 
-	public void setParamName(String paramName) {
-		this.paramName = paramName;
-	}
+    public void setParamName(String paramName) {
+        this.paramName = paramName;
+    }
 
-	public void setOnBeforeTopics(String onBeforeTopics) {
-		this.onBeforeTopics = onBeforeTopics;
-	}
+    public void setOnBeforeTopics(String onBeforeTopics) {
+        this.onBeforeTopics = onBeforeTopics;
+    }
 
-	public void setOnAlwaysTopics(String onAlwaysTopics) {
-		this.onAlwaysTopics = onAlwaysTopics;
-	}
+    public void setOnAlwaysTopics(String onAlwaysTopics) {
+        this.onAlwaysTopics = onAlwaysTopics;
+    }
 
-	public void setOnChangeTopics(String onChangeTopics) {
-		this.onChangeTopics = onChangeTopics;
-	}
+    public void setOnChangeTopics(String onChangeTopics) {
+        this.onChangeTopics = onChangeTopics;
+    }
 
-	public void setList(String list) {
-		this.list = list;
-	}
+    public void setList(String list) {
+        this.list = list;
+    }
 
-	public void setListKey(String listKey) {
-		this.listKey = listKey;
-	}
+    public void setListKey(String listKey) {
+        this.listKey = listKey;
+    }
 
-	public void setListValue(String listValue) {
-		this.listValue = listValue;
-	}
+    public void setListValue(String listValue) {
+        this.listValue = listValue;
+    }
 }

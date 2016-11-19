@@ -19,31 +19,28 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.mobile.components.Anchor;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.Anchor;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Anchor
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Anchor
  */
 public class AnchorDirective extends JqueryMobileAbstractDirective {
-	public String getBeanName() {
-		return "a";
-	}
+    public String getBeanName() {
+        return "a";
+    }
 
-	protected Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new Anchor(stack, req, res);
-	}
+    protected Component getBean(ValueStack stack, HttpServletRequest req,
+                                HttpServletResponse res) {
+        return new Anchor(stack, req, res);
+    }
 
-	public int getType() {
-		return BLOCK;
-	}
+    public int getType() {
+        return BLOCK;
+    }
 }

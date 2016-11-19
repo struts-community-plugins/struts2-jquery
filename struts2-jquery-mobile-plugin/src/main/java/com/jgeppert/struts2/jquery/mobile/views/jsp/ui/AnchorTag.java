@@ -19,21 +19,20 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.Anchor;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.Anchor;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * @see Anchor
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @see Anchor
  */
 public class AnchorTag extends
-	com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag implements
-	ThemeableTag {
+        com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag implements
+        ThemeableTag {
 
     private static final long serialVersionUID = -4249231836512621297L;
 
@@ -43,33 +42,33 @@ public class AnchorTag extends
     protected String buttonIconPosition;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Anchor(stack, req, res);
+                             HttpServletResponse res) {
+        return new Anchor(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Anchor link = (Anchor) component;
-	link.setDataTheme(dataTheme);
-	link.setButton(button);
-	link.setButtonIcon(buttonIcon);
-	link.setButtonIconPosition(buttonIconPosition);
+        Anchor link = (Anchor) component;
+        link.setDataTheme(dataTheme);
+        link.setButton(button);
+        link.setButtonIcon(buttonIcon);
+        link.setButtonIconPosition(buttonIconPosition);
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 
     public void setButton(String button) {
-	this.button = button;
+        this.button = button;
     }
 
     public void setButtonIcon(String buttonIcon) {
-	this.buttonIcon = buttonIcon;
+        this.buttonIcon = buttonIcon;
     }
 
     public void setButtonIconPosition(String buttonIconPosition) {
-	this.buttonIconPosition = buttonIconPosition;
+        this.buttonIconPosition = buttonIconPosition;
     }
 }

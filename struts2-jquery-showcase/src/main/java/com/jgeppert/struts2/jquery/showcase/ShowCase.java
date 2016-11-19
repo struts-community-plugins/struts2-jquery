@@ -19,13 +19,12 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.opensymphony.xwork2.ActionSupport;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ShowCase extends ActionSupport {
 
@@ -35,65 +34,65 @@ public class ShowCase extends ActionSupport {
     private boolean ajaxhistory = false;
     private Map<String, String> themes;
 
-    @Action(value = "/index", results = { @Result(location = "index.jsp", name = "success") })
+    @Action(value = "/index", results = {@Result(location = "index.jsp", name = "success")})
     public String execute() throws Exception {
 
-	themes = new HashMap<String, String>();
-	themes.put("cupertino", "The cupertino Theme");
-	themes.put("ui-darkness", "The darkness Theme");
-	themes.put("ui-lightness", "The lightness Theme");
-	themes.put("redmond", "The redmond Theme");
-	themes.put("smoothness", "The smoothness Theme");
-	themes.put("black-tie", "The black-tie Theme");
-	themes.put("blitzer", "The blitzer Theme");
-	themes.put("dark-hive", "The dark-hive Theme");
-	themes.put("dot-luv", "The dot-luv Theme");
-	themes.put("eggplant", "The eggplant Theme");
-	themes.put("excite-bike", "The excite-bike Theme");
-	themes.put("flick", "The flick Theme");
-	themes.put("hot-sneaks", "The hot-sneaks Theme");
-	themes.put("humanity", "The humanity Theme");
-	themes.put("le-frog", "The le-frog Theme");
-	themes.put("mint-choc", "The mint-choc Theme");
-	themes.put("overcast", "The overcast Theme");
-	themes.put("pepper-grinder", "The pepper-grinder Theme");
-	themes.put("south-street", "The south-street Theme");
-	themes.put("start", "The start Theme");
-	themes.put("sunny", "The sunny Theme");
-	themes.put("swanky-purse", "The swanky-purse Theme");
-	themes.put("trontastic", "The trontastic Theme");
-	themes.put("vader", "The vader Theme");
+        themes = new HashMap<String, String>();
+        themes.put("cupertino", "The cupertino Theme");
+        themes.put("ui-darkness", "The darkness Theme");
+        themes.put("ui-lightness", "The lightness Theme");
+        themes.put("redmond", "The redmond Theme");
+        themes.put("smoothness", "The smoothness Theme");
+        themes.put("black-tie", "The black-tie Theme");
+        themes.put("blitzer", "The blitzer Theme");
+        themes.put("dark-hive", "The dark-hive Theme");
+        themes.put("dot-luv", "The dot-luv Theme");
+        themes.put("eggplant", "The eggplant Theme");
+        themes.put("excite-bike", "The excite-bike Theme");
+        themes.put("flick", "The flick Theme");
+        themes.put("hot-sneaks", "The hot-sneaks Theme");
+        themes.put("humanity", "The humanity Theme");
+        themes.put("le-frog", "The le-frog Theme");
+        themes.put("mint-choc", "The mint-choc Theme");
+        themes.put("overcast", "The overcast Theme");
+        themes.put("pepper-grinder", "The pepper-grinder Theme");
+        themes.put("south-street", "The south-street Theme");
+        themes.put("start", "The start Theme");
+        themes.put("sunny", "The sunny Theme");
+        themes.put("swanky-purse", "The swanky-purse Theme");
+        themes.put("trontastic", "The trontastic Theme");
+        themes.put("vader", "The vader Theme");
 
-	themes.put("showcase", "The custom Showcase Theme");
+        themes.put("showcase", "The custom Showcase Theme");
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public String getTheme() {
-	return theme;
+        return theme;
     }
 
     public void setTheme(String theme) {
-	this.theme = theme;
+        this.theme = theme;
     }
 
     public Map<String, String> getThemes() {
-	return themes;
+        return themes;
     }
 
     public boolean isGoogle() {
-	return google;
+        return google;
     }
 
     public void setGoogle(boolean google) {
-	this.google = google;
+        this.google = google;
     }
 
     public boolean isAjaxhistory() {
-	return ajaxhistory;
+        return ajaxhistory;
     }
 
     public void setAjaxhistory(boolean ajaxhistory) {
-	this.ajaxhistory = ajaxhistory;
+        this.ajaxhistory = ajaxhistory;
     }
 }

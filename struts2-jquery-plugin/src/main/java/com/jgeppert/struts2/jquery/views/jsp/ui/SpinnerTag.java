@@ -19,19 +19,16 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.Spinner;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Spinner;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Spinner
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Spinner
  */
 public class SpinnerTag extends TextfieldTag {
 
@@ -47,53 +44,53 @@ public class SpinnerTag extends TextfieldTag {
     protected String page;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Spinner(stack, req, res);
+                             HttpServletResponse res) {
+        return new Spinner(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Spinner spinner = (Spinner) component;
-	spinner.setMax(max);
-	spinner.setMin(min);
-	spinner.setStep(step);
-	spinner.setMouseWheel(mouseWheel);
-	spinner.setCulture(culture);
-	spinner.setNumberFormat(numberFormat);
-	spinner.setPage(page);
-	spinner.setIncremental(incremental);
+        Spinner spinner = (Spinner) component;
+        spinner.setMax(max);
+        spinner.setMin(min);
+        spinner.setStep(step);
+        spinner.setMouseWheel(mouseWheel);
+        spinner.setCulture(culture);
+        spinner.setNumberFormat(numberFormat);
+        spinner.setPage(page);
+        spinner.setIncremental(incremental);
     }
 
     public void setMax(String max) {
-	this.max = max;
+        this.max = max;
     }
 
     public void setMin(String min) {
-	this.min = min;
+        this.min = min;
     }
 
     public void setStep(String step) {
-	this.step = step;
+        this.step = step;
     }
 
     public void setMouseWheel(String mouseWheel) {
-	this.mouseWheel = mouseWheel;
+        this.mouseWheel = mouseWheel;
     }
 
     public void setCulture(String culture) {
-	this.culture = culture;
+        this.culture = culture;
     }
 
     public void setNumberFormat(String numberFormat) {
-	this.numberFormat = numberFormat;
+        this.numberFormat = numberFormat;
     }
 
     public void setIncremental(String incremental) {
-	this.incremental = incremental;
+        this.incremental = incremental;
     }
 
     public void setPage(String page) {
-	this.page = page;
+        this.page = page;
     }
 }

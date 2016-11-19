@@ -19,21 +19,19 @@
 
 package com.jgeppert.struts2.jquery.showcase.tree;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.jgeppert.struts2.jquery.tree.result.TreeNode;
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.jgeppert.struts2.jquery.tree.result.TreeNode;
-import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.util.ServletContextAware;
 
 import javax.servlet.ServletContext;
+import java.util.ArrayList;
+import java.util.List;
 
-@Actions({ @Action(value = "/json-tree-data", results = { @Result(name = "success", type = "json", params = {
-	"root", "nodes" }) }) })
+@Actions({@Action(value = "/json-tree-data", results = {@Result(name = "success", type = "json", params = {
+        "root", "nodes"})})})
 public class JsonTreeData extends ActionSupport implements ServletContextAware {
 
     private static final long serialVersionUID = -2886756982077980790L;
@@ -43,58 +41,58 @@ public class JsonTreeData extends ActionSupport implements ServletContextAware {
 
     public String execute() {
 
-	TreeNode nodeA = new TreeNode();
-	nodeA.setId("A" + id);
-    nodeA.getState().setOpened(false);
-    nodeA.setHasChildren(true);
-	nodeA.setText("Node A" + id);
-    nodeA.setIcon(servletContext.getContextPath() + "/images/root.png");
+        TreeNode nodeA = new TreeNode();
+        nodeA.setId("A" + id);
+        nodeA.getState().setOpened(false);
+        nodeA.setHasChildren(true);
+        nodeA.setText("Node A" + id);
+        nodeA.setIcon(servletContext.getContextPath() + "/images/root.png");
 
-	TreeNode nodeB = new TreeNode();
-	nodeB.setId("B" + id);
-    nodeB.getState().setOpened(true);
-    nodeB.setIcon(servletContext.getContextPath() + "/images/folder.png");
-	nodeB.setText("Node B" + id);
+        TreeNode nodeB = new TreeNode();
+        nodeB.setId("B" + id);
+        nodeB.getState().setOpened(true);
+        nodeB.setIcon(servletContext.getContextPath() + "/images/folder.png");
+        nodeB.setText("Node B" + id);
 
-	TreeNode nodeB1 = new TreeNode();
-	nodeB1.setId("B1" + id);
-    nodeB1.setIcon(servletContext.getContextPath() + "/images/file.png");
-	nodeB1.setText("Node B1" + id);
-	nodeB.getChildrens().add(nodeB1);
+        TreeNode nodeB1 = new TreeNode();
+        nodeB1.setId("B1" + id);
+        nodeB1.setIcon(servletContext.getContextPath() + "/images/file.png");
+        nodeB1.setText("Node B1" + id);
+        nodeB.getChildrens().add(nodeB1);
 
-	TreeNode nodeB2 = new TreeNode();
-	nodeB2.setId("B2" + id);
-    nodeB2.getState().setDisabled(true);
-    nodeB2.setIcon(servletContext.getContextPath() + "/images/file.png");
-	nodeB2.setText("Node B2" + id);
-	nodeB.getChildrens().add(nodeB2);
+        TreeNode nodeB2 = new TreeNode();
+        nodeB2.setId("B2" + id);
+        nodeB2.getState().setDisabled(true);
+        nodeB2.setIcon(servletContext.getContextPath() + "/images/file.png");
+        nodeB2.setText("Node B2" + id);
+        nodeB.getChildrens().add(nodeB2);
 
-	TreeNode nodeC = new TreeNode();
-	nodeC.setId("C" + id);
-	nodeC.setText("Node C" + id);
-    nodeC.setIcon(servletContext.getContextPath() + "/images/folder.png");
-    nodeC.setHasChildren(true);
+        TreeNode nodeC = new TreeNode();
+        nodeC.setId("C" + id);
+        nodeC.setText("Node C" + id);
+        nodeC.setIcon(servletContext.getContextPath() + "/images/folder.png");
+        nodeC.setHasChildren(true);
 
-	nodes.add(nodeA);
-	nodes.add(nodeB);
-	nodes.add(nodeC);
+        nodes.add(nodeA);
+        nodes.add(nodeB);
+        nodes.add(nodeC);
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public String getJSON() {
-	return execute();
+        return execute();
     }
 
     public List<TreeNode> getNodes() {
-	return nodes;
+        return nodes;
     }
 
     public void setId(String id) {
-	this.id = id;
+        this.id = id;
     }
 
     public void setServletContext(ServletContext servletContext) {
-          this.servletContext = servletContext;
+        this.servletContext = servletContext;
     }
 }

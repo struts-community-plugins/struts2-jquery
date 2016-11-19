@@ -19,30 +19,27 @@
 
 package com.jgeppert.struts2.jquery.datatables.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.datatables.components.Datatables;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.datatables.components.Datatables;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @see Datatables
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Datatables
  */
 public class DatatablesModel extends TagModel {
 
-	public DatatablesModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		super(stack, req, res);
-	}
+    public DatatablesModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-	@Override
-	protected Component getBean() {
-		return new Datatables(stack, req, res);
-	}
+    @Override
+    protected Component getBean() {
+        return new Datatables(stack, req, res);
+    }
 
 }

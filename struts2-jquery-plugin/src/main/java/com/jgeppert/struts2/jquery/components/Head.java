@@ -19,19 +19,17 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Arrays;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.inject.Inject;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.StrutsConstants;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.inject.Inject;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 /**
  * <!-- START SNIPPET: notice -->
@@ -40,27 +38,27 @@ import com.opensymphony.xwork2.util.ValueStack;
  * required in order to use any of the tags included in the jQuery plugin.
  * </p>
  * <!-- END SNIPPET: notice -->
- * 
+ * <p>
  * <!-- START SNIPPET: javadoc -->
  * <p>
  * Some tags like the "datepicker" can use different locales, to use a locale
  * that is different from the request locale.
  * </p>
- * 
+ * <p>
  * <p>
  * The "locale" attribute configures jQuery locale for datepicker. Default is
  * "en" you can use all locales that are bundled with jQuery. e.g. "de, "fr", "
  * ja", ...
  * </p>
- * 
+ * <p>
  * <!-- END SNIPPET: javadoc -->
- * 
+ * <p>
  * <p>
  * Examples
  * </p>
- * 
+ * <p>
  * <!-- START SNIPPET: example1 -->
- * 
+ * <p>
  * <pre>
  * &lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot; %&gt;
  * &lt;head&gt;
@@ -68,11 +66,11 @@ import com.opensymphony.xwork2.util.ValueStack;
  *   &lt;sj:head/&gt;
  * &lt;/head&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example1 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example2 -->
- * 
+ * <p>
  * <pre>
  * &lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot; %&gt;
  * &lt;head&gt;
@@ -80,216 +78,249 @@ import com.opensymphony.xwork2.util.ValueStack;
  *   &lt;sj:head compressed=&quot;false&quot; locale=&quot;de&quot; jquerytheme=&quot;cupertino&quot;/&gt;
  * &lt;/head&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example2 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "head", tldBodyContent = "empty", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag", description = "Render a chunk of HEAD for your HTML file", allowDynamicAttributes = false)
 @StrutsTagSkipInheritance
 public class Head extends org.apache.struts2.components.Head {
-	public static final String TEMPLATE = "head";
+    public static final String TEMPLATE = "head";
 
-	private static final String[] timeLocals = { "af", "bg", "ca", "cs", "de", "el", "es", "et", "eu", "fi", "fr", "gl",
-			"he", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sv", "th",
-			"tr", "uk", "vi", "zh-CN", "zh-TW" };
-	private static final String[] gridLocals = { "ar", "bg", "ca", "cn", "cs", "de", "da", "dk", "el", "en", "es",
-			"en-GB", "fa", "fi", "fr", "fr-CH", "gl", "he", "hr", "hu", "id", "is", "it", "ja", "lt", "mne", "nl", "no",
-			"pl", "pt", "pt-BR", "ro", "ru", "sk", "sr", "sv", "th", "tr", "ua", "vi", "zh", "zh-CN", "zh-TW" };
-	private static final String[] jqueryLocals = { "af", "ar", "ar-DZ", "az", "be", "bg", "bs", "ca", "cs", "cy-GB",
-			"da", "de", "el", "en", "en-AU", "en-GB", "en-NZ", "eo", "es", "et", "eu", "fa", "fi", "fo", "fr", "fr-CA",
-			"fr-CH", "ge", "gl", "he", "hi", "hr", "hu", "hy", "id", "is", "it", "ja", "ka", "kk", "km", "ko", "kr",
-			"ky", "kz", "lt", "lb", "lv", "mk", "ml", "ms", "nb", "nl-BE", "nl", "nn", "no", "pl", "pt", "pt-BR", "rm",
-			"ro", "ru", "sk", "sl", "sq", "sr-SR", "sv", "ta", "th", "tj", "tr", "uk", "vi", "zh-CN", "zh-HK",
-			"zh-TW" };
-	private static final String[] datatablesLocals = { "af", "ar", "ar-DZ", "az", "be", "bg", "bn", "ca", "cs", "cy-GB",
-			"da", "de", "el", "en", "en-AU", "en-GB", "en-NZ", "es", "et", "eu", "fa", "fi", "fil", "fr", "fr-CA",
-			"fr-CH", "gl", "he", "hi", "hr", "hu", "hy", "id", "is", "it", "it-CH", "ja", "ka", "ko", "ky", "lt", "lv",
-			"mk", "mn", "ms", "nb", "nl-BE", "nl", "nn", "pl", "ps", "pt", "pt-BR", "ro", "ru", "si", "sk", "sl", "sq",
-			"sr", "sv", "sw", "ta", "te", "th", "tr", "uk", "ur", "uz", "vi", "zh-CN", "zh-TW" };
+    private static final String[] timeLocals = {"af", "bg", "ca", "cs", "de", "el", "es", "et", "eu", "fi", "fr", "gl",
+            "he", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sv", "th",
+            "tr", "uk", "vi", "zh-CN", "zh-TW"};
+    private static final String[] gridLocals = {"ar", "bg", "ca", "cn", "cs", "de", "da", "dk", "el", "en", "es",
+            "en-GB", "fa", "fi", "fr", "fr-CH", "gl", "he", "hr", "hu", "id", "is", "it", "ja", "lt", "mne", "nl", "no",
+            "pl", "pt", "pt-BR", "ro", "ru", "sk", "sr", "sv", "th", "tr", "ua", "vi", "zh", "zh-CN", "zh-TW"};
+    private static final String[] jqueryLocals = {"af", "ar", "ar-DZ", "az", "be", "bg", "bs", "ca", "cs", "cy-GB",
+            "da", "de", "el", "en", "en-AU", "en-GB", "en-NZ", "eo", "es", "et", "eu", "fa", "fi", "fo", "fr", "fr-CA",
+            "fr-CH", "ge", "gl", "he", "hi", "hr", "hu", "hy", "id", "is", "it", "ja", "ka", "kk", "km", "ko", "kr",
+            "ky", "kz", "lt", "lb", "lv", "mk", "ml", "ms", "nb", "nl-BE", "nl", "nn", "no", "pl", "pt", "pt-BR", "rm",
+            "ro", "ru", "sk", "sl", "sq", "sr-SR", "sv", "ta", "th", "tj", "tr", "uk", "vi", "zh-CN", "zh-HK",
+            "zh-TW"};
+    private static final String[] datatablesLocals = {"af", "ar", "ar-DZ", "az", "be", "bg", "bn", "ca", "cs", "cy-GB",
+            "da", "de", "el", "en", "en-AU", "en-GB", "en-NZ", "es", "et", "eu", "fa", "fi", "fil", "fr", "fr-CA",
+            "fr-CH", "gl", "he", "hi", "hr", "hu", "hy", "id", "is", "it", "it-CH", "ja", "ka", "ko", "ky", "lt", "lv",
+            "mk", "mn", "ms", "nb", "nl-BE", "nl", "nn", "pl", "ps", "pt", "pt-BR", "ro", "ru", "si", "sk", "sl", "sq",
+            "sr", "sv", "sw", "ta", "te", "th", "tr", "uk", "ur", "uz", "vi", "zh-CN", "zh-TW"};
 
-	protected String compressed;
-	protected String locale;
-	protected String jquery;
-	protected String jquerytheme;
-	protected String jqueryui;
-	protected String customBasepath;
-	protected String loadFromGoogle;
-	protected String ajaxcache;
-	protected String ajaxhistory;
-	protected String defaultIndicator;
-	protected String defaultLoadingText;
-	protected String defaultErrorText;
-	protected String loadAtOnce;
-	protected String debug;
-	protected String scriptPath;
+    private static final String PARAM_JQUERY = "jquery";
+    private static final String PARAM_JQUERYUI = "jqueryui";
+    private static final String PARAM_COMPRESSED = "compressed";
+    private static final String PARAM_JQUERYTHEME = "jquerytheme";
+    private static final String PARAM_CUSTOM_BASEPATH = "customBasepath";
+    private static final String PARAM_LOAD_FROM_GOOGLE = "loadFromGoogle";
+    private static final String PARAM_AJAXCACHE = "ajaxcache";
+    private static final String PARAM_AJAXHISTORY = "ajaxhistory";
+    private static final String PARAM_DEFAULT_INDICATOR = "defaultIndicator";
+    private static final String PARAM_DEFAULT_LOADING_TEXT = "defaultLoadingText";
+    private static final String PARAM_DEFAULT_ERROR_TEXT = "defaultErrorText";
+    private static final String PARAM_LOAD_AT_ONCE = "loadAtOnce";
+    private static final String PARAM_DEBUG = "debug";
+    private static final String PARAM_SCRIPT_PATH = "scriptPath";
+    private static final String PARAM_GRID_LOCALE = "gridLocale";
+    private static final String PARAM_TIME_LOCALE = "timeLocale";
+    private static final String PARAM_JQUERY_LOCALE = "jqueryLocale";
+    private static final String PARAM_DATATABLES_LOCALE = "datatablesLocale";
 
-	private String defaultLocale;
+    protected String compressed;
+    protected String locale;
+    protected String jquery;
+    protected String jquerytheme;
+    protected String jqueryui;
+    protected String customBasepath;
+    protected String loadFromGoogle;
+    protected String ajaxcache;
+    protected String ajaxhistory;
+    protected String defaultIndicator;
+    protected String defaultLoadingText;
+    protected String defaultErrorText;
+    protected String loadAtOnce;
+    protected String debug;
+    protected String scriptPath;
 
-	public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-		super(stack, request, response);
-	}
+    private String defaultLocale;
 
-	@Override
-	protected String getDefaultTemplate() {
-		return TEMPLATE;
-	}
+    public Head(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
+    }
 
-	@Override
-	public void evaluateParams() {
-		super.evaluateParams();
+    @Override
+    protected String getDefaultTemplate() {
+        return TEMPLATE;
+    }
 
-		if (this.jquery != null)
-			addParameter("jquery", findValue(this.jquery, Boolean.class));
-		if (this.jqueryui != null)
-			addParameter("jqueryui", findValue(this.jqueryui, Boolean.class));
-		if (this.compressed != null)
-			addParameter("compressed", findValue(this.compressed, Boolean.class));
-		if (this.jquerytheme != null)
-			addParameter("jquerytheme", findString(this.jquerytheme));
-		if (this.customBasepath != null)
-			addParameter("customBasepath", findString(this.customBasepath));
-		if (this.loadFromGoogle != null)
-			addParameter("loadFromGoogle", findValue(this.loadFromGoogle, Boolean.class));
-		if (this.ajaxcache != null)
-			addParameter("ajaxcache", findValue(this.ajaxcache, Boolean.class));
-		if (this.ajaxhistory != null)
-			addParameter("ajaxhistory", findValue(this.ajaxhistory, Boolean.class));
-		if (this.defaultIndicator != null)
-			addParameter("defaultIndicator", findString(this.defaultIndicator));
-		if (this.defaultLoadingText != null)
-			addParameter("defaultLoadingText", findString(this.defaultLoadingText));
-		if (this.defaultErrorText != null)
-			addParameter("defaultErrorText", findString(this.defaultErrorText));
-		if (this.loadAtOnce != null)
-			addParameter("loadAtOnce", findValue(this.loadAtOnce, Boolean.class));
-		if (this.debug != null)
-			addParameter("debug", findValue(this.debug, Boolean.class));
-		if (this.scriptPath != null)
-			addParameter("scriptPath", findString(this.scriptPath));
+    @Override
+    public void evaluateParams() {
+        super.evaluateParams();
 
-		String loc = null;
-		if (this.locale != null)
-			loc = StringUtils.replace(findString(this.locale), "_", "-");
-		else if (defaultLocale != null)
-			loc = StringUtils.replace(defaultLocale, "_", "-");
+        if (this.jquery != null) {
+            addParameter(PARAM_JQUERY, findValue(this.jquery, Boolean.class));
+        }
+        if (this.jqueryui != null) {
+            addParameter(PARAM_JQUERYUI, findValue(this.jqueryui, Boolean.class));
+        }
+        if (this.compressed != null) {
+            addParameter(PARAM_COMPRESSED, findValue(this.compressed, Boolean.class));
+        }
+        if (this.jquerytheme != null) {
+            addParameter(PARAM_JQUERYTHEME, findString(this.jquerytheme));
+        }
+        if (this.customBasepath != null) {
+            addParameter(PARAM_CUSTOM_BASEPATH, findString(this.customBasepath));
+        }
+        if (this.loadFromGoogle != null) {
+            addParameter(PARAM_LOAD_FROM_GOOGLE, findValue(this.loadFromGoogle, Boolean.class));
+        }
+        if (this.ajaxcache != null) {
+            addParameter(PARAM_AJAXCACHE, findValue(this.ajaxcache, Boolean.class));
+        }
+        if (this.ajaxhistory != null) {
+            addParameter(PARAM_AJAXHISTORY, findValue(this.ajaxhistory, Boolean.class));
+        }
+        if (this.defaultIndicator != null) {
+            addParameter(PARAM_DEFAULT_INDICATOR, findString(this.defaultIndicator));
+        }
+        if (this.defaultLoadingText != null) {
+            addParameter(PARAM_DEFAULT_LOADING_TEXT, findString(this.defaultLoadingText));
+        }
+        if (this.defaultErrorText != null) {
+            addParameter(PARAM_DEFAULT_ERROR_TEXT, findString(this.defaultErrorText));
+        }
+        if (this.loadAtOnce != null) {
+            addParameter(PARAM_LOAD_AT_ONCE, findValue(this.loadAtOnce, Boolean.class));
+        }
+        if (this.debug != null) {
+            addParameter(PARAM_DEBUG, findValue(this.debug, Boolean.class));
+        }
+        if (this.scriptPath != null) {
+            addParameter(PARAM_SCRIPT_PATH, findString(this.scriptPath));
+        }
 
-		if (loc != null) {
-			addParameter("gridLocale", validateLocal(gridLocals, loc));
-			addParameter("timeLocale", validateLocal(timeLocals, loc));
-			addParameter("jqueryLocale", validateLocal(jqueryLocals, loc));
-			addParameter("datatablesLocale", validateLocal(datatablesLocals, loc));
-		}
-	}
+        String loc = null;
+        if (this.locale != null) {
+            loc = StringUtils.replace(findString(this.locale), "_", "-");
+        } else if (defaultLocale != null) {
+            loc = StringUtils.replace(defaultLocale, "_", "-");
+        }
 
-	@Inject(value = StrutsConstants.STRUTS_LOCALE, required = false)
-	public void setDefaultLocale(String val) {
-		defaultLocale = val;
-	}
+        if (loc != null) {
+            addParameter(PARAM_GRID_LOCALE, validateLocal(gridLocals, loc));
+            addParameter(PARAM_TIME_LOCALE, validateLocal(timeLocals, loc));
+            addParameter(PARAM_JQUERY_LOCALE, validateLocal(jqueryLocals, loc));
+            addParameter(PARAM_DATATABLES_LOCALE, validateLocal(datatablesLocals, loc));
+        }
+    }
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
+    @Inject(value = StrutsConstants.STRUTS_LOCALE, required = false)
+    public void setDefaultLocale(String val) {
+        defaultLocale = val;
+    }
 
-	@Override
-	public String getTheme() {
-		return "jquery";
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
+    }
 
-	@StrutsTagAttribute(description = "Include jQuery Script", defaultValue = "true", type = "Boolean")
-	public void setJquery(String jquery) {
-		this.jquery = jquery;
-	}
+    @Override
+    public String getTheme() {
+        return "jquery";
+    }
 
-	public boolean isJqueryui() {
-		return jqueryui != null && Boolean.parseBoolean(jqueryui);
-	}
+    @StrutsTagAttribute(description = "Include jQuery Script", defaultValue = "true", type = "Boolean")
+    public void setJquery(String jquery) {
+        this.jquery = jquery;
+    }
 
-	@StrutsTagAttribute(description = "enable jQuery UI Scripts", defaultValue = "true", type = "Boolean")
-	public void setJqueryui(String jqueryui) {
-		this.jqueryui = jqueryui;
-	}
+    public boolean isJqueryui() {
+        return jqueryui != null && Boolean.parseBoolean(jqueryui);
+    }
 
-	@StrutsTagAttribute(description = "use compressed version of jquery and jquery-ui", defaultValue = "true", type = "Boolean")
-	public void setCompressed(String compressed) {
-		this.compressed = compressed;
-	}
+    @StrutsTagAttribute(description = "enable jQuery UI Scripts", defaultValue = "true", type = "Boolean")
+    public void setJqueryui(String jqueryui) {
+        this.jqueryui = jqueryui;
+    }
 
-	@StrutsTagAttribute(description = "jQuery UI theme", defaultValue = "smoothness")
-	public void setJquerytheme(String jquerytheme) {
-		this.jquerytheme = jquerytheme;
-	}
+    @StrutsTagAttribute(description = "use compressed version of jquery and jquery-ui", defaultValue = "true", type = "Boolean")
+    public void setCompressed(String compressed) {
+        this.compressed = compressed;
+    }
 
-	@StrutsTagAttribute(description = "import jQuery i18n scripts.", defaultValue = "en or struts.local value")
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
+    @StrutsTagAttribute(description = "jQuery UI theme", defaultValue = "smoothness")
+    public void setJquerytheme(String jquerytheme) {
+        this.jquerytheme = jquerytheme;
+    }
 
-	@StrutsTagAttribute(description = "base path for custom jQuery designs")
-	public void setCustomBasepath(String customBasepath) {
-		this.customBasepath = customBasepath;
-	}
+    @StrutsTagAttribute(description = "import jQuery i18n scripts.", defaultValue = "en or struts.local value")
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
 
-	@StrutsTagAttribute(description = "Load JavaScript from google content distribution network", defaultValue = "false", type = "Boolean")
-	public void setLoadFromGoogle(String loadFromGoogle) {
-		this.loadFromGoogle = loadFromGoogle;
-	}
+    @StrutsTagAttribute(description = "base path for custom jQuery designs")
+    public void setCustomBasepath(String customBasepath) {
+        this.customBasepath = customBasepath;
+    }
 
-	@StrutsTagAttribute(description = "If set to false it will force the pages that you request to not be cached by the browser.", defaultValue = "false", type = "Boolean")
-	public void setAjaxcache(String ajaxcache) {
-		this.ajaxcache = ajaxcache;
-	}
+    @StrutsTagAttribute(description = "Load JavaScript from google content distribution network", defaultValue = "false", type = "Boolean")
+    public void setLoadFromGoogle(String loadFromGoogle) {
+        this.loadFromGoogle = loadFromGoogle;
+    }
 
-	@StrutsTagAttribute(description = "If set to true it will enable history and bookmarking for AJAX content and jQuery UI Tabs.", defaultValue = "false", type = "Boolean")
-	public void setAjaxhistory(String ajaxhistory) {
-		this.ajaxhistory = ajaxhistory;
-	}
+    @StrutsTagAttribute(description = "If set to false it will force the pages that you request to not be cached by the browser.", defaultValue = "false", type = "Boolean")
+    public void setAjaxcache(String ajaxcache) {
+        this.ajaxcache = ajaxcache;
+    }
 
-	@StrutsTagAttribute(description = "The default indicator for all AJAX actions")
-	public void setDefaultIndicator(String defaultIndicator) {
-		this.defaultIndicator = defaultIndicator;
-	}
+    @StrutsTagAttribute(description = "If set to true it will enable history and bookmarking for AJAX content and jQuery UI Tabs.", defaultValue = "false", type = "Boolean")
+    public void setAjaxhistory(String ajaxhistory) {
+        this.ajaxhistory = ajaxhistory;
+    }
 
-	@StrutsTagAttribute(description = "The default loading text for all AJAX actions")
-	public void setDefaultLoadingText(String defaultLoadingText) {
-		this.defaultLoadingText = defaultLoadingText;
-	}
+    @StrutsTagAttribute(description = "The default indicator for all AJAX actions")
+    public void setDefaultIndicator(String defaultIndicator) {
+        this.defaultIndicator = defaultIndicator;
+    }
 
-	@StrutsTagAttribute(description = "The default error text for all AJAX actions")
-	public void setDefaultErrorText(String defaultErrorText) {
-		this.defaultErrorText = defaultErrorText;
-	}
+    @StrutsTagAttribute(description = "The default loading text for all AJAX actions")
+    public void setDefaultLoadingText(String defaultLoadingText) {
+        this.defaultLoadingText = defaultLoadingText;
+    }
 
-	@StrutsTagAttribute(description = "do not use the on demand load for jquery ui resources", defaultValue = "false", type = "Boolean")
-	public void setLoadAtOnce(String loadAtOnce) {
-		this.loadAtOnce = loadAtOnce;
-	}
+    @StrutsTagAttribute(description = "The default error text for all AJAX actions")
+    public void setDefaultErrorText(String defaultErrorText) {
+        this.defaultErrorText = defaultErrorText;
+    }
 
-	private static String validateLocal(String[] locals, String local) {
-		String retString = "en";
+    @StrutsTagAttribute(description = "do not use the on demand load for jquery ui resources", defaultValue = "false", type = "Boolean")
+    public void setLoadAtOnce(String loadAtOnce) {
+        this.loadAtOnce = loadAtOnce;
+    }
 
-		// Array must be sorted for binarySearch
-		Arrays.sort(locals);
+    private static String validateLocal(String[] locals, String local) {
+        String retString = "en";
 
-		if (Arrays.binarySearch(locals, local) > -1) {
-			retString = local;
-		} else if (local.length() > 2 && Arrays.binarySearch(locals, local.substring(0, 2)) > -1) {
-			retString = local.substring(0, 2);
-		}
+        // Array must be sorted for binarySearch
+        Arrays.sort(locals);
 
-		return retString;
-	}
+        if (Arrays.binarySearch(locals, local) > -1) {
+            retString = local;
+        } else if (local.length() > 2 && Arrays.binarySearch(locals, local.substring(0, 2)) > -1) {
+            retString = local.substring(0, 2);
+        }
 
-	@StrutsTagAttribute(description = "enable debug logging", defaultValue = "false", type = "Boolean")
-	public void setDebug(String debug) {
-		this.debug = debug;
-	}
+        return retString;
+    }
 
-	@StrutsTagAttribute(description = "path to the JavaScript ressources", defaultValue = "#your context root#/struts/")
-	public void setScriptPath(String scriptPath) {
-		this.scriptPath = scriptPath;
-	}
+    @StrutsTagAttribute(description = "enable debug logging", defaultValue = "false", type = "Boolean")
+    public void setDebug(String debug) {
+        this.debug = debug;
+    }
+
+    @StrutsTagAttribute(description = "path to the JavaScript ressources", defaultValue = "#your context root#/struts/")
+    public void setScriptPath(String scriptPath) {
+        this.scriptPath = scriptPath;
+    }
 }

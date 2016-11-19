@@ -19,38 +19,33 @@
 
 package com.jgeppert.struts2.jquery.chart.views;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.jgeppert.struts2.jquery.chart.views.freemarker.tags.JqueryChartModels;
 import com.jgeppert.struts2.jquery.chart.views.velocity.components.ChartDataDirective;
 import com.jgeppert.struts2.jquery.chart.views.velocity.components.ChartDirective;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.TagLibraryDirectiveProvider;
 import org.apache.struts2.views.TagLibraryModelProvider;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
-public class JqueryChartTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider  {
+public class JqueryChartTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
     public Object getModels(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new JqueryChartModels(stack, req, res);
+                            HttpServletResponse res) {
+        return new JqueryChartModels(stack, req, res);
     }
 
     @SuppressWarnings("rawtypes")
     public List<Class> getDirectiveClasses() {
-	Class[] directives = new Class[] { ChartDirective.class,
-		ChartDataDirective.class };
-	return Arrays.asList(directives);
+        Class[] directives = new Class[]{ChartDirective.class,
+                ChartDataDirective.class};
+        return Arrays.asList(directives);
     }
 
 }

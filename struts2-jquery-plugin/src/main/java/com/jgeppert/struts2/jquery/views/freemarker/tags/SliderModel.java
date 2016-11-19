@@ -19,27 +19,25 @@
 
 package com.jgeppert.struts2.jquery.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.Slider;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TextFieldModel;
 
-import com.jgeppert.struts2.jquery.components.Slider;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * @see Slider
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @see Slider
  */
 public class SliderModel extends TextFieldModel {
 
-  public SliderModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    super(stack, req, res);
-  }
+    public SliderModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-  protected Component getBean()
-  {
-    return new Slider(stack, req, res);
-  }
+    protected Component getBean() {
+        return new Slider(stack, req, res);
+    }
 }

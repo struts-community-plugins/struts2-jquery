@@ -22,15 +22,13 @@ package com.jgeppert.struts2.jquery.datatables.views.velocity.components;
 import org.apache.struts2.views.velocity.components.AbstractDirective;
 
 /**
- * 
  * Overwrite name prefix
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public abstract class JqueryDatatablesAbstractDirective extends AbstractDirective {
-	@Override
-	public String getName() {
-		return "sjdt" + getBeanName();
-	}
+    @Override
+    public String getName() {
+        return "sjdt" + getBeanName();
+    }
 }

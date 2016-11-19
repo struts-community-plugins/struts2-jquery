@@ -19,33 +19,27 @@
 
 package com.jgeppert.struts2.jquery.tree.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.tree.components.Tree;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.tree.components.Tree;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Tree
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Tree
  */
 public class TreeDirective extends JqueryTreeAbstractDirective {
-  public String getBeanName()
-  {
-    return "tree";
-  }
+    public String getBeanName() {
+        return "tree";
+    }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Tree(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Tree(stack, req, res);
+    }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
+    public int getType() {
+        return BLOCK;
+    }
 }

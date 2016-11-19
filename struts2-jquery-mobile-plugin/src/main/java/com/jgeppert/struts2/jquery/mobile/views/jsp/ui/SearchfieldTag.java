@@ -19,40 +19,37 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.Searchfield;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.Searchfield;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Searchfield
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Searchfield
  */
 public class SearchfieldTag extends
-	org.apache.struts2.views.jsp.ui.TextFieldTag implements ThemeableTag {
+        org.apache.struts2.views.jsp.ui.TextFieldTag implements ThemeableTag {
 
     private static final long serialVersionUID = -1273121721255626186L;
 
     protected String dataTheme;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Searchfield(stack, req, res);
+                             HttpServletResponse res) {
+        return new Searchfield(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Searchfield text = (Searchfield) component;
-	text.setDataTheme(dataTheme);
+        Searchfield text = (Searchfield) component;
+        text.setDataTheme(dataTheme);
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 }

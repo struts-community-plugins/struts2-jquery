@@ -19,17 +19,16 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.Anchor;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Anchor;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * @see Anchor
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @see Anchor
  */
 public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
 
@@ -50,31 +49,31 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
     protected String replaceTarget;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Anchor(stack, req, res);
+                             HttpServletResponse res) {
+        return new Anchor(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Anchor link = (Anchor) component;
-	link.setOpenDialog(openDialog);
-	link.setOpenDialogTitle(openDialogTitle);
-	link.setOnClickTopics(onClickTopics);
-	link.setButton(button);
-	link.setButtonIcon(buttonIcon);
-	link.setButtonIconSecondary(buttonIconSecondary);
-	link.setButtonText(buttonText);
-	link.setValidateFunction(validateFunction);
-	link.setValidate(validate);
-	link.setClearForm(clearForm);
-	link.setResetForm(resetForm);
-	link.setIframe(iframe);
-	link.setReplaceTarget(replaceTarget);
+        Anchor link = (Anchor) component;
+        link.setOpenDialog(openDialog);
+        link.setOpenDialogTitle(openDialogTitle);
+        link.setOnClickTopics(onClickTopics);
+        link.setButton(button);
+        link.setButtonIcon(buttonIcon);
+        link.setButtonIconSecondary(buttonIconSecondary);
+        link.setButtonText(buttonText);
+        link.setValidateFunction(validateFunction);
+        link.setValidate(validate);
+        link.setClearForm(clearForm);
+        link.setResetForm(resetForm);
+        link.setIframe(iframe);
+        link.setReplaceTarget(replaceTarget);
     }
 
     public void setOpenDialog(String openDialog) {
-	this.openDialog = openDialog;
+        this.openDialog = openDialog;
     }
 
     public void setOpenDialogTitle(String openDialogTitle) {
@@ -82,31 +81,31 @@ public class AnchorTag extends AbstractRemoteTag implements ButtonTag {
     }
 
     public void setOnClickTopics(String onClickTopics) {
-	this.onClickTopics = onClickTopics;
+        this.onClickTopics = onClickTopics;
     }
 
     public void setButton(String button) {
-	this.button = button;
+        this.button = button;
     }
 
     public void setButtonIcon(String buttonIcon) {
-	this.buttonIcon = buttonIcon;
+        this.buttonIcon = buttonIcon;
     }
 
     public void setButtonIconSecondary(String buttonIconSecondary) {
-	this.buttonIconSecondary = buttonIconSecondary;
+        this.buttonIconSecondary = buttonIconSecondary;
     }
 
     public void setButtonText(String buttonText) {
-	this.buttonText = buttonText;
+        this.buttonText = buttonText;
     }
 
     public void setValidateFunction(String validateFunction) {
-	this.validateFunction = validateFunction;
+        this.validateFunction = validateFunction;
     }
 
     public void setValidate(String validate) {
-	this.validate = validate;
+        this.validate = validate;
     }
 
     public void setClearForm(String clearForm) {

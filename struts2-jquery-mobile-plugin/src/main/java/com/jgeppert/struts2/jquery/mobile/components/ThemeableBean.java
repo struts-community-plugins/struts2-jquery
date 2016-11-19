@@ -20,11 +20,9 @@
 package com.jgeppert.struts2.jquery.mobile.components;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public interface ThemeableBean {
 
-    public void setDataTheme(String dataTheme);
+    void setDataTheme(String dataTheme);
 }

@@ -19,16 +19,14 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -39,15 +37,15 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <p>
  * Examples
  * </p>
- * 
+ * <p>
  * <!-- START SNIPPET: example1 -->
  * <p>
  * Create a Buttonset from Checkbox List.
  * </p>
- * 
+ * <p>
  * <pre>
  * &lt;div id=&quot;formResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
- *   
+ *
  *   &lt;s:form id=&quot;form&quot; action=&quot;echo&quot; theme=&quot;xhtml&quot;&gt;
  *         &lt;sj:checkboxlist
  *             id=&quot;checkboxbuttonset&quot;
@@ -55,83 +53,70 @@ import com.opensymphony.xwork2.util.ValueStack;
  *                 label=&quot;Friends&quot;
  *                 list=&quot;{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}&quot;
  *                 name=&quot;echo&quot;/&gt;
- *             &lt;sj:submit 
- *               targets=&quot;formResult&quot; 
- *               value=&quot;AJAX Submit&quot; 
+ *             &lt;sj:submit
+ *               targets=&quot;formResult&quot;
+ *               value=&quot;AJAX Submit&quot;
  *               indicator=&quot;indicator&quot;
  *               button=&quot;true&quot;
  *               /&gt;
  *   &lt;/s:form&gt;
  *   &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example1 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 
 @StrutsTag(name = "checkboxlist", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.CheckboxListTag", description = "Render a Button Set from a given checkbox list", allowDynamicAttributes = true)
 public class CheckboxList extends AbstractFormListElement {
 
-  public static final String            TEMPLATE       = "checkboxlist";
-  public static final String            TEMPLATE_CLOSE = "checkboxlist-close";
-  public static final String            COMPONENT_NAME = CheckboxList.class.getName();
-  final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION   = "buttonset";
+    public static final String TEMPLATE = "checkboxlist";
+    public static final String TEMPLATE_CLOSE = "checkboxlist-close";
+    public static final String COMPONENT_NAME = CheckboxList.class.getName();
+    final private static transient Random RANDOM = new Random();
+    public static final String JQUERYACTION = "buttonset";
 
-  protected String                      buttonset;
+    private static final String PARAM_BUTTONSET = "buttonset";
+    public static final String ID_PREFIX_CHECKBOX = "checkbox_";
 
-  public CheckboxList(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
+    protected String buttonset;
 
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
-
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
-
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
-
-    addParameter("jqueryaction", JQUERYACTION);
-
-    if (buttonset != null) addParameter("buttonset", findValue(buttonset, Boolean.class));
-
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "checkbox_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
+    public CheckboxList(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
     }
-  }
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+    public String getDefaultOpenTemplate() {
+        return TEMPLATE;
+    }
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+    protected String getDefaultTemplate() {
+        return TEMPLATE_CLOSE;
+    }
 
-  @StrutsTagAttribute(description = "Disable or enable the jQuery UI buttonset feature.", defaultValue = "true", type = "Boolean")
-  public void setButtonset(String buttonset)
-  {
-    this.buttonset = buttonset;
-  }
+    public void evaluateExtraParams() {
+        super.evaluateExtraParams();
+
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
+        addParameterIfPresent(PARAM_BUTTONSET, this.buttonset, Boolean.class);
+
+        addGeneratedIdParam(ID_PREFIX_CHECKBOX);
+    }
+
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
+    }
+
+    @Override
+    public String getTheme() {
+        return "jquery";
+    }
+
+    @StrutsTagAttribute(description = "Disable or enable the jQuery UI buttonset feature.", defaultValue = "true", type = "Boolean")
+    public void setButtonset(String buttonset) {
+        this.buttonset = buttonset;
+    }
 
 }

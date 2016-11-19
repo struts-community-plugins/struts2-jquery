@@ -19,19 +19,16 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.ListItem;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.ListItem;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see ListItem
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see ListItem
  */
 public class ListItemTag extends AnchorTag {
 
@@ -40,18 +37,18 @@ public class ListItemTag extends AnchorTag {
     protected String divider;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new ListItem(stack, req, res);
+                             HttpServletResponse res) {
+        return new ListItem(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	ListItem listItem = (ListItem) component;
-	listItem.setDivider(divider);
+        ListItem listItem = (ListItem) component;
+        listItem.setDivider(divider);
     }
 
     public void setDivider(String divider) {
-	this.divider = divider;
+        this.divider = divider;
     }
 }

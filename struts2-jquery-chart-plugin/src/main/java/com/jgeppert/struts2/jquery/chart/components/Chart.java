@@ -19,17 +19,14 @@
 
 package com.jgeppert.struts2.jquery.chart.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.AbstractContainer;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.jgeppert.struts2.jquery.components.AbstractContainer;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -37,428 +34,411 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Render a Chart Element based on Flot
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "chart", tldTagClass = "com.jgeppert.struts2.jquery.chart.views.jsp.ui.ChartTag", description = "A Chart Element based on Flot", allowDynamicAttributes = true)
 public class Chart extends AbstractContainer {
 
-	public static final String TEMPLATE = "chart";
-	public static final String TEMPLATE_CLOSE = "chart-close";
-	public static final String COMPONENT_NAME = Chart.class.getName();
-	final private static transient Random RANDOM = new Random();
-	public static final String JQUERYACTION = "chart";
+    public static final String TEMPLATE = "chart";
+    public static final String TEMPLATE_CLOSE = "chart-close";
+    public static final String COMPONENT_NAME = Chart.class.getName();
+    public static final String JQUERYACTION = "chart";
 
-	protected String xaxisPosition;
-	protected String xaxisMode;
-	protected String xaxisColor;
-	protected String xaxisTick;
-	protected String xaxisTickSize;
-	protected String xaxisTickDecimals;
-	protected String xaxisTickColor;
-	protected String xaxisMin;
-	protected String xaxisMax;
-	protected String xaxisTimeformat;
-	protected String xaxisLabel;
-	protected String xaxisLabelFontSizePixels;
-	protected String xaxisLabelFontFamily;
-	protected String yaxisPosition;
-	protected String yaxisMode;
-	protected String yaxisColor;
-	protected String yaxisTick;
-	protected String yaxisTickSize;
-	protected String yaxisTickDecimals;
-	protected String yaxisTickColor;
-	protected String yaxisMin;
-	protected String yaxisMax;
-	protected String yaxisTimeformat;
-	protected String yaxisLabel;
-	protected String yaxisLabelFontSizePixels;
-	protected String yaxisLabelFontFamily;
-	protected String legendShow;
-	protected String legendPosition;
-	protected String legendLabelBoxBorderColor;
-	protected String legendBackgroundColor;
-	protected String onClickTopics;
-	protected String onHoverTopics;
-	protected String crosshair;
-	protected String crosshairMode;
-	protected String crosshairColor;
-	protected String crosshairLineWidth;
-	protected String pie;
-	protected String pieRadius;
-	protected String pieInnerRadius;
-	protected String pieLabel;
-	protected String pieLabelFormatter;
-	protected String pieLabelRadius;
-	protected String pieLabelBackgroundColor;
-	protected String pieLabelBackgroundOpacity;
-	protected String autoResize;
+    private static final String PARAM_XAXIS_POSITION = "xaxisPosition";
+    private static final String PARAM_XAXIS_MODE = "xaxisMode";
+    private static final String PARAM_XAXIS_COLOR = "xaxisColor";
+    private static final String PARAM_XAXIS_TICK = "xaxisTick";
+    private static final String PARAM_XAXIS_TICK_SIZE = "xaxisTickSize";
+    private static final String PARAM_XAXIS_TICK_DECIMALS = "xaxisTickDecimals";
+    private static final String PARAM_XAXIS_TICK_COLOR = "xaxisTickColor";
+    private static final String PARAM_XAXIS_MIN = "xaxisMin";
+    private static final String PARAM_XAXIS_MAX = "xaxisMax";
+    private static final String PARAM_XAXIS_TIMEFORMAT = "xaxisTimeformat";
+    private static final String PARAM_XAXIS_LABEL = "xaxisLabel";
+    private static final String PARAM_XAXIS_LABEL_FONT_SIZE_PIXELS = "xaxisLabelFontSizePixels";
+    private static final String PARAM_XAXIS_LABEL_FONT_FAMILY = "xaxisLabelFontFamily";
+    private static final String PARAM_YAXIS_POSITION = "yaxisPosition";
+    private static final String PARAM_YAXIS_MODE = "yaxisMode";
+    private static final String PARAM_YAXIS_COLOR = "yaxisColor";
+    private static final String PARAM_YAXIS_TICK = "yaxisTick";
+    private static final String PARAM_YAXIS_TICK_SIZE = "yaxisTickSize";
+    private static final String PARAM_YAXIS_TICK_DECIMALS = "yaxisTickDecimals";
+    private static final String PARAM_YAXIS_TICK_COLOR = "yaxisTickColor";
+    private static final String PARAM_YAXIS_MIN = "yaxisMin";
+    private static final String PARAM_YAXIS_MAX = "yaxisMax";
+    private static final String PARAM_YAXIS_TIMEFORMAT = "yaxisTimeformat";
+    private static final String PARAM_YAXIS_LABEL = "yaxisLabel";
+    private static final String PARAM_YAXIS_LABEL_FONT_SIZE_PIXELS = "yaxisLabelFontSizePixels";
+    private static final String PARAM_YAXIS_LABEL_FONT_FAMILY = "yaxisLabelFontFamily";
+    private static final String PARAM_LEGEND_SHOW = "legendShow";
+    private static final String PARAM_LEGEND_POSITION = "legendPosition";
+    private static final String PARAM_LEGEND_LABEL_BOX_BORDER_COLOR = "legendLabelBoxBorderColor";
+    private static final String PARAM_LEGEND_BACKGROUND_COLOR = "legendBackgroundColor";
+    private static final String PARAM_ON_CLICK_TOPICS = "onClickTopics";
+    private static final String PARAM_ON_HOVER_TOPICS = "onHoverTopics";
+    private static final String PARAM_CROSSHAIR = "crosshair";
+    private static final String PARAM_CROSSHAIR_MODE = "crosshairMode";
+    private static final String PARAM_CROSSHAIR_COLOR = "crosshairColor";
+    private static final String PARAM_CROSSHAIR_LINE_WIDTH = "crosshairLineWidth";
+    private static final String PARAM_PIE = "pie";
+    private static final String PARAM_PIE_RADIUS = "pieRadius";
+    private static final String PARAM_PIE_INNER_RADIUS = "pieInnerRadius";
+    private static final String PARAM_PIE_LABEL = "pieLabel";
+    private static final String PARAM_PIE_LABEL_RADIUS = "pieLabelRadius";
+    private static final String PARAM_PIE_LABEL_BACKGROUND_OPACITY = "pieLabelBackgroundOpacity";
+    private static final String PARAM_PIE_LABEL_BACKGROUND_COLOR = "pieLabelBackgroundColor";
+    private static final String PARAM_PIE_LABEL_FORMATTER = "pieLabelFormatter";
+    private static final String PARAM_AUTO_RESIZE = "autoResize";
 
-	public Chart(ValueStack stack, HttpServletRequest request,
-			HttpServletResponse response) {
-		super(stack, request, response);
-	}
+    private static final String ID_PREFIX_CHART = "chart_";
 
-	public String getDefaultOpenTemplate() {
-		return TEMPLATE;
-	}
+    protected String xaxisPosition;
+    protected String xaxisMode;
+    protected String xaxisColor;
+    protected String xaxisTick;
+    protected String xaxisTickSize;
+    protected String xaxisTickDecimals;
+    protected String xaxisTickColor;
+    protected String xaxisMin;
+    protected String xaxisMax;
+    protected String xaxisTimeformat;
+    protected String xaxisLabel;
+    protected String xaxisLabelFontSizePixels;
+    protected String xaxisLabelFontFamily;
+    protected String yaxisPosition;
+    protected String yaxisMode;
+    protected String yaxisColor;
+    protected String yaxisTick;
+    protected String yaxisTickSize;
+    protected String yaxisTickDecimals;
+    protected String yaxisTickColor;
+    protected String yaxisMin;
+    protected String yaxisMax;
+    protected String yaxisTimeformat;
+    protected String yaxisLabel;
+    protected String yaxisLabelFontSizePixels;
+    protected String yaxisLabelFontFamily;
+    protected String legendShow;
+    protected String legendPosition;
+    protected String legendLabelBoxBorderColor;
+    protected String legendBackgroundColor;
+    protected String onClickTopics;
+    protected String onHoverTopics;
+    protected String crosshair;
+    protected String crosshairMode;
+    protected String crosshairColor;
+    protected String crosshairLineWidth;
+    protected String pie;
+    protected String pieRadius;
+    protected String pieInnerRadius;
+    protected String pieLabel;
+    protected String pieLabelFormatter;
+    protected String pieLabelRadius;
+    protected String pieLabelBackgroundColor;
+    protected String pieLabelBackgroundOpacity;
+    protected String autoResize;
 
-	protected String getDefaultTemplate() {
-		return TEMPLATE_CLOSE;
-	}
+    public Chart(ValueStack stack, HttpServletRequest request,
+                 HttpServletResponse response) {
+        super(stack, request, response);
+    }
 
-	public void evaluateExtraParams() {
-		super.evaluateExtraParams();
+    public String getDefaultOpenTemplate() {
+        return TEMPLATE;
+    }
 
-		addParameter("jqueryaction", JQUERYACTION);
+    protected String getDefaultTemplate() {
+        return TEMPLATE_CLOSE;
+    }
 
-		if (xaxisPosition != null)
-			addParameter("xaxisPosition", findString(xaxisPosition));
-		if (xaxisMode != null)
-			addParameter("xaxisMode", findString(xaxisMode));
-		if (xaxisColor != null)
-			addParameter("xaxisColor", findString(xaxisColor));
-		if (xaxisTick != null)
-			addParameter("xaxisTick", findString(xaxisTick));
-		if (xaxisTickSize != null)
-			addParameter("xaxisTickSize", findString(xaxisTickSize));
-		if (xaxisTickDecimals != null)
-			addParameter("xaxisTickDecimals", findString(xaxisTickDecimals));
-		if (xaxisTickColor != null)
-			addParameter("xaxisTickColor", findString(xaxisTickColor));
-		if (xaxisMin != null)
-			addParameter("xaxisMin", findString(xaxisMin));
-		if (xaxisMax != null)
-			addParameter("xaxisMax", findString(xaxisMax));
-		if (xaxisTimeformat != null)
-			addParameter("xaxisTimeformat", findString(xaxisTimeformat));
-		if (xaxisLabel != null)
-			addParameter("xaxisLabel", findString(xaxisLabel));
-		if (xaxisLabelFontSizePixels != null)
-			addParameter("xaxisLabelFontSizePixels",
-					findValue(xaxisLabelFontSizePixels, Number.class));
-		if (xaxisLabelFontFamily != null)
-			addParameter("xaxisLabelFontFamily",
-					findString(xaxisLabelFontFamily));
-		if (yaxisPosition != null)
-			addParameter("yaxisPosition", findString(yaxisPosition));
-		if (yaxisMode != null)
-			addParameter("yaxisMode", findString(yaxisMode));
-		if (yaxisColor != null)
-			addParameter("yaxisColor", findString(yaxisColor));
-		if (yaxisTick != null)
-			addParameter("yaxisTick", findString(yaxisTick));
-		if (yaxisTickSize != null)
-			addParameter("yaxisTickSize", findString(yaxisTickSize));
-		if (yaxisTickDecimals != null)
-			addParameter("yaxisTickDecimals", findString(yaxisTickDecimals));
-		if (yaxisTickColor != null)
-			addParameter("yaxisTickColor", findString(yaxisTickColor));
-		if (yaxisMin != null)
-			addParameter("yaxisMin", findString(yaxisMin));
-		if (yaxisMax != null)
-			addParameter("yaxisMax", findString(yaxisMax));
-		if (yaxisTimeformat != null)
-			addParameter("yaxisTimeformat", findString(yaxisTimeformat));
-		if (yaxisLabel != null)
-			addParameter("yaxisLabel", findString(yaxisLabel));
-		if (yaxisLabelFontSizePixels != null)
-			addParameter("yaxisLabelFontSizePixels",
-					findValue(yaxisLabelFontSizePixels, Number.class));
-		if (yaxisLabelFontFamily != null)
-			addParameter("yaxisLabelFontFamily",
-					findString(yaxisLabelFontFamily));
-		if (legendShow != null)
-			addParameter("legendShow",
-					findValue(this.legendShow, Boolean.class));
-		if (legendPosition != null)
-			addParameter("legendPosition", findString(legendPosition));
-		if (legendLabelBoxBorderColor != null)
-			addParameter("legendLabelBoxBorderColor",
-					findString(legendLabelBoxBorderColor));
-		if (legendBackgroundColor != null)
-			addParameter("legendBackgroundColor",
-					findString(legendBackgroundColor));
-		if (onClickTopics != null)
-			addParameter("onClickTopics", findString(onClickTopics));
-		if (onHoverTopics != null)
-			addParameter("onHoverTopics", findString(onHoverTopics));
-		if (crosshair != null)
-			addParameter("crosshair", findValue(this.crosshair, Boolean.class));
-		if (crosshairMode != null)
-			addParameter("crosshairMode", findString(crosshairMode));
-		if (crosshairColor != null)
-			addParameter("crosshairColor", findString(crosshairColor));
-		if (crosshairLineWidth != null)
-			addParameter("crosshairLineWidth",
-					findValue(crosshairLineWidth, Number.class));
-		if (pie != null)
-			addParameter("pie", findValue(this.pie, Boolean.class));
-		if (pieRadius != null)
-			addParameter("pieRadius", findString(pieRadius));
-		if (pieInnerRadius != null)
-			addParameter("pieInnerRadius", findString(pieInnerRadius));
-		if (pieLabel != null)
-			addParameter("pieLabel", findValue(this.pieLabel, Boolean.class));
-		if (pieLabelRadius != null)
-			addParameter("pieLabelRadius", findString(pieLabelRadius));
-		if (pieLabelBackgroundOpacity != null)
-			addParameter("pieLabelBackgroundOpacity",
-					findString(pieLabelBackgroundOpacity));
-		if (pieLabelBackgroundColor != null)
-			addParameter("pieLabelBackgroundColor",
-					findString(pieLabelBackgroundColor));
-		if (pieLabelFormatter != null)
-			addParameter("pieLabelFormatter", findString(pieLabelFormatter));
+    public void evaluateExtraParams() {
+        super.evaluateExtraParams();
 
-		if (autoResize != null)
-			addParameter("autoResize", findValue(this.autoResize, Boolean.class));
-		if ((this.id == null || this.id.length() == 0)) {
-			// resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-			// http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-			int nextInt = RANDOM.nextInt();
-			nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-					.abs(nextInt);
-			this.id = "chart" + String.valueOf(nextInt);
-			addParameter("id", this.id);
-		}
-	}
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-	@Override
-	@StrutsTagSkipInheritance
-	public void setTheme(String theme) {
-		super.setTheme(theme);
-	}
+        addParameterIfPresent(PARAM_XAXIS_POSITION, this.xaxisPosition);
+        addParameterIfPresent(PARAM_XAXIS_MODE, this.xaxisMode);
+        addParameterIfPresent(PARAM_XAXIS_COLOR, this.xaxisColor);
+        addParameterIfPresent(PARAM_XAXIS_TICK, this.xaxisTick);
+        addParameterIfPresent(PARAM_XAXIS_TICK_SIZE, this.xaxisTickSize);
+        addParameterIfPresent(PARAM_XAXIS_TICK_DECIMALS, this.xaxisTickDecimals);
+        addParameterIfPresent(PARAM_XAXIS_TICK_COLOR, this.xaxisTickColor);
+        addParameterIfPresent(PARAM_XAXIS_MIN, this.xaxisMin);
+        addParameterIfPresent(PARAM_XAXIS_MAX, this.xaxisMax);
+        addParameterIfPresent(PARAM_XAXIS_TIMEFORMAT, this.xaxisTimeformat);
+        addParameterIfPresent(PARAM_XAXIS_LABEL, this.xaxisLabel);
+        addParameterIfPresent(PARAM_XAXIS_LABEL_FONT_SIZE_PIXELS, this.xaxisLabelFontSizePixels, Number.class);
+        addParameterIfPresent(PARAM_XAXIS_LABEL_FONT_FAMILY, this.xaxisLabelFontFamily);
+        addParameterIfPresent(PARAM_YAXIS_POSITION, this.yaxisPosition);
+        addParameterIfPresent(PARAM_YAXIS_MODE, this.yaxisMode);
+        addParameterIfPresent(PARAM_YAXIS_COLOR, this.yaxisColor);
+        addParameterIfPresent(PARAM_YAXIS_TICK, this.yaxisTick);
+        addParameterIfPresent(PARAM_YAXIS_TICK_SIZE, this.yaxisTickSize);
+        addParameterIfPresent(PARAM_YAXIS_TICK_DECIMALS, this.yaxisTickDecimals);
+        addParameterIfPresent(PARAM_YAXIS_TICK_COLOR, this.yaxisTickColor);
+        addParameterIfPresent(PARAM_YAXIS_MIN, this.yaxisMin);
+        addParameterIfPresent(PARAM_YAXIS_MAX, this.yaxisMax);
+        addParameterIfPresent(PARAM_YAXIS_TIMEFORMAT, this.yaxisTimeformat);
+        addParameterIfPresent(PARAM_YAXIS_LABEL, this.yaxisLabel);
+        addParameterIfPresent(PARAM_YAXIS_LABEL_FONT_SIZE_PIXELS, this.yaxisLabelFontSizePixels, Number.class);
+        addParameterIfPresent(PARAM_YAXIS_LABEL_FONT_FAMILY, this.yaxisLabelFontFamily);
+        addParameterIfPresent(PARAM_LEGEND_SHOW, this.legendShow, Boolean.class);
+        addParameterIfPresent(PARAM_LEGEND_POSITION, this.legendPosition);
+        addParameterIfPresent(PARAM_LEGEND_LABEL_BOX_BORDER_COLOR, this.legendLabelBoxBorderColor);
+        addParameterIfPresent(PARAM_LEGEND_BACKGROUND_COLOR, this.legendBackgroundColor);
+        addParameterIfPresent(PARAM_ON_CLICK_TOPICS, this.onClickTopics);
+        addParameterIfPresent(PARAM_ON_HOVER_TOPICS, this.onHoverTopics);
+        addParameterIfPresent(PARAM_CROSSHAIR, this.crosshair, Boolean.class);
+        addParameterIfPresent(PARAM_CROSSHAIR_MODE, this.crosshairMode);
+        addParameterIfPresent(PARAM_CROSSHAIR_COLOR, this.crosshairColor);
+        addParameterIfPresent(PARAM_CROSSHAIR_LINE_WIDTH, this.crosshairLineWidth, Number.class);
+        addParameterIfPresent(PARAM_PIE, this.pie, Boolean.class);
+        addParameterIfPresent(PARAM_PIE_RADIUS, this.pieRadius);
+        addParameterIfPresent(PARAM_PIE_INNER_RADIUS, this.pieInnerRadius);
+        addParameterIfPresent(PARAM_PIE_LABEL, this.pieLabel, Boolean.class);
+        addParameterIfPresent(PARAM_PIE_LABEL_RADIUS, this.pieLabelRadius);
+        addParameterIfPresent(PARAM_PIE_LABEL_BACKGROUND_OPACITY, this.pieLabelBackgroundOpacity);
+        addParameterIfPresent(PARAM_PIE_LABEL_BACKGROUND_COLOR, this.pieLabelBackgroundColor);
+        addParameterIfPresent(PARAM_PIE_LABEL_FORMATTER, this.pieLabelFormatter);
+        addParameterIfPresent(PARAM_AUTO_RESIZE, this.autoResize, Boolean.class);
 
-	@Override
-	public String getTheme() {
-		return "jquery";
-	}
+        addGeneratedIdParam(ID_PREFIX_CHART);
+    }
 
-	@StrutsTagAttribute(description = "bottom, top, left, right")
-	public void setXaxisPosition(String xaxisPosition) {
-		this.xaxisPosition = xaxisPosition;
-	}
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
+    }
 
-	@StrutsTagAttribute(description = "null or time", defaultValue = "null")
-	public void setXaxisMode(String xaxisMode) {
-		this.xaxisMode = xaxisMode;
-	}
+    @Override
+    public String getTheme() {
+        return "jquery";
+    }
 
-	@StrutsTagAttribute(description = "color value")
-	public void setXaxisColor(String xaxisColor) {
-		this.xaxisColor = xaxisColor;
-	}
+    @StrutsTagAttribute(description = "bottom, top, left, right")
+    public void setXaxisPosition(String xaxisPosition) {
+        this.xaxisPosition = xaxisPosition;
+    }
 
-	@StrutsTagAttribute(description = "color value")
-	public void setXaxisTickColor(String xaxisTickColor) {
-		this.xaxisTickColor = xaxisTickColor;
-	}
+    @StrutsTagAttribute(description = "null or time", defaultValue = "null")
+    public void setXaxisMode(String xaxisMode) {
+        this.xaxisMode = xaxisMode;
+    }
 
-	@StrutsTagAttribute(description = "format string to use. The following specifiers are supported:   %h: hours,  %H: hours (left-padded with a zero),  %M: minutes (left-padded with a zero),  %S: seconds (left-padded with a zero),  %d: day of month (1-31), use %0d for zero-padding,  %m: month (1-12), use %0m for zero-padding,  %y: year (four digits),  %b: month name (customizable),  %p: am/pm, additionally switches %h/%H to 12 hour instead of 24,  %P: AM/PM (uppercase version of %p)")
-	public void setXaxisTimeformat(String xaxisTimeformat) {
-		this.xaxisTimeformat = xaxisTimeformat;
-	}
+    @StrutsTagAttribute(description = "color value")
+    public void setXaxisColor(String xaxisColor) {
+        this.xaxisColor = xaxisColor;
+    }
 
-	@StrutsTagAttribute(description = "minimum value")
-	public void setXaxisMin(String xaxisMin) {
-		this.xaxisMin = xaxisMin;
-	}
+    @StrutsTagAttribute(description = "color value")
+    public void setXaxisTickColor(String xaxisTickColor) {
+        this.xaxisTickColor = xaxisTickColor;
+    }
 
-	@StrutsTagAttribute(description = "maximum value")
-	public void setXaxisMax(String xaxisMax) {
-		this.xaxisMax = xaxisMax;
-	}
+    @StrutsTagAttribute(description = "format string to use. The following specifiers are supported:   %h: hours,  %H: hours (left-padded with a zero),  %M: minutes (left-padded with a zero),  %S: seconds (left-padded with a zero),  %d: day of month (1-31), use %0d for zero-padding,  %m: month (1-12), use %0m for zero-padding,  %y: year (four digits),  %b: month name (customizable),  %p: am/pm, additionally switches %h/%H to 12 hour instead of 24,  %P: AM/PM (uppercase version of %p)")
+    public void setXaxisTimeformat(String xaxisTimeformat) {
+        this.xaxisTimeformat = xaxisTimeformat;
+    }
 
-	@StrutsTagAttribute(description = "bottom, top, left, right")
-	public void setYaxisPosition(String yaxisPosition) {
-		this.yaxisPosition = yaxisPosition;
-	}
+    @StrutsTagAttribute(description = "minimum value")
+    public void setXaxisMin(String xaxisMin) {
+        this.xaxisMin = xaxisMin;
+    }
 
-	@StrutsTagAttribute(description = "null or time", defaultValue = "null")
-	public void setYaxisMode(String yaxisMode) {
-		this.yaxisMode = yaxisMode;
-	}
+    @StrutsTagAttribute(description = "maximum value")
+    public void setXaxisMax(String xaxisMax) {
+        this.xaxisMax = xaxisMax;
+    }
 
-	@StrutsTagAttribute(description = "color value")
-	public void setYaxisColor(String yaxisColor) {
-		this.yaxisColor = yaxisColor;
-	}
+    @StrutsTagAttribute(description = "bottom, top, left, right")
+    public void setYaxisPosition(String yaxisPosition) {
+        this.yaxisPosition = yaxisPosition;
+    }
 
-	@StrutsTagAttribute(description = "color value")
-	public void setYaxisTickColor(String yaxisTickColor) {
-		this.yaxisTickColor = yaxisTickColor;
-	}
+    @StrutsTagAttribute(description = "null or time", defaultValue = "null")
+    public void setYaxisMode(String yaxisMode) {
+        this.yaxisMode = yaxisMode;
+    }
 
-	@StrutsTagAttribute(description = "minimum value")
-	public void setYaxisMin(String yaxisMin) {
-		this.yaxisMin = yaxisMin;
-	}
+    @StrutsTagAttribute(description = "color value")
+    public void setYaxisColor(String yaxisColor) {
+        this.yaxisColor = yaxisColor;
+    }
 
-	@StrutsTagAttribute(description = "maximum value")
-	public void setYaxisMax(String yaxisMax) {
-		this.yaxisMax = yaxisMax;
-	}
+    @StrutsTagAttribute(description = "color value")
+    public void setYaxisTickColor(String yaxisTickColor) {
+        this.yaxisTickColor = yaxisTickColor;
+    }
 
-	@StrutsTagAttribute(description = "format string to use. The following specifiers are supported:   %h: hours,  %H: hours (left-padded with a zero),  %M: minutes (left-padded with a zero),  %S: seconds (left-padded with a zero),  %d: day of month (1-31), use %0d for zero-padding,  %m: month (1-12), use %0m for zero-padding,  %y: year (four digits),  %b: month name (customizable),  %p: am/pm, additionally switches %h/%H to 12 hour instead of 24,  %P: AM/PM (uppercase version of %p)")
-	public void setYaxisTimeformat(String yaxisTimeformat) {
-		this.yaxisTimeformat = yaxisTimeformat;
-	}
+    @StrutsTagAttribute(description = "minimum value")
+    public void setYaxisMin(String yaxisMin) {
+        this.yaxisMin = yaxisMin;
+    }
 
-	@StrutsTagAttribute(description = "show legend", type = "Boolean", defaultValue = "true")
-	public void setLegendShow(String legendShow) {
-		this.legendShow = legendShow;
-	}
+    @StrutsTagAttribute(description = "maximum value")
+    public void setYaxisMax(String yaxisMax) {
+        this.yaxisMax = yaxisMax;
+    }
 
-	@StrutsTagAttribute(description = "position of legend. ne, nw, se, sw", defaultValue = "ne")
-	public void setLegendPosition(String legendPosition) {
-		this.legendPosition = legendPosition;
-	}
+    @StrutsTagAttribute(description = "format string to use. The following specifiers are supported:   %h: hours,  %H: hours (left-padded with a zero),  %M: minutes (left-padded with a zero),  %S: seconds (left-padded with a zero),  %d: day of month (1-31), use %0d for zero-padding,  %m: month (1-12), use %0m for zero-padding,  %y: year (four digits),  %b: month name (customizable),  %p: am/pm, additionally switches %h/%H to 12 hour instead of 24,  %P: AM/PM (uppercase version of %p)")
+    public void setYaxisTimeformat(String yaxisTimeformat) {
+        this.yaxisTimeformat = yaxisTimeformat;
+    }
 
-	@StrutsTagAttribute(description = "color of label box")
-	public void setLegendLabelBoxBorderColor(String legendLabelBoxBorderColor) {
-		this.legendLabelBoxBorderColor = legendLabelBoxBorderColor;
-	}
+    @StrutsTagAttribute(description = "show legend", type = "Boolean", defaultValue = "true")
+    public void setLegendShow(String legendShow) {
+        this.legendShow = legendShow;
+    }
 
-	@StrutsTagAttribute(description = "legend background color")
-	public void setLegendBackgroundColor(String legendBackgroundColor) {
-		this.legendBackgroundColor = legendBackgroundColor;
-	}
+    @StrutsTagAttribute(description = "position of legend. ne, nw, se, sw", defaultValue = "ne")
+    public void setLegendPosition(String legendPosition) {
+        this.legendPosition = legendPosition;
+    }
 
-	@StrutsTagAttribute(description = "number or ticks array. If you want to completely override the tick algorithm, you can specify an array for ticks, either like this: [0, 1.2, 2.4] or like this where the labels are also customized: [[0, 'zero'], [1.2, 'one mark'], [2.4, 'two marks']]")
-	public void setXaxisTick(String xaxisTick) {
-		this.xaxisTick = xaxisTick;
-	}
+    @StrutsTagAttribute(description = "color of label box")
+    public void setLegendLabelBoxBorderColor(String legendLabelBoxBorderColor) {
+        this.legendLabelBoxBorderColor = legendLabelBoxBorderColor;
+    }
 
-	@StrutsTagAttribute(description = "number or ticks array. If you set it to 2, you'll get ticks at 2, 4, 6, etc. Note that for time series, the format is an array like [2, 'month']")
-	public void setXaxisTickSize(String xaxisTickSize) {
-		this.xaxisTickSize = xaxisTickSize;
-	}
+    @StrutsTagAttribute(description = "legend background color")
+    public void setLegendBackgroundColor(String legendBackgroundColor) {
+        this.legendBackgroundColor = legendBackgroundColor;
+    }
 
-	@StrutsTagAttribute(description = "the number of decimals to display (default is auto-detected).", defaultValue = "auto-detected")
-	public void setXaxisTickDecimals(String xaxisTickDecimals) {
-		this.xaxisTickDecimals = xaxisTickDecimals;
-	}
+    @StrutsTagAttribute(description = "number or ticks array. If you want to completely override the tick algorithm, you can specify an array for ticks, either like this: [0, 1.2, 2.4] or like this where the labels are also customized: [[0, 'zero'], [1.2, 'one mark'], [2.4, 'two marks']]")
+    public void setXaxisTick(String xaxisTick) {
+        this.xaxisTick = xaxisTick;
+    }
 
-	@StrutsTagAttribute(description = "number or ticks array. If you want to completely override the tick algorithm, you can specify an array for ticks, either like this: [0, 1.2, 2.4] or like this where the labels are also customized: [[0, 'zero'], [1.2, 'one mark'], [2.4, 'two marks']]")
-	public void setYaxisTick(String yaxisTick) {
-		this.yaxisTick = yaxisTick;
-	}
+    @StrutsTagAttribute(description = "number or ticks array. If you set it to 2, you'll get ticks at 2, 4, 6, etc. Note that for time series, the format is an array like [2, 'month']")
+    public void setXaxisTickSize(String xaxisTickSize) {
+        this.xaxisTickSize = xaxisTickSize;
+    }
 
-	@StrutsTagAttribute(description = "number or ticks array. If you set it to 2, you'll get ticks at 2, 4, 6, etc. Note that for time series, the format is an array like [2, 'month']")
-	public void setYaxisTickSize(String yaxisTickSize) {
-		this.yaxisTickSize = yaxisTickSize;
-	}
+    @StrutsTagAttribute(description = "the number of decimals to display (default is auto-detected).", defaultValue = "auto-detected")
+    public void setXaxisTickDecimals(String xaxisTickDecimals) {
+        this.xaxisTickDecimals = xaxisTickDecimals;
+    }
 
-	@StrutsTagAttribute(description = "the number of decimals to display (default is auto-detected).", defaultValue = "auto-detected")
-	public void setYaxisTickDecimals(String yaxisTickDecimals) {
-		this.yaxisTickDecimals = yaxisTickDecimals;
-	}
+    @StrutsTagAttribute(description = "number or ticks array. If you want to completely override the tick algorithm, you can specify an array for ticks, either like this: [0, 1.2, 2.4] or like this where the labels are also customized: [[0, 'zero'], [1.2, 'one mark'], [2.4, 'two marks']]")
+    public void setYaxisTick(String yaxisTick) {
+        this.yaxisTick = yaxisTick;
+    }
 
-	@StrutsTagAttribute(description = "A comma delimited list of topics that published when the grid is clicked", type = "String")
-	public void setOnClickTopics(String onClickTopics) {
-		this.onClickTopics = onClickTopics;
-	}
+    @StrutsTagAttribute(description = "number or ticks array. If you set it to 2, you'll get ticks at 2, 4, 6, etc. Note that for time series, the format is an array like [2, 'month']")
+    public void setYaxisTickSize(String yaxisTickSize) {
+        this.yaxisTickSize = yaxisTickSize;
+    }
 
-	@StrutsTagAttribute(description = "A comma delimited list of topics that published when the grid is hovered", type = "String")
-	public void setOnHoverTopics(String onHoverTopics) {
-		this.onHoverTopics = onHoverTopics;
-	}
+    @StrutsTagAttribute(description = "the number of decimals to display (default is auto-detected).", defaultValue = "auto-detected")
+    public void setYaxisTickDecimals(String yaxisTickDecimals) {
+        this.yaxisTickDecimals = yaxisTickDecimals;
+    }
 
-	@StrutsTagAttribute(description = "showing a crosshair, thin lines, when the mouse hovers over the plot", type = "Boolean", defaultValue = "false")
-	public void setCrosshair(String crosshair) {
-		this.crosshair = crosshair;
-	}
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the grid is clicked")
+    public void setOnClickTopics(String onClickTopics) {
+        this.onClickTopics = onClickTopics;
+    }
 
-	@StrutsTagAttribute(description = "crosshair mode, 'x', 'y' or 'xy'")
-	public void setCrosshairMode(String crosshairMode) {
-		this.crosshairMode = crosshairMode;
-	}
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the grid is hovered")
+    public void setOnHoverTopics(String onHoverTopics) {
+        this.onHoverTopics = onHoverTopics;
+    }
 
-	@StrutsTagAttribute(description = "crosshair color")
-	public void setCrosshairColor(String crosshairColor) {
-		this.crosshairColor = crosshairColor;
-	}
+    @StrutsTagAttribute(description = "showing a crosshair, thin lines, when the mouse hovers over the plot", type = "Boolean", defaultValue = "false")
+    public void setCrosshair(String crosshair) {
+        this.crosshair = crosshair;
+    }
 
-	@StrutsTagAttribute(description = "crosshair line width", type = "Number")
-	public void setCrosshairLineWidth(String crosshairLineWidth) {
-		this.crosshairLineWidth = crosshairLineWidth;
-	}
+    @StrutsTagAttribute(description = "crosshair mode, 'x', 'y' or 'xy'")
+    public void setCrosshairMode(String crosshairMode) {
+        this.crosshairMode = crosshairMode;
+    }
 
-	@StrutsTagAttribute(description = "Display the Chart as a Pie", type = "Boolean", defaultValue = "false")
-	public void setPie(String pie) {
-		this.pie = pie;
-	}
+    @StrutsTagAttribute(description = "crosshair color")
+    public void setCrosshairColor(String crosshairColor) {
+        this.crosshairColor = crosshairColor;
+    }
 
-	@StrutsTagAttribute(description = "0-1 for percentage of fullsize, or a specified pixel length", defaultValue = "auto")
-	public void setPieRadius(String pieRadius) {
-		this.pieRadius = pieRadius;
-	}
+    @StrutsTagAttribute(description = "crosshair line width", type = "Number")
+    public void setCrosshairLineWidth(String crosshairLineWidth) {
+        this.crosshairLineWidth = crosshairLineWidth;
+    }
 
-	@StrutsTagAttribute(description = "0-1 for percentage of fullsize or a specified pixel length, for creating a donut effect")
-	public void setPieInnerRadius(String pieInnerRadius) {
-		this.pieInnerRadius = pieInnerRadius;
-	}
+    @StrutsTagAttribute(description = "Display the Chart as a Pie", type = "Boolean", defaultValue = "false")
+    public void setPie(String pie) {
+        this.pie = pie;
+    }
 
-	@StrutsTagAttribute(description = "Display Pie Labels", type = "Boolean", defaultValue = "false")
-	public void setPieLabel(String pieLabel) {
-		this.pieLabel = pieLabel;
-	}
+    @StrutsTagAttribute(description = "0-1 for percentage of fullsize, or a specified pixel length", defaultValue = "auto")
+    public void setPieRadius(String pieRadius) {
+        this.pieRadius = pieRadius;
+    }
 
-	@StrutsTagAttribute(description = "a user-defined function that modifies the text/style of the label text. eg. name of a function like this function(label, series){ return '<div style=\"font-size:8pt;text-align:center;padding:2px;color:white;\">'+label+'<br/>'+Math.round(series.percent)+'%</div>'; }")
-	public void setPieLabelFormatter(String pieLabelFormatter) {
-		this.pieLabelFormatter = pieLabelFormatter;
-	}
+    @StrutsTagAttribute(description = "0-1 for percentage of fullsize or a specified pixel length, for creating a donut effect")
+    public void setPieInnerRadius(String pieInnerRadius) {
+        this.pieInnerRadius = pieInnerRadius;
+    }
 
-	@StrutsTagAttribute(description = "0-1 for percentage of fullsize, or a specified pixel length", defaultValue = "auto")
-	public void setPieLabelRadius(String pieLabelRadius) {
-		this.pieLabelRadius = pieLabelRadius;
-	}
+    @StrutsTagAttribute(description = "Display Pie Labels", type = "Boolean", defaultValue = "false")
+    public void setPieLabel(String pieLabel) {
+        this.pieLabel = pieLabel;
+    }
 
-	@StrutsTagAttribute(description = "any hexidecimal color value")
-	public void setPieLabelBackgroundColor(String pieLabelBackgroundColor) {
-		this.pieLabelBackgroundColor = pieLabelBackgroundColor;
-	}
+    @StrutsTagAttribute(description = "a user-defined function that modifies the text/style of the label text. eg. name of a function like this function(label, series){ return '<div style=\"font-size:8pt;text-align:center;padding:2px;color:white;\">'+label+'<br/>'+Math.round(series.percent)+'%</div>'; }")
+    public void setPieLabelFormatter(String pieLabelFormatter) {
+        this.pieLabelFormatter = pieLabelFormatter;
+    }
 
-	@StrutsTagAttribute(description = "0-1")
-	public void setPieLabelBackgroundOpacity(String pieLabelBackgroundOpacity) {
-		this.pieLabelBackgroundOpacity = pieLabelBackgroundOpacity;
-	}
+    @StrutsTagAttribute(description = "0-1 for percentage of fullsize, or a specified pixel length", defaultValue = "auto")
+    public void setPieLabelRadius(String pieLabelRadius) {
+        this.pieLabelRadius = pieLabelRadius;
+    }
 
-	@StrutsTagAttribute(description = "Label for X-Axis")
-	public void setXaxisLabel(String xaxisLabel) {
-		this.xaxisLabel = xaxisLabel;
-	}
+    @StrutsTagAttribute(description = "any hexidecimal color value")
+    public void setPieLabelBackgroundColor(String pieLabelBackgroundColor) {
+        this.pieLabelBackgroundColor = pieLabelBackgroundColor;
+    }
 
-	@StrutsTagAttribute(description = "Label for Y-Axis")
-	public void setYaxisLabel(String yaxisLabel) {
-		this.yaxisLabel = yaxisLabel;
-	}
+    @StrutsTagAttribute(description = "0-1")
+    public void setPieLabelBackgroundOpacity(String pieLabelBackgroundOpacity) {
+        this.pieLabelBackgroundOpacity = pieLabelBackgroundOpacity;
+    }
 
-	@StrutsTagAttribute(description = "X-Axis Label Font Size. e.g. 20", type = "Number")
-	public void setXaxisLabelFontSizePixels(String xaxisLabelFontSizePixels) {
-		this.xaxisLabelFontSizePixels = xaxisLabelFontSizePixels;
-	}
+    @StrutsTagAttribute(description = "Label for X-Axis")
+    public void setXaxisLabel(String xaxisLabel) {
+        this.xaxisLabel = xaxisLabel;
+    }
 
-	@StrutsTagAttribute(description = "X-Axis Label Font Family. e.g. Arial")
-	public void setXaxisLabelFontFamily(String xaxisLabelFontFamily) {
-		this.xaxisLabelFontFamily = xaxisLabelFontFamily;
-	}
+    @StrutsTagAttribute(description = "Label for Y-Axis")
+    public void setYaxisLabel(String yaxisLabel) {
+        this.yaxisLabel = yaxisLabel;
+    }
 
-	@StrutsTagAttribute(description = "Y-Axis Label Font Size. e.g. 20", type = "Number")
-	public void setYaxisLabelFontSizePixels(String yaxisLabelFontSizePixels) {
-		this.yaxisLabelFontSizePixels = yaxisLabelFontSizePixels;
-	}
+    @StrutsTagAttribute(description = "X-Axis Label Font Size. e.g. 20", type = "Number")
+    public void setXaxisLabelFontSizePixels(String xaxisLabelFontSizePixels) {
+        this.xaxisLabelFontSizePixels = xaxisLabelFontSizePixels;
+    }
 
-	@StrutsTagAttribute(description = "Y-Axis Label Font Family. e.g. Arial")
-	public void setYaxisLabelFontFamily(String yaxisLabelFontFamily) {
-		this.yaxisLabelFontFamily = yaxisLabelFontFamily;
-	}
+    @StrutsTagAttribute(description = "X-Axis Label Font Family. e.g. Arial")
+    public void setXaxisLabelFontFamily(String xaxisLabelFontFamily) {
+        this.xaxisLabelFontFamily = xaxisLabelFontFamily;
+    }
 
-	@StrutsTagAttribute(description = "If the size of the Placeholder DIV is changed, it will redraw the plot.", type = "Boolean", defaultValue = "false")
-	public void setAutoResize(String autoResize) {
-	    this.autoResize = autoResize;
-	}
+    @StrutsTagAttribute(description = "Y-Axis Label Font Size. e.g. 20", type = "Number")
+    public void setYaxisLabelFontSizePixels(String yaxisLabelFontSizePixels) {
+        this.yaxisLabelFontSizePixels = yaxisLabelFontSizePixels;
+    }
+
+    @StrutsTagAttribute(description = "Y-Axis Label Font Family. e.g. Arial")
+    public void setYaxisLabelFontFamily(String yaxisLabelFontFamily) {
+        this.yaxisLabelFontFamily = yaxisLabelFontFamily;
+    }
+
+    @StrutsTagAttribute(description = "If the size of the Placeholder DIV is changed, it will redraw the plot.", type = "Boolean", defaultValue = "false")
+    public void setAutoResize(String autoResize) {
+        this.autoResize = autoResize;
+    }
 }

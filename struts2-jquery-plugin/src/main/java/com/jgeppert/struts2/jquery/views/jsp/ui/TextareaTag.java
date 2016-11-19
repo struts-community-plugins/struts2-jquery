@@ -19,63 +19,54 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.Textarea;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Textarea;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Textarea
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Textarea
  */
 public class TextareaTag extends AbstractFormElementTag {
 
-  private static final long serialVersionUID = 6782031035916461758L;
+    private static final long serialVersionUID = 6782031035916461758L;
 
-  protected String          cols;
-  protected String          readonly;
-  protected String          rows;
-  protected String          wrap;
+    protected String cols;
+    protected String readonly;
+    protected String rows;
+    protected String wrap;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Textarea(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Textarea(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+        super.populateParams();
 
-    Textarea textarea = (Textarea) component;
-    textarea.setCols(cols);
-    textarea.setRows(rows);
-    textarea.setReadonly(readonly);
-    textarea.setWrap(wrap);
+        Textarea textarea = (Textarea) component;
+        textarea.setCols(cols);
+        textarea.setRows(rows);
+        textarea.setReadonly(readonly);
+        textarea.setWrap(wrap);
 
-  }
+    }
 
-  public void setCols(String cols)
-  {
-    this.cols = cols;
-  }
+    public void setCols(String cols) {
+        this.cols = cols;
+    }
 
-  public void setReadonly(String readonly)
-  {
-    this.readonly = readonly;
-  }
+    public void setReadonly(String readonly) {
+        this.readonly = readonly;
+    }
 
-  public void setRows(String rows)
-  {
-    this.rows = rows;
-  }
+    public void setRows(String rows) {
+        this.rows = rows;
+    }
 
-  public void setWrap(String wrap)
-  {
-    this.wrap = wrap;
-  }
+    public void setWrap(String wrap) {
+        this.wrap = wrap;
+    }
 }

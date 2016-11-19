@@ -19,55 +19,47 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.Textfield;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Textfield;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Textfield
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Textfield
  */
 public class TextfieldTag extends AbstractFormElementTag {
 
-  private static final long serialVersionUID = 8332089683341849748L;
+    private static final long serialVersionUID = 8332089683341849748L;
 
-  protected String          maxlength;
-  protected String          readonly;
-  protected String          size;
+    protected String maxlength;
+    protected String readonly;
+    protected String size;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Textfield(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Textfield(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+        super.populateParams();
 
-    Textfield text = (Textfield) component;
-    text.setMaxlength(maxlength);
-    text.setReadonly(readonly);
-    text.setSize(size);
-  }
+        Textfield text = (Textfield) component;
+        text.setMaxlength(maxlength);
+        text.setReadonly(readonly);
+        text.setSize(size);
+    }
 
-  public void setMaxlength(String maxlength)
-  {
-    this.maxlength = maxlength;
-  }
+    public void setMaxlength(String maxlength) {
+        this.maxlength = maxlength;
+    }
 
-  public void setReadonly(String readonly)
-  {
-    this.readonly = readonly;
-  }
+    public void setReadonly(String readonly) {
+        this.readonly = readonly;
+    }
 
-  public void setSize(String size)
-  {
-    this.size = size;
-  }
+    public void setSize(String size) {
+        this.size = size;
+    }
 }

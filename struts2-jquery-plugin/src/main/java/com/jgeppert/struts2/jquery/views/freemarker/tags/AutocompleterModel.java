@@ -19,29 +19,27 @@
 
 package com.jgeppert.struts2.jquery.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.Autocompleter;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.components.Autocompleter;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * @see Autocompleter
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @see Autocompleter
  */
 public class AutocompleterModel extends TagModel {
 
-  public AutocompleterModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    super(stack, req, res);
-  }
+    public AutocompleterModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-  @Override
-  protected Component getBean()
-  {
-    return new Autocompleter(stack, req, res);
-  }
+    @Override
+    protected Component getBean() {
+        return new Autocompleter(stack, req, res);
+    }
 
 }

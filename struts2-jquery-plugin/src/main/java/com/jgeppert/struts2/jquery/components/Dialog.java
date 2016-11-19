@@ -19,16 +19,13 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -78,7 +75,36 @@ public class Dialog extends AbstractRemoteBean {
     public static final String TEMPLATE = "dialog";
     public static final String TEMPLATE_CLOSE = "dialog-close";
     public static final String COMPONENT_NAME = Dialog.class.getName();
-    public static final transient Random RANDOM = new Random();
+
+    private static final String PARAM_APPEND_TO = "appendTo";
+    private static final String PARAM_BUTTONS = "buttons";
+    private static final String PARAM_DRAGGABLE = "draggable";
+    private static final String PARAM_DIALOG_CLASS = "dialogClass";
+    private static final String PARAM_HEIGHT = "height";
+    private static final String PARAM_MODAL = "modal";
+    private static final String PARAM_POSITION = "position";
+    private static final String PARAM_RESIZABLE = "resizable";
+    private static final String PARAM_TITLE = "title";
+    private static final String PARAM_WIDTH = "width";
+    private static final String PARAM_AUTO_OPEN = "autoOpen";
+    private static final String PARAM_SHOW_EFFECT = "showEffect";
+    private static final String PARAM_HIDE_EFFECT = "hideEffect";
+    private static final String PARAM_OVERLAY_COLOR = "overlayColor";
+    private static final String PARAM_OVERLAY_OPACITY = "overlayOpacity";
+    private static final String PARAM_MAX_HEIGHT = "maxHeight";
+    private static final String PARAM_MAX_WIDTH = "maxWidth";
+    private static final String PARAM_MIN_HEIGHT = "minHeight";
+    private static final String PARAM_MIN_WIDTH = "minWidth";
+    private static final String PARAM_CLOSE_ON_ESCAPE = "closeOnEscape";
+    private static final String PARAM_ON_BEFORE_CLOSE_TOPICS = "onBeforeCloseTopics";
+    private static final String PARAM_ON_CLOSE_TOPICS = "onCloseTopics";
+    private static final String PARAM_ON_OPEN_TOPICS = "onOpenTopics";
+    private static final String PARAM_ON_FOCUS_TOPICS = "onFocusTopics";
+    private static final String PARAM_OPEN_TOPICS = "openTopics";
+    private static final String PARAM_CLOSE_TOPICS = "closeTopics";
+    private static final String PARAM_DESTROY_TOPICS = "destroyTopics";
+
+    private static final String ID_PREFIX_DIALOG = "dialog_";
 
     protected String appendTo;
     protected String buttons;
@@ -123,43 +149,36 @@ public class Dialog extends AbstractRemoteBean {
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
 
-        addParameter("jqueryaction", JQUERYACTION);
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-        if (appendTo != null) addParameter("appendTo", findString(appendTo));
-        if (buttons != null) addParameter("buttons", findString(buttons));
-        if (draggable != null) addParameter("draggable", findValue(draggable, Boolean.class));
-        if (dialogClass != null) addParameter("dialogClass", findString(dialogClass));
-        if (height != null) addParameter("height", findString(height));
-        if (modal != null) addParameter("modal", findString(modal));
-        if (position != null) addParameter("position", findString(position));
-        if (resizable != null) addParameter("resizable", findValue(resizable, Boolean.class));
-        if (title != null) addParameter("title", findString(title));
-        if (width != null) addParameter("width", findString(width));
-        if (autoOpen != null) addParameter("autoOpen", findValue(autoOpen, Boolean.class));
-        if (showEffect != null) addParameter("showEffect", findString(showEffect));
-        if (hideEffect != null) addParameter("hideEffect", findString(hideEffect));
-        if (overlayColor != null) addParameter("overlayColor", findString(overlayColor));
-        if (overlayOpacity != null) addParameter("overlayOpacity", findString(overlayOpacity));
-        if (maxHeight != null) addParameter("maxHeight", findString(maxHeight));
-        if (maxWidth != null) addParameter("maxWidth", findString(maxWidth));
-        if (minHeight != null) addParameter("minHeight", findString(minHeight));
-        if (minWidth != null) addParameter("minWidth", findString(minWidth));
-        if (closeOnEscape != null) addParameter("closeOnEscape", findValue(closeOnEscape, Boolean.class));
-        if (onBeforeCloseTopics != null) addParameter("onBeforeCloseTopics", findString(onBeforeCloseTopics));
-        if (onCloseTopics != null) addParameter("onCloseTopics", findString(onCloseTopics));
-        if (onOpenTopics != null) addParameter("onOpenTopics", findString(onOpenTopics));
-        if (onFocusTopics != null) addParameter("onFocusTopics", findString(onFocusTopics));
-        if (openTopics != null) addParameter("openTopics", findString(openTopics));
-        if (closeTopics != null) addParameter("closeTopics", findString(closeTopics));
-        if (destroyTopics != null) addParameter("destroyTopics", findString(destroyTopics));
-        if ((this.id == null || this.id.length() == 0)) {
-            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-            int nextInt = RANDOM.nextInt();
-            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-            this.id = "dialog_" + String.valueOf(nextInt);
-            addParameter("id", this.id);
-        }
+        addParameterIfPresent(PARAM_APPEND_TO, this.appendTo);
+        addParameterIfPresent(PARAM_BUTTONS, this.buttons);
+        addParameterIfPresent(PARAM_DRAGGABLE, this.draggable, Boolean.class);
+        addParameterIfPresent(PARAM_DIALOG_CLASS, this.dialogClass);
+        addParameterIfPresent(PARAM_MODAL, this.modal);
+        addParameterIfPresent(PARAM_POSITION, this.position);
+        addParameterIfPresent(PARAM_RESIZABLE, this.resizable, Boolean.class);
+        addParameterIfPresent(PARAM_TITLE, this.title);
+        addParameterIfPresent(PARAM_AUTO_OPEN, this.autoOpen, Boolean.class);
+        addParameterIfPresent(PARAM_SHOW_EFFECT, this.showEffect);
+        addParameterIfPresent(PARAM_HIDE_EFFECT, this.hideEffect);
+        addParameterIfPresent(PARAM_OVERLAY_COLOR, this.overlayColor);
+        addParameterIfPresent(PARAM_HEIGHT, this.height);
+        addParameterIfPresent(PARAM_WIDTH, this.width);
+        addParameterIfPresent(PARAM_MAX_HEIGHT, this.maxHeight);
+        addParameterIfPresent(PARAM_MAX_WIDTH, this.maxWidth);
+        addParameterIfPresent(PARAM_MIN_HEIGHT, this.minHeight);
+        addParameterIfPresent(PARAM_MIN_WIDTH, this.minWidth);
+        addParameterIfPresent(PARAM_CLOSE_ON_ESCAPE, this.closeOnEscape, Boolean.class);
+        addParameterIfPresent(PARAM_ON_BEFORE_CLOSE_TOPICS, this.onBeforeCloseTopics);
+        addParameterIfPresent(PARAM_ON_CLOSE_TOPICS, this.onCloseTopics);
+        addParameterIfPresent(PARAM_ON_OPEN_TOPICS, this.onOpenTopics);
+        addParameterIfPresent(PARAM_ON_FOCUS_TOPICS, this.onFocusTopics);
+        addParameterIfPresent(PARAM_OPEN_TOPICS, this.openTopics);
+        addParameterIfPresent(PARAM_CLOSE_TOPICS, this.closeTopics);
+        addParameterIfPresent(PARAM_DESTROY_TOPICS, this.destroyTopics);
+
+        addGeneratedIdParam(ID_PREFIX_DIALOG);
     }
 
     @Override

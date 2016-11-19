@@ -19,19 +19,16 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.DatePicker;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.DatePicker;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see DatePicker
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see DatePicker
  */
 public class DatePickerTag extends AbstractTopicTag {
 
@@ -88,171 +85,171 @@ public class DatePickerTag extends AbstractTopicTag {
     protected String timepickerCloseText;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new DatePicker(stack, req, res);
+                             HttpServletResponse res) {
+        return new DatePicker(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	DatePicker datePicker = (DatePicker) component;
-	datePicker.setDisplayFormat(displayFormat);
-	datePicker.setShowButtonPanel(showButtonPanel);
-	datePicker.setChangeMonth(changeMonth);
-	datePicker.setChangeYear(changeYear);
-	datePicker.setButtonImage(buttonImage);
+        DatePicker datePicker = (DatePicker) component;
+        datePicker.setDisplayFormat(displayFormat);
+        datePicker.setShowButtonPanel(showButtonPanel);
+        datePicker.setChangeMonth(changeMonth);
+        datePicker.setChangeYear(changeYear);
+        datePicker.setButtonImage(buttonImage);
 
-	datePicker.setButtonImageOnly(buttonImageOnly);
-	datePicker.setAppendText(appendText);
-	datePicker.setButtonText(buttonText);
-	datePicker.setDuration(duration);
-	datePicker.setFirstDay(firstDay);
-	datePicker.setNumberOfMonths(numberOfMonths);
-	datePicker.setShowAnim(showAnim);
-	datePicker.setShowOn(showOn);
-	datePicker.setShowOptions(showOptions);
-	datePicker.setYearRange(yearRange);
-	datePicker.setZindex(zindex);
-	datePicker.setOnBeforeShowDayTopics(onBeforeShowDayTopics);
-	datePicker.setOnChangeMonthYearTopics(onChangeMonthYearTopics);
-	datePicker.setMinDate(minDate);
-	datePicker.setMaxDate(maxDate);
-	datePicker.setInline(inline);
-	datePicker.setMaxlength(maxlength);
-	datePicker.setSize(size);
-	datePicker.setReadonly(readonly);
+        datePicker.setButtonImageOnly(buttonImageOnly);
+        datePicker.setAppendText(appendText);
+        datePicker.setButtonText(buttonText);
+        datePicker.setDuration(duration);
+        datePicker.setFirstDay(firstDay);
+        datePicker.setNumberOfMonths(numberOfMonths);
+        datePicker.setShowAnim(showAnim);
+        datePicker.setShowOn(showOn);
+        datePicker.setShowOptions(showOptions);
+        datePicker.setYearRange(yearRange);
+        datePicker.setZindex(zindex);
+        datePicker.setOnBeforeShowDayTopics(onBeforeShowDayTopics);
+        datePicker.setOnChangeMonthYearTopics(onChangeMonthYearTopics);
+        datePicker.setMinDate(minDate);
+        datePicker.setMaxDate(maxDate);
+        datePicker.setInline(inline);
+        datePicker.setMaxlength(maxlength);
+        datePicker.setSize(size);
+        datePicker.setReadonly(readonly);
 
-	datePicker.setParentTheme(parentTheme);
+        datePicker.setParentTheme(parentTheme);
 
-	datePicker.setTimepicker(timepicker);
-	datePicker.setTimepickerOnly(timepickerOnly);
-	datePicker.setTimepickerAmPm(timepickerAmPm);
-	datePicker.setTimepickerShowHour(timepickerShowHour);
-	datePicker.setTimepickerShowMinute(timepickerShowMinute);
-	datePicker.setTimepickerShowSecond(timepickerShowSecond);
-	datePicker.setTimepickerStepHour(timepickerStepHour);
-	datePicker.setTimepickerStepMinute(timepickerStepMinute);
-	datePicker.setTimepickerStepSecond(timepickerStepSecond);
-	datePicker.setTimepickerFormat(timepickerFormat);
-	datePicker.setTimepickerSeparator(timepickerSeparator);
-	datePicker.setTimepickerGridHour(timepickerGridHour);
-	datePicker.setTimepickerGridMinute(timepickerGridMinute);
-	datePicker.setTimepickerGridSecond(timepickerGridSecond);
-	datePicker.setTimepickerTimeOnlyTitle(timepickerTimeOnlyTitle);
-	datePicker.setTimepickerTimeText(timepickerTimeText);
-	datePicker.setTimepickerHourText(timepickerHourText);
-	datePicker.setTimepickerMinuteText(timepickerMinuteText);
-	datePicker.setTimepickerSecondText(timepickerSecondText);
-	datePicker.setTimepickerCurrentText(timepickerCurrentText);
-	datePicker.setTimepickerCloseText(timepickerCloseText);
+        datePicker.setTimepicker(timepicker);
+        datePicker.setTimepickerOnly(timepickerOnly);
+        datePicker.setTimepickerAmPm(timepickerAmPm);
+        datePicker.setTimepickerShowHour(timepickerShowHour);
+        datePicker.setTimepickerShowMinute(timepickerShowMinute);
+        datePicker.setTimepickerShowSecond(timepickerShowSecond);
+        datePicker.setTimepickerStepHour(timepickerStepHour);
+        datePicker.setTimepickerStepMinute(timepickerStepMinute);
+        datePicker.setTimepickerStepSecond(timepickerStepSecond);
+        datePicker.setTimepickerFormat(timepickerFormat);
+        datePicker.setTimepickerSeparator(timepickerSeparator);
+        datePicker.setTimepickerGridHour(timepickerGridHour);
+        datePicker.setTimepickerGridMinute(timepickerGridMinute);
+        datePicker.setTimepickerGridSecond(timepickerGridSecond);
+        datePicker.setTimepickerTimeOnlyTitle(timepickerTimeOnlyTitle);
+        datePicker.setTimepickerTimeText(timepickerTimeText);
+        datePicker.setTimepickerHourText(timepickerHourText);
+        datePicker.setTimepickerMinuteText(timepickerMinuteText);
+        datePicker.setTimepickerSecondText(timepickerSecondText);
+        datePicker.setTimepickerCurrentText(timepickerCurrentText);
+        datePicker.setTimepickerCloseText(timepickerCloseText);
     }
 
     public void setDisplayFormat(String displayFormat) {
-	this.displayFormat = displayFormat;
+        this.displayFormat = displayFormat;
     }
 
     public void setShowButtonPanel(String showButtonPanel) {
-	this.showButtonPanel = showButtonPanel;
+        this.showButtonPanel = showButtonPanel;
     }
 
     public void setChangeMonth(String changeMonth) {
-	this.changeMonth = changeMonth;
+        this.changeMonth = changeMonth;
     }
 
     public void setChangeYear(String changeYear) {
-	this.changeYear = changeYear;
+        this.changeYear = changeYear;
     }
 
     public void setButtonImage(String buttonImage) {
-	this.buttonImage = buttonImage;
+        this.buttonImage = buttonImage;
     }
 
     public void setAppendText(String appendText) {
-	this.appendText = appendText;
+        this.appendText = appendText;
     }
 
     public void setButtonImageOnly(String buttonImageOnly) {
-	this.buttonImageOnly = buttonImageOnly;
+        this.buttonImageOnly = buttonImageOnly;
     }
 
     public void setButtonText(String buttonText) {
-	this.buttonText = buttonText;
+        this.buttonText = buttonText;
     }
 
     public void setDuration(String duration) {
-	this.duration = duration;
+        this.duration = duration;
     }
 
     public void setFirstDay(String firstDay) {
-	this.firstDay = firstDay;
+        this.firstDay = firstDay;
     }
 
     public void setNumberOfMonths(String numberOfMonths) {
-	this.numberOfMonths = numberOfMonths;
+        this.numberOfMonths = numberOfMonths;
     }
 
     public void setShowAnim(String showAnim) {
-	this.showAnim = showAnim;
+        this.showAnim = showAnim;
     }
 
     public void setShowOn(String showOn) {
-	this.showOn = showOn;
+        this.showOn = showOn;
     }
 
     public void setShowOptions(String showOptions) {
-	this.showOptions = showOptions;
+        this.showOptions = showOptions;
     }
 
     public void setYearRange(String yearRange) {
-	this.yearRange = yearRange;
+        this.yearRange = yearRange;
     }
 
     public void setZindex(String zindex) {
-	this.zindex = zindex;
+        this.zindex = zindex;
     }
 
     public void setOnBeforeShowDayTopics(String onBeforeShowDayTopics) {
-	this.onBeforeShowDayTopics = onBeforeShowDayTopics;
+        this.onBeforeShowDayTopics = onBeforeShowDayTopics;
     }
 
     public void setOnChangeMonthYearTopics(String onChangeMonthYearTopics) {
-	this.onChangeMonthYearTopics = onChangeMonthYearTopics;
+        this.onChangeMonthYearTopics = onChangeMonthYearTopics;
     }
 
     public void setMinDate(String minDate) {
-	this.minDate = minDate;
+        this.minDate = minDate;
     }
 
     public void setMaxDate(String maxDate) {
-	this.maxDate = maxDate;
+        this.maxDate = maxDate;
     }
 
     public void setInline(String inline) {
-	this.inline = inline;
+        this.inline = inline;
     }
 
     public void setMaxlength(String maxlength) {
-	this.maxlength = maxlength;
+        this.maxlength = maxlength;
     }
 
     public void setReadonly(String readonly) {
-	this.readonly = readonly;
+        this.readonly = readonly;
     }
 
     public void setSize(String size) {
-	this.size = size;
+        this.size = size;
     }
 
     public void setParentTheme(String parentTheme) {
-	this.parentTheme = parentTheme;
+        this.parentTheme = parentTheme;
     }
 
     public void setTimepicker(String timepicker) {
-	this.timepicker = timepicker;
+        this.timepicker = timepicker;
     }
 
     public void setTimepickerOnly(String timepickerOnly) {
-	this.timepickerOnly = timepickerOnly;
+        this.timepickerOnly = timepickerOnly;
     }
 
     public void setTimepickerAmPm(String timepickerAmPm) {

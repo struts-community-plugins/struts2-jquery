@@ -31,15 +31,15 @@ import javax.servlet.http.HttpServletResponse;
  * @see com.jgeppert.struts2.jquery.components.Menu
  */
 public class MenuDirective extends JqueryAbstractDirective {
-	public String getBeanName() {
-		return "menu";
-	}
+    public String getBeanName() {
+        return "menu";
+    }
 
-	protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		return new Menu(stack, req, res);
-	}
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Menu(stack, req, res);
+    }
 
-	public int getType() {
-		return BLOCK;
-	}
+    public int getType() {
+        return BLOCK;
+    }
 }

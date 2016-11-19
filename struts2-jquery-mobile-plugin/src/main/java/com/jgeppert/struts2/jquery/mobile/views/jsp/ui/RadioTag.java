@@ -19,22 +19,19 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.Radio;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.Radio;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Radio
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Radio
  */
 public class RadioTag extends org.apache.struts2.views.jsp.ui.RadioTag
-	implements ThemeableTag {
+        implements ThemeableTag {
 
     private static final long serialVersionUID = 3002502207699074562L;
 
@@ -42,23 +39,23 @@ public class RadioTag extends org.apache.struts2.views.jsp.ui.RadioTag
     protected String horizontal;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Radio(stack, req, res);
+                             HttpServletResponse res) {
+        return new Radio(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Radio radio = (Radio) component;
-	radio.setHorizontal(horizontal);
-	radio.setDataTheme(dataTheme);
+        Radio radio = (Radio) component;
+        radio.setHorizontal(horizontal);
+        radio.setDataTheme(dataTheme);
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 
     public void setHorizontal(String horizontal) {
-	this.horizontal = horizontal;
+        this.horizontal = horizontal;
     }
 }

@@ -19,19 +19,16 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.Select;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Select;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Select
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Select
  */
 
 public class SelectTag extends AbstractFormElementTag {
@@ -52,79 +49,79 @@ public class SelectTag extends AbstractFormElementTag {
     protected String onSelectTopics;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Select(stack, req, res);
+                             HttpServletResponse res) {
+        return new Select(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Select select = (Select) component;
-	select.setEmptyOption(emptyOption);
-	select.setHeaderKey(headerKey);
-	select.setHeaderValue(headerValue);
-	select.setList(list);
-	select.setListKey(listKey);
-	select.setListTitle(listTitle);
-	select.setListValue(listValue);
-	select.setSize(size);
-	select.setMultiple(multiple);
-	select.setAutocomplete(autocomplete);
-	select.setLoadMinimumCount(loadMinimumCount);
-	select.setSelectBoxIcon(selectBoxIcon);
-	select.setOnSelectTopics(onSelectTopics);
+        Select select = (Select) component;
+        select.setEmptyOption(emptyOption);
+        select.setHeaderKey(headerKey);
+        select.setHeaderValue(headerValue);
+        select.setList(list);
+        select.setListKey(listKey);
+        select.setListTitle(listTitle);
+        select.setListValue(listValue);
+        select.setSize(size);
+        select.setMultiple(multiple);
+        select.setAutocomplete(autocomplete);
+        select.setLoadMinimumCount(loadMinimumCount);
+        select.setSelectBoxIcon(selectBoxIcon);
+        select.setOnSelectTopics(onSelectTopics);
     }
 
     public void setEmptyOption(String emptyOption) {
-	this.emptyOption = emptyOption;
+        this.emptyOption = emptyOption;
     }
 
     public void setHeaderKey(String headerKey) {
-	this.headerKey = headerKey;
+        this.headerKey = headerKey;
     }
 
     public void setHeaderValue(String headerValue) {
-	this.headerValue = headerValue;
+        this.headerValue = headerValue;
     }
 
     public void setList(String list) {
-	this.list = list;
+        this.list = list;
     }
 
     public void setListKey(String listKey) {
-	this.listKey = listKey;
+        this.listKey = listKey;
     }
 
     public void setListTitle(String listTitle) {
-	this.listTitle = listTitle;
+        this.listTitle = listTitle;
     }
 
     public void setListValue(String listValue) {
-	this.listValue = listValue;
+        this.listValue = listValue;
     }
 
     public void setSize(String size) {
-	this.size = size;
+        this.size = size;
     }
 
     public void setMultiple(String multiple) {
-	this.multiple = multiple;
+        this.multiple = multiple;
     }
 
     public void setAutocomplete(String autocomplete) {
-	this.autocomplete = autocomplete;
+        this.autocomplete = autocomplete;
     }
 
     public void setLoadMinimumCount(String loadMinimumCount) {
-	this.loadMinimumCount = loadMinimumCount;
+        this.loadMinimumCount = loadMinimumCount;
     }
 
     public void setSelectBoxIcon(String selectBoxIcon) {
-	this.selectBoxIcon = selectBoxIcon;
+        this.selectBoxIcon = selectBoxIcon;
     }
 
     public void setOnSelectTopics(String onSelectTopics) {
-	this.onSelectTopics = onSelectTopics;
+        this.onSelectTopics = onSelectTopics;
     }
 
 }

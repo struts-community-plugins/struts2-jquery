@@ -34,10 +34,8 @@ import java.util.Random;
  * This tag generates an HTML Flip Switch for the jQuery mobile framework.
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "flipSwitch", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.FlipSwitchTag", description = "Render HTML Flip Switch element", allowDynamicAttributes = true)
 public class FlipSwitch extends org.apache.struts2.components.ClosingUIBean implements ThemeableBean {
@@ -47,66 +45,75 @@ public class FlipSwitch extends org.apache.struts2.components.ClosingUIBean impl
     public static final String COMPONENT_NAME = FlipSwitch.class.getName();
     private static final transient Random RANDOM = new Random();
 
+    private static final String PARAM_DATA_THEME = "dataTheme";
+    private static final String PARAM_ON_TITLE = "onTitle";
+    private static final String PARAM_OFF_TITLE = "offTitle";
+    private static final String PARAM_ID = "id";
+
+    private static final String ID_PREFIX_FLIP_SWITCH = "flip_switch_";
+
     protected String dataTheme;
     protected String onTitle;
     protected String offTitle;
 
     public FlipSwitch(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-	    super(stack, request, response);
+        super(stack, request, response);
     }
 
     public String getDefaultOpenTemplate() {
-	return TEMPLATE;
+        return TEMPLATE;
     }
 
     protected String getDefaultTemplate() {
-	return TEMPLATE_CLOSE;
+        return TEMPLATE_CLOSE;
     }
 
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
 
-        if (dataTheme != null)
-            addParameter("dataTheme", findString(dataTheme));
-        if (onTitle != null)
-            addParameter("onTitle", findString(onTitle));
-        if (offTitle != null)
-            addParameter("offTitle", findString(offTitle));
+        if (dataTheme != null) {
+            addParameter(PARAM_DATA_THEME, findString(dataTheme));
+        }
+        if (onTitle != null) {
+            addParameter(PARAM_ON_TITLE, findString(onTitle));
+        }
+        if (offTitle != null) {
+            addParameter(PARAM_OFF_TITLE, findString(offTitle));
+        }
 
         if ((this.id == null || this.id.length() == 0)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
             // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
             int nextInt = RANDOM.nextInt();
-            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-                .abs(nextInt);
-            this.id = "flip_switch_" + String.valueOf(nextInt);
-            addParameter("id", this.id);
+            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+            this.id = ID_PREFIX_FLIP_SWITCH + String.valueOf(nextInt);
+            addParameter(PARAM_ID, this.id);
         }
     }
 
     @Override
     @StrutsTagSkipInheritance
     public void setTheme(String theme) {
-	super.setTheme(theme);
+        super.setTheme(theme);
     }
 
     @Override
     public String getTheme() {
-	return "mobile";
+        return "mobile";
     }
 
     @StrutsTagAttribute(description = "Set the Flip Switch theme. e.g. a,b,c,d or e")
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 
     @StrutsTagAttribute(description = "Title for On State")
     public void setOnTitle(String onTitle) {
-	this.onTitle = onTitle;
+        this.onTitle = onTitle;
     }
 
     @StrutsTagAttribute(description = "Title for Off State")
     public void setOffTitle(String offTitle) {
-	this.offTitle = offTitle;
+        this.offTitle = offTitle;
     }
 }

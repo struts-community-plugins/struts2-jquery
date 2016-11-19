@@ -19,29 +19,27 @@
 
 package com.jgeppert.struts2.jquery.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.components.Div;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.components.Div;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * @see Div
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @see Div
  */
 public class DivModel extends TagModel {
 
-  public DivModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    super(stack, req, res);
-  }
+    public DivModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-  @Override
-  protected Component getBean()
-  {
-    return new Div(stack, req, res);
-  }
+    @Override
+    protected Component getBean() {
+        return new Div(stack, req, res);
+    }
 
 }

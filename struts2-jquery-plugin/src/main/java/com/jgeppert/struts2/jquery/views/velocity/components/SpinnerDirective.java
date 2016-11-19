@@ -19,34 +19,28 @@
 
 package com.jgeppert.struts2.jquery.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.components.Spinner;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Spinner;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Spinner
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Spinner
  */
 public class SpinnerDirective extends JqueryAbstractDirective {
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Spinner(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Spinner(stack, req, res);
+    }
 
-  public String getBeanName()
-  {
-    return "spinner";
-  }
+    public String getBeanName() {
+        return "spinner";
+    }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
+    public int getType() {
+        return BLOCK;
+    }
 }

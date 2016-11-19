@@ -19,33 +19,27 @@
 
 package com.jgeppert.struts2.jquery.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.components.Select;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Select;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Select
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Select
  */
 public class SelectDirective extends JqueryAbstractDirective {
-  public String getBeanName()
-  {
-    return "select";
-  }
+    public String getBeanName() {
+        return "select";
+    }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Select(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Select(stack, req, res);
+    }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
+    public int getType() {
+        return BLOCK;
+    }
 }

@@ -19,46 +19,40 @@
 
 package com.jgeppert.struts2.jquery.chart.views.freemarker.tags;
 
+import com.opensymphony.xwork2.util.ValueStack;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryChartModels {
-  protected ChartModel        chart;
-  protected ChartDataModel    chartData;
+    protected ChartModel chart;
+    protected ChartDataModel chartData;
 
-  private ValueStack          stack;
-  private HttpServletRequest  req;
-  private HttpServletResponse res;
+    private ValueStack stack;
+    private HttpServletRequest req;
+    private HttpServletResponse res;
 
-  public JqueryChartModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    this.stack = stack;
-    this.req = req;
-    this.res = res;
-  }
-
-  public ChartModel getChart()
-  {
-    if (chart == null)
-    {
-      chart = new ChartModel(stack, req, res);
+    public JqueryChartModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        this.stack = stack;
+        this.req = req;
+        this.res = res;
     }
 
-    return chart;
-  }
+    public ChartModel getChart() {
+        if (chart == null) {
+            chart = new ChartModel(stack, req, res);
+        }
 
-  public ChartDataModel getChartData()
-  {
-    if (chartData == null)
-    {
-      chartData = new ChartDataModel(stack, req, res);
+        return chart;
     }
-    return chartData;
-  }
+
+    public ChartDataModel getChartData() {
+        if (chartData == null) {
+            chartData = new ChartDataModel(stack, req, res);
+        }
+        return chartData;
+    }
 }

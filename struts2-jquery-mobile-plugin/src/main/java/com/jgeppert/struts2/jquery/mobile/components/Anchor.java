@@ -26,7 +26,6 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -37,25 +36,18 @@ import java.util.Random;
  * <p>
  * Examples
  * </p>
- *
  * <!-- START SNIPPET: example1 -->
- *
  * <pre>
  * &lt;sjm:a id=&quot;myLink&quot; href=&quot;#page1&quot;&gt;My Link to an Page&lt;/sjm:a&gt;&lt;
  * </pre>
- *
  * <!-- END SNIPPET: example1 -->
- *
  * <!-- START SNIPPET: example2 -->
- *
  * <p>
  * An Link displayed as Button with Icon which reference an external Page.
  * </p>
- *
  * <pre>
  * &lt;sjm:a href=&quot;http://code.google.com/p/struts2-jquery/&quot; button=&quot;true&quot; buttonIcon=&quot;star&quot; rel=&quot;external&quot;&gt;Plugin Homepage&lt;/sjm:a&gt;
  * </pre>
- *
  * <!-- END SNIPPET: example2 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
@@ -66,7 +58,14 @@ public class Anchor extends com.jgeppert.struts2.jquery.components.Anchor implem
     public static final String TEMPLATE = "a";
     public static final String TEMPLATE_CLOSE = "a-close";
     public static final String COMPONENT_NAME = Anchor.class.getName();
-    public static final transient Random RANDOM = new Random();
+
+
+    private static final String PARAM_DATA_THEME = "dataTheme";
+    private static final String PARAM_BUTTON = "button";
+    private static final String PARAM_BUTTON_ICON = "buttonIcon";
+    private static final String PARAM_BUTTON_ICON_POSITION = "buttonIconPosition";
+
+    private static final String ID_PREFIX_ANCHOR = "anchor_";
 
     protected String dataTheme;
     protected String button;
@@ -92,24 +91,12 @@ public class Anchor extends com.jgeppert.struts2.jquery.components.Anchor implem
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
 
-        if (dataTheme != null)
-            addParameter("dataTheme", findString(dataTheme));
-        if (button != null)
-            addParameter("button", findValue(this.button, Boolean.class));
-        if (buttonIcon != null)
-            addParameter("buttonIcon", findString(buttonIcon));
-        if (buttonIconPosition != null)
-            addParameter("buttonIconPosition", findString(buttonIconPosition));
+        addParameterIfPresent(PARAM_DATA_THEME, this.dataTheme);
+        addParameterIfPresent(PARAM_BUTTON, this.button, Boolean.class);
+        addParameterIfPresent(PARAM_BUTTON_ICON, this.buttonIcon);
+        addParameterIfPresent(PARAM_BUTTON_ICON_POSITION, this.buttonIconPosition);
 
-        if ((this.id == null || this.id.length() == 0)) {
-            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-            int nextInt = RANDOM.nextInt();
-            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-                    .abs(nextInt);
-            this.id = "anchor_" + String.valueOf(nextInt);
-            addParameter("id", this.id);
-        }
+        addGeneratedIdParam(ID_PREFIX_ANCHOR);
     }
 
     @Override

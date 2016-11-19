@@ -19,19 +19,18 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.jgeppert.struts2.jquery.showcase.model.ListValue;
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.jgeppert.struts2.jquery.showcase.model.ListValue;
-import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JsonSample extends ActionSupport {
 
@@ -43,66 +42,66 @@ public class JsonSample extends ActionSupport {
     private List<String> reloadList;
     private String language;
 
-    @Actions({ @Action(value = "/jsonsample", results = { @Result(name = "success", type = "json") }) })
+    @Actions({@Action(value = "/jsonsample", results = {@Result(name = "success", type = "json")})})
     public String execute() {
 
-	log.info("build json lists language : " + language);
+        log.info("build json lists language : " + language);
 
-	languageList = new ArrayList<String>();
-	languageObjList = new ArrayList<ListValue>();
-	languageMap = new HashMap<String, String>();
+        languageList = new ArrayList<String>();
+        languageObjList = new ArrayList<ListValue>();
+        languageMap = new HashMap<String, String>();
 
-	languageList.add("Java");
-	languageList.add("PHP");
-	languageList.add("C#");
+        languageList.add("Java");
+        languageList.add("PHP");
+        languageList.add("C#");
 
-	languageMap.put("J", "Java");
-	languageMap.put("P", "PHP");
-	languageMap.put("C", "C#");
+        languageMap.put("J", "Java");
+        languageMap.put("P", "PHP");
+        languageMap.put("C", "C#");
 
-	languageObjList.add(new ListValue("J", "Java", "The Java programming language"));
-	languageObjList.add(new ListValue("P", "PHP", "PHP: Hypertext Preprocessor"));
-	languageObjList.add(new ListValue("C", "C#", "C Sharp"));
+        languageObjList.add(new ListValue("J", "Java", "The Java programming language"));
+        languageObjList.add(new ListValue("P", "PHP", "PHP: Hypertext Preprocessor"));
+        languageObjList.add(new ListValue("C", "C#", "C Sharp"));
 
-	reloadList = new ArrayList<String>();
-	if (language != null && language.equalsIgnoreCase("J")) {
-	    reloadList.add("Struts2");
-	    reloadList.add("MyFaces");
-	    reloadList.add("Tapestry");
-	} else if (language != null && language.equalsIgnoreCase("P")) {
-	    reloadList.add("CakePHP");
-	    reloadList.add("Symfony");
-	    reloadList.add("Zend");
-	} else if (language != null && language.equalsIgnoreCase("C")) {
-	    reloadList.add("NStruts");
-	    reloadList.add("ProMesh.NET");
-	    reloadList.add("Websharp");
-	}
+        reloadList = new ArrayList<String>();
+        if (language != null && language.equalsIgnoreCase("J")) {
+            reloadList.add("Struts2");
+            reloadList.add("MyFaces");
+            reloadList.add("Tapestry");
+        } else if (language != null && language.equalsIgnoreCase("P")) {
+            reloadList.add("CakePHP");
+            reloadList.add("Symfony");
+            reloadList.add("Zend");
+        } else if (language != null && language.equalsIgnoreCase("C")) {
+            reloadList.add("NStruts");
+            reloadList.add("ProMesh.NET");
+            reloadList.add("Websharp");
+        }
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public String getJSON() {
-	return execute();
+        return execute();
     }
 
     public List<String> getLanguageList() {
-	return languageList;
+        return languageList;
     }
 
     public Map<String, String> getLanguageMap() {
-	return languageMap;
+        return languageMap;
     }
 
     public List<ListValue> getLanguageObjList() {
-	return languageObjList;
+        return languageObjList;
     }
 
     public List<String> getReloadList() {
-	return reloadList;
+        return reloadList;
     }
 
     public void setLanguage(String language) {
-	this.language = language;
+        this.language = language;
     }
 }

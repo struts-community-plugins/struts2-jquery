@@ -19,20 +19,17 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.components.Component;
-
 import com.jgeppert.struts2.jquery.mobile.components.List;
 import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractFormListElementTag;
 import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @see List
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see List
  */
 public class ListTag extends AbstractFormListElementTag implements ThemeableTag {
 
@@ -46,43 +43,43 @@ public class ListTag extends AbstractFormListElementTag implements ThemeableTag 
     protected String listCounter;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new List(stack, req, res);
+                             HttpServletResponse res) {
+        return new List(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	List list = (List) component;
-	list.setDataTheme(dataTheme);
-	list.setInset(inset);
-	list.setFilter(filter);
-	list.setListCounter(listCounter);
-	list.setListHref(listHref);
-	list.setListParam(listParam);
+        List list = (List) component;
+        list.setDataTheme(dataTheme);
+        list.setInset(inset);
+        list.setFilter(filter);
+        list.setListCounter(listCounter);
+        list.setListHref(listHref);
+        list.setListParam(listParam);
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 
     public void setInset(String inset) {
-	this.inset = inset;
+        this.inset = inset;
     }
 
     public void setFilter(String filter) {
-	this.filter = filter;
+        this.filter = filter;
     }
 
     public void setListParam(String listParam) {
-	this.listParam = listParam;
+        this.listParam = listParam;
     }
 
     public void setListHref(String listHref) {
-	this.listHref = listHref;
+        this.listHref = listHref;
     }
 
     public void setListCounter(String listCounter) {
-	this.listCounter = listCounter;
+        this.listCounter = listCounter;
     }
 }

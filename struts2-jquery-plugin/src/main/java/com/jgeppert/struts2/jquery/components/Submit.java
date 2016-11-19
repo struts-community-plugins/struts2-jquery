@@ -20,8 +20,7 @@
 package com.jgeppert.struts2.jquery.components;
 
 import com.opensymphony.xwork2.util.ValueStack;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.components.Form;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
@@ -30,7 +29,6 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Writer;
-import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -49,102 +47,120 @@ import java.util.Random;
  * issues with Microsoft Internet Explorer at least up to 6.0
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
+ * <p>
  * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * 
+ * <p>
  * <pre>
  * &lt;sj:submit value=&quot;%{'Submit'}&quot; /&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example1 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example2 -->
- * 
+ * <p>
  * <pre>
  * &lt;sj:submit type=&quot;image&quot; value=&quot;%{'Submit'}&quot; label=&quot;Submit the form&quot; src=&quot;submit.gif&quot;/&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example2 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example3 -->
- * 
+ * <p>
  * <pre>
  * &lt;sj:submit type=&quot;button&quot; value=&quot;%{'Submit'}&quot; label=&quot;Submit the form&quot;/&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example3 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example4 -->
- * 
+ * <p>
  * <pre>
- * &lt;div id=&quot;div1&quot;&gt;Div 1&lt;/div&gt; 
+ * &lt;div id=&quot;div1&quot;&gt;Div 1&lt;/div&gt;
  * &lt;s:url id=&quot;ajaxTest&quot; value=&quot;/AjaxTest.action&quot;/&gt;
  * &lt;sj:submit id=&quot;link1&quot; href=&quot;%{ajaxTest}&quot; target=&quot;div1&quot; /&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example4 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example5 -->
- * 
+ * <p>
  * <pre>
  * &lt;s:form id=&quot;form&quot; action=&quot;AjaxTest&quot;&gt;
- * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt; &lt;sj:submit /&gt; 
+ * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt; &lt;sj:submit /&gt;
  * &lt;/s:form&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example5 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example6 -->
- * 
+ * <p>
  * <pre>
  * &lt;s:form id=&quot;form&quot; action=&quot;AjaxTest&quot;&gt;
- * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt; 
+ * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt;
  * &lt;/s:form&gt;
- * 
+ *
  * &lt;sj:submit formId=&quot;form&quot; /&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example6 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example7 -->
- * 
+ * <p>
  * <pre>
  * &lt;script type=&quot;text/javascript&quot;&gt;
- * function before(event){ alert('before request'); }; 
- * function complete(event){ alert('after request'); }; 
+ * function before(event){ alert('before request'); };
+ * function complete(event){ alert('after request'); };
  * &lt;/script&gt;
- * 
+ *
  * &lt;sj:submit beforeSend=&quot;before()&quot; complete=&quot;complete()&quot; /&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example7 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example8 -->
- * 
+ * <p>
  * <pre>
  * &lt;sj:submit value&quot;AJAX Submit with effect&quot;
  * effect=&quot;highlight&quot; effectOptions=&quot;color : '#222222'&quot;
  * effectDuration=&quot;3600&quot;&gt; href=&quot;%{#ajaxTest}&quot; /&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example8 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button", allowDynamicAttributes = true)
 public class Submit extends AbstractRemoteBean implements ButtonBean {
-
-    private static final Logger LOG = LoggerFactory.getLogger(Submit.class);
-    private final static transient Random RANDOM = new Random();
 
     public static final String TEMPLATE = "submit";
     public static final String TEMPLATE_CLOSE = "submit-close";
     public static final String JQUERYACTION = "button";
     public static final String COMPONENT_NAME = Submit.class.getName();
+
+    private static final String PARAM_TYPE = "type";
+    private static final String PARAM_SRC = "src";
+    private static final String PARAM_CLEAR_FORM = "clearForm";
+    private static final String PARAM_RESET_FORM = "resetForm";
+    private static final String PARAM_IFRAME = "iframe";
+    private static final String PARAM_ON_CLICK_TOPICS = "onClickTopics";
+    private static final String PARAM_OPEN_DIALOG = "openDialog";
+    private static final String PARAM_OPEN_DIALOG_TITLE = "openDialogTitle";
+    private static final String PARAM_BUTTON = "button";
+    private static final String PARAM_BUTTON_ICON = "buttonIcon";
+    private static final String PARAM_BUTTON_ICON_SECONDARY = "buttonIconSecondary";
+    private static final String PARAM_BUTTON_TEXT = "buttonText";
+    private static final String PARAM_VALIDATE = "validate";
+    private static final String PARAM_VALIDATE_FUNCTION = "validateFunction";
+    private static final String PARAM_FORM_FILTER = "formFilter";
+    private static final String PARAM_REPLACE_TARGET = "replaceTarget";
+    private static final String PARAM_PARENT_THEME = "parentTheme";
+    private static final String PARAM_FORM_IDS = "formIds";
+    private static final String PARAM_BODY = "body";
+
+    private static final String ID_PREFIX_SUBMIT = "submit_";
 
     protected String src;
     protected String type;
@@ -165,116 +181,91 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
     protected String replaceTarget;
 
     public Submit(ValueStack stack, HttpServletRequest request,
-	    HttpServletResponse response) {
-	super(stack, request, response);
+                  HttpServletResponse response) {
+        super(stack, request, response);
     }
 
     public String getDefaultOpenTemplate() {
-	return TEMPLATE;
+        return TEMPLATE;
     }
 
     protected String getDefaultTemplate() {
-	return TEMPLATE_CLOSE;
+        return TEMPLATE_CLOSE;
     }
 
     public String getComponentName() {
-	return COMPONENT_NAME;
+        return COMPONENT_NAME;
     }
 
     public void evaluateParams() {
-	super.evaluateExtraParams();
-	addParameter("jqueryaction", JQUERYACTION);
+        super.evaluateExtraParams();
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-	if ((key == null) && (value == null)) {
-	    value = "Submit";
-	}
+        if ((key == null) && (value == null)) {
+            value = "Submit";
+        }
 
-	if (((key != null)) && (value == null)) {
-	    this.value = "%{getText('" + key + "')}";
-	}
+        if (((key != null)) && (value == null)) {
+            this.value = "%{getText('" + key + "')}";
+        }
 
-	super.evaluateParams();
+        super.evaluateParams();
     }
 
     public void evaluateExtraParams() {
-	super.evaluateExtraParams();
+        super.evaluateExtraParams();
 
-	if (type != null)
-	    addParameter("type", findString(type));
-	if (src != null)
-	    addParameter("src", findString(src));
-	if (clearForm != null)
-	    addParameter("clearForm", findValue(clearForm, Boolean.class));
-	if (resetForm != null)
-	    addParameter("resetForm", findValue(resetForm, Boolean.class));
-	if (iframe != null)
-	    addParameter("iframe", findValue(iframe, Boolean.class));
-	if (onClickTopics != null)
-	    addParameter("onClickTopics", findString(onClickTopics));
-	if (openDialog != null)
-	    addParameter("openDialog", findString(openDialog));
-	if (openDialogTitle != null)
-	    addParameter("openDialogTitle", findString(openDialogTitle));
-	if (button != null)
-	    addParameter("button", findValue(this.button, Boolean.class));
-	if (buttonIcon != null)
-	    addParameter("buttonIcon", findString(buttonIcon));
-	if (buttonIconSecondary != null)
-	    addParameter("buttonIconSecondary", findString(buttonIconSecondary));
-	if (buttonText != null)
-	    addParameter("buttonText", findValue(this.buttonText, Boolean.class));
-	if (validate != null)
-	    addParameter("validate", findValue(this.validate, Boolean.class));
-	if (validateFunction != null)
-	    addParameter("validateFunction", findString(validateFunction));
-	if (formFilter != null)
-	    addParameter("formFilter", findString(formFilter));
-	if (replaceTarget != null)
-	    addParameter("replaceTarget", findValue(this.replaceTarget,
-		    Boolean.class));
+        addParameterIfPresent(PARAM_TYPE, this.type);
+        addParameterIfPresent(PARAM_SRC, this.src);
+        addParameterIfPresent(PARAM_CLEAR_FORM, this.clearForm, Boolean.class);
+        addParameterIfPresent(PARAM_RESET_FORM, this.resetForm, Boolean.class);
+        addParameterIfPresent(PARAM_IFRAME, this.iframe, Boolean.class);
+        addParameterIfPresent(PARAM_ON_CLICK_TOPICS, this.onClickTopics);
+        addParameterIfPresent(PARAM_OPEN_DIALOG, this.openDialog);
+        addParameterIfPresent(PARAM_OPEN_DIALOG_TITLE, this.openDialogTitle);
+        addParameterIfPresent(PARAM_BUTTON, this.button, Boolean.class);
+        addParameterIfPresent(PARAM_BUTTON_ICON, this.buttonIcon);
+        addParameterIfPresent(PARAM_BUTTON_ICON_SECONDARY, this.buttonIconSecondary);
+        addParameterIfPresent(PARAM_BUTTON_TEXT, this.buttonText, Boolean.class);
+        addParameterIfPresent(PARAM_VALIDATE, this.validate, Boolean.class);
+        addParameterIfPresent(PARAM_VALIDATE_FUNCTION, this.validateFunction);
+        addParameterIfPresent(PARAM_FORM_FILTER, this.formFilter);
+        addParameterIfPresent(PARAM_REPLACE_TARGET, this.replaceTarget, Boolean.class);
 
-	if ((this.id == null || this.id.length() == 0)) {
-	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-	    int nextInt = RANDOM.nextInt();
-	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-		    .abs(nextInt);
-	    this.id = "submit_" + String.valueOf(nextInt);
-	    addParameter("id", this.id);
-	}
+        addGeneratedIdParam(ID_PREFIX_SUBMIT);
 
-	Form form = (Form) findAncestor(Form.class);
-	if (parentTheme != null) {
-	    addParameter("parentTheme", findString(parentTheme));
-	} else if (form != null) {
-	    if (form != null)
-		addParameter("parentTheme", form.getTheme());
-	} else {
-	    addParameter("parentTheme", "simple");
-	}
+        Form form = (Form) findAncestor(Form.class);
+        if (parentTheme != null) {
+            addParameter(PARAM_PARENT_THEME, findString(parentTheme));
+        } else if (form != null) {
+            addParameter(PARAM_PARENT_THEME, form.getTheme());
+        } else {
+            addParameter(PARAM_PARENT_THEME, "simple");
+        }
 
-	if (form != null && (formIds == null || formIds.length() <= 0))
-	    addParameter("formIds", form.getId());
+        if (form != null && StringUtils.isBlank(formIds)) {
+            addParameter(PARAM_FORM_IDS, form.getId());
+        }
     }
 
     @Override
     @StrutsTagSkipInheritance
     public void setTheme(String theme) {
-	super.setTheme(theme);
+        super.setTheme(theme);
     }
 
     @Override
     public String getTheme() {
-	return "jquery";
+        return "jquery";
     }
 
     /**
      * Indicate whether the concrete button supports the type "image".
-     * 
+     *
      * @return <tt>true</tt> to indicate type image is supported.
      */
     protected boolean supportsImageType() {
-	return true;
+        return true;
     }
 
     /**
@@ -282,55 +273,53 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
      * before the template
      */
     public boolean end(Writer writer, String body) {
-	evaluateParams();
-	try {
-	    addParameter("body", body);
+        evaluateParams();
+        try {
+            addParameter(PARAM_BODY, body);
+            mergeTemplate(writer, buildTemplateName(template, getDefaultTemplate()));
+        } catch (Exception e) {
+            // error when rendering
+        } finally {
+            popComponentStack();
+        }
 
-	    mergeTemplate(writer, buildTemplateName(template,
-		    getDefaultTemplate()));
-	} catch (Exception e) {
-	    LOG.error("error when rendering", e);
-	} finally {
-	    popComponentStack();
-	}
-
-	return false;
+        return false;
     }
 
     @StrutsTagAttribute(description = "The type of submit to use. Valid values are <i>input</i>, "
-	    + "<i>button</i> and <i>image</i>.", defaultValue = "input")
+            + "<i>button</i> and <i>image</i>.", defaultValue = "input")
     public void setType(String type) {
-	this.type = type;
+        this.type = type;
     }
 
     @StrutsTagAttribute(description = "Supply an image src for <i>image</i> type submit button. Will have no effect for types <i>input</i> and <i>button</i>.")
     public void setSrc(String src) {
-	this.src = src;
+        this.src = src;
     }
 
     @StrutsTagAttribute(description = "Clear all form fields after successful submit. Default: false", type = "Boolean")
     public void setClearForm(String clearForm) {
-	this.clearForm = clearForm;
+        this.clearForm = clearForm;
     }
 
     @StrutsTagAttribute(description = "Reset the form after successful submit. Default: false", type = "Boolean")
     public void setResetForm(String resetForm) {
-	this.resetForm = resetForm;
+        this.resetForm = resetForm;
     }
 
     @StrutsTagAttribute(description = "Boolean flag indicating whether the form should always target the server response to an iframe. This is useful in conjuction with file uploads. Default: false", type = "Boolean")
     public void setIframe(String iframe) {
-	this.iframe = iframe;
+        this.iframe = iframe;
     }
 
-    @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked", type = "String", defaultValue = "")
+    @StrutsTagAttribute(name = "onClickTopics", description = "A comma delimited list of topics that published when the element is clicked")
     public void setOnClickTopics(String onClickTopics) {
-	this.onClickTopics = onClickTopics;
+        this.onClickTopics = onClickTopics;
     }
 
     @StrutsTagAttribute(description = "id of dialog that will be opened when clicked.")
     public void setOpenDialog(String openDialog) {
-	this.openDialog = openDialog;
+        this.openDialog = openDialog;
     }
 
     @StrutsTagAttribute(description = "Set the title of a dialog opened by openDialog or openDialogTopics")
@@ -340,46 +329,46 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
 
     @StrutsTagAttribute(description = "The parent theme. Default: value of parent form tag or simple if no parent form tag is available")
     public void setParentTheme(String parentTheme) {
-	this.parentTheme = parentTheme;
+        this.parentTheme = parentTheme;
     }
 
     @StrutsTagAttribute(description = "jQuery UI Button", defaultValue = "false", type = "Boolean")
     public void setButton(String button) {
-	this.button = button;
+        this.button = button;
     }
 
     @StrutsTagAttribute(description = "Icons to display. The primary icon is displayed on the left of the label text. Value must be a classname (String), eg. ui-icon-gear.")
     public void setButtonIcon(String buttonIcon) {
-	this.buttonIcon = buttonIcon;
+        this.buttonIcon = buttonIcon;
     }
 
     @StrutsTagAttribute(description = "Icons to display. The secondary icon is displayed on the right of the label text. Value must be a classname (String), eg. ui-icon-gear.")
     public void setButtonIconSecondary(String buttonIconSecondary) {
-	this.buttonIconSecondary = buttonIconSecondary;
+        this.buttonIconSecondary = buttonIconSecondary;
     }
 
     @StrutsTagAttribute(description = "Whether to show any text - when set to false (display no text), icons (see icons option) must be enabled, otherwise it'll be ignored.", defaultValue = "true", type = "Boolean")
     public void setButtonText(String buttonText) {
-	this.buttonText = buttonText;
+        this.buttonText = buttonText;
     }
 
     @StrutsTagAttribute(description = "A function that handle the client validation result. eg.: myValidation(form, errors)")
     public void setValidateFunction(String validateFunction) {
-	this.validateFunction = validateFunction;
+        this.validateFunction = validateFunction;
     }
 
     @StrutsTagAttribute(description = "Enable client AJAX validation", defaultValue = "false", type = "Boolean")
     public void setValidate(String validate) {
-	this.validate = validate;
+        this.validate = validate;
     }
 
     @StrutsTagAttribute(description = "Function name used to filter the fields of the form.")
     public void setFormFilter(String formFilter) {
-	this.formFilter = formFilter;
+        this.formFilter = formFilter;
     }
 
     @StrutsTagAttribute(description = "Set to true if the target should be replaced or false if only the target contents should be replaced.", defaultValue = "false", type = "Boolean")
     public void setReplaceTarget(String replaceTarget) {
-	this.replaceTarget = replaceTarget;
+        this.replaceTarget = replaceTarget;
     }
 }

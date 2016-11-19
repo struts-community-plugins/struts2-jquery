@@ -19,33 +19,30 @@
 
 package com.jgeppert.struts2.jquery.datatables.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.datatables.components.Datatables;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.datatables.components.Datatables;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Datatables
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Datatables
  */
 public class DatatablesDirective extends JqueryDatatablesAbstractDirective {
-	@Override
-	public String getBeanName() {
-		return "datables";
-	}
+    @Override
+    public String getBeanName() {
+        return "datables";
+    }
 
-	@Override
-	protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		return new Datatables(stack, req, res);
-	}
+    @Override
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Datatables(stack, req, res);
+    }
 
-	@Override
-	public int getType() {
-		return BLOCK;
-	}
+    @Override
+    public int getType() {
+        return BLOCK;
+    }
 }

@@ -19,18 +19,15 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -41,207 +38,180 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <p>
  * Examples
  * </p>
- * 
+ * <p>
  * <!-- START SNIPPET: example1 -->
- * 
+ * <p>
  * <pre>
  * &lt;sj:slider id=&quot;myslider&quot; name=&quot;myslider&quot;/&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example1 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example2 -->
- * 
+ * <p>
  * <pre>
  * &lt;sj:slider id=&quot;myslider2&quot; name=&quot;myslider2&quot; value=&quot;40&quot; displayValueElement=&quot;displayvaluespan&quot; min=&quot;20&quot; max=&quot;200&quot; animate=&quot;true&quot; step=&quot;5&quot; cssStyle=&quot;margin: 10px;&quot;/&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example2 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "slider", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SliderTag", description = "Render a Slider", allowDynamicAttributes = true)
 public class Slider extends AbstractTopicsBean {
 
-  public static final String            JQUERYACTION   = "slider";
-  public static final String            TEMPLATE       = "slider";
-  public static final String            TEMPLATE_CLOSE = "slider-close";
-  final private static transient Random RANDOM         = new Random();
+    public static final String JQUERYACTION = "slider";
+    public static final String TEMPLATE = "slider";
+    public static final String TEMPLATE_CLOSE = "slider-close";
 
-  protected String                      animate;
-  protected String                      max;
-  protected String                      min;
-  protected String                      orientation;
-  protected String                      range;
-  protected String                      step;
-  protected String                      displayValueElement;
-  protected String                      onSlideTopics;
+    private static final String PARAM_ANIMATE = "animate";
+    private static final String PARAM_MAX = "max";
+    private static final String PARAM_MIN = "min";
+    private static final String PARAM_ORIENTATION = "orientation";
+    private static final String PARAM_STEP = "step";
+    private static final String PARAM_DISPLAY_VALUE_ELEMENT = "displayValueElement";
+    private static final String PARAM_ON_SLIDE_TOPICS = "onSlideTopics";
+    private static final String PARAM_ARRAY_VALUE = "arrayValue";
+    private static final String PARAM_RANGE = "range";
+    private static final String PARAM_VALUE = "value";
+    private static final String PARAM_WIDGETID = "widgetid";
 
-  public Slider(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
+    private static final String ID_PREFIX_SLIDER = "slider_";
 
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
+    protected String animate;
+    protected String max;
+    protected String min;
+    protected String orientation;
+    protected String range;
+    protected String step;
+    protected String displayValueElement;
+    protected String onSlideTopics;
 
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
-
-  public void evaluateParams()
-  {
-    super.evaluateParams();
-
-    addParameter("jqueryaction", JQUERYACTION);
-
-    if (animate != null) addParameter("animate", findValue(animate, Boolean.class));
-    if (max != null) addParameter("max", findValue(max, Integer.class));
-    if (min != null) addParameter("min", findValue(min, Integer.class));
-    if (orientation != null) addParameter("orientation", findString(orientation));
-    if (range != null) addParameter("range", findString(range));
-    if (step != null) addParameter("step", findValue(step, Integer.class));
-    if (displayValueElement != null) addParameter("displayValueElement", findString(displayValueElement));
-    if (onSlideTopics != null) addParameter("onSlideTopics", findString(onSlideTopics));
-
-    Object valueObject = null;
-    String strValue = null;
-
-    if (value != null)
-    {
-      strValue = value;
-    }
-    else
-    {
-      if (name != null)
-      {
-        strValue = name;
-      }
-    }
-    if (strValue != null)
-    {
-      valueObject = findValue(strValue);
+    public Slider(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
     }
 
-    if (valueObject == null && strValue != null)
-    {
-      valueObject = strValue;
+    public String getDefaultOpenTemplate() {
+        return TEMPLATE;
     }
 
-    if (valueObject != null)
-    {
-      if (valueObject instanceof String && ((String) valueObject).startsWith("["))
-      {
-        addParameter("arrayValue", findString(strValue));
-        addParameter("range", "true");
-      }
-      else if (valueObject instanceof Collection<?>)
-      {
-        @SuppressWarnings("unchecked")
-	Collection<Object> col = (Collection<Object>) valueObject;
-        if (col.size() >= 2)
-        {
-          addParameter("arrayValue", Arrays.toString(col.toArray()));
-          addParameter("range", "true");
+    protected String getDefaultTemplate() {
+        return TEMPLATE_CLOSE;
+    }
+
+    public void evaluateParams() {
+        super.evaluateParams();
+
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
+
+        addParameterIfPresent(PARAM_ANIMATE, this.animate, Boolean.class);
+        addParameterIfPresent(PARAM_MAX, this.max, Integer.class);
+        addParameterIfPresent(PARAM_MIN, this.min, Integer.class);
+        addParameterIfPresent(PARAM_ORIENTATION, this.orientation);
+        addParameterIfPresent(PARAM_RANGE, this.range);
+        addParameterIfPresent(PARAM_STEP, this.step, Integer.class);
+        addParameterIfPresent(PARAM_DISPLAY_VALUE_ELEMENT, this.displayValueElement);
+        addParameterIfPresent(PARAM_ON_SLIDE_TOPICS, this.onSlideTopics);
+
+        Object valueObject = null;
+        String strValue = null;
+
+        if (value != null) {
+            strValue = value;
+        } else {
+            if (name != null) {
+                strValue = name;
+            }
         }
-      }
-      else if (valueObject instanceof Object[])
-      {
-        Object[] ary = (Object[]) valueObject;
-        if (ary.length >= 2)
-        {
-          addParameter("arrayValue", Arrays.toString(ary));
-          addParameter("range", "true");
+        if (strValue != null) {
+            valueObject = findValue(strValue);
         }
-      }
-      else
-      {
-        addParameter("value", findString(strValue));
-      }
+
+        if (valueObject == null && strValue != null) {
+            valueObject = strValue;
+        }
+
+        if (valueObject != null) {
+            if (valueObject instanceof String && ((String) valueObject).startsWith("[")) {
+                addParameter(PARAM_ARRAY_VALUE, findString(strValue));
+                addParameter(PARAM_RANGE, Boolean.TRUE.toString());
+            } else if (valueObject instanceof Collection<?>) {
+                @SuppressWarnings("unchecked")
+                Collection<Object> col = (Collection<Object>) valueObject;
+                if (col.size() >= 2) {
+                    addParameter(PARAM_ARRAY_VALUE, Arrays.toString(col.toArray()));
+                    addParameter(PARAM_RANGE, Boolean.TRUE.toString());
+                }
+            } else if (valueObject instanceof Object[]) {
+                Object[] ary = (Object[]) valueObject;
+                if (ary.length >= 2) {
+                    addParameter(PARAM_ARRAY_VALUE, Arrays.toString(ary));
+                    addParameter(PARAM_RANGE, Boolean.TRUE.toString());
+                }
+            } else {
+                addParameter(PARAM_VALUE, findString(strValue));
+            }
+        }
+        addGeneratedIdParam(ID_PREFIX_SLIDER);
+        addParameter(PARAM_ID, this.id + "_widget");
+        addParameter(PARAM_WIDGETID, this.id);
     }
 
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "slider_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
     }
-    addParameter("id", this.id + "_widget");
-    addParameter("widgetid", this.id);
-  }
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+    @Override
+    public String getTheme() {
+        return "jquery";
+    }
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+    @StrutsTagAttribute(description = "Whether to slide handle smoothly when user click outside handle on the bar. Default: false", defaultValue = "false", type = "Boolean")
+    public void setAnimate(String animate) {
+        this.animate = animate;
+    }
 
-  @StrutsTagAttribute(description = "Whether to slide handle smoothly when user click outside handle on the bar. Default: false", defaultValue = "false", type = "Boolean")
-  public void setAnimate(String animate)
-  {
-    this.animate = animate;
-  }
+    @StrutsTagAttribute(description = "Initialize a slider with the max option specified. Default: 100", type = "Integer")
+    public void setMax(String max) {
+        this.max = max;
+    }
 
-  @StrutsTagAttribute(description = "Initialize a slider with the max option specified. Default: 100", type = "Integer")
-  public void setMax(String max)
-  {
-    this.max = max;
-  }
+    @StrutsTagAttribute(description = "The minimum value of the slider. Default: 0", type = "Integer")
+    public void setMin(String min) {
+        this.min = min;
+    }
 
-  @StrutsTagAttribute(description = "The minimum value of the slider. Default: 0", type = "Integer")
-  public void setMin(String min)
-  {
-    this.min = min;
-  }
+    @StrutsTagAttribute(description = "Normally you don't need to set this option because the plugin detects the slider orientation automatically. If the orientation is not correctly detected you can set this option to 'horizontal' or 'vertical'. Default: 'auto'")
+    public void setOrientation(String orientation) {
+        this.orientation = orientation;
+    }
 
-  @StrutsTagAttribute(description = "Normally you don't need to set this option because the plugin detects the slider orientation automatically. If the orientation is not correctly detected you can set this option to 'horizontal' or 'vertical'. Default: 'auto'")
-  public void setOrientation(String orientation)
-  {
-    this.orientation = orientation;
-  }
+    @StrutsTagAttribute(description = "If set to true, the slider will detect if you have two handles and create a stylable range element between these two. Two other possible values are 'min' and 'max'. A min range goes from the slider min to one handle. A max range goes from one handle to the slider max.")
+    public void setRange(String range) {
+        this.range = range;
+    }
 
-  @StrutsTagAttribute(description = "If set to true, the slider will detect if you have two handles and create a stylable range element between these two. Two other possible values are 'min' and 'max'. A min range goes from the slider min to one handle. A max range goes from one handle to the slider max.")
-  public void setRange(String range)
-  {
-    this.range = range;
-  }
+    @StrutsTagAttribute(description = "Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step. Default: 1", type = "Integer")
+    public void setStep(String step) {
+        this.step = step;
+    }
 
-  @StrutsTagAttribute(description = "Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step. Default: 1", type = "Integer")
-  public void setStep(String step)
-  {
-    this.step = step;
-  }
+    @Override
+    @StrutsTagAttribute(description = "Determines the value of the slider. Default: 0")
+    public void setValue(String value) {
+        super.setValue(value);
+    }
 
-  @Override
-  @StrutsTagAttribute(description = "Determines the value of the slider. Default: 0")
-  public void setValue(String value)
-  {
-    super.setValue(value);
-  }
+    @StrutsTagAttribute(description = "Element Id to display the value.")
+    public void setDisplayValueElement(String displayValueElement) {
+        this.displayValueElement = displayValueElement;
+    }
 
-  @StrutsTagAttribute(description = "Element Id to display the value.")
-  public void setDisplayValueElement(String displayValueElement)
-  {
-    this.displayValueElement = displayValueElement;
-  }
-
-  @StrutsTagAttribute(description = "A comma delimited list of topics that published when slide", type = "String", defaultValue = "")
-  public void setOnSlideTopics(String onSlideTopics)
-  {
-    this.onSlideTopics = onSlideTopics;
-  }
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when slide")
+    public void setOnSlideTopics(String onSlideTopics) {
+        this.onSlideTopics = onSlideTopics;
+    }
 
 }

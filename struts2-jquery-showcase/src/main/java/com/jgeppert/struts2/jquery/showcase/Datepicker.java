@@ -19,13 +19,12 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
-import java.util.Calendar;
-import java.util.Date;
-
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.opensymphony.xwork2.ActionSupport;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Datepicker extends ActionSupport {
 
@@ -36,41 +35,41 @@ public class Datepicker extends ActionSupport {
     private Date minValue;
     private Date maxValue;
 
-    @Action(value = "/datepicker", results = { @Result(location = "datepicker.jsp", name = "success") })
+    @Action(value = "/datepicker", results = {@Result(location = "datepicker.jsp", name = "success")})
     public String execute() throws Exception {
 
-	Calendar c = Calendar.getInstance();
-	c.roll(Calendar.WEEK_OF_YEAR, -1);
+        Calendar c = Calendar.getInstance();
+        c.roll(Calendar.WEEK_OF_YEAR, -1);
 
-	dateValue = c.getTime();
+        dateValue = c.getTime();
 
-	c.roll(Calendar.MONTH, -1);
+        c.roll(Calendar.MONTH, -1);
 
-	nameValue = c.getTime();
+        nameValue = c.getTime();
 
-	c.setTime(new Date());
-	c.roll(Calendar.MONTH, -1);
-	minValue = c.getTime();
+        c.setTime(new Date());
+        c.roll(Calendar.MONTH, -1);
+        minValue = c.getTime();
 
-	c.roll(Calendar.MONTH, 2);
-	maxValue = c.getTime();
+        c.roll(Calendar.MONTH, 2);
+        maxValue = c.getTime();
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public Date getDateValue() {
-	return dateValue;
+        return dateValue;
     }
 
     public Date getNameValue() {
-	return nameValue;
+        return nameValue;
     }
 
     public Date getMinValue() {
-	return minValue;
+        return minValue;
     }
 
     public Date getMaxValue() {
-	return maxValue;
+        return maxValue;
     }
 }

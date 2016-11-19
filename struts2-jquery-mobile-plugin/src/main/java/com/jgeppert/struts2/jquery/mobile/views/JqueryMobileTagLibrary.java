@@ -19,55 +19,38 @@
 
 package com.jgeppert.struts2.jquery.mobile.views;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-
 import com.jgeppert.struts2.jquery.mobile.components.Radio;
 import com.jgeppert.struts2.jquery.mobile.views.freemarker.tags.JqueryMobileModels;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.AnchorDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.CheckboxDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.CheckboxListDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.DivDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.HeadDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.ListDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.ListItemDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.PasswordDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.SearchfieldDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.SelectDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.SliderDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.TextareaDirective;
-import com.jgeppert.struts2.jquery.mobile.views.velocity.components.TextfieldDirective;
-
+import com.jgeppert.struts2.jquery.mobile.views.velocity.components.*;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.TagLibraryDirectiveProvider;
 import org.apache.struts2.views.TagLibraryModelProvider;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
+
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryMobileTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
-	public Object getModels(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new JqueryMobileModels(stack, req, res);
-	}
+    public Object getModels(ValueStack stack, HttpServletRequest req,
+                            HttpServletResponse res) {
+        return new JqueryMobileModels(stack, req, res);
+    }
 
-	@SuppressWarnings("rawtypes")
-	public List<Class> getDirectiveClasses() {
-		Class[] directives = new Class[] { HeadDirective.class,
-				CheckboxListDirective.class, CheckboxDirective.class,
-				Radio.class, DivDirective.class, ListDirective.class,
-				ListItemDirective.class, AnchorDirective.class,
-				TextareaDirective.class, TextfieldDirective.class,
-				SearchfieldDirective.class, PasswordDirective.class,
-				SelectDirective.class, SliderDirective.class};
-		return Arrays.asList(directives);
-	}
+    @SuppressWarnings("rawtypes")
+    public List<Class> getDirectiveClasses() {
+        Class[] directives = new Class[]{HeadDirective.class,
+                CheckboxListDirective.class, CheckboxDirective.class,
+                Radio.class, DivDirective.class, ListDirective.class,
+                ListItemDirective.class, AnchorDirective.class,
+                TextareaDirective.class, TextfieldDirective.class,
+                SearchfieldDirective.class, PasswordDirective.class,
+                SelectDirective.class, SliderDirective.class};
+        return Arrays.asList(directives);
+    }
 
 }

@@ -19,31 +19,28 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.mobile.components.Textarea;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.mobile.components.Textarea;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @see Textarea
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Textarea
  */
 public class TextareaModel extends TagModel {
 
-	public TextareaModel(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		super(stack, req, res);
-	}
+    public TextareaModel(ValueStack stack, HttpServletRequest req,
+                         HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-	@Override
-	protected Component getBean() {
-		return new Textarea(stack, req, res);
-	}
+    @Override
+    protected Component getBean() {
+        return new Textarea(stack, req, res);
+    }
 
 }

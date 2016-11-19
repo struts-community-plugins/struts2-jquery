@@ -19,17 +19,16 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 public class Ajax4 extends ActionSupport {
 
     private static final long serialVersionUID = -3405146826130407758L;
 
-    @Action(value = "/ajax4", results = { @Result(location = "ajax4.jsp", name = "success") })
+    @Action(value = "/ajax4", results = {@Result(location = "ajax4.jsp", name = "success")})
     public String execute() throws Exception {
-	return SUCCESS;
+        return SUCCESS;
     }
 }

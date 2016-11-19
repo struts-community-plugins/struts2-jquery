@@ -19,28 +19,23 @@
 
 package com.jgeppert.struts2.jquery.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.components.Head;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Head;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Head
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Head
  */
 public class HeadDirective extends JqueryAbstractDirective {
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Head(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Head(stack, req, res);
+    }
 
-  public String getBeanName()
-  {
-    return "head";
-  }
+    public String getBeanName() {
+        return "head";
+    }
 }

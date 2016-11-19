@@ -20,47 +20,45 @@
 package com.jgeppert.struts2.jquery.components;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public interface ResizableBean {
 
-  void setResizable(String resizable);
+    void setResizable(String resizable);
 
-  void setResizableAnimate(String animate);
+    void setResizableAnimate(String animate);
 
-  void setResizableAnimateDuration(String animateDuration);
+    void setResizableAnimateDuration(String animateDuration);
 
-  void setResizableAnimateEasing(String animateEasing);
+    void setResizableAnimateEasing(String animateEasing);
 
-  void setResizableAspectRatio(String aspectRatio);
+    void setResizableAspectRatio(String aspectRatio);
 
-  void setResizableAutoHide(String autoHide);
+    void setResizableAutoHide(String autoHide);
 
-  void setResizableContainment(String containment);
+    void setResizableContainment(String containment);
 
-  void setResizableDelay(String delay);
+    void setResizableDelay(String delay);
 
-  void setResizableDistance(String distance);
+    void setResizableDistance(String distance);
 
-  void setResizableGhost(String ghost);
+    void setResizableGhost(String ghost);
 
-  void setResizableHelper(String helper);
+    void setResizableHelper(String helper);
 
-  void setResizableMaxHeight(String maxHeight);
+    void setResizableMaxHeight(String maxHeight);
 
-  void setResizableMaxWidth(String maxWidth);
+    void setResizableMaxWidth(String maxWidth);
 
-  void setResizableMinHeight(String minHeight);
+    void setResizableMinHeight(String minHeight);
 
-  void setResizableMinWidth(String minWidth);
+    void setResizableMinWidth(String minWidth);
 
-  void setResizableOnStartTopics(String start);
+    void setResizableOnStartTopics(String start);
 
-  void setResizableOnResizeTopics(String resize);
+    void setResizableOnResizeTopics(String resize);
 
-  void setResizableOnStopTopics(String stop);
+    void setResizableOnStopTopics(String stop);
 
-  void setResizableHandles(String handles);
+    void setResizableHandles(String handles);
 }

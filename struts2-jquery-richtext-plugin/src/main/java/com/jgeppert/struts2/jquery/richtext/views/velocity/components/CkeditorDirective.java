@@ -19,33 +19,27 @@
 
 package com.jgeppert.struts2.jquery.richtext.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.richtext.components.Ckeditor;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.richtext.components.Ckeditor;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Ckeditor
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Ckeditor
  */
 public class CkeditorDirective extends JqueryRichtextAbstractDirective {
-  public String getBeanName()
-  {
-    return "ckeditor";
-  }
+    public String getBeanName() {
+        return "ckeditor";
+    }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Ckeditor(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Ckeditor(stack, req, res);
+    }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
+    public int getType() {
+        return BLOCK;
+    }
 }

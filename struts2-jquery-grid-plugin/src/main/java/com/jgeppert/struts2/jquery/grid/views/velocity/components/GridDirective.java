@@ -19,33 +19,27 @@
 
 package com.jgeppert.struts2.jquery.grid.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.grid.components.Grid;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.grid.components.Grid;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Grid
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Grid
  */
 public class GridDirective extends JqueryGridAbstractDirective {
-  public String getBeanName()
-  {
-    return "grid";
-  }
+    public String getBeanName() {
+        return "grid";
+    }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Grid(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Grid(stack, req, res);
+    }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
+    public int getType() {
+        return BLOCK;
+    }
 }

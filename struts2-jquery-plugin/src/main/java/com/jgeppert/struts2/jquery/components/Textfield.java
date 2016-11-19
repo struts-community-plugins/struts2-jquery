@@ -19,16 +19,13 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -36,97 +33,75 @@ import com.opensymphony.xwork2.util.ValueStack;
  * Render HTML textfield providing content from remote call via AJAX
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 
 @StrutsTag(name = "textfield", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TextfieldTag", description = "Render HTML textfield providing content from remote call via AJAX", allowDynamicAttributes = true)
 public class Textfield extends AbstractFormElement {
 
-  public static final String            TEMPLATE       = "textfield";
-  public static final String            TEMPLATE_CLOSE = "textfield-close";
-  public static final String            COMPONENT_NAME = Textfield.class.getName();
-  final private static transient Random RANDOM         = new Random();
-  public static final String            JQUERYACTION   = "container";
+    public static final String TEMPLATE = "textfield";
+    public static final String TEMPLATE_CLOSE = "textfield-close";
+    public static final String COMPONENT_NAME = Textfield.class.getName();
+    public static final String JQUERYACTION = "container";
 
-  protected String                      maxlength;
-  protected String                      readonly;
-  protected String                      size;
+    private static final String PARAM_SIZE = "size";
+    private static final String PARAM_MAXLENGTH = "maxlength";
+    private static final String PARAM_READONLY = "readonly";
 
-  public Textfield(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
-    super(stack, request, response);
-  }
+    private static final String ID_PREFIX_TEXTFIELD = "textfield_";
 
-  public String getDefaultOpenTemplate()
-  {
-    return TEMPLATE;
-  }
+    protected String maxlength;
+    protected String readonly;
+    protected String size;
 
-  protected String getDefaultTemplate()
-  {
-    return TEMPLATE_CLOSE;
-  }
-
-  public void evaluateExtraParams()
-  {
-    super.evaluateExtraParams();
-
-    addParameter("jqueryaction", JQUERYACTION);
-
-    if (size != null)
-    {
-      addParameter("size", findString(size));
+    public Textfield(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
     }
 
-    if (maxlength != null)
-    {
-      addParameter("maxlength", findString(maxlength));
+    public String getDefaultOpenTemplate() {
+        return TEMPLATE;
     }
 
-    if (readonly != null)
-    {
-      addParameter("readonly", findValue(readonly, Boolean.class));
+    protected String getDefaultTemplate() {
+        return TEMPLATE_CLOSE;
     }
-    if ((this.id == null || this.id.length() == 0))
-    {
-      // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-      // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-      int nextInt = RANDOM.nextInt();
-      nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-      this.id = "textfield_" + String.valueOf(nextInt);
-      addParameter("id", this.id);
+
+    public void evaluateExtraParams() {
+        super.evaluateExtraParams();
+
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
+
+        addParameterIfPresent(PARAM_SIZE, this.size);
+        addParameterIfPresent(PARAM_MAXLENGTH, this.maxlength);
+        addParameterIfPresent(PARAM_READONLY, this.readonly, Boolean.class);
+
+        addGeneratedIdParam(ID_PREFIX_TEXTFIELD);
     }
-  }
 
-  @Override
-  @StrutsTagSkipInheritance
-  public void setTheme(String theme)
-  {
-    super.setTheme(theme);
-  }
+    @Override
+    @StrutsTagSkipInheritance
+    public void setTheme(String theme) {
+        super.setTheme(theme);
+    }
 
-  @Override
-  public String getTheme()
-  {
-    return "jquery";
-  }
+    @Override
+    public String getTheme() {
+        return "jquery";
+    }
 
-  @StrutsTagAttribute(description = "HTML maxlength attribute", type = "Integer")
-  public void setMaxlength(String maxlength)
-  {
-    this.maxlength = maxlength;
-  }
+    @StrutsTagAttribute(description = "HTML maxlength attribute", type = "Integer")
+    public void setMaxlength(String maxlength) {
+        this.maxlength = maxlength;
+    }
 
-  @StrutsTagAttribute(description = "Whether the input is readonly", type = "Boolean", defaultValue = "false")
-  public void setReadonly(String readonly)
-  {
-    this.readonly = readonly;
-  }
+    @StrutsTagAttribute(description = "Whether the input is readonly", type = "Boolean", defaultValue = "false")
+    public void setReadonly(String readonly) {
+        this.readonly = readonly;
+    }
 
-  @StrutsTagAttribute(description = "HTML size attribute", type = "Integer")
-  public void setSize(String size)
-  {
-    this.size = size;
-  }
+    @StrutsTagAttribute(description = "HTML size attribute", type = "Integer")
+    public void setSize(String size) {
+        this.size = size;
+    }
 }

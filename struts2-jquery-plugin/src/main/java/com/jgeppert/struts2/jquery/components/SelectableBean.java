@@ -20,35 +20,33 @@
 package com.jgeppert.struts2.jquery.components;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public interface SelectableBean {
 
-  void setSelectable(String selectable);
+    void setSelectable(String selectable);
 
-  void setSelectableAutoRefresh(String selectableAutoRefresh);
+    void setSelectableAutoRefresh(String selectableAutoRefresh);
 
-  void setSelectableCancel(String selectableCancel);
+    void setSelectableCancel(String selectableCancel);
 
-  void setSelectableDelay(String selectableDelay);
+    void setSelectableDelay(String selectableDelay);
 
-  void setSelectableDistance(String selectableDistance);
+    void setSelectableDistance(String selectableDistance);
 
-  void setSelectableFilter(String selectableFilter);
+    void setSelectableFilter(String selectableFilter);
 
-  void setSelectableTolerance(String selectableTolerance);
+    void setSelectableTolerance(String selectableTolerance);
 
-  void setSelectableOnSelectedTopics(String selectableSelected);
+    void setSelectableOnSelectedTopics(String selectableSelected);
 
-  void setSelectableOnSelectingTopics(String selectableSelecting);
+    void setSelectableOnSelectingTopics(String selectableSelecting);
 
-  void setSelectableOnStartTopics(String selectableStart);
+    void setSelectableOnStartTopics(String selectableStart);
 
-  void setSelectableOnStopTopics(String selectableStop);
+    void setSelectableOnStopTopics(String selectableStop);
 
-  void setSelectableOnUnselectedTopics(String selectableUnselected);
+    void setSelectableOnUnselectedTopics(String selectableUnselected);
 
-  void setSelectableOnUnselectingTopics(String selectableUnselecting);
+    void setSelectableOnUnselectingTopics(String selectableUnselecting);
 }

@@ -19,39 +19,33 @@
 
 package com.jgeppert.struts2.jquery.richtext.views;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.jgeppert.struts2.jquery.richtext.views.freemarker.tags.JqueryRichtextModels;
 import com.jgeppert.struts2.jquery.richtext.views.velocity.components.CkeditorDirective;
 import com.jgeppert.struts2.jquery.richtext.views.velocity.components.TinymceDirective;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.TagLibraryDirectiveProvider;
 import org.apache.struts2.views.TagLibraryModelProvider;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryRichtextTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
-  public Object getModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new JqueryRichtextModels(stack, req, res);
-  }
+    public Object getModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new JqueryRichtextModels(stack, req, res);
+    }
 
-  @SuppressWarnings("rawtypes")
+    @SuppressWarnings("rawtypes")
     public List<Class> getDirectiveClasses() {
-    Class[] directives = new Class[] {
-        CkeditorDirective.class, TinymceDirective.class
-    };
-    return Arrays.asList(directives);
-  }
+        Class[] directives = new Class[]{
+                CkeditorDirective.class, TinymceDirective.class
+        };
+        return Arrays.asList(directives);
+    }
 
 }

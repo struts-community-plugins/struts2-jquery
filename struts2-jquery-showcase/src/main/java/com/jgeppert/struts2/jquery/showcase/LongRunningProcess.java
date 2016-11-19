@@ -19,11 +19,10 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 @InterceptorRef("execAndWait")
 public class LongRunningProcess extends ActionSupport {
@@ -32,25 +31,25 @@ public class LongRunningProcess extends ActionSupport {
     private int status = 0;
 
     @Action(value = "/long-running-process", results = {
-	    @Result(location = "long-running-process-success.jsp", name = "success"),
-	    @Result(location = "long-running-process-wait.jsp", name = "wait") })
+            @Result(location = "long-running-process-success.jsp", name = "success"),
+            @Result(location = "long-running-process-wait.jsp", name = "wait")})
     public String execute() throws Exception {
-	Thread.sleep(5000);
-	status = 25;
+        Thread.sleep(5000);
+        status = 25;
 
-	Thread.sleep(5000);
-	status = 50;
+        Thread.sleep(5000);
+        status = 50;
 
-	Thread.sleep(5000);
-	status = 75;
+        Thread.sleep(5000);
+        status = 75;
 
-	Thread.sleep(5000);
-	status = 100;
+        Thread.sleep(5000);
+        status = 100;
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public int getStatus() {
-	return status;
+        return status;
     }
 }

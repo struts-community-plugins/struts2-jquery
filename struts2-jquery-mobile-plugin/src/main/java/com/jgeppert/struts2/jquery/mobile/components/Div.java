@@ -34,7 +34,6 @@ import java.util.Random;
  * This tag generates an HTML div for the jQuery mobile framework.
  * </p>
  * <!-- END SNIPPET: javadoc -->
- *
  * <p>
  * Examples
  * </p>
@@ -42,38 +41,28 @@ import java.util.Random;
  * <p>
  * A Div with role <strong>page</strong>
  * </p>
- *
  * <pre>
  * &lt;sjm:div role=&quot;page&quot; id=&quot;page1&quot;&gt;
  * &lt;/sjm:div&gt;
- *
  * </pre>
- *
  * <!-- END SNIPPET: example1 -->
- *
  * <!-- START SNIPPET: example2 -->
  * <p>
  * A Div with role <strong>header</strong>
  * </p>
- *
  * <pre>
  * &lt;sjm:div role=&quot;header&quot;&gt;
  * &lt;/sjm:div&gt;
  * </pre>
- *
  * <!-- END SNIPPET: example2 -->
- *
- *
  * <!-- START SNIPPET: example3 -->
  * <p>
  * A Div with theme <strong>n</strong>
  * </p>
- *
  * <pre>
  * &lt;sjm:div dataTheme=&quot;b&quot;&gt;
  * &lt;/sjm:div&gt;
  * </pre>
- *
  * <!-- END SNIPPET: example3 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
@@ -85,6 +74,12 @@ public class Div extends org.apache.struts2.components.ClosingUIBean implements 
     public static final String TEMPLATE_CLOSE = "div-close";
     public static final String COMPONENT_NAME = Div.class.getName();
     private static final transient Random RANDOM = new Random();
+
+    private static final String PARAM_DATA_THEME = "dataTheme";
+    private static final String PARAM_ROLE = "role";
+    private static final String PARAM_ID = "id";
+
+    private static final String ID_PREFIX_DIV = "div_";
 
     protected String role;
     protected String dataTheme;
@@ -104,19 +99,20 @@ public class Div extends org.apache.struts2.components.ClosingUIBean implements 
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
 
-        if (role != null)
-            addParameter("role", findString(role));
-        if (dataTheme != null)
-            addParameter("dataTheme", findString(dataTheme));
+        if (role != null) {
+            addParameter(PARAM_ROLE, findString(role));
+        }
+        if (dataTheme != null) {
+            addParameter(PARAM_DATA_THEME, findString(dataTheme));
+        }
 
         if ((this.id == null || this.id.length() == 0)) {
             // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
             // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
             int nextInt = RANDOM.nextInt();
-            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-                    .abs(nextInt);
-            this.id = "div_" + String.valueOf(nextInt);
-            addParameter("id", this.id);
+            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
+            this.id = ID_PREFIX_DIV + String.valueOf(nextInt);
+            addParameter(PARAM_ID, this.id);
         }
     }
 

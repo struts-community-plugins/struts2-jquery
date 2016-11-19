@@ -33,13 +33,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MenuModel extends TagModel {
 
-	public MenuModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		super(stack, req, res);
-	}
+    public MenuModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-	@Override
-	protected Component getBean() {
-		return new Menu(stack, req, res);
-	}
+    @Override
+    protected Component getBean() {
+        return new Menu(stack, req, res);
+    }
 
 }

@@ -19,17 +19,16 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 public class Tabs extends ActionSupport {
 
     private static final long serialVersionUID = 621496832249551748L;
 
-    @Action(value = "/remote-link", results = { @Result(location = "remote-link.jsp", name = "success") })
+    @Action(value = "/remote-link", results = {@Result(location = "remote-link.jsp", name = "success")})
     public String execute() throws Exception {
-	return SUCCESS;
+        return SUCCESS;
     }
 }

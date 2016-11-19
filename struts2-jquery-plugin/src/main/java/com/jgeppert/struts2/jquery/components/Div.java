@@ -19,16 +19,13 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -37,100 +34,92 @@ import com.opensymphony.xwork2.util.ValueStack;
  * call, via the jQuery framework.
  * </p>
  * <!-- END SNIPPET: javadoc -->
- * 
+ * <p>
  * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * 
+ * <p>
  * <pre>
  * &lt;sj:div href=&quot;%{#url}&quot;&gt;Initial Content&lt;/sj:div&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example1 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example2 -->
- * 
+ * <p>
  * <pre>
- * &lt;img id=&quot;indicator&quot; src=&quot;${pageContext.request.contextPath}/images/indicator.gif&quot; style=&quot;display:none&quot;/&gt; 
+ * &lt;img id=&quot;indicator&quot; src=&quot;${pageContext.request.contextPath}/images/indicator.gif&quot; style=&quot;display:none&quot;/&gt;
  * &lt;sj:div href=&quot;%{#url}&quot; indicator=&quot;indicator&quot;&gt; Initial Content &lt;/sj:div&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example2 -->
- * 
+ * <p>
  * <!-- START SNIPPET: example3 -->
- * 
+ * <p>
  * <pre>
  * &lt;sj:div href=&quot;%{#url}&quot; effect=&quot;highlight&quot; effectOptions=&quot;color : '#222222'&quot; effectDuration=&quot;3600&quot;&gt;
  *  Initial Content
  * &lt;/sj:div&gt;
  * </pre>
- * 
+ * <p>
  * <!-- END SNIPPET: example3 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 @StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DivTag", description = "Render HTML div providing content from remote call via AJAX", allowDynamicAttributes = true)
 public class Div extends AbstractContainer implements ResizableBean,
-	DroppableBean, DraggableBean, SelectableBean {
+        DroppableBean, DraggableBean, SelectableBean {
 
     public static final String TEMPLATE = "div";
     public static final String TEMPLATE_CLOSE = "div-close";
     public static final String COMPONENT_NAME = Div.class.getName();
-    final private static transient Random RANDOM = new Random();
     public static final String JQUERYACTION = "container";
+
+    private static final String PARAM_UPDATE_FREQ = "updateFreq";
+    private static final String PARAM_DELAY = "delay";
+
+    private static final String ID_PREFIX_DIV = "div_";
 
     protected String updateFreq;
     protected String delay;
 
-    public Div(ValueStack stack, HttpServletRequest request,
-	    HttpServletResponse response) {
-	super(stack, request, response);
+    public Div(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
     }
 
     public String getDefaultOpenTemplate() {
-	return TEMPLATE;
+        return TEMPLATE;
     }
 
     protected String getDefaultTemplate() {
-	return TEMPLATE_CLOSE;
+        return TEMPLATE_CLOSE;
     }
 
     public void evaluateExtraParams() {
-	super.evaluateExtraParams();
-	addParameter("jqueryaction", JQUERYACTION);
+        super.evaluateExtraParams();
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-	if (updateFreq != null)
-	    addParameter("updateFreq", findValue(updateFreq, Number.class));
-	if (delay != null)
-	    addParameter("delay", findValue(delay, Number.class));
+        addParameterIfPresent(PARAM_UPDATE_FREQ, this.updateFreq, Number.class);
+        addParameterIfPresent(PARAM_DELAY, this.delay, Number.class);
 
-	if ((this.id == null || this.id.length() == 0)) {
-	    // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-	    // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-	    int nextInt = RANDOM.nextInt();
-	    nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math
-		    .abs(nextInt);
-	    this.id = "div_" + String.valueOf(nextInt);
-	    addParameter("id", this.id);
-	}
+        addGeneratedIdParam(ID_PREFIX_DIV);
     }
 
     @Override
     @StrutsTagSkipInheritance
     public void setTheme(String theme) {
-	super.setTheme(theme);
+        super.setTheme(theme);
     }
 
     @Override
     public String getTheme() {
-	return "jquery";
+        return "jquery";
     }
 
     @StrutsTagAttribute(description = "How often to reload the content (in milliseconds). e.g. 5000", type = "Number")
     public void setUpdateFreq(String updateFreq) {
-	this.updateFreq = updateFreq;
+        this.updateFreq = updateFreq;
     }
 
     @StrutsTagAttribute(description = "How long to wait before fetching the content (in milliseconds). e.g. 2000", type = "Number")

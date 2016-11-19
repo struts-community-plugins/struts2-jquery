@@ -22,15 +22,12 @@ package com.jgeppert.struts2.jquery.tree.views.velocity.components;
 import org.apache.struts2.views.velocity.components.AbstractDirective;
 
 /**
- * 
  * Overwrite name prefix
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public abstract class JqueryTreeAbstractDirective extends AbstractDirective {
-  public String getName()
-  {
-    return "sjt" + getBeanName();
-  }
+    public String getName() {
+        return "sjt" + getBeanName();
+    }
 }

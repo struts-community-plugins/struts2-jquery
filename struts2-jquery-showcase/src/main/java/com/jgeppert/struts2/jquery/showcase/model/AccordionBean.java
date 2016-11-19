@@ -5,24 +5,24 @@ public class AccordionBean {
     String content;
 
     public AccordionBean(String title, String content) {
-	super();
-	this.title = title;
-	this.content = content;
+        super();
+        this.title = title;
+        this.content = content;
     }
 
     public String getTitle() {
-	return title;
+        return title;
     }
 
     public void setTitle(String title) {
-	this.title = title;
+        this.title = title;
     }
 
     public String getContent() {
-	return content;
+        return content;
     }
 
     public void setContent(String content) {
-	this.content = content;
+        this.content = content;
     }
 }

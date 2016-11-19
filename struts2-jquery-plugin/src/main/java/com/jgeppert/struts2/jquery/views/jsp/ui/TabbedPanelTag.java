@@ -19,110 +19,107 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.TabbedPanel;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.TabbedPanel;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see TabbedPanel
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see TabbedPanel
  */
 public class TabbedPanelTag extends AbstractTopicTag {
 
-	private static final long serialVersionUID = -4719930205515386252L;
+    private static final long serialVersionUID = -4719930205515386252L;
 
-	protected String selectedTab;
-	protected String useSelectedTabCookie;
-	protected String openOnMouseover;
-	protected String collapsible;
-	protected String show;
-	protected String hide;
-	protected String cache;
-	protected String disabledTabs;
-	protected String sortable;
-	protected String onLoadTopics;
-	protected String onActivateTopics;
-	protected String onBeforeActivateTopics;
-	protected String heightStyle;
+    protected String selectedTab;
+    protected String useSelectedTabCookie;
+    protected String openOnMouseover;
+    protected String collapsible;
+    protected String show;
+    protected String hide;
+    protected String cache;
+    protected String disabledTabs;
+    protected String sortable;
+    protected String onLoadTopics;
+    protected String onActivateTopics;
+    protected String onBeforeActivateTopics;
+    protected String heightStyle;
 
-	public Component getBean(ValueStack stack, HttpServletRequest req,
-			HttpServletResponse res) {
-		return new TabbedPanel(stack, req, res);
-	}
+    public Component getBean(ValueStack stack, HttpServletRequest req,
+                             HttpServletResponse res) {
+        return new TabbedPanel(stack, req, res);
+    }
 
-	protected void populateParams() {
-		super.populateParams();
-		TabbedPanel tabbedPanel = (TabbedPanel) component;
-		tabbedPanel.setSelectedTab(selectedTab);
-		tabbedPanel.setUseSelectedTabCookie(useSelectedTabCookie);
-		tabbedPanel.setShow(show);
-		tabbedPanel.setHide(hide);
-		tabbedPanel.setCollapsible(collapsible);
-		tabbedPanel.setOpenOnMouseover(openOnMouseover);
-		tabbedPanel.setCache(cache);
-		tabbedPanel.setDisabledTabs(disabledTabs);
-		tabbedPanel.setSortable(sortable);
-		tabbedPanel.setOnLoadTopics(onLoadTopics);
-		tabbedPanel.setOnActivateTopics(onActivateTopics);
-		tabbedPanel.setOnBeforeActivateTopics(onBeforeActivateTopics);
-		tabbedPanel.setHeightStyle(heightStyle);
-	}
+    protected void populateParams() {
+        super.populateParams();
+        TabbedPanel tabbedPanel = (TabbedPanel) component;
+        tabbedPanel.setSelectedTab(selectedTab);
+        tabbedPanel.setUseSelectedTabCookie(useSelectedTabCookie);
+        tabbedPanel.setShow(show);
+        tabbedPanel.setHide(hide);
+        tabbedPanel.setCollapsible(collapsible);
+        tabbedPanel.setOpenOnMouseover(openOnMouseover);
+        tabbedPanel.setCache(cache);
+        tabbedPanel.setDisabledTabs(disabledTabs);
+        tabbedPanel.setSortable(sortable);
+        tabbedPanel.setOnLoadTopics(onLoadTopics);
+        tabbedPanel.setOnActivateTopics(onActivateTopics);
+        tabbedPanel.setOnBeforeActivateTopics(onBeforeActivateTopics);
+        tabbedPanel.setHeightStyle(heightStyle);
+    }
 
-	public void setSelectedTab(String selectedTab) {
-		this.selectedTab = selectedTab;
-	}
+    public void setSelectedTab(String selectedTab) {
+        this.selectedTab = selectedTab;
+    }
 
-	public void setUseSelectedTabCookie(String useSelectedTabCookie) {
-		this.useSelectedTabCookie = useSelectedTabCookie;
-	}
+    public void setUseSelectedTabCookie(String useSelectedTabCookie) {
+        this.useSelectedTabCookie = useSelectedTabCookie;
+    }
 
-	public void setOpenOnMouseover(String openOnMouseover) {
-		this.openOnMouseover = openOnMouseover;
-	}
+    public void setOpenOnMouseover(String openOnMouseover) {
+        this.openOnMouseover = openOnMouseover;
+    }
 
-	public void setCollapsible(String collapsible) {
-		this.collapsible = collapsible;
-	}
+    public void setCollapsible(String collapsible) {
+        this.collapsible = collapsible;
+    }
 
-	public void setShow(String show) {
-		this.show = show;
-	}
+    public void setShow(String show) {
+        this.show = show;
+    }
 
-	public void setHide(String hide) {
-		this.hide = hide;
-	}
+    public void setHide(String hide) {
+        this.hide = hide;
+    }
 
-	public void setCache(String cache) {
-		this.cache = cache;
-	}
+    public void setCache(String cache) {
+        this.cache = cache;
+    }
 
-	public void setDisabledTabs(String disabledTabs) {
-		this.disabledTabs = disabledTabs;
-	}
+    public void setDisabledTabs(String disabledTabs) {
+        this.disabledTabs = disabledTabs;
+    }
 
-	public void setOnLoadTopics(String onLoadTopics) {
-		this.onLoadTopics = onLoadTopics;
-	}
+    public void setOnLoadTopics(String onLoadTopics) {
+        this.onLoadTopics = onLoadTopics;
+    }
 
-	public void setOnActivateTopics(String onActivateTopics) {
-		this.onActivateTopics = onActivateTopics;
-	}
+    public void setOnActivateTopics(String onActivateTopics) {
+        this.onActivateTopics = onActivateTopics;
+    }
 
-	public void setOnBeforeActivateTopics(String onBeforeActivateTopics) {
-		this.onBeforeActivateTopics = onBeforeActivateTopics;
-	}
+    public void setOnBeforeActivateTopics(String onBeforeActivateTopics) {
+        this.onBeforeActivateTopics = onBeforeActivateTopics;
+    }
 
-	public void setSortable(String sortable) {
-		this.sortable = sortable;
-	}
+    public void setSortable(String sortable) {
+        this.sortable = sortable;
+    }
 
-	public void setHeightStyle(String heightStyle) {
-		this.heightStyle = heightStyle;
-	}
+    public void setHeightStyle(String heightStyle) {
+        this.heightStyle = heightStyle;
+    }
 }

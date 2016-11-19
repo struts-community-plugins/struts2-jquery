@@ -19,34 +19,32 @@
 
 package com.jgeppert.struts2.jquery.datatables.views.freemarker.tags;
 
+import com.opensymphony.xwork2.util.ValueStack;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryDatatablesModels {
-	protected DatatablesModel datatables;
+    protected DatatablesModel datatables;
 
-	private ValueStack stack;
-	private HttpServletRequest req;
-	private HttpServletResponse res;
+    private ValueStack stack;
+    private HttpServletRequest req;
+    private HttpServletResponse res;
 
-	public JqueryDatatablesModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-		this.stack = stack;
-		this.req = req;
-		this.res = res;
-	}
+    public JqueryDatatablesModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        this.stack = stack;
+        this.req = req;
+        this.res = res;
+    }
 
-	public DatatablesModel getDatatables() {
-		if (datatables == null) {
-			datatables = new DatatablesModel(stack, req, res);
-		}
+    public DatatablesModel getDatatables() {
+        if (datatables == null) {
+            datatables = new DatatablesModel(stack, req, res);
+        }
 
-		return datatables;
-	}
+        return datatables;
+    }
 }

@@ -19,39 +19,36 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.Select;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.Select;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Select
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Select
  */
 public class SelectTag extends org.apache.struts2.views.jsp.ui.SelectTag
-	implements ThemeableTag {
+        implements ThemeableTag {
 
     private static final long serialVersionUID = 2422443395526518196L;
     protected String dataTheme;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Select(stack, req, res);
+                             HttpServletResponse res) {
+        return new Select(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Select select = (Select) component;
-	select.setDataTheme(dataTheme);
+        Select select = (Select) component;
+        select.setDataTheme(dataTheme);
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 }

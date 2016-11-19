@@ -19,42 +19,36 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.Radio;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Radio;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Radio
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Radio
  */
 
 public class RadioTag extends AbstractFormListElementTag {
 
-  private static final long serialVersionUID = 5405919375440859551L;
+    private static final long serialVersionUID = 5405919375440859551L;
 
-  protected String          buttonset;
+    protected String buttonset;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Radio(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Radio(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+        super.populateParams();
 
-    Radio radio = (Radio) component;
-    radio.setButtonset(buttonset);
-  }
+        Radio radio = (Radio) component;
+        radio.setButtonset(buttonset);
+    }
 
-  public void setButtonset(String buttonset)
-  {
-    this.buttonset = buttonset;
-  }
+    public void setButtonset(String buttonset) {
+        this.buttonset = buttonset;
+    }
 }

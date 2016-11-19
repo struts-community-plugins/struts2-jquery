@@ -19,12 +19,11 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 public class Echo extends ActionSupport {
 
@@ -34,27 +33,27 @@ public class Echo extends ActionSupport {
     private String echo;
     private boolean escape = true;
 
-    @Action(value = "/echo", results = { @Result(location = "echo.jsp", name = "success") })
+    @Action(value = "/echo", results = {@Result(location = "echo.jsp", name = "success")})
     public String execute() throws Exception {
 
-	log.info("Echo : " + echo);
+        log.info("Echo : " + echo);
 
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public String getEcho() {
-	return echo;
+        return echo;
     }
 
     public void setEcho(String echo) {
-	this.echo = echo;
+        this.echo = echo;
     }
 
     public boolean isEscape() {
-	return escape;
+        return escape;
     }
 
     public void setEscape(boolean escape) {
-	this.escape = escape;
+        this.escape = escape;
     }
 }

@@ -19,59 +19,58 @@
 
 package com.jgeppert.struts2.jquery.mobile.showcase;
 
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 @ParentPackage(value = "showcase")
 public class Echo extends ActionSupport {
 
-	private static final long serialVersionUID = 521846450324317687L;
+    private static final long serialVersionUID = 521846450324317687L;
 
-	private static final Log log = LogFactory.getLog(Echo.class);
+    private static final Log log = LogFactory.getLog(Echo.class);
 
-	private String echo;
-	private boolean escape = true;
-	private boolean ajax = false;
+    private String echo;
+    private boolean escape = true;
+    private boolean ajax = false;
 
-	@Action(value = "/echo", results = { @Result(location = "echo.jsp", name = "success"), @Result(location = "echo-ajax.jsp", name = "ajax") })
-	public String execute() throws Exception {
+    @Action(value = "/echo", results = {@Result(location = "echo.jsp", name = "success"), @Result(location = "echo-ajax.jsp", name = "ajax")})
+    public String execute() throws Exception {
 
-		log.info("Echo : " + echo);
+        log.info("Echo : " + echo);
 
-		if(ajax){
-			return "ajax";
-			
-		}else {
-			return SUCCESS;
-		}
-	}
+        if (ajax) {
+            return "ajax";
 
-	public String getEcho() {
-		return echo;
-	}
+        } else {
+            return SUCCESS;
+        }
+    }
 
-	public void setEcho(String echo) {
-		this.echo = echo;
-	}
+    public String getEcho() {
+        return echo;
+    }
 
-	public boolean isEscape() {
-		return escape;
-	}
+    public void setEcho(String echo) {
+        this.echo = echo;
+    }
 
-	public void setEscape(boolean escape) {
-		this.escape = escape;
-	}
+    public boolean isEscape() {
+        return escape;
+    }
 
-	public boolean isAjax() {
-		return ajax;
-	}
+    public void setEscape(boolean escape) {
+        this.escape = escape;
+    }
 
-	public void setAjax(boolean ajax) {
-		this.ajax = ajax;
-	}
+    public boolean isAjax() {
+        return ajax;
+    }
+
+    public void setAjax(boolean ajax) {
+        this.ajax = ajax;
+    }
 }

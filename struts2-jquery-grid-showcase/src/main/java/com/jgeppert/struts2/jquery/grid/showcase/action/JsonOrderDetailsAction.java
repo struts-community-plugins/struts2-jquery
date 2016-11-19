@@ -41,7 +41,7 @@ public class JsonOrderDetailsAction extends ActionSupport {
     private OrderDetailDao orderdetailDao;
 
     // for Footerrow
-    Map<String, Object> userdata = new HashMap<String, Object>();
+    Map<String, Object> userdata = new HashMap<>();
 
     private Integer id;
 

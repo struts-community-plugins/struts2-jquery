@@ -19,20 +19,18 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.util.MakeIterator;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -108,11 +106,25 @@ import com.opensymphony.xwork2.util.ValueStack;
 @StrutsTag(name = "accordion", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionTag", description = "Render an accordion from a List.")
 public class Accordion extends AbstractTopicsBean {
 
-    final private static transient Random RANDOM = new Random();
+    private static final transient Random RANDOM = new Random();
+
     public static final String JQUERYACTION = "accordion";
     public static final String TEMPLATE = "accordion";
     public static final String TEMPLATE_CLOSE = "accordion-close";
     public static final String COMPONENT_NAME = Accordion.class.getName();
+
+    private static final String PARAM_ACTIVE = "active";
+    private static final String PARAM_ANIMATE = "animate";
+    private static final String PARAM_HEIGHT_STYLE = "heightStyle";
+    private static final String PARAM_COLLAPSIBLE = "collapsible";
+    private static final String PARAM_HEADER = "header";
+    private static final String PARAM_OPEN_ON_MOUSEOVER = "openOnMouseover";
+    private static final String PARAM_HREF = "href";
+    private static final String PARAM_PARAM_KEYS = "paramKeys";
+    private static final String PARAM_PARAM_VALUES = "paramValues";
+    private static final String PARAM_ON_CREATE_TOPICS = "onCreateTopics";
+
+    private static final String ID_PREFIX_ACCORDION = "accordion_";
 
     protected boolean throwExceptionOnNullValueAttribute = false;
 
@@ -147,23 +159,23 @@ public class Accordion extends AbstractTopicsBean {
     public void evaluateExtraParams() {
         super.evaluateExtraParams();
 
-        addParameter("jqueryaction", JQUERYACTION);
+        addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-        if (active != null) addParameter("active", findString(active));
-        if (animate != null) addParameter("animate", findString(animate));
-        if (heightStyle != null) addParameter("heightStyle", findString(heightStyle));
-        if (collapsible != null) addParameter("collapsible", findValue(this.collapsible, Boolean.class));
-        if (header != null) addParameter("header", findString(header));
-        if (openOnMouseover != null) addParameter("openOnMouseover", findValue(this.openOnMouseover, Boolean.class));
-        if (href != null) addParameter("href", findString(href));
-        if (paramKeys != null) addParameter("paramKeys", findString(paramKeys));
-        if (paramValues != null) addParameter("paramValues", findString(paramValues));
-        if (onCreateTopics != null) addParameter("onCreateTopics", findString(onCreateTopics));
+        addParameterIfPresent(PARAM_ACTIVE, this.active);
+        addParameterIfPresent(PARAM_ANIMATE, this.animate);
+        addParameterIfPresent(PARAM_HEIGHT_STYLE, this.heightStyle);
+        addParameterIfPresent(PARAM_COLLAPSIBLE, this.collapsible, Boolean.class);
+        addParameterIfPresent(PARAM_HEADER, this.header);
+        addParameterIfPresent(PARAM_OPEN_ON_MOUSEOVER, this.openOnMouseover, Boolean.class);
+        addParameterIfPresent(PARAM_HREF, this.href);
+        addParameterIfPresent(PARAM_PARAM_KEYS, this.paramKeys);
+        addParameterIfPresent(PARAM_PARAM_VALUES, this.paramValues);
+        addParameterIfPresent(PARAM_ON_CREATE_TOPICS, this.onCreateTopics);
 
         Object value = null;
 
         if (list == null) {
-            list = parameters.get("list");
+            list = parameters.get(PARAM_LIST);
         }
 
         if (list instanceof String) {
@@ -176,51 +188,43 @@ public class Accordion extends AbstractTopicsBean {
         if (value == null) {
             if (throwExceptionOnNullValueAttribute) {
                 // will throw an exception if not found
-                value = findValue((list == null) ? (String) list : list.toString(), "list", "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. " + "Example: people or people.{name}");
+                value = findValue((list == null) ? (String) list : list.toString(), PARAM_LIST, "The requested list key '" + list + "' could not be resolved as a collection/array/map/enumeration/iterator type. Example: people or people.{name}");
             } else {
-                // ww-1010, allows value with null value to be compatible with
-                // ww
+                // ww-1010, allows value with null value to be compatible with ww
                 // 2.1.7 behaviour
                 value = findValue((list == null) ? (String) list : list.toString());
             }
         }
 
         if (value instanceof Collection) {
-            addParameter("list", value);
+            addParameter(PARAM_LIST, value);
         } else {
-            addParameter("list", MakeIterator.convert(value));
+            addParameter(PARAM_LIST, MakeIterator.convert(value));
         }
 
         if (value instanceof Collection) {
-            addParameter("listSize", Integer.valueOf(((Collection) value).size()));
+            addParameter(PARAM_LIST_SIZE, ((Collection) value).size());
         } else if (value instanceof Map) {
-            addParameter("listSize", Integer.valueOf(((Map) value).size()));
+            addParameter(PARAM_LIST_SIZE, ((Map) value).size());
         } else if (value != null && value.getClass().isArray()) {
-            addParameter("listSize", Integer.valueOf(Array.getLength(value)));
+            addParameter(PARAM_LIST_SIZE, Array.getLength(value));
         }
 
         if (listKey != null) {
             listKey = stripExpressionIfAltSyntax(listKey);
-            addParameter("listKey", listKey);
+            addParameter(PARAM_LIST_KEY, listKey);
         } else if (value instanceof Map) {
-            addParameter("listKey", "key");
+            addParameter(PARAM_LIST_KEY, "key");
         }
 
         if (listValue != null) {
             listValue = stripExpressionIfAltSyntax(listValue);
-            addParameter("listValue", listValue);
+            addParameter(PARAM_LIST_VALUE, listValue);
         } else if (value instanceof Map) {
-            addParameter("listValue", "value");
+            addParameter(PARAM_LIST_VALUE, "value");
         }
 
-        if ((this.id == null || this.id.length() == 0)) {
-            // resolves Math.abs(Integer.MIN_VALUE) issue reported by FindBugs
-            // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
-            int nextInt = RANDOM.nextInt();
-            nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-            this.id = "accordion_" + String.valueOf(nextInt);
-            addParameter("id", this.id);
-        }
+        addGeneratedIdParam(ID_PREFIX_ACCORDION);
     }
 
     @Override
@@ -299,7 +303,7 @@ public class Accordion extends AbstractTopicsBean {
         this.paramValues = paramValues;
     }
 
-    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the accordion is created", type = "String", defaultValue = "")
+    @StrutsTagAttribute(description = "A comma delimited list of topics that published when the accordion is created")
     public void setOnCreateTopics(String onCreateTopics) {
         this.onCreateTopics = onCreateTopics;
     }

@@ -19,33 +19,27 @@
 
 package com.jgeppert.struts2.jquery.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.components.AccordionItem;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.AccordionItem;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see AccordionItem
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see AccordionItem
  */
 public class AccordionItemDirective extends JqueryAbstractDirective {
-  public String getBeanName()
-  {
-    return "accordionItem";
-  }
+    public String getBeanName() {
+        return "accordionItem";
+    }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new AccordionItem(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new AccordionItem(stack, req, res);
+    }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
+    public int getType() {
+        return BLOCK;
+    }
 }

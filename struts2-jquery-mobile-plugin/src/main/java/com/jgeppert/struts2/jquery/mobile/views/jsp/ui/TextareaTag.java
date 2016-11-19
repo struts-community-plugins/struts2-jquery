@@ -19,39 +19,36 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.mobile.components.Textarea;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.mobile.components.Textarea;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Textarea
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Textarea
  */
 public class TextareaTag extends org.apache.struts2.views.jsp.ui.TextareaTag
-	implements ThemeableTag {
+        implements ThemeableTag {
 
     private static final long serialVersionUID = 4186340100338172364L;
     protected String dataTheme;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Textarea(stack, req, res);
+                             HttpServletResponse res) {
+        return new Textarea(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Textarea text = (Textarea) component;
-	text.setDataTheme(dataTheme);
+        Textarea text = (Textarea) component;
+        text.setDataTheme(dataTheme);
     }
 
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 }

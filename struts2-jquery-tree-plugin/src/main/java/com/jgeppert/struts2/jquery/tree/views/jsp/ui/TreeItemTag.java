@@ -19,19 +19,16 @@
 
 package com.jgeppert.struts2.jquery.tree.views.jsp.ui;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.components.Component;
-
 import com.jgeppert.struts2.jquery.tree.components.TreeItem;
 import com.jgeppert.struts2.jquery.views.jsp.ui.AbstractRemoteTag;
 import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 
 public class TreeItemTag extends AbstractRemoteTag {
@@ -41,24 +38,24 @@ public class TreeItemTag extends AbstractRemoteTag {
     protected String type;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new TreeItem(stack, req, res);
+                             HttpServletResponse res) {
+        return new TreeItem(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	TreeItem treeItem = (TreeItem) component;
-	treeItem.setTitle(title);
-	treeItem.setType(type);
+        TreeItem treeItem = (TreeItem) component;
+        treeItem.setTitle(title);
+        treeItem.setType(type);
     }
 
     public void setTitle(String title) {
-	this.title = title;
+        this.title = title;
     }
 
     public void setType(String type) {
-	this.type = type;
+        this.type = type;
     }
 
 }

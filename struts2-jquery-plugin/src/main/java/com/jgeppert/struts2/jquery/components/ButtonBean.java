@@ -20,17 +20,15 @@
 package com.jgeppert.struts2.jquery.components;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public interface ButtonBean {
 
-  void setButton(String button);
+    void setButton(String button);
 
-  void setButtonIcon(String buttonIcon);
+    void setButtonIcon(String buttonIcon);
 
-  void setButtonIconSecondary(String buttonIconSecondary);
+    void setButtonIconSecondary(String buttonIconSecondary);
 
-  void setButtonText(String buttonText);
+    void setButtonText(String buttonText);
 }

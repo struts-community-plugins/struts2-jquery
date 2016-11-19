@@ -21,18 +21,16 @@ package com.jgeppert.struts2.jquery.views.jsp.ui;
 
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 
 public interface ButtonTag {
 
-  void setButton(String button);
+    void setButton(String button);
 
-  void setButtonIcon(String buttonIcon);
+    void setButtonIcon(String buttonIcon);
 
-  void setButtonIconSecondary(String buttonIconSecondary);
+    void setButtonIconSecondary(String buttonIconSecondary);
 
-  void setButtonText(String buttonText);
+    void setButtonText(String buttonText);
 }

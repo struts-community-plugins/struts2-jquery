@@ -19,14 +19,13 @@
 
 package com.jgeppert.struts2.jquery.mobile.components;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -37,63 +36,59 @@ import com.opensymphony.xwork2.util.ValueStack;
  * <p>
  * Examples
  * </p>
- * 
  * <!-- START SNIPPET: example1 -->
- * 
  * <pre>
  * &lt;sjm:checkbox
  * 	id=&quot;checkbox&quot;
  * 	name=&quot;checkbox&quot;
  * 	label=&quot;I Agree&quot;
  * /&gt;
- * 
  * </pre>
- * 
  * <!-- END SNIPPET: example1 -->
- * 
+ *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 
 @StrutsTag(name = "checkbox", tldTagClass = "com.jgeppert.struts2.jquery.mobile.views.jsp.ui.CheckboxTag", description = "Render a checkbox", allowDynamicAttributes = true)
-public class Checkbox extends org.apache.struts2.components.Checkbox implements
-	ThemeableBean {
+public class Checkbox extends org.apache.struts2.components.Checkbox implements ThemeableBean {
 
     public static final String TEMPLATE = "checkbox";
     public static final String COMPONENT_NAME = Checkbox.class.getName();
 
+    private static final String PARAM_DATA_THEME = "dataTheme";
+
     protected String dataTheme;
 
-    public Checkbox(ValueStack stack, HttpServletRequest request,
-	    HttpServletResponse response) {
-	super(stack, request, response);
+    public Checkbox(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
+        super(stack, request, response);
     }
 
     protected String getDefaultTemplate() {
-	return TEMPLATE;
+        return TEMPLATE;
     }
 
     public void evaluateExtraParams() {
-	super.evaluateExtraParams();
+        super.evaluateExtraParams();
 
-	if (dataTheme != null)
-	    addParameter("dataTheme", findString(dataTheme));
+        if (dataTheme != null) {
+            addParameter(PARAM_DATA_THEME, findString(dataTheme));
+        }
     }
 
     @Override
     @StrutsTagSkipInheritance
     public void setTheme(String theme) {
-	super.setTheme(theme);
+        super.setTheme(theme);
     }
 
     @Override
     public String getTheme() {
-	return "mobile";
+        return "mobile";
     }
 
     @StrutsTagAttribute(description = "Set the Checkbox theme. e.g. a,b,c,d or e")
     public void setDataTheme(String dataTheme) {
-	this.dataTheme = dataTheme;
+        this.dataTheme = dataTheme;
     }
 
 }

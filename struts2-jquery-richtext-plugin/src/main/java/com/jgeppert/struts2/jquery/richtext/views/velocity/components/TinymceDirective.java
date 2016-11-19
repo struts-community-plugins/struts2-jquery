@@ -19,33 +19,27 @@
 
 package com.jgeppert.struts2.jquery.richtext.views.velocity.components;
 
+import com.jgeppert.struts2.jquery.richtext.components.Tinymce;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.richtext.components.Tinymce;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Tinymce
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Tinymce
  */
 public class TinymceDirective extends JqueryRichtextAbstractDirective {
-  public String getBeanName()
-  {
-    return "tinymce";
-  }
+    public String getBeanName() {
+        return "tinymce";
+    }
 
-  protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new Tinymce(stack, req, res);
-  }
+    protected Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new Tinymce(stack, req, res);
+    }
 
-  public int getType()
-  {
-    return BLOCK;
-  }
+    public int getType() {
+        return BLOCK;
+    }
 }

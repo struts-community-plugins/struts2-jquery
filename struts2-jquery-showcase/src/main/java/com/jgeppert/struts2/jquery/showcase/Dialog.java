@@ -19,17 +19,16 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 public class Dialog extends ActionSupport {
 
     private static final long serialVersionUID = 3482369686693624365L;
 
-    @Action(value = "/dialog", results = { @Result(location = "dialog.jsp", name = "success") })
+    @Action(value = "/dialog", results = {@Result(location = "dialog.jsp", name = "success")})
     public String execute() throws Exception {
-	return SUCCESS;
+        return SUCCESS;
     }
 }

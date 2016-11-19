@@ -19,31 +19,27 @@
 
 package com.jgeppert.struts2.jquery.grid.views.freemarker.tags;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jgeppert.struts2.jquery.grid.components.Grid;
+import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.freemarker.tags.TagModel;
 
-import com.jgeppert.struts2.jquery.grid.components.Grid;
-import com.opensymphony.xwork2.util.ValueStack;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @see Grid
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Grid
  */
 public class GridModel extends TagModel {
 
-  public GridModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
-    super(stack, req, res);
-  }
+    public GridModel(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        super(stack, req, res);
+    }
 
-  @Override
-  protected Component getBean()
-  {
-    return new Grid(stack, req, res);
-  }
+    @Override
+    protected Component getBean() {
+        return new Grid(stack, req, res);
+    }
 
 }

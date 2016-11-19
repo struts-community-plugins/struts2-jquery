@@ -19,41 +19,35 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.CheckboxList;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.CheckboxList;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see CheckboxList
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see CheckboxList
  */
 public class CheckboxListTag extends AbstractFormListElementTag {
 
-  private static final long serialVersionUID = 1792119547676464144L;
+    private static final long serialVersionUID = 1792119547676464144L;
 
-  protected String          buttonset;
+    protected String buttonset;
 
-  public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-  {
-    return new CheckboxList(stack, req, res);
-  }
+    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new CheckboxList(stack, req, res);
+    }
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+        super.populateParams();
 
-    CheckboxList checkboxList = (CheckboxList) component;
-    checkboxList.setButtonset(buttonset);
-  }
+        CheckboxList checkboxList = (CheckboxList) component;
+        checkboxList.setButtonset(buttonset);
+    }
 
-  public void setButtonset(String buttonset)
-  {
-    this.buttonset = buttonset;
-  }
+    public void setButtonset(String buttonset) {
+        this.buttonset = buttonset;
+    }
 }

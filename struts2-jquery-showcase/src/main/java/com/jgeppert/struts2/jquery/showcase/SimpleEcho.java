@@ -19,10 +19,9 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
+import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 public class SimpleEcho extends ActionSupport {
 
@@ -30,24 +29,24 @@ public class SimpleEcho extends ActionSupport {
     private String echo;
     private boolean escape = true;
 
-    @Action(value = "/simpleecho", results = { @Result(location = "simpleecho.jsp", name = "success") })
+    @Action(value = "/simpleecho", results = {@Result(location = "simpleecho.jsp", name = "success")})
     public String execute() throws Exception {
-	return SUCCESS;
+        return SUCCESS;
     }
 
     public String getEcho() {
-	return echo;
+        return echo;
     }
 
     public void setEcho(String echo) {
-	this.echo = echo;
+        this.echo = echo;
     }
 
     public boolean isEscape() {
-	return escape;
+        return escape;
     }
 
     public void setEscape(boolean escape) {
-	this.escape = escape;
+        this.escape = escape;
     }
 }

@@ -22,39 +22,33 @@ package com.jgeppert.struts2.jquery.views.jsp.ui;
 import com.jgeppert.struts2.jquery.components.AbstractFormListElement;
 
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public abstract class AbstractFormListElementTag extends AbstractFormElementTag {
 
-  private static final long serialVersionUID = -8455670683143459155L;
-  protected String          list;
-  protected String          listKey;
-  protected String          listValue;
+    private static final long serialVersionUID = -8455670683143459155L;
+    protected String list;
+    protected String listKey;
+    protected String listValue;
 
-  protected void populateParams()
-  {
-    super.populateParams();
+    protected void populateParams() {
+        super.populateParams();
 
-    AbstractFormListElement le = (AbstractFormListElement) component;
-    le.setList(list);
-    le.setListKey(listKey);
-    le.setListValue(listValue);
-  }
+        AbstractFormListElement le = (AbstractFormListElement) component;
+        le.setList(list);
+        le.setListKey(listKey);
+        le.setListValue(listValue);
+    }
 
-  public void setList(String list)
-  {
-    this.list = list;
-  }
+    public void setList(String list) {
+        this.list = list;
+    }
 
-  public void setListKey(String listKey)
-  {
-    this.listKey = listKey;
-  }
+    public void setListKey(String listKey) {
+        this.listKey = listKey;
+    }
 
-  public void setListValue(String listValue)
-  {
-    this.listValue = listValue;
-  }
+    public void setListValue(String listValue) {
+        this.listValue = listValue;
+    }
 }

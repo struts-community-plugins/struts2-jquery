@@ -19,19 +19,16 @@
 
 package com.jgeppert.struts2.jquery.views.jsp.ui;
 
+import com.jgeppert.struts2.jquery.components.Submit;
+import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.components.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.components.Component;
-
-import com.jgeppert.struts2.jquery.components.Submit;
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
- * @see Submit
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
+ * @see Submit
  */
 public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
 
@@ -56,59 +53,59 @@ public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
     protected String replaceTarget;
 
     public Component getBean(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	return new Submit(stack, req, res);
+                             HttpServletResponse res) {
+        return new Submit(stack, req, res);
     }
 
     protected void populateParams() {
-	super.populateParams();
+        super.populateParams();
 
-	Submit submit = ((Submit) component);
-	submit.setOnClickTopics(onClickTopics);
-	submit.setSrc(src);
-	submit.setType(type);
-	submit.setClearForm(clearForm);
-	submit.setResetForm(resetForm);
-	submit.setIframe(iframe);
-	submit.setOpenDialog(openDialog);
-	submit.setOpenDialogTitle(openDialogTitle);
-	submit.setParentTheme(parentTheme);
-	submit.setButton(button);
-	submit.setButtonIcon(buttonIcon);
-	submit.setButtonIconSecondary(buttonIconSecondary);
-	submit.setButtonText(buttonText);
-	submit.setValidateFunction(validateFunction);
-	submit.setValidate(validate);
-	submit.setFormFilter(formFilter);
-	submit.setReplaceTarget(replaceTarget);
+        Submit submit = ((Submit) component);
+        submit.setOnClickTopics(onClickTopics);
+        submit.setSrc(src);
+        submit.setType(type);
+        submit.setClearForm(clearForm);
+        submit.setResetForm(resetForm);
+        submit.setIframe(iframe);
+        submit.setOpenDialog(openDialog);
+        submit.setOpenDialogTitle(openDialogTitle);
+        submit.setParentTheme(parentTheme);
+        submit.setButton(button);
+        submit.setButtonIcon(buttonIcon);
+        submit.setButtonIconSecondary(buttonIconSecondary);
+        submit.setButtonText(buttonText);
+        submit.setValidateFunction(validateFunction);
+        submit.setValidate(validate);
+        submit.setFormFilter(formFilter);
+        submit.setReplaceTarget(replaceTarget);
     }
 
     public void setOnClickTopics(String onClickTopics) {
-	this.onClickTopics = onClickTopics;
+        this.onClickTopics = onClickTopics;
     }
 
     public void setType(String type) {
-	this.type = type;
+        this.type = type;
     }
 
     public void setSrc(String src) {
-	this.src = src;
+        this.src = src;
     }
 
     public void setClearForm(String clearForm) {
-	this.clearForm = clearForm;
+        this.clearForm = clearForm;
     }
 
     public void setResetForm(String resetForm) {
-	this.resetForm = resetForm;
+        this.resetForm = resetForm;
     }
 
     public void setIframe(String iframe) {
-	this.iframe = iframe;
+        this.iframe = iframe;
     }
 
     public void setOpenDialog(String openDialog) {
-	this.openDialog = openDialog;
+        this.openDialog = openDialog;
     }
 
     public void setOpenDialogTitle(String openDialogTitle) {
@@ -116,38 +113,38 @@ public class SubmitTag extends AbstractRemoteTag implements ButtonTag {
     }
 
     public void setParentTheme(String parentTheme) {
-	this.parentTheme = parentTheme;
+        this.parentTheme = parentTheme;
     }
 
     public void setButton(String button) {
-	this.button = button;
+        this.button = button;
     }
 
     public void setButtonIcon(String buttonIcon) {
-	this.buttonIcon = buttonIcon;
+        this.buttonIcon = buttonIcon;
     }
 
     public void setButtonIconSecondary(String buttonIconSecondary) {
-	this.buttonIconSecondary = buttonIconSecondary;
+        this.buttonIconSecondary = buttonIconSecondary;
     }
 
     public void setButtonText(String buttonText) {
-	this.buttonText = buttonText;
+        this.buttonText = buttonText;
     }
 
     public void setValidateFunction(String validateFunction) {
-	this.validateFunction = validateFunction;
+        this.validateFunction = validateFunction;
     }
 
     public void setValidate(String validate) {
-	this.validate = validate;
+        this.validate = validate;
     }
 
     public void setFormFilter(String formFilter) {
-	this.formFilter = formFilter;
+        this.formFilter = formFilter;
     }
 
     public void setReplaceTarget(String replaceTarget) {
-	this.replaceTarget = replaceTarget;
+        this.replaceTarget = replaceTarget;
     }
 }

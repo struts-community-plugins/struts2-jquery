@@ -74,6 +74,14 @@ Please do not edit it directly.
 					<td align="left" valign="top">When set to true, the grid width is recalculated automatically to the width of the parent element. This is done only initially when the grid is created.</td>
 				</tr>
 				<tr>
+                    <td align="left" valign="top">bindOn</td>
+                    <td align="left" valign="top">false</td>
+                    <td align="left" valign="top"></td>
+                    <td align="left" valign="top">false</td>
+                    <td align="left" valign="top">String</td>
+                    <td align="left" valign="top">Bind the start of load or effect on element. e.g. button or link</td>
+                </tr>
+            <tr>
 					<td align="left" valign="top">caption</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top"></td>
@@ -154,6 +162,16 @@ Please do not edit it directly.
 					<td align="left" valign="top">Type of the result. e.g. html, xml, text, json, ...</td>
 				</tr>
 				<tr>
+                    <td align="left" valign="top">deferredLoading</td>
+                    <td align="left" valign="top">false</td>
+                    <td align="left" valign="top">false</td>
+                    <td align="left" valign="top">false</td>
+                    <td align="left" valign="top">Boolean</td>
+                    <td align="left" valign="top">Defers the initial loading of this element. The element will not be
+                        loaded until one of the reloadTopics is published.
+                    </td>
+                </tr>
+            <tr>
 					<td align="left" valign="top">direction</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">ltr</td>
@@ -556,12 +574,22 @@ Please do not edit it directly.
 				<tr>
 					<td align="left" valign="top">errorText</td>
 					<td align="left" valign="top">false</td>
-					<td align="left" valign="top">false</td>
+                    <td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
 					<td align="left" valign="top">The text to be displayed on load error. If 'errorElement' is provided, this will display the error in the elemtn (if existing), if not, it will display the error as the contents of this container</td>
 				</tr>
 				<tr>
+                    <td align="left" valign="top">events</td>
+                    <td align="left" valign="top">false</td>
+                    <td align="left" valign="top">click</td>
+                    <td align="left" valign="top">false</td>
+                    <td align="left" valign="top">String</td>
+                    <td align="left" valign="top">Start load or effect on specified event. Possible values are click,
+                        dblclick, mouseover, mouseenter, mouseleave. Default: click
+                    </td>
+                </tr>
+            <tr>
 					<td align="left" valign="top">filter</td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">false</td>
@@ -1039,7 +1067,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)</td>
+                    <td align="left" valign="top">Topics that are published before after load is completed</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">onDblClickRowTopics</td>
@@ -1111,7 +1139,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)</td>
+                    <td align="left" valign="top">Topics that are published on a load error</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">onFocusTopics</td>
@@ -1183,7 +1211,7 @@ Please do not edit it directly.
 					<td align="left" valign="top"></td>
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">String</td>
-					<td align="left" valign="top">A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)</td>
+                    <td align="left" valign="top">Topics that are published after a succesful load</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">onblur</td>
@@ -1592,6 +1620,131 @@ Please do not edit it directly.
 					<td align="left" valign="top">false</td>
 					<td align="left" valign="top">Boolean</td>
 					<td align="left" valign="top">When enabled, selecting a row with setSelection scrolls the grid so that the selected row is visible.</td>
+                </tr>
+            <tr>
+                <td align="left" valign="top">selectable</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">Boolean</td>
+                <td align="left" valign="top">Enable a element to be selectable. Draw a box with your cursor to select
+                    items. Hold down the Ctrl key to make multiple non-adjacent selections.
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableAutoRefresh</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">This determines whether to refresh (recalculate) the position and size of
+                    each selectee at the beginning of each select operation. If you have many many items, you may want
+                    to set this to false and call the refresh method manually. Default: true
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableCancel</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">Prevents selecting if you start on elements matching the selector.
+                    Default: ':input,option'
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableDelay</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">Time in milliseconds to define when the selecting should start. It helps
+                    preventing unwanted selections when clicking on an element.
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableDistance</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">Tolerance, in pixels, for when selecting should start. If specified,
+                    selecting will not start until after mouse is dragged beyond distance.
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableFilter</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">The matching child elements will be made selectees (able to be selected).
+                    Default: '*'
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableOnSelectedTopics</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">This event is triggered at the end of the select operation, on each
+                    element added to the selection.
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableOnSelectingTopics</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">This event is triggered during the select operation, on each element added
+                    to the selection.
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableOnStartTopics</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">This event is triggered at the beginning of the select operation.</td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableOnStopTopics</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">This event is triggered at the end of the select operation.</td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableOnUnselectedTopics</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">This event is triggered at the end of the select operation, on each
+                    element removed from the selection.
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableOnUnselectingTopics</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">This event is triggered during the select operation, on each element
+                    removed from the selection.
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">selectableTolerance</td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top"></td>
+                <td align="left" valign="top">false</td>
+                <td align="left" valign="top">String</td>
+                <td align="left" valign="top">Possible values: 'touch', 'fit'. Default: 'touch'</td>
 				</tr>
 				<tr>
 					<td align="left" valign="top">shrinkToFit</td>

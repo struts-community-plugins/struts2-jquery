@@ -64,9 +64,9 @@ public class EditCustomerAction extends ActionSupport {
                 log.debug("Add Customer");
                 customer = new Customer();
 
-                int nextid = customerDao.nextCustomerNumber();
-                log.debug("Id for next customer is: {}", nextid);
-                customer.setCustomernumber(nextid);
+                int nextId = customerDao.nextCustomerNumber();
+                log.debug("Id for next customer is: {}", nextId);
+                customer.setCustomernumber(nextId);
                 customer.setCustomername(customername);
                 customer.setCountry(country);
                 customer.setCity(city);
@@ -81,7 +81,7 @@ public class EditCustomerAction extends ActionSupport {
 
                 customerDao.save(customer);
             } else if (oper.equalsIgnoreCase("edit")) {
-                log.debug("Edit customer: {}", id);
+                log.debug("Edit customer with id: {}", id);
 
                 customer = customerDao.get(Integer.parseInt(id));
                 customer.setCustomername(customername);

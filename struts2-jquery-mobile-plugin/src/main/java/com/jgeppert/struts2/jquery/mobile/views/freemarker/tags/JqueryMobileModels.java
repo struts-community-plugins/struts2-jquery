@@ -19,15 +19,13 @@
 
 package com.jgeppert.struts2.jquery.mobile.views.freemarker.tags;
 
+import com.opensymphony.xwork2.util.ValueStack;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.opensymphony.xwork2.util.ValueStack;
-
 /**
- * 
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
- * 
  */
 public class JqueryMobileModels {
     protected HeadModel head;
@@ -50,122 +48,122 @@ public class JqueryMobileModels {
     private HttpServletResponse res;
 
     public JqueryMobileModels(ValueStack stack, HttpServletRequest req,
-	    HttpServletResponse res) {
-	this.stack = stack;
-	this.req = req;
-	this.res = res;
+                              HttpServletResponse res) {
+        this.stack = stack;
+        this.req = req;
+        this.res = res;
     }
 
     public HeadModel getHead() {
-	if (head == null) {
-	    head = new HeadModel(stack, req, res);
-	}
+        if (head == null) {
+            head = new HeadModel(stack, req, res);
+        }
 
-	return head;
+        return head;
     }
 
     public DivModel getDiv() {
-	if (div == null) {
-	    div = new DivModel(stack, req, res);
-	}
+        if (div == null) {
+            div = new DivModel(stack, req, res);
+        }
 
-	return div;
+        return div;
     }
 
     public AnchorModel getAnchor() {
-	if (anchor == null) {
-	    anchor = new AnchorModel(stack, req, res);
-	}
+        if (anchor == null) {
+            anchor = new AnchorModel(stack, req, res);
+        }
 
-	return anchor;
+        return anchor;
     }
 
     public CheckboxListModel getCheckboxList() {
-	if (checkboxList == null) {
-	    checkboxList = new CheckboxListModel(stack, req, res);
-	}
+        if (checkboxList == null) {
+            checkboxList = new CheckboxListModel(stack, req, res);
+        }
 
-	return checkboxList;
+        return checkboxList;
     }
 
     public CheckboxModel getCheckbox() {
-	if (checkbox == null) {
-	    checkbox = new CheckboxModel(stack, req, res);
-	}
+        if (checkbox == null) {
+            checkbox = new CheckboxModel(stack, req, res);
+        }
 
-	return checkbox;
+        return checkbox;
     }
 
     public PasswordModel getPassword() {
-	if (password == null) {
-	    password = new PasswordModel(stack, req, res);
-	}
+        if (password == null) {
+            password = new PasswordModel(stack, req, res);
+        }
 
-	return password;
+        return password;
     }
 
     public TextareaModel getTextarea() {
-	if (textarea == null) {
-	    textarea = new TextareaModel(stack, req, res);
-	}
+        if (textarea == null) {
+            textarea = new TextareaModel(stack, req, res);
+        }
 
-	return textarea;
+        return textarea;
     }
 
     public TextfieldModel getTextfield() {
-	if (textfield == null) {
-	    textfield = new TextfieldModel(stack, req, res);
-	}
+        if (textfield == null) {
+            textfield = new TextfieldModel(stack, req, res);
+        }
 
-	return textfield;
+        return textfield;
     }
 
     public SearchfieldModel getSearchfield() {
-	if (searchfield == null) {
-	    searchfield = new SearchfieldModel(stack, req, res);
-	}
+        if (searchfield == null) {
+            searchfield = new SearchfieldModel(stack, req, res);
+        }
 
-	return searchfield;
+        return searchfield;
     }
 
     public ListModel getList() {
-	if (list == null) {
-	    list = new ListModel(stack, req, res);
-	}
+        if (list == null) {
+            list = new ListModel(stack, req, res);
+        }
 
-	return list;
+        return list;
     }
 
     public ListItemModel getListItem() {
-	if (listItem == null) {
-	    listItem = new ListItemModel(stack, req, res);
-	}
+        if (listItem == null) {
+            listItem = new ListItemModel(stack, req, res);
+        }
 
-	return listItem;
+        return listItem;
     }
 
     public SelectModel getSelect() {
-	if (select == null) {
-	    select = new SelectModel(stack, req, res);
-	}
+        if (select == null) {
+            select = new SelectModel(stack, req, res);
+        }
 
-	return select;
+        return select;
     }
 
     public SliderModel getSlider() {
-	if (slider == null) {
-	    slider = new SliderModel(stack, req, res);
-	}
+        if (slider == null) {
+            slider = new SliderModel(stack, req, res);
+        }
 
-	return slider;
+        return slider;
     }
 
     public FlipSwitchModel getFlipSwitch() {
-	if (flipSwitch == null) {
-	    flipSwitch = new FlipSwitchModel(stack, req, res);
-	}
+        if (flipSwitch == null) {
+            flipSwitch = new FlipSwitchModel(stack, req, res);
+        }
 
-	return flipSwitch;
+        return flipSwitch;
     }
 
 }
