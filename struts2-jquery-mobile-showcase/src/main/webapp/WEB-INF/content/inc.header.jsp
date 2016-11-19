@@ -1,5 +1,5 @@
-<%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags"%>
 <!DOCTYPE html>
+<%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags" %>
 <html>
 	<head>
 		<meta charset="utf-8">
