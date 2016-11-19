@@ -160,12 +160,13 @@
 // perform a load on the target only if dataType is not provided
         if (!options.dataType && options.target) {
             var oldSuccess = options.success || function(){};
-            callbacks.push(function(data) {
+            callbacks.push(function(data, status, xhr) {
                 var fn = options.replaceTarget ? 'replaceWith' : 'html';
-                $(options.target)[fn](data).each(oldSuccess, arguments);
+                $(options.target)[fn](data).each(function(){
+                    oldSuccess.call(this, data, status, xhr);
+                });
             });
-        }
-        else if (options.success) {
+        }        else if (options.success) {
             callbacks.push(options.success);
         }
         options.success = function(data, status, xhr) { // jQuery 1.4+ passes xhr as 3rd arg
