@@ -59,7 +59,7 @@ ${parameters.labelseparator?default(":")?html}<#t/>
             <#assign itemValue = stack.findString('top')/>
         </#if>
 <#assign itemKeyStr=itemKey.toString() />
-<input type="checkbox" name="${parameters.name?html}" value="${itemKeyStr?html}" id="${parameters.name?html}-${itemCount}"<#rt/>
+<input type="checkbox" name="${parameters.name?html}" value="${itemKeyStr?html}" id="${parameters.id?html}-${itemCount}"<#rt/>
         <#if tag.contains(parameters.nameValue, itemKey)>
  checked="checked"<#rt/>
         </#if>
@@ -72,7 +72,7 @@ ${parameters.labelseparator?default(":")?html}<#t/>
         <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
         <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 />
-<label for="${parameters.name?html}-${itemCount}" class="checkboxLabel">${itemValue?html}</label>
+<label for="${parameters.id?html}-${itemCount}" class="checkboxLabel">${itemValue?html}</label>
     </@s.iterator>
 <#else>
   &nbsp;
