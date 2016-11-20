@@ -15,6 +15,10 @@
         <url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-showcase/</url>
     </scm>
 
+    <properties>
+        <log4j2.version>2.7</log4j2.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
@@ -72,9 +76,27 @@
         </dependency>
 
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>${log4j2.version}</version>
         </dependency>
 
         <dependency>
@@ -135,32 +157,25 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.10.v20130312</version>
+                <version>8.1.16.v20140903</version>
                 <configuration>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>log4j.configuration</name>
-                            <value>file:${basedir}/src/main/resources/log4j.properties</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>slf4j</name>
-                            <value>false</value>
-                        </systemProperty>
-                    </systemProperties>
+                    <stopKey>CTRL+C</stopKey>
+                    <stopPort>8999</stopPort>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webAppSourceDirectory>${basedir}/src/main/webapp/</webAppSourceDirectory>
-                    <webAppConfig>
+                    <webApp>
                         <contextPath>/struts2-jquery-showcase</contextPath>
+                    </webApp>
+                    <webAppConfig>
                         <descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
                     </webAppConfig>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>xwork.loggerFactory</name>
+                            <value>com.opensymphony.xwork2.util.logging.log4j2.Log4j2LoggerFactory</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                        <version>1.2.17</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
 
