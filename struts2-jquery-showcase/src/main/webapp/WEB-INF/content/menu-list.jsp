@@ -51,7 +51,7 @@
 	paramName=&quot;echo&quot;
 	targets=&quot;result&quot;
 	cssStyle=&quot;width:50%&quot;
-	list=&quot;#{'Java', 'JavaScript', 'Scala', 'JRuby'}&quot;
+	list=&quot;\#{'Java', 'JavaScript', 'Scala', 'JRuby'}&quot;
 /&gt;
 &lt;strong&gt;Result Div :&lt;/strong&gt;
 
@@ -69,7 +69,7 @@
 	paramName=&quot;echo&quot;
 	targets=&quot;result2&quot;
 	cssStyle=&quot;width:50%&quot;
-	list=&quot;#{'J':'Java', 'JS':'JavaScript', 'S':'Scala', 'JR':'JRuby'}&quot;
+	list=&quot;\#{'J':'Java', 'JS':'JavaScript', 'S':'Scala', 'JR':'JRuby'}&quot;
 /&gt;
 
 &lt;br/&gt;
