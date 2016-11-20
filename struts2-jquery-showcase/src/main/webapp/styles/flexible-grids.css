@@ -117,4 +117,6 @@ pre, code {
     list-style: none;
 }
 
-
+.column > div {
+	margin-top: 10px;
+}

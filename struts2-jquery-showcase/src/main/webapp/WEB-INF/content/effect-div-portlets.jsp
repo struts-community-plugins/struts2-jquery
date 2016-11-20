@@ -20,7 +20,9 @@
 	How to make portlet styled divs with the sortable interaction.
 </p>
 <strong>Message :</strong><span id="sortableresult">Use the title from each portlet as handle.</span><br/>
-<sj:div id="column1" cssClass="column" sortable="true" sortableConnectWith=".column"
+<div class="ym-grid">
+	<div class="ym-g33 ym-gl">
+<sj:div id="column1" cssClass="column ym-gbox" sortable="true" sortableConnectWith=".column"
         sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true"
         sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableOnUpdateTopics="onupdate">
 
@@ -37,8 +39,9 @@
 	</div>
 
 </sj:div>
-
-<sj:div id="column2" cssClass="column" sortable="true" sortableConnectWith=".column"
+	</div>
+	<div class="ym-g33 ym-gl">
+<sj:div id="column2" cssClass="column ym-gbox" sortable="true" sortableConnectWith=".column"
         sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true"
         sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableOnUpdateTopics="onupdate">
 
@@ -49,8 +52,9 @@
 	</div>
 
 </sj:div>
-
-<sj:div id="column3" cssClass="column" sortable="true" sortableConnectWith=".column"
+	</div>
+	<div class="ym-g33 ym-gl">
+<sj:div id="column3" cssClass="column ym-gbox" sortable="true" sortableConnectWith=".column"
         sortablePlaceholder="ui-state-highlight" sortableForcePlaceholderSize="true"
         sortableHandle="div.ui-widget-header" sortableCursor="crosshair" sortableOnUpdateTopics="onupdate">
 
@@ -67,7 +71,8 @@
 	</div>
 
 </sj:div>
-
+	</div>
+</div>
 <h4 style="clear: both;">Source Code</h4>
 
 <sj:tabbedpanel id="sourcecode">

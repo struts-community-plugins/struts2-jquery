@@ -22,12 +22,26 @@
                 .appendTo( this.wrapper )
                 .val( value )
                 .attr( "title", "" )
-                .addClass( "s2j-combobox-input" )
+                .addClass( "s2j-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
                 .autocomplete({
                     delay: 0,
                     minLength: 0,
                     source: $.proxy( this, "_source" )
+                })
+                .tooltip({
+                    classes: {
+                        "ui-tooltip": "ui-state-highlight"
+                    }
                 });
+
+            /*
+            .addClass( "s2j-combobox-input" )
+            .autocomplete({
+                delay: 0,
+                minLength: 0,
+                source: $.proxy( this, "_source" )
+            });
+        */
             this._on( this.input, {
                 autocompleteselect: function( event, ui ) {
                     ui.item.option.selected = true;
@@ -42,7 +56,7 @@
                     }
                 },
                 autocompletefocus: function( event, ui ) {
-                    this._trigger( "focus", event, { item: ui.item } )
+                    this._trigger( "focus", event, { item: ui.item } );
                     event.ui = ui;
                     if(this.options.onfocustopics ) {
                         $.each(this.options.onfocustopics .split(','), function(i, fts) {
