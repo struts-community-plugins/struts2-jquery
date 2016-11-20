@@ -19,7 +19,7 @@
     <properties>
         <spring.version>4.1.0.RELEASE</spring.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
-        <log4j2.version>2.3</log4j2.version>
+        <log4j2.version>2.7</log4j2.version>
     </properties>
 
     <dependencies>
@@ -77,14 +77,22 @@
             <artifactId>log4j-api</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
 

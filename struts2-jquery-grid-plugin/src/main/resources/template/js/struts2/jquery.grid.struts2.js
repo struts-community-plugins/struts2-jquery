@@ -279,7 +279,17 @@
 					if (o.draggable && o.droppable) {
 						self.log('drag and drop for grid : ' + o.id);
 						if (!self.loadAtOnce) {
-							self.require( [ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/draggable" + self.minSuffix + ".js", "js/base/droppable" + self.minSuffix + ".js" ]);
+							self.require( [
+								"js/base/data" + self.minSuffix + ".js",
+								"js/base/plugin" + self.minSuffix + ".js",
+								"js/base/safe-active-element" + self.minSuffix + ".js",
+								"js/base/safe-blur" + self.minSuffix + ".js",
+								"js/base/scroll-parent" + self.minSuffix + ".js",
+								"js/base/mouse" + self.minSuffix + ".js",
+								"js/base/widget" + self.minSuffix + ".js",
+								"js/base/draggable" + self.minSuffix + ".js",
+								"js/base/droppable" + self.minSuffix + ".js"
+							]);
 						}
 						
 
@@ -368,7 +378,14 @@
 					
 					if (o.resizable) {
 						if (!self.loadAtOnce) {
-							self.require( [ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/resizable" + self.minSuffix + ".js" ]);
+							self.require( [
+								"js/base/mouse" + self.minSuffix + ".js",
+								"js/base/disable-selection" + self.minSuffix + ".js",
+								"js/base/plugin" + self.minSuffix + ".js",
+								"js/base/version" + self.minSuffix + ".js",
+								"js/base/widget" + self.minSuffix + ".js",
+								"js/base/resizable" + self.minSuffix + ".js"
+							]);
 						}
 						if (!ro) {
 							ro = eval("( " + ros + " )");
@@ -534,13 +551,40 @@
 						$.jgrid.useJSON = true;
 					});
             if (!self.loadAtOnce) {
-                self.require(["js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/sortable" + self.minSuffix + ".js", "js/base/dialog" + self.minSuffix + ".js"]);
+                self.require([
+					"js/base/mouse" + self.minSuffix + ".js",
+					"js/base/position" + self.minSuffix + ".js",
+					"js/base/data" + self.minSuffix + ".js",
+					"js/base/disable-selection" + self.minSuffix + ".js",
+					"js/base/resizable" + self.minSuffix + ".js",
+					"js/base/focusable" + self.minSuffix + ".js",
+					"js/base/keycode" + self.minSuffix + ".js",
+					"js/base/scroll-parent" + self.minSuffix + ".js",
+					"js/base/safe-active-element" + self.minSuffix + ".js",
+					"js/base/safe-blur" + self.minSuffix + ".js",
+					"js/base/tabbable" + self.minSuffix + ".js",
+					"js/base/unique-id" + self.minSuffix + ".js",
+					"js/base/version" + self.minSuffix + ".js",
+					"js/base/plugin" + self.minSuffix + ".js",
+					"js/base/draggable" + self.minSuffix + ".js",
+					"js/base/widget" + self.minSuffix + ".js",
+					"js/base/button" + self.minSuffix + ".js",
+					"js/base/dialog" + self.minSuffix + ".js"
+				]);
             }
 			self.require("js/plugins/jquery.jqGrid" + self.minSuffix + ".js");
 			self.requireCss("themes/ui.jqgrid.css");
 			if(o.sortable || o.sortableRows) {
 				if (!self.loadAtOnce) {
-					self.require( [ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/sortable" + self.minSuffix + ".js" ]);
+					self.require( [
+						"js/base/mouse" + self.minSuffix + ".js",
+						"js/base/data" + self.minSuffix + ".js",
+						"js/base/ie" + self.minSuffix + ".js",
+						"js/base/scroll-parent" + self.minSuffix + ".js",
+						"js/base/version" + self.minSuffix + ".js",
+						"js/base/widget" + self.minSuffix + ".js",
+						"js/base/sortable" + self.minSuffix + ".js"
+					]);
 				}
 			}
 			$.extend(params, o);

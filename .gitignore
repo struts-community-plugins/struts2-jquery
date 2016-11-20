@@ -17,3 +17,4 @@ hs_err_pid*
 /.gitignore
 /struts2-jquery-plugin/src/main/resources/template/js/base/form.min.js
 /struts2-jquery-plugin/src/main/resources/template/js/base/focusable.min.js
+/struts2-jquery-grid-showcase/derby.log
