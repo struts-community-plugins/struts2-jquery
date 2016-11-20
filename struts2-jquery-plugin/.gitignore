@@ -39,3 +39,18 @@ src/main/resources/template/js/base/tabs.min.js
 src/main/resources/template/js/base/tooltip.min.js
 src/main/resources/template/js/base/widget.min.js
 
+/src/main/resources/template/js/base/unique-id.min.js
+/src/main/resources/template/js/base/version.min.js
+/src/main/resources/template/js/base/tabbable.min.js
+/src/main/resources/template/js/base/scroll-parent.min.js
+/src/main/resources/template/js/base/safe-blur.min.js
+/src/main/resources/template/js/base/safe-active-element.min.js
+/src/main/resources/template/js/base/plugin.min.js
+/src/main/resources/template/js/base/labels.min.js
+/src/main/resources/template/js/base/keycode.min.js
+/src/main/resources/template/js/base/ie.min.js
+/src/main/resources/template/js/base/escape-selector.min.js
+/src/main/resources/template/js/base/disable-selection.min.js
+/src/main/resources/template/js/base/data.min.js
+/src/main/resources/template/js/base/controlgroup.min.js
+/src/main/resources/template/js/base/checkboxradio.min.js

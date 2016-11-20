@@ -22,7 +22,7 @@
 <#if !jQueryVersion?? >
     <#assign jQueryVersion="2.2.4">
 </#if>
-<#assign jQueryUIVersion="1.11.4">
+<#assign jQueryUIVersion="1.12.1">
 <#assign struts2jQueryVersion="${version}">
 
 <#if parameters.scriptPath?if_exists != "">
@@ -86,7 +86,7 @@
                     src="${javaScriptBasePath}i18n/datepicker-${parameters.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"></script>
             </#if>
         <#else>
-        <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script>
+        <!-- script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script -->
         </#if>
     </#if>
 </#if>

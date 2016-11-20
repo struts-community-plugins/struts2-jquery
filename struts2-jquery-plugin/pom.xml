@@ -94,6 +94,23 @@
                             <jsSourceDir>template/js/base</jsSourceDir>
                             <jsTargetDir>template/js/base</jsTargetDir>
                             <jsSourceFiles>
+                                <jsSourceFile>checkboxradio.js</jsSourceFile>
+                                <jsSourceFile>controlgroup.js</jsSourceFile>
+                                <jsSourceFile>data.js</jsSourceFile>
+                                <jsSourceFile>disable-selection.js</jsSourceFile>
+                                <jsSourceFile>escape-selector.js</jsSourceFile>
+                                <jsSourceFile>focusable.js</jsSourceFile>
+                                <jsSourceFile>form.js</jsSourceFile>
+                                <jsSourceFile>ie.js</jsSourceFile>
+                                <jsSourceFile>keycode.js</jsSourceFile>
+                                <jsSourceFile>labels.js</jsSourceFile>
+                                <jsSourceFile>plugin.js</jsSourceFile>
+                                <jsSourceFile>safe-active-element.js</jsSourceFile>
+                                <jsSourceFile>safe-blur.js</jsSourceFile>
+                                <jsSourceFile>scroll-parent.js</jsSourceFile>
+                                <jsSourceFile>tabbable.js</jsSourceFile>
+                                <jsSourceFile>unique-id.js</jsSourceFile>
+                                <jsSourceFile>version.js</jsSourceFile>
                                 <jsSourceFile>accordion.js</jsSourceFile>
                                 <jsSourceFile>autocomplete.js</jsSourceFile>
                                 <jsSourceFile>button.js</jsSourceFile>

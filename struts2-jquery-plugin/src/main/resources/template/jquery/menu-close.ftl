@@ -51,6 +51,7 @@
 		</#assign>
         </#if>
     <li id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />">
+		<div>
 	    <#if parameters.href?exists>
 		    <#if parameters.targets?if_exists != "">
 				<a id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />_anchor" href="javascript:void(0)">
@@ -82,6 +83,7 @@
 		    ${itemValue?html}
 		    </a>
 	    </#if>
+		</div>
 	</li>
 </@s.iterator>
 </#if>

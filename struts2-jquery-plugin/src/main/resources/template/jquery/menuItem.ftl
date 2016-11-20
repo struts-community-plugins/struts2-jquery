@@ -34,7 +34,8 @@
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
-		>
+>
+<div>
 <#if !parameters.targets?exists && parameters.href?if_exists != "">
 <a href="${parameters.href?string}">
 <#elseif parameters.targets?exists && parameters.href?if_exists != "">
@@ -49,3 +50,4 @@ ${parameters.title?html}<#rt/>
 <#if parameters.href?if_exists != "">
 </a><#rt/>
 </#if>
+</div>

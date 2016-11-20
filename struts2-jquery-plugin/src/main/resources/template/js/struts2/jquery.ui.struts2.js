@@ -57,9 +57,18 @@
             var self = this,
                 daos = o.draggableoptions,
                 dao = window[daos];
-            self.log("draggable : " + o.id);
+            self.log("init draggable with id: " + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/draggable" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/data" + self.minSuffix + ".js",
+                    "js/base/plugin" + self.minSuffix + ".js",
+                    "js/base/safe-active-element" + self.minSuffix + ".js",
+                    "js/base/safe-blur" + self.minSuffix + ".js",
+                    "js/base/scroll-parent" + self.minSuffix + ".js",
+                    "js/base/mouse" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/draggable" + self.minSuffix + ".js"
+                ]);
             }
             if (!dao) {
                 dao = eval("( " + daos + " )");
@@ -80,7 +89,17 @@
                 doo = window[doos];
             self.log("droppable : " + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/draggable" + self.minSuffix + ".js", "js/base/droppable" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/data" + self.minSuffix + ".js",
+                    "js/base/plugin" + self.minSuffix + ".js",
+                    "js/base/safe-active-element" + self.minSuffix + ".js",
+                    "js/base/safe-blur" + self.minSuffix + ".js",
+                    "js/base/scroll-parent" + self.minSuffix + ".js",
+                    "js/base/mouse" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/draggable" + self.minSuffix + ".js",
+                    "js/base/droppable" + self.minSuffix + ".js"
+                ]);
             }
             if (!doo) {
                 doo = eval("( " + doos + " )");
@@ -105,7 +124,12 @@
                 seo = window[seos];
             self.log('selectable : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/selectable" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/mouse" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/selectable" + self.minSuffix + ".js"
+                ]);
             }
             if (!seo) {
                 seo = eval("( " + seos + " )");
@@ -129,7 +153,15 @@
                 soo = window[soos];
             self.log('sortable : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/sortable" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/mouse" + self.minSuffix + ".js",
+                    "js/base/data" + self.minSuffix + ".js",
+                    "js/base/ie" + self.minSuffix + ".js",
+                    "js/base/scroll-parent" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/sortable" + self.minSuffix + ".js"
+                ]);
             }
             if (!soo) {
                 soo = eval("( " + soos + " )");
@@ -158,7 +190,14 @@
                 ros = o.resizableoptions,
                 ro = window[ros];
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/resizable" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/mouse" + self.minSuffix + ".js",
+                    "js/base/disable-selection" + self.minSuffix + ".js",
+                    "js/base/plugin" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/resizable" + self.minSuffix + ".js"
+                ]);
             }
             if (!ro) {
                 ro = eval("( " + ros + " )");
@@ -175,9 +214,28 @@
         /** Handle the Dialog Widget */
         dialog: function ($elem, o) {
             var self = this;
-            self.log('dialog : ' + o.id);
+            self.log('init dialog with id: ' + o.id);
 
-            var jsFiles = [ "js/base/widget" + self.minSuffix + ".js", "js/base/button" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/position" + self.minSuffix + ".js", "js/base/dialog" + self.minSuffix + ".js" ];
+            var jsFiles = [
+                "js/base/mouse" + self.minSuffix + ".js",
+                "js/base/position" + self.minSuffix + ".js",
+                "js/base/data" + self.minSuffix + ".js",
+                "js/base/disable-selection" + self.minSuffix + ".js",
+                "js/base/resizable" + self.minSuffix + ".js",
+                "js/base/focusable" + self.minSuffix + ".js",
+                "js/base/keycode" + self.minSuffix + ".js",
+                "js/base/scroll-parent" + self.minSuffix + ".js",
+                "js/base/safe-active-element" + self.minSuffix + ".js",
+                "js/base/safe-blur" + self.minSuffix + ".js",
+                "js/base/tabbable" + self.minSuffix + ".js",
+                "js/base/unique-id" + self.minSuffix + ".js",
+                "js/base/version" + self.minSuffix + ".js",
+                "js/base/plugin" + self.minSuffix + ".js",
+                "js/base/draggable" + self.minSuffix + ".js",
+                "js/base/widget" + self.minSuffix + ".js",
+                "js/base/button" + self.minSuffix + ".js",
+                "js/base/dialog" + self.minSuffix + ".js"
+            ];
 
             if (o.hide || o.show) {
                 jsFiles.push("js/base/effect" + self.minSuffix + ".js");
@@ -259,7 +317,15 @@
                 l, tab;
             self.log('tabbedpanel : ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/tabs" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/escape-selector" + self.minSuffix + ".js",
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/safe-active-element" + self.minSuffix + ".js",
+                    "js/base/unique-id" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/tabs" + self.minSuffix + ".js"
+                ]);
             }
 
             if (o.disabledtabs && o.disabledtabs !== 'false') {
@@ -387,7 +453,15 @@
 
             if (o.sortable) {
                 if (!self.loadAtOnce) {
-                    self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/sortable" + self.minSuffix + ".js" ]);
+                    self.require([
+                        "js/base/mouse" + self.minSuffix + ".js",
+                        "js/base/data" + self.minSuffix + ".js",
+                        "js/base/ie" + self.minSuffix + ".js",
+                        "js/base/scroll-parent" + self.minSuffix + ".js",
+                        "js/base/version" + self.minSuffix + ".js",
+                        "js/base/widget" + self.minSuffix + ".js",
+                        "js/base/sortable" + self.minSuffix + ".js"
+                    ]);
                 }
                 $elem.find(".ui-tabs-nav").sortable({axis: 'x'});
             }
@@ -419,14 +493,22 @@
         initDatepicker: function (timepicker) {
             var self = this;
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/datepicker" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/datepicker" + self.minSuffix + ".js"
+                ]);
                 if (self.local !== "en") {
                     self.require("i18n/datepicker-" + self.local + ".min.js");
                 }
             }
             if (timepicker) {
                 if (!self.loadAtOnce) {
-                    self.require([ "js/base/mouse" + self.minSuffix + ".js", "js/base/slider" + self.minSuffix + ".js" ]);
+                    self.require([
+                        "js/base/mouse" + self.minSuffix + ".js",
+                        "js/base/slider" + self.minSuffix + ".js"
+                    ]);
                 }
                 self.require([ "js/plugins/jquery-ui-timepicker-addon" + self.minSuffix + ".js" ]);
                 self.requireCss("themes/jquery-ui-timepicker-addon.css");
@@ -441,7 +523,7 @@
             var self = this,
                 params = {},
                 oat = o.onalw, noms, nom, sos, so;
-            self.log('datepicker : ' + o.id);
+            self.log('init datepicker with id: ' + o.id);
 
             $.extend(params, o);
 
@@ -564,9 +646,15 @@
         slider: function ($elem, o) {
             var self = this,
                 data = {};
-            self.log('slider : ' + o.id);
+            self.log('init slider with id: ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/mouse" + self.minSuffix + ".js", "js/base/slider" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/mouse" + self.minSuffix + ".js",
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/slider" + self.minSuffix + ".js"
+                ]);
             }
 
             o.start = self.pubTops($elem, o.onalw, o.onbef);
@@ -610,11 +698,17 @@
             var self = this,
                 currentValue = $elem.val();
 
-            self.log('spinner : ' + o.id);
+            self.log('init spinner with id: ' + o.id);
             self.container($elem, o);
             if (!self.loadAtOnce) {
-                self.require("js/base/widget" + self.minSuffix + ".js");
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/button" + self.minSuffix + ".js", "js/base/spinner" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/safe-active-element" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/button" + self.minSuffix + ".js",
+                    "js/base/spinner" + self.minSuffix + ".js"
+                ]);
             }
             if (o.mouseWheel) {
                 self.require("js/plugins/jquery.mousewheel" + self.minSuffix + ".js");
@@ -634,9 +728,13 @@
         progressbar: function ($elem, o) {
             var self = this,
                 params = {};
-            self.log('progressbar : ' + o.id);
+            self.log('init progressbar with id: ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/progressbar" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/progressbar" + self.minSuffix + ".js"
+                ]);
             }
             if (o) {
 
@@ -655,9 +753,17 @@
         /** Handle the Menu Widget */
         menu: function ($elem, o) {
             var self = this;
-            self.log('menu : ' + o.id);
+            self.log('init menu with id: ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/position" + self.minSuffix + ".js", "js/base/menu" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/position" + self.minSuffix + ".js",
+                    "js/base/safe-active-element" + self.minSuffix + ".js",
+                    "js/base/unique-id" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/menu" + self.minSuffix + ".js"
+                ]);
             }
 
             $elem.menu(o);
@@ -675,9 +781,14 @@
                 data = {},
                 active = true,
                 aktivItem;
-            self.log('accordion : ' + o.id);
+            self.log('init accordion with id: ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/accordion" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/unique-id" + self.minSuffix + ".js",
+                    "js/base/accordion" + self.minSuffix + ".js"
+                ]);
             }
             if (!o.header) {
                 o.header = 'h3';
@@ -750,9 +861,17 @@
             var self = this,
                 params = {},
                 url = '';
-            self.log('autocompleter for : ' + o.id);
+            self.log('init autocompleter with id: ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/position" + self.minSuffix + ".js", "js/base/menu" + self.minSuffix + ".js", "js/base/autocomplete" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/safe-active-element" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/position" + self.minSuffix + ".js",
+                    "js/base/menu" + self.minSuffix + ".js",
+                    "js/base/autocomplete" + self.minSuffix + ".js"
+                ]);
             }
             if (o.href && o.href !== '#') {
                 url = o.href;
@@ -789,7 +908,7 @@
                                     return obj[ last ];
                                 }
                             }
-                        }
+                        };
 
                         self.abortReq(o.id);
                         self.showIndicator(o.indicatorid);
@@ -945,9 +1064,15 @@
         jquerybutton: function ($elem, o) {
             var self = this,
                 params = {};
-            self.log('button for : ' + o.id);
+            self.log('init button with id: ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/button" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/controlgroup" + self.minSuffix + ".js",
+                    "js/base/checkboxradio" + self.minSuffix + ".js",
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/button" + self.minSuffix + ".js"
+                ]);
             }
             if (o.button) {
                 params.icons = {};
@@ -969,9 +1094,15 @@
             var self = this,
                 buttonsetLoadTopic = '_s2j_topic_load_' + o.id,
                 buttonsetTopic = 's2j_butonset_' + o.id;
-            self.log('buttonset for : ' + o.id);
+            self.log('init buttonset with id: ' + o.id);
             if (!self.loadAtOnce) {
-                self.require([ "js/base/widget" + self.minSuffix + ".js", "js/base/button" + self.minSuffix + ".js" ]);
+                self.require([
+                    "js/base/controlgroup" + self.minSuffix + ".js",
+                    "js/base/checkboxradio" + self.minSuffix + ".js",
+                    "js/base/keycode" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/button" + self.minSuffix + ".js"
+                ]);
             }
 
             if (o.href && o.href !== '#') {
