@@ -36,6 +36,8 @@ public class RadioTag extends AbstractFormListElementTag {
     private static final long serialVersionUID = 5405919375440859551L;
 
     protected String buttonset;
+    protected String icon;
+    protected String direction;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new Radio(stack, req, res);
@@ -46,9 +48,19 @@ public class RadioTag extends AbstractFormListElementTag {
 
         Radio radio = (Radio) component;
         radio.setButtonset(buttonset);
+        radio.setIcon(icon);
+        radio.setDirection(direction);
     }
 
     public void setButtonset(String buttonset) {
         this.buttonset = buttonset;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }

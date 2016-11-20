@@ -74,10 +74,14 @@ public class Radio extends AbstractFormListElement {
     public static final String JQUERYACTION = "buttonset";
 
     private static final String PARAM_BUTTONSET = "buttonset";
+    private static final String PARAM_ICON = "icon";
+    private static final String PARAM_DIRECTION = "direction";
 
     private static final String ID_PREFIX_RADIO = "radio_";
 
     protected String buttonset;
+    protected String icon;
+    protected String direction;
 
     public Radio(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
@@ -97,6 +101,8 @@ public class Radio extends AbstractFormListElement {
         addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
         addParameterIfPresent(PARAM_BUTTONSET, this.buttonset, Boolean.class);
+        addParameterIfPresent(PARAM_ICON, this.icon, Boolean.class);
+        addParameterIfPresent(PARAM_DIRECTION, this.direction);
 
         addGeneratedIdParam(ID_PREFIX_RADIO);
     }
@@ -115,6 +121,16 @@ public class Radio extends AbstractFormListElement {
     @StrutsTagAttribute(description = "Disable or enable the jQuery UI buttonset feature.", defaultValue = "true", type = "Boolean")
     public void setButtonset(String buttonset) {
         this.buttonset = buttonset;
+    }
+
+    @StrutsTagAttribute(description = "Whether to show the radio icon, depending on the input's type.", defaultValue = "true", type = "Boolean")
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    @StrutsTagAttribute(description = "By default, controlgroup displays its controls in a horizontal layout. Use this option to use a vertical layout instead.", defaultValue = "horizontal")
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 
 }

@@ -41,6 +41,14 @@ jQuery(document).ready(function () {
 <#else>
 	options_${escapedOptionId?html}.buttonset = false;
 </#if>
+<#if parameters.icon?default(true)>
+    options_${escapedOptionId?html}.icon = true;
+<#else>
+    options_${escapedOptionId?html}.icon = false;
+</#if>
+<#if parameters.direction??>
+    options_${escapedOptionId?html}.direction = "${parameters.direction?html}";
+</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

@@ -26,7 +26,6 @@ import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Random;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -74,13 +73,18 @@ public class CheckboxList extends AbstractFormListElement {
     public static final String TEMPLATE = "checkboxlist";
     public static final String TEMPLATE_CLOSE = "checkboxlist-close";
     public static final String COMPONENT_NAME = CheckboxList.class.getName();
-    final private static transient Random RANDOM = new Random();
+
     public static final String JQUERYACTION = "buttonset";
 
     private static final String PARAM_BUTTONSET = "buttonset";
-    public static final String ID_PREFIX_CHECKBOX = "checkbox_";
+    private static final String PARAM_ICON = "icon";
+    private static final String PARAM_DIRECTION = "direction";
+
+    private static final String ID_PREFIX_CHECKBOX = "checkbox_";
 
     protected String buttonset;
+    protected String icon;
+    protected String direction;
 
     public CheckboxList(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
@@ -99,6 +103,8 @@ public class CheckboxList extends AbstractFormListElement {
 
         addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
         addParameterIfPresent(PARAM_BUTTONSET, this.buttonset, Boolean.class);
+        addParameterIfPresent(PARAM_ICON, this.icon, Boolean.class);
+        addParameterIfPresent(PARAM_DIRECTION, this.direction);
 
         addGeneratedIdParam(ID_PREFIX_CHECKBOX);
     }
@@ -119,4 +125,13 @@ public class CheckboxList extends AbstractFormListElement {
         this.buttonset = buttonset;
     }
 
+    @StrutsTagAttribute(description = "Whether to show the checkbox icon, depending on the input's type.", defaultValue = "true", type = "Boolean")
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    @StrutsTagAttribute(description = "By default, controlgroup displays its controls in a horizontal layout. Use this option to use a vertical layout instead.", defaultValue = "horizontal")
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
 }

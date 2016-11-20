@@ -26,6 +26,27 @@
 			/>
 </s:form>
 <br/>
+
+<strong>Checkbox buttonset vertical and without icons</strong>
+<s:form id="formvertical" action="echo" theme="xhtml">
+	<sj:checkboxlist
+			id="checkboxvertical"
+			tooltip="Choose your Friends"
+			label="Friends"
+			icon="false"
+			direction="vertical"
+			list="{'Patrick', 'Jason', 'Jay', 'Toby', 'Rene'}"
+			name="echo"/>
+	<sj:submit
+            id="checkvertbtn"
+			targets="formResult"
+			value="AJAX Submit"
+			indicator="indicator"
+			button="true"
+	/>
+</s:form>
+<br/>
+
 <strong>Buttonset that was populated from AJAX JSON Result.</strong>
 <s:form id="form2" action="echo" theme="xhtml">
 	<s:url var="remoteurl" action="jsonsample"/>

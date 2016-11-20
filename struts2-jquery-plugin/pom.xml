@@ -101,6 +101,7 @@
                                 <jsSourceFile>escape-selector.js</jsSourceFile>
                                 <jsSourceFile>focusable.js</jsSourceFile>
                                 <jsSourceFile>form.js</jsSourceFile>
+                                <jsSourceFile>form-reset-mixin.js</jsSourceFile>
                                 <jsSourceFile>ie.js</jsSourceFile>
                                 <jsSourceFile>keycode.js</jsSourceFile>
                                 <jsSourceFile>labels.js</jsSourceFile>

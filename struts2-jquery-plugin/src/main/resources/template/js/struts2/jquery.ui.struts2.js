@@ -756,11 +756,11 @@
             self.log('init menu with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
+                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/position" + self.minSuffix + ".js",
                     "js/base/safe-active-element" + self.minSuffix + ".js",
                     "js/base/unique-id" + self.minSuffix + ".js",
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
                     "js/base/menu" + self.minSuffix + ".js"
                 ]);
@@ -1067,10 +1067,15 @@
             self.log('init button with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/controlgroup" + self.minSuffix + ".js",
-                    "js/base/checkboxradio" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/escape-selector" + self.minSuffix + ".js",
+                    "js/base/form" + self.minSuffix + ".js",
+                    "js/base/form-reset-mixin" + self.minSuffix + ".js",
+                    "js/base/labels" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/controlgroup" + self.minSuffix + ".js",
+                    "js/base/checkboxradio" + self.minSuffix + ".js",
                     "js/base/button" + self.minSuffix + ".js"
                 ]);
             }
@@ -1093,31 +1098,34 @@
         buttonset: function ($elem, o) {
             var self = this,
                 buttonsetLoadTopic = '_s2j_topic_load_' + o.id,
-                buttonsetTopic = 's2j_butonset_' + o.id;
+                buttonsetTopic = 's2j_buttonset_' + o.id;
             self.log('init buttonset with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/controlgroup" + self.minSuffix + ".js",
-                    "js/base/checkboxradio" + self.minSuffix + ".js",
+                    "js/base/version" + self.minSuffix + ".js",
+                    "js/base/escape-selector" + self.minSuffix + ".js",
+                    "js/base/form" + self.minSuffix + ".js",
+                    "js/base/form-reset-mixin" + self.minSuffix + ".js",
+                    "js/base/labels" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/controlgroup" + self.minSuffix + ".js",
+                    "js/base/checkboxradio" + self.minSuffix + ".js",
                     "js/base/button" + self.minSuffix + ".js"
-                ]);
+                ], function() {
+                    alert("loaded");
+                });
             }
 
             if (o.href && o.href !== '#') {
-
-
                 if ($elem.isSubscribed(buttonsetTopic)) {
                     $elem.destroyTopic(buttonsetTopic);
                 }
 
                 // Init Buttonset after elements loaded via AJAX.
                 $elem.subscribe(buttonsetTopic, function (event, data) {
+                    var elements = $elem.find("input[type=radio], input[type=checkbox]");
                     if (o.oncha) {
-                        var selectString = self.escId(o.id) + " > input",
-                            elements = $(selectString);
-
                         if (($.support.leadingWhitespace == false) && o.type === 'radio') {
                             elements.click(function () {
                                 this.blur();
@@ -1137,7 +1145,8 @@
                     }
 
                     if (o.buttonset) {
-                        $elem.buttonset(o);
+                        elements.checkboxradio(o);
+                        $elem.controlgroup(o);
                     }
                 });
                 if (o.onsuc && o.onsuc !== '') {
@@ -1154,8 +1163,9 @@
                 $elem.publish(buttonsetLoadTopic, o);
             }
             else {
+                var elements = $elem.find("input[type=radio], input[type=checkbox]");
                 if (o.oncha) {
-                    $(self.escId(o.id) + " > input").change(function () {
+                    elements.change(function () {
                         $.each(o.oncha.split(','), function (i, cts) {
                             $elem.publish(cts);
                         });
@@ -1163,7 +1173,8 @@
                 }
 
                 if (o.buttonset) {
-                    $elem.buttonset(o);
+                    elements.checkboxradio(o);
+                    $elem.controlgroup(o);
                 }
             }
         }

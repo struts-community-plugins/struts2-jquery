@@ -35,6 +35,8 @@ public class CheckboxListTag extends AbstractFormListElementTag {
     private static final long serialVersionUID = 1792119547676464144L;
 
     protected String buttonset;
+    protected String icon;
+    protected String direction;
 
     public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         return new CheckboxList(stack, req, res);
@@ -45,9 +47,19 @@ public class CheckboxListTag extends AbstractFormListElementTag {
 
         CheckboxList checkboxList = (CheckboxList) component;
         checkboxList.setButtonset(buttonset);
+        checkboxList.setIcon(icon);
+        checkboxList.setDirection(direction);
     }
 
     public void setButtonset(String buttonset) {
         this.buttonset = buttonset;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }
