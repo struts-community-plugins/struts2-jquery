@@ -110,7 +110,7 @@ public class Ckeditor extends Textarea {
         return "jquery";
     }
 
-    @StrutsTagAttribute(description = "the richtext skin. e.g kama, office2003, v2")
+    @StrutsTagAttribute(description = "the richtext skin. e.g kama or moono")
     public void setSkin(String skin) {
         this.skin = skin;
     }

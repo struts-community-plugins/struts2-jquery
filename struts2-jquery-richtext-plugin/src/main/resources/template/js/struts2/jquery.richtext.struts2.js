@@ -6,7 +6,7 @@
  *
  * Requires use of jquery.struts2.js
  *
- * Copyright (c) 2010 - 2015 Johannes Geppert http://www.jgeppert.com
+ * Copyright (c) 2010 - 2016 Johannes Geppert http://www.jgeppert.com
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -47,7 +47,7 @@
 				inst,
 				ckeditorTopic = 's2j_ckeditor_' + o.id,
 				callbackFunction;
-			self.log('ckeditor for : ' + o.id);
+			self.log('init ckeditor with id: ' + o.id);
 			self.require("js/ckeditor/ckeditor.js");
 			self.require("js/ckeditor/adapters/jquery.js");
 
@@ -75,10 +75,7 @@
 			}
 			
 			o.resizable = false;
-            o.resize_enabled  = false;
-			if (o.editorResizable) {
-				o.resize_enabled  = true;
-			}
+			o.resize_enabled = o.editorResizable;
 
 			if (o.href && o.href !== '#') {
 
@@ -146,18 +143,17 @@
 		tinymceEditor : function($elem, o) {
 			var self = this,
 				tinymceTopic = 's2j_tinymce_' + o.id;
-			self.log('tinymce for: ' + o.id);
+			self.log('init tinymce with id: ' + o.id);
 			self.require("js/tinymce/jquery.tinymce.min.js");
 			if (window.tinymce){
 				try{
 					window.tinymce.remove("#"+o.id);
 				}
 				catch(e){
-					self.log('destroyed old tinyMCE instance for : ' + o.id);
+					self.log('destroyed old tinyMCE instance for: ' + o.id);
 				}
 			}
-			
-			
+
 			// don't use jqueryui resizable
 			// use the resizing from tinymce
 			o.resizable = false;

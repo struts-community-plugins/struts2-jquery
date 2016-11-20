@@ -21,7 +21,7 @@
 			loadingText="Loading content of textarea ..."
 			width="600"
 			toolbar="MyToolbar"
-			skin="v2"
+			skin="kama"
 			editorLocal="fr"
 			customConfig="%{contextPath}/js/ckeditor.config.js"
 			/>

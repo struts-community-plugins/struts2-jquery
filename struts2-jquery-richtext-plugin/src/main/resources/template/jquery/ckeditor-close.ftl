@@ -34,8 +34,10 @@ jQuery(document).ready(function () {
 	</#if>
 	<#if parameters.skin?if_exists != ""> 
 	options_${escapedOptionId?html}.skin = "${parameters.skin?html}";
+	<#else>
+    options_${escapedOptionId?html}.skin = "moono";
 	</#if>
-	<#if parameters.toolbar?if_exists != ""> 
+	<#if parameters.toolbar?if_exists != "">
 	options_${escapedOptionId?html}.toolbar = "${parameters.toolbar?html}";
 	</#if>
 	<#if parameters.width??> 
