@@ -55,3 +55,4 @@ src/main/resources/template/js/base/widget.min.js
 /src/main/resources/template/js/base/controlgroup.min.js
 /src/main/resources/template/js/base/checkboxradio.min.js
 /src/main/resources/template/js/base/form-reset-mixin.min.js
+/src/main/resources/template/i18n/jquery-ui-timepicker-*.min.js
