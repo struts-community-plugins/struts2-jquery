@@ -155,6 +155,29 @@
                             <goal>minify</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>jqueryui-i18n-minify</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <charset>UTF-8</charset>
+                            <jsEngine>CLOSURE</jsEngine>
+                            <closureLanguage>ECMASCRIPT5_STRICT</closureLanguage>
+                            <skipMerge>true</skipMerge>
+                            <webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
+                            <webappTargetDir>${basedir}/src/main/resources</webappTargetDir>
+                            <jsSourceDir>template/i18n</jsSourceDir>
+                            <jsTargetDir>template/i18n</jsTargetDir>
+                            <jsSourceIncludes>
+                                <jsSourceInclude>**</jsSourceInclude>
+                            </jsSourceIncludes>
+                            <jsSourceExcludes>
+                                <jsSourceExclude>**/*.min.js</jsSourceExclude>
+                            </jsSourceExcludes>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
