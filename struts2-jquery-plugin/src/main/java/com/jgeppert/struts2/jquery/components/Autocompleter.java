@@ -36,23 +36,18 @@ import javax.servlet.http.HttpServletResponse;
  * <p>
  * Examples
  * </p>
- * <p>
  * <!-- START SNIPPET: example1 -->
  * <p>
  * Autocompleter handle a String Array
  * </p>
- * <p>
  * <pre>
  * &lt;sj:autocompleter id=&quot;languages&quot; list=&quot;%{languages}&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
  * <p>
  * Autocompleter that handle a JSON Result
  * </p>
- * <p>
  * <pre>
  *  &lt;s:url id=&quot;remoteurl&quot; action=&quot;jsonlanguages&quot;/&gt;
  *  &lt;sj:autocompleter
@@ -62,14 +57,11 @@ import javax.servlet.http.HttpServletResponse;
  *     loadMinimumCount=&quot;2&quot;
  *   /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
- * <p>
  * <!-- START SNIPPET: example3 -->
  * <p>
  * Autocompleter as Select Box
  * </p>
- * <p>
  * <pre>
  *          &lt;sj:autocompleter
  *           id=&quot;customers&quot;
@@ -80,7 +72,6 @@ import javax.servlet.http.HttpServletResponse;
  *           selectBox=&quot;true&quot;
  *         /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example3 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

@@ -36,12 +36,10 @@ import javax.servlet.http.HttpServletResponse;
  * <p>
  * Examples
  * </p>
- * <p>
  * <!-- START SNIPPET: example1 -->
  * <p>
  * Create a Buttonset from Checkbox List.
  * </p>
- * <p>
  * <pre>
  * &lt;div id=&quot;formResult&quot; class=&quot;result ui-widget-content ui-corner-all&quot;&gt;Submit form bellow.&lt;/div&gt;
  *
@@ -61,7 +59,6 @@ import javax.servlet.http.HttpServletResponse;
  *   &lt;/s:form&gt;
  *   &lt;img id=&quot;indicator&quot; src=&quot;images/indicator.gif&quot; alt=&quot;Loading...&quot; style=&quot;display:none&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

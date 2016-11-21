@@ -28,18 +28,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <!-- START SNIPPET: javadoc --> Renders a progressbar <!-- END SNIPPET:
- * javadoc -->
- * <p>
+ * <!-- START SNIPPET: javadoc -->
+ * <p>Renders a progressbar</p>
+ * <!-- END SNIPPET: javadoc -->
  * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * <p>
  * <pre>
  * &lt;sj:progressbar value=&quot;40&quot; /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

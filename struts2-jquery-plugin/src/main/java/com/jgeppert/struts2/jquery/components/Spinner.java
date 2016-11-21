@@ -36,23 +36,18 @@ import javax.servlet.http.HttpServletResponse;
  * <p>
  * Examples
  * </p>
- * <p>
  * <!-- START SNIPPET: example1 -->
  * <p>
  * A simple Spinner.
  * </p>
- * <p>
  * <pre>
  * &lt;sj:spinner name=&quot;spinner1&quot; id=&quot;spinner1&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
  * <p>
  * A Spinner max=50 and step=2.
  * </p>
- * <p>
  * <pre>
  *     &lt;sj:spinner
  *       name=&quot;spinner2&quot;
@@ -63,14 +58,11 @@ import javax.servlet.http.HttpServletResponse;
  *       value=&quot;25&quot;/&gt;
  *
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
- * <p>
  * <!-- START SNIPPET: example3 -->
  * <p>
  * A Spinner with currency format and mouse wheel support.
  * </p>
- * <p>
  * <pre>
  * &lt;sj:spinner
  *       name=&quot;spinner3&quot;
@@ -83,7 +75,6 @@ import javax.servlet.http.HttpServletResponse;
  *       mouseWheel=&quot;true&quot;/&gt;
  *     &lt;br/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example3 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

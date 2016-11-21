@@ -38,21 +38,15 @@ import java.util.Collection;
  * <p>
  * Examples
  * </p>
- * <p>
  * <!-- START SNIPPET: example1 -->
- * <p>
  * <pre>
  * &lt;sj:slider id=&quot;myslider&quot; name=&quot;myslider&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
- * <p>
  * <pre>
  * &lt;sj:slider id=&quot;myslider2&quot; name=&quot;myslider2&quot; value=&quot;40&quot; displayValueElement=&quot;displayvaluespan&quot; min=&quot;20&quot; max=&quot;200&quot; animate=&quot;true&quot; step=&quot;5&quot; cssStyle=&quot;margin: 10px;&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

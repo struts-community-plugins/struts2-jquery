@@ -42,58 +42,35 @@ import java.util.*;
  * <p>
  * Examples
  * </p>
- * <p>
  * <!-- START SNIPPET: example1 -->
- * <p>
  * <p>A simple Datepicker</p>
- * <p>
  * <pre>
  * &lt;sj:datepicker id=&quot;birthday&quot; name=&quot;birthday&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
- * <p>
- * <p>A Datepicker with Button Panel and select boxes to change year and
- * month.</p>
- * <p>
+ * <p>A Datepicker with Button Panel and select boxes to change year and month.</p>
  * <pre>
  * &lt;sj:datepicker showButtonPanel=&quot;true&quot; changeMonth=&quot;true&quot; changeYear=&quot;true&quot; id=&quot;birthday&quot; name=&quot;birthday&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
- * <p>
  * <!-- START SNIPPET: example3 -->
- * <p>
  * <p>A Datepicker with different Display Format.</p>
- * <p>
  * <pre>
  * &lt;sj:datepicker displayFormat=&quot;dd.mm.yy&quot; id=&quot;birthday&quot; name=&quot;birthday&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example3 -->
- * <p>
- * <p>
  * <!-- START SNIPPET: example4 -->
- * <p>
  * <p>A Datepicker with Timepicker.</p>
- * <p>
  * <pre>
  * &lt;sj:datepicker id=&quot;time0&quot; label=&quot;Select a Date/Time&quot; timepicker=&quot;true&quot; /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example4 -->
- * <p>
- * <p>
  * <!-- START SNIPPET: example5 -->
- * <p>
  * <p>A Timepicker.</p>
- * <p>
  * <pre>
  * &lt;sj:datepicker id=&quot;time1&quot; label=&quot;Select a Time&quot; timepicker=&quot;true&quot; timepickerOnly=&quot;true&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example5 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

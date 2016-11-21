@@ -48,55 +48,38 @@ import java.io.Writer;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  * <p>
- * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * <p>
  * <pre>
  * &lt;sj:submit value=&quot;%{'Submit'}&quot; /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
- * <p>
  * <pre>
  * &lt;sj:submit type=&quot;image&quot; value=&quot;%{'Submit'}&quot; label=&quot;Submit the form&quot; src=&quot;submit.gif&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
- * <p>
  * <!-- START SNIPPET: example3 -->
- * <p>
  * <pre>
  * &lt;sj:submit type=&quot;button&quot; value=&quot;%{'Submit'}&quot; label=&quot;Submit the form&quot;/&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example3 -->
- * <p>
  * <!-- START SNIPPET: example4 -->
- * <p>
  * <pre>
  * &lt;div id=&quot;div1&quot;&gt;Div 1&lt;/div&gt;
  * &lt;s:url id=&quot;ajaxTest&quot; value=&quot;/AjaxTest.action&quot;/&gt;
  * &lt;sj:submit id=&quot;link1&quot; href=&quot;%{ajaxTest}&quot; target=&quot;div1&quot; /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example4 -->
- * <p>
  * <!-- START SNIPPET: example5 -->
- * <p>
  * <pre>
  * &lt;s:form id=&quot;form&quot; action=&quot;AjaxTest&quot;&gt;
  * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt; &lt;sj:submit /&gt;
  * &lt;/s:form&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example5 -->
- * <p>
  * <!-- START SNIPPET: example6 -->
- * <p>
  * <pre>
  * &lt;s:form id=&quot;form&quot; action=&quot;AjaxTest&quot;&gt;
  * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt;
@@ -104,11 +87,8 @@ import java.io.Writer;
  *
  * &lt;sj:submit formId=&quot;form&quot; /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example6 -->
- * <p>
  * <!-- START SNIPPET: example7 -->
- * <p>
  * <pre>
  * &lt;script type=&quot;text/javascript&quot;&gt;
  * function before(event){ alert('before request'); };
@@ -117,17 +97,13 @@ import java.io.Writer;
  *
  * &lt;sj:submit beforeSend=&quot;before()&quot; complete=&quot;complete()&quot; /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example7 -->
- * <p>
  * <!-- START SNIPPET: example8 -->
- * <p>
  * <pre>
  * &lt;sj:submit value&quot;AJAX Submit with effect&quot;
  * effect=&quot;highlight&quot; effectOptions=&quot;color : '#222222'&quot;
  * effectDuration=&quot;3600&quot;&gt; href=&quot;%{#ajaxTest}&quot; /&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example8 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

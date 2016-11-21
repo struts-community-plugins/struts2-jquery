@@ -41,12 +41,9 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  * <p>
- * <p>
  * <b>Examples</b>
  * </p>
- * <p>
  * <!-- START SNIPPET: example1 -->
- * <p>
  * <pre>
  * &lt;sj:tabbedpanel id=&quot;mytabs&quot; animate=&quot;true&quot; collapsible=&quot;true&quot; useSelectedTabCookie=&quot;true&quot;&gt;
  *  &lt;sj:tab id=&quot;tab1&quot; target=&quot;tone&quot; label=&quot;Tab One&quot;/&gt;
@@ -57,11 +54,8 @@ import javax.servlet.http.HttpServletResponse;
  *  &lt;div id=&quot;tthree&quot;&gt; Test 3 &lt;/div&gt;
  * &lt;/sj:tabbedpanel&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
- * <p>
  * <pre>
  * &lt;s:url id=&quot;remoteurl1&quot; action=&quot;myremoteactionone&quot;/&gt;
  * &lt;s:url id=&quot;remoteurl2&quot; action=&quot;myremoteactiontwo&quot;/&gt;
@@ -72,7 +66,6 @@ import javax.servlet.http.HttpServletResponse;
  *  &lt;sj:tab id=&quot;tab3&quot; href=&quot;%{remoteurl3}&quot; label=&quot;Tab Three&quot;/&gt;
  * &lt;/sj:tabbedpanel&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

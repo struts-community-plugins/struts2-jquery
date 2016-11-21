@@ -35,34 +35,25 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  * <p>
- * <p>
  * Examples
  * </p>
  * <!-- START SNIPPET: example1 -->
- * <p>
  * <pre>
  * &lt;sj:div href=&quot;%{#url}&quot;&gt;Initial Content&lt;/sj:div&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
- * <p>
  * <pre>
  * &lt;img id=&quot;indicator&quot; src=&quot;${pageContext.request.contextPath}/images/indicator.gif&quot; style=&quot;display:none&quot;/&gt;
  * &lt;sj:div href=&quot;%{#url}&quot; indicator=&quot;indicator&quot;&gt; Initial Content &lt;/sj:div&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
- * <p>
  * <!-- START SNIPPET: example3 -->
- * <p>
  * <pre>
  * &lt;sj:div href=&quot;%{#url}&quot; effect=&quot;highlight&quot; effectOptions=&quot;color : '#222222'&quot; effectDuration=&quot;3600&quot;&gt;
  *  Initial Content
  * &lt;/sj:div&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example3 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>

@@ -39,27 +39,21 @@ import java.util.Random;
  * <p>
  * Examples
  * </p>
- * <p>
  * <!-- START SNIPPET: example1 -->
- * <p>
  * <pre>
  * &lt;div id=&quot;div1&quot;&gt;Div 1&lt;/div&gt;
  * &lt;s:url id=&quot;ajaxTest&quot; value=&quot;/AjaxTest.action&quot;/&gt;
  *
  * &lt;sj:a id=&quot;link1&quot; href=&quot;%{ajaxTest}&quot; target=&quot;div1&quot;&gt; Update Content &lt;/sj:a&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
- * <p>
  * <pre>
  * &lt;s:form id=&quot;form&quot; action=&quot;AjaxTest&quot;&gt;
  * &lt;input type=&quot;textbox&quot; name=&quot;data&quot;&gt; &lt;/s:form&gt;
  *
  * &lt;sj:a formId=&quot;form&quot; targets=&quot;div1&quot;&gt;Submit form&lt;/sj:a&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
