@@ -8,10 +8,12 @@
 		minuteText: '分',
 		secondText: '秒',
 		millisecText: '毫秒',
+		microsecText: '微秒',
 		timezoneText: '時區',
 		currentText: '現在時間',
 		closeText: '確定',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['上午', 'AM', 'A'],
 		pmNames: ['下午', 'PM', 'P'],
 		isRTL: false

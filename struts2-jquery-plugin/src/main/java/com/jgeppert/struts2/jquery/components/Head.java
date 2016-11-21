@@ -38,27 +38,21 @@ import java.util.Arrays;
  * required in order to use any of the tags included in the jQuery plugin.
  * </p>
  * <!-- END SNIPPET: notice -->
- * <p>
  * <!-- START SNIPPET: javadoc -->
  * <p>
  * Some tags like the "datepicker" can use different locales, to use a locale
  * that is different from the request locale.
  * </p>
  * <p>
- * <p>
  * The "locale" attribute configures jQuery locale for datepicker. Default is
  * "en" you can use all locales that are bundled with jQuery. e.g. "de, "fr", "
  * ja", ...
  * </p>
- * <p>
  * <!-- END SNIPPET: javadoc -->
- * <p>
  * <p>
  * Examples
  * </p>
- * <p>
  * <!-- START SNIPPET: example1 -->
- * <p>
  * <pre>
  * &lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot; %&gt;
  * &lt;head&gt;
@@ -66,11 +60,8 @@ import java.util.Arrays;
  *   &lt;sj:head/&gt;
  * &lt;/head&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example1 -->
- * <p>
  * <!-- START SNIPPET: example2 -->
- * <p>
  * <pre>
  * &lt;%@ taglib prefix=&quot;sj&quot; uri=&quot;/struts-jquery-tags&quot; %&gt;
  * &lt;head&gt;
@@ -78,7 +69,6 @@ import java.util.Arrays;
  *   &lt;sj:head compressed=&quot;false&quot; locale=&quot;de&quot; jquerytheme=&quot;cupertino&quot;/&gt;
  * &lt;/head&gt;
  * </pre>
- * <p>
  * <!-- END SNIPPET: example2 -->
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
@@ -88,8 +78,8 @@ import java.util.Arrays;
 public class Head extends org.apache.struts2.components.Head {
     public static final String TEMPLATE = "head";
 
-    private static final String[] timeLocals = {"af", "bg", "ca", "cs", "de", "el", "es", "et", "eu", "fi", "fr", "gl",
-            "he", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sv", "th",
+    private static final String[] timeLocals = {"af", "am", "bg", "ca", "cs", "de", "da", "el", "es", "et", "eu", "fa", "fi", "fr", "gl",
+            "he", "hr", "hu", "id", "it", "ja", "ko", "lt", "lv", "nl", "no", "pl", "pt", "pt-BR", "ro", "ru", "sk", "sl", "sq", "sr-RS", "sr-YU", "sv", "th",
             "tr", "uk", "vi", "zh-CN", "zh-TW"};
     private static final String[] gridLocals = {"ar", "bg", "ca", "cn", "cs", "de", "da", "dk", "el", "en", "es",
             "en-GB", "fa", "fi", "fr", "fr-CH", "gl", "he", "hr", "hu", "id", "is", "it", "ja", "lt", "mne", "nl", "no",

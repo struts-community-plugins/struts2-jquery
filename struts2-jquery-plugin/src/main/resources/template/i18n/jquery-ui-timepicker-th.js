@@ -8,10 +8,12 @@
 		minuteText: 'นาที',
 		secondText: 'วินาที',
 		millisecText: 'มิลลิวินาที',
+		microsecText: 'ไมโคริวินาที',
 		timezoneText: 'เขตเวลา',
 		currentText: 'เวลาปัจจุบัน',
 		closeText: 'ปิด',
-		timeFormat: 'hh:mm tt'
+		timeFormat: 'hh:mm tt',
+		timeSuffix: ''
 	};
 	$.timepicker.setDefaults($.timepicker.regional['th']);
 })(jQuery);

@@ -8,10 +8,12 @@
 		minuteText: 'Minuut',
 		secondText: 'Seconde',
 		millisecText: 'Milliseconde',
+		microsecText: 'Microseconde',
 		timezoneText: 'Tijdzone',
 		currentText: 'Vandaag',
 		closeText: 'Sluiten',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['AM', 'A'],
 		pmNames: ['PM', 'P'],
 		isRTL: false

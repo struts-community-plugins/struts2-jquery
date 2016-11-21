@@ -8,10 +8,12 @@
 		minuteText: 'Minúty',
 		secondText: 'Sekundy',
 		millisecText: 'Milisekundy',
+		microsecText: 'Mikrosekundy',
 		timezoneText: 'Časové pásmo',
 		currentText: 'Teraz',
 		closeText: 'Zavrieť',
 		timeFormat: 'H:m',
+		timeSuffix: '',
 		amNames: ['dop.', 'AM', 'A'],
 		pmNames: ['pop.', 'PM', 'P'],
 		isRTL: false

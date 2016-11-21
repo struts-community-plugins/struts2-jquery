@@ -8,10 +8,12 @@
 		minuteText: 'Minute',
 		secondText: 'Sekondes',
 		millisecText: 'Millisekondes',
+		microsecText: 'Mikrosekondes',
 		timezoneText: 'Tydsone',
 		currentText: 'Huidige Tyd',
 		closeText: 'Klaar',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['AM', 'A'],
 		pmNames: ['PM', 'P'],
 		isRTL: false

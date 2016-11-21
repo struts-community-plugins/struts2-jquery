@@ -8,10 +8,12 @@
 		minuteText: "דקות",
 		secondText: "שניות",
 		millisecText: "אלפית השנייה",
+		microsecText: "מיקרו",
 		timezoneText: "אזור זמן",
 		currentText: "עכשיו",
 		closeText:"סגור",
 		timeFormat: "HH:mm",
+		timeSuffix: '',
 		amNames: ['לפנה"צ', 'AM', 'A'],
 		pmNames: ['אחה"צ', 'PM', 'P'],
 		isRTL: true

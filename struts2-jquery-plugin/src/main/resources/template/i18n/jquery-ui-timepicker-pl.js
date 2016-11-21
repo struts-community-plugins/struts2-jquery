@@ -8,10 +8,12 @@
 		minuteText: 'Minuta',
 		secondText: 'Sekunda',
 		millisecText: 'Milisekunda',
+		microsecText: 'Mikrosekunda',
 		timezoneText: 'Strefa czasowa',
 		currentText: 'Teraz',
 		closeText: 'Gotowe',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['AM', 'A'],
 		pmNames: ['PM', 'P'],
 		isRTL: false

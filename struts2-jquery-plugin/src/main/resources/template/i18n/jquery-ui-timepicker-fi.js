@@ -8,10 +8,12 @@
 		minuteText: 'Minuutti',
 		secondText: 'Sekunti',
 		millisecText: 'Millisekunnin',
+		microsecText: 'Mikrosekuntia',
 		timezoneText: 'Aikavyöhyke',
 		currentText: 'Nyt',
 		closeText: 'Sulje',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['ap.', 'AM', 'A'],
 		pmNames: ['ip.', 'PM', 'P'],
 		isRTL: false

@@ -8,10 +8,12 @@
 		minuteText: 'Минути',
 		secondText: 'Секунди',
 		millisecText: 'Милисекунди',
+		microsecText: 'Микросекунди',
 		timezoneText: 'Часови пояс',
 		currentText: 'Сега',
 		closeText: 'Затвори',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['AM', 'A'],
 		pmNames: ['PM', 'P'],
 		isRTL: false

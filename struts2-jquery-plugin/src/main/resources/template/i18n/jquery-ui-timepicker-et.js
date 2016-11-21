@@ -8,10 +8,12 @@
 		minuteText: 'Minut',
 		secondText: 'Sekund',
 		millisecText: 'Millisekundis',
+		microsecText: 'Mikrosekundis',
 		timezoneText: 'Ajavöönd',
 		currentText: 'Praegu',
 		closeText: 'Valmis',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['AM', 'A'],
 		pmNames: ['PM', 'P'],
 		isRTL: false

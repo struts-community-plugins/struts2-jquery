@@ -8,10 +8,12 @@
 		minuteText: 'Perc',
 		secondText: 'Másodperc',
 		millisecText: 'Milliszekundumos',
+		microsecText: 'Ezredmásodperc',
 		timezoneText: 'Időzóna',
 		currentText: 'Most',
 		closeText: 'Kész',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['de.', 'AM', 'A'],
 		pmNames: ['du.', 'PM', 'P'],
 		isRTL: false

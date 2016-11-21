@@ -8,10 +8,12 @@
 		minuteText: 'Minuts',
 		secondText: 'Segons',
 		millisecText: 'Milisegons',
+		microsecText: 'Microsegons',
 		timezoneText: 'Fus horari',
 		currentText: 'Ara',
 		closeText: 'Tancar',
 		timeFormat: 'HH:mm',
+		timeSuffix: '',
 		amNames: ['AM', 'A'],
 		pmNames: ['PM', 'P'],
 		isRTL: false
