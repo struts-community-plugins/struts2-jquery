@@ -5,14 +5,8 @@ package com.jgeppert.struts2.jquery.datatables.model;
 
 import java.io.Serializable;
 
-/**
- *
- */
 public class DatatablesOrder implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -1774157331741146926L;
 
     public static final String COLUMN = "column";
@@ -21,17 +15,10 @@ public class DatatablesOrder implements Serializable {
     private int column;
     private String dir;
 
-    /**
-     *
-     */
     public DatatablesOrder() {
 
     }
 
-    /**
-     * @param column
-     * @param dir
-     */
     public DatatablesOrder(int column, String dir) {
         super();
         this.column = column;

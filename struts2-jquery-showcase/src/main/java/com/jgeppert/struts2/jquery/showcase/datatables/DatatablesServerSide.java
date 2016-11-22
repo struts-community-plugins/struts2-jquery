@@ -9,35 +9,24 @@ import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import org.apache.struts2.ServletActionContext;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.SessionAware;
 
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
-/**
- *
- */
-public class DatatablesServerSide extends ActionSupport implements ModelDriven<ServerSideProcessingRequest> {
+public class DatatablesServerSide extends ActionSupport implements SessionAware, ModelDriven<ServerSideProcessingRequest> {
 
-    private HttpSession session;
+    private Map<String, Object> session;
     private ServerSideProcessingRequest request = new ServerSideProcessingRequest();
-    private ServerSideProcessingResponse response = new ServerSideProcessingResponse();
+    private ServerSideProcessingResponse<Customer> response = new ServerSideProcessingResponse<>();
 
     /**
-     *
-     */
-    public DatatablesServerSide() {
-
-    }
-
-    /**
+     * <p>
      * To Use JSON Deserialization of DataTables' request, use the json
      * interceptor
+     * </p>
      * <pre>
      * {@literal @}Action(interceptorRefs = {@literal @}InterceptorRef(value = "json", params = {
      *                         "accept", "application/json", "root", "request"
@@ -48,8 +37,7 @@ public class DatatablesServerSide extends ActionSupport implements ModelDriven<S
     @Override
     @Action(results = {@Result(name = SUCCESS, type = "json", params = {"root", "response"})})
     public String execute() throws Exception {
-        this.session = ServletActionContext.getRequest().getSession();
-        List<Customer> list = (List<Customer>) session.getAttribute("mylist");
+        List<Customer> list = (List<Customer>) session.get("mylist");
         if (list == null) {
             list = CustomerDAO.buildList();
         }
@@ -62,14 +50,14 @@ public class DatatablesServerSide extends ActionSupport implements ModelDriven<S
         this.response.setRecordsTotal((long) list.size());
         this.response.setRecordsFiltered(data.size() != list.size() ? (long) data.size() : (long) list.size());
         // only for showcase functionality, don't do this in production
-        session.setAttribute("mylist", list);
+        session.put("mylist", list);
         return SUCCESS;
     }
 
     // demo filtering method.
     private List<Customer> applyFilter(List<Customer> list, String pattern) {
         List<Customer> ret = new ArrayList<>();
-        if (pattern != null && !"".equals(pattern.trim())) {
+        if (StringUtils.isNotBlank(pattern)) {
             for (Customer c : list) {
                 if (c.getName().toLowerCase().contains(pattern.toLowerCase())) {
                     ret.add(c);
@@ -90,7 +78,7 @@ public class DatatablesServerSide extends ActionSupport implements ModelDriven<S
                 return o1.getName().compareTo(o2.getName());
             }
         });
-        if (direction != null && "desc".equals(direction)) {
+        if (StringUtils.equals(direction, "desc")) {
             Collections.reverse(list);
         }
     }
@@ -112,4 +100,8 @@ public class DatatablesServerSide extends ActionSupport implements ModelDriven<S
         return this.request;
     }
 
+    @Override
+    public void setSession(Map<String, Object> session) {
+        this.session = session;
+    }
 }

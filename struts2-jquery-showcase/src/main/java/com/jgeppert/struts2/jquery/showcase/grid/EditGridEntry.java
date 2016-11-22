@@ -22,8 +22,8 @@ package com.jgeppert.struts2.jquery.showcase.grid;
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -40,7 +40,7 @@ import java.util.StringTokenizer;
 public class EditGridEntry extends ActionSupport implements SessionAware {
 
     private static final long serialVersionUID = -3454448309088641394L;
-    private static final Log log = LogFactory.getLog(EditGridEntry.class);
+    private static final Logger log = LogManager.getLogger(EditGridEntry.class);
 
     private String oper = "";
     private String id;
@@ -49,16 +49,16 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
     private String city;
     private double creditLimit;
     private Map<String, Object> session;
-    private List<Customer> myCustomers;
 
     @SuppressWarnings("unchecked")
     public String execute() throws Exception {
-        log.debug("id :" + id);
-        log.debug("name :" + name);
-        log.debug("country :" + country);
-        log.debug("city :" + city);
-        log.debug("creditLimit :" + creditLimit);
+        log.debug("id: {}", id);
+        log.debug("name: {}", name);
+        log.debug("country: {}", country);
+        log.debug("city: {}", city);
+        log.debug("creditLimit: {}", creditLimit);
 
+        List<Customer> myCustomers;
         Object list = session.get("mylist");
         if (list != null) {
             myCustomers = (List<Customer>) list;
@@ -91,7 +91,7 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
             StringTokenizer ids = new StringTokenizer(id, ",");
             while (ids.hasMoreTokens()) {
                 int removeId = Integer.parseInt(ids.nextToken());
-                log.debug("Delete Customer " + removeId);
+                log.debug("Delete Customer with id: {}", removeId);
                 customer = CustomerDAO.findById(myCustomers, removeId);
                 myCustomers.remove(customer);
             }

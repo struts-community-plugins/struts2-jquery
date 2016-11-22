@@ -6,24 +6,15 @@ package com.jgeppert.struts2.jquery.datatables.model;
 import java.io.Serializable;
 import java.util.Map;
 
-/**
- *
- */
 public class DatatablesSearch implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -8746961193307466223L;
+
     public static final String VALUE = "value";
     public static final String REGEX = "regex";
 
     private String value;
     private boolean regex;
-
-    /**
-     *
-     */
     public DatatablesSearch() {
     }
 

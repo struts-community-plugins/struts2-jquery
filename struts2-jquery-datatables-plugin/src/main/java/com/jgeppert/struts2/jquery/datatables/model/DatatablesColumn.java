@@ -1,14 +1,10 @@
-/**
- *
- */
 package com.jgeppert.struts2.jquery.datatables.model;
 
 import java.io.Serializable;
 
-/**
- *
- */
 public class DatatablesColumn implements Serializable {
+
+    private static final long serialVersionUID = 1351750155261698861L;
 
     public static final String DATA = "data";
     public static final String NAME = "name";
@@ -16,22 +12,11 @@ public class DatatablesColumn implements Serializable {
     public static final String SEARCH = "search";
     public static final String SEARCHABLE = "searchable";
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1351750155261698861L;
-
     private String data;
     private String name;
     private boolean orderable;
     private DatatablesSearch search;
     private boolean searchable;
-
-    /**
-     *
-     */
-    public DatatablesColumn() {
-    }
 
     public String getData() {
         return this.data;

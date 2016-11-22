@@ -1,38 +1,18 @@
-/**
- *
- */
 package com.jgeppert.struts2.jquery.datatables.model;
 
 import java.io.Serializable;
 import java.util.List;
 
-/**
- *
- */
 public class ServerSideProcessingRequest implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 5202484669248502108L;
 
     private Long draw;
-
     private Long start;
-
     private int length;
-
     private List<DatatablesOrder> order;
-
     private DatatablesSearch search;
-
     private List<DatatablesColumn> columns;
-
-    /**
-     *
-     */
-    public ServerSideProcessingRequest() {
-    }
 
     public Long getDraw() {
         return this.draw;

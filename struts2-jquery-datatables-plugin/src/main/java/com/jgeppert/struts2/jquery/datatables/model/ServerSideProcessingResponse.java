@@ -1,35 +1,19 @@
-/**
- *
- */
 package com.jgeppert.struts2.jquery.datatables.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- */
 public class ServerSideProcessingResponse<T> implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 5202484669248502108L;
 
     private Long draw;
-
     private Long recordsTotal;
-
     private Long recordsFiltered;
-
     private List<T> data = new ArrayList<>();
-
     private String error;
 
-    /**
-     *
-     */
     public ServerSideProcessingResponse() {
     }
 

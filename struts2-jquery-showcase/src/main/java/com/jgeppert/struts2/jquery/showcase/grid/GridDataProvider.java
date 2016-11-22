@@ -22,8 +22,8 @@ package com.jgeppert.struts2.jquery.showcase.grid;
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -33,7 +33,7 @@ import java.util.*;
 public class GridDataProvider extends ActionSupport implements SessionAware {
 
     private static final long serialVersionUID = 5078264277068533593L;
-    private static final Log log = LogFactory.getLog(GridDataProvider.class);
+    private static final Logger log = LogManager.getLogger(GridDataProvider.class);
 
     // Your result List
     private List<Customer> gridModel;
@@ -76,10 +76,8 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
 
     @SuppressWarnings("unchecked")
     public String execute() {
-        log.debug("Page " + getPage() + " Rows " + getRows()
-                + " Sorting Order " + getSord() + " Index Row :" + getSidx());
-        log.debug("Search :" + searchField + " " + searchOper + " "
-                + searchString);
+        log.debug("Page: {} Rows: {} Sorting Order: {} Index Row: {}", getPage(), getRows(), getSord(), getSidx());
+        log.debug("Search by: {} {} {}", searchField, searchOper, searchString);
 
         Object list = session.get("mylist");
         if (list != null) {
@@ -97,14 +95,14 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
             Collections.reverse(myCustomers);
         }
 
-        // Count all record (select count(*) from your_custumers)
+        // Count all record (select count(*) from costumers)
         records = CustomerDAO.getCustomersCount(myCustomers);
 
         if (totalrows != null) {
             records = totalrows;
         }
 
-        // Calucalate until rows ware selected
+        // Calculate until rows ware selected
         int to = (rows * page);
 
         // Calculate the first row to read
@@ -114,19 +112,18 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
         if (to > records)
             to = records;
 
-        if (loadonce) {
-            if (totalrows != null && totalrows > 0) {
-                Collections.sort(myCustomers, new Comparator<Customer>() {
-                    public int compare(Customer o1, Customer o2) {
-                        return o1.getCountry().compareToIgnoreCase(o2.getCountry());
-                    }
-                });
-                setGridModel(myCustomers.subList(0, totalrows));
-            } else {
-                // All Customer
-                setGridModel(sortListByCountry(myCustomers));
-            }
+        if (loadonce) if (totalrows != null && totalrows > 0) {
+            Collections.sort(myCustomers, new Comparator<Customer>() {
+                public int compare(Customer o1, Customer o2) {
+                    return o1.getCountry().compareToIgnoreCase(o2.getCountry());
+                }
+            });
+            setGridModel(myCustomers.subList(0, totalrows));
         } else {
+            // All Customer
+            setGridModel(sortListByCountry(myCustomers));
+        }
+        else {
             // Search Customers
             if (searchString != null && searchOper != null) {
                 int id = Integer.parseInt(searchString);
