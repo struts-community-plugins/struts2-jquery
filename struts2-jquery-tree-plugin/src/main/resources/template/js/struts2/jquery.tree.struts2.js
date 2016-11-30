@@ -56,7 +56,42 @@
 			}
 			if (o.contextmenu) {
 				o.plugins.push("crrm"); 
-				o.plugins.push("contextmenu"); 
+				o.plugins.push("contextmenu");
+
+                $elem.on('delete_node.jstree', function (event, data){
+                    var orginal = {};
+                    orginal.data = data;
+                    orginal.event = event;
+                    self.publishTopic($elem, "delete_node", orginal);
+                });
+
+                $elem.on('create_node.jstree', function (event, data){
+                    var orginal = {};
+                    orginal.data = data;
+                    orginal.event = event;
+                    self.publishTopic($elem, "create_node", orginal);
+                });
+
+                $elem.on('rename_node.jstree', function (event, data){
+                    var orginal = {};
+                    orginal.data = data;
+                    orginal.event = event;
+                    self.publishTopic($elem, "rename_node", orginal);
+                });
+
+                $elem.on('move_node.jstree', function (event, data){
+                    var orginal = {};
+                    orginal.data = data;
+                    orginal.event = event;
+                    self.publishTopic($elem, "move_node", orginal);
+                });
+
+                $elem.on('copy_node.jstree', function (event, data){
+                    var orginal = {};
+                    orginal.data = data;
+                    orginal.event = event;
+                    self.publishTopic($elem, "copy_node", orginal);
+                });
 			}
 			if (o.types) {
 				o.plugins.push("types"); 
