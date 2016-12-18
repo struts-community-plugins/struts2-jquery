@@ -65,8 +65,8 @@
                     "js/base/safe-active-element" + self.minSuffix + ".js",
                     "js/base/safe-blur" + self.minSuffix + ".js",
                     "js/base/scroll-parent" + self.minSuffix + ".js",
-                    "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/draggable" + self.minSuffix + ".js"
                 ]);
             }
@@ -95,8 +95,8 @@
                     "js/base/safe-active-element" + self.minSuffix + ".js",
                     "js/base/safe-blur" + self.minSuffix + ".js",
                     "js/base/scroll-parent" + self.minSuffix + ".js",
-                    "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/draggable" + self.minSuffix + ".js",
                     "js/base/droppable" + self.minSuffix + ".js"
                 ]);
@@ -125,9 +125,9 @@
             self.log('selectable : ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
+                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/version" + self.minSuffix + ".js",
-                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/selectable" + self.minSuffix + ".js"
                 ]);
             }
@@ -154,12 +154,12 @@
             self.log('sortable : ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
+                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/data" + self.minSuffix + ".js",
                     "js/base/ie" + self.minSuffix + ".js",
                     "js/base/scroll-parent" + self.minSuffix + ".js",
                     "js/base/version" + self.minSuffix + ".js",
-                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/sortable" + self.minSuffix + ".js"
                 ]);
             }
@@ -191,11 +191,11 @@
                 ro = window[ros];
             if (!self.loadAtOnce) {
                 self.require([
+                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/disable-selection" + self.minSuffix + ".js",
                     "js/base/plugin" + self.minSuffix + ".js",
                     "js/base/version" + self.minSuffix + ".js",
-                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/resizable" + self.minSuffix + ".js"
                 ]);
             }
@@ -217,7 +217,7 @@
             self.log('init dialog with id: ' + o.id);
 
             var jsFiles = [
-                "js/base/jquery-ui" + self.minSuffix + ".js",
+                "js/base/widget" + self.minSuffix + ".js",
                 "js/base/mouse" + self.minSuffix + ".js",
                 "js/base/position" + self.minSuffix + ".js",
                 "js/base/data" + self.minSuffix + ".js",
@@ -233,7 +233,6 @@
                 "js/base/version" + self.minSuffix + ".js",
                 "js/base/plugin" + self.minSuffix + ".js",
                 "js/base/draggable" + self.minSuffix + ".js",
-                "js/base/widget" + self.minSuffix + ".js",
                 "js/base/button" + self.minSuffix + ".js",
                 "js/base/dialog" + self.minSuffix + ".js"
             ];
@@ -455,12 +454,12 @@
             if (o.sortable) {
                 if (!self.loadAtOnce) {
                     self.require([
+                        "js/base/widget" + self.minSuffix + ".js",
                         "js/base/mouse" + self.minSuffix + ".js",
                         "js/base/data" + self.minSuffix + ".js",
                         "js/base/ie" + self.minSuffix + ".js",
                         "js/base/scroll-parent" + self.minSuffix + ".js",
                         "js/base/version" + self.minSuffix + ".js",
-                        "js/base/widget" + self.minSuffix + ".js",
                         "js/base/sortable" + self.minSuffix + ".js"
                     ]);
                 }
@@ -507,6 +506,7 @@
             if (timepicker) {
                 if (!self.loadAtOnce) {
                     self.require([
+                        "js/base/widget" + self.minSuffix + ".js",
                         "js/base/mouse" + self.minSuffix + ".js",
                         "js/base/slider" + self.minSuffix + ".js"
                     ]);
@@ -650,10 +650,10 @@
             self.log('init slider with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
+                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/version" + self.minSuffix + ".js",
-                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/slider" + self.minSuffix + ".js"
                 ]);
             }
