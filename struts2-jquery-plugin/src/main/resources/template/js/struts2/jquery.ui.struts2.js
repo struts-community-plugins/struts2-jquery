@@ -866,12 +866,13 @@
             self.log('init autocompleter with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
+                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/safe-active-element" + self.minSuffix + ".js",
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
                     "js/base/position" + self.minSuffix + ".js",
                     "js/base/menu" + self.minSuffix + ".js",
+                    "js/base/unique-id" + self.minSuffix + ".js",
                     "js/base/autocomplete" + self.minSuffix + ".js"
                 ]);
             }
