@@ -873,6 +873,7 @@
                     "js/base/position" + self.minSuffix + ".js",
                     "js/base/menu" + self.minSuffix + ".js",
                     "js/base/unique-id" + self.minSuffix + ".js",
+                    "js/base/tooltip" + self.minSuffix + ".js",
                     "js/base/autocomplete" + self.minSuffix + ".js"
                 ]);
             }
