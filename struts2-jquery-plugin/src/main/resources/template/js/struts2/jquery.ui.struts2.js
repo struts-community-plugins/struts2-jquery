@@ -127,7 +127,6 @@
                 self.require([
                     "js/base/widget" + self.minSuffix + ".js",
                     "js/base/mouse" + self.minSuffix + ".js",
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/selectable" + self.minSuffix + ".js"
                 ]);
             }
@@ -159,7 +158,6 @@
                     "js/base/data" + self.minSuffix + ".js",
                     "js/base/ie" + self.minSuffix + ".js",
                     "js/base/scroll-parent" + self.minSuffix + ".js",
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/sortable" + self.minSuffix + ".js"
                 ]);
             }
@@ -195,7 +193,6 @@
                     "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/disable-selection" + self.minSuffix + ".js",
                     "js/base/plugin" + self.minSuffix + ".js",
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/resizable" + self.minSuffix + ".js"
                 ]);
             }
@@ -230,7 +227,6 @@
                 "js/base/safe-blur" + self.minSuffix + ".js",
                 "js/base/tabbable" + self.minSuffix + ".js",
                 "js/base/unique-id" + self.minSuffix + ".js",
-                "js/base/version" + self.minSuffix + ".js",
                 "js/base/plugin" + self.minSuffix + ".js",
                 "js/base/draggable" + self.minSuffix + ".js",
                 "js/base/button" + self.minSuffix + ".js",
@@ -322,7 +318,6 @@
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/safe-active-element" + self.minSuffix + ".js",
                     "js/base/unique-id" + self.minSuffix + ".js",
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
                     "js/base/tabs" + self.minSuffix + ".js"
                 ]);
@@ -459,7 +454,6 @@
                         "js/base/data" + self.minSuffix + ".js",
                         "js/base/ie" + self.minSuffix + ".js",
                         "js/base/scroll-parent" + self.minSuffix + ".js",
-                        "js/base/version" + self.minSuffix + ".js",
                         "js/base/sortable" + self.minSuffix + ".js"
                     ]);
                 }
@@ -494,7 +488,6 @@
             var self = this;
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
                     "js/base/datepicker" + self.minSuffix + ".js"
@@ -653,7 +646,6 @@
                     "js/base/widget" + self.minSuffix + ".js",
                     "js/base/mouse" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/slider" + self.minSuffix + ".js"
                 ]);
             }
@@ -703,7 +695,6 @@
             self.container($elem, o);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/safe-active-element" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
@@ -732,7 +723,6 @@
             self.log('init progressbar with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
                     "js/base/progressbar" + self.minSuffix + ".js"
                 ]);
@@ -757,7 +747,6 @@
             self.log('init menu with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/position" + self.minSuffix + ".js",
                     "js/base/safe-active-element" + self.minSuffix + ".js",
@@ -785,7 +774,6 @@
             self.log('init accordion with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/unique-id" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
@@ -866,7 +854,6 @@
             self.log('init autocompleter with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/safe-active-element" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
@@ -1071,7 +1058,6 @@
             self.log('init button with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/escape-selector" + self.minSuffix + ".js",
                     "js/base/form" + self.minSuffix + ".js",
                     "js/base/form-reset-mixin" + self.minSuffix + ".js",
@@ -1106,7 +1092,6 @@
             self.log('init buttonset with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/version" + self.minSuffix + ".js",
                     "js/base/escape-selector" + self.minSuffix + ".js",
                     "js/base/form" + self.minSuffix + ".js",
                     "js/base/form-reset-mixin" + self.minSuffix + ".js",

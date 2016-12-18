@@ -52,6 +52,7 @@
     <#assign jqueryUiStrutsFile="jquery.ui.struts2.min.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryGoogle="${googlePath}/jquery.min.js">
     <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
+    <#assign jqueryUiVersionFile="version.min.js">
 <#else>
     <#assign jqueryFile="jquery-${jQueryVersion}.js">
     <#assign jqueryForm="jquery.form.js?s2j=${struts2jQueryVersion}">
@@ -63,6 +64,7 @@
     <#assign jqueryUiStrutsFile="jquery.ui.struts2.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryGoogle="${googlePath}/jquery.js">
     <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.js">
+    <#assign jqueryUiVersionFile="version.js">
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
@@ -89,6 +91,7 @@
             </#if>
         <#else>
         <!-- script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script -->
+        <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUiVersionFile}"></script>
         </#if>
     </#if>
 </#if>
