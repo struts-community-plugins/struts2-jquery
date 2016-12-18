@@ -217,6 +217,7 @@
             self.log('init dialog with id: ' + o.id);
 
             var jsFiles = [
+                "js/base/jquery-ui" + self.minSuffix + ".js",
                 "js/base/mouse" + self.minSuffix + ".js",
                 "js/base/position" + self.minSuffix + ".js",
                 "js/base/data" + self.minSuffix + ".js",
