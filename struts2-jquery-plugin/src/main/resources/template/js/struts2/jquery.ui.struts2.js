@@ -788,6 +788,7 @@
                     "js/base/version" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
                     "js/base/unique-id" + self.minSuffix + ".js",
+                    "js/base/widget" + self.minSuffix + ".js",
                     "js/base/accordion" + self.minSuffix + ".js"
                 ]);
             }
