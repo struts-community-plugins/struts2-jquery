@@ -23,6 +23,8 @@
     <#assign jQueryVersion="2.2.4">
 </#if>
 <#assign jQueryUIVersion="1.12.1">
+<#-- issue89: temporary fix because of i18n files not being available for current jQuery UI version -->
+<#assign jQueryUIVersionI18n="1.11.1">
 <#assign struts2jQueryVersion="${version}">
 
 <#if parameters.scriptPath?if_exists != "">
@@ -71,7 +73,7 @@
     <script type="text/javascript" src="${jqueryUiGoogle}"></script>
         <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
         <script type="text/javascript"
-                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersionI18n}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"></script>
         </#if>
     </#if>
 <#else>
