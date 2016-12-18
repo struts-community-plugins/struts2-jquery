@@ -178,6 +178,31 @@
                             <goal>minify</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>plugin-minify</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <charset>UTF-8</charset>
+                            <jsEngine>CLOSURE</jsEngine>
+                            <closureLanguage>ECMASCRIPT5_STRICT</closureLanguage>
+                            <skipMerge>true</skipMerge>
+                            <webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
+                            <webappTargetDir>${basedir}/src/main/resources</webappTargetDir>
+			    <jsSourceDir>template/js/plugins</jsSourceDir>
+                            <jsTargetDir>template/js/plugins</jsTargetDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>jquery-ui-timepicker-addon.js</jsSourceFile>
+                                <jsSourceFile>jquery.ba-bbq.js</jsSourceFile>
+                                <jsSourceFile>jquery.combobox.js</jsSourceFile>
+                                <jsSourceFile>jquery.form.js</jsSourceFile>
+                                <jsSourceFile>jquery.mousewheel.js</jsSourceFile>
+                                <jsSourceFile>jquery.subscribe.js</jsSourceFile>
+                            </jsSourceFiles>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

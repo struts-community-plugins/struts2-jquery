@@ -56,3 +56,11 @@ src/main/resources/template/js/base/widget.min.js
 /src/main/resources/template/js/base/checkboxradio.min.js
 /src/main/resources/template/js/base/form-reset-mixin.min.js
 /src/main/resources/template/i18n/jquery-ui-timepicker-*.min.js
+
+src/main/resources/template/js/base/jquery-ui-timepicker-addon.js
+src/main/resources/template/js/base/jquery.ba-bbq.js
+src/main/resources/template/js/base/jquery.combobox.js
+src/main/resources/template/js/base/jquery.form.js
+src/main/resources/template/js/base/jquery.mousewheel.js
+src/main/resources/template/js/base/jquery.subscribe.js
+
