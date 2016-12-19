@@ -219,6 +219,7 @@
                 "js/base/position" + self.minSuffix + ".js",
                 "js/base/data" + self.minSuffix + ".js",
                 "js/base/disable-selection" + self.minSuffix + ".js",
+                "js/base/plugin" + self.minSuffix + ".js",
                 "js/base/resizable" + self.minSuffix + ".js",
                 "js/base/focusable" + self.minSuffix + ".js",
                 "js/base/keycode" + self.minSuffix + ".js",
@@ -227,7 +228,6 @@
                 "js/base/safe-blur" + self.minSuffix + ".js",
                 "js/base/tabbable" + self.minSuffix + ".js",
                 "js/base/unique-id" + self.minSuffix + ".js",
-                "js/base/plugin" + self.minSuffix + ".js",
                 "js/base/draggable" + self.minSuffix + ".js",
                 "js/base/button" + self.minSuffix + ".js",
                 "js/base/dialog" + self.minSuffix + ".js"
