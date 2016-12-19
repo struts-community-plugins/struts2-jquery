@@ -95,7 +95,6 @@ jQuery(document).ready(function () {
 	<#if parameters.overlayOpacity?if_exists != "">
 	options_${escapedOptionId?html}.opacity = ${parameters.overlayOpacity?html};
 	<#else>
-	opacity="0.7"<#rt/>
 	options_${escapedOptionId?html}.opacity = 0.7;
 	</#if>
   </#if>
