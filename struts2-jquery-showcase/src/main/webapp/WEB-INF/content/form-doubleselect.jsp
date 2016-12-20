@@ -58,7 +58,7 @@
 	</fieldset>
 </s:form>
 <br/>
-<strong>Reload example with one select box and an buttonset.</strong>
+<strong>Reload example with one select box and a buttonset.</strong>
 <s:form id="formSelectCheckBox" action="echo" theme="xhtml">
 	<s:url var="remoteurl" action="jsonsample"/>
 	<sj:select
