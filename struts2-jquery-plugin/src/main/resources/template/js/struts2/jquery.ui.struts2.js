@@ -1100,9 +1100,7 @@
                     "js/base/controlgroup" + self.minSuffix + ".js",
                     "js/base/checkboxradio" + self.minSuffix + ".js",
                     "js/base/button" + self.minSuffix + ".js"
-                ], function() {
-                    alert("loaded");
-                });
+                ]);
             }
 
             if (o.href && o.href !== '#') {
