@@ -16,6 +16,7 @@
     </scm>
 
     <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	<!-- plugins -->
         <jetty-maven-plugin.version>8.1.16.v20140903</jetty-maven-plugin.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
