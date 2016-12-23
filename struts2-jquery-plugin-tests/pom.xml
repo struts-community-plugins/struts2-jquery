@@ -17,13 +17,13 @@
 
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	<!-- plugins -->
+        <!-- plugins -->
         <jetty-maven-plugin.version>8.1.16.v20140903</jetty-maven-plugin.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
-	<!-- dependencies -->
-	<junit.version>4.12</junit.version>
-	<selenium.version>3.0.1</selenium.version>
-	<htmlunit-driver.version>2.23</htmlunit-driver.version>
+        <!-- dependencies -->
+        <junit.version>4.12</junit.version>
+        <selenium.version>3.0.1</selenium.version>
+        <htmlunit-driver.version>2.23</htmlunit-driver.version>
     </properties>
 
     <build>
@@ -44,11 +44,11 @@
                 <plugin>
                     <groupId>org.mortbay.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-	            <version>${jetty-maven-plugin.version}</version>
+                    <version>${jetty-maven-plugin.version}</version>
                     <configuration>
                         <stopKey>CTRL+C</stopKey>
                         <stopPort>8999</stopPort>
-			<scanIntervalSeconds>10</scanIntervalSeconds>
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -82,7 +82,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-		    <version>${maven-failsafe-plugin.version}</version>
+                    <version>${maven-failsafe-plugin.version}</version>
                     <executions>
                         <execution>
                             <goals>
@@ -93,7 +93,7 @@
                     </executions>
                 </plugin>
             </plugins>
-	</pluginManagement>
+        </pluginManagement>
     </build>
 
     <dependencies>
@@ -101,12 +101,12 @@
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-convention-plugin</artifactId>
         </dependency>
-	    
+            
         <dependency>
             <groupId>com.jgeppert.struts2.jquery</groupId>
             <artifactId>struts2-jquery-plugin</artifactId>
         </dependency>
-	
+        
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -140,7 +140,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-	        <version>${junit.version}</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -154,7 +154,7 @@
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>htmlunit-driver</artifactId>
-	        <version>${htmlunit-driver.version}</version>
+                <version>${htmlunit-driver.version}</version>
                 <scope>test</scope>
             </dependency>
     </dependencies>
