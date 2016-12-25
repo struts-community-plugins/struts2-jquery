@@ -28,7 +28,7 @@ public class ATagIT {
            });
     }
     
-    private static JQueryIdleCondition jQueryIdle = new JQueryIdleCondition();
+    private static final JQueryIdleCondition JQUERY_IDLE = new JQueryIdleCondition();
 
     private String baseUrl;        
 
@@ -37,7 +37,7 @@ public class ATagIT {
     }
 
     @Test
-    public void testSimpleAjaxPageLink() throws Exception{
+    public void testSimpleAjaxPageLink() {
         WebDriver driver = new HtmlUnitDriver(true);
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -48,7 +48,7 @@ public class ATagIT {
         Assert.assertEquals("Click on the link bellow.", resultDiv.getText());
         ajaxlink.click();
 
-        wait.until(jQueryIdle);
+        wait.until(JQUERY_IDLE);
 
         Assert.assertEquals("This is simple text from an ajax call.", resultDiv.getText());
     }
@@ -68,10 +68,39 @@ public class ATagIT {
 
         ajaxLink.click();
 
-        wait.until(jQueryIdle);
+        wait.until(JQUERY_IDLE);
 
         Assert.assertEquals("This is simple text from an ajax call.", div1.getText());
         Assert.assertEquals("This is simple text from an ajax call.", div2.getText());
+    }
+
+    @Test
+    public void testFormSubmit() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/a/form-submit.action");
+        WebElement formResult = driver.findElement(By.id("formResult"));
+        WebElement echoInput = driver.findElement(By.id("echo"));
+        WebElement ajaxFormLink = driver.findElement(By.id("ajaxformlink"));
+
+        Assert.assertEquals("formResult div", formResult.getText());
+        Assert.assertEquals("something to echo", echoInput.getAttribute("value"));
+
+        ajaxFormLink.click();
+
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertEquals("Echo : something to echo", formResult.getText());
+        Assert.assertEquals("", echoInput.getAttribute("value"));
+
+        echoInput.sendKeys("userinput to echo");
+        ajaxFormLink.click();
+
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertEquals("Echo : userinput to echo", formResult.getText());
+        Assert.assertEquals("", echoInput.getAttribute("value"));
     }
 }
 

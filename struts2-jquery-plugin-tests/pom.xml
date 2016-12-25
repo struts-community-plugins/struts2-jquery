@@ -24,6 +24,7 @@
         <junit.version>4.12</junit.version>
         <selenium.version>3.0.1</selenium.version>
         <htmlunit-driver.version>2.23</htmlunit-driver.version>
+        <lombok.version>1.16.2</lombok.version>
     </properties>
 
     <build>
@@ -121,6 +122,10 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>htmlunit-driver</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -157,6 +162,14 @@
                 <version>${htmlunit-driver.version}</version>
                 <scope>test</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+		<version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+	    
     </dependencies>
   </dependencyManagement>
 </project>
