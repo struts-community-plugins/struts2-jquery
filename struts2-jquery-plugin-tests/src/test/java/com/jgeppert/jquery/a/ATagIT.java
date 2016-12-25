@@ -10,10 +10,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
@@ -101,6 +103,38 @@ public class ATagIT {
 
         Assert.assertEquals("Echo : userinput to echo", formResult.getText());
         Assert.assertEquals("", echoInput.getAttribute("value"));
+    }
+
+    @Test
+    public void testEvents() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/a/events.action");
+        WebElement result = driver.findElement(By.id("result"));
+        WebElement ajaxLink = driver.findElement(By.id("ajaxlink"));
+
+        Assert.assertEquals("result div", result.getText());
+
+        ajaxLink.click();
+
+        wait.until(JQUERY_IDLE);
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+	
+        Assert.assertEquals("ajax link clicked", alert.getText());
+
+        alert.accept();
+
+        wait.until(JQUERY_IDLE);
+        wait.until(ExpectedConditions.alertIsPresent());
+        alert = driver.switchTo().alert();
+
+        Assert.assertEquals("ajax link complete", alert.getText());
+
+        alert.accept();
+	
+        Assert.assertEquals("This is simple text from an ajax call.", result.getText());
     }
 }
 
