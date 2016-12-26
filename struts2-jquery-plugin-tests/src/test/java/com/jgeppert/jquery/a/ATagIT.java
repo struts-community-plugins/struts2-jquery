@@ -4,6 +4,7 @@ import com.jgeppert.struts2.jquery.selenium.JQueryIdleCondition;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -135,6 +136,28 @@ public class ATagIT {
         alert.accept();
 	
         Assert.assertEquals("This is simple text from an ajax call.", result.getText());
+    }
+
+    @Test
+    public void testJsonResult() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/a/json-result.action");
+        WebElement result = driver.findElement(By.id("result"));
+        WebElement ajaxJsonLink = driver.findElement(By.id("ajaxjsonlink"));
+
+        Assert.assertEquals("result div", result.getText());
+
+        ajaxJsonLink.click();
+        wait.until(JQUERY_IDLE);
+
+        WebElement lettersList = result.findElement(By.id("lettersList"));
+        List<WebElement> listItems = lettersList.findElements(By.tagName("li"));
+
+        Assert.assertEquals(26, listItems.size());
+        Assert.assertEquals("a", listItems.get(0).getText());
+        Assert.assertEquals("z", listItems.get(25).getText());
     }
 }
 
