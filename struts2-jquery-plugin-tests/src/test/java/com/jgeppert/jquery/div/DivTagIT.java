@@ -51,5 +51,32 @@ public class DivTagIT {
 	
         Assert.assertEquals("This is simple text from an ajax call.", ajaxDiv.getText());
     }
+
+    @Test
+    public void testEvents() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/div/events.action");
+        WebElement ajaxDiv = driver.findElement(By.id("ajaxdiv"));
+
+        wait.until(JQUERY_IDLE);
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+
+        Assert.assertEquals("Before div", alert.getText());
+
+        alert.accept();
+
+        wait.until(JQUERY_IDLE);
+        wait.until(ExpectedConditions.alertIsPresent());
+        alert = driver.switchTo().alert();
+
+        Assert.assertEquals("Complete div", alert.getText());
+
+        alert.accept();
+
+        Assert.assertEquals("This is simple text from an ajax call.", ajaxDiv.getText());
+    }
 }
 
