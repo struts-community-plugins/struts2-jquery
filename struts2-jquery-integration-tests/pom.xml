@@ -7,7 +7,7 @@
         <artifactId>struts2-jquery</artifactId>
         <version>4.0.2-SNAPSHOT</version>
     </parent>
-    <artifactId>struts2-jquery-plugin-tests</artifactId>
+    <artifactId>struts2-jquery-integration-tests</artifactId>
     <name>tests for the struts2-jquery-plugin</name>
     <packaging>war</packaging>
 

@@ -92,7 +92,7 @@
 		<module>struts2-jquery-grid-showcase</module>
 		<module>struts2-jquery-mobile-showcase</module>
 		<module>struts2-jquery-archetypes</module>
-		<module>struts2-jquery-plugin-tests</module>
+		<module>struts2-jquery-integration-tests</module>
 	</modules>
 
 	<build>
