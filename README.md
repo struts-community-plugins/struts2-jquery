@@ -1,5 +1,7 @@
 # Struts2 jQuery Plugin
 
+[![Build Status](https://travis-ci.org/struts-community-plugins/struts2-jquery.svg?branch=master)](https://travis-ci.org/struts-community-plugins/struts2-jquery)
+
 A Plugin for the popular java web framework struts2 to provide ajax functionality and UI Widgets based on the jQuery javascript framework.
 
 #### [Download] (https://oss.sonatype.org/content/groups/staging/com/jgeppert/struts2/jquery/)
