@@ -57,10 +57,10 @@ src/main/resources/template/js/base/widget.min.js
 /src/main/resources/template/js/base/form-reset-mixin.min.js
 /src/main/resources/template/i18n/jquery-ui-timepicker-*.min.js
 
-src/main/resources/template/js/base/jquery-ui-timepicker-addon.js
-src/main/resources/template/js/base/jquery.ba-bbq.js
-src/main/resources/template/js/base/jquery.combobox.js
-src/main/resources/template/js/base/jquery.form.js
-src/main/resources/template/js/base/jquery.mousewheel.js
-src/main/resources/template/js/base/jquery.subscribe.js
+src/main/resources/template/js/base/jquery-ui-timepicker-addon.min.js
+src/main/resources/template/js/base/jquery.ba-bbq.min.js
+src/main/resources/template/js/base/jquery.combobox.min.js
+src/main/resources/template/js/base/jquery.form.min.js
+src/main/resources/template/js/base/jquery.mousewheel.min.js
+src/main/resources/template/js/base/jquery.subscribe.min.js
 
