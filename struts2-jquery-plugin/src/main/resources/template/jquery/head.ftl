@@ -23,6 +23,8 @@
     <#assign jQueryVersion="2.2.4">
 </#if>
 <#assign jQueryUIVersion="1.12.1">
+<#-- issue89: temporary fix because of i18n files not being available for current jQuery UI version -->
+<#assign jQueryUIVersionI18n="1.11.1">
 <#assign struts2jQueryVersion="${version}">
 
 <#if parameters.scriptPath?if_exists != "">
@@ -50,6 +52,7 @@
     <#assign jqueryUiStrutsFile="jquery.ui.struts2.min.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryGoogle="${googlePath}/jquery.min.js">
     <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
+    <#assign jqueryUiVersionFile="version.min.js">
 <#else>
     <#assign jqueryFile="jquery-${jQueryVersion}.js">
     <#assign jqueryForm="jquery.form.js?s2j=${struts2jQueryVersion}">
@@ -61,6 +64,7 @@
     <#assign jqueryUiStrutsFile="jquery.ui.struts2.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryGoogle="${googlePath}/jquery.js">
     <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.js">
+    <#assign jqueryUiVersionFile="version.js">
 </#if>
 
 <#if parameters.loadFromGoogle?default(false)>
@@ -71,7 +75,7 @@
     <script type="text/javascript" src="${jqueryUiGoogle}"></script>
         <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
         <script type="text/javascript"
-                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersionI18n}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"></script>
         </#if>
     </#if>
 <#else>
@@ -87,6 +91,7 @@
             </#if>
         <#else>
         <!-- script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script -->
+        <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUiVersionFile}"></script>
         </#if>
     </#if>
 </#if>

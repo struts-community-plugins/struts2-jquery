@@ -39,19 +39,19 @@ public class Datepicker extends ActionSupport {
     public String execute() throws Exception {
 
         Calendar c = Calendar.getInstance();
-        c.roll(Calendar.WEEK_OF_YEAR, -1);
+        c.add(Calendar.WEEK_OF_YEAR, -1);
 
         dateValue = c.getTime();
 
-        c.roll(Calendar.MONTH, -1);
+        c.add(Calendar.MONTH, -1);
 
         nameValue = c.getTime();
 
         c.setTime(new Date());
-        c.roll(Calendar.MONTH, -1);
+        c.add(Calendar.MONTH, -1);
         minValue = c.getTime();
 
-        c.roll(Calendar.MONTH, 2);
+        c.add(Calendar.MONTH, 2);
         maxValue = c.getTime();
 
         return SUCCESS;
