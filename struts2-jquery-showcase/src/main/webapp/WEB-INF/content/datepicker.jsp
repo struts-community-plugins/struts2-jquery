@@ -31,6 +31,7 @@
       &lt;sj:datepicker value=&quot;yesterday&quot; id=&quot;date4&quot; name=&quot;date4&quot; displayFormat=&quot;mm/dd/yy&quot; label=&quot;Yesterday&quot; /&gt;
       &lt;sj:datepicker value=&quot;tomorrow&quot; id=&quot;date5&quot; name=&quot;date5&quot; displayFormat=&quot;DD, d MM yy&quot; label=&quot;Tomorrow&quot; /&gt;
       &lt;sj:datepicker value=&quot;2004-08-14&quot; id=&quot;date6&quot; name=&quot;date6&quot; displayFormat=&quot;d M, yy&quot; label=&quot;String Value&quot; /&gt;
+      &lt;sj:datepicker id=&quot;date7&quot; name=&quot;date7&quot; value=&quot;today&quot; displayFormat=&quot;d M, yy&quot; minDate=&quot;minValue&quot; maxDate=&quot;maxValue&quot; label=&quot;With min and max Date&quot;/&gt;
     &lt;/s:form&gt;
     </code>
     </pre>
