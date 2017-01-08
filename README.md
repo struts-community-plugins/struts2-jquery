@@ -30,32 +30,32 @@ Latest version which is compatible to Struts 2.3.x is version [3.7.1].
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-plugin</artifactId>
-        <version>4.0.1</version>
+        <version>4.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-grid-plugin</artifactId>
-        <version>4.0.1</version>
+        <version>4.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-datatables-plugin</artifactId>
-        <version>4.0.1</version>
+        <version>4.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-richtext-plugin</artifactId>
-        <version>4.0.1</version>
+        <version>4.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-tree-plugin</artifactId>
-        <version>4.0.1</version>
+        <version>4.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-mobile-plugin</artifactId>
-        <version>4.0.1</version>
+        <version>4.0.2</version>
     </dependency>
     ...
 </dependencies>
