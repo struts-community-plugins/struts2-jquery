@@ -7,7 +7,7 @@
         <version>4.0.3-SNAPSHOT</version>
     </parent>
     <artifactId>struts2-jquery-integration-tests</artifactId>
-    <name>tests for the struts2-jquery-plugin</name>
+    <name>Struts 2 jQuery Integration Tests</name>
     <packaging>war</packaging>
 
     <scm>
