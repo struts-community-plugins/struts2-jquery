@@ -66,5 +66,33 @@ public class SubmitTagIT {
         Assert.assertEquals("Echo : userinput to echo", formResult.getText());
     }
 
+    @Test
+    public void testFormSubmitOutside() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/submit/form-outside.action");
+        WebElement formResult = driver.findElement(By.id("formResult"));
+        WebElement echoInput = driver.findElement(By.id("echo"));
+        WebElement ajaxSubmit = driver.findElement(By.id("formsubmit"));
+
+        Assert.assertEquals("formResult div", formResult.getText());
+        Assert.assertEquals("something to echo", echoInput.getAttribute("value"));
+
+        ajaxSubmit.click();
+
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertEquals("Echo : something to echo", formResult.getText());
+
+        echoInput.clear();
+        echoInput.sendKeys("userinput to echo");
+        ajaxSubmit.click();
+
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertEquals("Echo : userinput to echo", formResult.getText());
+    }
+
 }
 
