@@ -1,5 +1,6 @@
 # Struts2 jQuery Plugin
 ## Build status:
+* Branch `release/4.0.3`: [![Build Status](https://travis-ci.org/struts-community-plugins/struts2-jquery.svg?branch=release%2F4.0.3)](https://travis-ci.org/struts-community-plugins/struts2-jquery)
 * Branch `release/4.0.2`: [![Build Status](https://travis-ci.org/struts-community-plugins/struts2-jquery.svg?branch=release%2F4.0.2)](https://travis-ci.org/struts-community-plugins/struts2-jquery)
 
 A Plugin for the popular java web framework struts2 to provide ajax functionality and UI Widgets based on the jQuery javascript framework.
