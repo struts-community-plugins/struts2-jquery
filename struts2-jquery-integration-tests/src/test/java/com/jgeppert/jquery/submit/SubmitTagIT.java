@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
@@ -94,5 +95,39 @@ public class SubmitTagIT {
         Assert.assertEquals("Echo : userinput to echo", formResult.getText());
     }
 
+    @Test
+    public void testFormSubmitEvents() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/submit/events.action");
+        WebElement formResult = driver.findElement(By.id("formResult"));
+        WebElement echoInput = driver.findElement(By.id("echo"));
+        WebElement ajaxSubmit = driver.findElement(By.id("formsubmit"));
+
+        Assert.assertEquals("formResult div", formResult.getText());
+        Assert.assertEquals("something to echo", echoInput.getAttribute("value"));
+
+        ajaxSubmit.click();
+
+        wait.until(JQUERY_IDLE);
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert = driver.switchTo().alert();
+
+        Assert.assertEquals("ajax submit clicked", alert.getText());
+
+        alert.accept();
+
+        wait.until(JQUERY_IDLE);
+        wait.until(ExpectedConditions.alertIsPresent());
+        alert = driver.switchTo().alert();
+
+        Assert.assertEquals("ajax submit complete", alert.getText());
+
+        alert.accept();
+
+        Assert.assertEquals("Echo : something to echo", formResult.getText());
+    }
 }
 
