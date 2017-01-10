@@ -48,9 +48,9 @@ public class RadioTagIT {
 
         wait.until(JQUERY_IDLE);
 
-        List<WebElement> checkboxes = driver.findElements(By.xpath("//div[@id='radiobuttonset']/input[@type='radio'][@name='day']"));
+        List<WebElement> radiobuttons = driver.findElements(By.xpath("//div[@id='radiobuttonset']/input[@type='radio'][@name='day']"));
 
-        Assert.assertEquals(7, checkboxes.size());
+        Assert.assertEquals(7, radiobuttons.size());
     }
 
     @Test
@@ -62,9 +62,9 @@ public class RadioTagIT {
 
         wait.until(JQUERY_IDLE);
 
-        List<WebElement> checkboxes = driver.findElements(By.xpath("//div[@id='radiobuttonset']/input[@type='radio'][@name='letter']"));
+        List<WebElement> radiobuttons = driver.findElements(By.xpath("//div[@id='radiobuttonset']/input[@type='radio'][@name='letter']"));
 
-        Assert.assertEquals(26, checkboxes.size());
+        Assert.assertEquals(26, radiobuttons.size());
     }
 }
 
