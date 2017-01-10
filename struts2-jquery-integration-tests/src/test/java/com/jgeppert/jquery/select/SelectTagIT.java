@@ -58,5 +58,25 @@ public class SelectTagIT {
 	Assert.assertEquals("z", options.get(25).getText());
 	Assert.assertEquals("z", options.get(25).getAttribute("value"));
     }
+
+    @Test
+    public void testMapData() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/select/map.action");
+
+        wait.until(JQUERY_IDLE);
+
+	WebElement selectElement = driver.findElement(By.id("myselect"));
+        List<WebElement> options = selectElement.findElements(By.tagName("option"));
+
+        Assert.assertEquals("letter", selectElement.getAttribute("name"));
+        Assert.assertEquals(26, options.size());
+	Assert.assertEquals("a", options.get(0).getText());
+	Assert.assertEquals("97", options.get(0).getAttribute("value"));
+	Assert.assertEquals("z", options.get(25).getText());
+	Assert.assertEquals("122", options.get(25).getAttribute("value"));
+    }
 }
 
