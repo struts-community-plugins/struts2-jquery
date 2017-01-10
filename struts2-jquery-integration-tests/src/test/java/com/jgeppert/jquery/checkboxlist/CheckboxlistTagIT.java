@@ -46,9 +46,25 @@ public class CheckboxlistTagIT {
 
         driver.get(baseUrl + "/checkboxlist/inlinedata.action");
 
+        wait.until(JQUERY_IDLE);
+
         List<WebElement> checkboxes = driver.findElements(By.xpath("//div[@id='checkboxbuttonset']/input[@type='checkbox'][@name='days']"));
 
         Assert.assertEquals(7, checkboxes.size());
+    }
+
+    @Test
+    public void testRemoteListData() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/checkboxlist/remotelist.action");
+
+        wait.until(JQUERY_IDLE);
+
+        List<WebElement> checkboxes = driver.findElements(By.xpath("//div[@id='checkboxbuttonset']/input[@type='checkbox'][@name='letters']"));
+
+        Assert.assertEquals(26, checkboxes.size());
     }
 }
 

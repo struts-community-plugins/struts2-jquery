@@ -3,11 +3,15 @@ package com.jgeppert.jquery.actions.ajax;
 import com.opensymphony.xwork2.ActionSupport;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 @ParentPackage("json-default")
-@Action(value="/ajax/letters", results = {@Result(type="json", name="success", params= {"root", "letters"})})
+@Actions({
+  @Action(value="/ajax/letters", results = {@Result(type="json", name="success", params= {"root", "letters"})}),
+  @Action(value="/ajax/lettersinobject", results = {@Result(type="json", name="success")})
+})
 public class LettersJsonAction extends ActionSupport {
     private static final char[] LETTERS;
     
