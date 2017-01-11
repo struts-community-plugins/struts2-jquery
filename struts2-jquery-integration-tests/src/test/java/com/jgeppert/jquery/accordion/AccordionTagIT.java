@@ -90,5 +90,32 @@ public class AccordionTagIT {
         Assert.assertFalse(accordionItem1.isDisplayed());
         Assert.assertTrue(accordionItem2.isDisplayed());
     }
+
+    @Test
+    public void testRemotecontentData() {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/accordion/remotecontent.action");
+
+        wait.until(JQUERY_NO_ANIMATIONS);
+
+        WebElement accordionTitle1 = driver.findElement(By.xpath("//div[@id='accordion']/h3[1]"));
+        WebElement accordionTitle2 = driver.findElement(By.xpath("//div[@id='accordion']/h3[2]"));
+        WebElement accordionItem1 = driver.findElement(By.xpath("//div[@id='accordion']/div[1]"));
+        WebElement accordionItem2 = driver.findElement(By.xpath("//div[@id='accordion']/div[2]"));
+
+        Assert.assertTrue(accordionItem1.isDisplayed());
+        Assert.assertEquals("Echo : Content for accordion item 1", accordionItem1.getText());
+        Assert.assertFalse(accordionItem2.isDisplayed());
+
+        accordionTitle2.click();
+
+        wait.until(JQUERY_NO_ANIMATIONS);
+
+        Assert.assertFalse(accordionItem1.isDisplayed());
+        Assert.assertTrue(accordionItem2.isDisplayed());
+        Assert.assertEquals("Echo : Content for accordion item 2", accordionItem2.getText());
+    }
 }
 
