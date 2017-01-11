@@ -74,6 +74,7 @@ public class AccordionTagIT {
         driver.get(baseUrl + "/accordion/hashmap.action");
 
         wait.until(JQUERY_NO_ANIMATIONS);
+        wait.until(JQUERY_IDLE);
 
         WebElement accordionTitle1 = driver.findElement(By.xpath("//div[@id='accordion']/h3[1]"));
         WebElement accordionTitle2 = driver.findElement(By.xpath("//div[@id='accordion']/h3[2]"));
@@ -86,6 +87,7 @@ public class AccordionTagIT {
         accordionTitle2.click();
 
         wait.until(JQUERY_NO_ANIMATIONS);
+        wait.until(JQUERY_IDLE);
 
         Assert.assertFalse(accordionItem1.isDisplayed());
         Assert.assertTrue(accordionItem2.isDisplayed());
