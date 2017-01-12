@@ -86,5 +86,74 @@ public class AutocompleterTagIT {
         Thread.sleep(1000);
 	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
     }
+
+    @Test
+    public void testAjaxArrayInsideObject() throws InterruptedException {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/autocompleter/ajaxarrayinsideobject.action");
+
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+    }
+
+    @Test
+    public void testAjaxMapInsideObject() throws InterruptedException {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/autocompleter/ajaxmapinsideobject.action");
+
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
+    }
+
+    @Test
+    public void testAjaxObjectsInsideObject() throws InterruptedException {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/autocompleter/ajaxobjectsinsideobject.action");
+
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
+    }
 }
 
