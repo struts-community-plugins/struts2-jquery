@@ -63,5 +63,28 @@ public class AutocompleterTagIT {
         Thread.sleep(1000);
 	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
     }
+
+    @Test
+    public void testAjaxArray() throws InterruptedException {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/autocompleter/ajaxarray.action");
+
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+    }
 }
 
