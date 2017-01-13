@@ -61,5 +61,31 @@ public class DialogTagIT {
 
         Assert.assertFalse(dialog.isDisplayed());
     }
+
+    @Test
+    public void testLocalContentOnClick() throws InterruptedException {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/dialog/localcontent-onclick.action");
+
+        WebElement dialogOpenLink = driver.findElement(By.id("modalOpenLink"));
+        WebElement dialog = driver.findElement(By.xpath("//div[@role='dialog']"));
+        WebElement dialogTitle = dialog.findElement(By.className("ui-dialog-title"));
+        WebElement dialogCloseButton = dialog.findElement(By.className("ui-dialog-titlebar-close"));
+        WebElement dialogContent = dialog.findElement(By.className("ui-dialog-content"));
+
+        Assert.assertFalse(dialog.isDisplayed());
+
+	dialogOpenLink.click();
+
+        Assert.assertTrue(dialog.isDisplayed());
+        Assert.assertEquals("Dialog with local content", dialogTitle.getText());
+        Assert.assertEquals("This is the local content.", dialogContent.getText());
+
+        dialogCloseButton.click();
+
+        Assert.assertFalse(dialog.isDisplayed());
+    }
 }
 
