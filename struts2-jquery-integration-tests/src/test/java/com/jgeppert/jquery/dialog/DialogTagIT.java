@@ -110,5 +110,34 @@ public class DialogTagIT {
 
         Assert.assertFalse(dialog.isDisplayed());
     }
+
+    @Test
+    public void testRemoteContentOnClick() throws InterruptedException {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/dialog/remotecontent-onclick.action");
+
+        wait.until(JQUERY_IDLE);
+
+        WebElement dialogOpenLink = driver.findElement(By.id("modalOpenLink"));
+        WebElement dialog = driver.findElement(By.xpath("//div[@role='dialog']"));
+        WebElement dialogTitle = dialog.findElement(By.className("ui-dialog-title"));
+        WebElement dialogCloseButton = dialog.findElement(By.className("ui-dialog-titlebar-close"));
+        WebElement dialogContent = dialog.findElement(By.className("ui-dialog-content"));
+
+        Assert.assertFalse(dialog.isDisplayed());
+
+	dialogOpenLink.click();
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertTrue(dialog.isDisplayed());
+        Assert.assertEquals("Dialog with remote content", dialogTitle.getText());
+        Assert.assertEquals("This is simple text from an ajax call.", dialogContent.getText());
+
+        dialogCloseButton.click();
+
+	Assert.assertFalse(dialog.isDisplayed());
+    }
 }
 
