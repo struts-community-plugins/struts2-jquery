@@ -69,5 +69,27 @@ public class MenuTagIT {
 
         Assert.assertEquals("This is simple text from an ajax call.", resultDiv.getText());
     }
+
+    @Test
+    public void testLocalContentList() throws InterruptedException {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/menu/localcontent-list.action");
+
+        WebElement menu = driver.findElement(By.id("myMenu"));
+        List<WebElement> menuItems = menu.findElements(By.tagName("li"));
+        WebElement item2Link = menuItems.get(1).findElement(By.tagName("a"));
+        WebElement resultDiv = driver.findElement(By.id("resultDiv"));
+
+        Assert.assertEquals(3, menuItems.size());
+        Assert.assertEquals("This is the result div.", resultDiv.getText());
+
+        item2Link.click();
+
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertEquals("Echo : Item 2", resultDiv.getText());
+    }
 }
 
