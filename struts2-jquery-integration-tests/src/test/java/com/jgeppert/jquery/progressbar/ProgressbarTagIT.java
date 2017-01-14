@@ -54,5 +54,30 @@ public class ProgressbarTagIT {
 
         Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style"));
     }
+
+    @Test
+    public void testLocalEvents() throws InterruptedException {
+        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/progressbar/local-events.action");
+
+        WebElement progressbar = driver.findElement(By.id("myProgressbar"));
+        WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
+        WebElement button = driver.findElement(By.id("myButton"));
+
+        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style"));
+
+        button.click();
+
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+
+        Assert.assertEquals("value changed to : 84", alert.getText());
+
+        alert.accept();
+
+        Assert.assertEquals("width: 84%;", progressbarValueDiv.getAttribute("style"));
+    }
 }
 
