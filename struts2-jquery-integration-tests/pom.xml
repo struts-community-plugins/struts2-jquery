@@ -17,7 +17,7 @@
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- plugins -->
-    <jetty-maven-plugin.version>8.1.16.v20140903</jetty-maven-plugin.version>
+    <jetty-maven-plugin.version>9.4.0.v20161208</jetty-maven-plugin.version>
     <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
     <!-- dependencies -->
     <junit.version>4.12</junit.version>
@@ -29,7 +29,7 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.mortbay.jetty</groupId>
+        <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
       </plugin>
     
@@ -42,7 +42,7 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.mortbay.jetty</groupId>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-maven-plugin</artifactId>
           <version>${jetty-maven-plugin.version}</version>
           <configuration>
@@ -50,13 +50,6 @@
             <stopPort>8999</stopPort>
             <scanIntervalSeconds>10</scanIntervalSeconds>
           </configuration>
-          <dependencies>
-            <dependency>
-              <groupId>org.eclipse.jetty</groupId>
-              <artifactId>jetty-jsp</artifactId>
-              <version>${jetty-maven-plugin.version}</version>
-            </dependency>
-          </dependencies>
           <executions>
             <execution>
               <id>start-jetty</id>
