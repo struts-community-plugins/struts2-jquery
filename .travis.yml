@@ -2,6 +2,6 @@ language: java
 jdk:
   - oraclejdk8
 script: 
-  - "mvn verify"
-  - "mvn --projects struts2-jquery-integration-tests -P phantomjs verify"
+  - "mvn -Dmaven.javadoc.skip=true verify"
+  - "mvn --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P phantomjs verify"
 
