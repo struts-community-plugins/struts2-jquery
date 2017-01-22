@@ -3,5 +3,5 @@ jdk:
   - oraclejdk8
 script: 
   - "mvn verify"
-  - "mvn -P phantomjs verify"
+  - "mvn --projects struts2-jquery-integration-tests -P phantomjs verify"
 
