@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
+@Category({HtmlUnitCategory.class})
 public class ATagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -44,6 +44,7 @@ public class ATagIT {
     }
 
     @Test
+    @Category({PhantomJSCategory.class})
     public void testSimpleAjaxPageLink() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -61,6 +62,7 @@ public class ATagIT {
     }
     
     @Test
+    @Category({PhantomJSCategory.class})
     public void testMultipleTargets() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -82,6 +84,7 @@ public class ATagIT {
     }
 
     @Test
+    @Category({PhantomJSCategory.class})
     public void testFormSubmit() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -143,6 +146,7 @@ public class ATagIT {
     }
 
     @Test
+    @Category({PhantomJSCategory.class})
     public void testJsonResult() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
