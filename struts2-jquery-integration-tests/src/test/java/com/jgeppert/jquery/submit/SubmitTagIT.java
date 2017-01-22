@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -38,15 +40,25 @@ public class SubmitTagIT {
     private static final JQueryIdleCondition JQUERY_IDLE = new JQueryIdleCondition();
 
     private String baseUrl;        
+    private WebDriver driver;        
 
     public SubmitTagIT(final String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
+    @Before
+    public void before() {
+        driver = WebDriverFactory.getWebDriver();
+    }
+
+    @After
+    public void after() {
+        driver.quit();
+    }
+
     @Test
     @Category({PhantomJSCategory.class})
     public void testSimpleFormSubmit() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/submit/simple-form.action");
@@ -75,7 +87,6 @@ public class SubmitTagIT {
     @Test
     @Category({PhantomJSCategory.class})
     public void testFormSubmitOutside() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/submit/form-outside.action");
@@ -103,7 +114,6 @@ public class SubmitTagIT {
 
     @Test
     public void testFormSubmitEvents() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/submit/events.action");
@@ -139,7 +149,6 @@ public class SubmitTagIT {
     @Test
     @Category({PhantomJSCategory.class})
     public void testFormSubmitListenTopics() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/submit/listen.action");

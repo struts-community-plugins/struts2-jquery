@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -38,14 +40,24 @@ public class SelectTagIT {
     private static final JQueryIdleCondition JQUERY_IDLE = new JQueryIdleCondition();
 
     private String baseUrl;        
+    private WebDriver driver;        
 
     public SelectTagIT(final String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
+    @Before
+    public void before() {
+        driver = WebDriverFactory.getWebDriver();
+    }
+
+    @After
+    public void after() {
+        driver.quit();
+    }
+
     @Test
     public void testStringlistData() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/select/stringlist.action");
@@ -65,7 +77,6 @@ public class SelectTagIT {
 
     @Test
     public void testMapData() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/select/map.action");
@@ -85,7 +96,6 @@ public class SelectTagIT {
 
     @Test
     public void testObjectListData() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/select/objectlist.action");

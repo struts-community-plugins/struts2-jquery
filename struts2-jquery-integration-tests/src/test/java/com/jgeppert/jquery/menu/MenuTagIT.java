@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -41,14 +43,24 @@ public class MenuTagIT {
     private static final JQueryNoAnimations JQUERY_NO_ANIMATIONS = new JQueryNoAnimations();
 
     private String baseUrl;        
+    private WebDriver driver;        
 
     public MenuTagIT(final String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
+    @Before
+    public void before() {
+        driver = WebDriverFactory.getWebDriver();
+    }
+
+    @After
+    public void after() {
+        driver.quit();
+    }
+
     @Test
     public void testLocalContent() throws InterruptedException {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/menu/localcontent.action");
@@ -76,7 +88,6 @@ public class MenuTagIT {
 
     @Test
     public void testLocalContentList() throws InterruptedException {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/menu/localcontent-list.action");
@@ -98,7 +109,6 @@ public class MenuTagIT {
 
     @Test
     public void testLocalContentMap() throws InterruptedException {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/menu/localcontent-map.action");

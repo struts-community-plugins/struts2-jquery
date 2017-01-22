@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -40,14 +42,24 @@ public class DialogTagIT {
     private static final JQueryNoAnimations JQUERY_NO_ANIMATIONS = new JQueryNoAnimations();
 
     private String baseUrl;        
+    private WebDriver driver;        
 
     public DialogTagIT(final String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
+    @Before
+    public void before() {
+        driver = WebDriverFactory.getWebDriver();
+    }
+
+    @After
+    public void after() {
+        driver.quit();
+    }
+
     @Test
     public void testLocalContent() throws InterruptedException {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/dialog/localcontent.action");
@@ -68,7 +80,6 @@ public class DialogTagIT {
 
     @Test
     public void testLocalContentOnClick() throws InterruptedException {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/dialog/localcontent-onclick.action");
@@ -94,7 +105,6 @@ public class DialogTagIT {
 
     @Test
     public void testRemoteContent() throws InterruptedException {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/dialog/remotecontent.action");
@@ -117,7 +127,6 @@ public class DialogTagIT {
 
     @Test
     public void testRemoteContentOnClick() throws InterruptedException {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/dialog/remotecontent-onclick.action");

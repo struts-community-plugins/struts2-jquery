@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -38,15 +40,25 @@ public class ATagIT {
     private static final JQueryIdleCondition JQUERY_IDLE = new JQueryIdleCondition();
 
     private String baseUrl;        
+    private WebDriver driver;        
 
     public ATagIT(final String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
+    @Before
+    public void before() {
+        driver = WebDriverFactory.getWebDriver();
+    }
+
+    @After
+    public void after() {
+        driver.quit();
+    }
+
     @Test
     @Category({PhantomJSCategory.class})
     public void testSimpleAjaxPageLink() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/a/simple-ajax-link.action");
@@ -64,7 +76,6 @@ public class ATagIT {
     @Test
     @Category({PhantomJSCategory.class})
     public void testMultipleTargets() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/a/multiple-targets.action");
@@ -86,7 +97,6 @@ public class ATagIT {
     @Test
     @Category({PhantomJSCategory.class})
     public void testFormSubmit() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/a/form-submit.action");
@@ -115,7 +125,6 @@ public class ATagIT {
 
     @Test
     public void testEvents() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/a/events.action");
@@ -148,7 +157,6 @@ public class ATagIT {
     @Test
     @Category({PhantomJSCategory.class})
     public void testJsonResult() {
-        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/a/json-result.action");
