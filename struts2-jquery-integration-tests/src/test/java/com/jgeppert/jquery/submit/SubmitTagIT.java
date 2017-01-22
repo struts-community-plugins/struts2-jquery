@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
+@Category({HtmlUnitCategory.class})
 public class SubmitTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -44,6 +44,7 @@ public class SubmitTagIT {
     }
 
     @Test
+    @Category({PhantomJSCategory.class})
     public void testSimpleFormSubmit() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -72,6 +73,7 @@ public class SubmitTagIT {
     }
 
     @Test
+    @Category({PhantomJSCategory.class})
     public void testFormSubmitOutside() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -135,6 +137,7 @@ public class SubmitTagIT {
     }
  
     @Test
+    @Category({PhantomJSCategory.class})
     public void testFormSubmitListenTopics() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);

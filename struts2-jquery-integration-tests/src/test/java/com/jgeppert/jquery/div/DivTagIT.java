@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
+@Category({HtmlUnitCategory.class})
 public class DivTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -44,6 +44,7 @@ public class DivTagIT {
     }
 
     @Test
+    @Category({PhantomJSCategory.class})
     public void testAjaxDiv() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -84,6 +85,7 @@ public class DivTagIT {
     }
 
     @Test
+    @Category({PhantomJSCategory.class})
     public void testListenTopics() {
         WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
