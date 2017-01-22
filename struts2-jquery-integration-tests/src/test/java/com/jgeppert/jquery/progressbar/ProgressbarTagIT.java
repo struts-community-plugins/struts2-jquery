@@ -56,7 +56,7 @@ public class ProgressbarTagIT {
         WebElement progressbar = driver.findElement(By.id("myProgressbar"));
         WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
 
-        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style"));
+        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class ProgressbarTagIT {
         WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
         WebElement button = driver.findElement(By.id("myButton"));
 
-        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style"));
+        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
 
         button.click();
 
