@@ -1,7 +1,9 @@
-package com.jgeppert.struts2.jquery.slider;
+package com.jgeppert.jquery.slider;
 
-import com.jgeppert.struts2.jquery.selenium.JQueryIdleCondition;
-import com.jgeppert.struts2.jquery.selenium.JQueryNoAnimations;
+import com.jgeppert.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.JQueryNoAnimations;
+import com.jgeppert.jquery.selenium.WebDriverFactory;
+import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,6 +11,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -16,22 +19,12 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.Rectangle;
-import org.openqa.selenium.internal.Locatable;
-import org.openqa.selenium.interactions.internal.Coordinates;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-
 @RunWith(Parameterized.class)
+@Category({PhantomJSCategory.class})
 public class SliderTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -54,7 +47,7 @@ public class SliderTagIT {
 
     @Test
     public void testLocal() throws InterruptedException {
-        WebDriver driver = new PhantomJSDriver();
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/slider/simple.action");

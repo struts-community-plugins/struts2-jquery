@@ -1,6 +1,9 @@
-package com.jgeppert.struts2.jquery.radio;
+package com.jgeppert.jquery.radio;
 
-import com.jgeppert.struts2.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.WebDriverFactory;
+import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
+import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,6 +11,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -15,11 +19,11 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
+@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
 public class RadioTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -41,7 +45,7 @@ public class RadioTagIT {
 
     @Test
     public void testInlineData() {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/radio/inlinedata.action");
@@ -55,7 +59,7 @@ public class RadioTagIT {
 
     @Test
     public void testRemoteListData() {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/radio/remotelist.action");

@@ -1,6 +1,9 @@
-package com.jgeppert.struts2.jquery.a;
+package com.jgeppert.jquery.a;
 
-import com.jgeppert.struts2.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.WebDriverFactory;
+import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
+import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,6 +11,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -15,11 +19,11 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
+@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
 public class SubmitTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -41,7 +45,7 @@ public class SubmitTagIT {
 
     @Test
     public void testSimpleFormSubmit() {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/submit/simple-form.action");
@@ -69,7 +73,7 @@ public class SubmitTagIT {
 
     @Test
     public void testFormSubmitOutside() {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/submit/form-outside.action");
@@ -97,7 +101,7 @@ public class SubmitTagIT {
 
     @Test
     public void testFormSubmitEvents() {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/submit/events.action");
@@ -132,7 +136,7 @@ public class SubmitTagIT {
  
     @Test
     public void testFormSubmitListenTopics() {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/submit/listen.action");

@@ -1,7 +1,10 @@
-package com.jgeppert.struts2.jquery.autocompleter;
+package com.jgeppert.jquery.autocompleter;
 
-import com.jgeppert.struts2.jquery.selenium.JQueryIdleCondition;
-import com.jgeppert.struts2.jquery.selenium.JQueryNoAnimations;
+import com.jgeppert.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.JQueryNoAnimations;
+import com.jgeppert.jquery.selenium.WebDriverFactory;
+import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
+import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,6 +12,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -16,11 +20,11 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
+@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
 public class AutocompleterTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -43,7 +47,7 @@ public class AutocompleterTagIT {
 
     @Test
     public void testListData() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/autocompleter/list.action");
@@ -66,7 +70,7 @@ public class AutocompleterTagIT {
 
     @Test
     public void testAjaxArray() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/autocompleter/ajaxarray.action");
@@ -89,7 +93,7 @@ public class AutocompleterTagIT {
 
     @Test
     public void testAjaxArrayInsideObject() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/autocompleter/ajaxarrayinsideobject.action");
@@ -112,7 +116,7 @@ public class AutocompleterTagIT {
 
     @Test
     public void testAjaxMapInsideObject() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/autocompleter/ajaxmapinsideobject.action");
@@ -135,7 +139,7 @@ public class AutocompleterTagIT {
 
     @Test
     public void testAjaxObjectsInsideObject() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/autocompleter/ajaxobjectsinsideobject.action");

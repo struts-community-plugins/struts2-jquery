@@ -24,7 +24,20 @@
     <selenium.version>3.0.1</selenium.version>
     <htmlunit-driver.version>2.23</htmlunit-driver.version>
     <lombok.version>1.16.2</lombok.version>
+
+    <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
+    <failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
   </properties>
+
+  <profiles>
+    <profile>
+      <id>phantomjs</id>
+      <properties>
+        <failsafe.test.category>com.jgeppert.jquery.junit.category.PhantomJSCategory</failsafe.test.category>
+        <failsafe.webdriver.name>PhantomJS</failsafe.webdriver.name>
+      </properties>
+    </profile>
+  </profiles>
 
   <build>
     <plugins>
@@ -79,6 +92,13 @@
           <configuration>
             <forkCount>4</forkCount>
             <reuseForks>true</reuseForks>
+            <groups>${failsafe.test.category}</groups>
+            <systemProperties>
+                <property>
+                    <name>webDriverName</name>
+                    <value>${failsafe.webdriver.name}</value>
+                </property>
+            </systemProperties>
           </configuration>
           <executions>
             <execution>

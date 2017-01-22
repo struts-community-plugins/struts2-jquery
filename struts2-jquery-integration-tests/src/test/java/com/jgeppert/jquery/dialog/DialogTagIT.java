@@ -1,7 +1,10 @@
-package com.jgeppert.struts2.jquery.dialog;
+package com.jgeppert.jquery.dialog;
 
-import com.jgeppert.struts2.jquery.selenium.JQueryIdleCondition;
-import com.jgeppert.struts2.jquery.selenium.JQueryNoAnimations;
+import com.jgeppert.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.JQueryNoAnimations;
+import com.jgeppert.jquery.selenium.WebDriverFactory;
+import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
+import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,6 +12,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -16,11 +20,11 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
+@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
 public class DialogTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -43,7 +47,7 @@ public class DialogTagIT {
 
     @Test
     public void testLocalContent() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/dialog/localcontent.action");
@@ -64,7 +68,7 @@ public class DialogTagIT {
 
     @Test
     public void testLocalContentOnClick() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/dialog/localcontent-onclick.action");
@@ -90,7 +94,7 @@ public class DialogTagIT {
 
     @Test
     public void testRemoteContent() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/dialog/remotecontent.action");
@@ -113,7 +117,7 @@ public class DialogTagIT {
 
     @Test
     public void testRemoteContentOnClick() throws InterruptedException {
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = WebDriverFactory.getWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/dialog/remotecontent-onclick.action");
