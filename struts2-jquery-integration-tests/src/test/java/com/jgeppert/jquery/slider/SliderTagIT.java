@@ -1,9 +1,8 @@
-package com.jgeppert.jquery.progressbar;
+package com.jgeppert.jquery.slider;
 
 import com.jgeppert.jquery.selenium.JQueryIdleCondition;
 import com.jgeppert.jquery.selenium.JQueryNoAnimations;
 import com.jgeppert.jquery.selenium.WebDriverFactory;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
 import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import java.util.Arrays;
@@ -27,8 +26,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class})
-public class ProgressbarTagIT {
+@Category({PhantomJSCategory.class})
+public class SliderTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
@@ -45,7 +44,7 @@ public class ProgressbarTagIT {
     private String baseUrl;        
     private WebDriver driver;        
 
-    public ProgressbarTagIT(final String baseUrl) {
+    public SliderTagIT(final String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
@@ -60,40 +59,19 @@ public class ProgressbarTagIT {
     }
 
     @Test
-    @Category({PhantomJSCategory.class})
     public void testLocal() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
-        driver.get(baseUrl + "/progressbar/local.action");
+        driver.get(baseUrl + "/slider/simple.action");
 
-        WebElement progressbar = driver.findElement(By.id("myProgressbar"));
-        WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
+        WebElement sliderInput = driver.findElement(By.id("myslider"));
+        WebElement sliderHandle = driver.findElement(By.id("myslider_widget")).findElement(By.className("ui-slider-handle"));
 
-        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
-    }
+        Assert.assertEquals("110", sliderInput.getAttribute("value"));
 
-    @Test
-    public void testLocalEvents() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        (new Actions(driver)).dragAndDropBy(sliderHandle, 50, 10).build().perform();
 
-        driver.get(baseUrl + "/progressbar/local-events.action");
-
-        WebElement progressbar = driver.findElement(By.id("myProgressbar"));
-        WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
-        WebElement button = driver.findElement(By.id("myButton"));
-
-        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
-
-        button.click();
-
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-
-        Assert.assertEquals("value changed to : 84", alert.getText());
-
-        alert.accept();
-
-        Assert.assertEquals("width: 84%;", progressbarValueDiv.getAttribute("style"));
+        Assert.assertEquals("160", sliderInput.getAttribute("value"));
     }
 }
 

@@ -1,4 +1,4 @@
-package com.jgeppert.struts2.jquery.selenium;
+package com.jgeppert.jquery.selenium;
 
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.JavascriptExecutor;
