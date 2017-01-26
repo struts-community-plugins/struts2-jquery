@@ -108,5 +108,34 @@ public class SpinnerTagIT {
 
         Assert.assertEquals("8", spinnerInput.getAttribute("aria-valuenow"));
     }
+
+    @Test
+    public void testMinimum() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/spinner/minimum.action");
+
+        WebElement spinnerInput = driver.findElement(By.id("mySpinner"));
+        WebElement spinnerUp = driver.findElement(By.className("ui-spinner-up"));
+	WebElement spinnerDown = driver.findElement(By.className("ui-spinner-down"));
+
+        Assert.assertEquals("6", spinnerInput.getAttribute("aria-valuenow"));
+
+        spinnerDown.click();
+
+        Assert.assertEquals("5", spinnerInput.getAttribute("aria-valuenow"));
+
+        spinnerDown.click();
+
+        Assert.assertEquals("3", spinnerInput.getAttribute("aria-valuenow"));
+
+        spinnerDown.click();
+
+        Assert.assertEquals("3", spinnerInput.getAttribute("aria-valuenow"));
+
+        spinnerUp.click();
+
+        Assert.assertEquals("5", spinnerInput.getAttribute("aria-valuenow"));
+    }
 }
 
