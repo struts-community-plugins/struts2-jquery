@@ -83,5 +83,38 @@ public class TabbedpanelTagIT {
         Assert.assertTrue(tabcontent1.isDisplayed());
         Assert.assertFalse(tabcontent2.isDisplayed());
     }
+
+    @Test
+    public void testRemote() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/tabbedpanel/remote.action");
+
+        WebElement tab1 = driver.findElement(By.id("tab1"));
+        WebElement tab2 = driver.findElement(By.id("tab2"));
+        WebElement tab1Link = tab1.findElement(By.tagName("a"));
+        WebElement tab2Link = tab2.findElement(By.tagName("a"));
+        WebElement tabcontent1 = driver.findElement(By.id(tab1.getAttribute("aria-controls")));
+        WebElement tabcontent2 = driver.findElement(By.id(tab2.getAttribute("aria-controls")));
+
+	wait.until(JQUERY_IDLE);
+
+        Assert.assertTrue(tabcontent1.isDisplayed());
+        Assert.assertFalse(tabcontent2.isDisplayed());
+        Assert.assertEquals("This is simple text from an ajax call.", tabcontent1.getText());
+
+        tab2Link.click();
+	wait.until(JQUERY_IDLE);
+
+        Assert.assertFalse(tabcontent1.isDisplayed());
+        Assert.assertTrue(tabcontent2.isDisplayed());
+        Assert.assertEquals("Echo : something to echo", tabcontent2.getText());
+
+        tab1Link.click();
+	wait.until(JQUERY_IDLE);
+
+        Assert.assertTrue(tabcontent1.isDisplayed());
+        Assert.assertFalse(tabcontent2.isDisplayed());
+    }
 }
 
