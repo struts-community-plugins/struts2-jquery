@@ -72,12 +72,14 @@ public class TreeTagIT {
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
 
         itemAOpenIcon.click();
+        Thread.sleep(1000);
 
         Assert.assertTrue(myTree.findElement(By.xpath("ul/li[1]/ul/li[1]")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.xpath("ul/li[1]/ul/li[2]")).isDisplayed());
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
 
         itemAOpenIcon.click();
+        Thread.sleep(1000);
 
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[1]/ul")).size());
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
