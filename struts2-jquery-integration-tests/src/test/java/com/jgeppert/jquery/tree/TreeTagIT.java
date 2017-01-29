@@ -164,6 +164,33 @@ public class TreeTagIT {
         Assert.assertEquals("Echo : BA,BB,B", resultDiv.getText());
     }
 
+    @Test
+    public void testSearch() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/tree/search.action");
+        WebElement myTree = driver.findElement(By.id("myTree"));
+        WebElement searchField = driver.findElement(By.id("searchField"));
+        WebElement searchButton = driver.findElement(By.id("searchButton"));
+
+        Assert.assertEquals(0, myTree.findElements(By.id("AA_link")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("AB_link")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BA_link")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BB_link")).size());
+
+        searchField.sendKeys("AB");
+        searchButton.click();
+        Thread.sleep(500);
+
+        Assert.assertTrue(myTree.findElement(By.id("AA_link")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("AB_link")).isDisplayed());
+        Assert.assertEquals(0, myTree.findElements(By.id("BA_link")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BB_link")).size());
+        Assert.assertFalse(myTree.findElement(By.id("A_link")).getAttribute("class").contains("jstree-search"));
+        Assert.assertFalse(myTree.findElement(By.id("AA_link")).getAttribute("class").contains("jstree-search"));
+        Assert.assertTrue(myTree.findElement(By.id("AB_link")).getAttribute("class").contains("jstree-search"));
+        Assert.assertFalse(myTree.findElement(By.id("B_link")).getAttribute("class").contains("jstree-search"));
+    }
 
 }
 
