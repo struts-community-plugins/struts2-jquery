@@ -72,14 +72,14 @@ public class TreeTagIT {
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
 
         itemAOpenIcon.click();
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         Assert.assertTrue(myTree.findElement(By.xpath("ul/li[1]/ul/li[1]")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.xpath("ul/li[1]/ul/li[2]")).isDisplayed());
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
 
         itemAOpenIcon.click();
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[1]/ul")).size());
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
@@ -101,7 +101,7 @@ public class TreeTagIT {
         Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
 
         myTree.findElement(By.id("ROOT_anchor")).findElement(By.xpath("../i")).click();
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.id("B_anchor")).isDisplayed());
@@ -111,7 +111,7 @@ public class TreeTagIT {
         Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
 
         myTree.findElement(By.id("A_anchor")).findElement(By.xpath("../i")).click();
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.id("AB_anchor")).isDisplayed());
@@ -121,7 +121,7 @@ public class TreeTagIT {
         Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
 
         myTree.findElement(By.id("A_anchor")).findElement(By.xpath("../i")).click();
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.id("B_anchor")).isDisplayed());
