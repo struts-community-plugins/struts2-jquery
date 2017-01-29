@@ -72,14 +72,14 @@ public class TreeTagIT {
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
 
         itemAOpenIcon.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         Assert.assertTrue(myTree.findElement(By.xpath("ul/li[1]/ul/li[1]")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.xpath("ul/li[1]/ul/li[2]")).isDisplayed());
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
 
         itemAOpenIcon.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[1]/ul")).size());
         Assert.assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
@@ -101,7 +101,7 @@ public class TreeTagIT {
         Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
 
         myTree.findElement(By.id("ROOT_anchor")).findElement(By.xpath("../i")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.id("B_anchor")).isDisplayed());
@@ -111,7 +111,7 @@ public class TreeTagIT {
         Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
 
         myTree.findElement(By.id("A_anchor")).findElement(By.xpath("../i")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.id("AB_anchor")).isDisplayed());
@@ -121,7 +121,7 @@ public class TreeTagIT {
         Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
 
         myTree.findElement(By.id("A_anchor")).findElement(By.xpath("../i")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
         Assert.assertTrue(myTree.findElement(By.id("B_anchor")).isDisplayed());
@@ -130,5 +130,40 @@ public class TreeTagIT {
         Assert.assertEquals(0, driver.findElements(By.id("BA_anchor")).size());
         Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
     }
+
+    @Test
+    public void testCheckboxes() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/tree/checkboxes.action");
+
+        WebElement myTree = driver.findElement(By.id("myTree"));
+        WebElement resultDiv = driver.findElement(By.id("resultDiv"));
+        WebElement submit = driver.findElement(By.id("mySubmit"));
+ 
+        myTree.findElement(By.id("A_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
+	submit.click();
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertEquals("Echo : A,AA,AB", resultDiv.getText());
+
+        myTree.findElement(By.id("B_link")).findElement(By.xpath("../i")).click();
+        myTree.findElement(By.id("BA_link")).findElement(By.xpath("./i[contains(@class, 'checkbox')]")).click();
+	submit.click();
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertEquals("Echo : A,AA,AB,BA", resultDiv.getText());
+
+        myTree.findElement(By.id("A_link")).findElement(By.xpath("../i")).click();
+        myTree.findElement(By.id("AA_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
+        myTree.findElement(By.id("AB_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
+        myTree.findElement(By.id("BB_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
+	submit.click();
+        wait.until(JQUERY_IDLE);
+
+        Assert.assertEquals("Echo : BA,BB,B", resultDiv.getText());
+    }
+
+
 }
 
