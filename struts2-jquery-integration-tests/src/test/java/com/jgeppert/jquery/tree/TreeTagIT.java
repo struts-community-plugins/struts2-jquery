@@ -27,7 +27,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
-@Category({PhantomJSCategory.class, HtmlUnitCategory.class})
+@Category({PhantomJSCategory.class})
 public class TreeTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -60,6 +60,7 @@ public class TreeTagIT {
     }
 
     @Test
+    @Category({HtmlUnitCategory.class})
     public void testLocal() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -86,6 +87,7 @@ public class TreeTagIT {
     }
 
     @Test
+    @Category({HtmlUnitCategory.class})
     public void testLocalObject() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -93,45 +95,46 @@ public class TreeTagIT {
 
         WebElement myTree = driver.findElement(By.id("myTree"));
 
-        Assert.assertEquals(0, driver.findElements(By.id("A_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("B_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("AA_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("AB_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("BA_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("A")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("B")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("AA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("AB")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BB")).size());
 
-        myTree.findElement(By.id("ROOT_anchor")).findElement(By.xpath("../i")).click();
+        myTree.findElement(By.id("ROOT")).findElement(By.xpath("i")).click();
         Thread.sleep(500);
 
-        Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
-        Assert.assertTrue(myTree.findElement(By.id("B_anchor")).isDisplayed());
-        Assert.assertEquals(0, driver.findElements(By.id("AA_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("AB_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("BA_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
+        Assert.assertTrue(myTree.findElement(By.id("A")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("B")).isDisplayed());
+        Assert.assertEquals(0, myTree.findElements(By.id("AA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("AB")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BB")).size());
 
-        myTree.findElement(By.id("A_anchor")).findElement(By.xpath("../i")).click();
+        myTree.findElement(By.id("A")).findElement(By.xpath("i")).click();
         Thread.sleep(500);
 
-        Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
-        Assert.assertTrue(myTree.findElement(By.id("AB_anchor")).isDisplayed());
-        Assert.assertTrue(myTree.findElement(By.id("AB_anchor")).isDisplayed());
-        Assert.assertTrue(myTree.findElement(By.id("B_anchor")).isDisplayed());
-        Assert.assertEquals(0, driver.findElements(By.id("BA_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
+        Assert.assertTrue(myTree.findElement(By.id("A")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("AB")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("AB")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("B")).isDisplayed());
+        Assert.assertEquals(0, myTree.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BB")).size());
 
-        myTree.findElement(By.id("A_anchor")).findElement(By.xpath("../i")).click();
+        myTree.findElement(By.id("A")).findElement(By.xpath("i")).click();
         Thread.sleep(500);
 
-        Assert.assertTrue(myTree.findElement(By.id("A_anchor")).isDisplayed());
-        Assert.assertTrue(myTree.findElement(By.id("B_anchor")).isDisplayed());
-        Assert.assertEquals(0, driver.findElements(By.id("AA_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("AB_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("BA_anchor")).size());
-        Assert.assertEquals(0, driver.findElements(By.id("BB_anchor")).size());
+        Assert.assertTrue(myTree.findElement(By.id("A")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("B")).isDisplayed());
+        Assert.assertEquals(0, myTree.findElements(By.id("AA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("AB")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BB")).size());
     }
 
     @Test
+    @Category({HtmlUnitCategory.class})
     public void testCheckboxes() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -147,14 +150,14 @@ public class TreeTagIT {
 
         Assert.assertEquals("Echo : A,AA,AB", resultDiv.getText());
 
-        myTree.findElement(By.id("B_link")).findElement(By.xpath("../i")).click();
-        myTree.findElement(By.id("BA_link")).findElement(By.xpath("./i[contains(@class, 'checkbox')]")).click();
+        myTree.findElement(By.id("B")).findElement(By.xpath("i")).click();
+        myTree.findElement(By.id("BA_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
 	submit.click();
         wait.until(JQUERY_IDLE);
 
         Assert.assertEquals("Echo : A,AA,AB,BA", resultDiv.getText());
 
-        myTree.findElement(By.id("A_link")).findElement(By.xpath("../i")).click();
+        myTree.findElement(By.id("A")).findElement(By.xpath("i")).click();
         myTree.findElement(By.id("AA_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
         myTree.findElement(By.id("AB_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
         myTree.findElement(By.id("BB_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
@@ -165,6 +168,7 @@ public class TreeTagIT {
     }
 
     @Test
+    @Category({HtmlUnitCategory.class})
     public void testSearch() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -173,23 +177,72 @@ public class TreeTagIT {
         WebElement searchField = driver.findElement(By.id("searchField"));
         WebElement searchButton = driver.findElement(By.id("searchButton"));
 
-        Assert.assertEquals(0, myTree.findElements(By.id("AA_link")).size());
-        Assert.assertEquals(0, myTree.findElements(By.id("AB_link")).size());
-        Assert.assertEquals(0, myTree.findElements(By.id("BA_link")).size());
-        Assert.assertEquals(0, myTree.findElements(By.id("BB_link")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("AA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("AB")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BB")).size());
 
         searchField.sendKeys("AB");
         searchButton.click();
         Thread.sleep(500);
 
-        Assert.assertTrue(myTree.findElement(By.id("AA_link")).isDisplayed());
-        Assert.assertTrue(myTree.findElement(By.id("AB_link")).isDisplayed());
-        Assert.assertEquals(0, myTree.findElements(By.id("BA_link")).size());
-        Assert.assertEquals(0, myTree.findElements(By.id("BB_link")).size());
+        Assert.assertTrue(myTree.findElement(By.id("AA")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("AB")).isDisplayed());
+        Assert.assertEquals(0, myTree.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, myTree.findElements(By.id("BB")).size());
         Assert.assertFalse(myTree.findElement(By.id("A_link")).getAttribute("class").contains("jstree-search"));
         Assert.assertFalse(myTree.findElement(By.id("AA_link")).getAttribute("class").contains("jstree-search"));
         Assert.assertTrue(myTree.findElement(By.id("AB_link")).getAttribute("class").contains("jstree-search"));
         Assert.assertFalse(myTree.findElement(By.id("B_link")).getAttribute("class").contains("jstree-search"));
+    }
+
+    //following test does not work with HtmlUnitDriver
+    @Test
+    public void testRemote() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        driver.get(baseUrl + "/tree/remote.action");
+        wait.until(JQUERY_IDLE);
+
+        WebElement myTree = driver.findElement(By.id("myTree"));
+
+        Assert.assertEquals(0, driver.findElements(By.id("A")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("B")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("AA")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("AB")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("BB")).size());
+
+
+        myTree.findElement(By.id("ROOT")).findElement(By.xpath("i")).click();
+        Thread.sleep(500);
+
+        Assert.assertTrue(myTree.findElement(By.id("A")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("B")).isDisplayed());
+        Assert.assertEquals(0, driver.findElements(By.id("AA")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("AB")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("BB")).size());
+
+        myTree.findElement(By.id("A")).findElement(By.xpath("i")).click();
+        Thread.sleep(500);
+
+        Assert.assertTrue(myTree.findElement(By.id("A")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("AB")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("AB")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("B")).isDisplayed());
+        Assert.assertEquals(0, driver.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("BB")).size());
+
+        myTree.findElement(By.id("A")).findElement(By.xpath("i")).click();
+        Thread.sleep(500);
+
+        Assert.assertTrue(myTree.findElement(By.id("A")).isDisplayed());
+        Assert.assertTrue(myTree.findElement(By.id("B")).isDisplayed());
+        Assert.assertEquals(0, driver.findElements(By.id("AA")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("AB")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("BA")).size());
+        Assert.assertEquals(0, driver.findElements(By.id("BB")).size());
     }
 
 }
