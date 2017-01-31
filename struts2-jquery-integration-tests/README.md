@@ -12,6 +12,9 @@ Not all tests are possible to run with each of the drivers
 - HtmlUnitDriver does not fully support Mouse interactions 
 - PhantomJSDriver does not fully support javascript Alerts
 
+###### Requirement
+* Java 8: The used version of Selenium WebDriver requires Java 8
+
 #### Parameterized
 Given there are several modes in which the `sj:head` tag can be configured, the same tests are run for several configurations.
 To do this, the `@RunWith(Parameterized.class)` annotation is used, in an effort to prevent duplicating the exact same test for multiple configuration.
