@@ -21,11 +21,19 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
   * Add the Tag-Lib to your JSP `<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>`
   * Place the [HeadTag Head Tag] inside your html head tags
 
+### versions and compatibility
+| `struts2-jquery` version | `struts2` version               |
+|--------------------------|---------------------------------|
+| `4.0.2`                  | version >= `2.5`                |
+| `3.7.1`                  | `2.3.16` <= version <= `2.3.31` |
+
+As a general rule of thumb, it's advised to upgrade to the latest version within the same major version range. This should avoid bugs and vulnerabilities that already got fixed in more recent versions.
+
+See [Changelog](https://github.com/struts-community-plugins/struts2-jquery/wiki/Changelog) for more information
+
 ### How can I use the Plugin from Maven?
 
 Since version 1.8.3 the plugin is found in the central Maven repository. Just add to your dependencies section:
-
-Latest version which is compatible to Struts 2.3.x is version [3.7.1].
 
 ```xml
 <dependencies>
