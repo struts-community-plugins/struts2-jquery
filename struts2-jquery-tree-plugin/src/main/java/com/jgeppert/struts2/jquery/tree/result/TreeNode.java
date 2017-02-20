@@ -98,6 +98,14 @@ public class TreeNode implements Comparable<TreeNode> {
         this.childrens = childrens;
     }
 
+    public boolean addChild(final TreeNode child) {
+        return childrens.add(child);
+    }
+
+    public boolean addChildren(final Collection<TreeNode> children) {
+        return childrens.addAll(children);
+    }
+
     /**
      * @param icon the Tree Node Icon
      */
