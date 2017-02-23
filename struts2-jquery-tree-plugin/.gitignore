@@ -1,2 +1,14 @@
-src/main/resources/template/js/struts2/jquery.tree.struts2.min.js
+# generated minified javascript files
+/src/main/resources/template/js/struts2/jquery.tree.struts2.min.js
+
+# maven generated target folder
+/target/
+
+# IDE specific files
+# Eclipse
+/.classpath
+/.project
+/.settings/
+# IntelliJ
+/.idea/
 
