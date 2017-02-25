@@ -1,6 +1,3 @@
-# generated minified javascript files
-/src/main/resources/template/js/struts2/jquery.datatables.struts2.min.js
-
 # maven generated target folder
 /target/
 
