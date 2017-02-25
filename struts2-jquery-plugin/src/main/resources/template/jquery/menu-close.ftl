@@ -57,20 +57,21 @@
                         <a id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />_anchor" href="javascript:void(0)">
                             ${itemValue?html}
                         </a>
-                        <#assign escapedOptionLinkId="${escapedOptionId}_li_anchor">
+                        <#assign escapedOptionLinkId="${escapedOptionId}_li">
+                        <#assign optionsLiVariableName>options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" /></#assign>
                         <script type='text/javascript'>
                             jQuery(document).ready(function () {
-                                var options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" /> = {};
-                                options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" />.jqueryaction = "menuItem";
-                                options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" />.id = "${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />_anchor";
+                                var ${optionsLiVariableName} = {};
+                                ${optionsLiVariableName}.jqueryaction = "menuItem";
+                                ${optionsLiVariableName}.id = "${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />";
                             <#if parameters.targets?if_exists != "">
-                                options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" />.targets = "${parameters.targets?html}";
+                                ${optionsLiVariableName}.targets = "${parameters.targets?html}";
                             </#if>
                             <#if parameters.href?if_exists != "">
-                                options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" />.href = "${parameters.href?html}";
+                                ${optionsLiVariableName}.href = "${parameters.href?html}";
                             </#if>
-                                options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" />.hrefparameter = "${parameters.paramName?default('id')}=${itemKeyStr}";
-                                jQuery.struts2_jquery_ui.bind(jQuery('#${escapedOptionId?string?replace('.', '\\\\\\\\.')}_li_<@s.property value="%{#rowstatus.count}" />_anchor'),options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" />);
+                                ${optionsLiVariableName}.hrefparameter = "${parameters.paramName?default('id')}=${itemKeyStr}";
+                                jQuery.struts2_jquery_ui.bind(jQuery('#${escapedOptionId?string?replace('.', '\\\\\\\\.')}_li_<@s.property value="%{#rowstatus.count}" />'), ${optionsLiVariableName});
                             });
                         </script>
                     <#else>
