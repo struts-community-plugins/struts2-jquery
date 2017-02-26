@@ -21,8 +21,8 @@
     <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
     <!-- dependencies -->
     <junit.version>4.12</junit.version>
-    <selenium.version>3.0.1</selenium.version>
-    <htmlunit-driver.version>2.23</htmlunit-driver.version>
+    <selenium.version>3.2.0</selenium.version>
+    <htmlunit-driver.version>2.25</htmlunit-driver.version>
     <lombok.version>1.16.2</lombok.version>
 
     <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
