@@ -59,6 +59,10 @@ jQuery(document).ready(function () {
   <#if parameters.onSelectTopics?exists>
 	options_${escapedOptionId?html}.onselecttopics = "${parameters.onSelectTopics?html}";
   </#if>
+  <#if parameters.requestType?exists>
+	options_${escapedOptionId?html}.requesttype = "${parameters.requestType?html}";
+  </#if>
+
   <#if parameters.list?? && !parameters.listKey?? && !parameters.selectBox?? &&  !parameters.hrefUrl??>
 	options_${escapedOptionId?html}.list = new Array();
 <@s.iterator value="parameters.list">
