@@ -991,6 +991,7 @@
                         });
                     };
                 }
+<<<<<<< Upstream, based on origin/release/4.0.3
                  else {
                     params.source = function(request, response) {
                         $.ajax({
@@ -1014,6 +1015,21 @@
                             dataType : 'json'
                         });
                     }
+=======
+                else {
+                    params.source = function (request, response) {
+                        self.abortReq(o.id);
+                        self.currentXhr[o.id] = $.ajax({
+                            url: self.addForms(o.formids, url),
+                            dataType: "json",
+                            type: o.requesttype,
+                            data: {
+                                term: request.term
+                            },
+                            success: response
+                        });
+                    };
+>>>>>>> bb894ed added requestType functionality to sj:autocompleter
                 }
             }
             else if (o.list && o.selectBox === false) {
