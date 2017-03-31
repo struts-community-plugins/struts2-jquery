@@ -58,7 +58,7 @@
                             <jsSourceDir>template/js</jsSourceDir>
                             <jsTargetDir>template/js</jsTargetDir>
                             <jsSourceFiles>
-                                <jsSourceFile>struts2/jquery.datatables.struts2.js</jsSourceFile>                              
+                                <jsSourceFile>struts2/jquery.datatables.struts2.js</jsSourceFile>
                             </jsSourceFiles>
                         </configuration>
                         <goals>
@@ -114,6 +114,7 @@
             <artifactId>velocity</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
