@@ -995,9 +995,15 @@
                  else {
                     params.source = function(request, response) {
                         $.ajax({
+<<<<<<< Upstream, based on origin/release/4.0.3
                             url : self.addForms(o.formids, url),
                             data : request,
                             success : function(data) {
+=======
+                            url: self.addForms(o.formids, url),
+                            data: request,
+                            success: function(data){
+>>>>>>> 3f7e3ca refs #36
                                 response(data);
                             },
                             error : function(jqXHR, textStatus, errorThrown) {
