@@ -997,7 +997,7 @@
                 	params.source = function( request, response ) {
                         $.ajax({
                             url: self.addForms(o.formids, url),
-                            data: { query: request.term},
+                            data: request,
                             success: function(data){
                                 response(data);
                             },
