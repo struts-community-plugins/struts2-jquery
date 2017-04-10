@@ -866,8 +866,13 @@
             }
             //Fixes #46 add custom/error classes to widget
             cssClasses = $(self.escId(o.hiddenid)).attr('class');
+<<<<<<< Upstream, based on origin/release/4.0.3
             if (typeof cssClasses !== 'undefined' && cssClasses !== ""){
                 $elem.attr('class',cssClasses);
+=======
+            if (typeof cssClasses != 'undefined' && cssClasses != ""){
+            	$elem.attr('class',cssClasses);
+>>>>>>> 8c708c0 Fixes #46 
             }
             if (o.href && o.href !== '#') {
                 url = o.href;
