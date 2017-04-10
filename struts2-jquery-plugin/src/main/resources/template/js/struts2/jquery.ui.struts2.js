@@ -917,6 +917,18 @@
                             complete: function (request, status) {
                                 self.hideIndicator(o.indicatorid);
                             },
+                            error: function(jqXHR, textStatus, errorThrown){
+    							if (o.onerr) {
+    								$.each(o.onerr.split(','), function(i, etopic) {
+    									var orginal = {};
+    									orginal.request = jqXHR;
+    									orginal.status = textStatus;
+    									orginal.error = errorThrown;
+    									self.publishTopic($elem, etopic, orginal);
+    								});
+
+    							}
+                            },
                             success: function (data) {
                                 self.currentXhr[o.id] = null;
                                 var x = 0,
@@ -981,7 +993,29 @@
                     };
                 }
                 else {
-                    params.source = self.addForms(o.formids, url);
+                   // params.source = self.addForms(o.formids, url);
+                	params.source = function( request, response ) {
+                        $.ajax({
+                            url: self.addForms(o.formids, url),
+                            data: { query: request.term},
+                            success: function(data){
+                                response(data);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown){
+                            	if (o.onerr) {
+    								$.each(o.onerr.split(','), function(i, etopic) {
+    									var orginal = {};
+    									orginal.request = jqXHR;
+    									orginal.status = textStatus;
+    									orginal.error = errorThrown;
+    									self.publishTopic($elem, etopic, orginal);
+    								});
+
+    							}
+                            },
+                          dataType: 'json'
+                        });
+                	}
                 }
             }
             else if (o.list && o.selectBox === false) {
