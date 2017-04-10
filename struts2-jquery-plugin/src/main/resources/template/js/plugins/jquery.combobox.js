@@ -18,11 +18,17 @@
             var self = this.element;
             var selected = this.element.children( ":selected" ),
                 value = selected.val() ? selected.text() : "";
+            //Fixes #46 add custom/error classes to widget
+            var classes = "s2j-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left";
+            var elemClasses = this.element.attr("class");
+            if (typeof elemClasses != 'undefined' && elemClasses != ""){
+            	classes = classes + " " + elemClasses;
+            }
             this.input = $( "<input>" )
                 .appendTo( this.wrapper )
                 .val( value )
                 .attr( "title", "" )
-                .addClass( "s2j-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+                .addClass( classes )
                 .autocomplete({
                     delay: 0,
                     minLength: 0,

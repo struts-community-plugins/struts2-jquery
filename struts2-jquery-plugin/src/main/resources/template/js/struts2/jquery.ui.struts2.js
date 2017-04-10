@@ -850,7 +850,8 @@
         autocompleter: function ($elem, o) {
             var self = this,
                 params = {},
-                url = '';
+                url = '',
+                cssClasses;
             self.log('init autocompleter with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
@@ -862,6 +863,11 @@
                     "js/base/unique-id" + self.minSuffix + ".js",
                     "js/base/autocomplete" + self.minSuffix + ".js"
                 ]);
+            }
+            //Fixes #46 add custom/error classes to widget
+            cssClasses = $(self.escId(o.hiddenid)).attr('class');
+            if (typeof cssClasses != 'undefined' && cssClasses != ""){
+            	$elem.attr('class',cssClasses);
             }
             if (o.href && o.href !== '#') {
                 url = o.href;
