@@ -44,7 +44,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  *
  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
  */
-@StrutsTag(name = "grid", tldTagClass = "com.jgeppert.struts2.jquery.grid.views.jsp.ui.GridTag", description = "Render an grid from a JSON Result.")
+@StrutsTag(name = "grid", tldTagClass = "com.jgeppert.struts2.jquery.grid.views.jsp.ui.GridTag", description = "Render a grid from a JSON Result.")
 public class Grid extends AbstractContainer {
 
     public static final String JQUERYACTION = "grid";
