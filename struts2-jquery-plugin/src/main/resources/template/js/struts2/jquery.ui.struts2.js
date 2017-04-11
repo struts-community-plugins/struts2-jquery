@@ -866,7 +866,7 @@
             }
             //Fixes #46 add custom/error classes to widget
             cssClasses = $(self.escId(o.hiddenid)).attr('class');
-            if (typeof cssClasses != 'undefined' && cssClasses != ""){
+            if (typeof cssClasses !== 'undefined' && cssClasses !== ""){
             	$elem.attr('class',cssClasses);
             }
             if (o.href && o.href !== '#') {
@@ -992,30 +992,29 @@
                         });
                     };
                 }
-                else {
-                   // params.source = self.addForms(o.formids, url);
-                	params.source = function( request, response ) {
+                 else {
+                    params.source = function(request, response) {
                         $.ajax({
-                            url: self.addForms(o.formids, url),
-                            data: request,
-                            success: function(data){
+                            url : self.addForms(o.formids, url),
+                            data : request,
+                            success : function(data) {
                                 response(data);
                             },
-                            error: function(jqXHR, textStatus, errorThrown){
-                            	if (o.onerr) {
-    								$.each(o.onerr.split(','), function(i, etopic) {
-    									var orginal = {};
-    									orginal.request = jqXHR;
-    									orginal.status = textStatus;
-    									orginal.error = errorThrown;
-    									self.publishTopic($elem, etopic, orginal);
-    								});
-
-    							}
+                            error : function(jqXHR, textStatus, errorThrown) {
+                                if (o.onerr) {
+                                    $.each(o.onerr.split(','), function(i, etopic) {
+                                        var orginal = {};
+                                        orginal.request = jqXHR;
+                                        orginal.status = textStatus;
+                                        orginal.error = errorThrown;
+                                        self.publishTopic($elem, etopic,
+                                                orginal);
+                                    });
+                                }
                             },
-                          dataType: 'json'
+                            dataType : 'json'
                         });
-                	}
+                    }
                 }
             }
             else if (o.list && o.selectBox === false) {
