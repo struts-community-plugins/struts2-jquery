@@ -866,7 +866,7 @@
             }      
             //Fixes #46 add custom/error classes to widget
             cssClasses = $(self.escId(o.hiddenid)).attr('class');
-            if (typeof cssClasses != 'undefined' && cssClasses != ""){
+            if (typeof cssClasses !== 'undefined' && cssClasses !== ""){
             	$elem.attr('class',cssClasses);
             }
             if (o.href && o.href !== '#') {
@@ -992,9 +992,13 @@
                     };
                 }
 <<<<<<< Upstream, based on origin/release/4.0.3
+<<<<<<< Upstream, based on origin/release/4.0.3
+=======
+>>>>>>> a0b6e2b #138 - removing commented old code. corrected indentation
                  else {
                     params.source = function(request, response) {
                         $.ajax({
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
                             url : self.addForms(o.formids, url),
                             data : request,
@@ -1004,6 +1008,11 @@
                             data: request,
                             success: function(data){
 >>>>>>> 3f7e3ca refs #36
+=======
+                            url : self.addForms(o.formids, url),
+                            data : request,
+                            success : function(data) {
+>>>>>>> a0b6e2b #138 - removing commented old code. corrected indentation
                                 response(data);
                             },
                             error : function(jqXHR, textStatus, errorThrown) {
@@ -1021,6 +1030,7 @@
                             dataType : 'json'
                         });
                     }
+<<<<<<< Upstream, based on origin/release/4.0.3
 =======
                 else {
                     params.source = function (request, response) {
@@ -1036,6 +1046,8 @@
                         });
                     };
 >>>>>>> bb894ed added requestType functionality to sj:autocompleter
+=======
+>>>>>>> a0b6e2b #138 - removing commented old code. corrected indentation
                 }
             }
             else if (o.list && o.selectBox === false) {
