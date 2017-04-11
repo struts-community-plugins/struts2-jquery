@@ -17,16 +17,12 @@
         _createAutocomplete: function() {
             var self = this.element;
             var selected = this.element.children( ":selected" ),
-                value = selected.val() ? selected.text() : "";
+                value = selected.val() ? selected.text() : "";       
             //Fixes #46 add custom/error classes to widget
             var classes = "s2j-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left";
             var elemClasses = this.element.attr("class");
             if (typeof elemClasses != 'undefined' && elemClasses != ""){
-<<<<<<< Upstream, based on origin/release/4.0.3
                 classes = classes + " " + elemClasses;
-=======
-            	classes = classes + " " + elemClasses;
->>>>>>> 8c708c0 Fixes #46 
             }
             this.input = $( "<input>" )
                 .appendTo( this.wrapper )
