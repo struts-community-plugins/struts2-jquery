@@ -867,7 +867,7 @@
             //Fixes #46 add custom/error classes to widget
             cssClasses = $(self.escId(o.hiddenid)).attr('class');
             if (typeof cssClasses !== 'undefined' && cssClasses !== ""){
-            	$elem.attr('class',cssClasses);
+                $elem.attr('class',cssClasses);
             }
             if (o.href && o.href !== '#') {
                 url = o.href;
@@ -918,16 +918,15 @@
                                 self.hideIndicator(o.indicatorid);
                             },
                             error: function(jqXHR, textStatus, errorThrown){
-    							if (o.onerr) {
-    								$.each(o.onerr.split(','), function(i, etopic) {
-    									var orginal = {};
-    									orginal.request = jqXHR;
-    									orginal.status = textStatus;
-    									orginal.error = errorThrown;
-    									self.publishTopic($elem, etopic, orginal);
-    								});
-
-    							}
+                                if (o.onerr) {
+                                    $.each(o.onerr.split(','), function(i, etopic) {
+                                        var orginal = {};
+                                        orginal.request = jqXHR;
+                                        orginal.status = textStatus;
+                                        orginal.error = errorThrown;
+                                        self.publishTopic($elem, etopic, orginal);
+                                    });
+                                }
                             },
                             success: function (data) {
                                 self.currentXhr[o.id] = null;

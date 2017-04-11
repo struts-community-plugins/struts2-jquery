@@ -22,7 +22,7 @@
             var classes = "s2j-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left";
             var elemClasses = this.element.attr("class");
             if (typeof elemClasses != 'undefined' && elemClasses != ""){
-            	classes = classes + " " + elemClasses;
+                classes = classes + " " + elemClasses;
             }
             this.input = $( "<input>" )
                 .appendTo( this.wrapper )
