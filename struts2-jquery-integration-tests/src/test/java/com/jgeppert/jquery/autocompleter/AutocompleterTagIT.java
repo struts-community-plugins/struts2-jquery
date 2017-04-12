@@ -1,11 +1,8 @@
 package com.jgeppert.jquery.autocompleter;
 
-import com.jgeppert.jquery.selenium.JQueryIdleCondition;
-import com.jgeppert.jquery.selenium.JQueryNoAnimations;
-import com.jgeppert.jquery.selenium.WebDriverFactory;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -17,13 +14,16 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
+import com.jgeppert.jquery.junit.category.PhantomJSCategory;
+import com.jgeppert.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.JQueryNoAnimations;
+import com.jgeppert.jquery.selenium.WebDriverFactory;
 
 @RunWith(Parameterized.class)
 @Category({HtmlUnitCategory.class, PhantomJSCategory.class})
@@ -31,18 +31,18 @@ public class AutocompleterTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                 { "http://localhost:8080/regular" }, 
+                 { "http://localhost:8080/regular" },
                  { "http://localhost:8080/uncompressed" },
-                 { "http://localhost:8080/loadatonce" }, 
-                 { "http://localhost:8080/loadfromgoogle" }  
+                 { "http://localhost:8080/loadatonce" },
+                 { "http://localhost:8080/loadfromgoogle" }
            });
     }
-    
+
     private static final JQueryIdleCondition JQUERY_IDLE = new JQueryIdleCondition();
     private static final JQueryNoAnimations JQUERY_NO_ANIMATIONS = new JQueryNoAnimations();
 
-    private String baseUrl;        
-    private WebDriver driver;        
+    private String baseUrl;
+    private WebDriver driver;
 
     public AutocompleterTagIT(final String baseUrl) {
         this.baseUrl = baseUrl;
@@ -167,5 +167,56 @@ public class AutocompleterTagIT {
         Thread.sleep(1000);
 	Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
     }
+
+	@Test
+	public void testAjaxArrayErrorTopic() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		driver.get(baseUrl + "/autocompleter/ajaxarrayerrortopic.action");
+
+		WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+		WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+		WebElement errorContainer = driver.findElement(By.id("errorContainer"));
+
+		autocompleteInputWidget.sendKeys("j");
+		Thread.sleep(1000);
+		Assert.assertEquals(0, driver.findElements(By.tagName("li")).size());
+
+		List<WebElement> ps = errorContainer.findElements(By.tagName("p"));
+		Assert.assertEquals(2, ps.size());
+
+		List<String> result = new ArrayList<>();
+		for (WebElement p : ps) {
+			result.add(p.getText());
+		}
+
+		Assert.assertThat(result, containsInAnyOrder("topic1", "topic2"));
+
+	}
+
+	@Test
+	public void testAjaxArrayInsideObjectErrorTopic() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		driver.get(baseUrl + "/autocompleter/ajaxarrayinsideobjecterrortopic.action");
+
+		WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+		WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+		WebElement errorContainer = driver.findElement(By.id("errorContainer"));
+
+		autocompleteInputWidget.sendKeys("j");
+		Thread.sleep(1000);
+
+		List<WebElement> ps = errorContainer.findElements(By.tagName("p"));
+		Assert.assertEquals(2, ps.size());
+
+		List<String> result = new ArrayList<>();
+		for (WebElement p : ps) {
+			result.add(p.getText());
+		}
+
+		Assert.assertThat(result, containsInAnyOrder("topic1", "topic2"));
+
+	}
 }
 
