@@ -1,13 +1,20 @@
 package com.jgeppert.jquery.autocompleter;
 
 <<<<<<< Upstream, based on origin/release/4.0.3
+<<<<<<< Upstream, based on origin/release/4.0.3
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.contains;
 =======
 import static org.hamcrest.Matchers.containsInAnyOrder;
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+import com.jgeppert.jquery.selenium.JQueryIdleCondition;
+import com.jgeppert.jquery.selenium.JQueryNoAnimations;
+import com.jgeppert.jquery.selenium.WebDriverFactory;
+import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
+import com.jgeppert.jquery.junit.category.PhantomJSCategory;
+>>>>>>> 74116da reverted to fix code style
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -19,24 +26,25 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
 import org.openqa.selenium.support.ui.ExpectedConditions;
 =======
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+>>>>>>> 74116da reverted to fix code style
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
-import com.jgeppert.jquery.selenium.JQueryIdleCondition;
-import com.jgeppert.jquery.selenium.JQueryNoAnimations;
-import com.jgeppert.jquery.selenium.WebDriverFactory;
-
 @RunWith(Parameterized.class)
-@Category({ HtmlUnitCategory.class, PhantomJSCategory.class })
+@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
 public class AutocompleterTagIT {
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -58,7 +66,22 @@ public class AutocompleterTagIT {
 		                { "http://localhost:8080/loadatonce" }, { "http://localhost:8080/loadfromgoogle" } });
 	}
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+                 { "http://localhost:8080/regular" }, 
+                 { "http://localhost:8080/uncompressed" },
+                 { "http://localhost:8080/loadatonce" }, 
+                 { "http://localhost:8080/loadfromgoogle" }  
+           });
+    }
+    
+    private static final JQueryIdleCondition JQUERY_IDLE = new JQueryIdleCondition();
+    private static final JQueryNoAnimations JQUERY_NO_ANIMATIONS = new JQueryNoAnimations();
+>>>>>>> 74116da reverted to fix code style
 
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
     private String baseUrl;
     private WebDriver driver;
@@ -66,37 +89,43 @@ public class AutocompleterTagIT {
 	private static final JQueryIdleCondition JQUERY_IDLE = new JQueryIdleCondition();
 	private static final JQueryNoAnimations JQUERY_NO_ANIMATIONS = new JQueryNoAnimations();
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+    private String baseUrl;        
+    private WebDriver driver;        
+>>>>>>> 74116da reverted to fix code style
 
-	private String baseUrl;
-	private WebDriver driver;
+    public AutocompleterTagIT(final String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
 
-	public AutocompleterTagIT(final String baseUrl) {
-		this.baseUrl = baseUrl;
-	}
+    @Before
+    public void before() {
+        driver = WebDriverFactory.getWebDriver();
+    }
 
-	@Before
-	public void before() {
-		driver = WebDriverFactory.getWebDriver();
-	}
+    @After
+    public void after() {
+        driver.quit();
+    }
 
-	@After
-	public void after() {
-		driver.quit();
-	}
+    @Test
+    public void testListData() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
 
-	@Test
-	public void testListData() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.get(baseUrl + "/autocompleter/list.action");
 
-		driver.get(baseUrl + "/autocompleter/list.action");
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
 
-		WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-		WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
 
-		autocompleteInputWidget.sendKeys("j");
-		Thread.sleep(1000);
-		Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
@@ -122,25 +151,31 @@ public class AutocompleterTagIT {
 		Thread.sleep(1000);
 		Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+    }
+>>>>>>> 74116da reverted to fix code style
 
-		driver.findElements(By.tagName("li")).get(0).click();
-		Thread.sleep(1000);
-		Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
-	}
+    @Test
+    public void testAjaxArray() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
 
-	@Test
-	public void testAjaxArray() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.get(baseUrl + "/autocompleter/ajaxarray.action");
 
-		driver.get(baseUrl + "/autocompleter/ajaxarray.action");
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
 
-		WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-		WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
 
-		autocompleteInputWidget.sendKeys("j");
-		Thread.sleep(1000);
-		Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
@@ -151,25 +186,31 @@ public class AutocompleterTagIT {
 		Thread.sleep(1000);
 		Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+    }
+>>>>>>> 74116da reverted to fix code style
 
-		driver.findElements(By.tagName("li")).get(0).click();
-		Thread.sleep(1000);
-		Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
-	}
+    @Test
+    public void testAjaxArrayInsideObject() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
 
-	@Test
-	public void testAjaxArrayInsideObject() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.get(baseUrl + "/autocompleter/ajaxarrayinsideobject.action");
 
-		driver.get(baseUrl + "/autocompleter/ajaxarrayinsideobject.action");
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
 
-		WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-		WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
 
-		autocompleteInputWidget.sendKeys("j");
-		Thread.sleep(1000);
-		Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
@@ -180,25 +221,31 @@ public class AutocompleterTagIT {
 		Thread.sleep(1000);
 		Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+    }
+>>>>>>> 74116da reverted to fix code style
 
-		driver.findElements(By.tagName("li")).get(0).click();
-		Thread.sleep(1000);
-		Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
-	}
+    @Test
+    public void testAjaxMapInsideObject() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
 
-	@Test
-	public void testAjaxMapInsideObject() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.get(baseUrl + "/autocompleter/ajaxmapinsideobject.action");
 
-		driver.get(baseUrl + "/autocompleter/ajaxmapinsideobject.action");
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
 
-		WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-		WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
 
-		autocompleteInputWidget.sendKeys("j");
-		Thread.sleep(1000);
-		Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
@@ -209,25 +256,31 @@ public class AutocompleterTagIT {
 		Thread.sleep(1000);
 		Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
+    }
+>>>>>>> 74116da reverted to fix code style
 
-		driver.findElements(By.tagName("li")).get(0).click();
-		Thread.sleep(1000);
-		Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
-	}
+    @Test
+    public void testAjaxObjectsInsideObject() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
 
-	@Test
-	public void testAjaxObjectsInsideObject() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.get(baseUrl + "/autocompleter/ajaxobjectsinsideobject.action");
 
-		driver.get(baseUrl + "/autocompleter/ajaxobjectsinsideobject.action");
+        WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
 
-		WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-		WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        autocompleteInputWidget.sendKeys("j");
+        Thread.sleep(1000);
+        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
 
-		autocompleteInputWidget.sendKeys("j");
-		Thread.sleep(1000);
-		Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        autocompleteInputWidget.sendKeys("u");
+        Thread.sleep(1000);
+        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 
+<<<<<<< Upstream, based on origin/release/4.0.3
 <<<<<<< Upstream, based on origin/release/4.0.3
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
@@ -356,4 +409,11 @@ public class AutocompleterTagIT {
 
 	}
 >>>>>>> 12c183d references #36 - add integration test for Autocompleter's error topics
+=======
+        driver.findElements(By.tagName("li")).get(0).click();
+        Thread.sleep(1000);
+	Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
+    }
+>>>>>>> 74116da reverted to fix code style
 }
+
