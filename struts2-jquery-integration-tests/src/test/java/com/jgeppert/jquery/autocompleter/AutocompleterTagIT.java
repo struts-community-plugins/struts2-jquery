@@ -1,6 +1,7 @@
 package com.jgeppert.jquery.autocompleter;
 
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.Matchers.contains;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,6 +80,21 @@ public class AutocompleterTagIT {
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
         Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+
+        //verify #46 - handling of cssClass attribute
+        Assert.assertThat(autocompleteInputWidget.getAttribute("class"), containsString("extra-class"));
+    }
+
+    @Test
+    public void testListDataWithCssErrorClass() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        this.testListData();
+        driver.get(baseUrl + "/autocompleter/list.action?addError=true");
+
+        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+
+        //verify #46 - handling of cssErrorClass attribute
+        Assert.assertThat(autocompleteInputWidget.getAttribute("class"), containsString("error-class"));
     }
 
     @Test
@@ -169,6 +185,13 @@ public class AutocompleterTagIT {
         Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
     }
 
+
+    /**
+     * Issue #36 - verify that errorTopics are fired if AJAX request fail.
+     * Autocompleter waiting for a JSON array
+     *
+     * @throws InterruptedException
+     */
     @Test
     public void testAjaxArrayErrorTopic() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -190,10 +213,16 @@ public class AutocompleterTagIT {
             result.add(p.getText());
         }
 
-        Assert.assertThat(result, containsInAnyOrder("topic1", "topic2"));
+        Assert.assertThat(result, contains("topic1", "topic2"));
 
     }
 
+    /**
+     * Issue #36 - verify that errorTopics are fired if AJAX request fail.
+     * Autocompleter waiting for a JSON array inside an object
+     *
+     * @throws InterruptedException
+     */
     @Test
     public void testAjaxArrayInsideObjectErrorTopic() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -214,7 +243,7 @@ public class AutocompleterTagIT {
             result.add(p.getText());
         }
 
-        Assert.assertThat(result, containsInAnyOrder("topic1", "topic2"));
+        Assert.assertThat(result, contains("topic1", "topic2"));
 
     }
 }

@@ -19,4 +19,4 @@
 <s:url namespace="/ajax" action="months" var="ajaxMonthsArrayUrl"/>
 <sj:autocompleter id="autocompleterMonths" name="month" href="a/wrong/url"
     onErrorTopics="autocompleteErrorTopic,autocompleteErrorTopic2" label="Select Month" loadMinimumCount="1" delay="50" />
-<span id="errorContainer"></span>
+<div id="errorContainer"></div>
