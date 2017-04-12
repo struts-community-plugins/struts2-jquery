@@ -17,14 +17,6 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-<<<<<<< Upstream, based on origin/release/4.0.3
-=======
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
->>>>>>> 7ccdda6 trying to use WebDriverWait instead of Thread.sleep
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -85,7 +77,7 @@ public class AutocompleterTagIT {
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
     }
 
     @Test
@@ -107,7 +99,7 @@ public class AutocompleterTagIT {
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
     }
 
     @Test
@@ -129,7 +121,7 @@ public class AutocompleterTagIT {
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+	Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
     }
 
     @Test
@@ -151,7 +143,7 @@ public class AutocompleterTagIT {
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
+	Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
     }
 
     @Test
@@ -173,58 +165,6 @@ public class AutocompleterTagIT {
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
+	Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
     }
-<<<<<<< Upstream, based on origin/release/4.0.3
-=======
-
-    @Test
-    public void testAjaxArrayErrorTopic() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-
-        driver.get(baseUrl + "/autocompleter/ajaxarrayerrortopic.action");
-
-        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
-        WebElement errorContainer = driver.findElement(By.id("errorContainer"));
-
-        autocompleteInputWidget.sendKeys("j");
-        wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(errorContainer, By.tagName("p")));
-        Assert.assertEquals(0, driver.findElements(By.tagName("li")).size());
-
-        List<WebElement> ps = errorContainer.findElements(By.tagName("p"));
-        Assert.assertEquals(2, ps.size());
-
-        List<String> result = new ArrayList<>();
-        for (WebElement p : ps) {
-            result.add(p.getText());
-        }
-
-        Assert.assertThat(result, containsInAnyOrder("topic1", "topic2"));
-
-    }
-
-    @Test
-    public void testAjaxArrayInsideObjectErrorTopic() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-
-        driver.get(baseUrl + "/autocompleter/ajaxarrayinsideobjecterrortopic.action");
-
-        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
-        WebElement errorContainer = driver.findElement(By.id("errorContainer"));
-
-        autocompleteInputWidget.sendKeys("j");
-        wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(errorContainer, By.tagName("p")));
-
-        List<WebElement> ps = errorContainer.findElements(By.tagName("p"));
-        Assert.assertEquals(2, ps.size());
-
-        List<String> result = new ArrayList<>();
-        for (WebElement p : ps) {
-            result.add(p.getText());
-        }
-
-        Assert.assertThat(result, containsInAnyOrder("topic1", "topic2"));
-
-    }
->>>>>>> 7ccdda6 trying to use WebDriverWait instead of Thread.sleep
 }
