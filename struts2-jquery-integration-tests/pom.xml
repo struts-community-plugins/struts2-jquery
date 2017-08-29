@@ -248,6 +248,13 @@
       </dependency>
 
       <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-remote-driver</artifactId>
+        <version>${selenium.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>${lombok.version}</version>
