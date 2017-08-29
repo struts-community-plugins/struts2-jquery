@@ -29,6 +29,7 @@
     <commons-codec.version>1.10</commons-codec.version>
     <commons-io.version>2.5</commons-io.version>
     <commons-lang.version>3.6</commons-lang.version>
+    <xml-apis.version>1.4.01</xml-apis.version>
 
     <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
     <failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
@@ -258,6 +259,13 @@
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-support</artifactId>
         <version>${selenium.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>xml-apis</groupId>
+        <artifactId>xml-apis</artifactId>
+        <version>${xml-apis.version}</version>
         <scope>test</scope>
       </dependency>
 
