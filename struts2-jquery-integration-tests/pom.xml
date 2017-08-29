@@ -27,6 +27,7 @@
     <guava.version>23.0</guava.version>
     <phantomjsdriver.version>1.4.3</phantomjsdriver.version>
     <commons-codec.version>1.10</commons-codec.version>
+    <commons-io.version>2.5</commons-io.version>
 
     <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
     <failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
@@ -224,6 +225,12 @@
         <artifactId>commons-codec</artifactId>
         <version>${commons-codec.version}</version>
         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons-io.version}</version>
       </dependency>
 
       <dependency>
