@@ -26,6 +26,7 @@
     <lombok.version>1.16.2</lombok.version>
     <guava.version>23.0</guava.version>
     <phantomjsdriver.version>1.4.3</phantomjsdriver.version>
+    <commons-codec.version>1.10</commons-codec.version>
 
     <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
     <failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
@@ -215,6 +216,13 @@
         <groupId>com.codeborne</groupId>
         <artifactId>phantomjsdriver</artifactId>
         <version>${phantomjsdriver.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>${commons-codec.version}</version>
         <scope>test</scope>
       </dependency>
 
