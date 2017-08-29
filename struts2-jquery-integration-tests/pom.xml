@@ -24,6 +24,7 @@
     <selenium.version>3.5.2</selenium.version>
     <htmlunit-driver.version>2.27</htmlunit-driver.version>
     <lombok.version>1.16.2</lombok.version>
+    <guava.version>23.0</guava.version>
 
     <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
     <failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
@@ -199,6 +200,13 @@
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>htmlunit-driver</artifactId>
         <version>${htmlunit-driver.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
         <scope>test</scope>
       </dependency>
 
