@@ -21,7 +21,7 @@
     <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
     <!-- dependencies -->
     <junit.version>4.12</junit.version>
-    <selenium.version>3.2.0</selenium.version>
+    <selenium.version>3.5.2</selenium.version>
     <htmlunit-driver.version>2.27</htmlunit-driver.version>
     <lombok.version>1.16.2</lombok.version>
 
