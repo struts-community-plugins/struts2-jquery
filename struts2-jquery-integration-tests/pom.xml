@@ -22,7 +22,7 @@
     <!-- dependencies -->
     <junit.version>4.12</junit.version>
     <selenium.version>3.2.0</selenium.version>
-    <htmlunit-driver.version>2.25</htmlunit-driver.version>
+    <htmlunit-driver.version>2.27</htmlunit-driver.version>
     <lombok.version>1.16.2</lombok.version>
 
     <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
