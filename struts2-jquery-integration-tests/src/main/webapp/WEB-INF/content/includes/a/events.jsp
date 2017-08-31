@@ -3,11 +3,11 @@
 
 <script type="text/javascript">
   jQuery.subscribe("ajaxlinkclick", function(event, data) {
-    alert("ajax link clicked");
+    document.getElementById("ajaxeventsdiv").appendChild(document.createTextNode("ajax link clicked"));
   }); 
 
   jQuery.subscribe("ajaxlinkcomplete", function(event, data) {
-    alert("ajax link complete");
+    document.getElementById("ajaxeventsdiv").appendChild(document.createTextNode("ajax link complete"));
   }); 
 </script>
 
@@ -18,3 +18,4 @@
   Run AJAX action
 </sj:a>
 
+<div id="ajaxeventsdiv"></div>
