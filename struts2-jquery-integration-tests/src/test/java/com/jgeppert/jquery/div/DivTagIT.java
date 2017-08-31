@@ -74,7 +74,6 @@ public class DivTagIT {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         driver.get(baseUrl + "/div/events.action");
-        WebElement ajaxDiv = driver.findElement(By.id("ajaxdiv"));
 
         wait.until(JQUERY_IDLE);
         wait.until(ExpectedConditions.alertIsPresent());
@@ -91,6 +90,8 @@ public class DivTagIT {
         Assert.assertEquals("Complete div", alert.getText());
 
         alert.accept();
+
+        WebElement ajaxDiv = driver.findElement(By.id("ajaxdiv"));
 
         Assert.assertEquals("This is simple text from an ajax call.", ajaxDiv.getText());
     }
