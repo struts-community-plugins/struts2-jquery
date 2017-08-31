@@ -17,7 +17,6 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class})
+@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
 public class ATagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -57,7 +56,6 @@ public class ATagIT {
     }
 
     @Test
-    @Category({PhantomJSCategory.class})
     public void testSimpleAjaxPageLink() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -74,7 +72,6 @@ public class ATagIT {
     }
     
     @Test
-    @Category({PhantomJSCategory.class})
     public void testMultipleTargets() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -95,7 +92,6 @@ public class ATagIT {
     }
 
     @Test
-    @Category({PhantomJSCategory.class})
     public void testFormSubmit() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -136,26 +132,13 @@ public class ATagIT {
         ajaxLink.click();
 
         wait.until(JQUERY_IDLE);
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-	
-        Assert.assertEquals("ajax link clicked", alert.getText());
 
-        alert.accept();
-
-        wait.until(JQUERY_IDLE);
-        wait.until(ExpectedConditions.alertIsPresent());
-        alert = driver.switchTo().alert();
-
-        Assert.assertEquals("ajax link complete", alert.getText());
-
-        alert.accept();
-	
+	WebElement ajaxeventsdiv = driver.findElement(By.id("ajaxeventsdiv"));
+        Assert.assertEquals("ajax link clickedajax link complete", ajaxeventsdiv.getText());
         Assert.assertEquals("This is simple text from an ajax call.", result.getText());
     }
 
     @Test
-    @Category({PhantomJSCategory.class})
     public void testJsonResult() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
