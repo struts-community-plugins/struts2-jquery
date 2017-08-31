@@ -3,11 +3,11 @@
 
 <script type="text/javascript">
   jQuery.subscribe("beforeformsubmit", function(event, data) {
-    alert("ajax submit clicked");
+    document.getElementById("ajaxeventsdiv").appendChild(document.createTextNode("ajax submit clicked"));
   }); 
 
   jQuery.subscribe("formsubmitcomplete", function(event, data) {
-    alert("ajax submit complete");
+    document.getElementById("ajaxeventsdiv").appendChild(document.createTextNode("ajax submit complete"));
   }); 
 </script>
 
@@ -18,4 +18,4 @@
   <s:textfield id="echo" name="echo" value="something to echo"/>
   <sj:submit id="formsubmit" onBeforeTopics="beforeformsubmit" onCompleteTopics="formsubmitcomplete" targets="formResult" value="Submit Form" button="true"/>
 </s:form>
-
+<div id="ajaxeventsdiv"></div>

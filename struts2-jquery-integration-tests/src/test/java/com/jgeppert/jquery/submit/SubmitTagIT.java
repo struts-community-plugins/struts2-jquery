@@ -17,7 +17,6 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class})
+@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
 public class SubmitTagIT {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -57,7 +56,6 @@ public class SubmitTagIT {
     }
 
     @Test
-    @Category({PhantomJSCategory.class})
     public void testSimpleFormSubmit() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -85,7 +83,6 @@ public class SubmitTagIT {
     }
 
     @Test
-    @Category({PhantomJSCategory.class})
     public void testFormSubmitOutside() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -127,27 +124,15 @@ public class SubmitTagIT {
         ajaxSubmit.click();
 
         wait.until(JQUERY_IDLE);
-        wait.until(ExpectedConditions.alertIsPresent());
-
-        Alert alert = driver.switchTo().alert();
-
-        Assert.assertEquals("ajax submit clicked", alert.getText());
-
-        alert.accept();
 
         wait.until(JQUERY_IDLE);
-        wait.until(ExpectedConditions.alertIsPresent());
-        alert = driver.switchTo().alert();
 
-        Assert.assertEquals("ajax submit complete", alert.getText());
-
-        alert.accept();
-
+	WebElement ajaxeventsdiv = driver.findElement(By.id("ajaxeventsdiv"));
+        Assert.assertEquals("ajax submit clickedajax submit complete", ajaxeventsdiv.getText());
         Assert.assertEquals("Echo : something to echo", formResult.getText());
     }
  
     @Test
-    @Category({PhantomJSCategory.class})
     public void testFormSubmitListenTopics() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
