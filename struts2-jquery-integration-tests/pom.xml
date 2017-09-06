@@ -96,7 +96,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven-failsafe-plugin.version}</version>
           <configuration>
-            <forkCount>4</forkCount>
+            <forkCount>2</forkCount>
             <reuseForks>true</reuseForks>
             <groups>${failsafe.test.category}</groups>
             <systemProperties>
