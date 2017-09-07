@@ -18,7 +18,7 @@
     <properties>
         <spring.version>4.1.0.RELEASE</spring.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
-        <log4j2.version>2.7</log4j2.version>
+        <log4j2.version>2.9.0</log4j2.version>
     </properties>
 
     <dependencies>
