@@ -323,7 +323,7 @@
 					if (o.sortableRows) {
 						self.log('sortable rows for : ' + o.id);
 						
-						if (!soo) {
+						if (!soo && soos) {
 							soo = eval("( " + soos + " )");
 						} else {
 							soo = {};
