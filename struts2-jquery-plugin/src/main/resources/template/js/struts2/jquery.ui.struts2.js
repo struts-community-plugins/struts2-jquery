@@ -850,7 +850,8 @@
         autocompleter: function ($elem, o) {
             var self = this,
                 params = {},
-                url = '';
+                url = '',
+                cssClasses;
             self.log('init autocompleter with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
@@ -862,6 +863,11 @@
                     "js/base/unique-id" + self.minSuffix + ".js",
                     "js/base/autocomplete" + self.minSuffix + ".js"
                 ]);
+            }
+            //Fixes #46 add custom/error classes to widget
+            cssClasses = $(self.escId(o.hiddenid)).attr('class');
+            if (typeof cssClasses !== 'undefined' && cssClasses !== ""){
+                $elem.attr('class',cssClasses);
             }
             if (o.href && o.href !== '#') {
                 url = o.href;
@@ -910,6 +916,17 @@
                             },
                             complete: function (request, status) {
                                 self.hideIndicator(o.indicatorid);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown){
+                                if (o.onerr) {
+                                    $.each(o.onerr.split(','), function(i, etopic) {
+                                        var orginal = {};
+                                        orginal.request = jqXHR;
+                                        orginal.status = textStatus;
+                                        orginal.error = errorThrown;
+                                        self.publishTopic($elem, etopic, orginal);
+                                    });
+                                }
                             },
                             success: function (data) {
                                 self.currentXhr[o.id] = null;
@@ -974,8 +991,29 @@
                         });
                     };
                 }
-                else {
-                    params.source = self.addForms(o.formids, url);
+                 else {
+                    params.source = function(request, response) {
+                        $.ajax({
+                            url : self.addForms(o.formids, url),
+                            data : request,
+                            success : function(data) {
+                                response(data);
+                            },
+                            error : function(jqXHR, textStatus, errorThrown) {
+                                if (o.onerr) {
+                                    $.each(o.onerr.split(','), function(i, etopic) {
+                                        var orginal = {};
+                                        orginal.request = jqXHR;
+                                        orginal.status = textStatus;
+                                        orginal.error = errorThrown;
+                                        self.publishTopic($elem, etopic,
+                                                orginal);
+                                    });
+                                }
+                            },
+                            dataType : 'json'
+                        });
+                    }
                 }
             }
             else if (o.list && o.selectBox === false) {
