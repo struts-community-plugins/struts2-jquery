@@ -975,7 +975,18 @@
                     };
                 }
                 else {
-                    params.source = self.addForms(o.formids, url);
+                    params.source = function (request, response) {
+                        self.abortReq(o.id);
+                        self.currentXhr[o.id] = $.ajax({
+                            url: self.addForms(o.formids, url),
+                            dataType: "json",
+                            type: o.requesttype,
+                            data: {
+                                term: request.term
+                            },
+                            success: response
+                        });
+                    };
                 }
             }
             else if (o.list && o.selectBox === false) {
