@@ -1,281 +1,282 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.jgeppert.struts2.jquery</groupId>
-    <artifactId>struts2-jquery</artifactId>
-    <version>4.0.3-SNAPSHOT</version>
-  </parent>
-  <artifactId>struts2-jquery-integration-tests</artifactId>
-  <name>Struts 2 jQuery Integration Tests</name>
-  <packaging>war</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
+        <artifactId>struts2-jquery</artifactId>
+        <version>4.0.3-SNAPSHOT</version>
+    </parent>
+    <artifactId>struts2-jquery-integration-tests</artifactId>
+    <name>Struts 2 jQuery Integration Tests</name>
+    <packaging>war</packaging>
 
-  <scm>
-    <url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-integration-tests/</url>
-  </scm>
+    <scm>
+        <url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-integration-tests/</url>
+    </scm>
 
-  <properties>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <!-- plugins -->
-    <jetty-maven-plugin.version>9.4.0.v20161208</jetty-maven-plugin.version>
-    <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
-    <!-- dependencies -->
-    <junit.version>4.12</junit.version>
-    <selenium.version>3.5.2</selenium.version>
-    <htmlunit-driver.version>2.27</htmlunit-driver.version>
-    <lombok.version>1.16.2</lombok.version>
-    <guava.version>23.0</guava.version>
-    <phantomjsdriver.version>1.4.3</phantomjsdriver.version>
-    <commons-codec.version>1.10</commons-codec.version>
-    <commons-io.version>2.5</commons-io.version>
-    <commons-lang.version>3.6</commons-lang.version>
-    <xml-apis.version>1.4.01</xml-apis.version>
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- plugins -->
+        <jetty-maven-plugin.version>9.4.7.v20170914</jetty-maven-plugin.version>
+        <maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
+        <!-- dependencies -->
+        <junit.version>4.12</junit.version>
+        <selenium.version>3.6.0</selenium.version>
+        <htmlunit-driver.version>2.27</htmlunit-driver.version>
+        <lombok.version>1.16.18</lombok.version>
+        <guava.version>23.0</guava.version>
+        <phantomjsdriver.version>1.4.3</phantomjsdriver.version>
+        <commons-codec.version>1.10</commons-codec.version>
+        <commons-io.version>2.5</commons-io.version>
+        <commons-lang.version>3.6</commons-lang.version>
+        <xml-apis.version>1.4.01</xml-apis.version>
 
-    <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
-    <failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
-  </properties>
+        <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
+        <failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
+    </properties>
 
-  <profiles>
-    <profile>
-      <id>phantomjs</id>
-      <properties>
-        <failsafe.test.category>com.jgeppert.jquery.junit.category.PhantomJSCategory</failsafe.test.category>
-        <failsafe.webdriver.name>PhantomJS</failsafe.webdriver.name>
-      </properties>
-    </profile>
-  </profiles>
+    <profiles>
+        <profile>
+            <id>phantomjs</id>
+            <properties>
+                <failsafe.test.category>com.jgeppert.jquery.junit.category.PhantomJSCategory</failsafe.test.category>
+                <failsafe.webdriver.name>PhantomJS</failsafe.webdriver.name>
+            </properties>
+        </profile>
+    </profiles>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-      </plugin>
-    
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-      </plugin>
-    </plugins>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+            </plugin>
 
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-maven-plugin</artifactId>
-          <version>${jetty-maven-plugin.version}</version>
-          <configuration>
-            <stopKey>CTRL+C</stopKey>
-            <stopPort>8999</stopPort>
-            <scanIntervalSeconds>10</scanIntervalSeconds>
-          </configuration>
-          <executions>
-            <execution>
-              <id>start-jetty</id>
-              <phase>pre-integration-test</phase>
-              <goals>
-                <goal>start</goal>
-              </goals>
-              <configuration>
-                <scanIntervalSeconds>0</scanIntervalSeconds>
-                <daemon>true</daemon>
-              </configuration>
-            </execution>
-            <execution>
-              <id>stop-jetty</id>
-              <phase>post-integration-test</phase>
-              <goals>
-                <goal>stop</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
 
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>${maven-failsafe-plugin.version}</version>
-          <configuration>
-            <forkCount>2</forkCount>
-            <reuseForks>true</reuseForks>
-            <groups>${failsafe.test.category}</groups>
-            <systemProperties>
-                <property>
-                    <name>webDriverName</name>
-                    <value>${failsafe.webdriver.name}</value>
-                </property>
-            </systemProperties>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>integration-test</goal>
-                <goal>verify</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty-maven-plugin.version}</version>
+                    <configuration>
+                        <stopKey>CTRL+C</stopKey>
+                        <stopPort>8999</stopPort>
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>start-jetty</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>start</goal>
+                            </goals>
+                            <configuration>
+                                <scanIntervalSeconds>0</scanIntervalSeconds>
+                                <daemon>true</daemon>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>stop-jetty</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>stop</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.struts</groupId>
-      <artifactId>struts2-convention-plugin</artifactId>
-    </dependency>
-            
-    <dependency>
-      <groupId>com.jgeppert.struts2.jquery</groupId>
-      <artifactId>struts2-jquery-plugin</artifactId>
-    </dependency>
-            
-    <dependency>
-      <groupId>com.jgeppert.struts2.jquery</groupId>
-      <artifactId>struts2-jquery-tree-plugin</artifactId>
-    </dependency>
-      
-    <dependency>
-      <groupId>org.apache.struts</groupId>
-      <artifactId>struts2-json-plugin</artifactId>
-    </dependency>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-failsafe-plugin.version}</version>
+                    <configuration>
+                        <forkCount>2</forkCount>
+                        <reuseForks>true</reuseForks>
+                        <groups>${failsafe.test.category}</groups>
+                        <systemProperties>
+                            <property>
+                                <name>webDriverName</name>
+                                <value>${failsafe.webdriver.name}</value>
+                            </property>
+                        </systemProperties>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-server</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>htmlunit-driver</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-    </dependency>
-  </dependencies>
-
-  <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.apache.struts</groupId>
-        <artifactId>struts2-convention-plugin</artifactId>
-        <version>${struts2.version}</version>
-      </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-convention-plugin</artifactId>
+        </dependency>
 
-      <dependency>
-        <groupId>com.jgeppert.struts2.jquery</groupId>
-        <artifactId>struts2-jquery-plugin</artifactId>
-        <version>${project.version}</version>
-      </dependency>
+        <dependency>
+            <groupId>com.jgeppert.struts2.jquery</groupId>
+            <artifactId>struts2-jquery-plugin</artifactId>
+        </dependency>
 
-      <dependency>
-        <groupId>com.jgeppert.struts2.jquery</groupId>
-        <artifactId>struts2-jquery-tree-plugin</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      
-      <dependency>
-        <groupId>org.apache.struts</groupId>
-        <artifactId>struts2-json-plugin</artifactId>
-        <version>${struts2.version}</version>
-      </dependency>
-      
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>
+        <dependency>
+            <groupId>com.jgeppert.struts2.jquery</groupId>
+            <artifactId>struts2-jquery-tree-plugin</artifactId>
+        </dependency>
 
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-server</artifactId>
-        <version>${selenium.version}</version>
-        <scope>test</scope>
-      </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+        </dependency>
 
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>htmlunit-driver</artifactId>
-        <version>${htmlunit-driver.version}</version>
-        <scope>test</scope>
-      </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
 
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${guava.version}</version>
-        <scope>test</scope>
-      </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+        </dependency>
 
-      <dependency>
-        <groupId>com.codeborne</groupId>
-        <artifactId>phantomjsdriver</artifactId>
-        <version>${phantomjsdriver.version}</version>
-        <scope>test</scope>
-      </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>htmlunit-driver</artifactId>
+        </dependency>
 
-      <dependency>
-        <groupId>commons-codec</groupId>
-        <artifactId>commons-codec</artifactId>
-        <version>${commons-codec.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commons-io.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>${commons-lang.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-api</artifactId>
-        <version>${selenium.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-remote-driver</artifactId>
-        <version>${selenium.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-support</artifactId>
-        <version>${selenium.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>xml-apis</groupId>
-        <artifactId>xml-apis</artifactId>
-        <version>${xml-apis.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-        <scope>provided</scope>
-      </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
-  </dependencyManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts2-convention-plugin</artifactId>
+                <version>${struts2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jgeppert.struts2.jquery</groupId>
+                <artifactId>struts2-jquery-plugin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jgeppert.struts2.jquery</groupId>
+                <artifactId>struts2-jquery-tree-plugin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts2-json-plugin</artifactId>
+                <version>${struts2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-server</artifactId>
+                <version>${selenium.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>htmlunit-driver</artifactId>
+                <version>${htmlunit-driver.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codeborne</groupId>
+                <artifactId>phantomjsdriver</artifactId>
+                <version>${phantomjsdriver.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-api</artifactId>
+                <version>${selenium.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-remote-driver</artifactId>
+                <version>${selenium.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-support</artifactId>
+                <version>${selenium.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+                <version>${xml-apis.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
 
