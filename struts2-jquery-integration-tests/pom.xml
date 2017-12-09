@@ -18,7 +18,7 @@
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- plugins -->
-        <jetty-maven-plugin.version>9.4.7.v20170914</jetty-maven-plugin.version>
+        <jetty-maven-plugin.version>9.4.8.v20171121</jetty-maven-plugin.version>
         <maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
         <!-- dependencies -->
         <junit.version>4.12</junit.version>
