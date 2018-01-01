@@ -18,7 +18,6 @@
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- plugins -->
-        <jetty-maven-plugin.version>9.4.8.v20171121</jetty-maven-plugin.version>
         <maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
         <!-- dependencies -->
         <junit.version>4.12</junit.version>
@@ -64,7 +63,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>${jetty-maven-plugin.version}</version>
+                    <version>${jetty.plugin.version}</version>
                     <configuration>
                         <stopKey>CTRL+C</stopKey>
                         <stopPort>8999</stopPort>
