@@ -24,7 +24,7 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
 ### versions and compatibility
 | `struts2-jquery` version | `struts2` version               |
 |--------------------------|---------------------------------|
-| `4.0.2`                  | version >= `2.5`                |
+| `4.0.3`                  | version >= `2.5`                |
 | `3.7.1`                  | `2.3.16` <= version <= `2.3.31` |
 
 As a general rule of thumb, it's advised to upgrade to the latest version within the same major version range. This should avoid bugs and vulnerabilities that already got fixed in more recent versions.
@@ -41,32 +41,32 @@ Since version 1.8.3 the plugin is found in the central Maven repository. Just ad
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-plugin</artifactId>
-        <version>4.0.2</version>
+        <version>4.0.3</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-grid-plugin</artifactId>
-        <version>4.0.2</version>
+        <version>4.0.3</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-datatables-plugin</artifactId>
-        <version>4.0.2</version>
+        <version>4.0.3</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-richtext-plugin</artifactId>
-        <version>4.0.2</version>
+        <version>4.0.3</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-tree-plugin</artifactId>
-        <version>4.0.2</version>
+        <version>4.0.3</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-mobile-plugin</artifactId>
-        <version>4.0.2</version>
+        <version>4.0.3</version>
     </dependency>
     ...
 </dependencies>
