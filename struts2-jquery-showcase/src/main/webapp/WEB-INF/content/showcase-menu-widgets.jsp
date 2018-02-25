@@ -118,7 +118,16 @@
                 <sj:menuItem id="datatablesEditorLink" href="%{urldatatablesedit}" targets="content" title="DataTables custom Editor" />
             </sj:menu>
         </sj:menuItem>
-
+		<sj:menuItem title="Handlebars JS Templates">
+            <sj:menu id="subMenuHandlebars">
+            	<s:url var="urlhandlebars" action="handlebars" namespace="/handlebarsjs"/>
+            	<sj:menuItem id="handlebarsLink" href="%{urlhandlebars}" targets="content" title="Remote JSON link triggering Handlebars Template" />
+            	<s:url var="urlremotehandlebars" action="remote-handlebars" namespace="/handlebarsjs"/>
+            	<sj:menuItem id="remotehandlebarsLink" href="%{urlremotehandlebars}" targets="content" title="Remote JSON link triggering Remote Handlebars Template" />
+            	<s:url var="urlprecompiledhandlebars" action="dialog-precompiled-handlebars" namespace="/handlebarsjs"/>
+            	<sj:menuItem id="precompiledhandlebarsLink" href="%{urlprecompiledhandlebars}" targets="content" title="Remote JSON link triggering Remote precompiled Handlebars Template" />
+            </sj:menu>
+        </sj:menuItem>
 		<sj:menuItem title="Menu">
 			<sj:menu id="subMenuMenu">
 

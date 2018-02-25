@@ -83,7 +83,8 @@
 	<modules>
 		<module>struts2-jquery-plugin</module>
 		<module>struts2-jquery-grid-plugin</module>
-		<module>struts2-jquery-datatables-plugin</module>		
+		<module>struts2-jquery-datatables-plugin</module>	
+		<module>struts2-jquery-handlebarsjs-plugin</module>	
 		<module>struts2-jquery-richtext-plugin</module>
 		<module>struts2-jquery-chart-plugin</module>
 		<module>struts2-jquery-tree-plugin</module>
