@@ -1,15 +1,15 @@
-/*! FixedColumns 3.2.2
- * ©2010-2016 SpryMedia Ltd - datatables.net/license
+/*! FixedColumns 3.2.4
+ * ©2010-2017 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     FixedColumns
  * @description Freeze columns in place on a scrolling DataTable
- * @version     3.2.2
+ * @version     3.2.4
  * @file        dataTables.fixedColumns.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2016 SpryMedia Ltd.
+ * @copyright   Copyright 2010-2017 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -54,7 +54,7 @@ var _firefoxScroll;
  * When making use of DataTables' x-axis scrolling feature, you may wish to
  * fix the left most column in place. This plug-in for DataTables provides
  * exactly this option (note for non-scrolling tables, please use the
- * FixedHeader plug-in, which can fix headers, footers and columns). Key
+ * FixedHeader plug-in, which can fix headers and footers). Key
  * features include:
  *
  * * Freezes the left or right most columns to the side of the table
@@ -501,12 +501,14 @@ $.extend( FixedColumns.prototype , {
 
 		// When the mouse is down (drag scroll) the mouse controller cannot
 		// change, as the browser keeps the original element as the scrolling one
-		$(this.s.dt.nTableWrapper).on( 'mousedown.DTFC', function () {
-			mouseDown = true;
+		$(this.s.dt.nTableWrapper).on( 'mousedown.DTFC', function (e) {
+			if ( e.button === 0 ) {
+				mouseDown = true;
 
-			$(document).one( 'mouseup', function () {
-				mouseDown = false;
-			} );
+				$(document).one( 'mouseup', function () {
+					mouseDown = false;
+				} );
+			}
 		} );
 
 		// When the body is scrolled - scroll the left and right columns
@@ -677,13 +679,17 @@ $.extend( FixedColumns.prototype , {
 				// account of it, but it isn't in any cell
 				if ( that.s.aiOuterWidths.length === 0 ) {
 					border = $(that.s.dt.nTable).css('border-left-width');
-					iWidth += typeof border === 'string' ? 1 : parseInt( border, 10 );
+					iWidth += typeof border === 'string' && border.indexOf('px') === -1 ?
+						1 :
+						parseInt( border, 10 );
 				}
 
 				// Likewise with the final column on the right
 				if ( that.s.aiOuterWidths.length === that.s.dt.aoColumns.length-1 ) {
 					border = $(that.s.dt.nTable).css('border-right-width');
-					iWidth += typeof border === 'string' ? 1 : parseInt( border, 10 );
+					iWidth += typeof border === 'string' && border.indexOf('px') === -1 ?
+						1 :
+						parseInt( border, 10 );
 				}
 
 				that.s.aiOuterWidths.push( iWidth );
@@ -727,14 +733,14 @@ $.extend( FixedColumns.prototype , {
 
 		var nSWrapper =
 			$('<div class="DTFC_ScrollWrapper" style="position:relative; clear:both;">'+
-				'<div class="DTFC_LeftWrapper" style="position:absolute; top:0; left:0;">'+
+				'<div class="DTFC_LeftWrapper" style="position:absolute; top:0; left:0;" aria-hidden="true">'+
 					'<div class="DTFC_LeftHeadWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div>'+
 					'<div class="DTFC_LeftBodyWrapper" style="position:relative; top:0; left:0; overflow:hidden;">'+
 						'<div class="DTFC_LeftBodyLiner" style="position:relative; top:0; left:0; overflow-y:scroll;"></div>'+
 					'</div>'+
 					'<div class="DTFC_LeftFootWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div>'+
 				'</div>'+
-				'<div class="DTFC_RightWrapper" style="position:absolute; top:0; right:0;">'+
+				'<div class="DTFC_RightWrapper" style="position:absolute; top:0; right:0;" aria-hidden="true">'+
 					'<div class="DTFC_RightHeadWrapper" style="position:relative; top:0; left:0;">'+
 						'<div class="DTFC_RightHeadBlocker DTFC_Blocker" style="position:absolute; top:0; bottom:0;"></div>'+
 					'</div>'+
@@ -819,8 +825,8 @@ $.extend( FixedColumns.prototype , {
 		var that = this;
 		var oGrid = this.dom.grid;
 		var iWidth = $(oGrid.wrapper).width();
-		var iBodyHeight = $(this.s.dt.nTable.parentNode).outerHeight();
-		var iFullHeight = $(this.s.dt.nTable.parentNode.parentNode).outerHeight();
+		var iBodyHeight = this.s.dt.nTable.parentNode.offsetHeight;
+		var iFullHeight = this.s.dt.nTable.parentNode.parentNode.offsetHeight;
 		var oOverflow = this._fnDTOverflow();
 		var iLeftWidth = this.s.iLeftWidth;
 		var iRightWidth = this.s.iRightWidth;
@@ -877,6 +883,7 @@ $.extend( FixedColumns.prototype , {
 
 			scrollbarAdjust( oGrid.left.liner, iLeftWidth );
 			oGrid.left.liner.style.height = iBodyHeight+"px";
+			oGrid.left.liner.style.maxHeight = iBodyHeight+"px";
 		}
 
 		if ( this.s.iRightColumns > 0 )
@@ -902,6 +909,7 @@ $.extend( FixedColumns.prototype , {
 
 			scrollbarAdjust( oGrid.right.liner, iRightWidth );
 			oGrid.right.liner.style.height = iBodyHeight+"px";
+			oGrid.right.liner.style.maxHeight = iBodyHeight+"px";
 
 			oGrid.right.headBlock.style.display = oOverflow.y ? 'block' : 'none';
 			oGrid.right.footBlock.style.display = oOverflow.y ? 'block' : 'none';
@@ -1216,8 +1224,9 @@ $.extend( FixedColumns.prototype , {
 					if ( aTds.length > 0 )
 					{
 						nClone = $( aTds[iColumn] ).clone(true, true)[0];
+						nClone.removeAttribute( 'id' );
 						nClone.setAttribute( 'data-dt-row', i );
-						nClone.setAttribute( 'data-dt-column', iIndex );
+						nClone.setAttribute( 'data-dt-column', dt.oApi._fnVisibleToColumnIndex( dt, iColumn ) );
 						n.appendChild( nClone );
 					}
 				}
@@ -1516,7 +1525,7 @@ FixedColumns.defaults = /** @lends FixedColumns.defaults */{
  *  @default   See code
  *  @static
  */
-FixedColumns.version = "3.2.2";
+FixedColumns.version = "3.2.4";
 
 
 

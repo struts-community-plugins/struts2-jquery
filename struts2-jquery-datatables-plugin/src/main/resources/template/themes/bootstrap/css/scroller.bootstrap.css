@@ -19,6 +19,6 @@ div.DTS div.dataTables_length {
   display: none;
 }
 
-div.DTS tbody tr.even {
+div.DTS tbody tr {
   background-color: white;
 }

@@ -42,3 +42,7 @@ div.DTFC_RightFootWrapper table {
   margin-top: 0 !important;
   background-color: white;
 }
+
+div.DTFC_Blocker {
+  background-color: white;
+}
