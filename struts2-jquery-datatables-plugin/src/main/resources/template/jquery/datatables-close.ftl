@@ -155,6 +155,9 @@ jQuery(document).ready(function () {
     <#if parameters.keys?if_exists != "">
     options_${escapedOptionId?html}.keys = ${parameters.keys?default('false')};
     </#if>
+    <#if parameters.rowGroup?if_exists != "">
+    options_${escapedOptionId?html}.rowGroup = ${parameters.rowGroup?default('false')};
+    </#if>
     <#if parameters.rowReorder?if_exists != "">
     options_${escapedOptionId?html}.rowReorder = ${parameters.rowReorder?default('false')};
     </#if>
@@ -305,6 +308,9 @@ jQuery(document).ready(function () {
   </#if>
 <#if parameters.onResponsiveResizeTopics?exists>
     options_${escapedOptionId?html}.onResponsiveResizeTopics = "${parameters.onResponsiveResizeTopics?string?html}";
+  </#if>
+<#if parameters.onRowGroupPointChangedTopics?exists>
+    options_${escapedOptionId?html}.onRowGroupPointChangedTopics = "${parameters.onRowGroupPointChangedTopics?string?html}";
   </#if>
 <#if parameters.onRowReorderTopics?exists>
     options_${escapedOptionId?html}.onRowReorderTopics = "${parameters.onRowReorderTopics?string?html}";

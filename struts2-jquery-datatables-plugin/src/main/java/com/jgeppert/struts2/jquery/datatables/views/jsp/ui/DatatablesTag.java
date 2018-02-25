@@ -79,6 +79,7 @@ public class DatatablesTag extends AbstractRemoteTag {
     protected String fixedHeader;
     protected String keys;
     protected String rowReorder;
+    protected String rowGroup;
     protected String scroller;
     protected String select;
     protected String createdRow;
@@ -128,6 +129,7 @@ public class DatatablesTag extends AbstractRemoteTag {
     protected String onOtherKeyTopics;
     protected String onResponsiveDisplayTopics;
     protected String onResponsiveResizeTopics;
+    protected String onRowGroupPointChangedTopics;
     protected String onRowReorderTopics;
     protected String onRowReorderedTopics;
     protected String onDeselectTopics;
@@ -189,6 +191,7 @@ public class DatatablesTag extends AbstractRemoteTag {
         dt.setFixedColumns(fixedColumns);
         dt.setFixedHeader(fixedHeader);
         dt.setKeys(keys);
+        dt.setRowGroup(rowGroup);
         dt.setRowReorder(rowReorder);
         dt.setScroller(scroller);
         dt.setSelect(select);
@@ -240,6 +243,7 @@ public class DatatablesTag extends AbstractRemoteTag {
         dt.setOnResponsiveDisplayTopics(onResponsiveDisplayTopics);
         dt.setOnResponsiveResizeTopics(onResponsiveResizeTopics);
         dt.setOnRowReorderedTopics(onRowReorderedTopics);
+        dt.setOnRowGroupPointChangedTopics(onRowGroupPointChangedTopics);
         dt.setOnRowReorderTopics(onRowReorderTopics);
         dt.setOnDeselectTopics(onDeselectTopics);
         dt.setOnSelectTopics(onSelectTopics);
@@ -423,8 +427,12 @@ public class DatatablesTag extends AbstractRemoteTag {
     public void setRowReorder(String rowReorder) {
         this.rowReorder = rowReorder;
     }
+    
+    public void setRowGroup(String rowGroup) {
+		this.rowGroup = rowGroup;
+	}
 
-    public void setScroller(String scroller) {
+	public void setScroller(String scroller) {
         this.scroller = scroller;
     }
 
@@ -524,7 +532,11 @@ public class DatatablesTag extends AbstractRemoteTag {
         this.onResponsiveResizeTopics = onResponsiveResizeTopics;
     }
 
-    public void setOnRowReorderTopics(String onRowReorderTopics) {
+    public void setOnRowGroupPointChangedTopics(String onRowGroupPointChangedTopics) {
+		this.onRowGroupPointChangedTopics = onRowGroupPointChangedTopics;
+	}
+
+	public void setOnRowReorderTopics(String onRowReorderTopics) {
         this.onRowReorderTopics = onRowReorderTopics;
     }
 
