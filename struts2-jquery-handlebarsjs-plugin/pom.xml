@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>struts2-jquery-handlebarsjs-plugin</artifactId>
 	<description>Handlebars JS integration for Struts 2</description>
-
+	<name>Struts 2 jQuery HandleBarsJS Plugin</name>
     <build>
 		<plugins>
 			<plugin>
@@ -87,7 +87,6 @@
 			<version>1.1.2</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts-annotations</artifactId>
@@ -116,5 +115,4 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-
 </project>
