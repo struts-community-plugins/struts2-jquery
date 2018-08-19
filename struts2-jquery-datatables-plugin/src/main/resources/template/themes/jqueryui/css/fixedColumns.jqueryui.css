@@ -6,3 +6,7 @@ div.DTFC_LeftWrapper table.dataTable.no-footer,
 div.DTFC_RightWrapper table.dataTable.no-footer {
   border-bottom: none;
 }
+
+div.DTFC_Blocker {
+  background-color: white;
+}

@@ -89,6 +89,7 @@ public class Datatables extends AbstractRemoteBean {
     private static final String PARAM_FIXED_HEADER = "fixedHeader";
     private static final String PARAM_KEYS = "keys";
     private static final String PARAM_ROW_REORDER = "rowReorder";
+    private static final String PARAM_ROW_GROUP = "rowGroup";
     private static final String PARAM_SCROLLER = "scroller";
     private static final String PARAM_SELECT = "select";
     private static final String PARAM_CREATED_ROW = "createdRow";
@@ -137,7 +138,8 @@ public class Datatables extends AbstractRemoteBean {
     private static final String PARAM_ON_KEY_FOCUS_TOPICS = "onKeyFocusTopics";
     private static final String PARAM_ON_OTHER_KEY_TOPICS = "onOtherKeyTopics";
     private static final String PARAM_ON_RESPONSIVE_DISPLAY_TOPICS = "onResponsiveDisplayTopics";
-    private static final String PARAM_ON_RESPONSIVE_RESIZE_TOPICS = "onResponsiveResizeTopics";
+    private static final String PARAM_ON_RESPONSIVE_RESIZE_TOPICS = "onResponsiveResizeTopics";   
+    private static final String PARAM_ON_ROW_GROUP_POINT_CHANGED_TOPICS = "onRowGroupPointChangedTopics";   
     private static final String PARAM_ON_ROW_REORDER_TOPICS = "onRowReorderTopics";
     private static final String PARAM_ON_ROW_REORDERED_TOPICS = "onRowReorderedTopics";
     private static final String PARAM_ON_DESELECT_TOPICS = "onDeselectTopics";
@@ -245,6 +247,7 @@ public class Datatables extends AbstractRemoteBean {
     protected String onOtherKeyTopics;
     protected String onResponsiveDisplayTopics;
     protected String onResponsiveResizeTopics;
+    protected String onRowGroupPointChangedTopics;
     protected String onRowReorderTopics;
     protected String onRowReorderedTopics;
     protected String onDeselectTopics;
@@ -264,6 +267,7 @@ public class Datatables extends AbstractRemoteBean {
     protected String rowReorder;
     protected String scroller;
     protected String select;
+    protected String rowGroup;
 
     public Datatables(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
@@ -328,6 +332,7 @@ public class Datatables extends AbstractRemoteBean {
         addParameterIfPresent(PARAM_FIXED_COLUMNS, this.fixedColumns);
         addParameterIfPresent(PARAM_FIXED_HEADER, this.fixedHeader);
         addParameterIfPresent(PARAM_KEYS, this.keys);
+        addParameterIfPresent(PARAM_ROW_GROUP, this.rowGroup);
         addParameterIfPresent(PARAM_ROW_REORDER, this.rowReorder);
         addParameterIfPresent(PARAM_SCROLLER, this.scroller);
         addParameterIfPresent(PARAM_SELECT, this.select);
@@ -378,6 +383,7 @@ public class Datatables extends AbstractRemoteBean {
         addParameterIfPresent(PARAM_ON_OTHER_KEY_TOPICS, this.onOtherKeyTopics);
         addParameterIfPresent(PARAM_ON_RESPONSIVE_DISPLAY_TOPICS, this.onResponsiveDisplayTopics);
         addParameterIfPresent(PARAM_ON_RESPONSIVE_RESIZE_TOPICS, this.onResponsiveResizeTopics);
+        addParameterIfPresent(PARAM_ON_ROW_GROUP_POINT_CHANGED_TOPICS, this.onRowGroupPointChangedTopics);
         addParameterIfPresent(PARAM_ON_ROW_REORDER_TOPICS, this.onRowReorderTopics);
         addParameterIfPresent(PARAM_ON_ROW_REORDERED_TOPICS, this.onRowReorderedTopics);
         addParameterIfPresent(PARAM_ON_DESELECT_TOPICS, this.onDeselectTopics);
@@ -620,8 +626,13 @@ public class Datatables extends AbstractRemoteBean {
     public void setRowReorder(String rowReorder) {
         this.rowReorder = rowReorder;
     }
+      
+    @StrutsTagAttribute(description = "RowGroup plugin configuration. No defaults here, you have to provide a rowGroup config Object. See DataTables docs for detail", defaultValue = "false")
+    public void setRowGroup(String rowGroup) {
+		this.rowGroup = rowGroup;
+	}
 
-    @StrutsTagAttribute(description = "Scroller plugin configuration. True to enable with defaults, JS object to enable with custom options", defaultValue = "false")
+	@StrutsTagAttribute(description = "Scroller plugin configuration. True to enable with defaults, JS object to enable with custom options", defaultValue = "false")
     public void setScroller(String scroller) {
         this.scroller = scroller;
     }
@@ -865,7 +876,10 @@ public class Datatables extends AbstractRemoteBean {
     public void setOnResponsiveResizeTopics(String onResponsiveResizeTopics) {
         this.onResponsiveResizeTopics = onResponsiveResizeTopics;
     }
-
+    @StrutsTagAttribute(description = "Comma separated list of topics fired when row group point have been changed")
+    public void setOnRowGroupPointChangedTopics(String onRowGroupPointChangedTopics) {
+        this.onRowGroupPointChangedTopics = onRowGroupPointChangedTopics;
+    }
     @StrutsTagAttribute(description = "Comma separated list of topics fired when row have been reordered by the user, when dropping is done, but before data change is applied")
     public void setOnRowReorderTopics(String onRowReorderTopics) {
         this.onRowReorderTopics = onRowReorderTopics;

@@ -114,6 +114,8 @@
                 <sj:menuItem id="datatablesSspLink" href="%{urldatatablesssp}" targets="content" title="DataTables Server-side processing" />
                 <s:url var="urldatatablesgroup" action="datatables-group" namespace="/datatables"/>
                 <sj:menuItem id="datatablesGroupLink" href="%{urldatatablesgroup}" targets="content" title="DataTables row grouping" />
+                <s:url var="urldatatablesgroupplugin" action="datatables-row-group-plugin" namespace="/datatables"/>
+                <sj:menuItem id="datatablesGroupPluginLink" href="%{urldatatablesgroupplugin}" targets="content" title="DataTables row grouping with plugin" />
                 <s:url var="urldatatablesedit" action="datatables-editable" namespace="/datatables"/>
                 <sj:menuItem id="datatablesEditorLink" href="%{urldatatablesedit}" targets="content" title="DataTables custom Editor" />
             </sj:menu>

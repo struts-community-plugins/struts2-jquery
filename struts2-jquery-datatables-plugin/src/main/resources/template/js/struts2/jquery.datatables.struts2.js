@@ -272,6 +272,23 @@
 						});
 					}
 				}
+				if (o.rowGroup) {
+					self.require("js/plugins/dataTables.rowGroup"
+							+ self.minSuffix + ".js");
+					self.requireCss("themes/" + o.theme + "/css/rowGroup."
+							+ o.theme + self.minSuffix + ".css");
+					if (o.onRowGroupPointChangedTopics) {
+						$elem.on("rowgroup-datasrc.dt", function ( event, datatable, val ) {
+							var orginal = {};
+							orginal.event = event;
+							orginal.datatable = datatable;
+							orginal.val = val;
+							self.publishTopic($elem, o.onRowReorderedTopics,
+									orginal);
+							self.publishTopic($elem, o.onalw, orginal);
+						});
+					}
+				}
 				if (o.scroller) {
 					self.require("js/plugins/dataTables.scroller"
 							+ self.minSuffix + ".js");
