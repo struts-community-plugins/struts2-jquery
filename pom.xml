@@ -73,7 +73,7 @@
 
 	<properties>
 		<currentVersion>${project.version}</currentVersion>
-		<struts2.version>2.5.14.1</struts2.version>
+		<struts2.version>2.5.26</struts2.version>
 		<jetty.plugin.version>9.4.8.v20171121</jetty.plugin.version>
 		<tlib.version>2.3</tlib.version>
 		<minify.version>1.7.4</minify.version>
