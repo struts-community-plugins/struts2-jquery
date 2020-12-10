@@ -117,7 +117,7 @@
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.7.0</version>
+            <version>${beanutils.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
