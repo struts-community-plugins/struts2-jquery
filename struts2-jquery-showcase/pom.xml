@@ -14,10 +14,6 @@
         <url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-showcase/</url>
     </scm>
 
-    <properties>
-        <log4j2.version>2.9.0</log4j2.version>
-    </properties>
-
     <dependencies>
 
         <dependency>
