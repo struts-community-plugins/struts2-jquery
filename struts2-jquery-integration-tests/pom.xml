@@ -27,7 +27,7 @@
         <guava.version>30.0-jre</guava.version>
         <phantomjsdriver.version>1.4.3</phantomjsdriver.version>
         <commons-codec.version>1.10</commons-codec.version>
-        <commons-io.version>2.5</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-lang.version>3.6</commons-lang.version>
         <xml-apis.version>1.4.01</xml-apis.version>
 
