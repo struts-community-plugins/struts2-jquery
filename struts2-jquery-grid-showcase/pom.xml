@@ -16,7 +16,7 @@
     </scm>
 
     <properties>
-        <spring.version>4.3.29.RELEASE</spring.version>
+        <spring.version>5.3.18</spring.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
     </properties>
 
