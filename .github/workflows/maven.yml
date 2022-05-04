@@ -26,6 +26,8 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
+    - name: Build
+      run: mvn --batch-mode package
     - name: Verify IT
       run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true verify
     - name: Verify IT with PhantomJS
