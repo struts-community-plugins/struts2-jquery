@@ -27,7 +27,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build & Install
-      run: mvn --batch-mode package install
+      run: mvn --batch-mode -DskipITs package install
     - name: Verify IT
       run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true verify
     - name: Verify IT with PhantomJS
