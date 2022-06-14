@@ -65,7 +65,7 @@
 /src/main/resources/template/js/struts2/jquery.struts2.min.js
 /src/main/resources/template/js/struts2/jquery.ui.struts2.min.js
 
-/src/main/resources/template/i18n/jquery-ui-timepicker-*.min.js
+/src/main/resources/template/i18n/*.min.js
 
 # maven generated target folder
 /target/
