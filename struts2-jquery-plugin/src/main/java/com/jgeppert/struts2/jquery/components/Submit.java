@@ -238,7 +238,7 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
     /**
      * Indicate whether the concrete button supports the type "image".
      *
-     * @return <tt>true</tt> to indicate type image is supported.
+     * @return <code>true</code> to indicate type image is supported.
      */
     protected boolean supportsImageType() {
         return true;
