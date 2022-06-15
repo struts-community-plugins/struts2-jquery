@@ -108,9 +108,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.5</version>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-velocity-plugin</artifactId>
+            <version>${struts2.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>

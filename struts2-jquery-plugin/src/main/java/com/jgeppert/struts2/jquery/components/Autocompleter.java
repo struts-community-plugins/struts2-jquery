@@ -159,7 +159,7 @@ public class Autocompleter extends AbstractFormListElement {
         addParameterIfPresent(PARAM_AUTO_FOCUS, this.autoFocus, Boolean.class);
 
         if (listLabel != null) {
-            addParameter(PARAM_LIST_LABEL, stripExpressionIfAltSyntax(listLabel));
+            addParameter(PARAM_LIST_LABEL, stripExpression(listLabel));
         }
 
         addGeneratedIdParam(ID_PREFIX_AUTOCOMPLETER);
