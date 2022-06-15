@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jgeppert.struts2.jquery</groupId>
 	<artifactId>struts2-jquery</artifactId>
@@ -63,10 +65,10 @@
 			<name>Struts 2 jQuery Plugin Staging Repository</name>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
-		<snapshotRepository>			
+		<snapshotRepository>
 			<id>struts2-jquery.snapshots</id>
 			<name>Struts 2 jQuery Plugin Snapshots and Test Builds Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>			
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 	</distributionManagement>
@@ -95,7 +97,7 @@
 	<modules>
 		<module>struts2-jquery-plugin</module>
 		<module>struts2-jquery-grid-plugin</module>
-		<module>struts2-jquery-datatables-plugin</module>		
+		<module>struts2-jquery-datatables-plugin</module>
 		<module>struts2-jquery-richtext-plugin</module>
 		<module>struts2-jquery-chart-plugin</module>
 		<module>struts2-jquery-tree-plugin</module>
@@ -174,7 +176,7 @@
 			</plugin>
 		</plugins>
 		<defaultGoal>install</defaultGoal>
-		
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -232,4 +234,15 @@
 		</dependency>
 
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-bom</artifactId>
+				<version>${struts2.version}</version>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
