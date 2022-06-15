@@ -42,7 +42,7 @@ public class JqueryDatatablesTagLibrary implements TagLibraryDirectiveProvider, 
 
     @Override
     @SuppressWarnings("rawtypes")
-    public List<Class> getDirectiveClasses() {
+    public List<Class<?>> getDirectiveClasses() {
         Class[] directives = new Class[]{DatatablesDirective.class};
         return Arrays.asList(directives);
     }

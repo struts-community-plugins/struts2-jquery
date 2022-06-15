@@ -42,7 +42,7 @@ public class JqueryMobileTagLibrary implements TagLibraryDirectiveProvider, TagL
     }
 
     @SuppressWarnings("rawtypes")
-    public List<Class> getDirectiveClasses() {
+    public List<Class<?>> getDirectiveClasses() {
         Class[] directives = new Class[]{HeadDirective.class,
                 CheckboxListDirective.class, CheckboxDirective.class,
                 Radio.class, DivDirective.class, ListDirective.class,

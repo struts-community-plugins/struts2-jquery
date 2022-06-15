@@ -105,13 +105,13 @@ public abstract class AbstractFormListElement extends AbstractFormElement {
             }
 
             if (listKey != null) {
-                addParameter(PARAM_LIST_KEY, stripExpressionIfAltSyntax(listKey));
+                addParameter(PARAM_LIST_KEY, stripExpression(listKey));
             } else if (value instanceof Map) {
                 addParameter(PARAM_LIST_KEY, "key");
             }
 
             if (listValue != null) {
-                addParameter(PARAM_LIST_VALUE, stripExpressionIfAltSyntax(listValue));
+                addParameter(PARAM_LIST_VALUE, stripExpression(listValue));
             } else if (value instanceof Map) {
                 addParameter(PARAM_LIST_VALUE, "value");
             }

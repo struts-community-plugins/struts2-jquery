@@ -42,7 +42,7 @@ public class JqueryChartTagLibrary implements TagLibraryDirectiveProvider, TagLi
     }
 
     @SuppressWarnings("rawtypes")
-    public List<Class> getDirectiveClasses() {
+    public List<Class<?>> getDirectiveClasses() {
         Class[] directives = new Class[]{ChartDirective.class,
                 ChartDataDirective.class};
         return Arrays.asList(directives);

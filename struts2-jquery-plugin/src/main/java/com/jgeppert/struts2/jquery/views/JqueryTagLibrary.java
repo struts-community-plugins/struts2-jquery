@@ -41,7 +41,7 @@ public class JqueryTagLibrary implements TagLibraryDirectiveProvider, TagLibrary
     }
 
     @SuppressWarnings("rawtypes")
-    public List<Class> getDirectiveClasses() {
+    public List<Class<?>> getDirectiveClasses() {
         Class[] directives =
                 new Class[]{
                         DatePickerDirective.class,
