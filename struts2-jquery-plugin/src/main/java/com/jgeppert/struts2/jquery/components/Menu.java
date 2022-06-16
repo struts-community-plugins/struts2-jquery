@@ -175,14 +175,14 @@ public class Menu extends AbstractTopicsBean {
         }
 
         if (listKey != null) {
-            listKey = stripExpressionIfAltSyntax(listKey);
+            listKey = stripExpression(listKey);
             addParameter(PARAM_LIST_KEY, listKey);
         } else if (value instanceof Map) {
             addParameter(PARAM_LIST_KEY, "key");
         }
 
         if (listValue != null) {
-            listValue = stripExpressionIfAltSyntax(listValue);
+            listValue = stripExpression(listValue);
             addParameter(PARAM_LIST_VALUE, listValue);
         } else if (value instanceof Map) {
             addParameter(PARAM_LIST_VALUE, "value");

@@ -41,7 +41,7 @@ public class JqueryRichtextTagLibrary implements TagLibraryDirectiveProvider, Ta
     }
 
     @SuppressWarnings("rawtypes")
-    public List<Class> getDirectiveClasses() {
+    public List<Class<?>> getDirectiveClasses() {
         Class[] directives = new Class[]{
                 CkeditorDirective.class, TinymceDirective.class
         };

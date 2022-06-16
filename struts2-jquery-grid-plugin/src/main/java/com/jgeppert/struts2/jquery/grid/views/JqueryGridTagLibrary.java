@@ -41,7 +41,7 @@ public class JqueryGridTagLibrary implements TagLibraryDirectiveProvider, TagLib
     }
 
     @SuppressWarnings("rawtypes")
-    public List<Class> getDirectiveClasses() {
+    public List<Class<?>> getDirectiveClasses() {
         Class[] directives = new Class[]{
                 GridDirective.class, GridColumnDirective.class,
         };

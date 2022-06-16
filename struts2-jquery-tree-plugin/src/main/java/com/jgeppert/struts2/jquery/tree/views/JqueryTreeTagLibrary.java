@@ -42,7 +42,7 @@ public class JqueryTreeTagLibrary implements TagLibraryDirectiveProvider, TagLib
     }
 
     @SuppressWarnings("rawtypes")
-    public List<Class> getDirectiveClasses() {
+    public List<Class<?>> getDirectiveClasses() {
         Class[] directives = new Class[]{TreeDirective.class,
                 TreeItemDirective.class};
         return Arrays.asList(directives);
