@@ -20,23 +20,23 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.droppable?default(false)>
-	options_${escapedOptionId?html}.droppable = true;<#rt/>
+	options_${escapedOptionId}.droppable = true;<#rt/>
    </#if>
   <#if parameters.droppableOptions?if_exists != "">
-	options_${escapedOptionId?html}.droppableoptions = "${parameters.droppableOptions?html}";<#rt/>
+	options_${escapedOptionId}.droppableoptions = "${parameters.droppableOptions}";<#rt/>
    </#if>
   <#if parameters.droppableOnActivateTopics?if_exists != "">
-	options_${escapedOptionId?html}.droppableonactivatetopics = "${parameters.droppableOnActivateTopics?html}";<#rt/>
+	options_${escapedOptionId}.droppableonactivatetopics = "${parameters.droppableOnActivateTopics}";<#rt/>
    </#if>
   <#if parameters.droppableOnDeactivateTopics?if_exists != "">
-	options_${escapedOptionId?html}.droppableondeactivatetopics = "${parameters.droppableOnDeactivateTopics?html}";<#rt/>
+	options_${escapedOptionId}.droppableondeactivatetopics = "${parameters.droppableOnDeactivateTopics}";<#rt/>
    </#if>
   <#if parameters.droppableOnDropTopics?if_exists != "">
-	options_${escapedOptionId?html}.droppableondroptopics = "${parameters.droppableOnDropTopics?html}";<#rt/>
+	options_${escapedOptionId}.droppableondroptopics = "${parameters.droppableOnDropTopics}";<#rt/>
    </#if>
   <#if parameters.droppableOnOutTopics?if_exists != "">
-	options_${escapedOptionId?html}.droppableonouttopics = "${parameters.droppableOnOutTopics?html}";<#rt/>
+	options_${escapedOptionId}.droppableonouttopics = "${parameters.droppableOnOutTopics}";<#rt/>
    </#if>
   <#if parameters.droppableOnOverTopics?if_exists != "">
-	options_${escapedOptionId?html}.droppableonovertopics = "${parameters.droppableOnOverTopics?html}";<#rt/>
+	options_${escapedOptionId}.droppableonovertopics = "${parameters.droppableOnOverTopics}";<#rt/>
    </#if>

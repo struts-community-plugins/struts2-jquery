@@ -20,27 +20,27 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.selectable?default(false)>
-	options_${escapedOptionId?html}.selectable = true;<#rt/>
+	options_${escapedOptionId}.selectable = true;<#rt/>
    </#if>
   <#if parameters.selectableOptions?if_exists != "">
- 	options_${escapedOptionId?html}.selectableoptions = "${parameters.selectableOptions?html}";<#rt/>
+ 	options_${escapedOptionId}.selectableoptions = "${parameters.selectableOptions}";<#rt/>
    </#if>
   <#if parameters.selectableOnSelectedTopics?if_exists != "">
- 	options_${escapedOptionId?html}.selectableonselectedtopics = "${parameters.selectableOnSelectedTopics?html}";<#rt/>
+ 	options_${escapedOptionId}.selectableonselectedtopics = "${parameters.selectableOnSelectedTopics}";<#rt/>
    </#if>
   <#if parameters.selectableOnSelectingTopics?if_exists != "">
- 	options_${escapedOptionId?html}.selectableonselectingtopics = "${parameters.selectableOnSelectingTopics?html}";<#rt/>
+ 	options_${escapedOptionId}.selectableonselectingtopics = "${parameters.selectableOnSelectingTopics}";<#rt/>
    </#if>
   <#if parameters.selectableOnStartTopics?if_exists != "">
- 	options_${escapedOptionId?html}.selectableonstarttopics = "${parameters.selectableOnStartTopics?html}";<#rt/>
+ 	options_${escapedOptionId}.selectableonstarttopics = "${parameters.selectableOnStartTopics}";<#rt/>
    </#if>
   <#if parameters.selectableOnStopTopics?if_exists != "">
- 	options_${escapedOptionId?html}.selectableonstoptopics = "${parameters.selectableOnStopTopics?html}";<#rt/>
+ 	options_${escapedOptionId}.selectableonstoptopics = "${parameters.selectableOnStopTopics}";<#rt/>
    </#if>
   <#if parameters.selectableOnUnselectedTopics?if_exists != "">
- 	options_${escapedOptionId?html}.selectableonunselectedtopics = "${parameters.selectableOnUnselectedTopics?html}";<#rt/>
+ 	options_${escapedOptionId}.selectableonunselectedtopics = "${parameters.selectableOnUnselectedTopics}";<#rt/>
    </#if>
   <#if parameters.selectableOnUnselectingTopics?if_exists != "">
- 	options_${escapedOptionId?html}.selectableonunselectingtopics = "${parameters.selectableOnUnselectingTopics?html}";<#rt/>
+ 	options_${escapedOptionId}.selectableonunselectingtopics = "${parameters.selectableOnUnselectingTopics}";<#rt/>
    </#if>
   

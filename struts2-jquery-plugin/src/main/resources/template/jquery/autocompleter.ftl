@@ -27,13 +27,13 @@
 	</#if>
 		<input type="hidden"
 		  <#if parameters.widgetid?if_exists != "">
-		    id="${parameters.widgetid?html}"<#rt/>
+		    id="${parameters.widgetid}"<#rt/>
 		  </#if>
 		  <#if parameters.nameValue??>
 		    value="<@s.property value="parameters.nameValue"/>"<#rt/>
 		  </#if>
 		  <#if parameters.widgetname?if_exists != "">
-		 	name="${parameters.widgetname?html}"<#rt/>
+		 	name="${parameters.widgetname}"<#rt/>
 		  </#if>
 		  <#if parameters.disabled?default(false)>
 		    disabled="disabled"<#rt/>
@@ -53,13 +53,13 @@
 <#else>
 	<input type="hidden"
 	  <#if parameters.widgetid?if_exists != "">
-	    id="${parameters.widgetid?html}"<#rt/>
+	    id="${parameters.widgetid}"<#rt/>
 	  </#if>
 	  <#if parameters.nameValue??>
 	    value="<@s.property value="parameters.nameValue"/>"<#rt/>
 	  </#if>
 	  <#if parameters.widgetname?if_exists != "">
-	 	name="${parameters.widgetname?html}"<#rt/>
+	 	name="${parameters.widgetname}"<#rt/>
 	  </#if>
 	  <#if parameters.disabled?default(false)>
 	    disabled="disabled"<#rt/>

@@ -27,12 +27,12 @@
 	</#if>
 	<#if parameters.inline?default(false)>
 		<#include "/${parameters.templateDir}/simple/hidden.ftl" />
-		<div id="${parameters.id?html}_inline"
+		<div id="${parameters.id}_inline"
 		<#if parameters.cssStyle?if_exists != "">
-		 style="${parameters.cssStyle?html}"<#rt/>
+		 style="${parameters.cssStyle}"<#rt/>
 		</#if>
 		<#if parameters.cssClass?if_exists != "">
-		 class="${parameters.cssClass?html}"<#rt/>
+		 class="${parameters.cssClass}"<#rt/>
 		</#if>
 		<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 		<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
@@ -51,12 +51,12 @@
 <#else>
 	<#if parameters.inline?default(false)>
 		<#include "/${parameters.templateDir}/simple/hidden.ftl" />
-		<div id="${parameters.id?html}_inline"
+		<div id="${parameters.id}_inline"
 		<#if parameters.cssStyle?if_exists != "">
-		 style="${parameters.cssStyle?html}"<#rt/>
+		 style="${parameters.cssStyle}"<#rt/>
 		</#if>
 		<#if parameters.cssClass?if_exists != "">
-		 class="${parameters.cssClass?html}"<#rt/>
+		 class="${parameters.cssClass}"<#rt/>
 		</#if>
 		<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 		<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />

@@ -30,7 +30,7 @@
 <#if parameters.scriptPath?if_exists != "">
     <#assign javaScriptBasePath="${parameters.scriptPath?string}">
 <#else>
-    <#assign javaScriptBasePath="${base}/struts/">
+    <#assign javaScriptBasePath="${base}/static/">
 </#if>
 
 <#assign googlePath="//ajax.googleapis.com/ajax/libs/jquery/${jQueryVersion}">

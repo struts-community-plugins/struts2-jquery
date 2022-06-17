@@ -20,23 +20,23 @@
 -->
 	<${parameters.header?default('h3')}
     <#if parameters.tabindex??>
-        tabindex="${parameters.tabindex?html}"<#rt/>
+        tabindex="${parameters.tabindex}"<#rt/>
     </#if>
     <#if parameters.disabled?default(false)>
         disabled="disabled"<#rt/>
     </#if>
     <#if parameters.id?if_exists != "">
-        id="${parameters.id?html}"<#rt/>
+        id="${parameters.id}"<#rt/>
     </#if>
     <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
     <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
     <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
     ><#rt/>
-        <a id="${parameters.id?html}_a" href="#">
-		    ${parameters.title?html}
+        <a id="${parameters.id}_a" href="#">
+		    ${parameters.title}
         </a>
 	</${parameters.header?default('h3')}>
-	<div id="${parameters.id?html}_div"><#rt/>
+	<div id="${parameters.id}_div"><#rt/>
 <#if parameters.value?if_exists != "">
-			${parameters.value?html}
+			${parameters.value}
 </#if>			

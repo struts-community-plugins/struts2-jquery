@@ -22,39 +22,39 @@
 </div>
 <script type='text/javascript'>
 jQuery(document).ready(function () {
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
   <#if parameters.value?if_exists != "">
-	options_${escapedOptionId?html}.value = ${parameters.value?default('0')};
+	options_${escapedOptionId}.value = ${parameters.value?default('0')};
   </#if>
   <#if parameters.arrayValue?if_exists != "">
-	options_${escapedOptionId?html}.values = ${parameters.arrayValue?string};
+	options_${escapedOptionId}.values = ${parameters.arrayValue?string};
   </#if>
   <#if parameters.widgetid?if_exists != "">
-	options_${escapedOptionId?html}.hiddenid = "${parameters.widgetid?html}";
+	options_${escapedOptionId}.hiddenid = "${parameters.widgetid}";
   </#if>
   <#if parameters.animate?default(false)>
-	options_${escapedOptionId?html}.animate = true;
+	options_${escapedOptionId}.animate = true;
   </#if>
   <#if parameters.range?if_exists != "">
-	options_${escapedOptionId?html}.range = "${parameters.range?html}";
+	options_${escapedOptionId}.range = "${parameters.range}";
   </#if>
   <#if parameters.max??>
-	options_${escapedOptionId?html}.max = ${parameters.max?c};
+	options_${escapedOptionId}.max = ${parameters.max?c};
   </#if>
   <#if parameters.min??>
-	options_${escapedOptionId?html}.min = ${parameters.min?c};
+	options_${escapedOptionId}.min = ${parameters.min?c};
   </#if>
   <#if parameters.orientation?if_exists != "">
-	options_${escapedOptionId?html}.orientation = "${parameters.orientation?html}";
+	options_${escapedOptionId}.orientation = "${parameters.orientation}";
   </#if>
   <#if parameters.step??>
-	options_${escapedOptionId?html}.step = ${parameters.step?c};
+	options_${escapedOptionId}.step = ${parameters.step?c};
   </#if>
   <#if parameters.displayValueElement?if_exists != "">
-	options_${escapedOptionId?html}.displayvalueelement = "${parameters.displayValueElement?html}";
+	options_${escapedOptionId}.displayvalueelement = "${parameters.displayValueElement}";
   </#if>
   <#if parameters.onSlideTopics?exists>
-	options_${escapedOptionId?html}.onslidetopics = "${parameters.onSlideTopics?html}";
+	options_${escapedOptionId}.onslidetopics = "${parameters.onSlideTopics}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

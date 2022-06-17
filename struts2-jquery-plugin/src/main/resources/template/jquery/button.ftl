@@ -20,18 +20,18 @@
 -->
 	<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 	<#if parameters.disabled?default(false)>
-	options_${escapedOptionId?html}.disabled = true;
+	options_${escapedOptionId}.disabled = true;
 	</#if>
 	<#if parameters.button?default(false)>
-	options_${escapedOptionId?html}.button = true;
+	options_${escapedOptionId}.button = true;
 	</#if>
 	<#if parameters.buttonIcon?if_exists != ""> 
-	options_${escapedOptionId?html}.bicon = "${parameters.buttonIcon?html}";
+	options_${escapedOptionId}.bicon = "${parameters.buttonIcon}";
 	</#if>
 	<#if parameters.buttonIconSecondary?if_exists != ""> 
-	options_${escapedOptionId?html}.bicon2 = "${parameters.buttonIconSecondary?html}";
+	options_${escapedOptionId}.bicon2 = "${parameters.buttonIconSecondary}";
 	</#if>
 	<#if parameters.buttonText??>
-	options_${escapedOptionId?html}.btext = ${parameters.buttonText?string};
+	options_${escapedOptionId}.btext = ${parameters.buttonText?string};
 	</#if>
 	

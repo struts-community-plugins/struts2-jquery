@@ -20,17 +20,17 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.draggable?default(false)> 
-	options_${escapedOptionId?html}.draggable = true;<#rt/>
+	options_${escapedOptionId}.draggable = true;<#rt/>
   </#if>
   <#if parameters.draggableOptions?if_exists != ""> 
-	options_${escapedOptionId?html}.draggableoptions = "${parameters.draggableOptions?html}";<#rt/>
+	options_${escapedOptionId}.draggableoptions = "${parameters.draggableOptions}";<#rt/>
   </#if>
   <#if parameters.draggableOnStartTopics?if_exists != "">
- 	options_${escapedOptionId?html}.draggableonstarttopics = "${parameters.draggableOnStartTopics?html}";<#rt/>
+ 	options_${escapedOptionId}.draggableonstarttopics = "${parameters.draggableOnStartTopics}";<#rt/>
    </#if>
   <#if parameters.draggableOnStopTopics?if_exists != "">
-	options_${escapedOptionId?html}.draggableonstoptopics = "${parameters.draggableOnStopTopics?html}";<#rt/>
+	options_${escapedOptionId}.draggableonstoptopics = "${parameters.draggableOnStopTopics}";<#rt/>
    </#if>
   <#if parameters.draggableOnDragTopics?if_exists != "">
-	options_${escapedOptionId?html}.draggableondragtopics = "${parameters.draggableOnDragTopics?html}";<#rt/>
+	options_${escapedOptionId}.draggableondragtopics = "${parameters.draggableOnDragTopics}";<#rt/>
    </#if>

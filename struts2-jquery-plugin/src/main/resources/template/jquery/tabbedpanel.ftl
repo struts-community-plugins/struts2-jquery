@@ -19,12 +19,12 @@
  */
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-<div id="${parameters.id?html}"
+<div id="${parameters.id}"
 <#if parameters.cssStyle?if_exists != "">
- style="${parameters.cssStyle?html}"<#rt/>
+ style="${parameters.cssStyle}"<#rt/>
 </#if>
 <#if parameters.cssClass?if_exists != "">
- class="${parameters.cssClass?html}"<#rt/>
+ class="${parameters.cssClass}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
