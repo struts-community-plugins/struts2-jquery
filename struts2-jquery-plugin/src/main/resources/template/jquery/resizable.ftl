@@ -23,7 +23,7 @@
 	options_${escapedOptionId}.resizable = true;<#rt/>
    </#if>
   <#if parameters.resizableOptions?if_exists != "">
- 	options_${escapedOptionId}.resizableoptions = "${parameters.resizableOptions}";<#rt/>
+ 	options_${escapedOptionId}.resizableoptions = "<#outputformat "JavaScript">${parameters.resizableOptions}</#outputformat>";<#rt/>
    </#if>
   <#if parameters.resizableOnResizeTopics?if_exists != "">
 	options_${escapedOptionId}.resizableonresizetopics = "${parameters.resizableOnResizeTopics}";<#rt/>
