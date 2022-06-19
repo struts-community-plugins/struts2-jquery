@@ -22,7 +22,7 @@
 <script type='text/javascript'>
 jQuery(document).ready(function () {
   <#if parameters.valueWidget?if_exists != "">
-	jQuery("#${parameters.i}").val("${parameters.valueWidget}");
+	jQuery("#${parameters.id}").val("${parameters.valueWidget}");
   </#if>
 	var options_${escapedOptionId} = {};
   <#if parameters.widgetid?if_exists != "">
