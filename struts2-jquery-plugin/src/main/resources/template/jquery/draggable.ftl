@@ -23,7 +23,7 @@
 	options_${escapedOptionId}.draggable = true;<#rt/>
   </#if>
   <#if parameters.draggableOptions?if_exists != ""> 
-	options_${escapedOptionId}.draggableoptions = "${parameters.draggableOptions}";<#rt/>
+	options_${escapedOptionId}.draggableoptions = "<#outputformat "JavaScript">${parameters.draggableOptions}</#outputformat>";<#rt/>
   </#if>
   <#if parameters.draggableOnStartTopics?if_exists != "">
  	options_${escapedOptionId}.draggableonstarttopics = "${parameters.draggableOnStartTopics}";<#rt/>

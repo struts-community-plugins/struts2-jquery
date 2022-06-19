@@ -23,7 +23,7 @@
 	options_${escapedOptionId}.droppable = true;<#rt/>
    </#if>
   <#if parameters.droppableOptions?if_exists != "">
-	options_${escapedOptionId}.droppableoptions = "${parameters.droppableOptions}";<#rt/>
+	options_${escapedOptionId}.droppableoptions = "<#outputformat "JavaScript">${parameters.droppableOptions}</#outputformat>";<#rt/>
    </#if>
   <#if parameters.droppableOnActivateTopics?if_exists != "">
 	options_${escapedOptionId}.droppableonactivatetopics = "${parameters.droppableOnActivateTopics}";<#rt/>
