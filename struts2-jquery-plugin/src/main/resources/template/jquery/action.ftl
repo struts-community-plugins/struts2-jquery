@@ -63,7 +63,7 @@
 	options_${escapedOptionId}.effectmode = "${parameters.effectMode}";
 	</#if>  
 	<#if parameters.effectOptions?exists>
-	options_${escapedOptionId}.effectoptions = ${parameters.effectOptions};
+	options_${escapedOptionId}.effectoptions = <#outputformat "JavaScript">${parameters.effectOptions}</#outputformat>;
 	<#else>
 	options_${escapedOptionId}.effectoptions = {};
 	</#if>  
