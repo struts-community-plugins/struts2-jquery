@@ -21,31 +21,31 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () {
-	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.type = 'text';
+	var options_${escapedOptionId} = {};
+	options_${escapedOptionId}.type = 'text';
   <#if parameters.max??>
-	options_${escapedOptionId?html}.max = ${parameters.max?c};
+	options_${escapedOptionId}.max = ${parameters.max?c};
   </#if>
   <#if parameters.min??>
-	options_${escapedOptionId?html}.min = ${parameters.min?c};
+	options_${escapedOptionId}.min = ${parameters.min?c};
   </#if>
   <#if parameters.step??>
-	options_${escapedOptionId?html}.step = ${parameters.step?c};
+	options_${escapedOptionId}.step = ${parameters.step?c};
   </#if>
   <#if parameters.culture?if_exists != "">
-	options_${escapedOptionId?html}.culture = "${parameters.culture?html}";
+	options_${escapedOptionId}.culture = "${parameters.culture}";
   </#if>
   <#if parameters.numberFormat?if_exists != "">
-	options_${escapedOptionId?html}.numberFormat = "${parameters.numberFormat?html}";
+	options_${escapedOptionId}.numberFormat = "${parameters.numberFormat}";
   </#if>
   <#if parameters.page??>
-	options_${escapedOptionId?html}.page = ${parameters.page?c};
+	options_${escapedOptionId}.page = ${parameters.page?c};
   </#if>
   <#if parameters.mouseWheel?exists>
-	options_${escapedOptionId?html}.mouseWheel = ${parameters.mouseWheel?string};
+	options_${escapedOptionId}.mouseWheel = ${parameters.mouseWheel?string};
   </#if>
   <#if parameters.incremental?exists>
-	options_${escapedOptionId?html}.incremental = ${parameters.incremental?string};
+	options_${escapedOptionId}.incremental = ${parameters.incremental?string};
   </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

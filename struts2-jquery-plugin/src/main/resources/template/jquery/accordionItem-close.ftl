@@ -22,10 +22,10 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.header = "${parameters.header?default('h3')}";
+	var options_${escapedOptionId} = {};
+	options_${escapedOptionId}.header = "${parameters.header?default('h3')}";
 <#if parameters.onClickTopics?exists>
-	options_${escapedOptionId?html}.onclick = "${parameters.onClickTopics?html}";
+	options_${escapedOptionId}.onclick = "${parameters.onClickTopics}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

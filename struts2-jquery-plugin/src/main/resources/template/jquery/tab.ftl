@@ -21,31 +21,31 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_tab_${escapedOptionId?html} = {};
+	var options_tab_${escapedOptionId} = {};
   <#if parameters.id?if_exists != "">
-	options_tab_${escapedOptionId?html}.id = "${parameters.id?html}";
+	options_tab_${escapedOptionId}.id = "${parameters.id}";
   </#if>
   <#if parameters.cssStyle?if_exists != "">
-	options_tab_${escapedOptionId?html}.cssstyle = "${parameters.cssStyle?html}";
+	options_tab_${escapedOptionId}.cssstyle = "${parameters.cssStyle}";
   </#if>
   <#if parameters.cssClass?if_exists != "">
-	options_tab_${escapedOptionId?html}.cssclass = "${parameters.cssClass?html}";
+	options_tab_${escapedOptionId}.cssclass = "${parameters.cssClass}";
   </#if>
   <#if parameters.formIds?if_exists != "">
-	options_tab_${escapedOptionId?html}.formIds = "${parameters.formIds?html}";
+	options_tab_${escapedOptionId}.formIds = "${parameters.formIds}";
   </#if>
   <#if parameters.href?if_exists != "">
-	options_tab_${escapedOptionId?html}.href = "${parameters.href?html}";
+	options_tab_${escapedOptionId}.href = "${parameters.href}";
   <#elseif parameters.target?if_exists != "" >
-	options_tab_${escapedOptionId?html}.href = "#${parameters.target?html}";
+	options_tab_${escapedOptionId}.href = "#${parameters.target}";
   <#else>
-	options_tab_${escapedOptionId?html}.href = "#";
+	options_tab_${escapedOptionId}.href = "#";
   </#if>
   <#if parameters.label?if_exists != "">
-	options_tab_${escapedOptionId?html}.label = "${parameters.label?html}";
+	options_tab_${escapedOptionId}.label = "${parameters.label}";
   </#if>
   <#if parameters.closable?exists>
-	options_tab_${escapedOptionId?html}.closable = ${parameters.closable?string};
+	options_tab_${escapedOptionId}.closable = ${parameters.closable?string};
   </#if>
   <#if parameters.parentTabbedPanel?if_exists != "">
   	<#assign escapedParentOptionId="${parameters.parentTabbedPanel?string?replace('.', '_')}">
@@ -53,7 +53,7 @@ jQuery(document).ready(function () {
   	if(!tabs) {
   		tabs = [];
   	}
-  	tabs.push(options_tab_${escapedOptionId?html});
+  	tabs.push(options_tab_${escapedOptionId});
   	jQuery('#${parameters.parentTabbedPanel?string?replace('.', '\\\\\\\\.')}').data('taboptions', tabs);
   </#if>
  });  

@@ -21,33 +21,33 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
 <#if parameters.nameValue??>
-	options_${escapedOptionId?html}.value = "<@s.property value="parameters.nameValue"/>";
+	options_${escapedOptionId}.value = "<@s.property value="parameters.nameValue"/>";
 </#if>
 <#if parameters.remoteList??>
-	options_${escapedOptionId?html}.datatype = "json";
-	options_${escapedOptionId?html}.type = 'checkbox';
-	options_${escapedOptionId?html}.list = "${parameters.remoteList?html}";
+	options_${escapedOptionId}.datatype = "json";
+	options_${escapedOptionId}.type = 'checkbox';
+	options_${escapedOptionId}.list = "${parameters.remoteList}";
 </#if>
 <#if parameters.remoteListKey??>
-	options_${escapedOptionId?html}.listkey = "${parameters.remoteListKey?html}";
+	options_${escapedOptionId}.listkey = "${parameters.remoteListKey}";
 </#if>
 <#if parameters.remoteListValue??>
-	options_${escapedOptionId?html}.listvalue = "${parameters.remoteListValue?html}";
+	options_${escapedOptionId}.listvalue = "${parameters.remoteListValue}";
 </#if>
 <#if parameters.buttonset?default(true)>
-	options_${escapedOptionId?html}.buttonset = true;
+	options_${escapedOptionId}.buttonset = true;
 <#else>
-	options_${escapedOptionId?html}.buttonset = false;
+	options_${escapedOptionId}.buttonset = false;
 </#if>
 <#if parameters.icon?default(true)>
-    options_${escapedOptionId?html}.icon = true;
+    options_${escapedOptionId}.icon = true;
 <#else>
-    options_${escapedOptionId?html}.icon = false;
+    options_${escapedOptionId}.icon = false;
 </#if>
 <#if parameters.direction??>
-    options_${escapedOptionId?html}.direction = "${parameters.direction?html}";
+    options_${escapedOptionId}.direction = "${parameters.direction}";
 </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

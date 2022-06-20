@@ -27,9 +27,9 @@
 	</#if>
 <#setting number_format="#.#####">
 <select<#rt/>
- name="${parameters.name?default("")?html}"<#rt/>
+ name="${parameters.name?default("")}"<#rt/>
 <#if parameters.get("size")??>
- size="${parameters.get("size")?html}"<#rt/>
+ size="${parameters.get("size")}"<#rt/>
 </#if>
 <#if parameters.multiple?default(false)>
  multiple="multiple"<#rt/>
@@ -38,14 +38,14 @@
  disabled="disabled"<#rt/>
 </#if>
 <#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+ tabindex="${parameters.tabindex}"<#rt/>
 </#if>
 <#if parameters.id??>
- id="${parameters.id?html}"<#rt/>
+ id="${parameters.id}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/css.ftl" />
 <#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+ title="${parameters.title}"<#rt/>
 </#if>
 <#if parameters.multiple?default(false)>
  multiple="multiple"<#rt/>

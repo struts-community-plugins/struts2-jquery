@@ -38,8 +38,8 @@
     <![endif]-->
 
     <!-- This files are needed for AJAX Validation of XHTML Forms -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/struts/utils.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/utils.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/xhtml/validation.js"></script>
 
 
     <!-- This file includes necessary functions/topics for validation and all topic examples -->

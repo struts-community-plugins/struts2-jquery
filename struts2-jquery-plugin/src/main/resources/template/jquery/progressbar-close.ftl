@@ -22,8 +22,8 @@
 </div>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.value = ${parameters.value?default('0')};
+	var options_${escapedOptionId} = {};
+	options_${escapedOptionId}.value = ${parameters.value?default('0')};
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />

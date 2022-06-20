@@ -25,7 +25,7 @@
 	<#if parameters.parentTheme == 'css_xhtml'>
 		<#include "/${parameters.templateDir}/css_xhtml/controlheader.ftl" />
 	</#if>
-<div id="${parameters.id?html}">
+<div id="${parameters.id}">
 <#include "/${parameters.templateDir}/simple/checkboxlist.ftl" />
 </div>
 	<#if parameters.parentTheme == 'xhtml'>
@@ -35,7 +35,7 @@
 		<#include "/${parameters.templateDir}/css_xhtml/controlfooter.ftl" />
 	</#if>
 <#else>
-<div id="${parameters.id?html}">
+<div id="${parameters.id}">
 	<#include "/${parameters.templateDir}/${parameters.parentTheme}/checkboxlist.ftl" />
 </div>
 </#if>

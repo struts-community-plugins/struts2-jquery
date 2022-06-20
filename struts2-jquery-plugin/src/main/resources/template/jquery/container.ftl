@@ -20,15 +20,15 @@
 -->
   <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.reloadTopics?exists>
-	options_${escapedOptionId?html}.reloadtopics = "${parameters.reloadTopics?html}";
+	options_${escapedOptionId}.reloadtopics = "${parameters.reloadTopics}";
   </#if>
   <#if parameters.bindOn?if_exists != ""> 
-	options_${escapedOptionId?html}.bindon = "${parameters.bindOn?html}";
+	options_${escapedOptionId}.bindon = "${parameters.bindOn}";
   </#if>
   <#if parameters.events?if_exists != ""> 
-	options_${escapedOptionId?html}.events = "${parameters.events?html}";
+	options_${escapedOptionId}.events = "${parameters.events}";
   </#if>
   <#if parameters.deferredLoading?default(false)>
-	options_${escapedOptionId?html}.deferredloading = true;
+	options_${escapedOptionId}.deferredloading = true;
   </#if>
   

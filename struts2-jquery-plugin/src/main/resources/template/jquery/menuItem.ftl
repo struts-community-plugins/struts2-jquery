@@ -20,16 +20,16 @@
 -->
 <li
 <#if parameters.id?if_exists != "">
-		id="${parameters.id?html}"<#rt/>
+		id="${parameters.id}"<#rt/>
 </#if>
 <#if parameters.cssStyle?if_exists != "">
-		style="${parameters.cssStyle?html}"<#rt/>
+		style="${parameters.cssStyle}"<#rt/>
 </#if>
 <#if parameters.cssClass?if_exists != "">
-		class="${parameters.cssClass?html}"<#rt/>
+		class="${parameters.cssClass}"<#rt/>
 </#if>
 <#if parameters.type?if_exists != "">
-		rel="${parameters.type?html}"<#rt/>
+		rel="${parameters.type}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
@@ -42,10 +42,10 @@
 <a href="javascript:void(0)" >
 </#if>
 <#if parameters.menuIcon?if_exists != "">
-<span class="ui-icon ${parameters.menuIcon?html}"></span><#rt/>
+<span class="ui-icon ${parameters.menuIcon}"></span><#rt/>
 </#if>
 <#if parameters.title?if_exists != "">
-${parameters.title?html}<#rt/>
+${parameters.title}<#rt/>
 </#if>
 <#if parameters.href?if_exists != "">
 </a><#rt/>

@@ -22,48 +22,48 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () {
-	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.datatype = "json";
-	options_${escapedOptionId?html}.type = 'select';
+	var options_${escapedOptionId} = {};
+	options_${escapedOptionId}.datatype = "json";
+	options_${escapedOptionId}.type = 'select';
 <#if parameters.emptyOption?default(false)>
-	options_${escapedOptionId?html}.emptyoption = true;
+	options_${escapedOptionId}.emptyoption = true;
 </#if>
 <#if parameters.headerKey?? && parameters.headerValue??>
-	options_${escapedOptionId?html}.headerkey = "${parameters.headerKey?html}";
-	options_${escapedOptionId?html}.headervalue = "${parameters.headerValue?html}";
+	options_${escapedOptionId}.headerkey = "${parameters.headerKey}";
+	options_${escapedOptionId}.headervalue = "${parameters.headerValue}";
 </#if>
 <#if parameters.list??>
-	options_${escapedOptionId?html}.list = "${parameters.list?html}";
+	options_${escapedOptionId}.list = "${parameters.list}";
 </#if>
 <#if parameters.listKey??>
-	options_${escapedOptionId?html}.listkey = "${parameters.listKey?html}";
+	options_${escapedOptionId}.listkey = "${parameters.listKey}";
 </#if>
 <#if parameters.listTitle??>
-	options_${escapedOptionId?html}.listtitle = "${parameters.listTitle?html}";
+	options_${escapedOptionId}.listtitle = "${parameters.listTitle}";
 </#if>
 <#if parameters.listValue??>
-	options_${escapedOptionId?html}.listvalue = "${parameters.listValue?html}";
+	options_${escapedOptionId}.listvalue = "${parameters.listValue}";
 </#if>
 <#if parameters.nameValue??>
-	options_${escapedOptionId?html}.value = "<@s.property value="parameters.nameValue"/>";
+	options_${escapedOptionId}.value = "<@s.property value="parameters.nameValue"/>";
 </#if>
 <#if parameters.bindOn?if_exists != "">
-	options_${escapedOptionId?html}.bindon = "${parameters.bindOn?html}";
+	options_${escapedOptionId}.bindon = "${parameters.bindOn}";
 </#if>
 <#if parameters.events?if_exists != "">
-	options_${escapedOptionId?html}.events = "${parameters.events?html}";
+	options_${escapedOptionId}.events = "${parameters.events}";
 </#if>
 <#if parameters.autocomplete?default(false)>
-	options_${escapedOptionId?html}.autocomplete = true;
+	options_${escapedOptionId}.autocomplete = true;
 </#if>
 <#if parameters.selectBoxIcon?default(false) >
-	options_${escapedOptionId?html}.icon = true;
+	options_${escapedOptionId}.icon = true;
 </#if>
 <#if parameters.loadMinimumCount??>
-	options_${escapedOptionId?html}.minimum = ${parameters.loadMinimumCount?html};
+	options_${escapedOptionId}.minimum = ${parameters.loadMinimumCount};
 </#if>
 <#if parameters.onSelectTopics?if_exists != "">
-	options_${escapedOptionId?html}.onselecttopics = "${parameters.onSelectTopics?html}";
+	options_${escapedOptionId}.onselecttopics = "${parameters.onSelectTopics}";
 </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

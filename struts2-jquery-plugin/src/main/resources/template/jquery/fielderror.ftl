@@ -35,22 +35,22 @@
                     </#if><#t/>
 					<div 
 					<#if parameters.id?if_exists != "">
-					 id="${parameters.id?html}"<#rt/>
+					 id="${parameters.id}"<#rt/>
 					</#if>
 					<#if parameters.cssClass??>
-					 class="ui-widget ${parameters.cssClass?html}"<#rt/>
+					 class="ui-widget ${parameters.cssClass}"<#rt/>
 					<#else>
 					 class="ui-widget actionError"<#rt/>
 					</#if>
 					<#if parameters.cssStyle??>
-					 style="margin${parameters.cssStyle?html}"<#rt/>
+					 style="margin${parameters.cssStyle}"<#rt/>
 					</#if>
 					>
 					<div class="ui-state-error ui-corner-all" style="padding: 0.3em 0.7em; margin-top: 20px;"> 
 		                    <#list eValue as eEachValue><#t/>
 					            <#if eEachValue?if_exists != "">
 							<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
-							<span><#if parameters.escape>${eEachValue!?html}<#else>${eEachValue!}</#if></span></p>
+							<span><#if parameters.escape>${eEachValue!}<#else>${eEachValue!}</#if></span></p>
 					            </#if>
 							</#list>
 					</div>
@@ -65,15 +65,15 @@
         <#if (eKeysSize > 0)><#t/>
 					<div 
 					<#if parameters.id?if_exists != "">
-					 id="${parameters.id?html}"<#rt/>
+					 id="${parameters.id}"<#rt/>
 					</#if>
 					<#if parameters.cssClass??>
-					 class="ui-widget ${parameters.cssClass?html}"<#rt/>
+					 class="ui-widget ${parameters.cssClass}"<#rt/>
 					<#else>
 					 class="ui-widget actionError"<#rt/>
 					</#if>
 					<#if parameters.cssStyle??>
-					 style="margin${parameters.cssStyle?html}"<#rt/>
+					 style="margin${parameters.cssStyle}"<#rt/>
 					</#if>
 					>
 					<div class="ui-state-error ui-corner-all" style="padding: 0.3em 0.7em; margin-top: 20px;"> 
@@ -82,7 +82,7 @@
 		                    <#list eValue as eEachValue><#t/>
 					            <#if eEachValue?if_exists != "">
 							<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
-							<span><#if parameters.escape>${eEachValue!?html}<#else>${eEachValue!}</#if></span></p>
+							<span><#if parameters.escape>${eEachValue!}<#else>${eEachValue!}</#if></span></p>
 					            </#if>
 							</#list>
             </#list><#t/>

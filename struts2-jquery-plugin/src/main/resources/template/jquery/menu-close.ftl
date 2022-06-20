@@ -55,20 +55,20 @@
                 <#if parameters.href?exists>
                     <#if parameters.targets?if_exists != "">
                         <a id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />_anchor" href="javascript:void(0)">
-                            ${itemValue?html}
+                            ${itemValue}
                         </a>
                         <#assign escapedOptionLinkId="${escapedOptionId}_li">
-                        <#assign optionsLiVariableName>options_${escapedOptionLinkId?html}_<@s.property value="%{#rowstatus.count}" /></#assign>
+                        <#assign optionsLiVariableName>options_${escapedOptionLinkId}_<@s.property value="%{#rowstatus.count}" /></#assign>
                         <script type='text/javascript'>
                             jQuery(document).ready(function () {
                                 var ${optionsLiVariableName} = {};
                                 ${optionsLiVariableName}.jqueryaction = "menuItem";
                                 ${optionsLiVariableName}.id = "${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />";
                             <#if parameters.targets?if_exists != "">
-                                ${optionsLiVariableName}.targets = "${parameters.targets?html}";
+                                ${optionsLiVariableName}.targets = "${parameters.targets}";
                             </#if>
                             <#if parameters.href?if_exists != "">
-                                ${optionsLiVariableName}.href = "${parameters.href?html}";
+                                ${optionsLiVariableName}.href = "${parameters.href}";
                             </#if>
                                 ${optionsLiVariableName}.hrefparameter = "${parameters.paramName?default('id')}=${itemKeyStr}";
                                 jQuery.struts2_jquery_ui.bind(jQuery('#${escapedOptionId?string?replace('.', '\\\\\\\\.')}_li_<@s.property value="%{#rowstatus.count}" />'), ${optionsLiVariableName});
@@ -76,12 +76,12 @@
                         </script>
                     <#else>
                         <a href="${parameters.href}?${parameters.paramName?default('id')}=${itemKeyStr}">
-                            ${itemValue?html}
+                            ${itemValue}
                         </a>
                     </#if>
                 <#else>
                     <a href="javascript:void(0)">
-                        ${itemValue?html}
+                        ${itemValue}
                     </a>
                 </#if>
             </div>
@@ -92,15 +92,15 @@
 <#if !parameters.subMenu?default(false)>
     <script type='text/javascript'>
         jQuery(document).ready(function () { 
-            var options_${escapedOptionId?html} = {};
+            var options_${escapedOptionId} = {};
         <#if parameters.disabled?default(false)>
-            options_${escapedOptionId?html}.disabled = true;
+            options_${escapedOptionId}.disabled = true;
         </#if>
         <#if parameters.targets?if_exists != "">
-            options_${escapedOptionId?html}.targets = "${parameters.targets?html}";
+            options_${escapedOptionId}.targets = "${parameters.targets}";
         </#if>
         <#if parameters.href?if_exists != "">
-            options_${escapedOptionId?html}.href = "${parameters.href?html}";
+            options_${escapedOptionId}.href = "${parameters.href}";
         </#if>
             <#include "/${parameters.templateDir}/jquery/base.ftl" />
             <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

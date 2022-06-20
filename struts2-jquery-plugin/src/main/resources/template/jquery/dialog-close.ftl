@@ -22,104 +22,104 @@
 </div>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
   <#if parameters.height?if_exists != "">
   	<#if parameters.height?if_exists == "auto">
-	options_${escapedOptionId?html}.height = "auto";
+	options_${escapedOptionId}.height = "auto";
   	<#else>
-	options_${escapedOptionId?html}.height = ${parameters.height?html};
+	options_${escapedOptionId}.height = ${parameters.height};
   	</#if>
   </#if>
   <#if parameters.width?if_exists != "">
  	<#if parameters.width?if_exists == "auto">
-	options_${escapedOptionId?html}.width = "auto";
+	options_${escapedOptionId}.width = "auto";
   	<#else>
-	options_${escapedOptionId?html}.width = ${parameters.width?html};
+	options_${escapedOptionId}.width = ${parameters.width};
   	</#if>
   </#if>
    <#if parameters.maxHeight?if_exists != "">
-	options_${escapedOptionId?html}.maxHeight = ${parameters.maxHeight?html};
+	options_${escapedOptionId}.maxHeight = ${parameters.maxHeight};
   </#if>
   <#if parameters.maxWidth?if_exists != "">
-	options_${escapedOptionId?html}.maxWidth = ${parameters.maxWidth?html};
+	options_${escapedOptionId}.maxWidth = ${parameters.maxWidth};
   </#if>
    <#if parameters.minHeight?if_exists != "">
-	options_${escapedOptionId?html}.minHeight = ${parameters.minHeight?html};
+	options_${escapedOptionId}.minHeight = ${parameters.minHeight};
   </#if>
   <#if parameters.minWidth?if_exists != "">
-	options_${escapedOptionId?html}.minWidth = ${parameters.minWidth?html};
+	options_${escapedOptionId}.minWidth = ${parameters.minWidth};
   </#if>
   <#if parameters.title?if_exists != "">
-	options_${escapedOptionId?html}.title = "${parameters.title?html}";
+	options_${escapedOptionId}.title = "${parameters.title}";
   </#if>
   <#if parameters.dialogClass?if_exists != "">
-	options_${escapedOptionId?html}.dialogClass = "${parameters.dialogClass?html}";
+	options_${escapedOptionId}.dialogClass = "${parameters.dialogClass}";
   </#if>
   <#if parameters.showEffect?if_exists != "">
-	options_${escapedOptionId?html}.show = "${parameters.showEffect?html}";
+	options_${escapedOptionId}.show = "${parameters.showEffect}";
   </#if>
   <#if parameters.hideEffect?if_exists != "">
-	options_${escapedOptionId?html}.hide = "${parameters.hideEffect?html}";
+	options_${escapedOptionId}.hide = "${parameters.hideEffect}";
   </#if>
   <#if parameters.position?if_exists != "">
   	  <#-- Is position an Array or Object? -->
 	  <#if parameters.position?substring(0, 1) == "[" || parameters.position?substring(0, 1) == "{">
-	options_${escapedOptionId?html}.position = ${parameters.position?html};
+	options_${escapedOptionId}.position = ${parameters.position};
 	  <#else>
-	options_${escapedOptionId?html}.position = "${parameters.position?html}";
+	options_${escapedOptionId}.position = "${parameters.position}";
 	  </#if>
   </#if>
   <#if parameters.appendTo?if_exists != "">
-    options_${escapedOptionId?html}.appendTo = "${parameters.appendTo?html}";
+    options_${escapedOptionId}.appendTo = "${parameters.appendTo}";
   </#if>
   <#if parameters.buttons?if_exists != "">
-	options_${escapedOptionId?html}.buttons = ${parameters.buttons?string};
+	options_${escapedOptionId}.buttons = ${parameters.buttons?string};
   </#if>
   <#if parameters.draggable?exists>
-	options_${escapedOptionId?html}.draggable = ${parameters.draggable?string};
+	options_${escapedOptionId}.draggable = ${parameters.draggable?string};
   </#if>
   <#if parameters.resizable?exists>
-	options_${escapedOptionId?html}.resizable = ${parameters.resizable?string};
+	options_${escapedOptionId}.resizable = ${parameters.resizable?string};
   </#if>
   <#if parameters.autoOpen?exists>
-	options_${escapedOptionId?html}.autoOpen = ${parameters.autoOpen?string};
+	options_${escapedOptionId}.autoOpen = ${parameters.autoOpen?string};
   </#if>
   <#if parameters.closeOnEscape?exists>
-	options_${escapedOptionId?html}.closeOnEscape = ${parameters.closeOnEscape?string};
+	options_${escapedOptionId}.closeOnEscape = ${parameters.closeOnEscape?string};
   </#if>
 <#if parameters.modal?if_exists == "true" >
  <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">
 	<#if parameters.overlayColor?if_exists != "">
-	options_${escapedOptionId?html}.backgroundColor = "${parameters.overlayColor?html}";
+	options_${escapedOptionId}.backgroundColor = "${parameters.overlayColor}";
 	</#if>
 	<#if parameters.overlayOpacity?if_exists != "">
-	options_${escapedOptionId?html}.opacity = ${parameters.overlayOpacity?html};
+	options_${escapedOptionId}.opacity = ${parameters.overlayOpacity};
 	<#else>
-	options_${escapedOptionId?html}.opacity = 0.7;
+	options_${escapedOptionId}.opacity = 0.7;
 	</#if>
   </#if>
-	options_${escapedOptionId?html}.modal = true;
+	options_${escapedOptionId}.modal = true;
 </#if>
   <#if parameters.onOpenTopics?if_exists != "">
-	options_${escapedOptionId?html}.onopentopics = "${parameters.onOpenTopics?html}";
+	options_${escapedOptionId}.onopentopics = "${parameters.onOpenTopics}";
   </#if>
   <#if parameters.onCloseTopics?if_exists != "">
-	options_${escapedOptionId?html}.onclosetopics = "${parameters.onCloseTopics?html}";
+	options_${escapedOptionId}.onclosetopics = "${parameters.onCloseTopics}";
   </#if>
   <#if parameters.onFocusTopics?if_exists != "">
-	options_${escapedOptionId?html}.onfocustopics = "${parameters.onFocusTopics?html}";
+	options_${escapedOptionId}.onfocustopics = "${parameters.onFocusTopics}";
   </#if>
   <#if parameters.onBeforeCloseTopics?if_exists != "">
-	options_${escapedOptionId?html}.onbeforeclosetopics = "${parameters.onBeforeCloseTopics?html}";
+	options_${escapedOptionId}.onbeforeclosetopics = "${parameters.onBeforeCloseTopics}";
   </#if>
   <#if parameters.openTopics?if_exists != "">
-	options_${escapedOptionId?html}.opentopics = "${parameters.openTopics?html}";
+	options_${escapedOptionId}.opentopics = "${parameters.openTopics}";
   </#if>
   <#if parameters.closeTopics?if_exists != "">
-	options_${escapedOptionId?html}.closetopics = "${parameters.closeTopics?html}";
+	options_${escapedOptionId}.closetopics = "${parameters.closeTopics}";
   </#if>
   <#if parameters.destroyTopics?if_exists != "">
-	options_${escapedOptionId?html}.destroytopics = "${parameters.destroyTopics?html}";
+	options_${escapedOptionId}.destroytopics = "${parameters.destroyTopics}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

@@ -28,22 +28,22 @@
 </#if>
 <input type="hidden"
   <#if parameters.widgetid?if_exists != "">
-    id="${parameters.widgetid?html}"<#rt/>
+    id="${parameters.widgetid}"<#rt/>
   </#if>
     value="${parameters.nameValue?default('0')}"<#rt/>
   <#if parameters.name?if_exists != "">
-    name="${parameters.name?html}"<#rt/>
+    name="${parameters.name}"<#rt/>
   </#if>
   <#if parameters.disabled?default(false)>
     disabled="disabled"<#rt/>
   </#if>
 />
-<div id="${parameters.id?html}"
+<div id="${parameters.id}"
 <#if parameters.cssStyle?if_exists != "">
- style="${parameters.cssStyle?html}"<#rt/>
+ style="${parameters.cssStyle}"<#rt/>
 </#if>
 <#if parameters.cssClass?if_exists != "">
- class="${parameters.cssClass?html}"<#rt/>
+ class="${parameters.cssClass}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />

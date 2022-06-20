@@ -54,10 +54,10 @@
 <#if parameters.paramValues?if_exists != "">
 	 data-values="${hrefValues?trim}"
 </#if>	 
-	 >${itemKeyStr?html}</a></${parameters.header?default('h3')}>
+	 >${itemKeyStr}</a></${parameters.header?default('h3')}>
 		<div id="${escapedOptionId}_div_<@s.property value="%{#rowstatus.count}" />">
 <#if parameters.href?if_exists == "">
-			${itemValue?html}
+			${itemValue}
 </#if>			
 		</div>
 	<#lt/>
@@ -66,30 +66,30 @@
 </div>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
   <#if parameters.collapsible?default(false)>
-	options_${escapedOptionId?html}.collapsible = true;
+	options_${escapedOptionId}.collapsible = true;
   </#if>
   <#if parameters.openOnMouseover?default(false)>
-	options_${escapedOptionId?html}.event = "mouseover";
+	options_${escapedOptionId}.event = "mouseover";
   </#if>
   <#if parameters.heightStyle?if_exists != "">
-	options_${escapedOptionId?html}.heightStyle = "${parameters.heightStyle?html}";
+	options_${escapedOptionId}.heightStyle = "${parameters.heightStyle}";
   </#if>
   <#if parameters.active?if_exists != "">
-	options_${escapedOptionId?html}.active = "${parameters.active?html}";
+	options_${escapedOptionId}.active = "${parameters.active}";
   </#if>
   <#if parameters.href?if_exists != "">
-	options_${escapedOptionId?html}.href = "${parameters.href?html}";
+	options_${escapedOptionId}.href = "${parameters.href}";
   </#if>
   <#if parameters.header?if_exists != "">
-	options_${escapedOptionId?html}.header = "${parameters.header?html}";
+	options_${escapedOptionId}.header = "${parameters.header}";
   </#if>
 <#if parameters.animate?if_exists != "">
-	options_${escapedOptionId?html}.animate = ${parameters.animate?html};
+	options_${escapedOptionId}.animate = ${parameters.animate};
 </#if>
 <#if parameters.onCreateTopics?exists>
-    options_${escapedOptionId?html}.oncreate = "${parameters.onCreateTopics?html}";
+    options_${escapedOptionId}.oncreate = "${parameters.onCreateTopics}";
 </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
