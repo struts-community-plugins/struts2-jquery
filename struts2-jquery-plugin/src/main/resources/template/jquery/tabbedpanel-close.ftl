@@ -22,45 +22,45 @@
 </div>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
   <#if parameters.selectedTab?exists>
-	options_${escapedOptionId?html}.selectedtab = ${parameters.selectedTab?c};
+	options_${escapedOptionId}.selectedtab = ${parameters.selectedTab?c};
   </#if>
   <#if parameters.openOnMouseover?default(false)>
-	options_${escapedOptionId?html}.event = "mouseover";
+	options_${escapedOptionId}.event = "mouseover";
   </#if>
   <#if parameters.collapsible?default(false)>
-	options_${escapedOptionId?html}.collapsible = true;
+	options_${escapedOptionId}.collapsible = true;
   </#if>
   <#if parameters.useSelectedTabCookie?default(false)>
-	options_${escapedOptionId?html}.cookie = true;
+	options_${escapedOptionId}.cookie = true;
   </#if>
   <#if parameters.show?if_exists != "">
-	options_${escapedOptionId?html}.show = ${parameters.show?html};
+	options_${escapedOptionId}.show = ${parameters.show};
   </#if>
   <#if parameters.hide?if_exists != "">
-	options_${escapedOptionId?html}.hide = ${parameters.hide?html};
+	options_${escapedOptionId}.hide = ${parameters.hide};
   </#if>
   <#if parameters.cache?default(false)>
-	options_${escapedOptionId?html}.cache = true;
+	options_${escapedOptionId}.cache = true;
   </#if>
   <#if parameters.disabledTabs?if_exists != "">
-	options_${escapedOptionId?html}.disabledtabs = "${parameters.disabledTabs?html}";
+	options_${escapedOptionId}.disabledtabs = "${parameters.disabledTabs}";
   </#if>
   <#if parameters.sortable?default(false)>
-	options_${escapedOptionId?html}.sortable = true;
+	options_${escapedOptionId}.sortable = true;
   </#if>
   <#if parameters.heightStyle?if_exists != "">
-	options_${escapedOptionId?html}.heightStyle = "${parameters.heightStyle?html}";
+	options_${escapedOptionId}.heightStyle = "${parameters.heightStyle}";
   </#if>
   <#if parameters.onLoadTopics?if_exists != "">
-	options_${escapedOptionId?html}.onloadtopics = "${parameters.onLoadTopics?html}";
+	options_${escapedOptionId}.onloadtopics = "${parameters.onLoadTopics}";
   </#if>
   <#if parameters.onActivateTopics?if_exists != "">
-	options_${escapedOptionId?html}.onactivatetopics = "${parameters.onActivateTopics?html}";
+	options_${escapedOptionId}.onactivatetopics = "${parameters.onActivateTopics}";
   </#if>
 <#if parameters.onBeforeActivateTopics?if_exists != "">
-	options_${escapedOptionId?html}.onbefacttopics = "${parameters.onBeforeActivateTopics?html}";
+	options_${escapedOptionId}.onbefacttopics = "${parameters.onBeforeActivateTopics}";
 </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
 <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

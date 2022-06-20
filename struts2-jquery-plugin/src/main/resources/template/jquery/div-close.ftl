@@ -22,12 +22,12 @@
 </div>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
   <#if parameters.updateFreq??>
-	options_${escapedOptionId?html}.updatefreq = ${parameters.updateFreq?c};
+	options_${escapedOptionId}.updatefreq = ${parameters.updateFreq?c};
   </#if>
   <#if parameters.delay??>
-	options_${escapedOptionId?html}.delay = ${parameters.delay?c};
+	options_${escapedOptionId}.delay = ${parameters.delay?c};
   </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

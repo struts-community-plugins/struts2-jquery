@@ -22,12 +22,12 @@
   <#include "/${parameters.templateDir}/${parameters.parentTheme}/submit-close.ftl" />
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
 	<#if parameters.openDialog?if_exists != ""> 
-	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
+	options_${escapedOptionId}.opendialog = "${parameters.openDialog}";
 	</#if>
 	<#if parameters.openDialogTitle?if_exists != ""> 
-	options_${escapedOptionId?html}.opendialogtitle = "${parameters.openDialogTitle?html}";
+	options_${escapedOptionId}.opendialogtitle = "${parameters.openDialogTitle}";
 	</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

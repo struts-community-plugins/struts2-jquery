@@ -20,39 +20,39 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.onCompleteTopics?exists>
-	options_${escapedOptionId?html}.oncom = "${parameters.onCompleteTopics?html}";
+	options_${escapedOptionId}.oncom = "${parameters.onCompleteTopics}";
   </#if>
   <#if parameters.onSuccessTopics?exists>
-	options_${escapedOptionId?html}.onsuc = "${parameters.onSuccessTopics?html}";
+	options_${escapedOptionId}.onsuc = "${parameters.onSuccessTopics}";
   </#if>
   <#if parameters.onErrorTopics?exists>
-	options_${escapedOptionId?html}.onerr = "${parameters.onErrorTopics?html}";
+	options_${escapedOptionId}.onerr = "${parameters.onErrorTopics}";
   </#if>
   <#if parameters.onBeforeTopics?exists>
-	options_${escapedOptionId?html}.onbef = "${parameters.onBeforeTopics?html}";
+	options_${escapedOptionId}.onbef = "${parameters.onBeforeTopics}";
   </#if>
   <#if parameters.onAfterValidationTopics?exists>
-    options_${escapedOptionId?html}.onaftervalidation = "${parameters.onAfterValidationTopics?html}";
+    options_${escapedOptionId}.onaftervalidation = "${parameters.onAfterValidationTopics}";
   </#if>  
   <#if parameters.onAlwaysTopics?exists>
-	options_${escapedOptionId?html}.onalw = "${parameters.onAlwaysTopics?html}";
+	options_${escapedOptionId}.onalw = "${parameters.onAlwaysTopics}";
   </#if>
   <#if parameters.onChangeTopics?exists>
-	options_${escapedOptionId?html}.oncha = "${parameters.onChangeTopics?html}";
+	options_${escapedOptionId}.oncha = "${parameters.onChangeTopics}";
   </#if>
   <#if parameters.onHideTopics?exists>
-	options_${escapedOptionId?html}.onhidetopics = "${parameters.onHideTopics?string?html}";
+	options_${escapedOptionId}.onhidetopics = "${parameters.onHideTopics?string}";
   </#if>
   <#if parameters.onShowTopics?exists>
-	options_${escapedOptionId?html}.onshowtopics = "${parameters.onShowTopics?string?html}";
+	options_${escapedOptionId}.onshowtopics = "${parameters.onShowTopics?string}";
   </#if>
   <#if parameters.onRemoveTopics?exists>
-	options_${escapedOptionId?html}.onremovetopics = "${parameters.onRemoveTopics?string?html}";
+	options_${escapedOptionId}.onremovetopics = "${parameters.onRemoveTopics?string}";
   </#if>
   <#if parameters.onFocusTopics?exists>
-	options_${escapedOptionId?html}.onfocustopics = "${parameters.onFocusTopics?string?html}";
+	options_${escapedOptionId}.onfocustopics = "${parameters.onFocusTopics?string}";
   </#if>
   <#if parameters.onBlurTopics?exists>
-	options_${escapedOptionId?html}.onblurtopics = "${parameters.onBlurTopics?string?html}";
+	options_${escapedOptionId}.onblurtopics = "${parameters.onBlurTopics?string}";
   </#if>
   

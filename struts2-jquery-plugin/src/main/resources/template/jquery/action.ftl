@@ -20,72 +20,72 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.targets?if_exists != "">
-	options_${escapedOptionId?html}.targets = "${parameters.targets?html}";
+	options_${escapedOptionId}.targets = "${parameters.targets}";
   </#if>
   <#if parameters.hrefUrl?if_exists != "">
-	options_${escapedOptionId?html}.href = "${parameters.hrefUrl?html}";
+	options_${escapedOptionId}.href = "${parameters.hrefUrl}";
   <#else>
-	options_${escapedOptionId?html}.href = "#";
+	options_${escapedOptionId}.href = "#";
   </#if>
   <#if parameters.hrefParameter?if_exists != ""> 
-	options_${escapedOptionId?html}.hrefparameter = "${parameters.hrefParameter?string}";
+	options_${escapedOptionId}.hrefparameter = "${parameters.hrefParameter?string}";
   </#if>
   <#if parameters.formIds?exists>
-	options_${escapedOptionId?html}.formids = "${parameters.formIds?html}";
+	options_${escapedOptionId}.formids = "${parameters.formIds}";
   </#if>
   <#if parameters.onClickTopics?exists>
-	options_${escapedOptionId?html}.onclick = "${parameters.onClickTopics?html}";
+	options_${escapedOptionId}.onclick = "${parameters.onClickTopics}";
   </#if>
   <#if parameters.indicator?exists>
-	options_${escapedOptionId?html}.indicatorid = "${parameters.indicator?html}";
+	options_${escapedOptionId}.indicatorid = "${parameters.indicator}";
   </#if>
   <#if parameters.loadingText?exists>
-	options_${escapedOptionId?html}.loadingtext = "${parameters.loadingText?html}";
+	options_${escapedOptionId}.loadingtext = "${parameters.loadingText}";
   </#if>
   <#if parameters.errorText?exists>
-	options_${escapedOptionId?html}.errortext = "${parameters.errorText?html}";
+	options_${escapedOptionId}.errortext = "${parameters.errorText}";
   </#if>
   <#if parameters.errorElementId?exists>
-	options_${escapedOptionId?html}.errorelementid = "${parameters.errorElementId?html}";
+	options_${escapedOptionId}.errorelementid = "${parameters.errorElementId}";
   </#if>
   <#if parameters.dataType?exists>
-	options_${escapedOptionId?html}.datatype = "${parameters.dataType?html}";
+	options_${escapedOptionId}.datatype = "${parameters.dataType}";
   </#if>
   <#if parameters.requestType?exists>
-	options_${escapedOptionId?html}.requesttype = "${parameters.requestType?html}";
+	options_${escapedOptionId}.requesttype = "${parameters.requestType}";
   </#if>
   <#if parameters.effect?exists>
-	options_${escapedOptionId?html}.effect = "${parameters.effect?html}";
+	options_${escapedOptionId}.effect = "${parameters.effect}";
 	<#if parameters.effectDuration?exists>
-	options_${escapedOptionId?html}.effectduration = ${parameters.effectDuration?html};
+	options_${escapedOptionId}.effectduration = ${parameters.effectDuration};
 	</#if>  
 	<#if parameters.effectMode?exists>
-	options_${escapedOptionId?html}.effectmode = "${parameters.effectMode?html}";
+	options_${escapedOptionId}.effectmode = "${parameters.effectMode}";
 	</#if>  
 	<#if parameters.effectOptions?exists>
-	options_${escapedOptionId?html}.effectoptions = ${parameters.effectOptions?html};
+	options_${escapedOptionId}.effectoptions = <#outputformat "JavaScript">${parameters.effectOptions}</#outputformat>;
 	<#else>
-	options_${escapedOptionId?html}.effectoptions = {};
+	options_${escapedOptionId}.effectoptions = {};
 	</#if>  
   </#if>  
   <#if parameters.timeout?exists>
-	options_${escapedOptionId?html}.timeout = ${parameters.timeout?html};
+	options_${escapedOptionId}.timeout = ${parameters.timeout};
   </#if>
   <#if parameters.listenTopics?exists>
-	options_${escapedOptionId?html}.listentopics = "${parameters.listenTopics?html}";
+	options_${escapedOptionId}.listentopics = "${parameters.listenTopics}";
   </#if>
   <#if parameters.onEffectCompleteTopics?exists>
-	options_${escapedOptionId?html}.oneffect = "${parameters.onEffectCompleteTopics?html}";
+	options_${escapedOptionId}.oneffect = "${parameters.onEffectCompleteTopics}";
   </#if>
    <#if parameters.clearForm?default(false)>
-	options_${escapedOptionId?html}.clearform = true;
+	options_${escapedOptionId}.clearform = true;
     </#if>
    <#if parameters.resetForm?default(false)>
-	options_${escapedOptionId?html}.resetform = true;
+	options_${escapedOptionId}.resetform = true;
     </#if>
    <#if parameters.iframe?default(false)>
-	options_${escapedOptionId?html}.iframe = true;
+	options_${escapedOptionId}.iframe = true;
     </#if>
    <#if parameters.replaceTarget?default(false)>
-	options_${escapedOptionId?html}.replaceTarget = true;
+	options_${escapedOptionId}.replaceTarget = true;
     </#if>

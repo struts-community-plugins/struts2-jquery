@@ -20,17 +20,17 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.resizable?default(false)>
-	options_${escapedOptionId?html}.resizable = true;<#rt/>
+	options_${escapedOptionId}.resizable = true;<#rt/>
    </#if>
   <#if parameters.resizableOptions?if_exists != "">
- 	options_${escapedOptionId?html}.resizableoptions = "${parameters.resizableOptions?html}";<#rt/>
+ 	options_${escapedOptionId}.resizableoptions = "<#outputformat "JavaScript">${parameters.resizableOptions}</#outputformat>";<#rt/>
    </#if>
   <#if parameters.resizableOnResizeTopics?if_exists != "">
-	options_${escapedOptionId?html}.resizableonresizetopics = "${parameters.resizableOnResizeTopics?html}";<#rt/>
+	options_${escapedOptionId}.resizableonresizetopics = "${parameters.resizableOnResizeTopics}";<#rt/>
    </#if>
   <#if parameters.resizableOnStartTopics?if_exists != "">
-	options_${escapedOptionId?html}.resizableonstarttopics = "${parameters.resizableOnStartTopics?html}";<#rt/>
+	options_${escapedOptionId}.resizableonstarttopics = "${parameters.resizableOnStartTopics}";<#rt/>
    </#if>
   <#if parameters.resizableOnStopTopics?if_exists != "">
-	options_${escapedOptionId?html}.resizableonstoptopics = "${parameters.resizableOnStopTopics?html}";<#rt/>
+	options_${escapedOptionId}.resizableonstoptopics = "${parameters.resizableOnStopTopics}";<#rt/>
    </#if>

@@ -20,9 +20,9 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.validateFunction?if_exists != "">
-	options_${escapedOptionId?html}.validateFunction = ${parameters.validateFunction?string};
+	options_${escapedOptionId}.validateFunction = ${parameters.validateFunction?string};
   </#if>
   <#if parameters.validate?default(false)>
-	options_${escapedOptionId?html}.validate = true;
+	options_${escapedOptionId}.validate = true;
   </#if>
   

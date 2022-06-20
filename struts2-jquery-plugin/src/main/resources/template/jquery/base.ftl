@@ -20,12 +20,12 @@
 -->
   <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
   <#if parameters.jqueryaction?exists>
-	options_${escapedOptionId?html}.jqueryaction = "${parameters.jqueryaction?html}";
+	options_${escapedOptionId}.jqueryaction = "${parameters.jqueryaction}";
   </#if>
   <#if parameters.id?exists>
-	options_${escapedOptionId?html}.id = "${parameters.id?html}";
+	options_${escapedOptionId}.id = "${parameters.id}";
   </#if>
   <#if parameters.name?exists>
-	options_${escapedOptionId?html}.name = "${parameters.name?html}";
+	options_${escapedOptionId}.name = "${parameters.name}";
   </#if>
   

@@ -25,7 +25,7 @@
 	<#if parameters.parentTheme == 'css_xhtml'>
 		<#include "/${parameters.templateDir}/css_xhtml/controlheader.ftl" />
 	</#if>
-<div id="${parameters.id?html}">
+<div id="${parameters.id}">
 <#include "/${parameters.templateDir}/simple/radiomap.ftl" />
 </div>
 	<#if parameters.parentTheme == 'xhtml'>
@@ -36,7 +36,7 @@
 	</#if>
 <#else>
 <#include "/${parameters.templateDir}/${parameters.parentTheme}/controlheader.ftl" />
-<div id="${parameters.id?html}">
+<div id="${parameters.id}">
 <#include "/${parameters.templateDir}/${parameters.parentTheme}/radiomap.ftl" />
 </div>
 <#include "/${parameters.templateDir}/${parameters.parentTheme}/controlfooter.ftl" />
