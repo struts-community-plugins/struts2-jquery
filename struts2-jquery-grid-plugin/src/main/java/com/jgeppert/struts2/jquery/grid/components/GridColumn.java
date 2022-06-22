@@ -151,7 +151,7 @@ public class GridColumn extends AbstractRemoteBean {
 
         Component grid = findAncestor(Grid.class);
         if (grid != null) {
-            addParameter(PARAM_GRID, ((Grid) grid).getId());
+            addParameter(PARAM_GRID, grid.getParameters().get("id"));
         }
     }
 
