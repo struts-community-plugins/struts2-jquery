@@ -19,7 +19,7 @@ function changeTheme(newTheme) {
 			}
 		}
 		else {
-			themePathPrefix = "struts/themes/";
+			themePathPrefix = "static/themes/";
 		}
 	}
 	$('#jquery_theme_link').attr('href',themePathPrefix+newTheme+'/jquery-ui.css');
