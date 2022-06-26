@@ -18,7 +18,7 @@
 	</scm>
 
 	<properties>
-		<spring.version>4.3.29.RELEASE</spring.version>
+		<spring.version>5.3.21</spring.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<javax.inject.vesion>1</javax.inject.vesion>
 		<javassist.version>3.17.1-GA</javassist.version>
