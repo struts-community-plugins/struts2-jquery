@@ -21,30 +21,30 @@
 <#assign colName="${parameters.name?string?replace('.', '_')}">
 <#assign escapedOptionId="${parameters.grid?string?replace('.', '_')}">
 
-options_${escapedOptionId?html}_colmodels_${colName} = {};
-options_${escapedOptionId?html}_colmodels_${colName}.name = "${parameters.name?string}";
+options_${escapedOptionId}_colmodels_${colName} = {};
+options_${escapedOptionId}_colmodels_${colName}.name = "${parameters.name?string}";
 <#if parameters.jsonmap?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.jsonmap = "${parameters.jsonmap?html}";
+options_${escapedOptionId}_colmodels_${colName}.jsonmap = "${parameters.jsonmap}";
 <#else>
-options_${escapedOptionId?html}_colmodels_${colName}.jsonmap = "${parameters.name?html}";
+options_${escapedOptionId}_colmodels_${colName}.jsonmap = "${parameters.name}";
 </#if>
 <#if parameters.index?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.index = "${parameters.index?html}";
+options_${escapedOptionId}_colmodels_${colName}.index = "${parameters.index}";
 </#if>
 <#if parameters.width?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.width = ${parameters.width?html};
+options_${escapedOptionId}_colmodels_${colName}.width = ${parameters.width};
 </#if>
 <#if parameters.editoptions?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.editoptions = ${parameters.editoptions?html};
+options_${escapedOptionId}_colmodels_${colName}.editoptions = <#outputformat "JavaScript">${parameters.editoptions}</#outputformat>;
 </#if>
 <#if parameters.edittype?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.edittype = "${parameters.edittype?html}";
+options_${escapedOptionId}_colmodels_${colName}.edittype = "${parameters.edittype}";
 </#if>
 <#if parameters.editrules?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.editrules = ${parameters.editrules?html};
+options_${escapedOptionId}_colmodels_${colName}.editrules = ${parameters.editrules};
 </#if>
 <#if parameters.formoptions?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.formoptions = ${parameters.formoptions?html};
+options_${escapedOptionId}_colmodels_${colName}.formoptions = <#outputformat "JavaScript">${parameters.formoptions}</#outputformat>;
 </#if>
 <#if parameters.formatter?if_exists != "">
 	<#if parameters.formatter == "integer" 
@@ -57,75 +57,75 @@ options_${escapedOptionId?html}_colmodels_${colName}.formoptions = ${parameters.
 		|| parameters.formatter == "checkbox" 
 		|| parameters.formatter == "select" 
 		>
-		options_${escapedOptionId?html}_colmodels_${colName}.formatter = "${parameters.formatter?html}";
+		options_${escapedOptionId}_colmodels_${colName}.formatter = "${parameters.formatter}";
 	<#else>
-		options_${escapedOptionId?html}_colmodels_${colName}.formatter = ${parameters.formatter?html};
+		options_${escapedOptionId}_colmodels_${colName}.formatter = ${parameters.formatter};
 	</#if>
 </#if>
 <#if parameters.formatoptions?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.formatoptions = ${parameters.formatoptions?html};
+options_${escapedOptionId}_colmodels_${colName}.formatoptions = ${parameters.formatoptions};
 </#if>
 <#if parameters.align?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.align = "${parameters.align?html}";
+options_${escapedOptionId}_colmodels_${colName}.align = "${parameters.align}";
 </#if>
 <#if parameters.cssClass?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.classes = "${parameters.cssClass?html}";
+options_${escapedOptionId}_colmodels_${colName}.classes = "${parameters.cssClass}";
 </#if>
 <#if parameters.fixed?default(false)>
-options_${escapedOptionId?html}_colmodels_${colName}.fixed = true;
-options_${escapedOptionId?html}.true = false;
+options_${escapedOptionId}_colmodels_${colName}.fixed = true;
+options_${escapedOptionId}.true = false;
 </#if>
 <#if parameters.frozen?default(false)>
-options_${escapedOptionId?html}_colmodels_${colName}.frozen = true;
-options_${escapedOptionId?html}.frozen = true;
+options_${escapedOptionId}_colmodels_${colName}.frozen = true;
+options_${escapedOptionId}.frozen = true;
 </#if>
 <#if parameters.editable?default(false)>
-options_${escapedOptionId?html}_colmodels_${colName}.editable = true;
+options_${escapedOptionId}_colmodels_${colName}.editable = true;
 <#else>
-options_${escapedOptionId?html}_colmodels_${colName}.editable = false;
+options_${escapedOptionId}_colmodels_${colName}.editable = false;
 </#if>
 <#if parameters.sortable?default(true)>
-options_${escapedOptionId?html}_colmodels_${colName}.sortable = true;
+options_${escapedOptionId}_colmodels_${colName}.sortable = true;
 <#else>
-options_${escapedOptionId?html}_colmodels_${colName}.sortable = false;
+options_${escapedOptionId}_colmodels_${colName}.sortable = false;
 </#if>
 <#if parameters.sorttype?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.sorttype = "${parameters.sorttype?html}";
+options_${escapedOptionId}_colmodels_${colName}.sorttype = "${parameters.sorttype}";
 </#if>
 <#if parameters.resizable?default(true)>
-options_${escapedOptionId?html}_colmodels_${colName}.resizable = true;
+options_${escapedOptionId}_colmodels_${colName}.resizable = true;
 <#else>
-options_${escapedOptionId?html}_colmodels_${colName}.resizable = false;
+options_${escapedOptionId}_colmodels_${colName}.resizable = false;
 </#if>
 <#if parameters.search?default(true)>
-options_${escapedOptionId?html}_colmodels_${colName}.search = true;
+options_${escapedOptionId}_colmodels_${colName}.search = true;
 	<#if parameters.searchtype?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.stype = "${parameters.searchtype?html}";
+options_${escapedOptionId}_colmodels_${colName}.stype = "${parameters.searchtype}";
 	</#if>
 <#else>
-options_${escapedOptionId?html}_colmodels_${colName}.search = false;
+options_${escapedOptionId}_colmodels_${colName}.search = false;
 </#if>
 <#if parameters.key?default(false)>
-options_${escapedOptionId?html}_colmodels_${colName}.key = true;
+options_${escapedOptionId}_colmodels_${colName}.key = true;
 </#if>
 <#if parameters.hidedlg?default(false)>
-options_${escapedOptionId?html}_colmodels_${colName}.hidedlg = true;
+options_${escapedOptionId}_colmodels_${colName}.hidedlg = true;
 </#if>
 <#if parameters.hidden?default(false)>
-options_${escapedOptionId?html}_colmodels_${colName}.hidden = true;
+options_${escapedOptionId}_colmodels_${colName}.hidden = true;
 </#if>
 <#if parameters.defval?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.defval = "${parameters.defval?html}";
+options_${escapedOptionId}_colmodels_${colName}.defval = "${parameters.defval}";
 </#if>
 <#if parameters.surl?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.surl = "${parameters.surl?string}";
+options_${escapedOptionId}_colmodels_${colName}.surl = "${parameters.surl?string}";
 </#if>
 <#if parameters.searchoptions?if_exists != "">
-options_${escapedOptionId?html}_colmodels_${colName}.searchoptions = ${parameters.searchoptions?html};
+options_${escapedOptionId}_colmodels_${colName}.searchoptions = <#outputformat "JavaScript">${parameters.searchoptions}</#outputformat>;
 </#if>
 <#if !parameters.displayTitle?default(true)>
-options_${escapedOptionId?html}_colmodels_${colName}.title = false;
+options_${escapedOptionId}_colmodels_${colName}.title = false;
 </#if>
 
-options_${escapedOptionId?html}_colnames.push("${parameters.title?html}");
-options_${escapedOptionId?html}_colmodels.push(options_${escapedOptionId?html}_colmodels_${colName});
+options_${escapedOptionId}_colnames.push("${parameters.title}");
+options_${escapedOptionId}_colmodels.push(options_${escapedOptionId}_colmodels_${colName});

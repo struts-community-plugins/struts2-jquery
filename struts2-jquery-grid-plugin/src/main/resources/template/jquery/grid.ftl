@@ -20,12 +20,12 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <#if !parameters.subGrid?default(false)>
-<table id="${parameters.id?html}" cellpadding="0" cellspacing="0"
+<table id="${parameters.id}" cellpadding="0" cellspacing="0"
 <#if parameters.cssStyle?if_exists != "">
- style="${parameters.cssStyle?html}"<#rt/>
+ style="${parameters.cssStyle}"<#rt/>
 </#if>
 <#if parameters.cssClass?if_exists != "">
- class="${parameters.cssClass?html} scroll"<#rt/>
+ class="${parameters.cssClass} scroll"<#rt/>
 <#else>
  class="scroll"<#rt/>
 </#if>
@@ -34,22 +34,22 @@
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 ></table>
 <#if parameters.pager?default(false) || parameters.navigator?default(false)>
-<div id="${parameters.id?html}_pager"></div>
+<div id="${parameters.id}_pager"></div>
 </#if>
 </#if>
 
 <#if parameters.subGrid?default(false)>
 	<#assign escapedParentOptionId="${parameters.parentGrid?string?replace('.', '_')}">
-	options_${escapedParentOptionId?html}.subgrid = true;
+	options_${escapedParentOptionId}.subgrid = true;
 	<#if parameters.subGridWidth?if_exists != "">
-	options_${escapedParentOptionId?html}.subGridWidth = "${parameters.subGridWidth?html}";
+	options_${escapedParentOptionId}.subGridWidth = "${parameters.subGridWidth}";
 	</#if>
 <#else>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
 	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 </#if>
-	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.frozen = false;
-	var options_${escapedOptionId?html}_colmodels = new Array();
-	var options_${escapedOptionId?html}_colnames = new Array();
+	var options_${escapedOptionId} = {};
+	options_${escapedOptionId}.frozen = false;
+	var options_${escapedOptionId}_colmodels = new Array();
+	var options_${escapedOptionId}_colnames = new Array();
