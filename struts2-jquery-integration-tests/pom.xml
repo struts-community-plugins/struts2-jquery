@@ -28,7 +28,6 @@
         <phantomjsdriver.version>1.4.3</phantomjsdriver.version>
         <commons-codec.version>1.10</commons-codec.version>
         <commons-io.version>2.7</commons-io.version>
-        <commons-lang.version>3.6</commons-lang.version>
         <xml-apis.version>1.4.01</xml-apis.version>
 
         <failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
@@ -233,12 +232,6 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang.version}</version>
             </dependency>
 
             <dependency>

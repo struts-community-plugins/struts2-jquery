@@ -1,243 +1,343 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.jgeppert.struts2.jquery</groupId>
-        <artifactId>struts2-jquery</artifactId>
-        <version>5.0.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>struts2-jquery-grid-showcase</artifactId>
-    <name>Struts 2 jQuery Grid Showcase</name>
-    <packaging>war</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jgeppert.struts2.jquery</groupId>
+		<artifactId>struts2-jquery</artifactId>
+		<version>5.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>struts2-jquery-grid-showcase</artifactId>
+	<name>Struts 2 jQuery Grid Showcase</name>
+	<packaging>war</packaging>
 
 
-    <scm>
-        <url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-grid-showcase/</url>
-    </scm>
+	<scm>
+		<url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-grid-showcase/</url>
+	</scm>
 
-    <properties>
-        <spring.version>4.3.29.RELEASE</spring.version>
-        <hibernate.version>4.3.11.Final</hibernate.version>
-    </properties>
+	<properties>
+		<spring.version>5.3.21</spring.version>
+		<hibernate.version>5.6.9.Final</hibernate.version>
+		<javax.inject.vesion>1</javax.inject.vesion>
+		<javassist.version>3.17.1-GA</javassist.version>
+		<velocity.version>1.7</velocity.version>
+		<velocity-tools.version>2.0</velocity-tools.version>
+		<derby.version>10.11.1.1</derby.version>
+		<c3p0.version>0.9.1.2</c3p0.version>
+		<hibernate-validator.version>4.3.2.Final</hibernate-validator.version>
+		<javax.interceptor-api.version>1.2</javax.interceptor-api.version>
+	</properties>
 
-    <dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>com.jgeppert.struts2.jquery</groupId>
+			<artifactId>struts2-jquery-plugin</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>com.jgeppert.struts2.jquery</groupId>
-            <artifactId>struts2-jquery-plugin</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>javassist</artifactId>
-                    <groupId>javassist</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
-        </dependency>
+		<dependency>
+			<groupId>com.jgeppert.struts2.jquery</groupId>
+			<artifactId>struts2-jquery-grid-plugin</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>com.jgeppert.struts2.jquery</groupId>
-            <artifactId>struts2-jquery-grid-plugin</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-convention-plugin</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-convention-plugin</artifactId>
-            <version>${struts2.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-json-plugin</artifactId>
-            <version>${struts2.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-spring-plugin</artifactId>
-            <version>${struts2.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.17.1-GA</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-1.2-api</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
-            <scope>provided</scope>
-        </dependency>
+		<!-- Velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+		</dependency>
 
-        <!-- Velocity -->
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-tools</artifactId>
-            <version>2.0</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>struts-tiles</artifactId>
-                    <groupId>org.apache.struts</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>struts-core</artifactId>
-                    <groupId>org.apache.struts</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>struts-taglib</artifactId>
-                    <groupId>org.apache.struts</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Derby JDBC Driver  -->
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.11.1.1</version>
-        </dependency>
+		<!-- Derby JDBC Driver -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+		</dependency>
 
 
-        <!-- Connection Pooling -->
-        <dependency>
-            <groupId>c3p0</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.1.2</version>
-        </dependency>
+		<!-- Connection Pooling -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+		</dependency>
 
-        <!-- Hibernate -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>javassist</artifactId>
-                    <groupId>org.javassist</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-ehcache</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>4.3.2.Final</version>
-        </dependency>
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
 
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>javax.interceptor</groupId>
-            <artifactId>javax.interceptor-api</artifactId>
-            <version>1.2</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>javax.interceptor</groupId>
+			<artifactId>javax.interceptor-api</artifactId>
+		</dependency>
+	</dependencies>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty.plugin.version}</version>
-                <configuration>
-                    <stopKey>CTRL+C</stopKey>
-                    <stopPort>8999</stopPort>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <webAppSourceDirectory>${basedir}/src/main/webapp/</webAppSourceDirectory>
-                    <webApp>
-                        <contextPath>/struts2-jquery-grid-showcase</contextPath>
-                    </webApp>
-                    <webAppConfig>
-                        <descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
-                    </webAppConfig>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.jgeppert.struts2.jquery</groupId>
+				<artifactId>struts2-jquery-plugin</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>${javax.inject.vesion}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jgeppert.struts2.jquery</groupId>
+				<artifactId>struts2-jquery-grid-plugin</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
+			</dependency>
+
+			<!-- Velocity -->
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity</artifactId>
+				<version>${velocity.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity-tools</artifactId>
+				<version>${velocity-tools.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>struts-tiles</artifactId>
+						<groupId>org.apache.struts</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>struts-core</artifactId>
+						<groupId>org.apache.struts</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>struts-taglib</artifactId>
+						<groupId>org.apache.struts</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- Derby JDBC Driver -->
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${derby.version}</version>
+			</dependency>
+
+
+			<!-- Connection Pooling -->
+			<dependency>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>${c3p0.version}</version>
+			</dependency>
+
+			<!-- Hibernate -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>javassist</artifactId>
+						<groupId>org.javassist</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-ehcache</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validator.version}</version>
+			</dependency>
+
+			<!-- Spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.interceptor</groupId>
+				<artifactId>javax.interceptor-api</artifactId>
+				<version>${javax.interceptor-api.version}</version>
+				<scope>compile</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>${jetty.plugin.version}</version>
+					<configuration>
+						<stopKey>CTRL+C</stopKey>
+						<stopPort>8999</stopPort>
+						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<webAppSourceDirectory>${basedir}/src/main/webapp/</webAppSourceDirectory>
+						<webApp>
+							<contextPath>/struts2-jquery-grid-showcase</contextPath>
+						</webApp>
+						<webAppConfig>
+							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
+						</webAppConfig>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 </project>
