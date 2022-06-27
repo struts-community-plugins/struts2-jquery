@@ -19,7 +19,7 @@
 
 	<properties>
 		<spring.version>5.3.21</spring.version>
-		<hibernate.version>4.3.11.Final</hibernate.version>
+		<hibernate.version>5.6.9.Final</hibernate.version>
 		<javax.inject.vesion>1</javax.inject.vesion>
 		<javassist.version>3.17.1-GA</javassist.version>
 		<velocity.version>1.7</velocity.version>
