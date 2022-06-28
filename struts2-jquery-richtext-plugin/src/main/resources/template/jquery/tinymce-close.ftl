@@ -26,7 +26,7 @@ jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
 	options_${escapedOptionId}.type = 'text';
 
-	options_${escapedOptionId}.path = "${base}/struts/js/tinymce/";
+	options_${escapedOptionId}.path = "${base}/static/js/tinymce/";
 
 	<#if parameters.editorSkin?if_exists != "">
 	options_${escapedOptionId}.skin = "${parameters.editorSkin}";

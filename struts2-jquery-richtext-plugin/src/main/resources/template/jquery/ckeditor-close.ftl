@@ -20,14 +20,14 @@
 -->
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
-var CKEDITOR_BASEPATH = "${base}/struts/js/ckeditor/";
+var CKEDITOR_BASEPATH = "${base}/static/js/ckeditor/";
 jQuery(document).ready(function () { 
 	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 	
 	var options_${escapedOptionId} = {};
 	options_${escapedOptionId}.type = 'text';
 
-	options_${escapedOptionId}.path = "${base}/struts/js/ckeditor/";
+	options_${escapedOptionId}.path = "${base}/static/js/ckeditor/";
 	
 	<#if parameters.customConfig?if_exists != ""> 
 	options_${escapedOptionId}.customConfig = "${parameters.customConfig}";
