@@ -50,15 +50,15 @@
         <#else>
             <#assign itemCounter = ''/>
         </#if>
-    <li id="${parameters.id?html}_li_<@s.property value="%{#rowstatus.count}" />">
+    <li id="${parameters.id}_li_<@s.property value="%{#rowstatus.count}" />">
     <#if parameters.listHref?if_exists != "">
         <a<#rt/>
-		     href="${parameters.listHref}?${parameters.listParam?default("id")}=${itemKeyStr?html}"<#rt/>
+		     href="${parameters.listHref}?${parameters.listParam?default("id")}=${itemKeyStr}"<#rt/>
     	>
     </#if>
-                ${itemValue?html}
+                ${itemValue}
     <#if itemCounter?if_exists != "">
-          <span class="ui-li-count">${itemCounter?html}</span>
+          <span class="ui-li-count">${itemCounter}</span>
     </#if>
     <#if parameters.listHref?if_exists != "">
         </a>

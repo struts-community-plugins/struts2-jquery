@@ -20,11 +20,11 @@
 -->
 <#include "/${parameters.templateDir}/mobile/controlheader.ftl" />
 <textarea<#rt/>
- name="${parameters.name?default("")?html}"<#rt/>
- cols="${parameters.cols?default("")?html}"<#rt/>
- rows="${parameters.rows?default("")?html}"<#rt/>
+ name="${parameters.name?default("")}"<#rt/>
+ cols="${parameters.cols?default("")}"<#rt/>
+ rows="${parameters.rows?default("")}"<#rt/>
 <#if parameters.wrap??>
- wrap="${parameters.wrap?html}"<#rt/>
+ wrap="${parameters.wrap}"<#rt/>
 </#if>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
@@ -33,14 +33,14 @@
  readonly="readonly"<#rt/>
 </#if>
 <#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+ tabindex="${parameters.tabindex}"<#rt/>
 </#if>
 <#if parameters.id??>
- id="${parameters.id?html}"<#rt/>
+ id="${parameters.id}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/css.ftl" />
 <#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+ title="${parameters.title}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />

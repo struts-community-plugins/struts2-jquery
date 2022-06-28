@@ -22,7 +22,7 @@
 <div data-role="fieldcontain">
 <#if hasFieldErrors>
 <#list fieldErrors[parameters.name] as error>
-        <div class="errorMessage">${error?html}</div><#t/>
+        <div class="errorMessage">${error}</div><#t/>
 </#list>
 </#if>
  	<fieldset data-role="controlgroup"
@@ -35,11 +35,11 @@
 <#if parameters.required?default(false) && parameters.requiredposition?default("right") != 'right'>
         <span class="required">*</span><#t/>
 </#if>
-${parameters.label?html}<#t/>
+${parameters.label}<#t/>
 <#if parameters.required?default(false) && parameters.requiredposition?default("right") == 'right'>
  <span class="required">*</span><#t/>
 </#if>
-${parameters.labelseparator?default(":")?html}<#t/>
+${parameters.labelseparator?default(":")}<#t/>
 </legend><#t/>
 </#if>
 <#if parameters.list?? >
@@ -57,34 +57,34 @@ ${parameters.labelseparator?default(":")?html}<#t/>
     </#if>
 <input type="radio"<#rt/>
 <#if parameters.name??>
- name="${parameters.name?html}"<#rt/>
+ name="${parameters.name}"<#rt/>
 </#if>
- id="${parameters.id?html}${itemKeyStr?html}"<#rt/>
+ id="${parameters.id}${itemKeyStr}"<#rt/>
 <#if tag.contains(parameters.nameValue?default(''), itemKeyStr)>
  checked="checked"<#rt/>
 </#if>
 <#if itemKey??>
- value="${itemKeyStr?html}"<#rt/>
+ value="${itemKeyStr}"<#rt/>
 </#if>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>
 <#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+ tabindex="${parameters.tabindex}"<#rt/>
 </#if>
 <#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+ class="${parameters.cssClass}"<#rt/>
 </#if>
 <#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+ style="${parameters.cssStyle}"<#rt/>
 </#if>
 <#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+ title="${parameters.title}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 /><#rt/>
-<label for="${parameters.id?html}${itemKeyStr?html}"><#rt/>
+<label for="${parameters.id}${itemKeyStr}"><#rt/>
     ${itemValue}<#t/>
 </label>
 </@s.iterator>

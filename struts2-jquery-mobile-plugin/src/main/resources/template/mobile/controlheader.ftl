@@ -20,17 +20,17 @@
 -->
 <#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
 <div data-role="fieldcontain"
-<#if parameters.dataTheme??>data-theme="${parameters.dataTheme?html}" </#if><#rt/>
+<#if parameters.dataTheme??>data-theme="${parameters.dataTheme}" </#if><#rt/>
 >
 <#if hasFieldErrors>
 <#list fieldErrors[parameters.name] as error>
-        <div class="errorMessage">${error?html}</div><#t/>
+        <div class="errorMessage">${error}</div><#t/>
 </#list>
 </#if>
 <#if parameters.label??>
     <label <#t/>
 <#if parameters.id??>
-        for="${parameters.id?html}" <#t/>
+        for="${parameters.id}" <#t/>
 </#if>
 <#if hasFieldErrors>
         class="errorLabel"<#t/>
@@ -41,10 +41,10 @@
 <#if parameters.required?default(false) && parameters.requiredposition?default("right") != 'right'>
         <span class="required">*</span><#t/>
 </#if>
-${parameters.label?html}<#t/>
+${parameters.label}<#t/>
 <#if parameters.required?default(false) && parameters.requiredposition?default("right") == 'right'>
  <span class="required">*</span><#t/>
 </#if>
-${parameters.labelseparator?default(":")?html}<#t/>
+${parameters.labelseparator?default(":")}<#t/>
 </label><#t/>
 </#if>

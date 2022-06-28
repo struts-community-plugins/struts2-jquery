@@ -22,319 +22,319 @@
 </table>
 <script type='text/javascript'>
 jQuery(document).ready(function () {
-    var options_${escapedOptionId?html} = {};   
-    options_${escapedOptionId?html}.theme="${parameters.datatablesTheme?default('default')}";
+    var options_${escapedOptionId} = {};   
+    options_${escapedOptionId}.theme="${parameters.datatablesTheme?default('default')}";
     <#include "/${parameters.templateDir}/jquery/topics.ftl" />
     <#include "/${parameters.templateDir}/jquery/base.ftl" />
     <#if parameters.autoWidth?default(true) == false>
-    options_${escapedOptionId?html}.autoWidth = false
+    options_${escapedOptionId}.autoWidth = false
     </#if>
     <#if parameters.deferRender?default(false) == true>
-    options_${escapedOptionId?html}.deferRender = true;
+    options_${escapedOptionId}.deferRender = true;
     </#if>
     <#if parameters.info?default(true) == false>
-    options_${escapedOptionId?html}.info = false;
+    options_${escapedOptionId}.info = false;
     </#if>
     <#if parameters.lengthChange?default(true) == false>
-    options_${escapedOptionId?html}.lengthChange = false;
+    options_${escapedOptionId}.lengthChange = false;
     </#if>
     <#if parameters.ordering?default(true) == false>
-    options_${escapedOptionId?html}.ordering = false;
+    options_${escapedOptionId}.ordering = false;
     </#if>
     <#if parameters.paging?default(true) == false>
-    options_${escapedOptionId?html}.paging = false;
+    options_${escapedOptionId}.paging = false;
     </#if>
     <#if parameters.processing?default(false) == true>
-    options_${escapedOptionId?html}.processing = true;
+    options_${escapedOptionId}.processing = true;
     </#if>
     <#if parameters.scrollX?default(false) == true>
-    options_${escapedOptionId?html}.scrollX = true;
+    options_${escapedOptionId}.scrollX = true;
     </#if>
     <#if parameters.scrollY?default(false) == true>
-    options_${escapedOptionId?html}.scrollY = true;
+    options_${escapedOptionId}.scrollY = true;
     </#if>
     <#if parameters.searching?default(true) == false>
-    options_${escapedOptionId?html}.searching = false;
+    options_${escapedOptionId}.searching = false;
     </#if>
     <#if parameters.serverSide?default(false) == true>
-    options_${escapedOptionId?html}.serverSide = true;
+    options_${escapedOptionId}.serverSide = true;
     </#if>
     <#if parameters.stateSave?default(false) == true>
-    options_${escapedOptionId?html}.stateSave = true;
+    options_${escapedOptionId}.stateSave = true;
     </#if>
     <#if parameters.data?if_exists != "">
-    options_${escapedOptionId?html}.data = ${parameters.data?default('[]')};
+    options_${escapedOptionId}.data = ${parameters.data?default('[]')};
     </#if>
     <#if parameters.ajax?if_exists != "">
-    options_${escapedOptionId?html}.ajax = ${parameters.ajax?default('{}')};
+    options_${escapedOptionId}.ajax = ${parameters.ajax?default('{}')};
     </#if>
     <#if parameters.columns?if_exists != "">
-    options_${escapedOptionId?html}.columns = ${parameters.columns?default('[]')};
+    options_${escapedOptionId}.columns = ${parameters.columns?default('[]')};
     </#if>
     <#if parameters.columnDefs?if_exists != "">
-    options_${escapedOptionId?html}.columnDefs = ${parameters.columnDefs?default('[]')};
+    options_${escapedOptionId}.columnDefs = ${parameters.columnDefs?default('[]')};
     </#if>
     <#if parameters.deferLoading?? >
-    options_${escapedOptionId?html}.deferLoading = ${parameters.deferLoading?default(0)};
+    options_${escapedOptionId}.deferLoading = ${parameters.deferLoading?default(0)};
     </#if>
     <#if parameters.displayStart??>
-    options_${escapedOptionId?html}.displayStart = ${parameters.displayStart?default(0)};
+    options_${escapedOptionId}.displayStart = ${parameters.displayStart?default(0)};
     </#if>
     <#if parameters.dom?if_exists != "">
-    options_${escapedOptionId?html}.dom = "${parameters.dom?default('')}";
+    options_${escapedOptionId}.dom = "${parameters.dom?default('')}";
     </#if>
     <#if parameters.lengthMenu?if_exists != "">
-    options_${escapedOptionId?html}.lengthMenu = ${parameters.lengthMenu?default('[10,25,50,100]')};
+    options_${escapedOptionId}.lengthMenu = ${parameters.lengthMenu?default('[10,25,50,100]')};
     </#if>
     <#if parameters.pageLength?? >
-    options_${escapedOptionId?html}.pageLength = ${parameters.pageLength?default(10)};
+    options_${escapedOptionId}.pageLength = ${parameters.pageLength?default(10)};
     </#if>
     <#if parameters.pagingType?if_exists != "">
-    options_${escapedOptionId?html}.pagingType = "${parameters.pagingType?default('full_numbers')}";
+    options_${escapedOptionId}.pagingType = "${parameters.pagingType?default('full_numbers')}";
     </#if>
     <#if parameters.order?if_exists != "">
-    options_${escapedOptionId?html}.order = ${parameters.order?default('[[0,'asc']]')};
+    options_${escapedOptionId}.order = ${parameters.order?default('[[0,'asc']]')};
     </#if>
     <#if parameters.orderCellsTop?? >
-    options_${escapedOptionId?html}.orderCellsTop = ${parameters.orderCellsTop?default('false')};
+    options_${escapedOptionId}.orderCellsTop = ${parameters.orderCellsTop?default('false')};
     </#if>
     <#if parameters.orderClasses?? >
-    options_${escapedOptionId?html}.orderClasses = ${parameters.orderClasses?default('true')};
+    options_${escapedOptionId}.orderClasses = ${parameters.orderClasses?default('true')};
     </#if>
     <#if parameters.orderFixed?if_exists != "">
-    options_${escapedOptionId?html}.orderFixed = ${parameters.orderFixed?default('null')};
+    options_${escapedOptionId}.orderFixed = ${parameters.orderFixed?default('null')};
     </#if>
     <#if parameters.orderCellsTop?? >
-    options_${escapedOptionId?html}.orderCellsTop = ${parameters.orderCellsTop?default('false')};
+    options_${escapedOptionId}.orderCellsTop = ${parameters.orderCellsTop?default('false')};
     </#if>
     <#if parameters.orderMulti?if_exists != "">
-    options_${escapedOptionId?html}.orderMulti = ${parameters.orderMulti?default('true')};
+    options_${escapedOptionId}.orderMulti = ${parameters.orderMulti?default('true')};
     </#if>
     <#if parameters.renderer?if_exists != "">
-    options_${escapedOptionId?html}.renderer = "${parameters.renderer?default('')}";
+    options_${escapedOptionId}.renderer = "${parameters.renderer?default('')}";
     </#if>
     <#if parameters.rowId?if_exists != "">
-    options_${escapedOptionId?html}.rowId = "${parameters.rowId?default('')}";
+    options_${escapedOptionId}.rowId = "${parameters.rowId?default('')}";
     </#if>
     <#if parameters.scrollCollapse?? >
-    options_${escapedOptionId?html}.scrollCollapse = ${parameters.scrollCollapse?string('true','false')};
+    options_${escapedOptionId}.scrollCollapse = ${parameters.scrollCollapse?string('true','false')};
     </#if>
     <#if parameters.search?if_exists != "">
-    options_${escapedOptionId?html}.search = ${parameters.search?default('')};
+    options_${escapedOptionId}.search = ${parameters.search?default('')};
     </#if>
     <#if parameters.searchCols?if_exists != "">
-    options_${escapedOptionId?html}.searchCols = ${parameters.searchCols?default('null')};
+    options_${escapedOptionId}.searchCols = ${parameters.searchCols?default('null')};
     </#if>
     <#if parameters.searchDelay?? >
-    options_${escapedOptionId?html}.searchDelay = ${parameters.searchDelay?default('null')};
+    options_${escapedOptionId}.searchDelay = ${parameters.searchDelay?default('null')};
     </#if>
     <#if parameters.stateDuration?? >
-    options_${escapedOptionId?html}.stateDuration = ${parameters.stateDuration?default(7200)};
+    options_${escapedOptionId}.stateDuration = ${parameters.stateDuration?default(7200)};
     </#if>
     <#if parameters.stripeClasses?if_exists != "">
-    options_${escapedOptionId?html}.stripeClasses = ${parameters.stripeClasses?default('['odd','even']')};
+    options_${escapedOptionId}.stripeClasses = ${parameters.stripeClasses?default('['odd','even']')};
     </#if>
     <#if parameters.responsive?if_exists != "">
-    options_${escapedOptionId?html}.responsive = ${parameters.responsive?default('false')};
+    options_${escapedOptionId}.responsive = ${parameters.responsive?default('false')};
     </#if>
     <#if parameters.autoFill?if_exists != "">
-    options_${escapedOptionId?html}.autoFill = ${parameters.autoFill?default('false')};
+    options_${escapedOptionId}.autoFill = ${parameters.autoFill?default('false')};
     </#if>
     <#if parameters.buttons?if_exists != "">
-    options_${escapedOptionId?html}.buttons = ${parameters.buttons?default('false')};
+    options_${escapedOptionId}.buttons = ${parameters.buttons?default('false')};
     </#if>
     <#if parameters.colReorder?if_exists != "">
-    options_${escapedOptionId?html}.colReorder = ${parameters.colReorder?default('false')};
+    options_${escapedOptionId}.colReorder = ${parameters.colReorder?default('false')};
     </#if>
     <#if parameters.fixedColumns?if_exists != "">
-    options_${escapedOptionId?html}.fixedColumns = ${parameters.fixedColumns?default('false')};
+    options_${escapedOptionId}.fixedColumns = ${parameters.fixedColumns?default('false')};
     </#if>
     <#if parameters.fixedHeader?if_exists != "">
-    options_${escapedOptionId?html}.fixedHeader = ${parameters.fixedHeader?default('false')};
+    options_${escapedOptionId}.fixedHeader = ${parameters.fixedHeader?default('false')};
     </#if>
     <#if parameters.keys?if_exists != "">
-    options_${escapedOptionId?html}.keys = ${parameters.keys?default('false')};
+    options_${escapedOptionId}.keys = ${parameters.keys?default('false')};
     </#if>
     <#if parameters.rowGroup?if_exists != "">
-    options_${escapedOptionId?html}.rowGroup = ${parameters.rowGroup?default('false')};
+    options_${escapedOptionId}.rowGroup = ${parameters.rowGroup?default('false')};
     </#if>
     <#if parameters.rowReorder?if_exists != "">
-    options_${escapedOptionId?html}.rowReorder = ${parameters.rowReorder?default('false')};
+    options_${escapedOptionId}.rowReorder = ${parameters.rowReorder?default('false')};
     </#if>
     <#if parameters.scroller?if_exists != "">
-    options_${escapedOptionId?html}.scroller = ${parameters.scroller?default('false')};
+    options_${escapedOptionId}.scroller = ${parameters.scroller?default('false')};
     </#if>
     <#if parameters.select?if_exists != "">
-    options_${escapedOptionId?html}.select = ${parameters.select?default('false')};
+    options_${escapedOptionId}.select = ${parameters.select?default('false')};
     </#if>
     <#if parameters.createdRow?exists>
-    options_${escapedOptionId?html}.createdRow = ${parameters.createdRow?string?html};
+    options_${escapedOptionId}.createdRow = ${parameters.createdRow?string};
   </#if>
     <#if parameters.drawCallback?exists>
-    options_${escapedOptionId?html}.drawCallback = ${parameters.drawCallback?string?html};
+    options_${escapedOptionId}.drawCallback = ${parameters.drawCallback?string};
   </#if>
     <#if parameters.footerCallback?exists>
-    options_${escapedOptionId?html}.footerCallback = "${parameters.footerCallback?string?html}";
+    options_${escapedOptionId}.footerCallback = "${parameters.footerCallback?string}";
   </#if>
     <#if parameters.formatNumber?exists>
-    options_${escapedOptionId?html}.formatNumber = ${parameters.formatNumber?string?html};
+    options_${escapedOptionId}.formatNumber = ${parameters.formatNumber?string};
   </#if>
     <#if parameters.headerCallback?exists>
-    options_${escapedOptionId?html}.headerCallback = ${parameters.headerCallback?string?html};
+    options_${escapedOptionId}.headerCallback = ${parameters.headerCallback?string};
   </#if>
     <#if parameters.infoCallback?exists>
-    options_${escapedOptionId?html}.infoCallback = ${parameters.infoCallback?string?html};
+    options_${escapedOptionId}.infoCallback = ${parameters.infoCallback?string};
   </#if>
     <#if parameters.initComplete?exists>
-    options_${escapedOptionId?html}.initComplete = ${parameters.initComplete?string?html};
+    options_${escapedOptionId}.initComplete = ${parameters.initComplete?string};
   </#if>
     <#if parameters.preDrawCallback?exists>
-    options_${escapedOptionId?html}.preDrawCallback = ${parameters.preDrawCallback?string?html};
+    options_${escapedOptionId}.preDrawCallback = ${parameters.preDrawCallback?string};
   </#if>
     <#if parameters.rowCallback?exists>
-    options_${escapedOptionId?html}.rowCallback = ${parameters.rowCallback?string?html};
+    options_${escapedOptionId}.rowCallback = ${parameters.rowCallback?string};
   </#if>
     <#if parameters.stateLoadCallback?exists>
-    options_${escapedOptionId?html}.stateLoadCallback = ${parameters.stateLoadCallback?string?html};
+    options_${escapedOptionId}.stateLoadCallback = ${parameters.stateLoadCallback?string};
   </#if>
     <#if parameters.stateLoaded?exists>
-    options_${escapedOptionId?html}.stateLoaded = ${parameters.stateLoaded?string?html};
+    options_${escapedOptionId}.stateLoaded = ${parameters.stateLoaded?string};
   </#if>
     <#if parameters.stateLoadParams?exists>
-    options_${escapedOptionId?html}.stateLoadParams = ${parameters.stateLoadParams?string?html};
+    options_${escapedOptionId}.stateLoadParams = ${parameters.stateLoadParams?string};
   </#if>
     <#if parameters.stateSaveCallback?exists>
-    options_${escapedOptionId?html}.stateSaveCallback = ${parameters.stateSaveCallback?string?html};
+    options_${escapedOptionId}.stateSaveCallback = ${parameters.stateSaveCallback?string};
   </#if>
     <#if parameters.stateSaveParams?exists>
-    options_${escapedOptionId?html}.stateSaveParams = ${parameters.stateSaveParams?string?html};
+    options_${escapedOptionId}.stateSaveParams = ${parameters.stateSaveParams?string};
   </#if>
 <#if parameters.clearTableTopics?exists>
-    options_${escapedOptionId?html}.clearTableTopics = "${parameters.clearTableTopics?string?html}";
+    options_${escapedOptionId}.clearTableTopics = "${parameters.clearTableTopics?string}";
   </#if>
 <#if parameters.ajaxReloadTopics?exists>
-    options_${escapedOptionId?html}.ajaxReloadTopics = "${parameters.ajaxReloadTopics?string?html}";
+    options_${escapedOptionId}.ajaxReloadTopics = "${parameters.ajaxReloadTopics?string}";
   </#if>
 <#if parameters.redrawTopics?exists>
-    options_${escapedOptionId?html}.redrawTopics = "${parameters.redrawTopics?string?html}";
+    options_${escapedOptionId}.redrawTopics = "${parameters.redrawTopics?string}";
   </#if>
 <#if parameters.orderTopics?exists>
-    options_${escapedOptionId?html}.orderTopics = "${parameters.orderTopics?string?html}";
+    options_${escapedOptionId}.orderTopics = "${parameters.orderTopics?string}";
   </#if>
 <#if parameters.pageTopics?exists>
-    options_${escapedOptionId?html}.pageTopics = "${parameters.pageTopics?string?html}";
+    options_${escapedOptionId}.pageTopics = "${parameters.pageTopics?string}";
   </#if>
 <#if parameters.pageLengthTopics?exists>
-    options_${escapedOptionId?html}.pageLengthTopics = "${parameters.pageLengthTopics?string?html}";
+    options_${escapedOptionId}.pageLengthTopics = "${parameters.pageLengthTopics?string}";
   </#if>
 <#if parameters.searchTopics?exists>
-    options_${escapedOptionId?html}.searchTopics = "${parameters.searchTopics?string?html}";
+    options_${escapedOptionId}.searchTopics = "${parameters.searchTopics?string}";
   </#if>
 <#if parameters.stateClearTopics?exists>
-    options_${escapedOptionId?html}.stateClearTopics = "${parameters.stateClearTopics?string?html}";
+    options_${escapedOptionId}.stateClearTopics = "${parameters.stateClearTopics?string}";
   </#if>
 <#if parameters.stateSaveTopics?exists>
-    options_${escapedOptionId?html}.stateSaveTopics = "${parameters.stateSaveTopics?string?html}";
+    options_${escapedOptionId}.stateSaveTopics = "${parameters.stateSaveTopics?string}";
   </#if>
 <#if parameters.onColumnSizingTopics?exists>
-    options_${escapedOptionId?html}.onColumnSizingTopics = "${parameters.onColumnSizingTopics?string?html}";
+    options_${escapedOptionId}.onColumnSizingTopics = "${parameters.onColumnSizingTopics?string}";
   </#if>
 <#if parameters.onColumnVisibilityTopics?exists>
-    options_${escapedOptionId?html}.onColumnVisibilityTopics = "${parameters.onColumnVisibilityTopics?string?html}";
+    options_${escapedOptionId}.onColumnVisibilityTopics = "${parameters.onColumnVisibilityTopics?string}";
   </#if>
 <#if parameters.onDestroyTopics?exists>
-    options_${escapedOptionId?html}.onDestroyTopics = "${parameters.onDestroyTopics?string?html}";
+    options_${escapedOptionId}.onDestroyTopics = "${parameters.onDestroyTopics?string}";
   </#if>
 <#if parameters.onDrawTopics?exists>
-    options_${escapedOptionId?html}.onDrawTopics = "${parameters.onDrawTopics?string?html}";
+    options_${escapedOptionId}.onDrawTopics = "${parameters.onDrawTopics?string}";
   </#if>
 <#if parameters.onProcessingErrorTopics?exists>
-    options_${escapedOptionId?html}.onProcessingErrorTopics = "${parameters.onProcessingErrorTopics?string?html}";
+    options_${escapedOptionId}.onProcessingErrorTopics = "${parameters.onProcessingErrorTopics?string}";
   </#if>
 <#if parameters.onInitCompleteTopics?exists>
-    options_${escapedOptionId?html}.onInitCompleteTopics = "${parameters.onInitCompleteTopics?string?html}";
+    options_${escapedOptionId}.onInitCompleteTopics = "${parameters.onInitCompleteTopics?string}";
   </#if>
 <#if parameters.onPageLengthChangeTopics?exists>
-    options_${escapedOptionId?html}.onPageLengthChangeTopics = "${parameters.onPageLengthChangeTopics?string?html}";
+    options_${escapedOptionId}.onPageLengthChangeTopics = "${parameters.onPageLengthChangeTopics?string}";
   </#if>
 <#if parameters.onOrderTopics?exists>
-    options_${escapedOptionId?html}.onOrderTopics = "${parameters.onOrderTopics?string?html}";
+    options_${escapedOptionId}.onOrderTopics = "${parameters.onOrderTopics?string}";
   </#if>
 <#if parameters.onPageChangeTopics?exists>
-    options_${escapedOptionId?html}.onPageChangeTopics = "${parameters.onPageChangeTopics?string?html}";
+    options_${escapedOptionId}.onPageChangeTopics = "${parameters.onPageChangeTopics?string}";
   </#if>
 <#if parameters.onInitStartTopics?exists>
-    options_${escapedOptionId?html}.onInitStartTopics = "${parameters.onInitStartTopics?string?html}";
+    options_${escapedOptionId}.onInitStartTopics = "${parameters.onInitStartTopics?string}";
   </#if>
 <#if parameters.onProcessingTopics?exists>
-    options_${escapedOptionId?html}.onProcessingTopics = "${parameters.onProcessingTopics?string?html}";
+    options_${escapedOptionId}.onProcessingTopics = "${parameters.onProcessingTopics?string}";
   </#if>
 <#if parameters.onSearchTopics?exists>
-    options_${escapedOptionId?html}.onSearchTopics = "${parameters.onSearchTopics?string?html}";
+    options_${escapedOptionId}.onSearchTopics = "${parameters.onSearchTopics?string}";
   </#if>
 <#if parameters.onStateLoadedTopics?exists>
-    options_${escapedOptionId?html}.onStateLoadedTopics = "${parameters.onStateLoadedTopics?string?html}";
+    options_${escapedOptionId}.onStateLoadedTopics = "${parameters.onStateLoadedTopics?string}";
   </#if>
 <#if parameters.onStateLoadingTopics?exists>
-    options_${escapedOptionId?html}.onStateLoadingTopics = "${parameters.onStateLoadingTopics?string?html}";
+    options_${escapedOptionId}.onStateLoadingTopics = "${parameters.onStateLoadingTopics?string}";
   </#if>
 <#if parameters.onStateSavingTopics?exists>
-    options_${escapedOptionId?html}.onStateSavingTopics = "${parameters.onStateSavingTopics?string?html}";
+    options_${escapedOptionId}.onStateSavingTopics = "${parameters.onStateSavingTopics?string}";
   </#if>
 
 <#if parameters.onAutoFillTopics?exists>
-    options_${escapedOptionId?html}.onAutoFillTopics = "${parameters.onAutoFillTopics?string?html}";
+    options_${escapedOptionId}.onAutoFillTopics = "${parameters.onAutoFillTopics?string}";
   </#if>
 <#if parameters.onBeforeAutoFillTopics?exists>
-    options_${escapedOptionId?html}.onBeforeAutoFillTopics = "${parameters.onBeforeAutoFillTopics?string?html}";
+    options_${escapedOptionId}.onBeforeAutoFillTopics = "${parameters.onBeforeAutoFillTopics?string}";
   </#if>
 <#if parameters.onButtonActionTopics?exists>
-    options_${escapedOptionId?html}.onButtonActionTopics = "${parameters.onButtonActionTopics?string?html}";
+    options_${escapedOptionId}.onButtonActionTopics = "${parameters.onButtonActionTopics?string}";
   </#if>
 <#if parameters.onColumnReorderTopics?exists>
-    options_${escapedOptionId?html}.onColumnReorderTopics = "${parameters.onColumnReorderTopics?string?html}";
+    options_${escapedOptionId}.onColumnReorderTopics = "${parameters.onColumnReorderTopics?string}";
   </#if>
 <#if parameters.onKeyBlurTopics?exists>
-    options_${escapedOptionId?html}.onKeyBlurTopics = "${parameters.onKeyBlurTopics?string?html}";
+    options_${escapedOptionId}.onKeyBlurTopics = "${parameters.onKeyBlurTopics?string}";
   </#if>
 <#if parameters.onKeyFocusTopics?exists>
-    options_${escapedOptionId?html}.onKeyFocusTopics = "${parameters.onKeyFocusTopics?string?html}";
+    options_${escapedOptionId}.onKeyFocusTopics = "${parameters.onKeyFocusTopics?string}";
   </#if>
 <#if parameters.onOtherKeyTopics?exists>
-    options_${escapedOptionId?html}.onOtherKeyTopics = "${parameters.onOtherKeyTopics?string?html}";
+    options_${escapedOptionId}.onOtherKeyTopics = "${parameters.onOtherKeyTopics?string}";
   </#if>
 <#if parameters.onResponsiveDisplayTopics?exists>
-    options_${escapedOptionId?html}.onResponsiveDisplayTopics = "${parameters.onResponsiveDisplayTopics?string?html}";
+    options_${escapedOptionId}.onResponsiveDisplayTopics = "${parameters.onResponsiveDisplayTopics?string}";
   </#if>
 <#if parameters.onResponsiveResizeTopics?exists>
-    options_${escapedOptionId?html}.onResponsiveResizeTopics = "${parameters.onResponsiveResizeTopics?string?html}";
+    options_${escapedOptionId}.onResponsiveResizeTopics = "${parameters.onResponsiveResizeTopics?string}";
   </#if>
 <#if parameters.onRowGroupPointChangedTopics?exists>
-    options_${escapedOptionId?html}.onRowGroupPointChangedTopics = "${parameters.onRowGroupPointChangedTopics?string?html}";
+    options_${escapedOptionId}.onRowGroupPointChangedTopics = "${parameters.onRowGroupPointChangedTopics?string}";
   </#if>
 <#if parameters.onRowReorderTopics?exists>
-    options_${escapedOptionId?html}.onRowReorderTopics = "${parameters.onRowReorderTopics?string?html}";
+    options_${escapedOptionId}.onRowReorderTopics = "${parameters.onRowReorderTopics?string}";
   </#if>
 <#if parameters.onRowReorderedTopics?exists>
-    options_${escapedOptionId?html}.onRowReorderedTopics = "${parameters.onRowReorderedTopics?string?html}";
+    options_${escapedOptionId}.onRowReorderedTopics = "${parameters.onRowReorderedTopics?string}";
   </#if>
 <#if parameters.onDeselectTopics?exists>
-    options_${escapedOptionId?html}.onDeselectTopics = "${parameters.onDeselectTopics?string?html}";
+    options_${escapedOptionId}.onDeselectTopics = "${parameters.onDeselectTopics?string}";
   </#if>
 <#if parameters.onSelectTopics?exists>
-    options_${escapedOptionId?html}.onSelectTopics = "${parameters.onSelectTopics?string?html}";
+    options_${escapedOptionId}.onSelectTopics = "${parameters.onSelectTopics?string}";
   </#if>
 <#if parameters.onSelectItemsTopics?exists>
-    options_${escapedOptionId?html}.onSelectItemsTopics = "${parameters.onSelectItemsTopics?string?html}";
+    options_${escapedOptionId}.onSelectItemsTopics = "${parameters.onSelectItemsTopics?string}";
   </#if>
 <#if parameters.onSelectStyleTopics?exists>
-    options_${escapedOptionId?html}.onSelectStyleTopics = "${parameters.onSelectStyleTopics?string?html}";
+    options_${escapedOptionId}.onSelectStyleTopics = "${parameters.onSelectStyleTopics?string}";
   </#if>
 <#if parameters.onUserSelectTopics?exists>
-    options_${escapedOptionId?html}.onUserSelectTopics = "${parameters.onUserSelectTopics?string?html}";
+    options_${escapedOptionId}.onUserSelectTopics = "${parameters.onUserSelectTopics?string}";
   </#if>
 
     <#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-    jQuery.struts2_jquery_datatables.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
+    jQuery.struts2_jquery_datatables.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
 });
 </script>  

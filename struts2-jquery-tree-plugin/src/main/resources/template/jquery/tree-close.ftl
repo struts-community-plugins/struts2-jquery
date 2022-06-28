@@ -23,105 +23,105 @@
 <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
 	<#if parameters.jstreetheme?if_exists != ""> 
-	options_${escapedOptionId?html}.treetheme = "${parameters.jstreetheme?html}";
+	options_${escapedOptionId}.treetheme = "${parameters.jstreetheme}";
 	</#if>
 	<#if parameters.jstreethemeVariant?if_exists != ""> 
-	options_${escapedOptionId?html}.treethemeVariant = "${parameters.jstreethemeVariant?html}";
+	options_${escapedOptionId}.treethemeVariant = "${parameters.jstreethemeVariant}";
 	</#if>
 	<#if parameters.jstreethemeResponsive??>
-	options_${escapedOptionId?html}.treethemeResponsive = ${parameters.jstreethemeResponsive?string};
+	options_${escapedOptionId}.treethemeResponsive = ${parameters.jstreethemeResponsive?string};
   	</#if>
   	<#if parameters.animation??>
-	options_${escapedOptionId?html}.animation = ${parameters.animation?c};
+	options_${escapedOptionId}.animation = ${parameters.animation?c};
   	</#if>
   	<#if parameters.initiallyOpen??>
-	options_${escapedOptionId?html}.initially_open = ${parameters.initiallyOpen?string};
+	options_${escapedOptionId}.initially_open = ${parameters.initiallyOpen?string};
   	</#if>
 	<#if parameters.htmlTitles??>
-	options_${escapedOptionId?html}.html_titles = ${parameters.htmlTitles?string};
+	options_${escapedOptionId}.html_titles = ${parameters.htmlTitles?string};
 	</#if>
 	<#if parameters.rtl??>
-	options_${escapedOptionId?html}.rtl = ${parameters.rtl?string};
+	options_${escapedOptionId}.rtl = ${parameters.rtl?string};
 	</#if>
 	<#if parameters.href?if_exists != ""> 
-	options_${escapedOptionId?html}.url = "${parameters.href?string}";
+	options_${escapedOptionId}.url = "${parameters.href?string}";
 	</#if>
   	<#if parameters.nodeTargets?exists>
-	options_${escapedOptionId?html}.nodeTargets = "${parameters.nodeTargets?html}";
+	options_${escapedOptionId}.nodeTargets = "${parameters.nodeTargets}";
   	</#if>
   	<#if parameters.nodeHref?exists>
-	options_${escapedOptionId?html}.nodeHref = "${parameters.nodeHref?html}";
+	options_${escapedOptionId}.nodeHref = "${parameters.nodeHref}";
   	</#if>
   	<#if parameters.nodeHref?exists>
-	options_${escapedOptionId?html}.nodeHrefParamName = "${parameters.nodeHrefParamName?default('id')}";
+	options_${escapedOptionId}.nodeHrefParamName = "${parameters.nodeHrefParamName?default('id')}";
   	</#if>
   	<#if parameters.onClickTopics?exists>
-	options_${escapedOptionId?html}.onclick = "${parameters.onClickTopics?html}";
+	options_${escapedOptionId}.onclick = "${parameters.onClickTopics}";
   	</#if>
 	<#if parameters.openAllOnLoad??>
-	options_${escapedOptionId?html}.openload = ${parameters.openAllOnLoad?string};
+	options_${escapedOptionId}.openload = ${parameters.openAllOnLoad?string};
 	</#if>
 	<#if parameters.openAllOnRefresh??>
-	options_${escapedOptionId?html}.openrefresh = ${parameters.openAllOnRefresh?string};
+	options_${escapedOptionId}.openrefresh = ${parameters.openAllOnRefresh?string};
 	</#if>
     <#if parameters.showThemeDots??>
-        options_${escapedOptionId?html}.dots = ${parameters.showThemeDots?string};
+        options_${escapedOptionId}.dots = ${parameters.showThemeDots?string};
     </#if>
     <#if parameters.showThemeIcons??>
-        options_${escapedOptionId?html}.icons = ${parameters.showThemeIcons?string};
+        options_${escapedOptionId}.icons = ${parameters.showThemeIcons?string};
     </#if>
 	<#if parameters.contextmenu?if_exists != "">
-	options_${escapedOptionId?html}.contextmenu = ${parameters.contextmenu?string};
+	options_${escapedOptionId}.contextmenu = ${parameters.contextmenu?string};
 	</#if>
 	<#if parameters.plugins?if_exists != "">
-	options_${escapedOptionId?html}.pluginsconf = ${parameters.plugins?string};
+	options_${escapedOptionId}.pluginsconf = ${parameters.plugins?string};
 	</#if>
 	<#if parameters.types?if_exists != ""> 
-	options_${escapedOptionId?html}.types = ${parameters.types?string};
+	options_${escapedOptionId}.types = ${parameters.types?string};
 	</#if>
 	<#if parameters.checkbox??>
-	options_${escapedOptionId?html}.checkbox = ${parameters.checkbox?string};
+	options_${escapedOptionId}.checkbox = ${parameters.checkbox?string};
 	</#if>
 	<#if parameters.checkboxTwoState??>
-	options_${escapedOptionId?html}.two_state = ${parameters.checkboxTwoState?string};
+	options_${escapedOptionId}.two_state = ${parameters.checkboxTwoState?string};
 	</#if>
 	<#if parameters.checkboxToogleAllTopics?if_exists != "">
-	options_${escapedOptionId?html}.toogleAllTopics = "${parameters.checkboxToogleAllTopics?string}";
+	options_${escapedOptionId}.toogleAllTopics = "${parameters.checkboxToogleAllTopics?string}";
 	</#if>
 	<#if parameters.checkboxHideTopics?if_exists != "">
-	options_${escapedOptionId?html}.checkHideTopics = "${parameters.checkboxHideTopics?string}";
+	options_${escapedOptionId}.checkHideTopics = "${parameters.checkboxHideTopics?string}";
 	</#if>
 	<#if parameters.checkboxShowTopics?if_exists != ""> 
-	options_${escapedOptionId?html}.checkShowTopics = "${parameters.checkboxShowTopics?string}";
+	options_${escapedOptionId}.checkShowTopics = "${parameters.checkboxShowTopics?string}";
 	</#if>
     <#if parameters.checkboxCheckAllTopics?if_exists != "">
-    options_${escapedOptionId?html}.checkAllTopics = "${parameters.checkboxCheckAllTopics?string}";
+    options_${escapedOptionId}.checkAllTopics = "${parameters.checkboxCheckAllTopics?string}";
     </#if>
     <#if parameters.checkboxUncheckAllTopics?if_exists != "">
-    options_${escapedOptionId?html}.uncheckAllTopics = "${parameters.checkboxUncheckAllTopics?string}";
+    options_${escapedOptionId}.uncheckAllTopics = "${parameters.checkboxUncheckAllTopics?string}";
     </#if>
     <#if parameters.searchTopic?if_exists != "">
-    options_${escapedOptionId?html}.searchTopic = "${parameters.searchTopic?string}";
+    options_${escapedOptionId}.searchTopic = "${parameters.searchTopic?string}";
     </#if>
     <#if parameters.searchClearTopic?if_exists != "">
-    options_${escapedOptionId?html}.searchClearTopic = "${parameters.searchClearTopic?string}";
+    options_${escapedOptionId}.searchClearTopic = "${parameters.searchClearTopic?string}";
     </#if>
     <#if parameters.searchElementId?if_exists != "">
-    options_${escapedOptionId?html}.searchElementId = "${parameters.searchElementId?string}";
+    options_${escapedOptionId}.searchElementId = "${parameters.searchElementId?string}";
     </#if>
     <#if parameters.onSearchCompleteTopics?if_exists != "">
-    options_${escapedOptionId?html}.onSearchCompleteTopics = "${parameters.onSearchCompleteTopics?string}";
+    options_${escapedOptionId}.onSearchCompleteTopics = "${parameters.onSearchCompleteTopics?string}";
     </#if>
     <#if parameters.onSearchClearTopics?if_exists != "">
-    options_${escapedOptionId?html}.onSearchClearTopics = "${parameters.onSearchClearTopics?string}";
+    options_${escapedOptionId}.onSearchClearTopics = "${parameters.onSearchClearTopics?string}";
     </#if>
 
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-	jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
+	jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
  });
 </script>

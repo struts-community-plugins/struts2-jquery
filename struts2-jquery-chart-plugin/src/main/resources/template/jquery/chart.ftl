@@ -19,11 +19,11 @@
  */
 -->
 <div<#rt/>
-<#if parameters.id??> id="${parameters.id?html}"<#rt/></#if>
-<#if parameters.name??> name="${parameters.name?html}"<#rt/></#if>
-<#if parameters.cssClass??> class="${parameters.cssClass?html}"<#rt/></#if>
-<#if parameters.cssStyle??> style="${parameters.cssStyle?html}"<#rt/></#if>
-<#if parameters.title??> title="${parameters.title?html}"<#rt/></#if>
+<#if parameters.id??> id="${parameters.id}"<#rt/></#if>
+<#if parameters.name??> name="${parameters.name}"<#rt/></#if>
+<#if parameters.cssClass??> class="${parameters.cssClass}"<#rt/></#if>
+<#if parameters.cssStyle??> style="${parameters.cssStyle}"<#rt/></#if>
+<#if parameters.title??> title="${parameters.title}"<#rt/></#if>
 <#include "/${parameters.templateDir}/${parameters.expandTheme}/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/${parameters.expandTheme}/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/${parameters.expandTheme}/dynamic-attributes.ftl" />
@@ -34,6 +34,6 @@
 jQuery(document).ready(function () { 
 	jQuery.struts2_jquery.require("js/struts2/jquery.chart.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 	
-	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.data = [];
-	var options_${escapedOptionId?html}_data;
+	var options_${escapedOptionId} = {};
+	options_${escapedOptionId}.data = [];
+	var options_${escapedOptionId}_data;

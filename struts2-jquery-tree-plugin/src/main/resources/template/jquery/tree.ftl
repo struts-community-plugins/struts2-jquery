@@ -24,9 +24,9 @@ jQuery(document).ready(function () {
  });
 </script>
 <#if parameters.checkbox?default(false)>
-    <input type="hidden" id="${parameters.id?html}_hidden" name="${parameters.name?html}" value=""></input>
+    <input type="hidden" id="${parameters.id}_hidden" name="${parameters.name}" value=""></input>
 </#if>
-<div id="${parameters.id?html}">
+<div id="${parameters.id}">
 	<ul>
     <#if parameters.rootNode?exists>
     ${stack.push(parameters.rootNode)}

@@ -23,74 +23,74 @@
 jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 
-	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.type = 'text';
+	var options_${escapedOptionId} = {};
+	options_${escapedOptionId}.type = 'text';
 
-	options_${escapedOptionId?html}.path = "${base}/struts/js/tinymce/";
+	options_${escapedOptionId}.path = "${base}/struts/js/tinymce/";
 
 	<#if parameters.editorSkin?if_exists != "">
-	options_${escapedOptionId?html}.skin = "${parameters.editorSkin?html}";
+	options_${escapedOptionId}.skin = "${parameters.editorSkin}";
 	</#if>
 	<#if parameters.editorSkinVariant?if_exists != "">
-	options_${escapedOptionId?html}.skin_variant = "${parameters.editorSkinVariant?html}";
+	options_${escapedOptionId}.skin_variant = "${parameters.editorSkinVariant}";
 	</#if>
-	options_${escapedOptionId?html}.theme = "${parameters.editorTheme?default("modern")?html}";
+	options_${escapedOptionId}.theme = "${parameters.editorTheme?default("modern")}";
 	<#if parameters.width??>
-	options_${escapedOptionId?html}.width = ${parameters.width?html};
+	options_${escapedOptionId}.width = ${parameters.width};
 	</#if>
 	<#if parameters.height??>
-	options_${escapedOptionId?html}.height = ${parameters.height?html};
+	options_${escapedOptionId}.height = ${parameters.height};
 	</#if>
 	<#if parameters.editorLocal?if_exists != "">
-	options_${escapedOptionId?html}.editorLocal = "${parameters.editorLocal?html}";
+	options_${escapedOptionId}.editorLocal = "${parameters.editorLocal}";
 	</#if>
 	<#if parameters.toolbarLocation?if_exists != "">
-	options_${escapedOptionId?html}.theme_advanced_toolbar_location = "${parameters.toolbarLocation?html}";
+	options_${escapedOptionId}.theme_advanced_toolbar_location = "${parameters.toolbarLocation}";
 	</#if>
 	<#if parameters.toolbarAlign?if_exists != "">
-	options_${escapedOptionId?html}.theme_advanced_toolbar_align = "${parameters.toolbarAlign?html}";
+	options_${escapedOptionId}.theme_advanced_toolbar_align = "${parameters.toolbarAlign}";
 	</#if>
 	<#if parameters.statusbarLocation?if_exists != "">
-	options_${escapedOptionId?html}.theme_advanced_statusbar_location = "${parameters.statusbarLocation?html}";
+	options_${escapedOptionId}.theme_advanced_statusbar_location = "${parameters.statusbarLocation}";
 	</#if>
   	<#if parameters.pasteplain?default(false)>
-	options_${escapedOptionId?html}.pasteplain = true;
+	options_${escapedOptionId}.pasteplain = true;
   	</#if>
   	<#if parameters.editorResizable?default(false)>
-	options_${escapedOptionId?html}.editorResizable = true;
+	options_${escapedOptionId}.editorResizable = true;
   	</#if>
 	<#if parameters.plugins?if_exists != "">
-	options_${escapedOptionId?html}.plugins = "${parameters.plugins?html}";
+	options_${escapedOptionId}.plugins = "${parameters.plugins}";
 	</#if>
 	<#if parameters.toolbarButtonsRow1?if_exists != "">
-	options_${escapedOptionId?html}.theme_advanced_buttons1 = "${parameters.toolbarButtonsRow1?replace(" ", "")?html}";
+	options_${escapedOptionId}.theme_advanced_buttons1 = "${parameters.toolbarButtonsRow1?replace(" ", "")}";
 	</#if>
 	<#if parameters.toolbarButtonsRow2?if_exists != "">
-	options_${escapedOptionId?html}.theme_advanced_buttons2 = "${parameters.toolbarButtonsRow2?replace(" ", "")?html}";
+	options_${escapedOptionId}.theme_advanced_buttons2 = "${parameters.toolbarButtonsRow2?replace(" ", "")}";
 	</#if>
 	<#if parameters.toolbarButtonsRow3?if_exists != "">
-	options_${escapedOptionId?html}.theme_advanced_buttons3 = "${parameters.toolbarButtonsRow3?replace(" ", "")?html}";
+	options_${escapedOptionId}.theme_advanced_buttons3 = "${parameters.toolbarButtonsRow3?replace(" ", "")}";
 	</#if>
 	<#if parameters.toolbarButtonsRow4?if_exists != "">
-	options_${escapedOptionId?html}.theme_advanced_buttons4 = "${parameters.toolbarButtonsRow4?replace(" ", "")?html}";
+	options_${escapedOptionId}.theme_advanced_buttons4 = "${parameters.toolbarButtonsRow4?replace(" ", "")}";
 	</#if>
 	<#if parameters.entityEncoding?if_exists != "">
-	options_${escapedOptionId?html}.entity_encoding = "${parameters.entityEncoding?html}";
+	options_${escapedOptionId}.entity_encoding = "${parameters.entityEncoding}";
 	</#if>
 	<#if parameters.contentCss?if_exists != "">
-	options_${escapedOptionId?html}.content_css = "${parameters.contentCss?string}";
+	options_${escapedOptionId}.content_css = "${parameters.contentCss?string}";
 	</#if>
 	<#if parameters.removeLinebreaks?exists>
-	options_${escapedOptionId?html}.remove_linebreaks = ${parameters.removeLinebreaks?string};
+	options_${escapedOptionId}.remove_linebreaks = ${parameters.removeLinebreaks?string};
 	</#if>
 	<#if parameters.removeRedundantBrs?exists>
-	options_${escapedOptionId?html}.remove_redundant_brs = ${parameters.removeRedundantBrs?string};
+	options_${escapedOptionId}.remove_redundant_brs = ${parameters.removeRedundantBrs?string};
 	</#if>
 	<#if parameters.onSaveTopics?if_exists != "">
-	options_${escapedOptionId?html}.onsavetopics = "${parameters.onSaveTopics?html}";
+	options_${escapedOptionId}.onsavetopics = "${parameters.onSaveTopics}";
 	</#if>
 	<#if parameters.onEventTopics?if_exists != "">
-	options_${escapedOptionId?html}.oneventtopics = "${parameters.onEventTopics?html}";
+	options_${escapedOptionId}.oneventtopics = "${parameters.onEventTopics}";
 	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
@@ -105,6 +105,6 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-	jQuery.struts2_jquery_richtext.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
+	jQuery.struts2_jquery_richtext.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
  });
 </script>

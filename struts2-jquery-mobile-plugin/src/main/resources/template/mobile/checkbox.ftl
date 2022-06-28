@@ -22,11 +22,11 @@
 <div data-role="fieldcontain">
 <#if hasFieldErrors>
 <#list fieldErrors[parameters.name] as error>
-        <div class="errorMessage">${error?html}</div><#t/>
+        <div class="errorMessage">${error}</div><#t/>
 </#list>
 </#if>
  	<fieldset data-role="controlgroup">
-<input type="checkbox" name="${parameters.name?html}" value="${parameters.fieldValue?html}"<#rt/>
+<input type="checkbox" name="${parameters.name}" value="${parameters.fieldValue}"<#rt/>
 <#if parameters.nameValue?? && parameters.nameValue>
  checked="checked"<#rt/>
 </#if>
@@ -37,38 +37,38 @@
  readonly="readonly"<#rt/>
 </#if>
 <#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+ tabindex="${parameters.tabindex}"<#rt/>
 </#if>
 <#if parameters.id??>
- id="${parameters.id?html}"<#rt/>
+ id="${parameters.id}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/css.ftl" />
 <#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+ title="${parameters.title}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 />
-<input type="hidden" id="__checkbox_${parameters.id?html}" name="__checkbox_${parameters.name?html}" value="${parameters.fieldValue?html}"<#rt/>
+<input type="hidden" id="__checkbox_${parameters.id}" name="__checkbox_${parameters.name}" value="${parameters.fieldValue}"<#rt/>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>
  /> 
 <#if parameters.label??> <label<#t/>
 <#if parameters.id??>
- for="${parameters.id?html}"<#rt/>
+ for="${parameters.id}"<#rt/>
 </#if>
  class="checkboxLabel"<#rt/>
 >
 <#if parameters.required?default(false) && parameters.requiredposition?default("right") != 'right'>
         <span class="required">*</span><#t/>
 </#if>
-${parameters.label?html}<#t/>
+${parameters.label}<#t/>
 <#if parameters.required?default(false) && parameters.requiredposition?default("right") == 'right'>
  <span class="required">*</span><#t/>
 </#if>
-${parameters.labelseparator?default("")?html}<#t/></label><#t/>
+${parameters.labelseparator?default("")}<#t/></label><#t/>
 </#if>
       </fieldset>
 <#include "/${parameters.templateDir}/mobile/controlfooter.ftl" />

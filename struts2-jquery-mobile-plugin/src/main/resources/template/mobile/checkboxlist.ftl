@@ -20,11 +20,11 @@
 -->
 <#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
 <div data-role="fieldcontain"
-<#if parameters.dataTheme??>data-theme="${parameters.dataTheme?html}" </#if><#rt/>
+<#if parameters.dataTheme??>data-theme="${parameters.dataTheme}" </#if><#rt/>
 >
 <#if hasFieldErrors>
 <#list fieldErrors[parameters.name] as error>
-        <div class="errorMessage">${error?html}</div><#t/>
+        <div class="errorMessage">${error}</div><#t/>
 </#list>
 </#if>
  	<fieldset data-role="controlgroup"
@@ -37,11 +37,11 @@
 <#if parameters.required?default(false) && parameters.requiredposition?default("right") != 'right'>
         <span class="required">*</span><#t/>
 </#if>
-${parameters.label?html}<#t/>
+${parameters.label}<#t/>
 <#if parameters.required?default(false) && parameters.requiredposition?default("right") == 'right'>
  <span class="required">*</span><#t/>
 </#if>
-${parameters.labelseparator?default(":")?html}<#t/>
+${parameters.labelseparator?default(":")}<#t/>
 </legend><#t/>
 </#if>
 <#assign itemCount = 0/>
@@ -59,7 +59,7 @@ ${parameters.labelseparator?default(":")?html}<#t/>
             <#assign itemValue = stack.findString('top')/>
         </#if>
 <#assign itemKeyStr=itemKey.toString() />
-<input type="checkbox" name="${parameters.name?html}" value="${itemKeyStr?html}" id="${parameters.id?html}-${itemCount}"<#rt/>
+<input type="checkbox" name="${parameters.name}" value="${itemKeyStr}" id="${parameters.id}-${itemCount}"<#rt/>
         <#if tag.contains(parameters.nameValue, itemKey)>
  checked="checked"<#rt/>
         </#if>
@@ -67,17 +67,17 @@ ${parameters.labelseparator?default(":")?html}<#t/>
  disabled="disabled"<#rt/>
         </#if>
         <#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+ title="${parameters.title}"<#rt/>
         </#if>
         <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
         <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 />
-<label for="${parameters.id?html}-${itemCount}" class="checkboxLabel">${itemValue?html}</label>
+<label for="${parameters.id}-${itemCount}" class="checkboxLabel">${itemValue}</label>
     </@s.iterator>
 <#else>
   &nbsp;
 </#if>
-<input type="hidden" id="__multiselect_${parameters.id?html}" name="__multiselect_${parameters.name?html}" value=""<#rt/>
+<input type="hidden" id="__multiselect_${parameters.id}" name="__multiselect_${parameters.name}" value=""<#rt/>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>

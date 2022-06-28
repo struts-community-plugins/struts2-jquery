@@ -24,41 +24,41 @@ var CKEDITOR_BASEPATH = "${base}/struts/js/ckeditor/";
 jQuery(document).ready(function () { 
 	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 	
-	var options_${escapedOptionId?html} = {};
-	options_${escapedOptionId?html}.type = 'text';
+	var options_${escapedOptionId} = {};
+	options_${escapedOptionId}.type = 'text';
 
-	options_${escapedOptionId?html}.path = "${base}/struts/js/ckeditor/";
+	options_${escapedOptionId}.path = "${base}/struts/js/ckeditor/";
 	
 	<#if parameters.customConfig?if_exists != ""> 
-	options_${escapedOptionId?html}.customConfig = "${parameters.customConfig?html}";
+	options_${escapedOptionId}.customConfig = "${parameters.customConfig}";
 	</#if>
 	<#if parameters.skin?if_exists != ""> 
-	options_${escapedOptionId?html}.skin = "${parameters.skin?html}";
+	options_${escapedOptionId}.skin = "${parameters.skin}";
 	<#else>
-    options_${escapedOptionId?html}.skin = "moono";
+    options_${escapedOptionId}.skin = "moono";
 	</#if>
 	<#if parameters.toolbar?if_exists != "">
-	options_${escapedOptionId?html}.toolbar = "${parameters.toolbar?html}";
+	options_${escapedOptionId}.toolbar = "${parameters.toolbar}";
 	</#if>
 	<#if parameters.width??> 
-	options_${escapedOptionId?html}.width = ${parameters.width?html};
+	options_${escapedOptionId}.width = ${parameters.width};
 	</#if>
 	<#if parameters.height??> 
-	options_${escapedOptionId?html}.height = ${parameters.height?html};
+	options_${escapedOptionId}.height = ${parameters.height};
 	</#if>
 	<#if parameters.editorLocal?if_exists != ""> 
-	options_${escapedOptionId?html}.editorLocal = "${parameters.editorLocal?html}";
+	options_${escapedOptionId}.editorLocal = "${parameters.editorLocal}";
 	</#if>
 	<#if parameters.uploads?default(false)>
 		<#if parameters.uploadHref?if_exists != ""> 
-	options_${escapedOptionId?html}.filebrowserUploadUrl = "${parameters.uploadHref}";
+	options_${escapedOptionId}.filebrowserUploadUrl = "${parameters.uploadHref}";
 		<#else>
 	<@s.url var="ckeditorUploadUrl" action="upload" namespace="/ckeditor"/>
-	options_${escapedOptionId?html}.filebrowserUploadUrl = "<@s.property value="ckeditorUploadUrl" />";
+	options_${escapedOptionId}.filebrowserUploadUrl = "<@s.property value="ckeditorUploadUrl" />";
 		</#if>
 	</#if>
   	<#if parameters.editorResizable?default(false)>
-	options_${escapedOptionId?html}.editorResizable = true;
+	options_${escapedOptionId}.editorResizable = true;
   	</#if>
 
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
@@ -73,6 +73,6 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-	jQuery.struts2_jquery_richtext.bind(jQuery('#${escapedId?html}'),options_${escapedOptionId?html});
+	jQuery.struts2_jquery_richtext.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
  });  
 </script>
