@@ -5,7 +5,7 @@ import com.jgeppert.struts2.jquery.grid.showcase.model.OrderDetail;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 
 import javax.inject.Named;
 import java.util.List;
@@ -18,8 +18,8 @@ public class OrderDetailDao extends AbstractSimpleGenericDao<Employee, Integer> 
     @SuppressWarnings("unchecked")
     public List<OrderDetail> findByOrder(int order) {
         try {
-            Query query = getCurrentSession().createQuery("from OrderDetail where id.order.ordernumber = ?");
-            query.setInteger(0, order);
+            Query query = getCurrentSession().createQuery("from OrderDetail where id.order.ordernumber = ?1");
+            query.setParameter(1, order);
             return query.list();
         } catch (HibernateException e) {
             log.error(e.getMessage(), e);

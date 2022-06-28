@@ -45,7 +45,7 @@
     </bean>
 
     <!-- Hibernate Annotation based SessionFactory -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
             <props>
@@ -61,9 +61,6 @@
                 <prop key="hibernate.id.new_generator_mappings">true</prop>
             </props>
         </property>
-        <property name="namingStrategy">
-            <bean class="org.hibernate.cfg.DefaultComponentSafeNamingStrategy"/>
-        </property>
         <property name="packagesToScan">
             <list>
                 <value>com.jgeppert.struts2.jquery.grid.showcase.model</value>
@@ -73,7 +70,7 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

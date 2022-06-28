@@ -25,7 +25,7 @@
 		<velocity.version>1.7</velocity.version>
 		<velocity-tools.version>2.0</velocity-tools.version>
 		<derby.version>10.11.1.1</derby.version>
-		<c3p0.version>0.9.1.2</c3p0.version>
+		<c3p0.version>0.9.5.5</c3p0.version>
 		<hibernate-validator.version>4.3.2.Final</hibernate-validator.version>
 		<javax.interceptor-api.version>1.2</javax.interceptor-api.version>
 	</properties>
@@ -116,7 +116,7 @@
 
 		<!-- Connection Pooling -->
 		<dependency>
-			<groupId>c3p0</groupId>
+			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
 		</dependency>
 
@@ -235,7 +235,7 @@
 
 			<!-- Connection Pooling -->
 			<dependency>
-				<groupId>c3p0</groupId>
+				<groupId>com.mchange</groupId>
 				<artifactId>c3p0</artifactId>
 				<version>${c3p0.version}</version>
 			</dependency>
