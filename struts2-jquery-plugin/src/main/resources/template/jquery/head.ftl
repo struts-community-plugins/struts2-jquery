@@ -168,7 +168,7 @@
 
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
-        <#if parameters.loadFromGoogle?default(false) && basePath == "${base}/struts/themes">
+        <#if parameters.loadFromGoogle?default(false) && basePath == "${base}/static/themes">
         <link id="jquery_theme_link" rel="stylesheet"
               href="${googleUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
         <#else>

@@ -20,34 +20,34 @@
 -->
 <a<#rt/>
 <#if parameters.id?if_exists != "">
- id="${parameters.id?html}"<#rt/>
+ id="${parameters.id}"<#rt/>
 </#if>
 <#if parameters.href?if_exists != "">
  href="${parameters.href}"<#rt/>
 </#if>
 <#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+ tabindex="${parameters.tabindex}"<#rt/>
 </#if>
 <#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+ class="${parameters.cssClass}"<#rt/>
 </#if>
 <#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+ style="${parameters.cssStyle}"<#rt/>
 </#if>
 <#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+ title="${parameters.title}"<#rt/>
 </#if>
 <#if parameters.button?default(false)>
  data-role="button"<#rt/>
 </#if>
 <#if parameters.buttonIcon??>
- data-icon="${parameters.buttonIcon?html}"<#rt/>
+ data-icon="${parameters.buttonIcon}"<#rt/>
 </#if>
 <#if parameters.buttonIconPosition??>
- data-iconpos="${parameters.buttonIconPosition?html}"<#rt/>
+ data-iconpos="${parameters.buttonIconPosition}"<#rt/>
 </#if>
 <#if parameters.dataTheme??>
- data-theme="${parameters.dataTheme?html}"<#rt/>
+ data-theme="${parameters.dataTheme}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />

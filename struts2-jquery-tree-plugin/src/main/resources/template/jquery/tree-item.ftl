@@ -20,16 +20,16 @@
 -->
 		<li
 <#if parameters.id?if_exists != "">
-			id="${parameters.id?html}"<#rt/>
+			id="${parameters.id}"<#rt/>
 </#if>
 <#if parameters.cssStyle?if_exists != "">
-			style="${parameters.cssStyle?html}"<#rt/>
+			style="${parameters.cssStyle}"<#rt/>
 </#if>
 <#if parameters.cssClass?if_exists != "">
- 			class="${parameters.cssClass?html}"<#rt/>
+ 			class="${parameters.cssClass}"<#rt/>
 </#if>
 <#if parameters.type?if_exists != "">
-        data-jstree='{"type" : "${parameters.type?html}"}'<#rt/>
+        data-jstree='{"type" : "${parameters.type}"}'<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
@@ -38,21 +38,21 @@
 	<#if !parameters.targets?exists && parameters.href?if_exists != ""> 
 			<a href="${parameters.href?string}"
             <#if parameters.id?if_exists != "">
-               id="${parameters.id?html}_link"<#rt/>
+               id="${parameters.id}_link"<#rt/>
             </#if>
             ><#rt/>
 	<#else>
 			<a href="javascript:void(0)"
                 <#if parameters.id?if_exists != "">
-               id="${parameters.id?html}_link"<#rt/>
+               id="${parameters.id}_link"<#rt/>
                 </#if>
                 <#if parameters.targets?if_exists != "">
-               data-targets="${parameters.targets?html}"<#rt/>
+               data-targets="${parameters.targets}"<#rt/>
                 </#if>
             ><#rt/>
 	</#if>
 <#if parameters.title?if_exists != "">
-			${parameters.title?html}
+			${parameters.title}
 </#if>
 			</a>
 			<ul>

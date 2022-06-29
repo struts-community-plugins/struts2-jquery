@@ -22,9 +22,9 @@
 </a>
 <script type='text/javascript'>
 jQuery(document).ready(function () { 
-	var options_${escapedOptionId?html} = {};
+	var options_${escapedOptionId} = {};
 	<#if parameters.openDialog?if_exists != ""> 
-	options_${escapedOptionId?html}.opendialog = "${parameters.openDialog?html}";
+	options_${escapedOptionId}.opendialog = "${parameters.openDialog}";
 	</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />

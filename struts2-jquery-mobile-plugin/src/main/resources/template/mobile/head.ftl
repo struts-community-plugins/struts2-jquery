@@ -26,7 +26,7 @@
 <#if parameters.scriptPath?if_exists != "">
     <#assign javaMobileScriptBasePath="${parameters.scriptPath?string}">
 <#else>
-    <#assign javaMobileScriptBasePath="${base}/struts/">
+    <#assign javaMobileScriptBasePath="${base}/static/">
 </#if>
 <#if parameters.compressed?default(true)>
     <#assign jqueryMobileFile="jquery.mobile-${jQueryMobileVersion}.min.js">

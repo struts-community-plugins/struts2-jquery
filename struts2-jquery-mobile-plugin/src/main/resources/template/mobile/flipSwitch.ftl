@@ -21,24 +21,24 @@
 <#include "/${parameters.templateDir}/mobile/controlheader.ftl" />
 <select<#rt/>
  data-role="slider"
- name="${parameters.name?default("")?html}"<#rt/>
+ name="${parameters.name?default("")}"<#rt/>
 <#if parameters.disabled?default(false)>
  disabled="disabled"<#rt/>
 </#if>
 <#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+ tabindex="${parameters.tabindex}"<#rt/>
 </#if>
 <#if parameters.id??>
- id="${parameters.id?html}_input"<#rt/>
+ id="${parameters.id}_input"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/css.ftl" />
 <#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+ title="${parameters.title}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 >
-    <option value="true">${parameters.onTitle?default("On")?html}</option>
-    <option value="false">${parameters.offTitle?default("Off")?html}</option>
+    <option value="true">${parameters.onTitle?default("On")}</option>
+    <option value="false">${parameters.offTitle?default("Off")}</option>
     

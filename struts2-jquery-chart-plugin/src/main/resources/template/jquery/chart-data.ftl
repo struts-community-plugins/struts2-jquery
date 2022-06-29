@@ -20,117 +20,117 @@
 -->
 <#assign escapedOptionId="${parameters.chart?string?replace('.', '_')}">
 
-options_${escapedOptionId?html}_data = {};
-options_${escapedOptionId?html}_data.id = "${parameters.id?html}";
+options_${escapedOptionId}_data = {};
+options_${escapedOptionId}_data.id = "${parameters.id}";
 <#if parameters.hrefUrl?if_exists != "">
-options_${escapedOptionId?html}_data.href = "${parameters.hrefUrl?html}";
+options_${escapedOptionId}_data.href = "${parameters.hrefUrl}";
 </#if>
 <#if parameters.hrefParameter?if_exists != "">
-options_${escapedOptionId?html}_data.hrefparameter = "${parameters.hrefParameter?string}";
+options_${escapedOptionId}_data.hrefparameter = "${parameters.hrefParameter?string}";
 </#if>
 <#if parameters.formIds?exists>
-options_${escapedOptionId?html}_data.formids = "${parameters.formIds?html}";
+options_${escapedOptionId}_data.formids = "${parameters.formIds}";
 </#if>
 <#if parameters.indicator?exists>
-options_${escapedOptionId?html}_data.indicatorid = "${parameters.indicator?html}";
+options_${escapedOptionId}_data.indicatorid = "${parameters.indicator}";
 </#if>
 <#if parameters.loadingText?exists>
-options_${escapedOptionId?html}_data.loadingtext = "${parameters.loadingText?html}";
+options_${escapedOptionId}_data.loadingtext = "${parameters.loadingText}";
 </#if>
 <#if parameters.remoteList??>
-options_${escapedOptionId?html}_data.list = "${parameters.remoteList?html}";
+options_${escapedOptionId}_data.list = "${parameters.remoteList}";
 </#if>
 <#if parameters.remoteListKey??>
-options_${escapedOptionId?html}_data.listkey = "${parameters.remoteListKey?html}";
+options_${escapedOptionId}_data.listkey = "${parameters.remoteListKey}";
 </#if>
 <#if parameters.remoteListValue??>
-options_${escapedOptionId?html}_data.listvalue = "${parameters.remoteListValue?html}";
+options_${escapedOptionId}_data.listvalue = "${parameters.remoteListValue}";
 </#if>
 <#if parameters.label?if_exists != "">
-options_${escapedOptionId?html}_data.label = "${parameters.label?html}";
+options_${escapedOptionId}_data.label = "${parameters.label}";
 </#if>
 <#if parameters.data?if_exists != "">
-options_${escapedOptionId?html}_data.data = ${parameters.data};
+options_${escapedOptionId}_data.data = ${parameters.data};
 </#if>
 <#if parameters.color?if_exists != "">
-options_${escapedOptionId?html}_data.color = "${parameters.color?html}";
+options_${escapedOptionId}_data.color = "${parameters.color}";
 </#if>
 <#if parameters.lines?if_exists != "">
-options_${escapedOptionId?html}_data.lines = ${parameters.lines?html};
+options_${escapedOptionId}_data.lines = ${parameters.lines};
 </#if>
 <#if parameters.bars?if_exists != "">
-options_${escapedOptionId?html}_data.bars = ${parameters.bars?html};
+options_${escapedOptionId}_data.bars = ${parameters.bars};
 </#if>
 <#if parameters.points?if_exists != "">
-options_${escapedOptionId?html}_data.points = ${parameters.points?html};
+options_${escapedOptionId}_data.points = ${parameters.points};
 </#if>
 <#if parameters.xaxis??>
-options_${escapedOptionId?html}_data.xaxis = ${parameters.xaxis};
+options_${escapedOptionId}_data.xaxis = ${parameters.xaxis};
 </#if>
 <#if parameters.yaxis??>
-options_${escapedOptionId?html}_data.yaxis = ${parameters.yaxis};
+options_${escapedOptionId}_data.yaxis = ${parameters.yaxis};
 </#if>
 <#if parameters.clickable?default(false)>
-options_${escapedOptionId?html}_data.clickable = true;
+options_${escapedOptionId}_data.clickable = true;
 </#if>
 <#if parameters.hoverable?default(false)>
-options_${escapedOptionId?html}_data.hoverable = true;
+options_${escapedOptionId}_data.hoverable = true;
 </#if>
 <#if parameters.shadowSize?if_exists != "">
-options_${escapedOptionId?html}_data.shadowSize = ${parameters.shadowSize};
+options_${escapedOptionId}_data.shadowSize = ${parameters.shadowSize};
 </#if>
 <#if parameters.fillBetween?if_exists != "">
-options_${escapedOptionId?html}_data.fillBetween = "${parameters.fillBetween}";
-options_${escapedOptionId?html}.fill = true;
+options_${escapedOptionId}_data.fillBetween = "${parameters.fillBetween}";
+options_${escapedOptionId}.fill = true;
 </#if>
 <#if parameters.stack?if_exists != "">
-options_${escapedOptionId?html}_data.stack = "${parameters.stack}";
-options_${escapedOptionId?html}.stack = true;
+options_${escapedOptionId}_data.stack = "${parameters.stack}";
+options_${escapedOptionId}.stack = true;
 </#if>
 <#if parameters.curvedLines?default(false)>
-options_${escapedOptionId?html}_data.curvedLines = { show : true };
-if(options_${escapedOptionId?html}.series){
-options_${escapedOptionId?html}.series = $.extend(options_${escapedOptionId?html}.series , { curvedLines: { active : true }});
+options_${escapedOptionId}_data.curvedLines = { show : true };
+if(options_${escapedOptionId}.series){
+options_${escapedOptionId}.series = $.extend(options_${escapedOptionId}.series , { curvedLines: { active : true }});
 } else {
-options_${escapedOptionId?html}.series = { curvedLines: { active: true }};
+options_${escapedOptionId}.series = { curvedLines: { active: true }};
 }
-    options_${escapedOptionId?html}_data.curvedLines.apply = true;
+    options_${escapedOptionId}_data.curvedLines.apply = true;
 	<#if parameters.curvedLinesFit?default(false)>
-	options_${escapedOptionId?html}_data.curvedLines.fit = true;
+	options_${escapedOptionId}_data.curvedLines.fit = true;
 	</#if>
 	<#if parameters.curvedLinesFill?default(false)>
-	options_${escapedOptionId?html}_data.curvedLines.fill = true;
+	options_${escapedOptionId}_data.curvedLines.fill = true;
 	</#if>
 	<#if parameters.curvedLinesFillColor?if_exists != "">
-	options_${escapedOptionId?html}_data.curvedLines.fillColor = "${parameters.curvedLinesFillColor?html}";
+	options_${escapedOptionId}_data.curvedLines.fillColor = "${parameters.curvedLinesFillColor}";
 	</#if>
 	<#if parameters.curvedLinesLineWidth??>
-	options_${escapedOptionId?html}_data.curvedLines.lineWidth = ${parameters.curvedLinesLineWidth};
+	options_${escapedOptionId}_data.curvedLines.lineWidth = ${parameters.curvedLinesLineWidth};
 	</#if>
 </#if>
 <#if parameters.reloadTopics?exists>
-options_${escapedOptionId?html}_data.reloadtopics = "${parameters.reloadTopics?html}";
+options_${escapedOptionId}_data.reloadtopics = "${parameters.reloadTopics}";
 </#if>
 <#if parameters.listenTopics?exists>
-options_${escapedOptionId?html}_data.listentopics = "${parameters.listenTopics?html}";
+options_${escapedOptionId}_data.listentopics = "${parameters.listenTopics}";
 </#if>
 <#if parameters.deferredLoading?default(false)>
-options_${escapedOptionId?html}_data.deferredloading = true;
+options_${escapedOptionId}_data.deferredloading = true;
 </#if>
 <#if parameters.onCompleteTopics?exists>
-options_${escapedOptionId?html}_data.oncom = "${parameters.onCompleteTopics?html}";
+options_${escapedOptionId}_data.oncom = "${parameters.onCompleteTopics}";
 </#if>
 <#if parameters.onSuccessTopics?exists>
-options_${escapedOptionId?html}_data.onsuc = "${parameters.onSuccessTopics?html}";
+options_${escapedOptionId}_data.onsuc = "${parameters.onSuccessTopics}";
 </#if>
 <#if parameters.onErrorTopics?exists>
-options_${escapedOptionId?html}_data.onerr = "${parameters.onErrorTopics?html}";
+options_${escapedOptionId}_data.onerr = "${parameters.onErrorTopics}";
 </#if>
 <#if parameters.onBeforeTopics?exists>
-options_${escapedOptionId?html}_data.onbef = "${parameters.onBeforeTopics?html}";
+options_${escapedOptionId}_data.onbef = "${parameters.onBeforeTopics}";
 </#if>
 <#if parameters.onAlwaysTopics?exists>
-options_${escapedOptionId?html}_data.onalw = "${parameters.onAlwaysTopics?html}";
+options_${escapedOptionId}_data.onalw = "${parameters.onAlwaysTopics}";
 </#if>
 
-options_${escapedOptionId?html}.data.push(options_${escapedOptionId?html}_data);
+options_${escapedOptionId}.data.push(options_${escapedOptionId}_data);
