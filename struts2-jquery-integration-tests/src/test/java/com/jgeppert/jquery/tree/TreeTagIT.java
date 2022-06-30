@@ -1,4 +1,4 @@
-package com.jgeppert.jquery.slider;
+package com.jgeppert.jquery.tree;
 
 import com.jgeppert.jquery.selenium.JQueryIdleCondition;
 import com.jgeppert.jquery.selenium.JQueryNoAnimations;

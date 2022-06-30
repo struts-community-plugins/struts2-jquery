@@ -1,4 +1,4 @@
-package com.jgeppert.jquery.a;
+package com.jgeppert.jquery.submit;
 
 import com.jgeppert.jquery.selenium.JQueryIdleCondition;
 import com.jgeppert.jquery.selenium.WebDriverFactory;

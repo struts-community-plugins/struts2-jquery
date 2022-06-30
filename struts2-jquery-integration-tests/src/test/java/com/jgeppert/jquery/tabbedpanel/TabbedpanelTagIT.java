@@ -1,4 +1,4 @@
-package com.jgeppert.jquery.slider;
+package com.jgeppert.jquery.tabbedpanel;
 
 import com.jgeppert.jquery.selenium.JQueryIdleCondition;
 import com.jgeppert.jquery.selenium.JQueryNoAnimations;
