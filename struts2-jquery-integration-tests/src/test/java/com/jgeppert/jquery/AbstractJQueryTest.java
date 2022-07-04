@@ -23,7 +23,7 @@ public abstract class AbstractJQueryTest {
     @Before
     public void before() {
         driver = WebDriverFactory.getWebDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
     
     @After
@@ -47,7 +47,7 @@ public abstract class AbstractJQueryTest {
     protected static final JQueryNoAnimations JQUERY_NO_ANIMATIONS = new JQueryNoAnimations();
     
     protected void waitForInitialPageLoad() throws InterruptedException {
-        Thread.sleep(500);
+        Thread.sleep(100);
         wait.until(DOCUMENT_READY);
         wait.until(JQUERY_DEFINED);
         wait.until(JQUERY_IDLE);
