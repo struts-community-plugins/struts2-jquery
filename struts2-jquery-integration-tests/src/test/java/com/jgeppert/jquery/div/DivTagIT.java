@@ -43,17 +43,16 @@ public class DivTagIT extends AbstractJQueryTest {
     public void testEvents() throws InterruptedException {
         driver.get(baseUrl + "/div/events.action");
 
-        waitForInitialPageLoad();
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
+        Thread.sleep(100);
+        wait.until(DOCUMENT_READY);
+        wait.until(JQUERY_DEFINED);
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 
         Assert.assertEquals("Before div", alert.getText());
 
         alert.accept();
 
-        wait.until(JQUERY_IDLE);
-        wait.until(ExpectedConditions.alertIsPresent());
-        alert = driver.switchTo().alert();
+        alert = wait.until(ExpectedConditions.alertIsPresent());
 
         Assert.assertEquals("Complete div", alert.getText());
 
