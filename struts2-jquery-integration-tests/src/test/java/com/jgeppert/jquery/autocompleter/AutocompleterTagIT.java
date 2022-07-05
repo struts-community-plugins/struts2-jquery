@@ -5,6 +5,7 @@ import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
 import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+@Ignore
 @RunWith(Parameterized.class)
 @Category({ HtmlUnitCategory.class, PhantomJSCategory.class })
 public class AutocompleterTagIT extends AbstractJQueryTest {
@@ -32,15 +34,15 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
 
         autocompleteInputWidget.sendKeys("j");
-        Thread.sleep(1000);
+        Thread.sleep(500);
         Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
 
         autocompleteInputWidget.sendKeys("u");
-        Thread.sleep(1000);
+        Thread.sleep(500);
         Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
 
         driver.findElements(By.tagName("li")).get(0).click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
         Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
     }
 

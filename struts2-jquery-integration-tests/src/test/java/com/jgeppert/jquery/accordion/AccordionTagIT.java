@@ -5,6 +5,7 @@ import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
 import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+@Ignore
 @RunWith(Parameterized.class)
 @Category({HtmlUnitCategory.class, PhantomJSCategory.class})
 public class AccordionTagIT extends AbstractJQueryTest {
