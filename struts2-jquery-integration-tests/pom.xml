@@ -30,6 +30,8 @@
 		<commons-codec.version>1.10</commons-codec.version>
 		<commons-io.version>2.7</commons-io.version>
 		<xml-apis.version>1.4.01</xml-apis.version>
+		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+		<jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
 
 		<failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
 		<failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
@@ -159,6 +161,14 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -267,6 +277,19 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${lombok.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.servlet</groupId>
+				<artifactId>jakarta.servlet-api</artifactId>
+				<version>${jakarta.servlet-api.version}</version>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
