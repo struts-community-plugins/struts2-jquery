@@ -1,29 +1,21 @@
 package com.jgeppert.jquery.submit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@RunWith(Parameterized.class)
-@Category({ HtmlUnitCategory.class, PhantomJSCategory.class })
+@Tag("HTMLUnit")
+@Tag("PhantomJS")
 public class SubmitTagIT extends AbstractJQueryTest {
-    private String baseUrl;
-
-    public SubmitTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    public void testSimpleFormSubmit() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testSimpleFormSubmit(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/submit/simple-form.action");
 
         waitForInitialPageLoad();
@@ -32,14 +24,14 @@ public class SubmitTagIT extends AbstractJQueryTest {
         WebElement echoInput = driver.findElement(By.id("echo"));
         WebElement ajaxSubmit = driver.findElement(By.id("formsubmit"));
 
-        Assert.assertEquals("formResult div", formResult.getText());
-        Assert.assertEquals("something to echo", echoInput.getAttribute("value"));
+        assertEquals("formResult div", formResult.getText());
+        assertEquals("something to echo", echoInput.getAttribute("value"));
 
         ajaxSubmit.click();
 
         wait.until(JQUERY_IDLE);
 
-        Assert.assertEquals("Echo : something to echo", formResult.getText());
+        assertEquals("Echo : something to echo", formResult.getText());
 
         echoInput.clear();
         echoInput.sendKeys("userinput to echo");
@@ -47,11 +39,12 @@ public class SubmitTagIT extends AbstractJQueryTest {
 
         wait.until(JQUERY_IDLE);
 
-        Assert.assertEquals("Echo : userinput to echo", formResult.getText());
+        assertEquals("Echo : userinput to echo", formResult.getText());
     }
 
-    @Test
-    public void testFormSubmitOutside() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testFormSubmitOutside(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/submit/form-outside.action");
 
         waitForInitialPageLoad();
@@ -60,14 +53,14 @@ public class SubmitTagIT extends AbstractJQueryTest {
         WebElement echoInput = driver.findElement(By.id("echo"));
         WebElement ajaxSubmit = driver.findElement(By.id("formsubmit"));
 
-        Assert.assertEquals("formResult div", formResult.getText());
-        Assert.assertEquals("something to echo", echoInput.getAttribute("value"));
+        assertEquals("formResult div", formResult.getText());
+        assertEquals("something to echo", echoInput.getAttribute("value"));
 
         ajaxSubmit.click();
 
         wait.until(JQUERY_IDLE);
 
-        Assert.assertEquals("Echo : something to echo", formResult.getText());
+        assertEquals("Echo : something to echo", formResult.getText());
 
         echoInput.clear();
         echoInput.sendKeys("userinput to echo");
@@ -75,11 +68,12 @@ public class SubmitTagIT extends AbstractJQueryTest {
 
         wait.until(JQUERY_IDLE);
 
-        Assert.assertEquals("Echo : userinput to echo", formResult.getText());
+        assertEquals("Echo : userinput to echo", formResult.getText());
     }
 
-    @Test
-    public void testFormSubmitEvents() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testFormSubmitEvents(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/submit/events.action");
 
         waitForInitialPageLoad();
@@ -88,8 +82,8 @@ public class SubmitTagIT extends AbstractJQueryTest {
         WebElement echoInput = driver.findElement(By.id("echo"));
         WebElement ajaxSubmit = driver.findElement(By.id("formsubmit"));
 
-        Assert.assertEquals("formResult div", formResult.getText());
-        Assert.assertEquals("something to echo", echoInput.getAttribute("value"));
+        assertEquals("formResult div", formResult.getText());
+        assertEquals("something to echo", echoInput.getAttribute("value"));
 
         ajaxSubmit.click();
 
@@ -98,12 +92,13 @@ public class SubmitTagIT extends AbstractJQueryTest {
         wait.until(JQUERY_IDLE);
 
         WebElement ajaxeventsdiv = driver.findElement(By.id("ajaxeventsdiv"));
-        Assert.assertEquals("ajax submit clickedajax submit complete", ajaxeventsdiv.getText());
-        Assert.assertEquals("Echo : something to echo", formResult.getText());
+        assertEquals("ajax submit clickedajax submit complete", ajaxeventsdiv.getText());
+        assertEquals("Echo : something to echo", formResult.getText());
     }
 
-    @Test
-    public void testFormSubmitListenTopics() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testFormSubmitListenTopics(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/submit/listen.action");
 
         waitForInitialPageLoad();
@@ -114,16 +109,16 @@ public class SubmitTagIT extends AbstractJQueryTest {
         WebElement echoInput2 = driver.findElement(By.id("echo2"));
         WebElement ajaxSubmit1 = driver.findElement(By.id("formsubmit1"));
 
-        Assert.assertEquals("formResult div 1", result1.getText());
-        Assert.assertEquals("formResult div 2", result2.getText());
-        Assert.assertEquals("firstform", echoInput1.getAttribute("value"));
-        Assert.assertEquals("secondform", echoInput2.getAttribute("value"));
+        assertEquals("formResult div 1", result1.getText());
+        assertEquals("formResult div 2", result2.getText());
+        assertEquals("firstform", echoInput1.getAttribute("value"));
+        assertEquals("secondform", echoInput2.getAttribute("value"));
 
         ajaxSubmit1.click();
 
         wait.until(JQUERY_IDLE);
 
-        Assert.assertEquals("Echo : firstform", result1.getText());
-        Assert.assertEquals("Echo : secondform", result2.getText());
+        assertEquals("Echo : firstform", result1.getText());
+        assertEquals("Echo : secondform", result2.getText());
     }
 }

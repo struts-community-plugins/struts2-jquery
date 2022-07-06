@@ -1,31 +1,26 @@
 package com.jgeppert.jquery.accordion;
 
-import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import com.jgeppert.jquery.AbstractJQueryTest;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@Ignore
-@RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
+@Disabled
+@Tag("HTMLUnit")
+@Tag("PhantomJS")
 public class AccordionTagIT extends AbstractJQueryTest {
-    private String baseUrl;        
-
-    public AccordionTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    public void testInlineData() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testInlineData(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/accordion/inlinedata.action");
 
         waitForInitialPageLoad();
@@ -35,19 +30,20 @@ public class AccordionTagIT extends AbstractJQueryTest {
         WebElement accordionItem1 = driver.findElement(By.id("accordionItem1_div"));
         WebElement accordionItem2 = driver.findElement(By.id("accordionItem2_div"));
 
-        Assert.assertTrue(accordionItem1.isDisplayed());
-        Assert.assertFalse(accordionItem2.isDisplayed());
+        assertTrue(accordionItem1.isDisplayed());
+        assertFalse(accordionItem2.isDisplayed());
 
         accordionTitle2.click();
 
         wait.until(JQUERY_NO_ANIMATIONS);
 
-        Assert.assertFalse(accordionItem1.isDisplayed());
-        Assert.assertTrue(accordionItem2.isDisplayed());
+        assertFalse(accordionItem1.isDisplayed());
+        assertTrue(accordionItem2.isDisplayed());
     }
 
-    @Test
-    public void testHashmapData() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testHashmapData(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/accordion/hashmap.action");
 
         waitForInitialPageLoad();
@@ -57,19 +53,20 @@ public class AccordionTagIT extends AbstractJQueryTest {
         WebElement accordionItem1 = driver.findElement(By.xpath("//div[@id='accordion']/div[1]"));
         WebElement accordionItem2 = driver.findElement(By.xpath("//div[@id='accordion']/div[2]"));
 
-        Assert.assertTrue(accordionItem1.isDisplayed());
-        Assert.assertFalse(accordionItem2.isDisplayed());
+        assertTrue(accordionItem1.isDisplayed());
+        assertFalse(accordionItem2.isDisplayed());
 
         accordionTitle2.click();
 
         wait.until(JQUERY_NO_ANIMATIONS);
 
-        Assert.assertFalse(accordionItem1.isDisplayed());
-        Assert.assertTrue(accordionItem2.isDisplayed());
+        assertFalse(accordionItem1.isDisplayed());
+        assertTrue(accordionItem2.isDisplayed());
     }
 
-    @Test
-    public void testRemotecontentData() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testRemotecontentData(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/accordion/remotecontent.action");
 
         waitForInitialPageLoad();
@@ -79,18 +76,17 @@ public class AccordionTagIT extends AbstractJQueryTest {
         WebElement accordionItem1 = driver.findElement(By.xpath("//div[@id='accordion']/div[1]"));
         WebElement accordionItem2 = driver.findElement(By.xpath("//div[@id='accordion']/div[2]"));
 
-        Assert.assertTrue(accordionItem1.isDisplayed());
-        Assert.assertEquals("Echo : Content for accordion item 1", accordionItem1.getText());
-        Assert.assertFalse(accordionItem2.isDisplayed());
+        assertTrue(accordionItem1.isDisplayed());
+        assertEquals("Echo : Content for accordion item 1", accordionItem1.getText());
+        assertFalse(accordionItem2.isDisplayed());
 
         accordionTitle2.click();
 
         wait.until(JQUERY_NO_ANIMATIONS);
         wait.until(JQUERY_IDLE);
 
-        Assert.assertFalse(accordionItem1.isDisplayed());
-        Assert.assertTrue(accordionItem2.isDisplayed());
-        Assert.assertEquals("Echo : Content for accordion item 2", accordionItem2.getText());
+        assertFalse(accordionItem1.isDisplayed());
+        assertTrue(accordionItem2.isDisplayed());
+        assertEquals("Echo : Content for accordion item 2", accordionItem2.getText());
     }
 }
-

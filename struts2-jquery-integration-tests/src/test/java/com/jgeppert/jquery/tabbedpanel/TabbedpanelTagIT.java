@@ -1,30 +1,23 @@
 package com.jgeppert.jquery.tabbedpanel;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@RunWith(Parameterized.class)
-@Category({ PhantomJSCategory.class, HtmlUnitCategory.class })
+@Tag("HTMLUnit")
+@Tag("PhantomJS")
 public class TabbedpanelTagIT extends AbstractJQueryTest {
-    private String baseUrl;
-
-    public TabbedpanelTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    public void testLocal() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testLocal(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/tabbedpanel/local.action");
 
         waitForInitialPageLoad();
@@ -34,22 +27,23 @@ public class TabbedpanelTagIT extends AbstractJQueryTest {
         WebElement tabcontent1 = driver.findElement(By.id("tabcontent1"));
         WebElement tabcontent2 = driver.findElement(By.id("tabcontent2"));
 
-        Assert.assertTrue(tabcontent1.isDisplayed());
-        Assert.assertFalse(tabcontent2.isDisplayed());
+        assertTrue(tabcontent1.isDisplayed());
+        assertFalse(tabcontent2.isDisplayed());
 
         tab2Link.click();
 
-        Assert.assertFalse(tabcontent1.isDisplayed());
-        Assert.assertTrue(tabcontent2.isDisplayed());
+        assertFalse(tabcontent1.isDisplayed());
+        assertTrue(tabcontent2.isDisplayed());
 
         tab1Link.click();
 
-        Assert.assertTrue(tabcontent1.isDisplayed());
-        Assert.assertFalse(tabcontent2.isDisplayed());
+        assertTrue(tabcontent1.isDisplayed());
+        assertFalse(tabcontent2.isDisplayed());
     }
 
-    @Test
-    public void testRemote() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testRemote(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/tabbedpanel/remote.action");
 
         waitForInitialPageLoad();
@@ -61,21 +55,21 @@ public class TabbedpanelTagIT extends AbstractJQueryTest {
         WebElement tabcontent1 = driver.findElement(By.id(tab1.getAttribute("aria-controls")));
         WebElement tabcontent2 = driver.findElement(By.id(tab2.getAttribute("aria-controls")));
 
-        Assert.assertTrue(tabcontent1.isDisplayed());
-        Assert.assertFalse(tabcontent2.isDisplayed());
-        Assert.assertEquals("This is simple text from an ajax call.", tabcontent1.getText());
+        assertTrue(tabcontent1.isDisplayed());
+        assertFalse(tabcontent2.isDisplayed());
+        assertEquals("This is simple text from an ajax call.", tabcontent1.getText());
 
         tab2Link.click();
         wait.until(JQUERY_IDLE);
 
-        Assert.assertFalse(tabcontent1.isDisplayed());
-        Assert.assertTrue(tabcontent2.isDisplayed());
-        Assert.assertEquals("Echo : something to echo", tabcontent2.getText());
+        assertFalse(tabcontent1.isDisplayed());
+        assertTrue(tabcontent2.isDisplayed());
+        assertEquals("Echo : something to echo", tabcontent2.getText());
 
         tab1Link.click();
         wait.until(JQUERY_IDLE);
 
-        Assert.assertTrue(tabcontent1.isDisplayed());
-        Assert.assertFalse(tabcontent2.isDisplayed());
+        assertTrue(tabcontent1.isDisplayed());
+        assertFalse(tabcontent2.isDisplayed());
     }
 }

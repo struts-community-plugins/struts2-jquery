@@ -1,31 +1,23 @@
 package com.jgeppert.jquery.autocompleter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@Ignore
-@RunWith(Parameterized.class)
-@Category({ HtmlUnitCategory.class, PhantomJSCategory.class })
+@Disabled
+@Tag("HTMLUnit")
+@Tag("PhantomJS")
 public class AutocompleterTagIT extends AbstractJQueryTest {
-    private String baseUrl;
-
-    public AutocompleterTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    public void testListData() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testListData(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/autocompleter/list.action");
 
         waitForInitialPageLoad();
@@ -35,19 +27,20 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
 
         autocompleteInputWidget.sendKeys("j");
         Thread.sleep(500);
-        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        assertEquals(3, driver.findElements(By.tagName("li")).size());
 
         autocompleteInputWidget.sendKeys("u");
         Thread.sleep(500);
-        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+        assertEquals(2, driver.findElements(By.tagName("li")).size());
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(500);
-        Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+        assertEquals("June", autocompleteInput.getAttribute("value"));
     }
 
-    @Test
-    public void testAjaxArray() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testAjaxArray(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/autocompleter/ajaxarray.action");
         
         waitForInitialPageLoad();
@@ -57,19 +50,20 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
 
         autocompleteInputWidget.sendKeys("j");
         Thread.sleep(1000);
-        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        assertEquals(3, driver.findElements(By.tagName("li")).size());
 
         autocompleteInputWidget.sendKeys("u");
         Thread.sleep(1000);
-        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+        assertEquals(2, driver.findElements(By.tagName("li")).size());
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+        assertEquals("June", autocompleteInput.getAttribute("value"));
     }
 
-    @Test
-    public void testAjaxArrayInsideObject() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testAjaxArrayInsideObject(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/autocompleter/ajaxarrayinsideobject.action");
         
         waitForInitialPageLoad();
@@ -79,19 +73,20 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
 
         autocompleteInputWidget.sendKeys("j");
         Thread.sleep(1000);
-        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        assertEquals(3, driver.findElements(By.tagName("li")).size());
 
         autocompleteInputWidget.sendKeys("u");
         Thread.sleep(1000);
-        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+        assertEquals(2, driver.findElements(By.tagName("li")).size());
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("June", autocompleteInput.getAttribute("value"));
+        assertEquals("June", autocompleteInput.getAttribute("value"));
     }
 
-    @Test
-    public void testAjaxMapInsideObject() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testAjaxMapInsideObject(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/autocompleter/ajaxmapinsideobject.action");
         
         waitForInitialPageLoad();
@@ -101,19 +96,20 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
 
         autocompleteInputWidget.sendKeys("j");
         Thread.sleep(1000);
-        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        assertEquals(3, driver.findElements(By.tagName("li")).size());
 
         autocompleteInputWidget.sendKeys("u");
         Thread.sleep(1000);
-        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+        assertEquals(2, driver.findElements(By.tagName("li")).size());
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
+        assertEquals("6", autocompleteInput.getAttribute("value"));
     }
 
-    @Test
-    public void testAjaxObjectsInsideObject() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testAjaxObjectsInsideObject(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/autocompleter/ajaxobjectsinsideobject.action");
         
         waitForInitialPageLoad();
@@ -123,14 +119,14 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
 
         autocompleteInputWidget.sendKeys("j");
         Thread.sleep(1000);
-        Assert.assertEquals(3, driver.findElements(By.tagName("li")).size());
+        assertEquals(3, driver.findElements(By.tagName("li")).size());
 
         autocompleteInputWidget.sendKeys("u");
         Thread.sleep(1000);
-        Assert.assertEquals(2, driver.findElements(By.tagName("li")).size());
+        assertEquals(2, driver.findElements(By.tagName("li")).size());
 
         driver.findElements(By.tagName("li")).get(0).click();
         Thread.sleep(1000);
-        Assert.assertEquals("6", autocompleteInput.getAttribute("value"));
+        assertEquals("6", autocompleteInput.getAttribute("value"));
     }
 }

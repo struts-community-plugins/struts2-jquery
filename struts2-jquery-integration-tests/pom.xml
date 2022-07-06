@@ -19,9 +19,9 @@
 	<properties>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- plugins -->
-		<maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
+		<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
 		<!-- dependencies -->
-		<junit.version>4.13.1</junit.version>
+		<junit.version>5.8.2</junit.version>
 		<selenium.version>4.2.2</selenium.version>
 		<htmlunit-driver.version>3.62.0</htmlunit-driver.version>
 		<lombok.version>1.16.18</lombok.version>
@@ -33,7 +33,7 @@
 		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
 		<jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
 
-		<failsafe.test.category>com.jgeppert.jquery.junit.category.HtmlUnitCategory</failsafe.test.category>
+		<failsafe.test.tag>HTMLUnit</failsafe.test.tag>
 		<failsafe.webdriver.name>HtmlUnit</failsafe.webdriver.name>
 	</properties>
 
@@ -41,7 +41,7 @@
 		<profile>
 			<id>phantomjs</id>
 			<properties>
-				<failsafe.test.category>com.jgeppert.jquery.junit.category.PhantomJSCategory</failsafe.test.category>
+				<failsafe.test.tag>PhantomJS</failsafe.test.tag>
 				<failsafe.webdriver.name>PhantomJS</failsafe.webdriver.name>
 			</properties>
 		</profile>
@@ -100,7 +100,7 @@
 					<configuration>
 						<forkCount>2</forkCount>
 						<reuseForks>true</reuseForks>
-						<groups>${failsafe.test.category}</groups>
+						<groups>${failsafe.test.tag}</groups>
 						<systemProperties>
 							<property>
 								<name>webDriverName</name>
@@ -143,8 +143,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
 		</dependency>
 
 		<dependency>
@@ -196,10 +196,10 @@
 				<artifactId>struts2-json-plugin</artifactId>
 				<version>${struts2.version}</version>
 			</dependency>
-
+			
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
