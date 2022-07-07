@@ -1,33 +1,27 @@
 package com.jgeppert.jquery.menu;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-@RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
+@Tag("HTMLUnit")
+@Tag("PhantomJS")
 public class MenuTagIT extends AbstractJQueryTest{
-    private String baseUrl;        
-
-    public MenuTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    public void testLocalContent() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testLocalContent(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/menu/localcontent.action");
         
         waitForInitialPageLoad();
@@ -37,24 +31,25 @@ public class MenuTagIT extends AbstractJQueryTest{
         WebElement submenuItemWithAjaxLink = driver.findElement(By.id("submenuItem2"));
         WebElement resultDiv = driver.findElement(By.id("resultDiv"));
 
-        Assert.assertFalse(submenu.isDisplayed());
-        Assert.assertEquals("This is the result div.", resultDiv.getText());
+        assertFalse(submenu.isDisplayed());
+        assertEquals("This is the result div.", resultDiv.getText());
 
         (new Actions(driver)).moveToElement(menuItemWithSubMenu).build().perform();
         wait.until(ExpectedConditions.visibilityOf(submenu));
 
-        Assert.assertTrue(submenu.isDisplayed());
-        Assert.assertEquals("This is the result div.", resultDiv.getText());
+        assertTrue(submenu.isDisplayed());
+        assertEquals("This is the result div.", resultDiv.getText());
 
         (new Actions(driver)).moveToElement(submenuItemWithAjaxLink).click().build().perform();
 
         wait.until(JQUERY_IDLE);
 
-        Assert.assertEquals("This is simple text from an ajax call.", resultDiv.getText());
+        assertEquals("This is simple text from an ajax call.", resultDiv.getText());
     }
 
-    @Test
-    public void testLocalContentList() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testLocalContentList(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/menu/localcontent-list.action");
         
         waitForInitialPageLoad();
@@ -64,18 +59,19 @@ public class MenuTagIT extends AbstractJQueryTest{
         WebElement item2Link = menuItems.get(1).findElement(By.tagName("a"));
         WebElement resultDiv = driver.findElement(By.id("resultDiv"));
 
-        Assert.assertEquals(3, menuItems.size());
-        Assert.assertEquals("This is the result div.", resultDiv.getText());
+        assertEquals(3, menuItems.size());
+        assertEquals("This is the result div.", resultDiv.getText());
 
         item2Link.click();
 
         wait.until(JQUERY_IDLE);
 
-        Assert.assertEquals("Echo : Item 2", resultDiv.getText());
+        assertEquals("Echo : Item 2", resultDiv.getText());
     }
 
-    @Test
-    public void testLocalContentMap() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testLocalContentMap(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/menu/localcontent-map.action");
         
         waitForInitialPageLoad();
@@ -85,14 +81,14 @@ public class MenuTagIT extends AbstractJQueryTest{
         WebElement item2Link = menuItems.get(1).findElement(By.tagName("a"));
         WebElement resultDiv = driver.findElement(By.id("resultDiv"));
 
-        Assert.assertEquals(3, menuItems.size());
-        Assert.assertEquals("This is the result div.", resultDiv.getText());
+        assertEquals(3, menuItems.size());
+        assertEquals("This is the result div.", resultDiv.getText());
 
         item2Link.click();
 
         wait.until(JQUERY_IDLE);
 
-        Assert.assertEquals("Echo : 2", resultDiv.getText());
+        assertEquals("Echo : 2", resultDiv.getText());
     }
 }
 

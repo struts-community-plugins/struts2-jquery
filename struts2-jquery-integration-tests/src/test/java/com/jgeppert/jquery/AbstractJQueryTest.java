@@ -4,9 +4,8 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,18 +19,17 @@ public abstract class AbstractJQueryTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
     
-    @Before
+    @BeforeEach
     public void before() {
         driver = WebDriverFactory.getWebDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
     
-    @After
+    @AfterEach
     public void after() {
         driver.quit();
     }
     
-    @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] { 
             { "http://localhost:8080/regular" }, 

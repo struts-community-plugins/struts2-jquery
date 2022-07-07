@@ -1,29 +1,22 @@
 package com.jgeppert.jquery.spinner;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@RunWith(Parameterized.class)
-@Category({ PhantomJSCategory.class, HtmlUnitCategory.class })
+@Tag("HTMLUnit")
+@Tag("PhantomJS")
 public class SpinnerTagIT extends AbstractJQueryTest {
-    private String baseUrl;
-
-    public SpinnerTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    public void testSimple() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testSimple(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/spinner/simple.action");
 
         waitForInitialPageLoad();
@@ -32,19 +25,20 @@ public class SpinnerTagIT extends AbstractJQueryTest {
         WebElement spinnerUp = driver.findElement(By.className("ui-spinner-up"));
         WebElement spinnerDown = driver.findElement(By.className("ui-spinner-down"));
 
-        Assert.assertNull(spinnerInput.getAttribute("aria-valuenow"));
+        assertNull(spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerUp.click();
 
-        Assert.assertEquals("1", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("1", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerDown.click();
 
-        Assert.assertEquals("0", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("0", spinnerInput.getAttribute("aria-valuenow"));
     }
 
-    @Test
-    public void testMaximum() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testMaximum(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/spinner/maximum.action");
         
         waitForInitialPageLoad();
@@ -53,27 +47,28 @@ public class SpinnerTagIT extends AbstractJQueryTest {
         WebElement spinnerUp = driver.findElement(By.className("ui-spinner-up"));
         WebElement spinnerDown = driver.findElement(By.className("ui-spinner-down"));
 
-        Assert.assertEquals("6", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("6", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerUp.click();
 
-        Assert.assertEquals("8", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("8", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerUp.click();
 
-        Assert.assertEquals("9", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("9", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerUp.click();
 
-        Assert.assertEquals("9", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("9", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerDown.click();
 
-        Assert.assertEquals("8", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("8", spinnerInput.getAttribute("aria-valuenow"));
     }
 
-    @Test
-    public void testMinimum() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testMinimum(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/spinner/minimum.action");
         
         waitForInitialPageLoad();
@@ -82,22 +77,22 @@ public class SpinnerTagIT extends AbstractJQueryTest {
         WebElement spinnerUp = driver.findElement(By.className("ui-spinner-up"));
         WebElement spinnerDown = driver.findElement(By.className("ui-spinner-down"));
 
-        Assert.assertEquals("6", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("6", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerDown.click();
 
-        Assert.assertEquals("5", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("5", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerDown.click();
 
-        Assert.assertEquals("3", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("3", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerDown.click();
 
-        Assert.assertEquals("3", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("3", spinnerInput.getAttribute("aria-valuenow"));
 
         spinnerUp.click();
 
-        Assert.assertEquals("5", spinnerInput.getAttribute("aria-valuenow"));
+        assertEquals("5", spinnerInput.getAttribute("aria-valuenow"));
     }
 }

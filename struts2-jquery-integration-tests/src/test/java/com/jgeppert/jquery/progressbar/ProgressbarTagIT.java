@@ -1,33 +1,22 @@
 package com.jgeppert.jquery.progressbar;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-@RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class})
+@Tag("HTMLUnit")
 public class ProgressbarTagIT extends AbstractJQueryTest {
-    private String baseUrl;        
-
-    public ProgressbarTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    @Category({PhantomJSCategory.class})
-    public void testLocal() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testLocal(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/progressbar/local.action");
         
         waitForInitialPageLoad();
@@ -35,11 +24,12 @@ public class ProgressbarTagIT extends AbstractJQueryTest {
         WebElement progressbar = driver.findElement(By.id("myProgressbar"));
         WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
 
-        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
+        assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
     }
 
-    @Test
-    public void testLocalEvents() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testLocalEvents(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/progressbar/local-events.action");
         
         waitForInitialPageLoad();
@@ -48,18 +38,18 @@ public class ProgressbarTagIT extends AbstractJQueryTest {
         WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
         WebElement button = driver.findElement(By.id("myButton"));
 
-        Assert.assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
+        assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
 
         button.click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
 
-        Assert.assertEquals("value changed to : 84", alert.getText());
+        assertEquals("value changed to : 84", alert.getText());
 
         alert.accept();
 
-        Assert.assertEquals("width: 84%;", progressbarValueDiv.getAttribute("style"));
+        assertEquals("width: 84%;", progressbarValueDiv.getAttribute("style"));
     }
 }
 

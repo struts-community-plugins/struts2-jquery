@@ -1,49 +1,43 @@
 package com.jgeppert.jquery.checkboxlist;
 
-import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@RunWith(Parameterized.class)
-@Category({HtmlUnitCategory.class, PhantomJSCategory.class})
+import com.jgeppert.jquery.AbstractJQueryTest;
+
+
+@Tag("HTMLUnit")
+@Tag("PhantomJS")
 public class CheckboxlistTagIT extends AbstractJQueryTest {
-    private String baseUrl;        
-
-    public CheckboxlistTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    public void testInlineData() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testInlineData(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/checkboxlist/inlinedata.action");
 
         waitForInitialPageLoad();
 
         List<WebElement> checkboxes = driver.findElements(By.xpath("//div[@id='checkboxbuttonset']/input[@type='checkbox'][@name='days']"));
 
-        Assert.assertEquals(7, checkboxes.size());
+        assertEquals(7, checkboxes.size());
     }
 
-    @Test
-    public void testRemoteListData() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testRemoteListData(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/checkboxlist/remotelist.action");
 
         waitForInitialPageLoad();
 
         List<WebElement> checkboxes = driver.findElements(By.xpath("//div[@id='checkboxbuttonset']/input[@type='checkbox'][@name='letters']"));
 
-        Assert.assertEquals(26, checkboxes.size());
+        assertEquals(26, checkboxes.size());
     }
 }
 

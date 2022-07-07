@@ -1,29 +1,23 @@
 package com.jgeppert.jquery.dialog;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import com.jgeppert.jquery.AbstractJQueryTest;
-import com.jgeppert.jquery.junit.category.HtmlUnitCategory;
-import com.jgeppert.jquery.junit.category.PhantomJSCategory;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@RunWith(Parameterized.class)
-@Category({ HtmlUnitCategory.class, PhantomJSCategory.class })
+@Tag("HTMLUnit")
+@Tag("PhantomJS")
 public class DialogTagIT extends AbstractJQueryTest {
-    private String baseUrl;
-
-    public DialogTagIT(final String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    @Test
-    public void testLocalContent() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testLocalContent(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/dialog/localcontent.action");
 
         waitForInitialPageLoad();
@@ -33,17 +27,18 @@ public class DialogTagIT extends AbstractJQueryTest {
         WebElement dialogCloseButton = dialog.findElement(By.className("ui-dialog-titlebar-close"));
         WebElement dialogContent = dialog.findElement(By.className("ui-dialog-content"));
 
-        Assert.assertTrue(dialog.isDisplayed());
-        Assert.assertEquals("Dialog with local content", dialogTitle.getText());
-        Assert.assertEquals("This is the local content.", dialogContent.getText());
+        assertTrue(dialog.isDisplayed());
+        assertEquals("Dialog with local content", dialogTitle.getText());
+        assertEquals("This is the local content.", dialogContent.getText());
 
         dialogCloseButton.click();
 
-        Assert.assertFalse(dialog.isDisplayed());
+        assertFalse(dialog.isDisplayed());
     }
 
-    @Test
-    public void testLocalContentOnClick() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testLocalContentOnClick(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/dialog/localcontent-onclick.action");
 
         waitForInitialPageLoad();
@@ -54,21 +49,22 @@ public class DialogTagIT extends AbstractJQueryTest {
         WebElement dialogCloseButton = dialog.findElement(By.className("ui-dialog-titlebar-close"));
         WebElement dialogContent = dialog.findElement(By.className("ui-dialog-content"));
 
-        Assert.assertFalse(dialog.isDisplayed());
+        assertFalse(dialog.isDisplayed());
 
         dialogOpenLink.click();
 
-        Assert.assertTrue(dialog.isDisplayed());
-        Assert.assertEquals("Dialog with local content", dialogTitle.getText());
-        Assert.assertEquals("This is the local content.", dialogContent.getText());
+        assertTrue(dialog.isDisplayed());
+        assertEquals("Dialog with local content", dialogTitle.getText());
+        assertEquals("This is the local content.", dialogContent.getText());
 
         dialogCloseButton.click();
 
-        Assert.assertFalse(dialog.isDisplayed());
+        assertFalse(dialog.isDisplayed());
     }
 
-    @Test
-    public void testRemoteContent() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testRemoteContent(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/dialog/remotecontent.action");
 
         waitForInitialPageLoad();
@@ -80,17 +76,18 @@ public class DialogTagIT extends AbstractJQueryTest {
         WebElement dialogCloseButton = dialog.findElement(By.className("ui-dialog-titlebar-close"));
         WebElement dialogContent = dialog.findElement(By.className("ui-dialog-content"));
 
-        Assert.assertTrue(dialog.isDisplayed());
-        Assert.assertEquals("Dialog with remote content", dialogTitle.getText());
-        Assert.assertEquals("This is simple text from an ajax call.", dialogContent.getText());
+        assertTrue(dialog.isDisplayed());
+        assertEquals("Dialog with remote content", dialogTitle.getText());
+        assertEquals("This is simple text from an ajax call.", dialogContent.getText());
 
         dialogCloseButton.click();
 
-        Assert.assertFalse(dialog.isDisplayed());
+        assertFalse(dialog.isDisplayed());
     }
 
-    @Test
-    public void testRemoteContentOnClick() throws InterruptedException {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testRemoteContentOnClick(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/dialog/remotecontent-onclick.action");
 
         waitForInitialPageLoad();
@@ -101,17 +98,17 @@ public class DialogTagIT extends AbstractJQueryTest {
         WebElement dialogCloseButton = dialog.findElement(By.className("ui-dialog-titlebar-close"));
         WebElement dialogContent = dialog.findElement(By.className("ui-dialog-content"));
 
-        Assert.assertFalse(dialog.isDisplayed());
+        assertFalse(dialog.isDisplayed());
 
         dialogOpenLink.click();
         wait.until(JQUERY_IDLE);
 
-        Assert.assertTrue(dialog.isDisplayed());
-        Assert.assertEquals("Dialog with remote content", dialogTitle.getText());
-        Assert.assertEquals("This is simple text from an ajax call.", dialogContent.getText());
+        assertTrue(dialog.isDisplayed());
+        assertEquals("Dialog with remote content", dialogTitle.getText());
+        assertEquals("This is simple text from an ajax call.", dialogContent.getText());
 
         dialogCloseButton.click();
 
-        Assert.assertFalse(dialog.isDisplayed());
+        assertFalse(dialog.isDisplayed());
     }
 }
