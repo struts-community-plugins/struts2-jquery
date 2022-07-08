@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
 public class SelectTagIT extends AbstractJQueryTest {
+
     @ParameterizedTest
     @MethodSource("data")
     public void testStringlistData(final String baseUrl) throws InterruptedException {
@@ -33,6 +34,7 @@ public class SelectTagIT extends AbstractJQueryTest {
         assertEquals("z", options.get(25).getAttribute("value"));
     }
 
+    @Tag("CI-HTMLUnit")
     @ParameterizedTest
     @MethodSource("data")
     public void testMapData(final String baseUrl) throws InterruptedException {
@@ -57,7 +59,7 @@ public class SelectTagIT extends AbstractJQueryTest {
         driver.get(baseUrl + "/select/objectlist.action");
 
         waitForInitialPageLoad();
-        
+
         WebElement selectElement = driver.findElement(By.id("myselect"));
         List<WebElement> options = selectElement.findElements(By.tagName("option"));
 
@@ -69,4 +71,3 @@ public class SelectTagIT extends AbstractJQueryTest {
         assertEquals("122", options.get(25).getAttribute("value"));
     }
 }
-

@@ -17,6 +17,7 @@ import org.openqa.selenium.WebElement;
 @Disabled
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
+@Tag("CI-HTMLUnit")
 public class AccordionTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")

@@ -18,12 +18,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
-public class MenuTagIT extends AbstractJQueryTest{
+public class MenuTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")
     public void testLocalContent(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/menu/localcontent.action");
-        
+
         waitForInitialPageLoad();
 
         WebElement menuItemWithSubMenu = driver.findElement(By.id("menuItem2"));
@@ -47,11 +47,12 @@ public class MenuTagIT extends AbstractJQueryTest{
         assertEquals("This is simple text from an ajax call.", resultDiv.getText());
     }
 
+    @Tag("CI-HTMLUnit")
     @ParameterizedTest
     @MethodSource("data")
     public void testLocalContentList(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/menu/localcontent-list.action");
-        
+
         waitForInitialPageLoad();
 
         WebElement menu = driver.findElement(By.id("myMenu"));
@@ -69,11 +70,12 @@ public class MenuTagIT extends AbstractJQueryTest{
         assertEquals("Echo : Item 2", resultDiv.getText());
     }
 
+    @Tag("CI-HTMLUnit")
     @ParameterizedTest
     @MethodSource("data")
     public void testLocalContentMap(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/menu/localcontent-map.action");
-        
+
         waitForInitialPageLoad();
 
         WebElement menu = driver.findElement(By.id("myMenu"));
@@ -91,4 +93,3 @@ public class MenuTagIT extends AbstractJQueryTest{
         assertEquals("Echo : 2", resultDiv.getText());
     }
 }
-

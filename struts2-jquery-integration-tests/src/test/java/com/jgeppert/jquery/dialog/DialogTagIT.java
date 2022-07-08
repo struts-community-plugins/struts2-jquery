@@ -15,6 +15,8 @@ import org.openqa.selenium.WebElement;
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
 public class DialogTagIT extends AbstractJQueryTest {
+
+    @Tag("CI-HTMLUnit")
     @ParameterizedTest
     @MethodSource("data")
     public void testLocalContent(final String baseUrl) throws InterruptedException {
@@ -62,6 +64,7 @@ public class DialogTagIT extends AbstractJQueryTest {
         assertFalse(dialog.isDisplayed());
     }
 
+    @Tag("CI-HTMLUnit")
     @ParameterizedTest
     @MethodSource("data")
     public void testRemoteContent(final String baseUrl) throws InterruptedException {
