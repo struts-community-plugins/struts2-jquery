@@ -60,6 +60,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-velocity-plugin</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
 		</dependency>
@@ -92,17 +97,6 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
-		</dependency>
-
-		<!-- Velocity -->
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity-tools</artifactId>
 		</dependency>
 
 		<dependency>
@@ -199,28 +193,9 @@
 
 			<!-- Velocity -->
 			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity</artifactId>
-				<version>${velocity.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity-tools</artifactId>
-				<version>${velocity-tools.version}</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>struts-tiles</artifactId>
-						<groupId>org.apache.struts</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>struts-core</artifactId>
-						<groupId>org.apache.struts</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>struts-taglib</artifactId>
-						<groupId>org.apache.struts</groupId>
-					</exclusion>
-				</exclusions>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-velocity-plugin</artifactId>
+				<version>${struts2.version}</version>
 			</dependency>
 
 			<dependency>
