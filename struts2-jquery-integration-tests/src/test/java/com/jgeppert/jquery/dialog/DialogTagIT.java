@@ -88,7 +88,6 @@ public class DialogTagIT extends AbstractJQueryTest {
         assertFalse(dialog.isDisplayed());
     }
 
-    @Tag("CI-HTMLUnit")
     @ParameterizedTest
     @MethodSource("data")
     public void testRemoteContentOnClick(final String baseUrl) throws InterruptedException {

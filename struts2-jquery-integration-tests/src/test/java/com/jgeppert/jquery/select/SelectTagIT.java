@@ -53,7 +53,6 @@ public class SelectTagIT extends AbstractJQueryTest {
         assertEquals("122", options.get(25).getAttribute("value"));
     }
 
-    @Tag("CI-HTMLUnit")
     @ParameterizedTest
     @MethodSource("data")
     public void testObjectListData(final String baseUrl) throws InterruptedException {
