@@ -34,7 +34,6 @@ public class SelectTagIT extends AbstractJQueryTest {
         assertEquals("z", options.get(25).getAttribute("value"));
     }
 
-    @Tag("CI-HTMLUnit")
     @ParameterizedTest
     @MethodSource("data")
     public void testMapData(final String baseUrl) throws InterruptedException {
