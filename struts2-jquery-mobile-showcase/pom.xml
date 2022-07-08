@@ -19,12 +19,6 @@
 		<url>http://code.google.com/p/struts2-jquery/source/browse/</url>
 	</scm>
 
-	<properties>
-		<javassist.version>3.17.1-GA</javassist.version>
-		<velocity.version>1.7</velocity.version>
-		<velocity-tools.version>2.0</velocity-tools.version>
-	</properties>
-
 	<dependencies>
 
 		<dependency>
@@ -45,11 +39,6 @@
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-json-plugin</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.javassist</groupId>
-			<artifactId>javassist</artifactId>
 		</dependency>
 
 		<dependency>
@@ -82,16 +71,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 
-		<!-- Velocity -->
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity-tools</artifactId>
-		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -108,37 +87,6 @@
 				<version>${project.version}</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.javassist</groupId>
-				<artifactId>javassist</artifactId>
-				<version>${javassist.version}</version>
-			</dependency>
-
-			<!-- Velocity -->
-			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity</artifactId>
-				<version>${velocity.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity-tools</artifactId>
-				<version>${velocity-tools.version}</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>struts-tiles</artifactId>
-						<groupId>org.apache.struts</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>struts-core</artifactId>
-						<groupId>org.apache.struts</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>struts-taglib</artifactId>
-						<groupId>org.apache.struts</groupId>
-					</exclusion>
-				</exclusions>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
