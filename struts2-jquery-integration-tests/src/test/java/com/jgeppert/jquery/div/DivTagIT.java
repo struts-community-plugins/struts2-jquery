@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Tag("HTMLUnit")
+@Tag("CI-HTMLUnit")
 public class DivTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")

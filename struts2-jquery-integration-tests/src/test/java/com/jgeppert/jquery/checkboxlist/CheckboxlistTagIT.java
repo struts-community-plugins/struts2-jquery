@@ -15,6 +15,7 @@ import com.jgeppert.jquery.AbstractJQueryTest;
 
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
+@Tag("CI-HTMLUnit")
 public class CheckboxlistTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")

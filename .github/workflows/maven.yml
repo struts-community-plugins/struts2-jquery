@@ -29,6 +29,6 @@ jobs:
     - name: Build & Install
       run: mvn --batch-mode -DskipITs package install
     - name: Verify IT
-      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true verify
+      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-htmlunit verify
 #    - name: Verify IT with PhantomJS
 #      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P phantomjs verify

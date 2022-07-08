@@ -19,6 +19,7 @@ public class TreeTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")
     @Tag("HTMLUnit")
+    @Tag("CI-HTMLUnit")
     public void testLocal(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/tree/local.action");
 
@@ -47,6 +48,7 @@ public class TreeTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")
     @Tag("HTMLUnit")
+    @Tag("CI-HTMLUnit")
     public void testLocalObject(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/tree/local-object.action");
 
@@ -95,6 +97,7 @@ public class TreeTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")
     @Tag("HTMLUnit")
+    @Tag("CI-HTMLUnit")
     public void testCheckboxes(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/tree/checkboxes.action");
 
@@ -130,6 +133,7 @@ public class TreeTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")
     @Tag("HTMLUnit")
+    @Tag("CI-HTMLUnit")
     public void testSearch(final String baseUrl) throws InterruptedException {
         driver.get(baseUrl + "/tree/search.action");
         

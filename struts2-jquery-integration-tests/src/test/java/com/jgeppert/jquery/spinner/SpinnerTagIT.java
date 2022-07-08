@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
+@Tag("CI-HTMLUnit")
 public class SpinnerTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")

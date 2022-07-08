@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
+@Tag("CI-HTMLUnit")
 public class MenuTagIT extends AbstractJQueryTest{
     @ParameterizedTest
     @MethodSource("data")

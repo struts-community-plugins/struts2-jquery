@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
+@Tag("CI-HTMLUnit")
 public class SubmitTagIT extends AbstractJQueryTest {
     @ParameterizedTest
     @MethodSource("data")

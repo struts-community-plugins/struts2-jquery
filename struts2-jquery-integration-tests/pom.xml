@@ -45,6 +45,13 @@
 				<failsafe.webdriver.name>PhantomJS</failsafe.webdriver.name>
 			</properties>
 		</profile>
+		<profile>
+			<id>ci-htmlunit</id>
+			<properties>
+				<failsafe.test.tag>CI-HTMLUnit</failsafe.test.tag>
+				<failsafe.webdriver.name>HTMLUnit</failsafe.webdriver.name>
+			</properties>
+		</profile>
 	</profiles>
 
 	<build>
