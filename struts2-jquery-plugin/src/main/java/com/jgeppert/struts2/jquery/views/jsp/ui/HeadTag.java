@@ -41,7 +41,7 @@ public class HeadTag extends AbstractUITag {
     protected String jquerytheme;
     protected String jqueryui;
     protected String customBasepath;
-    protected String loadFromGoogle;
+    protected String loadFromCdn;
     protected String ajaxcache;
     protected String ajaxhistory;
     protected String defaultIndicator;
@@ -65,7 +65,7 @@ public class HeadTag extends AbstractUITag {
         head.setJqueryui(jqueryui);
         head.setLocale(locale);
         head.setCustomBasepath(customBasepath);
-        head.setLoadFromGoogle(loadFromGoogle);
+        head.setLoadFromCdn(loadFromCdn);
         head.setAjaxcache(ajaxcache);
         head.setAjaxhistory(ajaxhistory);
         head.setDefaultIndicator(defaultIndicator);
@@ -100,8 +100,8 @@ public class HeadTag extends AbstractUITag {
         this.customBasepath = customBasepath;
     }
 
-    public void setLoadFromGoogle(String loadFromGoogle) {
-        this.loadFromGoogle = loadFromGoogle;
+    public void setLoadFromCdn(String loadFromCdn) {
+        this.loadFromCdn = loadFromCdn;
     }
 
     public void setAjaxcache(String ajaxcache) {

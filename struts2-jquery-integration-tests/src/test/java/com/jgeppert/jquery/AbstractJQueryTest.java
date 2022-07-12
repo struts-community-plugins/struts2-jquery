@@ -35,7 +35,7 @@ public abstract class AbstractJQueryTest {
             { "http://localhost:8080/regular" }, 
             { "http://localhost:8080/uncompressed" },
             { "http://localhost:8080/loadatonce" }, 
-            { "http://localhost:8080/loadfromgoogle" } 
+            { "http://localhost:8080/loadfromcdn" } 
         });
     }
     

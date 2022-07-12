@@ -24,8 +24,8 @@ To do this, the `@RunWith(Parameterized.class)` annotation is used, in an effort
   - `<sj:head/>`
 - `loadatonce`
   - `<sj:head loadAtOnce="true"/>`
-- `loadfromgoogle`
-  - `<sj:head loadFromGoogle="true"/>`
+- `loadfromcdn`
+  - `<sj:head loadFromCdn="true"/>`
 - `uncompressed`
   - `<sj:head compressed="false"/>`
 
