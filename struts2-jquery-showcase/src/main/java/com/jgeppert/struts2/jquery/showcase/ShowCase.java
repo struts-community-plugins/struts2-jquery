@@ -30,7 +30,7 @@ public class ShowCase extends ActionSupport {
 
     private static final long serialVersionUID = -7133848243722723891L;
     private String theme = "showcase";
-    private boolean google = false;
+    private boolean cdn = false;
     private boolean ajaxhistory = false;
     private Map<String, String> themes;
 
@@ -80,12 +80,12 @@ public class ShowCase extends ActionSupport {
         return themes;
     }
 
-    public boolean isGoogle() {
-        return google;
+    public boolean isCdn() {
+        return cdn;
     }
 
-    public void setGoogle(boolean google) {
-        this.google = google;
+    public void setCdn(boolean cdn) {
+        this.cdn = cdn;
     }
 
     public boolean isAjaxhistory() {

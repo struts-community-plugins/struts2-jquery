@@ -101,7 +101,7 @@ public class Head extends org.apache.struts2.components.Head {
     private static final String PARAM_COMPRESSED = "compressed";
     private static final String PARAM_JQUERYTHEME = "jquerytheme";
     private static final String PARAM_CUSTOM_BASEPATH = "customBasepath";
-    private static final String PARAM_LOAD_FROM_GOOGLE = "loadFromGoogle";
+    private static final String PARAM_LOAD_FROM_CDN = "loadFromCdn";
     private static final String PARAM_AJAXCACHE = "ajaxcache";
     private static final String PARAM_AJAXHISTORY = "ajaxhistory";
     private static final String PARAM_DEFAULT_INDICATOR = "defaultIndicator";
@@ -121,7 +121,7 @@ public class Head extends org.apache.struts2.components.Head {
     protected String jquerytheme;
     protected String jqueryui;
     protected String customBasepath;
-    protected String loadFromGoogle;
+    protected String loadFromCdn;
     protected String ajaxcache;
     protected String ajaxhistory;
     protected String defaultIndicator;
@@ -161,8 +161,8 @@ public class Head extends org.apache.struts2.components.Head {
         if (this.customBasepath != null) {
             addParameter(PARAM_CUSTOM_BASEPATH, findString(this.customBasepath));
         }
-        if (this.loadFromGoogle != null) {
-            addParameter(PARAM_LOAD_FROM_GOOGLE, findValue(this.loadFromGoogle, Boolean.class));
+        if (this.loadFromCdn != null) {
+            addParameter(PARAM_LOAD_FROM_CDN, findValue(this.loadFromCdn, Boolean.class));
         }
         if (this.ajaxcache != null) {
             addParameter(PARAM_AJAXCACHE, findValue(this.ajaxcache, Boolean.class));
@@ -254,9 +254,9 @@ public class Head extends org.apache.struts2.components.Head {
         this.customBasepath = customBasepath;
     }
 
-    @StrutsTagAttribute(description = "Load JavaScript from google content distribution network", defaultValue = "false", type = "Boolean")
-    public void setLoadFromGoogle(String loadFromGoogle) {
-        this.loadFromGoogle = loadFromGoogle;
+    @StrutsTagAttribute(description = "Load JavaScript from JQuery content delivery network", defaultValue = "false", type = "Boolean")
+    public void setLoadFromCdn(String loadFromCdn) {
+        this.loadFromCdn = loadFromCdn;
     }
 
     @StrutsTagAttribute(description = "If set to false it will force the pages that you request to not be cached by the browser.", defaultValue = "false", type = "Boolean")

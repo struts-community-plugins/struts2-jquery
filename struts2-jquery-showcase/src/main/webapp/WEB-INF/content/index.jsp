@@ -18,11 +18,11 @@
 
     <s:if test="%{theme == 'showcase' || theme == null}">
         <sj:head debug="false" compressed="true" jquerytheme="showcase" customBasepath="themes" 
-                 loadFromGoogle="%{google}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
+                 loadFromCdn="%{cdn}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
                  defaultLoadingText="Please wait ..."/>
     </s:if>
     <s:else>
-        <sj:head debug="false" compressed="true" jquerytheme="%{theme}" loadFromGoogle="%{google}" 
+        <sj:head debug="false" compressed="true" jquerytheme="%{theme}" loadFromCdn="%{cdn}" 
                  ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
                  defaultLoadingText="Please wait ..."/>
     </s:else>
@@ -68,8 +68,8 @@
                         <div>
                             <s:select id="selected_theme" name="theme" list="themes" emptyOption="true"
                                       onchange="changeTheme(this.value);"/><br/>
-                            <s:checkbox id="google" name="google" onclick="$.publish('themeformTopic');"/><label
-                                for="google" style="padding: 3px;">Load jQuery from Google CDN</label><br/>
+                            <s:checkbox id="cdn" name="cdn" onclick="$.publish('themeformTopic');"/><label
+                                for="cdn" style="padding: 3px;">Load jQuery from JQuery CDN</label><br/>
                             <s:checkbox id="ajaxhistory" name="ajaxhistory"
                                         onclick="$.publish('themeformTopic');"/><label for="ajaxhistory"
                                                                                        style="padding: 3px;">Use

@@ -22,7 +22,7 @@ public abstract class AbstractJQueryTest {
     @BeforeEach
     public void before() {
         driver = WebDriverFactory.getWebDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
     
     @AfterEach
@@ -35,7 +35,7 @@ public abstract class AbstractJQueryTest {
             { "http://localhost:8080/regular" }, 
             { "http://localhost:8080/uncompressed" },
             { "http://localhost:8080/loadatonce" }, 
-            { "http://localhost:8080/loadfromgoogle" } 
+            { "http://localhost:8080/loadfromcdn" } 
         });
     }
     
@@ -45,7 +45,7 @@ public abstract class AbstractJQueryTest {
     protected static final JQueryNoAnimations JQUERY_NO_ANIMATIONS = new JQueryNoAnimations();
     
     protected void waitForInitialPageLoad() throws InterruptedException {
-        Thread.sleep(200);
+        Thread.sleep(500);
         wait.until(DOCUMENT_READY);
         wait.until(JQUERY_DEFINED);
         wait.until(JQUERY_IDLE);

@@ -8,7 +8,7 @@ function changeTheme(newTheme) {
 		themePathPrefix = "themes/";
 	else {
 		themeHref = $('#jquery_theme_link').attr('href');
-		if ($("#google").attr('checked')) {
+		if ($("#cdn").attr('checked')) {
 			if (themeHref.indexOf("http:")==0) {
 				prefixIndex = themeHref.indexOf("themes/")+7;
 				themePathPrefix=themeHref.substring(0,prefixIndex);

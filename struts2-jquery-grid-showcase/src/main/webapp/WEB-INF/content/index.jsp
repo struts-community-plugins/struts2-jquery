@@ -32,7 +32,7 @@
     	compressed="true"
     	jquerytheme="showcase"
     	customBasepath="themes"
-    	loadFromGoogle="false"
+    	loadFromCdn="false"
     	debug="true"
     />
 

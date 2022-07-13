@@ -33,8 +33,7 @@
     <#assign javaScriptBasePath="${base}/static/">
 </#if>
 
-<#assign googlePath="//ajax.googleapis.com/ajax/libs/jquery/${jQueryVersion}">
-<#assign googleUiPath="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersion}">
+<#assign cdnUiPath="https://code.jquery.com/ui/${jQueryUIVersion}">
 
 <#if parameters.customBasepath?if_exists != "">
     <#assign basePath="${parameters.customBasepath?string}">
@@ -50,8 +49,7 @@
     <#assign jqueryHistoryFile="jquery.ba-bbq.min.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryStrutsFile="jquery.struts2.min.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryUiStrutsFile="jquery.ui.struts2.min.js?s2j=${struts2jQueryVersion}">
-    <#assign jqueryGoogle="${googlePath}/jquery.min.js">
-    <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.min.js">
+    <#assign jqueryUiCdn="https://code.jquery.com/ui/${jQueryUIVersion}/jquery-ui.min.js">
     <#assign jqueryUiVersionFile="version.min.js">
 <#else>
     <#assign jqueryFile="jquery-${jQueryVersion}.js">
@@ -62,17 +60,17 @@
     <#assign jqueryHistoryFile="jquery.ba-bbq.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryStrutsFile="jquery.struts2.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryUiStrutsFile="jquery.ui.struts2.js?s2j=${struts2jQueryVersion}">
-    <#assign jqueryGoogle="${googlePath}/jquery.js">
-    <#assign jqueryUiGoogle="${googleUiPath}/jquery-ui.js">
+    <#assign jqueryUiCdn="https://code.jquery.com/ui/${jQueryUIVersion}/jquery-ui.js">
     <#assign jqueryUiVersionFile="version.js">
 </#if>
+<#assign jqueryCdn="https://code.jquery.com/${jqueryFile}">
 
-<#if parameters.loadFromGoogle?default(false)>
+<#if parameters.loadFromCdn?default(false)>
     <#if parameters.jquery?default(true)>
-    <script type="text/javascript" src="${jqueryGoogle}"></script>
+    <script type="text/javascript" src="${jqueryCdn}"></script>
     </#if>
     <#if parameters.jqueryui?default(true)>
-    <script type="text/javascript" src="${jqueryUiGoogle}"></script>
+    <script type="text/javascript" src="${jqueryUiCdn}"></script>
         <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
         <script type="text/javascript"
                 src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersionI18n}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"></script>
@@ -95,7 +93,7 @@
         </#if>
     </#if>
 </#if>
-<#if parameters.loadAtOnce?default(false) ||  parameters.loadFromGoogle?default(false)>
+<#if parameters.loadAtOnce?default(false) ||  parameters.loadFromCdn?default(false)>
 <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryForm}"></script>
 </#if>
 <script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}"></script>
@@ -111,7 +109,7 @@
     <#if parameters.debug?default(false)>
         jQuery.struts2_jquery.debug = true;
     </#if>
-    <#if parameters.loadAtOnce?default(false) || parameters.loadFromGoogle?default(false)>
+    <#if parameters.loadAtOnce?default(false) || parameters.loadFromCdn?default(false)>
         jQuery.struts2_jquery.loadAtOnce = true;
     </#if>
     <#if parameters.scriptPath?if_exists != "">
@@ -168,9 +166,9 @@
 
 <#if parameters.jqueryui?default(true)>
     <#if parameters.jquerytheme?if_exists != "">
-        <#if parameters.loadFromGoogle?default(false) && basePath == "${base}/static/themes">
+        <#if parameters.loadFromCdn?default(false) && basePath == "${base}/static/themes">
         <link id="jquery_theme_link" rel="stylesheet"
-              href="${googleUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+              href="${cdnUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
         <#else>
         <link id="jquery_theme_link" rel="stylesheet"
               href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=${struts2jQueryVersion}"
