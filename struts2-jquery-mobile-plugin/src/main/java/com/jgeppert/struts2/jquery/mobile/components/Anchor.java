@@ -46,7 +46,7 @@ import javax.servlet.http.HttpServletResponse;
  * An Link displayed as Button with Icon which reference an external Page.
  * </p>
  * <pre>
- * &lt;sjm:a href=&quot;http://code.google.com/p/struts2-jquery/&quot; button=&quot;true&quot; buttonIcon=&quot;star&quot; rel=&quot;external&quot;&gt;Plugin Homepage&lt;/sjm:a&gt;
+ * &lt;sjm:a href=&quot;https://github.com/struts-community-plugins/struts2-jquery/wiki&quot; button=&quot;true&quot; buttonIcon=&quot;star&quot; rel=&quot;external&quot;&gt;Plugin Homepage&lt;/sjm:a&gt;
  * </pre>
  * <!-- END SNIPPET: example2 -->
  *

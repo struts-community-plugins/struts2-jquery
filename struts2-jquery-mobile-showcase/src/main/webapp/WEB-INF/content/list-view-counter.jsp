@@ -5,7 +5,8 @@
 			<sjm:div role="header">
 				<sjm:a button="true" buttonIcon="arrow-l" data-rel="back">Back</sjm:a>
 				<h1>Examples for List Tag with Counter</h1>
-				<sjm:a href="#start" button="true" buttonIcon="home">Back to Start</sjm:a>
+				<s:url action="index" var="homeUrl"/>
+				<sjm:a href="%{homeUrl}" button="true" buttonIcon="home">Back to Start</sjm:a>
 			</sjm:div>
 
 			<sjm:div role="content">
