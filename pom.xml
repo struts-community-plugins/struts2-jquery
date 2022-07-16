@@ -99,6 +99,7 @@
 		<jsp-api.version>2.3.3</jsp-api.version>
 		<servlet-api.version>3.1.0</servlet-api.version>
 		<commons-lang.version>3.12.0</commons-lang.version>
+		<junit.version>5.8.2</junit.version>
 	</properties>
 
 	<modules>
@@ -243,6 +244,13 @@
 			</build>
 		</profile>
 	</profiles>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+		</dependency>
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
@@ -332,6 +340,13 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>${commons-lang.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
