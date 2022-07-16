@@ -22,7 +22,7 @@
 <#if !jQueryVersion?? >
     <#assign jQueryVersion="3.6.0">
 </#if>
-<#assign jQueryUIVersion="1.13.1">
+<#assign jQueryUIVersion="1.13.2">
 <#-- issue89: temporary fix because of i18n files not being available for current jQuery UI version -->
 <#assign jQueryUIVersionI18n="1.11.1">
 <#assign struts2jQueryVersion="${version}">
