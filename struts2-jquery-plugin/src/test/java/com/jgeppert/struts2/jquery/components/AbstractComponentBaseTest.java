@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ognl.OgnlValueStack;
 import com.opensymphony.xwork2.ognl.accessor.CompoundRootAccessor;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public abstract class AbstractComponentTest {
+public abstract class AbstractComponentBaseTest {
     protected ValueStack valueStack;
 
     @BeforeEach

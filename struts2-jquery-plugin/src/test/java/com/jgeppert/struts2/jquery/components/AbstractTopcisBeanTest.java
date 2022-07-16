@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
-class AbstractTopcisBeanTest extends AbstractComponentTest {
+class AbstractTopcisBeanTest extends AbstractComponentBaseTest {
     @Nested
     class EvaluateParams {
         @Test
