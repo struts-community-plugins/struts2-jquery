@@ -104,8 +104,8 @@ public class AccordionItem extends ClosingUIBean {
             int nextInt = RANDOM.nextInt();
             nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
             this.id = ID_PREFIX_ACCORDION_ITEM + String.valueOf(nextInt);
-            addParameter(AbstractTopicsBean.PARAM_ID, this.id);
         }
+        addParameter(AbstractTopicsBean.PARAM_ID, this.id);
 
     }
 
