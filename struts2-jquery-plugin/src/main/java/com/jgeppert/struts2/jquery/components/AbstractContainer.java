@@ -314,7 +314,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
                 droppableBuilder.append(findString(droppableAddClasses));
             }
             if (droppableGreedy != null) {
-                droppableBuilder.append(", cancel: ");
+                droppableBuilder.append(", greedy: ");
                 droppableBuilder.append(findString(droppableGreedy));
             }
             if (droppableTolerance != null) {
