@@ -200,7 +200,7 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
                     .containsEntry("selectableOnUnselectingTopics", "theSelectableOnUnselectingTopic")
                     .containsEntry("sortable", true)
                     .containsEntry("sortableOptions",
-                            "{ dropOnEmpty: false, forceHelperSize: true, forcePlaceholderSize: true, revert: true, scroll: true, zIndex: 9999, delay: 150, scrollSensitivity: 10, scrollSpeed: 40, distance: 5, tolerance: 'pointer' , placeholder: 'sortable-placeholder' , opacity: '0.5' , items: '> li' , handle: '.handle' , grid: '[ 20, 10 ]' , cursorAt: '{ left: 5 }' , cursor: 'move' , connectWith: '#shopping-cart' , axis: 'x' , appendTo: 'parent' , cancel: 'a,button' , containment: ''document' }")
+                            "{ dropOnEmpty: false, forceHelperSize: true, forcePlaceholderSize: true, revert: true, scroll: true, zIndex: 9999, delay: 150, scrollSensitivity: 10, scrollSpeed: 40, distance: 5, tolerance: 'pointer' , placeholder: 'sortable-placeholder' , opacity: '0.5' , items: '> li' , handle: '.handle' , grid: '[ 20, 10 ]' , cursorAt: '{ left: 5 }' , cursor: 'move' , connectWith: '#shopping-cart' , axis: 'x' , appendTo: 'parent' , cancel: 'a,button' , containment: 'document' }")
                     .containsEntry("sortableOnActivateTopics", "theSortableOnActivateTopic")
                     .containsEntry("sortableOnUpdateTopics", "theSortableOnUpdateTopic")
                     .containsEntry("sortableOnStopTopics", "theSortableOnStopTopic")
