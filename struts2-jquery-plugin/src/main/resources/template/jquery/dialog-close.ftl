@@ -87,19 +87,9 @@ jQuery(document).ready(function () {
   <#if parameters.closeOnEscape?exists>
 	options_${escapedOptionId}.closeOnEscape = ${parameters.closeOnEscape?string};
   </#if>
-<#if parameters.modal?if_exists == "true" >
- <#if parameters.overlayColor?if_exists != "" || parameters.overlayOpacity?if_exists != "">
-	<#if parameters.overlayColor?if_exists != "">
-	options_${escapedOptionId}.backgroundColor = "${parameters.overlayColor}";
-	</#if>
-	<#if parameters.overlayOpacity?if_exists != "">
-	options_${escapedOptionId}.opacity = ${parameters.overlayOpacity};
-	<#else>
-	options_${escapedOptionId}.opacity = 0.7;
-	</#if>
-  </#if>
+  <#if parameters.modal?if_exists == "true" >
 	options_${escapedOptionId}.modal = true;
-</#if>
+  </#if>
   <#if parameters.onOpenTopics?if_exists != "">
 	options_${escapedOptionId}.onopentopics = "${parameters.onOpenTopics}";
   </#if>
