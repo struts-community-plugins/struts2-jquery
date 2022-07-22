@@ -73,7 +73,7 @@ jQuery(document).ready(function () {
     options_${escapedOptionId}.appendTo = "${parameters.appendTo}";
   </#if>
   <#if parameters.buttons?if_exists != "">
-	options_${escapedOptionId}.buttons = ${parameters.buttons?string};
+	options_${escapedOptionId}.buttons = ${parameters.buttons?no_esc};
   </#if>
   <#if parameters.draggable?exists>
 	options_${escapedOptionId}.draggable = ${parameters.draggable?string};
