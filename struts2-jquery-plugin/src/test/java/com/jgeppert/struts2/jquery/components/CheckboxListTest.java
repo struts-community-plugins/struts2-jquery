@@ -33,7 +33,6 @@ class CheckboxListTest extends AbstractComponentBaseTest {
             CheckboxList checkboxList = new CheckboxList(valueStack, null, null);
             checkboxList.setId("myId");
 
-            checkboxList.evaluateParams();
             checkboxList.setButtonset("true");
             checkboxList.setIcon("true");
             checkboxList.setDirection("horizontal");
