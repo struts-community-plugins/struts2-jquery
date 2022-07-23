@@ -100,6 +100,16 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
             }
         }
     }
+    
+    protected void addNumberParameterIfPresent(final String parameterKey, final String parameterValue) {
+        if (parameterValue != null) {
+            String value = findString(parameterValue);
+            try {
+                int intValue = Integer.parseInt(value);
+                addParameter(parameterKey, intValue);
+            } catch (final NumberFormatException e) {}
+        }
+    }
 
     protected void addGeneratedIdParam(String prefix) {
         if (StringUtils.isBlank(this.id)) {

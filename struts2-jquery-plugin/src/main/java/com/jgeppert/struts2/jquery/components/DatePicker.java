@@ -372,16 +372,6 @@ public class DatePicker extends AbstractTopicsBean {
 
     }
     
-    private void addNumberParameterIfPresent(final String parameterKey, final String parameterValue) {
-        if (parameterValue != null) {
-            String value = findString(parameterValue);
-            try {
-                int intValue = Integer.parseInt(value);
-                addParameter(parameterKey, intValue);
-            } catch (final NumberFormatException e) {}
-        }
-    }
-
     private String format(Object obj) {
         if (obj == null) {
             return null;
