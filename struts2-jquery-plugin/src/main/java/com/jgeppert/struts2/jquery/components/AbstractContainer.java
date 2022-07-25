@@ -141,9 +141,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     protected String selectable;
     protected String selectableAutoRefresh;
     protected String selectableCancel;
-    protected String selectableDelay;
     protected String selectableFilter;
-    protected String selectableDistance;
     protected String selectableTolerance;
 
     protected String selectableOnUnselectedTopics;
@@ -462,14 +460,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
             addParameter(PARAM_SELECTABLE, Boolean.TRUE);
             StringBuilder selectableBuilder = new StringBuilder();
             selectableBuilder.append("{");
-            if (selectableDelay != null) {
-                selectableBuilder.append(", delay: ");
-                selectableBuilder.append(findString(selectableDelay));
-            }
-            if (selectableDistance != null) {
-                selectableBuilder.append(", distance: ");
-                selectableBuilder.append(findString(selectableDistance));
-            }
             if (selectableFilter != null) {
                 selectableBuilder.append(", filter: '");
                 selectableBuilder.append(findString(selectableFilter));
@@ -928,16 +918,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     @StrutsTagAttribute(description = "Prevents selecting if you start on elements matching the selector. Default: ':input,option'")
     public void setSelectableCancel(String selectableCancel) {
         this.selectableCancel = selectableCancel;
-    }
-
-    @StrutsTagAttribute(description = "Time in milliseconds to define when the selecting should start. It helps preventing unwanted selections when clicking on an element.")
-    public void setSelectableDelay(String selectableDelay) {
-        this.selectableDelay = selectableDelay;
-    }
-
-    @StrutsTagAttribute(description = "Tolerance, in pixels, for when selecting should start. If specified, selecting will not start until after mouse is dragged beyond distance.")
-    public void setSelectableDistance(String selectableDistance) {
-        this.selectableDistance = selectableDistance;
     }
 
     @StrutsTagAttribute(description = "The matching child elements will be made selectees (able to be selected). Default: '*'")

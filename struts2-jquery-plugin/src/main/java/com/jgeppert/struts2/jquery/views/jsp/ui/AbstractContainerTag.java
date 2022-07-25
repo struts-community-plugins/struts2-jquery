@@ -97,13 +97,11 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
     protected String selectable;
     protected String selectableAutoRefresh;
     protected String selectableCancel;
-    protected String selectableDelay;
     protected String selectableFilter;
     protected String selectableOnSelectedTopics;
     protected String selectableOnSelectingTopics;
     protected String selectableOnStartTopics;
     protected String selectableOnStopTopics;
-    protected String selectableDistance;
     protected String selectableTolerance;
     protected String selectableOnUnselectedTopics;
     protected String selectableOnUnselectingTopics;
@@ -218,8 +216,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
         container.setSelectable(selectable);
         container.setSelectableAutoRefresh(selectableAutoRefresh);
         container.setSelectableCancel(selectableCancel);
-        container.setSelectableDelay(selectableDelay);
-        container.setSelectableDistance(selectableDistance);
         container.setSelectableFilter(selectableFilter);
         container.setSelectableTolerance(selectableTolerance);
         container.setSelectableOnSelectedTopics(selectableOnSelectedTopics);
@@ -497,14 +493,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
 
     public void setSelectableCancel(String selectableCancel) {
         this.selectableCancel = selectableCancel;
-    }
-
-    public void setSelectableDelay(String selectableDelay) {
-        this.selectableDelay = selectableDelay;
-    }
-
-    public void setSelectableDistance(String selectableDistance) {
-        this.selectableDistance = selectableDistance;
     }
 
     public void setSelectableFilter(String selectableFilter) {
