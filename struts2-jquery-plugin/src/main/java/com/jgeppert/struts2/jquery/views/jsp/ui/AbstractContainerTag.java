@@ -75,8 +75,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
     protected String draggableCancel;
     protected String draggableCursor;
     protected String draggableContainment;
-    protected String draggableDelay;
-    protected String draggableDistance;
     protected String draggableHandle;
     protected String draggableHelper;
     protected String draggableIframeFix;
@@ -198,8 +196,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
         container.setDraggableCancel(draggableCancel);
         container.setDraggableCursor(draggableCursor);
         container.setDraggableContainment(draggableContainment);
-        container.setDraggableDelay(draggableDelay);
-        container.setDraggableDistance(draggableDistance);
         container.setDraggableOnDragTopics(draggableOnDragTopics);
         container.setDraggableHandle(draggableHandle);
         container.setDraggableHelper(draggableHelper);
@@ -413,14 +409,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
 
     public void setDraggableContainment(String draggableContainment) {
         this.draggableContainment = draggableContainment;
-    }
-
-    public void setDraggableDelay(String draggableDelay) {
-        this.draggableDelay = draggableDelay;
-    }
-
-    public void setDraggableDistance(String draggableDistance) {
-        this.draggableDistance = draggableDistance;
     }
 
     public void setDraggableOnDragTopics(String draggableOnDragTopics) {

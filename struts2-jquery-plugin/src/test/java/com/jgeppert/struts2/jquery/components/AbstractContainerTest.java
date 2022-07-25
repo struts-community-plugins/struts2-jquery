@@ -84,8 +84,6 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
             abstractContainer.setDraggableAxis("x");
             abstractContainer.setDraggableCancel(".title");
             abstractContainer.setDraggableCursor("crosshair");
-            abstractContainer.setDraggableDelay("300");
-            abstractContainer.setDraggableDistance("10");
             abstractContainer.setDraggableHandle("h2");
             abstractContainer.setDraggableHelper("clone");
             abstractContainer.setDraggableIframeFix("true");
@@ -184,7 +182,7 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
                     .containsEntry("droppableOnDropTopics", "theDroppableOnDropTopic")
                     .containsEntry("draggable", true)
                     .containsEntry("draggableOptions",
-                            "{ addClasses: false, appendTo: 'body' , axis: 'x' , cancel: '.title' , cursor: 'crosshair' , delay: 300, distance: 10, handle: 'h2' , helper: 'clone' , iframeFix: true, opacity: '0.35' , refreshPositions: true, revertDuration: 200, scope: 'tasks' , scroll: true, sensitivity: 100, scrollSpeed: true100, snap: true, snapMode: 'inner' , snapTolerance: 30, zIndex: 100, revert: 'invalid', containment: 'parent' }")
+                            "{ addClasses: false, appendTo: 'body' , axis: 'x' , cancel: '.title' , cursor: 'crosshair' , handle: 'h2' , helper: 'clone' , iframeFix: true, opacity: '0.35' , refreshPositions: true, revertDuration: 200, scope: 'tasks' , scroll: true, sensitivity: 100, scrollSpeed: true100, snap: true, snapMode: 'inner' , snapTolerance: 30, zIndex: 100, revert: 'invalid', containment: 'parent' }")
                     .containsEntry("draggableOnDragTopics", "theDraggableOnDragTopic")
                     .containsEntry("draggableOnStartTopics", "theDraggableOnStartTopic")
                     .containsEntry("draggableOnStopTopics", "theDraggableOnStopTopic")
