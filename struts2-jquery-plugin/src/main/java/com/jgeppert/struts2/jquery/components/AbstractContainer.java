@@ -166,8 +166,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     protected String sortableForcePlaceholderSize;
     protected String sortableForceHelperSize;
     protected String sortableDropOnEmpty;
-    protected String sortableDistance;
-    protected String sortableDelay;
     protected String sortableCursorAt;
     protected String sortableCursor;
     protected String sortableContainment;
@@ -518,10 +516,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
                 sortableBuilder.append(", zIndex: ");
                 sortableBuilder.append(findString(sortableZindex));
             }
-            if (sortableDelay != null) {
-                sortableBuilder.append(", delay: ");
-                sortableBuilder.append(findString(sortableDelay));
-            }
             if (sortableScrollSensitivity != null) {
                 sortableBuilder.append(", scrollSensitivity: ");
                 sortableBuilder.append(findString(sortableScrollSensitivity));
@@ -530,11 +524,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
                 sortableBuilder.append(", scrollSpeed: ");
                 sortableBuilder.append(findString(sortableScrollSpeed));
             }
-            if (sortableDistance != null) {
-                sortableBuilder.append(", distance: ");
-                sortableBuilder.append(findString(sortableDistance));
-            }
-
             if (sortableTolerance != null) {
                 sortableBuilder.append(", tolerance: '");
                 sortableBuilder.append(findString(sortableTolerance));
@@ -998,16 +987,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     @StrutsTagAttribute(description = "Moves the sorting element or helper so the cursor always appears to drag from the same position. Coordinates can be given as a hash using a combination of one or two keys: top, left, right, bottom.")
     public void setSortableCursorAt(String sortableCursorAt) {
         this.sortableCursorAt = sortableCursorAt;
-    }
-
-    @StrutsTagAttribute(description = "Time in milliseconds to define when the sorting should start. It helps preventing unwanted drags when clicking on an element.")
-    public void setSortableDelay(String sortableDelay) {
-        this.sortableDelay = sortableDelay;
-    }
-
-    @StrutsTagAttribute(description = "Tolerance, in pixels, for when sorting should start. If specified, sorting will not start until after mouse is dragged beyond distance. Can be used to allow for clicks on elements within a handle.")
-    public void setSortableDistance(String sortableDistance) {
-        this.sortableDistance = sortableDistance;
     }
 
     @StrutsTagAttribute(description = "If empty allows for an item to be dropped from a linked selectable. Default: true", type = "Boolean")

@@ -41,10 +41,6 @@ public interface SortableTag {
 
     void setSortableCursorAt(String sortableCursorAt);
 
-    void setSortableDelay(String sortableDelay);
-
-    void setSortableDistance(String sortableDistance);
-
     void setSortableDropOnEmpty(String sortableDropOnEmpty);
 
     void setSortableForceHelperSize(String sortableForceHelperSize);
