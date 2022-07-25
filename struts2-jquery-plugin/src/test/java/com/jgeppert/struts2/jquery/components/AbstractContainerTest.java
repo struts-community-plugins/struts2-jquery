@@ -106,8 +106,6 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
             // end draggable
             // start selectable
             abstractContainer.setSelectable("true");
-            abstractContainer.setSelectableDelay("150");
-            abstractContainer.setSelectableDistance("30");
             abstractContainer.setSelectableFilter("li");
             abstractContainer.setSelectableCancel("a,.cancel");
             abstractContainer.setSelectableTolerance("fit");
@@ -188,7 +186,7 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
                     .containsEntry("draggableOnStopTopics", "theDraggableOnStopTopic")
                     .containsEntry("selectable", true)
                     .containsEntry("selectableOptions",
-                            "{ delay: 150, distance: 30, filter: 'li' , cancel: 'a,.cancel' , tolerance: 'fit'  }")
+                            "{ filter: 'li' , cancel: 'a,.cancel' , tolerance: 'fit'  }")
                     .containsEntry("selectableOnSelectedTopics", "theSelectableOnSelectTopic")
                     .containsEntry("selectableOnSelectingTopics", "theSelectableOnSelectingTopic")
                     .containsEntry("selectableOnStopTopics", "theSelectableOnStopTopic")

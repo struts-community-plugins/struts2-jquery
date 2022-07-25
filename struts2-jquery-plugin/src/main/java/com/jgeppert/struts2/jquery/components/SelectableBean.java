@@ -30,10 +30,6 @@ public interface SelectableBean {
 
     void setSelectableCancel(String selectableCancel);
 
-    void setSelectableDelay(String selectableDelay);
-
-    void setSelectableDistance(String selectableDistance);
-
     void setSelectableFilter(String selectableFilter);
 
     void setSelectableTolerance(String selectableTolerance);
