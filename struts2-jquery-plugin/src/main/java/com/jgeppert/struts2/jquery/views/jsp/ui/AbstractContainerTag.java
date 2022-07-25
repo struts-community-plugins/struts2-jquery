@@ -120,8 +120,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
     protected String sortableForcePlaceholderSize;
     protected String sortableForceHelperSize;
     protected String sortableDropOnEmpty;
-    protected String sortableDistance;
-    protected String sortableDelay;
     protected String sortableCursorAt;
     protected String sortableCursor;
     protected String sortableContainment;
@@ -233,8 +231,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
         container.setSortableContainment(sortableContainment);
         container.setSortableCursor(sortableCursor);
         container.setSortableCursorAt(sortableCursorAt);
-        container.setSortableDelay(sortableDelay);
-        container.setSortableDistance(sortableDistance);
         container.setSortableDropOnEmpty(sortableDropOnEmpty);
         container.setSortableForceHelperSize(sortableForceHelperSize);
         container.setSortableForcePlaceholderSize(sortableForcePlaceholderSize);
@@ -585,14 +581,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
 
     public void setSortableDropOnEmpty(String sortableDropOnEmpty) {
         this.sortableDropOnEmpty = sortableDropOnEmpty;
-    }
-
-    public void setSortableDistance(String sortableDistance) {
-        this.sortableDistance = sortableDistance;
-    }
-
-    public void setSortableDelay(String sortableDelay) {
-        this.sortableDelay = sortableDelay;
     }
 
     public void setSortableCursorAt(String sortableCursorAt) {

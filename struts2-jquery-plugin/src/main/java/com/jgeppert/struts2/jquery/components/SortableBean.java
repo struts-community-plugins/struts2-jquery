@@ -40,10 +40,6 @@ public interface SortableBean {
 
     void setSortableCursorAt(String sortableCursorAt);
 
-    void setSortableDelay(String sortableDelay);
-
-    void setSortableDistance(String sortableDistance);
-
     void setSortableDropOnEmpty(String sortableDropOnEmpty);
 
     void setSortableForceHelperSize(String sortableForceHelperSize);
