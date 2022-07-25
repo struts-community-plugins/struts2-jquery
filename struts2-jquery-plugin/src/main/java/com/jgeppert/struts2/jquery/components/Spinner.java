@@ -119,20 +119,24 @@ public class Spinner extends Textfield {
     }
 
     public void evaluateParams() {
+        boolean emptyId = this.id == null;
         super.evaluateParams();
 
         addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-        addParameterIfPresent(PARAM_MAX, this.max, Number.class);
-        addParameterIfPresent(PARAM_MIN, this.min, Number.class);
-        addParameterIfPresent(PARAM_STEP, this.step, Number.class);
+        addNumberParameterIfPresent(PARAM_MAX, this.max);
+        addNumberParameterIfPresent(PARAM_MIN, this.min);
+        addNumberParameterIfPresent(PARAM_STEP, this.step);
         addParameterIfPresent(PARAM_MOUSE_WHEEL, this.mouseWheel, Boolean.class);
         addParameterIfPresent(PARAM_CULTURE, this.culture);
         addParameterIfPresent(PARAM_NUMBER_FORMAT, this.numberFormat);
-        addParameterIfPresent(PARAM_PAGE, this.page, Number.class);
+        addNumberParameterIfPresent(PARAM_PAGE, this.page);
         addParameterIfPresent(PARAM_INCREMENTAL, this.incremental);
 
-        addGeneratedIdParam(ID_PREFIX_SPINNER);
+        if (emptyId) {
+            this.id = null;
+            addGeneratedIdParam(ID_PREFIX_SPINNER);
+        }
     }
 
     @Override

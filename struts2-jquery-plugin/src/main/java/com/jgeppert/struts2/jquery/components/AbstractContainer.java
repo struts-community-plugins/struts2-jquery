@@ -314,7 +314,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
                 droppableBuilder.append(findString(droppableAddClasses));
             }
             if (droppableGreedy != null) {
-                droppableBuilder.append(", cancel: ");
+                droppableBuilder.append(", greedy: ");
                 droppableBuilder.append(findString(droppableGreedy));
             }
             if (droppableTolerance != null) {
@@ -627,7 +627,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
             }
 
             if (sortableContainment != null) {
-                sortableBuilder.append(", containment: '");
+                sortableBuilder.append(", containment: ");
                 String containmentValue = findString(sortableContainment);
 
                 if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document") || containmentValue.equalsIgnoreCase("window")) {

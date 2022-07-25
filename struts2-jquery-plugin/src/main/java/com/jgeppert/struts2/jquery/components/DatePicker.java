@@ -20,6 +20,7 @@
 package com.jgeppert.struts2.jquery.components;
 
 import com.opensymphony.xwork2.util.ValueStack;
+
 import org.apache.struts2.components.Form;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
@@ -260,15 +261,15 @@ public class DatePicker extends AbstractTopicsBean {
         addParameterIfPresent(PARAM_TIMEPICKER_SHOW_HOUR, this.timepickerShowHour, Boolean.class);
         addParameterIfPresent(PARAM_TIMEPICKER_SHOW_MINUTE, this.timepickerShowMinute, Boolean.class);
         addParameterIfPresent(PARAM_TIMEPICKER_SHOW_SECOND, this.timepickerShowSecond, Boolean.class);
-        addParameterIfPresent(PARAM_TIMEPICKER_STEP_HOUR, this.timepickerStepHour, Number.class);
-        addParameterIfPresent(PARAM_TIMEPICKER_STEP_MINUTE, this.timepickerStepMinute, Number.class);
-        addParameterIfPresent(PARAM_TIMEPICKER_STEP_SECOND, this.timepickerStepSecond, Number.class);
+        addNumberParameterIfPresent(PARAM_TIMEPICKER_STEP_HOUR, this.timepickerStepHour);
+        addNumberParameterIfPresent(PARAM_TIMEPICKER_STEP_MINUTE, this.timepickerStepMinute);
+        addNumberParameterIfPresent(PARAM_TIMEPICKER_STEP_SECOND, this.timepickerStepSecond);
         addParameterIfPresent(PARAM_TIMEPICKER_FORMAT, this.timepickerFormat);
         addParameterIfPresent(PARAM_TIMEPICKER_SEPARATOR, this.timepickerSeparator);
         addParameterIfPresent(PARAM_TIMEPICKER_CURRENT_TEXT, this.timepickerCurrentText);
-        addParameterIfPresent(PARAM_TIMEPICKER_GRID_HOUR, this.timepickerGridHour, Number.class);
-        addParameterIfPresent(PARAM_TIMEPICKER_GRID_MINUTE, this.timepickerGridMinute, Number.class);
-        addParameterIfPresent(PARAM_TIMEPICKER_GRID_SECOND, this.timepickerGridSecond, Number.class);
+        addNumberParameterIfPresent(PARAM_TIMEPICKER_GRID_HOUR, this.timepickerGridHour);
+        addNumberParameterIfPresent(PARAM_TIMEPICKER_GRID_MINUTE, this.timepickerGridMinute);
+        addNumberParameterIfPresent(PARAM_TIMEPICKER_GRID_SECOND, this.timepickerGridSecond);
 
         addGeneratedIdParam(ID_PREFIX_DATEPICKER);
 
@@ -370,7 +371,7 @@ public class DatePicker extends AbstractTopicsBean {
         }
 
     }
-
+    
     private String format(Object obj) {
         if (obj == null) {
             return null;

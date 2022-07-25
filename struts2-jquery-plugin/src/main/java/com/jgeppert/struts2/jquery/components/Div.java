@@ -91,8 +91,8 @@ public class Div extends AbstractContainer implements ResizableBean,
         super.evaluateExtraParams();
         addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-        addParameterIfPresent(PARAM_UPDATE_FREQ, this.updateFreq, Number.class);
-        addParameterIfPresent(PARAM_DELAY, this.delay, Number.class);
+        addNumberParameterIfPresent(PARAM_UPDATE_FREQ, this.updateFreq);
+        addNumberParameterIfPresent(PARAM_DELAY, this.delay);
 
         addGeneratedIdParam(ID_PREFIX_DIV);
     }

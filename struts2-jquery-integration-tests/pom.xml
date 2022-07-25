@@ -21,7 +21,6 @@
 		<!-- plugins -->
 		<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
 		<!-- dependencies -->
-		<junit.version>5.8.2</junit.version>
 		<selenium.version>4.2.2</selenium.version>
 		<htmlunit-driver.version>3.62.0</htmlunit-driver.version>
 		<lombok.version>1.18.24</lombok.version>
@@ -150,11 +149,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 		</dependency>
@@ -202,13 +196,6 @@
 				<groupId>org.apache.struts</groupId>
 				<artifactId>struts2-json-plugin</artifactId>
 				<version>${struts2.version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>

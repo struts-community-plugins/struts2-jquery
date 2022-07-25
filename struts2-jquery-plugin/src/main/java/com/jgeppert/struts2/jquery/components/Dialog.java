@@ -89,8 +89,6 @@ public class Dialog extends AbstractRemoteBean {
     private static final String PARAM_AUTO_OPEN = "autoOpen";
     private static final String PARAM_SHOW_EFFECT = "showEffect";
     private static final String PARAM_HIDE_EFFECT = "hideEffect";
-    private static final String PARAM_OVERLAY_COLOR = "overlayColor";
-    private static final String PARAM_OVERLAY_OPACITY = "overlayOpacity";
     private static final String PARAM_MAX_HEIGHT = "maxHeight";
     private static final String PARAM_MAX_WIDTH = "maxWidth";
     private static final String PARAM_MIN_HEIGHT = "minHeight";
@@ -162,7 +160,6 @@ public class Dialog extends AbstractRemoteBean {
         addParameterIfPresent(PARAM_AUTO_OPEN, this.autoOpen, Boolean.class);
         addParameterIfPresent(PARAM_SHOW_EFFECT, this.showEffect);
         addParameterIfPresent(PARAM_HIDE_EFFECT, this.hideEffect);
-        addParameterIfPresent(PARAM_OVERLAY_COLOR, this.overlayColor);
         addParameterIfPresent(PARAM_HEIGHT, this.height);
         addParameterIfPresent(PARAM_WIDTH, this.width);
         addParameterIfPresent(PARAM_MAX_HEIGHT, this.maxHeight);
@@ -255,16 +252,6 @@ public class Dialog extends AbstractRemoteBean {
     @StrutsTagAttribute(description = "The effect to be used when the dialog is closed. Values are slide, scale, blind, clip, puff, explode, fold and drop. Default: none")
     public void setHideEffect(String hideEffect) {
         this.hideEffect = hideEffect;
-    }
-
-    @StrutsTagAttribute(description = "Overlay color when modal is true. e.g. #000")
-    public void setOverlayColor(String overlayColor) {
-        this.overlayColor = overlayColor;
-    }
-
-    @StrutsTagAttribute(description = "Overlay opacity when modal is true. e.g. 0.7")
-    public void setOverlayOpacity(String overlayOpacity) {
-        this.overlayOpacity = overlayOpacity;
     }
 
     @StrutsTagAttribute(description = "The maximum height to which the dialog can be resized, in pixels.")

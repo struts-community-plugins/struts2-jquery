@@ -154,7 +154,6 @@ public class Autocompleter extends AbstractFormListElement {
         addParameterIfPresent(PARAM_ON_SELECT_TOPICS, this.onSelectTopics);
         addParameterIfPresent(PARAM_ON_FOCUS_TOPICS, this.onFocusTopics);
         addParameterIfPresent(PARAM_ON_SEARCH_TOPICS, this.onSearchTopics);
-        addParameterIfPresent(PARAM_SIZE, this.size);
         addParameterIfPresent(PARAM_FORCE_VALID_OPTION, this.forceValidOption, Boolean.class);
         addParameterIfPresent(PARAM_AUTO_FOCUS, this.autoFocus, Boolean.class);
 

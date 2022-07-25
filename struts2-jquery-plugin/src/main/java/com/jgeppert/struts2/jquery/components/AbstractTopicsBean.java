@@ -100,6 +100,16 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
             }
         }
     }
+    
+    protected void addNumberParameterIfPresent(final String parameterKey, final String parameterValue) {
+        if (parameterValue != null) {
+            String value = findString(parameterValue);
+            try {
+                int intValue = Integer.parseInt(value);
+                addParameter(parameterKey, intValue);
+            } catch (final NumberFormatException e) {}
+        }
+    }
 
     protected void addGeneratedIdParam(String prefix) {
         if (StringUtils.isBlank(this.id)) {
@@ -108,8 +118,8 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
             int nextInt = RANDOM.nextInt();
             nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
             this.id = prefix + String.valueOf(nextInt);
-            addParameter(PARAM_ID, this.id);
         }
+        addParameter(PARAM_ID, this.id);
     }
 
     @StrutsTagAttribute(description = "Topics that are published before a load")
