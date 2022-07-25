@@ -46,8 +46,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
     protected String resizableAspectRatio;
     protected String resizableAutoHide;
     protected String resizableContainment;
-    protected String resizableDelay;
-    protected String resizableDistance;
     protected String resizableGhost;
     protected String resizableHelper;
     protected String resizableMaxHeight;
@@ -171,8 +169,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
         container.setResizableAspectRatio(resizableAspectRatio);
         container.setResizableAutoHide(resizableAutoHide);
         container.setResizableContainment(resizableContainment);
-        container.setResizableDelay(resizableDelay);
-        container.setResizableDistance(resizableDistance);
         container.setResizableGhost(resizableGhost);
         container.setResizableHelper(resizableHelper);
         container.setResizableMaxHeight(resizableMaxHeight);
@@ -297,14 +293,6 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
 
     public void setResizableContainment(String containment) {
         this.resizableContainment = containment;
-    }
-
-    public void setResizableDelay(String delay) {
-        this.resizableDelay = delay;
-    }
-
-    public void setResizableDistance(String distance) {
-        this.resizableDistance = distance;
     }
 
     public void setResizableGhost(String ghost) {

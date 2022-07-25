@@ -50,8 +50,6 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
             abstractContainer.setResizableAutoHide("true");
             abstractContainer.setResizableGhost("true");
             abstractContainer.setResizableAnimateDuration("fast");
-            abstractContainer.setResizableDelay("150");
-            abstractContainer.setResizableDistance("30");
             abstractContainer.setResizableMaxHeight("300");
             abstractContainer.setResizableMaxWidth("350");
             abstractContainer.setResizableMinHeight("150");
@@ -172,7 +170,7 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
                     .containsEntry("deferredLoading", false)
                     .containsEntry("resizable", true)
                     .containsEntry("resizableOptions",
-                            "{ animate: false, aspectRatio: 16 / 9, autoHide: true, ghost: true, animateDuration: fast, delay: 150, distance: 30, maxHeight: 300, maxWidth: 350, minHeight: 150, minWidth: 200, animateEasing: 'easeOutBounce' , helper: 'resizable-helper' , handles: 'n, e, s, w' , containment: 'parent'}")
+                            "{ animate: false, aspectRatio: 16 / 9, autoHide: true, ghost: true, animateDuration: fast, maxHeight: 300, maxWidth: 350, minHeight: 150, minWidth: 200, animateEasing: 'easeOutBounce' , helper: 'resizable-helper' , handles: 'n, e, s, w' , containment: 'parent'}")
                     .containsEntry("resizableOnResizeTopics", "theResizableResizeTopic")
                     .containsEntry("resizableOnStartTopics", "theResizableStartTopic")
                     .containsEntry("resizableOnStopTopics", "theResizableStopTopic")

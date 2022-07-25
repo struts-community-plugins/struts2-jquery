@@ -87,8 +87,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     protected String resizableAspectRatio;
     protected String resizableAutoHide;
     protected String resizableContainment;
-    protected String resizableDelay;
-    protected String resizableDistance;
     protected String resizableGhost;
     protected String resizableHelper;
     protected String resizableMaxHeight;
@@ -230,14 +228,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
             if (resizableAnimateDuration != null) {
                 resizableBuilder.append(", animateDuration: ");
                 resizableBuilder.append(findString(resizableAnimateDuration));
-            }
-            if (resizableDelay != null) {
-                resizableBuilder.append(", delay: ");
-                resizableBuilder.append(findString(resizableDelay));
-            }
-            if (resizableDistance != null) {
-                resizableBuilder.append(", distance: ");
-                resizableBuilder.append(findString(resizableDistance));
             }
             if (resizableMaxHeight != null) {
                 resizableBuilder.append(", maxHeight: ");
@@ -693,16 +683,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     @StrutsTagAttribute(description = "Constrains resizing to within the bounds of the specified element. Possible values: 'parent', 'document' or an id")
     public void setResizableContainment(String containment) {
         this.resizableContainment = containment;
-    }
-
-    @StrutsTagAttribute(description = "Tolerance, in milliseconds, for when resizing should start. If specified, resizing will not start until after mouse is moved beyond duration. This can help prevent unintended resizing when clicking on an element.")
-    public void setResizableDelay(String delay) {
-        this.resizableDelay = delay;
-    }
-
-    @StrutsTagAttribute(description = "Tolerance, in pixels, for when resizing should start. If specified, resizing will not start until after mouse is moved beyond distance. This can help prevent unintended resizing when clicking on an element.")
-    public void setResizableDistance(String distance) {
-        this.resizableDistance = distance;
     }
 
     @StrutsTagAttribute(description = "If set to true, a semi-transparent helper element is shown for resizing. Default: false", type = "Boolean")

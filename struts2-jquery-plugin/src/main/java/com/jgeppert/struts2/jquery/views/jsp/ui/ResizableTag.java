@@ -39,10 +39,6 @@ public interface ResizableTag {
 
     void setResizableContainment(String containment);
 
-    void setResizableDelay(String delay);
-
-    void setResizableDistance(String distance);
-
     void setResizableGhost(String ghost);
 
     void setResizableHelper(String helper);
