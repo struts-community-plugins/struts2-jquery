@@ -38,10 +38,6 @@ public interface DraggableBean {
 
     void setDraggableContainment(String draggableContainment);
 
-    void setDraggableDelay(String draggableDelay);
-
-    void setDraggableDistance(String draggableDistance);
-
     void setDraggableHandle(String draggableHandle);
 
     void setDraggableHelper(String draggableHelper);

@@ -119,8 +119,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     protected String draggableCancel;
     protected String draggableCursor;
     protected String draggableContainment;
-    protected String draggableDelay;
-    protected String draggableDistance;
     protected String draggableHandle;
     protected String draggableHelper;
     protected String draggableIframeFix;
@@ -362,14 +360,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
                 draggableBuilder.append(", cursor: '");
                 draggableBuilder.append(findString(draggableCursor));
                 draggableBuilder.append("' ");
-            }
-            if (draggableDelay != null) {
-                draggableBuilder.append(", delay: ");
-                draggableBuilder.append(findString(draggableDelay));
-            }
-            if (draggableDistance != null) {
-                draggableBuilder.append(", distance: ");
-                draggableBuilder.append(findString(draggableDistance));
             }
             if (draggableHandle != null) {
                 draggableBuilder.append(", handle: '");
@@ -833,16 +823,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     @StrutsTagAttribute(description = "Constrains dragging to within the bounds of the specified element or region. Possible string values: parent, document, window, [x1, y1, x2, y2].")
     public void setDraggableContainment(String draggableContainment) {
         this.draggableContainment = draggableContainment;
-    }
-
-    @StrutsTagAttribute(description = "Time in milliseconds after mousedown until dragging should start. This option can be used to prevent unwanted drags when clicking on an element.")
-    public void setDraggableDelay(String draggableDelay) {
-        this.draggableDelay = draggableDelay;
-    }
-
-    @StrutsTagAttribute(description = "Distance in pixels after mousedown the mouse must move before dragging should start. This option can be used to prevent unwanted drags when clicking on an element.")
-    public void setDraggableDistance(String draggableDistance) {
-        this.draggableDistance = draggableDistance;
     }
 
     @StrutsTagAttribute(description = "This event javascript function is triggered when the mouse is moved during the dragging.")
