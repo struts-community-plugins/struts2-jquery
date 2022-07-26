@@ -100,10 +100,9 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
     protected String droppable;
     protected String droppableAccept;
-    protected String droppableActiveClass;
     protected String droppableAddClasses;
+    protected String droppableClasses;
     protected String droppableGreedy;
-    protected String droppableHoverClass;
     protected String droppableScope;
     protected String droppableTolerance;
 
@@ -288,14 +287,13 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
                 droppableBuilder.append(findString(droppableAccept));
                 droppableBuilder.append("' ");
             }
-            if (droppableActiveClass != null) {
-                droppableBuilder.append(", activeClass: '");
-                droppableBuilder.append(findString(droppableActiveClass));
-                droppableBuilder.append("' ");
-            }
             if (droppableAddClasses != null) {
                 droppableBuilder.append(", addClasses: ");
                 droppableBuilder.append(findString(droppableAddClasses));
+            }
+            if (droppableClasses != null) {
+                droppableBuilder.append(", classes: ");
+                droppableBuilder.append(findString(droppableClasses));
             }
             if (droppableGreedy != null) {
                 droppableBuilder.append(", greedy: ");
@@ -309,11 +307,6 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
             if (droppableScope != null) {
                 droppableBuilder.append(", scope: '");
                 droppableBuilder.append(findString(droppableScope));
-                droppableBuilder.append("' ");
-            }
-            if (droppableHoverClass != null) {
-                droppableBuilder.append(", hoverClass: '");
-                droppableBuilder.append(findString(droppableHoverClass));
                 droppableBuilder.append("' ");
             }
 
@@ -714,24 +707,19 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         this.droppableAccept = droppableAccept;
     }
 
-    @StrutsTagAttribute(description = "If specified, the class will be added to the droppable while an acceptable draggable is being dragged.")
-    public void setDroppableActiveClass(String droppableActiveClass) {
-        this.droppableActiveClass = droppableActiveClass;
-    }
-
     @StrutsTagAttribute(description = "If set to false, will prevent the ui-droppable class from being added. This may be desired as a performance optimization when calling droppable init on many hundreds of elements. Default: true", defaultValue = "true")
     public void setDroppableAddClasses(String droppableAddClasses) {
         this.droppableAddClasses = droppableAddClasses;
+    }
+    
+    @StrutsTagAttribute(description = "Specify additional classes to add to the widget's elements. Any of classes specified in the Theming section can be used as keys to override their value. Possible keys: ui-droppable-active, ui-droppable-hover, ...")
+    public void setDroppableClasses(String droppableClasses) {
+        this.droppableClasses = droppableClasses;
     }
 
     @StrutsTagAttribute(description = "If true, will prevent event propagation on nested droppables. Default: false", defaultValue = "false")
     public void setDroppableGreedy(String droppableGreedy) {
         this.droppableGreedy = droppableGreedy;
-    }
-
-    @StrutsTagAttribute(description = "If specified, the class will be added to the droppable while an acceptable draggable is being hovered.")
-    public void setDroppableHoverClass(String droppableHoverClass) {
-        this.droppableHoverClass = droppableHoverClass;
     }
 
     @StrutsTagAttribute(description = "Used to group sets of draggable and droppable items, in addition to droppable's accept option. A draggable with the same scope value as a droppable will be accepted.")

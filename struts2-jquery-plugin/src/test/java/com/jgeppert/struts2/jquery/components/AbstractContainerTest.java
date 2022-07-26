@@ -65,12 +65,11 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
             // start droppable
             abstractContainer.setDroppable("true");
             abstractContainer.setDroppableAccept(".special");
-            abstractContainer.setDroppableActiveClass("ui-state-highlight");
             abstractContainer.setDroppableAddClasses("false");
+            abstractContainer.setDroppableClasses("{'ui-droppable-active': 'ui-state-highlight', 'ui-droppable-hover', 'drop-hover'}");
             abstractContainer.setDroppableGreedy("true");
             abstractContainer.setDroppableTolerance("fit");
             abstractContainer.setDroppableScope("tasks");
-            abstractContainer.setDroppableHoverClass("drop-hover");
             abstractContainer.setDroppableOnActivateTopics("theDroppableOnActivateTopic");
             abstractContainer.setDroppableOnDeactivateTopics("theDroppableOnDeactivateTopic");
             abstractContainer.setDroppableOnOverTopics("theDroppableOnOverTopic");
@@ -170,7 +169,7 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
                     .containsEntry("resizableOnStopTopics", "theResizableStopTopic")
                     .containsEntry("droppable", true)
                     .containsEntry("droppableOptions",
-                            "{ accept: '.special' , activeClass: 'ui-state-highlight' , addClasses: false, greedy: true, tolerance: 'fit' , scope: 'tasks' , hoverClass: 'drop-hover'  }")
+                            "{ accept: '.special' , addClasses: false, classes: {'ui-droppable-active': 'ui-state-highlight', 'ui-droppable-hover', 'drop-hover'}, greedy: true, tolerance: 'fit' , scope: 'tasks'  }")
                     .containsEntry("droppableOnActivateTopics", "theDroppableOnActivateTopic")
                     .containsEntry("droppableOnDeactivateTopics", "theDroppableOnDeactivateTopic")
                     .containsEntry("droppableOnOverTopics", "theDroppableOnOverTopic")
