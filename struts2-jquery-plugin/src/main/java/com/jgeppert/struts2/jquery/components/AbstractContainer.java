@@ -202,42 +202,18 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (BooleanUtils.toBoolean(findString(resizable))) {
             addParameter(PARAM_RESIZABLE, Boolean.TRUE);
             ObjectParameterBuilder resizableBuilder = new ObjectParameterBuilder();
-            if (resizableAnimate != null) {
-                resizableBuilder.addParameter("animate", findString(resizableAnimate), false);
-            }
-            if (resizableAspectRatio != null) {
-                resizableBuilder.addParameter("aspectRatio", findString(resizableAspectRatio), false);
-            }
-            if (resizableAutoHide != null) {
-                resizableBuilder.addParameter("autoHide", findString(resizableAutoHide), false);
-            }
-            if (resizableGhost != null) {
-                resizableBuilder.addParameter("ghost", findString(resizableGhost), false);
-            }
-            if (resizableAnimateDuration != null) {
-                resizableBuilder.addParameter("animateDuration", findString(resizableAnimateDuration), false);
-            }
-            if (resizableMaxHeight != null) {
-                resizableBuilder.addParameter("maxHeight", findString(resizableMaxHeight), false);
-            }
-            if (resizableMaxWidth != null) {
-                resizableBuilder.addParameter("maxWidth", findString(resizableMaxWidth), false);
-            }
-            if (resizableMinHeight != null) {
-                resizableBuilder.addParameter("minHeight", findString(resizableMinHeight), false);
-            }
-            if (resizableMinWidth != null) {
-                resizableBuilder.addParameter("minWidth", findString(resizableMinWidth), false);
-            }
-            if (resizableAnimateEasing != null) {
-                resizableBuilder.addParameter("animateEasing", findString(resizableAnimateEasing));
-            }
-            if (resizableHelper != null) {
-                resizableBuilder.addParameter("helper", findString(resizableHelper));
-            }
-            if (resizableHandles != null) {
-                resizableBuilder.addParameter("handles", findString(resizableHandles));
-            }
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAnimate, "animate", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAspectRatio, "aspectRatio", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAutoHide, "autoHide", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableGhost, "ghost", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAnimateDuration, "animateDuration", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableMaxHeight, "maxHeight", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableMaxWidth, "maxWidth", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableMinHeight, "minHeight", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableMinWidth, "minWidth", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAnimateEasing, "animateEasing", true);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableHelper, "helper", true);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableHandles, "handles", true);
 
             if (resizableContainment != null) {
                 String containmentValue = findString(resizableContainment);
@@ -258,24 +234,12 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (BooleanUtils.toBoolean(findString(droppable))) {
             addParameter(PARAM_DROPPABLE, Boolean.TRUE);
             ObjectParameterBuilder droppableBuilder = new ObjectParameterBuilder();
-            if (droppableAccept != null) {
-                droppableBuilder.addParameter("accept", findString(droppableAccept));
-            }
-            if (droppableAddClasses != null) {
-                droppableBuilder.addParameter("addClasses", findString(droppableAddClasses), false);
-            }
-            if (droppableClasses != null) {
-                droppableBuilder.addParameter("classes", findString(droppableClasses), false);
-            }
-            if (droppableGreedy != null) {
-                droppableBuilder.addParameter("greedy", findString(droppableGreedy), false);
-            }
-            if (droppableTolerance != null) {
-                droppableBuilder.addParameter("tolerance", findString(droppableTolerance));
-            }
-            if (droppableScope != null) {
-                droppableBuilder.addParameter("scope", findString(droppableScope));
-            }
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableAccept, "accept", true);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableAddClasses, "addClasses", false);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableClasses, "classes", false);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableGreedy, "greedy", false);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableTolerance, "tolerance", true);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableScope, "scope", true);
 
             addParameter(PARAM_DROPPABLE_OPTIONS, droppableBuilder.toString());
             addParameterIfPresent(PARAM_DROPPABLE_ON_ACTIVATE_TOPICS, this.droppableOnActivateTopics);
@@ -288,63 +252,25 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (BooleanUtils.toBoolean(findString(draggable))) {
             addParameter(PARAM_DRAGGABLE, Boolean.TRUE);
             ObjectParameterBuilder draggableBuilder = new ObjectParameterBuilder();
-            if (draggableAddClasses != null) {
-                draggableBuilder.addParameter("addClasses", findString(draggableAddClasses), false);
-            }
-            if (draggableAppendTo != null) {
-                draggableBuilder.addParameter("appendTo", findString(draggableAppendTo));
-            }
-            if (draggableAxis != null) {
-                draggableBuilder.addParameter("axis", findString(draggableAxis));
-            }
-            if (draggableCancel != null) {
-                draggableBuilder.addParameter("cancel", findString(draggableCancel));
-            }
-            if (draggableCursor != null) {
-                draggableBuilder.addParameter("cursor", findString(draggableCursor));
-            }
-            if (draggableHandle != null) {
-                draggableBuilder.addParameter("handle", findString(draggableHandle));
-            }
-            if (draggableHelper != null) {
-                draggableBuilder.addParameter("helper", findString(draggableHelper));
-            }
-            if (draggableIframeFix != null) {
-                draggableBuilder.addParameter("iframeFix", findString(draggableIframeFix), false);
-            }
-            if (draggableOpacity != null) {
-                draggableBuilder.addParameter("opacity", findString(draggableOpacity));
-            }
-            if (draggableRefreshPositions != null) {
-                draggableBuilder.addParameter("refreshPositions", findString(draggableRefreshPositions), false);
-            }
-            if (draggableRevertDuration != null) {
-                draggableBuilder.addParameter("revertDuration", findString(draggableRevertDuration), false);
-            }
-            if (draggableScope != null) {
-                draggableBuilder.addParameter("scope", findString(draggableScope));
-            }
-            if (draggableScroll != null) {
-                draggableBuilder.addParameter("scroll", findString(draggableScroll), false);
-            }
-            if (draggableScrollSensitivity != null) {
-                draggableBuilder.addParameter("sensitivity", findString(draggableScrollSensitivity), false);
-            }
-            if (draggableScrollSpeed != null) {
-                draggableBuilder.addParameter("scrollSpeed", findString(draggableScrollSpeed), false);
-            }
-            if (draggableSnap != null) {
-                draggableBuilder.addParameter("snap", findString(draggableSnap), false);
-            }
-            if (draggableSnapMode != null) {
-                draggableBuilder.addParameter("snapMode", findString(draggableSnapMode));
-            }
-            if (draggableSnapTolerance != null) {
-                draggableBuilder.addParameter("snapTolerance", findString(draggableSnapTolerance), false);
-            }
-            if (draggableZindex != null) {
-                draggableBuilder.addParameter("zIndex", findString(draggableZindex), false);
-            }
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableAddClasses, "addClasses", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableAppendTo, "appendTo", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableAxis, "axis", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableCancel, "cancel", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableCursor, "cursor", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableHandle, "handle", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableHelper, "helper", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableIframeFix, "iframeFix", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableOpacity, "opacity", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableRefreshPositions, "refreshPositions", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableRevertDuration, "revertDuration", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableScope, "scope", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableScroll, "scroll", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableScrollSensitivity, "sensitivity", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableScrollSpeed, "scrollSpeed", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableSnap, "snap", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableSnapMode, "snapMode", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableSnapTolerance, "snapTolerance", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableZindex, "zIndex", false);
 
             if (draggableRevert != null) {
                 String revertValue = findString(draggableRevert);
@@ -374,15 +300,9 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (BooleanUtils.toBoolean(findString(selectable))) {
             addParameter(PARAM_SELECTABLE, Boolean.TRUE);
             ObjectParameterBuilder selectableBuilder = new ObjectParameterBuilder();
-            if (selectableFilter != null) {
-                selectableBuilder.addParameter("filter", findString(selectableFilter));
-            }
-            if (selectableCancel != null) {
-                selectableBuilder.addParameter("cancel", findString(selectableCancel));
-            }
-            if (selectableTolerance != null) {
-                selectableBuilder.addParameter("tolerance", findString(selectableTolerance));
-            }
+            addFindStringToBuilderIfNotNull(selectableBuilder, selectableFilter, "filter", true);
+            addFindStringToBuilderIfNotNull(selectableBuilder, selectableCancel, "cancel", true);
+            addFindStringToBuilderIfNotNull(selectableBuilder, selectableTolerance, "tolerance", true);
 
             addParameter(PARAM_SELECTABLE_OPTIONS, selectableBuilder.toString());
             addParameterIfPresent(PARAM_SELECTABLE_ON_SELECTED_TOPICS, this.selectableOnSelectedTopics);
@@ -396,67 +316,26 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         if (BooleanUtils.toBoolean(findString(sortable))) {
             addParameter(PARAM_SORTABLE, Boolean.TRUE);
             ObjectParameterBuilder sortableBuilder = new ObjectParameterBuilder();
-            if (sortableDropOnEmpty != null) {
-                sortableBuilder.addParameter("dropOnEmpty", findString(sortableDropOnEmpty), false);
-            }
-            if (sortableForceHelperSize != null) {
-                sortableBuilder.addParameter("forceHelperSize", findString(sortableForceHelperSize), false);
-            }
-            if (sortableForcePlaceholderSize != null) {
-                sortableBuilder.addParameter("forcePlaceholderSize", findString(sortableForcePlaceholderSize), false);
-            }
-            if (sortableRevert != null) {
-                sortableBuilder.addParameter("revert", findString(sortableRevert), false);
-            }
-            if (sortableScroll != null) {
-                sortableBuilder.addParameter("scroll", findString(sortableScroll), false);
-            }
-
-            if (sortableZindex != null) {
-                sortableBuilder.addParameter("zIndex", findString(sortableZindex), false);
-            }
-            if (sortableScrollSensitivity != null) {
-                sortableBuilder.addParameter("scrollSensitivity", findString(sortableScrollSensitivity), false);
-            }
-            if (sortableScrollSpeed != null) {
-                sortableBuilder.addParameter("scrollSpeed", findString(sortableScrollSpeed), false);
-            }
-            if (sortableTolerance != null) {
-                sortableBuilder.addParameter("tolerance", findString(sortableTolerance));
-            }
-            if (sortablePlaceholder != null) {
-                sortableBuilder.addParameter("placeholder", findString(sortablePlaceholder));
-            }
-            if (sortableOpacity != null) {
-                sortableBuilder.addParameter("opacity", findString(sortableOpacity));
-            }
-            if (sortableItems != null) {
-                sortableBuilder.addParameter("items", findString(sortableItems));
-            }
-            if (sortableHandle != null) {
-                sortableBuilder.addParameter("handle", findString(sortableHandle));
-            }
-            if (sortableGrid != null) {
-                sortableBuilder.addParameter("grid", findString(sortableGrid));
-            }
-            if (sortableCursorAt != null) {
-                sortableBuilder.addParameter("cursorAt", findString(sortableCursorAt));
-            }
-            if (sortableCursor != null) {
-                sortableBuilder.addParameter("cursor", findString(sortableCursor));
-            }
-            if (sortableConnectWith != null) {
-                sortableBuilder.addParameter("connectWith", findString(sortableConnectWith));
-            }
-            if (sortableAxis != null) {
-                sortableBuilder.addParameter("axis", findString(sortableAxis));
-            }
-            if (sortableAppendTo != null) {
-                sortableBuilder.addParameter("appendTo", findString(sortableAppendTo));
-            }
-            if (sortableCancel != null) {
-                sortableBuilder.addParameter("cancel", findString(sortableCancel));
-            }
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableDropOnEmpty, "dropOnEmpty", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableForceHelperSize, "forceHelperSize", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableForcePlaceholderSize, "forcePlaceholderSize", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableRevert, "revert", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableScroll, "scroll", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableZindex, "zIndex", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableScrollSensitivity, "scrollSensitivity", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableScrollSpeed, "scrollSpeed", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableTolerance, "tolerance", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortablePlaceholder, "placeholder", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableOpacity, "opacity", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableItems, "items", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableHandle, "handle", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableGrid, "grid", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableCursorAt, "cursorAt", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableCursor, "cursor", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableConnectWith, "connectWith", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableAxis, "axis", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableAppendTo, "appendTo", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableCancel, "cancel", true);
 
             if (sortableContainment != null) {
                 String containmentValue = findString(sortableContainment);
@@ -481,6 +360,15 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
             addParameterIfPresent(PARAM_SORTABLE_ON_DEACTIVATE_TOPICS, this.sortableOnDeactivateTopics);
             addParameterIfPresent(PARAM_SORTABLE_ON_CHANGE_TOPICS, this.sortableOnChangeTopics);
             addParameterIfPresent(PARAM_SORTABLE_ON_BEFORE_STOP_TOPICS, this.sortableOnBeforeStopTopics);
+        }
+    }
+
+    private void addFindStringToBuilderIfNotNull(final ObjectParameterBuilder builder, 
+            final String valueToFind,
+            final String key, 
+            final boolean quotedValue) {
+        if(valueToFind != null) {
+            builder.addParameter(key, valueToFind, quotedValue);
         }
     }
 
