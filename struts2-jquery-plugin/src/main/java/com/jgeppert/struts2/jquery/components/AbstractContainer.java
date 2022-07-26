@@ -19,6 +19,7 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import com.jgeppert.struts2.jquery.components.util.ObjectParameterBuilder;
 import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
@@ -200,76 +201,52 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(resizable))) {
             addParameter(PARAM_RESIZABLE, Boolean.TRUE);
-            StringBuilder resizableBuilder = new StringBuilder();
-            resizableBuilder.append("{");
+            ObjectParameterBuilder resizableBuilder = new ObjectParameterBuilder();
             if (resizableAnimate != null) {
-                resizableBuilder.append(", animate: ");
-                resizableBuilder.append(findString(resizableAnimate));
+                resizableBuilder.addParameter("animate", findString(resizableAnimate), false);
             }
             if (resizableAspectRatio != null) {
-                resizableBuilder.append(", aspectRatio: ");
-                resizableBuilder.append(findString(resizableAspectRatio));
+                resizableBuilder.addParameter("aspectRatio", findString(resizableAspectRatio), false);
             }
             if (resizableAutoHide != null) {
-                resizableBuilder.append(", autoHide: ");
-                resizableBuilder.append(findString(resizableAutoHide));
+                resizableBuilder.addParameter("autoHide", findString(resizableAutoHide), false);
             }
             if (resizableGhost != null) {
-                resizableBuilder.append(", ghost: ");
-                resizableBuilder.append(findString(resizableGhost));
+                resizableBuilder.addParameter("ghost", findString(resizableGhost), false);
             }
             if (resizableAnimateDuration != null) {
-                resizableBuilder.append(", animateDuration: ");
-                resizableBuilder.append(findString(resizableAnimateDuration));
+                resizableBuilder.addParameter("animateDuration", findString(resizableAnimateDuration), false);
             }
             if (resizableMaxHeight != null) {
-                resizableBuilder.append(", maxHeight: ");
-                resizableBuilder.append(findString(resizableMaxHeight));
+                resizableBuilder.addParameter("maxHeight", findString(resizableMaxHeight), false);
             }
             if (resizableMaxWidth != null) {
-                resizableBuilder.append(", maxWidth: ");
-                resizableBuilder.append(findString(resizableMaxWidth));
+                resizableBuilder.addParameter("maxWidth", findString(resizableMaxWidth), false);
             }
             if (resizableMinHeight != null) {
-                resizableBuilder.append(", minHeight: ");
-                resizableBuilder.append(findString(resizableMinHeight));
+                resizableBuilder.addParameter("minHeight", findString(resizableMinHeight), false);
             }
             if (resizableMinWidth != null) {
-                resizableBuilder.append(", minWidth: ");
-                resizableBuilder.append(findString(resizableMinWidth));
+                resizableBuilder.addParameter("minWidth", findString(resizableMinWidth), false);
             }
             if (resizableAnimateEasing != null) {
-                resizableBuilder.append(", animateEasing: '");
-                resizableBuilder.append(findString(resizableAnimateEasing));
-                resizableBuilder.append("' ");
+                resizableBuilder.addParameter("animateEasing", findString(resizableAnimateEasing));
             }
             if (resizableHelper != null) {
-                resizableBuilder.append(", helper: '");
-                resizableBuilder.append(findString(resizableHelper));
-                resizableBuilder.append("' ");
+                resizableBuilder.addParameter("helper", findString(resizableHelper));
             }
             if (resizableHandles != null) {
-                resizableBuilder.append(", handles: '");
-                resizableBuilder.append(findString(resizableHandles));
-                resizableBuilder.append("' ");
+                resizableBuilder.addParameter("handles", findString(resizableHandles));
             }
 
             if (resizableContainment != null) {
-                resizableBuilder.append(", containment: '");
                 String containmentValue = findString(resizableContainment);
 
                 if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document")) {
-                    resizableBuilder.append(containmentValue);
+                    resizableBuilder.addParameter("containment", containmentValue);
                 } else {
-                    resizableBuilder.append("#");
-                    resizableBuilder.append(containmentValue);
+                    resizableBuilder.addParameter("containment", "#" + containmentValue);
                 }
-                resizableBuilder.append("'");
-            }
-
-            resizableBuilder.append("}");
-            if (resizableBuilder.charAt(1) == ',') {
-                resizableBuilder.deleteCharAt(1);
             }
 
             addParameter(PARAM_RESIZABLE_OPTIONS, resizableBuilder.toString());
@@ -280,40 +257,26 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(droppable))) {
             addParameter(PARAM_DROPPABLE, Boolean.TRUE);
-            StringBuilder droppableBuilder = new StringBuilder();
-            droppableBuilder.append("{");
+            ObjectParameterBuilder droppableBuilder = new ObjectParameterBuilder();
             if (droppableAccept != null) {
-                droppableBuilder.append(", accept: '");
-                droppableBuilder.append(findString(droppableAccept));
-                droppableBuilder.append("' ");
+                droppableBuilder.addParameter("accept", findString(droppableAccept));
             }
             if (droppableAddClasses != null) {
-                droppableBuilder.append(", addClasses: ");
-                droppableBuilder.append(findString(droppableAddClasses));
+                droppableBuilder.addParameter("addClasses", findString(droppableAddClasses), false);
             }
             if (droppableClasses != null) {
-                droppableBuilder.append(", classes: ");
-                droppableBuilder.append(findString(droppableClasses));
+                droppableBuilder.addParameter("classes", findString(droppableClasses), false);
             }
             if (droppableGreedy != null) {
-                droppableBuilder.append(", greedy: ");
-                droppableBuilder.append(findString(droppableGreedy));
+                droppableBuilder.addParameter("greedy", findString(droppableGreedy), false);
             }
             if (droppableTolerance != null) {
-                droppableBuilder.append(", tolerance: '");
-                droppableBuilder.append(findString(droppableTolerance));
-                droppableBuilder.append("' ");
+                droppableBuilder.addParameter("tolerance", findString(droppableTolerance));
             }
             if (droppableScope != null) {
-                droppableBuilder.append(", scope: '");
-                droppableBuilder.append(findString(droppableScope));
-                droppableBuilder.append("' ");
+                droppableBuilder.addParameter("scope", findString(droppableScope));
             }
 
-            droppableBuilder.append(" }");
-            if (droppableBuilder.charAt(1) == ',') {
-                droppableBuilder.deleteCharAt(1);
-            }
             addParameter(PARAM_DROPPABLE_OPTIONS, droppableBuilder.toString());
             addParameterIfPresent(PARAM_DROPPABLE_ON_ACTIVATE_TOPICS, this.droppableOnActivateTopics);
             addParameterIfPresent(PARAM_DROPPABLE_ON_DEACTIVATE_TOPICS, this.droppableOnDeactivateTopics);
@@ -324,123 +287,84 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(draggable))) {
             addParameter(PARAM_DRAGGABLE, Boolean.TRUE);
-            StringBuilder draggableBuilder = new StringBuilder();
-            draggableBuilder.append("{");
+            ObjectParameterBuilder draggableBuilder = new ObjectParameterBuilder();
             if (draggableAddClasses != null) {
-                draggableBuilder.append(", addClasses: ");
-                draggableBuilder.append(findString(draggableAddClasses));
+                draggableBuilder.addParameter("addClasses", findString(draggableAddClasses), false);
             }
             if (draggableAppendTo != null) {
-                draggableBuilder.append(", appendTo: '");
-                draggableBuilder.append(findString(draggableAppendTo));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("appendTo", findString(draggableAppendTo));
             }
             if (draggableAxis != null) {
-                draggableBuilder.append(", axis: '");
-                draggableBuilder.append(findString(draggableAxis));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("axis", findString(draggableAxis));
             }
             if (draggableCancel != null) {
-                draggableBuilder.append(", cancel: '");
-                draggableBuilder.append(findString(draggableCancel));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("cancel", findString(draggableCancel));
             }
             if (draggableCursor != null) {
-                draggableBuilder.append(", cursor: '");
-                draggableBuilder.append(findString(draggableCursor));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("cursor", findString(draggableCursor));
             }
             if (draggableHandle != null) {
-                draggableBuilder.append(", handle: '");
-                draggableBuilder.append(findString(draggableHandle));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("handle", findString(draggableHandle));
             }
             if (draggableHelper != null) {
-                draggableBuilder.append(", helper: '");
-                draggableBuilder.append(findString(draggableHelper));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("helper", findString(draggableHelper));
             }
             if (draggableIframeFix != null) {
-                draggableBuilder.append(", iframeFix: ");
-                draggableBuilder.append(findString(draggableIframeFix));
+                draggableBuilder.addParameter("iframeFix", findString(draggableIframeFix), false);
             }
             if (draggableOpacity != null) {
-                draggableBuilder.append(", opacity: '");
-                draggableBuilder.append(findString(draggableOpacity));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("opacity", findString(draggableOpacity));
             }
             if (draggableRefreshPositions != null) {
-                draggableBuilder.append(", refreshPositions: ");
-                draggableBuilder.append(findString(draggableRefreshPositions));
+                draggableBuilder.addParameter("refreshPositions", findString(draggableRefreshPositions), false);
             }
             if (draggableRevertDuration != null) {
-                draggableBuilder.append(", revertDuration: ");
-                draggableBuilder.append(findString(draggableRevertDuration));
+                draggableBuilder.addParameter("revertDuration", findString(draggableRevertDuration), false);
             }
             if (draggableScope != null) {
-                draggableBuilder.append(", scope: '");
-                draggableBuilder.append(findString(draggableScope));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("scope", findString(draggableScope));
             }
             if (draggableScroll != null) {
-                draggableBuilder.append(", scroll: ");
-                draggableBuilder.append(findString(draggableScroll));
+                draggableBuilder.addParameter("scroll", findString(draggableScroll), false);
             }
             if (draggableScrollSensitivity != null) {
-                draggableBuilder.append(", sensitivity: ");
-                draggableBuilder.append(findString(draggableScrollSensitivity));
+                draggableBuilder.addParameter("sensitivity", findString(draggableScrollSensitivity), false);
             }
             if (draggableScrollSpeed != null) {
-                draggableBuilder.append(", scrollSpeed: true");
-                draggableBuilder.append(findString(draggableScrollSpeed));
+                draggableBuilder.addParameter("scrollSpeed", findString(draggableScrollSpeed), false);
             }
             if (draggableSnap != null) {
-                draggableBuilder.append(", snap: ");
-                draggableBuilder.append(findString(draggableSnap));
+                draggableBuilder.addParameter("snap", findString(draggableSnap), false);
             }
             if (draggableSnapMode != null) {
-                draggableBuilder.append(", snapMode: '");
-                draggableBuilder.append(findString(draggableSnapMode));
-                draggableBuilder.append("' ");
+                draggableBuilder.addParameter("snapMode", findString(draggableSnapMode));
             }
             if (draggableSnapTolerance != null) {
-                draggableBuilder.append(", snapTolerance: ");
-                draggableBuilder.append(findString(draggableSnapTolerance));
+                draggableBuilder.addParameter("snapTolerance", findString(draggableSnapTolerance), false);
             }
             if (draggableZindex != null) {
-                draggableBuilder.append(", zIndex: ");
-                draggableBuilder.append(findString(draggableZindex));
+                draggableBuilder.addParameter("zIndex", findString(draggableZindex), false);
             }
 
             if (draggableRevert != null) {
-                draggableBuilder.append(", revert: ");
                 String revertValue = findString(draggableRevert);
 
                 if (revertValue.equalsIgnoreCase("true") || revertValue.equalsIgnoreCase("false")) {
-                    draggableBuilder.append(revertValue);
+                    draggableBuilder.addParameter("revert", revertValue, false);
                 } else {
-                    draggableBuilder.append("'");
-                    draggableBuilder.append(revertValue);
-                    draggableBuilder.append("'");
+                    draggableBuilder.addParameter("revert", revertValue);
                 }
             }
             if (draggableContainment != null) {
-                draggableBuilder.append(", containment: '");
                 String containmentValue = findString(draggableContainment);
 
                 if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document") || containmentValue.equalsIgnoreCase("window")) {
-                    draggableBuilder.append(containmentValue);
+                    draggableBuilder.addParameter("containment", containmentValue);
                 } else {
-                    draggableBuilder.append("#");
-                    draggableBuilder.append(containmentValue);
+                    draggableBuilder.addParameter("containment", "#" + containmentValue);
                 }
-                draggableBuilder.append("'");
             }
 
-            draggableBuilder.append(" }");
-            if (draggableBuilder.charAt(1) == ',') {
-                draggableBuilder.deleteCharAt(1);
-            }
             addParameter(PARAM_DRAGGABLE_OPTIONS, draggableBuilder.toString());
             addParameterIfPresent(PARAM_DRAGGABLE_ON_DRAG_TOPICS, this.draggableOnDragTopics);
             addParameterIfPresent(PARAM_DRAGGABLE_ON_START_TOPICS, this.draggableOnStartTopics);
@@ -449,28 +373,17 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(selectable))) {
             addParameter(PARAM_SELECTABLE, Boolean.TRUE);
-            StringBuilder selectableBuilder = new StringBuilder();
-            selectableBuilder.append("{");
+            ObjectParameterBuilder selectableBuilder = new ObjectParameterBuilder();
             if (selectableFilter != null) {
-                selectableBuilder.append(", filter: '");
-                selectableBuilder.append(findString(selectableFilter));
-                selectableBuilder.append("' ");
+                selectableBuilder.addParameter("filter", findString(selectableFilter));
             }
             if (selectableCancel != null) {
-                selectableBuilder.append(", cancel: '");
-                selectableBuilder.append(findString(selectableCancel));
-                selectableBuilder.append("' ");
+                selectableBuilder.addParameter("cancel", findString(selectableCancel));
             }
             if (selectableTolerance != null) {
-                selectableBuilder.append(", tolerance: '");
-                selectableBuilder.append(findString(selectableTolerance));
-                selectableBuilder.append("' ");
+                selectableBuilder.addParameter("tolerance", findString(selectableTolerance));
             }
 
-            selectableBuilder.append(" }");
-            if (selectableBuilder.charAt(1) == ',') {
-                selectableBuilder.deleteCharAt(1);
-            }
             addParameter(PARAM_SELECTABLE_OPTIONS, selectableBuilder.toString());
             addParameterIfPresent(PARAM_SELECTABLE_ON_SELECTED_TOPICS, this.selectableOnSelectedTopics);
             addParameterIfPresent(PARAM_SELECTABLE_ON_SELECTING_TOPICS, this.selectableOnSelectingTopics);
@@ -482,120 +395,79 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(sortable))) {
             addParameter(PARAM_SORTABLE, Boolean.TRUE);
-            StringBuilder sortableBuilder = new StringBuilder();
-            sortableBuilder.append("{");
+            ObjectParameterBuilder sortableBuilder = new ObjectParameterBuilder();
             if (sortableDropOnEmpty != null) {
-                sortableBuilder.append(", dropOnEmpty: ");
-                sortableBuilder.append(findString(sortableDropOnEmpty));
+                sortableBuilder.addParameter("dropOnEmpty", findString(sortableDropOnEmpty), false);
             }
             if (sortableForceHelperSize != null) {
-                sortableBuilder.append(", forceHelperSize: ");
-                sortableBuilder.append(findString(sortableForceHelperSize));
+                sortableBuilder.addParameter("forceHelperSize", findString(sortableForceHelperSize), false);
             }
             if (sortableForcePlaceholderSize != null) {
-                sortableBuilder.append(", forcePlaceholderSize: ");
-                sortableBuilder.append(findString(sortableForcePlaceholderSize));
+                sortableBuilder.addParameter("forcePlaceholderSize", findString(sortableForcePlaceholderSize), false);
             }
             if (sortableRevert != null) {
-                sortableBuilder.append(", revert: ");
-                sortableBuilder.append(findString(sortableRevert));
+                sortableBuilder.addParameter("revert", findString(sortableRevert), false);
             }
             if (sortableScroll != null) {
-                sortableBuilder.append(", scroll: ");
-                sortableBuilder.append(findString(sortableScroll));
+                sortableBuilder.addParameter("scroll", findString(sortableScroll), false);
             }
 
             if (sortableZindex != null) {
-                sortableBuilder.append(", zIndex: ");
-                sortableBuilder.append(findString(sortableZindex));
+                sortableBuilder.addParameter("zIndex", findString(sortableZindex), false);
             }
             if (sortableScrollSensitivity != null) {
-                sortableBuilder.append(", scrollSensitivity: ");
-                sortableBuilder.append(findString(sortableScrollSensitivity));
+                sortableBuilder.addParameter("scrollSensitivity", findString(sortableScrollSensitivity), false);
             }
             if (sortableScrollSpeed != null) {
-                sortableBuilder.append(", scrollSpeed: ");
-                sortableBuilder.append(findString(sortableScrollSpeed));
+                sortableBuilder.addParameter("scrollSpeed", findString(sortableScrollSpeed), false);
             }
             if (sortableTolerance != null) {
-                sortableBuilder.append(", tolerance: '");
-                sortableBuilder.append(findString(sortableTolerance));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("tolerance", findString(sortableTolerance));
             }
             if (sortablePlaceholder != null) {
-                sortableBuilder.append(", placeholder: '");
-                sortableBuilder.append(findString(sortablePlaceholder));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("placeholder", findString(sortablePlaceholder));
             }
             if (sortableOpacity != null) {
-                sortableBuilder.append(", opacity: '");
-                sortableBuilder.append(findString(sortableOpacity));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("opacity", findString(sortableOpacity));
             }
             if (sortableItems != null) {
-                sortableBuilder.append(", items: '");
-                sortableBuilder.append(findString(sortableItems));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("items", findString(sortableItems));
             }
             if (sortableHandle != null) {
-                sortableBuilder.append(", handle: '");
-                sortableBuilder.append(findString(sortableHandle));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("handle", findString(sortableHandle));
             }
             if (sortableGrid != null) {
-                sortableBuilder.append(", grid: '");
-                sortableBuilder.append(findString(sortableGrid));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("grid", findString(sortableGrid));
             }
             if (sortableCursorAt != null) {
-                sortableBuilder.append(", cursorAt: '");
-                sortableBuilder.append(findString(sortableCursorAt));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("cursorAt", findString(sortableCursorAt));
             }
             if (sortableCursor != null) {
-                sortableBuilder.append(", cursor: '");
-                sortableBuilder.append(findString(sortableCursor));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("cursor", findString(sortableCursor));
             }
             if (sortableConnectWith != null) {
-                sortableBuilder.append(", connectWith: '");
-                sortableBuilder.append(findString(sortableConnectWith));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("connectWith", findString(sortableConnectWith));
             }
             if (sortableAxis != null) {
-                sortableBuilder.append(", axis: '");
-                sortableBuilder.append(findString(sortableAxis));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("axis", findString(sortableAxis));
             }
             if (sortableAppendTo != null) {
-                sortableBuilder.append(", appendTo: '");
-                sortableBuilder.append(findString(sortableAppendTo));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("appendTo", findString(sortableAppendTo));
             }
             if (sortableCancel != null) {
-                sortableBuilder.append(", cancel: '");
-                sortableBuilder.append(findString(sortableCancel));
-                sortableBuilder.append("' ");
+                sortableBuilder.addParameter("cancel", findString(sortableCancel));
             }
 
             if (sortableContainment != null) {
-                sortableBuilder.append(", containment: ");
                 String containmentValue = findString(sortableContainment);
 
                 if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document") || containmentValue.equalsIgnoreCase("window")) {
-                    sortableBuilder.append("'");
-                    sortableBuilder.append(containmentValue);
+                    sortableBuilder.addParameter("containment", containmentValue);
                 } else {
-                    sortableBuilder.append("'#");
-                    sortableBuilder.append(containmentValue);
+                    sortableBuilder.addParameter("containment", "#" + containmentValue);
                 }
-                sortableBuilder.append("'");
             }
 
-            sortableBuilder.append(" }");
-            if (sortableBuilder.charAt(1) == ',') {
-                sortableBuilder.deleteCharAt(1);
-            }
             addParameter(PARAM_SORTABLE_OPTIONS, sortableBuilder.toString());
             addParameterIfPresent(PARAM_SORTABLE_ON_ACTIVATE_TOPICS, this.sortableOnActivateTopics);
             addParameterIfPresent(PARAM_SORTABLE_ON_UPDATE_TOPICS, this.sortableOnUpdateTopics);
