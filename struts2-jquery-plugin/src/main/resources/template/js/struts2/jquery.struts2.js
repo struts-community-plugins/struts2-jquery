@@ -957,6 +957,9 @@
 		}
 		else {
 			// Submit Forms without AJAX
+			if(o.formids === undefined) {
+				return; 
+			}
 			$elem.click( function(e) {
 				var form = $(self.escId(o.formids)),
 					orginal = {};
