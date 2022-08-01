@@ -30,13 +30,11 @@ public interface DroppableTag {
 
     void setDroppableAccept(String droppableAccept);
 
-    void setDroppableActiveClass(String droppableActiveClass);
-
     void setDroppableAddClasses(String droppableAddClasses);
+    
+    void setDroppableClasses(String droppableClasses);
 
     void setDroppableGreedy(String droppableGreedy);
-
-    void setDroppableHoverClass(String droppableHoverClass);
 
     void setDroppableScope(String droppableScope);
 

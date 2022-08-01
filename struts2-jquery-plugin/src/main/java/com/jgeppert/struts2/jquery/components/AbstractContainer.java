@@ -19,6 +19,7 @@
 
 package com.jgeppert.struts2.jquery.components;
 
+import com.jgeppert.struts2.jquery.components.util.ObjectParameterBuilder;
 import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
@@ -100,10 +101,9 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
     protected String droppable;
     protected String droppableAccept;
-    protected String droppableActiveClass;
     protected String droppableAddClasses;
+    protected String droppableClasses;
     protected String droppableGreedy;
-    protected String droppableHoverClass;
     protected String droppableScope;
     protected String droppableTolerance;
 
@@ -201,76 +201,28 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(resizable))) {
             addParameter(PARAM_RESIZABLE, Boolean.TRUE);
-            StringBuilder resizableBuilder = new StringBuilder();
-            resizableBuilder.append("{");
-            if (resizableAnimate != null) {
-                resizableBuilder.append(", animate: ");
-                resizableBuilder.append(findString(resizableAnimate));
-            }
-            if (resizableAspectRatio != null) {
-                resizableBuilder.append(", aspectRatio: ");
-                resizableBuilder.append(findString(resizableAspectRatio));
-            }
-            if (resizableAutoHide != null) {
-                resizableBuilder.append(", autoHide: ");
-                resizableBuilder.append(findString(resizableAutoHide));
-            }
-            if (resizableGhost != null) {
-                resizableBuilder.append(", ghost: ");
-                resizableBuilder.append(findString(resizableGhost));
-            }
-            if (resizableAnimateDuration != null) {
-                resizableBuilder.append(", animateDuration: ");
-                resizableBuilder.append(findString(resizableAnimateDuration));
-            }
-            if (resizableMaxHeight != null) {
-                resizableBuilder.append(", maxHeight: ");
-                resizableBuilder.append(findString(resizableMaxHeight));
-            }
-            if (resizableMaxWidth != null) {
-                resizableBuilder.append(", maxWidth: ");
-                resizableBuilder.append(findString(resizableMaxWidth));
-            }
-            if (resizableMinHeight != null) {
-                resizableBuilder.append(", minHeight: ");
-                resizableBuilder.append(findString(resizableMinHeight));
-            }
-            if (resizableMinWidth != null) {
-                resizableBuilder.append(", minWidth: ");
-                resizableBuilder.append(findString(resizableMinWidth));
-            }
-            if (resizableAnimateEasing != null) {
-                resizableBuilder.append(", animateEasing: '");
-                resizableBuilder.append(findString(resizableAnimateEasing));
-                resizableBuilder.append("' ");
-            }
-            if (resizableHelper != null) {
-                resizableBuilder.append(", helper: '");
-                resizableBuilder.append(findString(resizableHelper));
-                resizableBuilder.append("' ");
-            }
-            if (resizableHandles != null) {
-                resizableBuilder.append(", handles: '");
-                resizableBuilder.append(findString(resizableHandles));
-                resizableBuilder.append("' ");
-            }
+            ObjectParameterBuilder resizableBuilder = new ObjectParameterBuilder();
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAnimate, "animate", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAspectRatio, "aspectRatio", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAutoHide, "autoHide", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableGhost, "ghost", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAnimateDuration, "animateDuration", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableMaxHeight, "maxHeight", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableMaxWidth, "maxWidth", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableMinHeight, "minHeight", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableMinWidth, "minWidth", false);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableAnimateEasing, "animateEasing", true);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableHelper, "helper", true);
+            addFindStringToBuilderIfNotNull(resizableBuilder, resizableHandles, "handles", true);
 
             if (resizableContainment != null) {
-                resizableBuilder.append(", containment: '");
                 String containmentValue = findString(resizableContainment);
 
                 if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document")) {
-                    resizableBuilder.append(containmentValue);
+                    resizableBuilder.addParameter("containment", containmentValue);
                 } else {
-                    resizableBuilder.append("#");
-                    resizableBuilder.append(containmentValue);
+                    resizableBuilder.addParameter("containment", "#" + containmentValue);
                 }
-                resizableBuilder.append("'");
-            }
-
-            resizableBuilder.append("}");
-            if (resizableBuilder.charAt(1) == ',') {
-                resizableBuilder.deleteCharAt(1);
             }
 
             addParameter(PARAM_RESIZABLE_OPTIONS, resizableBuilder.toString());
@@ -281,46 +233,14 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(droppable))) {
             addParameter(PARAM_DROPPABLE, Boolean.TRUE);
-            StringBuilder droppableBuilder = new StringBuilder();
-            droppableBuilder.append("{");
-            if (droppableAccept != null) {
-                droppableBuilder.append(", accept: '");
-                droppableBuilder.append(findString(droppableAccept));
-                droppableBuilder.append("' ");
-            }
-            if (droppableActiveClass != null) {
-                droppableBuilder.append(", activeClass: '");
-                droppableBuilder.append(findString(droppableActiveClass));
-                droppableBuilder.append("' ");
-            }
-            if (droppableAddClasses != null) {
-                droppableBuilder.append(", addClasses: ");
-                droppableBuilder.append(findString(droppableAddClasses));
-            }
-            if (droppableGreedy != null) {
-                droppableBuilder.append(", greedy: ");
-                droppableBuilder.append(findString(droppableGreedy));
-            }
-            if (droppableTolerance != null) {
-                droppableBuilder.append(", tolerance: '");
-                droppableBuilder.append(findString(droppableTolerance));
-                droppableBuilder.append("' ");
-            }
-            if (droppableScope != null) {
-                droppableBuilder.append(", scope: '");
-                droppableBuilder.append(findString(droppableScope));
-                droppableBuilder.append("' ");
-            }
-            if (droppableHoverClass != null) {
-                droppableBuilder.append(", hoverClass: '");
-                droppableBuilder.append(findString(droppableHoverClass));
-                droppableBuilder.append("' ");
-            }
+            ObjectParameterBuilder droppableBuilder = new ObjectParameterBuilder();
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableAccept, "accept", true);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableAddClasses, "addClasses", false);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableClasses, "classes", false);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableGreedy, "greedy", false);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableTolerance, "tolerance", true);
+            addFindStringToBuilderIfNotNull(droppableBuilder, droppableScope, "scope", true);
 
-            droppableBuilder.append(" }");
-            if (droppableBuilder.charAt(1) == ',') {
-                droppableBuilder.deleteCharAt(1);
-            }
             addParameter(PARAM_DROPPABLE_OPTIONS, droppableBuilder.toString());
             addParameterIfPresent(PARAM_DROPPABLE_ON_ACTIVATE_TOPICS, this.droppableOnActivateTopics);
             addParameterIfPresent(PARAM_DROPPABLE_ON_DEACTIVATE_TOPICS, this.droppableOnDeactivateTopics);
@@ -331,123 +251,46 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(draggable))) {
             addParameter(PARAM_DRAGGABLE, Boolean.TRUE);
-            StringBuilder draggableBuilder = new StringBuilder();
-            draggableBuilder.append("{");
-            if (draggableAddClasses != null) {
-                draggableBuilder.append(", addClasses: ");
-                draggableBuilder.append(findString(draggableAddClasses));
-            }
-            if (draggableAppendTo != null) {
-                draggableBuilder.append(", appendTo: '");
-                draggableBuilder.append(findString(draggableAppendTo));
-                draggableBuilder.append("' ");
-            }
-            if (draggableAxis != null) {
-                draggableBuilder.append(", axis: '");
-                draggableBuilder.append(findString(draggableAxis));
-                draggableBuilder.append("' ");
-            }
-            if (draggableCancel != null) {
-                draggableBuilder.append(", cancel: '");
-                draggableBuilder.append(findString(draggableCancel));
-                draggableBuilder.append("' ");
-            }
-            if (draggableCursor != null) {
-                draggableBuilder.append(", cursor: '");
-                draggableBuilder.append(findString(draggableCursor));
-                draggableBuilder.append("' ");
-            }
-            if (draggableHandle != null) {
-                draggableBuilder.append(", handle: '");
-                draggableBuilder.append(findString(draggableHandle));
-                draggableBuilder.append("' ");
-            }
-            if (draggableHelper != null) {
-                draggableBuilder.append(", helper: '");
-                draggableBuilder.append(findString(draggableHelper));
-                draggableBuilder.append("' ");
-            }
-            if (draggableIframeFix != null) {
-                draggableBuilder.append(", iframeFix: ");
-                draggableBuilder.append(findString(draggableIframeFix));
-            }
-            if (draggableOpacity != null) {
-                draggableBuilder.append(", opacity: '");
-                draggableBuilder.append(findString(draggableOpacity));
-                draggableBuilder.append("' ");
-            }
-            if (draggableRefreshPositions != null) {
-                draggableBuilder.append(", refreshPositions: ");
-                draggableBuilder.append(findString(draggableRefreshPositions));
-            }
-            if (draggableRevertDuration != null) {
-                draggableBuilder.append(", revertDuration: ");
-                draggableBuilder.append(findString(draggableRevertDuration));
-            }
-            if (draggableScope != null) {
-                draggableBuilder.append(", scope: '");
-                draggableBuilder.append(findString(draggableScope));
-                draggableBuilder.append("' ");
-            }
-            if (draggableScroll != null) {
-                draggableBuilder.append(", scroll: ");
-                draggableBuilder.append(findString(draggableScroll));
-            }
-            if (draggableScrollSensitivity != null) {
-                draggableBuilder.append(", sensitivity: ");
-                draggableBuilder.append(findString(draggableScrollSensitivity));
-            }
-            if (draggableScrollSpeed != null) {
-                draggableBuilder.append(", scrollSpeed: true");
-                draggableBuilder.append(findString(draggableScrollSpeed));
-            }
-            if (draggableSnap != null) {
-                draggableBuilder.append(", snap: ");
-                draggableBuilder.append(findString(draggableSnap));
-            }
-            if (draggableSnapMode != null) {
-                draggableBuilder.append(", snapMode: '");
-                draggableBuilder.append(findString(draggableSnapMode));
-                draggableBuilder.append("' ");
-            }
-            if (draggableSnapTolerance != null) {
-                draggableBuilder.append(", snapTolerance: ");
-                draggableBuilder.append(findString(draggableSnapTolerance));
-            }
-            if (draggableZindex != null) {
-                draggableBuilder.append(", zIndex: ");
-                draggableBuilder.append(findString(draggableZindex));
-            }
+            ObjectParameterBuilder draggableBuilder = new ObjectParameterBuilder();
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableAddClasses, "addClasses", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableAppendTo, "appendTo", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableAxis, "axis", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableCancel, "cancel", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableCursor, "cursor", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableHandle, "handle", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableHelper, "helper", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableIframeFix, "iframeFix", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableOpacity, "opacity", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableRefreshPositions, "refreshPositions", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableRevertDuration, "revertDuration", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableScope, "scope", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableScroll, "scroll", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableScrollSensitivity, "sensitivity", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableScrollSpeed, "scrollSpeed", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableSnap, "snap", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableSnapMode, "snapMode", true);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableSnapTolerance, "snapTolerance", false);
+            addFindStringToBuilderIfNotNull(draggableBuilder, draggableZindex, "zIndex", false);
 
             if (draggableRevert != null) {
-                draggableBuilder.append(", revert: ");
                 String revertValue = findString(draggableRevert);
 
                 if (revertValue.equalsIgnoreCase("true") || revertValue.equalsIgnoreCase("false")) {
-                    draggableBuilder.append(revertValue);
+                    draggableBuilder.addParameter("revert", revertValue, false);
                 } else {
-                    draggableBuilder.append("'");
-                    draggableBuilder.append(revertValue);
-                    draggableBuilder.append("'");
+                    draggableBuilder.addParameter("revert", revertValue);
                 }
             }
             if (draggableContainment != null) {
-                draggableBuilder.append(", containment: '");
                 String containmentValue = findString(draggableContainment);
 
                 if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document") || containmentValue.equalsIgnoreCase("window")) {
-                    draggableBuilder.append(containmentValue);
+                    draggableBuilder.addParameter("containment", containmentValue);
                 } else {
-                    draggableBuilder.append("#");
-                    draggableBuilder.append(containmentValue);
+                    draggableBuilder.addParameter("containment", "#" + containmentValue);
                 }
-                draggableBuilder.append("'");
             }
 
-            draggableBuilder.append(" }");
-            if (draggableBuilder.charAt(1) == ',') {
-                draggableBuilder.deleteCharAt(1);
-            }
             addParameter(PARAM_DRAGGABLE_OPTIONS, draggableBuilder.toString());
             addParameterIfPresent(PARAM_DRAGGABLE_ON_DRAG_TOPICS, this.draggableOnDragTopics);
             addParameterIfPresent(PARAM_DRAGGABLE_ON_START_TOPICS, this.draggableOnStartTopics);
@@ -456,28 +299,11 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(selectable))) {
             addParameter(PARAM_SELECTABLE, Boolean.TRUE);
-            StringBuilder selectableBuilder = new StringBuilder();
-            selectableBuilder.append("{");
-            if (selectableFilter != null) {
-                selectableBuilder.append(", filter: '");
-                selectableBuilder.append(findString(selectableFilter));
-                selectableBuilder.append("' ");
-            }
-            if (selectableCancel != null) {
-                selectableBuilder.append(", cancel: '");
-                selectableBuilder.append(findString(selectableCancel));
-                selectableBuilder.append("' ");
-            }
-            if (selectableTolerance != null) {
-                selectableBuilder.append(", tolerance: '");
-                selectableBuilder.append(findString(selectableTolerance));
-                selectableBuilder.append("' ");
-            }
+            ObjectParameterBuilder selectableBuilder = new ObjectParameterBuilder();
+            addFindStringToBuilderIfNotNull(selectableBuilder, selectableFilter, "filter", true);
+            addFindStringToBuilderIfNotNull(selectableBuilder, selectableCancel, "cancel", true);
+            addFindStringToBuilderIfNotNull(selectableBuilder, selectableTolerance, "tolerance", true);
 
-            selectableBuilder.append(" }");
-            if (selectableBuilder.charAt(1) == ',') {
-                selectableBuilder.deleteCharAt(1);
-            }
             addParameter(PARAM_SELECTABLE_OPTIONS, selectableBuilder.toString());
             addParameterIfPresent(PARAM_SELECTABLE_ON_SELECTED_TOPICS, this.selectableOnSelectedTopics);
             addParameterIfPresent(PARAM_SELECTABLE_ON_SELECTING_TOPICS, this.selectableOnSelectingTopics);
@@ -489,120 +315,38 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
 
         if (BooleanUtils.toBoolean(findString(sortable))) {
             addParameter(PARAM_SORTABLE, Boolean.TRUE);
-            StringBuilder sortableBuilder = new StringBuilder();
-            sortableBuilder.append("{");
-            if (sortableDropOnEmpty != null) {
-                sortableBuilder.append(", dropOnEmpty: ");
-                sortableBuilder.append(findString(sortableDropOnEmpty));
-            }
-            if (sortableForceHelperSize != null) {
-                sortableBuilder.append(", forceHelperSize: ");
-                sortableBuilder.append(findString(sortableForceHelperSize));
-            }
-            if (sortableForcePlaceholderSize != null) {
-                sortableBuilder.append(", forcePlaceholderSize: ");
-                sortableBuilder.append(findString(sortableForcePlaceholderSize));
-            }
-            if (sortableRevert != null) {
-                sortableBuilder.append(", revert: ");
-                sortableBuilder.append(findString(sortableRevert));
-            }
-            if (sortableScroll != null) {
-                sortableBuilder.append(", scroll: ");
-                sortableBuilder.append(findString(sortableScroll));
-            }
-
-            if (sortableZindex != null) {
-                sortableBuilder.append(", zIndex: ");
-                sortableBuilder.append(findString(sortableZindex));
-            }
-            if (sortableScrollSensitivity != null) {
-                sortableBuilder.append(", scrollSensitivity: ");
-                sortableBuilder.append(findString(sortableScrollSensitivity));
-            }
-            if (sortableScrollSpeed != null) {
-                sortableBuilder.append(", scrollSpeed: ");
-                sortableBuilder.append(findString(sortableScrollSpeed));
-            }
-            if (sortableTolerance != null) {
-                sortableBuilder.append(", tolerance: '");
-                sortableBuilder.append(findString(sortableTolerance));
-                sortableBuilder.append("' ");
-            }
-            if (sortablePlaceholder != null) {
-                sortableBuilder.append(", placeholder: '");
-                sortableBuilder.append(findString(sortablePlaceholder));
-                sortableBuilder.append("' ");
-            }
-            if (sortableOpacity != null) {
-                sortableBuilder.append(", opacity: '");
-                sortableBuilder.append(findString(sortableOpacity));
-                sortableBuilder.append("' ");
-            }
-            if (sortableItems != null) {
-                sortableBuilder.append(", items: '");
-                sortableBuilder.append(findString(sortableItems));
-                sortableBuilder.append("' ");
-            }
-            if (sortableHandle != null) {
-                sortableBuilder.append(", handle: '");
-                sortableBuilder.append(findString(sortableHandle));
-                sortableBuilder.append("' ");
-            }
-            if (sortableGrid != null) {
-                sortableBuilder.append(", grid: '");
-                sortableBuilder.append(findString(sortableGrid));
-                sortableBuilder.append("' ");
-            }
-            if (sortableCursorAt != null) {
-                sortableBuilder.append(", cursorAt: '");
-                sortableBuilder.append(findString(sortableCursorAt));
-                sortableBuilder.append("' ");
-            }
-            if (sortableCursor != null) {
-                sortableBuilder.append(", cursor: '");
-                sortableBuilder.append(findString(sortableCursor));
-                sortableBuilder.append("' ");
-            }
-            if (sortableConnectWith != null) {
-                sortableBuilder.append(", connectWith: '");
-                sortableBuilder.append(findString(sortableConnectWith));
-                sortableBuilder.append("' ");
-            }
-            if (sortableAxis != null) {
-                sortableBuilder.append(", axis: '");
-                sortableBuilder.append(findString(sortableAxis));
-                sortableBuilder.append("' ");
-            }
-            if (sortableAppendTo != null) {
-                sortableBuilder.append(", appendTo: '");
-                sortableBuilder.append(findString(sortableAppendTo));
-                sortableBuilder.append("' ");
-            }
-            if (sortableCancel != null) {
-                sortableBuilder.append(", cancel: '");
-                sortableBuilder.append(findString(sortableCancel));
-                sortableBuilder.append("' ");
-            }
+            ObjectParameterBuilder sortableBuilder = new ObjectParameterBuilder();
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableDropOnEmpty, "dropOnEmpty", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableForceHelperSize, "forceHelperSize", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableForcePlaceholderSize, "forcePlaceholderSize", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableRevert, "revert", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableScroll, "scroll", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableZindex, "zIndex", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableScrollSensitivity, "scrollSensitivity", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableScrollSpeed, "scrollSpeed", false);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableTolerance, "tolerance", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortablePlaceholder, "placeholder", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableOpacity, "opacity", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableItems, "items", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableHandle, "handle", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableGrid, "grid", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableCursorAt, "cursorAt", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableCursor, "cursor", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableConnectWith, "connectWith", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableAxis, "axis", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableAppendTo, "appendTo", true);
+            addFindStringToBuilderIfNotNull(sortableBuilder, sortableCancel, "cancel", true);
 
             if (sortableContainment != null) {
-                sortableBuilder.append(", containment: ");
                 String containmentValue = findString(sortableContainment);
 
                 if (containmentValue.equalsIgnoreCase("parent") || containmentValue.equalsIgnoreCase("document") || containmentValue.equalsIgnoreCase("window")) {
-                    sortableBuilder.append("'");
-                    sortableBuilder.append(containmentValue);
+                    sortableBuilder.addParameter("containment", containmentValue);
                 } else {
-                    sortableBuilder.append("'#");
-                    sortableBuilder.append(containmentValue);
+                    sortableBuilder.addParameter("containment", "#" + containmentValue);
                 }
-                sortableBuilder.append("'");
             }
 
-            sortableBuilder.append(" }");
-            if (sortableBuilder.charAt(1) == ',') {
-                sortableBuilder.deleteCharAt(1);
-            }
             addParameter(PARAM_SORTABLE_OPTIONS, sortableBuilder.toString());
             addParameterIfPresent(PARAM_SORTABLE_ON_ACTIVATE_TOPICS, this.sortableOnActivateTopics);
             addParameterIfPresent(PARAM_SORTABLE_ON_UPDATE_TOPICS, this.sortableOnUpdateTopics);
@@ -616,6 +360,15 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
             addParameterIfPresent(PARAM_SORTABLE_ON_DEACTIVATE_TOPICS, this.sortableOnDeactivateTopics);
             addParameterIfPresent(PARAM_SORTABLE_ON_CHANGE_TOPICS, this.sortableOnChangeTopics);
             addParameterIfPresent(PARAM_SORTABLE_ON_BEFORE_STOP_TOPICS, this.sortableOnBeforeStopTopics);
+        }
+    }
+
+    private void addFindStringToBuilderIfNotNull(final ObjectParameterBuilder builder, 
+            final String valueToFind,
+            final String key, 
+            final boolean quotedValue) {
+        if(valueToFind != null) {
+            builder.addParameter(key, valueToFind, quotedValue);
         }
     }
 
@@ -714,24 +467,19 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         this.droppableAccept = droppableAccept;
     }
 
-    @StrutsTagAttribute(description = "If specified, the class will be added to the droppable while an acceptable draggable is being dragged.")
-    public void setDroppableActiveClass(String droppableActiveClass) {
-        this.droppableActiveClass = droppableActiveClass;
-    }
-
     @StrutsTagAttribute(description = "If set to false, will prevent the ui-droppable class from being added. This may be desired as a performance optimization when calling droppable init on many hundreds of elements. Default: true", defaultValue = "true")
     public void setDroppableAddClasses(String droppableAddClasses) {
         this.droppableAddClasses = droppableAddClasses;
+    }
+    
+    @StrutsTagAttribute(description = "Specify additional classes to add to the widget's elements. Any of classes specified in the Theming section can be used as keys to override their value. Possible keys: ui-droppable-active, ui-droppable-hover, ...")
+    public void setDroppableClasses(String droppableClasses) {
+        this.droppableClasses = droppableClasses;
     }
 
     @StrutsTagAttribute(description = "If true, will prevent event propagation on nested droppables. Default: false", defaultValue = "false")
     public void setDroppableGreedy(String droppableGreedy) {
         this.droppableGreedy = droppableGreedy;
-    }
-
-    @StrutsTagAttribute(description = "If specified, the class will be added to the droppable while an acceptable draggable is being hovered.")
-    public void setDroppableHoverClass(String droppableHoverClass) {
-        this.droppableHoverClass = droppableHoverClass;
     }
 
     @StrutsTagAttribute(description = "Used to group sets of draggable and droppable items, in addition to droppable's accept option. A draggable with the same scope value as a droppable will be accepted.")

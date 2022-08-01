@@ -58,10 +58,9 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
     protected String resizableHandles;
     protected String droppable;
     protected String droppableAccept;
-    protected String droppableActiveClass;
     protected String droppableAddClasses;
+    protected String droppableClasses;
     protected String droppableGreedy;
-    protected String droppableHoverClass;
     protected String droppableScope;
     protected String droppableTolerance;
     protected String droppableOnActivateTopics;
@@ -175,10 +174,9 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
         container.setResizableHandles(resizableHandles);
         container.setDroppable(droppable);
         container.setDroppableAccept(droppableAccept);
-        container.setDroppableActiveClass(droppableActiveClass);
         container.setDroppableAddClasses(droppableAddClasses);
         container.setDroppableGreedy(droppableGreedy);
-        container.setDroppableHoverClass(droppableHoverClass);
+        container.setDroppableClasses(droppableClasses);
         container.setDroppableScope(droppableScope);
         container.setDroppableTolerance(droppableTolerance);
         container.setDroppableOnActivateTopics(droppableOnActivateTopics);
@@ -335,20 +333,16 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
         this.droppableAccept = droppableAccept;
     }
 
-    public void setDroppableActiveClass(String droppableActiveClass) {
-        this.droppableActiveClass = droppableActiveClass;
-    }
-
     public void setDroppableAddClasses(String droppableAddClasses) {
         this.droppableAddClasses = droppableAddClasses;
+    }
+    
+    public void setDroppableClasses(String droppableClasses) {
+        this.droppableClasses = droppableClasses;
     }
 
     public void setDroppableGreedy(String droppableGreedy) {
         this.droppableGreedy = droppableGreedy;
-    }
-
-    public void setDroppableHoverClass(String droppableHoverClass) {
-        this.droppableHoverClass = droppableHoverClass;
     }
 
     public void setDroppableScope(String droppableScope) {

@@ -65,12 +65,11 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
             // start droppable
             abstractContainer.setDroppable("true");
             abstractContainer.setDroppableAccept(".special");
-            abstractContainer.setDroppableActiveClass("ui-state-highlight");
             abstractContainer.setDroppableAddClasses("false");
+            abstractContainer.setDroppableClasses("{'ui-droppable-active': 'ui-state-highlight', 'ui-droppable-hover': 'drop-hover'}");
             abstractContainer.setDroppableGreedy("true");
             abstractContainer.setDroppableTolerance("fit");
             abstractContainer.setDroppableScope("tasks");
-            abstractContainer.setDroppableHoverClass("drop-hover");
             abstractContainer.setDroppableOnActivateTopics("theDroppableOnActivateTopic");
             abstractContainer.setDroppableOnDeactivateTopics("theDroppableOnDeactivateTopic");
             abstractContainer.setDroppableOnOverTopics("theDroppableOnOverTopic");
@@ -164,13 +163,13 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
                     .containsEntry("deferredLoading", false)
                     .containsEntry("resizable", true)
                     .containsEntry("resizableOptions",
-                            "{ animate: false, aspectRatio: 16 / 9, autoHide: true, ghost: true, animateDuration: fast, maxHeight: 300, maxWidth: 350, minHeight: 150, minWidth: 200, animateEasing: 'easeOutBounce' , helper: 'resizable-helper' , handles: 'n, e, s, w' , containment: 'parent'}")
+                            "{animate: false, aspectRatio: 16 / 9, autoHide: true, ghost: true, animateDuration: fast, maxHeight: 300, maxWidth: 350, minHeight: 150, minWidth: 200, animateEasing: 'easeOutBounce', helper: 'resizable-helper', handles: 'n, e, s, w', containment: 'parent'}")
                     .containsEntry("resizableOnResizeTopics", "theResizableResizeTopic")
                     .containsEntry("resizableOnStartTopics", "theResizableStartTopic")
                     .containsEntry("resizableOnStopTopics", "theResizableStopTopic")
                     .containsEntry("droppable", true)
                     .containsEntry("droppableOptions",
-                            "{ accept: '.special' , activeClass: 'ui-state-highlight' , addClasses: false, greedy: true, tolerance: 'fit' , scope: 'tasks' , hoverClass: 'drop-hover'  }")
+                            "{accept: '.special', addClasses: false, classes: {'ui-droppable-active': 'ui-state-highlight', 'ui-droppable-hover': 'drop-hover'}, greedy: true, tolerance: 'fit', scope: 'tasks'}")
                     .containsEntry("droppableOnActivateTopics", "theDroppableOnActivateTopic")
                     .containsEntry("droppableOnDeactivateTopics", "theDroppableOnDeactivateTopic")
                     .containsEntry("droppableOnOverTopics", "theDroppableOnOverTopic")
@@ -178,13 +177,13 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
                     .containsEntry("droppableOnDropTopics", "theDroppableOnDropTopic")
                     .containsEntry("draggable", true)
                     .containsEntry("draggableOptions",
-                            "{ addClasses: false, appendTo: 'body' , axis: 'x' , cancel: '.title' , cursor: 'crosshair' , handle: 'h2' , helper: 'clone' , iframeFix: true, opacity: '0.35' , refreshPositions: true, revertDuration: 200, scope: 'tasks' , scroll: true, sensitivity: 100, scrollSpeed: true100, snap: true, snapMode: 'inner' , snapTolerance: 30, zIndex: 100, revert: 'invalid', containment: 'parent' }")
+                            "{addClasses: false, appendTo: 'body', axis: 'x', cancel: '.title', cursor: 'crosshair', handle: 'h2', helper: 'clone', iframeFix: true, opacity: '0.35', refreshPositions: true, revertDuration: 200, scope: 'tasks', scroll: true, sensitivity: 100, scrollSpeed: 100, snap: true, snapMode: 'inner', snapTolerance: 30, zIndex: 100, revert: 'invalid', containment: 'parent'}")
                     .containsEntry("draggableOnDragTopics", "theDraggableOnDragTopic")
                     .containsEntry("draggableOnStartTopics", "theDraggableOnStartTopic")
                     .containsEntry("draggableOnStopTopics", "theDraggableOnStopTopic")
                     .containsEntry("selectable", true)
                     .containsEntry("selectableOptions",
-                            "{ filter: 'li' , cancel: 'a,.cancel' , tolerance: 'fit'  }")
+                            "{filter: 'li', cancel: 'a,.cancel', tolerance: 'fit'}")
                     .containsEntry("selectableOnSelectedTopics", "theSelectableOnSelectTopic")
                     .containsEntry("selectableOnSelectingTopics", "theSelectableOnSelectingTopic")
                     .containsEntry("selectableOnStopTopics", "theSelectableOnStopTopic")
@@ -192,7 +191,7 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
                     .containsEntry("selectableOnUnselectingTopics", "theSelectableOnUnselectingTopic")
                     .containsEntry("sortable", true)
                     .containsEntry("sortableOptions",
-                            "{ dropOnEmpty: false, forceHelperSize: true, forcePlaceholderSize: true, revert: true, scroll: true, zIndex: 9999, scrollSensitivity: 10, scrollSpeed: 40, tolerance: 'pointer' , placeholder: 'sortable-placeholder' , opacity: '0.5' , items: '> li' , handle: '.handle' , grid: '[ 20, 10 ]' , cursorAt: '{ left: 5 }' , cursor: 'move' , connectWith: '#shopping-cart' , axis: 'x' , appendTo: 'parent' , cancel: 'a,button' , containment: 'document' }")
+                            "{dropOnEmpty: false, forceHelperSize: true, forcePlaceholderSize: true, revert: true, scroll: true, zIndex: 9999, scrollSensitivity: 10, scrollSpeed: 40, tolerance: 'pointer', placeholder: 'sortable-placeholder', opacity: '0.5', items: '> li', handle: '.handle', grid: '[ 20, 10 ]', cursorAt: '{ left: 5 }', cursor: 'move', connectWith: '#shopping-cart', axis: 'x', appendTo: 'parent', cancel: 'a,button', containment: 'document'}")
                     .containsEntry("sortableOnActivateTopics", "theSortableOnActivateTopic")
                     .containsEntry("sortableOnUpdateTopics", "theSortableOnUpdateTopic")
                     .containsEntry("sortableOnStopTopics", "theSortableOnStopTopic")

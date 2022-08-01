@@ -28,8 +28,7 @@
 		<img id="indicator" src="images/indicator.gif" alt="Loading..." style="display:none"/>
 	</sj:div>
 
-	<sj:div id="droptarget" droppable="true" droppableOnDropTopics="ondrop" droppableActiveClass="ui-state-hover"
-	        droppableHoverClass="ui-state-active" droppableAccept=".accept" cssClass="ui-widget-content ui-corner-all"
+	<sj:div id="droptarget" droppable="true" droppableOnDropTopics="ondrop" droppableClasses="{'ui-droppable-active': 'ui-state-active', 'ui-droppable-hover': 'ui-state-hover'}" droppableAccept=".accept" cssClass="ui-widget-content ui-corner-all"
 	        cssStyle="width: 220px; height: 220px; padding: 0.5em; float: left; margin: 10px;">
 		<p>Drop here</p>
 	</sj:div>
