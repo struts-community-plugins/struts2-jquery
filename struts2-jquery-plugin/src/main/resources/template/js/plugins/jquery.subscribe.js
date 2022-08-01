@@ -322,6 +322,10 @@
 				};
 				
 				var event = jQuery.Event(topic);
+				//fix issue with non-existing preventDefault function
+				if (originalEvent !== undefined && originalEvent.preventDefault === undefined) {
+					originalEvent.preventDefault = function() {};
+				}
 				$.extend(event,{originalEvent: originalEvent, stopPropagation: subscriberStopPropagation});
 								
 				jQuery.each(_subscribe_topics[topic].objects, function(i, object) {
