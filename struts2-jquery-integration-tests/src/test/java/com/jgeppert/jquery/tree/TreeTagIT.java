@@ -6,14 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.jgeppert.jquery.AbstractJQueryTest;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@Disabled
 @Tag("PhantomJS")
 public class TreeTagIT extends AbstractJQueryTest {
     @ParameterizedTest
@@ -41,7 +39,9 @@ public class TreeTagIT extends AbstractJQueryTest {
         itemAOpenIcon.click();
         Thread.sleep(500);
 
-        assertEquals(0, myTree.findElements(By.xpath("ul/li[1]/ul")).size());
+
+        assertFalse(myTree.findElement(By.xpath("ul/li[1]/ul/li[1]")).isDisplayed());
+        assertFalse(myTree.findElement(By.xpath("ul/li[1]/ul/li[2]")).isDisplayed());
         assertEquals(0, myTree.findElements(By.xpath("ul/li[2]/ul")).size());
     }
 
@@ -88,8 +88,8 @@ public class TreeTagIT extends AbstractJQueryTest {
 
         assertTrue(myTree.findElement(By.id("A")).isDisplayed());
         assertTrue(myTree.findElement(By.id("B")).isDisplayed());
-        assertEquals(0, myTree.findElements(By.id("AA")).size());
-        assertEquals(0, myTree.findElements(By.id("AB")).size());
+        assertFalse(myTree.findElement(By.id("AA")).isDisplayed());
+        assertFalse(myTree.findElement(By.id("AB")).isDisplayed());
         assertEquals(0, myTree.findElements(By.id("BA")).size());
         assertEquals(0, myTree.findElements(By.id("BB")).size());
     }
