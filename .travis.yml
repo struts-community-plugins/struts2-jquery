@@ -7,11 +7,6 @@
         "script": [
           "mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true verify"
         ]
-      },
-      {
-        "script": [
-          "mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P phantomjs verify"
-        ]
       }
     ]
   },

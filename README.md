@@ -1,7 +1,6 @@
 # Struts2 jQuery Plugin
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jgeppert.struts2.jquery/struts2-jquery/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jgeppert.struts2.jquery/struts2-jquery)
-[![Build release/4.1.0](https://travis-ci.org/struts-community-plugins/struts2-jquery.svg?branch=release%2F4.1.0)](https://travis-ci.org/struts-community-plugins/struts2-jquery)
 
 A Plugin for the popular java web framework struts2 to provide ajax functionality and UI Widgets based on the jQuery javascript framework.
 
@@ -9,7 +8,6 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
 #### [News and Developer Blog] (https://www.jgeppert.com)
 #### [Showcase] (https://struts.jgeppert.com/struts2-jquery-showcase/)
 #### [Showcase Grid Plugin] (https://struts.jgeppert.com/struts2-jquery-grid-showcase/)
-#### [Showcase Mobile Plugin] (https://struts.jgeppert.com/struts2-jquery-mobile-showcase/)
 #### [Sample TODO app based on Bootstrap, jQuery and jQuery Mobile] (https://github.com/jogep/struts2-todo-examples/)
 #### [Wiki - Documentation] (https://github.com/struts-community-plugins/struts2-jquery/wiki)
 
@@ -23,10 +21,11 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
   * Place the [HeadTag Head Tag] inside your html head tags
 
 ### versions and compatibility
-| `struts2-jquery` version | `struts2` version               |
-|--------------------------|---------------------------------|
-| `4.0.3`                  | version >= `2.5`                |
-| `3.7.1`                  | `2.3.16` <= version <= `2.3.31` |
+| `struts2-jquery` version | `struts2` version               | jQuery version | jQuery UI version |
+|--------------------------|---------------------------------|----------------|-------------------|
+| `5.0.0`                  | version >= `6.0.0`              | `3.6.0`        | `1.13.2`          |
+| `4.0.3`                  | version = `2.5.x`               | `2.2.4`        | `1.12.1`          |
+| `3.7.1`                  | `2.3.16` <= version <= `2.3.31` | `1.11.0`       | `1.10.4`          |
 
 As a general rule of thumb, it's advised to upgrade to the latest version within the same major version range. This should avoid bugs and vulnerabilities that already got fixed in more recent versions.
 
@@ -42,32 +41,27 @@ Since version 1.8.3 the plugin is found in the central Maven repository. Just ad
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-grid-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-datatables-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-richtext-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-tree-plugin</artifactId>
-        <version>4.0.3</version>
-    </dependency>
-    <dependency>
-        <groupId>com.jgeppert.struts2.jquery</groupId>
-        <artifactId>struts2-jquery-mobile-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     ...
 </dependencies>
