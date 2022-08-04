@@ -21,8 +21,8 @@
 		<!-- plugins -->
 		<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
 		<!-- dependencies -->
-		<selenium.version>4.2.2</selenium.version>
-		<htmlunit-driver.version>3.62.0</htmlunit-driver.version>
+		<selenium.version>4.3.0</selenium.version>
+		<htmlunit-driver.version>3.63.0</htmlunit-driver.version>
 		<lombok.version>1.18.24</lombok.version>
 		<guava.version>30.0-jre</guava.version>
 		<phantomjsdriver.version>1.4.3</phantomjsdriver.version>
