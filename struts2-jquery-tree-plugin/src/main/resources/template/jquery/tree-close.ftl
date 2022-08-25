@@ -73,16 +73,16 @@ jQuery(document).ready(function () {
         options_${escapedOptionId}.icons = ${parameters.showThemeIcons?string};
     </#if>
 	<#if parameters.contextmenu?if_exists != "">
-	options_${escapedOptionId}.contextmenu = ${parameters.contextmenu?string};
+	options_${escapedOptionId}.contextmenu = <#outputformat "JavaScript">${parameters.contextmenu?string}</#outputformat>;
 	</#if>
 	<#if parameters.plugins?if_exists != "">
-	options_${escapedOptionId}.pluginsconf = ${parameters.plugins?string};
+	options_${escapedOptionId}.pluginsconf = <#outputformat "JavaScript">${parameters.plugins?string}</#outputformat>;
 	</#if>
 	<#if parameters.types?if_exists != ""> 
-	options_${escapedOptionId}.types = ${parameters.types?string};
+	options_${escapedOptionId}.types = <#outputformat "JavaScript">${parameters.types?string}</#outputformat>;
 	</#if>
 	<#if parameters.checkbox??>
-	options_${escapedOptionId}.checkbox = ${parameters.checkbox?string};
+	options_${escapedOptionId}.checkbox = <#outputformat "JavaScript">${parameters.checkbox?string}</#outputformat>;
 	</#if>
 	<#if parameters.checkboxTwoState??>
 	options_${escapedOptionId}.two_state = ${parameters.checkboxTwoState?string};
