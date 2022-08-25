@@ -50,25 +50,25 @@ options_${escapedOptionId}_data.listvalue = "${parameters.remoteListValue}";
 options_${escapedOptionId}_data.label = "${parameters.label}";
 </#if>
 <#if parameters.data?if_exists != "">
-options_${escapedOptionId}_data.data = ${parameters.data};
+options_${escapedOptionId}_data.data = <#outputformat "JavaScript">${parameters.data}</#outputformat>;;
 </#if>
 <#if parameters.color?if_exists != "">
 options_${escapedOptionId}_data.color = "${parameters.color}";
 </#if>
 <#if parameters.lines?if_exists != "">
-options_${escapedOptionId}_data.lines = ${parameters.lines};
+options_${escapedOptionId}_data.lines = <#outputformat "JavaScript">${parameters.lines}</#outputformat>;;
 </#if>
 <#if parameters.bars?if_exists != "">
-options_${escapedOptionId}_data.bars = ${parameters.bars};
+options_${escapedOptionId}_data.bars = <#outputformat "JavaScript">${parameters.bars}</#outputformat>;;
 </#if>
 <#if parameters.points?if_exists != "">
-options_${escapedOptionId}_data.points = ${parameters.points};
+options_${escapedOptionId}_data.points = <#outputformat "JavaScript">${parameters.points}</#outputformat>;;
 </#if>
 <#if parameters.xaxis??>
-options_${escapedOptionId}_data.xaxis = ${parameters.xaxis};
+options_${escapedOptionId}_data.xaxis = <#outputformat "JavaScript">${parameters.xaxis}</#outputformat>;;
 </#if>
 <#if parameters.yaxis??>
-options_${escapedOptionId}_data.yaxis = ${parameters.yaxis};
+options_${escapedOptionId}_data.yaxis = <#outputformat "JavaScript">${parameters.yaxis}</#outputformat>;;
 </#if>
 <#if parameters.clickable?default(false)>
 options_${escapedOptionId}_data.clickable = true;
@@ -77,7 +77,7 @@ options_${escapedOptionId}_data.clickable = true;
 options_${escapedOptionId}_data.hoverable = true;
 </#if>
 <#if parameters.shadowSize?if_exists != "">
-options_${escapedOptionId}_data.shadowSize = ${parameters.shadowSize};
+options_${escapedOptionId}_data.shadowSize = <#outputformat "JavaScript">${parameters.shadowSize}</#outputformat>;;
 </#if>
 <#if parameters.fillBetween?if_exists != "">
 options_${escapedOptionId}_data.fillBetween = "${parameters.fillBetween}";

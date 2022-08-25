@@ -32,6 +32,7 @@ options_${escapedOptionId}.xaxis.position = "${parameters.xaxisPosition}";
 </#if>
 <#if parameters.xaxisMode?if_exists == "time">
 options_${escapedOptionId}.xaxis.mode = "time";
+options_${escapedOptionId}.xaxis.timeBase = "milliseconds";
 	<#if parameters.xaxisTimeformat?if_exists != "">
 options_${escapedOptionId}.xaxis.timeformat = "${parameters.xaxisTimeformat}";
 	</#if>
@@ -43,7 +44,7 @@ options_${escapedOptionId}.xaxis.color = "${parameters.xaxisColor}";
 options_${escapedOptionId}.xaxis.ticks = ${parameters.xaxisTick};
 </#if>
 <#if parameters.xaxisTickSize?if_exists != "">
-options_${escapedOptionId}.xaxis.tickSize = ${parameters.xaxisTickSize};
+options_${escapedOptionId}.xaxis.tickSize = <#outputformat "JavaScript">${parameters.xaxisTickSize}</#outputformat>;
 </#if>
 <#if parameters.xaxisTickDecimals?if_exists != "">
 options_${escapedOptionId}.xaxis.tickDecimals = ${parameters.xaxisTickDecimals};
@@ -84,7 +85,7 @@ options_${escapedOptionId}.yaxis.color = "${parameters.yaxisColor}";
 options_${escapedOptionId}.yaxis.ticks = ${parameters.yaxisTick?string};
 </#if>
 <#if parameters.yaxisTickSize??>
-options_${escapedOptionId}.yaxis.tickSize = ${parameters.yaxisTickSize?string};
+options_${escapedOptionId}.yaxis.tickSize = <#outputformat "JavaScript">${parameters.yaxisTickSize?string}</#outputformat>;
 </#if>
 <#if parameters.yaxisTickDecimals??>
 options_${escapedOptionId}.yaxis.tickDecimals = ${parameters.yaxisTickDecimals?string};

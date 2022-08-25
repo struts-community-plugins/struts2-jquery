@@ -84,9 +84,10 @@
 							<jsSourceIncludes>
 								<jsSourceInclude>*.js</jsSourceInclude>
 							</jsSourceIncludes>
-							<!--jsSourceFiles>
-								<jsSourceFile>*.js</jsSourceFile>
-							</jsSourceFiles -->
+							<jsSourceExcludes>
+								<jsSourceExclude>*.min.js</jsSourceExclude>
+								<jsSourceExclude>*.map</jsSourceExclude>
+							</jsSourceExcludes>
 						</configuration>
 						<goals>
 							<goal>minify</goal>

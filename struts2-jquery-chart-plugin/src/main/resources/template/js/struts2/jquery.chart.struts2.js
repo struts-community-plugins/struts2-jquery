@@ -31,15 +31,19 @@
 				chartTopic = '_s2j_chart_topic',
 				plot;
 
-            // Detect IE7-8
-			if ($.support.leadingWhitespace == false) {
-				self.require("js/flot/excanvas" + self.minSuffix + ".js");
-			}
+			self.require("js/flot/jquery.canvaswrapper" + self.minSuffix + ".js");
+			self.require("js/flot/jquery.colorhelpers" + self.minSuffix + ".js");
 			self.require("js/flot/jquery.flot" + self.minSuffix + ".js");
+			self.require("js/flot/jquery.flot.saturated" + self.minSuffix + ".js");
+			self.require("js/flot/jquery.flot.browser" + self.minSuffix + ".js");
+			self.require("js/flot/jquery.flot.drawSeries" + self.minSuffix + ".js");
+			self.require("js/flot/jquery.flot.uiConstants" + self.minSuffix + ".js");
+			self.require("js/flot/jquery.flot.legend" + self.minSuffix + ".js");
 			if (o.crosshair) {
 				self.require("js/flot/jquery.flot.crosshair" + self.minSuffix + ".js");
 			}
 			if ((o.xaxis && o.xaxis.mode === "time") || (o.yaxis && o.yaxis.mode === "time")) {
+				self.require("js/flot/globalize" + self.minSuffix + ".js");
 				self.require("js/flot/jquery.flot.time" + self.minSuffix + ".js");
 			}
 			if ((o.xaxis && o.xaxis.axisLabel) || (o.yaxis && o.yaxis.axisLabel)) {
