@@ -44,7 +44,6 @@
 			} else { 
 				path = $.scriptPath;
 			}
-			self.require("js/jstree/jquery.hotkeys" + self.minSuffix + ".js");
 			self.require("js/jstree/jquery.jstree" + self.minSuffix + ".js",
                 function() {
                     $.jstree.defaults.core.themes.url = true;
