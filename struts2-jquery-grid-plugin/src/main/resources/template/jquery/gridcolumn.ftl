@@ -32,7 +32,7 @@ options_${escapedOptionId}_colmodels_${colName}.jsonmap = "${parameters.name}";
 options_${escapedOptionId}_colmodels_${colName}.index = "${parameters.index}";
 </#if>
 <#if parameters.width?if_exists != "">
-options_${escapedOptionId}_colmodels_${colName}.width = ${parameters.width};
+options_${escapedOptionId}_colmodels_${colName}.width = <#outputformat "JavaScript">${parameters.width}</#outputformat>;
 </#if>
 <#if parameters.editoptions?if_exists != "">
 options_${escapedOptionId}_colmodels_${colName}.editoptions = <#outputformat "JavaScript">${parameters.editoptions}</#outputformat>;
@@ -41,7 +41,7 @@ options_${escapedOptionId}_colmodels_${colName}.editoptions = <#outputformat "Ja
 options_${escapedOptionId}_colmodels_${colName}.edittype = "${parameters.edittype}";
 </#if>
 <#if parameters.editrules?if_exists != "">
-options_${escapedOptionId}_colmodels_${colName}.editrules = ${parameters.editrules};
+options_${escapedOptionId}_colmodels_${colName}.editrules = <#outputformat "JavaScript">${parameters.editrules}</#outputformat>;
 </#if>
 <#if parameters.formoptions?if_exists != "">
 options_${escapedOptionId}_colmodels_${colName}.formoptions = <#outputformat "JavaScript">${parameters.formoptions}</#outputformat>;
@@ -59,11 +59,11 @@ options_${escapedOptionId}_colmodels_${colName}.formoptions = <#outputformat "Ja
 		>
 		options_${escapedOptionId}_colmodels_${colName}.formatter = "${parameters.formatter}";
 	<#else>
-		options_${escapedOptionId}_colmodels_${colName}.formatter = ${parameters.formatter};
+		options_${escapedOptionId}_colmodels_${colName}.formatter = <#outputformat "JavaScript">${parameters.formatter}</#outputformat>;
 	</#if>
 </#if>
 <#if parameters.formatoptions?if_exists != "">
-options_${escapedOptionId}_colmodels_${colName}.formatoptions = ${parameters.formatoptions};
+options_${escapedOptionId}_colmodels_${colName}.formatoptions = <#outputformat "JavaScript">${parameters.formatoptions}</#outputformat>;
 </#if>
 <#if parameters.align?if_exists != "">
 options_${escapedOptionId}_colmodels_${colName}.align = "${parameters.align}";

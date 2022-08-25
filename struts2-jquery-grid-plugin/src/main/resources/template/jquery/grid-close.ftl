@@ -116,21 +116,21 @@
   </#if>
   <#if parameters.groupField?if_exists != "">
 	options_${escapedOptionId}.grouping = true;
-	options_${escapedOptionId}.groupingView = { groupField : ${parameters.groupField ?string} };
+	options_${escapedOptionId}.groupingView = { groupField : <#outputformat "JavaScript">${parameters.groupField ?string}</#outputformat> };
 	  <#if parameters.groupColumnShow?if_exists != "">
-		options_${escapedOptionId}.groupingView.groupColumnShow = ${parameters.groupColumnShow};
+		options_${escapedOptionId}.groupingView.groupColumnShow = <#outputformat "JavaScript">${parameters.groupColumnShow}</#outputformat>;
 	  </#if>
 	  <#if parameters.groupText?if_exists != "">
-		options_${escapedOptionId}.groupingView.groupText = ${parameters.groupText?string};
+		options_${escapedOptionId}.groupingView.groupText = <#outputformat "JavaScript">${parameters.groupText?string}</#outputformat>;
 	  </#if>
   	  <#if parameters.groupCollapse?default(false)>
 		options_${escapedOptionId}.groupingView.groupCollapse = true;
 	  </#if>
 	  <#if parameters.groupOrder?if_exists != "">
-		options_${escapedOptionId}.groupingView.groupOrder = ${parameters.groupOrder};
+		options_${escapedOptionId}.groupingView.groupOrder = <#outputformat "JavaScript">${parameters.groupOrder}</#outputformat>;
 	  </#if>
 	  <#if parameters.groupSummary?if_exists != "">
-		options_${escapedOptionId}.groupingView.groupSummary = ${parameters.groupSummary};
+		options_${escapedOptionId}.groupingView.groupSummary = <#outputformat "JavaScript">${parameters.groupSummary}</#outputformat>;
 	  </#if>
   	  <#if parameters.groupDataSorted?default(false)>
 		options_${escapedOptionId}.groupingView.groupDataSorted = true;
@@ -148,19 +148,19 @@
   <#if parameters.navigator?default(false)>
 	options_${escapedOptionId}.navigator = true;
 	  <#if parameters.navigatorEditOptions?if_exists != "">
-		options_${escapedOptionId}.navigatoreditoptions = ${parameters.navigatorEditOptions};
+		options_${escapedOptionId}.navigatoreditoptions = <#outputformat "JavaScript">${parameters.navigatorEditOptions}</#outputformat>;
 	  </#if>
 	  <#if parameters.navigatorAddOptions?if_exists != "">
-		options_${escapedOptionId}.navigatoraddoptions = ${parameters.navigatorAddOptions};
+		options_${escapedOptionId}.navigatoraddoptions = <#outputformat "JavaScript">${parameters.navigatorAddOptions}</#outputformat>;
 	  </#if>
 	  <#if parameters.navigatorDeleteOptions?if_exists != "">
-		options_${escapedOptionId}.navigatordeleteoptions = ${parameters.navigatorDeleteOptions};
+		options_${escapedOptionId}.navigatordeleteoptions = <#outputformat "JavaScript">${parameters.navigatorDeleteOptions}</#outputformat>;
 	  </#if>
 	  <#if parameters.navigatorViewOptions?if_exists != "">
-		options_${escapedOptionId}.navigatorviewoptions = ${parameters.navigatorViewOptions};
+		options_${escapedOptionId}.navigatorviewoptions = <#outputformat "JavaScript">${parameters.navigatorViewOptions}</#outputformat>;
 	  </#if>
 	  <#if parameters.navigatorSearchOptions?if_exists != "">
-		options_${escapedOptionId}.navigatorsearchoptions = ${parameters.navigatorSearchOptions};
+		options_${escapedOptionId}.navigatorsearchoptions = <#outputformat "JavaScript">${parameters.navigatorSearchOptions}</#outputformat>;
 	  </#if>
 	  <#if parameters.navigatorAdd?default(true)>
 		options_${escapedOptionId}.navigatoradd = true;
@@ -193,7 +193,7 @@
 		options_${escapedOptionId}.navigatorview = false;
 	  </#if>
 	  <#if parameters.navigatorExtraButtons?if_exists != "">
-		options_${escapedOptionId}.navigatorextrabuttons = ${parameters.navigatorExtraButtons};
+		options_${escapedOptionId}.navigatorextrabuttons = <#outputformat "JavaScript">${parameters.navigatorExtraButtons}</#outputformat>;
 	  </#if>
 	  <#if parameters.navigatorInlineEditButtons?default(true)>
 		options_${escapedOptionId}.navinline = true;
