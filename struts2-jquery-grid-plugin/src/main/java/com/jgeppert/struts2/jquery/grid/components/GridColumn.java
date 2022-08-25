@@ -36,7 +36,6 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  * <p>
- * <p>
  * Examples
  * </p>
  *
