@@ -52,7 +52,9 @@
 						<phase>generate-resources</phase>
 						<configuration>
 							<jsEngine>CLOSURE</jsEngine>
-							<closureLanguage>ECMASCRIPT5_STRICT</closureLanguage>
+							<closureLanguageIn>ECMASCRIPT5_STRICT</closureLanguageIn>
+							<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
+							<closureCreateSourceMap>true</closureCreateSourceMap>
 							<skipMerge>true</skipMerge>
 							<webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
 							<webappTargetDir>${basedir}/src/main/resources</webappTargetDir>
@@ -61,6 +63,30 @@
 							<jsSourceFiles>
 								<jsSourceFile>jquery.chart.struts2.js</jsSourceFile>
 							</jsSourceFiles>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flot-minify</id>
+						<phase>generate-resources</phase>
+						<configuration>
+							<jsEngine>CLOSURE</jsEngine>
+							<closureLanguageIn>ECMASCRIPT6_STRICT</closureLanguageIn>
+							<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
+							<closureCreateSourceMap>true</closureCreateSourceMap>
+							<skipMerge>true</skipMerge>
+							<webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
+							<webappTargetDir>${basedir}/src/main/resources</webappTargetDir>
+							<jsSourceDir>template/js/flot</jsSourceDir>
+							<jsTargetDir>template/js/flot</jsTargetDir>
+							<jsSourceIncludes>
+								<jsSourceInclude>*.js</jsSourceInclude>
+							</jsSourceIncludes>
+							<!--jsSourceFiles>
+								<jsSourceFile>*.js</jsSourceFile>
+							</jsSourceFiles -->
 						</configuration>
 						<goals>
 							<goal>minify</goal>

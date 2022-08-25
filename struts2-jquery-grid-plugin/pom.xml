@@ -64,7 +64,9 @@
 							<phase>generate-resources</phase>
 							<configuration>
 								<jsEngine>CLOSURE</jsEngine>
-								<closureLanguage>ECMASCRIPT5_STRICT</closureLanguage>
+								<closureLanguageIn>ECMASCRIPT5_STRICT</closureLanguageIn>
+								<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
+								<closureCreateSourceMap>true</closureCreateSourceMap>
 								<skipMerge>true</skipMerge>
 								<webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
 								<webappTargetDir>${basedir}/src/main/resources</webappTargetDir>
