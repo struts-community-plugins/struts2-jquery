@@ -9,7 +9,6 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
 #### [News and Developer Blog] (https://www.jgeppert.com)
 #### [Showcase] (https://struts.jgeppert.com/struts2-jquery-showcase/)
 #### [Showcase Grid Plugin] (https://struts.jgeppert.com/struts2-jquery-grid-showcase/)
-#### [Showcase Mobile Plugin] (https://struts.jgeppert.com/struts2-jquery-mobile-showcase/)
 #### [Sample TODO app based on Bootstrap, jQuery and jQuery Mobile] (https://github.com/jogep/struts2-todo-examples/)
 #### [Wiki - Documentation] (https://github.com/struts-community-plugins/struts2-jquery/wiki)
 
@@ -25,6 +24,7 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
 ### versions and compatibility
 | `struts2-jquery` version | `struts2` version               |
 |--------------------------|---------------------------------|
+| `5.0.0`                  | version >= `6.0`                |
 | `4.0.3`                  | version >= `2.5`                |
 | `3.7.1`                  | `2.3.16` <= version <= `2.3.31` |
 
@@ -42,32 +42,27 @@ Since version 1.8.3 the plugin is found in the central Maven repository. Just ad
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-grid-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-datatables-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-richtext-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-tree-plugin</artifactId>
-        <version>4.0.3</version>
-    </dependency>
-    <dependency>
-        <groupId>com.jgeppert.struts2.jquery</groupId>
-        <artifactId>struts2-jquery-mobile-plugin</artifactId>
-        <version>4.0.3</version>
+        <version>5.0.0</version>
     </dependency>
     ...
 </dependencies>
