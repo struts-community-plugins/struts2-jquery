@@ -33,10 +33,6 @@
     <link href="<s:url value="/yaml/core/iehacks.min.css" />" rel="stylesheet" type="text/css" />
     <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     <!-- This files are needed for AJAX Validation of XHTML Forms -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/utils.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/xhtml/validation.js"></script>
