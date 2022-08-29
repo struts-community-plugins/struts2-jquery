@@ -20,7 +20,7 @@
                 value = selected.val() ? selected.text() : "";
             var classes = "s2j-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left";
             var elemClasses = this.element.attr("class");
-            if (elemClasses !== undefined && elemClasses.trim().length !==){
+            if (elemClasses !== undefined && elemClasses.trim().length !== 0){
                 classes += " " + elemClasses;
             }
             this.input = $( "<input>" )
