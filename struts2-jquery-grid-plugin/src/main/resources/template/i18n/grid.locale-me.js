@@ -1,7 +1,7 @@
 /**
- * @license jqGrid Turkish Translation
- * Erhan Gündoğan (erhan@trposta.net)
- * http://blog.zakkum.com
+ * @license jqGrid Montenegrian Translation
+ * Bild Studio info@bild-studio.net
+ * http://www.bild-studio.com
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
@@ -38,43 +38,43 @@
 var locInfo = {
 	isRTL: false,
 	defaults: {
-		recordtext: "{0}-{1} listeleniyor. Toplam:{2}",
-		emptyrecords: "Kayıt bulunamadı",
-		loadtext: "Yükleniyor...",
-		pgtext: "{0}/{1}. Sayfa",
+		recordtext: "Pregled {0} - {1} od {2}",
+		emptyrecords: "Ne postoji nijedan zapis",
+		loadtext: "Učitivanje...",
+		pgtext: "Strana {0} od {1}",
 		pgfirst: "First Page",
 		pglast: "Last Page",
 		pgnext: "Next Page",
 		pgprev: "Previous Page",
 		pgrecs: "Records per Page",
 		showhide: "Toggle Expand Collapse Grid",
-		savetext: "Kaydedilen..."
+		savetext: "Saving..."
 	},
 	search: {
-		caption: "Arama...",
-		Find: "Bul",
-		Reset: "Temizle",
+		caption: "Traženje...",
+		Find: "Traži",
+		Reset: "Resetuj",
 		odata: [
-			{ oper: "eq", text: "eşit" },
-			{ oper: "ne", text: "eşit değil" },
-			{ oper: "lt", text: "daha az" },
-			{ oper: "le", text: "daha az veya eşit" },
-			{ oper: "gt", text: "daha fazla" },
-			{ oper: "ge", text: "daha fazla veya eşit" },
-			{ oper: "bw", text: "ile başlayan" },
-			{ oper: "bn", text: "ile başlamayan" },
-			{ oper: "in", text: "içinde" },
-			{ oper: "ni", text: "içinde değil" },
-			{ oper: "ew", text: "ile biten" },
-			{ oper: "en", text: "ile bitmeyen" },
-			{ oper: "cn", text: "içeren" },
-			{ oper: "nc", text: "içermeyen" },
+			{ oper: "eq", text: "jednako" },
+			{ oper: "ne", text: "nije jednako" },
+			{ oper: "lt", text: "manje" },
+			{ oper: "le", text: "manje ili jednako" },
+			{ oper: "gt", text: "veće" },
+			{ oper: "ge", text: "veće ili jednako" },
+			{ oper: "bw", text: "počinje sa" },
+			{ oper: "bn", text: "ne počinje sa" },
+			{ oper: "in", text: "je u" },
+			{ oper: "ni", text: "nije u" },
+			{ oper: "ew", text: "završava sa" },
+			{ oper: "en", text: "ne završava sa" },
+			{ oper: "cn", text: "sadrži" },
+			{ oper: "nc", text: "ne sadrži" },
 			{ oper: "nu", text: "is null" },
 			{ oper: "nn", text: "is not null" }
 		],
 		groupOps: [
-			{ op: "VE", text: "tüm" },
-			{ op: "VEYA",  text: "herhangi" }
+			{ op: "AND", text: "sva" },
+			{ op: "OR",  text: "bilo koje" }
 		],
 		addGroupTitle: "Add subgroup",
 		deleteGroupTitle: "Delete group",
@@ -84,69 +84,71 @@ var locInfo = {
 		resetTitle: "Reset Search Value"
 	},
 	edit: {
-		addCaption: "Kayıt Ekle",
-		editCaption: "Kayıt Düzenle",
-		bSubmit: "Gönder",
-		bCancel: "İptal",
-		bClose: "Kapat",
-		saveData: "Veriler değişti! Kayıt edilsin mi?",
-		bYes: "Evet",
-		bNo: "Hayıt",
-		bExit: "İptal",
+		addCaption: "Dodaj zapis",
+		editCaption: "Izmjeni zapis",
+		bSubmit: "Pošalji",
+		bCancel: "Odustani",
+		bClose: "Zatvori",
+		saveData: "Podatak je izmjenjen! Sačuvaj izmjene?",
+		bYes: "Da",
+		bNo: "Ne",
+		bExit: "Odustani",
 		msg: {
-			required: "Alan gerekli",
-			number: "Lütfen bir numara giriniz",
-			minValue: "girilen değer daha büyük ya da buna eşit olmalıdır",
-			maxValue: "girilen değer daha küçük ya da buna eşit olmalıdır",
-			email: "geçerli bir e-posta adresi değildir",
-			integer: "Lütfen bir tamsayı giriniz",
-			url: "Geçerli bir URL değil. ('http://' or 'https://') ön eki gerekli.",
-			nodefined: " is not defined!",
-			novalue: " return value is required!",
-			customarray: "Custom function should return array!",
-			customfcheck: "Custom function should be present in case of custom checking!"
+			required: "Polje je obavezno",
+			number: "Unesite ispravan broj",
+			minValue: "vrijednost mora biti veća od ili jednaka sa ",
+			maxValue: "vrijednost mora biti manja ili jednaka sa",
+			email: "nije ispravna email adresa, nije valjda da ne umiješ ukucati mail!?",
+			integer: "Ne zajebaji se unesi cjelobrojnu vrijednost ",
+			date: "Unesite ispravan datum",
+			url: "nije ispravan URL. Potreban je prefiks ('http://' or 'https://')",
+			nodefined: " nije definisan!",
+			novalue: " zahtjevana je povratna vrijednost!",
+			customarray: "Prilagođena funkcija treba da vrati niz!",
+			customfcheck: "Prilagođena funkcija treba da bude prisutana u slučaju prilagođene provjere!"
+
 		}
 	},
 	view: {
-		caption: "Kayıt Görüntüle",
-		bClose: "Kapat"
+		caption: "Pogledaj zapis",
+		bClose: "Zatvori"
 	},
 	del: {
-		caption: "Sil",
-		msg: "Seçilen kayıtlar silinsin mi?",
-		bSubmit: "Sil",
-		bCancel: "İptal"
+		caption: "Izbrisi",
+		msg: "Izbrisi izabran(e) zapise(e)?",
+		bSubmit: "Izbriši",
+		bCancel: "Odbaci"
 	},
 	nav: {
 		edittext: "",
-		edittitle: "Seçili satırı düzenle",
+		edittitle: "Izmjeni izabrani red",
 		addtext: "",
-		addtitle: "Yeni satır ekle",
+		addtitle: "Dodaj novi red",
 		deltext: "",
-		deltitle: "Seçili satırı sil",
+		deltitle: "Izbriši izabran red",
 		searchtext: "",
-		searchtitle: "Kayıtları bul",
+		searchtitle: "Nađi zapise",
 		refreshtext: "",
-		refreshtitle: "Tabloyu yenile",
-		alertcap: "Uyarı",
-		alerttext: "Lütfen bir satır seçiniz",
+		refreshtitle: "Ponovo učitaj podatke",
+		alertcap: "Upozorenje",
+		alerttext: "Izaberite red",
 		viewtext: "",
-		viewtitle: "Seçilen satırı görüntüle",
+		viewtitle: "Pogledaj izabrani red",
 		savetext: "",
 		savetitle: "Save row",
 		canceltext: "",
 		canceltitle: "Cancel row editing"
 	},
 	col: {
-		caption: "Sütunları göster/gizle",
-		bSubmit: "Gönder",
-		bCancel: "İptal"
+		caption: "Izaberi kolone",
+		bSubmit: "OK",
+		bCancel: "Odbaci"
 	},
 	errors: {
-		errcap: "Hata",
-		nourl: "Bir url yapılandırılmamış",
-		norecords: "İşlem yapılacak bir kayıt yok",
-		model: "colNames uzunluğu <> colModel!"
+		errcap: "Greška",
+		nourl: "Nije postavljen URL",
+		norecords: "Nema zapisa za obradu",
+		model: "Dužina modela colNames <> colModel!"
 	},
 	formatter: {
 		integer: { thousandsSeparator: " ", defaultValue: "0" },
@@ -154,12 +156,12 @@ var locInfo = {
 		currency: { decimalSeparator: ".", thousandsSeparator: " ", decimalPlaces: 2, prefix: "", suffix: "", defaultValue: "0.00" },
 		date: {
 			dayNames:   [
-				"Paz", "Pts", "Sal", "Çar", "Per", "Cum", "Cts",
-				"Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"
+				"Ned", "Pon", "Uto", "Sre", "Čet", "Pet", "Sub",
+				"Nedelja", "Ponedeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"
 			],
 			monthNames: [
-				"Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara",
-				"Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"
+				"Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Avg", "Sep", "Okt", "Nov", "Dec",
+				"Januar", "Februar", "Mart", "April", "Maj", "Jun", "Jul", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"
 			],
 			AmPm: ["am", "pm", "AM", "PM"],
 			S: function (j) {
@@ -182,7 +184,7 @@ var locInfo = {
 $.jgrid = $.jgrid || {};
 $.extend(true, $.jgrid, {
 	defaults: {
-		locale: "tr"
+		locale: "me"
 	},
 	locales: {
 		// In general the property name is free, but it's recommended to use the names based on
@@ -190,8 +192,7 @@ $.extend(true, $.jgrid, {
 		// http://rishida.net/utils/subtags/ and RFC 5646. See Appendix A of RFC 5646 for examples.
 		// One can use the lang attribute to specify language tags in HTML, and the xml:lang attribute for XML
 		// if it exists. See http://www.w3.org/International/articles/language-tags/#extlang
-		tr: $.extend({}, locInfo, { name: "Türkçe", nameEnglish: "Turkish" }),
-		"tr-TR": $.extend({}, locInfo, { name: "Türkçe (Türkiye)", nameEnglish: "Turkish (Turkey)" })
+		me: $.extend({}, locInfo, { name: "Gora", nameEnglish: "Montenegrin" })
 	}
 });
 }));

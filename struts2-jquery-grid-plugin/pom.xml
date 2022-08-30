@@ -74,14 +74,26 @@
 								<jsTargetDir>template/js</jsTargetDir>
 								<jsSourceFiles>
 									<jsSourceFile>struts2/jquery.grid.struts2.js</jsSourceFile>
-									<jsSourceFile>plugins/jquery.jqGrid.js</jsSourceFile>
-									<jsSourceFile>plugins/grid.grouping.js</jsSourceFile>
-									<jsSourceFile>plugins/grid.subgrid.js</jsSourceFile>
-									<jsSourceFile>plugins/grid.inlinedit.js</jsSourceFile>
-									<jsSourceFile>plugins/grid.formedit.js</jsSourceFile>
+									<jsSourceFile>base/grid.base.js</jsSourceFile>
+									<jsSourceFile>base/grid.common.js</jsSourceFile>
+									<jsSourceFile>base/grid.custom.js</jsSourceFile>
+									<jsSourceFile>base/grid.jqueryui.js</jsSourceFile>
+									<jsSourceFile>base/jqdnr.js</jsSourceFile>
+									<jsSourceFile>base/jqmodal.js</jsSourceFile>
+									<jsSourceFile>base/jquery.fmatter.js</jsSourceFile>
+									<jsSourceFile>base/jquery.jqGrid.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.addons.js</jsSourceFile>
 									<jsSourceFile>plugins/grid.celledit.js</jsSourceFile>
 									<jsSourceFile>plugins/grid.filter.js</jsSourceFile>
-									<jsSourceFile>plugins/grid.addons.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.formedit.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.grouping.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.import.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.inlinedit.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.pivot.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.setcolumns.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.subgrid.js</jsSourceFile>
+									<jsSourceFile>plugins/grid.treegrid.js</jsSourceFile>
+									<jsSourceFile>plugins/ui.multiselect.js</jsSourceFile>
 								</jsSourceFiles>
 							</configuration>
 							<goals>

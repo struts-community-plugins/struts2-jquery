@@ -1,403 +1,577 @@
 /*jshint eqeqeq:false, eqnull:true */
-/*global jQuery */
+/*global jQuery, define, exports, module, require */
+/*jslint plusplus: true, unparam: true, eqeq: true, nomen: true, todo: true, continue: true */
 // Grouping module
-(function($){
-"use strict";
-$.extend($.jgrid,{
-	template : function(format){ //jqgformat
-		var args = $.makeArray(arguments).slice(1), j, al = args.length;
-		if(format==null) { format = ""; }
-		return format.replace(/\{([\w\-]+)(?:\:([\w\.]*)(?:\((.*?)?\))?)?\}/g, function(m,i){
-			if(!isNaN(parseInt(i,10))) {
-				return args[parseInt(i,10)];
+(function (factory) {
+	"use strict";
+	if (typeof define === "function" && define.amd) {
+		// AMD. Register as an anonymous module.
+		define([
+			"jquery",
+			"./grid.base"
+		], factory);
+	} else if (typeof module === "object" && module.exports) {
+		// Node/CommonJS
+		module.exports = function (root, $) {
+			if (!root) {
+				root = window;
 			}
-			for(j=0; j < al;j++) {
-				if($.isArray(args[j])) {
-					var nmarr = args[ j ],
-					k = nmarr.length;
-					while(k--) {
-						if(i===nmarr[k].nm) {
-							return nmarr[k].v;
-						}
-					}
-				}
+			if ($ === undefined) {
+				// require("jquery") returns a factory that requires window to
+				// build a jQuery instance, we normalize how we use modules
+				// that require this pattern but the window provided is a noop
+				// if it's defined (how jquery works)
+				$ = typeof window !== "undefined" ?
+						require("jquery") :
+						require("jquery")(root);
 			}
-		});
+			require("./grid.base");
+			factory($);
+			return $;
+		};
+	} else {
+		// Browser globals
+		factory(jQuery);
 	}
-});
-$.jgrid.extend({
-	groupingSetup : function () {
-		return this.each(function (){
-			var $t = this, i, j, cml, cm = $t.p.colModel, grp = $t.p.groupingView;
-			if(grp !== null && ( (typeof grp === 'object') || $.isFunction(grp) ) ) {
-				if(!grp.groupField.length) {
-					$t.p.grouping = false;
-				} else {
-					if (grp.visibiltyOnNextGrouping === undefined) {
-						grp.visibiltyOnNextGrouping = [];
-					}
-
-					grp.lastvalues=[];
-					if(!grp._locgr) {
-						grp.groups =[];
-					}
-					grp.counters =[];
-					for(i=0;i<grp.groupField.length;i++) {
-						if(!grp.groupOrder[i]) {
-							grp.groupOrder[i] = 'asc';
-						}
-						if(!grp.groupText[i]) {
-							grp.groupText[i] = '{0}';
-						}
-						if( typeof grp.groupColumnShow[i] !== 'boolean') {
-							grp.groupColumnShow[i] = true;
-						}
-						if( typeof grp.groupSummary[i] !== 'boolean') {
-							grp.groupSummary[i] = false;
-						}
-						if( !grp.groupSummaryPos[i]) {
-							grp.groupSummaryPos[i] = 'footer';
-						}
-						if(grp.groupColumnShow[i] === true) {
-							grp.visibiltyOnNextGrouping[i] = true;
-							$($t).jqGrid('showCol',grp.groupField[i]);
-						} else {
-							grp.visibiltyOnNextGrouping[i] = $("#"+$.jgrid.jqID($t.p.id+"_"+grp.groupField[i])).is(":visible");
-							$($t).jqGrid('hideCol',grp.groupField[i]);
-						}
-					}
-					grp.summary =[];
-					if(grp.hideFirstGroupCol) {
-						grp.formatDisplayField[0] = function (v) { return v;};
-					}
-					for(j=0, cml = cm.length; j < cml; j++) {
-						if(grp.hideFirstGroupCol) {
-							if(!cm[j].hidden && grp.groupField[0] === cm[j].name) {
-								cm[j].formatter = function(){return '';};
-							}
-						}
-						if(cm[j].summaryType ) {
-							if(cm[j].summaryDivider) {
-								grp.summary.push({nm:cm[j].name,st:cm[j].summaryType, v: '', sd:cm[j].summaryDivider, vd:'', sr: cm[j].summaryRound, srt: cm[j].summaryRoundType || 'round'});
-							} else {
-								grp.summary.push({nm:cm[j].name,st:cm[j].summaryType, v: '', sr: cm[j].summaryRound, srt: cm[j].summaryRoundType || 'round'});
-							}
-						}
-					}
-				}
-			} else {
-				$t.p.grouping = false;
-			}
-		});
-	},
-	groupingPrepare : function ( record, irow ) {
-		this.each(function(){
-			var grp = this.p.groupingView, $t= this, i,
-			grlen = grp.groupField.length, 
-			fieldName,
-			v,
-			displayName,
-			displayValue,
-			changed = 0;
-			for(i=0;i<grlen;i++) {
-				fieldName = grp.groupField[i];
-				displayName = grp.displayField[i];
-				v = record[fieldName];
-				displayValue = displayName == null ? null : record[displayName];
-
-				if( displayValue == null ) {
-					displayValue = v;
-				}
-				if( v !== undefined ) {
-					if(irow === 0 ) {
-						// First record always starts a new group
-						grp.groups.push({idx:i,dataIndex:fieldName,value:v, displayValue: displayValue, startRow: irow, cnt:1, summary : [] } );
-						grp.lastvalues[i] = v;
-						grp.counters[i] = {cnt:1, pos:grp.groups.length-1, summary: $.extend(true,[],grp.summary)};
-						$.each(grp.counters[i].summary,function() {
-							if ($.isFunction(this.st)) {
-								this.v = this.st.call($t, this.v, this.nm, record);
-							} else {
-								this.v = $($t).jqGrid('groupingCalculations.handler',this.st, this.v, this.nm, this.sr, this.srt, record);
-								if(this.st.toLowerCase() === 'avg' && this.sd) {
-									this.vd = $($t).jqGrid('groupingCalculations.handler',this.st, this.vd, this.sd, this.sr, this.srt, record);
-								}
-							}
-						});
-						grp.groups[grp.counters[i].pos].summary = grp.counters[i].summary;
+}(function ($) {
+	"use strict";
+	var jgrid = $.jgrid, base = $.fn.jqGrid;
+	// begin module grid.grouping
+	jgrid.extend({
+		groupingSetup: function () {
+			return this.each(function () {
+				var $t = this, i, j, cml, p = $t.p, colModel = p.colModel, grp = p.groupingView, cm, summary,
+					emptyFormatter = function () {
+						return "";
+					};
+				if (grp !== null && ((typeof grp === "object") || $.isFunction(grp))) {
+					if (!grp.groupField.length) {
+						p.grouping = false;
 					} else {
-						if (typeof v !== "object" && ($.isArray(grp.isInTheSameGroup) && $.isFunction(grp.isInTheSameGroup[i]) ? ! grp.isInTheSameGroup[i].call($t, grp.lastvalues[i], v, i, grp): grp.lastvalues[i] !== v)) {
-							// This record is not in same group as previous one
-							grp.groups.push({idx:i,dataIndex:fieldName,value:v, displayValue: displayValue, startRow: irow, cnt:1, summary : [] } );
-							grp.lastvalues[i] = v;
-							changed = 1;
-							grp.counters[i] = {cnt:1, pos:grp.groups.length-1, summary: $.extend(true,[],grp.summary)};
-							$.each(grp.counters[i].summary,function() {
-								if ($.isFunction(this.st)) {
-									this.v = this.st.call($t, this.v, this.nm, record);
-								} else {
-									this.v = $($t).jqGrid('groupingCalculations.handler',this.st, this.v, this.nm, this.sr, this.srt, record);
-									if(this.st.toLowerCase() === 'avg' && this.sd) {
-										this.vd = $($t).jqGrid('groupingCalculations.handler',this.st, this.vd, this.sd, this.sr, this.srt, record);
-									}
-								}
-							});
-							grp.groups[grp.counters[i].pos].summary = grp.counters[i].summary;
-						} else {
-							if (changed === 1) {
-								// This group has changed because an earlier group changed.
-								grp.groups.push({idx:i,dataIndex:fieldName,value:v, displayValue: displayValue, startRow: irow, cnt:1, summary : [] } );
-								grp.lastvalues[i] = v;
-								grp.counters[i] = {cnt:1, pos:grp.groups.length-1, summary: $.extend(true,[],grp.summary)};
-								$.each(grp.counters[i].summary,function() {
-									if ($.isFunction(this.st)) {
-										this.v = this.st.call($t, this.v, this.nm, record);
-									} else {
-										this.v = $($t).jqGrid('groupingCalculations.handler',this.st, this.v, this.nm, this.sr, this.srt, record);
-										if(this.st.toLowerCase() === 'avg' && this.sd) {
-											this.vd = $($t).jqGrid('groupingCalculations.handler',this.st, this.vd, this.sd, this.sr, this.srt, record);
-										}
-									}
-								});
-								grp.groups[grp.counters[i].pos].summary = grp.counters[i].summary;
-							} else {
-								grp.counters[i].cnt += 1;
-								grp.groups[grp.counters[i].pos].cnt = grp.counters[i].cnt;
-								$.each(grp.counters[i].summary,function() {
-									if ($.isFunction(this.st)) {
-										this.v = this.st.call($t, this.v, this.nm, record);
-									} else {
-										this.v = $($t).jqGrid('groupingCalculations.handler',this.st, this.v, this.nm, this.sr, this.srt, record);
-										if(this.st.toLowerCase() === 'avg' && this.sd) {
-											this.vd = $($t).jqGrid('groupingCalculations.handler',this.st, this.vd, this.sd, this.sr, this.srt, record);
-										}
-									}
-								});
-								grp.groups[grp.counters[i].pos].summary = grp.counters[i].summary;
-							}
+						if (grp.visibiltyOnNextGrouping === undefined) {
+							grp.visibiltyOnNextGrouping = [];
 						}
-					}
-				}
-			}
-			//gdata.push( rData );
-		});
-		return this;
-	},
-	groupingToggle : function(hid){
-		this.each(function(){
-			var $t = this,
-			grp = $t.p.groupingView,
-			strpos = hid.split('_'),
-			num = parseInt(strpos[strpos.length-2], 10);
-			strpos.splice(strpos.length-2,2);
-			var uid = strpos.join("_"),
-			minus = grp.minusicon,
-			plus = grp.plusicon,
-			tar = $("#"+$.jgrid.jqID(hid)),
-			r = tar.length ? tar[0].nextSibling : null,
-			tarspan = $("#"+$.jgrid.jqID(hid)+" span."+"tree-wrap-"+$t.p.direction),
-			getGroupingLevelFromClass = function (className) {
-				var nums = $.map(className.split(" "), function (item) {
-					if (item.substring(0, uid.length + 1) === uid + "_") {
-						return parseInt(item.substring(uid.length + 1), 10);
-					}
-				});
-				return nums.length > 0 ? nums[0] : undefined;
-			},
-			itemGroupingLevel,
-			showData,
-			collapsed = false,
-			frz = $t.p.frozenColumns ? $t.p.id+"_frozen" : false,
-			tar2 = frz ? $("#"+$.jgrid.jqID(hid), "#"+$.jgrid.jqID(frz) ) : false,
-			r2 = (tar2 && tar2.length) ? tar2[0].nextSibling : null;
-			if( tarspan.hasClass(minus) ) {
-				if(grp.showSummaryOnHide) {
-					if(r){
-						while(r) {
-							itemGroupingLevel = getGroupingLevelFromClass(r.className);
-							if (itemGroupingLevel !== undefined && itemGroupingLevel <= num) {
-								break;
-							}
-							$(r).hide();
-							r = r.nextSibling;
-							if(frz) {
-								$(r2).hide();
-								r2 = r2.nextSibling;
-							}
-						}
-					}
-				} else  {
-					if(r){
-						while(r) {
-							itemGroupingLevel = getGroupingLevelFromClass(r.className);
-							if (itemGroupingLevel !== undefined && itemGroupingLevel <= num) {
-								break;
-							}
-							$(r).hide();
-							r = r.nextSibling;
-							if(frz) {
-								$(r2).hide();
-								r2 = r2.nextSibling;
-							}
-						}
-					}
-				}
-				tarspan.removeClass(minus).addClass(plus);
-				collapsed = true;
-			} else {
-				if(r){
-					showData = undefined;
-					while(r) {
-						itemGroupingLevel = getGroupingLevelFromClass(r.className);
-						if (showData === undefined) {
-							showData = itemGroupingLevel === undefined; // if the first row after the opening group is data row then show the data rows
-						}
-						if (itemGroupingLevel !== undefined) {
-							if (itemGroupingLevel <= num) {
-								break;// next item of the same lever are found
-							}
-							if (itemGroupingLevel === num + 1) {
-								$(r).show().find(">td>span."+"tree-wrap-"+$t.p.direction).removeClass(minus).addClass(plus);
-								if(frz) {
-									$(r2).show().find(">td>span."+"tree-wrap-"+$t.p.direction).removeClass(minus).addClass(plus);
-								}
-							}
-						} else if (showData) {
-							$(r).show();
-							if(frz) {
-								$(r2).show();
-							}
-						}
-						r = r.nextSibling;
-						if(frz) {
-							r2 = r2.nextSibling;
-						}
-					}
-				}
-				tarspan.removeClass(plus).addClass(minus);
-			}
-			$($t).triggerHandler("jqGridGroupingClickGroup", [hid , collapsed]);
-			if( $.isFunction($t.p.onClickGroup)) { $t.p.onClickGroup.call($t, hid , collapsed); }
 
-		});
-		return false;
-	},
-	groupingRender : function (grdata, colspans, page, rn ) {
-		return this.each(function(){
-			var $t = this,
-			grp = $t.p.groupingView,
-			str = "", icon = "", hid, clid, pmrtl = grp.groupCollapse ? grp.plusicon : grp.minusicon, gv, cp=[], len =grp.groupField.length;
-			pmrtl += " tree-wrap-"+$t.p.direction; 
-			$.each($t.p.colModel, function (i,n){
-				var ii;
-				for(ii=0;ii<len;ii++) {
-					if(grp.groupField[ii] === n.name ) {
-						cp[ii] = i;
+						grp.lastvalues = [];
+						if (!grp._locgr) {
+							grp.groups = [];
+						}
+						grp.counters = [];
+						for (i = 0; i < grp.groupField.length; i++) {
+							if (!grp.groupOrder[i]) {
+								grp.groupOrder[i] = "asc";
+							}
+							if (!grp.groupText[i]) {
+								grp.groupText[i] = "{0}";
+							}
+							if (typeof grp.groupColumnShow[i] !== "boolean") {
+								grp.groupColumnShow[i] = true;
+							}
+							if (typeof grp.groupSummary[i] !== "boolean") {
+								grp.groupSummary[i] = false;
+							}
+							if (!grp.groupSummaryPos[i]) {
+								grp.groupSummaryPos[i] = "footer";
+							}
+							// TODO: allow groupField be from additionalProperties
+							// and not only from colModel
+							cm = colModel[p.iColByName[grp.groupField[i]]];
+							if (grp.groupColumnShow[i] === true) {
+								grp.visibiltyOnNextGrouping[i] = true;
+								if (cm != null && cm.hidden === true) {
+									base.showCol.call($($t), grp.groupField[i]);
+								}
+							} else {
+								grp.visibiltyOnNextGrouping[i] = $("#" + jgrid.jqID(p.id + "_" + grp.groupField[i])).is(":visible");
+								if (cm != null && cm.hidden !== true) {
+									base.hideCol.call($($t), grp.groupField[i]);
+								}
+							}
+						}
+						grp.summary = [];
+						if (grp.hideFirstGroupCol) {
+							grp.formatDisplayField[0] = function (v) {
+								return v;
+							};
+						}
+						for (j = 0, cml = colModel.length; j < cml; j++) {
+							cm = colModel[j];
+							if (grp.hideFirstGroupCol) {
+								if (!cm.hidden && grp.groupField[0] === cm.name) {
+									cm.formatter = emptyFormatter;
+								}
+							}
+							if (cm.summaryType) {
+								summary = {
+									nm: cm.name,
+									st: cm.summaryType,
+									v: "",
+									sr: cm.summaryRound,
+									srt: cm.summaryRoundType || "round"
+								};
+								if (cm.summaryDivider) {
+									summary.sd = cm.summaryDivider;
+									summary.vd = "";
+								}
+								grp.summary.push(summary);
+							}
+						}
+					}
+				} else {
+					p.grouping = false;
+				}
+			});
+		},
+		groupingPrepare: function (record, irow) {
+			this.each(function () {
+				var $t = this, p = $t.p, grp = p.groupingView, groups = grp.groups, counters = grp.counters,
+					lastvalues = grp.lastvalues, isInTheSameGroup = grp.isInTheSameGroup, groupLength = grp.groupField.length,
+					i, j, keys, newGroup, counter, fieldName, v, displayName, displayValue, changed = false,
+					groupingCalculationsHandler = base.groupingCalculations.handler, key,
+					buildSummary = function () {
+						var iSummary, summary, st;
+						for (iSummary = 0; iSummary < counter.summary.length; iSummary++) {
+							summary = counter.summary[iSummary];
+							st = $.isArray(summary.st) ? summary.st[newGroup.idx] : summary.st;
+							if ($.isFunction(st)) {
+								summary.v = st.call($t, summary.v, summary.nm, record, newGroup);
+							} else {
+								summary.v = groupingCalculationsHandler.call($($t), st, summary.v, summary.nm, summary.sr, summary.srt, record);
+								if (st.toLowerCase() === "avg" && summary.sd) {
+									summary.vd = groupingCalculationsHandler.call($($t), st, summary.vd, summary.sd, summary.sr, summary.srt, record);
+								}
+							}
+						}
+						return counter.summary;
+					},
+					normilizeValue = function (value, cmOrPropName) {
+						if (value == null && grp.useDefaultValuesOnGrouping) {
+							var cm = p.iColByName[cmOrPropName] !== undefined ?
+									p.colModel[p.iColByName[cmOrPropName]] :
+									p.additionalProperties[p.iPropByName[cmOrPropName]],
+									defaultValue;
+
+							if (cm != null && cm.formatter != null) {
+								if (cm.formatoptions != null && cm.formatoptions.defaultValue !== undefined) {
+									value = cm.formatoptions.defaultValue;
+								} else if (typeof cm.formatter === "string") {
+									defaultValue = $($t).jqGrid("getGridRes", "formatter." + cm.formatter + ".defaultValue");
+									if (defaultValue !== undefined) {
+										value = defaultValue;
+									}
+								}
+							}
+						}
+						return value;
+					};
+
+				for (i = 0; i < groupLength; i++) {
+					fieldName = grp.groupField[i];
+					v = normilizeValue(record[fieldName], fieldName);
+					key = v;
+					displayName = grp.displayField[i];
+					displayValue = displayName == null ?
+						null :
+						normilizeValue(record[displayName], displayName);
+
+					if (displayValue == null) {
+						displayValue = v;
+					}
+					if (v !== undefined) {
+						keys = [];
+						for (j = 0; j <= i; j++) {
+							keys.push(record[grp.groupField[j]]);
+						}
+						newGroup = {
+							idx: i, // index in grp.groupField array
+							dataIndex: fieldName,
+							value: v,
+							displayValue: displayValue,
+							startRow: irow,
+							cnt: 1,
+							keys: keys,
+							summary: []
+						};
+						counter = {
+							cnt: 1,
+							pos: groups.length,
+							summary: $.extend(true, [], grp.summary)
+						};
+						if (irow === 0) {
+							// First record always starts a new group
+							groups.push(newGroup);
+							lastvalues[i] = v;
+							counters[i] = counter;
+						} else {
+							if (typeof v !== "object" && ($.isArray(isInTheSameGroup) && $.isFunction(isInTheSameGroup[i]) ? !isInTheSameGroup[i].call($t, lastvalues[i], v, i, grp) : lastvalues[i] !== v)) {
+								// This record is not in same group as previous one
+								groups.push(newGroup);
+								lastvalues[i] = v;
+								changed = true;
+								counters[i] = counter;
+							} else {
+								if (changed) {
+									// This group has changed because an earlier group changed.
+									groups.push(newGroup);
+									lastvalues[i] = v;
+									counters[i] = counter;
+								} else {
+									counter = counters[i];
+									counter.cnt += 1;
+									groups[counter.pos].cnt = counter.cnt;
+								}
+							}
+						}
+						groups[counter.pos].summary = buildSummary();
+						for (j = counter.pos - 1; j >= 0; j--) {
+							// find the parent group (the grouping header)
+							if (groups[j].idx < groups[counter.pos].idx) {
+								groups[counter.pos].parentGroupIndex = j;
+								groups[counter.pos].parentGroup = groups[j];
+								break;
+							}
+						}
+					}
+				}
+				//gdata.push( rData );
+			});
+			return this;
+		},
+		getGroupHeaderIndex: function (hid, clickedElem) {
+			var $self = this, self = $self[0], p = self.p,
+				$tr = clickedElem ?
+						$(clickedElem).closest("tr.jqgroup") :
+						$("#" + jgrid.jqID(hid)),
+				groupLevel = parseInt($tr.data("jqgrouplevel"), 10),
+				hPrefix = p.id + "ghead_" + groupLevel + "_";
+			if (isNaN(groupLevel) || !$tr.hasClass("jqgroup") || hid.length <= hPrefix.length) {
+				return -1;
+			}
+			return parseInt(hid.substring(hPrefix.length), 10);
+		},
+		groupingToggle: function (hid, clickedElem) {
+			this.each(function () {
+				var $t = this, p = $t.p, grp = p.groupingView,
+					minusClasses = grp.minusicon, plusClasses = grp.plusicon,
+					$tr = clickedElem ?
+							$(clickedElem).closest("tr.jqgroup") :
+							$("#" + jgrid.jqID(hid)),
+					getGroupHeaderIcon = function ($trElem) {
+						return $trElem.find(">td>span." + "tree-wrap");
+					},
+					itemGroupingLevel, iRowStart, showDataRowsOnExpending = true,
+					$groupIcon, collapsed = false, rowsToHideOrShow = [],
+					addToHideOrShow = function ($elem) {
+						var i, l = $elem.length;
+						for (i = 0; i < l; i++) {
+							rowsToHideOrShow.push($elem[i]);
+						}
+					},
+					num = parseInt($tr.data("jqgrouplevel"), 10);
+
+				if (p.frozenColumns && $tr.length > 0) {
+					// always get row from non-frozen column
+					iRowStart = $tr[0].rowIndex;
+					$tr = $($t.rows[iRowStart]);
+					$tr = $tr.add($t.grid.fbRows[iRowStart]);
+				}
+				$groupIcon = getGroupHeaderIcon($tr);
+
+				if (jgrid.hasAllClasses($groupIcon, minusClasses)) {
+					$groupIcon.removeClass(minusClasses).addClass(plusClasses);
+					collapsed = true;
+				} else {
+					$groupIcon.removeClass(plusClasses).addClass(minusClasses);
+				}
+				for ($tr = $tr.next(); $tr.length; $tr = $tr.next()) {
+					if ($tr.hasClass("jqfoot")) {
+						itemGroupingLevel = parseInt($tr.data("jqfootlevel"), 10);
+						if (collapsed) {
+							// hide all till the summary row of the same level.
+							// don't hide the summary row if grp.showSummaryOnHide === true
+							itemGroupingLevel = parseInt($tr.data("jqfootlevel"), 10);
+							if ((!grp.showSummaryOnHide && itemGroupingLevel === num) || itemGroupingLevel > num) {
+								addToHideOrShow($tr);
+							}
+							// stop hiding of rows if the footer of parent group are found
+							if (itemGroupingLevel < num) { break; }
+						} else {
+							if (itemGroupingLevel === num || (grp.showSummaryOnHide && itemGroupingLevel === num + 1)) {
+								addToHideOrShow($tr);
+							}
+							if (itemGroupingLevel <= num) { break; }
+						}
+					} else if ($tr.hasClass("jqgroup")) {
+						itemGroupingLevel = parseInt($tr.data("jqgrouplevel"), 10);
+						if (collapsed) {
+							// stop hiding of rows if the grouping header of the next group
+							// of the same (or higher) level are found
+							if (itemGroupingLevel <= num) { break; }
+
+							addToHideOrShow($tr);
+						} else {
+							// stop next grouping header of the same lever are found
+							if (itemGroupingLevel <= num) { break; }
+							if (itemGroupingLevel === num + 1) {
+								// one should display subgroupes in collaped form
+								getGroupHeaderIcon($tr).removeClass(minusClasses).addClass(plusClasses);
+								addToHideOrShow($tr);
+							}
+							// one need hide all data if subgroup is found
+							showDataRowsOnExpending = false;
+						}
+					} else { // data
+						// we set currently no information about the level of data
+						// se we use showDataRowsOnExpending variable which will be
+						// used during expanding of data
+						if (collapsed || showDataRowsOnExpending) {
+							// grouping data need be displayed only
+							// if the last level group with data (no subgroups)
+							// is expanded
+							addToHideOrShow($tr);
+						}
+					}
+				}
+				//$(rowsToHideOrShow)[collapsed ? "hide" : "show"]();
+				$(rowsToHideOrShow).css("display", collapsed ? "none" : "");
+				// fix position of elements of frozen divs
+				if (p.frozenColumns) {
+					$($t).triggerHandler("jqGridResetFrozenHeights", [{
+						header: {
+							resizeDiv: false,
+							resizedRows: {
+								iRowStart: -1, // -1 means don't recalculate heights or rows
+								iRowEnd: -1
+							}
+						},
+						resizeFooter: false,
+						body: {
+							resizeDiv: true,
+							resizedRows: {
+								iRowStart: iRowStart,
+								iRowEnd: ($tr.length ? $tr[0].rowIndex - 1 : -1)
+							}
+						}
+					}]);
+				}
+
+				// recalculate the width because vertical scrollbar can
+				// appears/disappears after expanding/collapsing
+				$t.fixScrollOffsetAndhBoxPadding();
+				$($t).triggerHandler("jqGridGroupingClickGroup", [hid, collapsed]);
+				if ($.isFunction(p.onClickGroup)) {
+					p.onClickGroup.call($t, hid, collapsed);
+				}
+			});
+			return false;
+		},
+		groupingRender: function (grdata, rn) {
+			// input parameter grdata is array of strings, which are either opening <tr> element
+			// or full HTML fragment (outer HTML) of <td> element, inclusive the closing tag </td>
+			// or it contains the closing </tr> tag. The array grdata contains HTML fragments
+			// of all rows from the current group.
+			// The exact contain of the grdata is the following:
+			//    "<tr ...>" - the opening tag of the first row of the group
+			//        "<td>...</td>" - the irst cell of the first row
+			//        "<td>...</td>" - the second cell of the first row
+			//            ...
+			//        "<td>...</td>" - the last cell of the first row
+			//    "</tr>" - closing tag of the first row of the group
+			//    "<tr ...>" - the opening tag of the second row of the group
+			//        ... - all <td> elements of the second row
+			//    "</tr>" - closing tag of the second row of the group
+			//    ...
+			//    "<tr ...>" - the opening tag of the last row of the group
+			//        ... - all <td> elements of the last row
+			//    "</tr>" - closing tag of the last row of the group
+			// The input parameter rn corresponds to p.rowNum in the most cases.
+			var str = "", $t = this[0], p = $t.p, toEnd = 0, cp = [],
+				grp = p.groupingView, sumreverse = $.makeArray(grp.groupSummary),
+				groupLength = grp.groupField.length, groups = grp.groups, colModel = p.colModel,
+				cmLength = colModel.length, page = p.page,
+				eventNames = "jqGridShowHideCol.groupingRender",
+				getGridRowStyles = function (classes) {
+					return base.getGuiStyles.call($t, "gridRow", classes);
+				},
+				jqgroupClass = getGridRowStyles("jqgroup ui-row-" + p.direction),
+				jqfootClass = getGridRowStyles("jqfoot ui-row-" + p.direction);
+
+			function buildSummaryTd(iEndGroup, offset, g, foffset, iconHtml) {
+				var fdata = groups[iEndGroup], i, groupCount, strTd = "", tmpdata, colSpan, align, vv,
+					madeHidden, nMakeHidden = 0, iSummary, summary, cm, iCol, summaryType, summaryTpl,
+					isColumnForIconNotFound = true;
+
+				if (offset !== 0 && groups[iEndGroup].idx !== 0) {
+					for (i = iEndGroup; i >= 0; i--) {
+						if (groups[i].idx === groups[iEndGroup].idx - offset) {
+							fdata = groups[i];
+							break;
+						}
+					}
+				}
+				groupCount = fdata.cnt;
+
+				for (iCol = (iconHtml === undefined ? foffset : 0); iCol < cmLength; iCol++) {
+					tmpdata = "&#160;";
+					cm = colModel[iCol];
+					for (iSummary = 0; iSummary < fdata.summary.length; iSummary++) {
+						summary = fdata.summary[iSummary];
+						summaryType = $.isArray(summary.st) ? summary.st[g.idx] : summary.st;
+						summaryTpl = $.isArray(cm.summaryTpl) ? cm.summaryTpl[g.idx] : (cm.summaryTpl || "{0}");
+						if (summary.nm === cm.name) {
+							if (typeof summaryType === "string" && summaryType.toLowerCase() === "avg") {
+								if (summary.sd && summary.vd) {
+									summary.v = (summary.v / summary.vd);
+								} else if (summary.v && groupCount > 0) {
+									summary.v = (summary.v / groupCount);
+								}
+							}
+							try {
+								summary.groupCount = fdata.cnt;
+								summary.groupIndex = fdata.dataIndex;
+								summary.groupValue = fdata.value;
+								vv = $t.formatter("", summary.v, iCol, summary);
+							} catch (ef) {
+								vv = summary.v;
+							}
+							tmpdata = jgrid.format(summaryTpl, vv);
+							if (cm.summaryFormat) {
+								tmpdata = cm.summaryFormat.call($t, g, tmpdata, vv, cm, summary);
+							}
+							break;
+						}
+					}
+					colSpan = false;
+					align = false;
+					if (iconHtml !== undefined && isColumnForIconNotFound) {
+						if (!cm.hidden) {
+							// the icon need be placed in the first non-hidden column
+							tmpdata = iconHtml;
+							isColumnForIconNotFound = false;
+							if (foffset > 1) {
+								colSpan = true;
+								// if foffset > 1 then the next foffset-1 non-hidden columns
+								// must be displayed hidden.
+								nMakeHidden = foffset - 1;
+							}
+							// the icon in the column header must be left aligned
+							align = cm.align; // save the original align value
+							cm.align = p.direction === "rtl" ? "right" : "left";
+							grp.iconColumnName = cm.name;
+						}
+					}
+					madeHidden = false;
+					if (nMakeHidden > 0 && !cm.hidden && tmpdata === "&#160;") {
+						madeHidden = true;
+						if (align) {
+							cm.align = align; // restore the original align value
+						}
+						nMakeHidden--;
+						continue;
+					}
+					strTd += "<td role='gridcell' " + $t.formatCol(iCol, 1, "") +
+							(colSpan ? "colspan='" + foffset + "'" : "") + ">" + tmpdata + "</td>";
+					colSpan = false;
+					if (align) {
+						cm.align = align; // restore the original align value
+					}
+					if (madeHidden) {
+						cm.hidden = false;
+						nMakeHidden--;
+					}
+				}
+				return strTd;
+			}
+
+			// TODO: allow groupField be from additionalProperties
+			// and not only from colModel
+			$.each(colModel, function (i, n) {
+				var iGroup;
+				for (iGroup = 0; iGroup < groupLength; iGroup++) {
+					if (grp.groupField[iGroup] === n.name) {
+						cp[iGroup] = i;
 						break;
 					}
 				}
 			});
-			var toEnd = 0;
-			function findGroupIdx( ind , offset, grp) {
-				var ret = false, i;
-				if(offset===0) {
-					ret = grp[ind];
-				} else {
-					var id = grp[ind].idx;
-					if(id===0) { 
-						ret = grp[ind]; 
-					}  else {
-						for(i=ind;i >= 0; i--) {
-							if(grp[i].idx === id-offset) {
-								ret = grp[i];
-								break;
-							}
-						}
-					}
-				}
-				return ret;
-			}
-			function buildSummaryTd(i, ik, grp, foffset) {
-				var fdata = findGroupIdx(i, ik, grp),
-				cm = $t.p.colModel,
-				vv, grlen = fdata.cnt, str="", k;
-				for(k=foffset; k<colspans;k++) {
-					var tmpdata = "<td "+$t.formatCol(k,1,'')+">&#160;</td>",
-					tplfld = "{0}";
-					$.each(fdata.summary,function(){
-						if(this.nm === cm[k].name) {
-							if(cm[k].summaryTpl)  {
-								tplfld = cm[k].summaryTpl;
-							}
-							if(typeof this.st === 'string' && this.st.toLowerCase() === 'avg') {
-								if(this.sd && this.vd) { 
-									this.v = (this.v/this.vd);
-								} else if(this.v && grlen > 0) {
-									this.v = (this.v/grlen);
-								}
-							}
-							try {
-								this.groupCount = fdata.cnt;
-								this.groupIndex = fdata.dataIndex;
-								this.groupValue = fdata.value;
-								vv = $t.formatter('', this.v, k, this);
-							} catch (ef) {
-								vv = this.v;
-							}
-							tmpdata= "<td "+$t.formatCol(k,1,'')+">"+$.jgrid.format(tplfld,vv)+ "</td>";
-							return false;
-						}
-					});
-					str += tmpdata;
-				}
-				return str;
-			}
-			var sumreverse = $.makeArray(grp.groupSummary), mul;
+
 			sumreverse.reverse();
-			mul = $t.p.multiselect ? " colspan=\"2\"" : "";
-			$.each(grp.groups,function(i,n){
-				if(grp._locgr) {
-					if( !(n.startRow +n.cnt > (page-1)*rn && n.startRow < page*rn)) {
+			$.each(groups, function (i, n) {
+				var gv, clid = p.id + "ghead_" + n.idx, hid = clid + "_" + i,
+					groupCollapse = $.isFunction(grp.groupCollapse) ?
+						grp.groupCollapse.call($t, { group: n, rowid: hid }) :
+						grp.groupCollapse,
+					jj, kk, ik, colspan = 1, offset = 0, sgr, gg, end, grpTextStr,
+					leaf = groupLength - 1 === n.idx,
+					parentGroupCollapse = n.parentGroup != null ?
+						n.parentGroup.collapsed :
+						false,
+					icon = "<span style='cursor:pointer;margin-" +
+						(p.direction === "rtl" ? "right:" : "left:") + (n.idx * 12) +
+						"px;' class='" + grp.commonIconClass + " " +
+						(groupCollapse ? grp.plusicon : grp.minusicon) + " tree-wrap'></span>";
+				if (grp._locgr) {
+					if (!(n.startRow + n.cnt > (page - 1) * rn && n.startRow < page * rn)) {
 						return true;
 					}
 				}
+				if (parentGroupCollapse) {
+					groupCollapse = true;
+				}
+				if (groupCollapse !== undefined) {
+					n.collapsed = groupCollapse;
+				}
 				toEnd++;
-				clid = $t.p.id+"ghead_"+n.idx;
-				hid = clid+"_"+i;
-				icon = "<span style='cursor:pointer;' class='ui-icon "+pmrtl+"' onclick=\"jQuery('#"+$.jgrid.jqID($t.p.id)+"').jqGrid('groupingToggle','"+hid+"');return false;\"></span>";
 				try {
 					if ($.isArray(grp.formatDisplayField) && $.isFunction(grp.formatDisplayField[n.idx])) {
-						n.displayValue = grp.formatDisplayField[n.idx].call($t, n.displayValue, n.value, $t.p.colModel[cp[n.idx]], n.idx, grp);
+						n.displayValue = grp.formatDisplayField[n.idx].call($t, n.displayValue, n.value, colModel[cp[n.idx]], n.idx, n, i);
 						gv = n.displayValue;
 					} else {
-						gv = $t.formatter(hid, n.displayValue, cp[n.idx], n.value );
+						gv = $t.formatter(hid, n.displayValue, cp[n.idx], n.value, n);
 					}
 				} catch (egv) {
 					gv = n.displayValue;
 				}
-				if(grp.groupSummaryPos[n.idx] === 'header')  {
-					str += "<tr id=\""+hid+"\"" +(grp.groupCollapse && n.idx>0 ? " style=\"display:none;\" " : " ") + "role=\"row\" class= \"ui-widget-content jqgroup ui-row-"+$t.p.direction+" "+clid+"\"><td style=\"padding-left:"+(n.idx * 12) + "px;"+"\"" + mul +">"+icon+$.jgrid.template(grp.groupText[n.idx], gv, n.cnt, n.summary)+"</td>";
-					str += buildSummaryTd(i, 0, grp.groups, grp.groupColumnShow[n.idx] === false ? (mul ==="" ? 2 : 3) : ((mul ==="") ? 1 : 2) );
-					str += "</tr>";
-				} else {
-					str += "<tr id=\""+hid+"\"" +(grp.groupCollapse && n.idx>0 ? " style=\"display:none;\" " : " ") + "role=\"row\" class= \"ui-widget-content jqgroup ui-row-"+$t.p.direction+" "+clid+"\"><td style=\"padding-left:"+(n.idx * 12) + "px;"+"\" colspan=\""+(grp.groupColumnShow[n.idx] === false ? colspans-1 : colspans)+"\">"+icon+$.jgrid.template(grp.groupText[n.idx], gv, n.cnt, n.summary)+"</td></tr>";
+				str += "<tr id='" + hid + "' data-jqgrouplevel='" + n.idx + "' " +
+					(groupCollapse && parentGroupCollapse ? "style='display:none;' " : "") +
+					"role='row' class='" + jqgroupClass + " " + clid + "'>";
+				grpTextStr = $.isFunction(grp.groupText[n.idx]) ?
+					grp.groupText[n.idx].call($t, gv, n.cnt, n.summary) :
+					jgrid.template(grp.groupText[n.idx], gv, n.cnt, n.summary);
+				if (typeof grpTextStr !== "string" && typeof grpTextStr !== "number") {
+					grpTextStr = gv;
 				}
-				var leaf = len-1 === n.idx; 
-				if( leaf ) {
-					var gg = grp.groups[i+1], kk, ik, offset = 0, sgr = n.startRow,
-					end = gg !== undefined ?  gg.startRow : grp.groups[i].startRow + grp.groups[i].cnt;
-					if(grp._locgr) {
-						offset = (page-1)*rn;
-						if(offset > n.startRow) {
+				if (grp.groupSummaryPos[n.idx] === "header") {
+					colspan = 1;
+					if (colModel[0].name === "cb" || colModel[1].name === "cb") {
+						colspan++;
+					}
+					if (colModel[0].name === "subgrid" || colModel[1].name === "subgrid") {
+						colspan++;
+					}
+					str += buildSummaryTd(i, 0, n, colspan, icon + "<span class='cell-wrapper'>" + grpTextStr + "</span>");
+				} else {
+					str += "<td role='gridcell' style='padding-left:" + (n.idx * 12) + "px;'" +
+							" colspan='" + cmLength + "'>" + icon + grpTextStr + "</td>";
+				}
+				str += "</tr>";
+				if (leaf) {
+					gg = groups[i + 1];
+					sgr = n.startRow;
+					end = gg !== undefined ? gg.startRow : groups[i].startRow + groups[i].cnt;
+					if (grp._locgr) {
+						offset = (page - 1) * rn;
+						if (offset > n.startRow) {
 							sgr = offset;
 						}
 					}
-					for(kk=sgr;kk<end;kk++) {
-						if(!grdata[kk - offset]) { break; }
-						str += grdata[kk - offset].join('');
+					for (kk = sgr; kk < end; kk++) {
+						if (!grdata[kk - offset]) {
+							break;
+						}
+						str += grdata[kk - offset].join("");
 					}
-					if(grp.groupSummaryPos[n.idx] !== 'header') {
-						var jj;
+					if (grp.groupSummaryPos[n.idx] !== "header") {
 						if (gg !== undefined) {
 							for (jj = 0; jj < grp.groupField.length; jj++) {
 								if (gg.dataIndex === grp.groupField[jj]) {
@@ -407,127 +581,157 @@ $.jgrid.extend({
 							toEnd = grp.groupField.length - jj;
 						}
 						for (ik = 0; ik < toEnd; ik++) {
-							if(!sumreverse[ik]) { continue; }
-							var hhdr = "";
-							if(grp.groupCollapse && !grp.showSummaryOnHide) {
-								hhdr = " style=\"display:none;\"";
+							if (!sumreverse[ik]) {
+								continue;
 							}
-							str += "<tr"+hhdr+" jqfootlevel=\""+(n.idx-ik)+"\" role=\"row\" class=\"ui-widget-content jqfoot ui-row-"+$t.p.direction+"\">";
-							str += buildSummaryTd(i, ik, grp.groups, 0);
+							str += "<tr data-jqfootlevel='" + (n.idx - ik) +
+									(groupCollapse && ((n.idx - ik) > 0 || !grp.showSummaryOnHide) ? "' style='display:none;'" : "'") +
+									" role='row' class='" + jqfootClass + "'>";
+							str += buildSummaryTd(i, ik, groups[n.idx - ik], 0);
 							str += "</tr>";
 						}
 						toEnd = jj;
 					}
 				}
 			});
-			$("#"+$.jgrid.jqID($t.p.id)+" tbody:first").append(str);
-			// free up memory
-			str = null;
-		});
-	},
-	groupingGroupBy : function (name, options ) {
-		return this.each(function(){
-			var $t = this;
-			if(typeof name === "string") {
-				name = [name];
-			}
-			var grp = $t.p.groupingView;
-			$t.p.grouping = true;
-			grp._locgr = false;
-			//Set default, in case visibilityOnNextGrouping is undefined 
-			if (grp.visibiltyOnNextGrouping === undefined) {
-				grp.visibiltyOnNextGrouping = [];
-			}
-			var i;
-			// show previous hidden groups if they are hidden and weren't removed yet
-			for(i=0;i<grp.groupField.length;i++) {
-				if(!grp.groupColumnShow[i] && grp.visibiltyOnNextGrouping[i]) {
-				$($t).jqGrid('showCol',grp.groupField[i]);
+			this.off(eventNames)
+				.on(eventNames, function () { //e, show, cmName, iColShow) {
+					// TODO fix the code after resorting columns
+					var iCol = p.iColByName[grp.iconColumnName], iRow, row, iColNew, i; //$cellData;
+					if ($.inArray("header", grp.groupSummaryPos) >= 0) {
+						for (i = 0; i < colModel.length; i++) {
+							if (!colModel[i].hidden) {
+								iColNew = i;
+								break;
+							}
+						}
+						if (iColNew === undefined || iCol === iColNew) { return; }
+
+						for (iRow = 0; iRow < $t.rows.length; iRow++) {
+							row = $t.rows[iRow];
+							if ($(row).hasClass("jqgroup")) {
+								/*$cellData = $(row.cells[iCol]).children(".cell-wrapper").detach();
+								$.wrapInner(row.cells[iColNew], function () {//"<span class='cell-wrapper'></span>");
+									return "<span class='cell-wrapper'>" + this.nodeValue + "</span>";
+								});
+								row.cells[iColNew]
+								$cellData = $(row.cells[iCol]).children(".cell-wrapper").detach();
+								$(row.cells[iCol]).html($(row.cells[iCol]).children("").html());*/
+								$(row.cells[iColNew]).html(row.cells[iCol].innerHTML);
+								$(row.cells[iCol]).html("&nbsp;");
+							}
+						}
+						grp.iconColumnName = colModel[iColNew].name;
+					}
+				});
+			return str;
+		},
+		groupingGroupBy: function (name, options) {
+			return this.each(function () {
+				var $t = this, p = $t.p, grp = p.groupingView, i, cm;
+				if (typeof name === "string") {
+					name = [name];
 				}
-			}
-			// set visibility status of current group columns on next grouping
-			for(i=0;i<name.length;i++) {
-				grp.visibiltyOnNextGrouping[i] = $("#"+$.jgrid.jqID($t.p.id)+"_"+$.jgrid.jqID(name[i])).is(":visible");
-			}
-			$t.p.groupingView = $.extend($t.p.groupingView, options || {});
-			grp.groupField = name;
-			$($t).trigger("reloadGrid");
-		});
-	},
-	groupingRemove : function (current) {
-		return this.each(function(){
-			var $t = this;
-			if(current === undefined) {
-				current = true;
-			}
-			$t.p.grouping = false;
-			if(current===true) {
-				var grp = $t.p.groupingView, i;
+				p.grouping = true;
+				grp._locgr = false;
+				//Set default, in case visibilityOnNextGrouping is undefined
+				if (grp.visibiltyOnNextGrouping === undefined) {
+					grp.visibiltyOnNextGrouping = [];
+				}
 				// show previous hidden groups if they are hidden and weren't removed yet
-				for(i=0;i<grp.groupField.length;i++) {
-				if (!grp.groupColumnShow[i] && grp.visibiltyOnNextGrouping[i]) {
-						$($t).jqGrid('showCol', grp.groupField);
+				for (i = 0; i < grp.groupField.length; i++) {
+					cm = p.colModel[p.iColByName[grp.groupField[i]]];
+					if (!grp.groupColumnShow[i] && grp.visibiltyOnNextGrouping[i] && cm != null && cm.hidden === true) {
+						base.showCol.call($($t), grp.groupField[i]);
 					}
 				}
-				$("tr.jqgroup, tr.jqfoot","#"+$.jgrid.jqID($t.p.id)+" tbody:first").remove();
-				$("tr.jqgrow:hidden","#"+$.jgrid.jqID($t.p.id)+" tbody:first").show();
-			} else {
+				// set visibility status of current group columns on next grouping
+				for (i = 0; i < name.length; i++) {
+					grp.visibiltyOnNextGrouping[i] = $(p.idSel + "_" + jgrid.jqID(name[i])).is(":visible");
+				}
+				p.groupingView = $.extend(p.groupingView, options || {});
+				grp.groupField = name;
 				$($t).trigger("reloadGrid");
-			}
-		});
-	},
-	groupingCalculations : {
-		handler: function(fn, v, field, round, roundType, rc) {
-			var funcs = {
-				sum: function() {
-					return parseFloat(v||0) + parseFloat((rc[field]||0));
-				},
-
-				min: function() {
-					if(v==="") {
-						return parseFloat(rc[field]||0);
-					}
-					return Math.min(parseFloat(v),parseFloat(rc[field]||0));
-				},
-
-				max: function() {
-					if(v==="") {
-						return parseFloat(rc[field]||0);
-					}
-					return Math.max(parseFloat(v),parseFloat(rc[field]||0));
-				},
-
-				count: function() {
-					if(v==="") {v=0;}
-					if(rc.hasOwnProperty(field)) {
-						return v+1;
-					}
-					return 0;
-				},
-
-				avg: function() {
-					// the same as sum, but at end we divide it
-					// so use sum instead of duplicating the code (?)
-					return funcs.sum();
+			});
+		},
+		groupingRemove: function (current) {
+			return this.each(function () {
+				var $t = this, p = $t.p, tbody = $t.tBodies[0], grp = p.groupingView, i;
+				if (current === undefined) {
+					current = true;
 				}
-			};
-
-			if(!funcs[fn]) {
-				throw ("jqGrid Grouping No such method: " + fn);
-			}
-			var res = funcs[fn]();
-
-			if (round != null) {
-				if (roundType === 'fixed') {
-					res = res.toFixed(round);
+				p.grouping = false;
+				if (current === true) {
+					// show previous hidden groups if they are hidden and weren't removed yet
+					for (i = 0; i < grp.groupField.length; i++) {
+						if (!grp.groupColumnShow[i] && grp.visibiltyOnNextGrouping[i]) {
+							base.showCol.call($($t), grp.groupField);
+						}
+					}
+					$("tr.jqgroup, tr.jqfoot", tbody).remove();
+					$("tr.jqgrow", tbody).filter(":hidden").show();
 				} else {
-					var mul = Math.pow(10, round);
-					res = Math.round(res * mul) / mul;
+					$($t).trigger("reloadGrid");
 				}
-			}
+			});
+		},
+		groupingCalculations: {
+			handler: function (fn, v, field, round, roundType, rc) {
+				var funcs = {
+						sum: function () {
+							return parseFloat(v || 0) + parseFloat((rc[field] || 0));
+						},
 
-			return res;
-		}	
-	}
-});
-})(jQuery);
+						min: function () {
+							if (v === "") {
+								return parseFloat(rc[field] || 0);
+							}
+							return Math.min(parseFloat(v), parseFloat(rc[field] || 0));
+						},
+
+						max: function () {
+							if (v === "") {
+								return parseFloat(rc[field] || 0);
+							}
+							return Math.max(parseFloat(v), parseFloat(rc[field] || 0));
+						},
+
+						count: function () {
+							if (v === "") {
+								v = 0;
+							}
+							if (rc.hasOwnProperty(field)) {
+								return v + 1;
+							}
+							return 0;
+						},
+
+						avg: function () {
+							// the same as sum, but at end we divide it
+							// so use sum instead of duplicating the code (?)
+							return funcs.sum();
+						}
+					},
+					res,
+					mul;
+
+				if (!funcs[fn]) {
+					throw ("jqGrid Grouping No such method: " + fn);
+				}
+				res = funcs[fn]();
+
+				if (round != null) {
+					if (roundType === "fixed") {
+						res = res.toFixed(round);
+					} else {
+						mul = Math.pow(10, round);
+						res = Math.round(res * mul) / mul;
+					}
+				}
+
+				return res;
+			}
+		}
+	});
+	// end module grid.grouping
+}));

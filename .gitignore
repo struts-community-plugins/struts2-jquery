@@ -22,7 +22,16 @@ hs_err_pid*
 /.project
 /.settings/
 # IntelliJ
-/.idea/
+/.idea
+*.iml
+
 
 # jenv
 .java-version
+
+# Plugin Settings
+/struts2-jquery-grid-plugin/src/main/resources/template/i18n/*.min.map
+/struts2-jquery-grid-plugin/src/main/resources/template/i18n/*.min.js
+/struts2-jquery-grid-plugin/src/main/resources/template/base/*.min.js
+/struts2-jquery-grid-plugin/src/main/resources/template/plugins/*.min.js
+/struts2-jquery-grid-plugin/src/main/resources/template/struts2/*.min.js

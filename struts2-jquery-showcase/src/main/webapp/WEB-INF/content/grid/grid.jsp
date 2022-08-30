@@ -18,7 +18,6 @@
 		rowNum="15"
 		rownumbers="true"
 		resizable="true"
-		width="700"
 		shrinkToFit="true"
 >
 	<sjg:gridColumn name="id" index="id" title="ID" width="30" formatter="integer" sortable="false" displayTitle="false"/>

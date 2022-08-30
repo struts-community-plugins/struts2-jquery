@@ -46,7 +46,7 @@
 		onSelectRowTopics="rowselect"
 		onEditInlineSuccessTopics="oneditsuccess"
 		viewrecords="true"
-		width="700"
+		width="800"
 		shrinkToFit="false"
 		>
 	<sjg:gridColumn name="id" frozen="true" index="id" title="ID" width="60" formatter="integer" editable="false"
