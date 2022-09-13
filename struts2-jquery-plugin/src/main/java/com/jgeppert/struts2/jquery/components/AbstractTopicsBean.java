@@ -118,8 +118,10 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
             int nextInt = RANDOM.nextInt();
             nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
             this.id = prefix + String.valueOf(nextInt);
+            addParameter(PARAM_ID, this.id);
+        } else {
+            addParameter(PARAM_ID, findString(this.id));
         }
-        addParameter(PARAM_ID, this.id);
     }
 
     @StrutsTagAttribute(description = "Topics that are published before a load")
