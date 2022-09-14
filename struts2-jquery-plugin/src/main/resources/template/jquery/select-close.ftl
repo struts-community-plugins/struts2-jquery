@@ -19,13 +19,13 @@
  */
 -->
 
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
 	options_${escapedOptionId}.datatype = "json";
 	options_${escapedOptionId}.type = 'select';
-<#if parameters.emptyOption?default(false)>
+<#if parameters.emptyOption!false>
 	options_${escapedOptionId}.emptyoption = true;
 </#if>
 <#if parameters.headerKey?? && parameters.headerValue??>
@@ -47,22 +47,22 @@ jQuery(document).ready(function () {
 <#if parameters.nameValue??>
 	options_${escapedOptionId}.value = "<@s.property value="parameters.nameValue"/>";
 </#if>
-<#if parameters.bindOn?if_exists != "">
+<#if parameters.bindOn! != "">
 	options_${escapedOptionId}.bindon = "${parameters.bindOn}";
 </#if>
-<#if parameters.events?if_exists != "">
+<#if parameters.events! != "">
 	options_${escapedOptionId}.events = "${parameters.events}";
 </#if>
-<#if parameters.autocomplete?default(false)>
+<#if parameters.autocomplete!false>
 	options_${escapedOptionId}.autocomplete = true;
 </#if>
-<#if parameters.selectBoxIcon?default(false) >
+<#if parameters.selectBoxIcon!false >
 	options_${escapedOptionId}.icon = true;
 </#if>
 <#if parameters.loadMinimumCount??>
 	options_${escapedOptionId}.minimum = ${parameters.loadMinimumCount};
 </#if>
-<#if parameters.onSelectTopics?if_exists != "">
+<#if parameters.onSelectTopics! != "">
 	options_${escapedOptionId}.onselecttopics = "${parameters.onSelectTopics}";
 </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />

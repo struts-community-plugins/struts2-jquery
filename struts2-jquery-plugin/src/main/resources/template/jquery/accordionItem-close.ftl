@@ -19,12 +19,12 @@
  */
 -->
 	</div>
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
-	options_${escapedOptionId}.header = "${parameters.header?default('h3')}";
-<#if parameters.onClickTopics?exists>
+	options_${escapedOptionId}.header = "${parameters.header!'h3'}";
+<#if parameters.onClickTopics??>
 	options_${escapedOptionId}.onclick = "${parameters.onClickTopics}";
   </#if>
 <#include "/${parameters.templateDir}/jquery/base.ftl" />
@@ -32,5 +32,5 @@ jQuery(document).ready(function () {
 <#include "/${parameters.templateDir}/jquery/topics.ftl" />
 
 <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
- });  
+ });
 </script>

@@ -19,6 +19,6 @@
  */
 -->
 <#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 jQuery.struts2_jquery.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
 

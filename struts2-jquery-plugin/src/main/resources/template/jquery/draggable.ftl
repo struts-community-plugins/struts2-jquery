@@ -18,19 +18,19 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-  <#if parameters.draggable?default(false)> 
+<#assign escapedOptionId="${parameters.escapedId}">
+  <#if parameters.draggable!false>
 	options_${escapedOptionId}.draggable = true;<#rt/>
   </#if>
-  <#if parameters.draggableOptions?if_exists != ""> 
+  <#if parameters.draggableOptions! != "">
 	options_${escapedOptionId}.draggableoptions = "<#outputformat "JavaScript">${parameters.draggableOptions}</#outputformat>";<#rt/>
   </#if>
-  <#if parameters.draggableOnStartTopics?if_exists != "">
+  <#if parameters.draggableOnStartTopics! != "">
  	options_${escapedOptionId}.draggableonstarttopics = "${parameters.draggableOnStartTopics}";<#rt/>
    </#if>
-  <#if parameters.draggableOnStopTopics?if_exists != "">
+  <#if parameters.draggableOnStopTopics! != "">
 	options_${escapedOptionId}.draggableonstoptopics = "${parameters.draggableOnStopTopics}";<#rt/>
    </#if>
-  <#if parameters.draggableOnDragTopics?if_exists != "">
+  <#if parameters.draggableOnDragTopics! != "">
 	options_${escapedOptionId}.draggableondragtopics = "${parameters.draggableOnDragTopics}";<#rt/>
    </#if>

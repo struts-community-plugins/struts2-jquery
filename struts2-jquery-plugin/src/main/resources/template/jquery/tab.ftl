@@ -18,36 +18,36 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_tab_${escapedOptionId} = {};
-  <#if parameters.id?if_exists != "">
+  <#if parameters.id! != "">
 	options_tab_${escapedOptionId}.id = "${parameters.id}";
   </#if>
-  <#if parameters.cssStyle?if_exists != "">
+  <#if parameters.cssStyle! != "">
 	options_tab_${escapedOptionId}.cssstyle = "${parameters.cssStyle}";
   </#if>
-  <#if parameters.cssClass?if_exists != "">
+  <#if parameters.cssClass! != "">
 	options_tab_${escapedOptionId}.cssclass = "${parameters.cssClass}";
   </#if>
-  <#if parameters.formIds?if_exists != "">
+  <#if parameters.formIds! != "">
 	options_tab_${escapedOptionId}.formIds = "${parameters.formIds}";
   </#if>
-  <#if parameters.href?if_exists != "">
+  <#if parameters.href! != "">
 	options_tab_${escapedOptionId}.href = "${parameters.href}";
-  <#elseif parameters.target?if_exists != "" >
+  <#elseif parameters.target! != "" >
 	options_tab_${escapedOptionId}.href = "#${parameters.target}";
   <#else>
 	options_tab_${escapedOptionId}.href = "#";
   </#if>
-  <#if parameters.label?if_exists != "">
+  <#if parameters.label! != "">
 	options_tab_${escapedOptionId}.label = "${parameters.label}";
   </#if>
-  <#if parameters.closable?exists>
+  <#if parameters.closable??>
 	options_tab_${escapedOptionId}.closable = ${parameters.closable?string};
   </#if>
-  <#if parameters.parentTabbedPanel?if_exists != "">
+  <#if parameters.parentTabbedPanel! != "">
   	<#assign escapedParentOptionId="${parameters.parentTabbedPanel?string?replace('.', '_')}">
   	var tabs = jQuery('#${parameters.parentTabbedPanel?string?replace('.', '\\\\\\\\.')}').data('taboptions');
   	if(!tabs) {
@@ -56,5 +56,5 @@ jQuery(document).ready(function () {
   	tabs.push(options_tab_${escapedOptionId});
   	jQuery('#${parameters.parentTabbedPanel?string?replace('.', '\\\\\\\\.')}').data('taboptions', tabs);
   </#if>
- });  
+ });
 </script>

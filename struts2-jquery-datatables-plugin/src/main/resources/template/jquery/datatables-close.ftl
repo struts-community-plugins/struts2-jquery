@@ -18,323 +18,323 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 </table>
 <script type='text/javascript'>
 jQuery(document).ready(function () {
-    var options_${escapedOptionId} = {};   
-    options_${escapedOptionId}.theme="${parameters.datatablesTheme?default('default')}";
+    var options_${escapedOptionId} = {};
+    options_${escapedOptionId}.theme="${parameters.datatablesTheme!'default'}";
     <#include "/${parameters.templateDir}/jquery/topics.ftl" />
     <#include "/${parameters.templateDir}/jquery/base.ftl" />
-    <#if parameters.autoWidth?default(true) == false>
+    <#if parameters.autoWidth!true == false>
     options_${escapedOptionId}.autoWidth = false
     </#if>
-    <#if parameters.deferRender?default(false) == true>
+    <#if parameters.deferRender!false == true>
     options_${escapedOptionId}.deferRender = true;
     </#if>
-    <#if parameters.info?default(true) == false>
+    <#if parameters.info!true == false>
     options_${escapedOptionId}.info = false;
     </#if>
-    <#if parameters.lengthChange?default(true) == false>
+    <#if parameters.lengthChange!true == false>
     options_${escapedOptionId}.lengthChange = false;
     </#if>
-    <#if parameters.ordering?default(true) == false>
+    <#if parameters.ordering!true == false>
     options_${escapedOptionId}.ordering = false;
     </#if>
-    <#if parameters.paging?default(true) == false>
+    <#if parameters.paging!true == false>
     options_${escapedOptionId}.paging = false;
     </#if>
-    <#if parameters.processing?default(false) == true>
+    <#if parameters.processing!false == true>
     options_${escapedOptionId}.processing = true;
     </#if>
-    <#if parameters.scrollX?default(false) == true>
+    <#if parameters.scrollX!false == true>
     options_${escapedOptionId}.scrollX = true;
     </#if>
-    <#if parameters.scrollY?default(false) == true>
+    <#if parameters.scrollY!false == true>
     options_${escapedOptionId}.scrollY = true;
     </#if>
-    <#if parameters.searching?default(true) == false>
+    <#if parameters.searching!true == false>
     options_${escapedOptionId}.searching = false;
     </#if>
-    <#if parameters.serverSide?default(false) == true>
+    <#if parameters.serverSide!false == true>
     options_${escapedOptionId}.serverSide = true;
     </#if>
-    <#if parameters.stateSave?default(false) == true>
+    <#if parameters.stateSave!false == true>
     options_${escapedOptionId}.stateSave = true;
     </#if>
-    <#if parameters.data?if_exists != "">
-    options_${escapedOptionId}.data = <#outputformat "JavaScript">${parameters.data?default('[]')}</#outputformat>;
+    <#if parameters.data! != "">
+    options_${escapedOptionId}.data = <#outputformat "JavaScript">${parameters.data!'[]'}</#outputformat>;
     </#if>
-    <#if parameters.ajax?if_exists != "">
-    options_${escapedOptionId}.ajax = <#outputformat "JavaScript">${parameters.ajax?default('{}')}</#outputformat>;
+    <#if parameters.ajax! != "">
+    options_${escapedOptionId}.ajax = <#outputformat "JavaScript">${parameters.ajax!'{}'}</#outputformat>;
     </#if>
-    <#if parameters.columns?if_exists != "">
-    options_${escapedOptionId}.columns = <#outputformat "JavaScript">${parameters.columns?default('[]')}</#outputformat>;
+    <#if parameters.columns! != "">
+    options_${escapedOptionId}.columns = <#outputformat "JavaScript">${parameters.columns!'[]'}</#outputformat>;
     </#if>
-    <#if parameters.columnDefs?if_exists != "">
-    options_${escapedOptionId}.columnDefs = <#outputformat "JavaScript">${parameters.columnDefs?default('[]')}</#outputformat>;
+    <#if parameters.columnDefs! != "">
+    options_${escapedOptionId}.columnDefs = <#outputformat "JavaScript">${parameters.columnDefs!'[]'}</#outputformat>;
     </#if>
     <#if parameters.deferLoading?? >
-    options_${escapedOptionId}.deferLoading = ${parameters.deferLoading?default(0)};
+    options_${escapedOptionId}.deferLoading = ${parameters.deferLoading!0};
     </#if>
     <#if parameters.displayStart??>
-    options_${escapedOptionId}.displayStart = ${parameters.displayStart?default(0)};
+    options_${escapedOptionId}.displayStart = ${parameters.displayStart!0};
     </#if>
-    <#if parameters.dom?if_exists != "">
-    options_${escapedOptionId}.dom = "${parameters.dom?default('')}";
+    <#if parameters.dom! != "">
+    options_${escapedOptionId}.dom = "${parameters.dom!''}";
     </#if>
-    <#if parameters.lengthMenu?if_exists != "">
-    options_${escapedOptionId}.lengthMenu = <#outputformat "JavaScript">${parameters.lengthMenu?default('[10,25,50,100]')}</#outputformat>;
+    <#if parameters.lengthMenu! != "">
+    options_${escapedOptionId}.lengthMenu = <#outputformat "JavaScript">${parameters.lengthMenu!'[10,25,50,100]'}</#outputformat>;
     </#if>
     <#if parameters.pageLength?? >
-    options_${escapedOptionId}.pageLength = <#outputformat "JavaScript">${parameters.pageLength?default(10)}</#outputformat>;
+    options_${escapedOptionId}.pageLength = <#outputformat "JavaScript">${parameters.pageLength!10}</#outputformat>;
     </#if>
-    <#if parameters.pagingType?if_exists != "">
-    options_${escapedOptionId}.pagingType = "<#outputformat "JavaScript">${parameters.pagingType?default('full_numbers')}</#outputformat>";
+    <#if parameters.pagingType! != "">
+    options_${escapedOptionId}.pagingType = "<#outputformat "JavaScript">${parameters.pagingType!'full_numbers'}</#outputformat>";
     </#if>
-    <#if parameters.order?if_exists != "">
-    options_${escapedOptionId}.order = <#outputformat "JavaScript">${parameters.order?default('[[0,'asc']]')}</#outputformat>;
+    <#if parameters.order! != "">
+    options_${escapedOptionId}.order = <#outputformat "JavaScript">${parameters.order!"[[0,'asc']]"}</#outputformat>;
     </#if>
     <#if parameters.orderCellsTop?? >
-    options_${escapedOptionId}.orderCellsTop = <#outputformat "JavaScript">${parameters.orderCellsTop?default('false')}</#outputformat>;
+    options_${escapedOptionId}.orderCellsTop = <#outputformat "JavaScript">${parameters.orderCellsTop!'false'}</#outputformat>;
     </#if>
     <#if parameters.orderClasses?? >
-    options_${escapedOptionId}.orderClasses = <#outputformat "JavaScript">${parameters.orderClasses?default('true')}</#outputformat>;
+    options_${escapedOptionId}.orderClasses = <#outputformat "JavaScript">${parameters.orderClasses!'true'}</#outputformat>;
     </#if>
-    <#if parameters.orderFixed?if_exists != "">
-    options_${escapedOptionId}.orderFixed = <#outputformat "JavaScript">${parameters.orderFixed?default('null')}</#outputformat>;
+    <#if parameters.orderFixed! != "">
+    options_${escapedOptionId}.orderFixed = <#outputformat "JavaScript">${parameters.orderFixed!'null'}</#outputformat>;
     </#if>
     <#if parameters.orderCellsTop?? >
-    options_${escapedOptionId}.orderCellsTop = <#outputformat "JavaScript">${parameters.orderCellsTop?default('false')}</#outputformat>;
+    options_${escapedOptionId}.orderCellsTop = <#outputformat "JavaScript">${parameters.orderCellsTop!'false'}</#outputformat>;
     </#if>
-    <#if parameters.orderMulti?if_exists != "">
-    options_${escapedOptionId}.orderMulti = <#outputformat "JavaScript">${parameters.orderMulti?default('true')}</#outputformat>;
+    <#if parameters.orderMulti! != "">
+    options_${escapedOptionId}.orderMulti = <#outputformat "JavaScript">${parameters.orderMulti!'true'}</#outputformat>;
     </#if>
-    <#if parameters.renderer?if_exists != "">
-    options_${escapedOptionId}.renderer = "<#outputformat "JavaScript">${parameters.renderer?default('')}</#outputformat>";
+    <#if parameters.renderer! != "">
+    options_${escapedOptionId}.renderer = "<#outputformat "JavaScript">${parameters.renderer!''}</#outputformat>";
     </#if>
-    <#if parameters.rowId?if_exists != "">
-    options_${escapedOptionId}.rowId = "<#outputformat "JavaScript">${parameters.rowId?default('')}</#outputformat>";
+    <#if parameters.rowId! != "">
+    options_${escapedOptionId}.rowId = "<#outputformat "JavaScript">${parameters.rowId!''}</#outputformat>";
     </#if>
     <#if parameters.scrollCollapse?? >
     options_${escapedOptionId}.scrollCollapse = <#outputformat "JavaScript">${parameters.scrollCollapse?string('true','false')}</#outputformat>;
     </#if>
-    <#if parameters.search?if_exists != "">
-    options_${escapedOptionId}.search = <#outputformat "JavaScript">${parameters.search?default('')}</#outputformat>;
+    <#if parameters.search! != "">
+    options_${escapedOptionId}.search = <#outputformat "JavaScript">${parameters.search!''}</#outputformat>;
     </#if>
-    <#if parameters.searchCols?if_exists != "">
-    options_${escapedOptionId}.searchCols = <#outputformat "JavaScript">${parameters.searchCols?default('null')}</#outputformat>;
+    <#if parameters.searchCols! != "">
+    options_${escapedOptionId}.searchCols = <#outputformat "JavaScript">${parameters.searchCols!'null'}</#outputformat>;
     </#if>
     <#if parameters.searchDelay?? >
-    options_${escapedOptionId}.searchDelay = <#outputformat "JavaScript">${parameters.searchDelay?default('null')}</#outputformat>;
+    options_${escapedOptionId}.searchDelay = <#outputformat "JavaScript">${parameters.searchDelay!'null'}</#outputformat>;
     </#if>
     <#if parameters.stateDuration?? >
-    options_${escapedOptionId}.stateDuration = ${parameters.stateDuration?default(7200)};
+    options_${escapedOptionId}.stateDuration = ${parameters.stateDuration!7200};
     </#if>
-    <#if parameters.stripeClasses?if_exists != "">
-    options_${escapedOptionId}.stripeClasses = <#outputformat "JavaScript">${parameters.stripeClasses?default('['odd','even']')}</#outputformat>;
+    <#if parameters.stripeClasses! != "">
+    options_${escapedOptionId}.stripeClasses = <#outputformat "JavaScript">${parameters.stripeClasses!"['odd','even']"}</#outputformat>;
     </#if>
-    <#if parameters.responsive?if_exists != "">
-    options_${escapedOptionId}.responsive = <#outputformat "JavaScript">${parameters.responsive?default('false')}</#outputformat>;
+    <#if parameters.responsive! != "">
+    options_${escapedOptionId}.responsive = <#outputformat "JavaScript">${parameters.responsive!'false'}</#outputformat>;
     </#if>
-    <#if parameters.autoFill?if_exists != "">
-    options_${escapedOptionId}.autoFill = <#outputformat "JavaScript">${parameters.autoFill?default('false')}</#outputformat>;
+    <#if parameters.autoFill! != "">
+    options_${escapedOptionId}.autoFill = <#outputformat "JavaScript">${parameters.autoFill!'false'}</#outputformat>;
     </#if>
-    <#if parameters.buttons?if_exists != "">
-    options_${escapedOptionId}.buttons = <#outputformat "JavaScript">${parameters.buttons?default('false')}</#outputformat>;
+    <#if parameters.buttons! != "">
+    options_${escapedOptionId}.buttons = <#outputformat "JavaScript">${parameters.buttons!'false'}</#outputformat>;
     </#if>
-    <#if parameters.colReorder?if_exists != "">
-    options_${escapedOptionId}.colReorder = <#outputformat "JavaScript">${parameters.colReorder?default('false')}</#outputformat>;
+    <#if parameters.colReorder! != "">
+    options_${escapedOptionId}.colReorder = <#outputformat "JavaScript">${parameters.colReorder!'false'}</#outputformat>;
     </#if>
-    <#if parameters.fixedColumns?if_exists != "">
-    options_${escapedOptionId}.fixedColumns = <#outputformat "JavaScript">${parameters.fixedColumns?default('false')}</#outputformat>;
+    <#if parameters.fixedColumns! != "">
+    options_${escapedOptionId}.fixedColumns = <#outputformat "JavaScript">${parameters.fixedColumns!'false'}</#outputformat>;
     </#if>
-    <#if parameters.fixedHeader?if_exists != "">
-    options_${escapedOptionId}.fixedHeader = <#outputformat "JavaScript">${parameters.fixedHeader?default('false')}</#outputformat>;
+    <#if parameters.fixedHeader! != "">
+    options_${escapedOptionId}.fixedHeader = <#outputformat "JavaScript">${parameters.fixedHeader!'false'}</#outputformat>;
     </#if>
-    <#if parameters.keys?if_exists != "">
-    options_${escapedOptionId}.keys = ${parameters.keys?default('false')};
+    <#if parameters.keys! != "">
+    options_${escapedOptionId}.keys = ${parameters.keys!'false'};
     </#if>
-    <#if parameters.rowGroup?if_exists != "">
-    options_${escapedOptionId}.rowGroup = <#outputformat "JavaScript">${parameters.rowGroup?default('false')}</#outputformat>;
+    <#if parameters.rowGroup! != "">
+    options_${escapedOptionId}.rowGroup = <#outputformat "JavaScript">${parameters.rowGroup!'false'}</#outputformat>;
     </#if>
-    <#if parameters.rowReorder?if_exists != "">
-    options_${escapedOptionId}.rowReorder = <#outputformat "JavaScript">${parameters.rowReorder?default('false')}</#outputformat>;
+    <#if parameters.rowReorder! != "">
+    options_${escapedOptionId}.rowReorder = <#outputformat "JavaScript">${parameters.rowReorder!'false'}</#outputformat>;
     </#if>
-    <#if parameters.scroller?if_exists != "">
-    options_${escapedOptionId}.scroller = <#outputformat "JavaScript">${parameters.scroller?default('false')}</#outputformat>;
+    <#if parameters.scroller! != "">
+    options_${escapedOptionId}.scroller = <#outputformat "JavaScript">${parameters.scroller!'false'}</#outputformat>;
     </#if>
-    <#if parameters.select?if_exists != "">
-    options_${escapedOptionId}.select = <#outputformat "JavaScript">${parameters.select?default('false')}</#outputformat>;
+    <#if parameters.select! != "">
+    options_${escapedOptionId}.select = <#outputformat "JavaScript">${parameters.select!'false'}</#outputformat>;
     </#if>
-    <#if parameters.createdRow?exists>
+    <#if parameters.createdRow??>
     options_${escapedOptionId}.createdRow = <#outputformat "JavaScript">${parameters.createdRow?string}</#outputformat>;
   </#if>
-    <#if parameters.drawCallback?exists>
+    <#if parameters.drawCallback??>
     options_${escapedOptionId}.drawCallback = <#outputformat "JavaScript">${parameters.drawCallback?string}</#outputformat>;
   </#if>
-    <#if parameters.footerCallback?exists>
+    <#if parameters.footerCallback??>
     options_${escapedOptionId}.footerCallback = "<#outputformat "JavaScript">${parameters.footerCallback?string}</#outputformat>";
   </#if>
-    <#if parameters.formatNumber?exists>
+    <#if parameters.formatNumber??>
     options_${escapedOptionId}.formatNumber = <#outputformat "JavaScript">${parameters.formatNumber?string}</#outputformat>;
   </#if>
-    <#if parameters.headerCallback?exists>
+    <#if parameters.headerCallback??>
     options_${escapedOptionId}.headerCallback = <#outputformat "JavaScript">${parameters.headerCallback?string}</#outputformat>;
   </#if>
-    <#if parameters.infoCallback?exists>
+    <#if parameters.infoCallback??>
     options_${escapedOptionId}.infoCallback = <#outputformat "JavaScript">${parameters.infoCallback?string}</#outputformat>;
   </#if>
-    <#if parameters.initComplete?exists>
+    <#if parameters.initComplete??>
     options_${escapedOptionId}.initComplete = <#outputformat "JavaScript">${parameters.initComplete?string}</#outputformat>;
   </#if>
-    <#if parameters.preDrawCallback?exists>
+    <#if parameters.preDrawCallback??>
     options_${escapedOptionId}.preDrawCallback = <#outputformat "JavaScript">${parameters.preDrawCallback?string}</#outputformat>;
   </#if>
-    <#if parameters.rowCallback?exists>
+    <#if parameters.rowCallback??>
     options_${escapedOptionId}.rowCallback = <#outputformat "JavaScript">${parameters.rowCallback?string}</#outputformat>;
   </#if>
-    <#if parameters.stateLoadCallback?exists>
+    <#if parameters.stateLoadCallback??>
     options_${escapedOptionId}.stateLoadCallback = <#outputformat "JavaScript">${parameters.stateLoadCallback?string}</#outputformat>;
   </#if>
-    <#if parameters.stateLoaded?exists>
+    <#if parameters.stateLoaded??>
     options_${escapedOptionId}.stateLoaded = <#outputformat "JavaScript">${parameters.stateLoaded?string}</#outputformat>;
   </#if>
-    <#if parameters.stateLoadParams?exists>
+    <#if parameters.stateLoadParams??>
     options_${escapedOptionId}.stateLoadParams = <#outputformat "JavaScript">${parameters.stateLoadParams?string}</#outputformat>;
   </#if>
-    <#if parameters.stateSaveCallback?exists>
+    <#if parameters.stateSaveCallback??>
     options_${escapedOptionId}.stateSaveCallback = <#outputformat "JavaScript">${parameters.stateSaveCallback?string}</#outputformat>;
   </#if>
-    <#if parameters.stateSaveParams?exists>
+    <#if parameters.stateSaveParams??>
     options_${escapedOptionId}.stateSaveParams = <#outputformat "JavaScript">${parameters.stateSaveParams?string}</#outputformat>;
   </#if>
-<#if parameters.clearTableTopics?exists>
+<#if parameters.clearTableTopics??>
     options_${escapedOptionId}.clearTableTopics = "<#outputformat "JavaScript">${parameters.clearTableTopics?string}</#outputformat>";
   </#if>
-<#if parameters.ajaxReloadTopics?exists>
+<#if parameters.ajaxReloadTopics??>
     options_${escapedOptionId}.ajaxReloadTopics = "<#outputformat "JavaScript">${parameters.ajaxReloadTopics?string}</#outputformat>";
   </#if>
-<#if parameters.redrawTopics?exists>
+<#if parameters.redrawTopics??>
     options_${escapedOptionId}.redrawTopics = "<#outputformat "JavaScript">${parameters.redrawTopics?string}</#outputformat>";
   </#if>
-<#if parameters.orderTopics?exists>
+<#if parameters.orderTopics??>
     options_${escapedOptionId}.orderTopics = "<#outputformat "JavaScript">${parameters.orderTopics?string}</#outputformat>";
   </#if>
-<#if parameters.pageTopics?exists>
+<#if parameters.pageTopics??>
     options_${escapedOptionId}.pageTopics = "<#outputformat "JavaScript">${parameters.pageTopics?string}</#outputformat>";
   </#if>
-<#if parameters.pageLengthTopics?exists>
+<#if parameters.pageLengthTopics??>
     options_${escapedOptionId}.pageLengthTopics = "<#outputformat "JavaScript">${parameters.pageLengthTopics?string}</#outputformat>";
   </#if>
-<#if parameters.searchTopics?exists>
+<#if parameters.searchTopics??>
     options_${escapedOptionId}.searchTopics = "<#outputformat "JavaScript">${parameters.searchTopics?string}</#outputformat>";
   </#if>
-<#if parameters.stateClearTopics?exists>
+<#if parameters.stateClearTopics??>
     options_${escapedOptionId}.stateClearTopics = "<#outputformat "JavaScript">${parameters.stateClearTopics?string}</#outputformat>";
   </#if>
-<#if parameters.stateSaveTopics?exists>
+<#if parameters.stateSaveTopics??>
     options_${escapedOptionId}.stateSaveTopics = "<#outputformat "JavaScript">${parameters.stateSaveTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onColumnSizingTopics?exists>
+<#if parameters.onColumnSizingTopics??>
     options_${escapedOptionId}.onColumnSizingTopics = "<#outputformat "JavaScript">${parameters.onColumnSizingTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onColumnVisibilityTopics?exists>
+<#if parameters.onColumnVisibilityTopics??>
     options_${escapedOptionId}.onColumnVisibilityTopics = "<#outputformat "JavaScript">${parameters.onColumnVisibilityTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onDestroyTopics?exists>
+<#if parameters.onDestroyTopics??>
     options_${escapedOptionId}.onDestroyTopics = "<#outputformat "JavaScript">${parameters.onDestroyTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onDrawTopics?exists>
+<#if parameters.onDrawTopics??>
     options_${escapedOptionId}.onDrawTopics = "<#outputformat "JavaScript">${parameters.onDrawTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onProcessingErrorTopics?exists>
+<#if parameters.onProcessingErrorTopics??>
     options_${escapedOptionId}.onProcessingErrorTopics = "<#outputformat "JavaScript">${parameters.onProcessingErrorTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onInitCompleteTopics?exists>
+<#if parameters.onInitCompleteTopics??>
     options_${escapedOptionId}.onInitCompleteTopics = "<#outputformat "JavaScript">${parameters.onInitCompleteTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onPageLengthChangeTopics?exists>
+<#if parameters.onPageLengthChangeTopics??>
     options_${escapedOptionId}.onPageLengthChangeTopics = "<#outputformat "JavaScript">${parameters.onPageLengthChangeTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onOrderTopics?exists>
+<#if parameters.onOrderTopics??>
     options_${escapedOptionId}.onOrderTopics = "<#outputformat "JavaScript">${parameters.onOrderTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onPageChangeTopics?exists>
+<#if parameters.onPageChangeTopics??>
     options_${escapedOptionId}.onPageChangeTopics = "<#outputformat "JavaScript">${parameters.onPageChangeTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onInitStartTopics?exists>
+<#if parameters.onInitStartTopics??>
     options_${escapedOptionId}.onInitStartTopics = "<#outputformat "JavaScript">${parameters.onInitStartTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onProcessingTopics?exists>
+<#if parameters.onProcessingTopics??>
     options_${escapedOptionId}.onProcessingTopics = "<#outputformat "JavaScript">${parameters.onProcessingTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onSearchTopics?exists>
+<#if parameters.onSearchTopics??>
     options_${escapedOptionId}.onSearchTopics = "<#outputformat "JavaScript">${parameters.onSearchTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onStateLoadedTopics?exists>
+<#if parameters.onStateLoadedTopics??>
     options_${escapedOptionId}.onStateLoadedTopics = "<#outputformat "JavaScript">${parameters.onStateLoadedTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onStateLoadingTopics?exists>
+<#if parameters.onStateLoadingTopics??>
     options_${escapedOptionId}.onStateLoadingTopics = "<#outputformat "JavaScript">${parameters.onStateLoadingTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onStateSavingTopics?exists>
+<#if parameters.onStateSavingTopics??>
     options_${escapedOptionId}.onStateSavingTopics = "<#outputformat "JavaScript">${parameters.onStateSavingTopics?string}</#outputformat>";
   </#if>
 
-<#if parameters.onAutoFillTopics?exists>
+<#if parameters.onAutoFillTopics??>
     options_${escapedOptionId}.onAutoFillTopics = "<#outputformat "JavaScript">${parameters.onAutoFillTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onBeforeAutoFillTopics?exists>
+<#if parameters.onBeforeAutoFillTopics??>
     options_${escapedOptionId}.onBeforeAutoFillTopics = "<#outputformat "JavaScript">${parameters.onBeforeAutoFillTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onButtonActionTopics?exists>
+<#if parameters.onButtonActionTopics??>
     options_${escapedOptionId}.onButtonActionTopics = "<#outputformat "JavaScript">${parameters.onButtonActionTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onColumnReorderTopics?exists>
+<#if parameters.onColumnReorderTopics??>
     options_${escapedOptionId}.onColumnReorderTopics = "<#outputformat "JavaScript">${parameters.onColumnReorderTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onKeyBlurTopics?exists>
+<#if parameters.onKeyBlurTopics??>
     options_${escapedOptionId}.onKeyBlurTopics = "<#outputformat "JavaScript">${parameters.onKeyBlurTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onKeyFocusTopics?exists>
+<#if parameters.onKeyFocusTopics??>
     options_${escapedOptionId}.onKeyFocusTopics = "<#outputformat "JavaScript">${parameters.onKeyFocusTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onOtherKeyTopics?exists>
+<#if parameters.onOtherKeyTopics??>
     options_${escapedOptionId}.onOtherKeyTopics = "<#outputformat "JavaScript">${parameters.onOtherKeyTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onResponsiveDisplayTopics?exists>
+<#if parameters.onResponsiveDisplayTopics??>
     options_${escapedOptionId}.onResponsiveDisplayTopics = "<#outputformat "JavaScript">${parameters.onResponsiveDisplayTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onResponsiveResizeTopics?exists>
+<#if parameters.onResponsiveResizeTopics??>
     options_${escapedOptionId}.onResponsiveResizeTopics = "<#outputformat "JavaScript">${parameters.onResponsiveResizeTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onRowGroupPointChangedTopics?exists>
+<#if parameters.onRowGroupPointChangedTopics??>
     options_${escapedOptionId}.onRowGroupPointChangedTopics = "<#outputformat "JavaScript">${parameters.onRowGroupPointChangedTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onRowReorderTopics?exists>
+<#if parameters.onRowReorderTopics??>
     options_${escapedOptionId}.onRowReorderTopics = "<#outputformat "JavaScript">${parameters.onRowReorderTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onRowReorderedTopics?exists>
+<#if parameters.onRowReorderedTopics??>
     options_${escapedOptionId}.onRowReorderedTopics = "<#outputformat "JavaScript">${parameters.onRowReorderedTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onDeselectTopics?exists>
+<#if parameters.onDeselectTopics??>
     options_${escapedOptionId}.onDeselectTopics = "<#outputformat "JavaScript">${parameters.onDeselectTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onSelectTopics?exists>
+<#if parameters.onSelectTopics??>
     options_${escapedOptionId}.onSelectTopics = "<#outputformat "JavaScript">${parameters.onSelectTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onSelectItemsTopics?exists>
+<#if parameters.onSelectItemsTopics??>
     options_${escapedOptionId}.onSelectItemsTopics = "<#outputformat "JavaScript">${parameters.onSelectItemsTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onSelectStyleTopics?exists>
+<#if parameters.onSelectStyleTopics??>
     options_${escapedOptionId}.onSelectStyleTopics = "<#outputformat "JavaScript">${parameters.onSelectStyleTopics?string}</#outputformat>";
   </#if>
-<#if parameters.onUserSelectTopics?exists>
+<#if parameters.onUserSelectTopics??>
     options_${escapedOptionId}.onUserSelectTopics = "<#outputformat "JavaScript">${parameters.onUserSelectTopics?string}</#outputformat>";
   </#if>
 
     <#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
     jQuery.struts2_jquery_datatables.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
 });
-</script>  
+</script>

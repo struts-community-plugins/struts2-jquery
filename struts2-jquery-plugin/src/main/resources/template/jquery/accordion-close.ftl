@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <#if parameters.list?? >
 <@s.iterator value="parameters.list" status="rowstatus">
         <#if parameters.listKey??>
@@ -42,53 +42,53 @@
         <#else>
             <#assign itemValue = stack.findString('top')/>
         </#if>
- 		<#if parameters.paramValues?if_exists != "">
+ 		<#if parameters.paramValues! != "">
 		<#assign hrefValues>
-        	<#list parameters.paramValues?split(",") as tmp>${stack.findString(tmp)?default('')}<#if tmp_has_next>,</#if></#list>
+        	<#list parameters.paramValues?split(",") as tmp>${stack.findString(tmp)!''}<#if tmp_has_next>,</#if></#list>
 		</#assign>
         </#if>
-	<${parameters.header?default('h3')} id="${escapedOptionId}_header_<@s.property value="%{#rowstatus.count}" />"><a id="${escapedOptionId}_a_<@s.property value="%{#rowstatus.count}" />" href="#"
-<#if parameters.paramKeys?if_exists != "">
+	<${parameters.header!'h3'} id="${escapedOptionId}_header_<@s.property value="%{#rowstatus.count}" />"><a id="${escapedOptionId}_a_<@s.property value="%{#rowstatus.count}" />" href="#"
+<#if parameters.paramKeys! != "">
 	 data-keys="${parameters.paramKeys?trim}"
-</#if>	 
-<#if parameters.paramValues?if_exists != "">
+</#if>
+<#if parameters.paramValues! != "">
 	 data-values="${hrefValues?trim}"
-</#if>	 
-	 >${itemKeyStr}</a></${parameters.header?default('h3')}>
+</#if>
+	 >${itemKeyStr}</a></${parameters.header!'h3'}>
 		<div id="${escapedOptionId}_div_<@s.property value="%{#rowstatus.count}" />">
-<#if parameters.href?if_exists == "">
+<#if parameters.href! == "">
 			${itemValue}
-</#if>			
+</#if>
 		</div>
 	<#lt/>
 </@s.iterator>
 </#if>
 </div>
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
-  <#if parameters.collapsible?default(false)>
+  <#if parameters.collapsible!false>
 	options_${escapedOptionId}.collapsible = true;
   </#if>
-  <#if parameters.openOnMouseover?default(false)>
+  <#if parameters.openOnMouseover!false>
 	options_${escapedOptionId}.event = "mouseover";
   </#if>
-  <#if parameters.heightStyle?if_exists != "">
+  <#if parameters.heightStyle! != "">
 	options_${escapedOptionId}.heightStyle = "${parameters.heightStyle}";
   </#if>
-  <#if parameters.active?if_exists != "">
+  <#if parameters.active! != "">
 	options_${escapedOptionId}.active = "${parameters.active}";
   </#if>
-  <#if parameters.href?if_exists != "">
+  <#if parameters.href! != "">
 	options_${escapedOptionId}.href = "${parameters.href}";
   </#if>
-  <#if parameters.header?if_exists != "">
+  <#if parameters.header! != "">
 	options_${escapedOptionId}.header = "${parameters.header}";
   </#if>
-<#if parameters.animate?if_exists != "">
+<#if parameters.animate! != "">
 	options_${escapedOptionId}.animate = ${parameters.animate};
 </#if>
-<#if parameters.onCreateTopics?exists>
+<#if parameters.onCreateTopics??>
     options_${escapedOptionId}.oncreate = "${parameters.onCreateTopics}";
 </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
@@ -96,5 +96,5 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />
 
   <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
- });  
+ });
 </script>

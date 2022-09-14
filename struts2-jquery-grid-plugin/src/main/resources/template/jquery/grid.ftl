@@ -18,13 +18,13 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-<#if !parameters.subGrid?default(false)>
+<#assign escapedOptionId="${parameters.escapedId}">
+<#if !parameters.subGrid!false>
 <table id="${parameters.id}" cellpadding="0" cellspacing="0"
-<#if parameters.cssStyle?if_exists != "">
+<#if parameters.cssStyle! != "">
  style="${parameters.cssStyle}"<#rt/>
 </#if>
-<#if parameters.cssClass?if_exists != "">
+<#if parameters.cssClass! != "">
  class="${parameters.cssClass} scroll"<#rt/>
 <#else>
  class="scroll"<#rt/>
@@ -33,20 +33,20 @@
 <#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
 <#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
 ></table>
-<#if parameters.pager?default(false) || parameters.navigator?default(false)>
+<#if parameters.pager!false || parameters.navigator!false>
 <div id="${parameters.id}_pager"></div>
 </#if>
 </#if>
 
-<#if parameters.subGrid?default(false)>
+<#if parameters.subGrid!false>
 	<#assign escapedParentOptionId="${parameters.parentGrid?string?replace('.', '_')}">
 	options_${escapedParentOptionId}.subgrid = true;
-	<#if parameters.subGridWidth?if_exists != "">
+	<#if parameters.subGridWidth! != "">
 	options_${escapedParentOptionId}.subGridWidth = "${parameters.subGridWidth}";
 	</#if>
 <#else>
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 </#if>
 	var options_${escapedOptionId} = {};

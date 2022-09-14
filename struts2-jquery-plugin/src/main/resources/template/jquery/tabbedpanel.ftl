@@ -18,12 +18,11 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
 <div id="${parameters.id}"
-<#if parameters.cssStyle?if_exists != "">
+<#if parameters.cssStyle! != "">
  style="${parameters.cssStyle}"<#rt/>
 </#if>
-<#if parameters.cssClass?if_exists != "">
+<#if parameters.cssClass! != "">
  class="${parameters.cssClass}"<#rt/>
 </#if>
 <#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
@@ -32,4 +31,3 @@
 >
 <ul>
 </ul>
-	

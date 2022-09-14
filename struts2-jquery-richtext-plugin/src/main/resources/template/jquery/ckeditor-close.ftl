@@ -18,46 +18,46 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
 var CKEDITOR_BASEPATH = "${base}/static/js/ckeditor/";
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2"+jQuery.struts2_jquery.minSuffix+".js");
-	
+
 	var options_${escapedOptionId} = {};
 	options_${escapedOptionId}.type = 'text';
 
 	options_${escapedOptionId}.path = "${base}/static/js/ckeditor/";
-	
-	<#if parameters.customConfig?if_exists != ""> 
+
+	<#if parameters.customConfig! != "">
 	options_${escapedOptionId}.customConfig = "${parameters.customConfig}";
 	</#if>
-	<#if parameters.skin?if_exists != ""> 
+	<#if parameters.skin! != "">
 	options_${escapedOptionId}.skin = "${parameters.skin}";
 	<#else>
     options_${escapedOptionId}.skin = "moono";
 	</#if>
-	<#if parameters.toolbar?if_exists != "">
+	<#if parameters.toolbar! != "">
 	options_${escapedOptionId}.toolbar = "${parameters.toolbar}";
 	</#if>
-	<#if parameters.width??> 
+	<#if parameters.width??>
 	options_${escapedOptionId}.width = ${parameters.width};
 	</#if>
-	<#if parameters.height??> 
+	<#if parameters.height??>
 	options_${escapedOptionId}.height = ${parameters.height};
 	</#if>
-	<#if parameters.editorLocal?if_exists != ""> 
+	<#if parameters.editorLocal! != "">
 	options_${escapedOptionId}.editorLocal = "${parameters.editorLocal}";
 	</#if>
-	<#if parameters.uploads?default(false)>
-		<#if parameters.uploadHref?if_exists != ""> 
+	<#if parameters.uploads!false>
+		<#if parameters.uploadHref! != "">
 	options_${escapedOptionId}.filebrowserUploadUrl = "${parameters.uploadHref}";
 		<#else>
 	<@s.url var="ckeditorUploadUrl" action="upload" namespace="/ckeditor"/>
 	options_${escapedOptionId}.filebrowserUploadUrl = "<@s.property value="ckeditorUploadUrl" />";
 		</#if>
 	</#if>
-  	<#if parameters.editorResizable?default(false)>
+  	<#if parameters.editorResizable!false>
 	options_${escapedOptionId}.editorResizable = true;
   	</#if>
 
@@ -74,5 +74,5 @@ jQuery(document).ready(function () {
 
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 	jQuery.struts2_jquery_richtext.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
- });  
+ });
 </script>

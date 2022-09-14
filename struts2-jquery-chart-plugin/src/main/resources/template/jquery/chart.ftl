@@ -29,11 +29,11 @@
 <#include "/${parameters.templateDir}/${parameters.expandTheme}/dynamic-attributes.ftl" />
 >
 </div>
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.chart.struts2"+jQuery.struts2_jquery.minSuffix+".js");
-	
+
 	var options_${escapedOptionId} = {};
 	options_${escapedOptionId}.data = [];
 	var options_${escapedOptionId}_data;

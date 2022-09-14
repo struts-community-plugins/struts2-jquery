@@ -18,41 +18,40 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-  <#if parameters.onCompleteTopics?exists>
+<#assign escapedOptionId="${parameters.escapedId}">
+  <#if parameters.onCompleteTopics??>
 	options_${escapedOptionId}.oncom = "${parameters.onCompleteTopics}";
   </#if>
-  <#if parameters.onSuccessTopics?exists>
+  <#if parameters.onSuccessTopics??>
 	options_${escapedOptionId}.onsuc = "${parameters.onSuccessTopics}";
   </#if>
-  <#if parameters.onErrorTopics?exists>
+  <#if parameters.onErrorTopics??>
 	options_${escapedOptionId}.onerr = "${parameters.onErrorTopics}";
   </#if>
-  <#if parameters.onBeforeTopics?exists>
+  <#if parameters.onBeforeTopics??>
 	options_${escapedOptionId}.onbef = "${parameters.onBeforeTopics}";
   </#if>
-  <#if parameters.onAfterValidationTopics?exists>
+  <#if parameters.onAfterValidationTopics??>
     options_${escapedOptionId}.onaftervalidation = "${parameters.onAfterValidationTopics}";
-  </#if>  
-  <#if parameters.onAlwaysTopics?exists>
+  </#if>
+  <#if parameters.onAlwaysTopics??>
 	options_${escapedOptionId}.onalw = "${parameters.onAlwaysTopics}";
   </#if>
-  <#if parameters.onChangeTopics?exists>
+  <#if parameters.onChangeTopics??>
 	options_${escapedOptionId}.oncha = "${parameters.onChangeTopics}";
   </#if>
-  <#if parameters.onHideTopics?exists>
+  <#if parameters.onHideTopics??>
 	options_${escapedOptionId}.onhidetopics = "${parameters.onHideTopics?string}";
   </#if>
-  <#if parameters.onShowTopics?exists>
+  <#if parameters.onShowTopics??>
 	options_${escapedOptionId}.onshowtopics = "${parameters.onShowTopics?string}";
   </#if>
-  <#if parameters.onRemoveTopics?exists>
+  <#if parameters.onRemoveTopics??>
 	options_${escapedOptionId}.onremovetopics = "${parameters.onRemoveTopics?string}";
   </#if>
-  <#if parameters.onFocusTopics?exists>
+  <#if parameters.onFocusTopics??>
 	options_${escapedOptionId}.onfocustopics = "${parameters.onFocusTopics?string}";
   </#if>
-  <#if parameters.onBlurTopics?exists>
+  <#if parameters.onBlurTopics??>
 	options_${escapedOptionId}.onblurtopics = "${parameters.onBlurTopics?string}";
   </#if>
-  

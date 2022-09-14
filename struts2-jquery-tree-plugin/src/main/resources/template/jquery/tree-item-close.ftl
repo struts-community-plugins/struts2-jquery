@@ -20,21 +20,21 @@
 -->
 			</ul>
 		</li>
-<#if parameters.targets?if_exists != ""> 
-  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#if parameters.targets! != "">
+  <#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
-	<#if parameters.openDialog?if_exists != ""> 
+	<#if parameters.openDialog! != "">
 	options_${escapedOptionId}.opendialog = "${parameters.openDialog}";
 	</#if>
-    <#if parameters.jqueryaction?exists>
+    <#if parameters.jqueryaction??>
         options_${escapedOptionId}.jqueryaction = "anchor";
     </#if>
-    <#if parameters.id?exists>
+    <#if parameters.id??>
         options_${escapedOptionId}.id = "${parameters.id}_link";
     </#if>
-    <#if parameters.name?exists>
+    <#if parameters.name??>
         options_${escapedOptionId}.name = "${parameters.name}";
     </#if>
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
@@ -43,8 +43,8 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/validation.ftl" />
 
 <#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 	jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId}_link'),options_${escapedOptionId});
- });  
+ });
 </script>
 </#if>

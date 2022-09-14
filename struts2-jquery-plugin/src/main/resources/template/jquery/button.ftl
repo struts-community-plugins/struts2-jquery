@@ -18,20 +18,19 @@
  * under the License.
  */
 -->
-	<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-	<#if parameters.disabled?default(false)>
+	<#assign escapedOptionId="${parameters.escapedId}">
+	<#if parameters.disabled!false>
 	options_${escapedOptionId}.disabled = true;
 	</#if>
-	<#if parameters.button?default(false)>
+	<#if parameters.button!false>
 	options_${escapedOptionId}.button = true;
 	</#if>
-	<#if parameters.buttonIcon?if_exists != ""> 
+	<#if parameters.buttonIcon! != "">
 	options_${escapedOptionId}.bicon = "${parameters.buttonIcon}";
 	</#if>
-	<#if parameters.buttonIconSecondary?if_exists != ""> 
+	<#if parameters.buttonIconSecondary! != "">
 	options_${escapedOptionId}.bicon2 = "${parameters.buttonIconSecondary}";
 	</#if>
 	<#if parameters.buttonText??>
 	options_${escapedOptionId}.btext = ${parameters.buttonText?string};
 	</#if>
-	
