@@ -42,6 +42,7 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
     static final String PARAM_LIST_KEY = "listKey";
     static final String PARAM_LIST_VALUE = "listValue";
     static final String PARAM_ID = "id";
+    static final String PARAM_ESCAPED_ID = "escapedId";
 
     private static final String PARAM_ON_BEFORE_TOPICS = "onBeforeTopics";
     private static final String PARAM_ON_AFTER_VALIDATION_TOPICS = "onAfterValidationTopics";
@@ -100,7 +101,7 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
             }
         }
     }
-    
+
     protected void addNumberParameterIfPresent(final String parameterKey, final String parameterValue) {
         if (parameterValue != null) {
             String value = findString(parameterValue);
@@ -117,9 +118,10 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
             // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
             int nextInt = RANDOM.nextInt();
             nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-            this.id = prefix + String.valueOf(nextInt);
+            this.id = prefix + nextInt;
+            addParameter(PARAM_ID, this.id);
+            addParameter(PARAM_ESCAPED_ID, this.id);
         }
-        addParameter(PARAM_ID, this.id);
     }
 
     @StrutsTagAttribute(description = "Topics that are published before a load")

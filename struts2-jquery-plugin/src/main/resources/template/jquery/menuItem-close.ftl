@@ -20,12 +20,12 @@
 -->
 
 </li>
-<#if parameters.targets?if_exists != "">
-	<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#if parameters.targets! != "">
+	<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
 	jQuery(document).ready(function () {
 		var options_${escapedOptionId} = {};
-		<#if parameters.openDialog?if_exists != "">
+		<#if parameters.openDialog! != "">
 			options_${escapedOptionId}.opendialog = "${parameters.openDialog}";
 		</#if>
 		<#include "/${parameters.templateDir}/jquery/base.ftl" />

@@ -18,25 +18,25 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-  <#if parameters.droppable?default(false)>
+<#assign escapedOptionId="${parameters.escapedId}">
+  <#if parameters.droppable!false>
 	options_${escapedOptionId}.droppable = true;<#rt/>
    </#if>
-  <#if parameters.droppableOptions?if_exists != "">
+  <#if parameters.droppableOptions! != "">
 	options_${escapedOptionId}.droppableoptions = "<#outputformat "JavaScript">${parameters.droppableOptions}</#outputformat>";<#rt/>
    </#if>
-  <#if parameters.droppableOnActivateTopics?if_exists != "">
+  <#if parameters.droppableOnActivateTopics! != "">
 	options_${escapedOptionId}.droppableonactivatetopics = "${parameters.droppableOnActivateTopics}";<#rt/>
    </#if>
-  <#if parameters.droppableOnDeactivateTopics?if_exists != "">
+  <#if parameters.droppableOnDeactivateTopics! != "">
 	options_${escapedOptionId}.droppableondeactivatetopics = "${parameters.droppableOnDeactivateTopics}";<#rt/>
    </#if>
-  <#if parameters.droppableOnDropTopics?if_exists != "">
+  <#if parameters.droppableOnDropTopics! != "">
 	options_${escapedOptionId}.droppableondroptopics = "${parameters.droppableOnDropTopics}";<#rt/>
    </#if>
-  <#if parameters.droppableOnOutTopics?if_exists != "">
+  <#if parameters.droppableOnOutTopics! != "">
 	options_${escapedOptionId}.droppableonouttopics = "${parameters.droppableOnOutTopics}";<#rt/>
    </#if>
-  <#if parameters.droppableOnOverTopics?if_exists != "">
+  <#if parameters.droppableOnOverTopics! != "">
 	options_${escapedOptionId}.droppableonovertopics = "${parameters.droppableOnOverTopics}";<#rt/>
    </#if>

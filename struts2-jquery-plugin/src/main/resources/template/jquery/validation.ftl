@@ -18,11 +18,10 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-  <#if parameters.validateFunction?if_exists != "">
+<#assign escapedOptionId="${parameters.escapedId}">
+  <#if parameters.validateFunction! != "">
 	options_${escapedOptionId}.validateFunction = ${parameters.validateFunction?string};
   </#if>
-  <#if parameters.validate?default(false)>
+  <#if parameters.validate!false>
 	options_${escapedOptionId}.validate = true;
   </#if>
-  

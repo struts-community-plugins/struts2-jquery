@@ -20,14 +20,14 @@
 -->
 	</ul>
 </div>
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
-	<#if parameters.jstreetheme?if_exists != ""> 
+	<#if parameters.jstreetheme! != "">
 	options_${escapedOptionId}.treetheme = "${parameters.jstreetheme}";
 	</#if>
-	<#if parameters.jstreethemeVariant?if_exists != ""> 
+	<#if parameters.jstreethemeVariant! != "">
 	options_${escapedOptionId}.treethemeVariant = "${parameters.jstreethemeVariant}";
 	</#if>
 	<#if parameters.jstreethemeResponsive??>
@@ -45,7 +45,7 @@ jQuery(document).ready(function () {
 	<#if parameters.rtl??>
 	options_${escapedOptionId}.rtl = ${parameters.rtl?string};
 	</#if>
-	<#if parameters.href?if_exists != ""> 
+	<#if parameters.href! != "">
 	options_${escapedOptionId}.url = "${parameters.href?string}";
 	</#if>
   	<#if parameters.nodeTargets?exists>
@@ -72,13 +72,13 @@ jQuery(document).ready(function () {
     <#if parameters.showThemeIcons??>
         options_${escapedOptionId}.icons = ${parameters.showThemeIcons?string};
     </#if>
-	<#if parameters.contextmenu?if_exists != "">
+	<#if parameters.contextmenu! != "">
 	options_${escapedOptionId}.contextmenu = <#outputformat "JavaScript">${parameters.contextmenu?string}</#outputformat>;
 	</#if>
-	<#if parameters.plugins?if_exists != "">
+	<#if parameters.plugins! != "">
 	options_${escapedOptionId}.pluginsconf = <#outputformat "JavaScript">${parameters.plugins?string}</#outputformat>;
 	</#if>
-	<#if parameters.types?if_exists != ""> 
+	<#if parameters.types! != "">
 	options_${escapedOptionId}.types = <#outputformat "JavaScript">${parameters.types?string}</#outputformat>;
 	</#if>
 	<#if parameters.checkbox??>
@@ -87,34 +87,34 @@ jQuery(document).ready(function () {
 	<#if parameters.checkboxTwoState??>
 	options_${escapedOptionId}.two_state = ${parameters.checkboxTwoState?string};
 	</#if>
-	<#if parameters.checkboxToogleAllTopics?if_exists != "">
+	<#if parameters.checkboxToogleAllTopics! != "">
 	options_${escapedOptionId}.toogleAllTopics = "${parameters.checkboxToogleAllTopics?string}";
 	</#if>
-	<#if parameters.checkboxHideTopics?if_exists != "">
+	<#if parameters.checkboxHideTopics! != "">
 	options_${escapedOptionId}.checkHideTopics = "${parameters.checkboxHideTopics?string}";
 	</#if>
-	<#if parameters.checkboxShowTopics?if_exists != ""> 
+	<#if parameters.checkboxShowTopics! != "">
 	options_${escapedOptionId}.checkShowTopics = "${parameters.checkboxShowTopics?string}";
 	</#if>
-    <#if parameters.checkboxCheckAllTopics?if_exists != "">
+    <#if parameters.checkboxCheckAllTopics! != "">
     options_${escapedOptionId}.checkAllTopics = "${parameters.checkboxCheckAllTopics?string}";
     </#if>
-    <#if parameters.checkboxUncheckAllTopics?if_exists != "">
+    <#if parameters.checkboxUncheckAllTopics! != "">
     options_${escapedOptionId}.uncheckAllTopics = "${parameters.checkboxUncheckAllTopics?string}";
     </#if>
-    <#if parameters.searchTopic?if_exists != "">
+    <#if parameters.searchTopic! != "">
     options_${escapedOptionId}.searchTopic = "${parameters.searchTopic?string}";
     </#if>
-    <#if parameters.searchClearTopic?if_exists != "">
+    <#if parameters.searchClearTopic! != "">
     options_${escapedOptionId}.searchClearTopic = "${parameters.searchClearTopic?string}";
     </#if>
-    <#if parameters.searchElementId?if_exists != "">
+    <#if parameters.searchElementId! != "">
     options_${escapedOptionId}.searchElementId = "${parameters.searchElementId?string}";
     </#if>
-    <#if parameters.onSearchCompleteTopics?if_exists != "">
+    <#if parameters.onSearchCompleteTopics! != "">
     options_${escapedOptionId}.onSearchCompleteTopics = "${parameters.onSearchCompleteTopics?string}";
     </#if>
-    <#if parameters.onSearchClearTopics?if_exists != "">
+    <#if parameters.onSearchClearTopics! != "">
     options_${escapedOptionId}.onSearchClearTopics = "${parameters.onSearchClearTopics?string}";
     </#if>
 

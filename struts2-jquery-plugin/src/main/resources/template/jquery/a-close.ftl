@@ -18,15 +18,15 @@
  * under the License.
  */
 -->
-  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+  <#assign escapedOptionId="${parameters.escapedId}">
 </a>
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
-	<#if parameters.openDialog?if_exists != ""> 
+	<#if parameters.openDialog! != "">
 	options_${escapedOptionId}.opendialog = "${parameters.openDialog}";
 	</#if>
-	<#if parameters.openDialogTitle?if_exists != ""> 
+	<#if parameters.openDialogTitle! != "">
 	options_${escapedOptionId}.opendialogtitle = "${parameters.openDialogTitle}";
 	</#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
@@ -37,5 +37,5 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/validation.ftl" />
 
   <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
- });  
+ });
 </script>

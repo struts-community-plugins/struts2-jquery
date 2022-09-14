@@ -18,14 +18,13 @@
  * under the License.
  */
 -->
-  <#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-  <#if parameters.jqueryaction?exists>
+  <#assign escapedOptionId="${parameters.escapedId}">
+  <#if parameters.jqueryaction??>
 	options_${escapedOptionId}.jqueryaction = "${parameters.jqueryaction}";
   </#if>
-  <#if parameters.id?exists>
+  <#if parameters.id??>
 	options_${escapedOptionId}.id = "${parameters.id}";
   </#if>
-  <#if parameters.name?exists>
+  <#if parameters.name??>
 	options_${escapedOptionId}.name = "${parameters.name}";
   </#if>
-  

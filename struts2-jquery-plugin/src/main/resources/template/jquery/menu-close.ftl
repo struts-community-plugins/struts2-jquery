@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <#if parameters.list?? >
     <@s.iterator value="parameters.list" status="rowstatus">
         <#if parameters.listKey??>
@@ -42,18 +42,18 @@
         <#else>
             <#assign itemValue = stack.findString('top')/>
         </#if>
-        <#if itemValue?if_exists == "">
+        <#if itemValue! == "">
             <#assign itemValue = itemKeyStr/>
         </#if>
-        <#if parameters.paramValues?if_exists != "">
+        <#if parameters.paramValues! != "">
             <#assign hrefValues>
-                <#list parameters.paramValues?split(",") as tmp>${stack.findString(tmp)?default('')}<#if tmp_has_next>,</#if></#list>
+                <#list parameters.paramValues?split(",") as tmp>${stack.findString(tmp)!''}<#if tmp_has_next>,</#if></#list>
             </#assign>
         </#if>
         <li id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />">
             <div>
-                <#if parameters.href?exists>
-                    <#if parameters.targets?if_exists != "">
+                <#if parameters.href??>
+                    <#if parameters.targets! != "">
                         <a id="${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />_anchor" href="javascript:void(0)">
                             ${itemValue}
                         </a>
@@ -64,18 +64,18 @@
                                 var ${optionsLiVariableName} = {};
                                 ${optionsLiVariableName}.jqueryaction = "menuItem";
                                 ${optionsLiVariableName}.id = "${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />";
-                            <#if parameters.targets?if_exists != "">
+                            <#if parameters.targets! != "">
                                 ${optionsLiVariableName}.targets = "${parameters.targets}";
                             </#if>
-                            <#if parameters.href?if_exists != "">
+                            <#if parameters.href! != "">
                                 ${optionsLiVariableName}.href = "${parameters.href}";
                             </#if>
-                                ${optionsLiVariableName}.hrefparameter = "${parameters.paramName?default('id')}=${itemKeyStr}";
+                                ${optionsLiVariableName}.hrefparameter = "${parameters.paramName!'id'}=${itemKeyStr}";
                                 jQuery.struts2_jquery_ui.bind(jQuery('#${escapedOptionId?string?replace('.', '\\\\\\\\.')}_li_<@s.property value="%{#rowstatus.count}" />'), ${optionsLiVariableName});
                             });
                         </script>
                     <#else>
-                        <a href="${parameters.href}?${parameters.paramName?default('id')}=${itemKeyStr}">
+                        <a href="${parameters.href}?${parameters.paramName!'id'}=${itemKeyStr}">
                             ${itemValue}
                         </a>
                     </#if>
@@ -89,17 +89,17 @@
     </@s.iterator>
 </#if>
 </ul>
-<#if !parameters.subMenu?default(false)>
+<#if !parameters.subMenu!false>
     <script type='text/javascript'>
-        jQuery(document).ready(function () { 
+        jQuery(document).ready(function () {
             var options_${escapedOptionId} = {};
-        <#if parameters.disabled?default(false)>
+        <#if parameters.disabled!false>
             options_${escapedOptionId}.disabled = true;
         </#if>
-        <#if parameters.targets?if_exists != "">
+        <#if parameters.targets! != "">
             options_${escapedOptionId}.targets = "${parameters.targets}";
         </#if>
-        <#if parameters.href?if_exists != "">
+        <#if parameters.href! != "">
             options_${escapedOptionId}.href = "${parameters.href}";
         </#if>
             <#include "/${parameters.templateDir}/jquery/base.ftl" />
@@ -107,6 +107,6 @@
             <#include "/${parameters.templateDir}/jquery/topics.ftl" />
 
             <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
-        });  
+        });
     </script>
 </#if>

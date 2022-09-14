@@ -18,47 +18,46 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-  <#if parameters.sortable?default(false)>
+<#assign escapedOptionId="${parameters.escapedId}">
+  <#if parameters.sortable!false>
 	options_${escapedOptionId}.sortable = true;<#rt/>
    </#if>
-  <#if parameters.sortableOptions?if_exists != "">
+  <#if parameters.sortableOptions! != "">
  	options_${escapedOptionId}.sortableoptions = "${parameters.sortableOptions}";<#rt/>
    </#if>
-  <#if parameters.sortableOnBeforeStopTopics?if_exists != "">
+  <#if parameters.sortableOnBeforeStopTopics! != "">
  	options_${escapedOptionId}.sortableonbeforestoptopics = "${parameters.sortableOnBeforeStopTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnStopTopics?if_exists != "">
+  <#if parameters.sortableOnStopTopics! != "">
  	options_${escapedOptionId}.sortableonstoptopics = "${parameters.sortableOnStopTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnStartTopics?if_exists != "">
+  <#if parameters.sortableOnStartTopics! != "">
  	options_${escapedOptionId}.sortableonstarttopics = "${parameters.sortableOnStartTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnSortTopics?if_exists != "">
+  <#if parameters.sortableOnSortTopics! != "">
  	options_${escapedOptionId}.sortableonsorttopics = "${parameters.sortableOnSortTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnActivateTopics?if_exists != "">
+  <#if parameters.sortableOnActivateTopics! != "">
  	options_${escapedOptionId}.sortableonactivatetopics = "${parameters.sortableOnActivateTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnDeactivateTopics?if_exists != "">
+  <#if parameters.sortableOnDeactivateTopics! != "">
  	options_${escapedOptionId}.sortableondeactivatetopics = "${parameters.sortableOnDeactivateTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnOverTopics?if_exists != "">
+  <#if parameters.sortableOnOverTopics! != "">
  	options_${escapedOptionId}.sortableonovertopics = "${parameters.sortableOnOverTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnOutTopics?if_exists != "">
+  <#if parameters.sortableOnOutTopics! != "">
  	options_${escapedOptionId}.sortableonouttopics = "${parameters.sortableOnOutTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnRemoveTopics?if_exists != "">
+  <#if parameters.sortableOnRemoveTopics! != "">
  	options_${escapedOptionId}.sortableonremovetopics = "${parameters.sortableOnRemoveTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnReceiveTopics?if_exists != "">
+  <#if parameters.sortableOnReceiveTopics! != "">
  	options_${escapedOptionId}.sortableonreceivetopics = "${parameters.sortableOnReceiveTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnChangeTopics?if_exists != "">
+  <#if parameters.sortableOnChangeTopics! != "">
  	options_${escapedOptionId}.sortableonchangetopics = "${parameters.sortableOnChangeTopics}";<#rt/>
    </#if>
-  <#if parameters.sortableOnUpdateTopics?if_exists != "">
+  <#if parameters.sortableOnUpdateTopics! != "">
  	options_${escapedOptionId}.sortableonupdatetopics = "${parameters.sortableOnUpdateTopics}";<#rt/>
    </#if>
-  

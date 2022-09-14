@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
@@ -32,19 +32,19 @@ jQuery(document).ready(function () {
   <#if parameters.step??>
 	options_${escapedOptionId}.step = ${parameters.step?c};
   </#if>
-  <#if parameters.culture?if_exists != "">
+  <#if parameters.culture! != "">
 	options_${escapedOptionId}.culture = "${parameters.culture}";
   </#if>
-  <#if parameters.numberFormat?if_exists != "">
+  <#if parameters.numberFormat! != "">
 	options_${escapedOptionId}.numberFormat = "${parameters.numberFormat}";
   </#if>
   <#if parameters.page??>
 	options_${escapedOptionId}.page = ${parameters.page?c};
   </#if>
-  <#if parameters.mouseWheel?exists>
+  <#if parameters.mouseWheel??>
 	options_${escapedOptionId}.mouseWheel = ${parameters.mouseWheel?string};
   </#if>
-  <#if parameters.incremental?exists>
+  <#if parameters.incremental??>
 	options_${escapedOptionId}.incremental = ${parameters.incremental?string};
   </#if>
   <#include "/${parameters.templateDir}/jquery/base.ftl" />

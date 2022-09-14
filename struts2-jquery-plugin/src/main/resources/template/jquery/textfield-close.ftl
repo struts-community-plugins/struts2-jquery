@@ -18,9 +18,9 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
 	options_${escapedOptionId}.type = 'text';
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
@@ -35,5 +35,5 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/sortable.ftl" />
 
   <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
- });  
+ });
 </script>

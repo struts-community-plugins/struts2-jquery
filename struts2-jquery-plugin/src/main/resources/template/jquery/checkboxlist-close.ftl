@@ -18,9 +18,9 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
 <#if parameters.nameValue??>
 	options_${escapedOptionId}.value = "<@s.property value="parameters.nameValue"/>";
@@ -36,12 +36,12 @@ jQuery(document).ready(function () {
 <#if parameters.remoteListValue??>
 	options_${escapedOptionId}.listvalue = "${parameters.remoteListValue}";
 </#if>
-<#if parameters.buttonset?default(true)>
+<#if parameters.buttonset!true>
 	options_${escapedOptionId}.buttonset = true;
 <#else>
 	options_${escapedOptionId}.buttonset = false;
 </#if>
-<#if parameters.icon?default(true)>
+<#if parameters.icon!true>
     options_${escapedOptionId}.icon = true;
 <#else>
     options_${escapedOptionId}.icon = false;
@@ -56,5 +56,5 @@ jQuery(document).ready(function () {
   <#include "/${parameters.templateDir}/jquery/container.ftl" />
 
   <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
- });  
+ });
 </script>

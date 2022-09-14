@@ -18,7 +18,7 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
 jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.richtext.struts2"+jQuery.struts2_jquery.minSuffix+".js");
@@ -28,68 +28,68 @@ jQuery(document).ready(function () {
 
 	options_${escapedOptionId}.path = "${base}/static/js/tinymce/";
 
-	<#if parameters.editorSkin?if_exists != "">
+	<#if parameters.editorSkin! != "">
 	options_${escapedOptionId}.skin = "${parameters.editorSkin}";
 	</#if>
-	<#if parameters.editorSkinVariant?if_exists != "">
+	<#if parameters.editorSkinVariant! != "">
 	options_${escapedOptionId}.skin_variant = "${parameters.editorSkinVariant}";
 	</#if>
-	options_${escapedOptionId}.theme = "${parameters.editorTheme?default("modern")}";
+	options_${escapedOptionId}.theme = "${parameters.editorTheme!"modern"}";
 	<#if parameters.width??>
 	options_${escapedOptionId}.width = ${parameters.width};
 	</#if>
 	<#if parameters.height??>
 	options_${escapedOptionId}.height = ${parameters.height};
 	</#if>
-	<#if parameters.editorLocal?if_exists != "">
+	<#if parameters.editorLocal! != "">
 	options_${escapedOptionId}.editorLocal = "${parameters.editorLocal}";
 	</#if>
-	<#if parameters.toolbarLocation?if_exists != "">
+	<#if parameters.toolbarLocation! != "">
 	options_${escapedOptionId}.theme_advanced_toolbar_location = "${parameters.toolbarLocation}";
 	</#if>
-	<#if parameters.toolbarAlign?if_exists != "">
+	<#if parameters.toolbarAlign! != "">
 	options_${escapedOptionId}.theme_advanced_toolbar_align = "${parameters.toolbarAlign}";
 	</#if>
-	<#if parameters.statusbarLocation?if_exists != "">
+	<#if parameters.statusbarLocation! != "">
 	options_${escapedOptionId}.theme_advanced_statusbar_location = "${parameters.statusbarLocation}";
 	</#if>
-  	<#if parameters.pasteplain?default(false)>
+  	<#if parameters.pasteplain!false>
 	options_${escapedOptionId}.pasteplain = true;
   	</#if>
-  	<#if parameters.editorResizable?default(false)>
+  	<#if parameters.editorResizable!false>
 	options_${escapedOptionId}.editorResizable = true;
   	</#if>
-	<#if parameters.plugins?if_exists != "">
+	<#if parameters.plugins! != "">
 	options_${escapedOptionId}.plugins = "${parameters.plugins}";
 	</#if>
-	<#if parameters.toolbarButtonsRow1?if_exists != "">
+	<#if parameters.toolbarButtonsRow1! != "">
 	options_${escapedOptionId}.theme_advanced_buttons1 = "${parameters.toolbarButtonsRow1?replace(" ", "")}";
 	</#if>
-	<#if parameters.toolbarButtonsRow2?if_exists != "">
+	<#if parameters.toolbarButtonsRow2! != "">
 	options_${escapedOptionId}.theme_advanced_buttons2 = "${parameters.toolbarButtonsRow2?replace(" ", "")}";
 	</#if>
-	<#if parameters.toolbarButtonsRow3?if_exists != "">
+	<#if parameters.toolbarButtonsRow3! != "">
 	options_${escapedOptionId}.theme_advanced_buttons3 = "${parameters.toolbarButtonsRow3?replace(" ", "")}";
 	</#if>
-	<#if parameters.toolbarButtonsRow4?if_exists != "">
+	<#if parameters.toolbarButtonsRow4! != "">
 	options_${escapedOptionId}.theme_advanced_buttons4 = "${parameters.toolbarButtonsRow4?replace(" ", "")}";
 	</#if>
-	<#if parameters.entityEncoding?if_exists != "">
+	<#if parameters.entityEncoding! != "">
 	options_${escapedOptionId}.entity_encoding = "${parameters.entityEncoding}";
 	</#if>
-	<#if parameters.contentCss?if_exists != "">
+	<#if parameters.contentCss! != "">
 	options_${escapedOptionId}.content_css = "${parameters.contentCss?string}";
 	</#if>
-	<#if parameters.removeLinebreaks?exists>
+	<#if parameters.removeLinebreaks??>
 	options_${escapedOptionId}.remove_linebreaks = ${parameters.removeLinebreaks?string};
 	</#if>
-	<#if parameters.removeRedundantBrs?exists>
+	<#if parameters.removeRedundantBrs??>
 	options_${escapedOptionId}.remove_redundant_brs = ${parameters.removeRedundantBrs?string};
 	</#if>
-	<#if parameters.onSaveTopics?if_exists != "">
+	<#if parameters.onSaveTopics! != "">
 	options_${escapedOptionId}.onsavetopics = "${parameters.onSaveTopics}";
 	</#if>
-	<#if parameters.onEventTopics?if_exists != "">
+	<#if parameters.onEventTopics! != "">
 	options_${escapedOptionId}.oneventtopics = "${parameters.onEventTopics}";
 	</#if>
 

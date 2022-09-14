@@ -18,29 +18,28 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
-  <#if parameters.selectable?default(false)>
+<#assign escapedOptionId="${parameters.escapedId}">
+  <#if parameters.selectable!false>
 	options_${escapedOptionId}.selectable = true;<#rt/>
    </#if>
-  <#if parameters.selectableOptions?if_exists != "">
+  <#if parameters.selectableOptions! != "">
  	options_${escapedOptionId}.selectableoptions = "${parameters.selectableOptions}";<#rt/>
    </#if>
-  <#if parameters.selectableOnSelectedTopics?if_exists != "">
+  <#if parameters.selectableOnSelectedTopics! != "">
  	options_${escapedOptionId}.selectableonselectedtopics = "${parameters.selectableOnSelectedTopics}";<#rt/>
    </#if>
-  <#if parameters.selectableOnSelectingTopics?if_exists != "">
+  <#if parameters.selectableOnSelectingTopics! != "">
  	options_${escapedOptionId}.selectableonselectingtopics = "${parameters.selectableOnSelectingTopics}";<#rt/>
    </#if>
-  <#if parameters.selectableOnStartTopics?if_exists != "">
+  <#if parameters.selectableOnStartTopics! != "">
  	options_${escapedOptionId}.selectableonstarttopics = "${parameters.selectableOnStartTopics}";<#rt/>
    </#if>
-  <#if parameters.selectableOnStopTopics?if_exists != "">
+  <#if parameters.selectableOnStopTopics! != "">
  	options_${escapedOptionId}.selectableonstoptopics = "${parameters.selectableOnStopTopics}";<#rt/>
    </#if>
-  <#if parameters.selectableOnUnselectedTopics?if_exists != "">
+  <#if parameters.selectableOnUnselectedTopics! != "">
  	options_${escapedOptionId}.selectableonunselectedtopics = "${parameters.selectableOnUnselectedTopics}";<#rt/>
    </#if>
-  <#if parameters.selectableOnUnselectingTopics?if_exists != "">
+  <#if parameters.selectableOnUnselectingTopics! != "">
  	options_${escapedOptionId}.selectableonunselectingtopics = "${parameters.selectableOnUnselectingTopics}";<#rt/>
    </#if>
-  

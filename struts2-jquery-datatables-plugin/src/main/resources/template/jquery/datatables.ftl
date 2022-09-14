@@ -18,13 +18,13 @@
  * under the License.
  */
 -->
-<#assign escapedOptionId="${parameters.id?string?replace('.', '_')}">
+<#assign escapedOptionId="${parameters.escapedId}">
 <script type='text/javascript'>
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
     jQuery.struts2_jquery.require(["js/struts2/jquery.datatables.struts2"+jQuery.struts2_jquery.minSuffix+".js","js/plugins/jquery.dataTables"+jQuery.struts2_jquery.minSuffix+".js"]);
  });
 </script>
-<table id="${parameters.id}" 
+<table id="${parameters.id}"
 <#if parameters.cssClass??>
  class="${parameters.cssClass}"<#rt/>
 </#if>
