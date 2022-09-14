@@ -5,7 +5,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: 
+    branches:
       - master
       - release/5.0.x
   pull_request:
@@ -23,8 +23,8 @@ jobs:
     - name: Set up JDK 8
       uses: actions/setup-java@v3
       with:
-        java-version: '8'
-        distribution: 'temurin'
+        java-version: 8
+        distribution: adopt
         cache: maven
     - name: Build & Install
       run: mvn --batch-mode -DskipITs package install
