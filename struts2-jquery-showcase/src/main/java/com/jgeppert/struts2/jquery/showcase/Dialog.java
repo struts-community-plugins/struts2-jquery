@@ -34,7 +34,7 @@ public class Dialog extends ActionSupport {
 
     @Action(value = "/dialog", results = {@Result(location = "dialog.jsp", name = "success")})
     public String execute() throws Exception {
-        this.sequence = RANDOM.nextInt(0, 100);
+        this.sequence = RANDOM.nextInt(100);
         return SUCCESS;
     }
 
