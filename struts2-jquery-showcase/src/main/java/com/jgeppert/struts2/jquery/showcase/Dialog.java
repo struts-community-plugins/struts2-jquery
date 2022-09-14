@@ -23,12 +23,22 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
+import java.security.SecureRandom;
+
 public class Dialog extends ActionSupport {
 
     private static final long serialVersionUID = 3482369686693624365L;
+    private static final SecureRandom RANDOM = new SecureRandom();
+
+    private int sequence;
 
     @Action(value = "/dialog", results = {@Result(location = "dialog.jsp", name = "success")})
     public String execute() throws Exception {
+        this.sequence = RANDOM.nextInt(0, 100);
         return SUCCESS;
+    }
+
+    public int getSequence() {
+        return sequence;
     }
 }
