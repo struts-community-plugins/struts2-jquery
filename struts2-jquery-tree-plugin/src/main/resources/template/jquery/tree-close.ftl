@@ -46,18 +46,18 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId}.rtl = ${parameters.rtl?string};
 	</#if>
 	<#if parameters.href! != "">
-	options_${escapedOptionId}.url = "${parameters.href?string}";
+	options_${escapedOptionId}.url = "<#outputformat "JavaScript">${parameters.href}</#outputformat>";
 	</#if>
-  	<#if parameters.nodeTargets?exists>
+  	<#if parameters.nodeTargets??>
 	options_${escapedOptionId}.nodeTargets = "${parameters.nodeTargets}";
   	</#if>
-  	<#if parameters.nodeHref?exists>
+  	<#if parameters.nodeHref??>
 	options_${escapedOptionId}.nodeHref = "${parameters.nodeHref}";
   	</#if>
-  	<#if parameters.nodeHref?exists>
-	options_${escapedOptionId}.nodeHrefParamName = "${parameters.nodeHrefParamName?default('id')}";
+  	<#if parameters.nodeHref??>
+	options_${escapedOptionId}.nodeHrefParamName = "${parameters.nodeHrefParamName!'id'}";
   	</#if>
-  	<#if parameters.onClickTopics?exists>
+  	<#if parameters.onClickTopics??>
 	options_${escapedOptionId}.onclick = "${parameters.onClickTopics}";
   	</#if>
 	<#if parameters.openAllOnLoad??>

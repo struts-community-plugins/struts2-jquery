@@ -35,7 +35,7 @@ jQuery(document).ready(function () {
 	options_tab_${escapedOptionId}.formIds = "${parameters.formIds}";
   </#if>
   <#if parameters.href! != "">
-	options_tab_${escapedOptionId}.href = "${parameters.href}";
+	options_tab_${escapedOptionId}.href = "<#outputformat "JavaScript">${parameters.href}</#outputformat>";
   <#elseif parameters.target! != "" >
 	options_tab_${escapedOptionId}.href = "#${parameters.target}";
   <#else>

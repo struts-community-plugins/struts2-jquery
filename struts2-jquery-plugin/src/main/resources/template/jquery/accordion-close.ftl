@@ -80,7 +80,7 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId}.active = "${parameters.active}";
   </#if>
   <#if parameters.href! != "">
-	options_${escapedOptionId}.href = "${parameters.href}";
+	options_${escapedOptionId}.href = "<#outputformat "JavaScript">${parameters.href}</#outputformat>";
   </#if>
   <#if parameters.header! != "">
 	options_${escapedOptionId}.header = "${parameters.header}";

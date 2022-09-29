@@ -21,7 +21,7 @@
 <#assign escapedOptionId="${parameters.escapedId}">
 	options_${escapedOptionId}.datatype = "${parameters.dataType!'json'}";
   <#if parameters.href??>
-	options_${escapedOptionId}.url = "${parameters.href?string}";
+	options_${escapedOptionId}.url = "<#outputformat "JavaScript">${parameters.href}</#outputformat>";
   </#if>
   <#if parameters.requestType! != "">
 	options_${escapedOptionId}.mtype = "${parameters.requestType}";
