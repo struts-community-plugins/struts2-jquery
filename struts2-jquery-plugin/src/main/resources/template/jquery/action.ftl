@@ -28,7 +28,7 @@
 	options_${escapedOptionId}.href = "#";
   </#if>
   <#if parameters.hrefParameter! != "">
-	options_${escapedOptionId}.hrefparameter = <#outputformat "JavaScript">${parameters.hrefParameter}</#outputformat>;
+	options_${escapedOptionId}.hrefparameter = "<#outputformat "JavaScript">${parameters.hrefParameter}</#outputformat>";
   </#if>
   <#if parameters.formIds??>
 	options_${escapedOptionId}.formids = "${parameters.formIds}";
