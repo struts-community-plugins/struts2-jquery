@@ -142,6 +142,8 @@ public class Grid extends AbstractContainer {
     private static final String PARAM_GROUP_DATA_SORTED = "groupDataSorted";
     private static final String PARAM_GROUP_COLLAPSE = "groupCollapse";
     private static final String PARAM_SORTABLE_ROWS = "sortableRows";
+    private static final String PARAM_GUI_STYLE= "guiStyle";
+    private static final String PARAM_ICON_SET= "iconSet";
 
     private static final String ID_PREFIX_GRID = "grid_";
 
@@ -236,6 +238,8 @@ public class Grid extends AbstractContainer {
     protected String groupPlusIcon;
     protected String groupMinusIcon;
     protected String sortableRows;
+    protected String guiStyle;
+    protected String iconSet;
 
     public Grid(ValueStack stack, HttpServletRequest request, HttpServletResponse response) {
         super(stack, request, response);
@@ -351,6 +355,8 @@ public class Grid extends AbstractContainer {
         addParameterIfPresent(PARAM_GROUP_MINUS_ICON, this.groupMinusIcon);
         addParameterIfPresent(PARAM_GROUP_DATA_SORTED, this.groupDataSorted, Boolean.class);
         addParameterIfPresent(PARAM_GROUP_COLLAPSE, this.groupCollapse, Boolean.class);
+        addParameterIfPresent(PARAM_GUI_STYLE, this.guiStyle);
+        addParameterIfPresent(PARAM_ICON_SET, this.iconSet);
 
         if (sortableRows != null) {
             String sortableValue = findString(sortableRows);
@@ -829,4 +835,13 @@ public class Grid extends AbstractContainer {
         this.sortableRows = sortableRows;
     }
 
+    @StrutsTagAttribute(description = "Set the gui style for the grid. e.g., jQueryUI, bootstrap, bootstrapPrimary and bootstrap4", defaultValue = "jQueryUI")
+    public void setGuiStyle(String guiStyle) {
+        this.guiStyle = guiStyle;
+    }
+
+    @StrutsTagAttribute(description = "Set the iconSet. e.g.: jQueryUI or fontAwesome", defaultValue = "jQueryUI")
+    public void setIconSet(String iconSet) {
+        this.iconSet = iconSet;
+    }
 }

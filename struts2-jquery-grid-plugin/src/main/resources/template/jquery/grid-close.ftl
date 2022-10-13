@@ -107,6 +107,12 @@
   <#if parameters.recordpos! != "">
 	options_${escapedOptionId}.recordpos = "${parameters.recordpos}";
   </#if>
+  <#if parameters.guiStyle! != "">
+	options_${escapedOptionId}.guiStyle = "${parameters.guiStyle}";
+  </#if>
+  <#if parameters.iconSet! != "">
+	options_${escapedOptionId}.iconSet = "${parameters.iconSet}";
+  </#if>
   <#if parameters.viewsortcols! != "">
 	options_${escapedOptionId}.viewsortcols = <#outputformat "JavaScript">${parameters.viewsortcols}</#outputformat>;
   </#if>

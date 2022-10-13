@@ -127,6 +127,9 @@ public class GridTag extends AbstractContainerTag {
     protected String groupPlusIcon;
     protected String groupMinusIcon;
 
+    protected String guiStyle;
+    protected String iconSet;
+
     public Component getBean(ValueStack stack, HttpServletRequest req,
                              HttpServletResponse res) {
         return new Grid(stack, req, res);
@@ -226,6 +229,8 @@ public class GridTag extends AbstractContainerTag {
         grid.setGroupShowSummaryOnHide(groupShowSummaryOnHide);
         grid.setGroupPlusIcon(groupPlusIcon);
         grid.setGroupMinusIcon(groupMinusIcon);
+        grid.setGuiStyle(guiStyle);
+        grid.setIconSet(iconSet);
     }
 
     public void setWidth(String width) {
@@ -588,4 +593,11 @@ public class GridTag extends AbstractContainerTag {
         this.onRightClickRowTopics = onRightClickRowTopics;
     }
 
+    public void setGuiStyle(String guiStyle) {
+        this.guiStyle = guiStyle;
+    }
+
+    public void setIconSet(String iconSet) {
+        this.iconSet = iconSet;
+    }
 }
