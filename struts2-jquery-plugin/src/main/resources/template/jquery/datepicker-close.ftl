@@ -69,7 +69,7 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId}.buttonImage = "${parameters.buttonImage}";
   <#else>
     <#if parameters.buttonText! == "">
-	options_${escapedOptionId}.buttonImage = "${base}/struts/js/calendar.gif";
+	options_${escapedOptionId}.buttonImage = "${base}/static/js/calendar.gif";
     </#if>
   </#if>
   <#if parameters.buttonText! != "">
