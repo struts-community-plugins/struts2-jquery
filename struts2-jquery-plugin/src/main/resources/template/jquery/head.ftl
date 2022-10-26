@@ -27,7 +27,7 @@
 <#assign jQueryUIVersionI18n="1.11.1">
 <#assign struts2jQueryVersion="${version}">
 
-<#if parameters.scriptPath?if_exists != "">
+<#if parameters.scriptPath! != "">
     <#assign javaScriptBasePath="${parameters.scriptPath?string}">
 <#else>
     <#assign javaScriptBasePath="${base}/static/">
@@ -35,12 +35,12 @@
 
 <#assign cdnUiPath="https://code.jquery.com/ui/${jQueryUIVersion}">
 
-<#if parameters.customBasepath?if_exists != "">
+<#if parameters.customBasepath! != "">
     <#assign basePath="${parameters.customBasepath?string}">
 <#else>
     <#assign basePath="${javaScriptBasePath}themes">
 </#if>
-<#if parameters.compressed?default(true)>
+<#if parameters.compressed!true>
     <#assign jqueryFile="jquery-${jQueryVersion}.min.js">
     <#assign jqueryForm="jquery.form.min.js?s2j=${struts2jQueryVersion}">
     <#assign jqueryUIFile="jquery-ui.min.js?s2j=${struts2jQueryVersion}">
@@ -65,27 +65,33 @@
 </#if>
 <#assign jqueryCdn="https://code.jquery.com/${jqueryFile}">
 
-<#if parameters.loadFromCdn?default(false)>
-    <#if parameters.jquery?default(true)>
+<#if parameters.loadFromCdn!false>
+    <#if parameters.jquery!true>
     <script type="text/javascript" src="${jqueryCdn}"></script>
     </#if>
-    <#if parameters.jqueryui?default(true)>
+    <#if parameters.jqueryui!true>
     <script type="text/javascript" src="${jqueryUiCdn}"></script>
-        <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
+        <#if parameters.jqueryLocale! != "" && parameters.jqueryLocale! != "en">
         <script type="text/javascript"
-                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersionI18n}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"></script>
+                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersionI18n}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"
+                <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
         </#if>
     </#if>
 <#else>
-    <#if parameters.jquery?default(true)>
-        <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryFile}"></script>
+    <#if parameters.jquery!true>
+        <script type="text/javascript"
+                src="${javaScriptBasePath}js/base/${jqueryFile}"
+                <#include "/${parameters.templateDir}/simple/nonce.ftl" /> ></script>
     </#if>
-    <#if parameters.jqueryui?default(true)>
-        <#if parameters.loadAtOnce?default(false)>
-        <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"></script>
-            <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
+    <#if parameters.jqueryui!true>
+        <#if parameters.loadAtOnce!false>
+        <script type="text/javascript"
+                src="${javaScriptBasePath}js/base/${jqueryUIFile}"
+                <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+            <#if parameters.jqueryLocale! != "" && parameters.jqueryLocale! != "en">
             <script type="text/javascript"
-                    src="${javaScriptBasePath}i18n/datepicker-${parameters.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"></script>
+                    src="${javaScriptBasePath}i18n/datepicker-${parameters.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"
+                    <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
             </#if>
         <#else>
         <!-- script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script -->
@@ -93,80 +99,88 @@
         </#if>
     </#if>
 </#if>
-<#if parameters.loadAtOnce?default(false) ||  parameters.loadFromCdn?default(false)>
-<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryForm}"></script>
+<#if parameters.loadAtOnce!false ||  parameters.loadFromCdn!false>
+<script type="text/javascript"
+        src="${javaScriptBasePath}js/plugins/${jqueryForm}"
+        <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
 </#if>
-<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}"></script>
-<#if parameters.ajaxhistory?default(false)>
-<script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryHistoryFile}"></script>
+<script type="text/javascript"
+        src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}"
+        <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+<#if parameters.ajaxhistory!false>
+<script type="text/javascript"
+        src="${javaScriptBasePath}js/plugins/${jqueryHistoryFile}"
+        <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
 </#if>
 
-<script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"></script>
+<script type="text/javascript"
+        src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"
+        <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
 
 <script type="text/javascript">
     $(function () {
         jQuery.struts2_jquery.version = "${struts2jQueryVersion}";
-    <#if parameters.debug?default(false)>
+    <#if parameters.debug!false>
         jQuery.struts2_jquery.debug = true;
     </#if>
-    <#if parameters.loadAtOnce?default(false) || parameters.loadFromCdn?default(false)>
+    <#if parameters.loadAtOnce!false || parameters.loadFromCdn!false>
         jQuery.struts2_jquery.loadAtOnce = true;
     </#if>
-    <#if parameters.scriptPath?if_exists != "">
+    <#if parameters.scriptPath! != "">
         jQuery.scriptPath = "${parameters.scriptPath?string}";
     <#else>
         jQuery.scriptPath = "${javaScriptBasePath}";
     </#if>
-    <#if !parameters.compressed?default(true)>
+    <#if !parameters.compressed!true>
         jQuery.struts2_jquery.minSuffix = "";
     </#if>
-    <#if parameters.jqueryLocale?if_exists != "" && parameters.jqueryLocale?if_exists != "en">
+    <#if parameters.jqueryLocale! != "" && parameters.jqueryLocale! != "en">
         jQuery.struts2_jquery.local = "${parameters.jqueryLocale?string}";
     </#if>
     <#if parameters.gridLocale??>
-        jQuery.struts2_jquery.gridLocal = "${parameters.gridLocale?default('en')}";
+        jQuery.struts2_jquery.gridLocal = "${parameters.gridLocale!'en'}";
     </#if>
     <#if parameters.timeLocale??>
-        jQuery.struts2_jquery.timeLocal = "${parameters.timeLocale?default('en')}";
+        jQuery.struts2_jquery.timeLocal = "${parameters.timeLocale!'en'}";
     </#if>
     <#if parameters.datatablesLocale??>
-        jQuery.struts2_jquery.datatablesLocal = "${parameters.datatablesLocale?default('en')}";
+        jQuery.struts2_jquery.datatablesLocal = "${parameters.datatablesLocale!'en'}";
     </#if>
-    <#if parameters.ajaxhistory?default(false)>
+    <#if parameters.ajaxhistory!false>
         jQuery.struts2_jquery.ajaxhistory = true;
     </#if>
-    <#if parameters.defaultIndicator?if_exists != "">
+    <#if parameters.defaultIndicator! != "">
         jQuery.struts2_jquery.defaults.indicator = "${parameters.defaultIndicator?string}";
     </#if>
-    <#if parameters.defaultLoadingText?if_exists != "">
+    <#if parameters.defaultLoadingText! != "">
         jQuery.struts2_jquery.defaults.loadingText = "${parameters.defaultLoadingText?string}";
     </#if>
-    <#if parameters.defaultErrorText?if_exists != "">
+    <#if parameters.defaultErrorText! != "">
         jQuery.struts2_jquery.defaults.errorText = "${parameters.defaultErrorText?string}";
     </#if>
         jQuery.ajaxSettings.traditional = true;
 
         jQuery.ajaxSetup({
-        <#if parameters.ajaxcache?default(false)>
+        <#if parameters.ajaxcache!false>
             cache: true
         <#else>
             cache: false
         </#if>
         });
 
-    <#if parameters.jqueryui?default(true)>
+    <#if parameters.jqueryui!true>
         jQuery.struts2_jquery.require("js/struts2/${jqueryUiStrutsFile}");
     </#if>
 
-    <#if parameters.ajaxhistory?default(false)>
+    <#if parameters.ajaxhistory!false>
         jQuery(window).trigger('hashchange');
     </#if>
     });
 </script>
 
-<#if parameters.jqueryui?default(true)>
-    <#if parameters.jquerytheme?if_exists != "">
-        <#if parameters.loadFromCdn?default(false) && basePath == "${base}/static/themes">
+<#if parameters.jqueryui!true>
+    <#if parameters.jquerytheme! != "">
+        <#if parameters.loadFromCdn!false && basePath == "${base}/static/themes">
         <link id="jquery_theme_link" rel="stylesheet"
               href="${cdnUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
         <#else>
