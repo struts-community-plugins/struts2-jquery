@@ -15,12 +15,14 @@
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]>
-	<script src="js/html5.js"></script>
+	<s:url var="js" value="js/html5.js"/>
+	<s:script src="%{js}"/>
 	<![endif]-->
 
 	<!--  Struts2 Taglib Resources -->
 	<sb:head />
-	<link href="${pageContext.request.contextPath}/styles/content.css" rel="stylesheet" type="text/css" />
+	<s:url var="styles" value="/styles/content.css"/>
+	<s:link href="%{styles}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 

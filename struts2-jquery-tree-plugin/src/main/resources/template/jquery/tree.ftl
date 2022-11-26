@@ -18,11 +18,11 @@
  * under the License.
  */
 -->
-<script type='text/javascript'>
-jQuery(document).ready(function () { 
+<@s.script type='text/javascript'>
+jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.tree.struts2"+jQuery.struts2_jquery.minSuffix+".js");
  });
-</script>
+</@s.script>
 <#if parameters.checkbox?default(false)>
     <input type="hidden" id="${parameters.id}_hidden" name="${parameters.name}" value=""></input>
 </#if>
@@ -33,4 +33,3 @@ jQuery(document).ready(function () {
     <#include "/${parameters.templateDir}/jquery/treenode-include.ftl" />
     <#assign oldNode = stack.pop()/> <#-- pop the node off of the stack, but don't show it -->
     </#if>
-	

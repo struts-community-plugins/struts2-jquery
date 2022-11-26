@@ -19,11 +19,11 @@
  */
 -->
 <#assign escapedOptionId="${parameters.escapedId}">
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
     jQuery.struts2_jquery.require(["js/struts2/jquery.datatables.struts2"+jQuery.struts2_jquery.minSuffix+".js","js/plugins/jquery.dataTables"+jQuery.struts2_jquery.minSuffix+".js"]);
  });
-</script>
+</@s.script>
 <table id="${parameters.id}"
 <#if parameters.cssClass??>
  class="${parameters.cssClass}"<#rt/>

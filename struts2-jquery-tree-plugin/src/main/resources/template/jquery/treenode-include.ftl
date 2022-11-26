@@ -20,7 +20,7 @@
 -->
 		<#assign itemId = stack.findValue(parameters.nodeIdProperty)/>
 		<li id="${itemId}"
-		<#if parameters.nodeTypeProperty?if_exists != ""> 
+		<#if parameters.nodeTypeProperty?if_exists != "">
 			<#if stack.findValue(parameters.nodeTypeProperty)??>
                     data-jstree='{"type" : "${stack.findValue(parameters.nodeTypeProperty)}"}'
 			</#if>
@@ -34,7 +34,7 @@
 		</#if>
 		>
     <#if parameters.nodeHref?if_exists != "">
-		<#if parameters.nodeTargets?if_exists != ""> 
+		<#if parameters.nodeTargets?if_exists != "">
 			<a id="${itemId}_anchor" href="javascript:void(0)" data-targets="${parameters.nodeTargets}">
     				${stack.findValue(parameters.nodeTitleProperty)}
 			</a>
@@ -61,7 +61,7 @@
         <#if parameters.nodeHref?if_exists != "" && parameters.nodeTargets?if_exists != "">
             <#assign escapedOptionId="${itemId?string?replace('.', '_')}_anchor">
             <#assign escapedId="${itemId?string?replace('.', '\\\\\\\\.')}_anchor">
-        <script type='text/javascript'>
+        <@s.script type='text/javascript'>
             jQuery(document).ready(function () {
                 var options_${escapedOptionId} = {};
                 options_${escapedOptionId}.jqueryaction = "treeitem";
@@ -71,5 +71,5 @@
                 options_${escapedOptionId}.hrefparameter = "${parameters.nodeHrefParamName?default('id')}=${itemId}";
                 jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
             });
-        </script>
+        </@s.script>
         </#if>

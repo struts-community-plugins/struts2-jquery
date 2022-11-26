@@ -21,7 +21,7 @@
 	</ul>
 </div>
 <#assign escapedOptionId="${parameters.escapedId}">
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
 	<#if parameters.jstreetheme! != "">
@@ -124,4 +124,4 @@ jQuery(document).ready(function () {
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 	jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
  });
-</script>
+</@s.script>

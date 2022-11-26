@@ -20,7 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.escapedId}">
 </div>
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
   <#if parameters.value! != "">
@@ -62,4 +62,4 @@ jQuery(document).ready(function () {
 
 <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
  });
-</script>
+</@s.script>

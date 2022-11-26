@@ -29,7 +29,7 @@ import java.util.Map;
 public class ShowCase extends ActionSupport {
 
     private static final long serialVersionUID = -7133848243722723891L;
-    private String theme = "showcase";
+    private String jqtheme = "showcase";
     private boolean cdn = false;
     private boolean ajaxhistory = false;
     private Map<String, String> themes;
@@ -68,12 +68,12 @@ public class ShowCase extends ActionSupport {
         return SUCCESS;
     }
 
-    public String getTheme() {
-        return theme;
+    public String getJqtheme() {
+        return jqtheme;
     }
 
-    public void setTheme(String theme) {
-        this.theme = theme;
+    public void setJqtheme(String jqtheme) {
+        this.jqtheme = jqtheme;
     }
 
     public Map<String, String> getThemes() {

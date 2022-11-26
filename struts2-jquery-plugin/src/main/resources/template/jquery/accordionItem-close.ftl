@@ -20,7 +20,7 @@
 -->
 	</div>
 <#assign escapedOptionId="${parameters.escapedId}">
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
 	options_${escapedOptionId}.header = "${parameters.header!'h3'}";
@@ -33,4 +33,4 @@ jQuery(document).ready(function () {
 
 <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
  });
-</script>
+</@s.script>

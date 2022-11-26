@@ -19,7 +19,7 @@
  */
 -->
 <#assign escapedOptionId="${parameters.escapedId}">
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
   <#if parameters.timepicker!false>
 	jQuery.struts2_jquery_ui.initDatepicker(true);
@@ -203,4 +203,4 @@ jQuery(document).ready(function () {
 
 <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
  });
-</script>
+</@s.script>

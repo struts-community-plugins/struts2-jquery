@@ -20,7 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.escapedId}">
   <#include "/${parameters.templateDir}/${parameters.parentTheme}/submit-close.ftl" />
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
 	<#if parameters.openDialog! != "">
@@ -38,4 +38,4 @@ jQuery(document).ready(function () {
 
   <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
  });
-</script>
+</@s.script>

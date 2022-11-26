@@ -59,7 +59,7 @@
                         </a>
                         <#assign escapedOptionLinkId="${escapedOptionId}_li">
                         <#assign optionsLiVariableName>options_${escapedOptionLinkId}_<@s.property value="%{#rowstatus.count}" /></#assign>
-                        <script type='text/javascript'>
+                        <@s.script type='text/javascript'>
                             jQuery(document).ready(function () {
                                 var ${optionsLiVariableName} = {};
                                 ${optionsLiVariableName}.jqueryaction = "menuItem";
@@ -73,7 +73,7 @@
                                 ${optionsLiVariableName}.hrefparameter = "${parameters.paramName!'id'}=${itemKeyStr}";
                                 jQuery.struts2_jquery_ui.bind(jQuery('#${escapedOptionId?string?replace('.', '\\\\\\\\.')}_li_<@s.property value="%{#rowstatus.count}" />'), ${optionsLiVariableName});
                             });
-                        </script>
+                        </@s.script>
                     <#else>
                         <a href="${parameters.href}?${parameters.paramName!'id'}=${itemKeyStr}">
                             ${itemValue}
@@ -90,7 +90,7 @@
 </#if>
 </ul>
 <#if !parameters.subMenu!false>
-    <script type='text/javascript'>
+    <@s.script type='text/javascript'>
         jQuery(document).ready(function () {
             var options_${escapedOptionId} = {};
         <#if parameters.disabled!false>
@@ -108,5 +108,5 @@
 
             <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
         });
-    </script>
+    </@s.script>
 </#if>

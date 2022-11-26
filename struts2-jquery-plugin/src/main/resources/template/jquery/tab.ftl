@@ -19,7 +19,7 @@
  */
 -->
 <#assign escapedOptionId="${parameters.escapedId}">
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_tab_${escapedOptionId} = {};
   <#if parameters.id! != "">
@@ -57,4 +57,4 @@ jQuery(document).ready(function () {
   	jQuery('#${parameters.parentTabbedPanel?string?replace('.', '\\\\\\\\.')}').data('taboptions', tabs);
   </#if>
  });
-</script>
+</@s.script>
