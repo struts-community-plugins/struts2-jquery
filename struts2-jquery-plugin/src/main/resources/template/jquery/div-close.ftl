@@ -20,7 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.escapedId}">
 </div>
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
   <#if parameters.updateFreq??>
@@ -42,4 +42,4 @@ jQuery(document).ready(function () {
 
   <#include "/${parameters.templateDir}/jquery/jquery-bind.ftl" />
  });
-</script>
+</@s.script>

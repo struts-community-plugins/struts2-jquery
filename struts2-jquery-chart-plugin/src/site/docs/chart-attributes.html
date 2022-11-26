@@ -22,12 +22,12 @@
             <td align="left" valign="top">Set the html accesskey attribute on rendered html element</td>
         </tr>
         <tr>
-            <td align="left" valign="top">autoFocus</td>
+            <td align="left" valign="top">autoResize</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top">If set to true the first item will be automatically focused.</td>
+            <td align="left" valign="top">If the size of the Placeholder DIV is changed, it will redraw the plot.</td>
         </tr>
         <tr>
             <td align="left" valign="top">bindOn</td>
@@ -36,6 +36,38 @@
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
             <td align="left" valign="top">Bind the start of load or effect on element. e.g. button or link</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">crosshair</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">Boolean</td>
+            <td align="left" valign="top">showing a crosshair, thin lines, when the mouse hovers over the plot</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">crosshairColor</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">crosshair color</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">crosshairLineWidth</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">Number</td>
+            <td align="left" valign="top">crosshair line width</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">crosshairMode</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">crosshair mode, 'x', 'y' or 'xy'</td>
         </tr>
         <tr>
             <td align="left" valign="top">cssClass</td>
@@ -84,14 +116,6 @@
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">Boolean</td>
             <td align="left" valign="top">Defers the initial loading of this element.  The element will not be loaded until one of the reloadTopics is published.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">delay</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">300</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Integer</td>
-            <td align="left" valign="top">Delay before making the search</td>
         </tr>
         <tr>
             <td align="left" valign="top">disabled</td>
@@ -462,14 +486,6 @@
             <td align="left" valign="top">Start load or effect on specified event. Possible values are click, dblclick, mouseover, mouseenter, mouseleave. Default: click</td>
         </tr>
         <tr>
-            <td align="left" valign="top">forceValidOption</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top">Force selection to be one of the options.</td>
-        </tr>
-        <tr>
             <td align="left" valign="top">formIds</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top"></td>
@@ -542,36 +558,36 @@
             <td align="left" valign="top">String that will be appended to the label</td>
         </tr>
         <tr>
-            <td align="left" valign="top">list</td>
+            <td align="left" valign="top">legendBackgroundColor</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top"></td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Iterable source to populate from. If the list is a Map (key, value), the Map key will become the option 'value' parameter and the Map value will become the option body.</td>
+            <td align="left" valign="top">legend background color</td>
         </tr>
         <tr>
-            <td align="left" valign="top">listKey</td>
+            <td align="left" valign="top">legendLabelBoxBorderColor</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top"></td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
-            <td align="left" valign="top"> Property of list objects to get field value from</td>
+            <td align="left" valign="top">color of label box</td>
         </tr>
         <tr>
-            <td align="left" valign="top">listLabel</td>
+            <td align="left" valign="top">legendPosition</td>
             <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
+            <td align="left" valign="top">ne</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
-            <td align="left" valign="top">a seperate label element.</td>
+            <td align="left" valign="top">position of legend. ne, nw, se, sw</td>
         </tr>
         <tr>
-            <td align="left" valign="top">listValue</td>
+            <td align="left" valign="top">legendShow</td>
             <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
+            <td align="left" valign="top">true</td>
             <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Property of list objects to get field content from</td>
+            <td align="left" valign="top">Boolean</td>
+            <td align="left" valign="top">show legend</td>
         </tr>
         <tr>
             <td align="left" valign="top">listenTopics</td>
@@ -582,36 +598,12 @@
             <td align="left" valign="top">The comma separated list 'listenTopics' is the list of topic names that is used to trigger a request.</td>
         </tr>
         <tr>
-            <td align="left" valign="top">loadMinimumCount</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">1</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Integer</td>
-            <td align="left" valign="top">Minimum number of characters that will force the content to be loaded</td>
-        </tr>
-        <tr>
             <td align="left" valign="top">loadingText</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top"></td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
             <td align="left" valign="top">If loading content into a target, The text to be displayed during load (will be shown if any provided, will override settings for the target container)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">maxlength</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Integer</td>
-            <td align="left" valign="top">HTML maxlength attribute</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">multiple</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top"> Creates a multiple select. The tag will pre-select multiple values if the values are passed as an Array or a Collection(of appropriate types) via the value attribute. If one of the keys equals one of the values in the Collection or Array it wil be selected</td>
         </tr>
         <tr>
             <td align="left" valign="top">name</td>
@@ -662,6 +654,14 @@
             <td align="left" valign="top">A comma delimited list of topics that published when the element changed</td>
         </tr>
         <tr>
+            <td align="left" valign="top">onClickTopics</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">A comma delimited list of topics that published when the grid is clicked</td>
+        </tr>
+        <tr>
             <td align="left" valign="top">onCompleteTopics</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top"></td>
@@ -707,23 +707,15 @@
             <td align="left" valign="top"></td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published before focus is moved to an item</td>
+            <td align="left" valign="top">A comma delimited list of topics that published when the element is focused</td>
         </tr>
         <tr>
-            <td align="left" valign="top">onSearchTopics</td>
+            <td align="left" valign="top">onHoverTopics</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top"></td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published before a request is started, after loadMinimumCount and delay are met.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onSelectTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when item is selected</td>
+            <td align="left" valign="top">A comma delimited list of topics that published when the grid is hovered</td>
         </tr>
         <tr>
             <td align="left" valign="top">onSuccessTopics</td>
@@ -854,14 +846,6 @@
             <td align="left" valign="top">Set template to use for opening the rendered html.</td>
         </tr>
         <tr>
-            <td align="left" valign="top">parentTheme</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The parent theme. Default: value of parent form tag or simple if no parent form tag is available</td>
-        </tr>
-        <tr>
             <td align="left" valign="top">performClearTagStateForTagPoolingServers</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">false</td>
@@ -870,12 +854,68 @@
             <td align="left" valign="top">Whether to clear all tag state during doEndTag() processing (if applicable)</td>
         </tr>
         <tr>
-            <td align="left" valign="top">readonly</td>
+            <td align="left" valign="top">pie</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top">Whether the input is readonly</td>
+            <td align="left" valign="top">Display the Chart as a Pie</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">pieInnerRadius</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">0-1 for percentage of fullsize or a specified pixel length, for creating a donut effect</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">pieLabel</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">Boolean</td>
+            <td align="left" valign="top">Display Pie Labels</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">pieLabelBackgroundColor</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">any hexidecimal color value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">pieLabelBackgroundOpacity</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">0-1</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">pieLabelFormatter</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">a user-defined function that modifies the text/style of the label text. eg. name of a function like this function(label, series){ return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>'; }</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">pieLabelRadius</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">auto</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">0-1 for percentage of fullsize, or a specified pixel length</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">pieRadius</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">auto</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">0-1 for percentage of fullsize, or a specified pixel length</td>
         </tr>
         <tr>
             <td align="left" valign="top">reloadTopics</td>
@@ -1046,22 +1086,6 @@
             <td align="left" valign="top">This event javascript function is triggered at the end of a resize operation.</td>
         </tr>
         <tr>
-            <td align="left" valign="top">selectBox</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top">Use an Select Box as Autocompleter</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">selectBoxIcon</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top">display the select box icon</td>
-        </tr>
-        <tr>
             <td align="left" valign="top">selectable</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top"></td>
@@ -1148,14 +1172,6 @@
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
             <td align="left" valign="top">Possible values: 'touch', 'fit'. Default: 'touch'</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">size</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Integer</td>
-            <td align="left" valign="top">HTML size attribute</td>
         </tr>
         <tr>
             <td align="left" valign="top">sortable</td>
@@ -1542,11 +1558,211 @@
             <td align="left" valign="top">Preset the value of input element.</td>
         </tr>
         <tr>
-            <td align="left" valign="top">valueWidget</td>
+            <td align="left" valign="top">xaxisColor</td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top"></td>
             <td align="left" valign="top">false</td>
             <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The value of the Widget Input Field.</td>
+            <td align="left" valign="top">color value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisLabel</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">Label for X-Axis</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisLabelFontFamily</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">X-Axis Label Font Family. e.g. Arial</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisLabelFontSizePixels</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">Number</td>
+            <td align="left" valign="top">X-Axis Label Font Size. e.g. 20</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisMax</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">maximum value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisMin</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">minimum value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisMode</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">null</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">null or time</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisPosition</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">bottom, top, left, right</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisTick</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">number or ticks array. If you want to completely override the tick algorithm, you can specify an array for ticks, either like this: [0, 1.2, 2.4] or like this where the labels are also customized: [[0, 'zero'], [1.2, 'one mark'], [2.4, 'two marks']]</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisTickColor</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">color value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisTickDecimals</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">auto-detected</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">the number of decimals to display (default is auto-detected).</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisTickSize</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">number or ticks array. If you set it to 2, you'll get ticks at 2, 4, 6, etc. Note that for time series, the format is an array like [2, 'month']</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">xaxisTimeformat</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">format string to use. The following specifiers are supported:   %h: hours,  %H: hours (left-padded with a zero),  %M: minutes (left-padded with a zero),  %S: seconds (left-padded with a zero),  %d: day of month (1-31), use %0d for zero-padding,  %m: month (1-12), use %0m for zero-padding,  %y: year (four digits),  %b: month name (customizable),  %p: am/pm, additionally switches %h/%H to 12 hour instead of 24,  %P: AM/PM (uppercase version of %p)</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisColor</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">color value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisLabel</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">Label for Y-Axis</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisLabelFontFamily</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">Y-Axis Label Font Family. e.g. Arial</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisLabelFontSizePixels</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">Number</td>
+            <td align="left" valign="top">Y-Axis Label Font Size. e.g. 20</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisMax</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">maximum value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisMin</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">minimum value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisMode</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">null</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">null or time</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisPosition</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">bottom, top, left, right</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisTick</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">number or ticks array. If you want to completely override the tick algorithm, you can specify an array for ticks, either like this: [0, 1.2, 2.4] or like this where the labels are also customized: [[0, 'zero'], [1.2, 'one mark'], [2.4, 'two marks']]</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisTickColor</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">color value</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisTickDecimals</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">auto-detected</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">the number of decimals to display (default is auto-detected).</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisTickSize</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">number or ticks array. If you set it to 2, you'll get ticks at 2, 4, 6, etc. Note that for time series, the format is an array like [2, 'month']</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">yaxisTimeformat</td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="top">false</td>
+            <td align="left" valign="top">String</td>
+            <td align="left" valign="top">format string to use. The following specifiers are supported:   %h: hours,  %H: hours (left-padded with a zero),  %M: minutes (left-padded with a zero),  %S: seconds (left-padded with a zero),  %d: day of month (1-31), use %0d for zero-padding,  %m: month (1-12), use %0m for zero-padding,  %y: year (four digits),  %b: month name (customizable),  %p: am/pm, additionally switches %h/%H to 12 hour instead of 24,  %P: AM/PM (uppercase version of %p)</td>
         </tr>
 </table>

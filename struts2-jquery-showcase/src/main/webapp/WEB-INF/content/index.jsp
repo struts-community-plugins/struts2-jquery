@@ -16,36 +16,36 @@
 
     <title>Struts2 jQuery Plugin Showcase - <s:text name="showcase.version"/></title>
 
-    <s:if test="%{theme == 'showcase' || theme == null}">
-        <sj:head debug="false" compressed="true" jquerytheme="showcase" customBasepath="themes" 
+    <s:if test="%{jqTheme == 'showcase' || jqTheme == null}">
+        <sj:head debug="false" compressed="true" jquerytheme="showcase" customBasepath="themes"
                  loadFromCdn="%{cdn}" ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
                  defaultLoadingText="Please wait ..."/>
     </s:if>
     <s:else>
-        <sj:head debug="false" compressed="true" jquerytheme="%{theme}" loadFromCdn="%{cdn}" 
+        <sj:head debug="false" compressed="true" jquerytheme="%{jqTheme}" loadFromCdn="%{cdn}"
                  ajaxhistory="%{ajaxhistory}" defaultIndicator="myDefaultIndicator"
                  defaultLoadingText="Please wait ..."/>
     </s:else>
-
-
-    <link href="<s:url value="/styles/flexible-grids.css" />" rel="stylesheet" type="text/css"/>
+    <s:url var="stylesBaseUrl" value="/styles"/>
+    <s:link href="%{stylesBaseUrl}/flexible-grids.css" rel="stylesheet" type="text/css"/>
     <!--[if lte IE 7]>
-    <link href="<s:url value="/yaml/core/iehacks.min.css" />" rel="stylesheet" type="text/css" />
+    <s:link href="%{stylesBaseUrl}/yaml/core/iehacks.min.css" rel="stylesheet" type="text/css"/>
     <![endif]-->
 
-    <!-- This files are needed for AJAX Validation of XHTML Forms -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/utils.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/xhtml/validation.js"></script>
+    <s:url var="staticBaseUrl" value="/static"/>
+    <!-- These files are needed for AJAX Validation of XHTML Forms -->
+    <s:script type="text/javascript" src="%{staticBaseUrl}/utils.js"/>
+    <s:script type="text/javascript" src="%{staticBaseUrl}/xhtml/validation.js"/>
 
-
+    <s:url var="jsBaseUrl" value="/js"/>
     <!-- This file includes necessary functions/topics for validation and all topic examples -->
-    <script type="text/javascript" src="<s:url value="/js/showcase.js" />"></script>
-    <!-- Extend the Struts2 jQuery Plugin with an richtext editor -->
-    <script type="text/javascript" src="<s:url value="/js/extendplugin.js" />"></script>
+    <s:script type="text/javascript" src="%{jsBaseUrl}/showcase.js"/>
+    <!-- Extend the Struts2 jQuery Plugin with a rich text editor -->
+    <s:script type="text/javascript" src="%{jsBaseUrl}/extendplugin.js"/>
 
     <!-- source code formatting with highlight.js -->
-    <link rel="stylesheet" type="text/css" href="<s:url value="/styles/github-gist.css" />">
-    <script type="text/javascript" src="<s:url value="/js/highlight.pack.js" />"></script>
+    <s:link rel="stylesheet" type="text/css" href="%{stylesBaseUrl}/github-gist.css"/>
+    <s:script type="text/javascript" src="%{jsBaseUrl}/highlight.pack.js"/>
 </head>
 <body>
 

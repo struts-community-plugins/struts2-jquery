@@ -45,7 +45,7 @@
 	options_${escapedParentOptionId}.subGridWidth = "${parameters.subGridWidth}";
 	</#if>
 <#else>
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 </#if>

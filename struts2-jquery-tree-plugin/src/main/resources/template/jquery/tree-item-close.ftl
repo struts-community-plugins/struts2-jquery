@@ -22,7 +22,7 @@
 		</li>
 <#if parameters.targets! != "">
   <#assign escapedOptionId="${parameters.escapedId}">
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
 	<#if parameters.openDialog! != "">
@@ -46,5 +46,5 @@ jQuery(document).ready(function () {
 <#assign escapedOptionId="${parameters.escapedId}">
 	jQuery.struts2_jquery_tree.bind(jQuery('#${escapedId}_link'),options_${escapedOptionId});
  });
-</script>
+</@s.script>
 </#if>

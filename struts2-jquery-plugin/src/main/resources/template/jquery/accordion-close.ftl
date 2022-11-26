@@ -64,7 +64,7 @@
 </@s.iterator>
 </#if>
 </div>
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
 	var options_${escapedOptionId} = {};
   <#if parameters.collapsible!false>
@@ -97,4 +97,4 @@ jQuery(document).ready(function () {
 
   <#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
  });
-</script>
+</@s.script>

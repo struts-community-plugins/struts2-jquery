@@ -18,13 +18,15 @@
 
 	<title>Struts2 jQuery Grid Plugin Showcase - <s:text name="showcase.version"/></title>
 
-	<link href="<s:url value="/styles/flexible-grids.css" />" rel="stylesheet" type="text/css" />
+	<s:url var="styles" value="/styles/flexible-grids.css" />
+	<s:link href="%{styles}" rel="stylesheet" type="text/css" />
 	<!--[if lte IE 7]>
-	<link href="<s:url value="/yaml/core/iehacks.min.css" />" rel="stylesheet" type="text/css" />
+	<s:url var="yaml" value="/yaml/core/iehacks.min.css" />
+	<s:link href="%{yaml}" rel="stylesheet" type="text/css" />
 	<![endif]-->
 
 	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<s:script src="http://html5shim.googlecode.com/svn/trunk/html5.js"/>
 	<![endif]-->
 
 	<sj:head
@@ -37,10 +39,11 @@
     />
 
 	<s:url var="empurl" action="employees-detail" />
-	<script type="text/javascript">
+	<s:script type="text/javascript">
 		var employee_detail_url = '<s:property value="empurl"/>';
-	</script>
-  <script type="text/javascript" src="<s:url value="/js/showcase.js" />"></script>
+	</s:script>
+	<s:url var="js" value="/js/showcase.js" />
+  	<s:script type="text/javascript" src="%{js}"/>
 </head>
 <body>
 

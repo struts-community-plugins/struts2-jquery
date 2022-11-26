@@ -20,7 +20,7 @@
 -->
 <#assign escapedOptionId="${parameters.escapedId}">
 </table>
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 jQuery(document).ready(function () {
     var options_${escapedOptionId} = {};
     options_${escapedOptionId}.theme="${parameters.datatablesTheme!'default'}";
@@ -337,4 +337,4 @@ jQuery(document).ready(function () {
     <#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
     jQuery.struts2_jquery_datatables.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
 });
-</script>
+</@s.script>

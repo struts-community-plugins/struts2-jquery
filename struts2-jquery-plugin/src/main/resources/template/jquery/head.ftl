@@ -67,57 +67,43 @@
 
 <#if parameters.loadFromCdn!false>
     <#if parameters.jquery!true>
-    <script type="text/javascript" src="${jqueryCdn}"></script>
+    <@s.script type="text/javascript" src="${jqueryCdn}"></@s.script>
     </#if>
     <#if parameters.jqueryui!true>
-    <script type="text/javascript" src="${jqueryUiCdn}"></script>
+    <@s.script type="text/javascript" src="${jqueryUiCdn}"></@s.script>
         <#if parameters.jqueryLocale! != "" && parameters.jqueryLocale! != "en">
-        <script type="text/javascript"
-                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersionI18n}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"
-                <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+        <@s.script type="text/javascript"
+                src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersionI18n}/i18n/datepicker-${parameters.jqueryLocale?string}.min.js"/>
         </#if>
     </#if>
 <#else>
     <#if parameters.jquery!true>
-        <script type="text/javascript"
-                src="${javaScriptBasePath}js/base/${jqueryFile}"
-                <#include "/${parameters.templateDir}/simple/nonce.ftl" /> ></script>
+        <@s.script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryFile}"/>
     </#if>
     <#if parameters.jqueryui!true>
         <#if parameters.loadAtOnce!false>
-        <script type="text/javascript"
-                src="${javaScriptBasePath}js/base/${jqueryUIFile}"
-                <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+        <@s.script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"/>
             <#if parameters.jqueryLocale! != "" && parameters.jqueryLocale! != "en">
-            <script type="text/javascript"
-                    src="${javaScriptBasePath}i18n/datepicker-${parameters.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"
-                    <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+            <@s.script type="text/javascript"
+                    src="${javaScriptBasePath}i18n/datepicker-${parameters.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"/>
             </#if>
         <#else>
         <!-- script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUICoreFile}"></script -->
-        <script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUiVersionFile}"></script>
+        <@s.script type="text/javascript"src="${javaScriptBasePath}js/base/${jqueryUiVersionFile}"/>
         </#if>
     </#if>
 </#if>
 <#if parameters.loadAtOnce!false ||  parameters.loadFromCdn!false>
-<script type="text/javascript"
-        src="${javaScriptBasePath}js/plugins/${jqueryForm}"
-        <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+<@s.script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryForm}"/>
 </#if>
-<script type="text/javascript"
-        src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}"
-        <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+<@s.script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jquerySubscribeFile}"/>
 <#if parameters.ajaxhistory!false>
-<script type="text/javascript"
-        src="${javaScriptBasePath}js/plugins/${jqueryHistoryFile}"
-        <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+<@s.script type="text/javascript" src="${javaScriptBasePath}js/plugins/${jqueryHistoryFile}"/>
 </#if>
 
-<script type="text/javascript"
-        src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"
-        <#include "/${parameters.templateDir}/simple/nonce.ftl" />></script>
+<@s.script type="text/javascript" src="${javaScriptBasePath}js/struts2/${jqueryStrutsFile}"/>
 
-<script type="text/javascript">
+<@s.script type="text/javascript">
     $(function () {
         jQuery.struts2_jquery.version = "${struts2jQueryVersion}";
     <#if parameters.debug!false>
@@ -176,20 +162,20 @@
         jQuery(window).trigger('hashchange');
     </#if>
     });
-</script>
+</@s.script>
 
 <#if parameters.jqueryui!true>
     <#if parameters.jquerytheme! != "">
         <#if parameters.loadFromCdn!false && basePath == "${base}/static/themes">
-        <link id="jquery_theme_link" rel="stylesheet"
+        <@s.link id="jquery_theme_link" rel="stylesheet"
               href="${cdnUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
         <#else>
-        <link id="jquery_theme_link" rel="stylesheet"
+        <@s.link id="jquery_theme_link" rel="stylesheet"
               href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=${struts2jQueryVersion}"
               type="text/css"/>
         </#if>
     <#else>
-    <link id="jquery_theme_link" rel="stylesheet"
+    <@s.link id="jquery_theme_link" rel="stylesheet"
           href="${basePath}/smoothness/jquery-ui.css?s2j=${struts2jQueryVersion}" type="text/css"/>
     </#if>
 </#if>

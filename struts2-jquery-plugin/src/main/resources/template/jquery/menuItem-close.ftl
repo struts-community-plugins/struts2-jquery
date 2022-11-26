@@ -22,7 +22,7 @@
 </li>
 <#if parameters.targets! != "">
 	<#assign escapedOptionId="${parameters.escapedId}">
-<script type='text/javascript'>
+<@s.script type='text/javascript'>
 	jQuery(document).ready(function () {
 		var options_${escapedOptionId} = {};
 		<#if parameters.openDialog! != "">
@@ -36,5 +36,5 @@
 
 		<#include "/${parameters.templateDir}/jquery/jquery-ui-bind.ftl" />
 	});
-</script>
+</@s.script>
 </#if>
