@@ -45,7 +45,7 @@
 	options_${escapedParentOptionId}.subGridWidth = "${parameters.subGridWidth}";
 	</#if>
 <#else>
-<@s.script type='text/javascript'>
+<script type='text/javascript' <#include "/${parameters.templateDir}/simple/nonce.ftl"/>>
 jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.grid.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 </#if>
