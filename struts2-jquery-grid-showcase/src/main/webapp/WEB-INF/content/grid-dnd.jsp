@@ -34,8 +34,6 @@
     	draggableContainment="document"
     	droppable="true"
     	droppableOnDropTopics="ondrop"
-    	droppableActiveClass="ui-state-active"
-    	droppableHoverClass="ui-state-hover"
     >
     	<sjg:gridColumn name="customernumber" 
     		index="customernumber" 
@@ -96,8 +94,6 @@
     	draggableContainment="document"
     	droppable="true"
     	droppableOnDropTopics="ondrop"
-    	droppableActiveClass="ui-state-active"
-    	droppableHoverClass="ui-state-hover"
     >
     	<sjg:gridColumn name="customernumber" 
     		index="customernumber" 
