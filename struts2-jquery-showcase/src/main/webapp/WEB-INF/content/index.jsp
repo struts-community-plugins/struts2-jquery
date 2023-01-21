@@ -3,6 +3,15 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Security-Policy" content="
+                          default-src 'none';
+                          script-src 'self' 'unsafe-inline' 'unsafe-eval' 'unsafe-hashes' https://code.jquery.com;
+                          style-src 'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com https://code.jquery.com;
+                          base-uri 'self';
+                          font-src 'self' https://fonts.gstatic.com;
+                          img-src 'self' data:;
+                          connect-src 'self';
+                          worker-src blob:;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
