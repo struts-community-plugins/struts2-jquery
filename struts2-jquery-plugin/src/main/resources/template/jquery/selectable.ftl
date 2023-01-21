@@ -23,7 +23,7 @@
 	options_${escapedOptionId}.selectable = true;<#rt/>
    </#if>
   <#if parameters.selectableOptions! != "">
- 	options_${escapedOptionId}.selectableoptions = "${parameters.selectableOptions}";<#rt/>
+ 	options_${escapedOptionId}.selectableoptions = "<#outputformat "JavaScript">${parameters.selectableOptions}</#outputformat>";<#rt/>
    </#if>
   <#if parameters.selectableOnSelectedTopics! != "">
  	options_${escapedOptionId}.selectableonselectedtopics = "${parameters.selectableOnSelectedTopics}";<#rt/>

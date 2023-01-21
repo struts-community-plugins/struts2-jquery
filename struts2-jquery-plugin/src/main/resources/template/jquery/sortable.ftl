@@ -23,7 +23,7 @@
 	options_${escapedOptionId}.sortable = true;<#rt/>
    </#if>
   <#if parameters.sortableOptions! != "">
- 	options_${escapedOptionId}.sortableoptions = "${parameters.sortableOptions}";<#rt/>
+ 	options_${escapedOptionId}.sortableoptions = "<#outputformat "JavaScript">${parameters.sortableOptions}</#outputformat>";<#rt/>
    </#if>
   <#if parameters.sortableOnBeforeStopTopics! != "">
  	options_${escapedOptionId}.sortableonbeforestoptopics = "${parameters.sortableOnBeforeStopTopics}";<#rt/>

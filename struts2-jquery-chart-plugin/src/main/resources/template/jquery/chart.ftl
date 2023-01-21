@@ -30,7 +30,7 @@
 >
 </div>
 <#assign escapedOptionId="${parameters.escapedId}">
-<@s.script type='text/javascript'>
+<script type='text/javascript' <#include "/${parameters.templateDir}/simple/nonce.ftl"/>>
 jQuery(document).ready(function () {
 	jQuery.struts2_jquery.require("js/struts2/jquery.chart.struts2"+jQuery.struts2_jquery.minSuffix+".js");
 

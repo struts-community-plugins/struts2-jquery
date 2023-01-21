@@ -174,4 +174,5 @@ options_${escapedOptionId}.onhover = "${parameters.onHoverTopics}";
 	<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 	jQuery.struts2_jquery_chart.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
  });
-</@s.script>
+</script>
+
