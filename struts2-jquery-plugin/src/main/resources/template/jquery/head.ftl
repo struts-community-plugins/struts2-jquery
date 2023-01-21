@@ -167,12 +167,19 @@
 <#if parameters.jqueryui!true>
     <#if parameters.jquerytheme! != "">
         <#if parameters.loadFromCdn!false && basePath == "${base}/static/themes">
-        <@s.link id="jquery_theme_link" rel="stylesheet"
-              href="${cdnUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css" type="text/css"/>
+            <link
+                    id="jquery_theme_link"
+                    rel="stylesheet"
+                    href="${cdnUiPath}/themes/${parameters.jquerytheme?string}/jquery-ui.css"
+                    type="text/css"
+                    <#include "/${parameters.templateDir}/simple/nonce.ftl" />/>
         <#else>
-        <@s.link id="jquery_theme_link" rel="stylesheet"
-              href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=${struts2jQueryVersion}"
-              type="text/css"/>
+            <link
+                    id="jquery_theme_link"
+                    rel="stylesheet"
+                    href="${basePath}/${parameters.jquerytheme?string}/jquery-ui.css?s2j=${struts2jQueryVersion}"
+                    type="text/css"
+                    <#include "/${parameters.templateDir}/simple/nonce.ftl" />/>
         </#if>
     <#else>
     <@s.link id="jquery_theme_link" rel="stylesheet"
