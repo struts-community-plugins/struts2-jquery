@@ -108,7 +108,7 @@ var locInfo = {
 		}
 	},
 	view: {
-		caption: "Voir les enregistrement",
+		caption: "Voir les enregistrements",
 		bClose: "Fermer"
 	},
 	del: {
@@ -133,9 +133,9 @@ var locInfo = {
 		viewtext: "",
 		viewtitle: "Afficher la ligne sélectionnée",
 		savetext: "",
-		savetitle: "Save row",
+		savetitle: "Sauvegarder la ligne",
 		canceltext: "",
-		canceltitle: "Cancel row editing"
+		canceltitle: "Annuler les changements"
 	},
 	col: {
 		caption: "Afficher/Masquer les colonnes",
