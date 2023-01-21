@@ -24,6 +24,7 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
 ### versions and compatibility
 | `struts2-jquery` version | `struts2` version               |
 |--------------------------|---------------------------------|
+| `5.0.2`                  | version >= `6.1`                |
 | `5.0.0`                  | version >= `6.0`                |
 | `4.0.3`                  | version >= `2.5`                |
 | `3.7.1`                  | `2.3.16` <= version <= `2.3.31` |
@@ -42,27 +43,27 @@ Since version 1.8.3 the plugin is found in the central Maven repository. Just ad
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-plugin</artifactId>
-        <version>5.0.1</version>
+        <version>5.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-grid-plugin</artifactId>
-        <version>5.0.1</version>
+        <version>5.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-datatables-plugin</artifactId>
-        <version>5.0.1</version>
+        <version>5.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-richtext-plugin</artifactId>
-        <version>5.0.1</version>
+        <version>5.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-tree-plugin</artifactId>
-        <version>5.0.1</version>
+        <version>5.0.2</version>
     </dependency>
     ...
 </dependencies>
