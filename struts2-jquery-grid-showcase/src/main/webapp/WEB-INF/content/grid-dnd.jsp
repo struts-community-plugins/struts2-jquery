@@ -14,12 +14,12 @@
     	<s:param name="searchField">customernumber</s:param>
     </s:url>
     <h2>Grid with Drag and Drop</h2>
-    <sjg:grid 
-    	id="customerstablea" 
-    	caption="Customers (Editable/Multiselect)" 
-    	dataType="json" 
-    	href="%{remoteurla}" 
-    	pager="true" 
+    <sjg:grid
+    	id="customerstablea"
+    	caption="Customers (Editable/Multiselect)"
+    	dataType="json"
+    	href="%{remoteurla}"
+    	pager="true"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
@@ -35,51 +35,51 @@
     	droppable="true"
     	droppableOnDropTopics="ondrop"
     >
-    	<sjg:gridColumn name="customernumber" 
-    		index="customernumber" 
-    		key="true" 
-    		title="ID" 
+    	<sjg:gridColumn name="customernumber"
+    		index="customernumber"
+    		key="true"
+    		title="ID"
     		width="50"
-    		formatter="integer" 
+    		formatter="integer"
     	/>
-    	<sjg:gridColumn 
-    		name="customername" 
-    		index="customername" 
-    		title="Company" 
+    	<sjg:gridColumn
+    		name="customername"
+    		index="customername"
+    		title="Company"
     		width="300"
     	/>
-    	<sjg:gridColumn 
-    		name="country" 
-    		index="country" 
-    		title="Country" 
+    	<sjg:gridColumn
+    		name="country"
+    		index="country"
+    		title="Country"
     	/>
-    	<sjg:gridColumn 
-    		name="city" 
-    		index="city" 
-    		title="City" 
+    	<sjg:gridColumn
+    		name="city"
+    		index="city"
+    		title="City"
     	/>
-    	<sjg:gridColumn 	
-    		name="creditlimit" 
-    		index="creditlimit" 
-    		title="Credit Limit" 
+    	<sjg:gridColumn
+    		name="creditlimit"
+    		index="creditlimit"
+    		title="Credit Limit"
     		align="right"
    		/>
-    	<sjg:gridColumn 
-    		name="salesemployee.employeenumber" 
-    		index="employeenumber" 
-    		title="Employee" 
+    	<sjg:gridColumn
+    		name="salesemployee.employeenumber"
+    		index="employeenumber"
+    		title="Employee"
     		align="center"
    		/>
     </sjg:grid>
 	<br/>
 	<div id="dndmessages"></div>
 	<br/>
-	<sjg:grid 
-    	id="customerstableb" 
-    	caption="Customers (Editable/Multiselect)" 
-    	dataType="json" 
-    	href="%{remoteurlb}" 
-    	pager="true" 
+	<sjg:grid
+    	id="customerstableb"
+    	caption="Customers (Editable/Multiselect)"
+    	dataType="json"
+    	href="%{remoteurlb}"
+    	pager="true"
     	gridModel="gridModel"
     	rowList="10,15,20"
     	rowNum="15"
@@ -95,40 +95,39 @@
     	droppable="true"
     	droppableOnDropTopics="ondrop"
     >
-    	<sjg:gridColumn name="customernumber" 
-    		index="customernumber" 
-    		key="true" 
-    		title="ID" 
+    	<sjg:gridColumn name="customernumber"
+    		index="customernumber"
+    		key="true"
+    		title="ID"
     		width="50"
-    		formatter="integer" 
+    		formatter="integer"
     	/>
-    	<sjg:gridColumn 
-    		name="customername" 
-    		index="customername" 
-    		title="Company" 
+    	<sjg:gridColumn
+    		name="customername"
+    		index="customername"
+    		title="Company"
     		width="300"
     	/>
-    	<sjg:gridColumn 
-    		name="country" 
-    		index="country" 
-    		title="Country" 
+    	<sjg:gridColumn
+    		name="country"
+    		index="country"
+    		title="Country"
     	/>
-    	<sjg:gridColumn 
-    		name="city" 
-    		index="city" 
-    		title="City" 
+    	<sjg:gridColumn
+    		name="city"
+    		index="city"
+    		title="City"
     	/>
-    	<sjg:gridColumn 	
-    		name="creditlimit" 
-    		index="creditlimit" 
-    		title="Credit Limit" 
+    	<sjg:gridColumn
+    		name="creditlimit"
+    		index="creditlimit"
+    		title="Credit Limit"
     		align="right"
    		/>
-    	<sjg:gridColumn 
-    		name="salesemployee.employeenumber" 
-    		index="employeenumber" 
-    		title="Employee" 
+    	<sjg:gridColumn
+    		name="salesemployee.employeenumber"
+    		index="employeenumber"
+    		title="Employee"
     		align="center"
    		/>
     </sjg:grid>
-    
