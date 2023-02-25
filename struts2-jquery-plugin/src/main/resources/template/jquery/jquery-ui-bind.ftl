@@ -18,7 +18,5 @@
  * under the License.
  */
 -->
-<#assign escapedId="${parameters.id?string?replace('.', '\\\\\\\\.')}">
 <#assign escapedOptionId="${parameters.escapedId}">
-jQuery.struts2_jquery_ui.bind(jQuery('#${escapedId}'),options_${escapedOptionId});
-
+jQuery.struts2_jquery_ui.bind(jQuery('#${escapedOptionId}'),options_${escapedOptionId});
