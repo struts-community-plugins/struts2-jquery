@@ -50,7 +50,7 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId}.minWidth = ${parameters.minWidth};
   </#if>
   <#if parameters.title! != "">
-	options_${escapedOptionId}.title = "${parameters.title}";
+	options_${escapedOptionId}.title = "<#outputformat 'JavaScript'>${parameters.title}</#outputformat>";
   </#if>
   <#if parameters.dialogClass! != "">
 	options_${escapedOptionId}.dialogClass = "${parameters.dialogClass}";
@@ -64,9 +64,9 @@ jQuery(document).ready(function () {
   <#if parameters.position! != "">
   	  <#-- Is position an Array or Object? -->
 	  <#if parameters.position?substring(0, 1) == "[" || parameters.position?substring(0, 1) == "{">
-	options_${escapedOptionId}.position = ${parameters.position};
+	options_${escapedOptionId}.position = <#outputformat 'JavaScript'>${parameters.position}</#outputformat>;
 	  <#else>
-	options_${escapedOptionId}.position = "${parameters.position}";
+	options_${escapedOptionId}.position = <#outputformat 'JavaScript'>"${parameters.position}"</#outputformat>;
 	  </#if>
   </#if>
   <#if parameters.appendTo! != "">
