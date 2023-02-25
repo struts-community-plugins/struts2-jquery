@@ -21,11 +21,11 @@
 <#assign escapedOptionId="${parameters.escapedId}">
 <@s.script type='text/javascript'>
 jQuery(document).ready(function () {
-  <#if parameters.valueWidget?if_exists != "">
+  <#if parameters.valueWidget! != "">
 	jQuery("#${parameters.id}").val("${parameters.valueWidget}");
   </#if>
 	var options_${escapedOptionId} = {};
-  <#if parameters.widgetid?if_exists != "">
+  <#if parameters.widgetid! != "">
 	options_${escapedOptionId}.hiddenid = "${parameters.widgetid}";
   </#if>
   <#if parameters.delay??>
@@ -34,32 +34,32 @@ jQuery(document).ready(function () {
   <#if parameters.loadMinimumCount??>
 	options_${escapedOptionId}.minimum = ${parameters.loadMinimumCount};
   </#if>
-  <#if parameters.autoFocus?default(false) >
+  <#if parameters.autoFocus!false >
 	options_${escapedOptionId}.autoFocus = true;
   </#if>
-  <#if parameters.selectBox?default(false) || (parameters.list?? && parameters.listKey?? && !parameters.hrefUrl??) >
+  <#if parameters.selectBox!false || (parameters.list?? && parameters.listKey?? && !parameters.hrefUrl??) >
 	options_${escapedOptionId}.selectBox = true;
   <#else>
 	options_${escapedOptionId}.selectBox = false;
   </#if>
-  <#if parameters.selectBoxIcon?default(false) >
+  <#if parameters.selectBoxIcon!false >
 	options_${escapedOptionId}.selectBoxIcon = true;
   </#if>
-  <#if parameters.onSearchTopics?exists>
+  <#if parameters.onSearchTopics??>
 	options_${escapedOptionId}.onsearchtopics = "${parameters.onSearchTopics}";
   </#if>
-  <#if parameters.forceValidOption?default(true) >
+  <#if parameters.forceValidOption!true >
 	options_${escapedOptionId}.forceValidOption = true;
   <#else>
 	options_${escapedOptionId}.forceValidOption = false;
   </#if>
-  <#if parameters.onFocusTopics?exists>
+  <#if parameters.onFocusTopics??>
 	options_${escapedOptionId}.onfocustopics = "${parameters.onFocusTopics}";
   </#if>
-  <#if parameters.onSelectTopics?exists>
+  <#if parameters.onSelectTopics??>
 	options_${escapedOptionId}.onselecttopics = "${parameters.onSelectTopics}";
   </#if>
-  <#if parameters.requestType?exists>
+  <#if parameters.requestType??>
 	options_${escapedOptionId}.requesttype = "${parameters.requestType}";
   </#if>
 
