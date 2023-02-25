@@ -71,7 +71,7 @@
                                 ${optionsLiVariableName}.href = "${parameters.href}";
                             </#if>
                                 ${optionsLiVariableName}.hrefparameter = "${parameters.paramName!'id'}=${itemKeyStr}";
-                                jQuery.struts2_jquery_ui.bind(jQuery('#${escapedOptionId?string?replace('.', '\\\\\\\\.')}_li_<@s.property value="%{#rowstatus.count}" />'), ${optionsLiVariableName});
+                                jQuery.struts2_jquery_ui.bind(jQuery('#${escapedOptionId}_li_<@s.property value="%{#rowstatus.count}" />'), ${optionsLiVariableName});
                             });
                         </@s.script>
                     <#else>

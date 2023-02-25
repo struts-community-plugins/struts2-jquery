@@ -52,7 +52,7 @@ import java.util.Random;
 @StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionItemTag", description = "Render an accordion item.")
 public class AccordionItem extends ClosingUIBean {
 
-    private static final transient Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     public static final String TEMPLATE = "accordionItem";
     public static final String JQUERYACTION = "accordionItem";
@@ -106,6 +106,7 @@ public class AccordionItem extends ClosingUIBean {
             this.id = ID_PREFIX_ACCORDION_ITEM + String.valueOf(nextInt);
         }
         addParameter(AbstractTopicsBean.PARAM_ID, this.id);
+        addParameter(AbstractTopicsBean.PARAM_ESCAPED_ID, escape(this.id));
 
     }
 

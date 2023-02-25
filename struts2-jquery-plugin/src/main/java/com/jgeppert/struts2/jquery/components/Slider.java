@@ -68,6 +68,7 @@ public class Slider extends AbstractTopicsBean {
     private static final String PARAM_ARRAY_VALUE = "arrayValue";
     private static final String PARAM_RANGE = "range";
     private static final String PARAM_VALUE = "value";
+    private static final String SUFFIX_WIDGET = "_widget";
     private static final String PARAM_WIDGETID = "widgetid";
 
     private static final String ID_PREFIX_SLIDER = "slider_";
@@ -147,7 +148,8 @@ public class Slider extends AbstractTopicsBean {
             }
         }
         addGeneratedIdParam(ID_PREFIX_SLIDER);
-        addParameter(PARAM_ID, this.id + "_widget");
+        addParameter(PARAM_ID, this.id + SUFFIX_WIDGET);
+        addParameter(PARAM_ESCAPED_ID, this.escape(this.id) + SUFFIX_WIDGET);
         addParameter(PARAM_WIDGETID, this.id);
     }
 

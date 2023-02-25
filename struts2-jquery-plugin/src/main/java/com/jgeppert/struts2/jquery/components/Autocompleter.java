@@ -164,6 +164,7 @@ public class Autocompleter extends AbstractFormListElement {
         addGeneratedIdParam(ID_PREFIX_AUTOCOMPLETER);
 
         addParameter(PARAM_ID, this.id + SUFFIX_WIDGET);
+        addParameter(PARAM_ESCAPED_ID, this.escape(this.id) + SUFFIX_WIDGET);
         addParameter(PARAM_WIDGET_ID, this.id);
 
         String nameValue = (String) getParameters().get(PARAM_NAME);
