@@ -81,7 +81,7 @@ jQuery(document).ready(function () {
     options_${escapedOptionId}.displayStart = ${parameters.displayStart!0};
     </#if>
     <#if parameters.dom! != "">
-    options_${escapedOptionId}.dom = "${parameters.dom!''}";
+    options_${escapedOptionId}.dom = "<#outputformat "JavaScript">${parameters.dom!''}</#outputformat>";
     </#if>
     <#if parameters.lengthMenu! != "">
     options_${escapedOptionId}.lengthMenu = <#outputformat "JavaScript">${parameters.lengthMenu!'[10,25,50,100]'}</#outputformat>;
