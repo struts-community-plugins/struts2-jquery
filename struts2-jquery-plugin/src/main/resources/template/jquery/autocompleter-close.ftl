@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId}.delay = ${parameters.delay};
   </#if>
   <#if parameters.loadMinimumCount??>
-	options_${escapedOptionId}.minLength = ${parameters.loadMinimumCount};
+	options_${escapedOptionId}.minimum = ${parameters.loadMinimumCount};
   </#if>
   <#if parameters.autoFocus?default(false) >
 	options_${escapedOptionId}.autoFocus = true;
