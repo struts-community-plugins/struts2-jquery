@@ -13,15 +13,16 @@ on:
       - master
       - release/5.0.x
 
+permissions: write-all
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3.1.0
     - name: Set up cache
-      uses: actions/cache@v3.0.8
+      uses: actions/cache@v3.0.11
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -33,9 +34,18 @@ jobs:
         java-version: 8
         distribution: adopt
         cache: maven
+        server-id: ossrh
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_PASSWORD
     - name: Build & Install
       run: mvn --batch-mode -DskipITs package install
     - name: Verify IT
       run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-htmlunit verify
 #    - name: Verify IT with PhantomJS
 #      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P phantomjs verify
+    - name: Deploy SNAPSHOT
+      if: github.ref == 'release/5.0.x'
+      env:
+        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+      run: mvn -B -V -DskipTests=true deploy --no-transfer-progress

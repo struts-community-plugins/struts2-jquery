@@ -209,6 +209,19 @@
 						</execution>
 					</executions>
 				</plugin>
+				<plugin>
+					<groupId>com.samaxes.maven</groupId>
+					<artifactId>minify-maven-plugin</artifactId>
+					<version>${minify.version}</version>
+					<dependencies>
+						<!-- Must override this dependency, even though not declared (see MNG-6965) -->
+						<dependency>
+							<groupId>org.codehaus.plexus</groupId>
+							<artifactId>plexus-utils</artifactId>
+							<version>3.5.0</version>
+						</dependency>
+					</dependencies>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
