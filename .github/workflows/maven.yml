@@ -34,7 +34,7 @@ jobs:
         java-version: 8
         distribution: adopt
         cache: maven
-        server-id: ossrh
+        server-id: struts2-jquery.snapshots
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
     - name: Build & Install
