@@ -26,40 +26,40 @@ jQuery(document).ready(function () {
     options_${escapedOptionId}.theme="${parameters.datatablesTheme!'default'}";
     <#include "/${parameters.templateDir}/jquery/topics.ftl" />
     <#include "/${parameters.templateDir}/jquery/base.ftl" />
-    <#if parameters.autoWidth!true == false>
+    <#if (parameters.autoWidth!true) == false>
     options_${escapedOptionId}.autoWidth = false
     </#if>
-    <#if parameters.deferRender!false == true>
+    <#if (parameters.deferRender!false) == true>
     options_${escapedOptionId}.deferRender = true;
     </#if>
-    <#if parameters.info!true == false>
+    <#if (parameters.info!true) == false>
     options_${escapedOptionId}.info = false;
     </#if>
-    <#if parameters.lengthChange!true == false>
+    <#if (parameters.lengthChange!true) == false>
     options_${escapedOptionId}.lengthChange = false;
     </#if>
-    <#if parameters.ordering!true == false>
+    <#if (parameters.ordering!true) == false>
     options_${escapedOptionId}.ordering = false;
     </#if>
-    <#if parameters.paging!true == false>
+    <#if (parameters.paging!true) == false>
     options_${escapedOptionId}.paging = false;
     </#if>
-    <#if parameters.processing!false == true>
+    <#if (parameters.processing!false) == true>
     options_${escapedOptionId}.processing = true;
     </#if>
-    <#if parameters.scrollX!false == true>
+    <#if (parameters.scrollX!false) == true>
     options_${escapedOptionId}.scrollX = true;
     </#if>
-    <#if parameters.scrollY!false == true>
+    <#if (parameters.scrollY!false) == true>
     options_${escapedOptionId}.scrollY = true;
     </#if>
-    <#if parameters.searching!true == false>
+    <#if (parameters.searching!true) == false>
     options_${escapedOptionId}.searching = false;
     </#if>
-    <#if parameters.serverSide!false == true>
+    <#if (parameters.serverSide!false) == true>
     options_${escapedOptionId}.serverSide = true;
     </#if>
-    <#if parameters.stateSave!false == true>
+    <#if (parameters.stateSave!false) == true>
     options_${escapedOptionId}.stateSave = true;
     </#if>
     <#if parameters.data! != "">
