@@ -20,17 +20,19 @@
  */
 -->
 <!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-        "http://struts.apache.org/dtds/struts-2.5.dtd">
-    
-<struts>
-    <bean type="org.apache.struts2.views.TagLibraryDirectiveProvider" name="sjr" class="com.jgeppert.struts2.jquery.richtext.views.JqueryRichtextTagLibrary" />
-    <bean type="org.apache.struts2.views.TagLibraryModelProvider" name="sjr" class="com.jgeppert.struts2.jquery.richtext.views.JqueryRichtextTagLibrary" />
+        "-//Apache Software Foundation//DTD Struts Configuration 6.0//EN"
+        "https://struts.apache.org/dtds/struts-6.0.dtd">
 
-	<package name="ckedior" namespace="/ckeditor" extends="struts-default">
-		<action name="upload" class="com.jgeppert.struts2.jquery.richtext.actions.CkeditorUpload">
-			<result type="freemarker" name="error">/ckeditor/ckeditorError.ftl</result>
-		</action>
-	</package>
-    
+<struts>
+    <bean type="org.apache.struts2.views.TagLibraryDirectiveProvider" name="sjr"
+          class="com.jgeppert.struts2.jquery.richtext.views.JqueryRichtextTagLibrary"/>
+    <bean type="org.apache.struts2.views.TagLibraryModelProvider" name="sjr"
+          class="com.jgeppert.struts2.jquery.richtext.views.JqueryRichtextTagLibrary"/>
+
+    <package name="ckedior" namespace="/ckeditor" extends="struts-default">
+        <action name="upload" class="com.jgeppert.struts2.jquery.richtext.actions.CkeditorUpload">
+            <result type="freemarker" name="error">/ckeditor/ckeditorError.ftl</result>
+        </action>
+    </package>
+
 </struts>
