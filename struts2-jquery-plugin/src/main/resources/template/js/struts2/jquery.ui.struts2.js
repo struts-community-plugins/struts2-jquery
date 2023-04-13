@@ -379,7 +379,7 @@
                         return;
                     }
 
-                    ui.jqXHR.success(function () {
+                    ui.jqXHR.done(function () {
                         ui.tab.data("loaded", true);
                     });
                 }
