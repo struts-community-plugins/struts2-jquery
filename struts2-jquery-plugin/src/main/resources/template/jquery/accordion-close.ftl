@@ -52,7 +52,7 @@
 	 data-keys="${parameters.paramKeys?trim}"
 </#if>
 <#if parameters.paramValues! != "">
-	 data-values="${hrefValues?trim}"
+	 data-values="<#outputformat "HTML">${hrefValues}</#outputformat>"
 </#if>
 	 >${itemKeyStr}</a></${parameters.header!'h3'}>
 		<div id="${escapedOptionId}_div_<@s.property value="%{#rowstatus.count}" />">

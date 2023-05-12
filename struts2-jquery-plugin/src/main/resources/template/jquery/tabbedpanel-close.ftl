@@ -36,10 +36,10 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId}.cookie = true;
   </#if>
   <#if parameters.show! != "">
-	options_${escapedOptionId}.show = ${parameters.show};
+	options_${escapedOptionId}.show = <#outputformat "JavaScript">${parameters.show}</#outputformat>;
   </#if>
   <#if parameters.hide! != "">
-	options_${escapedOptionId}.hide = ${parameters.hide};
+	options_${escapedOptionId}.hide = <#outputformat "JavaScript">${parameters.hide}</#outputformat>;
   </#if>
   <#if parameters.cache!false>
 	options_${escapedOptionId}.cache = true;
