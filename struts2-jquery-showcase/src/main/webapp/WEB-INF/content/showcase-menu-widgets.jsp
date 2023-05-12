@@ -3,7 +3,7 @@
 
 <div class="ym-g50 ym-gl">
 	<sj:menu id="widgetsMenu">
-		<sj:menuItem title="Accordion">
+		<sj:menuItem title="Accordion" id="subMenuItemAccordion">
 			<sj:menu id="subMenuAccordion">
 				<s:url var="urlaccordion" action="accordion"/>
 				<sj:menuItem id="accordionlink" href="%{urlaccordion}" targets="content" title="Accordion" />
@@ -18,7 +18,7 @@
 				<sj:menuItem id="accordionmouseoverlink" href="%{urlaccordionmouseover}" targets="content" title="Accordion Collabsible/MouseOver" />
 			</sj:menu>
 		</sj:menuItem>
-		<sj:menuItem title="Autocompleter">
+		<sj:menuItem id="subMenuItemAutocompleter" title="Autocompleter">
 			<sj:menu id="subMenuAutocompleter">
 
 				<s:url var="urlautocompleter" action="autocompleter"/>
@@ -35,7 +35,7 @@
 		<s:url var="urlcharts" action="charts"/>
 		<sj:menuItem id="chartslink" href="%{urlcharts}" targets="content" title="Charts" />
 
-		<sj:menuItem title="Datepicker">
+		<sj:menuItem id="subMenuItemDatepicker" title="Datepicker">
 			<sj:menu id="subMenuDatepicker">
 
 				<s:url var="urldatepicker" action="datepicker"/>
@@ -52,7 +52,7 @@
 			</sj:menu>
 		</sj:menuItem>
 
-		<sj:menuItem title="Dialog">
+		<sj:menuItem id="subMenuItemDialog" title="Dialog">
 			<sj:menu id="subMenuDialog">
 
 				<s:url var="urldialog" action="dialog"/>
@@ -84,7 +84,7 @@
 			</sj:menu>
 		</sj:menuItem>
 
-		<sj:menuItem title="Grid">
+		<sj:menuItem id="subMenuItemGrid" title="Grid">
 			<sj:menu id="subMenuGrid">
 
 				<s:url var="urlgrid" action="grid" namespace="/grid"/>
@@ -104,7 +104,7 @@
 
 			</sj:menu>
 		</sj:menuItem>
-		<sj:menuItem title="DataTables">
+		<sj:menuItem id="subMenuItemDataTables" title="DataTables">
             <sj:menu id="subMenuDataTables">
                 <s:url var="urldatatables" action="datatables" namespace="/datatables"/>
                 <sj:menuItem id="datatablesLink" href="%{urldatatables}" targets="content" title="DataTables" />
@@ -121,7 +121,7 @@
             </sj:menu>
         </sj:menuItem>
 
-		<sj:menuItem title="Menu">
+		<sj:menuItem id="subMenuItemMenu" title="Menu">
 			<sj:menu id="subMenuMenu">
 
 				<s:url var="urlmenu" action="menu"/>
@@ -136,7 +136,7 @@
 		<s:url var="urlmessages" action="messages"/>
 		<sj:menuItem id="messageslink" href="%{urlmessages}" targets="content" title="Action Errors/Messages" />
 
-		<sj:menuItem title="Progressbar">
+		<sj:menuItem id="subMenuItemProgressbar" title="Progressbar">
 			<sj:menu id="subMenuProgressbar">
 
 				<s:url var="urlprogressbar" action="progressbar"/>
@@ -151,7 +151,7 @@
 			</sj:menu>
 		</sj:menuItem>
 
-		<sj:menuItem title="Richtext">
+		<sj:menuItem id="subMenuItemRichtext" title="Richtext">
 			<sj:menu id="subMenuRichtext">
 
 				<s:url var="urlrichtext" action="richtext"/>
@@ -169,7 +169,7 @@
 			</sj:menu>
 		</sj:menuItem>
 
-		<sj:menuItem title="Slider">
+		<sj:menuItem id="subMenuItemSlider" title="Slider">
 			<sj:menu id="subMenuSlider">
 
 				<s:url var="urlslider" action="slider"/>
@@ -187,7 +187,7 @@
 		<s:url var="urlspinner" action="spinner"/>
 		<sj:menuItem id="spinnerlink" href="%{urlspinner}" targets="content" title="Spinner" />
 
-		<sj:menuItem title="Tabs">
+		<sj:menuItem id="subMenuItemTabs" title="Tabs">
 			<sj:menu id="subMenuTabs">
 
 				<s:url var="urltabslocal" action="tabs-local"/>
@@ -202,7 +202,7 @@
 			</sj:menu>
 		</sj:menuItem>
 
-		<sj:menuItem title="Tree">
+		<sj:menuItem id="subMenuItemTree" title="Tree">
 			<sj:menu id="subMenuTree">
 
 				<s:url var="urltree" action="tree" namespace="/tree"/>

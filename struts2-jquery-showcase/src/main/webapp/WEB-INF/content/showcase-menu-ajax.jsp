@@ -3,7 +3,7 @@
 
 <div class="ym-g50 ym-gl">
 <sj:menu id="ajaxMenu">
-	<sj:menuItem title="Link">
+	<sj:menuItem id="ajaxMenuItemLink" title="Link">
 		<sj:menu id="subMenuAjaxLink">
 			<s:url var="urlremotelink" action="remote-link"/>
 			<sj:menuItem id="remotesimplelink" href="%{urlremotelink}" targets="content" title="Simple AJAX Link" />
@@ -27,7 +27,7 @@
 			<sj:menuItem id="remotejsonlink" href="%{urlremotelinkjson}" targets="content" title="JSON Results" />
 		</sj:menu>
 	</sj:menuItem>
-	<sj:menuItem title="Div">
+	<sj:menuItem id="ajaxMenuItemDiv" title="Div">
 		<sj:menu id="subMenuAjaxDiv">
 
 			<s:url var="urlremotediv" action="remote-div"/>
@@ -52,7 +52,7 @@
 			<sj:menuItem id="remotedivdragdroplink" href="%{urleffectdivdragdrop}" targets="content" title="Drag and Drop" />
 		</sj:menu>
 	</sj:menuItem>
-	<sj:menuItem title="Form">
+	<sj:menuItem id="ajaxMenuItemForm" title="Form">
 		<sj:menu id="subMenuAjaxForms">
 
 			<s:url var="urlform" action="form"/>
