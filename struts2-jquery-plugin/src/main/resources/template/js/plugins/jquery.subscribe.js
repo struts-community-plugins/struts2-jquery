@@ -1,5 +1,5 @@
 /*
- * jquery.subscribe.1.2.3
+ * jquery.subscribe.1.2.4
  * 
  * Implementation of publish/subcription framework for jQuery
  * Requires use of jQuery. Tested with jQuery 1.4 and above
@@ -39,8 +39,10 @@
  *     
  *  version 1.2.3
  *  jslint fixes
- *     
  *  Added protection to variables when file is loaded multiple times
+ *
+ *  version 1.2.4
+ *  replace deprecated jQuery isFunction calls
  */
 
 /*global jQuery, window, document   */
@@ -89,7 +91,7 @@
 								$.each( object, function(j, obj){
 									
 									//typeof(object) check in case someone has added methods to Array.protoype
-									if(!$.isFunction(obj)) {
+									if(typeof obj !== "function") {
 										obj.unbind(topic);
 									}
 								});
@@ -143,7 +145,7 @@
 							jQuery.each(noIdObjects, function(j, noIdObject) {
 															
 								//typeof(noIdObject) check in case someone has added methods to Array.protoype
-								if(!$.isFunction(noIdObject) && noIdObject[0].nodeType === 9 && _subscribe_getDocumentWindow(this[0]).frameElement === _subscribe_getDocumentWindow(noIdObject[0]).frameElement ) {
+								if(typeof noIdObject !== "function" && noIdObject[0].nodeType === 9 && _subscribe_getDocumentWindow(this[0]).frameElement === _subscribe_getDocumentWindow(noIdObject[0]).frameElement ) {
 									return this;	
 								}
 							});
@@ -165,9 +167,9 @@
 
 				if(true === multiple) {		//allow multiple topic handlers to be bound to topic for same object
 									
-					if($.isFunction(handler)) {
+					if(typeof handler === "function") {
 						this.bind(topic, data, handler);
-					} else if(typeof(handler) === 'string' && $.isFunction(_subscribe_handlers[handler])) {
+					} else if(typeof(handler) === 'string' && typeof _subscribe_handlers[handler] === "function") {
 						this.bind(topic, data, _subscribe_handlers[handler]);
 					}
 					
@@ -183,9 +185,9 @@
 						}
 					}
 
-					if($.isFunction(handler)) {
+					if(typeof handler === "function") {
 						this.bind(topic, data, handler);
-					} else if(typeof(handler) === 'string' && $.isFunction(_subscribe_handlers[handler])) {
+					} else if(typeof(handler) === 'string' && typeof _subscribe_handlers[handler] === "function") {
 						this.bind(topic, data, _subscribe_handlers[handler]);
 					}					
 				}
@@ -219,9 +221,8 @@
 						
 						for(i = 0; i < noIdObjects.length; i++){
 
-							//typeof(noIdObject) check in case someone has added methods to Array.protoype
-							if(!$.isFunction(noIdObjects[i]) && noIdObjects[i] === this){
-								
+							//typeof(noIdObject) check in case someone has added methods to Array.prototype
+							if(typeof noIdObjects[i] !== "function" && noIdObjects[i] === this){
 								_subscribe_topics[topic].objects.__noId__.splice(i,1);
 								break;
 							}
@@ -260,7 +261,7 @@
 						for(i = 0; i < noIdObjects.length; i++){
 
 							//typeof(noIdObject) check in case someone has added methods to Array.protoype
-							if(!$.isFunction(noIdObjects[i]) && noIdObjects[i] === this){
+							if(typeof noIdObjects[i] !== "function" && noIdObjects[i] === this){
 								return true;
 							}
 						}
@@ -336,7 +337,7 @@
 							
 								jQuery.each(object, function(j, obj) {
 									//typeof(object) check in case someone has added methods to Array.protoype
-									if(!$.isFunction(obj)) {
+									if(typeof obj !== "function") {
 										obj.trigger( event,data);
 									}
 								});
@@ -410,7 +411,7 @@
 		 */
 		subscribeHandler: function(name, handler) { 
 			
-			if(name && handler && $.isFunction(handler)) {
+			if(name && handler && typeof handler === "function") {
 				_subscribe_handlers[name] = handler;
 			}
 			

@@ -334,7 +334,7 @@
 
         // Sort the legend using either the default or a custom comparator
         if (sorted) {
-            if ($.isFunction(sorted)) {
+            if (typeof sorted === "function") {
                 legendEntries.sort(sorted);
             } else if (sorted === 'reverse') {
                 legendEntries.reverse();

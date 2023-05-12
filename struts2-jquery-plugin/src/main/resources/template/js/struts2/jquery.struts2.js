@@ -220,7 +220,7 @@
 			var f = $(form[0]),
 				et = request.responseText,
 				errors;
-			if ($.isFunction(o.validateFunction)) {
+			if (typeof o.validateFunction === "function") {
 				if (et && et.length > 10) {
 					submit = false;
 					if(et.substring(0,2) === "/*") {

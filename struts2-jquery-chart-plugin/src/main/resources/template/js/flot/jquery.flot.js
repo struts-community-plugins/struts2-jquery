@@ -62,7 +62,7 @@ Licensed under the MIT license.
 
         axis.tickDecimals = oldTickDecimals;
         return formatted;
-    };
+    }
 
     function expRepTickFormatter(value, axis, precision) {
         var expPosition = ("" + value).indexOf("e"),
@@ -1526,7 +1526,7 @@ Licensed under the MIT license.
             }
 
             return isFinite(dec) ? dec : 0;
-        };
+        }
 
         function computeTickSize (min, max, noTicks, tickDecimals) {
             var delta = $.plot.saturated.delta(min, max, noTicks),
@@ -1576,7 +1576,7 @@ Licensed under the MIT license.
             }
 
             return options.tickSize || size;
-        };
+        }
 
         function fixupNumberOfTicks(direction, surface, ticksOption) {
             var noTicks;
@@ -1677,7 +1677,7 @@ Licensed under the MIT license.
             if (oticks == null || (typeof oticks === "number" && oticks > 0)) {
                 ticks = axis.tickGenerator(axis, plot);
             } else if (oticks) {
-                if ($.isFunction(oticks)) {
+                if (typeof oticks === "function") {
                 // generate the ticks
                     ticks = oticks(axis);
                 } else {
@@ -1862,7 +1862,7 @@ Licensed under the MIT license.
                 axes;
 
             if (markings) {
-                if ($.isFunction(markings)) {
+                if (typeof markings === "function") {
                     axes = plot.getAxes();
                     // xmin etc. is backwards compatibility, to be
                     // removed in the future
@@ -1963,11 +1963,11 @@ Licensed under the MIT license.
                 x: x,
                 y: y
             };
-        };
+        }
 
         function alignPosition(lineWidth, pos) {
             return ((lineWidth % 2) !== 0) ? Math.floor(pos) + 0.5 : pos;
-        };
+        }
 
         function drawTickBar(axis) {
             ctx.lineWidth = 1;
@@ -1998,7 +1998,7 @@ Licensed under the MIT license.
                 ctx.lineTo(x + xoff, y + yoff);
                 ctx.stroke();
             }
-        };
+        }
 
         function drawTickMarks(axis) {
             var t = axis.tickLength,
@@ -2089,7 +2089,7 @@ Licensed under the MIT license.
             }
 
             ctx.stroke();
-        };
+        }
 
         function drawGridLines(axis) {
             // check if the line will be overlapped with a border
@@ -2134,7 +2134,7 @@ Licensed under the MIT license.
             }
 
             ctx.stroke();
-        };
+        }
 
         function drawBorder() {
             // If either borderWidth or borderColor is an object, then draw the border
@@ -2200,7 +2200,7 @@ Licensed under the MIT license.
                 ctx.strokeStyle = options.grid.borderColor;
                 ctx.strokeRect(-bw / 2, -bw / 2, plotWidth + bw, plotHeight + bw);
             }
-        };
+        }
 
         function drawGrid() {
             var axes, bw;
@@ -2407,7 +2407,7 @@ Licensed under the MIT license.
             }
 
             return range;
-        };
+        }
 
         function adjustSeriesDataRange(series, range) {
             if (series.bars.show) {
@@ -2453,7 +2453,7 @@ Licensed under the MIT license.
             }
 
             return range;
-        };
+        }
 
         function computeBarWidth(series) {
             var xValues = [];
