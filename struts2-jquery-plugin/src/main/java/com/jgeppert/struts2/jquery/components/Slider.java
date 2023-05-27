@@ -49,7 +49,7 @@ import java.util.Collection;
  * </pre>
  * <!-- END SNIPPET: example2 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "slider", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SliderTag", description = "Render a Slider", allowDynamicAttributes = true)
 public class Slider extends AbstractTopicsBean {

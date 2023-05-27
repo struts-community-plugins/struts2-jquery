@@ -60,7 +60,7 @@ import javax.servlet.http.HttpServletResponse;
  * </pre>
  * <!-- END SNIPPET: example1 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "radio", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.RadioTag", description = "Render a Button Set from a given radio button list", allowDynamicAttributes = true)
 public class Radio extends AbstractFormListElement {

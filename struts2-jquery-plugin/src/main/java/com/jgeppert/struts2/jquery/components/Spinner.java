@@ -77,7 +77,7 @@ import javax.servlet.http.HttpServletResponse;
  * </pre>
  * <!-- END SNIPPET: example3 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "spinner", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SpinnerTag", description = "Render a Spinner.", allowDynamicAttributes = true)
 public class Spinner extends Textfield {

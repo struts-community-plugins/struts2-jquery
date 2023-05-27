@@ -71,7 +71,7 @@ import java.util.Arrays;
  * </pre>
  * <!-- END SNIPPET: example2 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "head", tldBodyContent = "empty", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.HeadTag", description = "Render a chunk of HEAD for your HTML file", allowDynamicAttributes = false)
 @StrutsTagSkipInheritance
@@ -226,7 +226,7 @@ public class Head extends org.apache.struts2.components.Head {
     }
 
     public boolean isJqueryui() {
-        return jqueryui != null && Boolean.parseBoolean(jqueryui);
+        return Boolean.parseBoolean(jqueryui);
     }
 
     @StrutsTagAttribute(description = "enable jQuery UI Scripts", defaultValue = "true", type = "Boolean")

@@ -47,7 +47,7 @@ import java.util.Map;
  * <pre>
  * 	&lt;sj:menu id=&quot;menuWithItems&quot; cssStyle=&quot;width:50%&quot;&gt;
  * &lt;sj:menuItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org/2.x/index.html&quot;/&gt;
- * &lt;sj:menuItem title=&quot;Struts2 jQuery News&quot; href=&quot;http://www.jgeppert.com/category/java/struts2-jquery/&quot;/&gt;
+ * &lt;sj:menuItem title=&quot;Struts2 jQuery News&quot; href=&quot;https://www.jgeppert.com/category/java/struts2-jquery/&quot;/&gt;
  * &lt;sj:menuItem title=&quot;Struts2 Plugins&quot;&gt;
  * &lt;sj:menu id=&quot;subMenuPlugins&quot;&gt;
  * &lt;sj:menuItem title=&quot;Struts2 Plugins&quot; href=&quot;https://cwiki.apache.org/S2PLUGINS/home.html&quot;/&gt;
@@ -84,7 +84,7 @@ import java.util.Map;
  * </pre>
  * <!-- END SNIPPET: example1 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "menu", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.MenuTag", description = "Render an Menu.")
 public class Menu extends AbstractTopicsBean {

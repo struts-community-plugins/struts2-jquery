@@ -65,7 +65,7 @@
 
 			<h2>Developer</h2>
 			<ul>
-				<li><a href="http://www.jgeppert.com">Developer Homepage and Contact</a></li>
+				<li><a href="https://www.jgeppert.com">Developer Homepage and Contact</a></li>
 				<li><a href="http://twitter.com/jogep">Twitter News</a></li>
 			</ul>
 

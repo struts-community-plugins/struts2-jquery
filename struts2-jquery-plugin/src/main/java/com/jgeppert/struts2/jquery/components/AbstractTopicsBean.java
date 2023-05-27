@@ -29,11 +29,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Random;
 
 /**
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 public abstract class AbstractTopicsBean extends ClosingUIBean {
 
-    private static final transient Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     public static final String PARAM_JQUERY_ACTION = "jqueryaction";
 

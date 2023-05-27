@@ -24,7 +24,7 @@ import org.apache.struts2.views.velocity.components.AbstractDirective;
 /**
  * Overwrite name prefix
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 public abstract class JqueryGridAbstractDirective extends AbstractDirective {
     public String getName() {

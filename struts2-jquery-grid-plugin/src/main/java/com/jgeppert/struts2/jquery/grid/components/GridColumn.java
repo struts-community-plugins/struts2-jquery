@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServletResponse;
  * Examples
  * </p>
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "gridColumn", tldTagClass = "com.jgeppert.struts2.jquery.grid.views.jsp.ui.GridColumnTag", description = "Renders a column for the grid")
 public class GridColumn extends AbstractRemoteBean {

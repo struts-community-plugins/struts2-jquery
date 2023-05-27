@@ -74,7 +74,7 @@ import javax.servlet.http.HttpServletResponse;
  * </pre>
  * <!-- END SNIPPET: example3 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "autocompleter", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AutocompleterTag", description = "Render a jQuery UI Autocompleter", allowDynamicAttributes = true)
 public class Autocompleter extends AbstractFormListElement {

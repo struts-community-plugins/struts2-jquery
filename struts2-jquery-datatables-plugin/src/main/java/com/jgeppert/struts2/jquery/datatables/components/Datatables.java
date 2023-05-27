@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "datatables", tldTagClass = "com.jgeppert.struts2.jquery.datatables.views.jsp.ui.DatatablesTag", description = "Render a table enhanced with jQuery DataTables")
 public class Datatables extends AbstractRemoteBean {

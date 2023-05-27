@@ -8,7 +8,7 @@
  * Requires use of jQuery and jQuery UI.
  * Tested with jQuery 2.1 and jQuery UI 1.11
  *
- * Copyright (c) 2010 - 2015 Johannes Geppert http://www.jgeppert.com
+ * Copyright (c) 2010 - 2015 Johannes Geppert https://www.jgeppert.com
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php

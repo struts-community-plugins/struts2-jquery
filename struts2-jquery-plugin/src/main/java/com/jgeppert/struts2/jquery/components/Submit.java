@@ -106,7 +106,7 @@ import java.io.Writer;
  * </pre>
  * <!-- END SNIPPET: example8 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "submit", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.SubmitTag", description = "Render a submit button", allowDynamicAttributes = true)
 public class Submit extends AbstractRemoteBean implements ButtonBean {

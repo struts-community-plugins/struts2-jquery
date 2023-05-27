@@ -101,12 +101,12 @@ import java.util.Random;
  * </pre>
  * <!-- END SNIPPET: example2 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "accordion", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionTag", description = "Render an accordion from a List.")
 public class Accordion extends AbstractTopicsBean {
 
-    private static final transient Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     public static final String JQUERYACTION = "accordion";
     public static final String TEMPLATE = "accordion";
@@ -248,7 +248,7 @@ public class Accordion extends AbstractTopicsBean {
         this.animate = animate;
     }
 
-    @StrutsTagAttribute(description = "Controls the height of the accordion and each panel. Possible values 'auto\': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.", defaultValue = "auto")
+    @StrutsTagAttribute(description = "Controls the height of the accordion and each panel. Possible values 'auto': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.", defaultValue = "auto")
     public void setHeightStyle(String heightStyle) {
         this.heightStyle = heightStyle;
     }

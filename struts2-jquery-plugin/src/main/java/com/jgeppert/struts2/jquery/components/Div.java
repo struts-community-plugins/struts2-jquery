@@ -56,7 +56,7 @@ import javax.servlet.http.HttpServletResponse;
  * </pre>
  * <!-- END SNIPPET: example3 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "div", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DivTag", description = "Render HTML div providing content from remote call via AJAX", allowDynamicAttributes = true)
 public class Div extends AbstractContainer implements ResizableBean,

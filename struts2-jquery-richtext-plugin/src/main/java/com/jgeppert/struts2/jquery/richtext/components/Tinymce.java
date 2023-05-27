@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "tinymce", tldTagClass = "com.jgeppert.struts2.jquery.richtext.views.jsp.ui.TinymceTag", description = "A Richtext Element based on Tinymce", allowDynamicAttributes = true)
 public class Tinymce extends Textarea {
@@ -201,22 +201,22 @@ public class Tinymce extends Textarea {
         this.plugins = plugins;
     }
 
-    @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE \' \' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor")
+    @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE ' ' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor")
     public void setToolbarButtonsRow1(String toolbarButtonsRow1) {
         this.toolbarButtonsRow1 = toolbarButtonsRow1;
     }
 
-    @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE \' \' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. bullist,numlist,separator,outdent,indent,separator,undo,redo,separator")
+    @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE ' ' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. bullist,numlist,separator,outdent,indent,separator,undo,redo,separator")
     public void setToolbarButtonsRow2(String toolbarButtonsRow2) {
         this.toolbarButtonsRow2 = toolbarButtonsRow2;
     }
 
-    @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE \' \' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. hr,removeformat,visualaid,separator,sub,sup,separator,charmap")
+    @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE ' ' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. hr,removeformat,visualaid,separator,sub,sup,separator,charmap")
     public void setToolbarButtonsRow3(String toolbarButtonsRow3) {
         this.toolbarButtonsRow3 = toolbarButtonsRow3;
     }
 
-    @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE \' \' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. emotions,fullpage,fullscreen")
+    @StrutsTagAttribute(description = "This option should contain a comma separated list of button/control names to insert into the toolbar. his option can only be used when theme is set to advanced. Since these rows have items in them by default you need to set them to SPACE ' ' if you want to completely remove rows. A complete reference of all built in buttons and controls can be found in the button/control reference page. http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference e.g. emotions,fullpage,fullscreen")
     public void setToolbarButtonsRow4(String toolbarButtonsRow4) {
         this.toolbarButtonsRow4 = toolbarButtonsRow4;
     }

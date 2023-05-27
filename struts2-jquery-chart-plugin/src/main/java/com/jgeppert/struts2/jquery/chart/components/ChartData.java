@@ -42,7 +42,7 @@ import java.util.*;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "chartData", tldTagClass = "com.jgeppert.struts2.jquery.chart.views.jsp.ui.ChartDataTag", description = "Data for the Chart Element", allowDynamicAttributes = true)
 public class ChartData extends AbstractContainer {
@@ -228,7 +228,7 @@ public class ChartData extends AbstractContainer {
                                         if (itemKey instanceof Date) {
                                             data.append(((Date) itemKey).getTime());
                                         } else {
-                                            data.append(itemKey.toString());
+                                            data.append(itemKey);
                                         }
                                     } else {
                                         data.append(count);
@@ -252,13 +252,13 @@ public class ChartData extends AbstractContainer {
                                         if (itemValue instanceof Date) {
                                             data.append(((Date) itemValue).getTime());
                                         } else {
-                                            data.append(itemValue.toString());
+                                            data.append(itemValue);
                                         }
                                     } else {
-                                        data.append(item.toString());
+                                        data.append(item);
                                     }
                                 } else {
-                                    data.append(item.toString());
+                                    data.append(item);
                                 }
                                 data.append("]");
                             }

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 public class JqueryModels {
     protected DatePickerModel datePicker;
@@ -50,9 +50,9 @@ public class JqueryModels {
     protected MenuModel menu;
     protected MenuItemModel menuItem;
 
-    private ValueStack stack;
-    private HttpServletRequest req;
-    private HttpServletResponse res;
+    private final ValueStack stack;
+    private final HttpServletRequest req;
+    private final HttpServletResponse res;
 
     public JqueryModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
         this.stack = stack;

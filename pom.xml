@@ -20,35 +20,35 @@
 		<developer>
 			<id>jogep</id>
 			<name>Johannes Geppert</name>
-			<url>http://www.jgeppert.com</url>
-			<email>http://www.jgeppert.com/kontakt</email>
+			<url>https://www.jgeppert.com</url>
+			<email>https://www.jgeppert.com/kontakt</email>
 		</developer>
 		<developer>
 			<id>jyoshiriro</id>
 			<name>Jose Yoshiriro</name>
-			<url>http://jyoshiriro.blogspot.com/</url>
+			<url>https://jyoshiriro.blogspot.com/</url>
 		</developer>
 		<developer>
 			<id>rene.gielen</id>
 			<name>Rene Gielen</name>
-			<url>http://twitter.com/rgielen</url>
+			<url>https://twitter.com/rgielen</url>
 		</developer>
 	</developers>
 
 	<mailingLists>
 		<mailingList>
 			<name>User Group</name>
-			<post>http://groups.google.com/group/struts2-jquery/post</post>
-			<subscribe>http://groups.google.com/group/struts2-jquery</subscribe>
-			<unsubscribe>http://groups.google.com/group/struts2-jquery</unsubscribe>
-			<archive>http://struts2-jquery-plugin.109969.n3.nabble.com</archive>
+			<post>https://groups.google.com/group/struts2-jquery/post</post>
+			<subscribe>https://groups.google.com/group/struts2-jquery</subscribe>
+			<unsubscribe>https://groups.google.com/group/struts2-jquery</unsubscribe>
+			<archive>https://struts2-jquery-plugin.109969.n3.nabble.com</archive>
 		</mailingList>
 	</mailingLists>
 
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>

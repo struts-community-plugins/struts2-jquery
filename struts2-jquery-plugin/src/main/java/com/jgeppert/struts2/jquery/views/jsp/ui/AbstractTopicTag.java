@@ -23,7 +23,7 @@ import com.jgeppert.struts2.jquery.components.AbstractTopicsBean;
 import org.apache.struts2.views.jsp.ui.AbstractClosingTag;
 
 /**
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 public abstract class AbstractTopicTag extends AbstractClosingTag {
 

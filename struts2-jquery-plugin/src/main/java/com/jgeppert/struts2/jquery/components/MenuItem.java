@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "menuItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.MenuItemTag", description = "Render an menu item.")
 public class MenuItem extends AbstractRemoteBean {

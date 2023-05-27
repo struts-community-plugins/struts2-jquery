@@ -133,8 +133,8 @@
     <div class="ym-wrapper">
         <div class="ym-wbox">
             <p style="text-align: center;">
-                Written by <a href="http://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a><br/>
-                Layout based on <a href="http://www.yaml.de/" title="OpenSource CSS Layout">YAML</a>
+                Written by <a href="https://www.jgeppert.com" title="Java Developer Blog">Johannes Geppert</a><br/>
+                Layout based on <a href="https://www.yaml.de/" title="OpenSource CSS Layout">YAML</a>
             </p>
         </div>
     </div>

@@ -68,7 +68,7 @@ import javax.servlet.http.HttpServletResponse;
  * </pre>
  * <!-- END SNIPPET: example2 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "tabbedpanel", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TabbedPanelTag", description = "Render a tabbedPanel widget.")
 public class TabbedPanel extends AbstractTopicsBean {
@@ -224,7 +224,7 @@ public class TabbedPanel extends AbstractTopicsBean {
         this.sortable = sortable;
     }
 
-    @StrutsTagAttribute(description = "Controls the height of the accordion and each panel. Possible values 'auto\': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.", defaultValue = "auto")
+    @StrutsTagAttribute(description = "Controls the height of the accordion and each panel. Possible values 'auto': All panels will be set to the height of the tallest panel, 'content': Each panel will be only as tall as its content, 'fill': Expand to the available height based on the accordion's parent height.", defaultValue = "auto")
     public void setHeightStyle(String heightStyle) {
         this.heightStyle = heightStyle;
     }

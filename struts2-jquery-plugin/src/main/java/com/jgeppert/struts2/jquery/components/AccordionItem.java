@@ -47,7 +47,7 @@ import java.util.Random;
  * </pre>
  * <!-- END SNIPPET: example1 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "accordionItem", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AccordionItemTag", description = "Render an accordion item.")
 public class AccordionItem extends ClosingUIBean {
@@ -103,7 +103,7 @@ public class AccordionItem extends ClosingUIBean {
             // http://findbugs.sourceforge.net/bugDescriptions.html#RV_ABSOLUTE_VALUE_OF_RANDOM_INT
             int nextInt = RANDOM.nextInt();
             nextInt = nextInt == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(nextInt);
-            this.id = ID_PREFIX_ACCORDION_ITEM + String.valueOf(nextInt);
+            this.id = ID_PREFIX_ACCORDION_ITEM + nextInt;
         }
         addParameter(AbstractTopicsBean.PARAM_ID, this.id);
         addParameter(AbstractTopicsBean.PARAM_ESCAPED_ID, escape(this.id));

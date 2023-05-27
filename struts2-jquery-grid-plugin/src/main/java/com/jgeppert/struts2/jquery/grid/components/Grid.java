@@ -40,7 +40,7 @@ import javax.servlet.http.HttpServletResponse;
  * Examples:
  * </p>
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "grid", tldTagClass = "com.jgeppert.struts2.jquery.grid.views.jsp.ui.GridTag", description = "Render a grid from a JSON Result.")
 public class Grid extends AbstractContainer {

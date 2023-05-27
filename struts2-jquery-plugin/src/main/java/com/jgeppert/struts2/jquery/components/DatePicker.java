@@ -74,7 +74,7 @@ import java.util.*;
  * </pre>
  * <!-- END SNIPPET: example5 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "datepicker", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.DatePickerTag", description = "Render a jQuery UI datepicker", allowDynamicAttributes = true)
 public class DatePicker extends AbstractTopicsBean {
@@ -378,7 +378,7 @@ public class DatePicker extends AbstractTopicsBean {
         }
 
         if (obj instanceof Date) {
-            return MessageFormat.format(RFC3339_PATTERN, (Date) obj);
+            return MessageFormat.format(RFC3339_PATTERN, obj);
         } else if (obj instanceof Calendar) {
             return MessageFormat.format(RFC3339_PATTERN, ((Calendar) obj).getTime());
         } else {

@@ -9,7 +9,7 @@
 
 <sj:menu id="menuWithItems" cssStyle="width:50%">
 	<sj:menuItem title="Struts2" href="http://struts.apache.org"/>
-	<sj:menuItem title="Struts2 jQuery News" menuIcon="ui-icon-extlink" href="http://www.jgeppert.com/category/java/struts2-jquery/"/>
+	<sj:menuItem title="Struts2 jQuery News" menuIcon="ui-icon-extlink" href="https://www.jgeppert.com/category/java/struts2-jquery/"/>
 	<sj:menuItem title="Struts2 Plugins">
 		<sj:menu id="subMenuPlugins" cssStyle="width:50%">
 			<sj:menuItem title="Struts2 Plugins" href="https://cwiki.apache.org/S2PLUGINS/home.html"/>
@@ -53,7 +53,7 @@
             <code class="html">
 &lt;sj:menu id=&quot;menuWithItems&quot; cssStyle=&quot;width:50%&quot;&gt;
 	&lt;sj:menuItem title=&quot;Struts2&quot; href=&quot;http://struts.apache.org&quot;/&gt;
-	&lt;sj:menuItem title=&quot;Struts2 jQuery News&quot; menuIcon=&quot;ui-icon-extlink&quot; href=&quot;http://www.jgeppert.com/category/java/struts2-jquery/&quot;/&gt;
+	&lt;sj:menuItem title=&quot;Struts2 jQuery News&quot; menuIcon=&quot;ui-icon-extlink&quot; href=&quot;https://www.jgeppert.com/category/java/struts2-jquery/&quot;/&gt;
 	&lt;sj:menuItem title=&quot;Struts2 Plugins&quot;&gt;
 		&lt;sj:menu id=&quot;subMenuPlugins&quot; cssStyle=&quot;width:50%&quot;&gt;
 			&lt;sj:menuItem title=&quot;Struts2 Plugins&quot; href=&quot;https://cwiki.apache.org/S2PLUGINS/home.html&quot;/&gt;

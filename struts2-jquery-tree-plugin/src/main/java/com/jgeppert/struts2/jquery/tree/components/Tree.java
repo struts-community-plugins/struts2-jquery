@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "tree", tldTagClass = "com.jgeppert.struts2.jquery.tree.views.jsp.ui.TreeTag", description = "A Tree Element", allowDynamicAttributes = true)
 public class Tree extends AbstractContainer {

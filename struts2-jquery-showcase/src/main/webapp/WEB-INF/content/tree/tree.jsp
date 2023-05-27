@@ -19,7 +19,7 @@
 			<sjt:treeItem title="Struts2 Bootstrap Plugin" href="https://github.com/struts-community-plugins/struts2-bootstrap/"/>
 		</sjt:treeItem>
 		<sjt:treeItem title="Blogs">
-			<sjt:treeItem title="Struts2 jQuery News" href="http://www.jgeppert.com"/>
+			<sjt:treeItem title="Struts2 jQuery News" href="https://www.jgeppert.com"/>
 		</sjt:treeItem>
 		<sjt:treeItem title="AJAX Links">
 			<s:url var="ajax1" value="/ajax1.action"/>
@@ -183,7 +183,7 @@
             <sjt:treeItem title="Struts2 Bootstrap Plugin" href="https://github.com/struts-community-plugins/struts2-bootstrap/"/>
         </sjt:treeItem>
         <sjt:treeItem title="Blogs">
-            <sjt:treeItem title="Struts2 jQuery News" href="http://www.jgeppert.com"/>
+            <sjt:treeItem title="Struts2 jQuery News" href="https://www.jgeppert.com"/>
         </sjt:treeItem>
 </sjt:tree>
  <script>
@@ -222,7 +222,7 @@
 			&lt;sjt:treeItem title=&quot;Struts2 Bootstrap Plugin&quot; href=&quot;https://github.com/struts-community-plugins/struts2-bootstrap/&quot;/&gt;
 		&lt;/sjt:treeItem&gt;
 		&lt;sjt:treeItem title=&quot;Blogs&quot;&gt;
-			&lt;sjt:treeItem title=&quot;Struts2 jQuery News&quot; href=&quot;http://www.jgeppert.com&quot;/&gt;
+			&lt;sjt:treeItem title=&quot;Struts2 jQuery News&quot; href=&quot;https://www.jgeppert.com&quot;/&gt;
 		&lt;/sjt:treeItem&gt;
 		&lt;sjt:treeItem title=&quot;AJAX Links&quot;&gt;
 			&lt;s:url var=&quot;ajax1&quot; value=&quot;/ajax1.action&quot;/&gt;
@@ -386,7 +386,7 @@
             &lt;sjt:treeItem title=&quot;Struts2 Bootstrap Plugin&quot; href=&quot;https://github.com/struts-community-plugins/struts2-bootstrap/&quot;/&gt;
         &lt;/sjt:treeItem&gt;
         &lt;sjt:treeItem title=&quot;Blogs&quot;&gt;
-            &lt;sjt:treeItem title=&quot;Struts2 jQuery News&quot; href=&quot;http://www.jgeppert.com&quot;/&gt;
+            &lt;sjt:treeItem title=&quot;Struts2 jQuery News&quot; href=&quot;https://www.jgeppert.com&quot;/&gt;
         &lt;/sjt:treeItem&gt;
 &lt;/sjt:tree&gt;
  &lt;script&gt;

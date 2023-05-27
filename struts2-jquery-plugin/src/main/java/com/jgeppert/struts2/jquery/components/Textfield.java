@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 
 @StrutsTag(name = "textfield", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.TextfieldTag", description = "Render HTML textfield providing content from remote call via AJAX", allowDynamicAttributes = true)

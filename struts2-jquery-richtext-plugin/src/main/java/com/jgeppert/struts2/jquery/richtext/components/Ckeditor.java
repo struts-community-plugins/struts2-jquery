@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
  * </p>
  * <!-- END SNIPPET: javadoc -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "ckeditor", tldTagClass = "com.jgeppert.struts2.jquery.richtext.views.jsp.ui.CkeditorTag", description = "A Richtext Element based on Ckeditor", allowDynamicAttributes = true)
 public class Ckeditor extends Textarea {

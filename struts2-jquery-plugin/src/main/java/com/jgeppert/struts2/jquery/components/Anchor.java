@@ -56,7 +56,7 @@ import java.util.Random;
  * </pre>
  * <!-- END SNIPPET: example2 -->
  *
- * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+ * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 @StrutsTag(name = "a", tldTagClass = "com.jgeppert.struts2.jquery.views.jsp.ui.AnchorTag", description = "Renders an HTML anchor element that when clicked calls a URL via remote XMLHttpRequest and updates its targets content", allowDynamicAttributes = true)
 public class Anchor extends AbstractRemoteBean implements ButtonBean {
@@ -64,7 +64,7 @@ public class Anchor extends AbstractRemoteBean implements ButtonBean {
     public static final String TEMPLATE = "a";
     public static final String TEMPLATE_CLOSE = "a-close";
     public static final String COMPONENT_NAME = Anchor.class.getName();
-    public static final transient Random RANDOM = new Random();
+    public static final Random RANDOM = new Random();
     public static final String JQUERYACTION = "anchor";
 
     private static final String PARAM_OPEN_DIALOG = "openDialog";
