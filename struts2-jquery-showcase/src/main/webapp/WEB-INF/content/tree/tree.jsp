@@ -9,7 +9,7 @@
 <sjt:tree id="treeStatic" jstreetheme="default" openAllOnLoad="true">
 	<sjt:treeItem title="Struts2">
 		<sjt:treeItem title="General">
-			<sjt:treeItem title="Struts2" href="http://struts.apache.org"/>
+			<sjt:treeItem title="Struts2" href="https://struts.apache.org"/>
 			<sjt:treeItem title="Struts2 @ Facebook" href="https://www.facebook.com/apachestruts"/>
 			<sjt:treeItem title="Struts2 @ Twitter" href="https://twitter.com/TheApacheStruts"/>
 		</sjt:treeItem>
@@ -173,7 +173,7 @@
         onSearchClearTopics="searchCleared"
         >
         <sjt:treeItem title="General">
-            <sjt:treeItem title="Struts2" href="http://struts.apache.org"/>
+            <sjt:treeItem title="Struts2" href="https://struts.apache.org"/>
             <sjt:treeItem title="Struts2 @ Facebook" href="https://www.facebook.com/apachestruts"/>
             <sjt:treeItem title="Struts2 @ Twitter" href="https://twitter.com/TheApacheStruts"/>
         </sjt:treeItem>
