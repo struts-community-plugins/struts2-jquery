@@ -24,7 +24,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.util.ServletContextAware;
+import org.apache.struts2.action.ServletContextAware;
 
 import javax.servlet.ServletContext;
 import java.util.ArrayList;
@@ -92,7 +92,7 @@ public class JsonTreeData extends ActionSupport implements ServletContextAware {
         this.id = id;
     }
 
-    public void setServletContext(ServletContext servletContext) {
+    public void withServletContext(ServletContext servletContext) {
         this.servletContext = servletContext;
     }
 }

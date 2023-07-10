@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.action.SessionAware;
 
 import java.util.*;
 
@@ -72,7 +72,6 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
 
     private boolean loadonce = false;
     private Map<String, Object> session;
-    private List<Customer> myCustomers;
 
     @SuppressWarnings("unchecked")
     public String execute() {
@@ -80,6 +79,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
         log.debug("Search by: {} {} {}", searchField, searchOper, searchString);
 
         Object list = session.get("mylist");
+        List<Customer> myCustomers;
         if (list != null) {
             myCustomers = (List<Customer>) list;
         } else {
@@ -113,11 +113,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
             to = records;
 
         if (loadonce) if (totalrows != null && totalrows > 0) {
-            Collections.sort(myCustomers, new Comparator<Customer>() {
-                public int compare(Customer o1, Customer o2) {
-                    return o1.getCountry().compareToIgnoreCase(o2.getCountry());
-                }
-            });
+            myCustomers.sort((o1, o2) -> o1.getCountry().compareToIgnoreCase(o2.getCountry()));
             setGridModel(myCustomers.subList(0, totalrows));
         } else {
             // All Customer
@@ -129,7 +125,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
                 int id = Integer.parseInt(searchString);
                 if (searchOper.equalsIgnoreCase("eq")) {
                     log.debug("search id equals " + id);
-                    List<Customer> cList = new ArrayList<Customer>();
+                    List<Customer> cList = new ArrayList<>();
                     Customer customer = CustomerDAO.findById(myCustomers, id);
 
                     if (customer != null)
@@ -169,11 +165,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
     }
 
     private List<Customer> sortListByCountry(List<Customer> customers) {
-        Collections.sort(customers, new Comparator<Customer>() {
-            public int compare(Customer o1, Customer o2) {
-                return o1.getCountry().compareTo(o2.getCountry());
-            }
-        });
+        customers.sort(Comparator.comparing(Customer::getCountry));
 
         return customers;
     }
@@ -306,7 +298,7 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
         this.loadonce = loadonce;
     }
 
-    public void setSession(Map<String, Object> session) {
+    public void withSession(Map<String, Object> session) {
         this.session = session;
     }
 
