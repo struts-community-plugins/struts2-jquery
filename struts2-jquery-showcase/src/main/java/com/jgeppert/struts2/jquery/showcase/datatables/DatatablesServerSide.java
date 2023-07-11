@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.action.SessionAware;
 
 import java.util.*;
 
@@ -20,7 +20,7 @@ public class DatatablesServerSide extends ActionSupport implements SessionAware,
 
     private Map<String, Object> session;
     private ServerSideProcessingRequest request = new ServerSideProcessingRequest();
-    private ServerSideProcessingResponse<Customer> response = new ServerSideProcessingResponse<>();
+    private final ServerSideProcessingResponse<Customer> response = new ServerSideProcessingResponse<>();
 
     /**
      * <p>
@@ -43,8 +43,7 @@ public class DatatablesServerSide extends ActionSupport implements SessionAware,
         }
 
         List<Customer> data = this.applyFilter(list, this.request.getSearch().getValue());
-        int to = this.request.getStart().intValue() + this.request.getLength() > data.size() ? data.size()
-                : this.request.getStart().intValue() + this.request.getLength();
+        int to = Math.min(this.request.getStart().intValue() + this.request.getLength(), data.size());
         this.applySort(data);
         this.response.setData(CustomerDAO.getCustomers(data, this.request.getStart().intValue(), to));
         this.response.setRecordsTotal((long) list.size());
@@ -71,19 +70,13 @@ public class DatatablesServerSide extends ActionSupport implements SessionAware,
 
     private void applySort(List<Customer> list) {
         String direction = this.request.getOrder().get(0).getDir();
-        Collections.sort(list, new Comparator<Customer>() {
-
-            @Override
-            public int compare(Customer o1, Customer o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
+        list.sort(Comparator.comparing(Customer::getName));
         if (StringUtils.equals(direction, "desc")) {
             Collections.reverse(list);
         }
     }
 
-    public ServerSideProcessingResponse getResponse() {
+    public ServerSideProcessingResponse<Customer> getResponse() {
         return this.response;
     }
 
@@ -101,7 +94,7 @@ public class DatatablesServerSide extends ActionSupport implements SessionAware,
     }
 
     @Override
-    public void setSession(Map<String, Object> session) {
+    public void withSession(Map<String, Object> session) {
         this.session = session;
     }
 }

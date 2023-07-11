@@ -27,7 +27,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.action.SessionAware;
 
 import java.util.List;
 import java.util.Map;
@@ -142,7 +142,7 @@ public class EditGridEntry extends ActionSupport implements SessionAware {
         this.creditLimit = creditLimit;
     }
 
-    public void setSession(Map<String, Object> session) {
+    public void withSession(Map<String, Object> session) {
         this.session = session;
     }
 
