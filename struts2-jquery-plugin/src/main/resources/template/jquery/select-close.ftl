@@ -65,6 +65,10 @@ jQuery(document).ready(function () {
 <#if parameters.onSelectTopics! != "">
 	options_${escapedOptionId}.onselecttopics = "${parameters.onSelectTopics}";
 </#if>
+<#if parameters.onFocusTopics??>
+	options_${escapedOptionId}.onfocustopics = "${parameters.onFocusTopics}";
+</#if>
+
   <#include "/${parameters.templateDir}/jquery/base.ftl" />
   <#include "/${parameters.templateDir}/jquery/interactive.ftl" />
   <#include "/${parameters.templateDir}/jquery/topics.ftl" />

@@ -53,9 +53,6 @@ jQuery(document).ready(function () {
   <#else>
 	options_${escapedOptionId}.forceValidOption = false;
   </#if>
-  <#if parameters.onFocusTopics??>
-	options_${escapedOptionId}.onfocustopics = "${parameters.onFocusTopics}";
-  </#if>
   <#if parameters.onSelectTopics??>
 	options_${escapedOptionId}.onselecttopics = "${parameters.onSelectTopics}";
   </#if>
