@@ -25,7 +25,7 @@
 		<htmlunit-driver.version>3.63.0</htmlunit-driver.version>
 		<lombok.version>1.18.30</lombok.version>
 		<guava.version>32.0.0-jre</guava.version>
-		<phantomjsdriver.version>1.4.3</phantomjsdriver.version>
+		<phantomjsdriver.version>1.5.0</phantomjsdriver.version>
 		<commons-codec.version>1.10</commons-codec.version>
 		<commons-io.version>2.7</commons-io.version>
 		<xml-apis.version>1.4.01</xml-apis.version>
