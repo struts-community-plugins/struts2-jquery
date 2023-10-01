@@ -19,7 +19,7 @@
 	<properties>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- plugins -->
-		<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+		<maven-failsafe-plugin.version>3.1.2</maven-failsafe-plugin.version>
 		<!-- dependencies -->
 		<selenium.version>4.3.0</selenium.version>
 		<htmlunit-driver.version>3.63.0</htmlunit-driver.version>
