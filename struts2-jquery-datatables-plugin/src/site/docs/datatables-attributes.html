@@ -1,1392 +1,1392 @@
-<table width="100%">
+<table class="tag-reference">
     <tr>
         <td colspan="6"><h4>Dynamic Attributes Allowed:</h4> false</td>
     </tr>
     <tr>
-        <td colspan="6">&nbsp;</td>
+        <td colspan="6"><hr/></td>
     </tr>
     <tr>
-        <th align="left" valign="top"><h4>Name</h4></th>
-        <th align="left" valign="top"><h4>Required</h4></th>
-        <th align="left" valign="top"><h4>Default</h4></th>
-        <th align="left" valign="top"><h4>Evaluated</h4></th>
-        <th align="left" valign="top"><h4>Type</h4></th>
-        <th align="left" valign="top"><h4>Description</h4></th>
+        <th class="tag-header"><h4>Name</h4></th>
+        <th class="tag-header"><h4>Required</h4></th>
+        <th class="tag-header"><h4>Default</h4></th>
+        <th class="tag-header"><h4>Evaluated</h4></th>
+        <th class="tag-header"><h4>Type</h4></th>
+        <th class="tag-header"><h4>Description</h4></th>
     </tr>
-        <tr>
-            <td align="left" valign="top">accesskey</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html accesskey attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">ajax</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Configuration of an AJAX Datasource for the Table. Expect a string (url), oan object(jQuery ajax like config object), or a custom function. See datatables reference for more infos</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">ajaxReloadTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger an AJAX reload</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">autoFill</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">AutoFill plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">autoWidth</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable automatic column width calculation</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">buttons</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Buttons plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">clearTableTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger a table clear</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">colReorder</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">ColReorder plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">columnDefs</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Other way of configuring columns. Expect a JS array, as specified by datatables manual.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">columns</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Configuration of columns. Expect a JS array, as specified by datatables manual.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">createdRow</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Callback for whenever az TR element is created for the table's body</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">cssClass</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The css class to use for element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">cssErrorClass</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The css error class to use for element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">cssErrorStyle</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The css error style definitions for element to use</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">cssStyle</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The css style definitions for element to use</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">data</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Use of a JS array as dataSource for the table</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">dataType</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Type of the result. e.g. html, xml, text, json, ...</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">datatablesTheme</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">default</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">the theme for DataTables</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">deferLoading</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">When server side processing is enabled, and initial data is already in the DOM content of the table, if this option is setted with the full dataset size, datatables will defer requesting the server until needed</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">deferRender</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Deffer initial rendering for additional speed up of initialisation</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">disabled</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html disabled attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">displayStart</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">0</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Initial page to show</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">dom</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">DataTables dom configuration</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">drawCallback</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Callback called every time DataTables performs a draw</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">effect</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">none</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Perform a effect on the elements specified in the 'targets' attribute. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">effectDuration</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">2000</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Duration of effect in milliseconds. Only valid if 'effect' attribute is set</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">effectMode</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">none</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The Effect Mode. show, hide, toggle, none</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">effectOptions</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">errorElementId</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">This should provide the id of the element into which the error text will be placed when an error ocurrs loading the container. If 'errorTest' is provided, that  wil be used, otherwise the ajax error message text wil be used.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">errorPosition</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Define error position of form element (top|bottom)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">errorText</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The text to be displayed on load error. If 'errorElement' is provided, this will display the error in the elemtn (if existing), if not, it will display the error as the contents of this container</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">fixedColumns</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Fixed plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">fixedHeader</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">FixedHeader plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">footerCallback</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Footer dispplay Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">formIds</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma delimited list of form ids for which to serialize all fields during submission when this element is clicked (if multiple forms have overlapping element names, it is indeterminate which will be used)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">formatNumber</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Number formatting Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">headerCallback</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Header display Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">href</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The url to be use when this element is clicked</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">id</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">HTML id attribute</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">indicator</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">If loading content into a target, Id of element that will be displayed during loading and hidden afterwards (will override settings for the target container)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">info</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable information display</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">infoCallback</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Table summary display Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">initComplete</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Initialisation complete Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">javascriptTooltip</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top">Use JavaScript to generate tooltips</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">key</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the key (name, value, label) for this particular component</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">keys</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">KeyTable plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">label</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Label expression used for rendering an element specific label</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">labelPosition</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Define label position of form element (top/left)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">labelSeparator</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">:</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">String that will be appended to the label</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">lengthChange</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable paging length select</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">lengthMenu</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">[10,25,50,100]</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">specify the entries in the drop down select for pagination.Expect a 1D array containing integer values of page length or a 2D array with first index being the page lengths and second index being the dispalyed options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">listenTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The comma separated list 'listenTopics' is the list of topic names that is used to trigger a request.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">loadingText</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">If loading content into a target, The text to be displayed during load (will be shown if any provided, will override settings for the target container)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">name</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The name to set for element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onAfterValidationTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published after the Ajax validation. event.originalEvent.formvalidate to see if validation passed/failed.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onAlwaysTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published always</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onAutoFillTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when an autoFill action has been completed</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onBeforeAutoFillTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when an auto fill action is about to be applied to the table</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onBeforeTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Topics that are published before a load</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onBlurTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when the element is blured</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onButtonActionTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when a button action has been triggered</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onChangeTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when the element changed</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onColumnReorderTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when columns have been reordered by user or API</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onColumnSizingTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when column are resized</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onColumnVisibilityTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when column visibility change</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onCompleteTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onDeselectTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when items have been deselected</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onDestroyTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired the datatable is destroyed</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onDisableTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when the element disabled</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onDrawTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when a draw has finished</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onEffectCompleteTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when an effect is completed </td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onEnableTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when the element is enabled</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onErrorTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onFocusTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when the element is focused</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onInitCompleteTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired datatable initialization is complete</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onInitStartTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when initialisation started, immediately before data load</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onKeyBlurTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when KeyTable has blurred focus from a cell</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onKeyFocusTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when KeyTable has focused a cell</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onOrderTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when data contained in the table is ordered</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onOtherKeyTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when a key event has been detected and is not handled by KeyTable</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onPageChangeTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when paging is updated</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onPageLengthChangeTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when the page length has changed</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onProcessingErrorTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when an error occured while processing data</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onProcessingTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when data is processed</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onResponsiveDisplayTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when the details for a row has been displayed, updated or hidden</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onResponsiveResizeTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when the columns displayed by Responsive has changed due to resize</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onRowGroupPointChangedTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when row group point have been changed</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onRowReorderTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when row have been reordered by the user, when dropping is done, but before data change is applied</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onRowReorderedTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when rows have been reordered by the user</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onSearchTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when the table is filtered</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onSelectItemsTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when select items type change event</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onSelectStyleTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when select items style change event</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onSelectTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when items have been selected</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onStateLoadedTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when state has been loaded and applied</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onStateLoadingTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when state is beeing loaded from storage</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onStateSavingTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when column state is beeing stored</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onSuccessTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onUserSelectTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics fired when a user action cause items to be selected in the table</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onblur</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top"> Set the html onblur attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onchange</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onchange attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onclick</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onclick attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">ondblclick</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html ondblclick attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onfocus</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onfocus attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onkeydown</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onkeydown attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onkeypress</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onkeypress attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onkeyup</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onkeyup attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onmousedown</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onmousedown attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onmousemove</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onmousemove attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onmouseout</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onmouseout attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onmouseover</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onmouseover attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onmouseup</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onmouseup attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">onselect</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html onselect attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">openTemplate</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set template to use for opening the rendered html.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">order</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">[[0,'asc']]</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">initial order to apply to the table. Must be an array of arrays, the inner arrays comprised of : column index to order upon, and 'asc' or 'desc' string</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">orderCellsTop</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Control whether DataTables should use the top (true) unique cell for a single column, or the bottom to attach the default order listener</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">orderClasses</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Highlight the column being ordered in the table body</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">orderFixed</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">ordering to be always applied to the table. See 'order' attribute for argument detail </td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">orderMulti</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Enable/Disable multiple column ordering</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">orderTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger a table order. The data attribute contains ordering params</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">ordering</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable ordering</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">pageLength</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">10</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">change the initial page length</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">pageLengthTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger a page length change. The data attribute contains page length</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">pageTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger a table page change. The data attribute contains the page number</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">paging</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable paging</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">pagingType</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">simple_numbers</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">pagination buttons display options.Expects a string whin can be 'numbers': page buttons number only, 'simple': previous and next buttons only, 'simple_numbers' : previous, next plus page numbers, 'full' : first previous next and last buttons, 'full_numbers' : full + numbers </td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">performClearTagStateForTagPoolingServers</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top">Whether to clear all tag state during doEndTag() processing (if applicable)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">preDrawCallback</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Pre draw Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">processing</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable processing message</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">redrawTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger a table redraw</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">renderer</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Display component renderer type</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">requestType</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">POST</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Type of the AJAX Request. POST, GET, PUT</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">requiredLabel</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Boolean</td>
-            <td align="left" valign="top">If set to true, the rendered element will indicate that input is required</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">requiredPosition</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Define required position of required form element (left|right)</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">responsive</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Responsive plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">rowCallback</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">row draw Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">rowGroup</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">RowGroup plugin configuration. No defaults here, you have to provide a rowGroup config Object. See DataTables docs for detail</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">rowId</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Data property name that must be used to set tr elements DOM IDs</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">rowReorder</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">RowReorder plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">scrollCollapse</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Allow the table to reduce in height when a limited number of row is shown</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">scrollX</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">controls horizontal scrolling, can be true (auto), or any CSS unit, or any Number</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">scrollY</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">controls vertical scrolling, can be true (auto), or any CSS unit, or any Number</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">scroller</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Scroller plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">search</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Search feature configuration. See DataTables reference for more infos</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">searchCols</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Define an initial search for individual columns.Expect an array of the same size as the number of columns, containing an object with 'search' and 'escapeRegex' properties </td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">searchDelay</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">null</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set a throttle frequency for searching.expect an integer</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">searchTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger a search. The data attribute contains searching param</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">searching</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">true</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable searching</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">select</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Select plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">serverSide</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable server side processing of searching, paginating,ordering,...</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateClearTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger a state clear</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateDuration</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">7200</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Saved state validity duration, in seconds</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateLoadCallback</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Callback that define where and how a saved state should be loaded</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateLoadParams</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">State loaded - data manipulation Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateLoaded</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">State loaded Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateSave</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">enable/disable state saving feature</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateSaveCallback</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Callback that define how the table state is stored and where</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateSaveParams</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">State save - Data manipulation Callback</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stateSaveTopics</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Comma separated list of topics that trigger a state save</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">stripeClasses</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">['odd','even']</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Sets the zebra stripe class names for the rows in the table.Expect an array of class names</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">style</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The css style definitions for element to use - it's an alias of cssStyle attribute.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">tabindex</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html tabindex attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">targets</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">A comma separated list of ids of container elements to load with the contents from the result of this request</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">template</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The template (other than default) to use for rendering the element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">templateDir</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">The template directory.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">timeout</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">3000</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Integer</td>
-            <td align="left" valign="top">jQuery options for timeout. Default is 3000</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">title</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the html title attribute on rendered html element</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">tooltip</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Set the tooltip of this particular component</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">tooltipConfig</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Deprecated. Use individual tooltip configuration attributes instead.</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">tooltipCssClass</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">StrutsTTClassic</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">CSS class applied to JavaScrip tooltips</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">tooltipDelay</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">Classic</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Delay in milliseconds, before showing JavaScript tooltips </td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">tooltipIconPath</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Icon path used for image that will have the tooltip</td>
-        </tr>
-        <tr>
-            <td align="left" valign="top">value</td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top"></td>
-            <td align="left" valign="top">false</td>
-            <td align="left" valign="top">String</td>
-            <td align="left" valign="top">Preset the value of input element.</td>
-        </tr>
+    <tr>
+        <td class="tag-attribute">accesskey</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html accesskey attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">ajax</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Configuration of an AJAX Datasource for the Table. Expect a string (url), oan object(jQuery ajax like config object), or a custom function. See datatables reference for more infos</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">ajaxReloadTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger an AJAX reload</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">autoFill</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">AutoFill plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">autoWidth</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">true</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable automatic column width calculation</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">buttons</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Buttons plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">clearTableTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger a table clear</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">colReorder</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">ColReorder plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">columnDefs</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Other way of configuring columns. Expect a JS array, as specified by datatables manual.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">columns</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Configuration of columns. Expect a JS array, as specified by datatables manual.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">createdRow</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Callback for whenever az TR element is created for the table's body</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">cssClass</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The css class to use for element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">cssErrorClass</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The css error class to use for element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">cssErrorStyle</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The css error style definitions for element to use</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">cssStyle</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The css style definitions for element to use</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">data</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Use of a JS array as dataSource for the table</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">dataType</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Type of the result. e.g. html, xml, text, json, ...</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">datatablesTheme</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">default</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">the theme for DataTables</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">deferLoading</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">When server side processing is enabled, and initial data is already in the DOM content of the table, if this option is setted with the full dataset size, datatables will defer requesting the server until needed</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">deferRender</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Deffer initial rendering for additional speed up of initialisation</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">disabled</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html disabled attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">displayStart</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">0</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Initial page to show</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">dom</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">DataTables dom configuration</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">drawCallback</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Callback called every time DataTables performs a draw</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">effect</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">none</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Perform a effect on the elements specified in the 'targets' attribute. e.g. bounce, highlight, pulsate, shake, size or transfer. See more details at http://docs.jquery.com/UI/Effects</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">effectDuration</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">2000</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Duration of effect in milliseconds. Only valid if 'effect' attribute is set</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">effectMode</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">none</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The Effect Mode. show, hide, toggle, none</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">effectOptions</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">jQuery options for effect, eg 'color : #aaaaaa' for the highlight effect or 'times : 3' for the bounce effect. Only valid if 'effect' attribute is set. See more details at http://docs.jquery.com/UI/Effects</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">errorElementId</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">This should provide the id of the element into which the error text will be placed when an error ocurrs loading the container. If 'errorTest' is provided, that  wil be used, otherwise the ajax error message text wil be used.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">errorPosition</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Define error position of form element (top|bottom)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">errorText</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The text to be displayed on load error. If 'errorElement' is provided, this will display the error in the elemtn (if existing), if not, it will display the error as the contents of this container</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">fixedColumns</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Fixed plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">fixedHeader</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">FixedHeader plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">footerCallback</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Footer dispplay Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">formIds</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma delimited list of form ids for which to serialize all fields during submission when this element is clicked (if multiple forms have overlapping element names, it is indeterminate which will be used)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">formatNumber</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Number formatting Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">headerCallback</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Header display Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">href</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The url to be use when this element is clicked</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">id</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">HTML id attribute</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">indicator</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">If loading content into a target, Id of element that will be displayed during loading and hidden afterwards (will override settings for the target container)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">info</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">true</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable information display</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">infoCallback</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Table summary display Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">initComplete</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Initialisation complete Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">javascriptTooltip</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">Boolean</td>
+        <td class="tag-attribute">Use JavaScript to generate tooltips</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">key</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the key (name, value, label) for this particular component</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">keys</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">KeyTable plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">label</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Label expression used for rendering an element specific label</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">labelPosition</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Define label position of form element (top/left)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">labelSeparator</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">:</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">String that will be appended to the label</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">lengthChange</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">true</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable paging length select</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">lengthMenu</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">[10,25,50,100]</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">specify the entries in the drop down select for pagination.Expect a 1D array containing integer values of page length or a 2D array with first index being the page lengths and second index being the dispalyed options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">listenTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The comma separated list 'listenTopics' is the list of topic names that is used to trigger a request.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">loadingText</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">If loading content into a target, The text to be displayed during load (will be shown if any provided, will override settings for the target container)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">name</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The name to set for element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onAfterValidationTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published after the Ajax validation. event.originalEvent.formvalidate to see if validation passed/failed.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onAlwaysTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published always</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onAutoFillTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when an autoFill action has been completed</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onBeforeAutoFillTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when an auto fill action is about to be applied to the table</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onBeforeTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Topics that are published before a load</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onBlurTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when the element is blured</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onButtonActionTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when a button action has been triggered</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onChangeTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when the element changed</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onColumnReorderTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when columns have been reordered by user or API</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onColumnSizingTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when column are resized</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onColumnVisibilityTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when column visibility change</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onCompleteTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when the element ajax request is completed (will override settings for a target container if provided)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onDeselectTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when items have been deselected</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onDestroyTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired the datatable is destroyed</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onDisableTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when the element disabled</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onDrawTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when a draw has finished</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onEffectCompleteTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when an effect is completed </td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onEnableTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when the element is enabled</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onErrorTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when the element ajax request returns an error (will override settings for a target container if provided)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onFocusTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when the element is focused</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onInitCompleteTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired datatable initialization is complete</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onInitStartTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when initialisation started, immediately before data load</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onKeyBlurTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when KeyTable has blurred focus from a cell</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onKeyFocusTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when KeyTable has focused a cell</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onOrderTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when data contained in the table is ordered</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onOtherKeyTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when a key event has been detected and is not handled by KeyTable</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onPageChangeTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when paging is updated</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onPageLengthChangeTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when the page length has changed</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onProcessingErrorTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when an error occured while processing data</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onProcessingTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when data is processed</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onResponsiveDisplayTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when the details for a row has been displayed, updated or hidden</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onResponsiveResizeTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when the columns displayed by Responsive has changed due to resize</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onRowGroupPointChangedTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when row group point have been changed</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onRowReorderTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when row have been reordered by the user, when dropping is done, but before data change is applied</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onRowReorderedTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when rows have been reordered by the user</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onSearchTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when the table is filtered</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onSelectItemsTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when select items type change event</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onSelectStyleTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when select items style change event</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onSelectTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when items have been selected</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onStateLoadedTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when state has been loaded and applied</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onStateLoadingTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when state is beeing loaded from storage</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onStateSavingTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when column state is beeing stored</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onSuccessTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma delimited list of topics that published when the element ajax request is completed successfully  (will override settings for a target container if provided)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onUserSelectTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics fired when a user action cause items to be selected in the table</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onblur</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute"> Set the html onblur attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onchange</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onchange attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onclick</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onclick attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">ondblclick</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html ondblclick attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onfocus</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onfocus attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onkeydown</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onkeydown attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onkeypress</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onkeypress attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onkeyup</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onkeyup attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onmousedown</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onmousedown attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onmousemove</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onmousemove attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onmouseout</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onmouseout attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onmouseover</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onmouseover attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onmouseup</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onmouseup attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">onselect</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html onselect attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">openTemplate</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set template to use for opening the rendered html.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">order</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">[[0,'asc']]</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">initial order to apply to the table. Must be an array of arrays, the inner arrays comprised of : column index to order upon, and 'asc' or 'desc' string</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">orderCellsTop</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Control whether DataTables should use the top (true) unique cell for a single column, or the bottom to attach the default order listener</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">orderClasses</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">true</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Highlight the column being ordered in the table body</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">orderFixed</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">ordering to be always applied to the table. See 'order' attribute for argument detail </td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">orderMulti</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">true</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Enable/Disable multiple column ordering</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">orderTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger a table order. The data attribute contains ordering params</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">ordering</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">true</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable ordering</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">pageLength</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">10</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">change the initial page length</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">pageLengthTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger a page length change. The data attribute contains page length</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">pageTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger a table page change. The data attribute contains the page number</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">paging</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">true</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable paging</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">pagingType</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">simple_numbers</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">pagination buttons display options.Expects a string whin can be 'numbers': page buttons number only, 'simple': previous and next buttons only, 'simple_numbers' : previous, next plus page numbers, 'full' : first previous next and last buttons, 'full_numbers' : full + numbers </td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">performClearTagStateForTagPoolingServers</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">Boolean</td>
+        <td class="tag-attribute">Whether to clear all tag state during doEndTag() processing (if applicable)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">preDrawCallback</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Pre draw Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">processing</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable processing message</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">redrawTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger a table redraw</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">renderer</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Display component renderer type</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">requestType</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">POST</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Type of the AJAX Request. POST, GET, PUT</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">requiredLabel</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">Boolean</td>
+        <td class="tag-attribute">If set to true, the rendered element will indicate that input is required</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">requiredPosition</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Define required position of required form element (left|right)</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">responsive</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Responsive plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">rowCallback</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">row draw Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">rowGroup</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">RowGroup plugin configuration. No defaults here, you have to provide a rowGroup config Object. See DataTables docs for detail</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">rowId</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Data property name that must be used to set tr elements DOM IDs</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">rowReorder</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">RowReorder plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">scrollCollapse</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Allow the table to reduce in height when a limited number of row is shown</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">scrollX</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">controls horizontal scrolling, can be true (auto), or any CSS unit, or any Number</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">scrollY</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">controls vertical scrolling, can be true (auto), or any CSS unit, or any Number</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">scroller</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Scroller plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">search</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Search feature configuration. See DataTables reference for more infos</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">searchCols</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Define an initial search for individual columns.Expect an array of the same size as the number of columns, containing an object with 'search' and 'escapeRegex' properties </td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">searchDelay</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">null</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set a throttle frequency for searching.expect an integer</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">searchTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger a search. The data attribute contains searching param</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">searching</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">true</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable searching</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">select</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Select plugin configuration. True to enable with defaults, JS object to enable with custom options</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">serverSide</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable server side processing of searching, paginating,ordering,...</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateClearTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger a state clear</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateDuration</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">7200</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Saved state validity duration, in seconds</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateLoadCallback</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Callback that define where and how a saved state should be loaded</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateLoadParams</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">State loaded - data manipulation Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateLoaded</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">State loaded Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateSave</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">enable/disable state saving feature</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateSaveCallback</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Callback that define how the table state is stored and where</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateSaveParams</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">State save - Data manipulation Callback</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stateSaveTopics</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Comma separated list of topics that trigger a state save</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">stripeClasses</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">['odd','even']</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Sets the zebra stripe class names for the rows in the table.Expect an array of class names</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">style</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The css style definitions for element to use - it's an alias of cssStyle attribute.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">tabindex</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html tabindex attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">targets</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">A comma separated list of ids of container elements to load with the contents from the result of this request</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">template</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The template (other than default) to use for rendering the element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">templateDir</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">The template directory.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">timeout</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">3000</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">Integer</td>
+        <td class="tag-attribute">jQuery options for timeout. Default is 3000</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">title</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the html title attribute on rendered html element</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">tooltip</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Set the tooltip of this particular component</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">tooltipConfig</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Deprecated. Use individual tooltip configuration attributes instead.</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">tooltipCssClass</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">StrutsTTClassic</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">CSS class applied to JavaScrip tooltips</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">tooltipDelay</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">Classic</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Delay in milliseconds, before showing JavaScript tooltips </td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">tooltipIconPath</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Icon path used for image that will have the tooltip</td>
+    </tr>
+    <tr>
+        <td class="tag-attribute">value</td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute"></td>
+        <td class="tag-attribute">false</td>
+        <td class="tag-attribute">String</td>
+        <td class="tag-attribute">Preset the value of input element.</td>
+    </tr>
 </table>
