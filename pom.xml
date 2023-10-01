@@ -85,7 +85,7 @@
 		<maven-deploy-plugin.version>3.0.0-M2</maven-deploy-plugin.version>
 		<maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
 		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
 		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
 		<jetty.plugin.version>9.4.52.v20230823</jetty.plugin.version>
