@@ -29,7 +29,7 @@
 		<commons-codec.version>1.16.0</commons-codec.version>
 		<commons-io.version>2.14.0</commons-io.version>
 		<xml-apis.version>1.4.01</xml-apis.version>
-		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+		<javax.servlet-api.version>4.0.1</javax.servlet-api.version>
 		<jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
 
 		<failsafe.test.tag>HTMLUnit</failsafe.test.tag>
