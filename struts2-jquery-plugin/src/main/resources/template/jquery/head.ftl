@@ -20,7 +20,7 @@
 -->
 
 <#if !jQueryVersion?? >
-    <#assign jQueryVersion="3.7.0">
+    <#assign jQueryVersion="3.7.1">
 </#if>
 <#assign jQueryUIVersion="1.13.2">
 <#-- issue89: temporary fix because of i18n files not being available for current jQuery UI version -->
