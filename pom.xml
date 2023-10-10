@@ -84,7 +84,7 @@
 		<maven-release-plugin.version>3.0.1</maven-release-plugin.version>
 		<maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
 		<maven-javadoc-plugin.version>3.6.0</maven-javadoc-plugin.version>
-		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+		<maven-source-plugin.version>3.3.0</maven-source-plugin.version>
 		<maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
 		<maven-war-plugin.version>3.4.0</maven-war-plugin.version>
 		<maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
@@ -200,14 +200,6 @@
 					<!-- Attach source jar to builds -->
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${maven-source-plugin.version}</version>
-					<executions>
-						<execution>
-							<id>attach-source</id>
-							<goals>
-								<goal>jar</goal>
-							</goals>
-						</execution>
-					</executions>
 				</plugin>
 				<plugin>
 					<groupId>com.samaxes.maven</groupId>
