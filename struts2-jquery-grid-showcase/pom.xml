@@ -18,7 +18,7 @@
 	</scm>
 
 	<properties>
-		<spring.version>6.0.12</spring.version>
+		<spring.version>6.0.13</spring.version>
 		<hibernate.version>5.6.15.Final</hibernate.version>
 		<javax.inject.vesion>1</javax.inject.vesion>
 		<derby.version>10.14.2.0</derby.version>
