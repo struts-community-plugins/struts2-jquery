@@ -1,7 +1,7 @@
 # Struts2 jQuery Plugin
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jgeppert.struts2.jquery/struts2-jquery/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jgeppert.struts2.jquery/struts2-jquery)
-[![Build release/5.0.x](https://travis-ci.org/struts-community-plugins/struts2-jquery.svg?branch=release%2F5.0.x)](https://travis-ci.org/struts-community-plugins/struts2-jquery)
+[![Java CI with Maven](https://github.com/struts-community-plugins/struts2-jquery/actions/workflows/maven.yml/badge.svg)](https://github.com/struts-community-plugins/struts2-jquery/actions/workflows/maven.yml)
 
 A Plugin for the popular java web framework struts2 to provide ajax functionality and UI Widgets based on the jQuery javascript framework.
 
