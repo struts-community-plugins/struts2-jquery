@@ -12,7 +12,8 @@
       "matchCurrentVersion": "!/^0/",
       "automerge": true,
       "excludePackagePrefixes": [
-        "org.springframework"
+        "org.springframework",
+        "org.hibernate.validator"
       ]
     }
   ]
