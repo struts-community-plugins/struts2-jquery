@@ -27,7 +27,7 @@
 		<guava.version>32.0.0-jre</guava.version>
 		<phantomjsdriver.version>1.5.0</phantomjsdriver.version>
 		<commons-codec.version>1.16.0</commons-codec.version>
-		<commons-io.version>2.14.0</commons-io.version>
+		<commons-io.version>2.15.0</commons-io.version>
 		<xml-apis.version>2.0.2</xml-apis.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
