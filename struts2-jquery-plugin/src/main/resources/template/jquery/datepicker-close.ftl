@@ -88,7 +88,7 @@ jQuery(document).ready(function () {
 	options_${escapedOptionId}.numberofmonths = "${parameters.numberOfMonths}";
   </#if>
   <#if parameters.showOptions! != "">
-	options_${escapedOptionId}.showoptions = "${parameters.showOptions}";
+	options_${escapedOptionId}.showoptions = "${parameters.showOptions?no_esc}";
   </#if>
   <#if parameters.yearRange! != "">
 	options_${escapedOptionId}.yearRange = "${parameters.yearRange}";

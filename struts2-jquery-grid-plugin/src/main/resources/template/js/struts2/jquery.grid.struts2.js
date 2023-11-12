@@ -54,20 +54,20 @@
 						else{
 							bopts.buttonicon = "ui-icon-gear";
 						}
-						
+
 						if(options.topic) {
-							bopts.onClickButton = function() { 
+							bopts.onClickButton = function() {
 								var params = {};
 								params.grid = $elem;
-	
+
 								self.publishTopic($elem, options.topic, params);
 							};
 						}
 						else if (options.onclick) {
 							bopts.onClickButton = options.onclick;
 						}
-						
-						$elem.jqGrid('navButtonAdd', pager, bopts); 
+
+						$elem.jqGrid('navButtonAdd', pager, bopts);
 					}
 				}
 			});
@@ -81,11 +81,11 @@
 						onsuccess = null,
 						onerror = null,
 						onaftersave = null;
-					
+
 					data.id = id;
 					data.status = status;
 					data.grid = $elem;
-	
+
 					self.publishTopic($elem, o.onalw, data);
 					$.struts2_jquery.publishTopic($elem, o.onselectrowtopics, data);
 					if (o.editurl && o.editinline === true && o.navinline === false) {
@@ -93,7 +93,7 @@
 							$elem.jqGrid('restoreRow',	self.lastselectedrow);
 						}
 						self.lastselectedrow = id;
-	
+
 						if (o.oneibefore) {
 							oneditbefor = function() {
 								self.publishTopic($elem, o.oneibefore, data);
@@ -128,14 +128,14 @@
 								self.publishTopic($elem, o.oneisave, d);
 							};
 						}
-	
+
 						$elem.jqGrid('editRow', id, true, oneditbefor,
 								onsuccess, null, null, onaftersave, onerror,
 								null);
 					}
 				};
 			}
-	
+
 			if (o.oncesuccess) {
 				params.afterSaveCell = function(rowid, cellname, value, iRow, iCol) {
 					var d = {};
@@ -147,7 +147,7 @@
 					self.publishTopic($elem, o.oncesuccess, d);
 				};
 			}
-	
+
 			if (o.onceerror) {
 				params.errorCell = function(response, status) {
 					var d = {};
@@ -156,110 +156,110 @@
 					self.publishTopic($elem, o.onceerror, d);
 				};
 			}
-	
+
 			if (o.onselectalltopics) {
 				params.onSelectAll = function(ids, status) {
 					var data = {};
 					data.ids = ids;
 					data.status = status;
 					data.grid = $elem;
-	
+
 					self.publishTopic($elem, o.onalw, data);
 					self.publishTopic($elem, o.onselectalltopics, data);
 				};
 			}
 			if (o.onbef) {
 				params.loadBeforeSend = function(xhr) {
-	
+
 					var orginal = {};
 					orginal.xhr = xhr;
 					orginal.proceed = true;
-	
+
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.onbef, orginal);
-					
+
 					return orginal.proceed;
 				};
 			}
-	
+
 			if (o.onpagingtopics) {
 				params.onPaging = function(pgButton) {
-	
+
 					var orginal = {};
 					orginal.pgButton = pgButton;
-	
+
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.onpagingtopics, orginal);
 				};
 			}
-	
+
 			if (o.onsortcoltopics) {
 				params.onSortCol = function(index, iCol, sortorder) {
-	
+
 					var orginal = {};
 					orginal.index = index;
 					orginal.iCol = iCol;
 					orginal.sortorder = sortorder;
-	
+
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.onsortcoltopics, orginal);
 				};
 			}
-	
+
 			if (o.oncellselecttopics) {
 				params.onCellSelect = function(rowid, iCol, cellcontent, e) {
-	
+
 					var orginal = {};
 					orginal.rowid = rowid;
 					orginal.iCol = iCol;
 					orginal.cellcontent = cellcontent;
 					orginal.e = e;
-	
+
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.oncellselecttopics, orginal);
 				};
 			}
-			
+
 			if (o.onclickgroup) {
 				params.onClickGroup = function(groupid, collapsed ) {
-	
+
 					var orginal = {};
 					orginal.groupid = groupid;
 					orginal.collapsed = collapsed;
-	
+
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.onclickgroup, orginal);
 				};
 			}
-			
+
 			if (o.ondblclickrow) {
 				params.ondblClickRow = function(rowid, iRow, iCol, e) {
-	
+
 					var orginal = {};
 					orginal.rowid = rowid;
 					orginal.iRow = iRow;
 					orginal.iCol = iCol;
 					orginal.e = e;
-	
+
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.ondblclickrow, orginal);
 				};
 			}
-			
+
 			if (o.onrightclickrow) {
 				params.onRightClickRow = function(rowid, iRow, iCol, e) {
-	
+
 					var orginal = {};
 					orginal.rowid = rowid;
 					orginal.iRow = iRow;
 					orginal.iCol = iCol;
 					orginal.e = e;
-	
+
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.onrightclickrow, orginal);
 				};
 			}
-	
+
 			params.gridComplete = function(data) {
 
 				var daos = o.draggableoptions,
@@ -291,17 +291,17 @@
 								"js/base/droppable" + self.minSuffix + ".js"
 							]);
 						}
-						
+
 
 						if (!dao) {
-							dao = eval("( " + daos + " )");
+							dao = daos;
 						} else {
 							dao = {};
 						}
 						dao.drap = self.pubTops($elem, o.onalw, o.draggableondragtopics);
-	
+
 						if (!doo) {
-							doo = eval("( " + doos + " )");
+							doo = doos;
 						} else {
 							doo = {};
 						}
@@ -309,7 +309,7 @@
 						doo.deactivate = self.pubTops($elem, o.onalw, o.droppableondeactivatetopics);
 						doo.start = self.pubTops($elem, o.onalw, o.droppableonstarttopics);
 						doo.stop = self.pubTops($elem, o.onalw, o.droppableonstoptopics);
-	
+
 						ddo.drag_opts = dao;
 						ddo.drop_opts = doo;
 						ddo.connectWith = o.connectWith;
@@ -318,13 +318,13 @@
 						ddo.ondrop = self.pubTops($elem, o.onalw, o.droppableondroptopics);
 						$elem.jqGrid('gridDnD', ddo);
 					}
-	
-					
+
+
 					if (o.sortableRows) {
 						self.log('sortable rows for : ' + o.id);
-						
+
 						if (!soo && soos) {
-							soo = eval("( " + soos + " )");
+							soo = soos;
 						} else {
 							soo = {};
 						}
@@ -342,7 +342,7 @@
 						soo.update = self.pubTops($elem, o.onalw, o.sortableonupdatetopics);
 						$elem.jqGrid('sortableRows', soo);
 					}
-	
+
 					if (o.navigator) {
 						navparams.add = o.navigatoradd;
 						navparams.del = o.navigatordel;
@@ -355,7 +355,7 @@
 								o.navigatoreditoptions, o.navigatoraddoptions,
 								o.navigatordeleteoptions, o.navigatorsearchoptions,
 								o.navigatorviewoptions);
-						
+
 						if(o.editinline === true && o.navinline === true) {
 							$elem.jqGrid('inlineNav',self.escId(o.pager));
 						}
@@ -375,7 +375,7 @@
 					if (o.frozen) {
 						$elem.jqGrid('setFrozenColumns');
 					}
-					
+
 					if (o.resizable) {
 						if (!self.loadAtOnce) {
 							self.require( [
@@ -388,7 +388,7 @@
 							]);
 						}
 						if (!ro) {
-							ro = eval("( " + ros + " )");
+							ro = ros;
 						} else {
 							ro = {};
 						}
@@ -403,19 +403,19 @@
 					self.publishTopic($elem, o.ongridcompletetopics, {});
 				}
 			};
-	
+
 			if (o.onfocustopics) {
 				params.beforeSelectRow = function(rowid, e) {
-	
+
 					var orginal = {};
 					orginal.rowid = rowid;
 					orginal.e = e;
-	
+
 					self.publishTopic($elem, o.onalw, orginal);
 					self.publishTopic($elem, o.onfocustopics, orginal);
 				};
 			}
-	
+
 			if (o.reloadtopics) {
 				$.each(o.reloadtopics.split(','), function(i, rts) {
 					$elem.subscribe(rts, '_s2j_reloadgrid', o);
@@ -450,7 +450,7 @@
 			if (o.navigatorsearch) {
 				self.require("js/plugins/grid.filter" + self.minSuffix + ".js");
 			}
-			
+
 			if (o.subgrid) {
 				self.require("js/plugins/grid.subgrid" + self.minSuffix + ".js");
 				params.subGrid = true;
@@ -458,20 +458,20 @@
 				// gridview can't be true when using the subgrid feature
 				params.gridview = false;
 				params.subGridRowExpanded = function(subgrid_id, row_id) {
-					
+
 					var orginal = {},
 						so = o.subgridoptions,
 						subgridtableid = subgrid_id.replace(/(:|\.)/g, '\\$1') + "_table",
 						subgrid = $(self.escId(subgrid_id)),
 						subgridhtml = "<table id='" + subgridtableid + "' class='scroll'></table>",
 						to = so.url.indexOf('?');
-					
+
 					orginal.proceed = true;
-					
+
 					if(o.onsgrowexpanded){
 						orginal.row_id = row_id;
 						orginal.subgrid_id = subgrid_id;
-		
+
 						self.publishTopic($elem, o.onalw, orginal);
 						self.publishTopic($elem, o.onsgrowexpanded, orginal);
 					}
@@ -484,7 +484,7 @@
 							so.navigatoreditoptions = $.extend(true,so.navigatoreditoptions||{}, {editData:{rowid:row_id}});
 							so.navigatordeleteoptions = $.extend(true,so.navigatordeleteoptions||{}, {delData:{rowid:row_id}});
 						}
-						
+
 						$.each(so.colModel, function(i, col) {
 							if(col.editoptions && col.editoptions.dataUrl){
 								if(col.editoptions.dataUrl.indexOf("rowid") > 0) {
@@ -503,9 +503,9 @@
 								}
 							}
 						});
-						
+
 						subgrid.html(subgridhtml);
-						
+
 						if (so.url) {
 							if (to > 0) {
 								so.url = so.url.substring(0, to);
@@ -514,14 +514,14 @@
 						}
 						subgrid = $(self.escId(subgridtableid));
 						so = self.parseGridParams(subgrid, so, so);
-	
+
 						subgrid.jqGrid(so);
 					}
 				};
 			} else {
 				params.gridview = true;
 			}
-			
+
 			if (o.url) {
 				var data = '';
 				if (o.formids) {
@@ -538,7 +538,7 @@
 					});
 				}
 				params.url = self.addParam(o.url, data);
-			}			
+			}
 			return params;
 		},
 		grid : function($elem, o) {
@@ -590,7 +590,7 @@
 			$.extend(params, o);
 
 			$elem.data('_s2jg_init', false);
-			
+
 			params = self.parseGridParams($elem, o, params);
 
 			$elem.jqGrid(params);

@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Security-Policy" content="
                           default-src 'none';
                           script-src 'self' 'unsafe-inline' 'unsafe-eval' 'unsafe-hashes';
-                          style-src 'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com;
+                          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.googleapis.com;
                           base-uri 'self';
                           font-src 'self' https://fonts.gstatic.com;
                           img-src 'self' data:;

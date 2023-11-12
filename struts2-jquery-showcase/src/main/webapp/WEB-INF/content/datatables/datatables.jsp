@@ -7,12 +7,9 @@
 	JQuery DataTables integration Demo : Client-side processing, jquery UI theme, DOM dataset
 </p>
 <!-- Required third party libs for pdf and excel export-->
-<script type="text/javascript" language="javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js">
-</script>
-<script type="text/javascript" language="javascript" src="http://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js">
-</script>
-<script type="text/javascript" language="javascript" src="http://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js">
-</script>
+<s:script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"/>
+<s:script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"/>
+<s:script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"/>
 
 <sjdt:datatables datatablesTheme="jqueryui" buttons="['colvis','pdf','excel','csv','print','copy']" dom="Blfrtip" lengthMenu="[5,10,15,20]" pageLength="15"
 columnDefs="[{targets:[4],render:$.fn.dataTable.render.number(',','.',2)}]"
@@ -52,15 +49,12 @@ responsive="true" style="width:100%;" >
             &lt;h2&gt;DataTables&lt;/h2&gt;
 
 &lt;p class=&quot;text&quot;&gt;
-    JQuery DataTables intégration Demo : Client-side processing, jquery UI theme, DOM dataset
+    JQuery DataTables integration Demo : Client-side processing, jquery UI theme, DOM dataset
 &lt;/p&gt;
 &lt;!-- Required third party libs for pdf and excel export--&gt;
-&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;http://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js&quot;&gt;
-&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;http://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js&quot;&gt;
-&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;http://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js&quot;&gt;
-&lt;/script&gt;
+&lt;s:script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js&quot;/&gt;
+&lt;s:script src=&quot;https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js&quot;/&gt;
+&lt;s:script src=&quot;https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js&quot;/&gt;
 
 &lt;sjdt:datatables datatablesTheme=&quot;jqueryui&quot; buttons=&quot;['colvis','pdf','excel','csv','print','copy']&quot; dom=&quot;Blfrtip&quot; lengthMenu=&quot;[5,10,15,20]&quot; pageLength=&quot;15&quot;
 columnDefs=&quot;[{targets:[4],render:$.fn.dataTable.render.number(',','.',2)}]&quot;
@@ -141,7 +135,7 @@ public class Datatables extends ActionSupport implements SessionAware {
         return this.myCustomers;
     }
 }
-            
+
             </code>
       </pre>
 </div>
