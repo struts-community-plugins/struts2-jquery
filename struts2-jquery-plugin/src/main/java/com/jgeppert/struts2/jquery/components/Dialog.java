@@ -253,6 +253,16 @@ public class Dialog extends AbstractRemoteBean {
     public void setHideEffect(String hideEffect) {
         this.hideEffect = hideEffect;
     }
+    
+    @StrutsTagAttribute(description = "Overlay color when modal is true. e.g. #000")
+    public void setOverlayColor(String overlayColor) {
+        this.overlayColor = overlayColor;
+    }
+
+    @StrutsTagAttribute(description = "Overlay opacity when modal is true. e.g. 0.7")
+    public void setOverlayOpacity(String overlayOpacity) {
+        this.overlayOpacity = overlayOpacity;
+    }
 
     @StrutsTagAttribute(description = "The maximum height to which the dialog can be resized, in pixels.")
     public void setMaxHeight(String maxHeight) {
