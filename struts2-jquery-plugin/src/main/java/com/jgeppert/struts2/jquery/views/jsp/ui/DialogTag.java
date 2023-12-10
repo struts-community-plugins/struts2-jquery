@@ -47,6 +47,8 @@ public class DialogTag extends AbstractRemoteTag {
     protected String autoOpen;
     protected String showEffect;
     protected String hideEffect;
+    protected String overlayColor;
+    protected String overlayOpacity;
     protected String onOpenTopics;
     protected String onCloseTopics;
     protected String onFocusTopics;
@@ -146,6 +148,14 @@ public class DialogTag extends AbstractRemoteTag {
 
     public void setHideEffect(String hideEffect) {
         this.hideEffect = hideEffect;
+    }
+    
+    public void setOverlayColor(String overlayColor) {
+        this.overlayColor = overlayColor;
+    }
+
+    public void setOverlayOpacity(String overlayOpacity) {
+        this.overlayOpacity = overlayOpacity;
     }
 
     public void setMaxHeight(String maxHeight) {
