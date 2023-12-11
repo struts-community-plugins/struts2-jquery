@@ -571,9 +571,9 @@
 					"js/base/button" + self.minSuffix + ".js",
 					"js/base/dialog" + self.minSuffix + ".js"
 				]);
-            }
-			self.require("js/base/jquery.jqGrid" + self.minSuffix + ".js");
+			}
 			self.requireCss("themes/ui.jqgrid.css");
+			self.require("js/base/jquery.jqGrid" + self.minSuffix + ".js");
 			if(o.sortable || o.sortableRows) {
 				if (!self.loadAtOnce) {
 					self.require( [
