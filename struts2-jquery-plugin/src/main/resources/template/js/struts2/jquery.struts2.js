@@ -125,7 +125,6 @@
 				url :path + file,
 				success :successFunction,
 				dataType :"script",
-				cache :true,
 				async :false
 				});
 				$.struts2_jquery.scriptCache[file] = true;
