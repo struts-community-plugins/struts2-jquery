@@ -853,9 +853,9 @@
 		}
 		if (o.autocomplete) {
 			if (!self.loadAtOnce) {
-				self.require( [ "js/base/widget" + self.minSuffix + ".js", "js/base/position" + self.minSuffix + ".js", "js/base/menu" + self.minSuffix + ".js", "js/base/button" + self.minSuffix + ".js", "js/base/autocomplete" + self.minSuffix + ".js" ]);
+				self.require( [ "js/base/widget" + self.minSuffix + ".js", "js/base/position" + self.minSuffix + ".js", "js/base/menu" + self.minSuffix + ".js", "js/base/button" + self.minSuffix + ".js", "js/base/autocomplete" + self.minSuffix + ".js", "js/base/tooltip" + self.minSuffix + ".js" ]);
 			}
-            self.requireCss("themes/s2j-combobox.css");
+			self.requireCss("themes/s2j-combobox.css");
 			self.require([ "js/plugins/jquery.combobox" + self.minSuffix + ".js" ]);
 			$elem.combobox(o);
 		}
