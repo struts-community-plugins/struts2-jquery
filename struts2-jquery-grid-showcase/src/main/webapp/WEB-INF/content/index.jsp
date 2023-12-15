@@ -8,7 +8,7 @@
                           script-src 'self' 'unsafe-inline' 'unsafe-eval' 'unsafe-hashes';
                           style-src 'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com;
                           base-uri 'self';
-                          font-src 'self' https://fonts.gstatic.com;
+                          font-src 'self'  http://fonts.gstatic.com https://fonts.gstatic.com;
                           img-src 'self' data:;
                           connect-src 'self';
                           worker-src blob:;">
