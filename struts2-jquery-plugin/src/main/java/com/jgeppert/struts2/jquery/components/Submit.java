@@ -219,7 +219,7 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
             addParameter(PARAM_PARENT_THEME, "simple");
         }
 
-        if (form != null && StringUtils.isBlank(formIds)) {
+        if (form != null && StringUtils.isBlank(formIds) && form.getId() != null) {
             addParameter(PARAM_FORM_IDS, form.getParameters().get("id"));
         }
     }
