@@ -71,7 +71,7 @@
                 ]);
             }
             if (!dao) {
-                dao = daos;
+                dao = Function("return " + daos);
             }
             else {
                 dao = {};
@@ -102,7 +102,7 @@
                 ]);
             }
             if (!doo) {
-                doo = doos;
+                doo = Function("return " + doos);
             }
             else {
                 doo = {};
@@ -131,7 +131,7 @@
                 ]);
             }
             if (!seo) {
-                seo = seos;
+                seo = Function("return " + seos);
             }
             else {
                 seo = {};
@@ -162,7 +162,7 @@
                 ]);
             }
             if (!soo) {
-                soo = soos;
+                soo = Function("return " + soos);
             }
             else {
                 soo = {};
@@ -197,7 +197,7 @@
                 ]);
             }
             if (!ro) {
-                ro = ros;
+                ro = Function("return " + ros);
             }
             else {
                 ro = {};
@@ -605,7 +605,7 @@
                 sos = o.showoptions;
                 so = window[sos];
                 if (!so) {
-                    params.showOptions = sos;
+                    params.showOptions = Function("return " + sos);
                 }
             }
 
