@@ -71,7 +71,7 @@
                 ]);
             }
             if (!dao) {
-                dao = eval("( " + daos + " )");
+                dao = Function("return " + daos);
             }
             else {
                 dao = {};
@@ -102,7 +102,7 @@
                 ]);
             }
             if (!doo) {
-                doo = eval("( " + doos + " )");
+                doo = Function("return " + doos);
             }
             else {
                 doo = {};
@@ -131,7 +131,7 @@
                 ]);
             }
             if (!seo) {
-                seo = eval("( " + seos + " )");
+                seo = Function("return " + seos);
             }
             else {
                 seo = {};
@@ -162,7 +162,7 @@
                 ]);
             }
             if (!soo) {
-                soo = eval("( " + soos + " )");
+                soo = Function("return " + soos);
             }
             else {
                 soo = {};
@@ -197,7 +197,7 @@
                 ]);
             }
             if (!ro) {
-                ro = eval("( " + ros + " )");
+                ro = Function("return " + ros);
             }
             else {
                 ro = {};
@@ -325,7 +325,7 @@
 
             if (o.disabledtabs && o.disabledtabs !== 'false') {
                 if (!disabledtabs) {
-                    o.disabled = eval("( " + disabledtabsStr + " )");
+                    o.disabled = Boolean(disabledtabsStr);
                 }
             }
             if (o.openonmouseover) {
@@ -597,7 +597,7 @@
                 noms = o.numberofmonths;
                 nom = window[noms];
                 if (!nom) {
-                    params.numberOfMonths = eval("( " + noms + " )");
+                    params.numberOfMonths = Number(noms);
                 }
             }
 
@@ -605,7 +605,7 @@
                 sos = o.showoptions;
                 so = window[sos];
                 if (!so) {
-                    params.showOptions = eval("( " + sos + " )");
+                    params.showOptions = Function("return " + sos);
                 }
             }
 

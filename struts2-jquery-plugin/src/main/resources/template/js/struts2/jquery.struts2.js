@@ -84,16 +84,16 @@
 	/**Change Parameter Value in URL */
 	changeParam : function(url, param, value) {
 		var ua = url.split("?"), // split url
-			pa = ua[1].split("&"), // split query 
+			pa = ua[1].split("&"), // split query
 			ia = [],
-			i; 
-		for (i=0; i < pa.length; i++) { 
-			ia = pa[i].split("="); // split name/value 
-			if (ia[0] === param) { 
-				pa[i] = ia[0] + "=" + value; 
+			i;
+		for (i=0; i < pa.length; i++) {
+			ia = pa[i].split("="); // split name/value
+			if (ia[0] === param) {
+				pa[i] = ia[0] + "=" + value;
 			}
 		}
-		return ua[0] + "?" + pa.join("&"); 
+		return ua[0] + "?" + pa.join("&");
 	},
 
 	/** Load required JavaScript Resourcess */
@@ -114,9 +114,9 @@
 			files = files.split(",");
 		}
 		$.each(files, function(i, file) {
-			
+
 			file = self.addParam(file, "s2j="+$.struts2_jquery.version);
-			
+
 			if (!$.struts2_jquery.scriptCache[file]) {
 				self.log('load require script ' + (path + file));
 				$.ajax( {
@@ -194,7 +194,7 @@
 		if (!self.loadAtOnce) {
 			self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
 		}
-		
+
 		params.type = "POST";
 		params.data = {
 				"struts.enableJSONValidation": true,
@@ -556,7 +556,7 @@
 		$(window).bind('hashchange', params, function(e) {
 			var topic = e.getState(e.data.target) || '';
 			$.each(e.fragment.split('&'), function(i, f) {
-				var fragment = f.split('='); 
+				var fragment = f.split('=');
 				if(self.historyelements[fragment[0]] !== fragment[1] && fragment[1] !== self.lasttopic ) {
 					self.lasttopic = topic;
 					$.publish(fragment[1], e.data.options);
@@ -571,7 +571,7 @@
 			actionTopic = '_sj_action_' + o.id,
 			href = o.href,
 			effect = {};
-			
+
 		o.actionTopic = actionTopic;
 
 		if (href === null || href === "") {
@@ -646,7 +646,7 @@
 			effect = {},
 			bindel = $elem,
 			eventsStr = 'click';
-		
+
 		self.log('container : ' + o.id);
 		self.action($elem, o, self.handler.load, 'div');
 
@@ -738,12 +738,12 @@
 					});
 				}
 			}
-			
+
 			if (ui && o.resizable) {
 				ui.resizable($elem, o);
 			}
 		}
-		
+
 		if (ui && o.draggable) {
 			ui.draggable($elem, o);
 		}
@@ -756,7 +756,7 @@
 		if (ui && o.sortable) {
 			ui.sortable($elem, o);
 		}
-		
+
 		if (o.onblurtopics) {
 			$.each(o.onblurtopics.split(','), function(i, topic) {
 				$elem.blur( function() {
@@ -825,7 +825,7 @@
 				});
 			}
 		}
-		
+
 	},
 
 	/** Handle dynamic Select Boxes */
@@ -868,7 +868,7 @@
 			cform,cf,formid,randomid;
 
 		o.preventAction = true;
-		
+
 		if (o.opendialog) {
 			$.struts2_jquery_ui.opendialog($elem, o);
 		}
@@ -945,8 +945,8 @@
 				}
 			});
 			$.each(o.formids.split(','), function(i, f) {
-				$(self.escId(f)).bind("submit", function(e) { 
-					e.preventDefault(); 
+				$(self.escId(f)).bind("submit", function(e) {
+					e.preventDefault();
 				});
 			});
 			$elem.click( function() {
@@ -957,22 +957,22 @@
 		else {
 			// Submit Forms without AJAX
 			if(o.formids === undefined) {
-				return; 
+				return;
 			}
 			$elem.click( function(e) {
 				var form = $(self.escId(o.formids)),
 					orginal = {};
-				orginal.formvalidate = true; 
-				e.preventDefault(); 
+				orginal.formvalidate = true;
+				e.preventDefault();
 				if (o.validate) {
 					orginal.formvalidate = self.validateForm(form, o);
 					if (o.onaftervalidation) {
-						$.each(o.onaftervalidation.split(','), function(i, topic) { 
+						$.each(o.onaftervalidation.split(','), function(i, topic) {
 							$elem.publish(topic, $elem, orginal);
 						});
-					}  
+					}
 				}
-				
+
 				if(orginal.formvalidate) {
                     if ( o.href && o.href != "#") {
                         form[0].action = o.href;
@@ -987,11 +987,11 @@
 				$elem.subscribe(o.listentopics, function(event) {
 					var form = $(self.escId(event.data.formids)),
 						orginal = {formvalidate : true};
-					
+
 					if (event.data.validate) {
 						orginal.formvalidate = self.validateForm(form, o);
 						if (o.onaftervalidation) {
-							$.each(o.onaftervalidation.split(','), function(i, topic) { 
+							$.each(o.onaftervalidation.split(','), function(i, topic) {
 								$elem.publish(topic, $elem, orginal);
 							});
 						}
@@ -1024,7 +1024,7 @@
 			indi, always,
 			modus = 'html',
 			params = {};
-			
+
 		if (data) {
 			$.extend(o, data);
 		}
@@ -1034,7 +1034,7 @@
 		s2j.lasttopic = o.actionTopic;
 		indi = o.indicatorid;
 		always = o.onalw;
-		
+
 		isDisabled = o.disabled === null ? isDisabled : o.disabled;
 		isDisabled = container.prop('disabled');
 		if (event.originalEvent) { // means that container load is being triggered by other action (link button/link click) need to see if that button/link is disabled
@@ -1229,12 +1229,12 @@
 
 			if (o.validate && orginal.options.submit)  {
 				orginal.options.submit = s2j.validateForm(form, o);
-				orginal.formvalidate = orginal.options.submit; 
+				orginal.formvalidate = orginal.options.submit;
 				if (o.onaftervalidation) {
-					$.each(o.onaftervalidation.split(','), function(i, topic) { 
+					$.each(o.onaftervalidation.split(','), function(i, topic) {
 						elem.publish(topic, elem, orginal);
 					});
-				}  
+				}
 			}
 			if (orginal.options.submit) {
 				s2j.showIndicator(indi);
