@@ -294,14 +294,14 @@
 
 
 						if (!dao) {
-							dao = daos;
+							dao = Function('return (' + daos + ')')();
 						} else {
 							dao = {};
 						}
 						dao.drap = self.pubTops($elem, o.onalw, o.draggableondragtopics);
 
 						if (!doo) {
-							doo = doos;
+							doo = Function('return (' + doos + ')')();
 						} else {
 							doo = {};
 						}
@@ -324,7 +324,7 @@
 						self.log('sortable rows for : ' + o.id);
 
 						if (!soo && soos) {
-							soo = soos;
+							soo = Function('return (' + soos + ')')();
 						} else {
 							soo = {};
 						}
@@ -388,7 +388,7 @@
 							]);
 						}
 						if (!ro) {
-							ro = ros;
+							ro = Function('return (' + ros + ')')();
 						} else {
 							ro = {};
 						}

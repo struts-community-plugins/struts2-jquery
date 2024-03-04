@@ -177,7 +177,7 @@
 					var attrValue = $input.attr('time:' + attrName);
 					if (attrValue) {
 						try {
-							inlineSettings[attrName] = attrValue;
+							inlineSettings[attrName] = Function('return (' + attrValue + ')')();
 						} catch (err) {
 							inlineSettings[attrName] = attrValue;
 						}
