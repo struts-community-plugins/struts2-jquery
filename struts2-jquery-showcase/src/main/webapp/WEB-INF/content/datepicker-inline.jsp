@@ -32,7 +32,7 @@
 <h4>Source Code</h4>
 
 <sj:tabbedpanel id="codesamples">
-	<sj:tab id="tab1" target="jsp" label="JSP Code"/>
+	<sj:tab id="tab1" target="jsp" label="JSP Code" disabled="true"/>
 	<sj:tab id="tab2" target="javascript" label="JavaScript"/>
 	<div id="jsp">
 		<pre>
