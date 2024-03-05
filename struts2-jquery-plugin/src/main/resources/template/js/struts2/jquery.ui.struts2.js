@@ -325,7 +325,7 @@
 
             if (o.disabledtabs && o.disabledtabs !== 'false') {
                 if (!disabledtabs) {
-                    o.disabled = Boolean(disabledtabsStr);
+                    o.disabled = Function('return (' + disabledtabsStr + ')')();
                 }
             }
             if (o.openonmouseover) {
@@ -597,7 +597,7 @@
                 noms = o.numberofmonths;
                 nom = window[noms];
                 if (!nom) {
-                    params.numberOfMonths = Number(noms);
+                    params.numberOfMonths = Function('return (' + noms + ')')();
                 }
             }
 
