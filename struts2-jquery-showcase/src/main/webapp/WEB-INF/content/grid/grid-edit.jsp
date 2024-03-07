@@ -48,17 +48,18 @@
 		viewrecords="true"
 		width="800"
 		shrinkToFit="false"
+		sortable="true"
 		>
 	<sjg:gridColumn name="id" frozen="true" index="id" title="ID" width="60" formatter="integer" editable="false"
 	                sortable="false" search="true" searchoptions="{sopt:['eq','ne','lt','gt']}"/>
 	<sjg:gridColumn name="name" index="name" title="Name" width="250" editable="true" edittype="text" sortable="true"
 	                search="false"/>
 	<sjg:gridColumn name="lastName" index="lastName" title="Last Name" sortable="false" editable="true"
-	                edittype="text"/>
+	                edittype="text" search="false"/>
 	<sjg:gridColumn name="firstName" index="firstName" title="First Name" sortable="false" editable="true"
-	                edittype="text"/>
-	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Adress" sortable="false" editable="true"
-	                edittype="text"/>
+	                edittype="text" search="false"/>
+	<sjg:gridColumn name="addressLine1" index="addressLine1" title="Address" sortable="false" editable="true"
+	                edittype="text" search="false"/>
 	<sjg:gridColumn name="country" index="country" title="Country" editable="true" edittype="select"
 	                editoptions="{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}"
 	                sortable="false" search="false"/>
@@ -100,7 +101,7 @@ $.subscribe('searchgrid', function(event,data) {
     $(&quot;#gridedittable&quot;).jqGrid('searchGrid', {sopt:['cn','bw','eq','ne','lt','gt','ew']} );
 });
 $.subscribe('showcolumns', function(event,data) {
-    $(&quot;#gridedittable&quot;).jqGrid('setColumns',{});
+    $(&quot;#gridedittable&quot;).jqGrid('columnChooser',{});
 });
             </code>
 	  </pre>
@@ -148,12 +149,13 @@ $.subscribe('showcolumns', function(event,data) {
     viewrecords=&quot;true&quot;
     width=&quot;700&quot;
     shrinkToFit=&quot;false&quot;
+    sortable=&quot;true&quot;
 &gt;
     &lt;sjg:gridColumn name=&quot;id&quot; frozen=&quot;true&quot; index=&quot;id&quot; title=&quot;ID&quot; width=&quot;60&quot; formatter=&quot;integer&quot; editable=&quot;false&quot; sortable=&quot;false&quot; search=&quot;true&quot; searchoptions=&quot;{sopt:['eq','ne','lt','gt']}&quot;/&gt;
     &lt;sjg:gridColumn name=&quot;name&quot; frozen=&quot;true&quot; index=&quot;name&quot; title=&quot;Name&quot; width=&quot;250&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;true&quot; search=&quot;false&quot;/&gt;
-    &lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot;/&gt;
-    &lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot;/&gt;
-    &lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Adress&quot; sortable=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;lastName&quot; index=&quot;lastName&quot; title=&quot;Last Name&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;firstName&quot; index=&quot;firstName&quot; title=&quot;First Name&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
+    &lt;sjg:gridColumn name=&quot;addressLine1&quot; index=&quot;addressLine1&quot; title=&quot;Address&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
     &lt;sjg:gridColumn name=&quot;country&quot; index=&quot;country&quot; title=&quot;Country&quot; editable=&quot;true&quot; edittype=&quot;select&quot; editoptions=&quot;{value:'France:France;USA:USA;Australia:Australia;Norway:Norway;Poland:Poland;Germany:Germany;Spain:Spain'}&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
     &lt;sjg:gridColumn name=&quot;city&quot; index=&quot;city&quot; title=&quot;City&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
     &lt;sjg:gridColumn name=&quot;creditLimit&quot; index=&quot;creditLimit&quot; title=&quot;Credit Limit&quot; align=&quot;right&quot; formatter=&quot;currency&quot; editable=&quot;true&quot; edittype=&quot;text&quot; sortable=&quot;false&quot; search=&quot;false&quot;/&gt;
@@ -292,39 +294,36 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
     }
     else
     {
-      // Search Custumers
-      if (searchString != null &amp;&amp; searchOper != null)
-      {
-        int id = Integer.parseInt(searchString);
-        if (searchOper.equalsIgnoreCase(&quot;eq&quot;))
-        {
-          log.debug(&quot;search id equals &quot; + id);
-          List&lt;Customer&gt; cList = new ArrayList&lt;Customer&gt;();
-          Customer customer = CustomerDAO.findById(myCustomers, id);
-
-          if (customer != null) cList.add(customer);
-
-          setGridModel(cList);
-        }
-        else if (searchOper.equalsIgnoreCase(&quot;ne&quot;))
-        {
-          log.debug(&quot;search id not &quot; + id);
-          setGridModel(CustomerDAO.findNotById(myCustomers, id, from, to));
-        }
-        else if (searchOper.equalsIgnoreCase(&quot;lt&quot;))
-        {
-          log.debug(&quot;search id lesser then &quot; + id);
-          setGridModel(CustomerDAO.findLesserAsId(myCustomers, id, from, to));
-        }
-        else if (searchOper.equalsIgnoreCase(&quot;gt&quot;))
-        {
-          log.debug(&quot;search id greater then &quot; + id);
-          setGridModel(CustomerDAO.findGreaterAsId(myCustomers, id, from, to));
-        }
+      // Search Customers by ID only
+      int id = -1;
+      try {
+          id = Integer.parseInt(searchString);
+      } catch (NumberFormatException e) {
+          // ignored
       }
-      else
-      {
-        setGridModel(CustomerDAO.getCustomers(myCustomers, from, to));
+
+      if (id != -1 && searchOper != null) {
+          if (searchOper.equalsIgnoreCase("eq")) {
+              log.debug("search id equals " + id);
+              List<Customer> cList = new ArrayList<>();
+              Customer customer = CustomerDAO.findById(myCustomers, id);
+
+              if (customer != null)
+                  cList.add(customer);
+
+              setGridModel(cList);
+          } else if (searchOper.equalsIgnoreCase("ne")) {
+              log.debug("search id not " + id);
+              setGridModel(CustomerDAO.findNotById(myCustomers, id, from, to));
+          } else if (searchOper.equalsIgnoreCase("lt")) {
+              log.debug("search id lesser then " + id);
+              setGridModel(CustomerDAO.findLesserAsId(myCustomers, id, from, to));
+          } else if (searchOper.equalsIgnoreCase("gt")) {
+              log.debug("search id greater then " + id);
+              setGridModel(CustomerDAO.findGreaterAsId(myCustomers, id, from, to));
+          }
+      } else {
+          setGridModel(CustomerDAO.getCustomers(myCustomers, from, to));
       }
     }
 
