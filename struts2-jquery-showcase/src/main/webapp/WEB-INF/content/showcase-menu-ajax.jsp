@@ -80,7 +80,7 @@
 			<sj:menuItem id="remoteformvalidationlink" href="%{urlformvalidation}" targets="content" title="Forms with Validation" />
 
 			<s:url var="urlformvalidationcust" action="form-validation-custome"/>
-			<sj:menuItem id="remoteformvalidationcustlink" href="%{urlformvalidationcust}" targets="content" title="Forms with Custome Validation" />
+			<sj:menuItem id="remoteformvalidationcustlink" href="%{urlformvalidationcust}" targets="content" title="Forms with Custom Validation" />
 
 			<s:url var="urlformtextarea" action="form-textarea"/>
 			<sj:menuItem id="remoteformtextarealink" href="%{urlformtextarea}" targets="content" title="AJAX Textarea" />
