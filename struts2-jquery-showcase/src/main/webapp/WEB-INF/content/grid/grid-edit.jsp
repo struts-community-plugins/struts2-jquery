@@ -296,11 +296,13 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
     {
       // Search Customers by ID only
       int id = -1;
-      try {
-          id = Integer.parseInt(searchString);
-      } catch (NumberFormatException e) {
-          // ignored
-      }
+      if (searchString != null && !"".equals(searchString))
+          try {
+             id = Integer.parseInt(searchString);
+          } catch (NumberFormatException e) {
+              // ignored
+              log.error("Search invalid customer ID " + searchString);
+          }
 
       if (id != -1 && searchOper != null) {
           if (searchOper.equalsIgnoreCase("eq")) {
