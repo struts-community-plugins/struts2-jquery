@@ -583,8 +583,10 @@
 						"js/base/ie" + self.minSuffix + ".js",
 						"js/base/scroll-parent" + self.minSuffix + ".js",
 						"js/base/version" + self.minSuffix + ".js",
-						"js/base/sortable" + self.minSuffix + ".js"
+						"js/base/sortable" + self.minSuffix + ".js",
+						"js/plugins/ui.multiselect" + self.minSuffix + ".js"
 					]);
+					self.requireCss("themes/ui.multiselect.css");
 				}
 			}
 			$.extend(params, o);

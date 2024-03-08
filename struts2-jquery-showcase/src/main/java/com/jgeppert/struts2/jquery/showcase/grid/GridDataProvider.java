@@ -120,9 +120,18 @@ public class GridDataProvider extends ActionSupport implements SessionAware {
             setGridModel(sortListByCountry(myCustomers));
         }
         else {
-            // Search Customers
-            if (searchString != null && searchOper != null) {
-                int id = Integer.parseInt(searchString);
+
+            // Search Customers by ID only
+            int id = -1;
+            if (searchString != null && !"".equals(searchString))
+                try {
+                    id = Integer.parseInt(searchString);
+                } catch (NumberFormatException e) {
+                    // ignored
+                    log.error("Search invalid customer ID " + searchString);
+                }
+
+            if (id != -1 && searchOper != null) {
                 if (searchOper.equalsIgnoreCase("eq")) {
                     log.debug("search id equals " + id);
                     List<Customer> cList = new ArrayList<>();
