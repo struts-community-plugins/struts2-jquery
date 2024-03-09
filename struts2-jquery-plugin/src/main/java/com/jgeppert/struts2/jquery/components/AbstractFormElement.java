@@ -56,9 +56,7 @@ public abstract class AbstractFormElement extends AbstractContainer {
         }
 
         if (ancestor != null && StringUtils.isBlank(formIds)) {
-            if (((Form) ancestor).getId() != null) {
-                addParameter(PARAM_FORM_IDS, ancestor.getParameters().get("id"));
-            }
+            addParameter(PARAM_FORM_IDS, ((Form) ancestor).getId());
         }
     }
 
