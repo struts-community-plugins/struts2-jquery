@@ -20,7 +20,7 @@
 	<properties>
 		<maven.test.skip>true</maven.test.skip>
 		<maven-archetype-plugin.version>3.2.1</maven-archetype-plugin.version>
-		<maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
+		<maven-gpg-plugin.version>3.2.0</maven-gpg-plugin.version>
 	</properties>
 
 	<modules>
