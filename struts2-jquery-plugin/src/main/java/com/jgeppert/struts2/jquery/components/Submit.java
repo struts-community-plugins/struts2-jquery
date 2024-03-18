@@ -220,7 +220,11 @@ public class Submit extends AbstractRemoteBean implements ButtonBean {
         }
 
         if (form != null && StringUtils.isBlank(formIds)) {
-            addParameter(PARAM_FORM_IDS, form.getParameters().get("id"));
+            if (form.getId() != null) {
+                addParameter(PARAM_FORM_IDS, form.getParameters().get("id"));
+            } else {
+                addParameter(PARAM_FORM_IDS, null);
+            }
         }
     }
 
