@@ -20,7 +20,7 @@
 		<javassist.version>3.30.2-GA</javassist.version>
 		<velocity.version>1.7</velocity.version>
 		<velocity-tools.version>2.0</velocity-tools.version>
-		<freemarker.version>2.3.32</freemarker.version>
+		<freemarker.version>2.3.33</freemarker.version>
 		<commons-compress.version>1.26.2</commons-compress.version>
 	</properties>
 
