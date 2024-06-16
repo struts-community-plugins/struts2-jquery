@@ -170,7 +170,7 @@ public abstract class AbstractRemoteBean extends AbstractTopicsBean {
         this.dataType = dataType;
     }
 
-    @StrutsTagAttribute(description = "Type of the AJAX Request. POST, GET, PUT", defaultValue = "POST")
+    @StrutsTagAttribute(description = "Type of the AJAX Request. POST, GET, PUT", defaultValue = "GET")
     public void setRequestType(String requestType) {
         this.requestType = requestType;
     }
