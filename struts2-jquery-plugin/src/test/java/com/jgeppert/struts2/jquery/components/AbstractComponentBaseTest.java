@@ -9,10 +9,20 @@ import com.opensymphony.xwork2.ognl.OgnlValueStack;
 import com.opensymphony.xwork2.ognl.accessor.CompoundRootAccessor;
 import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.struts2.conversion.StrutsTypeConverterHolder;
+import org.apache.struts2.ognl.StrutsOgnlGuard;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class AbstractComponentBaseTest {
+
+    private static final TestXworkConverter converter;
+
     protected ValueStack valueStack;
+
+    static {
+        converter = new TestXworkConverter();
+        converter.setTypeConverterHolder(new StrutsTypeConverterHolder());
+    }
+
 
     @BeforeEach
     void setUpValueStack() {
@@ -23,12 +33,9 @@ public abstract class AbstractComponentBaseTest {
         private static final long serialVersionUID = 1L;
 
         protected TestOgnlValueStack() {
-            super(new TestXworkConverter(), new CompoundRootAccessor(), new DefaultTextProvider(), false);
-            TestXworkConverter converter = new TestXworkConverter();
-            converter.setTypeConverterHolder(new StrutsTypeConverterHolder());
+            super(converter, new CompoundRootAccessor(), new DefaultTextProvider(), false);
 
-            setXWorkConverter(converter);
-            setOgnlUtil(new OgnlUtil(new DefaultOgnlExpressionCacheFactory<>(), new DefaultOgnlBeanInfoCacheFactory<>()));
+            setOgnlUtil(new OgnlUtil(new DefaultOgnlExpressionCacheFactory<>(), new DefaultOgnlBeanInfoCacheFactory<>(), new StrutsOgnlGuard()));
         }
 
     }
