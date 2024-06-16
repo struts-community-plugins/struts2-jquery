@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.jgeppert.struts2.jquery</groupId>
 		<artifactId>struts2-jquery</artifactId>
-		<version>5.0.4-SNAPSHOT</version>
+		<version>5.0.4</version>
 	</parent>
 	<artifactId>struts2-jquery-chart-plugin</artifactId>
 	<name>Struts 2 jQuery Chart Plugin</name>
@@ -14,7 +12,8 @@
 
 	<scm>
 		<url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-chart-plugin/</url>
-	</scm>
+	  <tag>5.0.4</tag>
+  </scm>
 
 	<build>
 		<plugins>

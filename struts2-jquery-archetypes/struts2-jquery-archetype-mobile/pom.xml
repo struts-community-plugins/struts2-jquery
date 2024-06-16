@@ -2,7 +2,7 @@
     <parent>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-archetypes</artifactId>
-        <version>5.0.4-SNAPSHOT</version>
+        <version>5.0.4</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -14,7 +14,8 @@
 
     <scm>
         <url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-archetypes/struts2-jquery-archetype-mobile/</url>
-    </scm>
+      <tag>5.0.4</tag>
+  </scm>
 
     <properties>
         <maven.test.skip>true</maven.test.skip>
