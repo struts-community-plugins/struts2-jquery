@@ -2,7 +2,7 @@
     <parent>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-archetypes</artifactId>
-        <version>5.0.4</version>
+        <version>5.0.5-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -13,8 +13,10 @@
     </description>
 
     <scm>
-        <url>https://github.com/struts-community-plugins/struts2-jquery/struts2-jquery-archetypes/struts2-jquery-archetype-mobile/</url>
-      <tag>5.0.4</tag>
+        <url>https://github.com/struts-community-plugins/struts2-jquery/</url>
+      <tag>HEAD</tag>
+    <connection>scm:git:git@github.com:struts-community-plugins/struts2-jquery.git</connection>
+    <developerConnection>scm:git:git@github.com:struts-community-plugins/struts2-jquery.git</developerConnection>
   </scm>
 
     <properties>

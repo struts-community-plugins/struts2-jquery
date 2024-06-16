@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jgeppert.struts2.jquery</groupId>
 	<artifactId>struts2-jquery</artifactId>
-	<version>5.0.4</version>
+	<version>5.0.5-SNAPSHOT</version>
 	<name>Struts 2 jQuery Plugin Parent Module</name>
 	<packaging>pom</packaging>
 	<url>https://github.com/struts-community-plugins/struts2-jquery</url>
@@ -55,7 +55,7 @@
 		<connection>scm:git:git@github.com:struts-community-plugins/struts2-jquery.git</connection>
 		<developerConnection>scm:git:git@github.com:struts-community-plugins/struts2-jquery.git</developerConnection>
 		<url>https://github.com/struts-community-plugins/struts2-jquery/</url>
-		<tag>5.0.4</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
