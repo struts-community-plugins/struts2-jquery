@@ -91,7 +91,7 @@
 		<jetty.plugin.version>9.4.54.v20240208</jetty.plugin.version>
 		<maven-surefire-plugin.version>3.3.0</maven-surefire-plugin.version>
 		<!-- dependency versions -->
-		<struts2.version>6.3.0.2</struts2.version>
+		<struts2.version>6.4.0</struts2.version>
 		<tlib.version>2.3</tlib.version>
 		<minify.version>1.7.6</minify.version>
 		<beanutils.version>1.9.4</beanutils.version>
