@@ -91,6 +91,7 @@
 		<maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
 		<jetty.plugin.version>9.4.54.v20240208</jetty.plugin.version>
 		<maven-surefire-plugin.version>3.3.0</maven-surefire-plugin.version>
+		<maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
 		<!-- dependency versions -->
 		<struts2.version>6.4.0</struts2.version>
 		<tlib.version>2.3</tlib.version>
@@ -215,6 +216,16 @@
 						</dependency>
 					</dependencies>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven-release-plugin.version}</version>
+					<configuration>
+						<useReleaseProfile>false</useReleaseProfile>
+						<goals>deploy</goals>
+						<arguments>-Prelease ${arguments}</arguments>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -232,6 +243,9 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-gpg-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
 					</plugin>
 				</plugins>
 				<pluginManagement>
