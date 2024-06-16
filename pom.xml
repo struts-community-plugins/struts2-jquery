@@ -54,9 +54,10 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:https://github.com/struts-community-plugins/struts2-jquery.git</connection>
-		<developerConnection>scm:git:[fetch=]https://github.com/struts-community-plugins/struts2-jquery.git[push=]https://github.com/struts-community-plugins/struts2-jquery.git</developerConnection>
+		<connection>scm:git:git@github.com:struts-community-plugins/struts2-jquery.git</connection>
+		<developerConnection>scm:git:git@github.com:struts-community-plugins/struts2-jquery.git</developerConnection>
 		<url>https://github.com/struts-community-plugins/struts2-jquery/</url>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
