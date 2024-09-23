@@ -25,7 +25,7 @@
 		<selenium.version>4.21.0</selenium.version>
 		<htmlunit-driver.version>4.13.0</htmlunit-driver.version>
 		<lombok.version>1.18.34</lombok.version>
-		<guava.version>33.2.1-jre</guava.version>
+		<guava.version>33.3.1-jre</guava.version>
 		<phantomjsdriver.version>1.5.0</phantomjsdriver.version>
 		<commons-codec.version>1.17.1</commons-codec.version>
 		<commons-io.version>2.16.1</commons-io.version>
