@@ -79,7 +79,7 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<!-- plugin versions -->
-		<jetty.plugin.version>9.4.55.v20240627</jetty.plugin.version>
+		<jetty.plugin.version>9.4.56.v20240826</jetty.plugin.version>
 		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
 		<maven-deploy-plugin.version>3.1.2</maven-deploy-plugin.version>
 		<maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
