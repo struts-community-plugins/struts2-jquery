@@ -32,10 +32,10 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - name: Set up JDK 8
+    - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
-        java-version: 8
+        java-version: 17
         distribution: adopt
         cache: maven
         server-id: struts2-jquery.snapshots
