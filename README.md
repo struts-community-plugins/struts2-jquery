@@ -22,14 +22,15 @@ A Plugin for the popular java web framework struts2 to provide ajax functionalit
   * Place the [HeadTag Head Tag] inside your html head tags
 
 ### versions and compatibility
-| `struts2-jquery` version | `struts2` version               |
-|--------------------------|---------------------------------|
-| `5.0.7`                  | version >= `6.7.0`              |
-| `5.0.6`                  | version >= `6.6.0`              |
-| `5.0.2`                  | version >= `6.1`                |
-| `5.0.0`                  | version >= `6.0`                |
-| `4.0.3`                  | version >= `2.5`                |
-| `3.7.1`                  | `2.3.16` <= version <= `2.3.31` |
+| `struts2-jquery` version | `struts2` version               | `Java` version   |
+|--------------------------|---------------------------------|------------------|
+| `6.0.0`                  | version >= `7.0.0`              | version >= `17`  |
+| `5.0.7`                  | version >= `6.7.0`              | version >= `1.8` |
+| `5.0.6`                  | version >= `6.6.0`              | version >= `1.8` |
+| `5.0.2`                  | version >= `6.1`                | version >= `1.8` |
+| `5.0.0`                  | version >= `6.0`                | version >= `1.8` |
+| `4.0.3`                  | version >= `2.5`                | version >= `1.7` |
+| `3.7.1`                  | `2.3.16` <= version <= `2.3.31` | version >= `1.5` |
 
 As a general rule of thumb, it's advised to upgrade to the latest version within the same major version range. This should avoid bugs and vulnerabilities that already got fixed in more recent versions.
 
