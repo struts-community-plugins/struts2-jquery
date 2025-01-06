@@ -108,6 +108,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy-dep</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jcache</artifactId>
 		</dependency>
@@ -199,7 +204,16 @@
 						<artifactId>javassist</artifactId>
 						<groupId>org.javassist</groupId>
 					</exclusion>
+					<exclusion>
+						<groupId>net.bytebuddy</groupId>
+						<artifactId>byte-buddy</artifactId>
+					</exclusion>
 				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>net.bytebuddy</groupId>
+				<artifactId>byte-buddy-dep</artifactId>
+				<version>1.14.8</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
@@ -280,13 +294,10 @@
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
 						<scan>10</scan>
-						<webAppSourceDirectory>${basedir}/src/main/webapp/</webAppSourceDirectory>
 						<webApp>
 							<contextPath>/struts2-jquery-grid-showcase</contextPath>
-						</webApp>
-						<webXml>
 							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
-						</webXml>
+						</webApp>
 					</configuration>
 				</plugin>
 			</plugins>
