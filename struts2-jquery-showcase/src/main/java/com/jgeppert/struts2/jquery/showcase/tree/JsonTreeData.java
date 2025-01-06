@@ -20,13 +20,13 @@
 package com.jgeppert.struts2.jquery.showcase.tree;
 
 import com.jgeppert.struts2.jquery.tree.result.TreeNode;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.action.ServletContextAware;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 import java.util.ArrayList;
 import java.util.List;
 

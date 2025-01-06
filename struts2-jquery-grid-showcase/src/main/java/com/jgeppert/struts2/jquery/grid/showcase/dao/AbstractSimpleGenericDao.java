@@ -1,13 +1,16 @@
 package com.jgeppert.struts2.jquery.grid.showcase.dao;
 
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -26,13 +29,16 @@ public abstract class AbstractSimpleGenericDao<C, I extends Serializable> {
         entityClass = (Class<C>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    protected Session getCurrentSession() {
+    public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
     public List<C> getAll() {
         try {
-            return getCurrentSession().createCriteria(entityClass).list();
+            CriteriaQuery<C> query = getCurrentSession().getCriteriaBuilder().createQuery(entityClass);
+            Root<C> root = query.from(entityClass);
+            query.select(root);
+            return getCurrentSession().createQuery(query).getResultList();
         } catch (HibernateException e) {
             log.error(e.getMessage(), e);
             throw e;
@@ -40,11 +46,7 @@ public abstract class AbstractSimpleGenericDao<C, I extends Serializable> {
     }
 
     public C get(I id) {
-        try {
-            return (C) getCurrentSession().get(entityClass, id);
-        } catch (HibernateException e) {
-            throw e;
-        }
+        return getCurrentSession().get(entityClass, id);
     }
 
     @Transactional

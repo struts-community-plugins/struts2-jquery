@@ -27,7 +27,7 @@
 <#assign jQueryUIVersionI18n="1.11.1">
 <#assign struts2jQueryVersion="${version}">
 
-<#if attributes.scriptPath! != "">
+<#if attributes.scriptPath?has_content>
     <#assign javaScriptBasePath="${attributes.scriptPath?string}">
 <#else>
     <#assign javaScriptBasePath="${base}/static/">
@@ -35,7 +35,7 @@
 
 <#assign cdnUiPath="https://code.jquery.com/ui/${jQueryUIVersion}">
 
-<#if attributes.customBasepath! != "">
+<#if attributes.customBasepath?has_content>
     <#assign basePath="${attributes.customBasepath?string}">
 <#else>
     <#assign basePath="${javaScriptBasePath}themes">
@@ -71,7 +71,7 @@
     </#if>
     <#if attributes.jqueryui!true>
     <@s.script type="text/javascript" src="${jqueryUiCdn}"></@s.script>
-        <#if attributes.jqueryLocale! != "" && attributes.jqueryLocale! != "en">
+        <#if attributes.jqueryLocale?has_content && attributes.jqueryLocale != "en">
         <@s.script type="text/javascript"
                 src="//ajax.googleapis.com/ajax/libs/jqueryui/${jQueryUIVersionI18n}/i18n/datepicker-${attributes.jqueryLocale?string}.min.js"/>
         </#if>
@@ -83,7 +83,7 @@
     <#if attributes.jqueryui!true>
         <#if attributes.loadAtOnce!false>
         <@s.script type="text/javascript" src="${javaScriptBasePath}js/base/${jqueryUIFile}"/>
-            <#if attributes.jqueryLocale! != "" && attributes.jqueryLocale! != "en">
+            <#if attributes.jqueryLocale?has_content && attributes.jqueryLocale != "en">
             <@s.script type="text/javascript"
                     src="${javaScriptBasePath}i18n/datepicker-${attributes.jqueryLocale?string}.min.js?s2j=${struts2jQueryVersion}"/>
             </#if>
@@ -112,7 +112,7 @@
     <#if attributes.loadAtOnce!false || attributes.loadFromCdn!false>
         jQuery.struts2_jquery.loadAtOnce = true;
     </#if>
-    <#if attributes.scriptPath! != "">
+    <#if attributes.scriptPath?has_content>
         jQuery.scriptPath = "${attributes.scriptPath?string}";
     <#else>
         jQuery.scriptPath = "${javaScriptBasePath}";
@@ -120,7 +120,7 @@
     <#if !attributes.compressed!true>
         jQuery.struts2_jquery.minSuffix = "";
     </#if>
-    <#if attributes.jqueryLocale! != "" && attributes.jqueryLocale! != "en">
+    <#if attributes.jqueryLocale?has_content && attributes.jqueryLocale! != "en">
         jQuery.struts2_jquery.local = "${attributes.jqueryLocale?string}";
     </#if>
     <#if attributes.gridLocale??>
@@ -135,13 +135,13 @@
     <#if attributes.ajaxhistory!false>
         jQuery.struts2_jquery.ajaxhistory = true;
     </#if>
-    <#if attributes.defaultIndicator! != "">
+    <#if attributes.defaultIndicator?has_content>
         jQuery.struts2_jquery.defaults.indicator = "${attributes.defaultIndicator?string}";
     </#if>
-    <#if attributes.defaultLoadingText! != "">
+    <#if attributes.defaultLoadingText?has_content>
         jQuery.struts2_jquery.defaults.loadingText = "${attributes.defaultLoadingText?string}";
     </#if>
-    <#if attributes.defaultErrorText! != "">
+    <#if attributes.defaultErrorText?has_content>
         jQuery.struts2_jquery.defaults.errorText = "${attributes.defaultErrorText?string}";
     </#if>
         jQuery.ajaxSettings.traditional = true;
@@ -165,7 +165,7 @@
 </@s.script>
 
 <#if attributes.jqueryui!true>
-    <#if attributes.jquerytheme! != "">
+    <#if attributes.jquerytheme?has_content>
         <#if attributes.loadFromCdn!false && basePath == "${base}/static/themes">
             <link
                     id="jquery_theme_link"

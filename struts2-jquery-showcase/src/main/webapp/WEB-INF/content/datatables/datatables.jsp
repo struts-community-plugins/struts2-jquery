@@ -99,7 +99,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 public class Datatables extends ActionSupport implements SessionAware {
 

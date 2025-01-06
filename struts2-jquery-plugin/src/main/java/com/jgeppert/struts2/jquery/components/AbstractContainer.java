@@ -20,12 +20,12 @@
 package com.jgeppert.struts2.jquery.components;
 
 import com.jgeppert.struts2.jquery.components.util.ObjectParameterBuilder;
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
@@ -363,9 +363,9 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
         }
     }
 
-    private void addFindStringToBuilderIfNotNull(final ObjectParameterBuilder builder, 
+    private void addFindStringToBuilderIfNotNull(final ObjectParameterBuilder builder,
             final String valueToFind,
-            final String key, 
+            final String key,
             final boolean quotedValue) {
         if(valueToFind != null) {
             builder.addParameter(key, valueToFind, quotedValue);
@@ -471,7 +471,7 @@ public abstract class AbstractContainer extends AbstractRemoteBean implements Re
     public void setDroppableAddClasses(String droppableAddClasses) {
         this.droppableAddClasses = droppableAddClasses;
     }
-    
+
     @StrutsTagAttribute(description = "Specify additional classes to add to the widget's elements. Any of classes specified in the Theming section can be used as keys to override their value. Possible keys: ui-droppable-active, ui-droppable-hover, ...")
     public void setDroppableClasses(String droppableClasses) {
         this.droppableClasses = droppableClasses;

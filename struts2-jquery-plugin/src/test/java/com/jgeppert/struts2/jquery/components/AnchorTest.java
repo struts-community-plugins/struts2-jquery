@@ -16,9 +16,9 @@ class AnchorTest extends AbstractComponentBaseTest {
 
             anchor.evaluateParams();
 
-            Map<String, Object> parameters = anchor.getParameters();
+            Map<String, Object> attributes = anchor.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "anchor")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -50,9 +50,9 @@ class AnchorTest extends AbstractComponentBaseTest {
 
             anchor.evaluateParams();
 
-            Map<String, Object> parameters = anchor.getParameters();
+            Map<String, Object> attributes = anchor.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "anchor")
                     .containsEntry("openDialog", "theOpenDialog")
                     .containsEntry("openDialogTitle", "the open dialog title")

@@ -16,9 +16,9 @@ class MenuTest extends AbstractComponentBaseTest {
 
             menu.evaluateParams();
 
-            Map<String, Object> parameters = menu.getParameters();
+            Map<String, Object> attributes = menu.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "menu")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -37,12 +37,12 @@ class MenuTest extends AbstractComponentBaseTest {
             menu.setTargets("myTarget");
             menu.setHref("https://www.google.com");
             menu.setParamName("theParam");
-            
+
             menu.evaluateParams();
 
-            Map<String, Object> parameters = menu.getParameters();
+            Map<String, Object> attributes = menu.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "menu")
                     .containsEntry("id", "myId")
                     .containsEntry("disabled", true)

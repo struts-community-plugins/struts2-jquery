@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.struts2.json.annotations.JSON;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ORDERDETAILS", schema = "CLASSICMODELS", uniqueConstraints = @UniqueConstraint(columnNames = {

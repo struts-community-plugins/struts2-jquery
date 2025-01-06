@@ -1,35 +1,18 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 package com.jgeppert.struts2.jquery.grid.showcase.action;
 
 import com.jgeppert.struts2.jquery.grid.showcase.dao.OrderDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Order;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Result(type = "json")
@@ -42,138 +25,107 @@ public class JsonOrdersAction extends ActionSupport {
     private OrderDao ordersDao;
 
     private Integer id;
-
-    // Your result List
     private List<Order> gridModel;
-
-    // get how many rows we want to have into the grid - rowNum attribute in the
-    // grid
     private Integer rows = 0;
-
-    // Get the requested page. By default grid sets this to 1.
     private Integer page = 0;
-
-    // sorting order - asc or desc
     private String sord = "asc";
-
-    // get index row - i.e. user click to sort.
     private String sidx;
-
-    // Search Field
     private String searchField;
-
-    // The Search String
     private String searchString;
-
-    // he Search Operation
-    // ['eq','ne','lt','le','gt','ge','bw','bn','in','ni','ew','en','cn','nc']
     private String searchOper;
-
-    // Your Total Pages
     private Integer total = 0;
-
-    // All Records
     private Integer records = 0;
 
     public String execute() {
         log.debug("Page {} Rows {} Sorting Order {} Index Row : {}", getPage(), getRows(), getSord(), getSidx());
         log.debug("Search: {} {} {}", searchField, searchOper, searchString);
 
-        // Calculate until rows ware selected
         int to = (rows * page);
-
-        // Calculate the first row to read
         int from = to - rows;
 
-        // Criteria to Build SQL
-        DetachedCriteria criteria = DetachedCriteria.forClass(Order.class);
+        CriteriaBuilder builder = ordersDao.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<Order> query = builder.createQuery(Order.class);
+        Root<Order> root = query.from(Order.class);
+        List<Predicate> predicates = new ArrayList<>();
 
         if (id != null) {
-            criteria.createAlias("customer", "c");
-            criteria.add(Restrictions.eq("c.customernumber", id));
+            root.join("customer");
+            predicates.add(builder.equal(root.get("customer").get("customernumber"), id));
         }
 
-
-        // Handle Search
         if (searchField != null) {
-            if (searchField.equals("customernumber")) {
-                Integer searchValue = Integer.parseInt(searchString);
-                switch (searchOper) {
-                    case "eq":
-                        criteria.add(Restrictions.eq("ordernumber", searchValue));
-                        break;
-                    case "ne":
-                        criteria.add(Restrictions.ne("ordernumber", searchValue));
-                        break;
-                    case "lt":
-                        criteria.add(Restrictions.lt("ordernumber", searchValue));
-                        break;
-                    case "gt":
-                        criteria.add(Restrictions.gt("ordernumber", searchValue));
-                        break;
-                }
-            } else if (searchField.equals("status") || searchField.equals("comments")) {
-                switch (searchOper) {
-                    case "eq":
-                        criteria.add(Restrictions.eq(searchField, searchString));
-                        break;
-                    case "ne":
-                        criteria.add(Restrictions.ne(searchField, searchString));
-                        break;
-                    case "bw":
-                        criteria.add(Restrictions.like(searchField, searchString + "%"));
-                        break;
-                    case "cn":
-                        criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
-                        break;
-                }
-            }
-            if (searchField.equals("customer")) {
-                Integer searchValue = Integer.parseInt(searchString);
-                criteria.createAlias("customer", "c");
-
-                switch (searchOper) {
-                    case "eq":
-                        criteria.add(Restrictions.eq("c.customernumber", searchValue));
-                        break;
-                    case "ne":
-                        criteria.add(Restrictions.ne("c.customernumber", searchValue));
-                        break;
-                    case "lt":
-                        criteria.add(Restrictions.lt("c.customernumber", searchValue));
-                        break;
-                    case "gt":
-                        criteria.add(Restrictions.gt("c.customernumber", searchValue));
-                        break;
-                }
+            switch (searchField) {
+                case "customernumber":
+                    Integer searchValue = Integer.parseInt(searchString);
+                    switch (searchOper) {
+                        case "eq":
+                            predicates.add(builder.equal(root.get("ordernumber"), searchValue));
+                            break;
+                        case "ne":
+                            predicates.add(builder.notEqual(root.get("ordernumber"), searchValue));
+                            break;
+                        case "lt":
+                            predicates.add(builder.lessThan(root.get("ordernumber"), searchValue));
+                            break;
+                        case "gt":
+                            predicates.add(builder.greaterThan(root.get("ordernumber"), searchValue));
+                            break;
+                    }
+                    break;
+                case "status":
+                case "comments":
+                    switch (searchOper) {
+                        case "eq":
+                            predicates.add(builder.equal(root.get(searchField), searchString));
+                            break;
+                        case "ne":
+                            predicates.add(builder.notEqual(root.get(searchField), searchString));
+                            break;
+                        case "bw":
+                            predicates.add(builder.like(root.get(searchField), searchString + "%"));
+                            break;
+                        case "cn":
+                            predicates.add(builder.like(root.get(searchField), "%" + searchString + "%"));
+                            break;
+                    }
+                    break;
+                case "customer":
+                    Integer customerSearchValue = Integer.parseInt(searchString);
+                    root.join("customer");
+                    switch (searchOper) {
+                        case "eq":
+                            predicates.add(builder.equal(root.get("customer").get("customernumber"), customerSearchValue));
+                            break;
+                        case "ne":
+                            predicates.add(builder.notEqual(root.get("customer").get("customernumber"), customerSearchValue));
+                            break;
+                        case "lt":
+                            predicates.add(builder.lessThan(root.get("customer").get("customernumber"), customerSearchValue));
+                            break;
+                        case "gt":
+                            predicates.add(builder.greaterThan(root.get("customer").get("customernumber"), customerSearchValue));
+                            break;
+                    }
+                    break;
             }
         }
 
-        // Count Orders
-        records = ordersDao.countByCriteria(criteria);
+        query.where(predicates.toArray(new Predicate[0]));
 
-        // Reset count Projection
-        criteria.setProjection(null);
-        criteria.setResultTransformer(Criteria.ROOT_ENTITY);
-
-        // Handle Order By
         if (sidx != null && !sidx.equals("")) {
             if (!sidx.equals("customer")) {
-                if (sord.equals("asc")) criteria.addOrder(org.hibernate.criterion.Order.asc(sidx));
-                else criteria.addOrder(org.hibernate.criterion.Order.desc(sidx));
+                if (sord.equals("asc")) query.orderBy(builder.asc(root.get(sidx)));
+                else query.orderBy(builder.desc(root.get(sidx)));
             } else {
-                if (sord.equals("asc")) criteria.addOrder(org.hibernate.criterion.Order.asc("customer.customernumber"));
-                else criteria.addOrder(org.hibernate.criterion.Order.desc("customer.customernumber"));
+                if (sord.equals("asc")) query.orderBy(builder.asc(root.get("customer").get("customernumber")));
+                else query.orderBy(builder.desc(root.get("customer").get("customernumber")));
             }
         }
 
-        // Get Customers by Criteria
-        gridModel = ordersDao.findByCriteria(criteria, from, rows);
+        records = ordersDao.countByCriteria(searchField, searchString);
+        gridModel = ordersDao.findByCriteria(searchField, searchString, from, rows);
 
-        // Set to = max rows
         if (to > records) to = records;
-
-        // Calculate total Pages
         total = (int) Math.ceil((double) records / (double) rows);
 
         return SUCCESS;
@@ -183,64 +135,36 @@ public class JsonOrdersAction extends ActionSupport {
         return execute();
     }
 
-    /**
-     * @return how many rows we want to have into the grid
-     */
     public Integer getRows() {
         return rows;
     }
 
-    /**
-     * @param rows how many rows we want to have into the grid
-     */
     public void setRows(Integer rows) {
         this.rows = rows;
     }
 
-    /**
-     * @return current page of the query
-     */
     public Integer getPage() {
         return page;
     }
 
-    /**
-     * @param page current page of the query
-     */
     public void setPage(Integer page) {
         this.page = page;
     }
 
-    /**
-     * @return total pages for the query
-     */
     public Integer getTotal() {
         return total;
     }
 
-    /**
-     * @param total total pages for the query
-     */
     public void setTotal(Integer total) {
         this.total = total;
     }
 
-    /**
-     * @return total number of records for the query. e.g. select count(*) from
-     * table
-     */
     public Integer getRecords() {
         return records;
     }
 
-    /**
-     * @param records total number of records for the query. e.g. select count(*)
-     *                from table
-     */
     public void setRecords(Integer records) {
-
         this.records = records;
-
         if (this.records > 0 && this.rows > 0) {
             this.total = (int) Math.ceil((double) this.records / (double) this.rows);
         } else {
@@ -248,37 +172,22 @@ public class JsonOrdersAction extends ActionSupport {
         }
     }
 
-    /**
-     * @return an collection that contains the actual data
-     */
     public List<Order> getGridModel() {
         return gridModel;
     }
 
-    /**
-     * @return sorting order
-     */
     public String getSord() {
         return sord;
     }
 
-    /**
-     * @param sord sorting order
-     */
     public void setSord(String sord) {
         this.sord = sord;
     }
 
-    /**
-     * @return get index row - i.e. user click to sort.
-     */
     public String getSidx() {
         return sidx;
     }
 
-    /**
-     * @param sidx get index row - i.e. user click to sort.
-     */
     public void setSidx(String sidx) {
         this.sidx = sidx;
     }

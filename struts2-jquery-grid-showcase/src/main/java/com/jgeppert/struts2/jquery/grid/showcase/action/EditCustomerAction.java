@@ -23,13 +23,13 @@ import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomerDao;
 import com.jgeppert.struts2.jquery.grid.showcase.dao.EmployeeDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Employee;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.StringTokenizer;
 
 @Results({@Result(name = "error", location = "messages.jsp")})

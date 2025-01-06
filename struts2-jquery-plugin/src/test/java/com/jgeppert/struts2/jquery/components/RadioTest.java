@@ -16,9 +16,9 @@ class RadioTest extends AbstractComponentBaseTest {
 
             radio.evaluateParams();
 
-            Map<String, Object> parameters = radio.getParameters();
+            Map<String, Object> attributes = radio.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "buttonset")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -36,12 +36,12 @@ class RadioTest extends AbstractComponentBaseTest {
             radio.setButtonset("true");
             radio.setIcon("true");
             radio.setDirection("horizontal");
-            
+
             radio.evaluateParams();
 
-            Map<String, Object> parameters = radio.getParameters();
+            Map<String, Object> attributes = radio.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "buttonset")
                     .containsEntry("id", "myId")
                     .containsEntry("buttonset", true)

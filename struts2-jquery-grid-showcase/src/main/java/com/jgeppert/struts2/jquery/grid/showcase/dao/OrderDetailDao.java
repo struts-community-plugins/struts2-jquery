@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 import java.util.List;
 
 @Named

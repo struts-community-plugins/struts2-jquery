@@ -16,9 +16,9 @@ class SpinnerTest extends AbstractComponentBaseTest {
 
             spinner.evaluateParams();
 
-            Map<String, Object> parameters = spinner.getParameters();
+            Map<String, Object> attributes = spinner.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "spinner")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -33,7 +33,7 @@ class SpinnerTest extends AbstractComponentBaseTest {
         void allSet() {
             Spinner spinner = new Spinner(valueStack, null, null);
             spinner.setId("myId");
-            
+
             spinner.setMax("50");
             spinner.setMin("0");
             spinner.setStep("2");
@@ -42,12 +42,12 @@ class SpinnerTest extends AbstractComponentBaseTest {
             spinner.setNumberFormat("n");
             spinner.setPage("5");
             spinner.setIncremental("false");
-            
+
             spinner.evaluateParams();
 
-            Map<String, Object> parameters = spinner.getParameters();
+            Map<String, Object> attributes = spinner.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "spinner")
                     .containsEntry("id", "myId")
                     .containsEntry("max", 50)

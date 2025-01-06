@@ -1,6 +1,6 @@
 package ${package}.actions;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 import com.test.test.actions.HelloAction;
 
 import org.apache.struts2.StrutsTestCase;

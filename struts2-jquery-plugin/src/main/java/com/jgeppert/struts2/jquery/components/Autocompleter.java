@@ -19,13 +19,13 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -139,7 +139,7 @@ public class Autocompleter extends AbstractFormListElement {
 
         addParameter(PARAM_JQUERY_ACTION, JQUERYACTION);
 
-        if (getParameters().get(PARAM_LIST) != null) {
+        if (getAttributes().get(PARAM_LIST) != null) {
             addParameter("emptyOption", true);
         }
 
@@ -167,7 +167,7 @@ public class Autocompleter extends AbstractFormListElement {
         addParameter(PARAM_ESCAPED_ID, this.escape(this.id) + SUFFIX_WIDGET);
         addParameter(PARAM_WIDGET_ID, this.id);
 
-        String nameValue = (String) getParameters().get(PARAM_NAME);
+        String nameValue = (String) getAttributes().get(PARAM_NAME);
         addParameter(PARAM_NAME, nameValue + SUFFIX_WIDGET);
         addParameter(PARAM_WIDGET_NAME, nameValue);
 

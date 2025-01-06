@@ -19,14 +19,14 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.components.Form;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>

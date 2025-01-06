@@ -30,7 +30,6 @@
 		<commons-codec.version>1.17.1</commons-codec.version>
 		<commons-io.version>2.18.0</commons-io.version>
 		<xml-apis.version>2.0.2</xml-apis.version>
-		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
 
 		<failsafe.test.tag>HTMLUnit</failsafe.test.tag>
@@ -76,7 +75,7 @@
 					<configuration>
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
-						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<scan>10</scan>
 					</configuration>
 					<executions>
 						<execution>
@@ -85,10 +84,6 @@
 							<goals>
 								<goal>start</goal>
 							</goals>
-							<configuration>
-								<scanIntervalSeconds>0</scanIntervalSeconds>
-								<daemon>true</daemon>
-							</configuration>
 						</execution>
 						<execution>
 							<id>stop-jetty</id>
@@ -108,12 +103,12 @@
 						<forkCount>2</forkCount>
 						<reuseForks>true</reuseForks>
 						<groups>${failsafe.test.tag}</groups>
-						<systemProperties>
+						<systemPropertyVariables>
 							<property>
 								<name>webDriverName</name>
 								<value>${failsafe.webdriver.name}</value>
 							</property>
-						</systemProperties>
+						</systemPropertyVariables>
 					</configuration>
 					<executions>
 						<execution>
@@ -162,10 +157,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
@@ -275,12 +266,6 @@
 				<scope>provided</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<version>${javax.servlet-api.version}</version>
-				<scope>provided</scope>
-			</dependency>
 			<dependency>
 				<groupId>jakarta.servlet</groupId>
 				<artifactId>jakarta.servlet-api</artifactId>

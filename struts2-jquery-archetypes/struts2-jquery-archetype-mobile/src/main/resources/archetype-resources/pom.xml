@@ -60,16 +60,16 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.0</version>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -83,14 +83,14 @@
                 <version>3.13.0</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.56.v20240826</version>
+                <version>11.0.8</version>
                 <configuration>
                     <stopKey>CTRL+C</stopKey>
                     <stopPort>8999</stopPort>

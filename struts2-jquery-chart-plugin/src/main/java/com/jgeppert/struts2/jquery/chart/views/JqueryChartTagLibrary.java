@@ -22,12 +22,12 @@ package com.jgeppert.struts2.jquery.chart.views;
 import com.jgeppert.struts2.jquery.chart.views.freemarker.tags.JqueryChartModels;
 import com.jgeppert.struts2.jquery.chart.views.velocity.components.ChartDataDirective;
 import com.jgeppert.struts2.jquery.chart.views.velocity.components.ChartDirective;
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.struts2.views.TagLibraryDirectiveProvider;
 import org.apache.struts2.views.TagLibraryModelProvider;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 

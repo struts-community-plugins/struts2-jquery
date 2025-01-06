@@ -16,9 +16,9 @@ class MenuItemTest extends AbstractComponentBaseTest {
 
             menuItem.evaluateParams();
 
-            Map<String, Object> parameters = menuItem.getParameters();
+            Map<String, Object> attributes = menuItem.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "menuItem")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -39,9 +39,9 @@ class MenuItemTest extends AbstractComponentBaseTest {
 
             menuItem.evaluateParams();
 
-            Map<String, Object> parameters = menuItem.getParameters();
+            Map<String, Object> attributes = menuItem.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "menuItem")
                     .containsEntry("id", "myId")
                     .containsEntry("title", "menu item title")

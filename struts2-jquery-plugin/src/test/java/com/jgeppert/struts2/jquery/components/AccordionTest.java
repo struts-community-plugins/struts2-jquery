@@ -16,9 +16,9 @@ class AccordionTest extends AbstractComponentBaseTest {
 
             accordion.evaluateParams();
 
-            Map<String, Object> parameters = accordion.getParameters();
+            Map<String, Object> attributes = accordion.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "accordion")
                     .doesNotContainKeys("active", "animate", "heightStyle", "collapsible", "header", "openOnMouseover",
                             "href", "paramKeys", "paramValues", "onCreateTopics");
@@ -41,9 +41,9 @@ class AccordionTest extends AbstractComponentBaseTest {
 
             accordion.evaluateParams();
 
-            Map<String, Object> parameters = accordion.getParameters();
+            Map<String, Object> attributes = accordion.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "accordion")
                     .containsEntry("active", "2")
                     .containsEntry("animate", "200")

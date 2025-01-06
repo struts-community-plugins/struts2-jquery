@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import ${package}.daos.CustomerDAO;
 import ${package}.models.Customer;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 @Result(name = "success", type = "json")
 public class CustomersDataProvider extends ActionSupport {
@@ -50,7 +50,7 @@ public class CustomersDataProvider extends ActionSupport {
 
   // All Records
   private Integer             records          = 0;
-  
+
   //Get CustomersDao from Spring Context
   @Autowired
   private CustomerDAO customerDAO;

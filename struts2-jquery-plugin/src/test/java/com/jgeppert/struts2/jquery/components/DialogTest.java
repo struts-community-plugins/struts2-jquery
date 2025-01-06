@@ -16,9 +16,9 @@ class DialogTest extends AbstractComponentBaseTest {
 
             dialog.evaluateParams();
 
-            Map<String, Object> parameters = dialog.getParameters();
+            Map<String, Object> attributes = dialog.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "dialog")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -64,9 +64,9 @@ class DialogTest extends AbstractComponentBaseTest {
 
             dialog.evaluateParams();
 
-            Map<String, Object> parameters = dialog.getParameters();
+            Map<String, Object> attributes = dialog.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "dialog")
                     .containsEntry("id", "myId")
                     .containsEntry("appendTo", "#someElem")

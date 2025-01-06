@@ -16,9 +16,9 @@ class DatePickerTest extends AbstractComponentBaseTest {
 
             datePicker.evaluateParams();
 
-            Map<String, Object> parameters = datePicker.getParameters();
+            Map<String, Object> attributes = datePicker.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "datepicker")
                     .containsEntry("parentTheme", "simple")
                     .hasEntrySatisfying("id", id -> {
@@ -88,9 +88,9 @@ class DatePickerTest extends AbstractComponentBaseTest {
 
             datePicker.evaluateParams();
 
-            Map<String, Object> parameters = datePicker.getParameters();
+            Map<String, Object> attributes = datePicker.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "datepicker")
                     .containsEntry("id", "myId")
                     .containsEntry("parentTheme", "vader")

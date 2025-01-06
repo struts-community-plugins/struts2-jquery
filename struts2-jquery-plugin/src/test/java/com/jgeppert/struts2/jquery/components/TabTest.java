@@ -16,9 +16,9 @@ public class TabTest extends AbstractComponentBaseTest {
 
             tab.evaluateParams();
 
-            Map<String, Object> parameters = tab.getParameters();
+            Map<String, Object> attributes = tab.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
                                 idString -> assertThat(idString).startsWith("tab_"));
@@ -31,15 +31,15 @@ public class TabTest extends AbstractComponentBaseTest {
         void allSet() {
             Tab tab = new Tab(valueStack, null, null);
             tab.setId("myId");
-            
+
             tab.setClosable("false");
             tab.setTarget("targetDiv");
 
             tab.evaluateParams();
 
-            Map<String, Object> parameters = tab.getParameters();
+            Map<String, Object> attributes = tab.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("id", "myId")
                     .containsEntry("target", "targetDiv")
                     .containsEntry("closable", false);

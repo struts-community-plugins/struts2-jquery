@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 
 class AbstractRemoteBeanTest extends AbstractComponentBaseTest {
     @Nested
@@ -18,9 +18,9 @@ class AbstractRemoteBeanTest extends AbstractComponentBaseTest {
 
             abstractRemoteBean.evaluateParams();
 
-            Map<String, Object> parameters = abstractRemoteBean.getParameters();
+            Map<String, Object> attributes = abstractRemoteBean.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .doesNotContainKeys("href", "hrefUrl", "hrefParameter", "targets", "formIds", "indicator",
                             "loadingText", "errorText", "errorElementId", "dataType", "requestType", "effect",
                             "effectDuration", "effectOptions", "effectMode", "timeout", "listenTopics",
@@ -49,9 +49,9 @@ class AbstractRemoteBeanTest extends AbstractComponentBaseTest {
 
             abstractTopicsBean.evaluateParams();
 
-            Map<String, Object> parameters = abstractTopicsBean.getParameters();
+            Map<String, Object> attributes = abstractTopicsBean.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("href", "/the-url?paramKey=paramValue")
                     .containsEntry("hrefUrl", "/the-url")
                     .containsEntry("hrefParameter", "paramKey=paramValue")

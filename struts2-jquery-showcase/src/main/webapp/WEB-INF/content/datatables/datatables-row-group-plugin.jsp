@@ -12,7 +12,7 @@ function renderTotal( rows, group ) {
     var sum = rows
         .data()
         .pluck('creditLimit')
-        .reduce( function (a, b) {     	
+        .reduce( function (a, b) {
             return a + b;
         }, 0);
     return 'Total in '+group+': '+
@@ -25,9 +25,9 @@ table.dataTable tr.group-end td {
     font-weight: normal;
 }
 </style>
-  
+
 <s:url var="remoteurl" action="datatables-json" namespace="/datatables"/>
-<sjdt:datatables id="groupTablePlugin" ajax="{url:'%{remoteurl}',dataSrc:'myCustomers'}" datatablesTheme="jqueryui" style="width:100%;" processing="true" dom="Blfrtip" buttons="true" 
+<sjdt:datatables id="groupTablePlugin" ajax="{url:'%{remoteurl}',dataSrc:'myCustomers'}" datatablesTheme="jqueryui" style="width:100%;" processing="true" dom="Blfrtip" buttons="true"
 columns="[
             {data:'id',title:'ID',orderable:true},
             {data:'name',title:'Name',orderable:true},
@@ -53,7 +53,7 @@ function renderTotal( rows, group ) {
     var sum = rows
         .data()
         .pluck('creditLimit')
-        .reduce( function (a, b) {     	
+        .reduce( function (a, b) {
             return a + b;
         }, 0);
     return 'Total in '+group+': '+
@@ -100,7 +100,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 public class Datatables extends ActionSupport implements SessionAware {
 

@@ -16,9 +16,9 @@ class CheckboxListTest extends AbstractComponentBaseTest {
 
             checkboxList.evaluateParams();
 
-            Map<String, Object> parameters = checkboxList.getParameters();
+            Map<String, Object> attributes = checkboxList.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "buttonset")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -39,9 +39,9 @@ class CheckboxListTest extends AbstractComponentBaseTest {
 
             checkboxList.evaluateParams();
 
-            Map<String, Object> parameters = checkboxList.getParameters();
+            Map<String, Object> attributes = checkboxList.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "buttonset")
                     .containsEntry("id", "myId")
                     .containsEntry("buttonset", true)

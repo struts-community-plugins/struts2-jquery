@@ -16,9 +16,9 @@ class AccordionItemTest extends AbstractComponentBaseTest {
 
             accordionItem.evaluateParams();
 
-            Map<String, Object> parameters = accordionItem.getParameters();
+            Map<String, Object> attributes = accordionItem.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "accordionItem")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class, idString -> assertThat(idString).startsWith("accordionItem_"));
@@ -33,12 +33,12 @@ class AccordionItemTest extends AbstractComponentBaseTest {
             accordionItem.setTitle("the title");
             accordionItem.setOnClickTopics("theOnClickTopic");
             accordionItem.setId("myId");
-            
+
             accordionItem.evaluateParams();
 
-            Map<String, Object> parameters = accordionItem.getParameters();
+            Map<String, Object> attributes = accordionItem.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "accordionItem")
                     .containsEntry("title", "the title")
                     .containsEntry("onClickTopics", "theOnClickTopic")

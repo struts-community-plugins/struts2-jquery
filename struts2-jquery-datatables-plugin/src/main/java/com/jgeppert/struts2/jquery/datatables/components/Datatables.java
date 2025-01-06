@@ -20,13 +20,13 @@
 package com.jgeppert.struts2.jquery.datatables.components;
 
 import com.jgeppert.struts2.jquery.components.AbstractRemoteBean;
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -138,8 +138,8 @@ public class Datatables extends AbstractRemoteBean {
     private static final String PARAM_ON_KEY_FOCUS_TOPICS = "onKeyFocusTopics";
     private static final String PARAM_ON_OTHER_KEY_TOPICS = "onOtherKeyTopics";
     private static final String PARAM_ON_RESPONSIVE_DISPLAY_TOPICS = "onResponsiveDisplayTopics";
-    private static final String PARAM_ON_RESPONSIVE_RESIZE_TOPICS = "onResponsiveResizeTopics";   
-    private static final String PARAM_ON_ROW_GROUP_POINT_CHANGED_TOPICS = "onRowGroupPointChangedTopics";   
+    private static final String PARAM_ON_RESPONSIVE_RESIZE_TOPICS = "onResponsiveResizeTopics";
+    private static final String PARAM_ON_ROW_GROUP_POINT_CHANGED_TOPICS = "onRowGroupPointChangedTopics";
     private static final String PARAM_ON_ROW_REORDER_TOPICS = "onRowReorderTopics";
     private static final String PARAM_ON_ROW_REORDERED_TOPICS = "onRowReorderedTopics";
     private static final String PARAM_ON_DESELECT_TOPICS = "onDeselectTopics";
@@ -626,7 +626,7 @@ public class Datatables extends AbstractRemoteBean {
     public void setRowReorder(String rowReorder) {
         this.rowReorder = rowReorder;
     }
-      
+
     @StrutsTagAttribute(description = "RowGroup plugin configuration. No defaults here, you have to provide a rowGroup config Object. See DataTables docs for detail", defaultValue = "false")
     public void setRowGroup(String rowGroup) {
 		this.rowGroup = rowGroup;

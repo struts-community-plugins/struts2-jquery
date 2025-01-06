@@ -19,12 +19,12 @@
   </scm>
 
 	<properties>
-		<hibernate.version>5.6.15.Final</hibernate.version>
-		<javax.inject.vesion>1</javax.inject.vesion>
+		<hibernate.version>6.5.1.Final</hibernate.version>
+		<jakarta.inject.version>2.0.1</jakarta.inject.version>
 		<derby.version>10.16.1.1</derby.version>
 		<c3p0.version>0.10.1</c3p0.version>
 		<hibernate-validator.version>6.2.5.Final</hibernate-validator.version>
-		<javax.interceptor-api.version>1.2.2</javax.interceptor-api.version>
+		<jakarta.interceptor-api.version>2.0.0</jakarta.interceptor-api.version>
 	</properties>
 
 	<dependencies>
@@ -34,8 +34,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
+			<groupId>jakarta.inject</groupId>
+			<artifactId>jakarta.inject-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -79,13 +79,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
 		</dependency>
 
 		<!-- Derby JDBC Driver -->
@@ -109,7 +109,7 @@
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-ehcache</artifactId>
+			<artifactId>hibernate-jcache</artifactId>
 		</dependency>
 
 		<dependency>
@@ -149,8 +149,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.interceptor</groupId>
-			<artifactId>javax.interceptor-api</artifactId>
+			<groupId>jakarta.interceptor</groupId>
+			<artifactId>jakarta.interceptor-api</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -163,9 +163,9 @@
 			</dependency>
 
 			<dependency>
-				<groupId>javax.inject</groupId>
-				<artifactId>javax.inject</artifactId>
-				<version>${javax.inject.vesion}</version>
+				<groupId>jakarta.inject</groupId>
+				<artifactId>jakarta.inject-api</artifactId>
+				<version>${jakarta.inject.version}</version>
 			</dependency>
 
 			<dependency>
@@ -203,7 +203,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-ehcache</artifactId>
+				<artifactId>hibernate-jcache</artifactId>
 				<version>${hibernate.version}</version>
 			</dependency>
 			<dependency>
@@ -245,9 +245,9 @@
 			</dependency>
 
 			<dependency>
-				<groupId>javax.interceptor</groupId>
-				<artifactId>javax.interceptor-api</artifactId>
-				<version>${javax.interceptor-api.version}</version>
+				<groupId>jakarta.interceptor</groupId>
+				<artifactId>jakarta.interceptor-api</artifactId>
+				<version>${jakarta.interceptor-api.version}</version>
 				<scope>compile</scope>
 			</dependency>
 		</dependencies>
@@ -279,14 +279,14 @@
 					<configuration>
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
-						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<scan>10</scan>
 						<webAppSourceDirectory>${basedir}/src/main/webapp/</webAppSourceDirectory>
 						<webApp>
 							<contextPath>/struts2-jquery-grid-showcase</contextPath>
 						</webApp>
-						<webAppConfig>
+						<webXml>
 							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
-						</webAppConfig>
+						</webXml>
 					</configuration>
 				</plugin>
 			</plugins>

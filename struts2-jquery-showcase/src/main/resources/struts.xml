@@ -34,6 +34,8 @@
               value="json-default"/>
     <constant name="struts.custom.i18n.resources" value="messages"/>
 
+    <!-- temporally disable support for @StrutsParameter -->
+    <constant name="struts.parameters.requireAnnotations" value="false"/>
 
     <!-- Settings for CKEditor Image Upload -->
     <constant name="struts.ckeditor.allowUploads" value="true"/> <!-- default is false -->

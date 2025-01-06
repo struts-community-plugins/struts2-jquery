@@ -16,9 +16,9 @@ class SliderTest extends AbstractComponentBaseTest {
 
             slider.evaluateParams();
 
-            Map<String, Object> parameters = slider.getParameters();
+            Map<String, Object> attributes = slider.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "slider")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -40,7 +40,7 @@ class SliderTest extends AbstractComponentBaseTest {
         void allSet() {
             Slider slider = new Slider(valueStack, null, null);
             slider.setId("myId");
-            
+
             slider.setAnimate("true");
             slider.setMax("200");
             slider.setMin("50");
@@ -52,9 +52,9 @@ class SliderTest extends AbstractComponentBaseTest {
 
             slider.evaluateParams();
 
-            Map<String, Object> parameters = slider.getParameters();
+            Map<String, Object> attributes = slider.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "slider")
                     .containsEntry("id", "myId_widget")
                     .containsEntry("animate", true)

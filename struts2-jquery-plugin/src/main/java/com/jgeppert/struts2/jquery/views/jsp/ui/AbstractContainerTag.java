@@ -21,18 +21,16 @@ package com.jgeppert.struts2.jquery.views.jsp.ui;
 
 import com.jgeppert.struts2.jquery.components.AbstractContainer;
 import com.jgeppert.struts2.jquery.components.Div;
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.struts2.components.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * @author <a href="https://www.jgeppert.com">Johannes Geppert</a>
  */
 public abstract class AbstractContainerTag extends AbstractRemoteTag implements ResizableTag, DraggableTag, DroppableTag, SelectableTag, SortableTag {
-
-    private static final long serialVersionUID = 3370394928132899529L;
 
     protected String reloadTopics;
     protected String bindOn;
@@ -336,7 +334,7 @@ public abstract class AbstractContainerTag extends AbstractRemoteTag implements 
     public void setDroppableAddClasses(String droppableAddClasses) {
         this.droppableAddClasses = droppableAddClasses;
     }
-    
+
     public void setDroppableClasses(String droppableClasses) {
         this.droppableClasses = droppableClasses;
     }

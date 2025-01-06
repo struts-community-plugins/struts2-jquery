@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 
 class AbstractContainerTest extends AbstractComponentBaseTest {
     @Nested
@@ -18,9 +18,9 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
 
             abstractContainer.evaluateParams();
 
-            Map<String, Object> parameters = abstractContainer.getParameters();
+            Map<String, Object> attributes = abstractContainer.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .doesNotContainKeys("reloadTopics", "bindOn", "events", "deferredLoading", "resizable",
                             "resizableOptions", "resizableOnResizeTopics", "resizableOnStartTopics",
                             "resizableOnStopTopics", "droppable", "droppableOptions", "droppableOnActivateTopics",
@@ -154,9 +154,9 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
 
             abstractContainer.evaluateParams();
 
-            Map<String, Object> parameters = abstractContainer.getParameters();
+            Map<String, Object> attributes = abstractContainer.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("reloadTopics", "theReloadTopic")
                     .containsEntry("bindOn", "theBindOn")
                     .containsEntry("events", "theEvent")

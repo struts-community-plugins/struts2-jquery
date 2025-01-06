@@ -15,7 +15,7 @@
     /*Destroy previous instances of jQuery Dialogs  */
 	$(".ui-dialog-content").each(function(i,elt){
 		if ($(elt).dialog){
-			  $(this).dialog('destroy').remove();		  
+			  $(this).dialog('destroy').remove();
 		}
 	});
 </script>
@@ -30,8 +30,8 @@ buttons="['colvis',
 {extend:'selectedSingle',text:'Edit',action:function(){$(this).publish('editTopic');}},
 {text:'Create',action:function(){$(this).publish('createTopic');}},
 {extend:'selectedSingle',text:'Delete',action:function(){$(this).publish('deleteTopic');}}
-]" 
-dom="Blfrtip" 
+]"
+dom="Blfrtip"
 ajax="{url:'%{remoteurl}',dataSrc:'myCustomers'}" select="'single'"
 columns="[
             {data:'id',title:'ID'},
@@ -76,7 +76,7 @@ responsive="true" style="width:100%;" >
 var $editForm = null;
 $(function(){
 	$editForm = $("#editForm").get(0);
-    $("#editableTable").subscribe("editTopic",function(event,ui){ 
+    $("#editableTable").subscribe("editTopic",function(event,ui){
     	clearErrorMessages($editForm);
     	clearErrorLabels($editForm);
         var row = $("#editableTable tr.selected");
@@ -87,22 +87,22 @@ $(function(){
             });
         }
     });
-    $("#editableTable").subscribe("createTopic",function(event,ui){ 
+    $("#editableTable").subscribe("createTopic",function(event,ui){
     	clearErrorLabels($editForm);
     	clearErrorMessages($editForm);
     	$editForm.reset();
     });
-    $("#editableTable").subscribe("deleteTopic",function(event,ui){  
+    $("#editableTable").subscribe("deleteTopic",function(event,ui){
     	var row = $("#editableTable tr.selected");
     	if (row.length > 0){
             var rowData = $("#editableTable").DataTable().row(row).data();
-            $("input[name='id']").val(rowData.id);          
+            $("input[name='id']").val(rowData.id);
         }
     });
-    $("#editableTable").subscribe("rowDeletedErrorTopic",function(event,ui){  
+    $("#editableTable").subscribe("rowDeletedErrorTopic",function(event,ui){
         alert(event.originalEvent.request.responseJSON.actionErrors[0]);
      });
-    $("#editableTable").subscribe("rowSavedErrorTopic",function(event,ui){  
+    $("#editableTable").subscribe("rowSavedErrorTopic",function(event,ui){
         alert(event.originalEvent.request.responseJSON.actionErrors[0]);
      });
 });
@@ -137,8 +137,8 @@ buttons=&quot;['colvis',
 {extend:'selectedSingle',text:'Edit',action:function(){$(this).publish('editTopic');}},
 {text:'Create',action:function(){$(this).publish('createTopic');}},
 {extend:'selectedSingle',text:'Delete',action:function(){$(this).publish('deleteTopic');}}
-]&quot; 
-dom=&quot;Blfrtip&quot; 
+]&quot;
+dom=&quot;Blfrtip&quot;
 ajax=&quot;{url:'%{remoteurl}',dataSrc:'myCustomers'}&quot; select=&quot;'single'&quot;
 columns=&quot;[
             {data:'id',title:'ID'},
@@ -183,7 +183,7 @@ responsive=&quot;true&quot; style=&quot;width:100%;&quot; &gt;
 var $editForm = null;
 $(function(){
     $editForm = $(&quot;#editForm&quot;).get(0);
-    $(&quot;#editableTable&quot;).subscribe(&quot;editTopic&quot;,function(event,ui){ 
+    $(&quot;#editableTable&quot;).subscribe(&quot;editTopic&quot;,function(event,ui){
         clearErrorMessages($editForm);
         clearErrorLabels($editForm);
         var row = $(&quot;#editableTable tr.selected&quot;);
@@ -194,22 +194,22 @@ $(function(){
             });
         }
     });
-    $(&quot;#editableTable&quot;).subscribe(&quot;createTopic&quot;,function(event,ui){ 
+    $(&quot;#editableTable&quot;).subscribe(&quot;createTopic&quot;,function(event,ui){
         clearErrorLabels($editForm);
         clearErrorMessages($editForm);
         $editForm.reset();
     });
-    $(&quot;#editableTable&quot;).subscribe(&quot;deleteTopic&quot;,function(event,ui){  
+    $(&quot;#editableTable&quot;).subscribe(&quot;deleteTopic&quot;,function(event,ui){
         var row = $(&quot;#editableTable tr.selected&quot;);
         if (row.length &gt; 0){
             var rowData = $(&quot;#editableTable&quot;).DataTable().row(row).data();
-            $(&quot;input[name='id']&quot;).val(rowData.id);          
+            $(&quot;input[name='id']&quot;).val(rowData.id);
         }
     });
-    $(&quot;#editableTable&quot;).subscribe(&quot;rowDeletedErrorTopic&quot;,function(event,ui){  
+    $(&quot;#editableTable&quot;).subscribe(&quot;rowDeletedErrorTopic&quot;,function(event,ui){
         alert(event.originalEvent.request.responseJSON.actionErrors[0]);
      });
-    $(&quot;#editableTable&quot;).subscribe(&quot;rowSavedErrorTopic&quot;,function(event,ui){  
+    $(&quot;#editableTable&quot;).subscribe(&quot;rowSavedErrorTopic&quot;,function(event,ui){
         alert(event.originalEvent.request.responseJSON.actionErrors[0]);
      });
 });
@@ -235,9 +235,9 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+import org.apache.struts2.ActionSupport;
+import org.apache.struts2.validator.annotations.RequiredStringValidator;
+import org.apache.struts2.validator.annotations.ValidatorType;
 
 public class DatatablesSave extends ActionSupport implements SessionAware {
 
@@ -363,7 +363,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 public class DatatablesDelete extends ActionSupport implements SessionAware {
 
@@ -406,7 +406,7 @@ public class DatatablesDelete extends ActionSupport implements SessionAware {
     }
 
 }
-            
+
             </code>
       </pre>
 </div>

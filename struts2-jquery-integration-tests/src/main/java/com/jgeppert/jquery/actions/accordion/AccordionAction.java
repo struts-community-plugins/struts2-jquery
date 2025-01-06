@@ -1,6 +1,6 @@
 package com.jgeppert.jquery.actions.accordion;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,12 +10,13 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+
 public class AccordionAction extends ActionSupport {
     @Getter
     private Map<String, String> accordionItems;
     @Getter
     private List<Object> accordionItemObjects;
-    
+
     @Override
     public String execute() {
         accordionItems = new HashMap<>();
@@ -30,10 +31,10 @@ public class AccordionAction extends ActionSupport {
     }
 
     @AllArgsConstructor
-    @Data    
+    @Data
     private static class AccordionItem {
         private String title;
-        private String content;	
+        private String content;
     }
 }
 

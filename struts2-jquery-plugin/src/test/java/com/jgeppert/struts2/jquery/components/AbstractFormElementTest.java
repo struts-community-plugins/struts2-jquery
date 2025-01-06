@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 
 class AbstractFormElementTest extends AbstractComponentBaseTest {
     @Nested
@@ -18,9 +18,9 @@ class AbstractFormElementTest extends AbstractComponentBaseTest {
 
             abstractRemoteBean.evaluateParams();
 
-            Map<String, Object> parameters = abstractRemoteBean.getParameters();
+            Map<String, Object> attributes = abstractRemoteBean.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("parentTheme", "simple")
                     .doesNotContainKeys("formIds");
         }
@@ -32,9 +32,9 @@ class AbstractFormElementTest extends AbstractComponentBaseTest {
 
             abstractFormElement.evaluateParams();
 
-            Map<String, Object> parameters = abstractFormElement.getParameters();
+            Map<String, Object> attributes = abstractFormElement.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("parentTheme", "vader");
         }
     }

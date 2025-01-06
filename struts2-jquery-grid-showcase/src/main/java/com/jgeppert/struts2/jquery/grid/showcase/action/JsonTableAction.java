@@ -1,36 +1,18 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 package com.jgeppert.struts2.jquery.grid.showcase.action;
 
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomerDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Customer;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Result(type = "json")
@@ -78,67 +60,110 @@ public class JsonTableAction extends ActionSupport {
         log.debug("Page {} Rows {} Sorting Order {} Index Row : {}", getPage(), getRows(), getSord(), getSidx());
         log.debug("Search: {} {} {}", searchField, searchOper, searchString);
 
-        // Calcalate until rows ware selected
+        // Calculate until rows ware selected
         int to = (rows * page);
 
         // Calculate the first row to read
         int from = to - rows;
 
-        // Criteria to Build SQL
-        DetachedCriteria criteria = DetachedCriteria.forClass(Customer.class);
+        CriteriaBuilder builder = customersDao.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
+        Root<Customer> root = query.from(Customer.class);
+        List<Predicate> predicates = new ArrayList<>();
 
         // Handle Search
         if (searchField != null) {
-            if (searchField.equals("customernumber")) {
-                Integer searchValue = Integer.parseInt(searchString);
-                if (searchOper.equals("eq")) criteria.add(Restrictions.eq("customernumber", searchValue));
-                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("customernumber", searchValue));
-                else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("customernumber", searchValue));
-                else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("customernumber", searchValue));
-            } else if (searchField.equals("country") || searchField.equals("city") || searchField.equals("addressLine1") || searchField.equals("contactfirstname") || searchField.equals("contactlastname") || searchField.equals("customername")) {
-                if (searchOper.equals("eq")) criteria.add(Restrictions.eq(searchField, searchString));
-                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne(searchField, searchString));
-                else if (searchOper.equals("bw")) criteria.add(Restrictions.like(searchField, searchString + "%"));
-                else if (searchOper.equals("cn"))
-                    criteria.add(Restrictions.like(searchField, "%" + searchString + "%"));
-            } else if (searchField.equals("creditlimit")) {
-                Double searchValue = Double.parseDouble(searchString);
-                if (searchOper.equals("eq")) criteria.add(Restrictions.eq("creditlimit", searchValue));
-                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("creditlimit", searchValue));
-                else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("creditlimit", searchValue));
-                else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("creditlimit", searchValue));
-            }
-            if (searchField.equals("employeenumber")) {
-                Integer searchValue = Integer.parseInt(searchString);
-                criteria.createAlias("salesemployee", "se");
-
-                if (searchOper.equals("eq")) criteria.add(Restrictions.eq("se.employeenumber", searchValue));
-                else if (searchOper.equals("ne")) criteria.add(Restrictions.ne("se.employeenumber", searchValue));
-                else if (searchOper.equals("lt")) criteria.add(Restrictions.lt("se.employeenumber", searchValue));
-                else if (searchOper.equals("gt")) criteria.add(Restrictions.gt("se.employeenumber", searchValue));
+            switch (searchField) {
+                case "customernumber":
+                    Integer searchValue = Integer.parseInt(searchString);
+                    switch (searchOper) {
+                        case "eq":
+                            predicates.add(builder.equal(root.get("customernumber"), searchValue));
+                            break;
+                        case "ne":
+                            predicates.add(builder.notEqual(root.get("customernumber"), searchValue));
+                            break;
+                        case "lt":
+                            predicates.add(builder.lessThan(root.get("customernumber"), searchValue));
+                            break;
+                        case "gt":
+                            predicates.add(builder.greaterThan(root.get("customernumber"), searchValue));
+                            break;
+                    }
+                    break;
+                case "country":
+                case "city":
+                case "addressLine1":
+                case "contactfirstname":
+                case "contactlastname":
+                case "customername":
+                    switch (searchOper) {
+                        case "eq":
+                            predicates.add(builder.equal(root.get(searchField), searchString));
+                            break;
+                        case "ne":
+                            predicates.add(builder.notEqual(root.get(searchField), searchString));
+                            break;
+                        case "bw":
+                            predicates.add(builder.like(root.get(searchField), searchString + "%"));
+                            break;
+                        case "cn":
+                            predicates.add(builder.like(root.get(searchField), "%" + searchString + "%"));
+                            break;
+                    }
+                    break;
+                case "creditlimit":
+                    Double creditLimitValue = Double.parseDouble(searchString);
+                    switch (searchOper) {
+                        case "eq":
+                            predicates.add(builder.equal(root.get("creditlimit"), creditLimitValue));
+                            break;
+                        case "ne":
+                            predicates.add(builder.notEqual(root.get("creditlimit"), creditLimitValue));
+                            break;
+                        case "lt":
+                            predicates.add(builder.lessThan(root.get("creditlimit"), creditLimitValue));
+                            break;
+                        case "gt":
+                            predicates.add(builder.greaterThan(root.get("creditlimit"), creditLimitValue));
+                            break;
+                    }
+                    break;
+                case "employeenumber":
+                    Integer employeeNumberValue = Integer.parseInt(searchString);
+                    root.join("salesemployee");
+                    switch (searchOper) {
+                        case "eq":
+                            predicates.add(builder.equal(root.get("salesemployee").get("employeenumber"), employeeNumberValue));
+                            break;
+                        case "ne":
+                            predicates.add(builder.notEqual(root.get("salesemployee").get("employeenumber"), employeeNumberValue));
+                            break;
+                        case "lt":
+                            predicates.add(builder.lessThan(root.get("salesemployee").get("employeenumber"), employeeNumberValue));
+                            break;
+                        case "gt":
+                            predicates.add(builder.greaterThan(root.get("salesemployee").get("employeenumber"), employeeNumberValue));
+                            break;
+                    }
+                    break;
             }
         }
 
-        // Count Customers
-        records = customersDao.countByCriteria(criteria);
+        query.where(predicates.toArray(new Predicate[0]));
 
-        // Reset count Projection
-        criteria.setProjection(null);
-        criteria.setResultTransformer(Criteria.ROOT_ENTITY);
-
-        // Handle Order By
         if (sidx != null && !sidx.equals("")) {
             if (!sidx.equals("employeenumber")) {
-                if (sord.equals("asc")) criteria.addOrder(Order.asc(sidx));
-                else criteria.addOrder(Order.desc(sidx));
+                if (sord.equals("asc")) query.orderBy(builder.asc(root.get(sidx)));
+                else query.orderBy(builder.desc(root.get(sidx)));
             } else {
-                if (sord.equals("asc")) criteria.addOrder(Order.asc("salesemployee.employeenumber"));
-                else criteria.addOrder(Order.desc("salesemployee.employeenumber"));
+                if (sord.equals("asc")) query.orderBy(builder.asc(root.get("salesemployee").get("employeenumber")));
+                else query.orderBy(builder.desc(root.get("salesemployee").get("employeenumber")));
             }
         }
 
-        // Get Customers by Criteria
-        gridModel = customersDao.findByCriteria(criteria, from, rows);
+        records = customersDao.countByCriteria(searchField, searchString);
+        gridModel = customersDao.findByCriteria(searchField, searchString, from, rows);
 
         // Set to = max rows
         if (to > records) to = records;
@@ -208,9 +233,7 @@ public class JsonTableAction extends ActionSupport {
      *                table
      */
     public void setRecords(Integer records) {
-
         this.records = records;
-
         if (this.records > 0 && this.rows > 0) {
             this.total = (int) Math.ceil((double) this.records / (double) this.rows);
         } else {

@@ -16,9 +16,9 @@ class TextareaTest extends AbstractComponentBaseTest {
 
             textarea.evaluateParams();
 
-            Map<String, Object> parameters = textarea.getParameters();
+            Map<String, Object> attributes = textarea.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "container")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -40,9 +40,9 @@ class TextareaTest extends AbstractComponentBaseTest {
 
             textarea.evaluateParams();
 
-            Map<String, Object> parameters = textarea.getParameters();
+            Map<String, Object> attributes = textarea.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "container")
                     .containsEntry("id", "myId")
                     .containsEntry("readonly", false)

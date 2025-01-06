@@ -16,9 +16,9 @@ class ProgressbarTest extends AbstractComponentBaseTest {
 
             progressbar.evaluateParams();
 
-            Map<String, Object> parameters = progressbar.getParameters();
+            Map<String, Object> attributes = progressbar.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "progressbar")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -34,12 +34,12 @@ class ProgressbarTest extends AbstractComponentBaseTest {
             progressbar.setId("myId");
 
             progressbar.setValue("75");
-            
+
             progressbar.evaluateParams();
 
-            Map<String, Object> parameters = progressbar.getParameters();
+            Map<String, Object> attributes = progressbar.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "progressbar")
                     .containsEntry("id", "myId")
                     .containsEntry("value", "75");

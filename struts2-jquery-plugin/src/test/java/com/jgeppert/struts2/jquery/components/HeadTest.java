@@ -17,8 +17,8 @@ class HeadTest extends AbstractComponentBaseTest{
 
             head.evaluateParams();
 
-            Map<String, Object> parameters = head.getParameters();
-            assertThat(parameters)
+            Map<String, Object> attributes = head.getAttributes();
+            assertThat(attributes)
                     .containsEntry("templateDir", "template")
                     .containsEntry("theme", "jquery")
                     .hasEntrySatisfying("dynamicAttributes", danymicAttributes -> {
@@ -32,7 +32,7 @@ class HeadTest extends AbstractComponentBaseTest{
                             "defaultErrorText", "debug", "scriptPath", "gridLocale", "timeLocale", "jqueryLocale",
                             "datatablesLocale");
         }
-        
+
         @Test
         void testAllSet() {
             Head head = new Head(valueStack, null, null);
@@ -54,8 +54,8 @@ class HeadTest extends AbstractComponentBaseTest{
 
             head.evaluateParams();
 
-            Map<String, Object> parameters = head.getParameters();
-            assertThat(parameters)
+            Map<String, Object> attributes = head.getAttributes();
+            assertThat(attributes)
                     .containsEntry("templateDir", "template")
                     .containsEntry("theme", "jquery")
                     .hasEntrySatisfying("dynamicAttributes", danymicAttributes -> {

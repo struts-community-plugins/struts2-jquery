@@ -1,13 +1,17 @@
 package com.jgeppert.struts2.jquery.components;
 
-import com.opensymphony.xwork2.DefaultTextProvider;
-import com.opensymphony.xwork2.conversion.impl.XWorkConverter;
-import com.opensymphony.xwork2.ognl.DefaultOgnlBeanInfoCacheFactory;
-import com.opensymphony.xwork2.ognl.DefaultOgnlExpressionCacheFactory;
-import com.opensymphony.xwork2.ognl.OgnlUtil;
-import com.opensymphony.xwork2.ognl.OgnlValueStack;
-import com.opensymphony.xwork2.ognl.accessor.CompoundRootAccessor;
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.conversion.impl.XWorkConverter;
+import org.apache.struts2.ognl.OgnlCacheFactory;
+import org.apache.struts2.ognl.ProviderAllowlist;
+import org.apache.struts2.ognl.SecurityMemberAccess;
+import org.apache.struts2.ognl.ThreadAllowlist;
+import org.apache.struts2.text.DefaultTextProvider;
+import org.apache.struts2.ognl.DefaultOgnlBeanInfoCacheFactory;
+import org.apache.struts2.ognl.DefaultOgnlExpressionCacheFactory;
+import org.apache.struts2.ognl.OgnlUtil;
+import org.apache.struts2.ognl.OgnlValueStack;
+import org.apache.struts2.ognl.accessor.CompoundRootAccessor;
+import org.apache.struts2.util.ValueStack;
 import org.apache.struts2.conversion.StrutsTypeConverterHolder;
 import org.apache.struts2.ognl.StrutsOgnlGuard;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,14 +40,17 @@ public abstract class AbstractComponentBaseTest {
     }
 
     static class TestOgnlValueStack extends OgnlValueStack {
-        private static final long serialVersionUID = 1L;
-
         protected TestOgnlValueStack() {
-            super(converter, new CompoundRootAccessor(), new DefaultTextProvider(), false);
+            super(converter, new CompoundRootAccessor(), new DefaultTextProvider(), new SecurityMemberAccess(new ProviderAllowlist(), new ThreadAllowlist()));
 
-            setOgnlUtil(new OgnlUtil(new DefaultOgnlExpressionCacheFactory<>(), new DefaultOgnlBeanInfoCacheFactory<>(), new StrutsOgnlGuard()));
+            setOgnlUtil(
+                    new OgnlUtil(
+                            new DefaultOgnlExpressionCacheFactory<>("1000", OgnlCacheFactory.CacheType.BASIC.name()),
+                            new DefaultOgnlBeanInfoCacheFactory<>("1000", OgnlCacheFactory.CacheType.BASIC.name()),
+                            new StrutsOgnlGuard()
+                    )
+            );
         }
-
     }
 
     static class TestXworkConverter extends XWorkConverter {

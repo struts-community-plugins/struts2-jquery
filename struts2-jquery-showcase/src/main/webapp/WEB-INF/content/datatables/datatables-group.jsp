@@ -7,7 +7,7 @@
 JQuery DataTables integration Demo : Client-side processing, row grouping using draw callback
 </p>
 <style type="text/css" class="init">
-    
+
 tr.group,
 tr.group:hover {
     background-color: #ddd !important;
@@ -53,19 +53,19 @@ tr.group > td:first-child:before{
            var rows = api.rows( {page:'current'} ).nodes();
            var last=null;
            var nb = 0;
-           api.column(2, {page:'current'} ).data().each( function ( group, i ) { 	   
+           api.column(2, {page:'current'} ).data().each( function ( group, i ) {
                if ( last !== group ) {
             	   nb++;
                    $(rows).eq( i ).before(
                        '<tr data-group="'+nb+'" class="group"><td colspan="5">'+group+'</td></tr>'
                    );
                    last = group;
-                   
+
                }
                $(rows).eq( i ).addClass("child-of-group-" + nb);
            } );
     }
-    
+
 </script>
 <s:url var="remoteurl" action="datatables-json" namespace="/datatables"/>
 <sjdt:datatables id="groupTable" ajax="{url:'%{remoteurl}',dataSrc:'myCustomers'}" datatablesTheme="jqueryui" style="width:100%;" processing="true" dom="Blfrtip" buttons="true" drawCallback="window.group"
@@ -102,19 +102,19 @@ $('#groupTable tbody').on( 'click', 'tr.group', function () {
            var rows = api.rows( {page:'current'} ).nodes();
            var last=null;
            var nb = 0;
-           api.column(2, {page:'current'} ).data().each( function ( group, i ) {       
+           api.column(2, {page:'current'} ).data().each( function ( group, i ) {
                if ( last !== group ) {
                    nb++;
                    $(rows).eq( i ).before(
                        '&lt;tr data-group=&quot;'+nb+'&quot; class=&quot;group&quot;&gt;&lt;td colspan=&quot;5&quot;&gt;'+group+'&lt;/td&gt;&lt;/tr&gt;'
                    );
                    last = group;
-                   
+
                }
                $(rows).eq( i ).addClass(&quot;child-of-group-&quot; + nb);
            } );
     }
-    
+
 &lt;/script&gt;
 &lt;s:url var=&quot;remoteurl&quot; action=&quot;datatables-json&quot; namespace=&quot;/datatables&quot;/&gt;
 &lt;sjdt:datatables id=&quot;groupTable&quot; ajax=&quot;{url:'%{remoteurl}',dataSrc:'myCustomers'}&quot; datatablesTheme=&quot;jqueryui&quot; style=&quot;width:100%;&quot; processing=&quot;true&quot; dom=&quot;Blfrtip&quot; buttons=&quot;true&quot; drawCallback=&quot;window.group&quot;
@@ -197,7 +197,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 public class Datatables extends ActionSupport implements SessionAware {
 

@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 
 class AbstractTopcisBeanTest extends AbstractComponentBaseTest {
     @Nested
@@ -18,9 +18,9 @@ class AbstractTopcisBeanTest extends AbstractComponentBaseTest {
 
             abstractTopicsBean.evaluateParams();
 
-            Map<String, Object> parameters = abstractTopicsBean.getParameters();
+            Map<String, Object> attributes = abstractTopicsBean.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .doesNotContainKeys("onBeforeTopics", "onAfterValidationTopics", "onCompleteTopics",
                             "onSuccessTopics", "onErrorTopics", "onChangeTopics", "onAlwaysTopics", "onEnableTopics",
                             "onDisableTopics", "onBlurTopics", "onFocusTopics");
@@ -43,9 +43,9 @@ class AbstractTopcisBeanTest extends AbstractComponentBaseTest {
 
             abstractTopicsBean.evaluateParams();
 
-            Map<String, Object> parameters = abstractTopicsBean.getParameters();
+            Map<String, Object> attributes = abstractTopicsBean.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("onBeforeTopics", "theBeforeTopic")
                     .containsEntry("onAfterValidationTopics", "theAfterValidationTopic")
                     .containsEntry("onCompleteTopics", "theCompleteTopic")

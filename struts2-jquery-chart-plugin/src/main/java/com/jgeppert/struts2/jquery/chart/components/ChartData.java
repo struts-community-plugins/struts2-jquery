@@ -20,7 +20,7 @@
 package com.jgeppert.struts2.jquery.chart.components;
 
 import com.jgeppert.struts2.jquery.components.AbstractContainer;
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,8 +29,8 @@ import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;

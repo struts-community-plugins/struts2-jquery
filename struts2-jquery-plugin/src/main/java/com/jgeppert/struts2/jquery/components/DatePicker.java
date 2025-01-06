@@ -19,15 +19,15 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 
 import org.apache.struts2.components.Form;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -371,7 +371,7 @@ public class DatePicker extends AbstractTopicsBean {
         }
 
     }
-    
+
     private String format(Object obj) {
         if (obj == null) {
             return null;
@@ -405,7 +405,7 @@ public class DatePicker extends AbstractTopicsBean {
             formats.add(SimpleDateFormat.getDateInstance(DateFormat.LONG));
             if (this.displayFormat != null) {
                 try {
-                    String df = (String) getParameters().get("displayFormat");
+                    String df = (String) getAttributes().get("displayFormat");
                     SimpleDateFormat displayFormat = new SimpleDateFormat(df);
                     formats.add(displayFormat);
 

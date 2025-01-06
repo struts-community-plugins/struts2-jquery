@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="struts2-jquery-showcase" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
 
     <display-name>Struts jQuery Plugin - Showcase</display-name>
 
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <init-param>
+            <param-name>struts.convention.package.locators.basePackage</param-name>
+            <param-value>com.jgeppert.struts2.jquery.showcase</param-value>
+        </init-param>
     </filter>
 
     <filter-mapping>

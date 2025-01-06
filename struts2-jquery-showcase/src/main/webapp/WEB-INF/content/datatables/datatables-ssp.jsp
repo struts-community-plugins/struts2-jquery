@@ -60,7 +60,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
@@ -70,8 +70,8 @@ import com.jgeppert.struts2.jquery.datatables.model.ServerSideProcessingRequest;
 import com.jgeppert.struts2.jquery.datatables.model.ServerSideProcessingResponse;
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
+import org.apache.struts2.ActionSupport;
+import org.apache.struts2.util.ModelDriven;
 
 /**
  *
@@ -83,7 +83,7 @@ public class DatatablesServerSide extends ActionSupport implements ModelDriven&l
     private ServerSideProcessingResponse response = new ServerSideProcessingResponse();
 
     /**
-     * 
+     *
      */
     public DatatablesServerSide() {
 
@@ -92,13 +92,13 @@ public class DatatablesServerSide extends ActionSupport implements ModelDriven&l
     /**
      * To Use JSON Deserialization of DataTables' request, use the json
      * interceptor
-     * 
+     *
      * @Action(interceptorRefs = @InterceptorRef(value = &quot;json&quot;, params = {
      *                         &quot;accept&quot;, &quot;application/json&quot;, &quot;root&quot;, &quot;request&quot;
      *                         }), results = { @Result(name = SUCCESS, type =
      *                         &quot;json&quot;, params = { &quot;root&quot;, &quot;response&quot; }) })
-     * 
-     * 
+     *
+     *
      */
     @Override
     @Action(results = { @Result(name = SUCCESS, type = &quot;json&quot;, params = { &quot;root&quot;, &quot;response&quot; }) })
@@ -168,7 +168,7 @@ public class DatatablesServerSide extends ActionSupport implements ModelDriven&l
     }
 
 }
-            
+
         </code>
     </pre>
 </div>

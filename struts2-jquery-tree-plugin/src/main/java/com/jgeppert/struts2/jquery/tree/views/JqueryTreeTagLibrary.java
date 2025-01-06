@@ -22,12 +22,12 @@ package com.jgeppert.struts2.jquery.tree.views;
 import com.jgeppert.struts2.jquery.tree.views.freemarker.tags.JqueryTreeModels;
 import com.jgeppert.struts2.jquery.tree.views.velocity.components.TreeDirective;
 import com.jgeppert.struts2.jquery.tree.views.velocity.components.TreeItemDirective;
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.struts2.views.TagLibraryDirectiveProvider;
 import org.apache.struts2.views.TagLibraryModelProvider;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 

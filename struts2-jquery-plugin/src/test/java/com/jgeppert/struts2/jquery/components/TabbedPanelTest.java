@@ -16,9 +16,9 @@ class TabbedPanelTest extends AbstractComponentBaseTest {
 
             tabbedPanel.evaluateParams();
 
-            Map<String, Object> parameters = tabbedPanel.getParameters();
+            Map<String, Object> attributes = tabbedPanel.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "tabbedpanel")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -51,9 +51,9 @@ class TabbedPanelTest extends AbstractComponentBaseTest {
 
             tabbedPanel.evaluateParams();
 
-            Map<String, Object> parameters = tabbedPanel.getParameters();
+            Map<String, Object> attributes = tabbedPanel.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "tabbedpanel")
                     .containsEntry("id", "myId")
                     .containsEntry("selectedTab", 1)

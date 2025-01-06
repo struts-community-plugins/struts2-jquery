@@ -19,16 +19,16 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import com.opensymphony.xwork2.inject.Inject;
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.inject.Inject;
+import org.apache.struts2.util.ValueStack;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.StrutsConstants;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 
 /**
@@ -309,7 +309,7 @@ public class Head extends org.apache.struts2.components.Head {
         this.debug = debug;
     }
 
-    @StrutsTagAttribute(description = "path to the JavaScript ressources", defaultValue = "#your context root#/struts/")
+    @StrutsTagAttribute(description = "path to the JavaScript resources", defaultValue = "#your context root#/struts/")
     public void setScriptPath(String scriptPath) {
         this.scriptPath = scriptPath;
     }

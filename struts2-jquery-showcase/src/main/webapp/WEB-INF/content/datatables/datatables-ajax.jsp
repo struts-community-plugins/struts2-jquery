@@ -32,7 +32,7 @@ columns="[
 &lt;h2&gt;DataTables&lt;/h2&gt;
 
 &lt;p class=&quot;text&quot;&gt;
-JQuery DataTables intégration Demo : Client-side processing, jquery UI theme, AJAX JSON Datasource
+JQuery DataTables intï¿½gration Demo : Client-side processing, jquery UI theme, AJAX JSON Datasource
 &lt;/p&gt;
 &lt;s:url var=&quot;remoteurl&quot; action=&quot;datatables-json&quot; namespace=&quot;/datatables&quot;/&gt;
 &lt;sjdt:datatables  ajax=&quot;{url:'%{remoteurl}',dataSrc:'myCustomers'}&quot; datatablesTheme=&quot;jqueryui&quot;
@@ -65,7 +65,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 public class Datatables extends ActionSupport implements SessionAware {
 
@@ -101,7 +101,7 @@ public class Datatables extends ActionSupport implements SessionAware {
         return this.myCustomers;
     }
 }
-            
+
             </code>
       </pre>
 </div>

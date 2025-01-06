@@ -21,7 +21,7 @@ package com.jgeppert.struts2.jquery.showcase;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -104,7 +104,7 @@ public class Autocompleter extends ActionSupport {
             for (Customer customer : staticCustomers) {
                 if (StringUtils.contains(customer.getName().toLowerCase(),
                         term.toLowerCase())) {
-                    map.put(new Integer(customer.getId()), customer.getName());
+                    map.put(customer.getId(), customer.getName());
                 }
             }
         }

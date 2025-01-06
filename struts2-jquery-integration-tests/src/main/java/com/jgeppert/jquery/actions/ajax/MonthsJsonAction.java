@@ -1,6 +1,6 @@
 package com.jgeppert.jquery.actions.ajax;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 import java.util.Arrays;
 import java.util.ArrayList;

@@ -16,9 +16,9 @@ class SelectTest extends AbstractComponentBaseTest {
 
             select.evaluateParams();
 
-            Map<String, Object> parameters = select.getParameters();
+            Map<String, Object> attributes = select.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "select")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -47,9 +47,9 @@ class SelectTest extends AbstractComponentBaseTest {
 
             select.evaluateParams();
 
-            Map<String, Object> parameters = select.getParameters();
+            Map<String, Object> attributes = select.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "select")
                     .containsEntry("id", "myId")
                     .containsEntry("emptyOption", true)

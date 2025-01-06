@@ -16,9 +16,9 @@ class AutoCompleterTest extends AbstractComponentBaseTest {
 
             autocompleter.evaluateParams();
 
-            Map<String, Object> parameters = autocompleter.getParameters();
+            Map<String, Object> attributes = autocompleter.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "autocompleter")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -53,9 +53,9 @@ class AutoCompleterTest extends AbstractComponentBaseTest {
 
             autocompleter.evaluateParams();
 
-            Map<String, Object> parameters = autocompleter.getParameters();
+            Map<String, Object> attributes = autocompleter.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "autocompleter")
                     .containsEntry("id", "myId_widget")
                     .containsEntry("delay", 500)

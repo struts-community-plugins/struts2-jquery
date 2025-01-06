@@ -16,9 +16,9 @@ class DivTest extends AbstractComponentBaseTest {
 
             div.evaluateParams();
 
-            Map<String, Object> parameters = div.getParameters();
+            Map<String, Object> attributes = div.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "container")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -37,9 +37,9 @@ class DivTest extends AbstractComponentBaseTest {
 
             div.evaluateParams();
 
-            Map<String, Object> parameters = div.getParameters();
+            Map<String, Object> attributes = div.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "container")
                     .containsEntry("id", "myId")
                     .containsEntry("updateFreq", 300)

@@ -63,10 +63,10 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.jgeppert.struts2.jquery.tree.result.TreeNode;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.util.ServletContextAware;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 @Actions({ @Action(value = &quot;/json-tree-data&quot;, results = { @Result(name = &quot;success&quot;, type = &quot;json&quot;, params = {
 &quot;root&quot;, &quot;nodes&quot; }) }) })
@@ -153,7 +153,7 @@ public class JsonTreeData extends ActionSupport implements ServletContextAware {
         id="jsonTreeSearch" searchTopic="treeSearch" searchElementId="searchField"
         href="%{treeSearchDataUrl}"
         plugins="{search:{ajax:{url:'%{treeSearchUrl}'}}}"
-        
+
 />
 <p class="text">
     More about JsTree 3 plugins (unique, sort, massload, drag and drop,...) on <a href="https://www.jstree.com/">JsTree official website</a>
@@ -175,7 +175,7 @@ public class JsonTreeData extends ActionSupport implements ServletContextAware {
         id=&quot;jsonTreeSearch&quot; searchTopic=&quot;treeSearch&quot; searchElementId=&quot;searchField&quot;
         href=&quot;%{treeSearchDataUrl}&quot;
         plugins=&quot;{search:{ajax:{url:'%{treeSearchUrl}'}}}&quot;
-        
+
 /&gt;
             </code>
       </pre>
@@ -194,7 +194,7 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.jgeppert.struts2.jquery.tree.result.TreeNode;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 public class JsonTreeSearch extends ActionSupport {
 

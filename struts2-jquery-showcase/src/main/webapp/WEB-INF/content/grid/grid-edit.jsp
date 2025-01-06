@@ -25,16 +25,16 @@
 		navigatorDeleteOptions="{height:280,reloadAfterSubmit:true}"
 		navigatorInlineEditButtons="true"
 		navigatorExtraButtons="{
-    		seperator: { 
-    			title : 'seperator'  
-    		}, 
-    		hide : { 
-	    		title : 'Show/Hide', 
-	    		icon: 'ui-icon-wrench', 
+    		seperator: {
+    			title : 'seperator'
+    		},
+    		hide : {
+	    		title : 'Show/Hide',
+	    		icon: 'ui-icon-wrench',
 	    		topic: 'showcolumns'
     		},
-    		alert : { 
-	    		title : 'Alert', 
+    		alert : {
+	    		title : 'Alert',
 	    		onclick: function(){ alert('Grid Button clicked!') }
     		}
     	}"
@@ -190,7 +190,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.jgeppert.struts2.jquery.showcase.model.Customer;
 import com.jgeppert.struts2.jquery.showcase.model.CustomerDAO;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 @Result(name = &quot;success&quot;, type = &quot;json&quot;)
 public class GridDataProvider extends ActionSupport implements SessionAware {

@@ -92,13 +92,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -248,14 +248,11 @@
 					<configuration>
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
-						<scanIntervalSeconds>10</scanIntervalSeconds>
-						<webAppSourceDirectory>${basedir}/src/main/webapp/</webAppSourceDirectory>
+						<scan>10</scan>
 						<webApp>
 							<contextPath>/struts2-jquery-showcase</contextPath>
-						</webApp>
-						<webAppConfig>
 							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
-						</webAppConfig>
+						</webApp>
 					</configuration>
 				</plugin>
 			</plugins>

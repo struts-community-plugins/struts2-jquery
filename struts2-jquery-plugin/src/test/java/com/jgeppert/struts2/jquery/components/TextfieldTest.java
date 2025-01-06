@@ -16,9 +16,9 @@ class TextfieldTest extends AbstractComponentBaseTest {
 
             textfield.evaluateParams();
 
-            Map<String, Object> parameters = textfield.getParameters();
+            Map<String, Object> attributes = textfield.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "container")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -32,16 +32,16 @@ class TextfieldTest extends AbstractComponentBaseTest {
         void allSet() {
             Textfield textfield = new Textfield(valueStack, null, null);
             textfield.setId("myId");
-            
+
             textfield.setSize("200");
             textfield.setMaxlength("150");
             textfield.setReadonly("false");
 
             textfield.evaluateParams();
 
-            Map<String, Object> parameters = textfield.getParameters();
+            Map<String, Object> attributes = textfield.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "container")
                     .containsEntry("id", "myId")
                     .containsEntry("size", "200")

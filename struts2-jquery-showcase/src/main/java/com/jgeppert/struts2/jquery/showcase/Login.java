@@ -19,11 +19,11 @@
 
 package com.jgeppert.struts2.jquery.showcase;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.ExpressionValidator;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+import org.apache.struts2.ActionSupport;
+import org.apache.struts2.validator.annotations.ExpressionValidator;
+import org.apache.struts2.validator.annotations.RequiredStringValidator;
+import org.apache.struts2.validator.annotations.Validations;
+import org.apache.struts2.validator.annotations.ValidatorType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.convention.annotation.Action;

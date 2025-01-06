@@ -1,7 +1,7 @@
 package com.jgeppert.jquery.actions.ajax;
 
 import com.jgeppert.jquery.actions.tree.TreeAction;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;

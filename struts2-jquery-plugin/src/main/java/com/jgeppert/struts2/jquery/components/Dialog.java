@@ -19,13 +19,13 @@
 
 package com.jgeppert.struts2.jquery.components;
 
-import com.opensymphony.xwork2.util.ValueStack;
+import org.apache.struts2.util.ValueStack;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.struts2.views.annotations.StrutsTagSkipInheritance;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * <!-- START SNIPPET: javadoc -->
@@ -253,7 +253,7 @@ public class Dialog extends AbstractRemoteBean {
     public void setHideEffect(String hideEffect) {
         this.hideEffect = hideEffect;
     }
-    
+
     @StrutsTagAttribute(description = "Overlay color when modal is true. e.g. #000")
     public void setOverlayColor(String overlayColor) {
         this.overlayColor = overlayColor;

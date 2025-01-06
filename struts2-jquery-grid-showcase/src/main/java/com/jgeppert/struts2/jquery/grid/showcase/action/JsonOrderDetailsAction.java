@@ -21,12 +21,12 @@ package com.jgeppert.struts2.jquery.grid.showcase.action;
 
 import com.jgeppert.struts2.jquery.grid.showcase.dao.OrderDetailDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.OrderDetail;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

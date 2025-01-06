@@ -16,9 +16,9 @@ class SubmitTest extends AbstractComponentBaseTest {
 
             submit.evaluateParams();
 
-            Map<String, Object> parameters = submit.getParameters();
+            Map<String, Object> attributes = submit.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "button")
                     .hasEntrySatisfying("id", id -> {
                         assertThat(id).isInstanceOfSatisfying(String.class,
@@ -57,9 +57,9 @@ class SubmitTest extends AbstractComponentBaseTest {
 
             submit.evaluateParams();
 
-            Map<String, Object> parameters = submit.getParameters();
+            Map<String, Object> attributes = submit.getAttributes();
 
-            assertThat(parameters)
+            assertThat(attributes)
                     .containsEntry("jqueryaction", "button")
                     .containsEntry("id", "myId")
                     .containsEntry("type", "button")
