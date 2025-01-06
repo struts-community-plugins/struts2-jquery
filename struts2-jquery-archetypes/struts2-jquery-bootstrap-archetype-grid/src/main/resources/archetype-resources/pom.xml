@@ -98,22 +98,21 @@
 				<version>3.13.0</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>17</source>
+					<target>17</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.4.56.v20240826</version>
+				<version>11.0.8</version>
 				<configuration>
 					<stopKey>CTRL+C</stopKey>
 					<stopPort>8999</stopPort>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<webAppSourceDirectory>\${basedir}/src/main/webapp/</webAppSourceDirectory>
-					<webAppConfig>
+					<scan>10</scan>
+					<webApp>
 						<descriptor>\${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
-					</webAppConfig>
+					</webApp>
 				</configuration>
 			</plugin>
 		</plugins>

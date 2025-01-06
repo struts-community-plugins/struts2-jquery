@@ -88,11 +88,10 @@
                 <configuration>
                     <stopKey>CTRL+C</stopKey>
                     <stopPort>8999</stopPort>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <webAppSourceDirectory>\${basedir}/src/main/webapp/</webAppSourceDirectory>
-                    <webAppConfig>
+                    <scan>10</scan>
+                    <webApp>
                         <descriptor>\${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
-                    </webAppConfig>
+                    </webApp>
                 </configuration>
             </plugin>
         </plugins>
