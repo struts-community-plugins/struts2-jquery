@@ -21,7 +21,7 @@
 	<properties>
 		<hibernate.version>6.5.1.Final</hibernate.version>
 		<jakarta.inject.version>2.0.1</jakarta.inject.version>
-		<derby.version>10.16.1.1</derby.version>
+		<derby.version>10.17.1.0</derby.version>
 		<c3p0.version>0.10.1</c3p0.version>
 		<hibernate-validator.version>6.2.5.Final</hibernate-validator.version>
 		<jakarta.interceptor-api.version>2.0.0</jakarta.interceptor-api.version>
