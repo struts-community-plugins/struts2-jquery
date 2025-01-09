@@ -78,7 +78,7 @@
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- plugin versions -->
-		<jetty.plugin.version>9.4.56.v20240826</jetty.plugin.version>
+		<jetty.plugin.version>9.4.57.v20241219</jetty.plugin.version>
 		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
 		<maven-deploy-plugin.version>3.1.3</maven-deploy-plugin.version>
 		<maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
