@@ -92,7 +92,7 @@
 		<struts2.version>7.0.0</struts2.version>
 		<tlib.version>2.3</tlib.version>
 		<minify.version>1.7.6</minify.version>
-		<beanutils.version>1.9.4</beanutils.version>
+		<beanutils.version>1.10.0</beanutils.version>
 		<log4j2.version>2.24.3</log4j2.version>
 		<jstl.version>3.0.2</jstl.version>
 		<struts-annotations.version>1.0.8</struts-annotations.version>
