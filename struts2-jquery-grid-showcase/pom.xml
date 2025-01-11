@@ -19,7 +19,7 @@
   </scm>
 
 	<properties>
-		<hibernate.version>6.5.1.Final</hibernate.version>
+		<hibernate.version>6.6.4.Final</hibernate.version>
 		<jakarta.inject.version>2.0.1.MR</jakarta.inject.version>
 		<derby.version>10.17.1.0</derby.version>
 		<c3p0.version>0.10.1</c3p0.version>
