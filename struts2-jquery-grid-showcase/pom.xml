@@ -23,7 +23,7 @@
 		<jakarta.inject.version>2.0.1.MR</jakarta.inject.version>
 		<derby.version>10.17.1.0</derby.version>
 		<c3p0.version>0.10.1</c3p0.version>
-		<hibernate-validator.version>6.2.5.Final</hibernate-validator.version>
+		<hibernate-validator.version>8.0.2.Final</hibernate-validator.version>
 		<jakarta.interceptor-api.version>2.2.0</jakarta.interceptor-api.version>
 	</properties>
 
