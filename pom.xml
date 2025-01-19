@@ -100,7 +100,7 @@
 		<servlet-api.version>6.1.0</servlet-api.version>
 		<commons-lang.version>3.17.0</commons-lang.version>
 		<junit.version>5.11.4</junit.version>
-		<assertj-core.version>3.27.2</assertj-core.version>
+		<assertj-core.version>3.27.3</assertj-core.version>
 		<spring.version>6.1.14</spring.version>
 	</properties>
 
