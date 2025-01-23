@@ -106,9 +106,15 @@ public abstract class AbstractTopicsBean extends ClosingUIBean {
         if (parameterValue != null) {
             String value = findString(parameterValue);
             try {
-                double numValue= Double.parseDouble(value);
-                addParameter(parameterKey, numValue);
-            } catch (final NumberFormatException e) {}
+                if (value.indexOf(".") > 0) {
+                    double numValue = Double.parseDouble(value);
+                    addParameter(parameterKey, numValue);
+                } else {
+                    int intValue = Integer.parseInt(value);
+                    addParameter(parameterKey, intValue);
+                }
+            } catch (final NumberFormatException e) {
+            }
         }
     }
 

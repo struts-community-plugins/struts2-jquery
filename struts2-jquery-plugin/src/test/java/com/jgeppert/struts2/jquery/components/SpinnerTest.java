@@ -36,7 +36,7 @@ class SpinnerTest extends AbstractComponentBaseTest {
 
             spinner.setMax("50");
             spinner.setMin("0");
-            spinner.setStep("2");
+            spinner.setStep("2.15");
             spinner.setMouseWheel("true");
             spinner.setCulture("fr");
             spinner.setNumberFormat("n");
@@ -52,7 +52,7 @@ class SpinnerTest extends AbstractComponentBaseTest {
                     .containsEntry("id", "myId")
                     .containsEntry("max", 50)
                     .containsEntry("min", 0)
-                    .containsEntry("step", 2)
+                    .containsEntry("step", 2.15)
                     .containsEntry("mouseWheel", true)
                     .containsEntry("culture", "fr")
                     .containsEntry("numberFormat", "n")
