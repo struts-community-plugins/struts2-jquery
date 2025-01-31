@@ -33,10 +33,10 @@
 <sj:spinner
 		name="spinner3"
 		id="spinner3"
-		min="0.00"
-		max="5.00"
-		step="0.15"
-		value="2.50"
+		min="0"
+		max="50"
+		step="2"
+		value="26"
         numberFormat="C"
 		mouseWheel="true"/>
 
@@ -75,10 +75,10 @@ Globalize.culture( &quot;it&quot; );
 &lt;sj:spinner
 	name=&quot;spinner3&quot;
 	id=&quot;spinner3&quot;
-	min=&quot;0.00&quot;
-	max=&quot;5.00&quot;
-	step=&quot;0.15&quot;
-	value=&quot;2.50&quot;
+	min=&quot;0&quot;
+	max=&quot;50&quot;
+	step=&quot;2&quot;
+	value=&quot;26&quot;
 	numberFormat=&quot;C&quot;
 	mouseWheel=&quot;true&quot;
 /&gt;
