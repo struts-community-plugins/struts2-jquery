@@ -1,10 +1,17 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -12,8 +19,18 @@ import java.util.Date;
 public class Payment implements java.io.Serializable {
 
     private static final long serialVersionUID = -8839175465382345399L;
+
+    @EmbeddedId
+    @AttributeOverrides({
+            @AttributeOverride(name = "customernumber", column = @Column(name = "CUSTOMERNUMBER")), @AttributeOverride(name = "checknumber", column = @Column(name = "CHECKNUMBER", length = 50))
+    })
     private PaymentId id;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "PAYMENTDATE")
     private Date paymentdate;
+
+    @Column(name = "AMOUNT", precision = 52, scale = 0)
     private Double amount;
 
     public Payment() {
@@ -29,31 +46,24 @@ public class Payment implements java.io.Serializable {
         this.amount = amount;
     }
 
-    @EmbeddedId
-    @AttributeOverrides({
-            @AttributeOverride(name = "customernumber", column = @Column(name = "CUSTOMERNUMBER")), @AttributeOverride(name = "checknumber", column = @Column(name = "CHECKNUMBER", length = 50))
-    })
     public PaymentId getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(PaymentId id) {
         this.id = id;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "PAYMENTDATE")
     public Date getPaymentdate() {
-        return this.paymentdate;
+        return paymentdate;
     }
 
     public void setPaymentdate(Date paymentdate) {
         this.paymentdate = paymentdate;
     }
 
-    @Column(name = "AMOUNT", precision = 52, scale = 0)
     public Double getAmount() {
-        return this.amount;
+        return amount;
     }
 
     public void setAmount(Double amount) {

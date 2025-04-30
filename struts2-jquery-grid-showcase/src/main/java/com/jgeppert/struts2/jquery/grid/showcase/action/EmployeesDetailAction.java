@@ -21,9 +21,8 @@ package com.jgeppert.struts2.jquery.grid.showcase.action;
 
 import com.jgeppert.struts2.jquery.grid.showcase.dao.EmployeeDao;
 import com.jgeppert.struts2.jquery.grid.showcase.model.Employee;
-import org.apache.struts2.ActionSupport;
-
 import jakarta.inject.Inject;
+import org.apache.struts2.ActionSupport;
 
 public class EmployeesDetailAction extends ActionSupport {
 

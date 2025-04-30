@@ -1,11 +1,17 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.persistence.UniqueConstraint;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.struts2.json.annotations.JSON;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ORDERDETAILS", schema = "CLASSICMODELS", uniqueConstraints = @UniqueConstraint(columnNames = {
@@ -14,9 +20,20 @@ import jakarta.persistence.*;
 public class OrderDetail implements java.io.Serializable {
 
     private static final long serialVersionUID = 8579786902541290122L;
+
+    @EmbeddedId
+    @AttributeOverrides({
+            @AttributeOverride(name = "order", column = @Column(name = "ORDERNUMBER")), @AttributeOverride(name = "product", column = @Column(name = "PRODUCTCODE", length = 15))
+    })
     private OrderDetailId id;
+
+    @Column(name = "QUANTITYORDERED")
     private Integer quantityordered;
+
+    @Column(name = "PRICEEACH", precision = 52, scale = 0)
     private Double priceeach;
+
+    @Column(name = "ORDERLINENUMBER")
     private Short orderlinenumber;
 
     public OrderDetail() {
@@ -34,39 +51,32 @@ public class OrderDetail implements java.io.Serializable {
     }
 
     @JSON(serialize = false)
-    @EmbeddedId
-    @AttributeOverrides({
-            @AttributeOverride(name = "order", column = @Column(name = "ORDERNUMBER")), @AttributeOverride(name = "product", column = @Column(name = "PRODUCTCODE", length = 15))
-    })
     public OrderDetailId getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(OrderDetailId id) {
         this.id = id;
     }
 
-    @Column(name = "QUANTITYORDERED")
     public Integer getQuantityordered() {
-        return this.quantityordered;
+        return quantityordered;
     }
 
     public void setQuantityordered(Integer quantityordered) {
         this.quantityordered = quantityordered;
     }
 
-    @Column(name = "PRICEEACH", precision = 52, scale = 0)
     public Double getPriceeach() {
-        return this.priceeach;
+        return priceeach;
     }
 
     public void setPriceeach(Double priceeach) {
         this.priceeach = priceeach;
     }
 
-    @Column(name = "ORDERLINENUMBER")
     public Short getOrderlinenumber() {
-        return this.orderlinenumber;
+        return orderlinenumber;
     }
 
     public void setOrderlinenumber(Short orderlinenumber) {

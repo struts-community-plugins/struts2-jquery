@@ -242,6 +242,10 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven-war-plugin.version}</version>
+                </plugin>
+                <plugin>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
 					<version>${jetty.plugin.version}</version>

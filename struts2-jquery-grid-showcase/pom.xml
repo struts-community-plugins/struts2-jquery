@@ -19,7 +19,8 @@
   </scm>
 
 	<properties>
-		<hibernate.version>6.6.5.Final</hibernate.version>
+        <javassist.version>3.30.2-GA</javassist.version>
+        <hibernate.version>6.6.13.Final</hibernate.version>
 		<jakarta.inject.version>2.0.1.MR</jakarta.inject.version>
 		<derby.version>10.17.1.0</derby.version>
 		<c3p0.version>0.10.1</c3p0.version>
@@ -28,7 +29,12 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+        </dependency>
+
+        <dependency>
 			<groupId>com.jgeppert.struts2.jquery</groupId>
 			<artifactId>struts2-jquery-plugin</artifactId>
 		</dependency>
@@ -93,6 +99,10 @@
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
+        </dependency>
 
 
 		<!-- Connection Pooling -->
@@ -153,7 +163,12 @@
 			<artifactId>spring-orm</artifactId>
 		</dependency>
 
-		<dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+
+        <dependency>
 			<groupId>jakarta.interceptor</groupId>
 			<artifactId>jakarta.interceptor-api</artifactId>
 		</dependency>
@@ -161,16 +176,22 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
+            <dependency>
+                <groupId>jakarta.inject</groupId>
+                <artifactId>jakarta.inject-api</artifactId>
+                <version>${jakarta.inject.version}</version>
+            </dependency>
+
+            <dependency>
 				<groupId>com.jgeppert.struts2.jquery</groupId>
 				<artifactId>struts2-jquery-plugin</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>jakarta.inject</groupId>
-				<artifactId>jakarta.inject-api</artifactId>
-				<version>${jakarta.inject.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>javassist</artifactId>
+                        <groupId>javassist</groupId>
+                    </exclusion>
+                </exclusions>
 			</dependency>
 
 			<dependency>
@@ -179,12 +200,22 @@
 				<version>${project.version}</version>
 			</dependency>
 
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
+            </dependency>
 			<!-- Derby JDBC Driver -->
 			<dependency>
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derby</artifactId>
 				<version>${derby.version}</version>
 			</dependency>
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derbytools</artifactId>
+                <version>${derby.version}</version>
+            </dependency>
 
 
 			<!-- Connection Pooling -->
@@ -257,7 +288,11 @@
 				<artifactId>spring-orm</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>jakarta.interceptor</groupId>
 				<artifactId>jakarta.interceptor-api</artifactId>

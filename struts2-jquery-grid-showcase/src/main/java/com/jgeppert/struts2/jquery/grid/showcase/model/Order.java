@@ -1,10 +1,17 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -12,12 +19,28 @@ import java.util.Date;
 public class Order implements java.io.Serializable {
 
     private static final long serialVersionUID = 206351521908904760L;
+
+    @Id
+    @Column(name = "ORDERNUMBER", unique = true)
     private Integer ordernumber;
+
+    @Column(name = "ORDERDATE")
     private Date orderdate;
+
+    @Column(name = "REQUIREDDATE")
     private Date requireddate;
+
+    @Column(name = "SHIPPEDDATE")
     private Date shippeddate;
+
+    @Column(name = "STATUS", length = 15)
     private String status;
+
+    @Column(name = "COMMENTS", length = 32700)
     private String comments;
+
+    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "CUSTOMERNUMBER", unique = false, nullable = false, insertable = true, updatable = true)
     private Customer customer;
 
     public Order() {
@@ -33,63 +56,54 @@ public class Order implements java.io.Serializable {
         this.customer = customer;
     }
 
-    @Id
-    @Column(name = "ORDERNUMBER", unique = true)
     public Integer getOrdernumber() {
-        return this.ordernumber;
+        return ordernumber;
     }
 
     public void setOrdernumber(Integer ordernumber) {
         this.ordernumber = ordernumber;
     }
 
-    @Column(name = "ORDERDATE")
     public Date getOrderdate() {
-        return this.orderdate;
+        return orderdate;
     }
 
     public void setOrderdate(Date orderdate) {
         this.orderdate = orderdate;
     }
 
-    @Column(name = "REQUIREDDATE")
     public Date getRequireddate() {
-        return this.requireddate;
+        return requireddate;
     }
 
     public void setRequireddate(Date requireddate) {
         this.requireddate = requireddate;
     }
 
-    @Column(name = "SHIPPEDDATE")
     public Date getShippeddate() {
-        return this.shippeddate;
+        return shippeddate;
     }
 
     public void setShippeddate(Date shippeddate) {
         this.shippeddate = shippeddate;
     }
 
-    @Column(name = "STATUS", length = 15)
     public String getStatus() {
-        return this.status;
+        return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
-    @Column(name = "COMMENTS", length = 32700)
     public String getComments() {
-        return this.comments;
+        return comments;
     }
 
     public void setComments(String comments) {
         this.comments = comments;
     }
 
-    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "CUSTOMERNUMBER", unique = false, nullable = false, insertable = true, updatable = true)
     public Customer getCustomer() {
         return customer;
     }
@@ -97,7 +111,6 @@ public class Order implements java.io.Serializable {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
 
     @Override
     public boolean equals(Object o) {

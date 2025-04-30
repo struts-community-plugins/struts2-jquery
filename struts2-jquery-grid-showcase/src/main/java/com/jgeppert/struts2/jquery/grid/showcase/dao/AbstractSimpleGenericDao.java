@@ -1,15 +1,14 @@
 package com.jgeppert.struts2.jquery.grid.showcase.dao;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -20,39 +19,42 @@ public abstract class AbstractSimpleGenericDao<C, I extends Serializable> {
 
     private static final Logger log = LogManager.getLogger(AbstractSimpleGenericDao.class);
 
-    @Inject
-    protected SessionFactory sessionFactory;
-
     Class<C> entityClass;
 
     {
         entityClass = (Class<C>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    public Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
+
+    @PersistenceContext
+    public EntityManager entityManager;
+
+    protected EntityManager getEntityManager() {
+        return entityManager;
     }
 
+    @Transactional
     public List<C> getAll() {
         try {
-            CriteriaQuery<C> query = getCurrentSession().getCriteriaBuilder().createQuery(entityClass);
+            CriteriaQuery<C> query = getEntityManager().getCriteriaBuilder().createQuery(entityClass);
             Root<C> root = query.from(entityClass);
             query.select(root);
-            return getCurrentSession().createQuery(query).getResultList();
-        } catch (HibernateException e) {
+            return getEntityManager().createQuery(query).getResultList();
+        } catch (RuntimeException e) {
             log.error(e.getMessage(), e);
             throw e;
         }
     }
 
+    @Transactional
     public C get(I id) {
-        return getCurrentSession().get(entityClass, id);
+        return getEntityManager().find(entityClass, id);
     }
 
     @Transactional
     public void save(C object) {
         try {
-            getCurrentSession().saveOrUpdate(object);
+            getEntityManager().persist(object);
         } catch (RuntimeException e) {
             log.error("Be sure your Database is in read-write mode!");
             throw e;
@@ -62,7 +64,7 @@ public abstract class AbstractSimpleGenericDao<C, I extends Serializable> {
     @Transactional
     public void update(C object) {
         try {
-            getCurrentSession().update(object);
+            getEntityManager().merge(object);
         } catch (RuntimeException e) {
             log.error("Be sure your Database is in read-write mode!");
             throw e;
@@ -73,10 +75,20 @@ public abstract class AbstractSimpleGenericDao<C, I extends Serializable> {
     public void delete(I id) {
         try {
             C actual = get(id);
-            getCurrentSession().delete(actual);
+            getEntityManager().remove(actual);
         } catch (RuntimeException e) {
             log.error("Be sure your Database is in read-write mode!");
             throw e;
+        }
+    }
+
+    void searchInteger(String searchOper, CriteriaBuilder builder, List<Predicate> predicates, String searchString, String searchField, Root<?> root) {
+        Integer searchValue = Integer.parseInt(searchString);
+        switch (searchOper) {
+            case "eq" -> predicates.add(builder.equal(root.get(searchField), searchValue));
+            case "ne" -> predicates.add(builder.notEqual(root.get(searchField), searchValue));
+            case "lt" -> predicates.add(builder.lessThan(root.get(searchField), searchValue));
+            case "gt" -> predicates.add(builder.greaterThan(root.get(searchField), searchValue));
         }
     }
 }

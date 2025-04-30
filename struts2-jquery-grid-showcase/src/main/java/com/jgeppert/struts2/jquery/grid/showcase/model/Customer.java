@@ -1,28 +1,61 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "CUSTOMERS", schema = "CLASSICMODELS")
 public class Customer implements java.io.Serializable {
 
     private static final long serialVersionUID = 6222062494710896823L;
+
+    @Id()
+    @Column(name = "CUSTOMERNUMBER", unique = true)
     private Integer customernumber;
+
+    @Column(name = "CUSTOMERNAME", length = 50)
     private String customername;
+
+    @Column(name = "CONTACTLASTNAME", length = 50)
     private String contactlastname;
+
+    @Column(name = "CONTACTFIRSTNAME", length = 50)
     private String contactfirstname;
+
+    @Column(name = "PHONE", length = 50)
     private String phone;
+
+    @Column(name = "ADDRESSLINE1", length = 50)
     private String addressline1;
+
+    @Column(name = "ADDRESSLINE2", length = 50)
     private String addressline2;
+
+    @Column(name = "CITY", length = 50)
     private String city;
+
+    @Column(name = "STATE", length = 50)
     private String state;
+
+    @Column(name = "POSTALCODE", length = 15)
     private String postalcode;
+
+    @Column(name = "COUNTRY", length = 50)
     private String country;
+
+    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "SALESREPEMPLOYEENUMBER", unique = false, nullable = false, insertable = true, updatable = true)
     private Employee salesemployee;
+
+    @Column(name = "CREDITLIMIT", precision = 52, scale = 0)
     private Double creditlimit;
 
     public Customer() {
@@ -48,108 +81,95 @@ public class Customer implements java.io.Serializable {
         this.creditlimit = creditlimit;
     }
 
-    @Id()
-    @Column(name = "CUSTOMERNUMBER", unique = true)
+
     public Integer getCustomernumber() {
-        return this.customernumber;
+        return customernumber;
     }
 
     public void setCustomernumber(Integer customernumber) {
         this.customernumber = customernumber;
     }
 
-    @Column(name = "CUSTOMERNAME", length = 50)
     public String getCustomername() {
-        return this.customername;
+        return customername;
     }
 
     public void setCustomername(String customername) {
         this.customername = customername;
     }
 
-    @Column(name = "CONTACTLASTNAME", length = 50)
     public String getContactlastname() {
-        return this.contactlastname;
+        return contactlastname;
     }
 
     public void setContactlastname(String contactlastname) {
         this.contactlastname = contactlastname;
     }
 
-    @Column(name = "CONTACTFIRSTNAME", length = 50)
     public String getContactfirstname() {
-        return this.contactfirstname;
+        return contactfirstname;
     }
 
     public void setContactfirstname(String contactfirstname) {
         this.contactfirstname = contactfirstname;
     }
 
-    @Column(name = "PHONE", length = 50)
     public String getPhone() {
-        return this.phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    @Column(name = "ADDRESSLINE1", length = 50)
     public String getAddressline1() {
-        return this.addressline1;
+        return addressline1;
     }
 
     public void setAddressline1(String addressline1) {
         this.addressline1 = addressline1;
     }
 
-    @Column(name = "ADDRESSLINE2", length = 50)
     public String getAddressline2() {
-        return this.addressline2;
+        return addressline2;
     }
 
     public void setAddressline2(String addressline2) {
         this.addressline2 = addressline2;
     }
 
-    @Column(name = "CITY", length = 50)
     public String getCity() {
-        return this.city;
+        return city;
     }
 
     public void setCity(String city) {
         this.city = city;
     }
 
-    @Column(name = "STATE", length = 50)
     public String getState() {
-        return this.state;
+        return state;
     }
 
     public void setState(String state) {
         this.state = state;
     }
 
-    @Column(name = "POSTALCODE", length = 15)
     public String getPostalcode() {
-        return this.postalcode;
+        return postalcode;
     }
 
     public void setPostalcode(String postalcode) {
         this.postalcode = postalcode;
     }
 
-    @Column(name = "COUNTRY", length = 50)
     public String getCountry() {
-        return this.country;
+        return country;
     }
 
     public void setCountry(String country) {
         this.country = country;
     }
 
-    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "SALESREPEMPLOYEENUMBER", unique = false, nullable = false, insertable = true, updatable = true)
     public Employee getSalesemployee() {
         return salesemployee;
     }
@@ -158,9 +178,8 @@ public class Customer implements java.io.Serializable {
         this.salesemployee = salesemployee;
     }
 
-    @Column(name = "CREDITLIMIT", precision = 52, scale = 0)
     public Double getCreditlimit() {
-        return this.creditlimit;
+        return creditlimit;
     }
 
     public void setCreditlimit(Double creditlimit) {

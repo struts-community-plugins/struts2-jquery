@@ -31,6 +31,9 @@
     <constant name="struts.convention.default.parent.package" value="showcase"/>
     <constant name="struts.custom.i18n.resources" value="messages"/>
 
+    <!-- temporally disable support for @StrutsParameter -->
+    <constant name="struts.parameters.requireAnnotations" value="false"/>
+
     <constant name="struts.objectFactory" value="spring"/>
 
     <package name="showcase" extends="json-default">

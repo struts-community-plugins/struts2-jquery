@@ -1,17 +1,20 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class PaymentId implements java.io.Serializable {
 
     private static final long serialVersionUID = 7491499547402790067L;
+
+    @Column(name = "CUSTOMERNUMBER")
     private Integer customernumber;
+
+    @Column(name = "CHECKNUMBER", length = 50)
     private String checknumber;
 
     public PaymentId() {
@@ -22,24 +25,21 @@ public class PaymentId implements java.io.Serializable {
         this.checknumber = checknumber;
     }
 
-    @Column(name = "CUSTOMERNUMBER")
     public Integer getCustomernumber() {
-        return this.customernumber;
+        return customernumber;
     }
 
     public void setCustomernumber(Integer customernumber) {
         this.customernumber = customernumber;
     }
 
-    @Column(name = "CHECKNUMBER", length = 50)
     public String getChecknumber() {
-        return this.checknumber;
+        return checknumber;
     }
 
     public void setChecknumber(String checknumber) {
         this.checknumber = checknumber;
     }
-
 
     @Override
     public boolean equals(Object o) {

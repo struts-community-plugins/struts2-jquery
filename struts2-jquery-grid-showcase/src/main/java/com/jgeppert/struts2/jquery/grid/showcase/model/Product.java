@@ -1,24 +1,50 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PRODUCTS", schema = "CLASSICMODELS", uniqueConstraints = @UniqueConstraint(columnNames = "PRODUCTCODE"))
 public class Product implements java.io.Serializable {
 
     private static final long serialVersionUID = -2553404106252086434L;
+
+    @Id
+    @Column(name = "PRODUCTCODE", unique = true, length = 15)
     private String productcode;
+
+    @Column(name = "PRODUCTNAME", length = 70)
     private String productname;
+
+    @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCTLINE", unique = false, nullable = false, insertable = true, updatable = true)
     private Productline productline;
+
+    @Column(name = "PRODUCTSCALE", length = 10)
     private String productscale;
+
+    @Column(name = "PRODUCTVENDOR", length = 50)
     private String productvendor;
+
+    @Column(name = "PRODUCTDESCRIPTION", length = 32700)
     private String productdescription;
+
+    @Column(name = "QUANTITYINSTOCK")
     private Integer quantityinstock;
+
+    @Column(name = "BUYPRICE", precision = 52, scale = 0)
     private Double buyprice;
+
+    @Column(name = "MSRP", precision = 52, scale = 0)
     private Double msrp;
 
     public Product() {
@@ -36,89 +62,77 @@ public class Product implements java.io.Serializable {
         this.msrp = msrp;
     }
 
-    @Id
-    @Column(name = "PRODUCTCODE", unique = true, length = 15)
     public String getProductcode() {
-        return this.productcode;
+        return productcode;
     }
 
     public void setProductcode(String productcode) {
         this.productcode = productcode;
     }
 
-    @Column(name = "PRODUCTNAME", length = 70)
     public String getProductname() {
-        return this.productname;
+        return productname;
     }
 
     public void setProductname(String productname) {
         this.productname = productname;
     }
 
-    @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCTLINE", unique = false, nullable = false, insertable = true, updatable = true)
     public Productline getProductline() {
-        return this.productline;
+        return productline;
     }
 
     public void setProductline(Productline productline) {
         this.productline = productline;
     }
 
-    @Column(name = "PRODUCTSCALE", length = 10)
     public String getProductscale() {
-        return this.productscale;
+        return productscale;
     }
 
     public void setProductscale(String productscale) {
         this.productscale = productscale;
     }
 
-    @Column(name = "PRODUCTVENDOR", length = 50)
     public String getProductvendor() {
-        return this.productvendor;
+        return productvendor;
     }
 
     public void setProductvendor(String productvendor) {
         this.productvendor = productvendor;
     }
 
-    @Column(name = "PRODUCTDESCRIPTION", length = 32700)
     public String getProductdescription() {
-        return this.productdescription;
+        return productdescription;
     }
 
     public void setProductdescription(String productdescription) {
         this.productdescription = productdescription;
     }
 
-    @Column(name = "QUANTITYINSTOCK")
     public Integer getQuantityinstock() {
-        return this.quantityinstock;
+        return quantityinstock;
     }
 
     public void setQuantityinstock(Integer quantityinstock) {
         this.quantityinstock = quantityinstock;
     }
 
-    @Column(name = "BUYPRICE", precision = 52, scale = 0)
     public Double getBuyprice() {
-        return this.buyprice;
+        return buyprice;
     }
 
     public void setBuyprice(Double buyprice) {
         this.buyprice = buyprice;
     }
 
-    @Column(name = "MSRP", precision = 52, scale = 0)
     public Double getMsrp() {
-        return this.msrp;
+        return msrp;
     }
 
     public void setMsrp(Double msrp) {
         this.msrp = msrp;
     }
-
 
     @Override
     public boolean equals(Object o) {

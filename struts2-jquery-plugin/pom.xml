@@ -34,23 +34,10 @@
 				</excludes>
 			</resource>
 		</resources>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.samaxes.maven</groupId>
-				<artifactId>minify-maven-plugin</artifactId>
-			</plugin>
-
-
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-			</plugin>
-		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
 						<compilerArgs>
@@ -273,5 +260,19 @@
 			<artifactId>spring-test</artifactId>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- struts-annotations must be in compile scope for maven-apt-plugin to
+                 function correctly. Marking it optional to exclude it from transitive dependency resolution -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts-annotations</artifactId>
+				<version>${struts-annotations.version}</version>
+				<optional>true</optional>
+				<scope>compile</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>

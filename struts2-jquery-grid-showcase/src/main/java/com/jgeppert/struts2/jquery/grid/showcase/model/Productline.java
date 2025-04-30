@@ -1,13 +1,13 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.sql.Blob;
 import java.sql.Clob;
 
@@ -16,9 +16,18 @@ import java.sql.Clob;
 public class Productline implements java.io.Serializable {
 
     private static final long serialVersionUID = 3084285926141265568L;
+
+    @Id
+    @Column(name = "PRODUCTLINE", unique = true, length = 50)
     private String productline;
+
+    @Column(name = "TEXTDESCRIPTION", length = 4000)
     private String textdescription;
+
+    @Column(name = "HTMLDESCRIPTION")
     private Clob htmldescription;
+
+    @Column(name = "IMAGE")
     private Blob image;
 
     public Productline() {
@@ -35,37 +44,32 @@ public class Productline implements java.io.Serializable {
         this.image = image;
     }
 
-    @Id
-    @Column(name = "PRODUCTLINE", unique = true, length = 50)
     public String getProductline() {
-        return this.productline;
+        return productline;
     }
 
     public void setProductline(String productline) {
         this.productline = productline;
     }
 
-    @Column(name = "TEXTDESCRIPTION", length = 4000)
     public String getTextdescription() {
-        return this.textdescription;
+        return textdescription;
     }
 
     public void setTextdescription(String textdescription) {
         this.textdescription = textdescription;
     }
 
-    @Column(name = "HTMLDESCRIPTION")
     public Clob getHtmldescription() {
-        return this.htmldescription;
+        return htmldescription;
     }
 
     public void setHtmldescription(Clob htmldescription) {
         this.htmldescription = htmldescription;
     }
 
-    @Column(name = "IMAGE")
     public Blob getImage() {
-        return this.image;
+        return image;
     }
 
     public void setImage(Blob image) {

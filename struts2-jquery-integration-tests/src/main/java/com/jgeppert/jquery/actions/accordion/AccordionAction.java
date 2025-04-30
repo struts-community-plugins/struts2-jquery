@@ -1,15 +1,13 @@
 package com.jgeppert.jquery.actions.accordion;
 
+import lombok.Data;
+import lombok.Getter;
 import org.apache.struts2.ActionSupport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
 
 public class AccordionAction extends ActionSupport {
     @Getter
@@ -30,9 +28,14 @@ public class AccordionAction extends ActionSupport {
         return SUCCESS;
     }
 
-    @AllArgsConstructor
     @Data
     private static class AccordionItem {
+
+        public AccordionItem(String title, String content) {
+            this.title = title;
+            this.content = content;
+        }
+
         private String title;
         private String content;
     }

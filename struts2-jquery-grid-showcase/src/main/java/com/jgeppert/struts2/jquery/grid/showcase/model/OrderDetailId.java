@@ -1,19 +1,24 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Embeddable
 public class OrderDetailId implements java.io.Serializable {
 
     private static final long serialVersionUID = 4781499547402790067L;
+
+    @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORDERNUMBER", unique = false, nullable = false, insertable = true, updatable = true)
     private Order order;
+
+    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "PRODUCTCODE", unique = false, nullable = false, insertable = true, updatable = true)
     private Product product;
 
     public OrderDetailId() {
@@ -24,18 +29,14 @@ public class OrderDetailId implements java.io.Serializable {
         this.product = product;
     }
 
-    @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDERNUMBER", unique = false, nullable = false, insertable = true, updatable = true)
     public Order getOrder() {
-        return this.order;
+        return order;
     }
 
     public void setOrder(Order order) {
         this.order = order;
     }
 
-    @ManyToOne(cascade = {}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCTCODE", unique = false, nullable = false, insertable = true, updatable = true)
     public Product getProduct() {
         return product;
     }
@@ -43,7 +44,6 @@ public class OrderDetailId implements java.io.Serializable {
     public void setProduct(Product product) {
         this.product = product;
     }
-
 
     @Override
     public boolean equals(Object o) {

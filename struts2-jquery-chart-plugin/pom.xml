@@ -142,4 +142,18 @@
 		</dependency>
 	</dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- struts-annotations must be in compile scope for maven-apt-plugin to
+                 function correctly. Marking it optional to exclude it from transitive dependency resolution -->
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-annotations</artifactId>
+                <version>${struts-annotations.version}</version>
+                <optional>true</optional>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>

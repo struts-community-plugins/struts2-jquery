@@ -6,14 +6,11 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.opensymphony.xwork2" level="info"/>
         <Logger name="org.apache.struts2" level="info"/>
         <Logger name="org.hibernate" level="info"/>
-        <Logger name="org.hibernate.cfg" level="warn"/>
-        <Logger name="org.hibernate.persister" level="warn"/>
-        <Logger name="org.hibernate.loader" level="warn"/>
         <Logger name="org.springframework" level="info"/>
         <Logger name="com.jgeppert.struts2.jquery" level="debug"/>
+        <Logger name="jakarta" level="info"/>
         <Root level="warn">
             <AppenderRef ref="STDOUT"/>
         </Root>

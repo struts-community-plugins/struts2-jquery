@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Security-Policy" content="

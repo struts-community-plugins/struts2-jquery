@@ -20,9 +20,9 @@
 package com.jgeppert.struts2.jquery.grid.showcase.action;
 
 import com.jgeppert.struts2.jquery.grid.showcase.dao.CustomerDao;
+import jakarta.inject.Inject;
 import org.apache.struts2.ActionSupport;
 
-import jakarta.inject.Inject;
 import java.util.List;
 
 public class CustomerCountrysAction extends ActionSupport {
@@ -35,7 +35,7 @@ public class CustomerCountrysAction extends ActionSupport {
     private List<String> countrys;
 
     public String execute() throws Exception {
-        countrys = customerDao.findCountrys();
+        countrys = customerDao.findCountries();
         return SUCCESS;
     }
 

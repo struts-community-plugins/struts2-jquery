@@ -1,23 +1,46 @@
 package com.jgeppert.struts2.jquery.grid.showcase.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "EMPLOYEES", schema = "CLASSICMODELS")
 public class Employee implements java.io.Serializable {
 
     private static final long serialVersionUID = 6453568010319106998L;
+
+    @Id
+    @Column(name = "EMPLOYEENUMBER", unique = true)
     private Integer employeenumber;
+
+    @Column(name = "LASTNAME", length = 50)
     private String lastname;
+
+    @Column(name = "FIRSTNAME", length = 50)
     private String firstname;
+
+    @Column(name = "EXTENSION", length = 10)
     private String extension;
+
+    @Column(name = "EMAIL", length = 100)
     private String email;
+
+    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "OFFICECODE", unique = false, nullable = false, insertable = true, updatable = true)
     private Office office;
+
+    @Column(name = "REPORTSTO")
     private Integer reportsto;
+
+    @Column(name = "JOBTITLE", length = 50)
     private String jobtitle;
 
     public Employee() {
@@ -38,54 +61,46 @@ public class Employee implements java.io.Serializable {
         this.jobtitle = jobtitle;
     }
 
-    @Id
-    @Column(name = "EMPLOYEENUMBER", unique = true)
     public Integer getEmployeenumber() {
-        return this.employeenumber;
+        return employeenumber;
     }
 
     public void setEmployeenumber(Integer employeenumber) {
         this.employeenumber = employeenumber;
     }
 
-    @Column(name = "LASTNAME", length = 50)
     public String getLastname() {
-        return this.lastname;
+        return lastname;
     }
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
-    @Column(name = "FIRSTNAME", length = 50)
     public String getFirstname() {
-        return this.firstname;
+        return firstname;
     }
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    @Column(name = "EXTENSION", length = 10)
     public String getExtension() {
-        return this.extension;
+        return extension;
     }
 
     public void setExtension(String extension) {
         this.extension = extension;
     }
 
-    @Column(name = "EMAIL", length = 100)
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "OFFICECODE", unique = false, nullable = false, insertable = true, updatable = true)
     public Office getOffice() {
         return office;
     }
@@ -94,18 +109,16 @@ public class Employee implements java.io.Serializable {
         this.office = office;
     }
 
-    @Column(name = "REPORTSTO")
     public Integer getReportsto() {
-        return this.reportsto;
+        return reportsto;
     }
 
     public void setReportsto(Integer reportsto) {
         this.reportsto = reportsto;
     }
 
-    @Column(name = "JOBTITLE", length = 50)
     public String getJobtitle() {
-        return this.jobtitle;
+        return jobtitle;
     }
 
     public void setJobtitle(String jobtitle) {

@@ -1,22 +1,18 @@
 package com.jgeppert.jquery.actions.ajax;
 
-import org.apache.struts2.ActionSupport;
-
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ParentPackage("json-default")
 @Actions({
@@ -53,9 +49,14 @@ public class MonthsJsonAction extends ActionSupport {
         return SUCCESS;
     }
 
-    @AllArgsConstructor
     @Data
     public static class MonthObject {
+
+        public MonthObject(int number, String month) {
+            this.number = number;
+            this.month = month;
+        }
+
         private int number;
         private String month;
     }

@@ -1,19 +1,16 @@
 package com.jgeppert.jquery.actions.ajax;
 
+import lombok.Data;
 import org.apache.struts2.ActionSupport;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
+import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import lombok.Data;
-import lombok.AllArgsConstructor;
-
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Actions;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
 
 @ParentPackage("json-default")
 @Actions({
@@ -33,7 +30,7 @@ public class LettersJsonAction extends ActionSupport {
             char letter = (char)('a' + (char)i);
             LETTERS[i] = letter;
             LETTERS_MAP.put((int) letter, String.valueOf(letter));
-	    LETTER_OBJECTS.add(new LetterObject((int) letter, letter));
+	    LETTER_OBJECTS.add(new LetterObject(letter, letter));
 	}
     }
 
@@ -50,8 +47,13 @@ public class LettersJsonAction extends ActionSupport {
     }
 
     @Data
-    @AllArgsConstructor
     public static class LetterObject {
+
+        public LetterObject(int numberValue, char letter) {
+            this.numberValue = numberValue;
+            this.letter = letter;
+        }
+
         private int numberValue;
         private char letter;
     }
