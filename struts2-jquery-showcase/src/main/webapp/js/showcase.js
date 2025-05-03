@@ -4,13 +4,13 @@
  *
  */
 function changeTheme(newTheme) {
-	if (newTheme=='showcase')
-		themePathPrefix = "themes/";
-	else {
-		themeHref = $('#jquery_theme_link').attr('href');
+	let themePathPrefix = "themes/";
+	if (newTheme!=='showcase') {
+		let themeHref = $('#jquery_theme_link').attr('href');
+		console.log(themeHref);
 		if ($("#cdn").attr('checked')) {
-			if (themeHref.indexOf("http:")==0) {
-				prefixIndex = themeHref.indexOf("themes/")+7;
+			if (themeHref.indexOf("http:")===0 || themeHref.indexOf("https:")===0) {
+				let prefixIndex = themeHref.indexOf("themes/")+7;
 				themePathPrefix=themeHref.substring(0,prefixIndex);
 			}
 			else {
@@ -22,7 +22,7 @@ function changeTheme(newTheme) {
 			themePathPrefix = "static/themes/";
 		}
 	}
-	$('#jquery_theme_link').attr('href',themePathPrefix+newTheme+'/jquery-ui.css');
+	$("#jquery_theme_link").attr('href',themePathPrefix+newTheme+'/jquery-ui.css');
 }
 
 /*
@@ -32,7 +32,7 @@ function changeTheme(newTheme) {
 function customValidation(form, errors) {
 
 	// List for errors
-	var list = $('#formerrors');
+	let list = $('#formerrors');
 
 	// Handle non field errors
 	if (errors.errors) {
@@ -44,7 +44,7 @@ function customValidation(form, errors) {
 	// Handle field errors
 	if (errors.fieldErrors) {
 		$.each(errors.fieldErrors, function(index, value) {
-			var elem = $('#' + index + 'Error');
+			let elem = $('#' + index + 'Error');
 			if (elem) {
 				elem.html(value[0]);
 				elem.addClass('ym-error');
@@ -96,7 +96,7 @@ $(document).ready(function() {
 		alert('Before request ');
 	});
 	$.subscribe('completeDiv', function(event, data) {
-		if (event.originalEvent.status == "success") {
+		if (event.originalEvent.status === "success") {
 			$('#resultnormal').append('<br/><br/><strong>Completed request ' + event.originalEvent.request.statusText + ' completed with ' + event.originalEvent.status + '.</strong><br/>Status: ' + event.originalEvent.request.status);
 		}
 	});
@@ -133,8 +133,8 @@ $(document).ready(function() {
 	    alert('Selected Date : '+event.originalEvent.dateText);
 	});
 	$.subscribe('beforeDatepickerShow', function(event, data) {
-	   var date = event.originalEvent.date;
-	   if (date.getDay() == 6 || date.getDay() == 0){
+		let date = event.originalEvent.date;
+		if (date.getDay() === 6 || date.getDay() === 0){
 	  	 event.originalEvent.returnValue = [false,"","Not allowed!"];    
 	   }
 	   else{
