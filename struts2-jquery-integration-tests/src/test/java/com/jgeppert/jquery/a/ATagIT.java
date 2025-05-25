@@ -69,14 +69,14 @@ public class ATagIT extends AbstractJQueryTest{
         WebElement ajaxFormLink = driver.findElement(By.id("ajaxformlink"));
 
         assertEquals("formResult div", formResult.getText());
-        assertEquals("something to echo", echoInput.getAttribute("value"));
+        assertEquals("something to echo", echoInput.getDomProperty("value"));
 
         ajaxFormLink.click();
 
         wait.until(JQUERY_IDLE);
 
         assertEquals("Echo : something to echo", formResult.getText());
-        assertEquals("", echoInput.getAttribute("value"));
+        assertEquals("", echoInput.getDomProperty("value"));
 
         echoInput.sendKeys("userinput to echo");
         ajaxFormLink.click();
@@ -84,7 +84,7 @@ public class ATagIT extends AbstractJQueryTest{
         wait.until(JQUERY_IDLE);
 
         assertEquals("Echo : userinput to echo", formResult.getText());
-        assertEquals("", echoInput.getAttribute("value"));
+        assertEquals("", echoInput.getDomProperty("value"));
     }
 
     @ParameterizedTest

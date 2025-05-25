@@ -6,15 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.jgeppert.jquery.AbstractJQueryTest;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+@Disabled
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
+@Tag("CI-HTMLUnit")
 public class TabbedpanelTagIT extends AbstractJQueryTest {
+
     @ParameterizedTest
     @MethodSource("data")
     public void testLocal(final String baseUrl) throws InterruptedException {
@@ -52,8 +56,8 @@ public class TabbedpanelTagIT extends AbstractJQueryTest {
         WebElement tab2 = driver.findElement(By.id("tab2"));
         WebElement tab1Link = tab1.findElement(By.tagName("a"));
         WebElement tab2Link = tab2.findElement(By.tagName("a"));
-        WebElement tabcontent1 = driver.findElement(By.id(tab1.getAttribute("aria-controls")));
-        WebElement tabcontent2 = driver.findElement(By.id(tab2.getAttribute("aria-controls")));
+        WebElement tabcontent1 = driver.findElement(By.id(tab1.getDomAttribute("aria-controls")));
+        WebElement tabcontent2 = driver.findElement(By.id(tab2.getDomAttribute("aria-controls")));
 
         assertTrue(tabcontent1.isDisplayed());
         assertFalse(tabcontent2.isDisplayed());

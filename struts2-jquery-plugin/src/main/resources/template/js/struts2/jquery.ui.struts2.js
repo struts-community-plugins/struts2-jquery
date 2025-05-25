@@ -314,11 +314,10 @@
             self.log('tabbedpanel : ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
-                    "js/base/escape-selector" + self.minSuffix + ".js",
                     "js/base/keycode" + self.minSuffix + ".js",
-                    "js/base/safe-active-element" + self.minSuffix + ".js",
                     "js/base/unique-id" + self.minSuffix + ".js",
                     "js/base/widget" + self.minSuffix + ".js",
+                    "js/base/focusable" + self.minSuffix + ".js",
                     "js/base/tabs" + self.minSuffix + ".js"
                 ]);
             }

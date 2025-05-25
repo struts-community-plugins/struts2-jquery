@@ -54,7 +54,6 @@
 /*global jQuery, window, document   */
 
 (($ = jQuery) => {
-    'use strict';
 
     window._subscribe_topics = window._subscribe_topics || {};
     const _subscribe_topics = window._subscribe_topics;
@@ -118,37 +117,69 @@
          *  subscription is made for a topic for a given window/frame. To prevent this from happening for an element subscription ($elem.subscribe()), make
          *  sure that the element has an id attribute.
          */
-        subscribe(topic, handler, data, id = '__noId__', multiple = true, overwrite = false) {
-            if (!topic || typeof handler !== 'function') {
-                return this;
-            }
+        subscribe(topic, handler, data, multiple) {
+            if(this[0] && topic && handler) {
 
-            const topicObj = _subscribe_topics[topic] = _subscribe_topics[topic] || {
-                objects: {
-                    __noId__: []
+                this.createTopic(topic);
+
+                if(this.attr('id')) {
+                    _subscribe_topics[topic].objects[this.attr('id')] = this;
+                } else {
+
+                    //do not subscribe the same window/frame document multiple times, this causes unexpected behavior of executing embedded scripts multiple times
+                    let noIdObjects = _subscribe_topics[topic].objects.__noId__;
+
+                    if(this[0].nodeType === 9) { //if document is being bound (the case for non-element jQuery subscribing ($.subscribe)
+
+                        jQuery.each(noIdObjects, function(j, noIdObject) {
+
+                            //typeof(noIdObject) check in case someone has added methods to Array.protoype
+                            if(typeof noIdObject !== "function" && noIdObject[0].nodeType === 9 && _subscribe_getDocumentWindow(this[0]).frameElement === _subscribe_getDocumentWindow(noIdObject[0]).frameElement ) {
+                                return this;
+                            }
+                        });
+                    }
+
+                    let exists = false;
+                    for(let i = 0; i < noIdObjects.length; i++) {
+                        if(noIdObjects[i] === this){
+                            exists = true;
+                            break;
+                        }
+                    }
+
+                    if(!exists) {
+                        _subscribe_topics[topic].objects.__noId__.push(this);
+                    }
                 }
-            };
 
-            const objects = topicObj.objects;
 
-            // Create wrapper function to include data
-            const wrappedHandler = (eventData) => {
-                handler.call(this, eventData, data);
-            };
+                if(true === multiple) {		//allow multiple topic handlers to be bound to topic for same object
 
-            // Store reference to original handler for unsubscribe
-            wrappedHandler._originalHandler = handler;
+                    if(typeof handler === "function") {
+                        this.bind(topic, data, handler);
+                    } else if(typeof(handler) === 'string' && typeof _subscribe_handlers[handler] === "function") {
+                        this.bind(topic, data, _subscribe_handlers[handler]);
+                    }
 
-            // Handle subscription based on multiple and overwrite flags
-            if (!multiple && objects[id] && objects[id].length > 0) {
-                return this;
-            }
+                } else {
 
-            if (overwrite) {
-                objects[id] = [wrappedHandler];
-            } else {
-                objects[id] = objects[id] || [];
-                objects[id].push(wrappedHandler);
+                    let events = this.data('events');
+                    if(events) {
+                        let eventsTopic = events[topic];
+                        if(eventsTopic && eventsTopic.length > 0) {  //already bound to this topic
+
+                            //replace with new one
+                            this.unbind(topic);
+                        }
+                    }
+
+                    if(typeof handler === "function") {
+                        this.bind(topic, data, handler);
+                    } else if(typeof(handler) === 'string' && typeof _subscribe_handlers[handler] === "function") {
+                        this.bind(topic, data, _subscribe_handlers[handler]);
+                    }
+                }
             }
 
             return this;
@@ -178,6 +209,18 @@
                 }
             } else {
                 delete objects[id];
+            }
+
+            return this;
+        },
+
+        /**
+         * Register a handler function which can then be referenced by name when calling subscribe()
+         */
+        subscribeHandler(name, handler) {
+
+            if(name && handler && typeof handler === "function") {
+                _subscribe_handlers[name] = handler;
             }
 
             return this;
@@ -221,36 +264,63 @@
          *            in conjunction with publishOnEvent(), where a topic is published when an event executes (such as a click) and we want our
          *            handler logic prevent additional topics from being published (For example if our topic displays a 'delete confirm' dialog on click and
          *            the user cancels, we may want to prevent subsequent topics bound to the original click event from being published).
-         */        publish(topic, data, originalEvent) {
-            if (!topic || !_subscribe_topics[topic]) {
-                return this;
-            }
+         */
+        publish(topic, data, originalEvent) {
 
-            const objects = _subscribe_topics[topic].objects;
+            if(topic) {
 
-            // Handle originalEvent and stopPropagation
-            if (originalEvent) {
-                data.originalEvent = originalEvent;
-            }
-            if (data && data.originalEvent) {
-                const subscriberStopPropagation = data.stopPropagation;
-                data = data.originalEvent;
-                data.stopPropagation = subscriberStopPropagation;
-            }
+                this.createTopic(topic);
 
-            // Create a single array of all handlers
-            const allHandlers = Object.values(objects)
-                .flat()
-                .filter(handler => typeof handler === 'function');
+                //if an orginal event exists, need to modify the event object to prevent execution of all
+                //other handlers if the result of the handler is false (which calls stopPropagation())
 
-            // Execute all handlers
-            allHandlers.forEach(handler => {
-                try {
-                    handler.call(this, data);
-                } catch (e) {
-                    console.error(`Error executing handler for topic ${topic}:`, e);
+                const subscriberStopPropagation = function () {
+
+                    this.isImmediatePropagationStopped = function () {
+                        return true;
+                    };
+
+                    this.isPropagationStopped = function () {
+                        return true;
+                    };
+
+                    if (this.originalEvent) {
+
+                        this.originalEvent.isImmediatePropagationStopped = function () {
+                            return true;
+                        };
+
+                        this.originalEvent.stopPropagation = subscriberStopPropagation;
+                    }
+                };
+
+                const event = jQuery.Event(topic);
+                //fix issue with non-existing preventDefault function
+                if (originalEvent !== undefined && originalEvent.preventDefault === undefined) {
+                    originalEvent.preventDefault = function() {};
                 }
-            });
+                $.extend(event,{originalEvent: originalEvent, stopPropagation: subscriberStopPropagation});
+
+                jQuery.each(_subscribe_topics[topic].objects, function(i, object) {
+
+                    if($.isArray(object)) {		// handle '__noId__' elements (if any)
+
+                        if(object.length > 0) {
+
+                            jQuery.each(object, function(j, obj) {
+                                //typeof(object) check in case someone has added methods to Array.protoype
+                                if(typeof obj !== "function") {
+                                    obj.trigger( event,data);
+                                }
+                            });
+                        }
+
+                    } else {
+                        object.trigger( event,data);
+                    }
+                });
+
+            }
 
             return this;
         },
@@ -268,35 +338,69 @@
          *  -data- (optional) is additional data which will be passed in to the publish() method ant hen available as the second ('data')
          *          parameter to the topic handler
          */
-        publishOnEvent(eventName, topic, selector) {
-            const self = this;
+        publishOnEvent(event, topic, data) {
 
-            if (!eventName || !topic) {
-                return this;
+            if(event && topic) {
+
+                this.createTopic(topic);
+
+                this.bind(event, data, function (e) {
+                    $(this).publish(topic, e.data, e);
+                });
             }
-
-            // Create handler function
-            const handler = function (event) {
-                const $target = $(event.target);
-
-                if (!selector || $target.is(selector)) {
-                    self.publish(topic, event);
-                }
-            };
-
-            // Store handler reference for potential future cleanup
-            _subscribe_handlers[topic] = _subscribe_handlers[topic] || [];
-            _subscribe_handlers[topic].push({
-                element: this,
-                handler: handler,
-                eventName: eventName
-            });
-
-            // Bind the event
-            this.on(eventName, handler);
 
             return this;
         }
     });
 
+    /**
+     * Make publish(), createTopic() and destroyTopic() callable without an element context
+     * Often don't need a context to subscribe, publish, create or destroy a topic.
+     * We will call from the document context
+     */
+    $.extend({
+
+        /**
+         * Subscribe an event handler to a topic without an element context
+         *
+         * Note: Caution about subscribing using same document to topic multiple time (maybe by loading subscribe script multiple times)
+         *
+         */
+        subscribe :  function(topic, handler, data) {
+            return $(document).subscribe(topic, handler, data);
+        },
+
+        /**
+         * Unsubscribe an event handler for a topic without an element context
+         *
+         */
+        unsubscribe :  function(topic, handler, data) {
+            return $(document).unsubscribe(topic, handler, data);
+        },
+
+        /**
+         * Register a handler function which can then be referenced by name when calling subscribe()
+         */
+        subscribeHandler: function(name, handler) {
+
+            if(name && handler && typeof handler === "function") {
+                _subscribe_handlers[name] = handler;
+            }
+
+            return $(document);
+        },
+
+        publish: function(topic, data) {
+            return $(document).publish(topic,data);
+        },
+
+        createTopic: function(topic) {
+            return $(document).createTopic(topic);
+        },
+
+        destroyTopic: function(topic) {
+            return $(document).destroyTopic(topic);
+        }
+
+    });
 })(jQuery);

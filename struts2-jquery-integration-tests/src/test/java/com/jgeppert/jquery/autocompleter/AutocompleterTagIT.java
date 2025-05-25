@@ -36,7 +36,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         autocompleteInputWidget.sendKeys(Keys.DOWN);
         autocompleteInputWidget.sendKeys(Keys.ENTER);
         Thread.sleep(500);
-        assertEquals("June", autocompleteInput.getAttribute("value"));
+        assertEquals("June", autocompleteInput.getDomAttribute("value"));
     }
 
     @ParameterizedTest
@@ -60,7 +60,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         autocompleteInputWidget.sendKeys(Keys.DOWN);
         autocompleteInputWidget.sendKeys(Keys.ENTER);
         Thread.sleep(500);
-        assertEquals("June", autocompleteInput.getAttribute("value"));
+        assertEquals("June", autocompleteInput.getDomAttribute("value"));
     }
 
     @ParameterizedTest
@@ -84,7 +84,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         autocompleteInputWidget.sendKeys(Keys.DOWN);
         autocompleteInputWidget.sendKeys(Keys.ENTER);
         Thread.sleep(500);
-        assertEquals("June", autocompleteInput.getAttribute("value"));
+        assertEquals("June", autocompleteInput.getDomAttribute("value"));
     }
 
     @ParameterizedTest
@@ -108,7 +108,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         autocompleteInputWidget.sendKeys(Keys.DOWN);
         autocompleteInputWidget.sendKeys(Keys.ENTER);
         Thread.sleep(500);
-        assertEquals("6", autocompleteInput.getAttribute("value"));
+        assertEquals("6", autocompleteInput.getDomAttribute("value"));
     }
 
     @ParameterizedTest
@@ -132,6 +132,6 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         autocompleteInputWidget.sendKeys(Keys.DOWN);
         autocompleteInputWidget.sendKeys(Keys.ENTER);
         Thread.sleep(500);
-        assertEquals("6", autocompleteInput.getAttribute("value"));
+        assertEquals("6", autocompleteInput.getDomAttribute("value"));
     }
 }

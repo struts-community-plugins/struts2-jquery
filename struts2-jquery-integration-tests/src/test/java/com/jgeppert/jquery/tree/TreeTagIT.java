@@ -193,7 +193,7 @@ public class TreeTagIT extends AbstractJQueryTest {
         Thread.sleep(500);
 
         assertTrue(myTree.findElement(By.id("A")).isDisplayed());
-        assertTrue(myTree.findElement(By.id("AB")).isDisplayed());
+        assertTrue(myTree.findElement(By.id("AA")).isDisplayed());
         assertTrue(myTree.findElement(By.id("AB")).isDisplayed());
         assertTrue(myTree.findElement(By.id("B")).isDisplayed());
         assertEquals(0, driver.findElements(By.id("BA")).size());
@@ -204,8 +204,8 @@ public class TreeTagIT extends AbstractJQueryTest {
 
         assertTrue(myTree.findElement(By.id("A")).isDisplayed());
         assertTrue(myTree.findElement(By.id("B")).isDisplayed());
-        assertEquals(0, driver.findElements(By.id("AA")).size());
-        assertEquals(0, driver.findElements(By.id("AB")).size());
+        assertFalse(myTree.findElement(By.id("AA")).isDisplayed());
+        assertFalse(myTree.findElement(By.id("AB")).isDisplayed());
         assertEquals(0, driver.findElements(By.id("BA")).size());
         assertEquals(0, driver.findElements(By.id("BB")).size());
     }
