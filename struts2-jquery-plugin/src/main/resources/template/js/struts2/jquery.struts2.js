@@ -58,7 +58,7 @@
 	 *  */
 	log : function(message) {
 		if (this.debug) {
-			var msg = this.debugPrefix + message;
+			const msg = this.debugPrefix + message;
 			if (window.console && window.console.log) {
 				window.console.log(msg);
 			}
@@ -83,11 +83,10 @@
 
 	/**Change Parameter Value in URL */
 	changeParam : function(url, param, value) {
-		var ua = url.split("?"), // split url
+		let ua = url.split("?"), // split url
 			pa = ua[1].split("&"), // split query
-			ia = [],
-			i;
-		for (i=0; i < pa.length; i++) {
+			ia = [];
+		for (let i=0; i < pa.length; i++) {
 			ia = pa[i].split("="); // split name/value
 			if (ia[0] === param) {
 				pa[i] = ia[0] + "=" + value;
@@ -98,7 +97,8 @@
 
 	/** Load required JavaScript Resourcess */
 	require : function(files, callBack, basePath) {
-		var self = this, successFunction, path;
+		const self = this;
+		let successFunction, path;
 		successFunction = callBack || function() {
 		};
 		path = basePath || null;
@@ -135,7 +135,7 @@
 	/** Load required CSS Files */
 	requireCss : function(cssFile, basePath) {
 		if (!this.styleCache[cssFile]) {
-			var path, cssref;
+			let path, cssref;
 
 			path = basePath || null;
 			if (path === null && !$.scriptPath) {
@@ -177,8 +177,8 @@
 
 	/** Abort current requests */
 	abortReq : function(id) {
-		var xhr = this.currentXhr[id];
-		if(xhr && xhr !== null){
+		const xhr = this.currentXhr[id];
+		if(xhr){
 			if(xhr.readyState < 4) {
 				xhr.abort();
 			}
@@ -187,8 +187,8 @@
 
 	/** Helper function to validate Forms */
 	validateForm : function(form, o) {
-		var self = this,
-			submit = true,
+		const self = this;
+		let	submit = true,
 			params = {};
 
 		if (!self.loadAtOnce) {
@@ -212,11 +212,10 @@
 		}
 
 		params.cache = false;
-		//params.forceSync = true;
 		params.async = false;
 
 		params.complete = function(request, status) {
-			var f = $(form[0]),
+			let f = $(form[0]),
 				et = request.responseText,
 				errors;
 			if (typeof o.validateFunction === "function") {
@@ -258,13 +257,13 @@
 	},
 
 	addForms : function(forms, url) {
-		var self = this;
+		const self = this;
 		if (forms) {
 			if (!self.loadAtOnce) {
 				self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
 			}
 			$.each(forms.split(','), function(i, f) {
-				var q = $(self.escId(f)).formSerialize();
+				const q = $(self.escId(f)).formSerialize();
 				url = self.addParam(url, q);
 			});
 		}
@@ -272,10 +271,10 @@
 	},
 	/** Helper function to publish UI topics */
 	pubTops : function($elem, always, topics) {
-		var self = this;
+		const self = this;
 		if (topics) {
 			return function(event, ui) {
-				var data = {};
+				const data = {};
 				data.event = event;
 				data.ui = ui;
 
@@ -300,7 +299,7 @@
 
 	/** Helper function to publish topics */
 	publishTopic : function(elem, topics, data) {
-		var self = this;
+		const self = this;
 		if (topics) {
 			$.each(topics.split(','), function(i, to) {
 				self.log('publish topic : ' + to);
@@ -313,14 +312,14 @@
 	 * handle AJAX result, insert it into container or build select box, radiobutton, checkboxes etc.
 	 * */
 	pubSuc : function(cid, always, stopics, indi, modus, o) {
-		var self = this,
-			c = $(cid),
-			i,idv,element = null,
+		const self = this,
+			c = $(cid);
+		let	i,idv,element = null,
 			x = 0,
 			isMap = false;
 
 		return function(data, status, request) {
-			var orginal = {};
+			const orginal = {};
 			orginal.data = data;
 			orginal.status = status;
 			orginal.request = request;
@@ -335,7 +334,7 @@
 				c.val($.trim(data));
 			}
 
-			// Hanlde Result for Select, Radiobuttons and Checkboxes
+			// Handle Result for Select, Radiobuttons and Checkboxes
 			else if (modus === 'select' || modus === 'radio' || modus === 'checkbox') {
 				if (modus === 'select') {
 					c[0].length = 0;
@@ -370,7 +369,7 @@
 						}
 
 						$.each(data[o.list], function(j, val) {
-							var option = {};
+							const option = {};
 							if (modus === 'radio' || modus === 'checkbox') {
 								option.name = o.name;
 							}
@@ -440,11 +439,11 @@
 
 	/** publish complete topics */
 	pubCom : function(cid, always, ctopics, targets, indi, o) {
-		var self = this,
+		const self = this,
 			ui = $.struts2_jquery_ui,
 			c = $(cid);
 		return function(request, status) {
-			var orginal = {};
+			const orginal = {};
 			orginal.request = request;
 			orginal.status = status;
 
@@ -458,7 +457,7 @@
 			}
 			if (targets) {
 				$.each(targets.split(','), function(i, target) {
-					var effect_elem = $(self.escId(target));
+					const effect_elem = $(self.escId(target));
 					effect_elem.publish("_sj_div_effect_" + target + o.id, o);
 				});
 			}
@@ -470,11 +469,11 @@
 
 	/** publish error topics */
 	pubErr : function(cid, always, etopics, etext, modus) {
-		var self = this,
+		const self = this,
 			c = $(cid);
 		if (etopics || etext) {
 			return function(request, status, error) {
-				var orginal = {};
+				const orginal = {};
 				orginal.request = request;
 				orginal.status = status;
 				orginal.error = error;
@@ -506,7 +505,8 @@
 
 	/** bind a html element to an struts2 jquery action */
 	bind : function(el, o) {
-		var self = this, $el, tag;
+		const self = this;
+		let $el, tag;
 
 		if (el) {
 			$el = $(el);
@@ -534,7 +534,7 @@
 
 	/** register a specific struts2 jquery action */
 	jqueryaction : function(name, binder) {
-		var self = this;
+		const self = this;
 		if (name && binder) {
 			self[name] = binder;
 		}
@@ -542,7 +542,7 @@
 
 	/** handle ajax history */
 	history : function($elem, topic, target) {
-		var self = this,
+		const self = this,
 			params = {};
 		params.target = target;
 		params.topic = topic;
@@ -554,9 +554,9 @@
 		});
 
 		$(window).bind('hashchange', params, function(e) {
-			var topic = e.getState(e.data.target) || '';
+			const topic = e.getState(e.data.target) || '';
 			$.each(e.fragment.split('&'), function(i, f) {
-				var fragment = f.split('=');
+				const fragment = f.split('=');
 				if(self.historyelements[fragment[0]] !== fragment[1] && fragment[1] !== self.lasttopic ) {
 					self.lasttopic = topic;
 					$.publish(fragment[1], e.data.options);
@@ -567,10 +567,10 @@
 
 	/** Handles remote and effect actions */
 	action : function($elem, o, loadHandler, type) {
-		var self = this,
+		const self = this,
 			actionTopic = '_sj_action_' + o.id,
-			href = o.href,
 			effect = {};
+		let href = o.href;
 
 		o.actionTopic = actionTopic;
 
@@ -596,7 +596,7 @@
 		if (o.targets) {
 			$.each(o.targets.split(','), function(i, target) {
 				effect.targets = target;
-				var tarelem = $(self.escId(target));
+				let tarelem = $(self.escId(target));
 
 				//when no target is found (e.g. a json call)
 				// the action was subscribed to the publisher
@@ -639,12 +639,12 @@
 
 	/** Handle all Container Elements Divs, Textarea, Textfield */
 	container : function($elem, o) {
-		var self = this,
+		const self = this,
 			divTopic = '_s2j_div_load_' + o.id,
 			divEffectTopic = '_s2j_div_effect_' + o.id,
 			ui = $.struts2_jquery_ui,
-			effect = {},
-			bindel = $elem,
+			effect = {};
+		let	bindel = $elem,
 			eventsStr = 'click';
 
 		self.log('container : ' + o.id);
@@ -794,7 +794,7 @@
 
 	/** Handle the Anchor Element */
 	anchor : function($elem, o) {
-		var self = this,
+		const self = this,
 			formTopic = '_s2j_form_topic_' + o.id;
 		self.log('anchor : ' + o.id);
 
@@ -830,7 +830,7 @@
 
 	/** Handle dynamic Select Boxes */
 	select : function($elem, o) {
-		var self = this,
+		const self = this,
 			selectTopic = '_s2j_topic_load_' + o.id;
 		self.log('select : ' + o.id);
 		if (!self.loadAtOnce) {
@@ -863,9 +863,9 @@
 
 	/** Handle the Submit Button */
 	button : function($elem, o) {
-		var self = this,
-			formTopic = '_s2j_form_topic_' + o.id,
-			cform,cf,formid,randomid;
+		const self = this,
+			formTopic = '_s2j_form_topic_' + o.id;
+		let	cform,cf,formid,randomid;
 
 		o.preventAction = true;
 
@@ -925,7 +925,7 @@
 
 	/** Handle all AJAX Forms submitted from Anchor or Submit Button */
 	formsubmit : function($elem, o, topic) {
-		var self = this,
+		const self = this,
 			params = {};
 		o.actionTopic = topic;
 		self.log('formsubmit : ' + o.id);
@@ -974,7 +974,7 @@
 				}
 
 				if(orginal.formvalidate) {
-                    if ( o.href && o.href != "#") {
+                    if ( o.href && o.href !== "#") {
                         form[0].action = o.href;
                     }
                     form.submit();
@@ -998,7 +998,7 @@
 					}
 
 					if(orginal.formvalidate) {
-                        if ( o.href && o.href != "#") {
+                        if ( o.href && o.href !== "#") {
                             form[0].action = o.href;
                         }
                         form.submit();
@@ -1016,9 +1016,9 @@
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.load, function(event, data) {
 
-		var s2j = $.struts2_jquery,
-			container = $(event.target),
-			cid,
+		const s2j = $.struts2_jquery,
+			container = $(event.target);
+		let	cid,
 			o = {},
 			isDisabled = false,
 			indi, always,
@@ -1151,8 +1151,8 @@
 	 * Handler to submit a form with jquery.form.js plugin
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.form, function(event, data) {
-		var s2j = $.struts2_jquery,
-			elem = $(event.target),
+		const s2j = $.struts2_jquery;
+		let	elem = $(event.target),
 			o = {},
 			params = {},
 			indi,
@@ -1213,7 +1213,7 @@
 
 		params.beforeSubmit = function(formData, form, formoptions) {
 
-			var orginal = {};
+			const orginal = {};
 			orginal.formData = formData;
 			orginal.form = form;
 			orginal.options = formoptions;
@@ -1271,8 +1271,8 @@
 	 * Register handler for effects
 	 * */
 	$.subscribeHandler($.struts2_jquery.handler.effect, function(event, data) {
-		var s2j = $.struts2_jquery,
-			o = {},
+		const s2j = $.struts2_jquery;
+		let	o = {},
 			eo = {},
 			duration = 2000,
 			callback = null,

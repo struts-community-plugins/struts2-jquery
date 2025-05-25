@@ -15,6 +15,7 @@
  */
 
 /*global jQuery, window, CKEDITOR, tinyMCE, tinymce */
+/*jslint evil: true */
 "use strict";
 (function($) {
 	/**
@@ -28,12 +29,12 @@
 
 		// clear orphan instances from memory
 		clean : function($elem) {
-			var self = this;
+			const self = this;
 			if (!window.CKEDITOR) {
 				return;
 			}
 			$.each(self.editors, function(i, editor) {
-				var inst = CKEDITOR.instances[editor];
+				const inst = CKEDITOR.instances[editor];
 				if ($elem.length === 0 || !inst || inst.textarea !== $elem[0]) {
 					self.editors.splice(i);
 					delete CKEDITOR.instances[editor];
@@ -43,9 +44,9 @@
 
 		// Handle CKEditor
 		ckeditor : function($elem, o) {
-			var self = this,
-				inst,
-				ckeditorTopic = 's2j_ckeditor_' + o.id,
+			const self = this,
+				ckeditorTopic = 's2j_ckeditor_' + o.id;
+			let	inst,
 				callbackFunction;
 			self.log('init ckeditor with id: ' + o.id);
 			self.require("js/ckeditor/ckeditor.js");
@@ -105,7 +106,7 @@
 
 			if (o.onblurtopics) {
 				inst.on('blur', function(e) {
-					var ed = $(self.escId(e.editor.element.$.id));
+					const ed = $(self.escId(e.editor.element.$.id));
 					self.publishTopic(ed, o.onblurtopics, {
 						editor : ed
 					});
@@ -117,7 +118,7 @@
 
 			if (o.onfocustopics) {
 				inst.on('focus', function(e) {
-					var ed = $(self.escId(e.editor.element.$.id));
+					const ed = $(self.escId(e.editor.element.$.id));
 					self.publishTopic(ed, o.onfocustopics, {
 						editor : ed
 					});
@@ -128,7 +129,7 @@
 			}
 			if (o.oncha) {
 				inst.on('change', function(e) {
-					var ed = $(self.escId(e.editor.element.$.id));
+					const ed = $(self.escId(e.editor.element.$.id));
 					self.publishTopic(ed, o.oncha, {
 						editor : ed
 					});
@@ -141,7 +142,7 @@
 
 		// Handle Tinymce
 		tinymceEditor : function($elem, o) {
-			var self = this,
+			const self = this,
 				tinymceTopic = 's2j_tinymce_' + o.id;
 			self.log('init tinymce with id: ' + o.id);
 			self.require("js/tinymce/jquery.tinymce.min.js");
@@ -166,7 +167,7 @@
 			if (o.oncha) {
 				o.onchange_callback = function(ed) {
 					if (tinyMCE.activeEditor.isDirty()) {
-						var data = {};
+						const data = {};
 						data.editor = ed;
 						data.content = ed.getBody().innerHTML;
 
@@ -177,7 +178,7 @@
 			}
 			if (o.onsavetopics) {
 				o.save_callback = function(id, html, body) {
-					var data = {};
+					const data = {};
 					data.editorid = id;
 					data.html = html;
 					data.body = body;
@@ -189,7 +190,7 @@
 			}
 			if (o.oneventtopics) {
 				o.handle_event_callback = function(event) {
-					var data = {};
+					const data = {};
 					data.event = event;
 					data.returnvalue = true;
 
@@ -205,7 +206,7 @@
                     tinyMCE.execCommand("mceAddEditor", true, o.id);
 
 
-					var dom = ed.dom,
+					const dom = ed.dom,
 						doc = ed.getDoc();
 
 					if (o.onblurtopics) {

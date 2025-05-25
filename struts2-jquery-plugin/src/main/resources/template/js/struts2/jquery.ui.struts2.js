@@ -34,9 +34,9 @@
 
         /** opens a dialog if attribute openDialog in Anchor or Submit Tag is set to true */
         opendialog: function ($elem, o) {
-            var self = this,
-                dialog,
+            const self = this,
                 openTopic = '_s2j_dialog_open_' + o.id;
+            let dialog;
             self.log('open dialog : ' + o.opendialog);
 
             if (o.opendialog) {
@@ -54,8 +54,8 @@
 
         /** handle interaction draggable */
         draggable: function ($elem, o) {
-            var self = this,
-                daos = o.draggableoptions,
+            const self = this;
+            let daos = o.draggableoptions,
                 dao = window[daos];
             self.log("init draggable with id: " + o.id);
             if (!self.loadAtOnce) {
@@ -84,8 +84,8 @@
 
         /** handle interaction droppable */
         droppable: function ($elem, o) {
-            var self = this,
-                doos = o.droppableoptions,
+            const self = this;
+            let doos = o.droppableoptions,
                 doo = window[doos];
             self.log("droppable : " + o.id);
             if (!self.loadAtOnce) {
@@ -119,8 +119,8 @@
 
         /** handle interaction selectable */
         selectable: function ($elem, o) {
-            var self = this,
-                seos = o.selectableoptions,
+            const self = this;
+            let seos = o.selectableoptions,
                 seo = window[seos];
             self.log('selectable : ' + o.id);
             if (!self.loadAtOnce) {
@@ -147,8 +147,8 @@
 
         /** handle interaction sortable */
         sortable: function ($elem, o) {
-            var self = this,
-                soos = o.sortableoptions,
+            const self = this;
+            let soos = o.sortableoptions,
                 soo = window[soos];
             self.log('sortable : ' + o.id);
             if (!self.loadAtOnce) {
@@ -184,8 +184,8 @@
 
         /** handle interaction resizable */
         resizable: function ($elem, o) {
-            var self = this,
-                ros = o.resizableoptions,
+            const self = this;
+            let ros = o.resizableoptions,
                 ro = window[ros];
             if (!self.loadAtOnce) {
                 self.require([
@@ -210,10 +210,10 @@
 
         /** Handle the Dialog Widget */
         dialog: function ($elem, o) {
-            var self = this;
+            const self = this;
             self.log('init dialog with id: ' + o.id);
 
-            var jsFiles = [
+            const jsFiles = [
                 "js/base/widget" + self.minSuffix + ".js",
                 "js/base/mouse" + self.minSuffix + ".js",
                 "js/base/position" + self.minSuffix + ".js",
@@ -265,7 +265,7 @@
             }
 
             o.open = function (event, ui) {
-                var data = {},
+                const data = {},
                     divTopic = '_s2j_topic_load_' + o.id;
 
                 data.event = event;
@@ -284,7 +284,7 @@
             o.focus = self.pubTops($elem, o.onalw, o.onfocustopics);
             o.beforeClose = function () {
 
-                var data = {};
+                const data = {};
                 data.close = true;
 
                 self.publishTopic($elem, o.onalw, data);
@@ -303,10 +303,10 @@
 
         /** Handle the TabbedPanel Widget */
         tabbedpanel: function ($elem, o) {
-            var self = this,
+            const self = this,
                 ahp = {},
-                disabledtabsStr = o.disabledtabs,
-                disabledtabs = window[disabledtabsStr],
+                disabledtabsStr = o.disabledtabs;
+            let disabledtabs = window[disabledtabsStr],
                 tabs = $elem.data('taboptions'),
                 tabStr = "",
                 closable = false,
@@ -359,7 +359,7 @@
             };
 
             o.beforeLoad = function (event, ui) {
-                var data = {},
+                const data = {},
                     form = "" + ui.tab.data("form");
                 data.event = event;
                 data.ui = ui;
@@ -384,7 +384,7 @@
                 }
             };
             o.activate = function (event, ui) {
-                var data = {};
+                const data = {};
                 data.event = event;
                 data.ui = ui;
 
@@ -484,7 +484,7 @@
         },
         /** Load Ressources for Datepicker Widget */
         initDatepicker: function (timepicker) {
-            var self = this;
+            const self = this;
             if (!self.loadAtOnce) {
                 self.require([
                     "js/base/keycode" + self.minSuffix + ".js",
@@ -513,9 +513,9 @@
         },
         /** Handle the Datepicker Widget */
         datepicker: function ($elem, o) {
-            var self = this,
-                params = {},
-                oat = o.onalw, noms, nom, sos, so;
+            const self = this,
+                params = {};
+            let oat = o.onalw, noms, nom, sos, so;
             self.log('init datepicker with id: ' + o.id);
 
             $.extend(params, o);
@@ -637,7 +637,7 @@
 
         /** Handle the Slider Widget */
         slider: function ($elem, o) {
-            var self = this,
+            const self = this,
                 data = {};
             self.log('init slider with id: ' + o.id);
             if (!self.loadAtOnce) {
@@ -687,7 +687,7 @@
 
         /** Handle the Spinner Widget */
         spinner: function ($elem, o) {
-            var self = this,
+            const self = this,
                 currentValue = $elem.val();
 
             self.log('init spinner with id: ' + o.id);
@@ -717,7 +717,7 @@
 
         /** Handle the Progressbar Widget */
         progressbar: function ($elem, o) {
-            var self = this,
+            const self = this,
                 params = {};
             self.log('init progressbar with id: ' + o.id);
             if (!self.loadAtOnce) {
@@ -742,7 +742,7 @@
 
         /** Handle the Menu Widget */
         menu: function ($elem, o) {
-            var self = this;
+            const self = this;
             self.log('init menu with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
@@ -760,15 +760,15 @@
 
         /** Handle the Menu Item */
         menuItem: function ($elem, o) {
-            var self = this;
+            const self = this;
             self.anchor($elem, o);
         },
 
         /** Handle the Accordion Widget */
         accordion: function ($elem, o) {
-            var self = this,
-                data = {},
-                active = true,
+            const self = this,
+                data = {};
+            let active = true,
                 aktivItem;
             self.log('init accordion with id: ' + o.id);
             if (!self.loadAtOnce) {
@@ -847,9 +847,9 @@
 
         /** Handle the Autocompleter Widget */
         autocompleter: function ($elem, o) {
-            var self = this,
-                params = {},
-                url = '';
+            const self = this,
+                params = {};
+            let url = '';
             self.log('init autocompleter with id: ' + o.id);
             if (!self.loadAtOnce) {
                 self.require([
@@ -880,21 +880,20 @@
                         };
 
                         // inline function handler
-                        var getObjectProperty = function( obj, prop ) {
-                            var parts = prop.split( ',' ),
+                        const getObjectProperty = function (obj, prop) {
+                            let parts = prop.split(','),
                                 last = parts.pop(),
                                 l = parts.length,
                                 i = 1,
-                                current = parts[ 0 ];
-                            if ( l > 0 ) {
-                                while ( ( obj = obj[ current ] ) && i < 1 ) {
-                                    current = parts[ i ];
+                                current = parts[0];
+                            if (l > 0) {
+                                while ((obj = obj[current]) && i < 1) {
+                                    current = parts[i];
                                     i++;
                                 }
-                            }
-                            else {
-                                if ( obj ) {
-                                    return obj[ last ];
+                            } else {
+                                if (obj) {
+                                    return obj[last];
                                 }
                             }
                         };
@@ -912,7 +911,7 @@
                             },
                             success: function (data) {
                                 self.currentXhr[o.id] = null;
-                                var x = 0,
+                                let x = 0,
                                     isMap = false,
                                     result = [];
                                 if (data[o.list] !== null) {
@@ -934,7 +933,7 @@
                                         }
                                         else {
                                             if (o.listkey !== undefined && o.listvalue !== undefined) {
-                                                var label;
+                                                let label;
                                                 if (o.listlabel) {
                                                     label = val[o.listlabel];
                                                 }
@@ -1021,7 +1020,7 @@
             params.select = function (event, ui) {
                 if (o.onselecttopics) {
                     params.select = self.pubTops($elem, o.onalw, o.onselecttopics);
-                    var data = {};
+                    const data = {};
                     data.event = event;
                     data.ui = ui;
 
@@ -1062,7 +1061,7 @@
 
         /** Handle the Button Widget for Anchor or Submit Tag*/
         jquerybutton: function ($elem, o) {
-            var self = this,
+            const self = this,
                 params = {};
             self.log('init button with id: ' + o.id);
             if (!self.loadAtOnce) {
@@ -1095,7 +1094,7 @@
 
         /** Handle the Buttonset Widget for Radiobuttons or Checkboxes */
         buttonset: function ($elem, o) {
-            var self = this,
+            const self = this,
                 buttonsetLoadTopic = '_s2j_topic_load_' + o.id,
                 buttonsetTopic = 's2j_buttonset_' + o.id;
             self.log('init buttonset with id: ' + o.id);
@@ -1159,7 +1158,7 @@
                 $elem.publish(buttonsetLoadTopic, o);
             }
             else {
-                var elements = $elem.find("input[type=radio], input[type=checkbox]");
+                const elements = $elem.find("input[type=radio], input[type=checkbox]");
                 if (o.oncha) {
                     elements.change(function () {
                         $.each(o.oncha.split(','), function (i, cts) {
@@ -1180,7 +1179,7 @@
      * handler to open a dialog
      */
     $.subscribeHandler($.struts2_jquery_ui.handler.open_dialog, function (event, data) {
-        var s2j = $.struts2_jquery_ui,
+        const s2j = $.struts2_jquery_ui,
             o = $(this).data('s2j_options');
         if (data) {
             if (data.href && data.href !== '#') {
@@ -1198,7 +1197,7 @@
         }
 
         $(this).dialog("option", "open", function (event, ui) {
-            var data = {},
+            const data = {},
                 divTopic = '_s2j_topic_load_' + o.id;
             data.event = event;
             data.ui = ui;

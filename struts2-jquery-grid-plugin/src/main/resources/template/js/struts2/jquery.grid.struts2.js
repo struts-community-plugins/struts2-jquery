@@ -25,14 +25,14 @@
 
 		lastselectedrow : '',
 		navigatorButtons : function($elem, buttons, pager) {
-			var self = this;
+			const self = this;
 			$.each(buttons, function(name, options) {
 				if(options.title) {
 					if(options.title === "seperator"){
 						$elem.jqGrid('navSeparatorAdd', pager);
 					}
 					else if (options.topic || options.onclick){
-						var bopts = {};
+						const bopts = {};
 						if(options.id) {
 							bopts.id = options.id;
 						}
@@ -57,7 +57,7 @@
 
 						if(options.topic) {
 							bopts.onClickButton = function() {
-								var params = {};
+								const params = {};
 								params.grid = $elem;
 
 								self.publishTopic($elem, options.topic, params);
@@ -73,11 +73,11 @@
 			});
 		},
 		parseGridParams : function($elem, o, params) {
-			var self = this;
+			const self = this;
 			if (o.onselectrowtopics || (o.editurl && o.editinline === true)) {
 				params.onSelectRow = function(id, status) {
-					var data = {},
-						oneditbefor = null,
+					const data = {};
+					let	oneditbefor = null,
 						onsuccess = null,
 						onerror = null,
 						onaftersave = null;
@@ -101,7 +101,7 @@
 						}
 						if (o.oneisuccess) {
 							onsuccess = function(response) {
-								var d = {};
+								const d = {};
 								d.response = response;
 								self.publishTopic($elem, o.oneisuccess, d);
 								if(response.status >= 400) {
@@ -114,7 +114,7 @@
 						}
 						if (o.oneierror) {
 							onerror = function(rowid, response) {
-								var d = {};
+								const d = {};
 								d.rowid = rowid;
 								d.response = response;
 								self.publishTopic($elem, o.oneierror, d);
@@ -122,23 +122,21 @@
 						}
 						if (o.oneisave) {
 							onaftersave = function(rowid, response) {
-								var d = {};
+								const d = {};
 								d.rowid = rowid;
 								d.response = response;
 								self.publishTopic($elem, o.oneisave, d);
 							};
 						}
 
-						$elem.jqGrid('editRow', id, true, oneditbefor,
-								onsuccess, null, null, onaftersave, onerror,
-								null);
+						$elem.jqGrid('editRow', id, true, oneditbefor, onsuccess, null, null, onaftersave, onerror, null);
 					}
 				};
 			}
 
 			if (o.oncesuccess) {
 				params.afterSaveCell = function(rowid, cellname, value, iRow, iCol) {
-					var d = {};
+					const d = {};
 					d.rowid = rowid;
 					d.cellname = cellname;
 					d.value = value;
@@ -150,7 +148,7 @@
 
 			if (o.onceerror) {
 				params.errorCell = function(response, status) {
-					var d = {};
+					const d = {};
 					d.response = response;
 					d.status = status;
 					self.publishTopic($elem, o.onceerror, d);
@@ -159,7 +157,7 @@
 
 			if (o.onselectalltopics) {
 				params.onSelectAll = function(ids, status) {
-					var data = {};
+					const data = {};
 					data.ids = ids;
 					data.status = status;
 					data.grid = $elem;
@@ -170,8 +168,7 @@
 			}
 			if (o.onbef) {
 				params.loadBeforeSend = function(xhr) {
-
-					var orginal = {};
+					const orginal = {};
 					orginal.xhr = xhr;
 					orginal.proceed = true;
 
@@ -184,8 +181,7 @@
 
 			if (o.onpagingtopics) {
 				params.onPaging = function(pgButton) {
-
-					var orginal = {};
+					const orginal = {};
 					orginal.pgButton = pgButton;
 
 					self.publishTopic($elem, o.onalw, orginal);
@@ -195,8 +191,7 @@
 
 			if (o.onsortcoltopics) {
 				params.onSortCol = function(index, iCol, sortorder) {
-
-					var orginal = {};
+					const orginal = {};
 					orginal.index = index;
 					orginal.iCol = iCol;
 					orginal.sortorder = sortorder;
@@ -208,8 +203,7 @@
 
 			if (o.oncellselecttopics) {
 				params.onCellSelect = function(rowid, iCol, cellcontent, e) {
-
-					var orginal = {};
+					const orginal = {};
 					orginal.rowid = rowid;
 					orginal.iCol = iCol;
 					orginal.cellcontent = cellcontent;
@@ -222,8 +216,7 @@
 
 			if (o.onclickgroup) {
 				params.onClickGroup = function(groupid, collapsed ) {
-
-					var orginal = {};
+					const orginal = {};
 					orginal.groupid = groupid;
 					orginal.collapsed = collapsed;
 
@@ -234,8 +227,7 @@
 
 			if (o.ondblclickrow) {
 				params.ondblClickRow = function(rowid, iRow, iCol, e) {
-
-					var orginal = {};
+					const orginal = {};
 					orginal.rowid = rowid;
 					orginal.iRow = iRow;
 					orginal.iCol = iCol;
@@ -248,8 +240,7 @@
 
 			if (o.onrightclickrow) {
 				params.onRightClickRow = function(rowid, iRow, iCol, e) {
-
-					var orginal = {};
+					const orginal = {};
 					orginal.rowid = rowid;
 					orginal.iRow = iRow;
 					orginal.iCol = iCol;
@@ -262,17 +253,17 @@
 
 			params.gridComplete = function(data) {
 
-				var daos = o.draggableoptions,
-				dao = window[daos],
-				doos = o.droppableoptions,
-				doo = window[doos],
-				soos = o.sortableoptions,
-				soo = window[soos],
-				ros = o.resizableoptions,
-				ro = window[ros],
-				ddo = {},
-				navparams = {},
-				fpara = {};
+				let daos = o.draggableoptions,
+					dao = window[daos],
+					doos = o.droppableoptions,
+					doo = window[doos],
+					soos = o.sortableoptions,
+					soo = window[soos],
+					ros = o.resizableoptions,
+					ro = window[ros],
+					ddo = {},
+					navparams = {},
+					fpara = {};
 
 				if(!$elem.data('_s2jg_init')) {
 					$elem.data('_s2jg_init', true);
@@ -406,8 +397,7 @@
 
 			if (o.onfocustopics) {
 				params.beforeSelectRow = function(rowid, e) {
-
-					var orginal = {};
+					const orginal = {};
 					orginal.rowid = rowid;
 					orginal.e = e;
 
@@ -459,8 +449,8 @@
 				params.gridview = false;
 				params.subGridRowExpanded = function(subgrid_id, row_id) {
 
-					var orginal = {},
-						so = o.subgridoptions,
+					const orginal = {};
+					let so = o.subgridoptions,
 						subgridtableid = subgrid_id.replace(/(:|\.)/g, '\\$1') + "_table",
 						subgrid = $(self.escId(subgrid_id)),
 						subgridhtml = "<table id='" + subgridtableid + "' class='scroll'></table>",
@@ -523,7 +513,7 @@
 			}
 
 			if (o.url) {
-				var data = '';
+				let data = '';
 				if (o.formids) {
 					if (!self.loadAtOnce) {
 						self.require("js/plugins/jquery.form" + self.minSuffix + ".js");
@@ -542,8 +532,8 @@
 			return params;
 		},
 		grid : function($elem, o) {
-			var self = this,
-				params = {};
+			const self = this;
+			let	params = {};
 			self.log('grid for : ' + o.id);
 			self.require("i18n/grid.locale-" + self.gridLocal + ".js",
 					function() {
@@ -605,7 +595,7 @@
 
 	// Register handler for reloading grid
 	$.subscribeHandler('_s2j_reloadgrid', function(event, data) {
-		var s2jg = $.struts2_jquery_grid,
+		let s2jg = $.struts2_jquery_grid,
 			o = {},
 			formdata = '',
 			grid;
@@ -619,7 +609,7 @@
 						s2jg.require("js/plugins/jquery.form" + s2jg.minSuffix + ".js");
 					}
 					$.each(o.formids.split(','), function(i, fid) {
-						var query = $(s2jg.escId(fid)).formSerialize();
+						const query = $(s2jg.escId(fid)).formSerialize();
 						if (formdata !== '') {
 							formdata = formdata + '&' + query;
 						} else {

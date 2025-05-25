@@ -26,44 +26,47 @@
 
 		// Render a Chart Area
 		chart : function($elem, o) {
-			var self = this,
+			const self = this,
 				ajaxData = [],
-				chartTopic = '_s2j_chart_topic',
-				plot;
+				chartTopic = '_s2j_chart_topic';
+			let plot;
 
-			self.require("js/flot/jquery.canvaswrapper" + self.minSuffix + ".js");
-			self.require("js/flot/jquery.colorhelpers" + self.minSuffix + ".js");
-			self.require("js/flot/jquery.flot" + self.minSuffix + ".js");
-			self.require("js/flot/jquery.flot.saturated" + self.minSuffix + ".js");
-			self.require("js/flot/jquery.flot.browser" + self.minSuffix + ".js");
-			self.require("js/flot/jquery.flot.drawSeries" + self.minSuffix + ".js");
-			self.require("js/flot/jquery.flot.uiConstants" + self.minSuffix + ".js");
-			self.require("js/flot/jquery.flot.legend" + self.minSuffix + ".js");
+			const jsFiles = [
+				"js/flot/jquery.canvaswrapper" + self.minSuffix + ".js",
+				"js/flot/jquery.colorhelpers" + self.minSuffix + ".js",
+				"js/flot/jquery.flot" + self.minSuffix + ".js",
+				"js/flot/jquery.flot.saturated" + self.minSuffix + ".js",
+				"js/flot/jquery.flot.browser" + self.minSuffix + ".js",
+				"js/flot/jquery.flot.drawSeries" + self.minSuffix + ".js",
+				"js/flot/jquery.flot.uiConstants" + self.minSuffix + ".js",
+				"js/flot/jquery.flot.legend" + self.minSuffix + ".js"
+			]
 			if (o.crosshair) {
-				self.require("js/flot/jquery.flot.crosshair" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/jquery.flot.crosshair" + self.minSuffix + ".js");
 			}
 			if ((o.xaxis && o.xaxis.mode === "time") || (o.yaxis && o.yaxis.mode === "time")) {
-				self.require("js/flot/globalize" + self.minSuffix + ".js");
-				self.require("js/flot/jquery.flot.time" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/globalize" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/jquery.flot.time" + self.minSuffix + ".js");
 			}
 			if ((o.xaxis && o.xaxis.axisLabel) || (o.yaxis && o.yaxis.axisLabel)) {
-				self.require("js/flot/jquery.flot.axislabels" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/jquery.flot.axislabels" + self.minSuffix + ".js");
 			}
 			if (o.fill) {
-				self.require("js/flot/jquery.flot.fillbetween" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/jquery.flot.fillbetween" + self.minSuffix + ".js");
 			}
 			if (o.stack) {
-				self.require("js/flot/jquery.flot.stack" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/jquery.flot.stack" + self.minSuffix + ".js");
 			}
 			if (o.series && o.series.curvedLines) {
-				self.require("js/flot/curvedLines" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/curvedLines" + self.minSuffix + ".js");
 			}
 			if (o.series && o.series.pie) {
-				self.require("js/flot/jquery.flot.pie" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/jquery.flot.pie" + self.minSuffix + ".js");
 			}
 			if (o.autoresize) {
-				self.require("js/flot/jquery.flot.resize" + self.minSuffix + ".js");
+				jsFiles.push("js/flot/jquery.flot.resize" + self.minSuffix + ".js");
 			}
+			self.require(jsFiles);
 
 			self.charts[o.id] = [];
 			$.each(o.data, function(i, d) {
@@ -91,7 +94,7 @@
 
 			if(o.onclick) {
 				$elem.bind("plotclick", function (event, pos, item) {
-					var orginal = {};
+					const orginal = {};
 					orginal.plot = plot;
 					orginal.event = event;
 					orginal.pos = pos;
@@ -111,7 +114,7 @@
 			}
 
 			$.each(ajaxData, function(i, ad) {
-				var topic = chartTopic+o.id+i;
+				const topic = chartTopic + o.id + i;
 				self.subscribeTopics($elem, topic, '_s2j_chart', ad);
 				self.subscribeTopics($elem, ad.reloadtopics, '_s2j_chart', ad);
 				self.subscribeTopics($elem, ad.listentopics, '_s2j_chart', ad);
@@ -131,11 +134,11 @@
 	 */
 	$.subscribeHandler('_s2j_chart', function(event, data) {
 
-		var s2j = $.struts2_jquery,
+		const s2j = $.struts2_jquery,
 			c = $(event.target),
 			params = {},
-			o = {},
-			indi;
+			o = {};
+		let	indi;
 		if (data) {
 			$.extend(o, data);
 		}
@@ -155,8 +158,8 @@
 
 		params.success = function(data, status, request) {
 
-			var orginal = {},
-				x = 0,
+			const orginal = {};
+			let	x = 0,
 				isMap = false,
 				isFetched = false,
 				floatOptions = o.plot,
@@ -171,7 +174,7 @@
 					isMap = true;
 				}
 				$.each(data[o.list], function(j, val) {
-					var value;
+					let value;
 					if (isMap) {
 						value = [];
 						value.push(j);
@@ -236,7 +239,7 @@
 					s2j.require("js/plugins/jquery.form" + s2j.minSuffix + ".js");
 				}
 				$.each(o.formids.split(','), function(i, fid) {
-					var query = $(s2j.escId(fid)).formSerialize();
+					const query = $(s2j.escId(fid)).formSerialize();
 					if (params.data !== '') {
 						params.data = params.data + '&' + query;
 					}
@@ -249,9 +252,7 @@
 			params.dataType = "json";
 
 			// fix 'issue' wherein IIS will reject post without data
-			if (!params.data) {
-				params.data = {};
-			}
+			params.data = params.data || {};
 
 			o.options = params;
 			// publish all 'before' and 'always' topics
