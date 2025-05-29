@@ -52,6 +52,21 @@
 				<failsafe.webdriver.name>HTMLUnit</failsafe.webdriver.name>
 			</properties>
 		</profile>
+		<profile>
+			<id>ci-chrome</id>
+			<properties>
+				<browser>chrome</browser>
+			</properties>
+			<dependencies>
+				<!-- Add selenium-chrome-driver dependency if not already present -->
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-chrome-driver</artifactId>
+					<version>${selenium.version}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
 	</profiles>
 
 	<build>

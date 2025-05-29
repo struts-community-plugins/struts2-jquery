@@ -46,7 +46,7 @@ jobs:
     - name: Build & Install
       run: mvn -B -V -DskipITs install
     - name: Verify IT
-      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-htmlunit verify
+      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome verify
 #    - name: Verify IT with PhantomJS
 #      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P phantomjs verify
     - name: Deploy SNAPSHOT
