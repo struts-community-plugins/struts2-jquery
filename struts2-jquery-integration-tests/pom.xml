@@ -22,8 +22,9 @@
 		<!-- plugins -->
 		<maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
 		<!-- dependencies -->
-		<selenium.version>4.31.0</selenium.version>
-		<htmlunit-driver.version>4.30.0</htmlunit-driver.version>
+		<selenium.version>4.33.0</selenium.version>
+		<htmlunit-driver.version>4.32.0</htmlunit-driver.version>
+		<webdrivermanager.version>6.1.0</webdrivermanager.version>
 		<lombok.version>1.18.38</lombok.version>
 		<guava.version>33.4.8-jre</guava.version>
 		<phantomjsdriver.version>1.5.0</phantomjsdriver.version>
@@ -158,6 +159,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
@@ -204,6 +210,13 @@
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>htmlunit3-driver</artifactId>
 				<version>${htmlunit-driver.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.github.bonigarcia</groupId>
+				<artifactId>webdrivermanager</artifactId>
+				<version>${webdrivermanager.version}</version>
 				<scope>test</scope>
 			</dependency>
 

@@ -12,7 +12,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-@Disabled
 @Tag("PhantomJS")
 public class SliderTagIT extends AbstractJQueryTest {
     @ParameterizedTest

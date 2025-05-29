@@ -36,8 +36,6 @@ public class DivTagIT extends AbstractJQueryTest {
         driver.get(baseUrl + "/div/events.action");
 
         Thread.sleep(100);
-        wait.until(DOCUMENT_READY);
-        wait.until(JQUERY_DEFINED);
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 
         assertEquals("Before div", alert.getText());

@@ -14,7 +14,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@Disabled
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
 @Tag("CI-HTMLUnit")
