@@ -31,7 +31,7 @@ public abstract class AbstractJQueryTest {
         ChromeOptions options = new ChromeOptions();
         options.setAcceptInsecureCerts(true);
         options.setImplicitWaitTimeout(Duration.ofMillis(100));
-        options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage");
+        options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
         driver = new ChromeDriver(options);
 
         //driver = WebDriverFactory.getWebDriver();

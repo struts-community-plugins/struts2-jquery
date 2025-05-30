@@ -43,10 +43,22 @@ jobs:
         server-id: struts2-jquery.snapshots
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
+    - name: Print Java version
+      run: java -version
+    - name: Print Maven version
+      run: mvn -version
+    - name: Print Chrome version
+      run: google-chrome --version
+    - name: Print ChromeDriver version
+      run: chromedriver --version
+    - name: Print OS details
+      run: uname -a
+    - name: Test outbound access
+      run: curl -I https://code.jquery.com/jquery-3.7.1.min.js
     - name: Build & Install
       run: mvn -B -V -DskipITs install
     - name: Verify IT
-      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome verify
+      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome verify -X -e
 #    - name: Verify IT with PhantomJS
 #      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P phantomjs verify
     - name: Deploy SNAPSHOT
