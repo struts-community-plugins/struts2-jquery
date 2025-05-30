@@ -23,7 +23,10 @@ public abstract class AbstractJQueryTest {
     @BeforeEach
     public void before() {
         driver = WebDriverFactory.getWebDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
     @AfterEach
@@ -47,11 +50,28 @@ public abstract class AbstractJQueryTest {
     protected static final JQueryNoAnimations JQUERY_NO_ANIMATIONS = new JQueryNoAnimations();
 
     protected void waitForInitialPageLoad() throws InterruptedException {
-        wait.until(DOCUMENT_READY);
-        wait.until(JQUERY_DEFINED);
-        wait.until(STRUTS2_JQUERY_DEFINED);
-        wait.until(JQUERY_IDLE);
-        wait.until(JQUERY_NO_ANIMATIONS);
+        try {
+            wait.until(DOCUMENT_READY);
+            wait.until(JQUERY_DEFINED);
+            wait.until(STRUTS2_JQUERY_DEFINED);
+            wait.until(JQUERY_IDLE);
+            wait.until(JQUERY_NO_ANIMATIONS);
+        } catch (Exception e) {
+            try {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                String debugInfo = (String) js.executeScript(
+                        "return 'ReadyState: ' + document.readyState + " +
+                                "', jQuery: ' + (typeof jQuery !== 'undefined') + " +
+                                "', Struts2jQuery: ' + (typeof jQuery !== 'undefined' && typeof jQuery.struts2_jquery !== 'undefined') + " +
+                                "', Active: ' + (typeof jQuery !== 'undefined' ? jQuery.active : 'N/A') + " +
+                                "', URL: ' + window.location.href"
+                );
+                System.err.println("Page load debug info: " + debugInfo);
+            } catch (Exception debugE) {
+                System.err.println("Debug failed: " + debugE.getMessage());
+            }
+            throw e;
+        }
     }
 
     // Debug widget state

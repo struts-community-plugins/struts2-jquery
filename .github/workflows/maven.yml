@@ -25,8 +25,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4.2.2
-    - name: Install Chrome
-      run: sudo apt-get update && sudo apt-get install -y google-chrome-stable
+    # - name: Install Chrome
+    #  run: sudo apt-get update && sudo apt-get install -y google-chrome-stable
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@latest
+      with:
+        chrome-version: stable
+    - name: Setup ChromeDriver
+      uses: nanasess/setup-chromedriver@master
+      with:
+        chromedriver-version: stable
     - name: Set up cache
       uses: actions/cache@v4.2.3
       with:
@@ -102,7 +110,7 @@ jobs:
           echo "❌ struts2-jquery integration file not found!"
         fi
     - name: Verify IT
-      run: mvn -DskipMinify=false --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome -Dfailsafe.webdriver.name=ChromeDriver -Dmaven.failsafe.forkCount=1 -Dmaven.failsafe.reuseForks=false -Dmaven.failsafe.timeout=600 -Djetty.tmpdir=$PWD/tmp verify -e
+      run: mvn -Xmx2048m -XX:MaxMetaspaceSize=512m -DskipMinify=false --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome -Dfailsafe.webdriver.name=ChromeDriver -Dmaven.failsafe.forkCount=1 -Dmaven.failsafe.reuseForks=false -Dmaven.failsafe.timeout=600 -Djetty.tmpdir=$PWD/tmp verify -e
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
       env:

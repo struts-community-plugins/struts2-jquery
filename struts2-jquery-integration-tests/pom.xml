@@ -129,7 +129,8 @@
 							<webDriverName>${failsafe.webdriver.name}</webDriverName>
 							<webdriver.debug>true</webdriver.debug>
 						</systemPropertyVariables>
-						<forkedProcessTimeoutInSeconds>300</forkedProcessTimeoutInSeconds>
+						<forkedProcessTimeoutInSeconds>600</forkedProcessTimeoutInSeconds> <!-- Increased -->
+						<argLine>-Xmx2048m -XX:MaxMetaspaceSize=512m</argLine> <!-- Added memory settings -->
 					</configuration>
 					<executions>
 						<execution>
@@ -173,6 +174,11 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>htmlunit3-driver</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-http</artifactId>
 		</dependency>
 
 		<dependency>
@@ -221,6 +227,12 @@
 				<artifactId>selenium-java</artifactId>
 				<version>${selenium.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-http</artifactId>
+				<version>${selenium.version}</version>
 			</dependency>
 
 			<dependency>
