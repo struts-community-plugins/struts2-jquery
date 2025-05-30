@@ -1,19 +1,19 @@
 package com.jgeppert.jquery.radio;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.jgeppert.jquery.AbstractJQueryTest;
-
-import java.util.List;
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
+@Tag("CI-CHROME")
 @Tag("CI-HTMLUnit")
 public class RadioTagIT extends AbstractJQueryTest {
     @ParameterizedTest

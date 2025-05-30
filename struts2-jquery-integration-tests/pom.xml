@@ -55,6 +55,8 @@
 		<profile>
 			<id>ci-chrome</id>
 			<properties>
+				<failsafe.test.tag>CI-CHROME</failsafe.test.tag>
+				<failsafe.webdriver.name>ChromeDriver</failsafe.webdriver.name>
 				<browser>chrome</browser>
 			</properties>
 			<dependencies>
@@ -92,9 +94,6 @@
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
 						<scan>10</scan>
-						<webApp>
-							<overrideDescriptor>${project.basedir}/src/main/webapp/WEB-INF/web.xml</overrideDescriptor>
-						</webApp>
 					</configuration>
 					<executions>
 						<execution>
