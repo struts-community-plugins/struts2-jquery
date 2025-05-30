@@ -13,10 +13,20 @@ public final class WebDriverFactory {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.setAcceptInsecureCerts(true);
-            options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
+            options.addArguments("--headless");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--window-size=1920,1080");
             return new ChromeDriver(options);
         } else {
-            return new HtmlUnitDriver(true);
+            HtmlUnitDriver driver = new HtmlUnitDriver(true);
+            driver.getWebClient().getOptions().setTimeout(30000); // Longer timeout for CI
+            driver.getWebClient().getOptions().setJavaScriptEnabled(true);
+            driver.getWebClient().getOptions().setCssEnabled(true);
+            driver.getWebClient().getOptions().setThrowExceptionOnFailingStatusCode(false);
+
+            return driver;
         }
     }
 }

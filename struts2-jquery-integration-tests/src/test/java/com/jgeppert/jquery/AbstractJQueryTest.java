@@ -5,8 +5,7 @@ import com.jgeppert.jquery.selenium.JQueryDefinedCondition;
 import com.jgeppert.jquery.selenium.JQueryIdleCondition;
 import com.jgeppert.jquery.selenium.JQueryNoAnimations;
 import com.jgeppert.jquery.selenium.WebDriverFactory;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,21 +15,17 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public abstract class AbstractJQueryTest {
-    protected static WebDriver driver;
+    protected WebDriver driver;
     protected WebDriverWait wait;
-
-    @BeforeAll
-    public static void beforeAll() {
-        driver = WebDriverFactory.getWebDriver();
-    }
 
     @BeforeEach
     public void before() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        driver = WebDriverFactory.getWebDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @AfterAll
-    public static void afterAll() {
+    @AfterEach
+    public void after() {
         driver.quit();
     }
 

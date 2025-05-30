@@ -57,10 +57,52 @@ jobs:
       run: curl -I https://code.jquery.com/jquery-3.7.1.min.js
     - name: Build & Install
       run: mvn -B -V -DskipITs install
+    - name: Verify jQuery files in JAR
+      run: |
+        echo "🔍 Checking for jQuery files in struts2-jquery-plugin JAR..."
+        
+        # Find the built JAR file
+        JAR_FILE=$(find . -name "struts2-jquery-plugin-*.jar" -not -path "*/target/dependency/*" | head -1)
+        
+        if [ -z "$JAR_FILE" ]; then
+          echo "❌ struts2-jquery-plugin JAR not found!"
+          exit 1
+        fi
+        
+        echo "📦 Found JAR: $JAR_FILE"
+        
+        # Check for jQuery files
+        echo "🔍 Checking for jQuery files..."
+        JQUERY_FILES=$(jar -tf "$JAR_FILE" | grep -E "(jquery|jQuery)" | head -10)
+        
+        if [ -z "$JQUERY_FILES" ]; then
+          echo "❌ No jQuery files found in JAR!"
+          echo "📋 Full JAR contents:"
+          jar -tf "$JAR_FILE" | grep -E "\.(js|css)$" | head -20
+          exit 1
+        else
+          echo "✅ Found jQuery files:"
+          echo "$JQUERY_FILES"
+        fi
+        
+        # Specifically check for core jQuery file
+        JQUERY_CORE=$(jar -tf "$JAR_FILE" | grep -E "jquery.*\.js$" | grep -v "struts")
+        if [ -n "$JQUERY_CORE" ]; then
+          echo "✅ Found core jQuery file: $JQUERY_CORE"
+        else
+          echo "⚠️  Core jQuery file not found, checking template directory..."
+          jar -tf "$JAR_FILE" | grep -E "template.*jquery.*\.js$" || echo "❌ No jQuery found in template directory either"
+        fi
+        
+        # Check for struts2-jquery specific files
+        STRUTS_JQUERY=$(jar -tf "$JAR_FILE" | grep -E "jquery\.struts2.*\.js$")
+        if [ -n "$STRUTS_JQUERY" ]; then
+          echo "✅ Found struts2-jquery integration file: $STRUTS_JQUERY"
+        else
+          echo "❌ struts2-jquery integration file not found!"
+        fi
     - name: Verify IT
       run: mvn -DskipMinify=false --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome -Dfailsafe.webdriver.name=ChromeDriver -Djetty.tmpdir=$PWD/tmp verify -e
-#    - name: Verify IT with PhantomJS
-#      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P phantomjs verify
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
       env:

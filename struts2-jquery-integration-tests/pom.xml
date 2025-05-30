@@ -94,6 +94,10 @@
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
 						<scan>10</scan>
+						<systemProperties>
+							<org.eclipse.jetty.util.log.class>org.eclipse.jetty.util.log.StdErrLog</org.eclipse.jetty.util.log.class>
+							<org.eclipse.jetty.LEVEL>DEBUG</org.eclipse.jetty.LEVEL>
+						</systemProperties>
 					</configuration>
 					<executions>
 						<execution>
@@ -122,11 +126,10 @@
 						<reuseForks>true</reuseForks>
 						<groups>${failsafe.test.tag}</groups>
 						<systemPropertyVariables>
-							<property>
-								<name>webDriverName</name>
-								<value>${failsafe.webdriver.name}</value>
-							</property>
+							<webDriverName>${failsafe.webdriver.name}</webDriverName>
+							<webdriver.debug>true</webdriver.debug>
 						</systemPropertyVariables>
+						<forkedProcessTimeoutInSeconds>300</forkedProcessTimeoutInSeconds>
 					</configuration>
 					<executions>
 						<execution>
