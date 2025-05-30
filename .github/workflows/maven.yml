@@ -25,16 +25,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4.2.2
-    # - name: Install Chrome
-    #  run: sudo apt-get update && sudo apt-get install -y google-chrome-stable
-    - name: Setup Chrome
-      uses: browser-actions/setup-chrome@latest
+    - name: Setup Chrome and ChromeDriver
+      uses: browser-actions/setup-chrome@v1
       with:
         chrome-version: stable
-    - name: Setup ChromeDriver
-      uses: nanasess/setup-chromedriver@master
-      with:
-        chromedriver-version: stable
+        install-chromedriver: true
     - name: Set up cache
       uses: actions/cache@v4.2.3
       with:
