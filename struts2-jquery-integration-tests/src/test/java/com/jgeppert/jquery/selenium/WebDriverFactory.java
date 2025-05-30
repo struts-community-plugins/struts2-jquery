@@ -6,6 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public final class WebDriverFactory {
     public static WebDriver getWebDriver() {
         String driverType = System.getProperty("failsafe.webdriver.name", "HTMLUnit");
@@ -71,17 +74,21 @@ public final class WebDriverFactory {
             options.addArguments("--silent");
             options.addArguments("--disable-crash-reporter");
             options.addArguments("--disable-in-process-stack-traces");
-            options.addArguments("--single-process"); // Might help with stability
-            options.addArguments("--no-zygote");
-            options.addArguments("--disable-features=TranslateUI");
-            options.addArguments("--disable-default-apps");
+            options.addArguments("--memory-pressure-off");
+            options.addArguments("--max_old_space_size=4096");
         }
 
         options.setAcceptInsecureCerts(true);
 
-        // Remove automation detection that might interfere with JS
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", java.util.Arrays.asList("enable-automation", "enable-logging"));
+
+        // Add prefs to prevent crashes
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.default_content_setting_values.notifications", 2);
+        prefs.put("profile.default_content_settings.popups", 0);
+        prefs.put("profile.managed_default_content_settings.images", 2);
+        options.setExperimentalOption("prefs", prefs);
         return options;
     }
 
