@@ -33,44 +33,55 @@ public final class WebDriverFactory {
     private static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
 
-        // Essential headless arguments
-        options.addArguments("--headless=new"); // Use new headless mode
+        // Core headless options
+        options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
+
+        // Window and display
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--start-maximized");
+
+        // Security and network - IMPORTANT for jQuery loading
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-web-security");
         options.addArguments("--allow-running-insecure-content");
+        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--ignore-ssl-errors");
+        options.addArguments("--ignore-certificate-errors-spki-list");
+        options.addArguments("--ignore-ssl-certificate-errors");
+
+        // Performance and stability for CI
         options.addArguments("--disable-extensions");
         options.addArguments("--disable-plugins");
-        options.addArguments("--disable-images");
-        options.addArguments("--disable-javascript-harmony-shipping");
         options.addArguments("--disable-background-timer-throttling");
         options.addArguments("--disable-renderer-backgrounding");
         options.addArguments("--disable-backgrounding-occluded-windows");
         options.addArguments("--disable-ipc-flooding-protection");
 
-        // Window and display settings
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--start-maximized");
-        options.addArguments("--force-device-scale-factor=1");
+        // JavaScript and DOM handling
+        options.addArguments("--enable-automation");
+        options.addArguments("--disable-blink-features=AutomationControlled");
 
-        // Network and security
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--ignore-certificate-errors");
-        options.addArguments("--ignore-ssl-errors");
-        options.addArguments("--ignore-certificate-errors-spki-list");
-        options.addArguments("--ignore-ssl-errors-spki-list");
-
-        // Performance optimizations
-        options.addArguments("--memory-pressure-off");
-        options.addArguments("--max_old_space_size=4096");
-
-        // Logging
-        options.addArguments("--enable-logging");
-        options.addArguments("--log-level=0");
-        options.addArguments("--v=1");
+        // CI-specific: Disable features that can cause issues
+        if ("true".equals(System.getenv("CI"))) {
+            options.addArguments("--disable-logging");
+            options.addArguments("--log-level=3");
+            options.addArguments("--silent");
+            options.addArguments("--disable-crash-reporter");
+            options.addArguments("--disable-in-process-stack-traces");
+            options.addArguments("--single-process"); // Might help with stability
+            options.addArguments("--no-zygote");
+            options.addArguments("--disable-features=TranslateUI");
+            options.addArguments("--disable-default-apps");
+        }
 
         options.setAcceptInsecureCerts(true);
+
+        // Remove automation detection that might interfere with JS
+        options.setExperimentalOption("useAutomationExtension", false);
+        options.setExperimentalOption("excludeSwitches", java.util.Arrays.asList("enable-automation", "enable-logging"));
         return options;
     }
 

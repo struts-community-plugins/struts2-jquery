@@ -9,7 +9,11 @@ import com.jgeppert.jquery.selenium.WebDriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -52,25 +56,68 @@ public abstract class AbstractJQueryTest {
     protected void waitForInitialPageLoad() throws InterruptedException {
         try {
             wait.until(DOCUMENT_READY);
+
+            // Debug: Log current URL and page source snippet
+            System.out.println("🔍 Current URL: " + driver.getCurrentUrl());
+            System.out.println("🔍 Page title: " + driver.getTitle());
+
+            // Check if page loaded at all
+            String pageSource = driver.getPageSource();
+            if (pageSource.length() < 100) {
+                System.out.println("❌ Page source is too short: " + pageSource.length() + " characters");
+                System.out.println("📄 Page source: " + pageSource.substring(0, Math.min(pageSource.length(), 500)));
+            } else {
+                System.out.println("✅ Page source loaded: " + pageSource.length() + " characters");
+            }
+
+            // Check if jQuery is referenced in the page
+            boolean hasJQuery = pageSource.contains("jquery") || pageSource.contains("jQuery");
+            System.out.println("🔍 Page contains jQuery reference: " + hasJQuery);
+
+            // Check if struts2-jquery is referenced
+            boolean hasStruts2jQuery = pageSource.contains("struts2") && pageSource.contains("jquery");
+            System.out.println("🔍 Page contains struts2-jquery reference: " + hasStruts2jQuery);
+
             wait.until(JQUERY_DEFINED);
             wait.until(STRUTS2_JQUERY_DEFINED);
             wait.until(JQUERY_IDLE);
             wait.until(JQUERY_NO_ANIMATIONS);
-        } catch (Exception e) {
+        } catch (TimeoutException e) {
+            // Enhanced error reporting
+            System.out.println("❌ Timeout waiting for page load. Debug info:");
+            System.out.println("🔍 Current URL: " + driver.getCurrentUrl());
+
             try {
-                JavascriptExecutor js = (JavascriptExecutor) driver;
-                String debugInfo = (String) js.executeScript(
-                        "return 'ReadyState: ' + document.readyState + " +
-                                "', jQuery: ' + (typeof jQuery !== 'undefined') + " +
-                                "', Struts2jQuery: ' + (typeof jQuery !== 'undefined' && typeof jQuery.struts2_jquery !== 'undefined') + " +
-                                "', Active: ' + (typeof jQuery !== 'undefined' ? jQuery.active : 'N/A') + " +
-                                "', URL: ' + window.location.href"
-                );
-                System.err.println("Page load debug info: " + debugInfo);
-            } catch (Exception debugE) {
-                System.err.println("Debug failed: " + debugE.getMessage());
+                // Check JavaScript console errors
+                LogEntries logs = driver.manage().logs().get(LogType.BROWSER);
+                System.out.println("🔍 Browser console logs:");
+                for (LogEntry entry : logs) {
+                    System.out.println("  " + entry.getLevel() + ": " + entry.getMessage());
+                }
+            } catch (Exception logEx) {
+                System.out.println("⚠️ Could not retrieve browser logs: " + logEx.getMessage());
             }
-            throw e;
+
+            try {
+                // Check basic JavaScript execution
+                Object jQueryDefined = ((JavascriptExecutor) driver)
+                        .executeScript("return typeof jQuery !== 'undefined'");
+                System.out.println("🔍 jQuery defined: " + jQueryDefined);
+
+                Object documentReady = ((JavascriptExecutor) driver)
+                        .executeScript("return document.readyState");
+                System.out.println("🔍 Document ready state: " + documentReady);
+
+            } catch (Exception jsEx) {
+                System.out.println("❌ JavaScript execution failed: " + jsEx.getMessage());
+            }
+
+            // Dump a snippet of page source for debugging
+            String pageSource = driver.getPageSource();
+            System.out.println("📄 Page source snippet (first 1000 chars):");
+            System.out.println(pageSource.substring(0, Math.min(pageSource.length(), 1000)));
+
+            throw e; // Re-throw the original exception
         }
     }
 
