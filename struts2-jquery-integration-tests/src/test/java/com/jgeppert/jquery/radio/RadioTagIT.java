@@ -22,6 +22,7 @@ public class RadioTagIT extends AbstractJQueryTest {
         driver.get(baseUrl + "/radio/inlinedata.action");
 
         waitForInitialPageLoad();
+        debugWidgetState("radiobuttonset");
 
         List<WebElement> radiobuttons = driver.findElements(By.xpath("//div[@id='radiobuttonset']/input[@type='radio'][@name='day']"));
 
@@ -34,6 +35,7 @@ public class RadioTagIT extends AbstractJQueryTest {
         driver.get(baseUrl + "/radio/remotelist.action");
         
         waitForInitialPageLoad();
+        debugWidgetState("radiobuttonset");
 
         List<WebElement> radiobuttons = driver.findElements(By.xpath("//div[@id='radiobuttonset']/input[@type='radio'][@name='letter']"));
 

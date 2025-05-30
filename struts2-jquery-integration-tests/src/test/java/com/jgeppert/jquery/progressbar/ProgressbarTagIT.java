@@ -21,6 +21,7 @@ public class ProgressbarTagIT extends AbstractJQueryTest {
         driver.get(baseUrl + "/progressbar/local.action");
         
         waitForInitialPageLoad();
+        debugWidgetState("myProgressbar");
 
         WebElement progressbar = driver.findElement(By.id("myProgressbar"));
         WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
@@ -34,6 +35,7 @@ public class ProgressbarTagIT extends AbstractJQueryTest {
         driver.get(baseUrl + "/progressbar/local-events.action");
         
         waitForInitialPageLoad();
+        debugWidgetState("myProgressbar");
 
         WebElement progressbar = driver.findElement(By.id("myProgressbar"));
         WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));

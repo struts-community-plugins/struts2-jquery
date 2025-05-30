@@ -102,7 +102,7 @@ jobs:
           echo "❌ struts2-jquery integration file not found!"
         fi
     - name: Verify IT
-      run: mvn -DskipMinify=false --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome -Dfailsafe.webdriver.name=ChromeDriver -Djetty.tmpdir=$PWD/tmp verify -e
+      run: mvn -DskipMinify=false --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome -Dfailsafe.webdriver.name=ChromeDriver -Dmaven.failsafe.forkCount=1 -Dmaven.failsafe.reuseForks=false -Dmaven.failsafe.timeout=600 -Djetty.tmpdir=$PWD/tmp verify -e
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
       env:
