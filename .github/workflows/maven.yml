@@ -58,64 +58,170 @@ jobs:
       run: uname -a
     - name: Test outbound access
       run: curl -I https://code.jquery.com/jquery-3.7.1.min.js
-    - name: Build & Install
-      run: mvn -B -V -DskipITs install
-    - name: Verify jQuery files in JAR
+    - name: Build & Install Main Plugin First
       run: |
-        echo "🔍 Checking for jQuery files in struts2-jquery-plugin JAR..."
+        echo "🔨 Building and installing main plugin first..."
+        mvn -B -V -DskipTests -DskipITs -pl struts2-jquery-plugin clean install
         
-        # Find the built JAR file
-        JAR_FILE=$(find . -name "struts2-jquery-plugin-*.jar" -not -path "*/target/dependency/*" | head -1)
+        echo "📦 Verify main plugin installation..."
+        PLUGIN_JAR=$(find ~/.m2/repository -name "struts2-jquery-plugin-*.jar" | head -1)
+        if [ -n "$PLUGIN_JAR" ]; then
+          echo "✅ Plugin JAR found: $PLUGIN_JAR"
+          echo "📊 JAR size: $(stat -c%s "$PLUGIN_JAR") bytes"
         
-        if [ -z "$JAR_FILE" ]; then
-          echo "❌ struts2-jquery-plugin JAR not found!"
+          # Verify static resources in installed JAR
+          echo "🔍 Static resources in installed JAR:"
+          jar -tf "$PLUGIN_JAR" | grep "^static/" | head -10
+        else
+          echo "❌ Plugin JAR not found in repository!"
           exit 1
         fi
-        
-        echo "📦 Found JAR: $JAR_FILE"
-        
-        # Check for jQuery files
-        echo "🔍 Checking for jQuery files..."
-        JQUERY_FILES=$(jar -tf "$JAR_FILE" | grep -E "(jquery|jQuery)" | head -10)
-        
-        if [ -z "$JQUERY_FILES" ]; then
-          echo "❌ No jQuery files found in JAR!"
-          echo "📋 Full JAR contents:"
-          jar -tf "$JAR_FILE" | grep -E "\.(js|css)$" | head -20
-          exit 1
-        else
-          echo "✅ Found jQuery files:"
-          echo "$JQUERY_FILES"
-        fi
-        
-        # Specifically check for core jQuery file
-        JQUERY_CORE=$(jar -tf "$JAR_FILE" | grep -E "jquery.*\.js$" | grep -v "struts")
-        if [ -n "$JQUERY_CORE" ]; then
-          echo "✅ Found core jQuery file: $JQUERY_CORE"
-        else
-          echo "⚠️  Core jQuery file not found, checking template directory..."
-          jar -tf "$JAR_FILE" | grep -E "template.*jquery.*\.js$" || echo "❌ No jQuery found in template directory either"
-        fi
-        
-        # Check for struts2-jquery specific files
-        STRUTS_JQUERY=$(jar -tf "$JAR_FILE" | grep -E "jquery\.struts2.*\.js$")
-        if [ -n "$STRUTS_JQUERY" ]; then
-          echo "✅ Found struts2-jquery integration file: $STRUTS_JQUERY"
-        else
-          echo "❌ struts2-jquery integration file not found!"
-        fi
-    - name: Verify IT
-      env:
-        DISPLAY: ":99"
+
+    - name: Build Remaining Modules
       run: |
-        # Start Xvfb for headless display (if needed)
-        sudo apt-get update -qq
-        sudo apt-get install -y xvfb
-        export DISPLAY=:99
-        Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
-        sleep 3
+        echo "🔨 Building remaining modules..."
+        mvn -B -V -DskipITs clean install
+
+    - name: Debug Classpath Before Integration Tests
+      run: |
+        echo "🔍 Debug classpath and dependencies before integration tests..."
         
-        mvn -DskipMinify=false --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-chrome -Dfailsafe.webdriver.name=ChromeDriver -Dmaven.failsafe.forkCount=1 -Dmaven.failsafe.reuseForks=false -Dmaven.failsafe.timeout=600 -Djetty.tmpdir=$PWD/tmp verify -e
+        cd struts2-jquery-integration-tests
+        
+        # Show resolved dependencies
+        echo "📋 Resolved dependencies:"
+        mvn dependency:list | grep struts2-jquery
+        
+        # Show dependency tree
+        echo ""
+        echo "🌳 Dependency tree:"
+        mvn dependency:tree | grep -A5 -B5 struts2-jquery
+        
+        # Check if plugin is in test classpath
+        echo ""
+        echo "🛤️ Test classpath:"
+        mvn dependency:build-classpath | grep struts2-jquery || echo "❌ Plugin not in classpath!"
+        
+        # Verify the specific JAR that will be used
+        echo ""
+        echo "📦 Plugin JAR that will be used:"
+        find ~/.m2/repository -name "struts2-jquery-plugin-*.jar" -exec ls -la {} \;
+
+    - name: Start Jetty with Debug Info
+      run: |
+        echo "🚀 Starting Jetty with enhanced debugging..."
+        cd struts2-jquery-integration-tests
+        
+        # Set Maven debug mode
+        export MAVEN_OPTS="-Xdebug -Dorg.eclipse.jetty.LEVEL=DEBUG"
+        
+        # Start Jetty in background with verbose output
+        mvn jetty:start -X > jetty-start.log 2>&1 &
+        JETTY_PID=$!
+        
+        # Wait for startup and show logs
+        echo "⏳ Waiting for Jetty startup..."
+        for i in {1..60}; do
+          if curl -s -o /dev/null -w "%{http_code}" http://localhost:8080 | grep -q "200\|404"; then
+            echo "✅ Jetty started successfully"
+            break
+          else
+            if [ $i -eq 30 ]; then
+              echo "📄 Jetty startup log (first 100 lines):"
+              head -100 jetty-start.log
+            fi
+            echo "  Waiting... (attempt $i/60)"
+            sleep 2
+          fi
+        done
+        
+        # Show final startup log
+        echo ""
+        echo "📄 Jetty startup log (last 50 lines):"
+        tail -50 jetty-start.log
+        
+        # Test static resources immediately
+        echo ""
+        echo "🔍 Testing static resources after startup..."
+        
+        STATIC_FILES=(
+          "/static/js/base/version.min.js"
+          "/static/js/plugins/jquery.subscribe.min.js"
+          "/static/js/struts2/jquery.struts2.min.js"
+        )
+        
+        for file in "${STATIC_FILES[@]}"; do
+          echo "Testing: http://localhost:8080$file"
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:8080$file")
+          echo "  Result: HTTP $HTTP_CODE"
+        
+          if [ "$HTTP_CODE" != "200" ]; then
+            # Get detailed response
+            echo "  📄 Detailed response:"
+            curl -v "http://localhost:8080$file" 2>&1 | head -20
+          fi
+        done
+
+    - name: Verify IT (With Static Resource Debugging)
+      run: |
+        echo "🧪 Running integration tests with static resource debugging..."
+        
+        # Ensure Jetty is still running
+        if ! curl -s -o /dev/null http://localhost:8080; then
+          echo "❌ Jetty is not running, restarting..."
+          cd struts2-jquery-integration-tests
+          mvn jetty:start &
+          sleep 30
+        fi
+        
+        # Run tests with enhanced logging
+        mvn -DskipMinify=false \
+            --projects struts2-jquery-integration-tests \
+            -Dmaven.javadoc.skip=true \
+            -P ci-chrome \
+            -Dfailsafe.webdriver.name=ChromeDriver \
+            -Dmaven.failsafe.forkCount=1 \
+            -Dmaven.failsafe.reuseForks=false \
+            -Dmaven.failsafe.timeout=600 \
+            -Djetty.tmpdir=$PWD/tmp \
+            -Dwebdriver.chrome.verboseLogging=true \
+            -X \
+            verify || {
+        
+          echo "❌ Tests failed, gathering debug info..."
+        
+          # Check if Jetty is still running
+          if curl -s -o /dev/null http://localhost:8080; then
+            echo "✅ Jetty is still running"
+        
+            # Test static resources again
+            echo "🔍 Testing static resources after test failure..."
+            for file in "/static/js/base/version.min.js" "/static/js/plugins/jquery.subscribe.min.js"; do
+              echo "Testing: http://localhost:8080$file"
+              curl -I "http://localhost:8080$file" 2>&1 | head -10
+            done
+          else
+            echo "❌ Jetty stopped running during tests"
+          fi
+        
+          # Show Jetty logs
+          echo "📄 Recent Jetty logs:"
+          cd struts2-jquery-integration-tests
+          if [ -f jetty-start.log ]; then
+            tail -100 jetty-start.log
+          fi
+        
+          # Clean up and exit
+          pkill -f jetty || true
+          pkill -f chrome || true
+          exit 1
+        }
+        
+        echo "✅ Integration tests completed successfully"
+        
+        # Clean up
+        pkill -f jetty || true
+        pkill -f chrome || true
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
       env:

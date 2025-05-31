@@ -94,6 +94,9 @@
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
 						<scan>10</scan>
+						<webApp>
+							<containerIncludeJarPattern>.*</containerIncludeJarPattern>
+						</webApp>
 						<systemProperties>
 							<org.eclipse.jetty.util.log.class>org.eclipse.jetty.util.log.StdErrLog</org.eclipse.jetty.util.log.class>
 							<org.eclipse.jetty.LEVEL>DEBUG</org.eclipse.jetty.LEVEL>
