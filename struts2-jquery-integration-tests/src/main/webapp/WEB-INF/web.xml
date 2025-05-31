@@ -7,9 +7,18 @@
 
 	<display-name>Struts jQuery Plugin - Tests</display-name>
 
+	<context-param>
+		<param-name>log4jConfiguration</param-name>
+		<param-value>/WEB-INF/log4j2.xml</param-value>
+	</context-param>
+
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		<init-param>
+			<param-name>struts.convention.package.locators.basePackage</param-name>
+			<param-value>com.jgeppert.jquery.actions</param-value>
+		</init-param>
 		<init-param>
 			<!-- temporally disable support for @StrutsParameter -->
 			<param-name>struts.parameters.requireAnnotations</param-name>
@@ -21,10 +30,6 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-	<session-config>
-		<tracking-mode>COOKIE</tracking-mode>
-	</session-config>
 
 </web-app>
 

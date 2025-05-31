@@ -6,6 +6,8 @@ import com.jgeppert.jquery.selenium.JQueryIdleCondition;
 import com.jgeppert.jquery.selenium.JQueryNoAnimations;
 import com.jgeppert.jquery.selenium.Struts2JQueryDefinedCondition;
 import com.jgeppert.jquery.selenium.WebDriverFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
@@ -21,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public abstract class AbstractJQueryTest {
+    private static final Logger log = LogManager.getLogger(AbstractJQueryTest.class);
     protected WebDriver driver;
     protected WebDriverWait wait;
 
@@ -57,26 +60,26 @@ public abstract class AbstractJQueryTest {
         try {
             wait.until(DOCUMENT_READY);
 
-            // Debug: Log current URL and page source snippet
-            System.out.println("🔍 Current URL: " + driver.getCurrentUrl());
-            System.out.println("🔍 Page title: " + driver.getTitle());
+            log.debug("\uD83D\uDD0D Current URL: {}", driver.getCurrentUrl());
 
             // Check if page loaded at all
             String pageSource = driver.getPageSource();
             if (pageSource.length() < 100) {
-                System.out.println("❌ Page source is too short: " + pageSource.length() + " characters");
-                System.out.println("📄 Page source: " + pageSource.substring(0, Math.min(pageSource.length(), 500)));
+                if (log.isDebugEnabled()) {
+                    log.debug("❌ Page source is too short: {} characters", pageSource.length());
+                    log.debug("\uD83D\uDCC4 Page source: {}", pageSource.substring(0, Math.min(pageSource.length(), 500)));
+                }
             } else {
-                System.out.println("✅ Page source loaded: " + pageSource.length() + " characters");
+                log.debug("✅ Page source loaded: {} characters", pageSource.length());
             }
 
             // Check if jQuery is referenced in the page
             boolean hasJQuery = pageSource.contains("jquery") || pageSource.contains("jQuery");
-            System.out.println("🔍 Page contains jQuery reference: " + hasJQuery);
+            log.debug("\uD83D\uDD0D Page contains jQuery reference: {}", hasJQuery);
 
             // Check if struts2-jquery is referenced
             boolean hasStruts2jQuery = pageSource.contains("struts2") && pageSource.contains("jquery");
-            System.out.println("🔍 Page contains struts2-jquery reference: " + hasStruts2jQuery);
+            log.debug("\uD83D\uDD0D Page contains struts2-jquery reference: {}", hasStruts2jQuery);
 
             wait.until(JQUERY_DEFINED);
             wait.until(STRUTS2_JQUERY_DEFINED);
@@ -84,38 +87,40 @@ public abstract class AbstractJQueryTest {
             wait.until(JQUERY_NO_ANIMATIONS);
         } catch (TimeoutException e) {
             // Enhanced error reporting
-            System.out.println("❌ Timeout waiting for page load. Debug info:");
-            System.out.println("🔍 Current URL: " + driver.getCurrentUrl());
+            log.error("❌ Timeout waiting for page load. Debug info:");
+            log.warn("\uD83D\uDD0D Current URL: {}", driver.getCurrentUrl());
 
             try {
                 // Check JavaScript console errors
                 LogEntries logs = driver.manage().logs().get(LogType.BROWSER);
-                System.out.println("🔍 Browser console logs:");
+                log.warn("🔍 Browser console logs:");
                 for (LogEntry entry : logs) {
-                    System.out.println("  " + entry.getLevel() + ": " + entry.getMessage());
+                    log.warn("  {}: {}", entry.getLevel(), entry.getMessage());
                 }
             } catch (Exception logEx) {
-                System.out.println("⚠️ Could not retrieve browser logs: " + logEx.getMessage());
+                log.error("⚠\uFE0F Could not retrieve browser logs: {}", logEx.getMessage());
             }
 
             try {
                 // Check basic JavaScript execution
                 Object jQueryDefined = ((JavascriptExecutor) driver)
                         .executeScript("return typeof jQuery !== 'undefined'");
-                System.out.println("🔍 jQuery defined: " + jQueryDefined);
+                log.warn("\uD83D\uDD0D jQuery defined: {}", jQueryDefined);
 
                 Object documentReady = ((JavascriptExecutor) driver)
                         .executeScript("return document.readyState");
-                System.out.println("🔍 Document ready state: " + documentReady);
+                log.warn("\uD83D\uDD0D Document ready state: {}", documentReady);
 
             } catch (Exception jsEx) {
-                System.out.println("❌ JavaScript execution failed: " + jsEx.getMessage());
+                log.error("❌ JavaScript execution failed: " + jsEx.getMessage());
             }
 
             // Dump a snippet of page source for debugging
             String pageSource = driver.getPageSource();
-            System.out.println("📄 Page source snippet (first 1000 chars):");
-            System.out.println(pageSource.substring(0, Math.min(pageSource.length(), 1000)));
+            log.debug("📄 Page source snippet (first 1000 chars):");
+            if (pageSource != null) {
+                log.debug(pageSource.substring(0, Math.min(pageSource.length(), 1000)));
+            }
 
             throw e; // Re-throw the original exception
         }
@@ -133,9 +138,9 @@ public abstract class AbstractJQueryTest {
                             "jQuery UI data: ' + Object.keys(el.data()).join(',') + ', " +
                             "AJAX active: ' + jQuery.active"
             );
-            System.out.println("Widget debug [" + widgetId + "]: " + debugInfo);
+            log.debug("Widget debug [{}]: {}", widgetId, debugInfo);
         } catch (Exception e) {
-            System.err.println("Debug failed for " + widgetId + ": " + e.getMessage());
+            log.error("Debug failed for {}: {}", widgetId, e.getMessage());
         }
     }
 }

@@ -60,7 +60,6 @@
 				<browser>chrome</browser>
 			</properties>
 			<dependencies>
-				<!-- Add selenium-chrome-driver dependency if not already present -->
 				<dependency>
 					<groupId>org.seleniumhq.selenium</groupId>
 					<artifactId>selenium-chrome-driver</artifactId>
@@ -96,12 +95,11 @@
 						<scan>10</scan>
 						<webApp>
 							<contextPath>/</contextPath>
-							<webInfIncludeJarPattern>.*</webInfIncludeJarPattern>
+							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
 						</webApp>
-						<systemProperties>
-							<org.eclipse.jetty.util.log.class>org.eclipse.jetty.util.log.StdErrLog</org.eclipse.jetty.util.log.class>
-							<org.eclipse.jetty.LEVEL>DEBUG</org.eclipse.jetty.LEVEL>
-						</systemProperties>
+						<httpConnector>
+							<port>8080</port>
+						</httpConnector>
 					</configuration>
 					<executions>
 						<execution>
@@ -133,8 +131,6 @@
 							<webDriverName>${failsafe.webdriver.name}</webDriverName>
 							<webdriver.debug>true</webdriver.debug>
 						</systemPropertyVariables>
-						<forkedProcessTimeoutInSeconds>600</forkedProcessTimeoutInSeconds> <!-- Increased -->
-						<argLine>-Xmx2048m -XX:MaxMetaspaceSize=512m</argLine> <!-- Added memory settings -->
 					</configuration>
 					<executions>
 						<execution>
@@ -188,6 +184,21 @@
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
 		</dependency>
 
 		<dependency>
@@ -306,6 +317,24 @@
 				<artifactId>xml-apis</artifactId>
 				<version>${xml-apis.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4j2.version}</version>
 			</dependency>
 
 			<dependency>
