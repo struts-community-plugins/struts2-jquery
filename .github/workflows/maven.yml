@@ -109,33 +109,38 @@ jobs:
 
     - name: Run Integration Tests
       run: |
-        echo "🧪 Running integration tests with Maven lifecycle..."
+        echo "🧪 Running integration tests with command line flags..."
         
         # Clean up Chrome processes
         pkill -f chrome || true
         pkill -f chromedriver || true
         
-        # Let Maven handle Jetty lifecycle automatically
-        mvn -DskipMinify=false \
-            --projects struts2-jquery-integration-tests \
-            -Dmaven.javadoc.skip=true \
-            -P ci-chrome \
-            -Dfailsafe.webdriver.name=ChromeDriver \
-            -Dmaven.failsafe.forkCount=1 \
-            -Dmaven.failsafe.reuseForks=false \
-            -Dmaven.failsafe.timeout=600 \
-            -Djetty.tmpdir=$PWD/tmp \
-            pre-integration-test integration-test post-integration-test || {
+        mvn -pl struts2-jquery-integration-tests \
+        -Dmaven.javadoc.skip=true \
+        -Dmaven.source.skip=true \
+        -P ci-chrome \
+        -Dfailsafe.webdriver.name=ChromeDriver \
+        verify || {
         
           echo "❌ Integration tests failed"
         
-          # Try to diagnose what happened
-          echo "🔍 Checking if Jetty was running..."
+          # Enhanced diagnostics
+          echo "🔍 Maven execution diagnostics:"
+        
+          # Check what Maven actually tried to do
+          echo "📋 Last Maven execution log:"
+          # The error log should be in the output above
+        
+          # Check if Jetty started
           if curl -s -o /dev/null http://localhost:8080; then
-            echo "✅ Jetty was running, testing static resources..."
-            curl -I "http://localhost:8080/static/js/base/version.min.js"
+            echo "✅ Jetty is running"
+            echo "🔍 Testing static resources:"
+            for file in "/static/js/base/version.min.js" "/static/js/plugins/jquery.subscribe.min.js"; do
+              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:8080$file")
+              echo "  $file: HTTP $HTTP_CODE"
+            done
           else
-            echo "❌ Jetty was not running"
+            echo "❌ Jetty is not running"
           fi
         
           # Clean up and exit
@@ -145,8 +150,6 @@ jobs:
         }
         
         echo "✅ Integration tests completed successfully!"
-        
-        # Clean up
         pkill -f chrome || true
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
