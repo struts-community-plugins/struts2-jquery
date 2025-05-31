@@ -107,74 +107,15 @@ jobs:
         echo "📦 Plugin JAR that will be used:"
         find ~/.m2/repository -name "struts2-jquery-plugin-*.jar" -exec ls -la {} \;
 
-    - name: Start Jetty with Debug Info
+    - name: Run Integration Tests
       run: |
-        echo "🚀 Starting Jetty with enhanced debugging..."
-        cd struts2-jquery-integration-tests
+        echo "🧪 Running integration tests with Maven lifecycle..."
         
-        # Set Maven debug mode
-        export MAVEN_OPTS="-Xdebug -Dorg.eclipse.jetty.LEVEL=DEBUG"
+        # Clean up Chrome processes
+        pkill -f chrome || true
+        pkill -f chromedriver || true
         
-        # Start Jetty in background with verbose output
-        mvn jetty:start -X > jetty-start.log 2>&1 &
-        JETTY_PID=$!
-        
-        # Wait for startup and show logs
-        echo "⏳ Waiting for Jetty startup..."
-        for i in {1..60}; do
-          if curl -s -o /dev/null -w "%{http_code}" http://localhost:8080 | grep -q "200\|404"; then
-            echo "✅ Jetty started successfully"
-            break
-          else
-            if [ $i -eq 30 ]; then
-              echo "📄 Jetty startup log (first 100 lines):"
-              head -100 jetty-start.log
-            fi
-            echo "  Waiting... (attempt $i/60)"
-            sleep 2
-          fi
-        done
-        
-        # Show final startup log
-        echo ""
-        echo "📄 Jetty startup log (last 50 lines):"
-        tail -50 jetty-start.log
-        
-        # Test static resources immediately
-        echo ""
-        echo "🔍 Testing static resources after startup..."
-        
-        STATIC_FILES=(
-          "/static/js/base/version.min.js"
-          "/static/js/plugins/jquery.subscribe.min.js"
-          "/static/js/struts2/jquery.struts2.min.js"
-        )
-        
-        for file in "${STATIC_FILES[@]}"; do
-          echo "Testing: http://localhost:8080$file"
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:8080$file")
-          echo "  Result: HTTP $HTTP_CODE"
-        
-          if [ "$HTTP_CODE" != "200" ]; then
-            # Get detailed response
-            echo "  📄 Detailed response:"
-            curl -v "http://localhost:8080$file" 2>&1 | head -20
-          fi
-        done
-
-    - name: Verify IT (With Static Resource Debugging)
-      run: |
-        echo "🧪 Running integration tests with static resource debugging..."
-        
-        # Ensure Jetty is still running
-        if ! curl -s -o /dev/null http://localhost:8080; then
-          echo "❌ Jetty is not running, restarting..."
-          cd struts2-jquery-integration-tests
-          mvn jetty:start &
-          sleep 30
-        fi
-        
-        # Run tests with enhanced logging
+        # Let Maven handle Jetty lifecycle automatically
         mvn -DskipMinify=false \
             --projects struts2-jquery-integration-tests \
             -Dmaven.javadoc.skip=true \
@@ -184,31 +125,17 @@ jobs:
             -Dmaven.failsafe.reuseForks=false \
             -Dmaven.failsafe.timeout=600 \
             -Djetty.tmpdir=$PWD/tmp \
-            -Dwebdriver.chrome.verboseLogging=true \
-            -X \
-            verify || {
+            pre-integration-test integration-test post-integration-test || {
         
-          echo "❌ Tests failed, gathering debug info..."
+          echo "❌ Integration tests failed"
         
-          # Check if Jetty is still running
+          # Try to diagnose what happened
+          echo "🔍 Checking if Jetty was running..."
           if curl -s -o /dev/null http://localhost:8080; then
-            echo "✅ Jetty is still running"
-        
-            # Test static resources again
-            echo "🔍 Testing static resources after test failure..."
-            for file in "/static/js/base/version.min.js" "/static/js/plugins/jquery.subscribe.min.js"; do
-              echo "Testing: http://localhost:8080$file"
-              curl -I "http://localhost:8080$file" 2>&1 | head -10
-            done
+            echo "✅ Jetty was running, testing static resources..."
+            curl -I "http://localhost:8080/static/js/base/version.min.js"
           else
-            echo "❌ Jetty stopped running during tests"
-          fi
-        
-          # Show Jetty logs
-          echo "📄 Recent Jetty logs:"
-          cd struts2-jquery-integration-tests
-          if [ -f jetty-start.log ]; then
-            tail -100 jetty-start.log
+            echo "❌ Jetty was not running"
           fi
         
           # Clean up and exit
@@ -217,10 +144,9 @@ jobs:
           exit 1
         }
         
-        echo "✅ Integration tests completed successfully"
+        echo "✅ Integration tests completed successfully!"
         
         # Clean up
-        pkill -f jetty || true
         pkill -f chrome || true
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
