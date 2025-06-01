@@ -115,7 +115,14 @@ jobs:
         
         # Start Jetty
         echo "Starting Jetty..."
-        mvn jetty:run -Djetty.scan=0 > jetty.log 2>&1 &
+        mvn jetty:run \
+        -Djetty.scan=0 \
+        -Dorg.eclipse.jetty.LEVEL=DEBUG \
+        -Dorg.eclipse.jetty.server.LEVEL=DEBUG \
+        -Dorg.eclipse.jetty.servlet.LEVEL=DEBUG \
+        -Dorg.eclipse.jetty.webapp.LEVEL=DEBUG \
+        -Djava.util.logging.config.file=src/test/resources/jetty-logging.properties \
+        > jetty-detailed.log 2>&1 &
         JETTY_PID=$!
         
         # Wait for startup
@@ -249,8 +256,40 @@ jobs:
         echo ""
         echo "Environment variables that might affect Struts2:"
         env | grep -iE "(struts|java|class)" || echo "No relevant environment variables"
+    
+    
+        # Step 9: Analyze the request flow from logs
+        echo ""
+        echo "📋 Step 4: Analyzing request flow from Jetty debug logs..."
         
-        # Cleanup
+        echo "=== REQUEST FLOW ANALYSIS ==="
+        echo ""
+        
+        echo "🔍 Filter mapping and initialization:"
+        grep -i "filter.*mapping\|filter.*init\|struts.*filter" jetty-detailed.log | head -10 || echo "  No filter mapping logs found"
+        
+        echo ""
+        echo "🔍 Servlet mapping and initialization:"
+        grep -i "servlet.*mapping\|servlet.*init\|default.*servlet" jetty-detailed.log | head -10 || echo "  No servlet mapping logs found"
+        
+        echo ""
+        echo "🔍 Request handling for /regular/div/ajax-div.action (working):"
+        grep -A 5 -B 5 "ajax-div.action" jetty-detailed.log | head -20 || echo "  No action request logs found"
+        
+        echo ""
+        echo "🔍 Request handling for /static/js/base/version.min.js (failing):"
+        grep -A 5 -B 5 "version.min.js\|static/js" jetty-detailed.log | head -20 || echo "  No static request logs found"
+        
+        echo ""
+        echo "🔍 Any 404 handling:"
+        grep -i "404\|not found" jetty-detailed.log | head -5 || echo "  No 404 logs found"
+        
+        echo ""
+        echo "🔍 Context and webapp information:"
+        grep -i "context\|webapp\|resource.*base" jetty-detailed.log | head -10 || echo "  No context logs found"
+        
+
+    # Cleanup
         kill $JETTY_PID 2>/dev/null || true
         pkill -f jetty || true
         
@@ -285,6 +324,19 @@ jobs:
       run: |
         echo "🧪 Running integration tests with command line flags..."
         
+        # Check current configuration
+        echo "📋 Current web.xml:"
+        if [ -f src/main/webapp/WEB-INF/web.xml ]; then
+        cat src/main/webapp/WEB-INF/web.xml
+        else
+        echo "❌ No web.xml found!"
+        fi
+        
+        echo ""
+        echo "📋 Jetty Maven plugin config:"
+        grep -A 15 -B 5 "jetty-maven-plugin" pom.xml || echo "No jetty plugin config found"
+
+        
         # Clean up Chrome processes
         pkill -f chrome || true
         pkill -f chromedriver || true
@@ -292,6 +344,8 @@ jobs:
         mvn -pl struts2-jquery-integration-tests \
         -Dmaven.javadoc.skip=true \
         -Dmaven.source.skip=true \
+        -Djetty.scan=0 \
+        -Djava.util.logging.config.file=src/test/resources/jetty-logging.properties \
         -P ci-chrome \
         -Dfailsafe.webdriver.name=ChromeDriver \
         verify || {
