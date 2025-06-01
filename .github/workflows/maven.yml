@@ -289,7 +289,7 @@ jobs:
         grep -i "context\|webapp\|resource.*base" jetty-detailed.log | head -10 || echo "  No context logs found"
         
 
-    # Cleanup
+        # Cleanup
         kill $JETTY_PID 2>/dev/null || true
         pkill -f jetty || true
         
