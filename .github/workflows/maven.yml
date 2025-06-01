@@ -81,7 +81,181 @@ jobs:
       run: |
         echo "🔨 Building remaining modules..."
         mvn -B -V -DskipITs clean install
+    - name: Debug Struts2 Static Resource Serving
+      run: |
+        echo "🔍 Debugging Struts2's built-in static resource serving mechanism..."
+        
+        cd struts2-jquery-integration-tests
+        
+        # Step 1: Check Struts2 static serving configuration
+        echo "📋 Step 1: Checking Struts2 static serving configuration..."
+        
+        echo "Current struts.xml:"
+        if [ -f src/main/resources/struts.xml ]; then
+        cat src/main/resources/struts.xml
+        else
+        echo "❌ No struts.xml found"
+        fi
+        
+        echo ""
+        echo "Current struts.properties:"
+        if [ -f src/main/resources/struts.properties ]; then
+        cat src/main/resources/struts.properties
+        else
+        echo "ℹ️  No struts.properties found (using defaults)"
+        fi
+        
+        # Step 2: Test Struts2 static resource mechanism directly
+        echo ""
+        echo "🚀 Step 2: Testing Struts2 static resource mechanism..."
+        
+        # Clean up processes
+        pkill -f chrome || true
+        pkill -f chromedriver || true
+        
+        # Start Jetty
+        echo "Starting Jetty..."
+        mvn jetty:run -Djetty.scan=0 > jetty.log 2>&1 &
+        JETTY_PID=$!
+        
+        # Wait for startup
+        echo "⏳ Waiting for Jetty startup..."
+        for i in {1..30}; do
+        if curl -s -o /dev/null http://localhost:8080; then
+         echo "✅ Jetty started after ${i} seconds"
+         break
+        elif [ $i -eq 30 ]; then
+         echo "❌ Jetty failed to start"
+         cat jetty.log
+         kill $JETTY_PID 2>/dev/null || true
+         exit 1
+        else
+         sleep 1
+        fi
+        done
+        
+        # Step 3: Test Struts2 static resource URLs directly
+        echo ""
+        echo "🔍 Step 3: Testing Struts2 static resource URLs..."
+        
+        # Test the specific failing URLs from the console logs
+        STATIC_URLS=(
+        "/static/js/struts2/jquery.struts2.min.js?s2j=6.0.2-SNAPSHOT"
+        "/static/js/plugins/jquery.subscribe.min.js?s2j=6.0.2-SNAPSHOT"
+        "/static/js/base/version.min.js"
+        "/static/js/plugins/jquery.form.min.js?s2j=6.0.2-SNAPSHOT"
+        )
+        
+        for url in "${STATIC_URLS[@]}"; do
+        echo ""
+        echo "Testing: http://localhost:8080$url"
 
+        # Get detailed response
+        RESPONSE=$(curl -s -w "HTTP:%{http_code};SIZE:%{size_download};TIME:%{time_total}" "http://localhost:8080$url")
+        HTTP_CODE=$(echo "$RESPONSE" | grep -o "HTTP:[0-9]*" | cut -d: -f2)
+        SIZE=$(echo "$RESPONSE" | grep -o "SIZE:[0-9]*" | cut -d: -f2)
+        TIME=$(echo "$RESPONSE" | grep -o "TIME:[0-9.]*" | cut -d: -f2)
+        CONTENT=$(echo "$RESPONSE" | sed 's/HTTP:.*$//')
+
+        echo "  HTTP: $HTTP_CODE | Size: $SIZE bytes | Time: ${TIME}s"
+
+        if [ "$HTTP_CODE" = "200" ]; then
+         echo "  ✅ SUCCESS"
+         if [ "$SIZE" -gt 100 ]; then
+           echo "  Content preview: $(echo "$CONTENT" | head -c 80)..."
+         else
+           echo "  ⚠️  Very small response: $CONTENT"
+         fi
+        else
+         echo "  ❌ FAILED"
+         echo "  Response body: $(echo "$CONTENT" | head -c 200)"
+        
+         # Get headers for more info
+         echo "  Response headers:"
+         curl -s -I "http://localhost:8080$url" | head -5
+        fi
+        done
+        
+        # Step 4: Check what Struts2 is actually doing
+        echo ""
+        echo "🔍 Step 4: Analyzing Struts2 behavior..."
+        
+        # Test a working Struts2 action for comparison
+        echo "Testing a working Struts2 action page:"
+        WORKING_PAGE_URL="/regular/div/ajax-div.action"
+        if [ -n "$WORKING_PAGE_URL" ]; then
+        echo "Found working action: $WORKING_PAGE_URL"
+        WORKING_HTTP=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:8080$WORKING_PAGE_URL")
+        echo "  Working action HTTP: $WORKING_HTTP"
+
+        if [ "$WORKING_HTTP" = "200" ]; then
+         echo "  ✅ Struts2 actions are working"
+        
+         # Check what static resources this page tries to load
+         WORKING_PAGE_CONTENT=$(curl -s "http://localhost:8080$WORKING_PAGE_URL")
+         echo "  Static resources referenced by working page:"
+         echo "$WORKING_PAGE_CONTENT" | grep -o 'src="[^"]*static[^"]*"' | head -5
+        fi
+        else
+        echo "No working action URLs found"
+        fi
+        
+        # Step 5: Check Struts2 logs for static resource handling
+        echo ""
+        echo "🔍 Step 5: Checking Struts2 logs for static resource handling..."
+        
+        echo "Recent Jetty/Struts2 log entries:"
+        tail -30 jetty.log | grep -iE "(static|resource|404|struts)" || echo "No relevant log entries"
+        
+        # Step 6: Test Struts2 constants and configuration
+        echo ""
+        echo "🔍 Step 6: Testing Struts2 static serving configuration..."
+        
+        # Check if we can access Struts2 configuration information
+        echo "Testing Struts2 configuration page (if available):"
+        CONFIG_HTTP=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:8080/config-browser/index.action")
+        echo "  Config browser HTTP: $CONFIG_HTTP"
+        
+        # Step 7: Check plugin JAR for correct static resource structure
+        echo ""
+        echo "🔍 Step 7: Checking plugin JAR static resource structure for Struts2..."
+        
+        PLUGIN_JAR=$(find ~/.m2/repository -name "struts2-jquery-plugin-*.jar" | head -1)
+        echo "Plugin JAR: $PLUGIN_JAR"
+        
+        echo "Static resource paths in JAR (Struts2 expects specific structure):"
+        jar -tf "$PLUGIN_JAR" | grep -E "(static/|template/|META-INF/resources/)" | head -15
+        
+        echo ""
+        echo "Looking for META-INF/struts-plugin.xml:"
+        jar -tf "$PLUGIN_JAR" | grep "struts-plugin.xml" || echo "❌ No struts-plugin.xml found"
+        
+        if jar -tf "$PLUGIN_JAR" | grep -q "struts-plugin.xml"; then
+        echo "struts-plugin.xml content:"
+        jar -xf "$PLUGIN_JAR" META-INF/struts-plugin.xml && cat META-INF/struts-plugin.xml && rm META-INF/struts-plugin.xml
+        fi
+        
+        # Step 8: Compare local vs CI Struts2 behavior
+        echo ""
+        echo "🔍 Step 8: Environment-specific Struts2 analysis..."
+        
+        echo "Java classpath that includes the plugin:"
+        mvn dependency:build-classpath | tr ':' '\n' | grep struts2-jquery
+        
+        echo ""
+        echo "Struts2 version in use:"
+        mvn dependency:tree | grep "org.apache.struts:struts2-core" | head -1
+        
+        echo ""
+        echo "Environment variables that might affect Struts2:"
+        env | grep -iE "(struts|java|class)" || echo "No relevant environment variables"
+        
+        # Cleanup
+        kill $JETTY_PID 2>/dev/null || true
+        pkill -f jetty || true
+        
+        echo ""
+        echo "🎯 Analysis complete. Focus: Why isn't Struts2 serving static resources from plugin JAR in CI?"
     - name: Debug Classpath Before Integration Tests
       run: |
         echo "🔍 Debug classpath and dependencies before integration tests..."
