@@ -41,7 +41,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: 17
-        distribution: temurin
+        distribution: corretto
         cache: maven
         server-id: struts2-jquery.snapshots
         server-username: MAVEN_USERNAME
@@ -442,7 +442,9 @@ jobs:
         echo ""
         echo "📋 Debug files created:"
         echo "  - recent-logs.txt (filtered log output)"
+        cat recent-logs.txt
         echo "  - jetty-debug-flow.log (full debug log)"
+        cat jetty-debug-flow.log
         
         echo ""
         echo "🎯 Next steps depend on whether Struts2 filter is being called or not"
