@@ -96,6 +96,7 @@
 						<webApp>
 							<contextPath>/</contextPath>
 							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
+							<defaultsDescriptor></defaultsDescriptor>
 						</webApp>
 						<httpConnector>
 							<port>8080</port>
