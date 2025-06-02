@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
+<Configuration status="DEBUG">
     <Appenders>
-        <Console name="STDOUT" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss.SSS}] [%level] [%logger{36}] - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
@@ -10,8 +10,21 @@
         <Logger name="org.apache.struts2" level="info"/>
         <Logger name="org.eclipse.jetty" level="debug"/>
         <Logger name="jakarta" level="info"/>
-        <Root level="warn">
-            <AppenderRef ref="STDOUT"/>
+        <Logger name="org.apache.struts2.dispatcher" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.apache.struts2.dispatcher.filter" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.eclipse.jetty.servlet" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.eclipse.jetty.server.handler" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <!-- Root logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>

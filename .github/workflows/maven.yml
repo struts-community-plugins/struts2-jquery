@@ -321,7 +321,142 @@ jobs:
         echo ""
         echo "📦 Plugin JAR that will be used:"
         find ~/.m2/repository -name "struts2-jquery-plugin-*.jar" -exec ls -la {} \;
-
+    - name: Debug Actual Request Flow - Is Struts2 Filter Being Called?
+      run: |
+        echo "🔍 Deep debugging request flow - where are /static/ requests going?"
+        
+        cd struts2-jquery-integration-tests
+        
+        # Step 1: Double-check our webdefault.xml doesn't have hidden mappings
+        echo ""
+        echo "📋 Step 1: Verifying custom webdefault.xml..."
+        
+        echo "Current webdefault.xml servlet mappings:"
+        grep -A 3 -B 1 "<servlet-mapping>" src/main/webapp/WEB-INF/webdefault.xml || echo "No servlet mappings found"
+        
+        echo ""
+        echo "Checking for any *.js mappings:"
+        grep -i "\.js\|javascript" src/main/webapp/WEB-INF/webdefault.xml || echo "No JS mappings found"
+        
+        # Step 2: Start Jetty with detailed logging
+        echo ""
+        echo "🚀 Step 2: Starting Jetty with debug logging..."
+        
+        pkill -f chrome || true
+        pkill -f chromedriver || true
+        
+        mvn jetty:run -Djetty.scan=0 > jetty-debug-flow.log 2>&1 &
+        JETTY_PID=$!
+        
+        # Wait for startup
+        for i in {1..20}; do
+          if curl -s -o /dev/null http://localhost:8080/regular/div/ajax-div.action; then
+            echo "✅ Jetty started with debug logging"
+            break
+          elif [ $i -eq 20 ]; then
+            echo "❌ Jetty failed to start"
+            kill $JETTY_PID 2>/dev/null || true
+            exit 1
+          else
+            sleep 1
+          fi
+        done
+        
+        # Step 3: Make test requests and capture detailed logs
+        echo ""
+        echo "🔍 Step 3: Making test requests with detailed logging..."
+        
+        echo "Testing working action (should show Struts2 filter activity):"
+        curl -s "http://localhost:8080/regular/div/ajax-div.action" > /dev/null
+        sleep 1
+        
+        echo ""
+        echo "Testing /static/ request (key test):"
+        curl -s "http://localhost:8080/static/js/base/version.min.js" > /dev/null
+        sleep 1
+        
+        echo ""
+        echo "Testing non-existent /static/ request:"
+        STATIC_RESPONSE=$(curl -s "http://localhost:8080/static/nonexistent.js")
+        echo "Response type: $(echo "$STATIC_RESPONSE" | head -c 100)"
+        sleep 1
+        
+        # Step 4: Analyze the logs for filter activity
+        echo ""
+        echo "🔍 Step 4: Analyzing request flow in logs..."
+        
+        # Get recent logs
+        tail -50 jetty-debug-flow.log > recent-logs.txt
+        
+        echo "=== STRUTS2 FILTER ACTIVITY ==="
+        grep -i "struts.*filter\|prepareandrexecute" recent-logs.txt || echo "No Struts2 filter activity found"
+        
+        echo ""
+        echo "=== SERVLET HANDLER ACTIVITY ==="
+        grep -i "servlet.*handler\|dohandle" recent-logs.txt || echo "No servlet handler activity found"
+        
+        echo ""
+        echo "=== DISPATCHER ACTIVITY ==="
+        grep -i "dispatcher" recent-logs.txt || echo "No dispatcher activity found"
+        
+        echo ""
+        echo "=== ANY STATIC/JS MENTIONS ==="
+        grep -i "static\|\.js" recent-logs.txt || echo "No static/JS mentions found"
+        
+        # Step 5: Check if there are any other servlet mappings we missed
+        echo ""
+        echo "🔍 Step 5: Checking for competing servlet mappings..."
+        
+        echo "All servlet-mapping entries in webdefault.xml:"
+        grep -A 5 -B 2 "<servlet-mapping>" src/main/webapp/WEB-INF/webdefault.xml
+        
+        echo ""
+        echo "All servlet-mapping entries in web.xml:"
+        grep -A 5 -B 2 "<servlet-mapping>" src/main/webapp/WEB-INF/web.xml
+        
+        # Step 6: Test direct Struts2 static serving functionality
+        echo ""
+        echo "🔍 Step 6: Testing if Struts2 static serving is enabled..."
+        
+        echo "Making request to known Struts2 path:"
+        STRUTS_STATIC_TEST=$(curl -s "http://localhost:8080/struts/static/nonexistent.js" || echo "Request failed")
+        
+        if echo "$STRUTS_STATIC_TEST" | grep -q "Error 404 Not Found"; then
+          echo "❌ /struts/static/ also gets Jetty 404"
+        elif echo "$STRUTS_STATIC_TEST" | grep -q "Struts\|Action\|Configuration"; then
+          echo "✅ /struts/static/ reaches Struts2!"
+        else
+          echo "⚠️  Different response for /struts/static/"
+        fi
+        
+        # Step 7: Final analysis
+        echo ""
+        echo "🎯 ANALYSIS SUMMARY:"
+        
+        if grep -q "StrutsPrepareAndExecuteFilter.*doFilter" recent-logs.txt; then
+          echo "✅ Struts2 filter IS being called for requests"
+          echo "The issue may be in Struts2 configuration or static resource handling"
+        else
+          echo "❌ Struts2 filter NOT being called for /static/ requests"
+          echo "Something is intercepting before the filter chain"
+        fi
+        
+        if echo "$STATIC_RESPONSE" | grep -q "Error 404 Not Found"; then
+          echo "❌ Still getting Jetty 404s - not Struts2 responses"
+        else
+          echo "✅ Getting non-Jetty responses - progress!"
+        fi
+        
+        kill $JETTY_PID 2>/dev/null || true
+        pkill -f jetty || true
+        
+        echo ""
+        echo "📋 Debug files created:"
+        echo "  - recent-logs.txt (filtered log output)"
+        echo "  - jetty-debug-flow.log (full debug log)"
+        
+        echo ""
+        echo "🎯 Next steps depend on whether Struts2 filter is being called or not"
     - name: Run Integration Tests
       run: |
         echo "🧪 Running integration tests with command line flags..."
