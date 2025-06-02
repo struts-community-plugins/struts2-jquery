@@ -73,8 +73,8 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
+				<groupId>org.eclipse.jetty.ee10</groupId>
+				<artifactId>jetty-ee10-maven-plugin</artifactId>
 			</plugin>
 
 			<plugin>
@@ -86,17 +86,17 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-maven-plugin</artifactId>
-					<version>${jetty.plugin.version}</version>
+					<groupId>org.eclipse.jetty.ee10</groupId>
+					<artifactId>jetty-ee10-maven-plugin</artifactId>
+					<version>12.0.21</version>
 					<configuration>
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
-						<scan>10</scan>
+						<scan>0</scan>
 						<webApp>
 							<contextPath>/</contextPath>
 							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
-							<defaultsDescriptor>${project.basedir}/src/main/webapp/WEB-INF/webdefault.xml</defaultsDescriptor>
+							<!-- defaultsDescriptor>${project.basedir}/src/main/webapp/WEB-INF/webdefault.xml</defaultsDescriptor -->
 						</webApp>
 						<httpConnector>
 							<port>8080</port>
