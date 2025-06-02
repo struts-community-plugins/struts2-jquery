@@ -403,20 +403,9 @@ jobs:
         echo "=== ANY STATIC/JS MENTIONS ==="
         grep -i "static\|\.js" recent-logs.txt || echo "No static/JS mentions found"
         
-        # Step 5: Check if there are any other servlet mappings we missed
+        # Step 5: Test direct Struts2 static serving functionality
         echo ""
-        echo "🔍 Step 5: Checking for competing servlet mappings..."
-        
-        echo "All servlet-mapping entries in webdefault.xml:"
-        grep -A 5 -B 2 "<servlet-mapping>" src/main/webapp/WEB-INF/webdefault.xml
-        
-        echo ""
-        echo "All servlet-mapping entries in web.xml:"
-        grep -A 5 -B 2 "<servlet-mapping>" src/main/webapp/WEB-INF/web.xml
-        
-        # Step 6: Test direct Struts2 static serving functionality
-        echo ""
-        echo "🔍 Step 6: Testing if Struts2 static serving is enabled..."
+        echo "🔍 Step 5: Testing if Struts2 static serving is enabled..."
         
         echo "Making request to known Struts2 path:"
         STRUTS_STATIC_TEST=$(curl -s "http://localhost:8080/struts/static/nonexistent.js" || echo "Request failed")
@@ -429,7 +418,7 @@ jobs:
           echo "⚠️  Different response for /struts/static/"
         fi
         
-        # Step 7: Final analysis
+        # Step 6: Final analysis
         echo ""
         echo "🎯 ANALYSIS SUMMARY:"
         
