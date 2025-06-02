@@ -260,17 +260,17 @@ jobs:
     
         # Step 9: Analyze the request flow from logs
         echo ""
-        echo "📋 Step 4: Analyzing request flow from Jetty debug logs..."
+        echo "📋 Step 9: Analyzing request flow from Jetty debug logs..."
         
         echo "=== REQUEST FLOW ANALYSIS ==="
         echo ""
         
         echo "🔍 Filter mapping and initialization:"
-        grep -i "filter.*mapping\|filter.*init\|struts.*filter" jetty-detailed.log | head -10 || echo "  No filter mapping logs found"
+        grep -i "filter.*mapping\|filter.*init\|struts.*filter" jetty-detailed.log | head -100 || echo "  No filter mapping logs found"
         
         echo ""
         echo "🔍 Servlet mapping and initialization:"
-        grep -i "servlet.*mapping\|servlet.*init\|default.*servlet" jetty-detailed.log | head -10 || echo "  No servlet mapping logs found"
+        grep -i "servlet.*mapping\|servlet.*init\|default.*servlet" jetty-detailed.log | head -100 || echo "  No servlet mapping logs found"
         
         echo ""
         echo "🔍 Request handling for /regular/div/ajax-div.action (working):"
@@ -282,11 +282,11 @@ jobs:
         
         echo ""
         echo "🔍 Any 404 handling:"
-        grep -i "404\|not found" jetty-detailed.log | head -5 || echo "  No 404 logs found"
+        grep -i "404\|not found" jetty-detailed.log | head -50 || echo "  No 404 logs found"
         
         echo ""
         echo "🔍 Context and webapp information:"
-        grep -i "context\|webapp\|resource.*base" jetty-detailed.log | head -10 || echo "  No context logs found"
+        grep -i "context\|webapp\|resource.*base" jetty-detailed.log | head -100 || echo "  No context logs found"
         
 
         # Cleanup
