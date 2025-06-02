@@ -288,6 +288,8 @@ jobs:
         echo "🔍 Context and webapp information:"
         grep -i "context\|webapp\|resource.*base" jetty-detailed.log | head -100 || echo "  No context logs found"
         
+        echo "📋 Full jetty-detailed.log:"
+        cat jetty-detailed.log
 
         # Cleanup
         kill $JETTY_PID 2>/dev/null || true
