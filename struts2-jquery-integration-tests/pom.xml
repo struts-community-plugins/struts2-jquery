@@ -131,6 +131,26 @@
 								<name>user.timezone</name>
 								<value>UTC</value>
 							</systemProperty>
+							<systemProperty>
+								<name>struts.serve.static</name>
+								<value>true</value>
+							</systemProperty>
+							<systemProperty>
+								<name>struts.serve.static.browserCache</name>
+								<value>false</value>
+							</systemProperty>
+							<systemProperty>
+								<name>org.eclipse.jetty.servlet.Default.dirAllowed</name>
+								<value>false</value>
+							</systemProperty>
+							<systemProperty>
+								<name>org.eclipse.jetty.servlet.Default.useFileMappedBuffer</name>
+								<value>false</value>
+							</systemProperty>
+							<systemProperty>
+								<name>org.eclipse.jetty.servlet.Default.welcomeServlets</name>
+								<value>false</value>
+							</systemProperty>
 						</systemProperties>
 						<jvmArgs>-Xmx512m -XX:+UseG1GC -XX:+DisableExplicitGC -Djava.awt.headless=true -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0</jvmArgs>
 					</configuration>

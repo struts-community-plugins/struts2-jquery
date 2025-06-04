@@ -96,7 +96,12 @@ jobs:
         else
         echo "❌ No struts.xml found"
         fi
-        
+
+
+        # Check Struts configuration
+        echo "Checking Struts constants..."
+        curl -s "http://localhost:8080/config-browser/showConstants.action" | grep -i static || echo "Config browser not available"
+  
         echo ""
         echo "Current struts.properties:"
         if [ -f src/main/resources/struts.properties ]; then
