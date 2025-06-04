@@ -58,6 +58,19 @@
 				<failsafe.test.tag>CI-CHROME</failsafe.test.tag>
 				<failsafe.webdriver.name>ChromeDriver</failsafe.webdriver.name>
 				<browser>chrome</browser>
+
+				<!-- Faster builds -->
+				<maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+				<maven.failsafe.reuseForks>true</maven.failsafe.reuseForks>
+				<maven.failsafe.forkCount>1</maven.failsafe.forkCount>
+
+				<!-- Jetty optimizations -->
+				<jetty.daemon>true</jetty.daemon>
+				<jetty.stopWait>30</jetty.stopWait>
+
+				<!-- Test optimizations -->
+				<webdriver.timeout>90</webdriver.timeout>
+				<webdriver.implicit.wait>15</webdriver.implicit.wait>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -97,10 +110,29 @@
 							<contextPath>/</contextPath>
 							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
 							<!-- defaultsDescriptor>${project.basedir}/src/main/webapp/WEB-INF/webdefault.xml</defaultsDescriptor -->
+							<extractWAR>true</extractWAR>
+							<copyWebDir>false</copyWebDir>
 						</webApp>
 						<httpConnector>
 							<port>8080</port>
+							<host>127.0.0.1</host>
+							<idleTimeout>30000</idleTimeout>
 						</httpConnector>
+						<systemProperties>
+							<systemProperty>
+								<name>java.awt.headless</name>
+								<value>true</value>
+							</systemProperty>
+							<systemProperty>
+								<name>file.encoding</name>
+								<value>UTF-8</value>
+							</systemProperty>
+							<systemProperty>
+								<name>user.timezone</name>
+								<value>UTC</value>
+							</systemProperty>
+						</systemProperties>
+						<jvmArgs>-Xmx512m -XX:+UseG1GC -XX:+DisableExplicitGC -Djava.awt.headless=true -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0</jvmArgs>
 					</configuration>
 					<executions>
 						<execution>
@@ -127,11 +159,17 @@
 					<configuration>
 						<forkCount>2</forkCount>
 						<reuseForks>true</reuseForks>
-						<groups>${failsafe.test.tag}</groups>
+						<parallel>classes</parallel>
+						<threadCount>2</threadCount>						<groups>${failsafe.test.tag}</groups>
 						<systemPropertyVariables>
 							<webDriverName>${failsafe.webdriver.name}</webDriverName>
 							<webdriver.debug>true</webdriver.debug>
+							<webdriver.timeout>90000</webdriver.timeout>
+							<webdriver.implicit.wait>15000</webdriver.implicit.wait>
 						</systemPropertyVariables>
+						<trimStackTrace>false</trimStackTrace>
+						<useFile>true</useFile>
+						<printSummary>true</printSummary>
 					</configuration>
 					<executions>
 						<execution>
