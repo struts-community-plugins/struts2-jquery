@@ -31,5 +31,5 @@
     <constant name="struts.serve.static" value="true" />
     <constant name="struts.serve.static.browserCache" value="false" />
 
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
 </struts>

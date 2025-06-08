@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="DEBUG">
+<Configuration status="INFO">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="[%d{HH:mm:ss.SSS}] [%level] [%logger{36}] - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.jgeppert" level="debug"/>
-        <Logger name="org.apache.struts2" level="info"/>
-        <Logger name="org.eclipse.jetty" level="debug"/>
-        <Logger name="jakarta" level="info"/>
-        <Logger name="org.apache.struts2.dispatcher" level="DEBUG" additivity="false">
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="org.apache.struts2.dispatcher.filter" level="DEBUG" additivity="false">
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="org.eclipse.jetty.servlet" level="DEBUG" additivity="false">
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="org.eclipse.jetty.server.handler" level="DEBUG" additivity="false">
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <!-- Root logger -->
-        <Root level="INFO">
+        <Logger name="com.jgeppert" level="DEBUG"/>
+        <Logger name="org.apache.struts2" level="INFO"/>
+        <Logger name="org.eclipse.jetty" level="INFO"/>
+        <Logger name="jakarta" level="INFO"/>
+        <Root level="WARN">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

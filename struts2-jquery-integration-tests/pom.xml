@@ -109,7 +109,6 @@
 						<webApp>
 							<contextPath>/</contextPath>
 							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
-							<!-- defaultsDescriptor>${project.basedir}/src/main/webapp/WEB-INF/webdefault.xml</defaultsDescriptor -->
 							<extractWAR>false</extractWAR>
 							<copyWebDir>false</copyWebDir>
 							<parentLoaderPriority>true</parentLoaderPriority>
