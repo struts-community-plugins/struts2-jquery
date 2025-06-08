@@ -343,6 +343,61 @@ jobs:
           echo "❌ No static or template directory found in webapp"
         fi
 
+        echo ""
+        echo "🔍 Step 13: Checking JAR contents for minified files..."
+        
+        # Check the struts2-jquery-plugin JAR
+        JAR_PATH="/home/runner/.m2/repository/com/jgeppert/struts2/jquery/struts2-jquery-plugin/6.0.2-SNAPSHOT/struts2-jquery-plugin-6.0.2-SNAPSHOT.jar"
+        
+        if [ -f "$JAR_PATH" ]; then
+          echo "📦 Contents of struts2-jquery-plugin JAR:"
+          
+          echo ""
+          echo "Looking for jquery.struts2.min.js:"
+          jar -tf "$JAR_PATH" | grep "jquery.struts2.min.js" || echo "❌ NOT FOUND!"
+          
+          echo ""
+          echo "Looking for jquery.struts2.js (non-minified):"
+          jar -tf "$JAR_PATH" | grep -E "jquery.struts2.js$" || echo "❌ NOT FOUND!"
+          
+          echo ""
+          echo "All JavaScript files in template/js/struts2/:"
+          jar -tf "$JAR_PATH" | grep "template/js/struts2/" | grep "\.js$"
+          
+          echo ""
+          echo "Checking if minification was skipped:"
+          echo "All files in template/js/:"
+          jar -tf "$JAR_PATH" | grep "template/js/" | grep -E "\.(js|map)$" | sort
+        else
+          echo "❌ JAR not found at $JAR_PATH"
+        fi
+        
+        # Also check the local build directory
+        echo ""
+        echo "🔍 Checking local build directory..."
+        BUILD_DIR="/home/runner/work/struts2-jquery/struts2-jquery/struts2-jquery-plugin/target/classes"
+        
+        if [ -d "$BUILD_DIR/template/js/struts2" ]; then
+          echo "Files in $BUILD_DIR/template/js/struts2:"
+         ls -la "$BUILD_DIR/template/js/struts2/"
+        else
+          echo "❌ Build directory not found"
+        fi
+        
+        # Check if minify plugin ran
+        echo ""
+        echo "🔍 Checking for minify-maven-plugin execution..."
+        if [ -f "/home/runner/work/struts2-jquery/struts2-jquery/struts2-jquery-plugin/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" ]; then
+          echo "✅ Compiler plugin ran"
+        fi
+        
+        # Look for minify plugin markers
+        if ls /home/runner/work/struts2-jquery/struts2-jquery/struts2-jquery-plugin/target/minify* 2>/dev/null; then
+          echo "✅ Found minify plugin artifacts"
+        else
+          echo "❌ No minify plugin artifacts found - plugin may not have run!"
+        fi
+        
         # Cleanup
         kill $JETTY_PID 2>/dev/null || true
         pkill -f jetty || true
