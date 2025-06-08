@@ -1,13 +1,6 @@
 package com.jgeppert.jquery.menu;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import com.jgeppert.jquery.AbstractJQueryTest;
-
-import java.util.List;
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,7 +9,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @Tag("HTMLUnit")
+@Tag("CI-CHROME")
 @Tag("PhantomJS")
 public class MenuTagIT extends AbstractJQueryTest {
     @ParameterizedTest

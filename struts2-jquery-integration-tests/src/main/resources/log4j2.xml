@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss.SSS}] [%level] [%logger{36}] - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.jgeppert" level="DEBUG"/>
+        <Logger name="org.apache.struts2" level="INFO"/>
+        <Logger name="org.eclipse.jetty" level="INFO"/>
+        <Logger name="jakarta" level="INFO"/>
+        <Root level="WARN">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

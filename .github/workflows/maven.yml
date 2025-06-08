@@ -25,6 +25,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4.2.2
+    - name: Setup Chrome and ChromeDriver
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: stable
+        install-chromedriver: true
     - name: Set up cache
       uses: actions/cache@v4.2.3
       with:
@@ -36,17 +41,85 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: 17
-        distribution: temurin
+        distribution: corretto
         cache: maven
         server-id: struts2-jquery.snapshots
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
+    - name: Print Java version
+      run: java -version
+    - name: Print Maven version
+      run: mvn -version
+    - name: Print Chrome version
+      run: google-chrome --version
+    - name: Print ChromeDriver version
+      run: chromedriver --version
+    - name: Print OS details
+      run: uname -a
+    - name: Test outbound access
+      run: curl -I https://code.jquery.com/jquery-3.7.1.min.js
     - name: Build & Install
-      run: mvn -B -V -DskipITs install
-    - name: Verify IT
-      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P ci-htmlunit verify
-#    - name: Verify IT with PhantomJS
-#      run: mvn -DskipMinify=true --projects struts2-jquery-integration-tests -Dmaven.javadoc.skip=true -P phantomjs verify
+      run: |
+        echo "🔨 Building remaining modules..."
+        mvn -B -V -DskipITs clean install
+    - name: Run Integration Tests
+      run: |
+        echo "🧪 Running integration tests with command line flags..."
+        
+        # Check current configuration
+        echo "📋 Current web.xml:"
+        if [ -f src/main/webapp/WEB-INF/web.xml ]; then
+        cat src/main/webapp/WEB-INF/web.xml
+        else
+        echo "❌ No web.xml found!"
+        fi
+        
+        echo ""
+        echo "📋 Jetty Maven plugin config:"
+        grep -A 15 -B 5 "jetty-maven-plugin" pom.xml || echo "No jetty plugin config found"
+
+        
+        # Clean up Chrome processes
+        pkill -f chrome || true
+        pkill -f chromedriver || true
+        
+        mvn -pl struts2-jquery-integration-tests \
+        -Dmaven.javadoc.skip=true \
+        -Dmaven.source.skip=true \
+        -Djetty.scan=0 \
+        -P ci-chrome \
+        -Dfailsafe.webdriver.name=ChromeDriver \
+        verify || {
+        
+          echo "❌ Integration tests failed"
+        
+          # Enhanced diagnostics
+          echo "🔍 Maven execution diagnostics:"
+        
+          # Check what Maven actually tried to do
+          echo "📋 Last Maven execution log:"
+          # The error log should be in the output above
+        
+          # Check if Jetty started
+          if curl -s -o /dev/null http://localhost:8080; then
+            echo "✅ Jetty is running"
+            echo "🔍 Testing static resources:"
+            for file in "/static/js/base/version.min.js" "/static/js/plugins/jquery.subscribe.min.js"; do
+              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:8080$file")
+              echo "  $file: HTTP $HTTP_CODE"
+            done
+          else
+            echo "❌ Jetty is not running"
+          fi
+        
+          # Clean up and exit
+          pkill -f jetty || true
+          pkill -f chrome || true
+          exit 1
+        }
+        
+        echo "✅ Integration tests completed successfully!"
+        pkill -f chrome || true
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
       env:

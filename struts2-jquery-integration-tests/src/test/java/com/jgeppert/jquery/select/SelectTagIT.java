@@ -1,17 +1,17 @@
 package com.jgeppert.jquery.select;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.jgeppert.jquery.AbstractJQueryTest;
-
-import java.util.List;
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@Tag("CI-CHROME")
 @Tag("HTMLUnit")
 @Tag("PhantomJS")
 public class SelectTagIT extends AbstractJQueryTest {

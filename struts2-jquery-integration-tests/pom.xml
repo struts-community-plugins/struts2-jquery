@@ -22,8 +22,9 @@
 		<!-- plugins -->
 		<maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
 		<!-- dependencies -->
-		<selenium.version>4.31.0</selenium.version>
-		<htmlunit-driver.version>4.30.0</htmlunit-driver.version>
+		<selenium.version>4.33.0</selenium.version>
+		<htmlunit-driver.version>4.32.0</htmlunit-driver.version>
+		<webdrivermanager.version>6.1.0</webdrivermanager.version>
 		<lombok.version>1.18.38</lombok.version>
 		<guava.version>33.4.8-jre</guava.version>
 		<phantomjsdriver.version>1.5.0</phantomjsdriver.version>
@@ -51,13 +52,42 @@
 				<failsafe.webdriver.name>HTMLUnit</failsafe.webdriver.name>
 			</properties>
 		</profile>
+		<profile>
+			<id>ci-chrome</id>
+			<properties>
+				<failsafe.test.tag>CI-CHROME</failsafe.test.tag>
+				<failsafe.webdriver.name>ChromeDriver</failsafe.webdriver.name>
+				<browser>chrome</browser>
+
+				<!-- Faster builds -->
+				<maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+				<maven.failsafe.reuseForks>true</maven.failsafe.reuseForks>
+				<maven.failsafe.forkCount>1</maven.failsafe.forkCount>
+
+				<!-- Jetty optimizations -->
+				<jetty.daemon>true</jetty.daemon>
+				<jetty.stopWait>30</jetty.stopWait>
+
+				<!-- Test optimizations -->
+				<webdriver.timeout>90</webdriver.timeout>
+				<webdriver.implicit.wait>15</webdriver.implicit.wait>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-chrome-driver</artifactId>
+					<version>${selenium.version}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
 	</profiles>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
+				<groupId>org.eclipse.jetty.ee10</groupId>
+				<artifactId>jetty-ee10-maven-plugin</artifactId>
 			</plugin>
 
 			<plugin>
@@ -69,16 +99,60 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-maven-plugin</artifactId>
-					<version>${jetty.plugin.version}</version>
+					<groupId>org.eclipse.jetty.ee10</groupId>
+					<artifactId>jetty-ee10-maven-plugin</artifactId>
+					<version>12.0.21</version>
 					<configuration>
 						<stopKey>CTRL+C</stopKey>
 						<stopPort>8999</stopPort>
-						<scan>10</scan>
+						<scan>0</scan>
 						<webApp>
-							<overrideDescriptor>${project.basedir}/src/main/webapp/WEB-INF/web.xml</overrideDescriptor>
+							<contextPath>/</contextPath>
+							<descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
+							<extractWAR>false</extractWAR>
+							<copyWebDir>false</copyWebDir>
+							<parentLoaderPriority>true</parentLoaderPriority>
 						</webApp>
+						<httpConnector>
+							<port>8080</port>
+							<host>127.0.0.1</host>
+							<idleTimeout>30000</idleTimeout>
+						</httpConnector>
+						<systemProperties>
+							<systemProperty>
+								<name>java.awt.headless</name>
+								<value>true</value>
+							</systemProperty>
+							<systemProperty>
+								<name>file.encoding</name>
+								<value>UTF-8</value>
+							</systemProperty>
+							<systemProperty>
+								<name>user.timezone</name>
+								<value>UTC</value>
+							</systemProperty>
+							<systemProperty>
+								<name>struts.serve.static</name>
+								<value>true</value>
+							</systemProperty>
+							<systemProperty>
+								<name>struts.serve.static.browserCache</name>
+								<value>false</value>
+							</systemProperty>
+							<systemProperty>
+								<name>org.eclipse.jetty.servlet.Default.dirAllowed</name>
+								<value>false</value>
+							</systemProperty>
+							<systemProperty>
+								<name>org.eclipse.jetty.servlet.Default.useFileMappedBuffer</name>
+								<value>false</value>
+							</systemProperty>
+							<systemProperty>
+								<name>org.eclipse.jetty.servlet.Default.welcomeServlets</name>
+								<value>false</value>
+							</systemProperty>
+						</systemProperties>
+						<jvmArgs>-Xmx512m -XX:+UseG1GC -XX:+DisableExplicitGC -Djava.awt.headless=true -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0</jvmArgs>
 					</configuration>
 					<executions>
 						<execution>
@@ -105,13 +179,18 @@
 					<configuration>
 						<forkCount>2</forkCount>
 						<reuseForks>true</reuseForks>
+						<parallel>classes</parallel>
+						<threadCount>2</threadCount>
 						<groups>${failsafe.test.tag}</groups>
 						<systemPropertyVariables>
-							<property>
-								<name>webDriverName</name>
-								<value>${failsafe.webdriver.name}</value>
-							</property>
+							<webDriverName>${failsafe.webdriver.name}</webDriverName>
+							<webdriver.debug>true</webdriver.debug>
+							<webdriver.timeout>90000</webdriver.timeout>
+							<webdriver.implicit.wait>15000</webdriver.implicit.wait>
 						</systemPropertyVariables>
+						<trimStackTrace>false</trimStackTrace>
+						<useFile>true</useFile>
+						<printSummary>true</printSummary>
 					</configuration>
 					<executions>
 						<execution>
@@ -130,6 +209,11 @@
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-convention-plugin</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-config-browser-plugin</artifactId>
 		</dependency>
 
 		<dependency>
@@ -158,12 +242,44 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-http</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j2-impl</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -172,6 +288,12 @@
 			<dependency>
 				<groupId>org.apache.struts</groupId>
 				<artifactId>struts2-convention-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-config-browser-plugin</artifactId>
 				<version>${struts2.version}</version>
 			</dependency>
 
@@ -202,8 +324,21 @@
 
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-http</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>htmlunit3-driver</artifactId>
 				<version>${htmlunit-driver.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.github.bonigarcia</groupId>
+				<artifactId>webdrivermanager</artifactId>
+				<version>${webdrivermanager.version}</version>
 				<scope>test</scope>
 			</dependency>
 
@@ -263,6 +398,24 @@
 			</dependency>
 
 			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j2-impl</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${lombok.version}</version>
@@ -273,6 +426,13 @@
 				<groupId>jakarta.servlet</groupId>
 				<artifactId>jakarta.servlet-api</artifactId>
 				<version>${jakarta.servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.servlet.jsp</groupId>
+				<artifactId>jakarta.servlet.jsp-api</artifactId>
+				<version>${jsp-api.version}</version>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>

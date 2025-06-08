@@ -18,6 +18,16 @@
   </scm>
 
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -55,7 +65,7 @@
 							<phase>generate-resources</phase>
 							<configuration>
 								<jsEngine>CLOSURE</jsEngine>
-								<closureLanguageIn>ECMASCRIPT5_STRICT</closureLanguageIn>
+								<closureLanguageIn>ECMASCRIPT6_STRICT</closureLanguageIn>
 								<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
 								<closureCreateSourceMap>true</closureCreateSourceMap>
 								<skipMerge>true</skipMerge>
