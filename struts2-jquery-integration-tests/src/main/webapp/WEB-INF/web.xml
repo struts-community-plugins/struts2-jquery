@@ -12,6 +12,17 @@
 		<param-value>/WEB-INF/log4j2.xml</param-value>
 	</context-param>
 
+	<servlet>
+		<servlet-name>ResourceDebugServlet</servlet-name>
+		<servlet-class>com.jgeppert.jquery.debug.ResourceDebugServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ResourceDebugServlet</servlet-name>
+		<url-pattern>/debug/resources/*</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>

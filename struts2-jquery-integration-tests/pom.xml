@@ -181,7 +181,8 @@
 						<forkCount>2</forkCount>
 						<reuseForks>true</reuseForks>
 						<parallel>classes</parallel>
-						<threadCount>2</threadCount>						<groups>${failsafe.test.tag}</groups>
+						<threadCount>2</threadCount>
+						<groups>${failsafe.test.tag}</groups>
 						<systemPropertyVariables>
 							<webDriverName>${failsafe.webdriver.name}</webDriverName>
 							<webdriver.debug>true</webdriver.debug>

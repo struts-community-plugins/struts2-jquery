@@ -295,6 +295,53 @@ jobs:
         
         echo "📋 Full jetty-detailed.log:"
         cat jetty-detailed.log
+        
+        echo "🔍 Step 10: Debugging resource loading with ResourceDebugServlet..."
+        
+        # Test the debug servlet with various resource paths
+        debug_resource() {
+          local resource_path=$1
+          echo ""
+          echo "📋 Checking resource: $resource_path"
+          curl -s "http://localhost:8080/debug/resources$resource_path" | head -100
+        }
+        
+        # Wait for debug servlet to be available
+        echo "⏳ Waiting for debug servlet..."
+        for i in {1..10}; do
+          if curl -s -o /dev/null -w "%{http_code}" "http://localhost:8080/debug/resources/" | grep -q "200"; then
+            echo "✅ Debug servlet ready"
+            break
+          fi
+          sleep 1
+        done
+          
+        # Debug key resources that are failing
+        debug_resource "/js/struts2/jquery.struts2.min.js"
+        debug_resource "/js/base/jquery-3.7.1.min.js"
+        debug_resource "/js/plugins/jquery.subscribe.min.js"
+        debug_resource "/js/base/version.min.js"
+          
+        echo ""
+        echo "🔍 Step 11: Checking if JARs are in WEB-INF/lib..."
+        if [ -d "target/struts2-jquery-integration-tests-6.0.2-SNAPSHOT/WEB-INF/lib" ]; then
+          echo "Contents of WEB-INF/lib:"
+          ls -la target/struts2-jquery-integration-tests-6.0.2-SNAPSHOT/WEB-INF/lib/ | grep jquery
+          else
+          echo "❌ WEB-INF/lib directory not found"
+        fi
+          
+        echo ""
+        echo "🔍 Step 12: Checking extracted resources in webapp..."
+        if [ -d "target/struts2-jquery-integration-tests-6.0.2-SNAPSHOT/static" ]; then
+          echo "✅ Found static directory in webapp"
+          find target/struts2-jquery-integration-tests-6.0.2-SNAPSHOT/static -name "*.js" | head -10
+        elif [ -d "target/struts2-jquery-integration-tests-6.0.2-SNAPSHOT/template" ]; then
+          echo "✅ Found template directory in webapp"
+          find target/struts2-jquery-integration-tests-6.0.2-SNAPSHOT/template -name "*.js" | head -10
+        else
+          echo "❌ No static or template directory found in webapp"
+        fi
 
         # Cleanup
         kill $JETTY_PID 2>/dev/null || true
