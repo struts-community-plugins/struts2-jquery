@@ -86,7 +86,7 @@
 							<phase>generate-resources</phase>
 							<configuration>
 								<jsEngine>CLOSURE</jsEngine>
-								<closureLanguageIn>ECMASCRIPT5_STRICT</closureLanguageIn>
+								<closureLanguageIn>ECMASCRIPT6_STRICT</closureLanguageIn>
 								<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
 								<closureCreateSourceMap>true</closureCreateSourceMap>
 								<skipMerge>true</skipMerge>
@@ -108,7 +108,7 @@
 							<phase>generate-resources</phase>
 							<configuration>
 								<jsEngine>CLOSURE</jsEngine>
-								<closureLanguageIn>ECMASCRIPT5_STRICT</closureLanguageIn>
+								<closureLanguageIn>ECMASCRIPT6_STRICT</closureLanguageIn>
 								<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
 								<closureCreateSourceMap>true</closureCreateSourceMap>
 								<skipMerge>true</skipMerge>
@@ -138,7 +138,6 @@
 									<jsSourceFile>accordion.js</jsSourceFile>
 									<jsSourceFile>autocomplete.js</jsSourceFile>
 									<jsSourceFile>button.js</jsSourceFile>
-									<jsSourceFile>core.js</jsSourceFile>
 									<jsSourceFile>datepicker.js</jsSourceFile>
 									<jsSourceFile>dialog.js</jsSourceFile>
 									<jsSourceFile>draggable.js</jsSourceFile>
@@ -184,7 +183,7 @@
 							<configuration>
 								<charset>UTF-8</charset>
 								<jsEngine>CLOSURE</jsEngine>
-								<closureLanguageIn>ECMASCRIPT5_STRICT</closureLanguageIn>
+								<closureLanguageIn>ECMASCRIPT6_STRICT</closureLanguageIn>
 								<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
 								<skipMerge>true</skipMerge>
 								<webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
@@ -208,7 +207,7 @@
 							<configuration>
 								<charset>UTF-8</charset>
 								<jsEngine>CLOSURE</jsEngine>
-								<closureLanguageIn>ECMASCRIPT5_STRICT</closureLanguageIn>
+								<closureLanguageIn>ECMASCRIPT6_STRICT</closureLanguageIn>
 								<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
 								<closureCreateSourceMap>true</closureCreateSourceMap>
 								<skipMerge>true</skipMerge>

@@ -66,7 +66,7 @@
 							<phase>generate-resources</phase>
 							<configuration>
 								<jsEngine>CLOSURE</jsEngine>
-								<closureLanguageIn>ECMASCRIPT5_STRICT</closureLanguageIn>
+								<closureLanguageIn>ECMASCRIPT6_STRICT</closureLanguageIn>
 								<closureLanguageOut>ECMASCRIPT5_STRICT</closureLanguageOut>
 								<closureCreateSourceMap>true</closureCreateSourceMap>
 								<skipMerge>true</skipMerge>
