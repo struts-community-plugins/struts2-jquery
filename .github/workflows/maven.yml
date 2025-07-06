@@ -26,7 +26,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4.2.2
     - name: Setup Chrome and ChromeDriver
-      uses: browser-actions/setup-chrome@v1
+      uses: browser-actions/setup-chrome@v2
       with:
         chrome-version: stable
         install-chromedriver: true
