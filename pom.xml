@@ -98,7 +98,7 @@
 		<struts-annotations.version>2.0</struts-annotations.version>
 		<jsp-api.version>4.0.0</jsp-api.version>
 		<servlet-api.version>6.1.0</servlet-api.version>
-		<commons-lang.version>3.18.0</commons-lang.version>
+		<commons-lang.version>3.19.0</commons-lang.version>
 		<junit.version>5.13.4</junit.version>
 		<assertj-core.version>3.27.6</assertj-core.version>
 		<spring.version>6.2.8</spring.version>
