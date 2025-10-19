@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class SliderTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             Slider slider = new Slider(valueStack, null, null);
+            slider.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             slider.evaluateParams();
 
@@ -39,6 +42,7 @@ class SliderTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             Slider slider = new Slider(valueStack, null, null);
+            slider.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
             slider.setId("myId");
 
             slider.setAnimate("true");

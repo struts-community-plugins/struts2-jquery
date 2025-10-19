@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class SubmitTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             Submit submit = new Submit(valueStack, null, null);
+            submit.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             submit.evaluateParams();
 
@@ -35,6 +38,7 @@ class SubmitTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             Submit submit = new Submit(valueStack, null, null);
+            submit.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
             submit.setId("myId");
 
             submit.setType("button");

@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +17,7 @@ class AbstractRemoteBeanTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             AbstractRemoteBean abstractRemoteBean = new AbstractRemoteBeanImpl(valueStack);
+            abstractRemoteBean.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             abstractRemoteBean.evaluateParams();
 
@@ -30,6 +33,8 @@ class AbstractRemoteBeanTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             AbstractRemoteBean abstractTopicsBean = new AbstractRemoteBeanImpl(valueStack);
+            abstractTopicsBean.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
+            
             abstractTopicsBean.setHref("/the-url?paramKey=paramValue");
             abstractTopicsBean.setTargets("theTarget");
             abstractTopicsBean.setFormIds("theFormId");

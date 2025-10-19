@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class AccordionItemTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             AccordionItem accordionItem = new AccordionItem(valueStack, null, null);
+            accordionItem.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             accordionItem.evaluateParams();
 
@@ -30,6 +33,8 @@ class AccordionItemTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             AccordionItem accordionItem = new AccordionItem(valueStack, null, null);
+            accordionItem.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
+
             accordionItem.setTitle("the title");
             accordionItem.setOnClickTopics("theOnClickTopic");
             accordionItem.setId("myId");

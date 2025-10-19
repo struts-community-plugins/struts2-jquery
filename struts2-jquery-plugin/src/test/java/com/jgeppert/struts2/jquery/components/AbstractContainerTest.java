@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +17,7 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             AbstractContainer abstractContainer = new AbstractContainerImpl(valueStack);
+            abstractContainer.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             abstractContainer.evaluateParams();
 
@@ -39,6 +42,8 @@ class AbstractContainerTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             AbstractContainer abstractContainer = new AbstractContainerImpl(valueStack);
+            abstractContainer.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
+
             abstractContainer.setReloadTopics("theReloadTopic");
             abstractContainer.setBindOn("theBindOn");
             abstractContainer.setEvents("theEvent");

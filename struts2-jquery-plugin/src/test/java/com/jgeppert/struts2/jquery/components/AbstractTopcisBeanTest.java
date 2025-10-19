@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +17,7 @@ class AbstractTopcisBeanTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             AbstractTopicsBean abstractTopicsBean = new AbstractTopicsBeanImpl(valueStack);
+            abstractTopicsBean.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             abstractTopicsBean.evaluateParams();
 
@@ -29,6 +32,8 @@ class AbstractTopcisBeanTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             AbstractTopicsBean abstractTopicsBean = new AbstractTopicsBeanImpl(valueStack);
+            abstractTopicsBean.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
+
             abstractTopicsBean.setOnBeforeTopics("theBeforeTopic");
             abstractTopicsBean.setOnAfterValidationTopics("theAfterValidationTopic");
             abstractTopicsBean.setOnCompleteTopics("theCompleteTopic");

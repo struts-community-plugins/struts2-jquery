@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +17,7 @@ class AbstractFormElementTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             AbstractFormElement abstractRemoteBean = new AbstractFormElementImpl(valueStack);
+            abstractRemoteBean.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             abstractRemoteBean.evaluateParams();
 
@@ -28,6 +31,8 @@ class AbstractFormElementTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             AbstractFormElement abstractFormElement = new AbstractFormElementImpl(valueStack);
+            abstractFormElement.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
+            
             abstractFormElement.setParentTheme("vader");
 
             abstractFormElement.evaluateParams();

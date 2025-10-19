@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class ProgressbarTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             Progressbar progressbar = new Progressbar(valueStack, null, null);
+            progressbar.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             progressbar.evaluateParams();
 
@@ -31,6 +34,7 @@ class ProgressbarTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             Progressbar progressbar = new Progressbar(valueStack, null, null);
+            progressbar.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
             progressbar.setId("myId");
 
             progressbar.setValue("75");

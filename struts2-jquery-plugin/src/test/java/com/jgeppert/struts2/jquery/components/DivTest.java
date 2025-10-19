@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class DivTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             Div div = new Div(valueStack, null, null);
+            div.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             div.evaluateParams();
 
@@ -31,6 +34,8 @@ class DivTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             Div div = new Div(valueStack, null, null);
+            div.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
+
             div.setId("myId");
             div.setUpdateFreq("300");
             div.setDelay("60");
