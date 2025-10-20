@@ -65,6 +65,8 @@ jobs:
     - name: Run Integration Tests
       run: |
         echo "🧪 Running integration tests with command line flags..."
+        cd struts2-jquery-integration-tests
+        echo "Current folder: $(pwd)"
         
         # Check current configuration
         echo "📋 Current web.xml:"
