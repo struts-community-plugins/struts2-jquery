@@ -121,7 +121,6 @@ jobs:
         pkill -f chrome || true
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
-      env:
-        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-      run: mvn -B -V -DskipTests=true deploy
+      run: |
+        echo "${{ secrets.MAVEN_SETTINGS }}" > ~/.m2/settings-central.xml
+        mvn -B -DskipTests=true deploy -s ~/.m2/settings-central.xml
