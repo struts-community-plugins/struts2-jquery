@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class MenuItemTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             MenuItem menuItem = new MenuItem(valueStack, null, null);
+            menuItem.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             menuItem.evaluateParams();
 
@@ -31,6 +34,7 @@ class MenuItemTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             MenuItem menuItem = new MenuItem(valueStack, null, null);
+            menuItem.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
             menuItem.setId("myId");
 
             menuItem.setTitle("menu item title");

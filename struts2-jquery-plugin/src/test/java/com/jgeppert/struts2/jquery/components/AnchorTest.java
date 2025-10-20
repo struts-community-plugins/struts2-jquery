@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class AnchorTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             Anchor anchor = new Anchor(valueStack, null, null);
+            anchor.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             anchor.evaluateParams();
 
@@ -33,6 +36,8 @@ class AnchorTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             Anchor anchor = new Anchor(valueStack, null, null);
+            anchor.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
+
             anchor.setId("myId");
             anchor.setOpenDialog("theOpenDialog");
             anchor.setOpenDialogTitle("the open dialog title");

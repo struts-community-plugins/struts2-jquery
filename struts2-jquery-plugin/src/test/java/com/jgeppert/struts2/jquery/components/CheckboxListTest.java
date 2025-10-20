@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class CheckboxListTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             CheckboxList checkboxList = new CheckboxList(valueStack, null, null);
+            checkboxList.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             checkboxList.evaluateParams();
 
@@ -31,6 +34,8 @@ class CheckboxListTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             CheckboxList checkboxList = new CheckboxList(valueStack, null, null);
+            checkboxList.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
+
             checkboxList.setId("myId");
 
             checkboxList.setButtonset("true");

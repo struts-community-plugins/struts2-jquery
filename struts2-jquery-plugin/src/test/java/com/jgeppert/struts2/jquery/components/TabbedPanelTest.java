@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.csp.CspNonceSource;
+import org.apache.struts2.interceptor.csp.StrutsCspNonceReader;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ class TabbedPanelTest extends AbstractComponentBaseTest {
         @Test
         void noneSet() {
             TabbedPanel tabbedPanel = new TabbedPanel(valueStack, null, null);
+            tabbedPanel.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
 
             tabbedPanel.evaluateParams();
 
@@ -33,6 +36,7 @@ class TabbedPanelTest extends AbstractComponentBaseTest {
         @Test
         void allSet() {
             TabbedPanel tabbedPanel = new TabbedPanel(valueStack, null, null);
+            tabbedPanel.setCspNonceReader(new StrutsCspNonceReader(CspNonceSource.SESSION.name()));
             tabbedPanel.setId("myId");
 
             tabbedPanel.setSelectedTab("1");
