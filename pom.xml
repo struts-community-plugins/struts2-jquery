@@ -231,6 +231,13 @@
 					<plugin>
 						<artifactId>maven-gpg-plugin</artifactId>
 					</plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <skipITs>true</skipITs>
+                        </configuration>
+                    </plugin>
 				</plugins>
 				<pluginManagement>
 					<plugins>
