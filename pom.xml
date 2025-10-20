@@ -101,7 +101,7 @@
 		<commons-lang.version>3.19.0</commons-lang.version>
 		<junit.version>6.0.0</junit.version>
 		<assertj-core.version>3.27.6</assertj-core.version>
-		<spring.version>6.2.11</spring.version>
+		<spring.version>6.2.12</spring.version>
 	</properties>
 
 	<modules>
