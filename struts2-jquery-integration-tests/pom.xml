@@ -208,6 +208,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-convention-plugin</artifactId>
 		</dependency>
 
@@ -285,6 +290,12 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-core</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.apache.struts</groupId>
 				<artifactId>struts2-convention-plugin</artifactId>
