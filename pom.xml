@@ -101,7 +101,6 @@
 		<module>struts2-jquery-showcase</module>
 		<module>struts2-jquery-grid-showcase</module>
 		<module>struts2-jquery-archetypes</module>
-		<module>struts2-jquery-integration-tests</module>
 	</modules>
 
 	<build>
@@ -223,8 +222,22 @@
 	</build>
 
 	<profiles>
+        <profile>
+            <id>skip-it</id>
+            <activation>
+                <property>
+                    <name>!skipITs</name>
+                </property>
+            </activation>
+            <modules>
+                <module>struts2-jquery-integration-tests</module>
+            </modules>
+        </profile>
 		<profile>
 			<id>release</id>
+            <properties>
+                <skipITs/>
+            </properties>
 			<build>
 				<defaultGoal>deploy</defaultGoal>
 				<plugins>
