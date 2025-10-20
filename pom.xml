@@ -204,6 +204,7 @@
 					<configuration>
 						<releaseProfiles>release</releaseProfiles>
                         <preparationProfiles>release</preparationProfiles>
+                        <preparationGoals>-DskipITs=true</preparationGoals>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<goals>deploy</goals>
 						<tagNameFormat>@{project.version}</tagNameFormat>
@@ -237,7 +238,7 @@
 		<profile>
 			<id>release</id>
             <properties>
-                <skipITs/>
+                <skipITs>true</skipITs>
             </properties>
 			<build>
 				<defaultGoal>deploy</defaultGoal>
