@@ -203,6 +203,7 @@
 					<version>${maven-release-plugin.version}</version>
 					<configuration>
 						<releaseProfiles>release</releaseProfiles>
+                        <preparationProfiles>release</preparationProfiles>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<goals>deploy</goals>
 						<tagNameFormat>@{project.version}</tagNameFormat>
