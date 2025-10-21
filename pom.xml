@@ -203,8 +203,7 @@
 					<version>${maven-release-plugin.version}</version>
 					<configuration>
 						<releaseProfiles>release</releaseProfiles>
-                        <preparationProfiles>release</preparationProfiles>
-                        <preparationGoals>-DskipITs=true</preparationGoals>
+                        <prepareVerifyArgs>-DskipITs</prepareVerifyArgs>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<goals>deploy</goals>
 						<tagNameFormat>@{project.version}</tagNameFormat>
@@ -225,7 +224,7 @@
 
 	<profiles>
         <profile>
-            <id>skip-it</id>
+            <id>integration-tests</id>
             <activation>
                 <property>
                     <name>!skipITs</name>
@@ -238,7 +237,7 @@
 		<profile>
 			<id>release</id>
             <properties>
-                <skipITs>true</skipITs>
+                <name>skipITs</name>
             </properties>
 			<build>
 				<defaultGoal>deploy</defaultGoal>
