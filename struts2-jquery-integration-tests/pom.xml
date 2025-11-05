@@ -28,7 +28,7 @@
 		<lombok.version>1.18.42</lombok.version>
 		<guava.version>33.5.0-jre</guava.version>
 		<phantomjsdriver.version>1.5.0</phantomjsdriver.version>
-		<commons-codec.version>1.19.0</commons-codec.version>
+		<commons-codec.version>1.20.0</commons-codec.version>
 		<commons-io.version>2.20.0</commons-io.version>
 		<xml-apis.version>1.4.01</xml-apis.version>
 		<jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
