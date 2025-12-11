@@ -1,6 +1,6 @@
 # Struts2 jQuery Plugin
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jgeppert.struts2.jquery/struts2-jquery/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jgeppert.struts2.jquery/struts2-jquery)
+[![Maven Central](https://maven-badges.sml.io/sonatype-central/com.jgeppert.struts2.jquery/struts2-jquery/badge.svg)](https://maven-badges.sml.io/sonatype-central/com.jgeppert.struts2.jquery/struts2-jquery)
 [![Java CI with Maven](https://github.com/struts-community-plugins/struts2-jquery/actions/workflows/maven.yml/badge.svg)](https://github.com/struts-community-plugins/struts2-jquery/actions/workflows/maven.yml)
 
 A Plugin for the popular java web framework struts2 to provide ajax functionality and UI Widgets based on the jQuery javascript framework.
@@ -46,27 +46,27 @@ Since version 1.8.3 the plugin is found in the central Maven repository. Just ad
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-plugin</artifactId>
-        <version>6.0.1</version>
+        <version>6.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-grid-plugin</artifactId>
-        <version>6.0.1</version>
+        <version>6.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-datatables-plugin</artifactId>
-        <version>6.0.1</version>
+        <version>6.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-richtext-plugin</artifactId>
-        <version>6.0.1</version>
+        <version>6.0.2</version>
     </dependency>
     <dependency>
         <groupId>com.jgeppert.struts2.jquery</groupId>
         <artifactId>struts2-jquery-tree-plugin</artifactId>
-        <version>6.0.1</version>
+        <version>6.0.2</version>
     </dependency>
     ...
 </dependencies>
@@ -78,17 +78,17 @@ To access SNAPSHOT builds, you need to declare the snapshot repository lookup in
 ...
 <repositories>
     ...
-    <repository>
-        <id>sonatype.oss.snapshots</id>
-        <name>Sonatype OSS Snapshot Repository</name>
-        <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-        <releases>
-            <enabled>false</enabled>
-        </releases>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </repository>
+  <repository>
+    <name>Central Portal Snapshots</name>
+    <id>central-portal-snapshots</id>
+    <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+    <releases>
+      <enabled>false</enabled>
+    </releases>
+    <snapshots>
+      <enabled>true</enabled>
+    </snapshots>
+  </repository>
 </repositories>
 ...
 ```
