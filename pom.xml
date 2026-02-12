@@ -88,7 +88,7 @@
 		<junit.version>6.0.2</junit.version>
 		<assertj-core.version>3.27.7</assertj-core.version>
 		<spring.version>6.2.15</spring.version>
-        <central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
     </properties>
 
 	<modules>
