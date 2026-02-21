@@ -20,7 +20,7 @@
 	<properties>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- plugins -->
-		<maven-failsafe-plugin.version>3.5.4</maven-failsafe-plugin.version>
+		<maven-failsafe-plugin.version>3.5.5</maven-failsafe-plugin.version>
 		<!-- dependencies -->
 		<selenium.version>4.41.0</selenium.version>
 		<htmlunit-driver.version>4.40.0</htmlunit-driver.version>
