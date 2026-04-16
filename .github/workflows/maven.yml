@@ -31,7 +31,7 @@ jobs:
         chrome-version: stable
         install-chromedriver: true
     - name: Set up cache
-      uses: actions/cache@v5.0.4
+      uses: actions/cache@v5.0.5
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
