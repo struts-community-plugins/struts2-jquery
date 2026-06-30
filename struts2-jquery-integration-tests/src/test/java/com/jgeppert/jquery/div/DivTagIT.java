@@ -25,7 +25,7 @@ public class DivTagIT extends AbstractJQueryTest {
 
         WebElement ajaxDiv = driver.findElement(By.id("ajaxdiv"));
 
-        wait.until(JQUERY_IDLE);
+        wait.until(ExpectedConditions.textToBePresentInElement(ajaxDiv, "This is simple text from an ajax call."));
 
         assertEquals("This is simple text from an ajax call.", ajaxDiv.getText());
     }

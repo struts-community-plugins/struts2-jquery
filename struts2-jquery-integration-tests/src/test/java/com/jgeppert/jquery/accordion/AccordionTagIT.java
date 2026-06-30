@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -73,6 +74,8 @@ public class AccordionTagIT extends AbstractJQueryTest {
         WebElement accordionTitle2 = driver.findElement(By.xpath("//div[@id='accordion']/h3[2]"));
         WebElement accordionItem1 = driver.findElement(By.xpath("//div[@id='accordion']/div[1]"));
         WebElement accordionItem2 = driver.findElement(By.xpath("//div[@id='accordion']/div[2]"));
+
+        wait.until(ExpectedConditions.textToBePresentInElement(accordionItem1, "Echo : Content for accordion item 1"));
 
         assertTrue(accordionItem1.isDisplayed());
         assertEquals("Echo : Content for accordion item 1", accordionItem1.getText());
