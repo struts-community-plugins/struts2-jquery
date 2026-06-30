@@ -237,7 +237,7 @@
 		<profile>
 			<id>release</id>
             <properties>
-                <name>skipITs</name>
+                <skipITs>true</skipITs>
             </properties>
 			<build>
 				<defaultGoal>deploy</defaultGoal>
