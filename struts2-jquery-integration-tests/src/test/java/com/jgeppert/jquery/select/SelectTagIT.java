@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -24,6 +25,10 @@ public class SelectTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement selectElement = driver.findElement(By.id("myselect"));
+        // The sj:select loads its options asynchronously via AJAX (href); the server-side
+        // markup only contains the empty placeholder option. Wait for the options to load
+        // before asserting, otherwise we race the AJAX population.
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("#myselect option"), 26));
         List<WebElement> options = selectElement.findElements(By.tagName("option"));
 
         assertEquals("letter", selectElement.getAttribute("name"));
@@ -42,6 +47,10 @@ public class SelectTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement selectElement = driver.findElement(By.id("myselect"));
+        // The sj:select loads its options asynchronously via AJAX (href); the server-side
+        // markup only contains the empty placeholder option. Wait for the options to load
+        // before asserting, otherwise we race the AJAX population.
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("#myselect option"), 26));
         List<WebElement> options = selectElement.findElements(By.tagName("option"));
 
         assertEquals("letter", selectElement.getAttribute("name"));
@@ -60,6 +69,10 @@ public class SelectTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement selectElement = driver.findElement(By.id("myselect"));
+        // The sj:select loads its options asynchronously via AJAX (href); the server-side
+        // markup only contains the empty placeholder option. Wait for the options to load
+        // before asserting, otherwise we race the AJAX population.
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("#myselect option"), 26));
         List<WebElement> options = selectElement.findElements(By.tagName("option"));
 
         assertEquals("letter", selectElement.getAttribute("name"));
