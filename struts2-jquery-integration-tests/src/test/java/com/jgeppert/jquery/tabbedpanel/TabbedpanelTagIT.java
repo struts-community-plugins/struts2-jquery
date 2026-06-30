@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -25,7 +26,7 @@ public class TabbedpanelTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement tab1Link = driver.findElement(By.id("tab1")).findElement(By.tagName("a"));
-        WebElement tab2Link = driver.findElement(By.id("tab2")).findElement(By.tagName("a"));
+        WebElement tab2Link = waitUntilWired(By.id("tab2")).findElement(By.tagName("a"));
         WebElement tabcontent1 = driver.findElement(By.id("tabcontent1"));
         WebElement tabcontent2 = driver.findElement(By.id("tabcontent2"));
 
@@ -51,11 +52,13 @@ public class TabbedpanelTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement tab1 = driver.findElement(By.id("tab1"));
-        WebElement tab2 = driver.findElement(By.id("tab2"));
+        WebElement tab2 = waitUntilWired(By.id("tab2"));
         WebElement tab1Link = tab1.findElement(By.tagName("a"));
         WebElement tab2Link = tab2.findElement(By.tagName("a"));
         WebElement tabcontent1 = driver.findElement(By.id(tab1.getDomAttribute("aria-controls")));
         WebElement tabcontent2 = driver.findElement(By.id(tab2.getDomAttribute("aria-controls")));
+
+        wait.until(ExpectedConditions.textToBePresentInElement(tabcontent1, "This is simple text from an ajax call."));
 
         assertTrue(tabcontent1.isDisplayed());
         assertFalse(tabcontent2.isDisplayed());

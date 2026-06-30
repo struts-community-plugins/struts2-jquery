@@ -25,7 +25,7 @@ public class DivTagIT extends AbstractJQueryTest {
 
         WebElement ajaxDiv = driver.findElement(By.id("ajaxdiv"));
 
-        wait.until(JQUERY_IDLE);
+        wait.until(ExpectedConditions.textToBePresentInElement(ajaxDiv, "This is simple text from an ajax call."));
 
         assertEquals("This is simple text from an ajax call.", ajaxDiv.getText());
     }
@@ -62,7 +62,7 @@ public class DivTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement ajaxDiv = driver.findElement(By.id("ajaxdiv"));
-        WebElement topicsLink = driver.findElement(By.id("topicslink"));
+        WebElement topicsLink = waitUntilWired(By.id("topicslink"));
 
         assertEquals("ajax div", ajaxDiv.getText());
 

@@ -1,11 +1,14 @@
 package com.jgeppert.jquery;
 
 import com.jgeppert.jquery.selenium.DocumentReadyCondition;
+import com.jgeppert.jquery.selenium.ElementWiredCondition;
 import com.jgeppert.jquery.selenium.JQueryDefinedCondition;
 import com.jgeppert.jquery.selenium.JQueryIdleCondition;
 import com.jgeppert.jquery.selenium.JQueryNoAnimations;
 import com.jgeppert.jquery.selenium.Struts2JQueryDefinedCondition;
 import com.jgeppert.jquery.selenium.WebDriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
@@ -124,6 +127,11 @@ public abstract class AbstractJQueryTest {
 
             throw e; // Re-throw the original exception
         }
+    }
+
+    /** Wait until a struts2-jquery element has finished async wiring, then return it. */
+    protected WebElement waitUntilWired(final By locator) {
+        return wait.until(new ElementWiredCondition(locator));
     }
 
     // Debug widget state

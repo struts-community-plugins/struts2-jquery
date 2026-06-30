@@ -22,7 +22,7 @@ public class SpinnerTagIT extends AbstractJQueryTest {
 
         waitForInitialPageLoad();
 
-        WebElement spinnerInput = driver.findElement(By.id("mySpinner"));
+        WebElement spinnerInput = waitUntilWired(By.id("mySpinner"));
         WebElement spinnerUp = driver.findElement(By.className("ui-spinner-up"));
         WebElement spinnerDown = driver.findElement(By.className("ui-spinner-down"));
 
@@ -44,7 +44,7 @@ public class SpinnerTagIT extends AbstractJQueryTest {
         
         waitForInitialPageLoad();
 
-        WebElement spinnerInput = driver.findElement(By.id("mySpinner"));
+        WebElement spinnerInput = waitUntilWired(By.id("mySpinner"));
         WebElement spinnerUp = driver.findElement(By.className("ui-spinner-up"));
         WebElement spinnerDown = driver.findElement(By.className("ui-spinner-down"));
 
@@ -74,7 +74,7 @@ public class SpinnerTagIT extends AbstractJQueryTest {
         
         waitForInitialPageLoad();
 
-        WebElement spinnerInput = driver.findElement(By.id("mySpinner"));
+        WebElement spinnerInput = waitUntilWired(By.id("mySpinner"));
         WebElement spinnerUp = driver.findElement(By.className("ui-spinner-up"));
         WebElement spinnerDown = driver.findElement(By.className("ui-spinner-down"));
 

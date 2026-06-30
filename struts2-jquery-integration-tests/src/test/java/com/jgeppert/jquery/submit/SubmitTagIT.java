@@ -23,7 +23,7 @@ public class SubmitTagIT extends AbstractJQueryTest {
 
         WebElement formResult = driver.findElement(By.id("formResult"));
         WebElement echoInput = driver.findElement(By.id("echo"));
-        WebElement ajaxSubmit = driver.findElement(By.id("formsubmit"));
+        WebElement ajaxSubmit = waitUntilWired(By.id("formsubmit"));
 
         assertEquals("formResult div", formResult.getText());
         assertEquals("something to echo", echoInput.getAttribute("value"));
@@ -52,7 +52,7 @@ public class SubmitTagIT extends AbstractJQueryTest {
 
         WebElement formResult = driver.findElement(By.id("formResult"));
         WebElement echoInput = driver.findElement(By.id("echo"));
-        WebElement ajaxSubmit = driver.findElement(By.id("formsubmit"));
+        WebElement ajaxSubmit = waitUntilWired(By.id("formsubmit"));
 
         assertEquals("formResult div", formResult.getText());
         assertEquals("something to echo", echoInput.getAttribute("value"));
@@ -81,7 +81,7 @@ public class SubmitTagIT extends AbstractJQueryTest {
 
         WebElement formResult = driver.findElement(By.id("formResult"));
         WebElement echoInput = driver.findElement(By.id("echo"));
-        WebElement ajaxSubmit = driver.findElement(By.id("formsubmit"));
+        WebElement ajaxSubmit = waitUntilWired(By.id("formsubmit"));
 
         assertEquals("formResult div", formResult.getText());
         assertEquals("something to echo", echoInput.getAttribute("value"));
@@ -108,7 +108,7 @@ public class SubmitTagIT extends AbstractJQueryTest {
         WebElement result2 = driver.findElement(By.id("result2"));
         WebElement echoInput1 = driver.findElement(By.id("echo1"));
         WebElement echoInput2 = driver.findElement(By.id("echo2"));
-        WebElement ajaxSubmit1 = driver.findElement(By.id("formsubmit1"));
+        WebElement ajaxSubmit1 = waitUntilWired(By.id("formsubmit1"));
 
         assertEquals("formResult div 1", result1.getText());
         assertEquals("formResult div 2", result2.getText());

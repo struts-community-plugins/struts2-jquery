@@ -24,7 +24,7 @@ public class ATagIT extends AbstractJQueryTest{
         waitForInitialPageLoad();
 
         WebElement resultDiv = driver.findElement(By.id("result"));
-        WebElement ajaxlink = driver.findElement(By.id("ajaxlink"));
+        WebElement ajaxlink = waitUntilWired(By.id("ajaxlink"));
 
         assertEquals("Click on the link bellow.", resultDiv.getText());
         ajaxlink.click();
@@ -43,7 +43,7 @@ public class ATagIT extends AbstractJQueryTest{
         
         WebElement div1 = driver.findElement(By.id("div1"));
         WebElement div2 = driver.findElement(By.id("div2"));
-        WebElement ajaxLink = driver.findElement(By.id("ajaxlink"));
+        WebElement ajaxLink = waitUntilWired(By.id("ajaxlink"));
 
         assertEquals("Div 1", div1.getText());
         assertEquals("Div 2", div2.getText());
@@ -65,7 +65,7 @@ public class ATagIT extends AbstractJQueryTest{
         
         WebElement formResult = driver.findElement(By.id("formResult"));
         WebElement echoInput = driver.findElement(By.id("echo"));
-        WebElement ajaxFormLink = driver.findElement(By.id("ajaxformlink"));
+        WebElement ajaxFormLink = waitUntilWired(By.id("ajaxformlink"));
 
         assertEquals("formResult div", formResult.getText());
         assertEquals("something to echo", echoInput.getDomProperty("value"));
@@ -94,7 +94,7 @@ public class ATagIT extends AbstractJQueryTest{
         waitForInitialPageLoad();
         
         WebElement result = driver.findElement(By.id("result"));
-        WebElement ajaxLink = driver.findElement(By.id("ajaxlink"));
+        WebElement ajaxLink = waitUntilWired(By.id("ajaxlink"));
 
         assertEquals("result div", result.getText());
 
@@ -115,7 +115,7 @@ public class ATagIT extends AbstractJQueryTest{
         waitForInitialPageLoad();
         
         WebElement result = driver.findElement(By.id("result"));
-        WebElement ajaxJsonLink = driver.findElement(By.id("ajaxjsonlink"));
+        WebElement ajaxJsonLink = waitUntilWired(By.id("ajaxjsonlink"));
 
         assertEquals("result div", result.getText());
 
