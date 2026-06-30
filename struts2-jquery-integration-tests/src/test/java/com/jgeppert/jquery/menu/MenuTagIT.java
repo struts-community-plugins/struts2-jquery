@@ -26,7 +26,7 @@ public class MenuTagIT extends AbstractJQueryTest {
 
         waitForInitialPageLoad();
 
-        WebElement menuItemWithSubMenu = driver.findElement(By.id("menuItem2"));
+        WebElement menuItemWithSubMenu = waitUntilWired(By.id("menuItem2"));
         WebElement submenu = driver.findElement(By.id("mySubmenu"));
         WebElement submenuItemWithAjaxLink = driver.findElement(By.id("submenuItem2"));
         WebElement resultDiv = driver.findElement(By.id("resultDiv"));
@@ -55,7 +55,7 @@ public class MenuTagIT extends AbstractJQueryTest {
 
         waitForInitialPageLoad();
 
-        WebElement menu = driver.findElement(By.id("myMenu"));
+        WebElement menu = waitUntilWired(By.id("myMenu"));
         List<WebElement> menuItems = menu.findElements(By.tagName("li"));
         WebElement item2Link = menuItems.get(1).findElement(By.tagName("a"));
         WebElement resultDiv = driver.findElement(By.id("resultDiv"));
@@ -78,7 +78,7 @@ public class MenuTagIT extends AbstractJQueryTest {
 
         waitForInitialPageLoad();
 
-        WebElement menu = driver.findElement(By.id("myMenu"));
+        WebElement menu = waitUntilWired(By.id("myMenu"));
         List<WebElement> menuItems = menu.findElements(By.tagName("li"));
         WebElement item2Link = menuItems.get(1).findElement(By.tagName("a"));
         WebElement resultDiv = driver.findElement(By.id("resultDiv"));

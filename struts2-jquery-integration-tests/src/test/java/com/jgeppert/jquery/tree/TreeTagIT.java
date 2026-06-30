@@ -102,7 +102,7 @@ public class TreeTagIT extends AbstractJQueryTest {
 
         WebElement myTree = driver.findElement(By.id("myTree"));
         WebElement resultDiv = driver.findElement(By.id("resultDiv"));
-        WebElement submit = driver.findElement(By.id("mySubmit"));
+        WebElement submit = waitUntilWired(By.id("mySubmit"));
 
         myTree.findElement(By.id("A_link")).findElement(By.xpath("i[contains(@class, 'checkbox')]")).click();
         submit.click();

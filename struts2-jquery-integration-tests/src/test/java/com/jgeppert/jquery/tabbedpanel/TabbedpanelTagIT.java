@@ -25,7 +25,7 @@ public class TabbedpanelTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement tab1Link = driver.findElement(By.id("tab1")).findElement(By.tagName("a"));
-        WebElement tab2Link = driver.findElement(By.id("tab2")).findElement(By.tagName("a"));
+        WebElement tab2Link = waitUntilWired(By.id("tab2")).findElement(By.tagName("a"));
         WebElement tabcontent1 = driver.findElement(By.id("tabcontent1"));
         WebElement tabcontent2 = driver.findElement(By.id("tabcontent2"));
 
@@ -51,7 +51,7 @@ public class TabbedpanelTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement tab1 = driver.findElement(By.id("tab1"));
-        WebElement tab2 = driver.findElement(By.id("tab2"));
+        WebElement tab2 = waitUntilWired(By.id("tab2"));
         WebElement tab1Link = tab1.findElement(By.tagName("a"));
         WebElement tab2Link = tab2.findElement(By.tagName("a"));
         WebElement tabcontent1 = driver.findElement(By.id(tab1.getDomAttribute("aria-controls")));

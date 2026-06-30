@@ -62,7 +62,7 @@ public class DivTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement ajaxDiv = driver.findElement(By.id("ajaxdiv"));
-        WebElement topicsLink = driver.findElement(By.id("topicslink"));
+        WebElement topicsLink = waitUntilWired(By.id("topicslink"));
 
         assertEquals("ajax div", ajaxDiv.getText());
 
