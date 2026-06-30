@@ -122,5 +122,11 @@ jobs:
     - name: Deploy SNAPSHOT
       if: github.ref == 'refs/heads/release/5.0.x' || github.ref == 'refs/heads/release/6.0.x'
       run: |
+        VERSION=$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version)
+        if [[ "$VERSION" != *-SNAPSHOT ]]; then
+          echo "⏭️  Version $VERSION is not a SNAPSHOT (release-plugin commit) — skipping deploy"
+          exit 0
+        fi
+        echo "🚀 Deploying $VERSION"
         echo "${{ secrets.MAVEN_SETTINGS }}" > ~/.m2/settings-central.xml
         mvn -B -DskipTests=true deploy -s ~/.m2/settings-central.xml
