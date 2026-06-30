@@ -46,7 +46,7 @@ public class DialogTagIT extends AbstractJQueryTest {
 
         waitForInitialPageLoad();
 
-        WebElement dialogOpenLink = driver.findElement(By.id("modalOpenLink"));
+        WebElement dialogOpenLink = waitUntilWired(By.id("modalOpenLink"));
         WebElement dialog = driver.findElement(By.xpath("//div[@role='dialog']"));
         WebElement dialogTitle = dialog.findElement(By.className("ui-dialog-title"));
         WebElement dialogCloseButton = dialog.findElement(By.className("ui-dialog-titlebar-close"));
@@ -96,7 +96,7 @@ public class DialogTagIT extends AbstractJQueryTest {
 
         waitForInitialPageLoad();
 
-        WebElement dialogOpenLink = driver.findElement(By.id("modalOpenLink"));
+        WebElement dialogOpenLink = waitUntilWired(By.id("modalOpenLink"));
         WebElement dialog = driver.findElement(By.xpath("//div[@role='dialog']"));
         WebElement dialogTitle = dialog.findElement(By.className("ui-dialog-title"));
         WebElement dialogCloseButton = dialog.findElement(By.className("ui-dialog-titlebar-close"));

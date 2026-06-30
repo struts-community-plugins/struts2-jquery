@@ -25,7 +25,7 @@ public class AccordionTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement accordionTitle1 = driver.findElement(By.id("accordionItem1"));
-        WebElement accordionTitle2 = driver.findElement(By.id("accordionItem2"));
+        WebElement accordionTitle2 = waitUntilWired(By.id("accordionItem2"));
         WebElement accordionItem1 = driver.findElement(By.id("accordionItem1_div"));
         WebElement accordionItem2 = driver.findElement(By.id("accordionItem2_div"));
 
@@ -34,10 +34,14 @@ public class AccordionTagIT extends AbstractJQueryTest {
 
         accordionTitle2.click();
 
-        wait.until(JQUERY_NO_ANIMATIONS);
+        // jQuery UI accordion slide animations do not complete under HtmlUnit, so the
+        // collapsed panel never reaches display:none; assert on the ARIA state, which
+        // jQuery UI toggles correctly regardless of animation.
+        wait.until(ExpectedConditions.attributeToBe(accordionItem1, "aria-hidden", "true"));
+        wait.until(ExpectedConditions.attributeToBe(accordionItem2, "aria-hidden", "false"));
 
-        assertFalse(accordionItem1.isDisplayed());
-        assertTrue(accordionItem2.isDisplayed());
+        assertEquals("true", accordionItem1.getDomAttribute("aria-hidden"));
+        assertEquals("false", accordionItem2.getDomAttribute("aria-hidden"));
     }
 
     @ParameterizedTest
@@ -48,7 +52,7 @@ public class AccordionTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement accordionTitle1 = driver.findElement(By.xpath("//div[@id='accordion']/h3[1]"));
-        WebElement accordionTitle2 = driver.findElement(By.xpath("//div[@id='accordion']/h3[2]"));
+        WebElement accordionTitle2 = waitUntilWired(By.xpath("//div[@id='accordion']/h3[2]"));
         WebElement accordionItem1 = driver.findElement(By.xpath("//div[@id='accordion']/div[1]"));
         WebElement accordionItem2 = driver.findElement(By.xpath("//div[@id='accordion']/div[2]"));
 
@@ -57,10 +61,12 @@ public class AccordionTagIT extends AbstractJQueryTest {
 
         accordionTitle2.click();
 
-        wait.until(JQUERY_NO_ANIMATIONS);
+        // See testInlineData: assert ARIA state (animation does not complete under HtmlUnit).
+        wait.until(ExpectedConditions.attributeToBe(accordionItem1, "aria-hidden", "true"));
+        wait.until(ExpectedConditions.attributeToBe(accordionItem2, "aria-hidden", "false"));
 
-        assertFalse(accordionItem1.isDisplayed());
-        assertTrue(accordionItem2.isDisplayed());
+        assertEquals("true", accordionItem1.getDomAttribute("aria-hidden"));
+        assertEquals("false", accordionItem2.getDomAttribute("aria-hidden"));
     }
 
     @ParameterizedTest
@@ -71,7 +77,7 @@ public class AccordionTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement accordionTitle1 = driver.findElement(By.xpath("//div[@id='accordion']/h3[1]"));
-        WebElement accordionTitle2 = driver.findElement(By.xpath("//div[@id='accordion']/h3[2]"));
+        WebElement accordionTitle2 = waitUntilWired(By.xpath("//div[@id='accordion']/h3[2]"));
         WebElement accordionItem1 = driver.findElement(By.xpath("//div[@id='accordion']/div[1]"));
         WebElement accordionItem2 = driver.findElement(By.xpath("//div[@id='accordion']/div[2]"));
 
@@ -83,11 +89,13 @@ public class AccordionTagIT extends AbstractJQueryTest {
 
         accordionTitle2.click();
 
-        wait.until(JQUERY_NO_ANIMATIONS);
-        wait.until(JQUERY_IDLE);
+        // See testInlineData: assert ARIA state (animation does not complete under HtmlUnit).
+        wait.until(ExpectedConditions.attributeToBe(accordionItem1, "aria-hidden", "true"));
+        wait.until(ExpectedConditions.attributeToBe(accordionItem2, "aria-hidden", "false"));
+        wait.until(ExpectedConditions.textToBePresentInElement(accordionItem2, "Echo : Content for accordion item 2"));
 
-        assertFalse(accordionItem1.isDisplayed());
-        assertTrue(accordionItem2.isDisplayed());
+        assertEquals("true", accordionItem1.getDomAttribute("aria-hidden"));
+        assertEquals("false", accordionItem2.getDomAttribute("aria-hidden"));
         assertEquals("Echo : Content for accordion item 2", accordionItem2.getText());
     }
 }

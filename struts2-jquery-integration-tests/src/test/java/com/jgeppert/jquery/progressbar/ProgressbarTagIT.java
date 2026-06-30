@@ -39,7 +39,7 @@ public class ProgressbarTagIT extends AbstractJQueryTest {
 
         WebElement progressbar = driver.findElement(By.id("myProgressbar"));
         WebElement progressbarValueDiv = progressbar.findElement(By.className("ui-progressbar-value"));
-        WebElement button = driver.findElement(By.id("myButton"));
+        WebElement button = waitUntilWired(By.id("myButton"));
 
         assertEquals("width: 42%;", progressbarValueDiv.getAttribute("style").trim());
 

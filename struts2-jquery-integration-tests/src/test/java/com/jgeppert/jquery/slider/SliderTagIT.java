@@ -21,7 +21,7 @@ public class SliderTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement sliderInput = driver.findElement(By.id("myslider"));
-        WebElement sliderHandle = driver.findElement(By.id("myslider_widget")).findElement(By.className("ui-slider-handle"));
+        WebElement sliderHandle = waitUntilWired(By.id("myslider_widget")).findElement(By.className("ui-slider-handle"));
 
         assertEquals("110", sliderInput.getDomAttribute("value"));
 

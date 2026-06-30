@@ -24,7 +24,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        WebElement autocompleteInputWidget = waitUntilWired(By.id("autocompleterMonths_widget"));
 
         autocompleteInputWidget.sendKeys("j");
         wait.until(JQUERY_IDLE);
@@ -51,7 +51,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        WebElement autocompleteInputWidget = waitUntilWired(By.id("autocompleterMonths_widget"));
 
         autocompleteInputWidget.sendKeys("j");
         wait.until(JQUERY_IDLE);
@@ -78,7 +78,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        WebElement autocompleteInputWidget = waitUntilWired(By.id("autocompleterMonths_widget"));
 
         autocompleteInputWidget.sendKeys("j");
         wait.until(JQUERY_IDLE);
@@ -105,7 +105,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        WebElement autocompleteInputWidget = waitUntilWired(By.id("autocompleterMonths_widget"));
 
         autocompleteInputWidget.sendKeys("j");
         wait.until(JQUERY_IDLE);
@@ -132,7 +132,7 @@ public class AutocompleterTagIT extends AbstractJQueryTest {
         waitForInitialPageLoad();
 
         WebElement autocompleteInput = driver.findElement(By.id("autocompleterMonths"));
-        WebElement autocompleteInputWidget = driver.findElement(By.id("autocompleterMonths_widget"));
+        WebElement autocompleteInputWidget = waitUntilWired(By.id("autocompleterMonths_widget"));
 
         autocompleteInputWidget.sendKeys("j");
         wait.until(JQUERY_IDLE);
