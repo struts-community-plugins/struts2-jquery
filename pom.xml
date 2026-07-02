@@ -79,7 +79,7 @@
 		<tlib.version>2.3</tlib.version>
 		<minify.version>1.7.6</minify.version>
 		<beanutils.version>1.11.0</beanutils.version>
-		<log4j2.version>2.26.0</log4j2.version>
+		<log4j2.version>2.26.1</log4j2.version>
 		<jstl.version>3.0.2</jstl.version>
 		<struts-annotations.version>2.0</struts-annotations.version>
 		<jsp-api.version>4.0.0</jsp-api.version>
