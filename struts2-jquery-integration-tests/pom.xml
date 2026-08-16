@@ -23,7 +23,7 @@
 		<maven-failsafe-plugin.version>3.5.6</maven-failsafe-plugin.version>
 		<!-- dependencies -->
 		<selenium.version>4.47.0</selenium.version>
-		<htmlunit-driver.version>4.46.0</htmlunit-driver.version>
+		<htmlunit-driver.version>4.47.0</htmlunit-driver.version>
 		<webdrivermanager.version>6.3.4</webdrivermanager.version>
 		<lombok.version>1.18.46</lombok.version>
 		<guava.version>33.6.0-jre</guava.version>
