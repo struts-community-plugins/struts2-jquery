@@ -9,7 +9,7 @@
     <name>\${artifactId}</name>
 
     <properties>
-        <struts2.version>${struts2.version}</struts2.version>
+        <struts2.version>2.3.28.1</struts2.version>
         <struts2-jquery.version>${version}</struts2-jquery.version>
     </properties>
 
