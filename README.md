@@ -92,3 +92,66 @@ To access SNAPSHOT builds, you need to declare the snapshot repository lookup in
 </repositories>
 ...
 ```
+
+## WebJars
+
+Since **Struts 7.3.0** WebJars are supported by `struts2-core` itself, so any application built on
+`struts2-jquery` `6.x` can serve client-side libraries straight from a WebJar without extra plumbing.
+`org.webjars:webjars-locator-lite` is a transitive dependency of `struts2-core` — nothing else needs to
+be added to the classpath.
+
+Declare the WebJar you want:
+
+```xml
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>3.7.1</version>
+</dependency>
+```
+
+Its assets are then served below the Struts static content path, under `/webjars/**`. Both the
+version-less and the versioned form resolve to the same resource:
+
+```
+/<context>/static/webjars/jquery/jquery.min.js
+/<context>/static/webjars/jquery/3.7.1/jquery.min.js
+```
+
+Rather than hardcoding the URL, use the `<s:webjar>` tag from the Struts tag library. It takes a
+version-less path and renders the full, versioned URL including the context path:
+
+```jsp
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<script src="<s:webjar path='jquery/jquery.min.js'/>"></script>
+```
+
+renders
+
+```html
+<script src="/myapp/static/webjars/jquery/3.7.1/jquery.min.js"></script>
+```
+
+The tag also accepts `var`, to put the URL on the value stack instead of writing it out:
+
+```jsp
+<s:webjar path="jquery/jquery.min.js" var="jqueryUrl"/>
+```
+
+Two settings control the feature:
+
+| Setting                    | Default | Description                                                       |
+|----------------------------|---------|-------------------------------------------------------------------|
+| `struts.webjars.enabled`   | `true`  | Master switch for resolving and serving WebJar assets              |
+| `struts.webjars.allowlist` | *empty* | Comma-separated list of WebJar names to expose; empty means all    |
+
+In a hardened setup it is worth restricting the allowlist to the WebJars you actually use:
+
+```
+struts.webjars.allowlist=jquery,jquery-ui
+```
+
+Note that the `<sj:head>` tag continues to serve the jQuery and jQuery UI copies bundled inside
+`struts2-jquery-plugin`, and is not affected by these settings. WebJars are the recommended way to add
+*further* client-side libraries to your application.
